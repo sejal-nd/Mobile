@@ -15,16 +15,16 @@ class SmartEnergyRewardsHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = Environment.sharedInstance.opco == .comEd ?  NSLocalizedString("Total Smart Energy Rewards", comment: "") : //NSLocalizedString("Total Peak Time Savings", comment: "") :
+        title = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Total Peak Time Savings", comment: "") :
             NSLocalizedString("Total Smart Energy Rewards", comment: "")
     }
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        if let navController = navigationController as? MainBaseNavigationController {
-//            navController.setWhiteNavBar()
-//        }
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setWhiteNavBar()
+        }
     }
 
 }

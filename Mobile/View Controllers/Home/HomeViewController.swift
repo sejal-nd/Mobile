@@ -101,6 +101,13 @@ class HomeViewController: AccountPickerViewController {
         cardStackView.addArrangedSubview(usageCardView)
         viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: bag)
         
+        usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.accountDetailEvents.elements()
+            .asDriver(onErrorDriveWith: .empty()))
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "savingsHistorySegue", sender: $0)
+            }).disposed(by: bag)
+        
         let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
         
         templateCardView.safariViewController
@@ -257,6 +264,8 @@ class HomeViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UsageViewController, let accountDetail = sender as? AccountDetail {
             vc.accountDetail = accountDetail
+        } else if let vc = segue.destination as? SmartEnergyRewardsHistoryViewController, let accountDetail = sender as? AccountDetail {
+            vc.eventResults = accountDetail.SERInfo.eventResults
         }
     }
     
