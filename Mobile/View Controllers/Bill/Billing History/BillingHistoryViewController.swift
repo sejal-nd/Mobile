@@ -149,6 +149,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
             if type == BillingHistoryProperties.TypeBilling.rawValue {
                 showBillPdf()
             } else if status == BillingHistoryProperties.StatusProcessing.rawValue ||
+                status == BillingHistoryProperties.StatusProcessed.rawValue ||
                 status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
                 status == BillingHistoryProperties.StatusScheduled.rawValue ||
                 status == BillingHistoryProperties.StatusPending.rawValue {
@@ -182,7 +183,8 @@ extension BillingHistoryViewController: UITableViewDelegate {
                     guard let status = billingItem.status else { return }
                     
                     //pending payments do not get a tap so we only handle scheduled/cancelled payments
-                    if status == BillingHistoryProperties.StatusProcessing.rawValue || 
+                    if status == BillingHistoryProperties.StatusProcessing.rawValue ||
+                        status == BillingHistoryProperties.StatusProcessed.rawValue ||
                         status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
                         status == BillingHistoryProperties.StatusScheduled.rawValue ||
                         status == BillingHistoryProperties.StatusPending.rawValue {
@@ -202,7 +204,8 @@ extension BillingHistoryViewController: UITableViewDelegate {
         guard let status = billingItem.status else { return }
         
         if status == BillingHistoryProperties.StatusProcessing.rawValue ||
-            status == BillingHistoryProperties.StatusCanceled.rawValue || 
+            status == BillingHistoryProperties.StatusProcessed.rawValue ||
+            status == BillingHistoryProperties.StatusCanceled.rawValue ||
             status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
             status == BillingHistoryProperties.StatusFailed.rawValue {
             

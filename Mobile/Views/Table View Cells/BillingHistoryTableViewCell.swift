@@ -18,7 +18,8 @@ enum BillingHistoryProperties: String {
     case StatusPosted = "Posted"
     case StatusFailed = "failed"
     case StatusPending = "Pending" //TODO: need to confirm case
-    case StatusProcessing = "processing" //TODO: need to confirm case and existence
+    case StatusProcessing = "processing"
+    case StatusProcessed = "processed"
     case StatusScheduled = "scheduled"
     case StatusSCHEDULED = "SCHEDULED" //PECO
     case PaymentMethod_S = "S"
@@ -131,7 +132,8 @@ class BillingHistoryTableViewCell: UITableViewCell {
             amountLabel.text = amountPaid
             caretImageView.isHidden = true
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PENDING_PAYMENT, dateString, amountPaid)
-        } else if status == BillingHistoryProperties.StatusProcessing.rawValue {
+        } else if status == BillingHistoryProperties.StatusProcessing.rawValue ||
+            status == BillingHistoryProperties.StatusProcessed.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PAYMENT_PROCESSING
             amountLabel.text = amountPaid

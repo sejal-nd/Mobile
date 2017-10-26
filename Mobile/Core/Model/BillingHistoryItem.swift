@@ -72,7 +72,9 @@ struct BillingHistoryItem: Mappable {
         flagAllowEdits = map.optionalFrom("flag_allow_edits") ?? true
         encryptedPaymentId = map.optionalFrom("encrypted_payment_id")
         isFuture = calculateIsFuture(dateToCompare: date)
-        if status == BillingHistoryProperties.StatusPending.rawValue || status == BillingHistoryProperties.StatusProcessing.rawValue {
+        if status == BillingHistoryProperties.StatusPending.rawValue ||
+            status == BillingHistoryProperties.StatusProcessing.rawValue ||
+            status == BillingHistoryProperties.StatusProcessed.rawValue {
             isFuture = true
         } else if status == BillingHistoryProperties.StatusCanceled.rawValue || status == BillingHistoryProperties.StatusCANCELLED.rawValue {
             // EM-2638: Cancelled payments should always be in the past
