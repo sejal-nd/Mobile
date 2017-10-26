@@ -74,6 +74,9 @@ class UsageViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         gradientLayer.frame = gradientView.frame
+        
+        smartEnergyRewardsView.layoutIfNeeded()
+        smartEnergyRewardsView.superviewDidLayoutSubviews()
     }
     
     private func styleViews() {

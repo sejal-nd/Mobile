@@ -49,11 +49,12 @@ class SmartEnergyRewardsView: UIView {
     @IBOutlet weak var barDescriptionBillCreditValueLabel: UILabel!
     @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
+    var userTappedBarGraph = false
+    
     var viewModel: SmartEnergyRewardsViewModel! {
         didSet {
             disposeBag = DisposeBag() // Clear all pre-existing bindings
             bindViewModel()
-            onBarPress(sender: bar3ContainerButton)
         }
     }
     
@@ -79,7 +80,21 @@ class SmartEnergyRewardsView: UIView {
         styleViews()
     }
     
+    func superviewDidLayoutSubviews() {
+        // We use this to appropriately position to initial selection triangle, and then to stop
+        // receiving layout events after the user manually tapped a button, otherwise the
+        // initial selection bar would never be able to be deselected
+        if !userTappedBarGraph {
+            moveTriangleTo(centerPoint: bar3ContainerButton.center)
+        }
+    }
+    
     private func styleViews() {
+        // Bar colors
+        bar1BarView.backgroundColor = .primaryColor
+        bar2BarView.backgroundColor = .primaryColor
+        bar3BarView.backgroundColor = .primaryColor
+        
         // Bar Graph Text Colors
         bar1DollarLabel.textColor = .blackText
         bar1DateLabel.textColor = .blackText
@@ -150,6 +165,7 @@ class SmartEnergyRewardsView: UIView {
         let centerPoint = sender.center
         moveTriangleTo(centerPoint: centerPoint)
         viewModel.setBarSelected(tag: sender.tag)
+        userTappedBarGraph = true
     }
     
     private func moveTriangleTo(centerPoint: CGPoint) {
