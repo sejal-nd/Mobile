@@ -100,16 +100,16 @@
                                                                 <rect key="frame" x="315" y="-2" width="60" height="100"/>
                                                             </imageView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X73-JB-xJq" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="66" width="142.5" height="23"/>
+                                                                <rect key="frame" x="16" y="66" width="132.5" height="23"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zOl-q8-lai">
-                                                                        <rect key="frame" x="0.0" y="2" width="142.5" height="19"/>
+                                                                        <rect key="frame" x="0.0" y="2" width="132.5" height="19"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_home_hightemp" translatesAutoresizingMaskIntoConstraints="NO" id="eYQ-ut-my1">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="12" height="19"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Temperature Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gs8-5s-oLF">
-                                                                                <rect key="frame" x="17" y="0.0" width="125.5" height="19"/>
+                                                                                <rect key="frame" x="17" y="0.0" width="115.5" height="19"/>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -129,13 +129,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="751" text="Good Evening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-91-O7K">
-                                                                <rect key="frame" x="16" y="23.5" width="175" height="38.5"/>
+                                                                <rect key="frame" x="16" y="26.5" width="177.5" height="33"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="98°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                <rect key="frame" x="263" y="23.5" width="44" height="38.5"/>
+                                                                <rect key="frame" x="264.5" y="26.5" width="42.5" height="33"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -707,6 +707,7 @@
                         <outlet property="numberOfAdultsButton" destination="qf9-2G-nID" id="WTB-mn-0Yb"/>
                         <outlet property="numberOfChildrenButton" destination="ENM-7m-JL1" id="21a-ey-yJQ"/>
                         <outlet property="numberOfResidentsInfoLabel" destination="xsN-1c-QbV" id="IKC-hw-1Ur"/>
+                        <outlet property="scrollView" destination="PZh-KK-jeH" id="wbE-WQ-WRR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1o5-xY-ey5" userLabel="First Responder" sceneMemberID="firstResponder"/>

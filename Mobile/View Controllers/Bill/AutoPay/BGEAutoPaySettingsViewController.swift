@@ -622,21 +622,20 @@ class BGEAutoPaySettingsViewController: UIViewController {
             guard let `self` = self else { return }
             let selectedIndex = self.viewModel.numberOfDaysBeforeDueDate.value == "0" ?
                 0 : (Int(self.viewModel.numberOfDaysBeforeDueDate.value)! - 1)
-            PickerView
-                .show(withTitle: NSLocalizedString("Select Number", comment: ""),
-                      data: (1...15).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
-                      selectedIndex: selectedIndex,
-                      onDone: { [weak self] value, index in
-                        DispatchQueue.main.async { [weak self] in
-                            guard let `self` = self else { return }
-                            let day = index + 1
-                            self.viewModel.userDidChangeSettings.value = true
-                            self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"
-                            self.modifyBeforeDueDateDetailsLabel()
-                            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsSubmit.rawValue)
-                        }
-                    },
-                      onCancel: nil)
+            PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
+                            data: (1...15).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
+                            selectedIndex: selectedIndex,
+                            onDone: { [weak self] value, index in
+                                DispatchQueue.main.async { [weak self] in
+                                    guard let `self` = self else { return }
+                                    let day = index + 1
+                                    self.viewModel.userDidChangeSettings.value = true
+                                    self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"
+                                    self.modifyBeforeDueDateDetailsLabel()
+                                    Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsSubmit.rawValue)
+                                }
+                },
+                            onCancel: nil)
             UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select number of days", comment: ""))
         })
     }

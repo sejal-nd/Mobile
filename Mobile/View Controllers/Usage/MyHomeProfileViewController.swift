@@ -14,6 +14,8 @@ class MyHomeProfileViewController: UIViewController {
     
     let disposeBag = DisposeBag()
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var headerLabel: UILabel!
     
     @IBOutlet weak var homeTypeInfoLabel: UILabel!
@@ -28,6 +30,11 @@ class MyHomeProfileViewController: UIViewController {
     
     @IBOutlet weak var homeSizeInfoLabel: UILabel!
     @IBOutlet weak var homeSizeTextField: FloatLabelTextField!
+    
+    private lazy var viewModel = MyHomeProfileViewModel(usageService: ServiceFactory.createUsageService(),
+                                                        homeSizeEntry: self.homeSizeTextField.textField.rx.text.orEmpty
+                                                            .asObservable()
+                                                            .skip(1))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,22 +44,17 @@ class MyHomeProfileViewController: UIViewController {
                                                             target: self,
                                                             action: #selector(savePressed))
         styleViews()
+        bindButtons()
+        bindTextField()
         
-        homeTypeButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
-                let dataArray = (1...10).map { $0 == 10 ? "\($0)+" : "\($0)" }
-                PickerView
-                    .show(withTitle: NSLocalizedString("Select Home Type", comment: ""),
-                          data: dataArray,
-                          selectedIndex: 0,
-                          onDone: { value, index in
-                            dLog("Value: \(value) Index: \(index)")
-                    },
-                          onCancel: {
-                            dLog("cancel!")
-                    })
-            })
-            .disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
     }
     
     func styleViews() {
@@ -73,12 +75,98 @@ class MyHomeProfileViewController: UIViewController {
         homeSizeTextField.textField.returnKeyType = .done
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func bindButtons() {
+        homeTypeButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                PickerView.show(withTitle: NSLocalizedString("Select Home Type", comment: ""),
+                                data: self.viewModel.homeTypes,
+                                selectedIndex: 0,
+                                onDone: { [weak self] value, index in
+                                    self?.homeTypeButton.setDetailLabel(text: value, checkHidden: true)
+                    },
+                                onCancel: {
+                                    dLog("cancel!")
+                })
+            })
+            .disposed(by: disposeBag)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        heatingFuelButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                PickerView.show(withTitle: NSLocalizedString("Select Home Type", comment: ""),
+                                data: self.viewModel.heatingFuels,
+                                selectedIndex: 0,
+                                onDone: { [weak self] value, index in
+                                    self?.heatingFuelButton.setDetailLabel(text: value, checkHidden: true)
+                    },
+                                onCancel: {
+                                    dLog("cancel!")
+                })
+            })
+            .disposed(by: disposeBag)
+        
+        numberOfAdultsButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
+                                data: self.viewModel.numberOfAdults,
+                                selectedIndex: 0,
+                                onDone: { [weak self] value, index in
+                                    self?.numberOfAdultsButton.setDetailLabel(text: value, checkHidden: true)
+                    },
+                                onCancel: {
+                                    dLog("cancel!")
+                })
+            })
+            .disposed(by: disposeBag)
+        
+        numberOfChildrenButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
+                                data: self.viewModel.numberOfChildren,
+                                selectedIndex: 0,
+                                onDone: { [weak self] value, index in
+                                    self?.numberOfChildrenButton.setDetailLabel(text: value, checkHidden: true)
+                    },
+                                onCancel: {
+                                    dLog("cancel!")
+                })
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bindTextField() {
+        homeSizeTextField.textField.delegate = self
+        homeSizeTextField.setKeyboardType(.numberPad)
+        NotificationCenter.default.rx.notification(.UIKeyboardWillShow)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] notification in
+                guard let `self` = self,
+                    let endFrameRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+                        return
+                }
+                
+                let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+                self.scrollView.contentInset = insets
+                self.scrollView.scrollIndicatorInsets = insets
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.UIKeyboardWillHide, object: nil)
+            .asDriver(onErrorDriveWith: Driver.empty())
+            .drive(onNext: { [weak self] _ in
+                self?.scrollView.contentInset = .zero
+                self?.scrollView.scrollIndicatorInsets = .zero
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.homeSizeError.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in
+                self?.homeSizeTextField.setError($0)
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc func savePressed() {
@@ -87,7 +175,12 @@ class MyHomeProfileViewController: UIViewController {
 }
 
 extension MyHomeProfileViewController: UITextFieldDelegate {
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let characterSet = CharacterSet(charactersIn: string)
+        
+        return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 7
+    }
 }
 
 
