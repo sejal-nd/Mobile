@@ -129,13 +129,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="751" text="Good Evening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-91-O7K">
-                                                                <rect key="frame" x="16" y="23" width="175" height="38.5"/>
+                                                                <rect key="frame" x="16" y="23.5" width="175" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="98°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                <rect key="frame" x="263" y="23" width="44" height="38.5"/>
+                                                                <rect key="frame" x="263" y="23.5" width="44" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -914,12 +914,23 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="JE0-1x-WxG" secondAttribute="trailing" id="1gG-MH-yAn"/>
+                                    <constraint firstAttribute="trailing" secondItem="JE0-1x-WxG" secondAttribute="trailing" priority="999" id="1gG-MH-yAn"/>
                                     <constraint firstItem="JE0-1x-WxG" firstAttribute="centerY" secondItem="CHb-sT-z0N" secondAttribute="centerY" id="P2E-xQ-Ly4"/>
                                     <constraint firstAttribute="bottom" secondItem="JE0-1x-WxG" secondAttribute="bottom" id="PZJ-UD-9V9"/>
-                                    <constraint firstItem="JE0-1x-WxG" firstAttribute="leading" secondItem="CHb-sT-z0N" secondAttribute="leading" id="S8t-Mu-tkp"/>
+                                    <constraint firstItem="JE0-1x-WxG" firstAttribute="leading" secondItem="CHb-sT-z0N" secondAttribute="leading" priority="999" id="S8t-Mu-tkp"/>
                                     <constraint firstItem="JE0-1x-WxG" firstAttribute="top" secondItem="CHb-sT-z0N" secondAttribute="top" id="TNO-wW-kO1"/>
+                                    <constraint firstItem="JE0-1x-WxG" firstAttribute="centerX" secondItem="CHb-sT-z0N" secondAttribute="centerX" id="ibj-BF-fts"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ibj-BF-fts"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="ibj-BF-fts"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="sRC-YE-f9Y" id="SaN-yz-P8j"/>
                                 </connections>
