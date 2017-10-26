@@ -29,6 +29,15 @@ protocol UsageService {
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain a TODO object on success, or a ServiceError on failure.
     func fetchBillForecast(accountNumber: String, premiseNumber: String, completion: @escaping (_ result: ServiceResult<[BillForecast?]>) -> Void)
+
+    /// Fetches your home profile data
+    ///
+    /// - Parameters:
+    ///   - accountNumber: the account to fetch data for
+    ///   - premiseNumber: the premise to fetch data for
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain a TODO object on success, or a ServiceError on failure.
+    func fetchHomeProfile(accountNumber: String, premiseNumber: String, completion: @escaping (_ result: ServiceResult<HomeProfile>) -> Void)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +65,21 @@ extension UsageService {
                 switch (result) {
                 case ServiceResult.Success(let billForecast):
                     observer.onNext(billForecast)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func fetchHomeProfile(accountNumber: String, premiseNumber: String) -> Observable<HomeProfile> {
+        return Observable.create { observer in
+            self.fetchHomeProfile(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<HomeProfile>) in
+                switch (result) {
+                case ServiceResult.Success(let homeProfile):
+                    observer.onNext(homeProfile)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

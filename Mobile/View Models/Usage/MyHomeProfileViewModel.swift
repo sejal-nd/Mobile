@@ -17,15 +17,26 @@ class MyHomeProfileViewModel {
                         NSLocalizedString("Other", comment: ""),
                         NSLocalizedString("None", comment: "")]
     
-    let numberOfAdults = (1...10).map { $0 == 10 ? "\($0)+" : "\($0)" }
-    let numberOfChildren = (0...10).map { $0 == 10 ? "\($0)+" : "\($0)" }
+    let numberOfAdultsOptions = (1...10).map { $0 == 10 ? "\($0)+" : "\($0)" }
+    let numberOfChildrenOptions = (0...10).map { $0 == 10 ? "\($0)+" : "\($0)" }
     
+    let initialHomeProfile: Observable<HomeProfile>
+    let accountDetail: AccountDetail
+    let usageService: UsageService
     let homeSizeEntry: Observable<String>
     
-    init(usageService: UsageService, homeSizeEntry: Observable<String>) {
+    let numberOfChildren = Variable<Int?>(nil)
+    let numberOfAdults = Variable<Int?>(nil)
+    let squareFeet = Variable<Int?>(nil)
+    let heatType = Variable<String?>(nil)
+    let dwellingType = Variable<String?>(nil)
+    
+    init(usageService: UsageService, accountDetail: AccountDetail, homeSizeEntry: Observable<String>) {
         self.homeSizeEntry = homeSizeEntry
+        self.usageService = usageService
+        self.accountDetail = accountDetail
         
-//        usageService.fetch
+        initialHomeProfile = usageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
     }
     
     private(set) lazy var homeSizeError: Observable<String?> = self.homeSizeEntry
@@ -42,4 +53,16 @@ class MyHomeProfileViewModel {
                 return nil
             }
     }
+    
+    private(set) lazy var updatedHomeProfile: Observable<HomeProfile> = Observable.combineLatest(self.numberOfChildren.asObservable(),
+                                                                                                 self.numberOfAdults.asObservable(),
+                                                                                                 self.squareFeet.asObservable(),
+                                                                                                 self.heatType.asObservable(),
+                                                                                                 self.dwellingType.asObservable(),
+                                                                                                 resultSelector: HomeProfile.init)
+    
+    private(set) lazy var enableSave: Observable<Bool> = Observable.combineLatest(self.initialHomeProfile,
+                                                                                  self.updatedHomeProfile,
+                                                                                  self.homeSizeError.isNil())
+    { $0 == $1 && !$2 }
 }

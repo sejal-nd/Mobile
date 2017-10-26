@@ -31,7 +31,9 @@ class MyHomeProfileViewController: UIViewController {
     @IBOutlet weak var homeSizeInfoLabel: UILabel!
     @IBOutlet weak var homeSizeTextField: FloatLabelTextField!
     
+    var accountDetail: AccountDetail!
     private lazy var viewModel = MyHomeProfileViewModel(usageService: ServiceFactory.createUsageService(),
+                                                        accountDetail: self.accountDetail,
                                                         homeSizeEntry: self.homeSizeTextField.textField.rx.text.orEmpty
                                                             .asObservable()
                                                             .skip(1))
@@ -39,10 +41,35 @@ class MyHomeProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""),
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(savePressed))
+        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""),
+                                         style: .done,
+                                         target: self,
+                                         action: #selector(savePressed))
+        
+        viewModel.enableSave.asDriver(onErrorDriveWith: .empty())
+            .drive(saveButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.initialHomeProfile.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] homeProfile in
+                self?.homeTypeButton.setDetailLabel(text: homeProfile.dwellingType, checkHidden: true)
+                self?.heatingFuelButton.setDetailLabel(text: homeProfile.heatType, checkHidden: true)
+                
+                if let numberOfAdults = homeProfile.numberOfAdults {
+                    self?.numberOfAdultsButton.setDetailLabel(text: "\(numberOfAdults)", checkHidden: true)
+                }
+                
+                if let numberOfChildren = homeProfile.numberOfChildren {
+                    self?.numberOfChildrenButton.setDetailLabel(text: "\(numberOfChildren)", checkHidden: true)
+                }
+                
+                if let squareFeet = homeProfile.squareFeet {
+                    self?.homeSizeTextField.textField.text = "\(squareFeet)"
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        navigationItem.rightBarButtonItem = saveButton
         styleViews()
         bindButtons()
         bindTextField()
@@ -85,9 +112,7 @@ class MyHomeProfileViewController: UIViewController {
                                 onDone: { [weak self] value, index in
                                     self?.homeTypeButton.setDetailLabel(text: value, checkHidden: true)
                     },
-                                onCancel: {
-                                    dLog("cancel!")
-                })
+                                onCancel: nil)
             })
             .disposed(by: disposeBag)
         
@@ -100,9 +125,7 @@ class MyHomeProfileViewController: UIViewController {
                                 onDone: { [weak self] value, index in
                                     self?.heatingFuelButton.setDetailLabel(text: value, checkHidden: true)
                     },
-                                onCancel: {
-                                    dLog("cancel!")
-                })
+                                onCancel: nil)
             })
             .disposed(by: disposeBag)
         
@@ -110,14 +133,12 @@ class MyHomeProfileViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
-                                data: self.viewModel.numberOfAdults,
+                                data: self.viewModel.numberOfAdultsOptions,
                                 selectedIndex: 0,
                                 onDone: { [weak self] value, index in
                                     self?.numberOfAdultsButton.setDetailLabel(text: value, checkHidden: true)
                     },
-                                onCancel: {
-                                    dLog("cancel!")
-                })
+                                onCancel: nil)
             })
             .disposed(by: disposeBag)
         
@@ -125,14 +146,12 @@ class MyHomeProfileViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
-                                data: self.viewModel.numberOfChildren,
+                                data: self.viewModel.numberOfChildrenOptions,
                                 selectedIndex: 0,
                                 onDone: { [weak self] value, index in
                                     self?.numberOfChildrenButton.setDetailLabel(text: value, checkHidden: true)
                     },
-                                onCancel: {
-                                    dLog("cancel!")
-                })
+                                onCancel: nil)
             })
             .disposed(by: disposeBag)
     }

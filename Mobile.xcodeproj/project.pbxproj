@@ -467,6 +467,7 @@
 		82E9B6121FA2401A00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
 		82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
 		82E9B6141FA2401A00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
+		82E9B6151FA257ED00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
 		82EAB3341F97E078008B55B1 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* UsageViewModel.swift */; };
 		82EAB3351F97E078008B55B1 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* UsageViewModel.swift */; };
 		82EAB3361F97E078008B55B1 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* UsageViewModel.swift */; };
@@ -5240,6 +5241,7 @@
 				82AEF2E21F6054910057E7ED /* RxNotifications.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8C6F29F1F1F996A00C4644C /* WeatherAPI.swift in Sources */,
+				82E9B6151FA257ED00556C94 /* HomeProfile.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
 				E803A0071EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,

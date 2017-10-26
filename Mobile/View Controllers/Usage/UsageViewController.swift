@@ -146,7 +146,8 @@ class UsageViewController: UIViewController {
         case let vc as UsageWebViewController:
             vc.accountDetail = accountDetail
         case _ as Top5EnergyTipsViewController: break
-        case _ as MyHomeProfileViewController: break
+        case let vc as MyHomeProfileViewController:
+            vc.accountDetail = accountDetail
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
         default: break
