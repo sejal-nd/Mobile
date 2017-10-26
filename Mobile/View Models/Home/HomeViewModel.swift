@@ -39,8 +39,7 @@ class HomeViewModel {
                                                                                            paymentService: self.paymentService,
                                                                                            fetchingTracker: self.fetchingTracker)
     
-    private(set) lazy var usageCardViewModel = HomeUsageCardViewModel(withAccount: self.fetchData.map { _ in AccountsStore.sharedInstance.currentAccount },
-                                                                      accountDetailEvents: self.accountDetailEvents,
+    private(set) lazy var usageCardViewModel = HomeUsageCardViewModel(accountDetailEvents: self.accountDetailEvents,
                                                                       usageService: self.usageService,
                                                                       fetchingTracker: self.fetchingTracker)
     
@@ -122,6 +121,26 @@ class HomeViewModel {
     
     private(set) lazy var showWeatherDetails: Driver<Bool> = Driver.combineLatest(self.isSwitchingAccounts, self.weatherSuccess)
         .map { !$0 && $1 }
+    
+    private(set) lazy var shouldShowUsageCard: Driver<Bool> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()).map { accountDetail in
+        guard let serviceType = accountDetail.serviceType else { return false }
+        guard let premiseNumber = accountDetail.premiseNumber else { return false }
+        
+        if accountDetail.isBGEControlGroup {
+            return accountDetail.isSERAccount // BGE Control Group + SER enrollment get the SER graph on usage card
+        }
+        
+        if !accountDetail.isResidential || accountDetail.isFinaled {
+            return false
+        }
+        
+        // Must have valid serviceType
+        if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
+            return false
+        }
+        
+        return true
+    }
     
     private(set) lazy var isTemperatureTipEligible: Observable<Bool> = Observable.combineLatest(self.weatherEvents.elements().asObservable(),
                                                                                                 self.accountDetailEvents.elements())
@@ -225,6 +244,7 @@ class HomeViewModel {
                 """
             
             return (title, image, body)
-    }
+        }
         .asDriver(onErrorDriveWith: .empty())
+
 }
