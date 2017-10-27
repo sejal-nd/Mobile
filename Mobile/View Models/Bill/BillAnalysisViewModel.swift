@@ -390,11 +390,13 @@ class BillAnalysisViewModel {
         let avgUsagePerDay = reference.usage / Double(daysInBillPeriod)
         if reference.charges < 0 {
             let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-            return String(format: billCreditString, abs(reference.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+            detailString = String(format: billCreditString, abs(reference.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
         } else {
             let localizedString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
-            return String(format: localizedString, reference.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+            detailString = String(format: localizedString, reference.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
         }
+        
+        return "\(dateString). \(tempString). \(detailString)"
     }
 
     private(set) lazy var projectedBarA11yLabel: Driver<String?> =
