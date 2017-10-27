@@ -10,24 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-enum BillingHistoryProperties: String {
-    case TypeBilling = "billing"
-    case TypePayment = "payment"
-    case StatusCanceled = "canceled"
-    case StatusCANCELLED = "CANCELLED" //PECO
-    case StatusPosted = "Posted"
-    case StatusFailed = "failed"
-    case StatusPending = "Pending" //TODO: need to confirm case
-    case StatusProcessing = "processing"
-    case StatusProcessed = "processed"
-    case StatusScheduled = "scheduled"
-    case StatusSCHEDULED = "SCHEDULED" //PECO
-    case PaymentMethod_S = "S"
-    case PaymentMethod_R = "R"
-    case PaymentTypeSpeedpay = "SPEEDPAY"
-    case PaymentTypeCSS = "CSS"
-}
-
 class BillingHistoryTableViewCell: UITableViewCell {
     
     let PAYMENT = NSLocalizedString("Payment", comment: "")
