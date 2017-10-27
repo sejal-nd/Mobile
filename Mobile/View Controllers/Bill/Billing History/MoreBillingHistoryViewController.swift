@@ -76,8 +76,8 @@ class MoreBillingHistoryViewController: UIViewController {
 }
 
 extension MoreBillingHistoryViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+    
+    func selectedRow(at indexPath: IndexPath, tableView: UITableView) {
         
         selectedIndexPath = indexPath
 
@@ -89,6 +89,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
             if type == BillingHistoryProperties.TypeBilling.rawValue {
                 showBillPdf()
             } else if status == BillingHistoryProperties.StatusProcessing.rawValue ||
+                status == BillingHistoryProperties.StatusProcessed.rawValue ||
                 status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
                 status == BillingHistoryProperties.StatusScheduled.rawValue ||
                 status == BillingHistoryProperties.StatusPending.rawValue {
@@ -118,6 +119,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                 
                 //pending payments do not get a tap so we only handle scheduled/cancelled payments
                 if status == BillingHistoryProperties.StatusProcessing.rawValue ||
+                    status == BillingHistoryProperties.StatusProcessed.rawValue ||
                     status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
                     status == BillingHistoryProperties.StatusPending.rawValue {
                     handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
@@ -135,6 +137,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
             let status = billingItem.status else { return }
         
         if status == BillingHistoryProperties.StatusProcessing.rawValue ||
+            status == BillingHistoryProperties.StatusProcessed.rawValue ||
             status == BillingHistoryProperties.StatusCanceled.rawValue ||
             status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
             status == BillingHistoryProperties.StatusFailed.rawValue {
@@ -205,9 +208,14 @@ extension MoreBillingHistoryViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BillingHistoryCell", for: indexPath) as! BillingHistoryTableViewCell
         
-        cell.accessibilityTraits = UIAccessibilityTraitButton
-        
         cell.configureWith(item: billingHistoryItem)
+        
+        cell.didSelect
+            .drive(onNext: { [weak self, weak tableView] in
+                guard let tableView = tableView else { return }
+                self?.selectedRow(at: indexPath, tableView: tableView)
+            })
+            .disposed(by: cell.disposeBag)
         
         return cell
     }

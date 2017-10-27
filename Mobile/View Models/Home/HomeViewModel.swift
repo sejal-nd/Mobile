@@ -81,16 +81,23 @@ class HomeViewModel {
     }()
     
     //MARK: - Weather
-    private lazy var weatherEvents: Observable<Event<WeatherItem>> = Observable.combineLatest(
-                    self.fetchData.map{ _ in AccountsStore.sharedInstance.currentAccount }.unwrap().map {
-                        $0.currentPremise?.zipCode
-                    },
-                    self.accountDetailEvents.elements().map { [unowned self] in $0.zipCode ?? self.defaultZip } // TODO: Get default zip for current opco
-            ).map{ $0 ?? $1 }.unwrap().flatMapLatest { [unowned self] in
-                self.weatherService.fetchWeather(address: $0)
-                        //.trackActivity(fetchingTracker)
-                        .materialize()
-            }.shareReplay(1)
+    private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
+        .withLatestFrom(
+            Observable.combineLatest(
+                self.fetchData.map{ _ in AccountsStore.sharedInstance.currentAccount }
+                    .unwrap()
+                    .map { $0.currentPremise?.zipCode },
+                self.accountDetailEvents.elements()
+                    .map { [unowned self] in $0.zipCode ?? self.defaultZip } // TODO: Get default zip for current opco
+            )
+        )
+        .map { $0 ?? $1 }
+        .unwrap()
+        .flatMapLatest { [unowned self] in
+            self.weatherService.fetchWeather(address: $0)
+                .materialize()
+        }
+        .shareReplay(1)
 
     private(set) lazy var greeting: Driver<String?> = self.fetchData
         .map { _ in Date().localizedGreeting }
@@ -112,15 +119,11 @@ class HomeViewModel {
         .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
 
-
-    private lazy var weatherSuccess: Driver<Bool> = Observable.merge(self.accountDetailEvents.errors().map { _ in false },
-                                                                     self.weatherEvents.errors().map { _ in false },
-                                                                     self.accountDetailEvents.elements().map { _ in true },
-                                                                     self.weatherEvents.elements().map { _ in true })
+    private(set) lazy var showWeatherDetails: Driver<Bool> = Observable.combineLatest(self.isSwitchingAccounts.asObservable(),
+                                                                                      self.accountDetailEvents,
+                                                                                      self.weatherEvents)
+        { !$0 && $1.error == nil && $2.error == nil }
         .asDriver(onErrorDriveWith: .empty())
-    
-    private(set) lazy var showWeatherDetails: Driver<Bool> = Driver.combineLatest(self.isSwitchingAccounts, self.weatherSuccess)
-        .map { !$0 && $1 }
     
     private(set) lazy var shouldShowUsageCard: Driver<Bool> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()).map { accountDetail in
         guard let serviceType = accountDetail.serviceType else { return false }

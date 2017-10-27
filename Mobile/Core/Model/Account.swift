@@ -278,7 +278,15 @@ struct PaymentItem: Mappable {
             guard let statusString = $0 as? String else {
                 throw MapperError.convertibleError(value: $0, type: PaymentStatus.self)
             }
-            guard let status = PaymentStatus(rawValue: statusString.lowercased()) else {
+            
+            let statusStr: String
+            if statusString.lowercased() == "processed" {
+                statusStr = "processing"
+            } else {
+                statusStr = statusString
+            }
+            
+            guard let status = PaymentStatus(rawValue: statusStr.lowercased()) else {
                 throw MapperError.convertibleError(value: statusString, type: PaymentStatus.self)
             }
             return status

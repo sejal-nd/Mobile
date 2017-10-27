@@ -89,7 +89,7 @@ class ExelonPickerContainerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        containerView.layer.cornerRadius = 8
+        containerView.layer.cornerRadius = 12
     }
     
     func selectRow(_ row: Int) {
