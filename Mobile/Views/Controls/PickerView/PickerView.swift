@@ -11,6 +11,7 @@ import UIKit
 class PickerView: UIView {
 
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var pickerContainerView: UIView!
     
     @IBOutlet weak var exelonPicker: UIPickerView!
     
@@ -19,6 +20,7 @@ class PickerView: UIView {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    var title: String?
     var dataArray = [String]()
     var accessibleElements = [Any]()
     var selectedIndex = 0
@@ -28,58 +30,52 @@ class PickerView: UIView {
     
     private override init(frame: CGRect) {
         super.init(frame: frame)
-        
         commonInit()
     }
     
-    private init(dataArray: [String]) {
+    private init(title: String?,
+                 dataArray: [String],
+                 onDone: ((_ selectedValue: String, _ selectedIndex: Int) -> ())?,
+                 onCancel: (() -> ())?) {
+        self.title = title
         self.dataArray = dataArray
-        super.init(frame: UIApplication.shared.keyWindow!.bounds)
-        
+        self.onDone = onDone
+        self.onCancel = onCancel
+        super.init(frame: UIApplication.shared.keyWindow?.bounds ?? .zero)
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-//        commonInit()
+        fatalError("Not implemented")
     }
     
     func commonInit() {
         Bundle.main.loadNibNamed(PickerView.className, owner: self, options: nil)
+        
+        titleLabel.text = title
         
         cancelButton.accessibilityLabel = NSLocalizedString("Cancel", comment: "")
         doneButton.accessibilityLabel = NSLocalizedString("Done", comment: "")
         
         accessibleElements = [cancelButton, doneButton, exelonPicker]
         
-        //
-        containerView.addSubview(exelonPicker)
-        containerView.addSubview(cancelButton)
-        containerView.addSubview(doneButton)
-        
         addSubview(containerView)
         
-        //
-        containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-        bottomConstraint = containerView.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                                                 constant: containerView.frame.height + 8)
-        bottomConstraint.isActive = true
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        //
+        bottomConstraint.constant = -pickerContainerView.frame.height - 8
+        
         exelonPicker.dataSource = self
         exelonPicker.delegate = self
-        exelonPicker.selectRow(0, inComponent: 0, animated: true)
-        
-        cancelButton.setTitleColor(.actionBlue, for: .normal)
-        doneButton.setTitleColor(.actionBlue, for: .normal)
-        doneButton.titleLabel?.font = SystemFont.semibold.of(size: 18)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        containerView.layer.cornerRadius = 8
+        pickerContainerView.layer.cornerRadius = 8
     }
     
     func selectRow(_ row: Int) {
@@ -92,39 +88,37 @@ class PickerView: UIView {
                      selectedIndex: Int,
                      onDone: ((_ selectedValue: String, _ selectedIndex: Int) -> ())?,
                      onCancel: (()->())?) {
-        
-        let picker = PickerView(dataArray: data)
-        picker.onDone = onDone
-        picker.onCancel = onCancel
+        let picker = PickerView(title: title, dataArray: data, onDone: onDone, onCancel: onCancel)
         picker.selectRow(selectedIndex)
         
-        picker.titleLabel.text = title
+        guard let window = UIApplication.shared.keyWindow else { return }
         
-        let window = UIApplication.shared.keyWindow!
         window.addSubview(picker)
         
-        picker.leadingAnchor.constraint(equalTo: window.leadingAnchor, constant: 0).isActive = true
-        picker.trailingAnchor.constraint(equalTo: window.trailingAnchor, constant: 0).isActive = true
-        picker.topAnchor.constraint(equalTo: window.topAnchor, constant: 0).isActive = true
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.leadingAnchor.constraint(equalTo: window.leadingAnchor).isActive = true
+        picker.trailingAnchor.constraint(equalTo: window.trailingAnchor).isActive = true
+        picker.topAnchor.constraint(equalTo: window.topAnchor).isActive = true
+        picker.bottomAnchor.constraint(equalTo: window.bottomAnchor).isActive = true
         
-        picker.backgroundColor = UIColor.black.withAlphaComponent(0)
+        picker.containerView.backgroundColor = UIColor.black.withAlphaComponent(0)
         
         picker.layoutIfNeeded()
         
-        picker.bottomConstraint.constant = -8
+        picker.bottomConstraint.constant = 8
         UIView.animate(withDuration: 0.25, animations: {
             picker.layoutIfNeeded()
-            picker.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            picker.containerView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         }, completion: { [weak picker] _ in
             picker?.accessibilityViewIsModal = false
         })
     }
     
     private func dismiss() {
-        bottomConstraint.constant = containerView.frame.height + 8
+        bottomConstraint.constant = -pickerContainerView.frame.height - 8
         UIView.animate(withDuration: 0.25, animations: {
             self.layoutIfNeeded()
-            self.backgroundColor = UIColor.black.withAlphaComponent(0)
+            self.containerView.backgroundColor = UIColor.black.withAlphaComponent(0)
         }, completion: { [weak self] _ in
             self?.accessibilityViewIsModal = true
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
