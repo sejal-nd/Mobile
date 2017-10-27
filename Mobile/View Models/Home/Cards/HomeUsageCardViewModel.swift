@@ -189,13 +189,37 @@ class HomeUsageCardViewModel {
         return reference.endDate.shortMonthAndDayString.uppercased()
     }
     
+    // MARK: Bar Graph Button Accessibility Drivers
+    
+    private(set) lazy var previousBarA11yLabel: Driver<String?> = self.billComparisonDriver.map {
+        guard let compared = $0.compared else { return nil }
+        
+        let dateString = "\(compared.startDate.fullMonthAndDayString) to \(compared.endDate.fullMonthAndDayString)"
+        
+        let localizedString = NSLocalizedString("Total bill: %@. Usage: %d %@", comment: "")
+        let detailString = String(format: localizedString, compared.charges.currencyString!, Int(compared.usage), $0.meterUnit)
+        
+        return "\(dateString). \(detailString)"
+    }
+    
+    private(set) lazy var currentBarA11yLabel: Driver<String?> = self.billComparisonDriver.map {
+        guard let reference = $0.reference else { return nil }
+        
+        let dateString = "\(reference.startDate.fullMonthAndDayString) to \(reference.endDate.fullMonthAndDayString)"
+        
+        let localizedString = NSLocalizedString("Total bill: %@. Usage: %d %@", comment: "")
+        let detailString = String(format: localizedString, reference.charges.currencyString!, Int(reference.usage), $0.meterUnit)
+        
+        return "\(dateString). \(detailString)"
+    }
+    
     // MARK: Bar Description Box Drivers
     
     private(set) lazy var barDescriptionDateLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
             guard let `self` = self else { return nil }
             if selectionStates[0].value { // No data
-                return NSLocalizedString("Previous Bill", comment: "")
+                return NSLocalizedString("Previous Bill - Not enough data available.", comment: "")
             } else if selectionStates[1].value { // Previous
                 if let compared = billComparison.compared {
                     return "\(compared.startDate.fullMonthAndDayString) - \(compared.endDate.fullMonthAndDayString)"
@@ -206,6 +230,16 @@ class HomeUsageCardViewModel {
                 }
             }
             return nil
+        }
+    
+    private(set) lazy var barDescriptionTotalBillTitleLabelText: Driver<String?> =
+        Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
+            guard let `self` = self else { return nil }
+            if selectionStates[0].value {
+                return nil
+            } else {
+                return NSLocalizedString("Total Bill", comment: "")
+            }
         }
     
     private(set) lazy var barDescriptionTotalBillValueLabelText: Driver<String?> =
@@ -221,6 +255,16 @@ class HomeUsageCardViewModel {
                 }
             }
             return nil
+        }
+    
+    private(set) lazy var barDescriptionUsageTitleLabelText: Driver<String?> =
+        Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
+            guard let `self` = self else { return nil }
+            if selectionStates[0].value {
+                return nil
+            } else {
+                return NSLocalizedString("Usage", comment: "")
+            }
         }
     
     private(set) lazy var barDescriptionUsageValueLabelText: Driver<String?> =

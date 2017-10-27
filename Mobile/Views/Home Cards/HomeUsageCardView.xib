@@ -180,8 +180,8 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebs-dO-SYI">
                                                             <rect key="frame" x="0.0" y="22" width="249" height="101.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="MMM dd, YYYY - MMM dd, YYYY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Bc5-JL-8mW">
-                                                                    <rect key="frame" x="17" y="16" width="216" height="16.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="MMM dd, YYYY - MMM dd, YYYY" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Bc5-JL-8mW">
+                                                                    <rect key="frame" x="8" y="16" width="233" height="16.5"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <bool key="isElement" value="NO"/>
                                                                     </accessibility>
@@ -191,24 +191,36 @@
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Bill" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dxw-YV-YCg">
                                                                     <rect key="frame" x="30" y="42.5" width="64" height="20.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdl-Uk-Y1M">
                                                                     <rect key="frame" x="163.5" y="43" width="55.5" height="20.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meB-kJ-mI7">
                                                                     <rect key="frame" x="30" y="65" width="49.5" height="20.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usage" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tT8-R4-gak">
                                                                     <rect key="frame" x="169.5" y="65.5" width="49.5" height="20.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -222,6 +234,8 @@
                                                                 <constraint firstItem="Bc5-JL-8mW" firstAttribute="top" secondItem="Ebs-dO-SYI" secondAttribute="top" constant="16" id="DeL-Gn-THm"/>
                                                                 <constraint firstItem="Dxw-YV-YCg" firstAttribute="leading" secondItem="Ebs-dO-SYI" secondAttribute="leading" constant="30" id="JnI-q9-kDn"/>
                                                                 <constraint firstItem="Dxw-YV-YCg" firstAttribute="top" secondItem="Bc5-JL-8mW" secondAttribute="bottom" constant="10" id="Sj6-mL-6ua"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Bc5-JL-8mW" secondAttribute="trailing" constant="8" id="W8D-DL-YgD"/>
+                                                                <constraint firstItem="Bc5-JL-8mW" firstAttribute="leading" secondItem="Ebs-dO-SYI" secondAttribute="leading" constant="8" id="Yp2-Ne-Ab7"/>
                                                                 <constraint firstAttribute="trailing" secondItem="tT8-R4-gak" secondAttribute="trailing" constant="30" id="bPS-ab-hC1"/>
                                                                 <constraint firstAttribute="trailing" secondItem="sdl-Uk-Y1M" secondAttribute="trailing" constant="30" id="dHa-o5-zMj"/>
                                                                 <constraint firstItem="meB-kJ-mI7" firstAttribute="top" secondItem="Dxw-YV-YCg" secondAttribute="bottom" constant="2" id="fQz-hw-V6C"/>
