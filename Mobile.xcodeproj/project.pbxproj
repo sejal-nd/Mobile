@@ -103,7 +103,6 @@
 		2F5C81FA1F1D4B1B005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
 		2F5C81FB1F1D5C4A005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
 		2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
-		2F82EBAC1F38D488007EDF6B /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
 		2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 		2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
@@ -330,6 +329,10 @@
 		8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		8291DD4F1F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
+		829E058B1FA7928E00697633 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
+		829E058C1FA7928E00697633 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
+		829E058D1FA7928E00697633 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
+		829E058E1FA7929500697633 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
 		82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
 		82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */; };
@@ -461,6 +464,13 @@
 		82D599511EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
 		82D599521EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
 		82D599531EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
+		82E9B60E1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B60D1FA22FA000556C94 /* MyHomeProfileViewModel.swift */; };
+		82E9B60F1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B60D1FA22FA000556C94 /* MyHomeProfileViewModel.swift */; };
+		82E9B6101FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B60D1FA22FA000556C94 /* MyHomeProfileViewModel.swift */; };
+		82E9B6121FA2401A00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
+		82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
+		82E9B6141FA2401A00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
+		82E9B6151FA257ED00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
 		82E22B581F9FC70A001F1A1B /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
 		82E22B591F9FC70A001F1A1B /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
 		82E22B5A1F9FC70A001F1A1B /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
@@ -934,12 +944,12 @@
 		E841F3A21F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */; };
 		E841F3A31F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */; };
 		E841F3A41F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */; };
-		E841F3A71F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3A51F02F316007BFA82 /* ExelonPickerContainerView.xib */; };
-		E841F3A81F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3A51F02F316007BFA82 /* ExelonPickerContainerView.xib */; };
-		E841F3A91F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3A51F02F316007BFA82 /* ExelonPickerContainerView.xib */; };
-		E841F3AA1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* ExelonPickerContainerView.swift */; };
-		E841F3AB1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* ExelonPickerContainerView.swift */; };
-		E841F3AC1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* ExelonPickerContainerView.swift */; };
+		E841F3A71F02F316007BFA82 /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3A51F02F316007BFA82 /* PickerView.xib */; };
+		E841F3A81F02F316007BFA82 /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3A51F02F316007BFA82 /* PickerView.xib */; };
+		E841F3A91F02F316007BFA82 /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3A51F02F316007BFA82 /* PickerView.xib */; };
+		E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* PickerView.swift */; };
+		E841F3AB1F02F316007BFA82 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* PickerView.swift */; };
+		E841F3AC1F02F316007BFA82 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* PickerView.swift */; };
 		E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */; };
 		E841F3B01F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */; };
 		E841F3B11F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */; };
@@ -1152,6 +1162,15 @@
 		E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
 		E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
 		E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
+		E8B8C8481F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */; };
+		E8B8C8491F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */; };
+		E8B8C84A1F9E3590005828B0 /* SmartEnergyRewardsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */; };
+		E8B8C84C1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */; };
+		E8B8C84D1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */; };
+		E8B8C84E1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */; };
+		E8B956E21F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
+		E8B956E31F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
+		E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
 		E8B9BD891F88212A007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
 		E8B9BD8A1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
 		E8B9BD8B1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
@@ -1243,6 +1262,12 @@
 		E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
 		E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
 		E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */; };
+		E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */; };
+		E8EA60171FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */; };
+		E8EA60181FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */; };
+		E8EA601A1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */; };
+		E8EA601B1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */; };
+		E8EA601C1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */; };
 		E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
 		E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */; };
@@ -1476,6 +1501,7 @@
 		826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedAccountPickerTableViewCell.xib; sourceTree = "<group>"; };
 		82837D131F20677700C31E1C /* RecentPaymentsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPaymentsStore.swift; sourceTree = "<group>"; };
 		8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableExtensions.swift; sourceTree = "<group>"; };
+		829E058A1FA7928E00697633 /* Fillable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fillable.swift; sourceTree = "<group>"; };
 		82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillCommercialViewController.swift; sourceTree = "<group>"; };
 		82A18E591EB918C900BE9F21 /* BillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModel.swift; sourceTree = "<group>"; };
 		82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewModel.swift; sourceTree = "<group>"; };
@@ -1517,6 +1543,8 @@
 		82D599461EC356C800DDB380 /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
 		82D5994A1EC36B5500DDB380 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		82D599501EC3A00900DDB380 /* alert_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_icon.json; sourceTree = "<group>"; };
+		82E9B60D1FA22FA000556C94 /* MyHomeProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeProfileViewModel.swift; sourceTree = "<group>"; };
+		82E9B6111FA2401A00556C94 /* HomeProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProfile.swift; sourceTree = "<group>"; };
 		82E22B571F9FC70A001F1A1B /* EnergyTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTip.swift; sourceTree = "<group>"; };
 		82E22B5C1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTipTableViewCell.swift; sourceTree = "<group>"; };
 		82E22B5D1F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyTipTableViewCell.xib; sourceTree = "<group>"; };
@@ -1816,8 +1844,8 @@
 		E840CB371F82D13A00357780 /* AutoPayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayViewModelTests.swift; sourceTree = "<group>"; };
 		E841F39D1F02F30E007BFA82 /* UINavigationBackButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UINavigationBackButton.xib; sourceTree = "<group>"; };
 		E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBackButton.swift; sourceTree = "<group>"; };
-		E841F3A51F02F316007BFA82 /* ExelonPickerContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExelonPickerContainerView.xib; sourceTree = "<group>"; };
-		E841F3A61F02F316007BFA82 /* ExelonPickerContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExelonPickerContainerView.swift; sourceTree = "<group>"; };
+		E841F3A51F02F316007BFA82 /* PickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerView.xib; sourceTree = "<group>"; };
+		E841F3A61F02F316007BFA82 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateDisclosureButton.xib; sourceTree = "<group>"; };
 		E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisclosureButton.swift; sourceTree = "<group>"; };
 		E844077D1F16CFCC00CB9707 /* fiserv_errors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
@@ -1898,6 +1926,9 @@
 		E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
+		E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartEnergyRewardsView.xib; sourceTree = "<group>"; };
+		E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsView.swift; sourceTree = "<group>"; };
+		E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsViewModel.swift; sourceTree = "<group>"; };
 		E8B9BD911F8826FD007C824C /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModel.swift; sourceTree = "<group>"; };
 		E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModelTests.swift; sourceTree = "<group>"; };
@@ -1924,6 +1955,8 @@
 		E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPickerViewController.swift; sourceTree = "<group>"; };
 		E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntrinsicHeightTableView.swift; sourceTree = "<group>"; };
+		E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSavingsViewController.swift; sourceTree = "<group>"; };
+		E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSavingsTableViewCell.swift; sourceTree = "<group>"; };
 		E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDetectorTextView.swift; sourceTree = "<group>"; };
 		E8EDC5351F32403A006DD927 /* speedpay_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speedpay_errors.xml; sourceTree = "<group>"; };
 		E8EDC5371F324054006DD927 /* speedpay_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speedpay_errors.xml; sourceTree = "<group>"; };
@@ -2565,7 +2598,7 @@
 			children = (
 				E89399331F86719B00B9184C /* BillAnalysisSegmentedControl */,
 				E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */,
-				E841F39B1F02F2AB007BFA82 /* DayPickerContainerView */,
+				E841F39B1F02F2AB007BFA82 /* PickerView */,
 				E841F39A1F02F2A0007BFA82 /* DateDisclosureButton */,
 				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
 				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
@@ -2603,6 +2636,7 @@
 				82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */,
 				E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */,
 				E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */,
+				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -2656,6 +2690,8 @@
 			isa = PBXGroup;
 			children = (
 				82EAB3331F97E078008B55B1 /* UsageViewModel.swift */,
+				82E9B60D1FA22FA000556C94 /* MyHomeProfileViewModel.swift */,
+				E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */,
 				82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */,
 			);
 			path = Usage;
@@ -2741,6 +2777,7 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E8B8C8461F9E354B005828B0 /* SmartEnergyRewardsView */,
 				E8C29C761F630F9E00DB73FC /* OutageStatusButton */,
 				E8B4BFB01F449F6500F334EE /* NoNetworkConnectionView */,
 				825171A61F1D1F210020A6CA /* Home Cards */,
@@ -2819,6 +2856,7 @@
 				8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */,
 				E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */,
 				E893993C1F86AF1600B9184C /* UIViewDashedBorders.swift */,
+				829E058A1FA7928E00697633 /* Fillable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3254,6 +3292,7 @@
 				E8790BE61F8C18C20067BE85 /* BillComparison.swift */,
 				E827F18E1F8E9D620090C5A5 /* BillForecast.swift */,
 				E80CBD0E1F98EC930039D9E7 /* SSOData.swift */,
+				82E9B6111FA2401A00556C94 /* HomeProfile.swift */,
 				82E22B571F9FC70A001F1A1B /* EnergyTip.swift */,
 			);
 			path = Model;
@@ -3358,6 +3397,7 @@
 				82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */,
 				82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */,
 				82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */,
+				E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */,
 			);
 			path = Usage;
 			sourceTree = "<group>";
@@ -3371,13 +3411,13 @@
 			path = DateDisclosureButton;
 			sourceTree = "<group>";
 		};
-		E841F39B1F02F2AB007BFA82 /* DayPickerContainerView */ = {
+		E841F39B1F02F2AB007BFA82 /* PickerView */ = {
 			isa = PBXGroup;
 			children = (
-				E841F3A51F02F316007BFA82 /* ExelonPickerContainerView.xib */,
-				E841F3A61F02F316007BFA82 /* ExelonPickerContainerView.swift */,
+				E841F3A51F02F316007BFA82 /* PickerView.xib */,
+				E841F3A61F02F316007BFA82 /* PickerView.swift */,
 			);
-			path = DayPickerContainerView;
+			path = PickerView;
 			sourceTree = "<group>";
 		};
 		E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */ = {
@@ -3611,6 +3651,15 @@
 				5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		E8B8C8461F9E354B005828B0 /* SmartEnergyRewardsView */ = {
+			isa = PBXGroup;
+			children = (
+				E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */,
+				E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */,
+			);
+			path = SmartEnergyRewardsView;
 			sourceTree = "<group>";
 		};
 		E8C29C761F630F9E00DB73FC /* OutageStatusButton */ = {
@@ -3982,7 +4031,7 @@
 				82A18ECF1EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				B5D415761F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
-				E841F3A71F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */,
+				E841F3A71F02F316007BFA82 /* PickerView.xib in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895771E8AACFF009485E3 /* loading_blue.json in Resources */,
@@ -4012,6 +4061,7 @@
 				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
+				E8B8C8481F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */,
 				E8C29C781F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
@@ -4066,7 +4116,7 @@
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
-				E841F3A91F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */,
+				E841F3A91F02F316007BFA82 /* PickerView.xib in Resources */,
 				E84407821F16CFD100CB9707 /* fiserv_errors.xml in Resources */,
 				E8FE30B61E787632009D28B7 /* outage.json in Resources */,
 				B55736401E6740C9003B9369 /* SyncStore.mom in Resources */,
@@ -4109,6 +4159,7 @@
 				E8494F3A1EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
+				E8B8C84A1F9E3590005828B0 /* SmartEnergyRewardsView.xib in Resources */,
 				82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
@@ -4167,7 +4218,7 @@
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */,
-				E841F3A81F02F316007BFA82 /* ExelonPickerContainerView.xib in Resources */,
+				E841F3A81F02F316007BFA82 /* PickerView.xib in Resources */,
 				E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */,
 				E8FE30B71E787635009D28B7 /* outage.json in Resources */,
 				B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */,
@@ -4206,6 +4257,7 @@
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				54DF4BDF1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
+				E8B8C8491F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */,
 				82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */,
 				E8494F3C1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
@@ -4378,14 +4430,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EA601A1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
+				E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				820125471F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
-				E841F3AA1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */,
+				E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
@@ -4456,6 +4510,7 @@
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */,
+				82E9B60E1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				82E22B671F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
@@ -4485,6 +4540,7 @@
 				CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				E841F3B21F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
+				82E9B6121FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillAnalysisViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
@@ -4531,6 +4587,7 @@
 				E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
+				829E058B1FA7928E00697633 /* Fillable.swift in Sources */,
 				0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				B5D07CB21F0EC2F10018B02D /* Payment.swift in Sources */,
@@ -4543,9 +4600,11 @@
 				E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
 				54C1DEF61F01A1D000290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
+				E8B956E21F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
+				E8B8C84C1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
 				B56DD4A21ED87AE200F0198B /* CreditCard.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */,
 				82BE057F1ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
@@ -4628,7 +4687,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EA601C1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
+				E8EA60181FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				54C1DEF81F01EBFA00290FE5 /* BGEasyViewController.swift in Sources */,
@@ -4706,6 +4767,7 @@
 				82A18EDC1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				E841F3A41F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA31EFC1A01004EBBAB /* WebViewController.swift in Sources */,
+				82E9B6101FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				2F5A3F8A1EFD979F00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
@@ -4735,6 +4797,7 @@
 				E881B1551F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				E873DA771EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
+				82E9B6141FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				E87926DC1F8558AE00794CA9 /* BillAnalysisViewController.swift in Sources */,
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
@@ -4777,10 +4840,11 @@
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				826DCCEF1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
-				E841F3AC1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */,
+				E841F3AC1F02F316007BFA82 /* PickerView.swift in Sources */,
 				E82FF1F41F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				0D79C6CB1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
+				829E058D1FA7928E00697633 /* Fillable.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD461EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E8C453251EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
@@ -4793,9 +4857,11 @@
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF41F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				2F3FA6391F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
+				E8B8C84E1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -4878,7 +4944,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EA601B1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
+				E8EA60171FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				54C1DEF71F01EBF900290FE5 /* BGEasyViewController.swift in Sources */,
@@ -4956,6 +5024,7 @@
 				82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */,
 				E841F3A31F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA21EFC1A01004EBBAB /* WebViewController.swift in Sources */,
+				82E9B60F1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				82A18EDB1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
@@ -4985,6 +5054,7 @@
 				E881B1541F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
+				82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				E87926DB1F8558AE00794CA9 /* BillAnalysisViewController.swift in Sources */,
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
@@ -5027,10 +5097,11 @@
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				826DCCEE1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
-				E841F3AB1F02F316007BFA82 /* ExelonPickerContainerView.swift in Sources */,
+				E841F3AB1F02F316007BFA82 /* PickerView.swift in Sources */,
 				E82FF1F31F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				0D79C6CA1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DB1ECE236000CAB8A6 /* WalletService.swift in Sources */,
+				829E058C1FA7928E00697633 /* Fillable.swift in Sources */,
 				E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				E8C453241EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
@@ -5043,9 +5114,11 @@
 				E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				E8B956E31F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF31F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				2F3FA6381F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
+				E8B8C84D1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -5170,6 +5243,7 @@
 				E80CBD121F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8790BEA1F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
+				829E058E1FA7929500697633 /* Fillable.swift in Sources */,
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
 				B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */,
@@ -5211,7 +5285,6 @@
 				82E22B651F9FC7D8001F1A1B /* EnergyTip.swift in Sources */,
 				B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B5AC06D81E52238900BBA4ED /* MobileTests.swift in Sources */,
-				2F82EBAC1F38D488007EDF6B /* BillingHistoryTableViewCell.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
 				E8AD93911EEF2AFB00882444 /* SecurityQuestion.swift in Sources */,
 				E840CB381F82D13A00357780 /* AutoPayViewModelTests.swift in Sources */,
@@ -5236,6 +5309,7 @@
 				82AEF2E21F6054910057E7ED /* RxNotifications.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8C6F29F1F1F996A00C4644C /* WeatherAPI.swift in Sources */,
+				82E9B6151FA257ED00556C94 /* HomeProfile.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
 				E803A0071EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,

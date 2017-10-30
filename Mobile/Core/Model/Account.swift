@@ -14,13 +14,25 @@ private func extractDate(object: Any?) throws -> Date {
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
     
-    return dateString.apiFormatDate
+    let dateFormatter = DateFormatter()
+    
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+    if let date = dateFormatter.date(from: dateString) {
+        return date
+    }
+    
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    if let date = dateFormatter.date(from: dateString) {
+        return date
+    }
+    
+    throw MapperError.convertibleError(value: object, type: Date.self)
 }
 
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
-    let premises: Array<Premise>
+    let premises: [Premise]
     var currentPremise: Premise?
     
     let status: String?
@@ -70,6 +82,7 @@ struct AccountDetail: Mappable {
     let customerInfo: CustomerInfo
     let billingInfo: BillingInfo
     let SERInfo: SERInfo
+    let premiseInfo: [Premise]
     
     let isPasswordProtected: Bool
     let hasElectricSupplier: Bool
@@ -80,6 +93,8 @@ struct AccountDetail: Mappable {
     let isActiveSeverance: Bool
     let isHourlyPricing: Bool
     let isBGEControlGroup: Bool
+    let isPTSAccount: Bool // ComEd only - Peak Time Savings enrollment status
+    let isSERAccount: Bool // BGE only - Smart Energy Rewards enrollment status
 
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
@@ -120,6 +135,19 @@ struct AccountDetail: Mappable {
             isBGEControlGroup = true
         } else {
             isBGEControlGroup = false
+        }
+        isPTSAccount = map.optionalFrom("isPTSAccount") ?? false
+        
+        premiseInfo = map.optionalFrom("PremiseInfo") ?? []
+        if !premiseInfo.isEmpty {
+            let premise = premiseInfo[0]
+            if let smartEnergyRewards = premise.smartEnergyRewards, smartEnergyRewards == "ENROLLED" {
+                isSERAccount = true
+            } else {
+                isSERAccount = false
+            }
+        } else {
+            isSERAccount = false
         }
         
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
@@ -170,9 +198,49 @@ struct AccountDetail: Mappable {
 
 struct SERInfo: Mappable {
     let controlGroupFlag: String?
+    let eventResults: [SERResult]
     
     init(map: Mapper) throws {
         controlGroupFlag = map.optionalFrom("ControlGroupFlag")
+        eventResults = map.optionalFrom("eventResults") ?? []
+    }
+}
+
+struct SERResult: Mappable {
+    let actualKWH: Double
+    let baselineKWH: Double
+    let eventStart: Date
+    let eventEnd: Date
+    let savingDollar: Double
+    let savingKWH: Double
+    
+    init(map: Mapper) throws {
+        try eventStart = map.from("eventStart", transformation: extractDate)
+        try eventEnd = map.from("eventEnd", transformation: extractDate)
+        
+        if let actualString: String = map.optionalFrom("actualKWH"), let doubleVal = Double(actualString) {
+            actualKWH = doubleVal
+        } else {
+            actualKWH = 0
+        }
+        
+        if let baselineString: String = map.optionalFrom("baselineKWH"), let doubleVal = Double(baselineString) {
+            baselineKWH = doubleVal
+        } else {
+            baselineKWH = 0
+        }
+
+        if let savingDollarString: String = map.optionalFrom("savingDollar"), let doubleVal = Double(savingDollarString) {
+            savingDollar = doubleVal
+        } else {
+            savingDollar = 0
+        }
+        
+        if let savingKWHString: String = map.optionalFrom("savingKWH"), let doubleVal = Double(savingKWHString) {
+            savingKWH = doubleVal
+        } else {
+            savingKWH = 0
+        }
     }
 }
 
@@ -210,7 +278,15 @@ struct PaymentItem: Mappable {
             guard let statusString = $0 as? String else {
                 throw MapperError.convertibleError(value: $0, type: PaymentStatus.self)
             }
-            guard let status = PaymentStatus(rawValue: statusString.lowercased()) else {
+            
+            let statusStr: String
+            if statusString.lowercased() == "processed" {
+                statusStr = "processing"
+            } else {
+                statusStr = statusString
+            }
+            
+            guard let status = PaymentStatus(rawValue: statusStr.lowercased()) else {
                 throw MapperError.convertibleError(value: statusString, type: PaymentStatus.self)
             }
             return status

@@ -88,9 +88,9 @@ class BudgetBillingViewModel {
         case .bge:
             return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.", comment: "")
         case .comEd:
-            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. After 12 months, any credit/debit balances will be included in the calculation for the following year’s Budget Billing payment.", comment: "")
+            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. The ComEd app will be automatically set to notify you when your billing amount is adjusted (and you can modify your alert preferences at any time). After 12 months, any credit/debit balances will be included in the calculation for the following year’s Budget Billing payment.", comment: "")
         case .peco:
-            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage.", comment: "")
+            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage.The PECO app will be automatically set to notify you when your billing amount is adjusted (and you can modify your alert preferences at any time). After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage.", comment: "")
         }
     }
     

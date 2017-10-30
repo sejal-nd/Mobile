@@ -28,23 +28,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vtZ-YP-n8S" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="185" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="185" height="56"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeu-4n-7ZI">
-                            <rect key="frame" x="8" y="4" width="169" height="30"/>
+                            <rect key="frame" x="8" y="4" width="169" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zG1-Ln-YdU">
-                            <rect key="frame" x="0.0" y="38" width="185" height="6"/>
+                            <rect key="frame" x="0.0" y="44" width="185" height="6"/>
                             <color key="backgroundColor" red="0.80784313730000001" green="0.066666666669999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="6" id="oXM-d7-LSp"/>
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bill_analysis_down_triangle" translatesAutoresizingMaskIntoConstraints="NO" id="1u5-hb-UHk">
-                            <rect key="frame" x="85.5" y="41" width="14" height="9"/>
+                            <rect key="frame" x="85.5" y="47" width="14" height="9"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="14" id="0H6-VA-RRp"/>
                                 <constraint firstAttribute="height" constant="9" id="fHA-xd-gDo"/>
@@ -68,23 +68,23 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPq-UY-0aG" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                    <rect key="frame" x="201" y="0.0" width="185" height="50"/>
+                    <rect key="frame" x="201" y="0.0" width="185" height="56"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="376-Pq-vPd">
-                            <rect key="frame" x="8" y="4" width="169" height="30"/>
+                            <rect key="frame" x="8" y="4" width="169" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ze9-Fd-5Fm">
-                            <rect key="frame" x="0.0" y="38" width="185" height="6"/>
+                            <rect key="frame" x="0.0" y="44" width="185" height="6"/>
                             <color key="backgroundColor" red="0.80784313730000001" green="0.066666666669999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="6" id="ZDt-uJ-t1z"/>
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bill_analysis_down_triangle" translatesAutoresizingMaskIntoConstraints="NO" id="JTd-hr-2gw">
-                            <rect key="frame" x="85.5" y="41" width="14" height="9"/>
+                            <rect key="frame" x="85.5" y="47" width="14" height="9"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="14" id="bTl-fQ-9kB"/>
                                 <constraint firstAttribute="height" constant="9" id="r4b-Zb-zAA"/>
@@ -113,10 +113,10 @@
                 <constraint firstAttribute="trailing" secondItem="NPq-UY-0aG" secondAttribute="trailing" id="7Lw-AY-Z4q"/>
                 <constraint firstItem="vtZ-YP-n8S" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="K4s-ST-49e"/>
                 <constraint firstItem="NPq-UY-0aG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UPl-4w-dT5"/>
-                <constraint firstAttribute="bottom" secondItem="vtZ-YP-n8S" secondAttribute="bottom" id="aWm-rR-Pne"/>
+                <constraint firstAttribute="bottom" secondItem="vtZ-YP-n8S" secondAttribute="bottom" constant="-6" id="aWm-rR-Pne"/>
                 <constraint firstItem="vtZ-YP-n8S" firstAttribute="width" secondItem="NPq-UY-0aG" secondAttribute="width" id="hUo-Dn-2C9"/>
                 <constraint firstItem="vtZ-YP-n8S" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iuu-re-G8O"/>
-                <constraint firstAttribute="bottom" secondItem="NPq-UY-0aG" secondAttribute="bottom" id="qQE-L5-RoU"/>
+                <constraint firstAttribute="bottom" secondItem="NPq-UY-0aG" secondAttribute="bottom" constant="-6" id="qQE-L5-RoU"/>
                 <constraint firstItem="NPq-UY-0aG" firstAttribute="leading" secondItem="vtZ-YP-n8S" secondAttribute="trailing" constant="16" id="qfR-fQ-YGw"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>

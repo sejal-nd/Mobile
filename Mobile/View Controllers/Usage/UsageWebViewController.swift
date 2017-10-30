@@ -25,7 +25,7 @@ class UsageWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Usage", comment: "")
+        title = NSLocalizedString("Usage Details", comment: "")
         
         view.insertSubview(webView, belowSubview: loadingIndicator)
         webView.translatesAutoresizingMaskIntoConstraints = false

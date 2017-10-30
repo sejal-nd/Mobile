@@ -50,11 +50,11 @@ class DisclosureButton: UIButton {
         setDetailLabel(text: "", checkHidden: true)
     }
     
-    func setDetailLabel(text: String, checkHidden: Bool) {
+    func setDetailLabel(text: String?, checkHidden: Bool) {
         detailLabel.text = text
-        detailLabel.isHidden = text.isEmpty
+        detailLabel.isHidden = (text ?? "").isEmpty
         checkImage.isHidden = checkHidden
-        label.font = SystemFont.medium.of(textStyle: (text.isEmpty ? .title1: .headline))
+        label.font = SystemFont.medium.of(textStyle: ((text ?? "").isEmpty ? .title1: .headline))
     }
     
     public func setHideCaret(caretHidden: Bool) {
@@ -74,7 +74,7 @@ class DisclosureButton: UIButton {
     
     override var isEnabled: Bool {
         didSet {
-            alpha = isEnabled ? 1 : 0.33
+            alpha = isEnabled ? 1 : 0.5
         }
     }
     
