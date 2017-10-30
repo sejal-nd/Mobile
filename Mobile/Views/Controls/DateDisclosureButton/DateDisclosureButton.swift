@@ -30,11 +30,11 @@ class DateDisclosureButton: ButtonControl {
     }
     
     private func bind(withLabel label: String) {
+        dateDisclosureLabel.font = SystemFont.medium.of(textStyle: .title2)
         dateDisclosureLabel.text = label
-        dateDisclosureLabel.font = SystemFont.regular.of(textStyle: .title2)
         
+        selectedDateLabel.font = OpenSans.regular.of(textStyle: .headline)
         selectedDateLabel.text = selectedDateText
-        
     }
     
     func accessibilityUpdate(dateText: String) {

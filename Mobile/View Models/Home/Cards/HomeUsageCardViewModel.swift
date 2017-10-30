@@ -40,17 +40,17 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var accountDetailChanged = self.accountDetailEvents.elements()
         .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(),
-                                                 self.electricGasSelectedSegmentIndex.asObservable()))
+                                                 self.electricGasSelectedSegmentIndex.asObservable().startWith(0)))
         .flatMapLatest { [unowned self] accountDetail, segmentIndex -> Observable<Event<BillComparison>> in
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             guard let serviceType = accountDetail.serviceType else { return .empty() }
 
+            // Throw these Observable.errors to trigger a billComparisonDriver event even when we don't make the API call
             if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
-                return .empty()
+                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue)).materialize()
             }
-            
             if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-                return .empty()
+                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue)).materialize()
             }
             
             var gas = false // Default to electric
@@ -91,12 +91,6 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var billComparisonDriver: Driver<BillComparison> = self.billComparisonEvents.elements().asDriver(onErrorDriveWith: .empty())
     
-//    private(set) lazy var billComparisonError: Observable<Bool> = self.billComparisonEvents.errors().map {
-//        if let serviceError = $0 as? ServiceError {
-//            return true
-//        }
-//        return false
-//    }
     
     // MARK: Bill Comparison
     
@@ -106,9 +100,11 @@ class HomeUsageCardViewModel {
         return !$0 && !$1 && !$2
     }
     
-    private(set) lazy var shouldShowBillComparisonEmptyState: Driver<Bool> = self.billComparisonEvents.map {
-        return $0.error != nil
-    }.asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var shouldShowBillComparisonEmptyState: Driver<Bool> = Driver.combineLatest(self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()),
+                                                                                                  self.shouldShowSmartEnergyRewards,
+                                                                                                  self.shouldShowSmartEnergyEmptyState) {
+        return $0.error != nil && !$1 && !$2
+    }
     
     // Not currently using -- we'll show billComparisonEmptyStateView if any errors occur
     private(set) lazy var shouldShowErrorView: Driver<Bool> =

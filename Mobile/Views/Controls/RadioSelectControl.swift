@@ -73,12 +73,14 @@ class RadioSelectControl: ButtonControl {
 		titleLabel.setContentCompressionResistancePriority(999, for: .vertical)
 		titleLabel.setContentHuggingPriority(751, for: .horizontal)
 		titleLabel.setContentHuggingPriority(999, for: .vertical)
+        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.textColor = .blackText
         titleLabel.numberOfLines = 0
 		
 		detailButton = UIButton(type: .system)
 		detailButton.translatesAutoresizingMaskIntoConstraints = false
 		detailButton.setTitleColor(.actionBlue, for: .normal)
-		detailButton.titleLabel?.font = SystemFont.regular.of(textStyle: .headline)
+		detailButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .headline)
 		detailButton.setContentCompressionResistancePriority(999, for: .horizontal)
 		detailButton.setContentCompressionResistancePriority(999, for: .vertical)
 		detailButton.setContentHuggingPriority(999, for: .horizontal)
