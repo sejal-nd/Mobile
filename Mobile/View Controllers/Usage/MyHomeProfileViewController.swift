@@ -53,10 +53,42 @@ class MyHomeProfileViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = saveButton
         
-        viewModel.enableSave.asDriver(onErrorDriveWith: .empty())
-            .drive(saveButton.rx.isEnabled)
-            .disposed(by: disposeBag)
+        styleViews()
+        initialLoadSetup()
+        bindButtons()
+        bindTextField()
+        bindSaveResults()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
+    }
+    
+    func styleViews() {
+        headerLabel.numberOfLines = 0
+        headerLabel.font = SystemFont.regular.of(textStyle: .headline)
+        headerLabel.setLineHeight(lineHeight: 24)
+        homeTypeInfoLabel.numberOfLines = 0
+        homeTypeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        heatingFuelInfoLabel.numberOfLines = 0
+        heatingFuelInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        numberOfResidentsInfoLabel.numberOfLines = 0
+        numberOfResidentsInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        homeSizeInfoLabel.numberOfLines = 0
+        homeSizeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        homeSizeTextField.textField.placeholder = NSLocalizedString("Home Size (sq. ft)*", comment: "")
+        homeSizeTextField.textField.delegate = self
+        homeSizeTextField.textField.returnKeyType = .done
+        
+        homeSizeTextField.textField.customAccessibilityLabel = NSLocalizedString("Home Size in square feet*", comment: "")
+    }
+    
+    func initialLoadSetup() {
         scrollView.isHidden = true
         errorLabel.isHidden = true
         loadingIndicator.isHidden = false
@@ -98,40 +130,6 @@ class MyHomeProfileViewController: UIViewController {
                         self?.loadingIndicator.isHidden = true
             })
             .disposed(by: disposeBag)
-        
-        
-        styleViews()
-        bindButtons()
-        bindTextField()
-        bindSaveResults()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
-    }
-    
-    func styleViews() {
-        headerLabel.numberOfLines = 0
-        headerLabel.font = SystemFont.regular.of(textStyle: .headline)
-        headerLabel.setLineHeight(lineHeight: 24)
-        homeTypeInfoLabel.numberOfLines = 0
-        homeTypeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        heatingFuelInfoLabel.numberOfLines = 0
-        heatingFuelInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        numberOfResidentsInfoLabel.numberOfLines = 0
-        numberOfResidentsInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        homeSizeInfoLabel.numberOfLines = 0
-        homeSizeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        
-        homeSizeTextField.textField.placeholder = NSLocalizedString("Home Size (sq. ft)*", comment: "")
-        homeSizeTextField.textField.delegate = self
-        homeSizeTextField.textField.returnKeyType = .done
-        
-        homeSizeTextField.textField.customAccessibilityLabel = NSLocalizedString("Home Size in square feet*", comment: "")
     }
     
     func bindButtons() {
@@ -222,6 +220,10 @@ class MyHomeProfileViewController: UIViewController {
                     },
                                 onCancel: nil)
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.enableSave.asDriver(onErrorDriveWith: .empty())
+            .drive(saveButton.rx.isEnabled)
             .disposed(by: disposeBag)
     }
     
