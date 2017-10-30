@@ -150,7 +150,14 @@ class UsageViewController: UIViewController {
         case let vc as UsageWebViewController:
             vc.accountDetail = accountDetail
         case _ as Top5EnergyTipsViewController: break
-        case _ as MyHomeProfileViewController: break
+        case let vc as MyHomeProfileViewController:
+            vc.accountDetail = accountDetail
+            vc.didSaveHomeProfile
+                .delay(0.5)
+                .drive(onNext: { [weak self] in
+                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
+                })
+                .disposed(by: disposeBag)
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
         case let vc as TotalSavingsViewController:
