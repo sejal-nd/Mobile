@@ -152,6 +152,21 @@ class SmartEnergyRewardsView: UIView {
         viewModel.bar2HeightConstraintValue.drive(bar2HeightConstraint.rx.constant).disposed(by: disposeBag)
         viewModel.bar3HeightConstraintValue.drive(bar3HeightConstraint.rx.constant).disposed(by: disposeBag)
         
+        // Bar Accessibility
+        viewModel.bar1A11yLabel.drive(bar1ContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.bar2A11yLabel.drive(bar2ContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.bar3A11yLabel.drive(bar3ContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.latest3EventsThisSeason.asObservable().subscribe(onNext: { [weak self] latest3Events in
+            guard let `self` = self else { return }
+            if latest3Events.count == 3 {
+                self.barGraphStackView.accessibilityElements = [self.bar1ContainerButton, self.bar2ContainerButton, self.bar3ContainerButton]
+            } else if latest3Events.count == 2 {
+                self.barGraphStackView.accessibilityElements = [self.bar2ContainerButton, self.bar3ContainerButton]
+            } else if latest3Events.count == 1 {
+                self.barGraphStackView.accessibilityElements = [self.bar3ContainerButton]
+            }
+        }).disposed(by: disposeBag)
+        
         // Bar description box
         viewModel.barDescriptionDateLabelText.drive(barDescriptionDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionPeakHoursLabelText.drive(barDescriptionPeakHoursLabel.rx.text).disposed(by: disposeBag)

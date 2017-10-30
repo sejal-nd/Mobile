@@ -252,7 +252,7 @@ class HomeUsageCardView: UIView {
         noDataContainerButton.accessibilityLabel = NSLocalizedString("Previous bill. Not enough data available.", comment: "")
         viewModel.previousBarA11yLabel.drive(previousContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
-        viewModel.noPreviousData.asObservable().map { [weak self] in
+        viewModel.noPreviousData.asObservable().subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
             var a11yElementArray: [ButtonControl] = []
             if $0 {
@@ -262,7 +262,7 @@ class HomeUsageCardView: UIView {
             }
             a11yElementArray.append(self.currentContainerButton)
             self.barGraphStackView.accessibilityElements = a11yElementArray
-        }.subscribe().disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         // Bar description
         viewModel.barDescriptionDateLabelText.drive(barDescriptionDateLabel.rx.text).disposed(by: disposeBag)
