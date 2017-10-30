@@ -45,6 +45,9 @@ class MyHomeProfileViewController: UIViewController {
                                                         accountDetail: self.accountDetail,
                                                         saveAction: self.saveButton.rx.tap.asObservable())
     
+    private let didSaveHomeProfileSubject = PublishSubject<Void>()
+    private(set) lazy var didSaveHomeProfile: Driver<Void> = self.didSaveHomeProfileSubject.asDriver(onErrorDriveWith: .empty())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -265,6 +268,7 @@ class MyHomeProfileViewController: UIViewController {
     func bindSaveResults() {
         viewModel.saveSuccess
             .drive(onNext: { [weak self] in
+                self?.didSaveHomeProfileSubject.onNext(())
                 self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
