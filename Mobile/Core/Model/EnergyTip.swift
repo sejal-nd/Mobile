@@ -19,7 +19,7 @@ struct EnergyTip: Mappable {
         
         let htmlBody: String = try map.from("shortBody")
         
-        guard let data = htmlBody.data(using: String.Encoding.utf8, allowLossyConversion: true) else {
+        guard let data = htmlBody.data(using: .unicode, allowLossyConversion: true) else {
             throw MapperError.convertibleError(value: htmlBody, type: String.self)
         }
         
