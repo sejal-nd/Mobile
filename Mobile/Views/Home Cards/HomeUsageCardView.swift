@@ -112,6 +112,7 @@ class HomeUsageCardView: UIView {
         if !userTappedBarGraph {
             moveTriangleTo(centerPoint: currentContainerButton.center)
         }
+        smartEnergyRewardsGraphView.superviewDidLayoutSubviews()
     }
     
     private func styleBillComparison() {

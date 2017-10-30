@@ -14,7 +14,19 @@ private func extractDate(object: Any?) throws -> Date {
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
     
-    return dateString.apiFormatDate
+    let dateFormatter = DateFormatter()
+    
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+    if let date = dateFormatter.date(from: dateString) {
+        return date
+    }
+    
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    if let date = dateFormatter.date(from: dateString) {
+        return date
+    }
+    
+    throw MapperError.convertibleError(value: object, type: Date.self)
 }
 
 struct Account: Mappable, Equatable, Hashable {
@@ -266,7 +278,15 @@ struct PaymentItem: Mappable {
             guard let statusString = $0 as? String else {
                 throw MapperError.convertibleError(value: $0, type: PaymentStatus.self)
             }
-            guard let status = PaymentStatus(rawValue: statusString.lowercased()) else {
+            
+            let statusStr: String
+            if statusString.lowercased() == "processed" {
+                statusStr = "processing"
+            } else {
+                statusStr = statusString
+            }
+            
+            guard let status = PaymentStatus(rawValue: statusStr.lowercased()) else {
                 throw MapperError.convertibleError(value: statusString, type: PaymentStatus.self)
             }
             return status

@@ -74,6 +74,9 @@ class UsageViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         gradientLayer.frame = gradientView.frame
+        
+        smartEnergyRewardsView.layoutIfNeeded()
+        smartEnergyRewardsView.superviewDidLayoutSubviews()
     }
     
     private func styleViews() {
@@ -127,7 +130,8 @@ class UsageViewController: UIViewController {
         Driver.merge(usageGraphPlaceholderButton.rx.tap.asDriver().mapTo("usageWebViewSegue"),
                      top5EnergyTipsButton.rx.tap.asDriver().mapTo("top5EnergyTipsSegue"),
                      updateYourHomeProfileButton.rx.tap.asDriver().mapTo("updateYourHomeProfileSegue"),
-                     takeMeToSavingsButton.rx.tap.asDriver().mapTo("hourlyPricingSegue"))
+                     takeMeToSavingsButton.rx.tap.asDriver().mapTo("hourlyPricingSegue"),
+                     smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().mapTo("totalSavingsSegue"))
             .drive(onNext: { [weak self] in
                 self?.performSegue(withIdentifier: $0, sender: nil)
             })
@@ -156,6 +160,8 @@ class UsageViewController: UIViewController {
                 .disposed(by: disposeBag)
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
+        case let vc as TotalSavingsViewController:
+            vc.eventResults = accountDetail.SERInfo.eventResults
         default: break
         }
     }

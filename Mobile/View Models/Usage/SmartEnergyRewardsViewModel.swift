@@ -198,7 +198,7 @@ class SmartEnergyRewardsViewModel {
             guard let `self` = self else { return nil }
             guard !latest3Events.isEmpty else { return nil }
             let event = self.eventFor(selectionStates: selectionStates, latest3Events: latest3Events)
-            return "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)"
+            return String(format: NSLocalizedString("Peak Hours: %@", comment: ""), "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)")
         }
     
     private(set) lazy var barDescriptionTypicalUseValueLabelText: Driver<String?> =
