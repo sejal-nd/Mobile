@@ -14,6 +14,9 @@ class MyHomeProfileViewController: UIViewController {
     
     let disposeBag = DisposeBag()
 
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var headerLabel: UILabel!
@@ -31,49 +34,73 @@ class MyHomeProfileViewController: UIViewController {
     @IBOutlet weak var homeSizeInfoLabel: UILabel!
     @IBOutlet weak var homeSizeTextField: FloatLabelTextField!
     
+    let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""),
+                                     style: .done,
+                                     target: self,
+                                     action: nil)
+    
     var accountDetail: AccountDetail!
+    
     private lazy var viewModel = MyHomeProfileViewModel(usageService: ServiceFactory.createUsageService(),
                                                         accountDetail: self.accountDetail,
-                                                        homeSizeEntry: self.homeSizeTextField.textField.rx.text.orEmpty
-                                                            .asObservable()
-                                                            .skip(1))
-
+                                                        saveAction: self.saveButton.rx.tap.asObservable())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""),
-                                         style: .done,
-                                         target: self,
-                                         action: #selector(savePressed))
+        navigationItem.rightBarButtonItem = saveButton
         
         viewModel.enableSave.asDriver(onErrorDriveWith: .empty())
             .drive(saveButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        viewModel.initialHomeProfile.asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] homeProfile in
-                self?.homeTypeButton.setDetailLabel(text: homeProfile.dwellingType, checkHidden: true)
-                self?.heatingFuelButton.setDetailLabel(text: homeProfile.heatType, checkHidden: true)
+        scrollView.isHidden = true
+        errorLabel.isHidden = true
+        loadingIndicator.isHidden = false
+        viewModel.initialHomeProfile
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] homeProfile in
+                self?.scrollView.isHidden = false
+                self?.errorLabel.isHidden = true
+                self?.loadingIndicator.isHidden = true
+                
+                self?.homeTypeButton.setDetailLabel(text: homeProfile.homeType?.displayString, checkHidden: true)
+                if let homeType = homeProfile.homeType {
+                    self?.viewModel.homeType.value = homeType
+                }
+                
+                self?.heatingFuelButton.setDetailLabel(text: homeProfile.heatType?.displayString, checkHidden: true)
+                if let heatType = homeProfile.heatType {
+                    self?.viewModel.heatType.value = heatType
+                }
                 
                 if let numberOfAdults = homeProfile.numberOfAdults {
                     self?.numberOfAdultsButton.setDetailLabel(text: "\(numberOfAdults)", checkHidden: true)
+                    self?.viewModel.numberOfAdults.value = numberOfAdults
                 }
                 
                 if let numberOfChildren = homeProfile.numberOfChildren {
                     self?.numberOfChildrenButton.setDetailLabel(text: "\(numberOfChildren)", checkHidden: true)
+                    self?.viewModel.numberOfChildren.value = numberOfChildren
                 }
                 
                 if let squareFeet = homeProfile.squareFeet {
                     self?.homeSizeTextField.textField.text = "\(squareFeet)"
+                    self?.viewModel.homeSizeEntry.value = String(squareFeet)
                 }
+                },
+                       onError: { [weak self] _ in
+                        self?.scrollView.isHidden = true
+                        self?.errorLabel.isHidden = false
+                        self?.loadingIndicator.isHidden = true
             })
             .disposed(by: disposeBag)
         
-        navigationItem.rightBarButtonItem = saveButton
+        
         styleViews()
         bindButtons()
         bindTextField()
-        
+        bindSaveResults()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,59 +124,98 @@ class MyHomeProfileViewController: UIViewController {
         homeSizeInfoLabel.numberOfLines = 0
         homeSizeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        homeSizeTextField.textField.placeholder = NSLocalizedString("Home Size (sq. ft)", comment: "")
+        homeSizeTextField.textField.placeholder = NSLocalizedString("Home Size (sq. ft)*", comment: "")
         homeSizeTextField.textField.delegate = self
         homeSizeTextField.textField.returnKeyType = .done
+        
+        homeSizeTextField.textField.customAccessibilityLabel = NSLocalizedString("Home Size in square feet*", comment: "")
     }
     
     func bindButtons() {
+        viewModel.homeTypeA11y.drive(homeTypeButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.heatingFuelA11y.drive(heatingFuelButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.numberOfAdultsA11y.drive(numberOfAdultsButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.numberOfChildrenA11y.drive(numberOfChildrenButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        
         homeTypeButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
+            .withLatestFrom(viewModel.homeType.asDriver())
+            .drive(onNext: { [weak self] homeType in
                 guard let `self` = self else { return }
+                let selectedIndex: Int
+                if let homeType = homeType {
+                    selectedIndex = HomeType.allCases.index(of: homeType) ?? 0
+                } else {
+                    selectedIndex = 0
+                }
                 PickerView.show(withTitle: NSLocalizedString("Select Home Type", comment: ""),
-                                data: self.viewModel.homeTypes,
-                                selectedIndex: 0,
+                                data: HomeType.allCases.map { $0.displayString },
+                                selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
                                     self?.homeTypeButton.setDetailLabel(text: value, checkHidden: true)
+                                    self?.viewModel.homeType.value = HomeType(rawValue: index)
                     },
                                 onCancel: nil)
             })
             .disposed(by: disposeBag)
         
         heatingFuelButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
+            .withLatestFrom(viewModel.heatType.asDriver())
+            .drive(onNext: { [weak self] heatType in
                 guard let `self` = self else { return }
+                let selectedIndex: Int
+                if let heatType = heatType {
+                    selectedIndex = HeatType.allCases.index(of: heatType) ?? 0
+                } else {
+                    selectedIndex = 0
+                }
                 PickerView.show(withTitle: NSLocalizedString("Select Home Type", comment: ""),
-                                data: self.viewModel.heatingFuels,
-                                selectedIndex: 0,
+                                data: HeatType.allCases.map { $0.displayString },
+                                selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
                                     self?.heatingFuelButton.setDetailLabel(text: value, checkHidden: true)
+                                    self?.viewModel.heatType.value = HeatType(rawValue: index)
                     },
                                 onCancel: nil)
             })
             .disposed(by: disposeBag)
         
         numberOfAdultsButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
+            .withLatestFrom(viewModel.numberOfAdults.asDriver())
+            .drive(onNext: { [weak self] numberOfAdults in
                 guard let `self` = self else { return }
+                let selectedIndex: Int
+                if let numberOfAdults = numberOfAdults {
+                    selectedIndex = self.viewModel.numberOfAdultsOptions.index(of: numberOfAdults) ?? 0
+                } else {
+                    selectedIndex = 0
+                }
                 PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
-                                data: self.viewModel.numberOfAdultsOptions,
-                                selectedIndex: 0,
+                                data: self.viewModel.numberOfAdultsDisplayOptions,
+                                selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
                                     self?.numberOfAdultsButton.setDetailLabel(text: value, checkHidden: true)
+                                    self?.viewModel.numberOfAdults.value = self?.viewModel.numberOfAdultsOptions[index]
                     },
                                 onCancel: nil)
             })
             .disposed(by: disposeBag)
         
         numberOfChildrenButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
+            .withLatestFrom(viewModel.numberOfChildren.asDriver())
+            .drive(onNext: { [weak self] numberOfChildren in
                 guard let `self` = self else { return }
+                let selectedIndex: Int
+                if let numberOfChildren = numberOfChildren {
+                    selectedIndex = self.viewModel.numberOfChildrenOptions.index(of: numberOfChildren) ?? 0
+                } else {
+                    selectedIndex = 0
+                }
                 PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
-                                data: self.viewModel.numberOfChildrenOptions,
-                                selectedIndex: 0,
+                                data: self.viewModel.numberOfChildrenDisplayOptions,
+                                selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
                                     self?.numberOfChildrenButton.setDetailLabel(text: value, checkHidden: true)
+                                    self?.viewModel.numberOfChildren.value = self?.viewModel.numberOfChildrenOptions[index]
                     },
                                 onCancel: nil)
             })
@@ -181,16 +247,47 @@ class MyHomeProfileViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        homeSizeTextField.textField.rx.text
+            .asObservable()
+            .skip(1)
+            .bind(to: viewModel.homeSizeEntry)
+            .disposed(by: disposeBag)
+        
         viewModel.homeSizeError.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
                 self?.homeSizeTextField.setError($0)
             })
             .disposed(by: disposeBag)
+        
+        
     }
     
-    @objc func savePressed() {
-        dLog("Save Pressed")
+    func bindSaveResults() {
+        viewModel.saveSuccess
+            .drive(onNext: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.saveErrors
+            .drive(onNext: { [weak self] in
+                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: $0, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.saveTracker.asDriver()
+            .drive(onNext: {
+                if $0 {
+                    LoadingView.show()
+                } else {
+                    LoadingView.hide()
+                }
+            })
+            .disposed(by: disposeBag)
     }
+    
 }
 
 extension MyHomeProfileViewController: UITextFieldDelegate {
