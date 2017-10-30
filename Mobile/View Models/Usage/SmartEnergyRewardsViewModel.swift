@@ -85,12 +85,12 @@ class SmartEnergyRewardsViewModel {
         if $0.count < 3 { return nil }
         let event = $0[0]
         let dateString = event.eventStart.fullMonthDayAndYearString
-        let timeString = "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)"
+        let timeString = String(format: NSLocalizedString("Peak Hours: %@", comment: ""), "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)")
         let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
         let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
         let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
         let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
-        return "\(dateString). \(timeString). \(typicalUseString). \(actualUseString). \(energySavingsString). \(billCreditString)"
+        return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
     // MARK: Bar 2
@@ -151,12 +151,12 @@ class SmartEnergyRewardsViewModel {
             return nil
         }
         let dateString = event.eventStart.fullMonthDayAndYearString
-        let timeString = "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)"
+        let timeString = String(format: NSLocalizedString("Peak Hours: %@", comment: ""), "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)")
         let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
         let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
         let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
         let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
-        return "\(dateString). \(timeString). \(typicalUseString). \(actualUseString). \(energySavingsString). \(billCreditString)"
+        return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
     // MARK: Bar 3
@@ -225,12 +225,12 @@ class SmartEnergyRewardsViewModel {
             return nil
         }
         let dateString = event.eventStart.fullMonthDayAndYearString
-        let timeString = "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)"
+        let timeString = String(format: NSLocalizedString("Peak Hours: %@", comment: ""), "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)")
         let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
         let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
         let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
         let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
-        return "\(dateString). \(timeString). \(typicalUseString). \(actualUseString). \(energySavingsString). \(billCreditString)"
+        return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
     // MARK: Description Box Drivers
