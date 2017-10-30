@@ -32,7 +32,14 @@ class BillingHistoryTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         selectionStyle = .none
+        
+        titleLabel.textColor = .blackText
+        titleLabel.font = SystemFont.medium.of(textStyle: .headline)
+        dateLabel.textColor = .deepGray
+        dateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountLabel.font = SystemFont.semibold.of(textStyle: .headline)
     }
     
     override func prepareForReuse() {
@@ -40,8 +47,10 @@ class BillingHistoryTableViewCell: UITableViewCell {
         dateLabel.text = ""
         titleLabel.text = ""
         amountLabel.text = ""
-        amountLabel.textColor = .black
+        amountLabel.textColor = .blackText
         iconImageView.image = nil
+        caretImageView.isHidden = false
+        dateLabel.isHidden = false
         disposeBag = DisposeBag()
     }
     
