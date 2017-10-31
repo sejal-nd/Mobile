@@ -141,7 +141,7 @@ class UsageViewController: UIViewController {
                      updateYourHomeProfileButton.rx.tap.asDriver().mapTo("updateYourHomeProfileSegue"),
                      takeMeToSavingsButton.rx.tap.asDriver()
                         .withLatestFrom(Driver.just(accountDetail))
-                        .filter { !($0.isHourlyPricing || ($0.isAMIAccount && !$0.isPTSAccount)) }
+                        .filter { !(!$0.isHourlyPricing || ($0.isAMIAccount && !$0.isPTSAccount)) }
                         .mapTo("hourlyPricingSegue"),
                      smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().mapTo("totalSavingsSegue"))
             .drive(onNext: { [weak self] in
@@ -151,7 +151,7 @@ class UsageViewController: UIViewController {
         
         takeMeToSavingsButton.rx.tap.asObservable()
             .withLatestFrom(Driver.just(accountDetail))
-            .filter { $0.isHourlyPricing || ($0.isAMIAccount && !$0.isPTSAccount) }
+            .filter { !$0.isHourlyPricing || ($0.isAMIAccount && !$0.isPTSAccount) }
             .map { accountDetail -> String in
                 if accountDetail.isAMIAccount && !accountDetail.isPTSAccount {
                     return "http://comed.com/PTS"
