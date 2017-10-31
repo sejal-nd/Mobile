@@ -125,7 +125,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             titleLabel.text = PAYMENT_PROCESSING
             amountLabel.text = amountPaid
             dateLabel.isHidden = true
-            caretImageView.isHidden = true
+            caretImageView.isHidden = false
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT_PROCESSING, dateString, amountPaid)
         } else if status == BillingHistoryProperties.StatusCanceled.rawValue ||
             status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
