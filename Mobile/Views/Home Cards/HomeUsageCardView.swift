@@ -95,7 +95,7 @@ class HomeUsageCardView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        segmentedControl.setItems(leftLabel: NSLocalizedString("Electricity", comment: ""),
+        segmentedControl.setItems(leftLabel: NSLocalizedString("Electric", comment: ""),
                                   rightLabel: NSLocalizedString("Gas", comment: ""),
                                   initialSelectedIndex: 0)
         
