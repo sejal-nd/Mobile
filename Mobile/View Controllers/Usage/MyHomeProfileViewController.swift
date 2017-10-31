@@ -142,6 +142,8 @@ class MyHomeProfileViewController: UIViewController {
             .withLatestFrom(viewModel.homeType.asDriver())
             .drive(onNext: { [weak self] homeType in
                 guard let `self` = self else { return }
+                self.homeSizeTextField.textField.resignFirstResponder()
+                
                 let selectedIndex: Int
                 if let homeType = homeType {
                     selectedIndex = HomeType.allCases.index(of: homeType) ?? 0
@@ -163,6 +165,8 @@ class MyHomeProfileViewController: UIViewController {
             .withLatestFrom(viewModel.heatType.asDriver())
             .drive(onNext: { [weak self] heatType in
                 guard let `self` = self else { return }
+                self.homeSizeTextField.textField.resignFirstResponder()
+                
                 let selectedIndex: Int
                 if let heatType = heatType {
                     selectedIndex = HeatType.allCases.index(of: heatType) ?? 0
@@ -184,6 +188,8 @@ class MyHomeProfileViewController: UIViewController {
             .withLatestFrom(viewModel.numberOfAdults.asDriver())
             .drive(onNext: { [weak self] numberOfAdults in
                 guard let `self` = self else { return }
+                self.homeSizeTextField.textField.resignFirstResponder()
+                
                 let selectedIndex: Int
                 if let numberOfAdults = numberOfAdults {
                     selectedIndex = self.viewModel.numberOfAdultsOptions.index(of: numberOfAdults) ?? 0
@@ -205,6 +211,8 @@ class MyHomeProfileViewController: UIViewController {
             .withLatestFrom(viewModel.numberOfChildren.asDriver())
             .drive(onNext: { [weak self] numberOfChildren in
                 guard let `self` = self else { return }
+                self.homeSizeTextField.textField.resignFirstResponder()
+                
                 let selectedIndex: Int
                 if let numberOfChildren = numberOfChildren {
                     selectedIndex = self.viewModel.numberOfChildrenOptions.index(of: numberOfChildren) ?? 0
@@ -284,8 +292,9 @@ class MyHomeProfileViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.saveTracker.asDriver()
-            .drive(onNext: {
+            .drive(onNext: { [weak self] in
                 if $0 {
+                    self?.homeSizeTextField.textField.resignFirstResponder()
                     LoadingView.show()
                 } else {
                     LoadingView.hide()
