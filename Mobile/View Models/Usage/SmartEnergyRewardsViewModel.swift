@@ -81,6 +81,18 @@ class SmartEnergyRewardsViewModel {
         }
     }
     
+    private(set) lazy var bar1A11yLabel: Driver<String?> = self.latest3EventsThisSeason.map {
+        if $0.count < 3 { return nil }
+        let event = $0[0]
+        let dateString = event.eventStart.fullMonthDayAndYearString
+        let timeString = String(format: NSLocalizedString("Peak Hours: %@", comment: ""), "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)")
+        let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
+        let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
+        let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
+        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
+        return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
+    }
+    
     // MARK: Bar 2
     
     private(set) lazy var bar2DollarLabelText: Driver<String?> = self.latest3EventsThisSeason.map {
@@ -127,6 +139,24 @@ class SmartEnergyRewardsViewModel {
             }
         }
         return 0
+    }
+    
+    private(set) lazy var bar2A11yLabel: Driver<String?> = self.latest3EventsThisSeason.map {
+        var event: SERResult
+        if $0.count == 3 {
+            event = $0[1]
+        } else if $0.count == 2 {
+            event = $0[0]
+        } else {
+            return nil
+        }
+        let dateString = event.eventStart.fullMonthDayAndYearString
+        let timeString = String(format: NSLocalizedString("Peak Hours: %@", comment: ""), "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)")
+        let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
+        let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
+        let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
+        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
+        return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
     // MARK: Bar 3
@@ -181,6 +211,26 @@ class SmartEnergyRewardsViewModel {
             return 121
         }
         return 0
+    }
+    
+    private(set) lazy var bar3A11yLabel: Driver<String?> = self.latest3EventsThisSeason.map {
+        var event: SERResult
+        if $0.count == 3 {
+            event = $0[2]
+        } else if $0.count == 2 {
+            event = $0[1]
+        } else if $0.count == 1 {
+            event = $0[0]
+        } else {
+            return nil
+        }
+        let dateString = event.eventStart.fullMonthDayAndYearString
+        let timeString = String(format: NSLocalizedString("Peak Hours: %@", comment: ""), "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)")
+        let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
+        let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
+        let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
+        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
+        return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
     // MARK: Description Box Drivers

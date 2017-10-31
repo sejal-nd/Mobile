@@ -43,6 +43,19 @@ class TotalSavingsTableViewCell: UITableViewCell {
         typicalUseLabel.text = String(format: "%.1f kWh", event.baselineKWH)
         actualUseLabel.text = String(format: "%.1f kWh", event.actualKWH)
         energySavingsLabel.text = String(format: "%.1f kWh", event.savingKWH)
+        
+        accessibilityLabel = String(format: "%@: %@, %@: %@, %@: %@, %@: %@, %@: %@",
+            NSLocalizedString("Savings Day", comment: ""),
+            savingsDayLabel.text!,
+            NSLocalizedString("Bill Credit", comment: ""),
+            billCreditLabel.text!,
+            NSLocalizedString("Typical Use", comment: ""),
+            typicalUseLabel.text!,
+            NSLocalizedString("Actual Use", comment: ""),
+            actualUseLabel.text!,
+            NSLocalizedString("Energy Savings", comment: ""),
+            energySavingsLabel.text!
+        )
     }
 
 }
@@ -59,6 +72,7 @@ class TotalSavingsHeaderCell: UITableViewCell {
         super.awakeFromNib()
         
         selectionStyle = .none
+        accessibilityElementsHidden = true // Disable a11y on header cell
         
         savingsDayLabel.textColor = .deepGray
         savingsDayLabel.font = SystemFont.medium.of(textStyle: .footnote)

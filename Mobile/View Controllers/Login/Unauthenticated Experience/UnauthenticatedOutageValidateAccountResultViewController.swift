@@ -42,7 +42,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         col1HeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         col1HeaderLabel.text = NSLocalizedString("Account Number", comment: "")
         if singleMultipremiseAccount {
-            col1HeaderLabel.removeFromSuperview()
+            col1HeaderLabel.text = nil
         }
         
         col2HeaderLabel.textColor = .middleGray
@@ -69,14 +69,32 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         // be blank until they were scrolled off screen and reused. This reloadData() is the
         // workaround. We should remove it if/when this gets fixed.
         if #available(iOS 11, *) {
-            tableView.reloadData()
+            viewDidLayoutSubviews()
         }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         tableView.reloadData() // To properly set the width constraints
+        
+        // Dynamic sizing for the table header view
+        if let headerView = tableView.tableHeaderView {
+            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+
+            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+
+            tableView.tableHeaderView = tableView.tableHeaderView;
+        }
+
+        
+    
     }
     
     func onCancelPress() {
@@ -118,22 +136,41 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
 
         let outageStatus = viewModel.outageStatusArray![indexPath.row]
 
+        var a11yLabel = ""
         if singleMultipremiseAccount {
             if cell.accountNumberLabel != nil { // Prevents crash if already removed
                 cell.accountNumberLabel.removeFromSuperview()
             }
             cell.streetNumberLabel.text = outageStatus.maskedAddress
             cell.unitNumberLabel.text = outageStatus.unitNumber
+            
+            if let maskedAddress = outageStatus.maskedAddress, !maskedAddress.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Street address: %@,", comment: ""), maskedAddress)
+            }
+            if let unitNumber = outageStatus.unitNumber, !unitNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+            }
         } else {
             cell.accountNumberLabel.text = outageStatus.maskedAccountNumber
             cell.streetNumberLabel.text = outageStatus.addressNumber
             cell.unitNumberLabel.text = outageStatus.unitNumber
             
             cell.accountNumberLabelWidthConstraint.constant = col1HeaderLabel.frame.size.width
+            
+            if let accountNumber = outageStatus.maskedAccountNumber, !accountNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Account number ending in %@,", comment: ""), accountNumber.replacingOccurrences(of: "*", with: ""))
+            }
+            if let addressNumber = outageStatus.addressNumber, !addressNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Street number: %@,", comment: ""), addressNumber)
+            }
+            if let unitNumber = outageStatus.unitNumber, !unitNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+            }
         }
         
         cell.streetNumberLabelWidthConstraint.constant = col2HeaderLabel.frame.size.width
         cell.unitNumberLabelWidthConstraint.constant = col3HeaderLabel.frame.size.width
+        cell.accessibilityLabel = a11yLabel
         
         return cell
     }

@@ -61,7 +61,7 @@ class AccountLookupToolResultViewController: UIViewController {
         // be blank until they were scrolled off screen and reused. This reloadData() is the
         // workaround. We should remove it if/when this gets fixed.
         if #available(iOS 11, *) {
-            tableView.reloadData()
+            viewDidLayoutSubviews()
         }
     }
     
@@ -69,6 +69,21 @@ class AccountLookupToolResultViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         tableView.reloadData() // To properly set the width constraints
+        
+        // Dynamic sizing for the table header view
+        if let headerView = tableView.tableHeaderView {
+            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+            
+            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+            
+            tableView.tableHeaderView = tableView.tableHeaderView;
+        }
     }
     
 }
@@ -91,6 +106,18 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
         cell.accountNumberLabel.text = account.accountNumber?.maskAllButLast4Digits()
         cell.streetNumberLabel.text = account.streetNumber
         cell.unitNumberLabel.text = account.unitNumber
+        
+        var a11yLabel = ""
+        if let accountNumber = account.accountNumber, !accountNumber.isEmpty {
+            a11yLabel += String(format: NSLocalizedString("Account number ending in %@,", comment: ""), accountNumber.maskAllButLast4Digits().replacingOccurrences(of: "*", with: ""))
+        }
+        if let streetNumber = account.streetNumber, !streetNumber.isEmpty {
+            a11yLabel += String(format: NSLocalizedString("Street number: %@,", comment: ""), streetNumber)
+        }
+        if let unitNumber = account.unitNumber, !unitNumber.isEmpty {
+            a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+        }
+        cell.accessibilityLabel = a11yLabel
 
         cell.accountNumberLabelWidthConstraint.constant = accountNumberHeaderLabel.frame.size.width
         cell.streetNumberLabelWidthConstraint.constant = streetNumberHeaderLabel.frame.size.width

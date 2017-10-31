@@ -164,6 +164,7 @@ class BillAnalysisViewController: UIViewController {
     private func fetchData() {
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             self.viewModel.shouldShowProjectedBar.asObservable()
                 .observeOn(MainScheduler.instance)
                 .take(1)
@@ -249,6 +250,8 @@ class BillAnalysisViewController: UIViewController {
         centerAttrText.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSRange(location: 0, length: centerAttrText.length))
         centerAttrText.addAttribute(NSFontAttributeName, value: OpenSans.semibold.of(size: 24), range: NSRange(location: 0, length: centerAttrText.length))
         currentChargesPieChartView.centerAttributedText = centerAttrText
+        
+        currentChargesPieChartView.accessibilityLabel = totalCharges.currencyString ?? "$0.00"
         
         var pieChartValues = [PieChartDataEntry]()
         var pieChartColors = [UIColor]()

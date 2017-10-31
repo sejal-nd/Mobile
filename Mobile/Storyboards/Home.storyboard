@@ -285,7 +285,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGL-ZW-C2N" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <accessibility key="accessibilityConfiguration" label="Report outage"/>
+                                                        <accessibility key="accessibilityConfiguration" label="View my usage details"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="RF0-y8-pMy"/>
                                                         </constraints>
@@ -296,7 +296,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOn-mh-ofI" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="70" width="317" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <accessibility key="accessibilityConfiguration" label="Report outage"/>
+                                                        <accessibility key="accessibilityConfiguration" label="My top five energy tips"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="Pbh-D3-0ue"/>
                                                         </constraints>
@@ -307,7 +307,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITH-nS-aBi" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="140" width="317" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <accessibility key="accessibilityConfiguration" label="Report outage"/>
+                                                        <accessibility key="accessibilityConfiguration" label="Update my home profile"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="6c9-d1-mUw"/>
                                                         </constraints>
@@ -1236,6 +1236,6 @@
         <image name="ic_smartenergyempty" width="109" height="103"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Gdb-8Z-K6i"/>
+        <segue reference="PGo-sN-iCf"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -248,9 +248,27 @@ class HomeUsageCardView: UIView {
         currentLabelFont.drive(currentDateLabel.rx.font).disposed(by: disposeBag)
         currentDollarLabelTextColor.drive(currentDollarLabel.rx.textColor).disposed(by: disposeBag)
         
+        // Bar accessibility
+        noDataContainerButton.accessibilityLabel = NSLocalizedString("Previous bill. Not enough data available.", comment: "")
+        viewModel.previousBarA11yLabel.drive(previousContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.noPreviousData.asObservable().subscribe(onNext: { [weak self] in
+            guard let `self` = self else { return }
+            var a11yElementArray: [ButtonControl] = []
+            if $0 {
+                a11yElementArray.append(self.noDataContainerButton)
+            } else {
+                a11yElementArray.append(self.previousContainerButton)
+            }
+            a11yElementArray.append(self.currentContainerButton)
+            self.barGraphStackView.accessibilityElements = a11yElementArray
+        }).disposed(by: disposeBag)
+        
         // Bar description
         viewModel.barDescriptionDateLabelText.drive(barDescriptionDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionTotalBillTitleLabelText.drive(barDescriptionTotalBillTitleLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionTotalBillValueLabelText.drive(barDescriptionTotalBillValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionUsageTitleLabelText.drive(barDescriptionUsageTitleLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionUsageValueLabelText.drive(barDescriptionUsageValueLabel.rx.text).disposed(by: disposeBag)
         
         // Smart Energy Rewards
