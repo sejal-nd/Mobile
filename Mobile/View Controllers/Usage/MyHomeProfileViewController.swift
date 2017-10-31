@@ -169,7 +169,7 @@ class MyHomeProfileViewController: UIViewController {
                 } else {
                     selectedIndex = 0
                 }
-                PickerView.show(withTitle: NSLocalizedString("Select Home Type", comment: ""),
+                PickerView.show(withTitle: NSLocalizedString("Select Fuel Type", comment: ""),
                                 data: HeatType.allCases.map { $0.displayString },
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
