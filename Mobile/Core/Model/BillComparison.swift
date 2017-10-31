@@ -13,6 +13,7 @@ private func extractDate(object: Any?) throws -> Date {
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
     let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = .opCo
     dateFormatter.dateFormat = "yyyy-MM-dd"
     return dateFormatter.date(from: dateString)!
 }

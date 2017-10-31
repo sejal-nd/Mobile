@@ -87,6 +87,7 @@ struct BillingHistoryItem: Mappable {
     
     func dateString() -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM-dd-yyyy"
         return dateFormatter.string(from: date)
     }

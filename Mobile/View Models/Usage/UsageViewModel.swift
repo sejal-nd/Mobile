@@ -34,7 +34,7 @@ class UsageViewModel {
     var smartEnergyRewardsSeasonLabelText: String? {
         let events = accountDetail.SERInfo.eventResults
         if let mostRecentEvent = events.last {
-            let latestEventYear = Calendar.opCoTime.component(.year, from: mostRecentEvent.eventStart)
+            let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
             return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
         }
         return nil
