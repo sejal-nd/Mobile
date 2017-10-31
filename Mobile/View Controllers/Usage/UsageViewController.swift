@@ -6,7 +6,7 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import SafariServices
 import RxSwift
 import RxCocoa
 
@@ -82,18 +82,25 @@ class UsageViewController: UIViewController {
     private func styleViews() {
         hourlyPricingCard.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         hourlyPricingCard.layer.cornerRadius = 2
-        hourlyPricingCard.isHidden = Environment.sharedInstance.opco != .comEd && accountDetail.isResidential
-        
-        if accountDetail.isHourlyPricing {
-            hourlyPricingTitleLabel.text = NSLocalizedString("Hourly Pricing", comment: "")
-            hourlyPricingBodyLabel.text = NSLocalizedString("See how your savings stack up, view your usage, check real-time prices, and more.", comment: "")
-            takeMeToSavingsButton.setTitle(NSLocalizedString("Take Me to Savings!", comment: ""), for: .normal)
+
+        if Environment.sharedInstance.opco == .comEd && accountDetail.isResidential {
+            if accountDetail.isAMIAccount && !accountDetail.isPTSAccount {
+                hourlyPricingTitleLabel.text = NSLocalizedString("Peak Time Savings", comment: "")
+                hourlyPricingBodyLabel.text = NSLocalizedString("Earn a credit on your bill when you participate in this program that pays you back for using less energy when it is most in demand.", comment: "")
+                takeMeToSavingsButton.setTitle(NSLocalizedString("Enroll Now", comment: ""), for: .normal)
+            } else if accountDetail.isHourlyPricing {
+                hourlyPricingTitleLabel.text = NSLocalizedString("Hourly Pricing", comment: "")
+                hourlyPricingBodyLabel.text = NSLocalizedString("See how your savings stack up, view your usage, check real-time prices, and more.", comment: "")
+                takeMeToSavingsButton.setTitle(NSLocalizedString("Take Me to Savings!", comment: ""), for: .normal)
+            } else {
+                hourlyPricingTitleLabel.text = NSLocalizedString("Consider ComEd’s Other Rate – Hourly Pricing", comment: "")
+                hourlyPricingBodyLabel.text = NSLocalizedString("Save on ComEd’s Hourly Pricing program. It’s simple: shift your usage to times when the price of energy is lower to reduce your bill.", comment: "")
+                takeMeToSavingsButton.setTitle(NSLocalizedString("Enroll Me Now", comment: ""), for: .normal)
+            }
         } else {
-            hourlyPricingTitleLabel.text = NSLocalizedString("Consider ComEd’s Other Rate – Hourly Pricing", comment: "")
-            hourlyPricingBodyLabel.text = NSLocalizedString("Save on ComEd’s Hourly Pricing program. It’s simple: shift your usage to times when the price of energy is lower to reduce your bill.", comment: "")
-            takeMeToSavingsButton.setTitle(NSLocalizedString("Enroll Me Now", comment: ""), for: .normal)
+            hourlyPricingCard.isHidden = true
         }
-        
+
         hourlyPricingTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
         hourlyPricingTitleLabel.textColor = .blackText
         hourlyPricingBodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -133,7 +140,15 @@ class UsageViewController: UIViewController {
                      takeMeToSavingsButton.rx.tap.asDriver().mapTo("hourlyPricingSegue"),
                      smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().mapTo("totalSavingsSegue"))
             .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: $0, sender: nil)
+                guard let `self` = self else { return }
+                if $0 == "hourlyPricingSegue" {
+                    if self.accountDetail.isAMIAccount && !self.accountDetail.isPTSAccount {
+                        let svc = SFSafariViewController(url: URL(string: "http://comed.com/PTS")!)
+                        self.present(svc, animated: true, completion: nil)
+                    } else {
+                        self.performSegue(withIdentifier: $0, sender: nil)
+                    }
+                }
             })
             .disposed(by: disposeBag)
     }
