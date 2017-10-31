@@ -42,7 +42,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         col1HeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         col1HeaderLabel.text = NSLocalizedString("Account Number", comment: "")
         if singleMultipremiseAccount {
-            col1HeaderLabel.removeFromSuperview()
+            col1HeaderLabel.text = nil
         }
         
         col2HeaderLabel.textColor = .middleGray
@@ -136,22 +136,41 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
 
         let outageStatus = viewModel.outageStatusArray![indexPath.row]
 
+        var a11yLabel = ""
         if singleMultipremiseAccount {
             if cell.accountNumberLabel != nil { // Prevents crash if already removed
                 cell.accountNumberLabel.removeFromSuperview()
             }
             cell.streetNumberLabel.text = outageStatus.maskedAddress
             cell.unitNumberLabel.text = outageStatus.unitNumber
+            
+            if let maskedAddress = outageStatus.maskedAddress, !maskedAddress.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Street address: %@,", comment: ""), maskedAddress)
+            }
+            if let unitNumber = outageStatus.unitNumber, !unitNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+            }
         } else {
             cell.accountNumberLabel.text = outageStatus.maskedAccountNumber
             cell.streetNumberLabel.text = outageStatus.addressNumber
             cell.unitNumberLabel.text = outageStatus.unitNumber
             
             cell.accountNumberLabelWidthConstraint.constant = col1HeaderLabel.frame.size.width
+            
+            if let accountNumber = outageStatus.maskedAccountNumber, !accountNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Account number ending in %@,", comment: ""), accountNumber.replacingOccurrences(of: "*", with: ""))
+            }
+            if let addressNumber = outageStatus.addressNumber, !addressNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Street number: %@,", comment: ""), addressNumber)
+            }
+            if let unitNumber = outageStatus.unitNumber, !unitNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+            }
         }
         
         cell.streetNumberLabelWidthConstraint.constant = col2HeaderLabel.frame.size.width
         cell.unitNumberLabelWidthConstraint.constant = col3HeaderLabel.frame.size.width
+        cell.accessibilityLabel = a11yLabel
         
         return cell
     }

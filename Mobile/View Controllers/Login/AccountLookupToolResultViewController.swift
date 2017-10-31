@@ -106,6 +106,18 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
         cell.accountNumberLabel.text = account.accountNumber?.maskAllButLast4Digits()
         cell.streetNumberLabel.text = account.streetNumber
         cell.unitNumberLabel.text = account.unitNumber
+        
+        var a11yLabel = ""
+        if let accountNumber = account.accountNumber, !accountNumber.isEmpty {
+            a11yLabel += String(format: NSLocalizedString("Account number ending in %@,", comment: ""), accountNumber.maskAllButLast4Digits().replacingOccurrences(of: "*", with: ""))
+        }
+        if let streetNumber = account.streetNumber, !streetNumber.isEmpty {
+            a11yLabel += String(format: NSLocalizedString("Street number: %@,", comment: ""), streetNumber)
+        }
+        if let unitNumber = account.unitNumber, !unitNumber.isEmpty {
+            a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+        }
+        cell.accessibilityLabel = a11yLabel
 
         cell.accountNumberLabelWidthConstraint.constant = accountNumberHeaderLabel.frame.size.width
         cell.streetNumberLabelWidthConstraint.constant = streetNumberHeaderLabel.frame.size.width
