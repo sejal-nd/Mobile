@@ -70,7 +70,7 @@ class TemplateCardView: UIView {
         }).disposed(by: bag)
     }
     
-    private(set) lazy var safariViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()
+    private(set) lazy var safariViewController: Driver<SFSafariViewController> = self.callToActionButton.rx.tap.asDriver()
         .withLatestFrom(self.viewModel.isHourlyPricing)
         .filter(!)
         .withLatestFrom(self.viewModel.ctaUrl)
@@ -78,7 +78,7 @@ class TemplateCardView: UIView {
             guard let `self` = self else { return }
             Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: $0.absoluteString)
         })
-        .map(SFSafariViewController.init)
+        .map(SFSafariViewController.createWithCustomStyle)
     
     private(set) lazy var hourlyPricingViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()
         .withLatestFrom(self.viewModel.isHourlyPricing)

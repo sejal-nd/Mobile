@@ -9,6 +9,8 @@
 import SafariServices
 import RxSwift
 import RxCocoa
+import RxSwiftExt
+import SafariServices
 
 class UsageViewController: UIViewController {
     
@@ -137,20 +139,35 @@ class UsageViewController: UIViewController {
         Driver.merge(usageGraphPlaceholderButton.rx.tap.asDriver().mapTo("usageWebViewSegue"),
                      top5EnergyTipsButton.rx.tap.asDriver().mapTo("top5EnergyTipsSegue"),
                      updateYourHomeProfileButton.rx.tap.asDriver().mapTo("updateYourHomeProfileSegue"),
-                     takeMeToSavingsButton.rx.tap.asDriver().mapTo("hourlyPricingSegue"),
+                     takeMeToSavingsButton.rx.tap.asDriver()
+                        .withLatestFrom(Driver.just(accountDetail))
+                        .filter { !($0.isHourlyPricing || ($0.isAMIAccount && !$0.isPTSAccount)) }
+                        .mapTo("hourlyPricingSegue"),
                      smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().mapTo("totalSavingsSegue"))
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
-                if $0 == "hourlyPricingSegue" {
-                    if self.accountDetail.isAMIAccount && !self.accountDetail.isPTSAccount {
-                        let svc = SFSafariViewController(url: URL(string: "http://comed.com/PTS")!)
-                        self.present(svc, animated: true, completion: nil)
-                    } else {
-                        self.performSegue(withIdentifier: $0, sender: nil)
-                    }
-                }
+                self?.performSegue(withIdentifier: $0, sender: nil)
             })
             .disposed(by: disposeBag)
+        
+        takeMeToSavingsButton.rx.tap.asObservable()
+            .withLatestFrom(Driver.just(accountDetail))
+            .filter { $0.isHourlyPricing || ($0.isAMIAccount && !$0.isPTSAccount) }
+            .map { accountDetail -> String in
+                if accountDetail.isAMIAccount && !accountDetail.isPTSAccount {
+                    return "http://comed.com/PTS"
+                } else {
+                    return "https://hourlypricing.comed.com"
+                }
+            }
+            .map(URL.init)
+            .unwrap()
+            .map(SFSafariViewController.createWithCustomStyle)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in
+                self?.present($0, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     private func bindViewModel() {
