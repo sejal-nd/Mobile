@@ -131,7 +131,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var noDataBarDateLabelText: Driver<String?> = self.billComparisonDriver.map {
         guard let reference = $0.reference else { return nil }
-        let lastMonthDate = Calendar.opCoTime.date(byAdding: .month, value: -1, to: reference.endDate)!
+        let lastMonthDate = Calendar.opCo.date(byAdding: .month, value: -1, to: reference.endDate)!
         return lastMonthDate.shortMonthAndDayString.uppercased()
     }
     
@@ -263,7 +263,7 @@ class HomeUsageCardViewModel {
     private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = self.accountDetailDriver.map {
         let events = $0.SERInfo.eventResults
         if let mostRecentEvent = events.last {
-            let latestEventYear = Calendar.opCoTime.component(.year, from: mostRecentEvent.eventStart)
+            let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
             return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
         }
         return nil

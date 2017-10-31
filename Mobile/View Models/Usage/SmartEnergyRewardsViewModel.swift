@@ -35,11 +35,11 @@ class SmartEnergyRewardsViewModel {
         }
         
         let latestEvent = first3Events[0]
-        let latestEventYear = Calendar.opCoTime.component(.year, from: latestEvent.eventStart)
+        let latestEventYear = Calendar.opCo.component(.year, from: latestEvent.eventStart)
         
         var arrayToReturn = [SERResult]()
         for event in first3Events {
-            let year = Calendar.opCoTime.component(.year, from: event.eventStart)
+            let year = Calendar.opCo.component(.year, from: event.eventStart)
             if year == latestEventYear {
                 arrayToReturn.append(event)
             }

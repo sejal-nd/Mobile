@@ -124,10 +124,10 @@ class BillAnalysisViewModel {
         Driver.combineLatest(self.currentBillComparison.asDriver(), self.lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
             guard let reference = $0?.reference else { return nil }
             if $1 == 0 { // Last Year
-                let lastYearDate = Calendar.opCoTime.date(byAdding: .year, value: -1, to: reference.endDate)!
-                return "\(Calendar.opCoTime.component(.year, from: lastYearDate))"
+                let lastYearDate = Calendar.opCo.date(byAdding: .year, value: -1, to: reference.endDate)!
+                return "\(Calendar.opCo.component(.year, from: lastYearDate))"
             } else { // Previous Bill
-                let lastMonthDate = Calendar.opCoTime.date(byAdding: .month, value: -1, to: reference.endDate)!
+                let lastMonthDate = Calendar.opCo.date(byAdding: .month, value: -1, to: reference.endDate)!
                 return lastMonthDate.shortMonthAndDayString.uppercased()
             }
         }
@@ -169,7 +169,7 @@ class BillAnalysisViewModel {
         Driver.combineLatest(self.currentBillComparison.asDriver(), self.lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
             guard let compared = $0?.compared else { return nil }
             if $1 == 0 { // Last Year
-                return "\(Calendar.opCoTime.component(.year, from: compared.endDate))"
+                return "\(Calendar.opCo.component(.year, from: compared.endDate))"
             } else { // Previous Bill
                 return compared.endDate.shortMonthAndDayString.uppercased()
             }
@@ -212,7 +212,7 @@ class BillAnalysisViewModel {
         Driver.combineLatest(self.currentBillComparison.asDriver(), self.lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
             guard let reference = $0?.reference else { return nil }
             if $1 == 0 { // Last Year
-                return "\(Calendar.opCoTime.component(.year, from: reference.endDate))"
+                return "\(Calendar.opCo.component(.year, from: reference.endDate))"
             } else { // Previous Bill
                 return reference.endDate.shortMonthAndDayString.uppercased()
             }

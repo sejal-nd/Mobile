@@ -74,14 +74,14 @@ class PaymentViewModel {
         let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
         
         if Environment.sharedInstance.opco == .bge &&
-            Calendar.opCoTime.component(.hour, from: Date()) >= 20 &&
+            Calendar.opCo.component(.hour, from: Date()) >= 20 &&
             !accountDetail.isActiveSeverance {
             self.paymentDate.value = tomorrow
         }
         if Environment.sharedInstance.opco == .bge &&
             !accountDetail.isActiveSeverance &&
             !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
-            self.paymentDate.value = Calendar.opCoTime.component(.hour, from: Date()) < 20 ? now: tomorrow
+            self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
         } else if let dueDate = accountDetail.billingInfo.dueByDate {
             if dueDate >= now && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
                 self.paymentDate.value = dueDate
@@ -983,7 +983,7 @@ class PaymentViewModel {
             if (accountDetail.billingInfo.restorationAmount ?? 0 > 0 || accountDetail.billingInfo.amtDpaReinst ?? 0 > 0) || accountDetail.isCutOutNonPay { // Cut for non-pay
                 return true
             }
-            let startOfTodayDate = Calendar.opCoTime.startOfDay(for: Date())
+            let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
             if let dueDate = accountDetail.billingInfo.dueByDate {
                 if dueDate < startOfTodayDate {
                     return true
@@ -999,9 +999,9 @@ class PaymentViewModel {
     
     private(set) lazy var paymentDateString: Driver<String> = Driver.combineLatest(self.paymentDate.asDriver(), self.isFixedPaymentDate).map {
         if $1 {
-            let startOfTodayDate = Calendar.opCoTime.startOfDay(for: Date())
-            if Environment.sharedInstance.opco == .bge && Calendar.opCoTime.component(.hour, from: Date()) >= 20 {
-                return Calendar.opCoTime.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString
+            let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
+            if Environment.sharedInstance.opco == .bge && Calendar.opCo.component(.hour, from: Date()) >= 20 {
+                return Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString
             }
             return startOfTodayDate.mmDdYyyyString
         }

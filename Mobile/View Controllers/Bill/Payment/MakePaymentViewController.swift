@@ -697,7 +697,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         let today = Calendar.current.startOfDay(for: Date())
         if Environment.sharedInstance.opco == .bge {
             let minDate: Date
-            if Calendar.opCoTime.component(.hour, from: Date()) >= 20 {
+            if Calendar.opCo.component(.hour, from: Date()) >= 20 {
                 minDate = Calendar.current.date(byAdding: .day, value: 1, to: today)!
             } else {
                 minDate = today
