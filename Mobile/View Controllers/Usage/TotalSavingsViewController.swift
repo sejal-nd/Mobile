@@ -33,7 +33,7 @@ class TotalSavingsViewController: UIViewController {
         
         totalSavingsTitleLabel.textColor = .blackText
         totalSavingsTitleLabel.font = OpenSans.bold.of(textStyle: .subheadline)
-        totalSavingsTitleLabel.text = NSLocalizedString("Total Bill Credit", comment: "")
+        totalSavingsTitleLabel.text = NSLocalizedString("Total Bill Credits", comment: "")
         
         tableView.separatorColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)
         
