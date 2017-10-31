@@ -61,7 +61,7 @@ class AccountLookupToolResultViewController: UIViewController {
         // be blank until they were scrolled off screen and reused. This reloadData() is the
         // workaround. We should remove it if/when this gets fixed.
         if #available(iOS 11, *) {
-            tableView.reloadData()
+            viewDidLayoutSubviews()
         }
     }
     
@@ -69,6 +69,21 @@ class AccountLookupToolResultViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         tableView.reloadData() // To properly set the width constraints
+        
+        // Dynamic sizing for the table header view
+        if let headerView = tableView.tableHeaderView {
+            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+            
+            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+            
+            tableView.tableHeaderView = tableView.tableHeaderView;
+        }
     }
     
 }
