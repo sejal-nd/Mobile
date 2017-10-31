@@ -32,7 +32,14 @@ class BillingHistoryTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         selectionStyle = .none
+        
+        titleLabel.textColor = .blackText
+        titleLabel.font = SystemFont.medium.of(textStyle: .headline)
+        dateLabel.textColor = .deepGray
+        dateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountLabel.font = SystemFont.semibold.of(textStyle: .headline)
     }
     
     override func prepareForReuse() {
@@ -40,8 +47,10 @@ class BillingHistoryTableViewCell: UITableViewCell {
         dateLabel.text = ""
         titleLabel.text = ""
         amountLabel.text = ""
-        amountLabel.textColor = .black
+        amountLabel.textColor = .blackText
         iconImageView.image = nil
+        caretImageView.isHidden = false
+        dateLabel.isHidden = false
         disposeBag = DisposeBag()
     }
     
@@ -60,7 +69,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd, yyyy"
         let dateString = dateFormatter.string(from: item.date)
-        
+
         var a11y = ""
         if item.type == BillingHistoryProperties.TypeBilling.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_bill")
@@ -107,7 +116,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd, yyyy"
         let dateString = dateFormatter.string(from: item.date)
-        
+
         if status == BillingHistoryProperties.StatusPending.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PENDING_PAYMENT
@@ -120,7 +129,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             titleLabel.text = PAYMENT_PROCESSING
             amountLabel.text = amountPaid
             dateLabel.isHidden = true
-            caretImageView.isHidden = true
+            caretImageView.isHidden = false
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT_PROCESSING, dateString, amountPaid)
         } else if status == BillingHistoryProperties.StatusCanceled.rawValue ||
             status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
