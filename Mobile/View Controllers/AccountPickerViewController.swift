@@ -19,7 +19,7 @@ class AccountPickerViewController: UIViewController {
     
     private let accountService = ServiceFactory.createAccountService()
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var accountPicker: AccountPicker!
     
     var containerView: UIView!
@@ -77,7 +77,7 @@ class AccountPickerViewController: UIViewController {
             NSLayoutConstraint(item: accountNumberLabel, attribute: .bottom, relatedBy: .equal, toItem: innerView, attribute: .bottom, multiplier: 1, constant: 0),
             ])
         
-        scrollView.rx.contentOffset.asDriver()
+        scrollView?.rx.contentOffset.asDriver()
             .map { [weak self] offset -> Bool in
                 guard let `self` = self else { return false }
                 return offset.y <= self.accountPicker.frame.size.height
@@ -150,15 +150,22 @@ class AccountPickerViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        containerView.frame = CGRect(x: 0, y: scrollView.contentOffset.y <= accountPicker.frame.size.height ? -60 : 0, width: UIScreen.main.bounds.size.width, height: 60)
+        if let sv = scrollView {
+            containerView.frame = CGRect(x: 0, y: sv.contentOffset.y <= accountPicker.frame.size.height ? -60 : 0, width: UIScreen.main.bounds.size.width, height: 60)
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return scrollView.contentOffset.y <= accountPicker.frame.size.height ? defaultStatusBarStyle: .default
+        if let sv = scrollView {
+            return sv.contentOffset.y <= accountPicker.frame.size.height ? defaultStatusBarStyle: .default
+        }
+        return defaultStatusBarStyle
     }
     
     func onMinimizedPickerTap() {
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        if let sv = scrollView {
+            sv.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        }
     }
     
 }

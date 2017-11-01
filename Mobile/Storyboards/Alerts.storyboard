@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NbY-Og-sPR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NbY-Og-sPR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Alerts-->
         <scene sceneID="XZ0-ku-5Ll">
             <objects>
-                <viewController id="NbY-Og-sPR" sceneMemberID="viewController">
+                <viewController id="NbY-Og-sPR" customClass="AlertsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4ee-u9-hAb"/>
                         <viewControllerLayoutGuide type="bottom" id="CeP-yu-Zbw"/>
@@ -21,20 +21,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feature not implemented" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vsh-yz-na8">
-                                <rect key="frame" x="92" y="323" width="192" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i1F-C3-Con">
+                                <rect key="frame" x="0.0" y="20" width="375" height="146"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmz-Qs-KFn" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="E5a-oY-97a"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7W-Aj-0Xa" userLabel="Spacer View">
+                                        <rect key="frame" x="67.5" y="64" width="240" height="28"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="F2R-Zu-6YI"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="54" translatesAutoresizingMaskIntoConstraints="NO" id="7zY-iZ-Y8Z" customClass="AlertsSegmentedControl" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="67.5" y="92" width="240" height="54"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7zY-iZ-Y8Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i1F-C3-Con" secondAttribute="leading" constant="27" id="H30-sN-37a"/>
+                                    <constraint firstItem="cmz-Qs-KFn" firstAttribute="leading" secondItem="i1F-C3-Con" secondAttribute="leading" id="UPx-jO-fPf"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7zY-iZ-Y8Z" secondAttribute="trailing" constant="27" id="bVz-nO-SNn"/>
+                                    <constraint firstAttribute="trailing" secondItem="cmz-Qs-KFn" secondAttribute="trailing" id="jgm-Pc-Yi2"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fcn-Wj-y0Q">
+                                <rect key="frame" x="0.0" y="166" width="375" height="501"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Ks-fh-caA">
+                                <rect key="frame" x="0.0" y="166" width="375" height="501"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Vsh-yz-na8" firstAttribute="centerX" secondItem="SQH-FY-2sQ" secondAttribute="centerX" id="Ott-Bd-Vhy"/>
-                            <constraint firstItem="Vsh-yz-na8" firstAttribute="centerY" secondItem="SQH-FY-2sQ" secondAttribute="centerY" id="h9X-e6-xG0"/>
+                            <constraint firstItem="i1F-C3-Con" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" id="6WD-C6-w8m"/>
+                            <constraint firstAttribute="trailing" secondItem="9Ks-fh-caA" secondAttribute="trailing" id="6ZY-ku-LUv"/>
+                            <constraint firstAttribute="trailing" secondItem="Fcn-Wj-y0Q" secondAttribute="trailing" id="877-Ad-LBn"/>
+                            <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="Fcn-Wj-y0Q" secondAttribute="bottom" id="Cog-iU-2ro"/>
+                            <constraint firstAttribute="trailing" secondItem="i1F-C3-Con" secondAttribute="trailing" id="O61-Ik-1Fj"/>
+                            <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="top" secondItem="i1F-C3-Con" secondAttribute="bottom" id="YoO-YR-kWz"/>
+                            <constraint firstItem="i1F-C3-Con" firstAttribute="top" secondItem="4ee-u9-hAb" secondAttribute="bottom" id="ZlV-DM-k3z"/>
+                            <constraint firstItem="9Ks-fh-caA" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" id="fef-H4-LPT"/>
+                            <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" id="jdU-e7-dml"/>
+                            <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="9Ks-fh-caA" secondAttribute="bottom" id="lyc-Ir-L4v"/>
+                            <constraint firstItem="9Ks-fh-caA" firstAttribute="top" secondItem="i1F-C3-Con" secondAttribute="bottom" id="wjX-qG-OGW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Alerts" id="Bvv-ZD-ptC"/>
+                    <connections>
+                        <outlet property="accountPicker" destination="cmz-Qs-KFn" id="12g-O5-a00"/>
+                        <outlet property="alertsTableView" destination="Fcn-Wj-y0Q" id="nKs-sG-cgg"/>
+                        <outlet property="segmentedControl" destination="7zY-iZ-Y8Z" id="Z8I-XJ-gTe"/>
+                        <outlet property="updatesTableView" destination="9Ks-fh-caA" id="ChN-Ex-oxN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UaK-nK-WzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

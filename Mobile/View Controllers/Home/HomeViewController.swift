@@ -143,15 +143,15 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
+        scrollView!.contentInset = .zero
+        scrollView!.scrollIndicatorInsets = .zero
         
         usageCardView.superviewDidLayoutSubviews()
     }
     
     func killRefresh() -> Void {
         self.refreshControl?.endRefreshing()
-        self.scrollView.alwaysBounceVertical = true
+        self.scrollView!.alwaysBounceVertical = true
     }
     
     func styleViews() {
@@ -183,13 +183,13 @@ class HomeViewController: AccountPickerViewController {
                 let refreshControl = UIRefreshControl()
                 self.refreshControl = refreshControl
                 refreshControl.tintColor = .white
-                self.scrollView.insertSubview(refreshControl, at: 0)
-                self.scrollView.alwaysBounceVertical = true
+                self.scrollView!.insertSubview(refreshControl, at: 0)
+                self.scrollView!.alwaysBounceVertical = true
             } else {
                 self.refreshControl?.endRefreshing()
                 self.refreshControl?.removeFromSuperview()
                 self.refreshControl = nil
-                self.scrollView.alwaysBounceVertical = false
+                self.scrollView!.alwaysBounceVertical = false
             }
         }).disposed(by: bag)
         
@@ -199,7 +199,7 @@ class HomeViewController: AccountPickerViewController {
         viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).disposed(by: bag)
         
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
-        viewModel.showNoNetworkConnectionState.drive(scrollView.rx.isHidden).disposed(by: bag)
+        viewModel.showNoNetworkConnectionState.drive(scrollView!.rx.isHidden).disposed(by: bag)
         
         viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
         viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).disposed(by: bag)

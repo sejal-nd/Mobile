@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a7N-G9-44d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a7N-G9-44d">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +24,8 @@
                         <segue destination="860-AT-jXi" kind="relationship" relationship="viewControllers" id="kqX-sB-LBP"/>
                         <segue destination="4hR-iJ-D1w" kind="relationship" relationship="viewControllers" id="MtQ-f3-P1j"/>
                         <segue destination="bdC-Bo-rcI" kind="relationship" relationship="viewControllers" id="QJc-5g-EqX"/>
-                        <segue destination="uQF-ze-ffY" kind="relationship" relationship="viewControllers" id="C2S-Qc-mDn"/>
+                        <segue destination="coO-LU-Nds" kind="relationship" relationship="viewControllers" id="mjt-Ce-mH3"/>
+                        <segue destination="uQF-ze-ffY" kind="relationship" relationship="viewControllers" id="1M8-Zv-Owu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7RC-VI-RmW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -37,7 +39,6 @@
                     <tabBarItem key="tabBarItem" tag="1" title="Home" image="ic_nav_home" id="v6H-gB-TMz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lcz-28-eLx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -56,7 +57,6 @@
                     <tabBarItem key="tabBarItem" tag="2" title="Bill" image="ic_nav_bill" id="c1S-Sq-ZJ5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ABC-PP-DNT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -71,11 +71,10 @@
         <!--Alerts-->
         <scene sceneID="xkn-nT-BRd">
             <objects>
-                <navigationController storyboardIdentifier="alertsTab" automaticallyAdjustsScrollViewInsets="NO" id="coO-LU-Nds" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="coO-LU-Nds" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="4" title="Alerts" image="ic_nav_alerts" id="DvY-zh-7M0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LRe-IY-ItP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -93,7 +92,6 @@
                 <navigationController id="uQF-ze-ffY" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" id="0Wk-9T-mXr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sm4-4A-KSA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <userDefinedRuntimeAttributes>
@@ -111,7 +109,6 @@
                     <tabBarItem key="tabBarItem" tag="3" title="Outage" image="ic_nav_outage" id="vXF-ge-4jE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tph-83-2fc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
