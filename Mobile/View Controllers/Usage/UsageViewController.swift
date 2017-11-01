@@ -47,6 +47,14 @@ class UsageViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let thermbutton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: nil)
+        thermbutton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "smartThermostatPeakRewardsSegue", sender: nil)
+            })
+            .disposed(by: disposeBag)
+        navigationItem.rightBarButtonItem = thermbutton
 
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [

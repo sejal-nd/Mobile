@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -100,16 +100,16 @@
                                                                 <rect key="frame" x="315" y="-2" width="60" height="100"/>
                                                             </imageView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X73-JB-xJq" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="66" width="132.5" height="23"/>
+                                                                <rect key="frame" x="16" y="66" width="142.5" height="23"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zOl-q8-lai">
-                                                                        <rect key="frame" x="0.0" y="2" width="132.5" height="19"/>
+                                                                        <rect key="frame" x="0.0" y="2" width="142.5" height="19"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_home_hightemp" translatesAutoresizingMaskIntoConstraints="NO" id="eYQ-ut-my1">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="12" height="19"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Temperature Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gs8-5s-oLF">
-                                                                                <rect key="frame" x="17" y="0.0" width="115.5" height="19"/>
+                                                                                <rect key="frame" x="17" y="0.0" width="125.5" height="19"/>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -129,13 +129,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="751" text="Good Evening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uyw-91-O7K">
-                                                                <rect key="frame" x="16" y="23.5" width="175" height="38.5"/>
+                                                                <rect key="frame" x="16" y="23" width="175" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="98°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-co-jWg">
-                                                                <rect key="frame" x="263" y="23.5" width="44" height="38.5"/>
+                                                                <rect key="frame" x="263" y="23" width="44" height="38.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -537,6 +537,7 @@
                         <segue destination="HGo-e4-8Tq" kind="show" identifier="updateYourHomeProfileSegue" id="oip-LV-cyT"/>
                         <segue destination="0D0-c9-YsT" kind="show" identifier="hourlyPricingSegue" id="Pp6-ns-mZg"/>
                         <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="PGo-sN-iCf"/>
+                        <segue destination="hIT-Vu-4Ry" kind="show" identifier="smartThermostatPeakRewardsSegue" id="qCy-S5-4Is"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yss-Hv-HTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -588,7 +589,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7A-jf-feU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3225" y="-2289"/>
+            <point key="canvasLocation" x="3225" y="-2166"/>
+        </scene>
+        <!--SmartThermostatPeakRewards-->
+        <scene sceneID="D5J-Is-GFm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SmartThermostatPeakRewards" id="hIT-Vu-4Ry" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I62-Fy-bl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3225" y="-2703"/>
         </scene>
         <!--Top5 Energy Tips View Controller-->
         <scene sceneID="GFy-KX-of7">

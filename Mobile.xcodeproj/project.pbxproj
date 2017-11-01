@@ -439,6 +439,9 @@
 		82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		82AC2A111FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AC2A101FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard */; };
+		82AC2A121FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AC2A101FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard */; };
+		82AC2A131FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AC2A101FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard */; };
 		82AEF2DF1F5F50F40057E7ED /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
 		82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
 		82AEF2E11F5F50F40057E7ED /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
@@ -1539,6 +1542,7 @@
 		82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingPaymentView.swift; sourceTree = "<group>"; };
 		82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingPaymentView.xib; sourceTree = "<group>"; };
 		82A18F171EC0E83800BE9F21 /* NibViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViews.swift; sourceTree = "<group>"; };
+		82AC2A101FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = SmartThermostatPeakRewards.storyboard; path = Mobile/Storyboards/SmartThermostatPeakRewards.storyboard; sourceTree = "<group>"; };
 		82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxNotifications.swift; sourceTree = "<group>"; };
 		82AEF2E31F618F560057E7ED /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		82BE057E1ED8D14D00BC06EE /* FadeSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeSubviews.swift; sourceTree = "<group>"; };
@@ -3110,6 +3114,7 @@
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
+				82AC2A101FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard */,
 				E81CFFE81EC230B5004FDA7E /* Entitlements */,
 				B58B5AC31E4E28740051FD5F /* Mobile */,
 				B5AC06D61E52238900BBA4ED /* MobileTests */,
@@ -4087,6 +4092,7 @@
 				6A4FD8F40311B79006BEA4D7 /* otps3_img_0.png in Resources */,
 				6A4FDCC9FBA97FEF77672BED /* otps3_img_1.png in Resources */,
 				6A4FD21BE1692C3726A5C3FF /* otp_step3.json in Resources */,
+				82AC2A111FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard in Resources */,
 				6A4FDD311DA8303DC8CAE88C /* otps4_img_0.png in Resources */,
 				6A4FD285E3DA0D900FD129E2 /* otps4_img_1.png in Resources */,
 				6A4FD0682FEE15B62BF52310 /* otp_step4.json in Resources */,
@@ -4185,6 +4191,7 @@
 				6A4FD3C6912E27F3EB5CCA96 /* otps3_img_0.png in Resources */,
 				6A4FDEB37967D5B806CE00FC /* otps3_img_1.png in Resources */,
 				6A4FDCF675D261AB6008C079 /* otp_step3.json in Resources */,
+				82AC2A131FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard in Resources */,
 				6A4FDA9B436AAD428A74A239 /* otps4_img_0.png in Resources */,
 				6A4FD1C7B14B360F2F2C3C51 /* otps4_img_1.png in Resources */,
 				6A4FD4F95BC9EC785486FD59 /* otp_step4.json in Resources */,
@@ -4283,6 +4290,7 @@
 				6A4FD323AF99726FB2158A2E /* otps3_img_0.png in Resources */,
 				6A4FDF0D523DED06D1465E99 /* otps3_img_1.png in Resources */,
 				6A4FD451E3D8B0019DD36819 /* otp_step3.json in Resources */,
+				82AC2A121FAA691000EACB3B /* SmartThermostatPeakRewards.storyboard in Resources */,
 				6A4FD710BA920728F2923F06 /* otps4_img_0.png in Resources */,
 				6A4FDD8981BBF03EF9D907AD /* otps4_img_1.png in Resources */,
 				6A4FD65B35FE264A4969DE47 /* otp_step4.json in Resources */,
