@@ -5544,6 +5544,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -5634,7 +5635,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -5643,6 +5643,7 @@
 		82AEF2EE1F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Testing-Support";
@@ -5650,6 +5651,7 @@
 		82AEF2EF1F61E8A70057E7ED /* Testing-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Testing-Support";
@@ -5732,6 +5734,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -5828,7 +5831,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -5837,6 +5839,7 @@
 		82AEF2F71F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Staging-Support";
@@ -5844,6 +5847,7 @@
 		82AEF2F81F61E8C70057E7ED /* Staging-Support */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Staging-Support";
@@ -5925,6 +5929,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -5995,6 +6000,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -6115,6 +6121,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -6213,6 +6220,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -6314,6 +6322,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -6575,7 +6584,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -6585,7 +6593,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -6595,7 +6602,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -6605,7 +6611,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -6615,7 +6620,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -6624,6 +6628,7 @@
 		B5AC06AC1E5216C300BBA4ED /* Develop */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Develop;
@@ -6631,6 +6636,7 @@
 		B5AC06AD1E5216C300BBA4ED /* Testing */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Testing;
@@ -6638,6 +6644,7 @@
 		B5AC06AE1E5216C300BBA4ED /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Staging;
@@ -6645,6 +6652,7 @@
 		B5AC06AF1E5216C300BBA4ED /* Automation */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Automation;
@@ -6652,6 +6660,7 @@
 		B5AC06B01E5216C300BBA4ED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -6659,6 +6668,7 @@
 		B5AC06B51E52171800BBA4ED /* Develop */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Develop;
@@ -6666,6 +6676,7 @@
 		B5AC06B61E52171800BBA4ED /* Testing */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Testing;
@@ -6673,6 +6684,7 @@
 		B5AC06B71E52171800BBA4ED /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Staging;
@@ -6680,6 +6692,7 @@
 		B5AC06B81E52171800BBA4ED /* Automation */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Automation;
@@ -6687,6 +6700,7 @@
 		B5AC06B91E52171800BBA4ED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
