@@ -28,8 +28,8 @@ class ForgotUsernameViewModel {
     }
     
     func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
-        let identifier: String? = identifierNumber.value.characters.count > 0 ? identifierNumber.value : nil
+        let acctNum: String? = accountNumber.value.count > 0 ? accountNumber.value : nil
+        let identifier: String? = identifierNumber.value.count > 0 ? identifierNumber.value : nil
         authService.recoverMaskedUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { usernames in
@@ -52,8 +52,8 @@ class ForgotUsernameViewModel {
     func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
         let maskedUsername = maskedUsernames[selectedUsernameIndex]
         let cipher = maskedUsername.cipher
-        let acctNum: String? = accountNumber.value.characters.count > 0 ? accountNumber.value : nil
-        let identifier: String? = identifierNumber.value.characters.count > 0 ? identifierNumber.value : nil
+        let acctNum: String? = accountNumber.value.count > 0 ? accountNumber.value : nil
+        let identifier: String? = identifierNumber.value.count > 0 ? identifierNumber.value : nil
         Analytics().logScreenView(AnalyticsPageView.ForgotUsernameSecuritySubmit.rawValue)
         
         authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value, cipher: cipher)
@@ -88,28 +88,28 @@ class ForgotUsernameViewModel {
         .map { [weak self] text -> Bool in
             guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.characters.count == 10
+            return digitsOnlyString.count == 10
         }
     
     private(set) lazy var identifierHasFourDigits: Driver<Bool> = self.identifierNumber.asDriver()
-        .map { $0.characters.count == 4 }
+        .map { $0.count == 4 }
     
     private(set) lazy var identifierIsNumeric: Driver<Bool> = self.identifierNumber.asDriver()
         .map { [weak self] text -> Bool in
             guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.characters.count == text.characters.count
+            return digitsOnlyString.count == text.count
         }
     
     private(set) lazy var accountNumberHasTenDigits: Driver<Bool> = self.accountNumber.asDriver()
         .map { [weak self] text -> Bool in
             guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.characters.count == 10
+            return digitsOnlyString.count == 10
         }
     
     private(set) lazy var securityQuestionAnswerNotEmpty: Driver<Bool> = self.securityQuestionAnswer.asDriver()
-        .map { $0.characters.count > 0 }
+        .map { $0.count > 0 }
     
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")

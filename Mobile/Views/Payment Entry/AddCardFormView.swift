@@ -260,26 +260,26 @@ extension AddCardFormView: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
         if textField == cardNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 19
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 19
         } else if textField == expMonthTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 2
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 2
         } else if textField == expYearTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         } else if textField == cvvTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         } else if textField == zipCodeTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 5
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 5
         }
         return true
     }
     
     func textFieldDidChange(_ textField: UITextField) {
         if textField == expMonthTextField.textField {
-            if textField.text?.characters.count == 2 {
+            if textField.text?.count == 2 {
                 expYearTextField.textField.becomeFirstResponder()
             }
         } else if textField == expYearTextField.textField {
-            if textField.text?.characters.count == 4 {
+            if textField.text?.count == 4 {
                 cvvTextField.textField.becomeFirstResponder()
             }
         }

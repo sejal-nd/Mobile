@@ -651,7 +651,7 @@ class MakePaymentViewController: UIViewController {
 
 extension MakePaymentViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.characters.count == 0 { // Allow backspace
+        if string.count == 0 { // Allow backspace
             return true
         }
         
@@ -664,14 +664,14 @@ extension MakePaymentViewController: UITextFieldDelegate {
             
             if numDec.count > 2 {
                 return false
-            } else if numDec.count == 2 && numDec[1].characters.count > 2 {
+            } else if numDec.count == 2 && numDec[1].count > 2 {
                 return false
             }
             
             let containsDecimal = newString.contains(".")
             let containsBackslash = newString.contains("\\")
             
-            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.characters.count <= 8 && !containsBackslash
+            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.count <= 8 && !containsBackslash
         }
         return true
     }

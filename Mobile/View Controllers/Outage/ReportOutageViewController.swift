@@ -221,7 +221,7 @@ class ReportOutageViewController: UIViewController {
         commentTextView.textView.rx.text.orEmpty.bind(to: viewModel.comments).disposed(by: disposeBag)
         
         // Format the intial value
-        let range = NSMakeRange(0, viewModel.phoneNumber.value.characters.count)
+        let range = NSMakeRange(0, viewModel.phoneNumber.value.count)
         _ = textField(phoneNumberTextField.textField, shouldChangeCharactersIn: range, replacementString: viewModel.phoneNumber.value)
     }
     

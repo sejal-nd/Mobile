@@ -121,7 +121,7 @@ extension ForgotUsernameBGEAccountNumberViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
-        return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
+        return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
     }
     
 }

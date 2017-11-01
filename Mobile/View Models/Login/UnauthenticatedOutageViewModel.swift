@@ -98,13 +98,13 @@ class UnauthenticatedOutageViewModel {
         return self.phoneNumber.asDriver().map { [weak self] text -> Bool in
             guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.characters.count == 10
+            return digitsOnlyString.count == 10
         }
     }
     
     var accountNumberHasTenDigits: Driver<Bool> {
         return self.accountNumber.asDriver().map {
-            $0.characters.count == 10
+            $0.count == 10
         }
     }
     

@@ -220,21 +220,21 @@ class RegistrationViewModel {
 	private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver().map { [weak self] text -> Bool in
         guard let `self` = self else { return false }
 		let digitsOnlyString = self.extractDigitsFrom(text)
-		return digitsOnlyString.characters.count == 10
+		return digitsOnlyString.count == 10
 	}
 	
-    private(set) lazy var identifierHasFourDigits: Driver<Bool> = self.identifierNumber.asDriver().map { $0.characters.count == 4 }
+    private(set) lazy var identifierHasFourDigits: Driver<Bool> = self.identifierNumber.asDriver().map { $0.count == 4 }
 	
     private(set) lazy var identifierIsNumeric: Driver<Bool> = self.identifierNumber.asDriver().map { [weak self] text -> Bool in
         guard let `self` = self else { return false }
         let digitsOnlyString = self.extractDigitsFrom(text)
-        return digitsOnlyString.characters.count == text.characters.count
+        return digitsOnlyString.count == text.count
     }
     
     private(set) lazy var accountNumberHasTenDigits: Driver<Bool> = self.accountNumber.asDriver().map { [weak self] text -> Bool in
         guard let `self` = self else { return false }
         let digitsOnlyString = self.extractDigitsFrom(text)
-        return digitsOnlyString.characters.count == 10
+        return digitsOnlyString.count == 10
     }
     
     private func extractDigitsFrom(_ string: String) -> String {
@@ -245,7 +245,7 @@ class RegistrationViewModel {
     private(set) lazy var newUsernameHasText: Driver<Bool> = self.username.asDriver().map { !$0.isEmpty }
 	
 	private(set) lazy var newUsernameIsValidBool: Driver<Bool> = self.username.asDriver().map { text -> Bool in
-		if text.characters.count > kMaxUsernameChars {
+		if text.count > kMaxUsernameChars {
 			return false
 		}
 		
@@ -268,7 +268,7 @@ class RegistrationViewModel {
 	
 	private(set) lazy var newUsernameIsValid: Driver<String?> = self.username.asDriver().map { text -> String? in
 		if !text.isEmpty {
-			if text.characters.count > kMaxUsernameChars {
+			if text.count > kMaxUsernameChars {
 				return "Maximum of 255 characters allowed"
 			}
 			
@@ -297,23 +297,23 @@ class RegistrationViewModel {
 	
 	private(set) lazy var characterCountValid: Driver<Bool> = self.newPassword.asDriver()
 		.map{ $0.components(separatedBy: .whitespacesAndNewlines).joined() }
-		.map{ 8...16 ~= $0.characters.count }
+		.map{ 8...16 ~= $0.count }
 	
-	private(set) lazy var usernameMaxCharacters: Driver<Bool> = self.username.asDriver().map { $0.characters.count > kMaxUsernameChars }
+	private(set) lazy var usernameMaxCharacters: Driver<Bool> = self.username.asDriver().map { $0.count > kMaxUsernameChars }
 	
 	private(set) lazy var containsUppercaseLetter: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
 		let regex = try! NSRegularExpression(pattern: ".*[A-Z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-		return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
+		return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
 	}
 	
 	private(set) lazy var containsLowercaseLetter: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
 		let regex = try! NSRegularExpression(pattern: ".*[a-z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-		return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
+		return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
 	}
 	
 	private(set) lazy var containsNumber: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
 		let regex = try! NSRegularExpression(pattern: ".*[0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-		return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
+		return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
 	}
 	
 	private(set) lazy var containsSpecialCharacter: Driver<Bool> = self.newPassword.asDriver()
@@ -322,7 +322,7 @@ class RegistrationViewModel {
 		}
 		.map { text -> Bool in
 			let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-			return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
+			return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
 	}
 	
 	private(set) lazy var passwordMatchesUsername: Driver<Bool> = Driver.combineLatest(self.newPassword.asDriver(), self.username.asDriver())

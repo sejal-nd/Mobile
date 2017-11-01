@@ -34,7 +34,7 @@ class AccountDetailsView: UIView {
     
     private func bind(withAccount account: AccountLookupResult) {
         if let accountNumber = account.accountNumber,
-            accountNumber.characters.count > 6 {
+            accountNumber.count > 6 {
             //
             let index = accountNumber.index(accountNumber.startIndex, offsetBy: 6)
             accountNumberLabel.text = "**** \(accountNumber.substring(from: index))"

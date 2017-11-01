@@ -37,7 +37,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         
         let style = NSMutableParagraphStyle()
         style.minimumLineHeight = 25
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, fullString.characters.count))
+        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, fullString.count))
         
         bodyLabel.attributedText = attrString
     }

@@ -505,7 +505,7 @@ extension HomeBillCardView: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
         
-        if CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4 {
+        if CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4 {
             viewModel.cvv2.value = newString
             return true
         } else {

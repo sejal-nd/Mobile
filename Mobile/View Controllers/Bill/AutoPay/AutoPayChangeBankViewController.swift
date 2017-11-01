@@ -150,7 +150,7 @@ class AutoPayChangeBankViewController: UIViewController {
         
         
         routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if self.viewModel.routingNumber.value.characters.count == 9 {
+            if self.viewModel.routingNumber.value.count == 9 {
                 self.viewModel.getBankName(onSuccess: {
                     self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
                 }, onError: {
@@ -301,15 +301,15 @@ extension AutoPayChangeBankViewController: UITextFieldDelegate {
 		let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
 		let characterSet = CharacterSet(charactersIn: string)
 		if textField == routingNumberTextField.textField {
-			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
+			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 9
 		} else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
-			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 17
+			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 17
 		}
 		return true
 	}
 	
 	func textFieldDidChange(_ textField: UITextField) {
-		if textField == routingNumberTextField.textField && textField.text?.characters.count == 9 {
+		if textField == routingNumberTextField.textField && textField.text?.count == 9 {
 			accountNumberTextField.textField.becomeFirstResponder()
 		}
 	}

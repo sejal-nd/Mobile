@@ -314,10 +314,10 @@ extension ChangePasswordViewController: UITextFieldDelegate {
     
     // Don't allow whitespace entry in the newPasswordTextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.characters.count == 0 { // Allow backspace
+        if string.count == 0 { // Allow backspace
             return true
         }
-        if string.trimmingCharacters(in: .whitespacesAndNewlines).characters.count == 0 {
+        if string.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             return false
         }
         return true
