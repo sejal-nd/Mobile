@@ -3579,6 +3579,7 @@
 			isa = PBXGroup;
 			children = (
 				E87C412F1FAA522B00448F86 /* AlertsViewController.swift */,
+				E87C41421FAB6D0400448F86 /* AlertPreferencesViewController.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -3596,7 +3597,6 @@
 			isa = PBXGroup;
 			children = (
 				E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */,
-				E87C41421FAB6D0400448F86 /* AlertPreferencesViewController.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
