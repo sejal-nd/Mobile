@@ -15,6 +15,11 @@ let testAlerts = [
     "Payment for account ending in 1234. Amount of $150.50 is due on 7/22/17."
 ]
 
+let testUpdates = [
+    ("BGE Update", "NOTICE OF EVENING HEARINGS FOR PUBLIC COMMENT - CASE NO. 9406 – Evening hearings for discussion about the price of electricity and gas in Baltimore."),
+    ("Restoration Update", "Power has been restored to area 1215 E Fort Ave on 4/18/17 at 9:00 PM. Our crew is still at the location working very hard to get you power so you can watch TV."),
+]
+
 class AlertsViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
@@ -25,9 +30,7 @@ class AlertsViewController: AccountPickerViewController {
     @IBOutlet weak var preferencesButton: ButtonControl!
     @IBOutlet weak var preferencesButtonLabel: UILabel!
     
-    
     @IBOutlet weak var updatesTableView: UITableView!
-    
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
@@ -50,9 +53,27 @@ class AlertsViewController: AccountPickerViewController {
         
         alertsTableView.separatorColor = .accentGray
         updatesTableView.backgroundColor = .softGray
+        updatesTableView.contentInset = UIEdgeInsetsMake(22, 0, 22, 0)
         
         styleViews()
         bindViewModel()
+        
+        accountPicker.delegate = self
+        accountPicker.parentViewController = self
+        accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
+            guard let `self` = self else { return }
+            switch(state) {
+            case .loadingAccounts:
+                break
+            case .readyToFetchData:
+                print("Alerts Root Screen - Fetch Data")
+//                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+//                    self.getOutageStatus()
+//                } else if self.viewModel.currentOutageStatus == nil {
+//                    self.getOutageStatus()
+//                }
+            }
+        }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,16 +118,20 @@ class AlertsViewController: AccountPickerViewController {
         performSegue(withIdentifier: "preferencesSegue", sender: self)
     }
     
+    func onUpdateCellTap(sender: ButtonControl) {
+        print("Update cell at index \(sender.tag) tapped")
+    }
+    
 
 }
 
-extension AlertsViewController: UITableViewDataSource {
+extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == alertsTableView {
             return 1
         } else {
-            return 0
+            return testUpdates.count
         }
     }
     
@@ -114,7 +139,19 @@ extension AlertsViewController: UITableViewDataSource {
         if tableView == alertsTableView {
             return testAlerts.count
         } else {
-            return 0
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if tableView == alertsTableView {
+            return 0.01
+        } else {
+            return 10
         }
     }
     
@@ -134,11 +171,23 @@ extension AlertsViewController: UITableViewDataSource {
             
             return cell!
         } else {
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UpdatesCell", for: indexPath) as! UpdatesTableViewCell
+            cell.titleLabel.text = testUpdates[indexPath.section].0
+            cell.detailLabel.text = testUpdates[indexPath.section].1
+            
+            cell.innerContentView.tag = indexPath.section
+            cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
+            cell.innerContentView.addTarget(self, action: #selector(onUpdateCellTap(sender:)), for: .touchUpInside)
+            
+            return cell
         }
     }
 }
 
-extension AlertsViewController: UITableViewDelegate {
+extension AlertsViewController: AccountPickerDelegate {
+    
+    func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        print("Alerts Root Screen - Changed Account - Fetch Data")
+    }
     
 }
