@@ -15,6 +15,8 @@ class AlertsViewModel {
     
     let selectedSegmentIndex = Variable(0)
     
+    let isFetching = Variable(false)
+    
     required init() {
         
     }
