@@ -53,6 +53,10 @@
                                     <constraint firstAttribute="trailing" secondItem="cmz-Qs-KFn" secondAttribute="trailing" id="jgm-Pc-Yi2"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-VA-0un" userLabel="Background for iPad">
+                                <rect key="frame" x="0.0" y="166" width="375" height="501"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fcn-Wj-y0Q">
                                 <rect key="frame" x="0.0" y="166" width="375" height="501"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -128,9 +132,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="90" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9Ks-fh-caA">
                                 <rect key="frame" x="0.0" y="166" width="375" height="501"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="J2K-fH-Tbh"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpdatesCell" rowHeight="87" id="ytX-zA-seJ" customClass="UpdatesTableViewCell" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="87"/>
@@ -199,20 +200,23 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="i1F-C3-Con" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" id="6WD-C6-w8m"/>
-                            <constraint firstAttribute="trailing" secondItem="9Ks-fh-caA" secondAttribute="trailing" priority="999" id="6ZY-ku-LUv"/>
+                            <constraint firstAttribute="trailing" secondItem="9Ks-fh-caA" secondAttribute="trailing" id="6ZY-ku-LUv"/>
                             <constraint firstAttribute="trailing" secondItem="Fcn-Wj-y0Q" secondAttribute="trailing" priority="999" id="877-Ad-LBn"/>
                             <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="Fcn-Wj-y0Q" secondAttribute="bottom" id="Cog-iU-2ro"/>
+                            <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="gTf-VA-0un" secondAttribute="bottom" id="Ggx-Td-Bye"/>
+                            <constraint firstAttribute="trailing" secondItem="gTf-VA-0un" secondAttribute="trailing" id="HA9-4Q-LfT"/>
+                            <constraint firstItem="gTf-VA-0un" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" id="NyL-Z8-0X3"/>
                             <constraint firstAttribute="trailing" secondItem="i1F-C3-Con" secondAttribute="trailing" id="O61-Ik-1Fj"/>
                             <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="top" secondItem="i1F-C3-Con" secondAttribute="bottom" id="YoO-YR-kWz"/>
                             <constraint firstItem="i1F-C3-Con" firstAttribute="top" secondItem="4ee-u9-hAb" secondAttribute="bottom" id="ZlV-DM-k3z"/>
-                            <constraint firstItem="9Ks-fh-caA" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" priority="999" id="fef-H4-LPT"/>
+                            <constraint firstItem="9Ks-fh-caA" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" id="fef-H4-LPT"/>
                             <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="centerX" secondItem="SQH-FY-2sQ" secondAttribute="centerX" id="g5q-ii-2i7"/>
                             <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" priority="999" id="jdU-e7-dml"/>
                             <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="9Ks-fh-caA" secondAttribute="bottom" id="lyc-Ir-L4v"/>
                             <constraint firstItem="cZW-SD-mnJ" firstAttribute="centerX" secondItem="9Ks-fh-caA" secondAttribute="centerX" id="mDQ-de-RZm"/>
                             <constraint firstItem="cZW-SD-mnJ" firstAttribute="centerY" secondItem="9Ks-fh-caA" secondAttribute="centerY" id="neI-yg-8rd"/>
-                            <constraint firstItem="9Ks-fh-caA" firstAttribute="centerX" secondItem="SQH-FY-2sQ" secondAttribute="centerX" id="u33-mZ-3yt"/>
                             <constraint firstItem="9Ks-fh-caA" firstAttribute="top" secondItem="i1F-C3-Con" secondAttribute="bottom" id="wjX-qG-OGW"/>
+                            <constraint firstItem="gTf-VA-0un" firstAttribute="top" secondItem="i1F-C3-Con" secondAttribute="bottom" id="yBX-e0-VIM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Alerts" id="Bvv-ZD-ptC">
