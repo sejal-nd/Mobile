@@ -60,10 +60,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="930"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sV5-Zr-gVC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="571.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="621.5"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="s7K-8t-XOv" userLabel="Main Stack">
-                                                                <rect key="frame" x="29" y="21" width="317" height="520.5"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="s7K-8t-XOv" userLabel="Main Stack">
+                                                                <rect key="frame" x="29" y="21" width="317" height="570.5"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWW-FB-ss2" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -76,17 +76,19 @@
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Device: WH Water Heater"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cycling Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBk-zX-K9G">
-                                                                        <rect key="frame" x="0.0" y="60" width="317" height="25"/>
-                                                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
-                                                                        <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qLr-4t-hzz">
-                                                                        <rect key="frame" x="0.0" y="85" width="317" height="50"/>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qLr-4t-hzz">
+                                                                        <rect key="frame" x="0.0" y="80" width="317" height="25"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Cycling Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBk-zX-K9G">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="25"/>
+                                                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
+                                                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rlM-J4-Bhv">
-                                                                        <rect key="frame" x="0.0" y="135" width="317" height="130"/>
+                                                                        <rect key="frame" x="0.0" y="125" width="317" height="130"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hlx-Ke-GyS" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -113,20 +115,20 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Temperature As:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uib-65-jNP">
-                                                                        <rect key="frame" x="0.0" y="265" width="317" height="25"/>
+                                                                        <rect key="frame" x="0.0" y="275" width="317" height="25"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeA-nM-shV" customClass="SegmentedControl" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="290" width="317" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="320" width="317" height="50"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="PZY-mx-ZEE"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lnY-Lk-pmn" userLabel="Schedule Stack">
-                                                                        <rect key="frame" x="0.0" y="340" width="317" height="180.5"/>
+                                                                        <rect key="frame" x="0.0" y="390" width="317" height="180.5"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="scc-fz-DeU" userLabel="Schedule Content Stack">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="100"/>
@@ -292,6 +294,7 @@
                         <outlet property="gradientView" destination="lba-qg-ikB" id="mfM-Ex-IrD"/>
                         <outlet property="mainErrorLabel" destination="avC-5q-wSD" id="kek-nb-jXR"/>
                         <outlet property="mainLoadingIndicator" destination="0EV-pp-1sF" id="LZE-Fx-cYV"/>
+                        <outlet property="programCardStack" destination="qLr-4t-hzz" id="8E6-Zp-fov"/>
                         <outlet property="scheduleContentStack" destination="scc-fz-DeU" id="alm-UO-02B"/>
                         <outlet property="scheduleErrorView" destination="Sof-oc-UlF" id="O0f-NW-IeI"/>
                         <outlet property="scheduleLoadingView" destination="sy2-7C-d5y" id="wxg-K8-erN"/>

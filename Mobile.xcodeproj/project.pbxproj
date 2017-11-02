@@ -274,6 +274,15 @@
 		820125471F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
 		820125481F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
 		820125491F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
+		8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */; };
+		8206D0141FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */; };
+		8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */; };
+		8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */; };
+		8206D0181FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */; };
+		8206D0191FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */; };
+		8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */; };
+		8206D01C1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */; };
+		8206D01D1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */; };
 		82156F1D1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
 		82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
 		82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */; };
@@ -1508,6 +1517,9 @@
 		6A4FDFDC5B607067767A0DE4 /* otps1_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps1_img_1.png; sourceTree = "<group>"; };
 		6A4FDFE2B58E816579B4676D /* otps2_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_0.png; sourceTree = "<group>"; };
 		820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchTutorialViewController.swift; sourceTree = "<group>"; };
+		8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsProgramCard.swift; sourceTree = "<group>"; };
+		8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatPeriodCard.swift; sourceTree = "<group>"; };
+		8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureScaleStore.swift; sourceTree = "<group>"; };
 		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoNetworkConnectionView.swift; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.swift; sourceTree = SOURCE_ROOT; };
 		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoNetworkConnectionView.xib; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.xib; sourceTree = SOURCE_ROOT; };
 		8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBindingObservers.swift; sourceTree = "<group>"; };
@@ -2847,6 +2859,8 @@
 				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
 				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
 				821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */,
+				8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */,
+				8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3289,6 +3303,7 @@
 				82837D131F20677700C31E1C /* RecentPaymentsStore.swift */,
 				82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */,
 				B59606291F7C1F4A00515B72 /* AppRating.swift */,
+				8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -4614,6 +4629,7 @@
 				E887C9F21ED5D367002433A3 /* CardIO.m in Sources */,
 				E8C29C7C1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */,
+				8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				82AC2A2A1FAB78E700EACB3B /* OMCPeakRewardsService.swift in Sources */,
 				E827F18F1F8E9D620090C5A5 /* BillForecast.swift in Sources */,
@@ -4708,6 +4724,7 @@
 				01F6122D1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
 				B59EFAA51F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
+				8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8B9BD891F88212A007C824C /* BillAnalysisViewModel.swift in Sources */,
@@ -4722,6 +4739,7 @@
 				E800430C1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				2F5C81FA1F1D4B1B005B35FA /* WeatherAPI.swift in Sources */,
+				8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				E887C9D41ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				82E22B581F9FC70A001F1A1B /* EnergyTip.swift in Sources */,
@@ -4877,6 +4895,7 @@
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
+				8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				82AC2A2C1FAB78E700EACB3B /* OMCPeakRewardsService.swift in Sources */,
 				E827F1911F8E9D620090C5A5 /* BillForecast.swift in Sources */,
@@ -4971,6 +4990,7 @@
 				54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				B59EFAA71F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
+				8206D0191FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				01F6122F1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E8B9BD8B1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */,
@@ -4985,6 +5005,7 @@
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430E1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
+				8206D01D1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				82E22B5A1F9FC70A001F1A1B /* EnergyTip.swift in Sources */,
@@ -5140,6 +5161,7 @@
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7D1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */,
+				8206D0141FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				54DF4BD21EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				82AC2A2B1FAB78E700EACB3B /* OMCPeakRewardsService.swift in Sources */,
 				E827F1901F8E9D620090C5A5 /* BillForecast.swift in Sources */,
@@ -5234,6 +5256,7 @@
 				54C1DEFB1F02B8E200290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				B59EFAA61F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
+				8206D0181FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				01F6122E1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
 				E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E8B9BD8A1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */,
@@ -5248,6 +5271,7 @@
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
 				E800430D1E64DEE2005CF531 /* SettingsViewController.swift in Sources */,
 				82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */,
+				8206D01C1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				8291DD4F1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				82E22B591F9FC70A001F1A1B /* EnergyTip.swift in Sources */,

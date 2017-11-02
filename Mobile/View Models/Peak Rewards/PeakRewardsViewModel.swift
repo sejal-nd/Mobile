@@ -47,6 +47,10 @@ class PeakRewardsViewModel {
         self.peakRewardsSummaryEvents.elements().map { $0.devices[0] }
     )
     
+    private(set) lazy var peakRewardsPrograms: Driver<[PeakRewardsProgram]> = self.peakRewardsSummaryEvents.elements()
+        .map { $0.programs }
+        .asDriver(onErrorDriveWith: .empty())
+    
     //MARK: - Show/Hide Views
     private(set) lazy var showMainLoadingState: Driver<Bool> = self.peakRewardsSummaryFetchTracker.asDriver()
     

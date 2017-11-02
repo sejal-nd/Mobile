@@ -16,12 +16,14 @@ class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var mainLoadingIndicator: LoadingIndicator!
     
     @IBOutlet weak var deviceButton: DisclosureButton!
+    
+    @IBOutlet weak var programCardStack: UIStackView!
+    
     @IBOutlet weak var segmentedControl: SegmentedControl!
     
     @IBOutlet weak var scheduleContentStack: UIStackView!
     @IBOutlet weak var scheduleErrorView: UIView!
     @IBOutlet weak var scheduleLoadingView: UIView!
-    
     let gradientLayer = CAGradientLayer()
     
     var accountDetail: AccountDetail!
@@ -54,6 +56,14 @@ class PeakRewardsViewController: UIViewController {
         gradientView.frame = gradientView.bounds
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         gradientLayer.frame = gradientView.bounds
@@ -68,9 +78,22 @@ class PeakRewardsViewController: UIViewController {
         viewModel.showScheduleErrorState.asDriver().not().drive(scheduleErrorView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleContent.asDriver().not().drive(scheduleContentStack.rx.isHidden).disposed(by: disposeBag)
         
+        viewModel.peakRewardsPrograms
+            .drive(onNext: { [weak self] programs in
+                guard let `self` = self else { return }
+                
+                for (index, programCard) in self.programCardStack.arrangedSubviews.enumerated() {
+                    guard index != 0 else { continue } // Don't remove the header label from the stack
+                    self.programCardStack.removeArrangedSubview(programCard)
+                }
+                
+                programs
+                    .map(PeakRewardsProgramCard.init)
+                    .forEach(self.programCardStack.addArrangedSubview)
+            })
+            .disposed(by: disposeBag)
 //        segmentedControl.selectedIndex.asDriver()
     }
-    
     
     // MARK: - Navigation
 

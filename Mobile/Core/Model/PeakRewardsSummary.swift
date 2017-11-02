@@ -73,7 +73,7 @@ struct SmartThermostatDeviceSettings: Mappable {
 struct SmartThermostatDeviceSchedule: Mappable {
     let name: Int
     let serialNumber: String
-    let periods: [SmartThermostatDevicePeriod]
+    let periods: [SmartThermostatPeriodInfo]
     
     init(map: Mapper) throws {
         name = try map.from("name")
@@ -82,7 +82,23 @@ struct SmartThermostatDeviceSchedule: Mappable {
     }
 }
 
-struct SmartThermostatDevicePeriod: Mappable {
+enum SmartThermostatPeriod: String {
+    case wake = "wake"
+    case leave = "leave"
+    case `return` = "return"
+    case sleep = "sleep"
+    
+    var displayString: String {
+        switch self {
+        case .wake: return NSLocalizedString("Wake", comment: "")
+        case .leave: return NSLocalizedString("Leave", comment: "")
+        case .return: return NSLocalizedString("Return", comment: "")
+        case .sleep: return NSLocalizedString("Sleep", comment: "")
+        }
+    }
+}
+
+struct SmartThermostatPeriodInfo: Mappable {
     let coolTemp: Int
     let heatTemp: Int
     let startTime: String
