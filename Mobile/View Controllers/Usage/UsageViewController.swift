@@ -48,13 +48,15 @@ class UsageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let thermbutton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: nil)
-        thermbutton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "smartThermostatPeakRewardsSegue", sender: nil)
-            })
-            .disposed(by: disposeBag)
-        navigationItem.rightBarButtonItem = thermbutton
+        if accountDetail.peakRewards == "ACTIVE" {
+            let thermbutton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_thermostat"), style: .plain, target: nil, action: nil)
+            thermbutton.rx.tap.asDriver()
+                .drive(onNext: { [weak self] in
+                    self?.performSegue(withIdentifier: "peakRewardsSegue", sender: nil)
+                })
+                .disposed(by: disposeBag)
+            navigationItem.rightBarButtonItem = thermbutton
+        }
 
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
@@ -203,6 +205,8 @@ class UsageViewController: UIViewController {
             vc.accountDetail = accountDetail
         case let vc as TotalSavingsViewController:
             vc.eventResults = accountDetail.SERInfo.eventResults
+        case let vc as PeakRewardsViewController:
+            vc.accountDetail = accountDetail
         default: break
         }
     }

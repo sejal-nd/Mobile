@@ -57,7 +57,7 @@ class BGEAutoPayViewModel {
     }
     
     private func amountNotToExceedDouble() -> String {
-        return String(amountNotToExceed.value.characters.filter { "0123456789.".characters.contains($0) })
+        return String(amountNotToExceed.value.filter { "0123456789.".contains($0) })
     }
     
     func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
@@ -263,7 +263,7 @@ class BGEAutoPayViewModel {
     private(set) lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().isNil().not()
     
     func formatAmountNotToExceed() {
-        let textStr = String(amountNotToExceed.value.characters.filter { "0123456789".characters.contains($0) })
+        let textStr = String(amountNotToExceed.value.filter { "0123456789".contains($0) })
         if let intVal = Double(textStr) {
             if intVal == 0 {
                 amountNotToExceed.value = "$0.00"
