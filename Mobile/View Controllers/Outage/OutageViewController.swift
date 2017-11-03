@@ -132,22 +132,22 @@ class OutageViewController: AccountPickerViewController {
     
     func killRefresh() -> Void {
         refreshControl?.endRefreshing()
-        scrollView.alwaysBounceVertical = false
+        scrollView!.alwaysBounceVertical = false
     }
     
     func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             refreshControl = UIRefreshControl()
             refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
-            scrollView.insertSubview(refreshControl!, at: 0)
-            scrollView.alwaysBounceVertical = true
+            scrollView!.insertSubview(refreshControl!, at: 0)
+            scrollView!.alwaysBounceVertical = true
         } else {
             if let rc = refreshControl {
                 rc.endRefreshing()
                 rc.removeFromSuperview()
                 refreshControl = nil
             }
-            scrollView.alwaysBounceVertical = false
+            scrollView!.alwaysBounceVertical = false
         }
     }
     
