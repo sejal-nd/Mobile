@@ -249,54 +249,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7G-DL-gX7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z20-VQ-DB8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KRW-kT-odo">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="vGT-9S-gAl">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mD-eT-5P3" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIl-ad-CGE" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="64" id="w6n-4c-HOM"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e76-3q-Quw">
-                                                <rect key="frame" x="0.0" y="64" width="375" height="16"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="Uy5-nz-Vnv"/>
+                                                    <constraint firstAttribute="height" constant="50" id="C6x-68-8fl"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="KRW-kT-odo" secondAttribute="trailing" id="COO-Yv-GlU"/>
-                                    <constraint firstItem="KRW-kT-odo" firstAttribute="top" secondItem="D7G-DL-gX7" secondAttribute="top" id="SeG-fQ-7B8"/>
-                                    <constraint firstAttribute="bottom" secondItem="KRW-kT-odo" secondAttribute="bottom" id="p88-ED-G4R"/>
-                                    <constraint firstItem="KRW-kT-odo" firstAttribute="leading" secondItem="D7G-DL-gX7" secondAttribute="leading" id="pSR-Vr-QH9"/>
+                                    <constraint firstItem="vGT-9S-gAl" firstAttribute="centerX" secondItem="Z20-VQ-DB8" secondAttribute="centerX" id="SrW-gF-emI"/>
+                                    <constraint firstAttribute="trailing" secondItem="vGT-9S-gAl" secondAttribute="trailing" id="aCj-eP-bHf"/>
+                                    <constraint firstAttribute="bottom" secondItem="vGT-9S-gAl" secondAttribute="bottom" id="f3y-WE-jBA"/>
+                                    <constraint firstItem="vGT-9S-gAl" firstAttribute="leading" secondItem="Z20-VQ-DB8" secondAttribute="leading" id="jiM-zB-E58"/>
+                                    <constraint firstItem="vGT-9S-gAl" firstAttribute="top" secondItem="Z20-VQ-DB8" secondAttribute="top" id="xAi-bX-ZE3"/>
                                 </constraints>
-                            </view>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="D7G-DL-gX7" firstAttribute="leading" secondItem="ouq-MF-EMe" secondAttribute="leading" id="fm8-mk-LPd"/>
-                            <constraint firstItem="D7G-DL-gX7" firstAttribute="top" secondItem="vqD-u6-QpP" secondAttribute="bottom" id="hp6-Ld-VFw"/>
-                            <constraint firstAttribute="trailing" secondItem="D7G-DL-gX7" secondAttribute="trailing" id="rcP-kZ-h5i"/>
+                            <constraint firstItem="Z20-VQ-DB8" firstAttribute="top" secondItem="vqD-u6-QpP" secondAttribute="bottom" id="QqB-f0-JNP"/>
+                            <constraint firstItem="Z20-VQ-DB8" firstAttribute="leading" secondItem="ouq-MF-EMe" secondAttribute="leading" id="j7h-bs-J2a"/>
+                            <constraint firstAttribute="trailing" secondItem="Z20-VQ-DB8" secondAttribute="trailing" id="rTg-ta-lm4"/>
+                            <constraint firstItem="LRZ-yY-Gaq" firstAttribute="top" secondItem="Z20-VQ-DB8" secondAttribute="bottom" id="sSa-R8-ZZ5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Alert Preferences" id="4IM-aa-e2f"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="accountPicker" destination="5mD-eT-5P3" id="aHW-Uz-7vl"/>
-                        <outlet property="accountPickerContainerView" destination="D7G-DL-gX7" id="Fl1-fj-Wdg"/>
-                        <outlet property="accountPickerSpacerView" destination="e76-3q-Quw" id="2Fk-3z-OHk"/>
+                        <outlet property="accountInfoBar" destination="BIl-ad-CGE" id="oA5-4g-nHW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fkn-g7-y4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
