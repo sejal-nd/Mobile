@@ -187,13 +187,13 @@ class BillViewController: AccountPickerViewController {
         let refreshControl = UIRefreshControl()
         self.refreshControl = refreshControl
         refreshControl.tintColor = .white
-        self.scrollView.insertSubview(refreshControl, at: 0)
-        self.scrollView.alwaysBounceVertical = true
+        self.scrollView!.insertSubview(refreshControl, at: 0)
+        self.scrollView!.alwaysBounceVertical = true
     }
     
     func killRefresh() -> Void {
         self.refreshControl?.endRefreshing()
-        self.scrollView.alwaysBounceVertical = false
+        self.scrollView!.alwaysBounceVertical = false
     }
     
     func styleViews() {
@@ -302,7 +302,7 @@ class BillViewController: AccountPickerViewController {
                 self.refreshControl?.endRefreshing()
                 self.refreshControl?.removeFromSuperview()
                 self.refreshControl = nil
-                self.scrollView.alwaysBounceVertical = false
+                self.scrollView!.alwaysBounceVertical = false
             }
         }).disposed(by: bag)
         

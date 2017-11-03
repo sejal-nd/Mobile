@@ -89,12 +89,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
                 headerView.frame = headerFrame
                 tableView.tableHeaderView = headerView
             }
-
-            tableView.tableHeaderView = tableView.tableHeaderView;
         }
-
-        
-    
     }
     
     func onCancelPress() {
