@@ -71,14 +71,16 @@ struct SmartThermostatDeviceSettings: Mappable {
 }
 
 struct SmartThermostatDeviceSchedule: Mappable {
-    let name: Int
-    let serialNumber: String
-    let periods: [SmartThermostatPeriodInfo]
+    let wakeInfo: SmartThermostatPeriodInfo
+    let leaveInfo: SmartThermostatPeriodInfo
+    let returnInfo: SmartThermostatPeriodInfo
+    let sleepInfo: SmartThermostatPeriodInfo
     
     init(map: Mapper) throws {
-        name = try map.from("name")
-        serialNumber = try map.from("serialNumber")
-        periods = try map.from("periods")
+        wakeInfo = try map.from("wake")
+        leaveInfo = try map.from("leave")
+        returnInfo = try map.from("return")
+        sleepInfo = try map.from("sleep")
     }
 }
 
@@ -99,13 +101,78 @@ enum SmartThermostatPeriod: String {
 }
 
 struct SmartThermostatPeriodInfo: Mappable {
-    let coolTemp: Int
-    let heatTemp: Int
+    let coolTemp: Temperature
+    let heatTemp: Temperature
     let startTime: String
     
     init(map: Mapper) throws {
-        coolTemp = try map.from("coolTemp")
-        heatTemp = try map.from("heatTemp")
-        startTime = try map.from("startTime")
+        let tempMapper: (Any) throws -> Temperature = { v in
+            guard let valueString = v as? String else {
+                throw MapperError.convertibleError(value: v, type: String.self)
+            }
+            guard let value = Double(valueString) else {
+                throw MapperError.convertibleError(value: valueString, type: Int.self)
+            }
+            return Temperature(value: Int(value), scale: .fahrenheit)
+        }
+        
+        coolTemp = try map.from("coolTemp", transformation: tempMapper)
+        heatTemp = try map.from("heatTemp", transformation: tempMapper)
+        
+        startTime = try map.from("startTime") {
+            guard let string = $0 as? String else {
+                throw MapperError.convertibleError(value: $0, type: String.self)
+            }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            guard let date = dateFormatter.date(from: string) else {
+                throw MapperError.convertibleError(value: string, type: Date.self)
+            }
+            
+            let dateFormatter2 = DateFormatter()
+            dateFormatter2.dateFormat = "h:mm a"
+            return dateFormatter2.string(from: date)
+        }
     }
 }
+
+struct Temperature {
+    private let fahrenheitValue: Double
+    
+    init(value: Int, scale: TemperatureScale) {
+        switch scale {
+        case .fahrenheit:
+            fahrenheitValue = Double(value)
+        case .celsius:
+            fahrenheitValue = (Double(value * 9) / 5.0) + 32.0
+        }
+    }
+    
+    var fahrenheit: Int {
+        return Int(round(fahrenheitValue))
+    }
+    
+    var celsius: Int {
+        return Int(round((fahrenheitValue - 32.0) * 5.0 / 9.0))
+    }
+    
+    var value: Int {
+        switch TemperatureScaleStore.shared.scale {
+        case .fahrenheit:
+            return fahrenheit
+        case .celsius:
+            return celsius
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+

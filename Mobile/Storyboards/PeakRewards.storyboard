@@ -29,22 +29,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="btZ-ju-QDl">
                                 <rect key="frame" x="0.0" y="20" width="375" height="980"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-ET-rlJ" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="n6b-tQ-Lbc"/>
-                                        </constraints>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nhe-dN-x6r">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="930"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lba-qg-ikB">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="930"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avC-5q-wSD">
-                                                <rect key="frame" x="29" y="454" width="317" height="20.5"/>
+                                                <rect key="frame" x="29" y="479" width="317" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cow-Uv-Q5A"/>
                                                 </constraints>
@@ -53,17 +46,24 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="0EV-pp-1sF" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="157" y="459" width="60" height="12"/>
+                                                <rect key="frame" x="157" y="484" width="60" height="12"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ZD-gx-g4N">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="930"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sV5-Zr-gVC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="621.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1039.5"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-ET-rlJ" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="n6b-tQ-Lbc"/>
+                                                                </constraints>
+                                                            </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="s7K-8t-XOv" userLabel="Main Stack">
-                                                                <rect key="frame" x="29" y="21" width="317" height="570.5"/>
+                                                                <rect key="frame" x="29" y="71" width="317" height="938.5"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWW-FB-ss2" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -127,17 +127,42 @@
                                                                             <constraint firstAttribute="height" constant="50" id="PZY-mx-ZEE"/>
                                                                         </constraints>
                                                                     </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLE-VH-z7Q" userLabel="Spacer">
+                                                                        <rect key="frame" x="0.0" y="390" width="317" height="0.0"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" id="aAF-Av-rNi"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lnY-Lk-pmn" userLabel="Schedule Stack">
-                                                                        <rect key="frame" x="0.0" y="390" width="317" height="180.5"/>
+                                                                        <rect key="frame" x="0.0" y="410" width="317" height="528.5"/>
                                                                         <subviews>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="scc-fz-DeU" userLabel="Schedule Content Stack">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="100"/>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="scc-fz-DeU" userLabel="Schedule Content Stack">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="448"/>
                                                                                 <subviews>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uCx-LG-mjZ" userLabel="Schedule List Stack">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="50"/>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uCx-LG-mjZ" userLabel="Schedule List Stack">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="382"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="88" translatesAutoresizingMaskIntoConstraints="NO" id="Jls-KO-K6h" customClass="SmartThermostatPeriodCard" customModule="BGE" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="88"/>
+                                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                            </view>
+                                                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="88" translatesAutoresizingMaskIntoConstraints="NO" id="mba-Rl-P1R" customClass="SmartThermostatPeriodCard" customModule="BGE" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="98" width="317" height="88"/>
+                                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                            </view>
+                                                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="88" translatesAutoresizingMaskIntoConstraints="NO" id="XNS-Th-CbV" customClass="SmartThermostatPeriodCard" customModule="BGE" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="196" width="317" height="88"/>
+                                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                            </view>
+                                                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="88" translatesAutoresizingMaskIntoConstraints="NO" id="pUK-w8-yEi" customClass="SmartThermostatPeriodCard" customModule="BGE" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="294" width="317" height="88"/>
+                                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                            </view>
+                                                                                        </subviews>
                                                                                     </stackView>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfQ-tn-9zV">
-                                                                                        <rect key="frame" x="0.0" y="50" width="317" height="50"/>
+                                                                                        <rect key="frame" x="0.0" y="398" width="317" height="50"/>
                                                                                         <subviews>
                                                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ToK-gt-Wp3">
                                                                                                 <rect key="frame" x="100" y="0.0" width="118" height="50"/>
@@ -147,7 +172,7 @@
                                                                                                         <subviews>
                                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tS-Mp-E2D">
                                                                                                                 <rect key="frame" x="0.0" y="19" width="22" height="12"/>
-                                                                                                                <color key="backgroundColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                                                <color key="backgroundColor" red="0.050980392156862744" green="0.61568627450980395" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                                 <constraints>
                                                                                                                     <constraint firstAttribute="width" constant="22" id="NYt-VO-pJx"/>
                                                                                                                     <constraint firstAttribute="height" constant="12" id="yRr-rc-jv1"/>
@@ -166,7 +191,7 @@
                                                                                                         <subviews>
                                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWq-oJ-mc2">
                                                                                                                 <rect key="frame" x="0.0" y="19" width="22" height="12"/>
-                                                                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.25882352939999997" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                                                <color key="backgroundColor" red="0.93333333333333335" green="0.49803921568627452" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                             </view>
                                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Heat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-8J-0MC">
                                                                                                                 <rect key="frame" x="27" y="17" width="28" height="16.5"/>
@@ -193,7 +218,7 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sof-oc-UlF" userLabel="Schedule Error View">
-                                                                                <rect key="frame" x="0.0" y="100" width="317" height="20.5"/>
+                                                                                <rect key="frame" x="0.0" y="448" width="317" height="20.5"/>
                                                                                 <subviews>
                                                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-IV-fOe">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="20.5"/>
@@ -211,7 +236,7 @@
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sy2-7C-d5y" userLabel="Schedule Loading View">
-                                                                                <rect key="frame" x="0.0" y="120.5" width="317" height="60"/>
+                                                                                <rect key="frame" x="0.0" y="468.5" width="317" height="60"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="nQg-xh-FcH" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                                         <rect key="frame" x="128" y="24" width="60" height="12"/>
@@ -236,12 +261,15 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="s7K-8t-XOv" firstAttribute="centerX" secondItem="sV5-Zr-gVC" secondAttribute="centerX" id="6vV-w8-TQZ"/>
+                                                            <constraint firstItem="s7K-8t-XOv" firstAttribute="top" secondItem="Vlv-ET-rlJ" secondAttribute="bottom" constant="21" id="GpV-pa-rIA"/>
                                                             <constraint firstAttribute="bottom" secondItem="s7K-8t-XOv" secondAttribute="bottom" constant="30" id="HbO-9r-LeX"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="s7K-8t-XOv" secondAttribute="trailing" constant="29" id="M3i-mf-wUP"/>
                                                             <constraint firstItem="s7K-8t-XOv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sV5-Zr-gVC" secondAttribute="leading" constant="29" id="Vx3-T9-oDc"/>
+                                                            <constraint firstItem="Vlv-ET-rlJ" firstAttribute="top" secondItem="sV5-Zr-gVC" secondAttribute="top" id="XIg-as-WhX"/>
                                                             <constraint firstItem="s7K-8t-XOv" firstAttribute="leading" secondItem="sV5-Zr-gVC" secondAttribute="leading" priority="750" constant="29" id="Yeh-uH-cvl"/>
+                                                            <constraint firstItem="Vlv-ET-rlJ" firstAttribute="leading" secondItem="sV5-Zr-gVC" secondAttribute="leading" id="lAA-MS-BiK"/>
                                                             <constraint firstAttribute="trailing" secondItem="s7K-8t-XOv" secondAttribute="trailing" priority="750" constant="29" id="nR1-8n-uxM"/>
-                                                            <constraint firstItem="s7K-8t-XOv" firstAttribute="top" secondItem="sV5-Zr-gVC" secondAttribute="top" constant="21" id="wrD-Zx-0vR"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Vlv-ET-rlJ" secondAttribute="trailing" id="oTd-Or-SY5"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -292,14 +320,18 @@
                     <connections>
                         <outlet property="deviceButton" destination="qWW-FB-ss2" id="nfy-UX-F3c"/>
                         <outlet property="gradientView" destination="lba-qg-ikB" id="mfM-Ex-IrD"/>
+                        <outlet property="leavePeriodCard" destination="mba-Rl-P1R" id="ZSH-1o-Ldv"/>
                         <outlet property="mainErrorLabel" destination="avC-5q-wSD" id="kek-nb-jXR"/>
                         <outlet property="mainLoadingIndicator" destination="0EV-pp-1sF" id="LZE-Fx-cYV"/>
                         <outlet property="programCardStack" destination="qLr-4t-hzz" id="8E6-Zp-fov"/>
+                        <outlet property="returnPeriodCard" destination="XNS-Th-CbV" id="wGX-eY-7Ix"/>
                         <outlet property="scheduleContentStack" destination="scc-fz-DeU" id="alm-UO-02B"/>
                         <outlet property="scheduleErrorView" destination="Sof-oc-UlF" id="O0f-NW-IeI"/>
                         <outlet property="scheduleLoadingView" destination="sy2-7C-d5y" id="wxg-K8-erN"/>
                         <outlet property="scrollView" destination="3ZD-gx-g4N" id="uIh-Cu-MkX"/>
                         <outlet property="segmentedControl" destination="IeA-nM-shV" id="taD-tJ-HrW"/>
+                        <outlet property="sleepPeriodCard" destination="pUK-w8-yEi" id="La9-Go-BsS"/>
+                        <outlet property="wakePeriodCard" destination="Jls-KO-K6h" id="Kss-Nv-xrs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVL-eT-T3k" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 import RxSwiftExt
 
 enum TemperatureScale: Int {
@@ -20,7 +21,7 @@ enum TemperatureScale: Int {
     }
 }
 
-class TemperatureScaleStore {
+final class TemperatureScaleStore {
     
     static let shared = TemperatureScaleStore()
     
@@ -50,3 +51,4 @@ class TemperatureScaleStore {
         .shareReplay(1)
     
 }
+

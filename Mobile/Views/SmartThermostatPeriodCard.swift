@@ -9,84 +9,132 @@
 import RxSwift
 import RxCocoa
 
-class SmartThermostatPeriodCard: UIView {
+class SmartThermostatPeriodCard: ButtonControl {
     
-    let disposeBag = DisposeBag()
-
-    convenience init(period: SmartThermostatPeriod, periodInfo: SmartThermostatPeriodInfo, temperatureScale: TemperatureScale) {
+    let imageView = UIImageView()
+    let timeLabel = UILabel()
+    let periodNameLabel = UILabel()
+    let coolTempLabel = UILabel()
+    let heatTempLabel = UILabel()
+    let caretImageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    convenience init(period: SmartThermostatPeriod, periodInfo: SmartThermostatPeriodInfo) {
         self.init(frame: .zero)
-        
+        configure(withPeriod: period, periodInfo: periodInfo)
+    }
+    
+    override func commonInit() {
+        super.commonInit()
+        backgroundColorOnPress = .softGray
         addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         layer.cornerRadius = 2
         backgroundColor = .white
         
-        let image: UIImage
-        switch period {
-        case .wake:
-            image = #imageLiteral(resourceName: "ic_thermostat_wake")
-        case .leave:
-            image = #imageLiteral(resourceName: "ic_thermostat_leave")
-        case .return:
-            image = #imageLiteral(resourceName: "ic_thermostat_return")
-        case .sleep:
-            image = #imageLiteral(resourceName: "ic_thermostat_sleep")
-        }
-        let imageView = UIImageView(image: image)
-        
-        let timeLabel = UILabel()
-        timeLabel.text = periodInfo.startTime
+        // TIME/PERIOD
         timeLabel.textColor = .blackText
-        timeLabel.font = OpenSans.bold.of(size: 18)
+        timeLabel.font = OpenSans.regular.of(size: 20)
         
-        let titleLabel = UILabel()
-        titleLabel.text = period.displayString
-        titleLabel.textColor = .blackText
-        titleLabel.font = OpenSans.bold.of(textStyle: .subheadline)
+        periodNameLabel.textColor = .blackText
+        periodNameLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         
+        let timePeriodStack = UIStackView(arrangedSubviews: [timeLabel, periodNameLabel])
+        timePeriodStack.axis = .vertical
+        timePeriodStack.spacing = -2
+        timePeriodStack.alignment = .leading
+        timePeriodStack.isUserInteractionEnabled = false
         
-        let coolTempLabel = UILabel()
-        TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit)
-            .map { "\(periodInfo.coolTemp) \($0.displayString)" }
-            .drive(coolTempLabel.rx.text)
-            .disposed(by: disposeBag)
-        coolTempLabel.textColor = .blackText
-        coolTempLabel.font = OpenSans.bold.of(textStyle: .subheadline)
-        
+        // TEMPERATURE
         let coolCircle = UIView()
         coolCircle.backgroundColor = .richElectricBlue
         coolCircle.translatesAutoresizingMaskIntoConstraints = false
         coolCircle.heightAnchor.constraint(equalToConstant: 14).isActive = true
         coolCircle.widthAnchor.constraint(equalTo: coolCircle.heightAnchor).isActive = true
+        coolCircle.layer.cornerRadius = 7
+        
+        coolTempLabel.textColor = .blackText
+        coolTempLabel.font = OpenSans.bold.of(textStyle: .headline)
+        
+        let coolStack = UIStackView(arrangedSubviews: [coolCircle, coolTempLabel])
+        coolStack.axis = .horizontal
+        coolStack.spacing = 8
+        coolStack.alignment = .center
+        coolStack.isUserInteractionEnabled = false
         
         let heatCircle = UIView()
         heatCircle.backgroundColor = .burntSienna
         heatCircle.translatesAutoresizingMaskIntoConstraints = false
         heatCircle.heightAnchor.constraint(equalToConstant: 14).isActive = true
         heatCircle.widthAnchor.constraint(equalTo: heatCircle.heightAnchor).isActive = true
+        heatCircle.layer.cornerRadius = 7
         
+        heatTempLabel.textColor = .blackText
+        heatTempLabel.font = OpenSans.bold.of(textStyle: .headline)
         
-//        let stackView = UIStackView(arrangedSubviews: [titleLabel, coolCircle, descriptionContainer])
-//        stackView.axis = .vertical
-//        stackView.alignment = .fill
-//        stackView.spacing = 12
-//        
-//        addSubview(stackView)
-//        
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.topAnchor.constraint(equalTo: topAnchor, constant: 18).isActive = true
-//        stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -21).isActive = true
-//        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
-//        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+        let heatStack = UIStackView(arrangedSubviews: [heatCircle, heatTempLabel])
+        heatStack.axis = .horizontal
+        heatStack.spacing = 8
+        heatStack.alignment = .center
+        heatStack.isUserInteractionEnabled = false
+        
+        let tempStack = UIStackView(arrangedSubviews: [coolStack, heatStack])
+        tempStack.axis = .vertical
+        tempStack.spacing = 8
+        tempStack.alignment = .leading
+        tempStack.isUserInteractionEnabled = false
+        
+        let spacer = UIView()
+        spacer.translatesAutoresizingMaskIntoConstraints = false
+        spacer.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        
+        let stackView = UIStackView(arrangedSubviews: [imageView, timePeriodStack, UIView(), tempStack, spacer, caretImageView])
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = -4
+        stackView.isUserInteractionEnabled = false
+        
+        addSubview(stackView)
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
+    }
+    
+    func configure(withPeriod period: SmartThermostatPeriod, periodInfo: SmartThermostatPeriodInfo) {
+        switch period {
+        case .wake:
+            imageView.image = #imageLiteral(resourceName: "ic_thermostat_wake")
+        case .leave:
+            imageView.image = #imageLiteral(resourceName: "ic_thermostat_leave")
+        case .return:
+            imageView.image = #imageLiteral(resourceName: "ic_thermostat_return")
+        case .sleep:
+            imageView.image = #imageLiteral(resourceName: "ic_thermostat_sleep")
+        }
+        
+        timeLabel.text = periodInfo.startTime
+        periodNameLabel.text = period.displayString
+        
+        TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit)
+            .map { "\(periodInfo.coolTemp.value) \($0.displayString)" }
+            .drive(coolTempLabel.rx.text)
+            .disposed(by: bag)
+        
+        TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit)
+            .map { "\(periodInfo.heatTemp.value) \($0.displayString)" }
+            .drive(heatTempLabel.rx.text)
+            .disposed(by: bag)
     }
     
     
     private override init(frame: CGRect) {
         super.init(frame: frame)
         
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("Not implemented")
     }
 
 }

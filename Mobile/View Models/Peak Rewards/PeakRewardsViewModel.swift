@@ -51,6 +51,9 @@ class PeakRewardsViewModel {
         .map { $0.programs }
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var deviceSchedule: Driver<SmartThermostatDeviceSchedule> = self.deviceScheduleEvents.elements()
+        .asDriver(onErrorDriveWith: .empty())
+    
     //MARK: - Show/Hide Views
     private(set) lazy var showMainLoadingState: Driver<Bool> = self.peakRewardsSummaryFetchTracker.asDriver()
     

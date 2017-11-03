@@ -22,6 +22,11 @@ class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var segmentedControl: SegmentedControl!
     
     @IBOutlet weak var scheduleContentStack: UIStackView!
+    @IBOutlet weak var wakePeriodCard: SmartThermostatPeriodCard!
+    @IBOutlet weak var leavePeriodCard: SmartThermostatPeriodCard!
+    @IBOutlet weak var returnPeriodCard: SmartThermostatPeriodCard!
+    @IBOutlet weak var sleepPeriodCard: SmartThermostatPeriodCard!
+    
     @IBOutlet weak var scheduleErrorView: UIView!
     @IBOutlet weak var scheduleLoadingView: UIView!
     let gradientLayer = CAGradientLayer()
@@ -92,7 +97,21 @@ class PeakRewardsViewController: UIViewController {
                     .forEach(self.programCardStack.addArrangedSubview)
             })
             .disposed(by: disposeBag)
-//        segmentedControl.selectedIndex.asDriver()
+        
+        viewModel.deviceSchedule
+            .drive(onNext: { [weak self] in
+                self?.wakePeriodCard.configure(withPeriod: .wake, periodInfo: $0.wakeInfo)
+                self?.leavePeriodCard.configure(withPeriod: .leave, periodInfo: $0.leaveInfo)
+                self?.returnPeriodCard.configure(withPeriod: .return, periodInfo: $0.returnInfo)
+                self?.sleepPeriodCard.configure(withPeriod: .sleep, periodInfo: $0.sleepInfo)
+            })
+            .disposed(by: disposeBag)
+        
+        segmentedControl.selectedIndex.asObservable()
+            .map { TemperatureScale(rawValue: $0) }
+            .unwrap()
+            .subscribe(onNext: { TemperatureScaleStore.shared.scale = $0 })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Navigation
