@@ -108,9 +108,18 @@ class PeakRewardsViewController: UIViewController {
             .disposed(by: disposeBag)
         
         segmentedControl.selectedIndex.asObservable()
+            .skip(1)
+            .distinctUntilChanged()
             .map { TemperatureScale(rawValue: $0) }
             .unwrap()
             .subscribe(onNext: { TemperatureScaleStore.shared.scale = $0 })
+            .disposed(by: disposeBag)
+        
+        TemperatureScaleStore.shared.scaleObservable
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: .fahrenheit)
+            .map { $0.rawValue }
+            .drive(segmentedControl.selectedIndex)
             .disposed(by: disposeBag)
     }
     
@@ -118,8 +127,7 @@ class PeakRewardsViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
 
 }

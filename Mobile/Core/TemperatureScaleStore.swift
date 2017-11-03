@@ -28,26 +28,21 @@ final class TemperatureScaleStore {
     // Private init protects against another instance being accidentally instantiated
     private init() { }
     
-    private var temperatureScaleCache: TemperatureScale?
+    private lazy var temperatureScaleCache =
+        Variable<TemperatureScale>(
+            TemperatureScale(rawValue: UserDefaults.standard.integer(forKey: UserDefaultKeys.TemperatureScale)) ?? .fahrenheit)
     
     var scale: TemperatureScale {
         get {
-            return temperatureScaleCache ??
-                TemperatureScale(rawValue: UserDefaults.standard.integer(forKey: UserDefaultKeys.TemperatureScale)) ??
-                .fahrenheit
+            return temperatureScaleCache.value
         }
         set(newValue) {
-            temperatureScaleCache = newValue
+            temperatureScaleCache.value = newValue
             UserDefaults.standard.set(newValue.rawValue, forKey: UserDefaultKeys.TemperatureScale)
         }
     }
     
-    private(set) lazy var scaleObservable: Observable<TemperatureScale> = UserDefaults.standard.rx
-        .observe(Int.self, UserDefaultKeys.TemperatureScale)
-        .unwrap()
-        .map(TemperatureScale.init)
-        .unwrap()
-        .startWith(self.scale)
+    private(set) lazy var scaleObservable: Observable<TemperatureScale> = self.temperatureScaleCache.asObservable()
         .shareReplay(1)
     
 }
