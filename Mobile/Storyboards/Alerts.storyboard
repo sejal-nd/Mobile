@@ -249,48 +249,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7G-DL-gX7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KRW-kT-odo">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mD-eT-5P3" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="64" id="w6n-4c-HOM"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e76-3q-Quw">
-                                                <rect key="frame" x="0.0" y="64" width="375" height="16"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="Uy5-nz-Vnv"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="KRW-kT-odo" secondAttribute="trailing" id="COO-Yv-GlU"/>
-                                    <constraint firstItem="KRW-kT-odo" firstAttribute="top" secondItem="D7G-DL-gX7" secondAttribute="top" id="SeG-fQ-7B8"/>
-                                    <constraint firstAttribute="bottom" secondItem="KRW-kT-odo" secondAttribute="bottom" id="p88-ED-G4R"/>
-                                    <constraint firstItem="KRW-kT-odo" firstAttribute="leading" secondItem="D7G-DL-gX7" secondAttribute="leading" id="pSR-Vr-QH9"/>
-                                </constraints>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tJ-ow-DZE">
-                                <rect key="frame" x="0.0" y="80" width="375" height="1356"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1436"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="43z-fm-Nx7">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="967"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="1017"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qd6-24-Gv3" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="cNT-dO-F53"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sf3-z4-eiI">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="134.5"/>
+                                                <rect key="frame" x="0.0" y="50" width="374" height="134.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Outage Notifications" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XT-xb-fTp">
                                                         <rect key="frame" x="21" y="28" width="250" height="21.5"/>
@@ -332,7 +305,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6b-Jy-c5F">
-                                                <rect key="frame" x="0.0" y="134.5" width="374" height="156"/>
+                                                <rect key="frame" x="0.0" y="184.5" width="374" height="156"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Scheduled Maintenance Outage" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OxP-93-hfN">
                                                         <rect key="frame" x="21" y="28" width="250" height="43"/>
@@ -374,7 +347,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTO-RT-24O">
-                                                <rect key="frame" x="0.0" y="290.5" width="374" height="163.5"/>
+                                                <rect key="frame" x="0.0" y="340.5" width="374" height="163.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Severe Weather" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlO-rq-KdS">
                                                         <rect key="frame" x="21" y="28" width="250" height="21.5"/>
@@ -417,7 +390,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HI3-oE-qg6">
-                                                <rect key="frame" x="0.0" y="454" width="374" height="134.5"/>
+                                                <rect key="frame" x="0.0" y="504" width="374" height="134.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Bill is Ready" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5op-gI-nAq">
                                                         <rect key="frame" x="21" y="28" width="250" height="21.5"/>
@@ -459,7 +432,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3BX-T5-ucd">
-                                                <rect key="frame" x="0.0" y="588.5" width="374" height="152"/>
+                                                <rect key="frame" x="0.0" y="638.5" width="374" height="152"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Payment Due Reminder" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpE-N2-EFj">
                                                         <rect key="frame" x="21" y="28" width="250" height="21.5"/>
@@ -515,7 +488,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvX-nt-vo8">
-                                                <rect key="frame" x="0.0" y="740.5" width="374" height="77.5"/>
+                                                <rect key="frame" x="0.0" y="790.5" width="374" height="77.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Budget Billing Review" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SI3-z9-al7">
                                                         <rect key="frame" x="21" y="28" width="250" height="21.5"/>
@@ -548,7 +521,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7R-OP-dcg">
-                                                <rect key="frame" x="0.0" y="818" width="374" height="149"/>
+                                                <rect key="frame" x="0.0" y="868" width="374" height="149"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="For Your Information" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ME8-Vj-UwP">
                                                         <rect key="frame" x="21" y="28" width="250" height="21.5"/>
@@ -591,17 +564,14 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="ZBe-Tn-opk"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="43z-fm-Nx7" firstAttribute="top" secondItem="1tJ-ow-DZE" secondAttribute="top" id="7Pk-sA-jsY"/>
-                                    <constraint firstAttribute="trailing" secondItem="43z-fm-Nx7" secondAttribute="trailing" priority="999" id="7YE-rM-7LD"/>
+                                    <constraint firstAttribute="trailing" secondItem="43z-fm-Nx7" secondAttribute="trailing" id="7YE-rM-7LD"/>
                                     <constraint firstItem="43z-fm-Nx7" firstAttribute="centerX" secondItem="1tJ-ow-DZE" secondAttribute="centerX" id="ZSs-Xg-qHn"/>
                                     <constraint firstAttribute="bottom" secondItem="43z-fm-Nx7" secondAttribute="bottom" id="bHt-QP-7B4"/>
-                                    <constraint firstItem="43z-fm-Nx7" firstAttribute="leading" secondItem="1tJ-ow-DZE" secondAttribute="leading" priority="999" id="crK-Py-efh"/>
+                                    <constraint firstItem="43z-fm-Nx7" firstAttribute="leading" secondItem="1tJ-ow-DZE" secondAttribute="leading" id="crK-Py-efh"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -609,20 +579,14 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1tJ-ow-DZE" secondAttribute="trailing" id="2aE-x4-EVk"/>
                             <constraint firstItem="LRZ-yY-Gaq" firstAttribute="top" secondItem="1tJ-ow-DZE" secondAttribute="bottom" id="QwA-F7-fq6"/>
-                            <constraint firstItem="1tJ-ow-DZE" firstAttribute="top" secondItem="D7G-DL-gX7" secondAttribute="bottom" id="TlL-YM-S6n"/>
                             <constraint firstItem="1tJ-ow-DZE" firstAttribute="leading" secondItem="ouq-MF-EMe" secondAttribute="leading" id="WQX-Dr-bAm"/>
-                            <constraint firstItem="D7G-DL-gX7" firstAttribute="leading" secondItem="ouq-MF-EMe" secondAttribute="leading" id="fm8-mk-LPd"/>
-                            <constraint firstItem="D7G-DL-gX7" firstAttribute="top" secondItem="vqD-u6-QpP" secondAttribute="bottom" id="hp6-Ld-VFw"/>
-                            <constraint firstAttribute="trailing" secondItem="D7G-DL-gX7" secondAttribute="trailing" id="rcP-kZ-h5i"/>
+                            <constraint firstItem="1tJ-ow-DZE" firstAttribute="top" secondItem="vqD-u6-QpP" secondAttribute="bottom" id="Yxe-Wx-udt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Alert Preferences" id="4IM-aa-e2f"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
-                        <outlet property="accountPicker" destination="5mD-eT-5P3" id="aHW-Uz-7vl"/>
-                        <outlet property="accountPickerContainerView" destination="D7G-DL-gX7" id="Fl1-fj-Wdg"/>
-                        <outlet property="accountPickerSpacerView" destination="e76-3q-Quw" id="2Fk-3z-OHk"/>
                         <outlet property="billReadyDetailLabel" destination="pWp-vE-OMk" id="qbg-Ux-1NK"/>
                         <outlet property="billReadySwitch" destination="lgQ-it-a7Y" id="q9a-yv-aIU"/>
                         <outlet property="billReadyTitleLabel" destination="5op-gI-nAq" id="wpQ-f2-lyS"/>
