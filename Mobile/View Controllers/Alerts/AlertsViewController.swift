@@ -36,7 +36,7 @@ class AlertsViewController: AccountPickerViewController {
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
-    let viewModel = AlertsViewModel()
+    let viewModel = AlertsViewModel(accountService: ServiceFactory.createAccountService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,14 +64,15 @@ class AlertsViewController: AccountPickerViewController {
             guard let `self` = self else { return }
             switch(state) {
             case .loadingAccounts:
+                self.viewModel.isFetching.value = true
                 break
             case .readyToFetchData:
                 print("Alerts Root Screen - Fetch Data")
-//                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-//                    self.getOutageStatus()
-//                } else if self.viewModel.currentOutageStatus == nil {
-//                    self.getOutageStatus()
-//                }
+                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    self.viewModel.fetchAccountDetail()
+                } else if self.viewModel.currentAccountDetail == nil {
+                    self.viewModel.fetchAccountDetail()
+                }
             }
         }).disposed(by: disposeBag)
     }
@@ -120,6 +121,12 @@ class AlertsViewController: AccountPickerViewController {
     
     func onUpdateCellTap(sender: ButtonControl) {
         print("Update cell at index \(sender.tag) tapped")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AlertPreferencesViewController {
+            vc.viewModel.accountDetail = viewModel.currentAccountDetail!
+        }
     }
     
 
@@ -187,7 +194,7 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
 extension AlertsViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        print("Alerts Root Screen - Changed Account - Fetch Data")
+        viewModel.fetchAccountDetail()
     }
     
 }
