@@ -1057,6 +1057,10 @@
 		E87C41471FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */; };
 		E87C41481FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */; };
 		E87C41491FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */; };
+		E87C414B1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
+		E87C414C1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
+		E87C414D1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
+		E87C414E1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
 		E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
 		E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
 		E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
@@ -1904,6 +1908,7 @@
 		E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
 		E87C41421FAB6D0400448F86 /* AlertPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewController.swift; sourceTree = "<group>"; };
 		E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTableViewCell.swift; sourceTree = "<group>"; };
+		E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewModel.swift; sourceTree = "<group>"; };
 		E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageValidateAccountViewController.swift; sourceTree = "<group>"; };
 		E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageViewModel.swift; sourceTree = "<group>"; };
 		E882B7E31EA8009500EA3C13 /* BillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
@@ -3597,6 +3602,7 @@
 			isa = PBXGroup;
 			children = (
 				E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */,
+				E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -4709,6 +4715,7 @@
 				E82FF1E61F97CB8D00C50F8F /* UsageViewController.swift in Sources */,
 				54930DC81EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
+				E87C414B1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				01F6122D1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
 				B59EFAA51F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
@@ -4972,6 +4979,7 @@
 				E82FF1E81F97CB8D00C50F8F /* UsageViewController.swift in Sources */,
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
+				E87C414D1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				B59EFAA71F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
@@ -5235,6 +5243,7 @@
 				E82FF1E71F97CB8D00C50F8F /* UsageViewController.swift in Sources */,
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
+				E87C414C1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				54C1DEFB1F02B8E200290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				B59EFAA61F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
@@ -5330,6 +5339,7 @@
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
 				B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */,
 				E827F1921F8E9D620090C5A5 /* BillForecast.swift in Sources */,
+				E87C414E1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				B5D07CB51F0EC2F10018B02D /* Payment.swift in Sources */,
 				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
