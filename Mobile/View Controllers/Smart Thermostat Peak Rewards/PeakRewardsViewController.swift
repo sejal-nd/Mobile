@@ -42,6 +42,7 @@ class PeakRewardsViewController: UIViewController {
         
         styleViews()
         bindViews()
+        bindActions()
     }
     
     func styleViews() {
@@ -53,7 +54,7 @@ class PeakRewardsViewController: UIViewController {
         ]
         gradientView.layer.addSublayer(gradientLayer)
         
-        segmentedControl.items = [NSLocalizedString("F°", comment: ""), NSLocalizedString("C°", comment: "")]
+        segmentedControl.items = [TemperatureScale.fahrenheit, TemperatureScale.celsius].map { $0.displayString }
     }
     
     override func viewDidLayoutSubviews() {
@@ -67,6 +68,8 @@ class PeakRewardsViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
         }
+        
+        viewModel.rootScreenWillReappear.onNext(())
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -82,6 +85,8 @@ class PeakRewardsViewController: UIViewController {
         viewModel.showScheduleLoadingState.asDriver().not().drive(scheduleLoadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleErrorState.asDriver().not().drive(scheduleErrorView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleContent.asDriver().not().drive(scheduleContentStack.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.selectedDeviceName.drive(deviceButton.label.rx.text).disposed(by: disposeBag)
         
         viewModel.peakRewardsPrograms
             .drive(onNext: { [weak self] programs in
@@ -119,6 +124,17 @@ class PeakRewardsViewController: UIViewController {
             .asDriver(onErrorJustReturn: .fahrenheit)
             .map { $0.rawValue }
             .drive(segmentedControl.selectedIndex)
+            .disposed(by: disposeBag)
+    }
+    
+    func bindActions() {
+        deviceButton.rx.tap.asDriver()
+            .withLatestFrom(viewModel.devices)
+            .map { [unowned self] in (self.viewModel, $0) }
+            .map(SelectDeviceViewController.init)
+            .drive(onNext: { [weak self] in
+                self?.navigationController?.pushViewController($0, animated: true)
+            })
             .disposed(by: disposeBag)
     }
     

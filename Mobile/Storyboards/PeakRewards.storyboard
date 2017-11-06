@@ -36,8 +36,8 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avC-5q-wSD">
-                                                <rect key="frame" x="29" y="479" width="317" height="20.5"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avC-5q-wSD">
+                                                <rect key="frame" x="29" y="469" width="317" height="41"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cow-Uv-Q5A"/>
                                                 </constraints>
@@ -53,7 +53,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sV5-Zr-gVC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1039.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1060"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-ET-rlJ" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -63,7 +63,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="s7K-8t-XOv" userLabel="Main Stack">
-                                                                <rect key="frame" x="29" y="71" width="317" height="938.5"/>
+                                                                <rect key="frame" x="29" y="71" width="317" height="959"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWW-FB-ss2" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -135,7 +135,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lnY-Lk-pmn" userLabel="Schedule Stack">
-                                                                        <rect key="frame" x="0.0" y="410" width="317" height="528.5"/>
+                                                                        <rect key="frame" x="0.0" y="410" width="317" height="549"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="scc-fz-DeU" userLabel="Schedule Content Stack">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="448"/>
@@ -218,12 +218,12 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sof-oc-UlF" userLabel="Schedule Error View">
-                                                                                <rect key="frame" x="0.0" y="448" width="317" height="20.5"/>
+                                                                                <rect key="frame" x="0.0" y="448" width="317" height="41"/>
                                                                                 <subviews>
-                                                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-IV-fOe">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="20.5"/>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-IV-fOe">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="41"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                        <nil key="textColor"/>
+                                                                                        <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                 </subviews>
@@ -236,7 +236,7 @@
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sy2-7C-d5y" userLabel="Schedule Loading View">
-                                                                                <rect key="frame" x="0.0" y="468.5" width="317" height="60"/>
+                                                                                <rect key="frame" x="0.0" y="489" width="317" height="60"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="nQg-xh-FcH" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                                         <rect key="frame" x="128" y="24" width="60" height="12"/>

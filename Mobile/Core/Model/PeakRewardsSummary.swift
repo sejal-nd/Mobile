@@ -18,7 +18,7 @@ struct PeakRewardsSummary: Mappable {
     }
 }
 
-struct SmartThermostatDevice: Mappable {
+struct SmartThermostatDevice: Mappable, Equatable {
     let serialNumber: String
     let programs: [String]
     let emergencyFlag: String
@@ -34,6 +34,12 @@ struct SmartThermostatDevice: Mappable {
         type = try map.from("type")
         inventoryId = try map.from("inventoryId")
     }
+    
+    static func ==(lhs: SmartThermostatDevice, rhs: SmartThermostatDevice) -> Bool {
+        return lhs.serialNumber == rhs.serialNumber &&
+            lhs.inventoryId == rhs.inventoryId
+    }
+
 }
 
 struct PeakRewardsProgram: Mappable {
@@ -111,9 +117,9 @@ struct SmartThermostatPeriodInfo: Mappable {
                 throw MapperError.convertibleError(value: v, type: String.self)
             }
             guard let value = Double(valueString) else {
-                throw MapperError.convertibleError(value: valueString, type: Int.self)
+                throw MapperError.convertibleError(value: valueString, type: Double.self)
             }
-            return Temperature(value: Int(value), scale: .fahrenheit)
+            return Temperature(value: value, scale: .fahrenheit)
         }
         
         coolTemp = try map.from("coolTemp", transformation: tempMapper)
@@ -140,12 +146,12 @@ struct SmartThermostatPeriodInfo: Mappable {
 struct Temperature {
     private let fahrenheitValue: Double
     
-    init(value: Int, scale: TemperatureScale) {
+    init(value: Double, scale: TemperatureScale) {
         switch scale {
         case .fahrenheit:
-            fahrenheitValue = Double(value)
+            fahrenheitValue = value
         case .celsius:
-            fahrenheitValue = (Double(value * 9) / 5.0) + 32.0
+            fahrenheitValue = (value * 9.0 / 5.0) + 32.0
         }
     }
     

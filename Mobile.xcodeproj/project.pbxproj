@@ -324,6 +324,15 @@
 		826413791EAEAE5E007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137B1EAEAE63007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
+		826773311FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */; };
+		826773321FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */; };
+		826773331FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */; };
+		826773351FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */; };
+		826773361FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */; };
+		826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */; };
+		826773391FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */; };
+		8267733A1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */; };
+		8267733B1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */; };
 		826DCCE91F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */; };
 		826DCCEA1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */; };
 		826DCCEB1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */; };
@@ -1557,6 +1566,9 @@
 		825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectControl.swift; sourceTree = "<group>"; };
 		825171B41F1D25130020A6CA /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceViewController.swift; sourceTree = "<group>"; };
+		826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewUsingAutoLayout.swift; sourceTree = "<group>"; };
+		826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatDeviceCell.swift; sourceTree = "<group>"; };
 		826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAccountViewController.swift; sourceTree = "<group>"; };
 		826DCCEC1F0E7E410063D47E /* DefaultAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAccountViewModel.swift; sourceTree = "<group>"; };
 		826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerTableViewCell.swift; sourceTree = "<group>"; };
@@ -2714,6 +2726,7 @@
 				E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */,
 				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
 				E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */,
+				826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -2758,6 +2771,7 @@
 			isa = PBXGroup;
 			children = (
 				82AC2A151FAB5C3900EACB3B /* PeakRewardsViewController.swift */,
+				826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */,
 			);
 			path = "Smart Thermostat Peak Rewards";
 			sourceTree = "<group>";
@@ -2956,6 +2970,7 @@
 				E893993C1F86AF1600B9184C /* UIViewDashedBorders.swift */,
 				829E058A1FA7928E00697633 /* Fillable.swift */,
 				823694301FA8CB0E0037BD9F /* SafariViewController.swift */,
+				826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4600,6 +4615,7 @@
 				82AC2A161FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
+				826773391FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				B574BAF11E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEB1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EBE1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
@@ -4628,6 +4644,7 @@
 				E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				E8C29C731F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
+				826773351FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
 				825171B51F1D25130020A6CA /* HomeViewModel.swift in Sources */,
 				54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
@@ -4790,6 +4807,7 @@
 				54930DC81EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E87C414B1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
+				826773311FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
 				01F6122D1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
 				B59EFAA51F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
@@ -4872,6 +4890,7 @@
 				82AC2A181FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
+				8267733B1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				E8C453171EF3293600F5C781 /* ToastView.swift in Sources */,
 				2FA5D8661F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				2FA5D8611F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
@@ -4900,6 +4919,7 @@
 				E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
+				826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				E8C29C751F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
@@ -5062,6 +5082,7 @@
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				E87C414D1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
+				826773331FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
 				54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				B59EFAA71F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
@@ -5144,6 +5165,7 @@
 				82AC2A171FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
+				8267733A1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				E8C453161EF3293600F5C781 /* ToastView.swift in Sources */,
 				2FA5D8651F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
@@ -5172,6 +5194,7 @@
 				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E81F38141ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
+				826773361FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				E8C29C741F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
 				E873DA761EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
@@ -5334,6 +5357,7 @@
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				E87C414C1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
+				826773321FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
 				54C1DEFB1F02B8E200290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				B59EFAA61F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
