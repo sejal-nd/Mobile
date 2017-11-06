@@ -110,8 +110,7 @@ class PeakRewardsViewController: UIViewController {
         segmentedControl.selectedIndex.asObservable()
             .skip(1)
             .distinctUntilChanged()
-            .map { TemperatureScale(rawValue: $0) }
-            .unwrap()
+            .map { TemperatureScale(rawValue: $0) ?? .fahrenheit }
             .subscribe(onNext: { TemperatureScaleStore.shared.scale = $0 })
             .disposed(by: disposeBag)
         

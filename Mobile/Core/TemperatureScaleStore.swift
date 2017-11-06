@@ -25,12 +25,9 @@ final class TemperatureScaleStore {
     
     static let shared = TemperatureScaleStore()
     
-    // Private init protects against another instance being accidentally instantiated
-    private init() { }
+    private let temperatureScaleCache: Variable<TemperatureScale>
     
-    private lazy var temperatureScaleCache =
-        Variable<TemperatureScale>(
-            TemperatureScale(rawValue: UserDefaults.standard.integer(forKey: UserDefaultKeys.TemperatureScale)) ?? .fahrenheit)
+    let scaleObservable: Observable<TemperatureScale>
     
     var scale: TemperatureScale {
         get {
@@ -42,8 +39,13 @@ final class TemperatureScaleStore {
         }
     }
     
-    private(set) lazy var scaleObservable: Observable<TemperatureScale> = self.temperatureScaleCache.asObservable()
-        .shareReplay(1)
-    
+    // Private init protects against another instance being accidentally instantiated
+    private init() {
+        let storedTempScale = UserDefaults.standard.integer(forKey: UserDefaultKeys.TemperatureScale)
+        let initialScaleValue: TemperatureScale = TemperatureScale(rawValue: storedTempScale) ?? .fahrenheit
+        temperatureScaleCache = Variable(initialScaleValue)
+        
+        scaleObservable = temperatureScaleCache.asObservable()
+    }
 }
 
