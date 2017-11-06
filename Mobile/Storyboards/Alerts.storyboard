@@ -282,6 +282,9 @@
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CCl-bw-J3K" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="305" y="23" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="onSwitchToggle:" destination="xUH-97-JXF" eventType="valueChanged" id="5Cp-SD-ftT"/>
+                                                                </connections>
                                                             </switch>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CXM-2p-pih" userLabel="Divider Line">
                                                                 <rect key="frame" x="20" y="177" width="334" height="0.5"/>
@@ -324,6 +327,9 @@
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9hs-7g-paW" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="305" y="34" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="onSwitchToggle:" destination="xUH-97-JXF" eventType="valueChanged" id="m6h-hL-ZWI"/>
+                                                                </connections>
                                                             </switch>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZ7-jh-YHN" userLabel="Divider Line">
                                                                 <rect key="frame" x="20" y="177" width="334" height="0.5"/>
@@ -367,6 +373,9 @@
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p5M-Ew-Bcg" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="305" y="23.5" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="onSwitchToggle:" destination="xUH-97-JXF" eventType="valueChanged" id="X4T-gQ-CDa"/>
+                                                                </connections>
                                                             </switch>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hf8-A6-kIG" userLabel="Divider Line">
                                                                 <rect key="frame" x="20" y="177" width="334" height="0.5"/>
@@ -409,6 +418,9 @@
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lgQ-it-a7Y" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="305" y="23.5" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="onSwitchToggle:" destination="xUH-97-JXF" eventType="valueChanged" id="ylS-vI-hn0"/>
+                                                                </connections>
                                                             </switch>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGr-bj-BAp" userLabel="Divider Line">
                                                                 <rect key="frame" x="20" y="177" width="334" height="0.5"/>
@@ -464,6 +476,9 @@
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adD-p5-mYq" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="305" y="23.5" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="onSwitchToggle:" destination="xUH-97-JXF" eventType="valueChanged" id="jaZ-zM-Tm5"/>
+                                                                </connections>
                                                             </switch>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWj-21-OQL" userLabel="Divider Line">
                                                                 <rect key="frame" x="20" y="177" width="334" height="0.5"/>
@@ -512,6 +527,9 @@
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZKR-h6-fpe" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="305" y="23.5" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="onSwitchToggle:" destination="xUH-97-JXF" eventType="valueChanged" id="1Hq-8j-w70"/>
+                                                                </connections>
                                                             </switch>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsB-s3-9Fl" userLabel="Divider Line">
                                                                 <rect key="frame" x="20" y="177" width="334" height="0.5"/>
@@ -555,6 +573,9 @@
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mUi-YR-7fV" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="305" y="23.5" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="onSwitchToggle:" destination="xUH-97-JXF" eventType="valueChanged" id="d0u-QP-npB"/>
+                                                                </connections>
                                                             </switch>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qh7-Wo-Pwr" userLabel="Divider Line">
                                                                 <rect key="frame" x="20" y="177" width="334" height="0.5"/>
@@ -666,13 +687,32 @@
                                     <constraint firstItem="43z-fm-Nx7" firstAttribute="leading" secondItem="1tJ-ow-DZE" secondAttribute="leading" id="crK-Py-efh"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="sTb-Ox-rQA" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="157" y="762" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5o-5y-j1B">
+                                <rect key="frame" x="29" y="757.5" width="317" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="gWg-tk-TzF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1tJ-ow-DZE" secondAttribute="trailing" id="2aE-x4-EVk"/>
+                            <constraint firstItem="c5o-5y-j1B" firstAttribute="centerX" secondItem="ouq-MF-EMe" secondAttribute="centerX" id="DKj-Xf-IAk"/>
                             <constraint firstItem="LRZ-yY-Gaq" firstAttribute="top" secondItem="1tJ-ow-DZE" secondAttribute="bottom" id="QwA-F7-fq6"/>
                             <constraint firstItem="1tJ-ow-DZE" firstAttribute="leading" secondItem="ouq-MF-EMe" secondAttribute="leading" id="WQX-Dr-bAm"/>
                             <constraint firstItem="1tJ-ow-DZE" firstAttribute="top" secondItem="vqD-u6-QpP" secondAttribute="bottom" id="Yxe-Wx-udt"/>
+                            <constraint firstItem="c5o-5y-j1B" firstAttribute="leading" secondItem="ouq-MF-EMe" secondAttribute="leading" priority="999" constant="29" id="hCy-sC-gpZ"/>
+                            <constraint firstItem="sTb-Ox-rQA" firstAttribute="centerY" secondItem="ouq-MF-EMe" secondAttribute="centerY" id="hoT-t1-JSy"/>
+                            <constraint firstItem="sTb-Ox-rQA" firstAttribute="centerX" secondItem="ouq-MF-EMe" secondAttribute="centerX" id="n2O-pT-npk"/>
+                            <constraint firstAttribute="trailing" secondItem="c5o-5y-j1B" secondAttribute="trailing" priority="999" constant="29" id="v9F-xx-szY"/>
+                            <constraint firstItem="c5o-5y-j1B" firstAttribute="centerY" secondItem="ouq-MF-EMe" secondAttribute="centerY" id="zJ2-qs-BGO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Alert Preferences" id="4IM-aa-e2f"/>
@@ -689,11 +729,13 @@
                         <outlet property="budgetBillingView" destination="j1c-4u-bqX" id="Xeu-ZP-bTQ"/>
                         <outlet property="contentStackView" destination="UGU-Uj-6ql" id="wEn-n3-zsf"/>
                         <outlet property="englishRadioControl" destination="13o-oC-2Oe" id="XGz-Lj-bNe"/>
+                        <outlet property="errorLabel" destination="c5o-5y-j1B" id="0eU-Gq-7rQ"/>
                         <outlet property="forYourInfoDetailLabel" destination="3ow-KA-Jzi" id="v6Z-zl-vMo"/>
                         <outlet property="forYourInfoSwitch" destination="mUi-YR-7fV" id="2Vg-Ws-rRU"/>
                         <outlet property="forYourInfoTitleLabel" destination="ME8-Vj-UwP" id="5iI-3v-skO"/>
                         <outlet property="languageSelectionLabel" destination="Eg5-Le-YBU" id="3vQ-bK-yL4"/>
                         <outlet property="languageSelectionView" destination="tpx-4L-es8" id="UTV-Bk-mdd"/>
+                        <outlet property="loadingIndicator" destination="sTb-Ox-rQA" id="oFd-Gt-ocV"/>
                         <outlet property="outageDetailLabel" destination="oiF-y4-mHQ" id="4w2-ex-q6f"/>
                         <outlet property="outageSwitch" destination="CCl-bw-J3K" id="j6Y-5D-0yS"/>
                         <outlet property="outageTitleLabel" destination="5XT-xb-fTp" id="TpC-nk-zXz"/>

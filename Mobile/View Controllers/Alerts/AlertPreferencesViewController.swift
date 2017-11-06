@@ -12,6 +12,11 @@ class AlertPreferencesViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
+    var saveButton: UIBarButtonItem!
+    
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
+    
     @IBOutlet weak var accountInfoBar: AccountInfoBar!
 
     @IBOutlet weak var contentStackView: UIStackView!
@@ -54,7 +59,8 @@ class AlertPreferencesViewController: UIViewController {
     @IBOutlet weak var englishRadioControl: RadioSelectControl!
     @IBOutlet weak var spanishRadioControl: RadioSelectControl!
     
-    let viewModel = AlertPreferencesViewModel()
+    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService())
+    
     
     // Prevents status bar color flash when pushed
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -65,7 +71,9 @@ class AlertPreferencesViewController: UIViewController {
         super.viewDidLoad()
 
         title = NSLocalizedString("Alert Preferences", comment: "")
-        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
+        saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
+        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         
         if Environment.sharedInstance.opco == .bge {
@@ -86,6 +94,8 @@ class AlertPreferencesViewController: UIViewController {
         
         styleViews()
         bindViewModel()
+        
+        viewModel.fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +107,10 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     private func styleViews() {
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
         outageTitleLabel.textColor = .blackText
         outageTitleLabel.font = SystemFont.regular.of(textStyle: .title1)
         outageTitleLabel.text = NSLocalizedString("Outage", comment: "")
@@ -150,6 +164,11 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowContent.not().drive(contentStackView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
+        
         // Detail Label Text
         outageDetailLabel.text = viewModel.outageDetailLabelText
         scheduledMaintDetailLabel.text = viewModel.scheduledMaintDetailLabelText
@@ -161,12 +180,19 @@ class AlertPreferencesViewController: UIViewController {
         
         // Switch States
         outageSwitch.rx.isOn.bind(to: viewModel.outage).disposed(by: disposeBag)
+        viewModel.outage.asObservable().bind(to: outageSwitch.rx.isOn).disposed(by: disposeBag)
         scheduledMaintSwitch.rx.isOn.bind(to: viewModel.scheduledMaint).disposed(by: disposeBag)
+        viewModel.scheduledMaint.asObservable().bind(to: scheduledMaintSwitch.rx.isOn).disposed(by: disposeBag)
         severeWeatherSwitch.rx.isOn.bind(to: viewModel.severeWeather).disposed(by: disposeBag)
+        viewModel.severeWeather.asObservable().bind(to: severeWeatherSwitch.rx.isOn).disposed(by: disposeBag)
         billReadySwitch.rx.isOn.bind(to: viewModel.billReady).disposed(by: disposeBag)
+        viewModel.billReady.asObservable().bind(to: billReadySwitch.rx.isOn).disposed(by: disposeBag)
         paymentDueSwitch.rx.isOn.bind(to: viewModel.paymentDue).disposed(by: disposeBag)
+        viewModel.paymentDue.asObservable().bind(to: paymentDueSwitch.rx.isOn).disposed(by: disposeBag)
         budgetBillingSwitch.rx.isOn.bind(to: viewModel.budgetBilling).disposed(by: disposeBag)
+        viewModel.budgetBilling.asObservable().bind(to: budgetBillingSwitch.rx.isOn).disposed(by: disposeBag)
         forYourInfoSwitch.rx.isOn.bind(to: viewModel.forYourInfo).disposed(by: disposeBag)
+        viewModel.forYourInfo.asObservable().bind(to: forYourInfoSwitch.rx.isOn).disposed(by: disposeBag)
         
         viewModel.paymentDueDaysBeforeButtonText.asObservable().subscribe(onNext: { [weak self] buttonText in
             UIView.performWithoutAnimation { // Prevents ugly setTitle animation
@@ -187,18 +213,52 @@ class AlertPreferencesViewController: UIViewController {
                         data: (1...upperRange).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
                         selectedIndex: viewModel.paymentDueDaysBefore.value - 1,
                         onDone: { [weak self] value, index in
-                            self?.viewModel.paymentDueDaysBefore.value = index + 1
+                            guard let `self` = self else { return }
+                            if self.viewModel.paymentDueDaysBefore.value != index + 1 {
+                                self.viewModel.userChangedPrefs.value = true
+                                self.viewModel.paymentDueDaysBefore.value = index + 1
+                            }
                         },
                         onCancel: nil)
         UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select number of days", comment: ""))
     }
     
+    @IBAction func onSwitchToggle(_ sender: Switch) {
+        viewModel.userChangedPrefs.value = true
+    }
+    
     @IBAction func onLanguageRadioControlPress(_ sender: RadioSelectControl) {
-        viewModel.english.value = sender == englishRadioControl
+        let newVal = sender == englishRadioControl
+        if newVal != viewModel.english.value {
+            viewModel.userChangedPrefs.value = true
+            viewModel.english.value = newVal
+        }
+    }
+    
+    func onCancelPress() {
+        if viewModel.userChangedPrefs.value {
+            let alertVc = UIAlertController(title: NSLocalizedString("Exit Notification Preferences", comment: ""),
+                                            message: NSLocalizedString("Are you sure you want to leave without saving your changes?", comment: ""),
+                                            preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }))
+            present(alertVc, animated: true, completion: nil)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     func onSavePress() {
-        print("Save!")
+        print("outage = \(viewModel.outage.value)")
+        print("scheduledMaint = \(viewModel.scheduledMaint.value)")
+        print("severeWeather = \(viewModel.severeWeather.value)")
+        print("billReady = \(viewModel.billReady.value)")
+        print("paymentDue = \(viewModel.paymentDue.value)")
+        print("paymentDueDaysBefore = \(viewModel.paymentDueDaysBefore.value)")
+        print("budgetBilling = \(viewModel.budgetBilling.value)")
+        print("forYourInfo = \(viewModel.forYourInfo.value)")
     }
     
 

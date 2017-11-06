@@ -14,6 +14,7 @@ class AlertPreferencesViewModel {
     let disposeBag = DisposeBag()
     
     var accountDetail: AccountDetail! // Passed from AlertsViewController
+    let alertPrefs = Variable<AlertPreferences?>(nil)
     
     // Switch states
     let outage = Variable(false)
@@ -27,8 +28,64 @@ class AlertPreferencesViewModel {
     
     let english = Variable(true) // Language selection. False = Spanish
     
-    required init() {
+    let alertsService: AlertsService
+    
+    let isFetching = Variable(false)
+    let isError = Variable(false)
+    let userChangedPrefs = Variable(false)
+    
+    required init(alertsService: AlertsService) {
+        self.alertsService = alertsService
+    }
+    
+    func fetchData() {
+        isFetching.value = true
+        isError.value = false
         
+        var observables = [fetchAlertPreferences()]
+        if Environment.sharedInstance.opco == .comEd {
+            observables.append(fetchAlertLanguage())
+        }
+        
+        Observable.zip(observables)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.isFetching.value = false
+            }, onError: { [weak self] err in
+                self?.isFetching.value = false
+                self?.isError.value = true
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func fetchAlertPreferences() -> Observable<Void> {
+        return alertsService.fetchAlertPreferences(accountNumber: accountDetail.accountNumber).map { [weak self] alertPrefs in
+            guard let `self` = self else { return }
+            self.alertPrefs.value = alertPrefs
+
+            self.outage.value = alertPrefs.outage
+            self.scheduledMaint.value = alertPrefs.scheduledMaint
+            self.severeWeather.value = alertPrefs.severeWeather
+            self.billReady.value = alertPrefs.billReady
+            self.paymentDue.value = alertPrefs.paymentDue
+            self.paymentDueDaysBefore.value = alertPrefs.paymentDueDaysBefore
+            self.budgetBilling.value = alertPrefs.budgetBilling
+            self.forYourInfo.value = alertPrefs.forYourInfo
+        }
+    }
+    
+    private func fetchAlertLanguage() -> Observable<Void> {
+        return alertsService.fetchAlertLanguage(accountNumber: accountDetail.accountNumber).map { [weak self] language in
+            self?.english.value = language == "English"
+        }
+    }
+    
+    private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver()) {
+        return !$0 && !$1
+    }
+    
+    private(set) lazy var saveButtonEnabled: Driver<Bool> = Driver.combineLatest(self.shouldShowContent, self.userChangedPrefs.asDriver()) {
+        return $0 && $1
     }
     
     private(set) lazy var paymentDueDaysBeforeButtonText: Driver<String?> = self.paymentDueDaysBefore.asDriver().map {
