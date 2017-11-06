@@ -13,10 +13,11 @@ class AlertPreferencesViewModel {
     
     let disposeBag = DisposeBag()
     
-    var accountDetail: AccountDetail! // Passed from AlertsViewController
-    let alertPrefs = Variable<AlertPreferences?>(nil)
+    let alertsService: AlertsService
     
-    // Switch states
+    var accountDetail: AccountDetail! // Passed from AlertsViewController
+    
+    // Notification Preferences
     let outage = Variable(false)
     let scheduledMaint = Variable(false)
     let severeWeather = Variable(false)
@@ -25,18 +26,27 @@ class AlertPreferencesViewModel {
     let paymentDueDaysBefore = Variable(1)
     let budgetBilling = Variable(false)
     let forYourInfo = Variable(false)
-    
     let english = Variable(true) // Language selection. False = Spanish
-    
-    let alertsService: AlertsService
     
     let isFetching = Variable(false)
     let isError = Variable(false)
+    let alertPrefs = Variable<AlertPreferences?>(nil)
+    
     let userChangedPrefs = Variable(false)
+    
+    var initialBillReadyValue = false
+    var enrollPaperlessEBill: Bool {
+        return initialBillReadyValue == false && billReady.value == true
+    }
+    var unenrollPaperlessEBill: Bool {
+        return initialBillReadyValue == true && billReady.value == false
+    }
     
     required init(alertsService: AlertsService) {
         self.alertsService = alertsService
     }
+    
+    // MARK: Web Services
     
     func fetchData() {
         isFetching.value = true
@@ -67,6 +77,7 @@ class AlertPreferencesViewModel {
             self.scheduledMaint.value = alertPrefs.scheduledMaint
             self.severeWeather.value = alertPrefs.severeWeather
             self.billReady.value = alertPrefs.billReady
+            self.initialBillReadyValue = alertPrefs.billReady
             self.paymentDue.value = alertPrefs.paymentDue
             self.paymentDueDaysBefore.value = alertPrefs.paymentDueDaysBefore
             self.budgetBilling.value = alertPrefs.budgetBilling
@@ -78,6 +89,31 @@ class AlertPreferencesViewModel {
         return alertsService.fetchAlertLanguage(accountNumber: accountDetail.accountNumber).map { [weak self] language in
             self?.english.value = language == "English"
         }
+    }
+    
+    func saveChanges(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        var observables = [saveAlertPreferences()]
+        if Environment.sharedInstance.opco == .comEd {
+            observables.append(saveAlertLanguage())
+        }
+        
+        Observable.zip(observables)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func saveAlertPreferences() -> Observable<Void> {
+        // TODO: Call the real save endpoint
+        return alertsService.fetchAlertPreferences(accountNumber: accountDetail.accountNumber).map { _ in }
+    }
+    
+    private func saveAlertLanguage() -> Observable<Void> {
+        return alertsService.setAlertLanguage(accountNumber: accountDetail.accountNumber, english: english.value)
     }
     
     private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver()) {

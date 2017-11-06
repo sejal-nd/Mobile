@@ -125,6 +125,7 @@ class AlertsViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AlertPreferencesViewController {
+            vc.delegate = self
             vc.viewModel.accountDetail = viewModel.currentAccountDetail!
         }
     }
@@ -196,5 +197,13 @@ extension AlertsViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         viewModel.fetchAccountDetail()
     }
+}
+
+extension AlertsViewController: AlertPreferencesViewControllerDelegate {
     
+    func alertPreferencesViewControllerDidSavePreferences(_ alertPreferencesViewController: AlertPreferencesViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Preferences saved", comment: ""))
+        })
+    }
 }

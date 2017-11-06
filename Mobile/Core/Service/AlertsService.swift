@@ -25,6 +25,14 @@ protocol AlertsService {
     ///   - completion: the completion block to execute upon completion.
     ///     The ServiceResult that is provided will contain either 'English' or 'Spanish'
     func fetchAlertLanguage(accountNumber: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
+    
+    /// Set alerts language setting for ComEd account
+    ///
+    /// - Parameters:
+    ///   - accountNumber: The account to fetch info for
+    ///   - english: true for "English", false for "Spanish"
+    ///   - completion: the completion block to execute upon completion.
+    func setAlertLanguage(accountNumber: String, english: Bool, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
 }
 
 // MARK: - Reactive Extension to AlertsService
@@ -50,6 +58,21 @@ extension AlertsService {
                 switch result {
                 case ServiceResult.Success(let language):
                     observer.onNext(language)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func setAlertLanguage(accountNumber: String, english: Bool) -> Observable<Void> {
+        return Observable.create { observer in
+            self.setAlertLanguage(accountNumber: accountNumber, english: english, completion: { (result: ServiceResult<Void>) in
+                switch result {
+                case ServiceResult.Success:
+                    observer.onNext()
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

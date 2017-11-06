@@ -8,7 +8,13 @@
 
 import RxSwift
 
+protocol AlertPreferencesViewControllerDelegate: class {
+    func alertPreferencesViewControllerDidSavePreferences(_ alertPreferencesViewController: AlertPreferencesViewController)
+}
+
 class AlertPreferencesViewController: UIViewController {
+    
+    weak var delegate: AlertPreferencesViewControllerDelegate?
     
     let disposeBag = DisposeBag()
     
@@ -224,7 +230,24 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     @IBAction func onSwitchToggle(_ sender: Switch) {
-        viewModel.userChangedPrefs.value = true
+        if sender == billReadySwitch && Environment.sharedInstance.opco != .bge { // ComEd/PECO only requirement
+            let title = sender.isOn ? NSLocalizedString("Go Paperless", comment: "") : NSLocalizedString("Receive Paper Bill", comment: "")
+            let message = sender.isOn ?
+                NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "") :
+                NSLocalizedString("By deselecting this alert, you will be removed from paperless billing and will revert back to receiving your bills through postal mail. Please allow up to one billing cycle for this change to take effect.", comment: "")
+            
+            let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self] _ in
+                //sender.setOn(!sender.isOn, animated: true)
+                self?.viewModel.billReady.value = !sender.isOn // Need to manually set this because .setOn does not trigger rx binding
+            }))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self] _ in
+                self?.viewModel.userChangedPrefs.value = true
+            }))
+            present(alertVc, animated: true, completion: nil)
+        } else {
+            viewModel.userChangedPrefs.value = true
+        }
     }
     
     @IBAction func onLanguageRadioControlPress(_ sender: RadioSelectControl) {
@@ -241,7 +264,7 @@ class AlertPreferencesViewController: UIViewController {
                                             message: NSLocalizedString("Are you sure you want to leave without saving your changes?", comment: ""),
                                             preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: { [weak self] _ in
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .destructive, handler: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             }))
             present(alertVc, animated: true, completion: nil)
@@ -259,6 +282,22 @@ class AlertPreferencesViewController: UIViewController {
         print("paymentDueDaysBefore = \(viewModel.paymentDueDaysBefore.value)")
         print("budgetBilling = \(viewModel.budgetBilling.value)")
         print("forYourInfo = \(viewModel.forYourInfo.value)")
+        print("enrollPaperlessEBill = \(viewModel.enrollPaperlessEBill)")
+        print("unenrollPaperlessEBill = \(viewModel.unenrollPaperlessEBill)")
+        
+//        LoadingView.show()
+//        viewModel.saveChanges(onSuccess: { [weak self] in
+//            LoadingView.hide()
+//            guard let `self` = self else { return }
+//            self.delegate?.alertPreferencesViewControllerDidSavePreferences(self)
+//            self.navigationController?.popViewController(animated: true)
+//        }, onError: { [weak self] errMessage in
+//            LoadingView.hide()
+//            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+//            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+//            self?.present(alertVc, animated: true, completion: nil)
+//        })
+
     }
     
 
