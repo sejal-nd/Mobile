@@ -553,7 +553,7 @@ class HomeBillCardViewModel {
             result.append(String(format: localizedText, amountDueString))
         }
         
-        if let reinstateString = ($0.billingInfo.atReinstateFee ?? 0).currencyString,
+        if let reinstateString = $0.billingInfo.atReinstateFee?.currencyString,
             Environment.sharedInstance.opco == .comEd &&
                 $0.billingInfo.amtDpaReinst ?? 0 > 0 &&
                 $0.billingInfo.atReinstateFee ?? 0 > 0 &&
