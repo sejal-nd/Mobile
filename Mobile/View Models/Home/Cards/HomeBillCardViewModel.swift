@@ -534,7 +534,6 @@ class HomeBillCardViewModel {
     private(set) lazy var dueAmountAndDateText: Driver<String?> = self.accountDetailDriver.map {
         guard let amountDueString = $0.billingInfo.netDueAmount?.currencyString else { return nil }
         guard let dueByDate = $0.billingInfo.dueByDate else { return nil }
-        guard let reinstateFee = $0.billingInfo.atReinstateFee?.currencyString else { return nil }
 
         let calendar = Calendar.opCo
         let date1 = calendar.startOfDay(for: Date())
@@ -553,14 +552,15 @@ class HomeBillCardViewModel {
             let localizedText = NSLocalizedString("Your bill total of %@ is due immediately.", comment: "")
             result.append(String(format: localizedText, amountDueString))
         }
-
-        if Environment.sharedInstance.opco == .comEd &&
-                   $0.billingInfo.amtDpaReinst ?? 0 > 0 &&
-                   $0.billingInfo.atReinstateFee ?? 0 > 0 &&
-                   !$0.isLowIncome {
+        
+        if let reinstateString = ($0.billingInfo.atReinstateFee ?? 0).currencyString,
+            Environment.sharedInstance.opco == .comEd &&
+                $0.billingInfo.amtDpaReinst ?? 0 > 0 &&
+                $0.billingInfo.atReinstateFee ?? 0 > 0 &&
+                !$0.isLowIncome {
             let reinstatementText = NSLocalizedString("\n\nYou are entitled to one free reinstatement per plan. " +
-                    "Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
-            result.append(String(format: reinstatementText, reinstateFee))
+                "Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
+            result.append(String(format: reinstatementText, reinstateString))
         }
 
         return result
