@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,7 +24,7 @@
                     <rect key="frame" x="21" y="0.0" width="333" height="1798"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VyQ-uF-pu2" userLabel="Info Stack">
-                            <rect key="frame" x="0.0" y="0.0" width="333" height="1170.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="333" height="1229"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Brl-o6-ZuU">
                                     <rect key="frame" x="153.5" y="0.0" width="26" height="53"/>
@@ -111,20 +111,20 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="HbP-f4-Ngq">
-                                    <rect key="frame" x="-136.5" y="319.5" width="0.0" height="74.5"/>
+                                    <rect key="frame" x="0.0" y="319.5" width="333" height="133"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kLM-WH-clG" userLabel="Other Due Date Stack">
-                                            <rect key="frame" x="0.0" y="17" width="0.0" height="22"/>
+                                            <rect key="frame" x="0.0" y="17" width="333" height="99.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIH-sk-KVu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="22"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="308" height="99.5"/>
                                                     <string key="text">Your bill total of $270.00 is due in 13 days. Your bill total of $270.00 is due in 13 days. Your bill total of $270.00 is due in 13 days. Your bill total of $270.00 is due in 13 days.</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                                                    <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gO6-fv-ryK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="22"/>
+                                                    <rect key="frame" x="316" y="0.0" width="17" height="99.5"/>
                                                     <state key="normal" image="ic_question"/>
                                                 </button>
                                             </subviews>
@@ -139,7 +139,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNO-0Y-K8O">
-                                    <rect key="frame" x="110" y="394" width="113.5" height="161"/>
+                                    <rect key="frame" x="110" y="452.5" width="113.5" height="161"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gA-6f-vmQ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="24" width="113.5" height="130"/>
@@ -180,7 +180,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQi-zi-eg5">
-                                    <rect key="frame" x="32" y="555" width="269.5" height="72.5"/>
+                                    <rect key="frame" x="32" y="613.5" width="269.5" height="72.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTc-qG-fne" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="28" width="269.5" height="26.5"/>
@@ -213,7 +213,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="har-lF-GNF">
-                                    <rect key="frame" x="46" y="627.5" width="241.5" height="48"/>
+                                    <rect key="frame" x="46" y="686" width="241.5" height="48"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Minimum payment allowed is $5.00." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frg-BE-BO9">
                                             <rect key="frame" x="0.0" y="21" width="241.5" height="17"/>
@@ -231,7 +231,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRP-dR-wFH">
-                                    <rect key="frame" x="12.5" y="675.5" width="308" height="39"/>
+                                    <rect key="frame" x="12.5" y="734" width="308" height="39"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="A $2.35 convenience fee will be applied by Bill Matrix, our payment partner." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URg-hW-5L8">
                                             <rect key="frame" x="0.0" y="0.0" width="308" height="29"/>
@@ -249,7 +249,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3N-2i-LNu">
-                                    <rect key="frame" x="46.5" y="714.5" width="240" height="50"/>
+                                    <rect key="frame" x="46.5" y="773" width="240" height="50"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-nz-bzd" customClass="OneTouchSlider" customModule="BGE" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
@@ -265,7 +265,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-ep-YjG">
-                                    <rect key="frame" x="12.5" y="764.5" width="308" height="49"/>
+                                    <rect key="frame" x="12.5" y="823" width="308" height="49"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Business customers cannot use VISA to make a payment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jP5-dl-VPV">
                                             <rect key="frame" x="0.0" y="10" width="308" height="29"/>
@@ -283,7 +283,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oRf-Qw-0z8">
-                                    <rect key="frame" x="145" y="813.5" width="43" height="85"/>
+                                    <rect key="frame" x="145" y="872" width="43" height="85"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_scheduled" translatesAutoresizingMaskIntoConstraints="NO" id="Nzb-Wa-fMH">
                                             <rect key="frame" x="0.0" y="23" width="43" height="50"/>
@@ -298,7 +298,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYU-NR-HYz">
-                                    <rect key="frame" x="145" y="898.5" width="43" height="83"/>
+                                    <rect key="frame" x="145" y="957" width="43" height="83"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_autopay" translatesAutoresizingMaskIntoConstraints="NO" id="Uk6-Fs-NZW">
                                             <rect key="frame" x="0.0" y="18" width="43" height="50"/>
@@ -313,7 +313,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-zb-9Gh" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                    <rect key="frame" x="12.5" y="981.5" width="308" height="33.5"/>
+                                    <rect key="frame" x="12.5" y="1040" width="308" height="33.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="You have an automatic payment of $270.00 for 03/14/2017." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lZ-GJ-csL">
                                             <rect key="frame" x="0.0" y="0.0" width="308" height="33.5"/>
@@ -334,7 +334,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSx-oN-eWt" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                    <rect key="frame" x="12.5" y="1015" width="308" height="33.5"/>
+                                    <rect key="frame" x="12.5" y="1073.5" width="308" height="33.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Thank you for scheduling your $270.00 payment for 03/14/2017." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHy-WH-bwe">
                                             <rect key="frame" x="0.0" y="0.0" width="308" height="33.5"/>
@@ -355,7 +355,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9h-HI-p4C" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                    <rect key="frame" x="12.5" y="1048.5" width="308" height="51"/>
+                                    <rect key="frame" x="12.5" y="1107" width="308" height="51"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to these payment Terms &amp; Conditions." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTQ-3f-TRE">
                                             <rect key="frame" x="0.0" y="8" width="308" height="43"/>
@@ -376,7 +376,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6tn-BX-f7p">
-                                    <rect key="frame" x="46.5" y="1099.5" width="240" height="71"/>
+                                    <rect key="frame" x="46.5" y="1158" width="240" height="71"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpW-XK-KnQ">
                                             <rect key="frame" x="0.0" y="25" width="240" height="34"/>
@@ -397,7 +397,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ah8-rf-Pem" userLabel="Not Ready Stack">
-                            <rect key="frame" x="0.0" y="1170.5" width="333" height="211"/>
+                            <rect key="frame" x="0.0" y="1229" width="333" height="211"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-kq-Kkp">
                                     <rect key="frame" x="51" y="0.0" width="231" height="49"/>
@@ -436,7 +436,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-ve-hSw" userLabel="Network Error Stack">
-                            <rect key="frame" x="0.0" y="1381.5" width="333" height="131"/>
+                            <rect key="frame" x="0.0" y="1440" width="333" height="131"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmn-39-3xN">
                                     <rect key="frame" x="51" y="0.0" width="231" height="20"/>
@@ -475,13 +475,13 @@
                             </constraints>
                         </stackView>
                         <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="5vv-h2-OaI">
-                            <rect key="frame" x="0.0" y="1512.5" width="333" height="285.5"/>
+                            <rect key="frame" x="0.0" y="1571" width="333" height="227"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_lock_opco_mini" translatesAutoresizingMaskIntoConstraints="NO" id="CZQ-Co-WS0">
-                                    <rect key="frame" x="126.5" y="20" width="80" height="80"/>
+                                    <rect key="frame" x="126.5" y="20" width="80" height="135"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Your account is password protected and cannot be accessed through this app." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzW-Kg-VTg">
-                                    <rect key="frame" x="0.0" y="111" width="333" height="146.5"/>
+                                    <rect key="frame" x="0.0" y="166" width="333" height="33"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                     <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>

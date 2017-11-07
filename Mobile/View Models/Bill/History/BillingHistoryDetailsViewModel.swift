@@ -23,7 +23,7 @@ class BillingHistoryDetailsViewModel {
     
     private(set) lazy var paymentAccount: Driver<String?> = self.paymentDetail.asDriver().map {
         guard let paymentAccount = $0?.accountNumber else { return "" }
-        return "**** " + String(paymentAccount.characters.suffix(4))
+        return "**** " + String(paymentAccount.suffix(4))
     }
     
     var paymentType: String {

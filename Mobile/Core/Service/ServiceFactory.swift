@@ -57,4 +57,8 @@ class ServiceFactory {
     class func createUsageService() -> UsageService {
         return OMCUsageService()
     }
+    
+    class func createPeakRewardsService() -> PeakRewardsService {
+        return OMCPeakRewardsService()
+    }
 }
