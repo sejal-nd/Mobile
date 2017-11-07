@@ -30,10 +30,15 @@ class PeakRewardsViewModel {
         self.accountDetail = accountDetail
     }
     
+    var premiseNumber: String {
+        return AccountsStore.sharedInstance.currentAccount.currentPremise?.premiseNumber ??
+            accountDetail.premiseNumber!
+    }
+    
     //MARK: - Web Requests
     private lazy var peakRewardsSummaryEvents: Observable<Event<PeakRewardsSummary>> = self.peakRewardsService
         .fetchPeakRewardsSummary(accountNumber: self.accountDetail.accountNumber,
-                                 premiseNumber: self.accountDetail.premiseNumber!)
+                                 premiseNumber: self.premiseNumber)
         .trackActivity(self.peakRewardsSummaryFetchTracker)
         .materialize()
         .shareReplay(1)
@@ -47,7 +52,7 @@ class PeakRewardsViewModel {
             
             return self.peakRewardsService.fetchSmartThermostatSchedule(forDevice: device,
                                                                         accountNumber: self.accountDetail.accountNumber,
-                                                                        premiseNumber: self.accountDetail.premiseNumber!)
+                                                                        premiseNumber: self.premiseNumber)
                 .map { $0 } // Type inference makes this optional
                 .trackActivity(self.deviceScheduleFetchTracker)
                 .materialize()
