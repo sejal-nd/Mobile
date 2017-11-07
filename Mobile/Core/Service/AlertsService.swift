@@ -33,6 +33,13 @@ protocol AlertsService {
     ///   - english: true for "English", false for "Spanish"
     ///   - completion: the completion block to execute upon completion.
     func setAlertLanguage(accountNumber: String, english: Bool, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    /// Fetch opco specific updates to be displayed in the "Updates" section of the Alerts tab
+    ///
+    /// - Parameters:
+    ///   - accountDetail: The account detail object - used for filtering the updates for specific program enrollments
+    ///   - completion: the completion block to execute upon completion.
+    func fetchOpcoUpdates(accountDetail: AccountDetail, completion: @escaping (_ result: ServiceResult<[OpcoUpdate]>) -> Void)
 }
 
 // MARK: - Reactive Extension to AlertsService
@@ -73,6 +80,21 @@ extension AlertsService {
                 switch result {
                 case ServiceResult.Success:
                     observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func fetchOpcoUpdates(accountDetail: AccountDetail) -> Observable<[OpcoUpdate]> {
+        return Observable.create { observer in
+            self.fetchOpcoUpdates(accountDetail: accountDetail, completion: { (result: ServiceResult<[OpcoUpdate]>) in
+                switch result {
+                case ServiceResult.Success(let opcoUpdates):
+                    observer.onNext(opcoUpdates)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
