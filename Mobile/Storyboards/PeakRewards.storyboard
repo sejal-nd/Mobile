@@ -42,7 +42,7 @@
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cow-Uv-Q5A"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="0EV-pp-1sF" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
@@ -220,7 +220,7 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sof-oc-UlF" userLabel="Schedule Error View">
                                                                                 <rect key="frame" x="0.0" y="448" width="317" height="41"/>
                                                                                 <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-IV-fOe">
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Unable to retrieve schedules at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-IV-fOe">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="41"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -318,11 +318,13 @@
                     <navigationItem key="navigationItem" title="Peak Rewards" id="PtI-A2-umr"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="adjustThermostatButton" destination="0mo-MQ-zow" id="sZS-Dw-HIN"/>
                         <outlet property="deviceButton" destination="qWW-FB-ss2" id="nfy-UX-F3c"/>
                         <outlet property="gradientView" destination="lba-qg-ikB" id="mfM-Ex-IrD"/>
                         <outlet property="leavePeriodCard" destination="mba-Rl-P1R" id="ZSH-1o-Ldv"/>
                         <outlet property="mainErrorLabel" destination="avC-5q-wSD" id="kek-nb-jXR"/>
                         <outlet property="mainLoadingIndicator" destination="0EV-pp-1sF" id="LZE-Fx-cYV"/>
+                        <outlet property="overrideButton" destination="Hlx-Ke-GyS" id="ejL-Va-S2D"/>
                         <outlet property="programCardStack" destination="qLr-4t-hzz" id="8E6-Zp-fov"/>
                         <outlet property="returnPeriodCard" destination="XNS-Th-CbV" id="wGX-eY-7Ix"/>
                         <outlet property="scheduleContentStack" destination="scc-fz-DeU" id="alm-UO-02B"/>

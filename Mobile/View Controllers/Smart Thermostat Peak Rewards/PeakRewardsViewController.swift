@@ -19,6 +19,9 @@ class PeakRewardsViewController: UIViewController {
     
     @IBOutlet weak var programCardStack: UIStackView!
     
+    @IBOutlet weak var overrideButton: DisclosureButton!
+    @IBOutlet weak var adjustThermostatButton: DisclosureButton!
+    
     @IBOutlet weak var segmentedControl: SegmentedControl!
     
     @IBOutlet weak var scheduleContentStack: UIStackView!
@@ -91,11 +94,9 @@ class PeakRewardsViewController: UIViewController {
         viewModel.peakRewardsPrograms
             .drive(onNext: { [weak self] programs in
                 guard let `self` = self else { return }
-                
-                for (index, programCard) in self.programCardStack.arrangedSubviews.enumerated() {
-                    guard index != 0 else { continue } // Don't remove the header label from the stack
-                    self.programCardStack.removeArrangedSubview(programCard)
-                }
+                self.programCardStack.arrangedSubviews
+                    .dropFirst() // Don't remove the header label from the stack
+                    .forEach(self.programCardStack.removeArrangedSubview)
                 
                 programs
                     .map(PeakRewardsProgramCard.init)
@@ -103,15 +104,13 @@ class PeakRewardsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.deviceSchedule
-            .drive(onNext: { [weak self] in
-                self?.wakePeriodCard.configure(withPeriod: .wake, periodInfo: $0.wakeInfo)
-                self?.leavePeriodCard.configure(withPeriod: .leave, periodInfo: $0.leaveInfo)
-                self?.returnPeriodCard.configure(withPeriod: .return, periodInfo: $0.returnInfo)
-                self?.sleepPeriodCard.configure(withPeriod: .sleep, periodInfo: $0.sleepInfo)
-            })
-            .disposed(by: disposeBag)
+        viewModel.showAdjustThermostatButton.not().drive(adjustThermostatButton.rx.isHidden).disposed(by: disposeBag)
         
+        wakePeriodCard.configure(withPeriod: .wake, periodInfo: viewModel.wakeInfo)
+        leavePeriodCard.configure(withPeriod: .leave, periodInfo: viewModel.leaveInfo)
+        returnPeriodCard.configure(withPeriod: .return, periodInfo: viewModel.returnInfo)
+        sleepPeriodCard.configure(withPeriod: .sleep, periodInfo: viewModel.sleepInfo)
+
         segmentedControl.selectedIndex.asObservable()
             .skip(1)
             .distinctUntilChanged()

@@ -38,14 +38,20 @@ class PeakRewardsViewModel {
         .materialize()
         .shareReplay(1)
     
-    private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule>> = self.selectedDevice.asObservable()
-        .flatMapLatest { [weak self] device -> Observable<Event<SmartThermostatDeviceSchedule>> in
+    private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule?>> = self.selectedDevice.asObservable()
+        .flatMapLatest { [weak self] device -> Observable<Event<SmartThermostatDeviceSchedule?>> in
             guard let `self` = self else { return .empty() }
+            guard device.isSmartThermostat else {
+                return Observable.just(Event<SmartThermostatDeviceSchedule?>.next(nil))
+            }
+            
             return self.peakRewardsService.fetchSmartThermostatSchedule(forDevice: device,
                                                                         accountNumber: self.accountDetail.accountNumber,
                                                                         premiseNumber: self.accountDetail.premiseNumber!)
+                .map { $0 } // Type inference makes this optional
                 .trackActivity(self.deviceScheduleFetchTracker)
                 .materialize()
+                .filter { !$0.isCompleted }
         }
         .shareReplay(1)
     
@@ -66,28 +72,35 @@ class PeakRewardsViewModel {
         .map { $0.programs }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var deviceSchedule: Driver<SmartThermostatDeviceSchedule> = self.deviceScheduleEvents.elements()
+    private lazy var deviceSchedule: Driver<SmartThermostatDeviceSchedule> = self.deviceScheduleEvents.elements()
+        .unwrap()
         .asDriver(onErrorDriveWith: .empty())
-    
+
+    private(set) lazy var wakeInfo: Driver<SmartThermostatPeriodInfo> = self.deviceSchedule.map { $0.wakeInfo }
+    private(set) lazy var leaveInfo: Driver<SmartThermostatPeriodInfo> = self.deviceSchedule.map { $0.leaveInfo }
+    private(set) lazy var returnInfo: Driver<SmartThermostatPeriodInfo> = self.deviceSchedule.map { $0.returnInfo }
+    private(set) lazy var sleepInfo: Driver<SmartThermostatPeriodInfo> = self.deviceSchedule.map { $0.sleepInfo }
+
     //MARK: - Show/Hide Views
     private(set) lazy var showMainLoadingState: Driver<Bool> = self.peakRewardsSummaryFetchTracker.asDriver()
     
     private(set) lazy var showMainErrorState: Driver<Bool> = Observable.merge(self.peakRewardsSummaryEvents.map { $0.error != nil },
-                                                                              self.peakRewardsSummaryFetchTracker.asObservable().filter { $0 }.not())
+                                                                              self.peakRewardsSummaryFetchTracker.asObservable().not().filter(!))
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMainContent: Driver<Bool> = Observable.merge(self.peakRewardsSummaryEvents.map { $0.error == nil },
-                                                                           self.peakRewardsSummaryFetchTracker.asObservable().filter { $0 }.not())
+                                                                           self.peakRewardsSummaryFetchTracker.asObservable().not().filter(!))
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var showAdjustThermostatButton: Driver<Bool> = self.selectedDevice.map { $0.isSmartThermostat }
     
     private(set) lazy var showScheduleLoadingState: Driver<Bool> = self.deviceScheduleFetchTracker.asDriver()
     private(set) lazy var showScheduleErrorState: Driver<Bool> = Observable.merge(self.deviceScheduleEvents.map { $0.error != nil },
-                                                                                  self.deviceScheduleFetchTracker.asObservable().filter { $0 }.not())
+                                                                                  self.deviceScheduleFetchTracker.asObservable().not().filter(!))
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showScheduleContent: Driver<Bool> = Observable.merge(self.deviceScheduleEvents.map { $0.error == nil },
-                                                                               self.deviceScheduleFetchTracker.asObservable().filter { $0 }.not())
+    private(set) lazy var showScheduleContent: Driver<Bool> = Observable.merge(self.deviceScheduleEvents.map { $0.element != nil },
+                                                                               self.deviceScheduleFetchTracker.asObservable().not().filter(!))
         .asDriver(onErrorDriveWith: .empty())
     
 }

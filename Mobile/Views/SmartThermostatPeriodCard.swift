@@ -22,7 +22,7 @@ class SmartThermostatPeriodCard: ButtonControl {
         super.init(coder: aDecoder)
     }
     
-    convenience init(period: SmartThermostatPeriod, periodInfo: SmartThermostatPeriodInfo) {
+    convenience init(period: SmartThermostatPeriod, periodInfo: Driver<SmartThermostatPeriodInfo>) {
         self.init(frame: .zero)
         configure(withPeriod: period, periodInfo: periodInfo)
     }
@@ -105,7 +105,7 @@ class SmartThermostatPeriodCard: ButtonControl {
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
     }
     
-    func configure(withPeriod period: SmartThermostatPeriod, periodInfo: SmartThermostatPeriodInfo) {
+    func configure(withPeriod period: SmartThermostatPeriod, periodInfo: Driver<SmartThermostatPeriodInfo>) {
         switch period {
         case .wake:
             imageView.image = #imageLiteral(resourceName: "ic_thermostat_wake")
@@ -117,16 +117,19 @@ class SmartThermostatPeriodCard: ButtonControl {
             imageView.image = #imageLiteral(resourceName: "ic_thermostat_sleep")
         }
         
-        timeLabel.text = periodInfo.startTime
         periodNameLabel.text = period.displayString
         
-        TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit)
-            .map { "\(periodInfo.coolTemp.value) \($0.displayString)" }
+        periodInfo.map { $0.startTime }.drive(timeLabel.rx.text).disposed(by: bag)
+        
+        Driver.combineLatest(periodInfo,
+                             TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit))
+            .map { "\($0.coolTemp.value) \($1.displayString)" }
             .drive(coolTempLabel.rx.text)
             .disposed(by: bag)
         
-        TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit)
-            .map { "\(periodInfo.heatTemp.value) \($0.displayString)" }
+        Driver.combineLatest(periodInfo,
+                             TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit))
+            .map { "\($0.heatTemp.value) \($1.displayString)" }
             .drive(heatTempLabel.rx.text)
             .disposed(by: bag)
     }

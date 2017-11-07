@@ -39,6 +39,10 @@ struct SmartThermostatDevice: Mappable, Equatable {
         return lhs.serialNumber == rhs.serialNumber &&
             lhs.inventoryId == rhs.inventoryId
     }
+    
+    var isSmartThermostat: Bool {
+        return !type.contains("LCR")
+    }
 
 }
 
