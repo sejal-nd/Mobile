@@ -205,15 +205,42 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbq-sV-lLn">
+                                <rect key="frame" x="96" y="341.5" width="182.5" height="151"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_updates_empty" translatesAutoresizingMaskIntoConstraints="NO" id="hFg-1v-xod">
+                                        <rect key="frame" x="41" y="0.0" width="100" height="100"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2c-CW-LbN">
+                                        <rect key="frame" x="0.0" y="110" width="182.5" height="41"/>
+                                        <string key="text">There are no updates at
+this time.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="hFg-1v-xod" firstAttribute="centerX" secondItem="Vbq-sV-lLn" secondAttribute="centerX" id="2W4-X8-Ptw"/>
+                                    <constraint firstItem="hFg-1v-xod" firstAttribute="top" secondItem="Vbq-sV-lLn" secondAttribute="top" id="API-es-IjG"/>
+                                    <constraint firstAttribute="trailing" secondItem="X2c-CW-LbN" secondAttribute="trailing" id="cRp-bl-hYn"/>
+                                    <constraint firstItem="X2c-CW-LbN" firstAttribute="top" secondItem="hFg-1v-xod" secondAttribute="bottom" constant="10" id="iyv-Vf-CSJ"/>
+                                    <constraint firstItem="X2c-CW-LbN" firstAttribute="leading" secondItem="Vbq-sV-lLn" secondAttribute="leading" id="r7O-2Y-3UY"/>
+                                    <constraint firstAttribute="bottom" secondItem="X2c-CW-LbN" secondAttribute="bottom" id="slM-01-9H2"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="i1F-C3-Con" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" id="6WD-C6-w8m"/>
                             <constraint firstAttribute="trailing" secondItem="9Ks-fh-caA" secondAttribute="trailing" id="6ZY-ku-LUv"/>
                             <constraint firstAttribute="trailing" secondItem="Fcn-Wj-y0Q" secondAttribute="trailing" priority="999" id="877-Ad-LBn"/>
+                            <constraint firstItem="Vbq-sV-lLn" firstAttribute="centerX" secondItem="9Ks-fh-caA" secondAttribute="centerX" id="Awh-wF-Cef"/>
                             <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="Fcn-Wj-y0Q" secondAttribute="bottom" id="Cog-iU-2ro"/>
                             <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="gTf-VA-0un" secondAttribute="bottom" id="Ggx-Td-Bye"/>
                             <constraint firstAttribute="trailing" secondItem="gTf-VA-0un" secondAttribute="trailing" id="HA9-4Q-LfT"/>
+                            <constraint firstItem="Vbq-sV-lLn" firstAttribute="centerY" secondItem="9Ks-fh-caA" secondAttribute="centerY" id="KJO-AZ-qQI"/>
                             <constraint firstItem="IKg-bb-ob0" firstAttribute="centerY" secondItem="9Ks-fh-caA" secondAttribute="centerY" id="NeD-Az-CWh"/>
                             <constraint firstItem="gTf-VA-0un" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" id="NyL-Z8-0X3"/>
                             <constraint firstAttribute="trailing" secondItem="i1F-C3-Con" secondAttribute="trailing" id="O61-Ik-1Fj"/>
@@ -244,6 +271,8 @@
                         <outlet property="preferencesButton" destination="fyw-HH-wzm" id="arJ-vo-3tk"/>
                         <outlet property="preferencesButtonLabel" destination="UfZ-yO-Fmf" id="xWF-Og-ifW"/>
                         <outlet property="segmentedControl" destination="7zY-iZ-Y8Z" id="Z8I-XJ-gTe"/>
+                        <outlet property="updatesEmptyStateLabel" destination="X2c-CW-LbN" id="BIh-dv-wRs"/>
+                        <outlet property="updatesEmptyStateView" destination="Vbq-sV-lLn" id="Gr0-Za-47V"/>
                         <outlet property="updatesTableView" destination="9Ks-fh-caA" id="ChN-Ex-oxN"/>
                         <segue destination="xUH-97-JXF" kind="show" identifier="preferencesSegue" id="DPj-It-tC5"/>
                         <segue destination="q9n-p0-JaF" kind="show" identifier="opcoUpdateDetailSegue" id="OmL-TG-dBk"/>
@@ -828,5 +857,6 @@
     </scenes>
     <resources>
         <image name="ic_settings" width="22" height="22"/>
+        <image name="ic_updates_empty" width="100" height="100"/>
     </resources>
 </document>

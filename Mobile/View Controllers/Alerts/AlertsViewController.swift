@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-let testAlerts = [
+let testAlerts: [String] = [
     "Outage to area 1215 E Fort Ave analyzed. The probable cause is unknown. Estimated restoration time 8/22/17 at 9:00 PM",
     "Severe thunderstorms in 1215 E Fort Ave from 2:00 PM to 5:00 PM. Be prepared for possible outages.",
     "Payment for account ending in 1234. Amount of $150.50 is due on 7/22/17."
@@ -28,6 +28,8 @@ class AlertsViewController: AccountPickerViewController {
     @IBOutlet weak var preferencesButtonLabel: UILabel!
     
     @IBOutlet weak var updatesTableView: UITableView!
+    @IBOutlet weak var updatesEmptyStateView: UIView!
+    @IBOutlet weak var updatesEmptyStateLabel: UILabel!
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
@@ -106,6 +108,10 @@ class AlertsViewController: AccountPickerViewController {
         preferencesButtonLabel.textColor = .actionBlue
         preferencesButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
+        
+        updatesEmptyStateLabel.textColor = .middleGray
+        updatesEmptyStateLabel.font = OpenSans.regular.of(size: 18)
+        updatesEmptyStateLabel.text = NSLocalizedString("There are no updates at\nthis time.", comment: "")
     }
     
     private func bindViewModel() {
@@ -117,7 +123,9 @@ class AlertsViewController: AccountPickerViewController {
         viewModel.shouldShowErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowAlertsTableView.not().drive(alertsTableView.rx.isHidden).disposed(by: disposeBag)
+        
         viewModel.shouldShowUpdatesTableView.not().drive(updatesTableView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowUpdatesEmptyState.not().drive(updatesEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.reloadTableViewEvent.asObservable().subscribe(onNext: { [weak self] in
             self?.alertsTableView.reloadData()

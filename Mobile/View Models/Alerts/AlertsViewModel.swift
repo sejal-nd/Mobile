@@ -66,6 +66,12 @@ class AlertsViewModel {
             return $0 == 1 && !$1 && !$2
         }
     
+    private(set) lazy var shouldShowUpdatesEmptyState: Driver<Bool> =
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) { [weak self] in
+            guard let opcoUpdates = self?.currentOpcoUpdates else { return false }
+            return $0 == 1 && !$1 && !$2 && opcoUpdates.count == 0
+        }
+    
     private(set) lazy var shouldShowErrorLabel: Driver<Bool> =
         Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) { [weak self] in
             if $0 == 1 && !$1 && self?.currentOpcoUpdates == nil {
