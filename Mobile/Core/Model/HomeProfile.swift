@@ -86,7 +86,7 @@ struct HomeProfile: Mappable, Equatable, Fillable {
             case HeatType.naturalGas.apiString: return .naturalGas
             case HeatType.electric.apiString: return .electric
             case HeatType.other.apiString: return .other
-            case HeatType.none.apiString: return .none
+            case HeatType.none.apiString: return HeatType.none
             default: return nil
             }
         }
