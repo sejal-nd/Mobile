@@ -75,6 +75,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        NSLog("*-*-*-*-* didRegisterForRemoteNotificationsWithDeviceToken: \(token)")
+        
+        let alertsService = ServiceFactory.createAlertsService()
+        alertsService.register(token: token) { (result: ServiceResult<Void>) in
+            switch result {
+            case .Success:
+                NSLog("*-*-*-*-* Registered token with MCS")
+            case .Failure(let err):
+                NSLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        NSLog("*-*-*-*-* didFailToRegisterForRemoteNotificationsWithError: \(error.localizedDescription)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        NSLog("*-*-*-*-* didReceiveRemoteNotification: \(userInfo)")
+    }
+    
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else {
             return false
