@@ -44,6 +44,35 @@ struct AlertPreferences {
         }
     }
     
+    // To create programatically, not from JSON
+    init(outage: Bool, scheduledMaint: Bool, severeWeather: Bool, billReady: Bool, paymentDue: Bool, paymentDueDaysBefore: Int, budgetBilling: Bool, forYourInfo: Bool) {
+        self.outage = outage
+        self.scheduledMaint = scheduledMaint
+        self.severeWeather = severeWeather
+        self.billReady = billReady
+        self.paymentDue = paymentDue
+        self.paymentDueDaysBefore = paymentDueDaysBefore
+        self.budgetBilling = budgetBilling
+        self.forYourInfo = forYourInfo
+    }
+    
+    // Used by the setAlertPreferences web service call
+    func createAlertPreferencesJSONArray() -> [[String: Any]] {
+        let billReadyProgramName = Environment.sharedInstance.opco == .bge ? "Bill is Ready" : "Paperless Billing"
+        let paymentDueProgramName = Environment.sharedInstance.opco == .bge ? "Payment Reminder" : "Payment Reminders"
+        let forYourInfoProgramName = Environment.sharedInstance.opco == .bge ? "Marketing" : "News"
+        let array = [
+            ["programName": "Outage Notifications", "type": "push", "isActive": outage],
+            ["programName": "Planned Outage", "type": "push", "isActive": scheduledMaint],
+            ["programName": "Severe Weather", "type": "push", "isActive": severeWeather],
+            ["programName": billReadyProgramName, "type": "push", "isActive": billReady],
+            ["programName": paymentDueProgramName, "type": "push", "isActive": paymentDue, "daysPrior": paymentDueDaysBefore],
+            ["programName": "Budget Billing", "type": "push", "isActive": budgetBilling],
+            ["programName": forYourInfoProgramName, "type": "push", "isActive": forYourInfo]
+        ]
+        return array
+    }
+    
 }
 
 struct AlertPreference: Mappable {

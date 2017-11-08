@@ -108,8 +108,15 @@ class AlertPreferencesViewModel {
     }
     
     private func saveAlertPreferences() -> Observable<Void> {
-        // TODO: Call the real save endpoint
-        return alertsService.fetchAlertPreferences(accountNumber: accountDetail.accountNumber).map { _ in }
+        let alertPreferences = AlertPreferences(outage: outage.value,
+                                                scheduledMaint: scheduledMaint.value,
+                                                severeWeather: severeWeather.value,
+                                                billReady: billReady.value,
+                                                paymentDue: paymentDue.value,
+                                                paymentDueDaysBefore: paymentDueDaysBefore.value,
+                                                budgetBilling: budgetBilling.value,
+                                                forYourInfo: forYourInfo.value)
+        return alertsService.setAlertPreferences(accountNumber: accountDetail.accountNumber, alertPreferences: alertPreferences)
     }
     
     private func saveAlertLanguage() -> Observable<Void> {

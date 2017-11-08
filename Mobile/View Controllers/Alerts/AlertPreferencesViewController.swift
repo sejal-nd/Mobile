@@ -285,18 +285,18 @@ class AlertPreferencesViewController: UIViewController {
         print("enrollPaperlessEBill = \(viewModel.enrollPaperlessEBill)")
         print("unenrollPaperlessEBill = \(viewModel.unenrollPaperlessEBill)")
         
-//        LoadingView.show()
-//        viewModel.saveChanges(onSuccess: { [weak self] in
-//            LoadingView.hide()
-//            guard let `self` = self else { return }
-//            self.delegate?.alertPreferencesViewControllerDidSavePreferences(self)
-//            self.navigationController?.popViewController(animated: true)
-//        }, onError: { [weak self] errMessage in
-//            LoadingView.hide()
-//            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-//            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-//            self?.present(alertVc, animated: true, completion: nil)
-//        })
+        LoadingView.show()
+        viewModel.saveChanges(onSuccess: { [weak self] in
+            LoadingView.hide()
+            guard let `self` = self else { return }
+            self.delegate?.alertPreferencesViewControllerDidSavePreferences(self)
+            self.navigationController?.popViewController(animated: true)
+        }, onError: { [weak self] errMessage in
+            LoadingView.hide()
+            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self?.present(alertVc, animated: true, completion: nil)
+        })
 
     }
     
