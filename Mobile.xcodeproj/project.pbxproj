@@ -1910,6 +1910,9 @@
 		E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		E867A8FE1F054BC6007F4FD9 /* MakePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePaymentViewController.swift; sourceTree = "<group>"; };
 		E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
+		E871C02D1FB3A8B80067EFD9 /* PECO-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-TEST.entitlements"; sourceTree = "<group>"; };
+		E871C02E1FB3A8B80067EFD9 /* ComEd-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-TEST.entitlements"; sourceTree = "<group>"; };
+		E871C02F1FB3A8B90067EFD9 /* BGE-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-TEST.entitlements"; sourceTree = "<group>"; };
 		E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PECOReleaseOfInfoViewController.swift; sourceTree = "<group>"; };
 		E873DA731EE8699600020D1B /* RadioSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		E873DA741EE8699600020D1B /* RadioSelectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioSelectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -3434,10 +3437,13 @@
 		E81CFFE81EC230B5004FDA7E /* Entitlements */ = {
 			isa = PBXGroup;
 			children = (
+				E871C02F1FB3A8B90067EFD9 /* BGE-TEST.entitlements */,
 				E81CFFEE1EC230E9004FDA7E /* BGE-STAGE.entitlements */,
 				E81CFFFA1EC3681D004FDA7E /* BGE-PROD.entitlements */,
+				E871C02E1FB3A8B80067EFD9 /* ComEd-TEST.entitlements */,
 				E81CFFED1EC230E9004FDA7E /* ComEd-STAGE.entitlements */,
 				E81CFFF91EC3681D004FDA7E /* ComEd-PROD.entitlements */,
+				E871C02D1FB3A8B80067EFD9 /* PECO-TEST.entitlements */,
 				E81CFFEC1EC230E9004FDA7E /* PECO-STAGE.entitlements */,
 				E81CFFF81EC3681D004FDA7E /* PECO-PROD.entitlements */,
 			);
@@ -4003,7 +4009,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -5701,9 +5707,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -5714,7 +5720,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Test";
 			};
 			name = "Testing-Support";
 		};
@@ -5722,9 +5728,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.testing;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
@@ -5734,7 +5740,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "ComEd Test";
 			};
 			name = "Testing-Support";
 		};
@@ -5742,9 +5748,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Support";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.testing;
 				EXM_ENVIRONMENT = TESTING;
@@ -5755,7 +5761,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Test";
 			};
 			name = "Testing-Support";
 		};
@@ -6170,7 +6176,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "MG Dev Profile";
 			};
 			name = Develop;
 		};
@@ -6192,7 +6198,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "012e3645-803e-4f27-8c09-432f1e37b261";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE App Store";
 			};
 			name = Release;
@@ -6393,7 +6398,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "dd2d0367-d7fb-43e2-80a2-b14e13ad8b95";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging";
 			};
 			name = Staging;
@@ -6479,10 +6483,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-TEST.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.test;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -6493,8 +6498,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9620f6c0-fb05-4197-aacf-40775b56478e";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Test";
 			};
 			name = Testing;
 		};
@@ -6515,7 +6519,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "MG Dev Profile";
 			};
 			name = Develop;
 		};
@@ -6523,10 +6527,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/PECO-TEST.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = YES;
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.test;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
@@ -6536,7 +6541,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Test";
 			};
 			name = Testing;
 		};
@@ -6601,7 +6606,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c1e2480f-5585-486c-99f7-35d40d4fef47";
 				PROVISIONING_PROFILE_SPECIFIER = "PECO App Store";
 			};
 			name = Release;
@@ -6622,7 +6626,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "MG Dev Profile";
 			};
 			name = Develop;
 		};
@@ -6630,9 +6634,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ComEd-TEST.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LTS485TKXA;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.test;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
@@ -6642,7 +6647,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "ComEd Test";
 			};
 			name = Testing;
 		};

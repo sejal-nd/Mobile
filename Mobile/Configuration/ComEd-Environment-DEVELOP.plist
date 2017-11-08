@@ -11,7 +11,7 @@
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>Dev</string>
+	<string>Testing</string>
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
 	<key>speedpayUrl</key>
@@ -19,8 +19,8 @@
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_comed_develop</string>
+	<string>GoogleService-Info_comed_testing</string>
 	<key>gaTrackingId</key>
-	<string>N/A</string>
+	<string>UA-76742208-8</string>
 </dict>
 </plist>
