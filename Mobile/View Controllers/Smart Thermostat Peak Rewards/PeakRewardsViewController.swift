@@ -135,13 +135,15 @@ class PeakRewardsViewController: UIViewController {
                 self?.navigationController?.pushViewController($0, animated: true)
             })
             .disposed(by: disposeBag)
-    }
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        wakePeriodCard.rx.touchUpInside.asDriver().withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, viewModel.wakeInfo))
+            .map { ($0, SmartThermostatPeriod.wake, $1) }
+            .map(SmartThermostatScheduleViewModel.init)
+            .map(SmartThermostatScheduleViewController.init)
+            .drive(onNext: { [weak self] in
+                self?.navigationController?.pushViewController($0, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 
 }

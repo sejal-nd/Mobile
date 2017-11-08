@@ -20,6 +20,10 @@ class SelectDeviceViewController: UIViewController {
         self.viewModel = viewModel
         self.devices = devices
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    override func loadView() {
+        super.loadView()
         
         title = NSLocalizedString("Select Device", comment: "")
         

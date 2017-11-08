@@ -123,13 +123,13 @@ class SmartThermostatPeriodCard: ButtonControl {
         
         Driver.combineLatest(periodInfo,
                              TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit))
-            .map { "\($0.coolTemp.value) \($1.displayString)" }
+            .map { "\($0.coolTemp.value(forScale: $1)) \($1.displayString)" }
             .drive(coolTempLabel.rx.text)
             .disposed(by: bag)
         
         Driver.combineLatest(periodInfo,
                              TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit))
-            .map { "\($0.heatTemp.value) \($1.displayString)" }
+            .map { "\($0.heatTemp.value(forScale: $1)) \($1.displayString)" }
             .drive(heatTempLabel.rx.text)
             .disposed(by: bag)
     }

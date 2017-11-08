@@ -147,7 +147,8 @@ struct SmartThermostatPeriodInfo: Mappable {
     }
 }
 
-struct Temperature {
+struct Temperature: Equatable {
+    
     private let fahrenheitValue: Double
     
     init(value: Double, scale: TemperatureScale) {
@@ -159,6 +160,10 @@ struct Temperature {
         }
     }
     
+    init(value: Float, scale: TemperatureScale) {
+        self.init(value: Double(value), scale: scale)
+    }
+    
     var fahrenheit: Int {
         return Int(round(fahrenheitValue))
     }
@@ -167,13 +172,17 @@ struct Temperature {
         return Int(round((fahrenheitValue - 32.0) * 5.0 / 9.0))
     }
     
-    var value: Int {
-        switch TemperatureScaleStore.shared.scale {
+    func value(forScale scale: TemperatureScale) -> Int {
+        switch scale {
         case .fahrenheit:
             return fahrenheit
         case .celsius:
             return celsius
         }
+    }
+    
+    static func ==(lhs: Temperature, rhs: Temperature) -> Bool {
+        return lhs.fahrenheitValue == rhs.fahrenheitValue
     }
 }
 
