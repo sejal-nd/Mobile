@@ -253,7 +253,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1536"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="43z-fm-Nx7">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="1478"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="1609"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qd6-24-Gv3" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -262,8 +262,39 @@
                                                     <constraint firstAttribute="height" constant="50" id="cNT-dO-F53"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRv-IO-aSX">
+                                                <rect key="frame" x="0.0" y="50" width="374" height="131"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your notifications are currently disabled. Please go to your settings to allow PECO to send notifications on your device." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msm-Ca-dFV">
+                                                        <rect key="frame" x="29" y="10" width="316" height="61"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="EXV-Au-ph4"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5y3-3g-W6J">
+                                                        <rect key="frame" x="138" y="86" width="98" height="30"/>
+                                                        <state key="normal" title="Go to Settings"/>
+                                                        <connections>
+                                                            <action selector="onNotificationsDisabledButtonPress:" destination="xUH-97-JXF" eventType="touchUpInside" id="yKt-Do-o8l"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="5y3-3g-W6J" firstAttribute="top" secondItem="msm-Ca-dFV" secondAttribute="bottom" constant="15" id="2g2-eJ-Xrj"/>
+                                                    <constraint firstAttribute="trailing" secondItem="msm-Ca-dFV" secondAttribute="trailing" priority="999" constant="29" id="6Zk-nb-WRJ"/>
+                                                    <constraint firstItem="msm-Ca-dFV" firstAttribute="centerX" secondItem="yRv-IO-aSX" secondAttribute="centerX" id="AFZ-SW-JvG"/>
+                                                    <constraint firstItem="5y3-3g-W6J" firstAttribute="centerX" secondItem="yRv-IO-aSX" secondAttribute="centerX" id="Jsq-DQ-0tS"/>
+                                                    <constraint firstItem="msm-Ca-dFV" firstAttribute="top" secondItem="yRv-IO-aSX" secondAttribute="top" constant="10" id="hZK-3P-o0f"/>
+                                                    <constraint firstAttribute="bottom" secondItem="5y3-3g-W6J" secondAttribute="bottom" constant="15" id="qkX-20-SFj"/>
+                                                    <constraint firstItem="msm-Ca-dFV" firstAttribute="leading" secondItem="yRv-IO-aSX" secondAttribute="leading" priority="999" constant="29" id="rkp-HX-7le"/>
+                                                </constraints>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="UGU-Uj-6ql">
-                                                <rect key="frame" x="0.0" y="50" width="374" height="1428"/>
+                                                <rect key="frame" x="0.0" y="181" width="374" height="1428"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sf3-z4-eiI">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="177.5"/>
@@ -675,7 +706,9 @@
                                             <constraint firstAttribute="trailing" secondItem="UGU-Uj-6ql" secondAttribute="trailing" priority="999" id="4bo-dI-tLC"/>
                                             <constraint firstItem="UGU-Uj-6ql" firstAttribute="leading" secondItem="43z-fm-Nx7" secondAttribute="leading" priority="999" id="i1f-EU-xGt"/>
                                             <constraint firstItem="Qd6-24-Gv3" firstAttribute="leading" secondItem="43z-fm-Nx7" secondAttribute="leading" id="t3W-DM-VMQ"/>
+                                            <constraint firstItem="yRv-IO-aSX" firstAttribute="leading" secondItem="43z-fm-Nx7" secondAttribute="leading" id="y27-Xa-Sfe"/>
                                             <constraint firstAttribute="trailing" secondItem="Qd6-24-Gv3" secondAttribute="trailing" id="yZ7-uL-Egq"/>
+                                            <constraint firstAttribute="trailing" secondItem="yRv-IO-aSX" secondAttribute="trailing" id="ycF-hW-1aI"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -736,6 +769,9 @@
                         <outlet property="languageSelectionLabel" destination="Eg5-Le-YBU" id="3vQ-bK-yL4"/>
                         <outlet property="languageSelectionView" destination="tpx-4L-es8" id="UTV-Bk-mdd"/>
                         <outlet property="loadingIndicator" destination="sTb-Ox-rQA" id="oFd-Gt-ocV"/>
+                        <outlet property="notificationsDisabledButton" destination="5y3-3g-W6J" id="S9m-5R-dWb"/>
+                        <outlet property="notificationsDisabledLabel" destination="msm-Ca-dFV" id="CHZ-Gb-SWz"/>
+                        <outlet property="notificationsDisabledView" destination="yRv-IO-aSX" id="ga6-hb-KRF"/>
                         <outlet property="outageDetailLabel" destination="oiF-y4-mHQ" id="4w2-ex-q6f"/>
                         <outlet property="outageSwitch" destination="CCl-bw-J3K" id="j6Y-5D-0yS"/>
                         <outlet property="outageTitleLabel" destination="5XT-xb-fTp" id="TpC-nk-zXz"/>

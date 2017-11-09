@@ -42,6 +42,8 @@ class AlertPreferencesViewModel {
         return initialBillReadyValue == true && billReady.value == false
     }
     
+    let devicePushNotificationsEnabled = Variable(false)
+    
     required init(alertsService: AlertsService) {
         self.alertsService = alertsService
     }
@@ -71,8 +73,8 @@ class AlertPreferencesViewModel {
     private func fetchAlertPreferences() -> Observable<Void> {
         return alertsService.fetchAlertPreferences(accountNumber: accountDetail.accountNumber).map { [weak self] alertPrefs in
             guard let `self` = self else { return }
+            
             self.alertPrefs.value = alertPrefs
-
             self.outage.value = alertPrefs.outage
             self.scheduledMaint.value = alertPrefs.scheduledMaint
             self.severeWeather.value = alertPrefs.severeWeather
@@ -102,7 +104,7 @@ class AlertPreferencesViewModel {
             .subscribe(onNext: { _ in
                 onSuccess()
             }, onError: { err in
-                onError(err.localizedDescription)
+                onError(NSLocalizedString("We’re sorry, we could not update all of your preferences at this time. Please try again later or contact our Customer Care Center for assistance.", comment: ""))
             })
             .disposed(by: disposeBag)
     }
