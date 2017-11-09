@@ -13,6 +13,7 @@ class BudgetBillingViewModel {
     let disposeBag = DisposeBag()
     
     private var billService: BillService
+    private var alertsService: AlertsService
 
     let accountDetail: AccountDetail!
     let currentEnrollment: Variable<Bool>!
@@ -20,9 +21,10 @@ class BudgetBillingViewModel {
     let unenrolling = Variable(false)
     let selectedUnenrollmentReason = Variable(-1)
     
-    required init(accountDetail: AccountDetail, billService: BillService) {
+    required init(accountDetail: AccountDetail, billService: BillService, alertsService: AlertsService) {
         self.accountDetail = accountDetail
         self.billService = billService
+        self.alertsService = alertsService
         
         let initialEnrollment = accountDetail.isBudgetBillEnrollment
         currentEnrollment = Variable(initialEnrollment)
@@ -52,8 +54,21 @@ class BudgetBillingViewModel {
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         billService.enrollBudgetBilling(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
-                onSuccess()
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                if Environment.sharedInstance.opco != .bge {
+                    self.alertsService.enrollBudgetBillingNotification(accountNumber: self.accountDetail.accountNumber)
+                        .observeOn(MainScheduler.instance)
+                        .subscribe(onNext: { _ in
+                            dLog("Enrolled in the budget billing push notification")
+                            onSuccess()
+                        }, onError: { error in
+                            dLog("Failed to enroll in the budget billing push notification")
+                            onSuccess()
+                        }).disposed(by: self.disposeBag)
+                } else {
+                    onSuccess()
+                }
             }, onError: { error in
                 onError(error.localizedDescription)
             })

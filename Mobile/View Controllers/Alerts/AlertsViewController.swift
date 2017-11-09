@@ -68,11 +68,12 @@ class AlertsViewController: AccountPickerViewController {
                 break
             case .readyToFetchData:
                 print("Alerts Root Screen - Fetch Data")
-                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                    self.viewModel.fetchData()
-                } else if self.viewModel.currentAccountDetail == nil {
-                    self.viewModel.fetchData()
-                }
+                self.viewModel.fetchData()
+//                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+//                    self.viewModel.fetchData()
+//                } else if self.viewModel.currentAccountDetail == nil {
+//                    self.viewModel.fetchData()
+//                }
             }
         }).disposed(by: disposeBag)
     }
