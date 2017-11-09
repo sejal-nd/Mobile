@@ -96,6 +96,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         NSLog("*-*-*-*-* didReceiveRemoteNotification: \(userInfo)")
+        
+//        {
+//            "aps" : {
+//                "alert": {
+//                    "body": "Sample Message",
+//                    "title": "Planned Outage"
+//                }
+//            },
+//            "tag": "BGE_6554701000_11111111""
+//        }
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
