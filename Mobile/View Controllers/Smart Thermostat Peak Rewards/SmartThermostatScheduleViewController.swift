@@ -15,6 +15,11 @@ class SmartThermostatScheduleViewController: UIViewController {
     
     let viewModel: SmartThermostatScheduleViewModel
     
+    private let timeButton = DisclosureButton().usingAutoLayout()
+    private let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: nil)
+    
+    private(set) lazy var saveSuccess: Observable<Void> = self.viewModel.saveSuccess
+    
     init(viewModel: SmartThermostatScheduleViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -24,36 +29,33 @@ class SmartThermostatScheduleViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        super.viewDidLoad()
+        buildLayout()
+        bindViews()
+        bindActions()
+        bindSaveStates()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
+    }
+    
+    func buildLayout() {
         view.backgroundColor = .white
         
-        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: nil)
         navigationItem.rightBarButtonItem = saveButton
         
         let timeButtonContainer = UIView().usingAutoLayout()
         timeButtonContainer.backgroundColor = .softGray
-        
-        let timeButton = DisclosureButton().usingAutoLayout()
-        let localizedTimeText = NSLocalizedString("Time: %@", comment: "")
-        timeButton.labelText = String(format: localizedTimeText, viewModel.periodInfo.startTimeDisplayString)
         
         timeButtonContainer.addSubview(timeButton)
         timeButton.addTabletWidthConstraints(horizontalPadding: 29)
         timeButton.topAnchor.constraint(equalTo: timeButtonContainer.topAnchor, constant: 30).isActive = true
         timeButton.bottomAnchor.constraint(equalTo: timeButtonContainer.bottomAnchor, constant: -30).isActive = true
         timeButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
-        timeButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
-                PickerView.showTimePicker(withTitle: NSLocalizedString("Select Time", comment: ""),
-                                          selectedTime: self.viewModel.periodInfo.startTime,
-                                          minTime: self.viewModel.minTime,
-                                          maxTime: self.viewModel.maxTime,
-                                          onDone: nil,
-                                          onCancel: nil)
-        })
-            .disposed(by: disposeBag)
         
         let tempRange: CountableClosedRange<Int>
         switch TemperatureScaleStore.shared.scale {
@@ -92,13 +94,58 @@ class SmartThermostatScheduleViewController: UIViewController {
         mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    func bindViews() {
+        viewModel.updatedPeriodInfo
+            .map {
+                let localizedTimeText = NSLocalizedString("Time: %@", comment: "")
+                return String(format: localizedTimeText, $0.startTimeDisplayString)
+            }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(timeButton.label.rx.text)
+            .disposed(by: disposeBag)
+    }
+    
+    func bindActions() {
+        timeButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                PickerView.showTimePicker(withTitle: NSLocalizedString("Select Time", comment: ""),
+                                          selectedTime: self.viewModel.periodInfo.startTime,
+                                          minTime: self.viewModel.minTime,
+                                          maxTime: self.viewModel.maxTime,
+                                          onDone: { [weak self] in self?.viewModel.startTime.onNext($0) },
+                                          onCancel: nil)
+            })
+            .disposed(by: disposeBag)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
+    }
+    
+    func bindSaveStates() {
+        viewModel.saveTracker.asDriver()
+            .drive(onNext: {
+                if $0 {
+                    LoadingView.show(animated: true)
+                } else {
+                    LoadingView.hide(animated: true, nil)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.saveSuccess.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.saveError.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] errorDescription in
+                let alert = UIAlertController(title: "Error", message: errorDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     

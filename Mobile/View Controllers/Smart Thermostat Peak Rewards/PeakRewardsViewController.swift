@@ -136,12 +136,29 @@ class PeakRewardsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        wakePeriodCard.rx.touchUpInside.asDriver().withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, viewModel.deviceSchedule))
-            .map { ($0, SmartThermostatPeriod.wake, $1) }
+        Driver.merge(
+            wakePeriodCard.rx.touchUpInside.asDriver()
+                .withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, Driver.just(SmartThermostatPeriod.wake), viewModel.deviceSchedule)),
+            leavePeriodCard.rx.touchUpInside.asDriver()
+                .withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, Driver.just(SmartThermostatPeriod.leave), viewModel.deviceSchedule)),
+            returnPeriodCard.rx.touchUpInside.asDriver()
+                .withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, Driver.just(SmartThermostatPeriod.return), viewModel.deviceSchedule)),
+            sleepPeriodCard.rx.touchUpInside.asDriver()
+                .withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, Driver.just(SmartThermostatPeriod.sleep), viewModel.deviceSchedule))
+            )
+            .map { [unowned self] in (ServiceFactory.createPeakRewardsService(), self.viewModel.accountDetail, $0, $1, $2) }
             .map(SmartThermostatScheduleViewModel.init)
             .map(SmartThermostatScheduleViewController.init)
-            .drive(onNext: { [weak self] in
-                self?.navigationController?.pushViewController($0, animated: true)
+            .drive(onNext: { [weak self] vc in
+                guard let `self` = self else { return }
+                vc.saveSuccess.bind(to: self.viewModel.deviceScheduleChanged).disposed(by: vc.disposeBag)
+                vc.saveSuccess.asDriver(onErrorDriveWith: .empty())
+                    .delay(0.5)
+                    .drive(onNext: { [weak self] in
+                        self?.view.showToast(NSLocalizedString("Schedule updated", comment: ""))
+                    })
+                    .disposed(by: vc.disposeBag)
+                self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
     }

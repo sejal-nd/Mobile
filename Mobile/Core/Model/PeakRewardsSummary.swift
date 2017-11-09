@@ -93,6 +93,16 @@ struct SmartThermostatDeviceSchedule: Mappable {
         sleepInfo = try map.from("sleep")
     }
     
+    init(wakeInfo: SmartThermostatPeriodInfo,
+         leaveInfo: SmartThermostatPeriodInfo,
+         returnInfo: SmartThermostatPeriodInfo,
+         sleepInfo: SmartThermostatPeriodInfo) {
+        self.wakeInfo = wakeInfo
+        self.leaveInfo = leaveInfo
+        self.returnInfo = returnInfo
+        self.sleepInfo = sleepInfo
+    }
+    
     func info(for period: SmartThermostatPeriod) -> SmartThermostatPeriodInfo {
         switch period {
         case .wake:
@@ -104,6 +114,26 @@ struct SmartThermostatDeviceSchedule: Mappable {
         case .sleep:
             return sleepInfo
         }
+    }
+    
+    func newSchedule(forPeriod period: SmartThermostatPeriod, info: SmartThermostatPeriodInfo) -> SmartThermostatDeviceSchedule {
+        switch period {
+        case .wake:
+            return SmartThermostatDeviceSchedule(wakeInfo: info, leaveInfo: leaveInfo, returnInfo: returnInfo, sleepInfo: sleepInfo)
+        case .leave:
+            return SmartThermostatDeviceSchedule(wakeInfo: wakeInfo, leaveInfo: info, returnInfo: returnInfo, sleepInfo: sleepInfo)
+        case .return:
+            return SmartThermostatDeviceSchedule(wakeInfo: wakeInfo, leaveInfo: leaveInfo, returnInfo: info, sleepInfo: sleepInfo)
+        case .sleep:
+            return SmartThermostatDeviceSchedule(wakeInfo: wakeInfo, leaveInfo: leaveInfo, returnInfo: returnInfo, sleepInfo: info)
+        }
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return ["wake": wakeInfo.toDictionary(),
+                "leave": leaveInfo.toDictionary(),
+                "return": returnInfo.toDictionary(),
+                "sleep": sleepInfo.toDictionary()]
     }
 }
 
@@ -163,6 +193,20 @@ struct SmartThermostatPeriodInfo: Mappable {
             
             return date
         }
+    }
+    
+    init(startTime: Date, coolTemp: Temperature, heatTemp: Temperature) {
+        self.startTime = startTime
+        self.coolTemp = coolTemp
+        self.heatTemp = heatTemp
+    }
+    
+    func toDictionary() -> [String: Any] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "HH:mm"
+        
+        return ["coolTemp": coolTemp.fahrenheit, "heatTemp": heatTemp.fahrenheit, "startTime": dateFormatter.string(from: startTime)]
     }
 }
 

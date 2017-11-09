@@ -19,6 +19,7 @@ class PeakRewardsViewModel {
     let accountDetail: AccountDetail
     
     let rootScreenWillReappear = PublishSubject<Void>()
+    let deviceScheduleChanged = PublishSubject<Void>()
     
     let peakRewardsSummaryFetchTracker = ActivityTracker()
     let deviceScheduleFetchTracker = ActivityTracker()
@@ -43,7 +44,8 @@ class PeakRewardsViewModel {
         .materialize()
         .shareReplay(1)
     
-    private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule?>> = self.selectedDevice.asObservable()
+    private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule?>> = Observable
+        .merge(self.selectedDevice.asObservable(), self.deviceScheduleChanged.withLatestFrom(self.selectedDevice.asObservable()))
         .flatMapLatest { [weak self] device -> Observable<Event<SmartThermostatDeviceSchedule?>> in
             guard let `self` = self else { return .empty() }
             guard device.isSmartThermostat else {

@@ -55,7 +55,7 @@ class TemperatureSliderView: UIView {
             .disposed(by: disposeBag)
         
         slider.rx.value.skip(1)
-            .map { Temperature(value: $0, scale: scale) }
+            .map { Temperature(value: round($0), scale: scale) }
             .distinctUntilChanged()
             .bind(to: currentTemperature)
             .disposed(by: disposeBag)
