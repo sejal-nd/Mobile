@@ -124,8 +124,8 @@ class TemperatureSliderView: UIView {
             gradientColors = [UIColor(red: 0/255, green: 118/255, blue: 255/255, alpha: 1).cgColor,
                               UIColor(red: 178/255, green: 213/255, blue: 255/255, alpha: 1).cgColor]
         case .heat:
-            gradientColors = [UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1).cgColor,
-                              UIColor(red: 255/255, green: 225/255, blue: 23/255, alpha: 1).cgColor]
+            gradientColors = [UIColor(red: 255/255, green: 225/255, blue: 23/255, alpha: 1).cgColor,
+                              UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1).cgColor]
         }
         gradientBackground.colors = gradientColors
         gradientBackground.startPoint = CGPoint(x: 0, y: 0.5)
