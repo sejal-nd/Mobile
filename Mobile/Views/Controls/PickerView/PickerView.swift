@@ -9,13 +9,42 @@
 import UIKit
 
 enum PickerView {
-    static func show(withTitle title: String,
+    static func showStringPicker(withTitle title: String,
                      data: [String],
                      selectedIndex: Int,
                      onDone: ((_ selectedValue: String, _ selectedIndex: Int) -> ())?,
                      onCancel: (()->())?) {
         let picker = StringPickerView(title: title, dataArray: data, onDone: onDone, onCancel: onCancel)
         picker.selectedIndex = selectedIndex
+        
+        guard let window = UIApplication.shared.keyWindow else { return }
+        
+        window.addSubview(picker)
+        
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.leadingAnchor.constraint(equalTo: window.leadingAnchor).isActive = true
+        picker.trailingAnchor.constraint(equalTo: window.trailingAnchor).isActive = true
+        picker.topAnchor.constraint(equalTo: window.topAnchor).isActive = true
+        picker.bottomAnchor.constraint(equalTo: window.bottomAnchor).isActive = true
+        
+        picker.layoutIfNeeded()
+        
+        picker.show()
+    }
+    
+    static func showTimePicker(withTitle title: String,
+                               selectedTime: Date,
+                               minTime: Date,
+                               maxTime: Date,
+                               onDone: ((_ selectedDate: Date) -> ())?,
+                               onCancel: (()->())?) {
+        
+        let picker = TimePickerView(title: title,
+                                    selectedTime: selectedTime,
+                                    minTime: minTime,
+                                    maxTime: maxTime,
+                                    onDone: onDone,
+                                    onCancel: onCancel)
         
         guard let window = UIApplication.shared.keyWindow else { return }
         
@@ -212,6 +241,42 @@ fileprivate class BasePickerView: UIView {
     }
 }
 
+fileprivate class TimePickerView: BasePickerView {
+    let datePicker = UIDatePicker()
+    let onDone: ((_ selectedDate: Date) -> ())?
+    
+    init(title: String?,
+         selectedTime: Date,
+         minTime: Date,
+         maxTime: Date,
+         onDone: ((_ selectedDate: Date) -> ())?,
+         onCancel: (() -> ())?) {
+        self.onDone = onDone
+        super.init(title: title, onCancel: onCancel)
+        datePicker.date = selectedTime
+        datePicker.minimumDate = minTime
+        datePicker.maximumDate = maxTime
+    }
+    
+    override func commonInit() {
+        super.commonInit()
+        datePicker.timeZone = .opCo
+        datePicker.calendar = .opCo
+        datePicker.datePickerMode = .time
+        datePicker.minuteInterval = 15
+        mainStack.addArrangedSubview(datePicker)
+        accessibleElements = [cancelButton, doneButton, datePicker]
+    }
+    
+    @objc override func doneButtonPressed() {
+        onDone?(datePicker.date)
+        super.doneButtonPressed()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Not implemented")
+    }
+}
 
 fileprivate class StringPickerView: BasePickerView {
     var dataArray = [String]()
@@ -222,7 +287,7 @@ fileprivate class StringPickerView: BasePickerView {
         }
     }
     
-    private var onDone: ((_ selectedValue: String, _ selectedIndex: Int) -> ())?
+    let onDone: ((_ selectedValue: String, _ selectedIndex: Int) -> ())?
     
     init(title: String?,
          dataArray: [String],

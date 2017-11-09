@@ -92,6 +92,19 @@ struct SmartThermostatDeviceSchedule: Mappable {
         returnInfo = try map.from("return")
         sleepInfo = try map.from("sleep")
     }
+    
+    func info(for period: SmartThermostatPeriod) -> SmartThermostatPeriodInfo {
+        switch period {
+        case .wake:
+            return wakeInfo
+        case .leave:
+            return leaveInfo
+        case .return:
+            return returnInfo
+        case .sleep:
+            return sleepInfo
+        }
+    }
 }
 
 enum SmartThermostatPeriod: String {
@@ -113,7 +126,14 @@ enum SmartThermostatPeriod: String {
 struct SmartThermostatPeriodInfo: Mappable {
     let coolTemp: Temperature
     let heatTemp: Temperature
-    let startTime: String
+    let startTime: Date
+    
+    var startTimeDisplayString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.string(from: startTime)
+    }
     
     init(map: Mapper) throws {
         let tempMapper: (Any) throws -> Temperature = { v in
@@ -135,14 +155,13 @@ struct SmartThermostatPeriodInfo: Mappable {
             }
             
             let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .opCo
             dateFormatter.dateFormat = "HH:mm"
             guard let date = dateFormatter.date(from: string) else {
                 throw MapperError.convertibleError(value: string, type: Date.self)
             }
             
-            let dateFormatter2 = DateFormatter()
-            dateFormatter2.dateFormat = "h:mm a"
-            return dateFormatter2.string(from: date)
+            return date
         }
     }
 }

@@ -77,7 +77,7 @@ class PeakRewardsViewModel {
         .map { $0.programs }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var deviceSchedule: Driver<SmartThermostatDeviceSchedule> = self.deviceScheduleEvents.elements()
+    private(set) lazy var deviceSchedule: Driver<SmartThermostatDeviceSchedule> = self.deviceScheduleEvents.elements()
         .unwrap()
         .asDriver(onErrorDriveWith: .empty())
 

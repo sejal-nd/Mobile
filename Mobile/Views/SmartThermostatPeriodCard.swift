@@ -119,7 +119,7 @@ class SmartThermostatPeriodCard: ButtonControl {
         
         periodNameLabel.text = period.displayString
         
-        periodInfo.map { $0.startTime }.drive(timeLabel.rx.text).disposed(by: bag)
+        periodInfo.map { $0.startTimeDisplayString }.drive(timeLabel.rx.text).disposed(by: bag)
         
         Driver.combineLatest(periodInfo,
                              TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit))

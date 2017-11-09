@@ -136,7 +136,7 @@ class PeakRewardsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        wakePeriodCard.rx.touchUpInside.asDriver().withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, viewModel.wakeInfo))
+        wakePeriodCard.rx.touchUpInside.asDriver().withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, viewModel.deviceSchedule))
             .map { ($0, SmartThermostatPeriod.wake, $1) }
             .map(SmartThermostatScheduleViewModel.init)
             .map(SmartThermostatScheduleViewController.init)

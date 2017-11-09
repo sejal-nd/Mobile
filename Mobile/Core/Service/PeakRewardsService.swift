@@ -61,8 +61,8 @@ extension PeakRewardsService {
     
     func fetchSmartThermostatSchedule(forDevice device: SmartThermostatDevice, accountNumber: String, premiseNumber: String) -> Observable<SmartThermostatDeviceSchedule> {
         return Observable.create { observer in
-            self.fetchSmartThermostatSchedule(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber) {
-                switch $0 {
+            self.fetchSmartThermostatSchedule(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber) { periodInfo in
+                switch periodInfo {
                 case ServiceResult.Success(let smartThermostatDeviceSchedule):
                     observer.onNext(smartThermostatDeviceSchedule)
                     observer.onCompleted()

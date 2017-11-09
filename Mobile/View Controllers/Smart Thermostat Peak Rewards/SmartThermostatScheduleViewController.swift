@@ -6,9 +6,12 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
+import RxCocoa
 
 class SmartThermostatScheduleViewController: UIViewController {
+    
+    let disposeBag = DisposeBag()
     
     let viewModel: SmartThermostatScheduleViewModel
     
@@ -32,13 +35,25 @@ class SmartThermostatScheduleViewController: UIViewController {
         
         let timeButton = DisclosureButton().usingAutoLayout()
         let localizedTimeText = NSLocalizedString("Time: %@", comment: "")
-        timeButton.labelText = String(format: localizedTimeText, viewModel.periodInfo.startTime)
+        timeButton.labelText = String(format: localizedTimeText, viewModel.periodInfo.startTimeDisplayString)
         
         timeButtonContainer.addSubview(timeButton)
         timeButton.addTabletWidthConstraints(horizontalPadding: 29)
         timeButton.topAnchor.constraint(equalTo: timeButtonContainer.topAnchor, constant: 30).isActive = true
         timeButton.bottomAnchor.constraint(equalTo: timeButtonContainer.bottomAnchor, constant: -30).isActive = true
         timeButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        timeButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                PickerView.showTimePicker(withTitle: NSLocalizedString("Select Time", comment: ""),
+                                          selectedTime: self.viewModel.periodInfo.startTime,
+                                          minTime: self.viewModel.minTime,
+                                          maxTime: self.viewModel.maxTime,
+                                          onDone: nil,
+                                          onCancel: nil)
+        })
+            .disposed(by: disposeBag)
         
         let tempRange: CountableClosedRange<Int>
         switch TemperatureScaleStore.shared.scale {
