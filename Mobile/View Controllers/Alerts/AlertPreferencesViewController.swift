@@ -68,7 +68,7 @@ class AlertPreferencesViewController: UIViewController {
     @IBOutlet weak var englishRadioControl: RadioSelectControl!
     @IBOutlet weak var spanishRadioControl: RadioSelectControl!
     
-    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService())
+    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(), billService: ServiceFactory.createBillService())
     
     
     // Prevents status bar color flash when pushed
@@ -90,7 +90,10 @@ class AlertPreferencesViewController: UIViewController {
             budgetBillingView.isHidden = true
         } else {
             scheduledMaintView.isHidden = true
-            if !viewModel.accountDetail.isResidential {
+            if !viewModel.accountDetail.isResidential || viewModel.accountDetail.isFinaled {
+                billReadyView.isHidden = true
+            }
+            if !viewModel.accountDetail.isEBillEligible && !viewModel.accountDetail.isEBillEnrollment {
                 billReadyView.isHidden = true
             }
             if !viewModel.accountDetail.isBudgetBillEnrollment {
@@ -298,16 +301,16 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     func onSavePress() {
-        print("outage = \(viewModel.outage.value)")
-        print("scheduledMaint = \(viewModel.scheduledMaint.value)")
-        print("severeWeather = \(viewModel.severeWeather.value)")
-        print("billReady = \(viewModel.billReady.value)")
-        print("paymentDue = \(viewModel.paymentDue.value)")
-        print("paymentDueDaysBefore = \(viewModel.paymentDueDaysBefore.value)")
-        print("budgetBilling = \(viewModel.budgetBilling.value)")
-        print("forYourInfo = \(viewModel.forYourInfo.value)")
-        print("enrollPaperlessEBill = \(viewModel.enrollPaperlessEBill)")
-        print("unenrollPaperlessEBill = \(viewModel.unenrollPaperlessEBill)")
+//        print("outage = \(viewModel.outage.value)")
+//        print("scheduledMaint = \(viewModel.scheduledMaint.value)")
+//        print("severeWeather = \(viewModel.severeWeather.value)")
+//        print("billReady = \(viewModel.billReady.value)")
+//        print("paymentDue = \(viewModel.paymentDue.value)")
+//        print("paymentDueDaysBefore = \(viewModel.paymentDueDaysBefore.value)")
+//        print("budgetBilling = \(viewModel.budgetBilling.value)")
+//        print("forYourInfo = \(viewModel.forYourInfo.value)")
+//        print("shouldEnrollPaperlessEBill = \(viewModel.shouldEnrollPaperlessEBill)")
+//        print("shouldUnenrollPaperlessEBill = \(viewModel.shouldUnenrollPaperlessEBill)")
         
         LoadingView.show()
         viewModel.saveChanges(onSuccess: { [weak self] in

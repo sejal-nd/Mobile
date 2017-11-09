@@ -13,7 +13,8 @@ class AlertPreferencesViewModel {
     
     let disposeBag = DisposeBag()
     
-    let alertsService: AlertsService
+    private let alertsService: AlertsService
+    private let billService: BillService
     
     var accountDetail: AccountDetail! // Passed from AlertsViewController
     
@@ -35,17 +36,20 @@ class AlertPreferencesViewModel {
     let userChangedPrefs = Variable(false)
     
     var initialBillReadyValue = false
-    var enrollPaperlessEBill: Bool {
+    var shouldEnrollPaperlessEBill: Bool {
+        if Environment.sharedInstance.opco == .bge { return false }
         return initialBillReadyValue == false && billReady.value == true
     }
-    var unenrollPaperlessEBill: Bool {
+    var shouldUnenrollPaperlessEBill: Bool {
+        if Environment.sharedInstance.opco == .bge { return false }
         return initialBillReadyValue == true && billReady.value == false
     }
     
     let devicePushNotificationsEnabled = Variable(false)
     
-    required init(alertsService: AlertsService) {
+    required init(alertsService: AlertsService, billService: BillService) {
         self.alertsService = alertsService
+        self.billService = billService
     }
     
     // MARK: Web Services
@@ -98,6 +102,11 @@ class AlertPreferencesViewModel {
         if Environment.sharedInstance.opco == .comEd {
             observables.append(saveAlertLanguage())
         }
+        if shouldEnrollPaperlessEBill {
+            observables.append(enrollPaperlessEBill())
+        } else if shouldUnenrollPaperlessEBill {
+            observables.append(unenrollPaperlessEBill())
+        }
         
         Observable.zip(observables)
             .observeOn(MainScheduler.instance)
@@ -123,6 +132,14 @@ class AlertPreferencesViewModel {
     
     private func saveAlertLanguage() -> Observable<Void> {
         return alertsService.setAlertLanguage(accountNumber: accountDetail.accountNumber, english: english.value)
+    }
+    
+    private func enrollPaperlessEBill() -> Observable<Void> {
+        return billService.enrollPaperlessBilling(accountNumber: accountDetail.accountNumber, email: accountDetail.customerInfo.emailAddress)
+    }
+    
+    private func unenrollPaperlessEBill() -> Observable<Void> {
+        return billService.unenrollPaperlessBilling(accountNumber: accountDetail.accountNumber)
     }
     
     private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver()) {
