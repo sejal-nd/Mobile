@@ -56,7 +56,7 @@ class AddCardFormViewModel {
     }
     
     var cardIcon: UIImage? {
-        let characters = Array(cardNumber.value.characters)
+        let characters = Array(cardNumber.value)
         if characters.count < 2 {
             return nil
         }
@@ -137,7 +137,7 @@ class AddCardFormViewModel {
     private func luhnCheck(cardNumber: String) -> Bool {
         var oddSum = 0
         var evenSum = 0
-        let reversedCharacters = cardNumber.characters.reversed().map { String($0) }
+        let reversedCharacters = cardNumber.reversed().map { String($0) }
         for (idx, element) in reversedCharacters.enumerated() {
             guard let digit = Int(element) else { return false }
             if (idx % 2 == 0) {
@@ -150,7 +150,7 @@ class AddCardFormViewModel {
     }
     
     private func firstNumberCheck(cardNumber: String) -> Bool {
-        guard let firstChar = cardNumber.characters.first?.description else {
+        guard let firstChar = cardNumber.first?.description else {
             return false
         }
         let charSet = CharacterSet(charactersIn: "23456")
