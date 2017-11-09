@@ -10,9 +10,9 @@ import Foundation
 
 /// Utility class for intantiating Service Instances
 class ServiceFactory {
-    
+
     static let sharedOutageService = OMCOutageService()
-    
+
     class func createAuthenticationService() -> AuthenticationService {
         switch(Environment.sharedInstance.environmentName) {
         case "DEV", "TEST", "STAGE", "AUT":
@@ -21,41 +21,45 @@ class ServiceFactory {
             return OMCAuthenticationService()
         }
     }
-    
+
     class func createFingerprintService() -> FingerprintService {
         return FingerprintService()
     }
-    
+
     class func createAccountService() -> AccountService {
         return OMCAccountService()
     }
-    
+
     class func createOutageService() -> OutageService {
         return sharedOutageService
     }
-    
+
     class func createBillService() -> BillService {
         return OMCBillService()
     }
-    
+
     class func createWalletService() -> WalletService {
         return OMCWalletService()
     }
-    
+
     class func createRegistrationService() -> RegistrationService {
         return OMCRegistrationService()
     }
-    
+
     class func createPaymentService() -> PaymentService {
         return OMCPaymentService()
     }
-    
+
     class func createWeatherService() -> WeatherService {
         return WeatherAPI()
     }
-    
+
     class func createUsageService() -> UsageService {
         return OMCUsageService()
+    }
+
+    class func createAlertsService() -> AlertsService {
+        return OMCAlertsService()
     }
     
     class func createPeakRewardsService() -> PeakRewardsService {

@@ -9,15 +9,10 @@
 import RxSwift
 import RxCocoa
 
-let testAlerts = [
+let testAlerts: [String] = [
     "Outage to area 1215 E Fort Ave analyzed. The probable cause is unknown. Estimated restoration time 8/22/17 at 9:00 PM",
     "Severe thunderstorms in 1215 E Fort Ave from 2:00 PM to 5:00 PM. Be prepared for possible outages.",
     "Payment for account ending in 1234. Amount of $150.50 is due on 7/22/17."
-]
-
-let testUpdates = [
-    ("BGE Update", "NOTICE OF EVENING HEARINGS FOR PUBLIC COMMENT - CASE NO. 9406 – Evening hearings for discussion about the price of electricity and gas in Baltimore."),
-    ("Restoration Update", "Power has been restored to area 1215 E Fort Ave on 4/18/17 at 9:00 PM. Our crew is still at the location working very hard to get you power so you can watch TV."),
 ]
 
 class AlertsViewController: AccountPickerViewController {
@@ -26,17 +21,22 @@ class AlertsViewController: AccountPickerViewController {
 
     @IBOutlet weak var segmentedControl: AlertsSegmentedControl!
     
+    @IBOutlet weak var backgroundView: UIView!
+    
     @IBOutlet weak var alertsTableView: UITableView!
     @IBOutlet weak var preferencesButton: ButtonControl!
     @IBOutlet weak var preferencesButtonLabel: UILabel!
     
     @IBOutlet weak var updatesTableView: UITableView!
+    @IBOutlet weak var updatesEmptyStateView: UIView!
+    @IBOutlet weak var updatesEmptyStateLabel: UILabel!
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var errorLabel: UILabel!
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
-    let viewModel = AlertsViewModel()
+    let viewModel = AlertsViewModel(accountService: ServiceFactory.createAccountService(), alertsService: ServiceFactory.createAlertsService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,14 +64,15 @@ class AlertsViewController: AccountPickerViewController {
             guard let `self` = self else { return }
             switch(state) {
             case .loadingAccounts:
+                self.viewModel.isFetching.value = true
                 break
             case .readyToFetchData:
                 print("Alerts Root Screen - Fetch Data")
-//                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-//                    self.getOutageStatus()
-//                } else if self.viewModel.currentOutageStatus == nil {
-//                    self.getOutageStatus()
-//                }
+                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    self.viewModel.fetchData()
+                } else if self.viewModel.currentAccountDetail == nil {
+                    self.viewModel.fetchData()
+                }
             }
         }).disposed(by: disposeBag)
     }
@@ -100,18 +101,36 @@ class AlertsViewController: AccountPickerViewController {
     }
     
     private func styleViews() {
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textColor = .blackText
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
         preferencesButtonLabel.textColor = .actionBlue
         preferencesButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
+        
+        updatesEmptyStateLabel.textColor = .middleGray
+        updatesEmptyStateLabel.font = OpenSans.regular.of(size: 18)
+        updatesEmptyStateLabel.text = NSLocalizedString("There are no updates at\nthis time.", comment: "")
     }
     
     private func bindViewModel() {
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
         
+        viewModel.backgroundViewColor.drive(backgroundView.rx.backgroundColor).disposed(by: disposeBag)
+        
         viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowAlertsTableView.not().drive(alertsTableView.rx.isHidden).disposed(by: disposeBag)
+        
         viewModel.shouldShowUpdatesTableView.not().drive(updatesTableView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowUpdatesEmptyState.not().drive(updatesEmptyStateView.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.reloadTableViewEvent.asObservable().subscribe(onNext: { [weak self] in
+            self?.alertsTableView.reloadData()
+            self?.updatesTableView.reloadData()
+        }).disposed(by: disposeBag)
     }
     
     @IBAction func onPreferencesButtonTap(_ sender: Any) {
@@ -119,7 +138,16 @@ class AlertsViewController: AccountPickerViewController {
     }
     
     func onUpdateCellTap(sender: ButtonControl) {
-        print("Update cell at index \(sender.tag) tapped")
+        performSegue(withIdentifier: "opcoUpdateDetailSegue", sender: sender)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AlertPreferencesViewController {
+            vc.delegate = self
+            vc.viewModel.accountDetail = viewModel.currentAccountDetail!
+        } else if let vc = segue.destination as? OpcoUpdateDetailViewController, let button = sender as? ButtonControl {
+            vc.opcoUpdate = viewModel.currentOpcoUpdates![button.tag]
+        }
     }
     
 
@@ -130,17 +158,23 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == alertsTableView {
             return 1
-        } else {
-            return testUpdates.count
         }
+        if tableView == updatesTableView {
+            if let opcoUpdates = viewModel.currentOpcoUpdates {
+                return opcoUpdates.count
+            }
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == alertsTableView {
             return testAlerts.count
-        } else {
+        }
+        if tableView == updatesTableView {
             return 1
         }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -170,10 +204,11 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
             cell!.textLabel?.text = testAlerts[indexPath.row]
             
             return cell!
-        } else {
+        }
+        if tableView == updatesTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UpdatesCell", for: indexPath) as! UpdatesTableViewCell
-            cell.titleLabel.text = testUpdates[indexPath.section].0
-            cell.detailLabel.text = testUpdates[indexPath.section].1
+            cell.titleLabel.text = viewModel.currentOpcoUpdates![indexPath.section].title
+            cell.detailLabel.text = viewModel.currentOpcoUpdates![indexPath.section].message
             
             cell.innerContentView.tag = indexPath.section
             cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
@@ -181,13 +216,22 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
             
             return cell
         }
+        return UITableViewCell()
     }
 }
 
 extension AlertsViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        print("Alerts Root Screen - Changed Account - Fetch Data")
+        viewModel.fetchData()
     }
+}
+
+extension AlertsViewController: AlertPreferencesViewControllerDelegate {
     
+    func alertPreferencesViewControllerDidSavePreferences(_ alertPreferencesViewController: AlertPreferencesViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Preferences saved", comment: ""))
+        })
+    }
 }
