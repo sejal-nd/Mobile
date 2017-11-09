@@ -107,20 +107,28 @@ class AlertPreferencesViewController: UIViewController {
         styleViews()
         bindViewModel()
         
+        checkForNotificationsPermissions()
+        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.checkForNotificationsPermissions()
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let notificationSettings = UIApplication.shared.currentUserNotificationSettings {
-            if notificationSettings.types != [] {
-                viewModel.devicePushNotificationsEnabled.value = true
-            }
-        }
-        
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
+        }
+    }
+    
+    func checkForNotificationsPermissions() {
+        if let notificationSettings = UIApplication.shared.currentUserNotificationSettings {
+            viewModel.devicePushNotificationsEnabled.value = notificationSettings.types != []
         }
     }
     
