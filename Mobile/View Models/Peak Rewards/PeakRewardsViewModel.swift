@@ -67,7 +67,7 @@ class PeakRewardsViewModel {
     
     private(set) lazy var selectedDevice: Driver<SmartThermostatDevice> = Observable
         .combineLatest(self.peakRewardsSummaryEvents.elements(),
-                       self.rootScreenWillReappear.withLatestFrom(self.selectedDeviceIndex.asObservable().distinctUntilChanged()))
+                       self.selectedDeviceIndex.asObservable().sample(self.rootScreenWillReappear).distinctUntilChanged())
         .map { $0.devices[$1] }
         .asDriver(onErrorDriveWith: .empty())
     

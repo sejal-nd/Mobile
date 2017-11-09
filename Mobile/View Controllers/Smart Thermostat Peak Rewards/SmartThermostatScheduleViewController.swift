@@ -24,17 +24,58 @@ class SmartThermostatScheduleViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: nil)
+        navigationItem.rightBarButtonItem = saveButton
+        
+        let timeButtonContainer = UIView().usingAutoLayout()
+        timeButtonContainer.backgroundColor = .softGray
+        
+        let timeButton = DisclosureButton().usingAutoLayout()
+        let localizedTimeText = NSLocalizedString("Time: %@", comment: "")
+        timeButton.labelText = String(format: localizedTimeText, viewModel.periodInfo.startTime)
+        
+        timeButtonContainer.addSubview(timeButton)
+        timeButton.addTabletWidthConstraints(horizontalPadding: 29)
+        timeButton.topAnchor.constraint(equalTo: timeButtonContainer.topAnchor, constant: 30).isActive = true
+        timeButton.bottomAnchor.constraint(equalTo: timeButtonContainer.bottomAnchor, constant: -30).isActive = true
+        timeButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        let tempRange: CountableClosedRange<Int>
+        switch TemperatureScaleStore.shared.scale {
+        case .fahrenheit:
+            tempRange = 40...90
+        case .celsius:
+            tempRange = 5...32
+        }
         let coolTempSliderView = TemperatureSliderView(currentTemperature: viewModel.coolTemp,
-                                                       minTemp: Temperature(value: Double(40), scale: .fahrenheit),
-                                                       maxTemp: Temperature(value: Double(90), scale: .fahrenheit),
+                                                       tempRange: tempRange,
+                                                       scale: TemperatureScaleStore.shared.scale,
                                                        coolOrHeat: .cool).usingAutoLayout()
         
-        let stackView = UIStackView(arrangedSubviews: [coolTempSliderView]).usingAutoLayout()
-        stackView.isUserInteractionEnabled = true
-        view.addSubview(stackView)
-        stackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        let heatTempSliderView = TemperatureSliderView(currentTemperature: viewModel.heatTemp,
+                                                       tempRange: tempRange,
+                                                       scale: TemperatureScaleStore.shared.scale,
+                                                       coolOrHeat: .heat).usingAutoLayout()
+        
+        let sliderStack = UIStackView(arrangedSubviews: [coolTempSliderView, heatTempSliderView]).usingAutoLayout()
+        sliderStack.axis = .vertical
+        sliderStack.spacing = 30
+        
+        let sliderStackContainer = UIView().usingAutoLayout()
+        sliderStackContainer.addSubview(sliderStack)
+        sliderStack.addTabletWidthConstraints(horizontalPadding: 27)
+        
+        sliderStack.topAnchor.constraint(equalTo: sliderStackContainer.topAnchor).isActive = true
+        sliderStack.bottomAnchor.constraint(equalTo: sliderStackContainer.bottomAnchor).isActive = true
+        
+        let mainStack = UIStackView(arrangedSubviews: [timeButtonContainer, sliderStackContainer]).usingAutoLayout()
+        mainStack.axis = .vertical
+        mainStack.spacing = 24
+        
+        view.addSubview(mainStack)
+        mainStack.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
