@@ -58,6 +58,14 @@ extension UIColor {
         return UIColor(red: 0/255, green: 122/255, blue: 51/255, alpha: 1)
     }
     
+    @nonobjc static var richElectricBlue: UIColor {
+        return UIColor(red: 13/255, green: 157/255, blue: 219/255, alpha: 1)
+    }
+    
+    @nonobjc static var burntSienna: UIColor {
+        return UIColor(red: 238/255, green: 127/255, blue: 75/255, alpha: 1)
+    }
+    
 //    convenience init(hex: String, alpha: CGFloat = 1) {
 //        assert(hex[hex.startIndex] == "#", "Expected hex string of format #RRGGBB")
 //        

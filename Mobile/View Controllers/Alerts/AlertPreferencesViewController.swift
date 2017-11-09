@@ -24,7 +24,10 @@ class AlertPreferencesViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var accountInfoBar: AccountInfoBar!
-
+    @IBOutlet weak var notificationsDisabledView: UIView!
+    @IBOutlet weak var notificationsDisabledLabel: UILabel!
+    @IBOutlet weak var notificationsDisabledButton: UIButton!
+    
     @IBOutlet weak var contentStackView: UIStackView!
     
     @IBOutlet weak var outageTitleLabel: UILabel!
@@ -65,7 +68,7 @@ class AlertPreferencesViewController: UIViewController {
     @IBOutlet weak var englishRadioControl: RadioSelectControl!
     @IBOutlet weak var spanishRadioControl: RadioSelectControl!
     
-    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService())
+    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(), billService: ServiceFactory.createBillService())
     
     
     // Prevents status bar color flash when pushed
@@ -87,7 +90,10 @@ class AlertPreferencesViewController: UIViewController {
             budgetBillingView.isHidden = true
         } else {
             scheduledMaintView.isHidden = true
-            if !viewModel.accountDetail.isResidential {
+            if !viewModel.accountDetail.isResidential || viewModel.accountDetail.isFinaled {
+                billReadyView.isHidden = true
+            }
+            if !viewModel.accountDetail.isEBillEligible && !viewModel.accountDetail.isEBillEnrollment {
                 billReadyView.isHidden = true
             }
             if !viewModel.accountDetail.isBudgetBillEnrollment {
@@ -107,6 +113,12 @@ class AlertPreferencesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let notificationSettings = UIApplication.shared.currentUserNotificationSettings {
+            if notificationSettings.types != [] {
+                viewModel.devicePushNotificationsEnabled.value = true
+            }
+        }
+        
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
         }
@@ -116,6 +128,14 @@ class AlertPreferencesViewController: UIViewController {
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
+        notificationsDisabledView.backgroundColor = .softGray
+        notificationsDisabledLabel.textColor = .blackText
+        notificationsDisabledLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        notificationsDisabledLabel.text = String(format: NSLocalizedString("Your notifications are currently disabled on your device. Please visit your device settings to allow %@ to send notifications.", comment: ""), Environment.sharedInstance.opco.displayString)
+        notificationsDisabledButton.setTitleColor(.actionBlue, for: .normal)
+        notificationsDisabledButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
+        notificationsDisabledButton.titleLabel?.text = NSLocalizedString("Go to Settings", comment: "")
         
         outageTitleLabel.textColor = .blackText
         outageTitleLabel.font = SystemFont.regular.of(textStyle: .title1)
@@ -172,6 +192,7 @@ class AlertPreferencesViewController: UIViewController {
     private func bindViewModel() {
         viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.devicePushNotificationsEnabled.asDriver().drive(notificationsDisabledView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowContent.not().drive(contentStackView.rx.isHidden).disposed(by: disposeBag)
         viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         
@@ -213,6 +234,13 @@ class AlertPreferencesViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
+    @IBAction func onNotificationsDisabledButtonPress(_ sender: Any) {
+        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.shared.openURL(url)
+        }
+
+    }
+    
     @IBAction func onPaymentDueDaysBeforeButtonPress(_ sender: Any) {
         let upperRange = Environment.sharedInstance.opco == .bge ? 14 : 7
         PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
@@ -238,7 +266,6 @@ class AlertPreferencesViewController: UIViewController {
             
             let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self] _ in
-                //sender.setOn(!sender.isOn, animated: true)
                 self?.viewModel.billReady.value = !sender.isOn // Need to manually set this because .setOn does not trigger rx binding
             }))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self] _ in
@@ -274,16 +301,16 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     func onSavePress() {
-        print("outage = \(viewModel.outage.value)")
-        print("scheduledMaint = \(viewModel.scheduledMaint.value)")
-        print("severeWeather = \(viewModel.severeWeather.value)")
-        print("billReady = \(viewModel.billReady.value)")
-        print("paymentDue = \(viewModel.paymentDue.value)")
-        print("paymentDueDaysBefore = \(viewModel.paymentDueDaysBefore.value)")
-        print("budgetBilling = \(viewModel.budgetBilling.value)")
-        print("forYourInfo = \(viewModel.forYourInfo.value)")
-        print("enrollPaperlessEBill = \(viewModel.enrollPaperlessEBill)")
-        print("unenrollPaperlessEBill = \(viewModel.unenrollPaperlessEBill)")
+//        print("outage = \(viewModel.outage.value)")
+//        print("scheduledMaint = \(viewModel.scheduledMaint.value)")
+//        print("severeWeather = \(viewModel.severeWeather.value)")
+//        print("billReady = \(viewModel.billReady.value)")
+//        print("paymentDue = \(viewModel.paymentDue.value)")
+//        print("paymentDueDaysBefore = \(viewModel.paymentDueDaysBefore.value)")
+//        print("budgetBilling = \(viewModel.budgetBilling.value)")
+//        print("forYourInfo = \(viewModel.forYourInfo.value)")
+//        print("shouldEnrollPaperlessEBill = \(viewModel.shouldEnrollPaperlessEBill)")
+//        print("shouldUnenrollPaperlessEBill = \(viewModel.shouldUnenrollPaperlessEBill)")
         
         LoadingView.show()
         viewModel.saveChanges(onSuccess: { [weak self] in

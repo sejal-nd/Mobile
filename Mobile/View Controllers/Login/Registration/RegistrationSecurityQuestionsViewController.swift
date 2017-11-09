@@ -68,10 +68,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         loadSecurityQuestions()
         
-        if viewModel.isPaperlessEbillEligible {
-            loadAccounts()
-        }
-        
         setupNavigationButtons()
 
         title = NSLocalizedString("Register", comment: "")
@@ -105,14 +101,15 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         viewModel.loadSecurityQuestions(onSuccess: { [weak self] in
             guard let `self` = self else { return }
-            if !self.viewModel.isPaperlessEbillEligible {
+            if self.viewModel.isPaperlessEbillEligible {
+                self.loadAccounts()
+            } else {
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
                 self.scrollView.isHidden = false
                 self.loadingIndicator.isHidden = true
                 
                 self.toggleAccountListing(false)
                 self.eBillSwitchView.isHidden = true
-                
             }
         }, onError: { [weak self] (securityTitle, securityMessage) in
             title = securityTitle
@@ -174,10 +171,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default) { [weak self] _ in
             guard let `self` = self else { return }
             self.loadSecurityQuestions()
-            
-            if self.viewModel.isPaperlessEbillEligible {
-                self.loadAccounts()
-            }
         })
         
         present(alert, animated: true, completion: nil)

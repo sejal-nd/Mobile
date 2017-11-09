@@ -124,6 +124,7 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
         
+        dueAmountAndDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         dueAmountAndDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         

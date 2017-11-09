@@ -59,7 +59,7 @@ protocol UsageService {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-// MARK: - Reactive Extension to RegistrationService
+// MARK: - Reactive Extension to UsageService
 extension UsageService {
 
     func fetchBillComparison(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> Observable<BillComparison> {

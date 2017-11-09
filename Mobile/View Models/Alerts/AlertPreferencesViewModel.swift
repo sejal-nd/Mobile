@@ -13,7 +13,8 @@ class AlertPreferencesViewModel {
     
     let disposeBag = DisposeBag()
     
-    let alertsService: AlertsService
+    private let alertsService: AlertsService
+    private let billService: BillService
     
     var accountDetail: AccountDetail! // Passed from AlertsViewController
     
@@ -35,15 +36,20 @@ class AlertPreferencesViewModel {
     let userChangedPrefs = Variable(false)
     
     var initialBillReadyValue = false
-    var enrollPaperlessEBill: Bool {
+    var shouldEnrollPaperlessEBill: Bool {
+        if Environment.sharedInstance.opco == .bge { return false }
         return initialBillReadyValue == false && billReady.value == true
     }
-    var unenrollPaperlessEBill: Bool {
+    var shouldUnenrollPaperlessEBill: Bool {
+        if Environment.sharedInstance.opco == .bge { return false }
         return initialBillReadyValue == true && billReady.value == false
     }
     
-    required init(alertsService: AlertsService) {
+    let devicePushNotificationsEnabled = Variable(false)
+    
+    required init(alertsService: AlertsService, billService: BillService) {
         self.alertsService = alertsService
+        self.billService = billService
     }
     
     // MARK: Web Services
@@ -71,8 +77,8 @@ class AlertPreferencesViewModel {
     private func fetchAlertPreferences() -> Observable<Void> {
         return alertsService.fetchAlertPreferences(accountNumber: accountDetail.accountNumber).map { [weak self] alertPrefs in
             guard let `self` = self else { return }
+            
             self.alertPrefs.value = alertPrefs
-
             self.outage.value = alertPrefs.outage
             self.scheduledMaint.value = alertPrefs.scheduledMaint
             self.severeWeather.value = alertPrefs.severeWeather
@@ -96,13 +102,18 @@ class AlertPreferencesViewModel {
         if Environment.sharedInstance.opco == .comEd {
             observables.append(saveAlertLanguage())
         }
+        if shouldEnrollPaperlessEBill {
+            observables.append(enrollPaperlessEBill())
+        } else if shouldUnenrollPaperlessEBill {
+            observables.append(unenrollPaperlessEBill())
+        }
         
         Observable.zip(observables)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
             }, onError: { err in
-                onError(err.localizedDescription)
+                onError(NSLocalizedString("We’re sorry, we could not update all of your preferences at this time. Please try again later or contact our Customer Care Center for assistance.", comment: ""))
             })
             .disposed(by: disposeBag)
     }
@@ -121,6 +132,14 @@ class AlertPreferencesViewModel {
     
     private func saveAlertLanguage() -> Observable<Void> {
         return alertsService.setAlertLanguage(accountNumber: accountDetail.accountNumber, english: english.value)
+    }
+    
+    private func enrollPaperlessEBill() -> Observable<Void> {
+        return billService.enrollPaperlessBilling(accountNumber: accountDetail.accountNumber, email: accountDetail.customerInfo.emailAddress)
+    }
+    
+    private func unenrollPaperlessEBill() -> Observable<Void> {
+        return billService.unenrollPaperlessBilling(accountNumber: accountDetail.accountNumber)
     }
     
     private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver()) {
