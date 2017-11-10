@@ -52,6 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
         
+        // If app was cold-launched from a push notification
+        if let options = launchOptions, let userInfo = options[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
+            self.application(application, didReceiveRemoteNotification: userInfo)
+        }
+        
         return true
     }
 
@@ -112,9 +117,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let aps = userInfo["aps"] as? [String: Any] else { return }
         guard let alert = aps["alert"] as? [String: Any] else { return }
         guard let accountNumbers = userInfo["accoundIds"] as? [String] else { return }
-
+        
         let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
         AlertsStore.sharedInstance.savePushNotification(notification)
+        
+        if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
+            if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
+                // Post notification to change the tab bar index
+            } else {
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.PushNotificationReceived)
+            }
+        } else {
+            // App was in the foreground when notification received - do nothing
+        }
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {

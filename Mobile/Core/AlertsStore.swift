@@ -13,11 +13,8 @@ final class AlertsStore {
     
     // Private init protects against another instance being accidentally instantiated
     private init() {
-        DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else { return }
-            if let storedAlerts = NSKeyedUnarchiver.unarchiveObject(withFile: self.filePath) as? [String: [PushNotification]] {
-                self.alerts = storedAlerts
-            }
+        if let storedAlerts = NSKeyedUnarchiver.unarchiveObject(withFile: self.filePath) as? [String: [PushNotification]] {
+            self.alerts = storedAlerts
         }
     }
     
@@ -49,7 +46,6 @@ final class AlertsStore {
                 }
             }
         }
-        
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
             NSKeyedArchiver.archiveRootObject(self.alerts, toFile: self.filePath)

@@ -26,6 +26,11 @@ class MainTabBarController: UITabBarController {
         tabBar.isTranslucent = false
         
         setButtonStates(itemTag: 1)
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.PushNotificationReceived) {
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.PushNotificationReceived)
+            selectedIndex = 3
+        }
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

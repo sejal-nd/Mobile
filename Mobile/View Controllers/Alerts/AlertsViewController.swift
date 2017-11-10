@@ -66,10 +66,10 @@ class AlertsViewController: AccountPickerViewController {
             guard let `self` = self else { return }
             switch(state) {
             case .loadingAccounts:
+                self.viewModel.isFetchingAccounts.value = true
                 self.viewModel.isFetching.value = true
                 break
             case .readyToFetchData:
-                print("Alerts Root Screen - Fetch Data")
                 if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                     self.viewModel.fetchData()
                 } else if self.viewModel.currentAccountDetail == nil {
@@ -137,8 +137,10 @@ class AlertsViewController: AccountPickerViewController {
         viewModel.shouldShowUpdatesTableView.not().drive(updatesTableView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowUpdatesEmptyState.not().drive(updatesEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         
-        viewModel.reloadTableViewEvent.asObservable().subscribe(onNext: { [weak self] in
+        viewModel.reloadAlertsTableViewEvent.asObservable().subscribe(onNext: { [weak self] in
             self?.alertsTableView.reloadData()
+        }).disposed(by: disposeBag)
+        viewModel.reloadUpdatesTableViewEvent.asObservable().subscribe(onNext: { [weak self] in
             self?.updatesTableView.reloadData()
         }).disposed(by: disposeBag)
     }
@@ -156,7 +158,7 @@ class AlertsViewController: AccountPickerViewController {
             vc.delegate = self
             vc.viewModel.accountDetail = viewModel.currentAccountDetail!
         } else if let vc = segue.destination as? OpcoUpdateDetailViewController, let button = sender as? ButtonControl {
-            vc.opcoUpdate = viewModel.currentOpcoUpdates![button.tag]
+            vc.opcoUpdate = viewModel.currentOpcoUpdates.value![button.tag]
         }
     }
     
@@ -170,7 +172,7 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
             return 1
         }
         if tableView == updatesTableView {
-            if let opcoUpdates = viewModel.currentOpcoUpdates {
+            if let opcoUpdates = viewModel.currentOpcoUpdates.value {
                 return opcoUpdates.count
             }
         }
@@ -217,8 +219,8 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         if tableView == updatesTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UpdatesCell", for: indexPath) as! UpdatesTableViewCell
-            cell.titleLabel.text = viewModel.currentOpcoUpdates![indexPath.section].title
-            cell.detailLabel.text = viewModel.currentOpcoUpdates![indexPath.section].message
+            cell.titleLabel.text = viewModel.currentOpcoUpdates.value![indexPath.section].title
+            cell.detailLabel.text = viewModel.currentOpcoUpdates.value![indexPath.section].message
             
             cell.innerContentView.tag = indexPath.section
             cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse

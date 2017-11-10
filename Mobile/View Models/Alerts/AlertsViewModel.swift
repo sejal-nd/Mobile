@@ -13,19 +13,21 @@ class AlertsViewModel {
     
     let disposeBag = DisposeBag()
     
-    let reloadTableViewEvent = PublishSubject<Void>()
+    let reloadAlertsTableViewEvent = PublishSubject<Void>()
+    let reloadUpdatesTableViewEvent = PublishSubject<Void>()
     
     let accountService: AccountService
     let alertsService: AlertsService
     
     let selectedSegmentIndex = Variable(0)
     
+    let isFetchingAccounts = Variable(false)
     let isFetching = Variable(false)
     let isError = Variable(false)
     
     var currentAccountDetail: AccountDetail?
     var currentAlerts = Variable([PushNotification]())
-    var currentOpcoUpdates: [OpcoUpdate]?
+    var currentOpcoUpdates = Variable<[OpcoUpdate]?>(nil)
     
     required init(accountService: AccountService, alertsService: AlertsService) {
         self.accountService = accountService
@@ -33,10 +35,12 @@ class AlertsViewModel {
     }
     
     func fetchData() {
+        isFetchingAccounts.value = false
         isFetching.value = true
         isError.value = false
         
         currentAlerts.value = AlertsStore.sharedInstance.getAlerts(forAccountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
+        self.reloadAlertsTableViewEvent.onNext()
         
         accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
             .observeOn(MainScheduler.instance)
@@ -46,12 +50,12 @@ class AlertsViewModel {
                 self.alertsService.fetchOpcoUpdates(accountDetail: accountDetail)
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { [weak self] opcoUpdates in
-                        self?.currentOpcoUpdates = opcoUpdates
+                        self?.currentOpcoUpdates.value = opcoUpdates
                         self?.isFetching.value = false
-                        self?.reloadTableViewEvent.onNext()
+                        self?.reloadUpdatesTableViewEvent.onNext()
                     }, onError: { [weak self] err in
                         self?.isFetching.value = false
-                        //self?.isError.value = true
+                        self?.isError.value = true
                     }).disposed(by: self.disposeBag)
             }, onError: { [weak self] err in
                 self?.isFetching.value = false
@@ -59,42 +63,35 @@ class AlertsViewModel {
             }).disposed(by: disposeBag)
     }
     
-    private(set) lazy var shouldShowAlertsTableView: Driver<Bool> = self.selectedSegmentIndex.asDriver().map { $0 == 0 }
-//        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) {
-//            return $0 == 0 && !$1 && !$2
-//        }
+    private(set) lazy var shouldShowLoadingIndicator: Driver<Bool> =
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isFetchingAccounts.asDriver()) {
+            return ($0 == 0 && $2) || ($0 == 1 && $1)
+        }
+    
+    private(set) lazy var shouldShowErrorLabel: Driver<Bool> =
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) { [weak self] in
+            return $0 == 1 && !$1 && $2
+        }
+    
+    private(set) lazy var shouldShowAlertsTableView: Driver<Bool> =
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetchingAccounts.asDriver()) {
+            return $0 == 0 && !$1
+        }
+    
+    private(set) lazy var shouldShowAlertsEmptyState: Driver<Bool> =
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.currentAlerts.asDriver(), self.isFetchingAccounts.asDriver()) {
+            return $0 == 0 && $1.count == 0 && !$2
+        }
     
     private(set) lazy var shouldShowUpdatesTableView: Driver<Bool> =
         Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) {
             return $0 == 1 && !$1 && !$2
         }
     
-    private(set) lazy var shouldShowLoadingIndicator: Driver<Bool> =
-        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver()) {
-            return $0 == 1 && $1
-        }
-    
-    private(set) lazy var shouldShowAlertsEmptyState: Driver<Bool> =
-        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.currentAlerts.asDriver()) {
-            return $0 == 0 && $1.count == 0
-        }
-//        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) { [weak self] in
-//            guard let `self` = self else { return false }
-//            return $0 == 0 && !$1 && !$2 && self.currentAlerts.count == 0
-//        }
-    
     private(set) lazy var shouldShowUpdatesEmptyState: Driver<Bool> =
-        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) { [weak self] in
-            guard let opcoUpdates = self?.currentOpcoUpdates else { return false }
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver(), self.currentOpcoUpdates.asDriver()) { [weak self] in
+            guard let opcoUpdates = $3 else { return false }
             return $0 == 1 && !$1 && !$2 && opcoUpdates.count == 0
-        }
-    
-    private(set) lazy var shouldShowErrorLabel: Driver<Bool> =
-        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) { [weak self] in
-            if $0 == 1 && !$1 && self?.currentOpcoUpdates == nil {
-                return true
-            }
-            return !$1 && $2
         }
     
     private(set) lazy var backgroundViewColor: Driver<UIColor> = self.selectedSegmentIndex.asDriver().map {

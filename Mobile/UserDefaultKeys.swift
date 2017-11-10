@@ -29,4 +29,6 @@ struct UserDefaultKeys {
     
     //Used by AppRating to track number of events that contribute to a rating prompt
     static let AppRatingEventCount = "kAppRatingEventCount"
+    
+    static let PushNotificationReceived = "kPushNotificationReceived"
 }
