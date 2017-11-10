@@ -191,7 +191,6 @@ class ReportOutageViewController: UIViewController {
         phoneExtensionTextField.setKeyboardType(.numberPad)
         phoneExtensionTextField.textField.delegate = self
 
-        
         if opco == .bge {
             phoneExtensionContainerView.isHidden = true
         }
@@ -205,7 +204,6 @@ class ReportOutageViewController: UIViewController {
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.footerTextViewText
         footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
-        footerTextView.delegate = self
         
         commentTextView.textView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
         
@@ -430,16 +428,4 @@ extension ReportOutageViewController: UITextFieldDelegate {
         
     }
     
-}
-
-extension ReportOutageViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        if unauthenticatedExperience {
-            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthEmergencyPhone.rawValue)
-        } else {
-            Analytics().logScreenView(AnalyticsPageView.ReportOutageEmergencyCall.rawValue)
-        }
-        
-        return true
-    }
 }
