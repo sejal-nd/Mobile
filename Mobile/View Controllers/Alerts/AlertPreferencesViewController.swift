@@ -251,17 +251,17 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBAction func onPaymentDueDaysBeforeButtonPress(_ sender: Any) {
         let upperRange = Environment.sharedInstance.opco == .bge ? 14 : 7
-        PickerView.showStringPicker(withTitle: NSLocalizedString("Select Number", comment: ""),
-                        data: (1...upperRange).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
-                        selectedIndex: viewModel.paymentDueDaysBefore.value - 1,
-                        onDone: { [weak self] value, index in
-                            guard let `self` = self else { return }
-                            if self.viewModel.paymentDueDaysBefore.value != index + 1 {
-                                self.viewModel.userChangedPrefs.value = true
-                                self.viewModel.paymentDueDaysBefore.value = index + 1
-                            }
-                        },
-                        onCancel: nil)
+        PickerView.showStringPicker(withTitle: NSLocalizedString("Payment Due Reminder", comment: ""),
+            data: (1...upperRange).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
+            selectedIndex: viewModel.paymentDueDaysBefore.value - 1,
+            onDone: { [weak self] value, index in
+                guard let `self` = self else { return }
+                if self.viewModel.paymentDueDaysBefore.value != index + 1 {
+                    self.viewModel.userChangedPrefs.value = true
+                    self.viewModel.paymentDueDaysBefore.value = index + 1
+                }
+            },
+            onCancel: nil)
         UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select number of days", comment: ""))
     }
     
