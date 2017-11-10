@@ -17,23 +17,38 @@ protocol PeakRewardsService {
     ///   - accountNumber: the account to fetch data for
     ///   - premiseNumber: the premise to fetch data for
     ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain an AccountPage on success, or a ServiceError on failure.
+    ///     that is provided will contain a PeakRewardsSummary on success, or a ServiceError on failure.
     func fetchPeakRewardsSummary(accountNumber: String,
                                  premiseNumber: String,
                                  completion: @escaping (_ result: ServiceResult<PeakRewardsSummary>) -> Void)
     
-    /// Fetch a page of accounts for the current customer.
+    /// Fetch the smart thermostat schedule for the specified device.
     ///
     /// - Parameters:
     ///   - device: the device to fetch data for
     ///   - accountNumber: the account to fetch data for
     ///   - premiseNumber: the premise to fetch data for
     ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain an AccountPage on success, or a ServiceError on failure.
+    ///     that is provided will contain a SmartThermostatDeviceSchedule on success, or a ServiceError on failure.
     func fetchSmartThermostatSchedule(forDevice device: SmartThermostatDevice,
                                       accountNumber: String,
                                       premiseNumber: String,
                                       completion: @escaping (_ result: ServiceResult<SmartThermostatDeviceSchedule>) -> Void)
+    
+    /// Update the thermostat schedule for the specifiied device.
+    ///
+    /// - Parameters:
+    ///   - device: the device to update data for
+    ///   - accountNumber: the account to update data for
+    ///   - premiseNumber: the premise to update data for
+    ///   - schedule: the premise to update data for
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain Void on success, or a ServiceError on failure.
+    func updateSmartThermostatSchedule(forDevice device: SmartThermostatDevice,
+                                      accountNumber: String,
+                                      premiseNumber: String,
+                                      schedule: SmartThermostatDeviceSchedule,
+                                      completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
 }
 
@@ -61,10 +76,25 @@ extension PeakRewardsService {
     
     func fetchSmartThermostatSchedule(forDevice device: SmartThermostatDevice, accountNumber: String, premiseNumber: String) -> Observable<SmartThermostatDeviceSchedule> {
         return Observable.create { observer in
-            self.fetchSmartThermostatSchedule(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber) {
-                switch $0 {
+            self.fetchSmartThermostatSchedule(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber) { result in
+                switch result {
                 case ServiceResult.Success(let smartThermostatDeviceSchedule):
                     observer.onNext(smartThermostatDeviceSchedule)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func updateSmartThermostatSchedule(forDevice device: SmartThermostatDevice, accountNumber: String, premiseNumber: String, schedule: SmartThermostatDeviceSchedule) -> Observable<Void> {
+        return Observable.create { observer in
+            self.updateSmartThermostatSchedule(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber, schedule: schedule) { result in
+                switch result {
+                case ServiceResult.Success():
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

@@ -251,7 +251,7 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBAction func onPaymentDueDaysBeforeButtonPress(_ sender: Any) {
         let upperRange = Environment.sharedInstance.opco == .bge ? 14 : 7
-        PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
+        PickerView.showStringPicker(withTitle: NSLocalizedString("Select Number", comment: ""),
                         data: (1...upperRange).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
                         selectedIndex: viewModel.paymentDueDaysBefore.value - 1,
                         onDone: { [weak self] value, index in
