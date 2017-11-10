@@ -100,11 +100,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        {
 //            "aps" : {
 //                "alert": {
-//                    "body": "Sample Message",
+//                    "body": "Your notification message here",
 //                    "title": "Planned Outage"
 //                }
 //            },
-//            "tag": "BGE_6554701000_11111111""
+//            "accoundIds": []
 //        }
     }
     
