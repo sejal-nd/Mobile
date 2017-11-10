@@ -74,8 +74,6 @@ class PeakRewardsViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
         }
-        
-        viewModel.rootScreenWillReappear.onNext(())
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -89,18 +87,24 @@ class PeakRewardsViewController: UIViewController {
         viewModel.showMainContent.asDriver().not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showMainContent.asDriver().not().drive(gradientView.rx.isHidden).disposed(by: disposeBag)
         
+        viewModel.showDeviceButton.not().drive(deviceButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.deviceButtonText.drive(deviceButton.label.rx.text).disposed(by: disposeBag)
+        
+        viewModel.programCardsData.map { $0.isEmpty }.drive(programCardStack.rx.isHidden).disposed(by: disposeBag)
+        
         viewModel.showScheduleLoadingState.asDriver().not().drive(scheduleLoadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleErrorState.asDriver().not().drive(scheduleErrorView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleContent.asDriver().not().drive(scheduleContentStack.rx.isHidden).disposed(by: disposeBag)
-        
-        viewModel.selectedDeviceName.drive(deviceButton.label.rx.text).disposed(by: disposeBag)
         
         viewModel.programCardsData
             .drive(onNext: { [weak self] programCardsData in
                 guard let `self` = self else { return }
                 self.programCardStack.arrangedSubviews
                     .dropFirst() // Don't remove the header label from the stack
-                    .forEach(self.programCardStack.removeArrangedSubview)
+                    .forEach {
+                        self.programCardStack.removeArrangedSubview($0)
+                        $0.removeFromSuperview()
+                }
                 
                 programCardsData
                     .map(PeakRewardsProgramCard.init)

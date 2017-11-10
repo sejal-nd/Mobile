@@ -16,6 +16,7 @@ class SmartThermostatScheduleViewController: UIViewController {
     let viewModel: SmartThermostatScheduleViewModel
     
     private let timeButton = DisclosureButton().usingAutoLayout()
+    private let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: nil)
     private let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: nil)
     
     private(set) lazy var saveSuccess: Observable<Void> = self.viewModel.saveSuccess
@@ -46,6 +47,7 @@ class SmartThermostatScheduleViewController: UIViewController {
     func buildLayout() {
         view.backgroundColor = .white
         
+        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         
         let timeButtonContainer = UIView().usingAutoLayout()
@@ -57,20 +59,17 @@ class SmartThermostatScheduleViewController: UIViewController {
         timeButton.bottomAnchor.constraint(equalTo: timeButtonContainer.bottomAnchor, constant: -30).isActive = true
         timeButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        let tempRange: CountableClosedRange<Int>
-        switch TemperatureScaleStore.shared.scale {
-        case .fahrenheit:
-            tempRange = 40...90
-        case .celsius:
-            tempRange = 5...32
-        }
+        let minTemp = Temperature(value: Double(40), scale: .fahrenheit)
+        let maxTemp = Temperature(value: Double(90), scale: .fahrenheit)
         let coolTempSliderView = TemperatureSliderView(currentTemperature: viewModel.coolTemp,
-                                                       tempRange: tempRange,
+                                                       minTemp: minTemp,
+                                                       maxTemp: maxTemp,
                                                        scale: TemperatureScaleStore.shared.scale,
                                                        coolOrHeat: .cool).usingAutoLayout()
         
         let heatTempSliderView = TemperatureSliderView(currentTemperature: viewModel.heatTemp,
-                                                       tempRange: tempRange,
+                                                       minTemp: minTemp,
+                                                       maxTemp: maxTemp,
                                                        scale: TemperatureScaleStore.shared.scale,
                                                        coolOrHeat: .heat).usingAutoLayout()
         
@@ -119,6 +118,9 @@ class SmartThermostatScheduleViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        cancelButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in self?.navigationController?.popViewController(animated: true) })
+            .disposed(by: disposeBag)
         saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
     }
     

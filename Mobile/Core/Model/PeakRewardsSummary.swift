@@ -18,55 +18,9 @@ struct PeakRewardsSummary: Mappable {
     }
 }
 
-struct PeakRewardsOverride: Mappable {
-    let serialNumber: String
-    let status: OverrideStatus?
-    let start: Date?
-    let stop: Date?
-    
-    init(map: Mapper) throws {
-        serialNumber = try map.from("serialNumber")
-        status = map.optionalFrom("status") {
-            guard let string = $0 as? String else {
-                throw MapperError.convertibleError(value: $0, type: String.self)
-            }
-            
-            guard let status = OverrideStatus(rawValue: string) else {
-                throw MapperError.convertibleError(value: string, type: OverrideStatus.self)
-            }
-            
-            return status
-        }
-        
-        let extractDate = { (object: Any) throws -> Date in
-            guard let string = object as? String else {
-                throw MapperError.convertibleError(value: object, type: String.self)
-            }
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = .opCo
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            
-            guard let date = dateFormatter.date(from: string) else {
-                throw MapperError.convertibleError(value: string, type: Date.self)
-            }
-            
-            return date
-        }
-        
-        start = map.optionalFrom("start", transformation: extractDate)
-        stop = map.optionalFrom("stop", transformation: extractDate)
-    }
-}
-
-enum OverrideStatus: String {
-    case scheduled = "Scheduled"
-    case active = "Active"
-}
-
 struct SmartThermostatDevice: Mappable, Equatable {
     let serialNumber: String
-    let programs: [String]
+    let programNames: [String]
     let emergencyFlag: String
     let name: String
     let type: String
@@ -74,7 +28,7 @@ struct SmartThermostatDevice: Mappable, Equatable {
     
     init(map: Mapper) throws {
         serialNumber = try map.from("serialNumber")
-        programs = try map.from("programs")
+        programNames = try map.from("programs")
         emergencyFlag = try map.from("emergencyFlag")
         name = try map.from("name")
         type = try map.from("type")
@@ -144,18 +98,111 @@ enum PeakRewardsProgramStatus: String {
     case inactive = "Inactive"
 }
 
-struct SmartThermostatDeviceSettings: Mappable {
-    let name: String
+struct PeakRewardsOverride: Mappable {
     let serialNumber: String
-    let fan: String
+    let status: OverrideStatus?
+    let start: Date?
+    let stop: Date?
+    
+    init(map: Mapper) throws {
+        status = map.optionalFrom("status") {
+            guard let string = $0 as? String else {
+                throw MapperError.convertibleError(value: $0, type: String.self)
+            }
+            
+            guard let status = OverrideStatus(rawValue: string) else {
+                throw MapperError.convertibleError(value: string, type: OverrideStatus.self)
+            }
+            
+            return status
+        }
+        
+        let extractDate = { (object: Any) throws -> Date in
+            guard let string = object as? String else {
+                throw MapperError.convertibleError(value: object, type: String.self)
+            }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .opCo
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            
+            guard let date = dateFormatter.date(from: string) else {
+                throw MapperError.convertibleError(value: string, type: Date.self)
+            }
+            
+            return date
+        }
+        
+        start = map.optionalFrom("start", transformation: extractDate)
+        stop = map.optionalFrom("stop", transformation: extractDate)
+        
+        let device: PeakRewardsOverrideDevice = try map.from("device")
+        serialNumber = device.serialNumber
+    }
+    
+    private struct PeakRewardsOverrideDevice: Mappable {
+        let serialNumber: String
+        
+        init(map: Mapper) throws {
+            serialNumber = try map.from("serialNumber")
+        }
+    }
+}
+
+
+
+enum OverrideStatus: String {
+    case scheduled = "Scheduled"
+    case active = "Active"
+}
+
+struct SmartThermostatDeviceSettings: Mappable {
+    let temp: Temperature
+    let mode: SmartThermostatMode
+    let fan: SmartThermostatFan
     let hold: Bool
     
     init(map: Mapper) throws {
-        name = try map.from("name")
-        serialNumber = try map.from("serialNumber")
+        temp = try map.from("temp", transformation: tempMapper)
+        mode = try map.from("mode")
         fan = try map.from("fan")
         hold = try map.from("hold")
     }
+}
+
+enum SmartThermostatFan: String {
+    case auto = "AUTO"
+    case circulate = "CIRCULATE"
+    case on = "ON"
+    
+    var displayString: String {
+        switch self {
+        case .auto:
+            return NSLocalizedString("Auto", comment: "")
+        case .circulate:
+            return NSLocalizedString("Circulate", comment: "")
+        case .on:
+            return NSLocalizedString("On", comment: "")
+        }
+    }
+}
+
+enum SmartThermostatMode: String {
+    case cool = "COOL"
+    case heat = "HEAT"
+    case off = "OFF"
+    
+    var displayString: String {
+        switch self {
+        case .cool:
+            return NSLocalizedString("Cool", comment: "")
+        case .heat:
+            return NSLocalizedString("Heat", comment: "")
+        case .off:
+            return NSLocalizedString("Off", comment: "")
+        }
+    }
+
 }
 
 struct SmartThermostatDeviceSchedule: Mappable {
@@ -244,15 +291,7 @@ struct SmartThermostatPeriodInfo: Mappable {
     }
     
     init(map: Mapper) throws {
-        let tempMapper: (Any) throws -> Temperature = { v in
-            guard let valueString = v as? String else {
-                throw MapperError.convertibleError(value: v, type: String.self)
-            }
-            guard let value = Double(valueString) else {
-                throw MapperError.convertibleError(value: valueString, type: Double.self)
-            }
-            return Temperature(value: value, scale: .fahrenheit)
-        }
+        
         
         coolTemp = try map.from("coolTemp", transformation: tempMapper)
         heatTemp = try map.from("heatTemp", transformation: tempMapper)
@@ -327,12 +366,15 @@ struct Temperature: Equatable {
     }
 }
 
-
-
-
-
-
-
+fileprivate let tempMapper: (Any) throws -> Temperature = { v in
+    guard let valueString = v as? String else {
+        throw MapperError.convertibleError(value: v, type: String.self)
+    }
+    guard let value = Double(valueString) else {
+        throw MapperError.convertibleError(value: valueString, type: Double.self)
+    }
+    return Temperature(value: value, scale: .fahrenheit)
+}
 
 
 

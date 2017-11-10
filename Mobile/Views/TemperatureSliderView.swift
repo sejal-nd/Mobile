@@ -31,7 +31,7 @@ class TemperatureSliderView: UIView {
     
     let currentTemperature: BehaviorSubject<Temperature>
     
-    init(currentTemperature: BehaviorSubject<Temperature>, tempRange: CountableClosedRange<Int>, scale: TemperatureScale, coolOrHeat: CoolOrHeat) {
+    init(currentTemperature: BehaviorSubject<Temperature>, minTemp: Temperature, maxTemp: Temperature, scale: TemperatureScale, coolOrHeat: CoolOrHeat) {
         self.currentTemperature = currentTemperature
         self.coolOrHeat = coolOrHeat
         super.init(frame: .zero)
@@ -44,8 +44,8 @@ class TemperatureSliderView: UIView {
         minLabel.font = SystemFont.regular.of(size: 17)
         maxLabel.font = SystemFont.regular.of(size: 17)
         
-        slider.minimumValue = Float(tempRange.lowerBound)
-        slider.maximumValue = Float(tempRange.upperBound)
+        slider.minimumValue = Float(minTemp.value(forScale: scale))
+        slider.maximumValue = Float(maxTemp.value(forScale: scale))
         
         currentTemperature.asObservable().take(1)
             .distinctUntilChanged()
@@ -67,8 +67,8 @@ class TemperatureSliderView: UIView {
             .drive(temperatureLabel.rx.text)
             .disposed(by: disposeBag)
 
-        minLabel.text = String(tempRange.lowerBound)
-        maxLabel.text = String(tempRange.upperBound)
+        minLabel.text = String(minTemp.value(forScale: scale))
+        maxLabel.text = String(maxTemp.value(forScale: scale))
         
         temperatureLabel.setContentHuggingPriority(1000, for: .horizontal)
         let labelStack = UIStackView(arrangedSubviews: [titleLabel, temperatureLabel]).usingAutoLayout()

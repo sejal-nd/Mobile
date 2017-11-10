@@ -33,6 +33,18 @@ protocol PeakRewardsService {
                                  premiseNumber: String,
                                  completion: @escaping (_ result: ServiceResult<[PeakRewardsOverride]>) -> Void)
     
+    /// Fetch the smart thermostat device's settings.
+    ///
+    /// - Parameters:
+    ///   - accountNumber: the account to fetch data for
+    ///   - premiseNumber: the premise to fetch data for
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain a SmartThermostatDeviceSettings on success, or a ServiceError on failure.
+    func fetchDeviceSettings(accountNumber: String,
+                             premiseNumber: String,
+                             device: SmartThermostatDevice,
+                             completion: @escaping (_ result: ServiceResult<SmartThermostatDeviceSettings>) -> Void)
+    
     /// Fetch the smart thermostat schedule for the specified device.
     ///
     /// - Parameters:
@@ -91,6 +103,23 @@ extension PeakRewardsService {
                 switch $0 {
                 case ServiceResult.Success(let overrides):
                     observer.onNext(overrides)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchDeviceSettings(accountNumber: String,
+                             premiseNumber: String,
+                             device: SmartThermostatDevice) -> Observable<SmartThermostatDeviceSettings> {
+        return Observable.create { observer in
+            self.fetchDeviceSettings(accountNumber: accountNumber, premiseNumber: premiseNumber, device: device) {
+                switch $0 {
+                case ServiceResult.Success(let settings):
+                    observer.onNext(settings)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

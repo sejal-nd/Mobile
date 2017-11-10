@@ -68,6 +68,7 @@ extension SelectDeviceViewController: UITableViewDataSource {
 extension SelectDeviceViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectedDeviceIndex.value = indexPath.row
+        navigationController?.popViewController(animated: true)
     }
 }
 
