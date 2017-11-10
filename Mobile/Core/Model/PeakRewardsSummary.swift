@@ -92,6 +92,49 @@ struct SmartThermostatDeviceSchedule: Mappable {
         returnInfo = try map.from("return")
         sleepInfo = try map.from("sleep")
     }
+    
+    init(wakeInfo: SmartThermostatPeriodInfo,
+         leaveInfo: SmartThermostatPeriodInfo,
+         returnInfo: SmartThermostatPeriodInfo,
+         sleepInfo: SmartThermostatPeriodInfo) {
+        self.wakeInfo = wakeInfo
+        self.leaveInfo = leaveInfo
+        self.returnInfo = returnInfo
+        self.sleepInfo = sleepInfo
+    }
+    
+    func info(for period: SmartThermostatPeriod) -> SmartThermostatPeriodInfo {
+        switch period {
+        case .wake:
+            return wakeInfo
+        case .leave:
+            return leaveInfo
+        case .return:
+            return returnInfo
+        case .sleep:
+            return sleepInfo
+        }
+    }
+    
+    func newSchedule(forPeriod period: SmartThermostatPeriod, info: SmartThermostatPeriodInfo) -> SmartThermostatDeviceSchedule {
+        switch period {
+        case .wake:
+            return SmartThermostatDeviceSchedule(wakeInfo: info, leaveInfo: leaveInfo, returnInfo: returnInfo, sleepInfo: sleepInfo)
+        case .leave:
+            return SmartThermostatDeviceSchedule(wakeInfo: wakeInfo, leaveInfo: info, returnInfo: returnInfo, sleepInfo: sleepInfo)
+        case .return:
+            return SmartThermostatDeviceSchedule(wakeInfo: wakeInfo, leaveInfo: leaveInfo, returnInfo: info, sleepInfo: sleepInfo)
+        case .sleep:
+            return SmartThermostatDeviceSchedule(wakeInfo: wakeInfo, leaveInfo: leaveInfo, returnInfo: returnInfo, sleepInfo: info)
+        }
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return ["wake": wakeInfo.toDictionary(),
+                "leave": leaveInfo.toDictionary(),
+                "return": returnInfo.toDictionary(),
+                "sleep": sleepInfo.toDictionary()]
+    }
 }
 
 enum SmartThermostatPeriod: String {
@@ -113,7 +156,14 @@ enum SmartThermostatPeriod: String {
 struct SmartThermostatPeriodInfo: Mappable {
     let coolTemp: Temperature
     let heatTemp: Temperature
-    let startTime: String
+    let startTime: Date
+    
+    var startTimeDisplayString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.string(from: startTime)
+    }
     
     init(map: Mapper) throws {
         let tempMapper: (Any) throws -> Temperature = { v in
@@ -135,19 +185,33 @@ struct SmartThermostatPeriodInfo: Mappable {
             }
             
             let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .opCo
             dateFormatter.dateFormat = "HH:mm"
             guard let date = dateFormatter.date(from: string) else {
                 throw MapperError.convertibleError(value: string, type: Date.self)
             }
             
-            let dateFormatter2 = DateFormatter()
-            dateFormatter2.dateFormat = "h:mm a"
-            return dateFormatter2.string(from: date)
+            return date
         }
+    }
+    
+    init(startTime: Date, coolTemp: Temperature, heatTemp: Temperature) {
+        self.startTime = startTime
+        self.coolTemp = coolTemp
+        self.heatTemp = heatTemp
+    }
+    
+    func toDictionary() -> [String: Any] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "HH:mm"
+        
+        return ["coolTemp": coolTemp.fahrenheit, "heatTemp": heatTemp.fahrenheit, "startTime": dateFormatter.string(from: startTime)]
     }
 }
 
-struct Temperature {
+struct Temperature: Equatable {
+    
     private let fahrenheitValue: Double
     
     init(value: Double, scale: TemperatureScale) {
@@ -159,6 +223,10 @@ struct Temperature {
         }
     }
     
+    init(value: Float, scale: TemperatureScale) {
+        self.init(value: Double(value), scale: scale)
+    }
+    
     var fahrenheit: Int {
         return Int(round(fahrenheitValue))
     }
@@ -167,13 +235,17 @@ struct Temperature {
         return Int(round((fahrenheitValue - 32.0) * 5.0 / 9.0))
     }
     
-    var value: Int {
-        switch TemperatureScaleStore.shared.scale {
+    func value(forScale scale: TemperatureScale) -> Int {
+        switch scale {
         case .fahrenheit:
             return fahrenheit
         case .celsius:
             return celsius
         }
+    }
+    
+    static func ==(lhs: Temperature, rhs: Temperature) -> Bool {
+        return lhs.fahrenheitValue == rhs.fahrenheitValue
     }
 }
 

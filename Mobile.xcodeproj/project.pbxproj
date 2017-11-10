@@ -333,6 +333,16 @@
 		826773391FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */; };
 		8267733A1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */; };
 		8267733B1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */; };
+		8267733D1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */; };
+		8267733E1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */; };
+		8267733F1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */; };
+		826773411FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */; };
+		826773421FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */; };
+		826773431FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */; };
+		826773441FB2303000A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */; };
+		826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773451FB2330400A8CFAA /* TemperatureSliderView.swift */; };
+		826773471FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773451FB2330400A8CFAA /* TemperatureSliderView.swift */; };
+		826773481FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773451FB2330400A8CFAA /* TemperatureSliderView.swift */; };
 		826DCCE91F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */; };
 		826DCCEA1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */; };
 		826DCCEB1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */; };
@@ -1588,6 +1598,9 @@
 		826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceViewController.swift; sourceTree = "<group>"; };
 		826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewUsingAutoLayout.swift; sourceTree = "<group>"; };
 		826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatDeviceCell.swift; sourceTree = "<group>"; };
+		8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatScheduleViewController.swift; sourceTree = "<group>"; };
+		826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatScheduleViewModel.swift; sourceTree = "<group>"; };
+		826773451FB2330400A8CFAA /* TemperatureSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureSliderView.swift; sourceTree = "<group>"; };
 		826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAccountViewController.swift; sourceTree = "<group>"; };
 		826DCCEC1F0E7E410063D47E /* DefaultAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAccountViewModel.swift; sourceTree = "<group>"; };
 		826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerTableViewCell.swift; sourceTree = "<group>"; };
@@ -2796,6 +2809,7 @@
 			children = (
 				82AC2A151FAB5C3900EACB3B /* PeakRewardsViewController.swift */,
 				826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */,
+				8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */,
 			);
 			path = "Smart Thermostat Peak Rewards";
 			sourceTree = "<group>";
@@ -2804,6 +2818,7 @@
 			isa = PBXGroup;
 			children = (
 				82AC2A221FAB729E00EACB3B /* PeakRewardsViewModel.swift */,
+				826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */,
 			);
 			path = "Peak Rewards";
 			sourceTree = "<group>";
@@ -2933,6 +2948,7 @@
 				821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */,
 				8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */,
 				8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */,
+				826773451FB2330400A8CFAA /* TemperatureSliderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4789,6 +4805,8 @@
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				82A18F0E1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
+				826773411FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
+				8267733D1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				E89983E11F61F4B0001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				E83F027A1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
@@ -4811,6 +4829,7 @@
 				54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
+				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				8218988E1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */,
 				2FA7B9FA1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
@@ -5069,6 +5088,8 @@
 				54AE06AC1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				826773431FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
+				8267733F1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				54EDD2E11ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
 				E83F027C1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				E89983E31F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
@@ -5091,6 +5112,7 @@
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				545784B41EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFF1E787655001E8A44 /* OutageInfo.swift in Sources */,
+				826773481FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				821898901F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */,
 				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
@@ -5349,6 +5371,8 @@
 				54AE06AB1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				E800430A1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				826773421FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
+				8267733E1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				54EDD2E01ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
 				E83F027B1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				E89983E21F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
@@ -5371,6 +5395,7 @@
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				545784B31EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */,
+				826773471FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				8218988F1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */,
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
@@ -5477,6 +5502,7 @@
 				E89399401F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
 				E8FF08661F7EDE330030F1BF /* BillingHistoryViewModel.swift in Sources */,
+				826773441FB2303000A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				E89F493E1F9685120060D084 /* BillAnalysisViewModelTests.swift in Sources */,
 				E81F38161ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
@@ -5840,7 +5866,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE = "2d6ec98c-58bf-4209-a895-1ae8299bab68";
+				PROVISIONING_PROFILE_SPECIFIER = "MG Dev Profile";
 			};
 			name = "Testing-Support";
 		};
@@ -6296,7 +6323,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE = "2d6ec98c-58bf-4209-a895-1ae8299bab68";
+				PROVISIONING_PROFILE_SPECIFIER = "MG Dev Profile";
 			};
 			name = Develop;
 		};
@@ -6619,8 +6647,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9620f6c0-fb05-4197-aacf-40775b56478e";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE = "2d6ec98c-58bf-4209-a895-1ae8299bab68";
+				PROVISIONING_PROFILE_SPECIFIER = "MG Dev Profile";
 			};
 			name = Testing;
 		};

@@ -19,6 +19,7 @@ class PeakRewardsViewModel {
     let accountDetail: AccountDetail
     
     let rootScreenWillReappear = PublishSubject<Void>()
+    let deviceScheduleChanged = PublishSubject<Void>()
     
     let peakRewardsSummaryFetchTracker = ActivityTracker()
     let deviceScheduleFetchTracker = ActivityTracker()
@@ -43,7 +44,8 @@ class PeakRewardsViewModel {
         .materialize()
         .shareReplay(1)
     
-    private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule?>> = self.selectedDevice.asObservable()
+    private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule?>> = Observable
+        .merge(self.selectedDevice.asObservable(), self.deviceScheduleChanged.withLatestFrom(self.selectedDevice.asObservable()))
         .flatMapLatest { [weak self] device -> Observable<Event<SmartThermostatDeviceSchedule?>> in
             guard let `self` = self else { return .empty() }
             guard device.isSmartThermostat else {
@@ -67,7 +69,7 @@ class PeakRewardsViewModel {
     
     private(set) lazy var selectedDevice: Driver<SmartThermostatDevice> = Observable
         .combineLatest(self.peakRewardsSummaryEvents.elements(),
-                       self.rootScreenWillReappear.withLatestFrom(self.selectedDeviceIndex.asObservable().distinctUntilChanged()))
+                       self.selectedDeviceIndex.asObservable().sample(self.rootScreenWillReappear).distinctUntilChanged())
         .map { $0.devices[$1] }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -77,7 +79,7 @@ class PeakRewardsViewModel {
         .map { $0.programs }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var deviceSchedule: Driver<SmartThermostatDeviceSchedule> = self.deviceScheduleEvents.elements()
+    private(set) lazy var deviceSchedule: Driver<SmartThermostatDeviceSchedule> = self.deviceScheduleEvents.elements()
         .unwrap()
         .asDriver(onErrorDriveWith: .empty())
 

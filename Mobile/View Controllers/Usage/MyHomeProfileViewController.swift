@@ -150,7 +150,7 @@ class MyHomeProfileViewController: UIViewController {
                 } else {
                     selectedIndex = 0
                 }
-                PickerView.show(withTitle: NSLocalizedString("Select Home Type", comment: ""),
+                PickerView.showStringPicker(withTitle: NSLocalizedString("Select Home Type", comment: ""),
                                 data: HomeType.allCases.map { $0.displayString },
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
@@ -173,7 +173,7 @@ class MyHomeProfileViewController: UIViewController {
                 } else {
                     selectedIndex = 0
                 }
-                PickerView.show(withTitle: NSLocalizedString("Select Fuel Type", comment: ""),
+                PickerView.showStringPicker(withTitle: NSLocalizedString("Select Fuel Type", comment: ""),
                                 data: HeatType.allCases.map { $0.displayString },
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
@@ -196,7 +196,7 @@ class MyHomeProfileViewController: UIViewController {
                 } else {
                     selectedIndex = 0
                 }
-                PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
+                PickerView.showStringPicker(withTitle: NSLocalizedString("Select Number", comment: ""),
                                 data: self.viewModel.numberOfAdultsDisplayOptions,
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
@@ -219,7 +219,7 @@ class MyHomeProfileViewController: UIViewController {
                 } else {
                     selectedIndex = 0
                 }
-                PickerView.show(withTitle: NSLocalizedString("Select Number", comment: ""),
+                PickerView.showStringPicker(withTitle: NSLocalizedString("Select Number", comment: ""),
                                 data: self.viewModel.numberOfChildrenDisplayOptions,
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
