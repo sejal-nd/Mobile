@@ -205,6 +205,31 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MC6-cd-MhW">
+                                <rect key="frame" x="96" y="341" width="182.5" height="151"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_alerts_empty" translatesAutoresizingMaskIntoConstraints="NO" id="SNi-DM-9xY">
+                                        <rect key="frame" x="41" y="0.0" width="100" height="100"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCj-TX-FPa">
+                                        <rect key="frame" x="0.0" y="110" width="182.5" height="41"/>
+                                        <string key="text">There are no updates at
+this time.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="SNi-DM-9xY" firstAttribute="top" secondItem="MC6-cd-MhW" secondAttribute="top" id="4Zt-UP-QjJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="gCj-TX-FPa" secondAttribute="trailing" id="9Ko-Al-VDo"/>
+                                    <constraint firstItem="gCj-TX-FPa" firstAttribute="top" secondItem="SNi-DM-9xY" secondAttribute="bottom" constant="10" id="Fen-p1-3ny"/>
+                                    <constraint firstItem="gCj-TX-FPa" firstAttribute="leading" secondItem="MC6-cd-MhW" secondAttribute="leading" id="NlP-7x-8R7"/>
+                                    <constraint firstItem="SNi-DM-9xY" firstAttribute="centerX" secondItem="MC6-cd-MhW" secondAttribute="centerX" id="ire-vl-TQj"/>
+                                    <constraint firstAttribute="bottom" secondItem="gCj-TX-FPa" secondAttribute="bottom" id="oYl-cz-1Uo"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbq-sV-lLn">
                                 <rect key="frame" x="96" y="341.5" width="182.5" height="151"/>
                                 <subviews>
@@ -238,6 +263,7 @@ this time.</string>
                             <constraint firstAttribute="trailing" secondItem="Fcn-Wj-y0Q" secondAttribute="trailing" priority="999" id="877-Ad-LBn"/>
                             <constraint firstItem="Vbq-sV-lLn" firstAttribute="centerX" secondItem="9Ks-fh-caA" secondAttribute="centerX" id="Awh-wF-Cef"/>
                             <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="Fcn-Wj-y0Q" secondAttribute="bottom" id="Cog-iU-2ro"/>
+                            <constraint firstItem="MC6-cd-MhW" firstAttribute="centerY" secondItem="Fcn-Wj-y0Q" secondAttribute="centerY" id="Eo6-4H-Lnz"/>
                             <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="gTf-VA-0un" secondAttribute="bottom" id="Ggx-Td-Bye"/>
                             <constraint firstAttribute="trailing" secondItem="gTf-VA-0un" secondAttribute="trailing" id="HA9-4Q-LfT"/>
                             <constraint firstItem="Vbq-sV-lLn" firstAttribute="centerY" secondItem="9Ks-fh-caA" secondAttribute="centerY" id="KJO-AZ-qQI"/>
@@ -251,6 +277,7 @@ this time.</string>
                             <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="centerX" secondItem="SQH-FY-2sQ" secondAttribute="centerX" id="g5q-ii-2i7"/>
                             <constraint firstAttribute="trailing" secondItem="IKg-bb-ob0" secondAttribute="trailing" priority="999" constant="29" id="jCi-Sa-PAy"/>
                             <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" priority="999" id="jdU-e7-dml"/>
+                            <constraint firstItem="MC6-cd-MhW" firstAttribute="centerX" secondItem="Fcn-Wj-y0Q" secondAttribute="centerX" id="kuI-01-vhw"/>
                             <constraint firstItem="IKg-bb-ob0" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" priority="999" constant="29" id="l8W-dC-CcK"/>
                             <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="9Ks-fh-caA" secondAttribute="bottom" id="lyc-Ir-L4v"/>
                             <constraint firstItem="cZW-SD-mnJ" firstAttribute="centerX" secondItem="9Ks-fh-caA" secondAttribute="centerX" id="mDQ-de-RZm"/>
@@ -264,6 +291,8 @@ this time.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="accountPicker" destination="cmz-Qs-KFn" id="12g-O5-a00"/>
+                        <outlet property="alertsEmptyStateLabel" destination="gCj-TX-FPa" id="V5G-2D-wg5"/>
+                        <outlet property="alertsEmptyStateView" destination="MC6-cd-MhW" id="7ap-pX-X4g"/>
                         <outlet property="alertsTableView" destination="Fcn-Wj-y0Q" id="nKs-sG-cgg"/>
                         <outlet property="backgroundView" destination="gTf-VA-0un" id="0FZ-NN-bVF"/>
                         <outlet property="errorLabel" destination="IKg-bb-ob0" id="WlD-HG-o8E"/>
@@ -892,6 +921,7 @@ this time.</string>
         </scene>
     </scenes>
     <resources>
+        <image name="ic_alerts_empty" width="100" height="100"/>
         <image name="ic_settings" width="22" height="22"/>
         <image name="ic_updates_empty" width="100" height="100"/>
     </resources>

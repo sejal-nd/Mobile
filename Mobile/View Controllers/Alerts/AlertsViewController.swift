@@ -9,11 +9,11 @@
 import RxSwift
 import RxCocoa
 
-let testAlerts: [String] = [
-    "Outage to area 1215 E Fort Ave analyzed. The probable cause is unknown. Estimated restoration time 8/22/17 at 9:00 PM",
-    "Severe thunderstorms in 1215 E Fort Ave from 2:00 PM to 5:00 PM. Be prepared for possible outages.",
-    "Payment for account ending in 1234. Amount of $150.50 is due on 7/22/17."
-]
+//let testAlerts: [String] = [
+//    "Outage to area 1215 E Fort Ave analyzed. The probable cause is unknown. Estimated restoration time 8/22/17 at 9:00 PM",
+//    "Severe thunderstorms in 1215 E Fort Ave from 2:00 PM to 5:00 PM. Be prepared for possible outages.",
+//    "Payment for account ending in 1234. Amount of $150.50 is due on 7/22/17."
+//]
 
 class AlertsViewController: AccountPickerViewController {
     
@@ -26,6 +26,8 @@ class AlertsViewController: AccountPickerViewController {
     @IBOutlet weak var alertsTableView: UITableView!
     @IBOutlet weak var preferencesButton: ButtonControl!
     @IBOutlet weak var preferencesButtonLabel: UILabel!
+    @IBOutlet weak var alertsEmptyStateView: UIView!
+    @IBOutlet weak var alertsEmptyStateLabel: UILabel!
     
     @IBOutlet weak var updatesTableView: UITableView!
     @IBOutlet weak var updatesEmptyStateView: UIView!
@@ -109,6 +111,10 @@ class AlertsViewController: AccountPickerViewController {
         preferencesButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
         
+        alertsEmptyStateLabel.textColor = .middleGray
+        alertsEmptyStateLabel.font = OpenSans.regular.of(size: 18)
+        alertsEmptyStateLabel.text = NSLocalizedString("You haven't received any\nnotifications yet.", comment: "")
+        
         updatesEmptyStateLabel.textColor = .middleGray
         updatesEmptyStateLabel.font = OpenSans.regular.of(size: 18)
         updatesEmptyStateLabel.text = NSLocalizedString("There are no updates at\nthis time.", comment: "")
@@ -119,10 +125,14 @@ class AlertsViewController: AccountPickerViewController {
         
         viewModel.backgroundViewColor.drive(backgroundView.rx.backgroundColor).disposed(by: disposeBag)
         
-        viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowLoadingIndicator.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowAlertsTableView.not().drive(alertsTableView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAlertsEmptyState.not().drive(alertsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAlertsEmptyState.asObservable().subscribe(onNext: { [weak self] shouldShow in
+            self?.alertsTableView.isScrollEnabled = !shouldShow
+        }).disposed(by: disposeBag)
         
         viewModel.shouldShowUpdatesTableView.not().drive(updatesTableView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowUpdatesEmptyState.not().drive(updatesEmptyStateView.rx.isHidden).disposed(by: disposeBag)
@@ -169,7 +179,7 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == alertsTableView {
-            return testAlerts.count
+            return viewModel.currentAlerts.value.count
         }
         if tableView == updatesTableView {
             return 1
@@ -201,7 +211,7 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
             
             cell!.textLabel?.textColor = .deepGray
             cell!.textLabel?.font = SystemFont.regular.of(textStyle: .headline)
-            cell!.textLabel?.text = testAlerts[indexPath.row]
+            cell!.textLabel?.text = viewModel.currentAlerts.value[indexPath.row].message
             
             return cell!
         }

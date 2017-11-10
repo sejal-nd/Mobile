@@ -47,6 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAnalytics()
         //printFonts()
         
+        _ = AlertsStore.sharedInstance.alerts // Triggers the loading of alerts from disk
+        
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
         
@@ -97,15 +99,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         NSLog("*-*-*-*-* didReceiveRemoteNotification: \(userInfo)")
         
-//        {
-//            "aps" : {
-//                "alert": {
-//                    "body": "Your notification message here",
-//                    "title": "Planned Outage"
-//                }
-//            },
-//            "accoundIds": []
-//        }
+        //        {
+        //            "aps" : {
+        //                "alert": {
+        //                    "body": "Your notification message here",
+        //                    "title": "Planned Outage"
+        //                }
+        //            },
+        //            "accoundIds": []
+        //        }
+        
+        guard let aps = userInfo["aps"] as? [String: Any] else { return }
+        guard let alert = aps["alert"] as? [String: Any] else { return }
+        guard let accountNumbers = userInfo["accoundIds"] as? [String] else { return }
+
+        let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
+        AlertsStore.sharedInstance.savePushNotification(notification)
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {

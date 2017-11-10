@@ -24,6 +24,7 @@ class AlertsViewModel {
     let isError = Variable(false)
     
     var currentAccountDetail: AccountDetail?
+    var currentAlerts = Variable([PushNotification]())
     var currentOpcoUpdates: [OpcoUpdate]?
     
     required init(accountService: AccountService, alertsService: AlertsService) {
@@ -34,6 +35,8 @@ class AlertsViewModel {
     func fetchData() {
         isFetching.value = true
         isError.value = false
+        
+        currentAlerts.value = AlertsStore.sharedInstance.getAlerts(forAccountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
         
         accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
             .observeOn(MainScheduler.instance)
@@ -56,15 +59,29 @@ class AlertsViewModel {
             }).disposed(by: disposeBag)
     }
     
-    private(set) lazy var shouldShowAlertsTableView: Driver<Bool> =
-        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) {
-            return $0 == 0 && !$1 && !$2
-        }
+    private(set) lazy var shouldShowAlertsTableView: Driver<Bool> = self.selectedSegmentIndex.asDriver().map { $0 == 0 }
+//        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) {
+//            return $0 == 0 && !$1 && !$2
+//        }
     
     private(set) lazy var shouldShowUpdatesTableView: Driver<Bool> =
         Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) {
             return $0 == 1 && !$1 && !$2
         }
+    
+    private(set) lazy var shouldShowLoadingIndicator: Driver<Bool> =
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver()) {
+            return $0 == 1 && $1
+        }
+    
+    private(set) lazy var shouldShowAlertsEmptyState: Driver<Bool> =
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.currentAlerts.asDriver()) {
+            return $0 == 0 && $1.count == 0
+        }
+//        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) { [weak self] in
+//            guard let `self` = self else { return false }
+//            return $0 == 0 && !$1 && !$2 && self.currentAlerts.count == 0
+//        }
     
     private(set) lazy var shouldShowUpdatesEmptyState: Driver<Bool> =
         Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isError.asDriver()) { [weak self] in
