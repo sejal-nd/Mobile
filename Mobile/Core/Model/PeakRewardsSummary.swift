@@ -18,6 +18,31 @@ struct PeakRewardsSummary: Mappable {
     }
 }
 
+struct PeakRewardsOverride: Mappable {
+    let serialNumber: String
+    let status: OverrideStatus?
+    
+    init(map: Mapper) throws {
+        serialNumber = try map.from("serialNumber")
+        status = map.optionalFrom("status") {
+            guard let string = $0 as? String else {
+                throw MapperError.convertibleError(value: $0, type: String.self)
+            }
+            
+            guard let status = OverrideStatus(rawValue: string) else {
+                throw MapperError.convertibleError(value: string, type: OverrideStatus.self)
+            }
+            
+            return status
+        }
+    }
+}
+
+enum OverrideStatus: String {
+    case scheduled = "Scheduled"
+    case active = "Active"
+}
+
 struct SmartThermostatDevice: Mappable, Equatable {
     let serialNumber: String
     let programs: [String]

@@ -22,6 +22,17 @@ protocol PeakRewardsService {
                                  premiseNumber: String,
                                  completion: @escaping (_ result: ServiceResult<PeakRewardsSummary>) -> Void)
     
+    /// Fetch the user's scheduled overrides.
+    ///
+    /// - Parameters:
+    ///   - accountNumber: the account to fetch data for
+    ///   - premiseNumber: the premise to fetch data for
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain a PeakRewardsOverride on success, or a ServiceError on failure.
+    func fetchPeakRewardsOverrides(accountNumber: String,
+                                 premiseNumber: String,
+                                 completion: @escaping (_ result: ServiceResult<[PeakRewardsOverride]>) -> Void)
+    
     /// Fetch the smart thermostat schedule for the specified device.
     ///
     /// - Parameters:
@@ -65,6 +76,21 @@ extension PeakRewardsService {
                 switch $0 {
                 case ServiceResult.Success(let peakRewardsSummary):
                     observer.onNext(peakRewardsSummary)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchPeakRewardsOverrides(accountNumber: String, premiseNumber: String) -> Observable<[PeakRewardsOverride]> {
+        return Observable.create { observer in
+            self.fetchPeakRewardsOverrides(accountNumber: accountNumber, premiseNumber: premiseNumber) {
+                switch $0 {
+                case ServiceResult.Success(let overrides):
+                    observer.onNext(overrides)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

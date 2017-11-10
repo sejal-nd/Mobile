@@ -42,7 +42,14 @@ class PeakRewardsViewModel {
                                  premiseNumber: self.premiseNumber)
         .trackActivity(self.peakRewardsSummaryFetchTracker)
         .materialize()
-        .shareReplay(1)
+        .share()
+    
+    private lazy var peakRewardsOverridesEvents: Observable<Event<[PeakRewardsOverride]>> = self.peakRewardsService
+        .fetchPeakRewardsOverrides(accountNumber: self.accountDetail.accountNumber,
+                                   premiseNumber: self.premiseNumber)
+        .trackActivity(self.peakRewardsSummaryFetchTracker)
+        .materialize()
+        .share()
     
     private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule?>> = Observable
         .merge(self.selectedDevice.asObservable(), self.deviceScheduleChanged.withLatestFrom(self.selectedDevice.asObservable()))
