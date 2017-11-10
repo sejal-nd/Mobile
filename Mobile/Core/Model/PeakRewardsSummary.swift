@@ -21,6 +21,8 @@ struct PeakRewardsSummary: Mappable {
 struct PeakRewardsOverride: Mappable {
     let serialNumber: String
     let status: OverrideStatus?
+    let start: Date?
+    let stop: Date?
     
     init(map: Mapper) throws {
         serialNumber = try map.from("serialNumber")
@@ -35,6 +37,25 @@ struct PeakRewardsOverride: Mappable {
             
             return status
         }
+        
+        let extractDate = { (object: Any) throws -> Date in
+            guard let string = object as? String else {
+                throw MapperError.convertibleError(value: object, type: String.self)
+            }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .opCo
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            
+            guard let date = dateFormatter.date(from: string) else {
+                throw MapperError.convertibleError(value: string, type: Date.self)
+            }
+            
+            return date
+        }
+        
+        start = map.optionalFrom("start", transformation: extractDate)
+        stop = map.optionalFrom("stop", transformation: extractDate)
     }
 }
 
@@ -75,20 +96,52 @@ struct PeakRewardsProgram: Mappable {
     let name: String
     let displayName: String
     let isActive: Bool
-    let status: String
+    let status: PeakRewardsProgramStatus
     let gearName: String
-//    let startDate: Date
-//    let stopDate: Date?
+    let startDate: Date?
+    let stopDate: Date?
     
     init(map: Mapper) throws {
         name = try map.from("name")
         displayName = try map.from("displayName")
         isActive = try map.from("isActive")
-        status = try map.from("status")
+        status = try map.from("status") {
+            guard let string = $0 as? String else {
+                throw MapperError.convertibleError(value: $0, type: String.self)
+            }
+            
+            guard let status = PeakRewardsProgramStatus(rawValue: string) else {
+                throw MapperError.convertibleError(value: string, type: PeakRewardsProgramStatus.self)
+            }
+            
+            return status
+        }
         gearName = try map.from("gearName")
-//        startDate = map.from("startDate")
-//        stopDate = map.optionalFrom("stopDate")
+        
+        let extractDate = { (object: Any) throws -> Date in
+            guard let string = object as? String else {
+                throw MapperError.convertibleError(value: object, type: String.self)
+            }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .opCo
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            
+            guard let date = dateFormatter.date(from: string) else {
+                throw MapperError.convertibleError(value: string, type: Date.self)
+            }
+            
+            return date
+        }
+        
+        startDate = map.optionalFrom("startDate", transformation: extractDate)
+        stopDate = map.optionalFrom("stopDate", transformation: extractDate)
     }
+}
+
+enum PeakRewardsProgramStatus: String {
+    case active = "Active"
+    case inactive = "Inactive"
 }
 
 struct SmartThermostatDeviceSettings: Mappable {

@@ -46,6 +46,7 @@ class PeakRewardsViewController: UIViewController {
         styleViews()
         bindViews()
         bindActions()
+        viewModel.loadInitialData.onNext(())
     }
     
     func styleViews() {
@@ -94,14 +95,14 @@ class PeakRewardsViewController: UIViewController {
         
         viewModel.selectedDeviceName.drive(deviceButton.label.rx.text).disposed(by: disposeBag)
         
-        viewModel.peakRewardsPrograms
-            .drive(onNext: { [weak self] programs in
+        viewModel.programCardsData
+            .drive(onNext: { [weak self] programCardsData in
                 guard let `self` = self else { return }
                 self.programCardStack.arrangedSubviews
                     .dropFirst() // Don't remove the header label from the stack
                     .forEach(self.programCardStack.removeArrangedSubview)
                 
-                programs
+                programCardsData
                     .map(PeakRewardsProgramCard.init)
                     .forEach(self.programCardStack.addArrangedSubview)
             })

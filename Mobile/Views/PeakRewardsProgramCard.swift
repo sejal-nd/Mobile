@@ -10,7 +10,7 @@ import UIKit
 
 class PeakRewardsProgramCard: UIView {
     
-    convenience init(program: PeakRewardsProgram) {
+    convenience init(title: String, body: String) {
         self.init(frame: .zero)
         
         addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -18,7 +18,7 @@ class PeakRewardsProgramCard: UIView {
         backgroundColor = .white
         
         let titleLabel = UILabel()
-        titleLabel.text = program.displayName
+        titleLabel.text = title
         titleLabel.numberOfLines = 0
         titleLabel.textColor = .blackText
         titleLabel.font = OpenSans.bold.of(textStyle: .footnote)
@@ -31,7 +31,7 @@ class PeakRewardsProgramCard: UIView {
         let descriptionContainer = UIView()
         
         let descriptionLabel = UILabel()
-        descriptionLabel.text = program.status
+        descriptionLabel.text = body
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .deepGray
         descriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
