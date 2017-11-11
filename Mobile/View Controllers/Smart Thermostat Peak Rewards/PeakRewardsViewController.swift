@@ -144,6 +144,16 @@ class PeakRewardsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        adjustThermostatButton.rx.tap.asDriver()
+            .withLatestFrom(viewModel.selectedDevice)
+            .map { [unowned self] in (ServiceFactory.createPeakRewardsService(), self.viewModel.accountDetail, $0) }
+            .map(AdjustThermostatViewModel.init)
+            .map(AdjustThermostatViewController.init)
+            .drive(onNext: { [weak self] in
+                self?.navigationController?.pushViewController($0, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
         Driver.merge(
             wakePeriodCard.rx.touchUpInside.asDriver()
                 .withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, Driver.just(SmartThermostatPeriod.wake), viewModel.deviceSchedule)),

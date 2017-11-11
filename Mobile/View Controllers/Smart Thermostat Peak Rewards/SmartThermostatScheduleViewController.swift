@@ -65,13 +65,13 @@ class SmartThermostatScheduleViewController: UIViewController {
                                                        minTemp: minTemp,
                                                        maxTemp: maxTemp,
                                                        scale: TemperatureScaleStore.shared.scale,
-                                                       coolOrHeat: .cool).usingAutoLayout()
+                                                       mode: Variable(.cool)).usingAutoLayout()
         
         let heatTempSliderView = TemperatureSliderView(currentTemperature: viewModel.heatTemp,
                                                        minTemp: minTemp,
                                                        maxTemp: maxTemp,
                                                        scale: TemperatureScaleStore.shared.scale,
-                                                       coolOrHeat: .heat).usingAutoLayout()
+                                                       mode: Variable(.heat)).usingAutoLayout()
         
         let sliderStack = UIStackView(arrangedSubviews: [coolTempSliderView, heatTempSliderView]).usingAutoLayout()
         sliderStack.axis = .vertical
@@ -121,6 +121,7 @@ class SmartThermostatScheduleViewController: UIViewController {
         cancelButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in self?.navigationController?.popViewController(animated: true) })
             .disposed(by: disposeBag)
+        
         saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
     }
     

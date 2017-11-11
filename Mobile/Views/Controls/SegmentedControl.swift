@@ -19,6 +19,11 @@ class SegmentedControl: UIControl {
     private var buttons = [UIButton]()
     private var bigBottomBar: UIView?
     private var selectedBar: UIView?
+    
+    init() {
+        super.init(frame: .zero)
+        commonInit()
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

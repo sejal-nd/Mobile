@@ -185,6 +185,10 @@ enum SmartThermostatFan: String {
             return NSLocalizedString("On", comment: "")
         }
     }
+    
+    static var allValues: [SmartThermostatFan] {
+        return [.auto, .circulate, .on]
+    }
 }
 
 enum SmartThermostatMode: String {
@@ -201,6 +205,10 @@ enum SmartThermostatMode: String {
         case .off:
             return NSLocalizedString("Off", comment: "")
         }
+    }
+    
+    static var allValues: [SmartThermostatMode] {
+        return [.cool, .heat, .off]
     }
 
 }
