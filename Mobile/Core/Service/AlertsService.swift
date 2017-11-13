@@ -35,6 +35,14 @@ protocol AlertsService {
     ///   - completion: the completion block to execute upon completion.
     func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
+    /// Enrolls in the budget billing push notification preference. This is a separate call so that
+    /// we can use it individually during budget billing enrollment without impacting other notification prefs
+    ///
+    /// - Parameters:
+    ///   - accountNumber: The account to set prefs for
+    ///   - completion: the completion block to execute upon completion.
+    func enrollBudgetBillingNotification(accountNumber: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
     /// Fetch alerts language setting for ComEd account
     ///
     /// - Parameters:
@@ -94,6 +102,21 @@ extension AlertsService {
     func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences) -> Observable<Void> {
         return Observable.create { observer in
             self.setAlertPreferences(accountNumber: accountNumber, alertPreferences: alertPreferences, completion: { (result: ServiceResult<Void>) in
+                switch result {
+                case ServiceResult.Success:
+                    observer.onNext()
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func enrollBudgetBillingNotification(accountNumber: String) -> Observable<Void> {
+        return Observable.create { observer in
+            self.enrollBudgetBillingNotification(accountNumber: accountNumber, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
                     observer.onNext()
