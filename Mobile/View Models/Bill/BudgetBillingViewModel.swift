@@ -56,6 +56,7 @@ class BudgetBillingViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
+                NotificationCenter.default.post(name: .DidChangeBudgetBillingEnrollment, object: self)
                 if Environment.sharedInstance.opco != .bge {
                     self.alertsService.enrollBudgetBillingNotification(accountNumber: self.accountDetail.accountNumber)
                         .observeOn(MainScheduler.instance)
@@ -79,6 +80,7 @@ class BudgetBillingViewModel {
         billService.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: getReasonString(forIndex: selectedUnenrollmentReason.value))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
+                NotificationCenter.default.post(name: .DidChangeBudgetBillingEnrollment, object: self)
                 onSuccess()
             }, onError: { error in
                 onError(error.localizedDescription)

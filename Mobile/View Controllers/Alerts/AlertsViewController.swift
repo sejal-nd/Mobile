@@ -58,6 +58,14 @@ class AlertsViewController: AccountPickerViewController {
         styleViews()
         bindViewModel()
         
+        NotificationCenter.default.rx.notification(.DidChangeBudgetBillingEnrollment, object: nil)
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                // Clear account detail, which would force a refresh (in the .readyToFetchData block below) when the screen appears
+                self?.viewModel.currentAccountDetail = nil
+            })
+            .disposed(by: disposeBag)
+        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
@@ -67,13 +75,11 @@ class AlertsViewController: AccountPickerViewController {
                 self.viewModel.isFetching.value = true
                 break
             case .readyToFetchData:
-                print("Alerts Root Screen - Fetch Data")
-                self.viewModel.fetchData()
-//                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-//                    self.viewModel.fetchData()
-//                } else if self.viewModel.currentAccountDetail == nil {
-//                    self.viewModel.fetchData()
-//                }
+                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    self.viewModel.fetchData()
+                } else if self.viewModel.currentAccountDetail == nil {
+                    self.viewModel.fetchData()
+                }
             }
         }).disposed(by: disposeBag)
     }
