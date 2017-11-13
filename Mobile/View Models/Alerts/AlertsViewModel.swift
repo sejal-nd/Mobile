@@ -21,7 +21,7 @@ class AlertsViewModel {
     
     let selectedSegmentIndex = Variable(0)
     
-    let isFetchingAccounts = Variable(false)
+    let isFetchingAccountDetail = Variable(false)
     let isFetching = Variable(false)
     let isError = Variable(false)
     
@@ -35,18 +35,19 @@ class AlertsViewModel {
     }
     
     func fetchData() {
-        isFetchingAccounts.value = false
-        isFetching.value = true
-        isError.value = false
-        
         currentAlerts.value = AlertsStore.sharedInstance.getAlerts(forAccountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
         self.reloadAlertsTableViewEvent.onNext()
+        
+        isFetchingAccountDetail.value = true
+        isFetching.value = true
+        isError.value = false
         
         accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
                 self.currentAccountDetail = accountDetail
+                self.isFetchingAccountDetail.value = false
                 self.alertsService.fetchOpcoUpdates(accountDetail: accountDetail)
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { [weak self] opcoUpdates in
@@ -58,13 +59,14 @@ class AlertsViewModel {
                         self?.isError.value = true
                     }).disposed(by: self.disposeBag)
             }, onError: { [weak self] err in
+                self?.isFetchingAccountDetail.value = false
                 self?.isFetching.value = false
                 self?.isError.value = true
             }).disposed(by: disposeBag)
     }
     
     private(set) lazy var shouldShowLoadingIndicator: Driver<Bool> =
-        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isFetchingAccounts.asDriver()) {
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetching.asDriver(), self.isFetchingAccountDetail.asDriver()) {
             return ($0 == 0 && $2) || ($0 == 1 && $1)
         }
     
@@ -74,12 +76,12 @@ class AlertsViewModel {
         }
     
     private(set) lazy var shouldShowAlertsTableView: Driver<Bool> =
-        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetchingAccounts.asDriver()) {
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.isFetchingAccountDetail.asDriver()) {
             return $0 == 0 && !$1
         }
     
     private(set) lazy var shouldShowAlertsEmptyState: Driver<Bool> =
-        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.currentAlerts.asDriver(), self.isFetchingAccounts.asDriver()) {
+        Driver.combineLatest(self.selectedSegmentIndex.asDriver(), self.currentAlerts.asDriver(), self.isFetchingAccountDetail.asDriver()) {
             return $0 == 0 && $1.count == 0 && !$2
         }
     

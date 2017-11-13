@@ -66,7 +66,7 @@ class AlertsViewController: AccountPickerViewController {
             guard let `self` = self else { return }
             switch(state) {
             case .loadingAccounts:
-                self.viewModel.isFetchingAccounts.value = true
+                self.viewModel.isFetchingAccountDetail.value = true
                 self.viewModel.isFetching.value = true
                 break
             case .readyToFetchData:
