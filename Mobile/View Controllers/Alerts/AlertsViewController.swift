@@ -75,9 +75,10 @@ class AlertsViewController: AccountPickerViewController {
             switch(state) {
             case .loadingAccounts:
                 self.viewModel.isFetchingAccountDetail.value = true
-                self.viewModel.isFetching.value = true
+                self.viewModel.isFetchingUpdates.value = true
                 break
             case .readyToFetchData:
+                self.viewModel.fetchAlertsFromDisk()
                 if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                     self.viewModel.fetchData()
                 } else if self.viewModel.currentAccountDetail == nil {
@@ -243,6 +244,7 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
 extension AlertsViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        viewModel.fetchAlertsFromDisk()
         viewModel.fetchData()
     }
 }

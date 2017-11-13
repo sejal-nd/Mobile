@@ -123,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
             if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
-                // Post notification to change the tab bar index
+                NotificationCenter.default.post(name: .DidTapOnPushNotification, object: self)
             } else {
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.PushNotificationReceived)
             }
