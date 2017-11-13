@@ -881,7 +881,7 @@ this time.</string>
                         <outlet property="billReadyDetailLabel" destination="pWp-vE-OMk" id="qbg-Ux-1NK"/>
                         <outlet property="billReadySwitch" destination="lgQ-it-a7Y" id="q9a-yv-aIU"/>
                         <outlet property="billReadyTitleLabel" destination="5op-gI-nAq" id="wpQ-f2-lyS"/>
-                        <outlet property="billReadyView" destination="HI3-oE-qg6" id="bGD-Dd-YCj"/>
+                        <outlet property="billReadyView" destination="HI3-oE-qg6" id="Rr8-sD-pwJ"/>
                         <outlet property="budgetBillingDetailLabel" destination="2fA-HC-v1d" id="K1H-GX-oGi"/>
                         <outlet property="budgetBillingSwitch" destination="ZKR-h6-fpe" id="N5N-S2-B09"/>
                         <outlet property="budgetBillingTitleLabel" destination="UkS-zx-Z9T" id="E21-Ik-yGB"/>
