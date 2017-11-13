@@ -56,7 +56,7 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
             self.accountIndexToEditPremise = indexPath.row
             
             let dataArray = account.premises.map { $0.addressLineString }
-            PickerView.show(withTitle: NSLocalizedString("Select Premise", comment: ""),
+            PickerView.showStringPicker(withTitle: NSLocalizedString("Select Premise", comment: ""),
                             data: dataArray,
                             selectedIndex: 0,
                             onDone: { [weak self] value, index in

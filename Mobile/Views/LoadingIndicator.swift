@@ -12,6 +12,12 @@ class LoadingIndicator: UIView {
     
     private var lottieAnimationView = LOTAnimationView(name: "ellipses_loading")
     
+    init() {
+        super.init(frame: .zero)
+        
+        commonInit()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

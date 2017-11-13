@@ -74,7 +74,6 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.footerTextViewText
-        footerTextView.delegate = self
         
         gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
@@ -294,13 +293,6 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
         })
     }
     
-}
-
-extension OutageViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
-        return true
-    }
 }
 
 extension OutageViewController: OutageStatusButtonDelegate {

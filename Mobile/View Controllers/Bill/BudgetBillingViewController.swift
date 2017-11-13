@@ -72,7 +72,7 @@ class BudgetBillingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail, billService: ServiceFactory.createBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail, billService: ServiceFactory.createBillService(), alertsService: ServiceFactory.createAlertsService())
         
         title = NSLocalizedString("Budget Billing", comment: "")
         

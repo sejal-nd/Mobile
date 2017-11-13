@@ -10,6 +10,10 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
+fileprivate let coldTips = ["tip080_set_thermostat_wisely_winter","tip033_clear_around_vents","tip046_let_in_sun_for_warmth"]
+
+fileprivate let hotTips = ["tip021_let_ac_breathe","tip020_keep_out_solar_heat","tip084_use_fans_for_cooling"]
+
 class HomeViewModel {
     let defaultZip : String? = Environment.sharedInstance.opco == .bge ? "20201" : nil;
 
@@ -193,11 +197,12 @@ class HomeViewModel {
             }
     }
     
-    private(set) lazy var showTemperatureTip: Driver<Bool> = Observable.combineLatest(self.showWeatherDetails.asObservable(),
-                                                                                      self.isTemperatureTipEligible,
-                                                                                      self.isHighTemperature,
-                                                                                      self.isLowTemperature)
-    { $0 && $1 && ($2 || $3) }
+    private(set) lazy var showTemperatureTip: Driver<Bool> = Observable
+        .combineLatest(self.temperatureTipRequestData.map { ($0 || $1) && $2.premiseNumber != nil && $3 },
+                       self.temperatureTipEvents.map { $0.error == nil })
+        {
+            $0 && $1
+        }
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
@@ -234,19 +239,35 @@ class HomeViewModel {
         .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var temperatureTipModalData: Driver<(title: String, image: UIImage, body: String)> = Observable
+    private lazy var temperatureTipRequestData: Observable<(Bool, Bool, AccountDetail, Bool)> = Observable
         .combineLatest(self.isHighTemperature,
-                       self.temperatureTipText.asObservable().unwrap())
-        {
-            let title = $1
-            let image = $0 ? #imageLiteral(resourceName: "img_hightemp") : #imageLiteral(resourceName: "img_lowtemp")
-            let body = """
-                Depending where you live in the country, cooling can account for a significant portion of your home's energy bill. In some southern climates, it can easily account for half of the cost, particularly in homes having air conditioning.
-                
-                The type of cooling system and the amount of energy it uses depends largely on local climate. However, the home's characteristics and the resident's personal needs play roles as well.
-                """
+                       self.isLowTemperature,
+                       self.accountDetailEvents.elements(),
+                       self.isTemperatureTipEligible)
+    
+    private lazy var temperatureTipEvents: Observable<Event<String>> = self.temperatureTipRequestData
+        .filter { ($0 || $1) && $2.premiseNumber != nil && $3 }
+        .flatMapLatest { [weak self] isHigh, isLow, accountDetail, _ -> Observable<Event<String>> in
+            guard let `self` = self else { return .empty() }
+            guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             
-            return (title, image, body)
+            let randomNumber = Int(arc4random_uniform(3))
+            let tipName = isHigh ? hotTips[randomNumber] : coldTips[randomNumber]
+            
+            return self.usageService.fetchEnergyTipByName(accountNumber: accountDetail.accountNumber,
+                                                          premiseNumber: premiseNumber,
+                                                          tipName: tipName)
+                .map { $0.body }
+                .materialize()
+    }
+    
+    private(set) lazy var temperatureTipModalData: Driver<(title: String, image: UIImage, body: String)> = Observable
+        .combineLatest(self.temperatureTipEvents.elements(),
+                       self.temperatureTipText.asObservable().unwrap(),
+                       self.isHighTemperature)
+        { temperatureTip, title, isHigh in
+            let image = isHigh ? #imageLiteral(resourceName: "img_hightemp") : #imageLiteral(resourceName: "img_lowtemp")
+            return (title, image, temperatureTip)
         }
         .asDriver(onErrorDriveWith: .empty())
 

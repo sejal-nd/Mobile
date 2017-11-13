@@ -20,6 +20,10 @@ class SelectDeviceViewController: UIViewController {
         self.viewModel = viewModel
         self.devices = devices
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    override func loadView() {
+        super.loadView()
         
         title = NSLocalizedString("Select Device", comment: "")
         
@@ -64,6 +68,7 @@ extension SelectDeviceViewController: UITableViewDataSource {
 extension SelectDeviceViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectedDeviceIndex.value = indexPath.row
+        navigationController?.popViewController(animated: true)
     }
 }
 

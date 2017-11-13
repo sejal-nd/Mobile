@@ -28,7 +28,7 @@ final class AlertsStore {
         if Environment.sharedInstance.opco == .bge {
             if let array = alerts["bge"] {
                 var arrayCopy = array
-                arrayCopy.append(notification)
+                arrayCopy.insert(notification, at: 0)
                 alerts["bge"] = arrayCopy
             } else {
                 let newArray = [notification]
@@ -38,7 +38,7 @@ final class AlertsStore {
             for accountNumber in notification.accountNumbers {
                 if let array = alerts[accountNumber] {
                     var arrayCopy = array
-                    arrayCopy.append(notification)
+                    arrayCopy.insert(notification, at: 0)
                     alerts[accountNumber] = arrayCopy
                 } else {
                     let newArray = [notification]

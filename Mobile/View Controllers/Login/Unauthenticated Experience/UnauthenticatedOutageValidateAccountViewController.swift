@@ -59,7 +59,6 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
-        footerTextView.delegate = self
         
         NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
@@ -324,11 +323,4 @@ extension UnauthenticatedOutageValidateAccountViewController: UITextFieldDelegat
         return true
     }
     
-}
-
-extension UnauthenticatedOutageValidateAccountViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthAcctValEmergencyPhone.rawValue)
-        return true
-    }
 }

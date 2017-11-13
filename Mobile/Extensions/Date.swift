@@ -154,6 +154,14 @@ extension Calendar {
         calendar.timeZone = .opCo
         return calendar
     }()
+    
+    func endOfDay(for date: Date) -> Date {
+        let startOfDay = Calendar.opCo.startOfDay(for: date)
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return Calendar.opCo.date(byAdding: components, to: startOfDay)!
+    }
 }
 
 extension TimeZone {

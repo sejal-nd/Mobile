@@ -320,11 +320,11 @@ this time.</string>
                         <viewControllerLayoutGuide type="bottom" id="6Jr-5A-Qye"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HEX-jk-O6h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8CD-Cd-ECz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMc-Mh-ra8">
                                         <rect key="frame" x="29" y="10" width="317" height="20.5"/>
@@ -371,11 +371,11 @@ this time.</string>
                         <viewControllerLayoutGuide type="bottom" id="LRZ-yY-Gaq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ouq-MF-EMe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1532"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tJ-ow-DZE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1532"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="43z-fm-Nx7">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="1609"/>
@@ -846,11 +846,11 @@ this time.</string>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="sTb-Ox-rQA" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157" y="762" width="60" height="12"/>
+                                <rect key="frame" x="157" y="760" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5o-5y-j1B">
-                                <rect key="frame" x="29" y="757.5" width="317" height="20.5"/>
+                                <rect key="frame" x="29" y="756" width="317" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="gWg-tk-TzF"/>
                                 </constraints>
@@ -881,6 +881,7 @@ this time.</string>
                         <outlet property="billReadyDetailLabel" destination="pWp-vE-OMk" id="qbg-Ux-1NK"/>
                         <outlet property="billReadySwitch" destination="lgQ-it-a7Y" id="q9a-yv-aIU"/>
                         <outlet property="billReadyTitleLabel" destination="5op-gI-nAq" id="wpQ-f2-lyS"/>
+                        <outlet property="billReadyView" destination="HI3-oE-qg6" id="bGD-Dd-YCj"/>
                         <outlet property="budgetBillingDetailLabel" destination="2fA-HC-v1d" id="K1H-GX-oGi"/>
                         <outlet property="budgetBillingSwitch" destination="ZKR-h6-fpe" id="N5N-S2-B09"/>
                         <outlet property="budgetBillingTitleLabel" destination="UkS-zx-Z9T" id="E21-Ik-yGB"/>

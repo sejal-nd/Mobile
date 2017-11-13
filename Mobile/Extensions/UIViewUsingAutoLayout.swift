@@ -13,4 +13,25 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         return self
     }
+    
+    func addTabletWidthConstraints(horizontalPadding: CGFloat) {
+        guard let superview = superview else { return }
+        
+        let leading = leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: horizontalPadding)
+        leading.priority = 999
+        leading.isActive = true
+        leadingAnchor.constraint(greaterThanOrEqualTo: superview.leadingAnchor, constant: horizontalPadding).isActive = true
+        
+        let trailing = trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -horizontalPadding)
+        trailing.priority = 999
+        trailing.isActive = true
+        trailingAnchor.constraint(lessThanOrEqualTo: superview.trailingAnchor, constant: -horizontalPadding).isActive = true
+        
+        centerXAnchor.constraint(equalTo: superview.centerXAnchor).isActive = true
+        
+        let width = widthAnchor.constraint(equalToConstant: 460)
+        width.priority = 999
+        width.isActive = true
+        widthAnchor.constraint(lessThanOrEqualToConstant: 460).isActive = true
+    }
 }

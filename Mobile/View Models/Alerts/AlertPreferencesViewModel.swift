@@ -36,6 +36,8 @@ class AlertPreferencesViewModel {
     let userChangedPrefs = Variable(false)
     
     var initialBillReadyValue = false
+    var initialEnglishValue = true
+    
     var shouldEnrollPaperlessEBill: Bool {
         if Environment.sharedInstance.opco == .bge { return false }
         return initialBillReadyValue == false && billReady.value == true
@@ -93,13 +95,14 @@ class AlertPreferencesViewModel {
     
     private func fetchAlertLanguage() -> Observable<Void> {
         return alertsService.fetchAlertLanguage(accountNumber: accountDetail.accountNumber).map { [weak self] language in
+            self?.initialEnglishValue = language == "English"
             self?.english.value = language == "English"
         }
     }
     
     func saveChanges(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var observables = [saveAlertPreferences()]
-        if Environment.sharedInstance.opco == .comEd {
+        if Environment.sharedInstance.opco == .comEd && english.value != initialEnglishValue {
             observables.append(saveAlertLanguage())
         }
         if shouldEnrollPaperlessEBill {
