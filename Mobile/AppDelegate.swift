@@ -84,35 +84,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        NSLog("*-*-*-*-* didRegisterForRemoteNotificationsWithDeviceToken: \(token)")
+        dLog("*-*-*-*-* APNS Device Token: \(token)")
         
         let alertsService = ServiceFactory.createAlertsService()
         alertsService.register(token: token) { (result: ServiceResult<Void>) in
             switch result {
             case .Success:
-                NSLog("*-*-*-*-* Registered token with MCS")
+                dLog("*-*-*-*-* Registered token with MCS")
             case .Failure(let err):
-                NSLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
+                dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
             }
         }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        NSLog("*-*-*-*-* didFailToRegisterForRemoteNotificationsWithError: \(error.localizedDescription)")
+        dLog("*-*-*-*-* \(error.localizedDescription)")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        NSLog("*-*-*-*-* didReceiveRemoteNotification: \(userInfo)")
-        
-        //        {
-        //            "aps" : {
-        //                "alert": {
-        //                    "body": "Your notification message here",
-        //                    "title": "Planned Outage"
-        //                }
-        //            },
-        //            "accoundIds": []
-        //        }
+        dLog("*-*-*-*-* \(userInfo)")
         
         guard let aps = userInfo["aps"] as? [String: Any] else { return }
         guard let alert = aps["alert"] as? [String: Any] else { return }

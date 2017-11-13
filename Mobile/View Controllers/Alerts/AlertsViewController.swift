@@ -9,12 +9,6 @@
 import RxSwift
 import RxCocoa
 
-//let testAlerts: [String] = [
-//    "Outage to area 1215 E Fort Ave analyzed. The probable cause is unknown. Estimated restoration time 8/22/17 at 9:00 PM",
-//    "Severe thunderstorms in 1215 E Fort Ave from 2:00 PM to 5:00 PM. Be prepared for possible outages.",
-//    "Payment for account ending in 1234. Amount of $150.50 is due on 7/22/17."
-//]
-
 class AlertsViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
