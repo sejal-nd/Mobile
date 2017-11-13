@@ -6,9 +6,11 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 
 class MainTabBarController: UITabBarController {
+    
+    let disposeBag = DisposeBag()
     
     let normalTitleFont = SystemFont.regular.of(textStyle: .caption2)
     let selectedTitleFont = SystemFont.bold.of(textStyle: .caption2)
@@ -26,6 +28,18 @@ class MainTabBarController: UITabBarController {
         tabBar.isTranslucent = false
         
         setButtonStates(itemTag: 1)
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.PushNotificationReceived) {
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.PushNotificationReceived)
+            selectedIndex = 3
+        }
+        
+        NotificationCenter.default.rx.notification(.DidTapOnPushNotification, object: nil)
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.selectedIndex = 3
+            })
+            .disposed(by: disposeBag)
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

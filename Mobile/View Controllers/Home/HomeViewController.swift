@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwiftExt
 import Lottie
 import StoreKit
+import UserNotifications
 
 class HomeViewController: AccountPickerViewController {
     
@@ -139,6 +140,14 @@ class HomeViewController: AccountPickerViewController {
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { _, _ in })
+        } else {
+            let settings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
     override func viewDidLayoutSubviews() {

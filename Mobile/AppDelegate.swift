@@ -47,8 +47,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAnalytics()
         //printFonts()
         
+        _ = AlertsStore.sharedInstance.alerts // Triggers the loading of alerts from disk
+        
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        
+        // If app was cold-launched from a push notification
+        if let options = launchOptions, let userInfo = options[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
+            self.application(application, didReceiveRemoteNotification: userInfo)
+        }
         
         return true
     }
@@ -73,6 +80,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        dLog("*-*-*-*-* APNS Device Token: \(token)")
+        
+        let alertsService = ServiceFactory.createAlertsService()
+        alertsService.register(token: token) { (result: ServiceResult<Void>) in
+            switch result {
+            case .Success:
+                dLog("*-*-*-*-* Registered token with MCS")
+            case .Failure(let err):
+                dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        dLog("*-*-*-*-* \(error.localizedDescription)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        dLog("*-*-*-*-* \(userInfo)")
+        
+        guard let aps = userInfo["aps"] as? [String: Any] else { return }
+        guard let alert = aps["alert"] as? [String: Any] else { return }
+        guard let accountNumbers = userInfo["accoundIds"] as? [String] else { return }
+        
+        let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
+        AlertsStore.sharedInstance.savePushNotification(notification)
+        
+        if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
+            if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
+                NotificationCenter.default.post(name: .DidTapOnPushNotification, object: self)
+            } else {
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.PushNotificationReceived)
+            }
+        } else {
+            // App was in the foreground when notification received - do nothing
+        }
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {

@@ -9,12 +9,6 @@
 import RxSwift
 import RxCocoa
 
-let testAlerts: [String] = [
-    "Outage to area 1215 E Fort Ave analyzed. The probable cause is unknown. Estimated restoration time 8/22/17 at 9:00 PM",
-    "Severe thunderstorms in 1215 E Fort Ave from 2:00 PM to 5:00 PM. Be prepared for possible outages.",
-    "Payment for account ending in 1234. Amount of $150.50 is due on 7/22/17."
-]
-
 class AlertsViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
@@ -26,6 +20,8 @@ class AlertsViewController: AccountPickerViewController {
     @IBOutlet weak var alertsTableView: UITableView!
     @IBOutlet weak var preferencesButton: ButtonControl!
     @IBOutlet weak var preferencesButtonLabel: UILabel!
+    @IBOutlet weak var alertsEmptyStateView: UIView!
+    @IBOutlet weak var alertsEmptyStateLabel: UILabel!
     
     @IBOutlet weak var updatesTableView: UITableView!
     @IBOutlet weak var updatesEmptyStateView: UIView!
@@ -72,9 +68,11 @@ class AlertsViewController: AccountPickerViewController {
             guard let `self` = self else { return }
             switch(state) {
             case .loadingAccounts:
-                self.viewModel.isFetching.value = true
+                self.viewModel.isFetchingAccountDetail.value = true
+                self.viewModel.isFetchingUpdates.value = true
                 break
             case .readyToFetchData:
+                self.viewModel.fetchAlertsFromDisk()
                 if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                     self.viewModel.fetchData()
                 } else if self.viewModel.currentAccountDetail == nil {
@@ -116,6 +114,10 @@ class AlertsViewController: AccountPickerViewController {
         preferencesButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
         
+        alertsEmptyStateLabel.textColor = .middleGray
+        alertsEmptyStateLabel.font = OpenSans.regular.of(size: 18)
+        alertsEmptyStateLabel.text = NSLocalizedString("You haven't received any\nnotifications yet.", comment: "")
+        
         updatesEmptyStateLabel.textColor = .middleGray
         updatesEmptyStateLabel.font = OpenSans.regular.of(size: 18)
         updatesEmptyStateLabel.text = NSLocalizedString("There are no updates at\nthis time.", comment: "")
@@ -126,16 +128,22 @@ class AlertsViewController: AccountPickerViewController {
         
         viewModel.backgroundViewColor.drive(backgroundView.rx.backgroundColor).disposed(by: disposeBag)
         
-        viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowLoadingIndicator.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowAlertsTableView.not().drive(alertsTableView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAlertsEmptyState.not().drive(alertsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAlertsEmptyState.asObservable().subscribe(onNext: { [weak self] shouldShow in
+            self?.alertsTableView.isScrollEnabled = !shouldShow
+        }).disposed(by: disposeBag)
         
         viewModel.shouldShowUpdatesTableView.not().drive(updatesTableView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowUpdatesEmptyState.not().drive(updatesEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         
-        viewModel.reloadTableViewEvent.asObservable().subscribe(onNext: { [weak self] in
+        viewModel.reloadAlertsTableViewEvent.asObservable().subscribe(onNext: { [weak self] in
             self?.alertsTableView.reloadData()
+        }).disposed(by: disposeBag)
+        viewModel.reloadUpdatesTableViewEvent.asObservable().subscribe(onNext: { [weak self] in
             self?.updatesTableView.reloadData()
         }).disposed(by: disposeBag)
     }
@@ -153,7 +161,7 @@ class AlertsViewController: AccountPickerViewController {
             vc.delegate = self
             vc.viewModel.accountDetail = viewModel.currentAccountDetail!
         } else if let vc = segue.destination as? OpcoUpdateDetailViewController, let button = sender as? ButtonControl {
-            vc.opcoUpdate = viewModel.currentOpcoUpdates![button.tag]
+            vc.opcoUpdate = viewModel.currentOpcoUpdates.value![button.tag]
         }
     }
     
@@ -167,7 +175,7 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
             return 1
         }
         if tableView == updatesTableView {
-            if let opcoUpdates = viewModel.currentOpcoUpdates {
+            if let opcoUpdates = viewModel.currentOpcoUpdates.value {
                 return opcoUpdates.count
             }
         }
@@ -176,7 +184,7 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == alertsTableView {
-            return testAlerts.count
+            return viewModel.currentAlerts.value.count
         }
         if tableView == updatesTableView {
             return 1
@@ -208,14 +216,14 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
             
             cell!.textLabel?.textColor = .deepGray
             cell!.textLabel?.font = SystemFont.regular.of(textStyle: .headline)
-            cell!.textLabel?.text = testAlerts[indexPath.row]
+            cell!.textLabel?.text = viewModel.currentAlerts.value[indexPath.row].message
             
             return cell!
         }
         if tableView == updatesTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UpdatesCell", for: indexPath) as! UpdatesTableViewCell
-            cell.titleLabel.text = viewModel.currentOpcoUpdates![indexPath.section].title
-            cell.detailLabel.text = viewModel.currentOpcoUpdates![indexPath.section].message
+            cell.titleLabel.text = viewModel.currentOpcoUpdates.value![indexPath.section].title
+            cell.detailLabel.text = viewModel.currentOpcoUpdates.value![indexPath.section].message
             
             cell.innerContentView.tag = indexPath.section
             cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
@@ -230,6 +238,7 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
 extension AlertsViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        viewModel.fetchAlertsFromDisk()
         viewModel.fetchData()
     }
 }
