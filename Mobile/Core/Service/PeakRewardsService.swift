@@ -30,8 +30,36 @@ protocol PeakRewardsService {
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain a PeakRewardsOverride on success, or a ServiceError on failure.
     func fetchPeakRewardsOverrides(accountNumber: String,
-                                 premiseNumber: String,
-                                 completion: @escaping (_ result: ServiceResult<[PeakRewardsOverride]>) -> Void)
+                                   premiseNumber: String,
+                                   completion: @escaping (_ result: ServiceResult<[PeakRewardsOverride]>) -> Void)
+    
+    /// Schedule an override.
+    ///
+    /// - Parameters:
+    ///   - accountNumber: the account to schedule the override for
+    ///   - premiseNumber: the premise to schedule the override for
+    ///   - device: the device to schedule the override for
+    ///   - date: the date to schedule the override for
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain a PeakRewardsOverride on success, or a ServiceError on failure.
+    func scheduleOverride(accountNumber: String,
+                          premiseNumber: String,
+                          device: SmartThermostatDevice,
+                          date: Date,
+                          completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    /// Delete the user's scheduled override.
+    ///
+    /// - Parameters:
+    ///   - accountNumber: the account to delete the override for
+    ///   - premiseNumber: the premise to delete the override for
+    ///   - device: the device to delete the override for
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain a PeakRewardsOverride on success, or a ServiceError on failure.
+    func deleteOverride(accountNumber: String,
+                        premiseNumber: String,
+                        device: SmartThermostatDevice,
+                        completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     /// Fetch the smart thermostat device's settings.
     ///
@@ -119,6 +147,41 @@ extension PeakRewardsService {
                 switch $0 {
                 case ServiceResult.Success(let overrides):
                     observer.onNext(overrides)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func scheduleOverride(accountNumber: String,
+                          premiseNumber: String,
+                          device: SmartThermostatDevice,
+                          date: Date) -> Observable<Void> {
+        return Observable.create { observer in
+            self.scheduleOverride(accountNumber: accountNumber, premiseNumber: premiseNumber, device: device, date: date) { result in
+                switch result {
+                case ServiceResult.Success():
+                    observer.onNext(())
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func deleteOverride(accountNumber: String,
+                        premiseNumber: String,
+                        device: SmartThermostatDevice) -> Observable<Void> {
+        return Observable.create { observer in
+            self.deleteOverride(accountNumber: accountNumber, premiseNumber: premiseNumber, device: device) { result in
+                switch result {
+                case ServiceResult.Success():
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

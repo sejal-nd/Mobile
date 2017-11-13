@@ -333,6 +333,7 @@
                         <outlet property="scrollView" destination="3ZD-gx-g4N" id="uIh-Cu-MkX"/>
                         <outlet property="segmentedControl" destination="IeA-nM-shV" id="taD-tJ-HrW"/>
                         <outlet property="sleepPeriodCard" destination="pUK-w8-yEi" id="La9-Go-BsS"/>
+                        <outlet property="temperatureScaleLabel" destination="Uib-65-jNP" id="IYN-Rn-hwh"/>
                         <outlet property="wakePeriodCard" destination="Jls-KO-K6h" id="Kss-Nv-xrs"/>
                     </connections>
                 </viewController>

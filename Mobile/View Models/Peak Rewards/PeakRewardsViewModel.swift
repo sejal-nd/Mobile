@@ -62,6 +62,8 @@ class PeakRewardsViewModel {
         }
         .share()
     
+    private(set) lazy var overrides: Observable<[PeakRewardsOverride]> = self.peakRewardsOverridesEvents.elements()
+    
     private lazy var summaryAndOverridesEvents: Observable<(Event<PeakRewardsSummary>, Event<[PeakRewardsOverride]>)> = Observable
         .zip(self.peakRewardsSummaryEvents, self.peakRewardsOverridesEvents)
     
@@ -180,7 +182,7 @@ class PeakRewardsViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showDeviceButton: Driver<Bool> = self.devices.map { $0.count > 1 }
-    private(set) lazy var showAdjustThermostatButton: Driver<Bool> = self.selectedDevice.map { $0.isSmartThermostat }
+    private(set) lazy var selectedDeviceIsSmartThermostat: Driver<Bool> = self.selectedDevice.map { $0.isSmartThermostat }
     
     private(set) lazy var showScheduleLoadingState: Driver<Bool> = self.deviceScheduleFetchTracker.asDriver()
     private(set) lazy var showScheduleErrorState: Driver<Bool> = Observable
@@ -191,9 +193,17 @@ class PeakRewardsViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showScheduleContent: Driver<Bool> = Observable
-        .combineLatest(self.deviceScheduleEvents.map { $0.element != nil },
-                       self.deviceScheduleFetchTracker.asObservable().not().filter(!))
-        { $0 && !$1 }
+        .combineLatest(
+            self.deviceScheduleEvents.map {
+                if case .next(let value) = $0 {
+                    return value != nil
+                } else {
+                    return false
+                }
+            },
+            self.deviceScheduleFetchTracker.asObservable().not().filter(!)
+        )
+        .map { $0 && !$1 }
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     

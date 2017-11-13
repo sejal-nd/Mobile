@@ -22,6 +22,7 @@ class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var overrideButton: DisclosureButton!
     @IBOutlet weak var adjustThermostatButton: DisclosureButton!
     
+    @IBOutlet weak var temperatureScaleLabel: UILabel!
     @IBOutlet weak var segmentedControl: SegmentedControl!
     
     @IBOutlet weak var scheduleContentStack: UIStackView!
@@ -61,8 +62,6 @@ class PeakRewardsViewController: UIViewController {
         segmentedControl.items = [TemperatureScale.fahrenheit, TemperatureScale.celsius].map { $0.displayString }
     }
     
-    
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer.frame = gradientView.bounds
@@ -92,9 +91,12 @@ class PeakRewardsViewController: UIViewController {
         
         viewModel.programCardsData.map { $0.isEmpty }.drive(programCardStack.rx.isHidden).disposed(by: disposeBag)
         
+        viewModel.selectedDeviceIsSmartThermostat.asDriver().not().drive(temperatureScaleLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.selectedDeviceIsSmartThermostat.asDriver().not().drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.showScheduleContent.asDriver().not().drive(scheduleContentStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleLoadingState.asDriver().not().drive(scheduleLoadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleErrorState.asDriver().not().drive(scheduleErrorView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showScheduleContent.asDriver().not().drive(scheduleContentStack.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.programCardsData
             .drive(onNext: { [weak self] programCardsData in
@@ -112,7 +114,7 @@ class PeakRewardsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.showAdjustThermostatButton.not().drive(adjustThermostatButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.selectedDeviceIsSmartThermostat.not().drive(adjustThermostatButton.rx.isHidden).disposed(by: disposeBag)
         
         wakePeriodCard.configure(withPeriod: .wake, periodInfo: viewModel.wakeInfo)
         leavePeriodCard.configure(withPeriod: .leave, periodInfo: viewModel.leaveInfo)
@@ -134,6 +136,16 @@ class PeakRewardsViewController: UIViewController {
             .withLatestFrom(viewModel.devices)
             .map { [unowned self] in (self.viewModel, $0) }
             .map(SelectDeviceViewController.init)
+            .drive(onNext: { [weak self] in
+                self?.navigationController?.pushViewController($0, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        overrideButton.rx.tap.asDriver()
+            .withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, viewModel.overrides.asDriver(onErrorDriveWith: .empty())))
+            .map { [unowned self] in (self.viewModel.peakRewardsService, self.viewModel.accountDetail, $0, $1) }
+            .map(OverrideViewModel.init)
+            .map(OverrideViewController.init)
             .drive(onNext: { [weak self] in
                 self?.navigationController?.pushViewController($0, animated: true)
             })
