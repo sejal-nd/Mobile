@@ -15,34 +15,66 @@ class PeakRewardsViewModel {
     let disposeBag = DisposeBag()
     
     let peakRewardsService: PeakRewardsService
-    
     let accountDetail: AccountDetail
-    
-    let rootScreenWillReappear = PublishSubject<Void>()
-    let deviceScheduleChanged = PublishSubject<Void>()
-    
-    let peakRewardsSummaryFetchTracker = ActivityTracker()
-    let deviceScheduleFetchTracker = ActivityTracker()
-    
-    let selectedDeviceIndex = Variable(0)
-    
-    init(peakRewardsService: PeakRewardsService, accountDetail: AccountDetail) {
-        self.peakRewardsService = peakRewardsService
-        self.accountDetail = accountDetail
-    }
     
     var premiseNumber: String {
         return AccountsStore.sharedInstance.currentAccount.currentPremise?.premiseNumber ??
             accountDetail.premiseNumber!
     }
     
+    let selectedDeviceIndex = Variable(0)
+    
+    let peakRewardsSummaryFetchTracker = ActivityTracker()
+    let deviceScheduleFetchTracker = ActivityTracker()
+    
+    //MARK: - Actions
+    let loadInitialData = PublishSubject<Void>()
+    let deviceScheduleChanged = PublishSubject<Void>()
+    
+    //MARK: - Init
+    init(peakRewardsService: PeakRewardsService, accountDetail: AccountDetail) {
+        self.peakRewardsService = peakRewardsService
+        self.accountDetail = accountDetail
+    }
+    
     //MARK: - Web Requests
-    private lazy var peakRewardsSummaryEvents: Observable<Event<PeakRewardsSummary>> = self.peakRewardsService
-        .fetchPeakRewardsSummary(accountNumber: self.accountDetail.accountNumber,
-                                 premiseNumber: self.premiseNumber)
-        .trackActivity(self.peakRewardsSummaryFetchTracker)
-        .materialize()
-        .shareReplay(1)
+    private lazy var peakRewardsSummaryEvents: Observable<Event<PeakRewardsSummary>> = self.loadInitialData
+        .flatMapLatest { [weak self] _ -> Observable<Event<PeakRewardsSummary>> in
+            guard let `self` = self else { return .empty() }
+            return self.peakRewardsService
+                .fetchPeakRewardsSummary(accountNumber: self.accountDetail.accountNumber,
+                                         premiseNumber: self.premiseNumber)
+                .trackActivity(self.peakRewardsSummaryFetchTracker)
+                .materialize()
+                .filter { !$0.isCompleted }
+        }
+        .share()
+    
+    private lazy var peakRewardsOverridesEvents: Observable<Event<[PeakRewardsOverride]>> = self.loadInitialData
+        .flatMapLatest { [weak self] _ -> Observable<Event<[PeakRewardsOverride]>> in
+            guard let `self` = self else { return .empty() }
+            return self.peakRewardsService
+                .fetchPeakRewardsOverrides(accountNumber: self.accountDetail.accountNumber,
+                                           premiseNumber: self.premiseNumber)
+                .trackActivity(self.peakRewardsSummaryFetchTracker)
+                .materialize()
+                .filter { !$0.isCompleted }
+        }
+        .share()
+    
+    private lazy var summaryAndOverridesEvents: Observable<(Event<PeakRewardsSummary>, Event<[PeakRewardsOverride]>)> = Observable
+        .zip(self.peakRewardsSummaryEvents, self.peakRewardsOverridesEvents)
+    
+    private lazy var summaryAndOverridesErrors: Observable<Error> = self.summaryAndOverridesEvents
+        .map { $0.error ?? $1.error }
+        .unwrap()
+    
+    private lazy var programsAndOverridesElements: Observable<(PeakRewardsSummary, [PeakRewardsOverride])> = self.summaryAndOverridesEvents
+        .map { summaryEvent, overridesEvent -> (PeakRewardsSummary, [PeakRewardsOverride])? in
+            guard let summary = summaryEvent.element, let overrides = overridesEvent.element else { return nil }
+            return (summary, overrides)
+        }
+        .unwrap()
     
     private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule?>> = Observable
         .merge(self.selectedDevice.asObservable(), self.deviceScheduleChanged.withLatestFrom(self.selectedDevice.asObservable()))
@@ -62,21 +94,62 @@ class PeakRewardsViewModel {
         }
         .shareReplay(1)
     
-    //MARK: View Values
+    //MARK: - View Values
     private(set) lazy var devices: Driver<[SmartThermostatDevice]> = self.peakRewardsSummaryEvents.elements()
         .map { $0.devices }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var selectedDevice: Driver<SmartThermostatDevice> = Observable
         .combineLatest(self.peakRewardsSummaryEvents.elements(),
-                       self.selectedDeviceIndex.asObservable().sample(self.rootScreenWillReappear).distinctUntilChanged())
+                       self.selectedDeviceIndex.asObservable().distinctUntilChanged())
         .map { $0.devices[$1] }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var selectedDeviceName: Driver<String> = self.selectedDevice.map { $0.name }
+    private(set) lazy var deviceButtonText: Driver<String> = self.selectedDevice.map {
+        String(format: NSLocalizedString("Device: %@", comment: ""), $0.name)
+    }
     
-    private(set) lazy var peakRewardsPrograms: Driver<[PeakRewardsProgram]> = self.peakRewardsSummaryEvents.elements()
-        .map { $0.programs }
+    private(set) lazy var programCardsData: Driver<[(String, String)]> = Observable.combineLatest(self.programsAndOverridesElements,
+                                                                                                  self.selectedDevice.asObservable())
+        .map { pair, selectedDevice -> [(String, String)] in
+            let (summary, overrides) = pair
+            
+            let programs = summary.programs.filter { selectedDevice.programNames.contains($0.name) }
+            let override = overrides.filter {
+                guard let start = $0.start else { return false }
+                return $0.serialNumber == selectedDevice.serialNumber && Calendar.opCo.isDateInToday(start)
+                }.first
+            
+            return programs
+                .map { program -> (String, String) in
+                    let body: String
+                    switch (program.status, override?.status) {
+                    case (.active, .active?):
+                        body = NSLocalizedString("Override scheduled for today", comment: "")
+                    case (.active, .scheduled?): fallthrough
+                    case (.active, .none):
+                        body = NSLocalizedString("Currently cycling", comment: "")
+                    case (.inactive, .active?):
+                        body = NSLocalizedString("Override scheduled for today", comment: "")
+                    case (.inactive, .scheduled?):
+                        if let start = override?.start, Calendar.opCo.isDateInToday(start) && override?.stop != nil {
+                            body = NSLocalizedString("You have been cycled today", comment: "")
+                        } else {
+                            body = NSLocalizedString("You have not been cycled today", comment: "")
+                        }
+                    case (.inactive, .none):
+                        if program.stopDate == nil {
+                            body = NSLocalizedString("You have not been cycled today", comment: "")
+                        } else if let startDate = program.startDate, Calendar.opCo.isDateInToday(startDate) {
+                            body = NSLocalizedString("You have been cycled today", comment: "")
+                        } else {
+                            body = NSLocalizedString("You have not been cycled today", comment: "")
+                        }
+                    }
+                    
+                    return (program.displayName, body)
+            }
+        }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var deviceSchedule: Driver<SmartThermostatDeviceSchedule> = self.deviceScheduleEvents.elements()
@@ -91,23 +164,37 @@ class PeakRewardsViewModel {
     //MARK: - Show/Hide Views
     private(set) lazy var showMainLoadingState: Driver<Bool> = self.peakRewardsSummaryFetchTracker.asDriver()
     
-    private(set) lazy var showMainErrorState: Driver<Bool> = Observable.merge(self.peakRewardsSummaryEvents.map { $0.error != nil },
-                                                                              self.peakRewardsSummaryFetchTracker.asObservable().not().filter(!))
+    private(set) lazy var showMainErrorState: Driver<Bool> = Observable
+        .combineLatest(self.summaryAndOverridesEvents.map { $0.0.error ?? $0.1.error != nil },
+                       self.peakRewardsSummaryFetchTracker.asObservable().not().filter(!)
+                        )
+        { $0 && !$1 }
+        .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showMainContent: Driver<Bool> = Observable.merge(self.peakRewardsSummaryEvents.map { $0.error == nil },
-                                                                           self.peakRewardsSummaryFetchTracker.asObservable().not().filter(!))
+    private(set) lazy var showMainContent: Driver<Bool> = Observable
+        .combineLatest(self.summaryAndOverridesEvents.map { $0.0.error == nil && $0.1.error == nil },
+                       self.peakRewardsSummaryFetchTracker.asObservable().not().filter(!))
+        { $0 && !$1 }
+        .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var showDeviceButton: Driver<Bool> = self.devices.map { $0.count > 1 }
     private(set) lazy var showAdjustThermostatButton: Driver<Bool> = self.selectedDevice.map { $0.isSmartThermostat }
     
     private(set) lazy var showScheduleLoadingState: Driver<Bool> = self.deviceScheduleFetchTracker.asDriver()
-    private(set) lazy var showScheduleErrorState: Driver<Bool> = Observable.merge(self.deviceScheduleEvents.map { $0.error != nil },
-                                                                                  self.deviceScheduleFetchTracker.asObservable().not().filter(!))
+    private(set) lazy var showScheduleErrorState: Driver<Bool> = Observable
+        .combineLatest(self.deviceScheduleEvents.map { $0.error != nil },
+                       self.deviceScheduleFetchTracker.asObservable().not().filter(!))
+        { $0 && !$1 }
+        .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showScheduleContent: Driver<Bool> = Observable.merge(self.deviceScheduleEvents.map { $0.element != nil },
-                                                                               self.deviceScheduleFetchTracker.asObservable().not().filter(!))
+    private(set) lazy var showScheduleContent: Driver<Bool> = Observable
+        .combineLatest(self.deviceScheduleEvents.map { $0.element != nil },
+                       self.deviceScheduleFetchTracker.asObservable().not().filter(!))
+        { $0 && !$1 }
+        .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
 }

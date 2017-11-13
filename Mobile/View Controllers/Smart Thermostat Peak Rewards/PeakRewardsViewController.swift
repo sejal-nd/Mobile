@@ -46,6 +46,7 @@ class PeakRewardsViewController: UIViewController {
         styleViews()
         bindViews()
         bindActions()
+        viewModel.loadInitialData.onNext(())
     }
     
     func styleViews() {
@@ -73,8 +74,6 @@ class PeakRewardsViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
         }
-        
-        viewModel.rootScreenWillReappear.onNext(())
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -88,20 +87,26 @@ class PeakRewardsViewController: UIViewController {
         viewModel.showMainContent.asDriver().not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showMainContent.asDriver().not().drive(gradientView.rx.isHidden).disposed(by: disposeBag)
         
+        viewModel.showDeviceButton.not().drive(deviceButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.deviceButtonText.drive(deviceButton.label.rx.text).disposed(by: disposeBag)
+        
+        viewModel.programCardsData.map { $0.isEmpty }.drive(programCardStack.rx.isHidden).disposed(by: disposeBag)
+        
         viewModel.showScheduleLoadingState.asDriver().not().drive(scheduleLoadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleErrorState.asDriver().not().drive(scheduleErrorView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleContent.asDriver().not().drive(scheduleContentStack.rx.isHidden).disposed(by: disposeBag)
         
-        viewModel.selectedDeviceName.drive(deviceButton.label.rx.text).disposed(by: disposeBag)
-        
-        viewModel.peakRewardsPrograms
-            .drive(onNext: { [weak self] programs in
+        viewModel.programCardsData
+            .drive(onNext: { [weak self] programCardsData in
                 guard let `self` = self else { return }
                 self.programCardStack.arrangedSubviews
                     .dropFirst() // Don't remove the header label from the stack
-                    .forEach(self.programCardStack.removeArrangedSubview)
+                    .forEach {
+                        self.programCardStack.removeArrangedSubview($0)
+                        $0.removeFromSuperview()
+                }
                 
-                programs
+                programCardsData
                     .map(PeakRewardsProgramCard.init)
                     .forEach(self.programCardStack.addArrangedSubview)
             })
@@ -121,12 +126,7 @@ class PeakRewardsViewController: UIViewController {
             .subscribe(onNext: { TemperatureScaleStore.shared.scale = $0 })
             .disposed(by: disposeBag)
         
-        TemperatureScaleStore.shared.scaleObservable
-            .distinctUntilChanged()
-            .asDriver(onErrorJustReturn: .fahrenheit)
-            .map { $0.rawValue }
-            .drive(segmentedControl.selectedIndex)
-            .disposed(by: disposeBag)
+        segmentedControl.selectedIndex.value = TemperatureScaleStore.shared.scale.rawValue
     }
     
     func bindActions() {
@@ -136,6 +136,24 @@ class PeakRewardsViewController: UIViewController {
             .map(SelectDeviceViewController.init)
             .drive(onNext: { [weak self] in
                 self?.navigationController?.pushViewController($0, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        adjustThermostatButton.rx.tap.asDriver()
+            .withLatestFrom(viewModel.selectedDevice)
+            .map { [unowned self] in (ServiceFactory.createPeakRewardsService(), self.viewModel.accountDetail, $0) }
+            .map(AdjustThermostatViewModel.init)
+            .map(AdjustThermostatViewController.init)
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                $0.viewModel.saveSuccess
+                    .asDriver(onErrorDriveWith: .empty())
+                    .delay(0.5)
+                    .drive(onNext: { [weak self] in
+                        self?.view.makeToast(NSLocalizedString("Thermostat settings saved", comment: ""))
+                    })
+                    .disposed(by: $0.disposeBag)
+                self.navigationController?.pushViewController($0, animated: true)
             })
             .disposed(by: disposeBag)
         

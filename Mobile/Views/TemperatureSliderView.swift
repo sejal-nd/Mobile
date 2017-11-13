@@ -9,11 +9,6 @@
 import RxSwift
 import RxCocoa
 
-enum CoolOrHeat: String {
-    case cool = "Cool"
-    case heat = "Heat"
-}
-
 class TemperatureSliderView: UIView {
     
     private let minMaxLabelWidth: CGFloat = 30
@@ -27,27 +22,59 @@ class TemperatureSliderView: UIView {
     let minLabel = UILabel().usingAutoLayout()
     let maxLabel = UILabel().usingAutoLayout()
     
-    let coolOrHeat: CoolOrHeat
-    
+    let mode: Variable<SmartThermostatMode>
     let currentTemperature: BehaviorSubject<Temperature>
     
-    init(currentTemperature: BehaviorSubject<Temperature>, tempRange: CountableClosedRange<Int>, scale: TemperatureScale, coolOrHeat: CoolOrHeat) {
+    init(currentTemperature: BehaviorSubject<Temperature>, minTemp: Temperature, maxTemp: Temperature, scale: TemperatureScale, mode: Variable<SmartThermostatMode>) {
         self.currentTemperature = currentTemperature
-        self.coolOrHeat = coolOrHeat
+        self.mode = mode
         super.init(frame: .zero)
         
-        let localizedTitle = NSLocalizedString("%@ Temperature", comment: "")
-        titleLabel.text = String(format: localizedTitle, coolOrHeat.rawValue)
+        mode.asDriver()
+            .filter { $0 == .off }
+            .mapTo(NSLocalizedString("Off", comment: ""))
+            .drive(temperatureLabel.rx.text)
+            .addDisposableTo(disposeBag)
         
-        titleLabel.font = SystemFont.bold.of(size: 12)
+        mode.asDriver()
+            .map {
+                switch $0 {
+                case .cool:
+                    return NSLocalizedString("Cool Temperature", comment: "")
+                case .heat:
+                    return NSLocalizedString("Heat Temperature", comment: "")
+                case .off:
+                    return NSLocalizedString("Thermostat Mode", comment: "")
+                }
+            }
+            .drive(titleLabel.rx.text)
+            .addDisposableTo(disposeBag)
+        
+        mode.asDriver().map { $0 != .off }.drive(slider.rx.isEnabled).disposed(by: disposeBag)
+        
+        let sliderLabelTextColor = mode.asDriver()
+            .map { $0 == .off ? UIColor.middleGray : UIColor.blackText  }
+        
+        sliderLabelTextColor.drive(minLabel.rx.textColor).disposed(by: disposeBag)
+        sliderLabelTextColor.drive(maxLabel.rx.textColor).disposed(by: disposeBag)
+        
+        mode.asDriver()
+            .skip(1)
+            .filter { $0 != .off }
+            .drive(onNext: { [weak self] _ in
+                self?.setGradientTrackingImage()
+            })
+            .disposed(by: disposeBag)
+        
+        titleLabel.font = SystemFont.bold.of(textStyle: .footnote)
         temperatureLabel.font = SystemFont.regular.of(size: 22)
         minLabel.font = SystemFont.regular.of(size: 17)
         maxLabel.font = SystemFont.regular.of(size: 17)
         
-        slider.minimumValue = Float(tempRange.lowerBound)
-        slider.maximumValue = Float(tempRange.upperBound)
+        slider.minimumValue = Float(minTemp.value(forScale: scale))
+        slider.maximumValue = Float(maxTemp.value(forScale: scale))
         
-        currentTemperature.asObservable().take(1)
+        currentTemperature.asObservable()
             .distinctUntilChanged()
             .map { Float($0.value(forScale: scale)) }
             .asDriver(onErrorDriveWith: .empty())
@@ -61,14 +88,15 @@ class TemperatureSliderView: UIView {
             .disposed(by: disposeBag)
         
         // Label Text
-        currentTemperature.asObservable().distinctUntilChanged()
+        Observable.merge(currentTemperature.asObservable().distinctUntilChanged(),
+                         mode.asObservable().filter { $0 != .off }.withLatestFrom(currentTemperature))
             .map { "\($0.value(forScale: scale))\(scale.displayString)" }
             .asDriver(onErrorDriveWith: .empty())
             .drive(temperatureLabel.rx.text)
             .disposed(by: disposeBag)
 
-        minLabel.text = String(tempRange.lowerBound)
-        maxLabel.text = String(tempRange.upperBound)
+        minLabel.text = String(minTemp.value(forScale: scale))
+        maxLabel.text = String(maxTemp.value(forScale: scale))
         
         temperatureLabel.setContentHuggingPriority(1000, for: .horizontal)
         let labelStack = UIStackView(arrangedSubviews: [titleLabel, temperatureLabel]).usingAutoLayout()
@@ -119,8 +147,8 @@ class TemperatureSliderView: UIView {
         gradientFrame.size.width = frame.width - 2 * (minMaxLabelWidth + sliderStackSpacing)
         gradientBackground.frame = gradientFrame
         let gradientColors: [CGColor]
-        switch coolOrHeat {
-        case .cool:
+        switch mode.value {
+        case .cool, .off:
             gradientColors = [UIColor(red: 0/255, green: 118/255, blue: 255/255, alpha: 1).cgColor,
                               UIColor(red: 178/255, green: 213/255, blue: 255/255, alpha: 1).cgColor]
         case .heat:

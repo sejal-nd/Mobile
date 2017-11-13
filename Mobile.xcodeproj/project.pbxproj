@@ -315,6 +315,12 @@
 		824004CB1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
 		824004CC1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
 		824004CD1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
+		824A96651FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */; };
+		824A96661FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */; };
+		824A96671FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */; };
+		824A96691FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */; };
+		824A966A1FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */; };
+		824A966B1FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */; };
 		825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */; };
 		825171A41F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */; };
 		825171A51F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */; };
@@ -1017,9 +1023,6 @@
 		E841F3A21F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */; };
 		E841F3A31F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */; };
 		E841F3A41F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */; };
-		E841F3A71F02F316007BFA82 /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3A51F02F316007BFA82 /* PickerView.xib */; };
-		E841F3A81F02F316007BFA82 /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3A51F02F316007BFA82 /* PickerView.xib */; };
-		E841F3A91F02F316007BFA82 /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3A51F02F316007BFA82 /* PickerView.xib */; };
 		E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* PickerView.swift */; };
 		E841F3AB1F02F316007BFA82 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* PickerView.swift */; };
 		E841F3AC1F02F316007BFA82 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* PickerView.swift */; };
@@ -1592,6 +1595,8 @@
 		822BBBA01EFC1A01004EBBAB /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		823694301FA8CB0E0037BD9F /* SafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewController.swift; sourceTree = "<group>"; };
 		824004C91F25F4970012A288 /* TemplateCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardViewModel.swift; sourceTree = "<group>"; };
+		824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewController.swift; sourceTree = "<group>"; };
+		824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewModel.swift; sourceTree = "<group>"; };
 		825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectControl.swift; sourceTree = "<group>"; };
 		825171B41F1D25130020A6CA /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -1961,7 +1966,6 @@
 		E840CB371F82D13A00357780 /* AutoPayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayViewModelTests.swift; sourceTree = "<group>"; };
 		E841F39D1F02F30E007BFA82 /* UINavigationBackButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UINavigationBackButton.xib; sourceTree = "<group>"; };
 		E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBackButton.swift; sourceTree = "<group>"; };
-		E841F3A51F02F316007BFA82 /* PickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerView.xib; sourceTree = "<group>"; };
 		E841F3A61F02F316007BFA82 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateDisclosureButton.xib; sourceTree = "<group>"; };
 		E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisclosureButton.swift; sourceTree = "<group>"; };
@@ -2723,10 +2727,10 @@
 				E87C41331FAA560000448F86 /* AlertsSegmentedControl */,
 				E89399331F86719B00B9184C /* BillAnalysisSegmentedControl */,
 				E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */,
-				E841F39B1F02F2AB007BFA82 /* PickerView */,
 				E841F39A1F02F2A0007BFA82 /* DateDisclosureButton */,
 				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
 				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
+				E841F3A61F02F316007BFA82 /* PickerView.swift */,
 				825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */,
 				82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */,
 				82A18EB51EBA676700BE9F21 /* SecondaryButton.swift */,
@@ -2810,6 +2814,7 @@
 				82AC2A151FAB5C3900EACB3B /* PeakRewardsViewController.swift */,
 				826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */,
 				8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */,
+				824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */,
 			);
 			path = "Smart Thermostat Peak Rewards";
 			sourceTree = "<group>";
@@ -2819,6 +2824,7 @@
 			children = (
 				82AC2A221FAB729E00EACB3B /* PeakRewardsViewModel.swift */,
 				826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */,
+				824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */,
 			);
 			path = "Peak Rewards";
 			sourceTree = "<group>";
@@ -3573,15 +3579,6 @@
 			path = DateDisclosureButton;
 			sourceTree = "<group>";
 		};
-		E841F39B1F02F2AB007BFA82 /* PickerView */ = {
-			isa = PBXGroup;
-			children = (
-				E841F3A51F02F316007BFA82 /* PickerView.xib */,
-				E841F3A61F02F316007BFA82 /* PickerView.swift */,
-			);
-			path = PickerView;
-			sourceTree = "<group>";
-		};
 		E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -4223,7 +4220,6 @@
 				82A18ECF1EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				B5D415761F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
-				E841F3A71F02F316007BFA82 /* PickerView.xib in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895771E8AACFF009485E3 /* loading_blue.json in Resources */,
@@ -4310,7 +4306,6 @@
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
-				E841F3A91F02F316007BFA82 /* PickerView.xib in Resources */,
 				E84407821F16CFD100CB9707 /* fiserv_errors.xml in Resources */,
 				E8FE30B61E787632009D28B7 /* outage.json in Resources */,
 				B55736401E6740C9003B9369 /* SyncStore.mom in Resources */,
@@ -4414,7 +4409,6 @@
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */,
-				E841F3A81F02F316007BFA82 /* PickerView.xib in Resources */,
 				E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */,
 				E8FE30B71E787635009D28B7 /* outage.json in Resources */,
 				B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */,
@@ -4647,6 +4641,7 @@
 				E81CFFF01EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF71E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
 				E88ECFF11E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
+				824A96651FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				E841F3A21F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				01F612291F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
 				82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
@@ -4719,6 +4714,7 @@
 				82E22B671F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
+				824A96691FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
 				E89518731F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
 				2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */,
@@ -4930,6 +4926,7 @@
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAC1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				B56DD49A1ED84E6000F0198B /* FiservApi.swift in Sources */,
+				824A96671FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				01F6122B1F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
 				82EAB33E1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
@@ -5002,6 +4999,7 @@
 				82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				2F5A3F8A1EFD979F00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
+				824A966B1FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
 				82A18F0A1EBD12D600BE9F21 /* Control.swift in Sources */,
 				5492E0211EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				E887C9DB1ED5CBDB002433A3 /* AddCreditCardViewController.swift in Sources */,
@@ -5213,6 +5211,7 @@
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAB1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				B56DD4991ED84E6000F0198B /* FiservApi.swift in Sources */,
+				824A96661FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				01F6122A1F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
 				82EAB33D1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
@@ -5285,6 +5284,7 @@
 				82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				82A18EDB1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
+				824A966A1FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				5492E0201EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18F091EBD12D600BE9F21 /* Control.swift in Sources */,

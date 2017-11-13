@@ -94,11 +94,13 @@ fileprivate class BasePickerView: UIView {
         titleLabel.numberOfLines = 0
         
         cancelButton.setContentHuggingPriority(1000, for: .horizontal)
+        cancelButton.setContentCompressionResistancePriority(1000, for: .horizontal)
         cancelButton.titleLabel?.font = SystemFont.regular.of(size: 18)
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
         cancelButton.setTitleColor(.actionBlue, for: .normal)
         
         doneButton.setContentHuggingPriority(1000, for: .horizontal)
+        doneButton.setContentCompressionResistancePriority(1000, for: .horizontal)
         doneButton.titleLabel?.font = SystemFont.semibold.of(size: 18)
         doneButton.setTitle(NSLocalizedString("Done", comment: ""), for: .normal)
         doneButton.setTitleColor(.actionBlue, for: .normal)
@@ -113,6 +115,12 @@ fileprivate class BasePickerView: UIView {
         titleLabel.bottomAnchor.constraint(greaterThanOrEqualTo: topBarContainer.bottomAnchor).isActive = true
         titleLabel.leadingAnchor.constraint(greaterThanOrEqualTo: cancelButton.trailingAnchor, constant: 8).isActive = true
         titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: doneButton.leadingAnchor, constant: 8).isActive = true
+        let titleLeading = titleLabel.leadingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 8)
+        titleLeading.priority = 750
+        titleLeading.isActive = true
+        let titleTrailing = titleLabel.trailingAnchor.constraint(equalTo: doneButton.leadingAnchor, constant: 8)
+        titleTrailing.priority = 750
+        titleTrailing.isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: topBarContainer.centerXAnchor).isActive = true
         
         let cancelToTop = cancelButton.topAnchor.constraint(equalTo: topBarContainer.topAnchor)
@@ -140,25 +148,7 @@ fileprivate class BasePickerView: UIView {
         mainStack.trailingAnchor.constraint(equalTo: mainContainer.trailingAnchor).isActive = true
         
         addSubview(mainContainer)
-        
-        // Tablet Constraints
-        mainContainer.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 8).isActive = true
-        let leading = mainContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
-        leading.priority = 750
-        leading.isActive = true
-        
-        mainContainer.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -8).isActive = true
-        let trailing = mainContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-        trailing.priority = 750
-        trailing.isActive = true
-        
-        mainContainer.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: 460).isActive = true
-        let width = mainContainer.widthAnchor.constraint(equalToConstant: 460)
-        width.priority = 750
-        width.isActive = true
-        
-        mainContainer.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        
+        mainContainer.addTabletWidthConstraints(horizontalPadding: 8)
         shownConstraint = mainContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -13)
         shownConstraint.isActive = false
         hiddenConstraint = mainContainer.topAnchor.constraint(equalTo: bottomAnchor)
