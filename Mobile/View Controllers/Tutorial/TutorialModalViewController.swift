@@ -31,6 +31,8 @@ class TutorialModalViewController: DismissableFormSheetViewController {
         scrollView.delegate = self
         pageControl.pageIndicatorTintColor = .primaryColorDark
         
+        xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
+        
         slides.forEach(addViewFor)
     }
     
