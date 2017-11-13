@@ -62,6 +62,13 @@ class AlertsViewController: AccountPickerViewController {
             })
             .disposed(by: disposeBag)
         
+        NotificationCenter.default.rx.notification(.DidTapOnPushNotification, object: nil)
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.fetchAlertsFromDisk()
+            })
+            .disposed(by: disposeBag)
+        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
