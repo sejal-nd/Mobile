@@ -74,7 +74,7 @@ class TemperatureSliderView: UIView {
         slider.minimumValue = Float(minTemp.value(forScale: scale))
         slider.maximumValue = Float(maxTemp.value(forScale: scale))
         
-        currentTemperature.asObservable().take(1)
+        currentTemperature.asObservable()
             .distinctUntilChanged()
             .map { Float($0.value(forScale: scale)) }
             .asDriver(onErrorDriveWith: .empty())

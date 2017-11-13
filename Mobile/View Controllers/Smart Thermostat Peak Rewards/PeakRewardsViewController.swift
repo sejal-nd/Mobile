@@ -126,12 +126,7 @@ class PeakRewardsViewController: UIViewController {
             .subscribe(onNext: { TemperatureScaleStore.shared.scale = $0 })
             .disposed(by: disposeBag)
         
-        TemperatureScaleStore.shared.scaleObservable
-            .distinctUntilChanged()
-            .asDriver(onErrorJustReturn: .fahrenheit)
-            .map { $0.rawValue }
-            .drive(segmentedControl.selectedIndex)
-            .disposed(by: disposeBag)
+        segmentedControl.selectedIndex.value = TemperatureScaleStore.shared.scale.rawValue
     }
     
     func bindActions() {
@@ -150,7 +145,15 @@ class PeakRewardsViewController: UIViewController {
             .map(AdjustThermostatViewModel.init)
             .map(AdjustThermostatViewController.init)
             .drive(onNext: { [weak self] in
-                self?.navigationController?.pushViewController($0, animated: true)
+                guard let `self` = self else { return }
+                $0.viewModel.saveSuccess
+                    .asDriver(onErrorDriveWith: .empty())
+                    .delay(0.5)
+                    .drive(onNext: { [weak self] in
+                        self?.view.makeToast(NSLocalizedString("Thermostat settings saved", comment: ""))
+                    })
+                    .disposed(by: $0.disposeBag)
+                self.navigationController?.pushViewController($0, animated: true)
             })
             .disposed(by: disposeBag)
         

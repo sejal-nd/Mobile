@@ -21,6 +21,8 @@ class AdjustThermostatViewModel {
     
     let currentTemperature = BehaviorSubject<Temperature>(value: Temperature(value: Double(70), scale: .fahrenheit))
     let mode = BehaviorSubject<SmartThermostatMode>(value: .cool)
+    let fan = BehaviorSubject<SmartThermostatFan>(value: .auto)
+    let hold = BehaviorSubject<Bool>(value: false)
     
     let initialLoadTracker = ActivityTracker()
     let saveTracker = ActivityTracker()
@@ -69,21 +71,27 @@ class AdjustThermostatViewModel {
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
-//    private lazy var saveEvents: Observable<Event<Void>> = self.saveAction.withLatestFrom(self.updatedPeriodInfo)
-//        .flatMapLatest { [weak self] periodInfo -> Observable<Event<Void>> in
-//            guard let `self` = self else { return .empty() }
-//            let updatedSchedule = self.schedule.newSchedule(forPeriod: self.period, info: periodInfo)
-//            return self.peakRewardsService.updateSmartThermostatSchedule(forDevice: self.device,
-//                                                                         accountNumber: self.accountDetail.accountNumber,
-//                                                                         premiseNumber: self.premiseNumber,
-//                                                                         schedule: updatedSchedule)
-//                .trackActivity(self.saveTracker)
-//                .materialize()
-//        }
-//        .share()
-//
-//    private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
-//    private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
-//        .map { ($0 as? ServiceError)?.errorDescription ?? "" }
+    private lazy var updatedSettings: Observable<SmartThermostatDeviceSettings> = Observable
+        .combineLatest(self.currentTemperature,
+                       self.mode,
+                       self.fan,
+                       self.hold,
+                       resultSelector: SmartThermostatDeviceSettings.init)
+    
+    private lazy var saveEvents: Observable<Event<Void>> = self.saveAction.withLatestFrom(self.updatedSettings)
+        .flatMapLatest { [weak self] updatedSettings -> Observable<Event<Void>> in
+            guard let `self` = self else { return .empty() }
+            return self.peakRewardsService.updateDeviceSettings(forDevice: self.device,
+                                                                accountNumber: self.accountDetail.accountNumber,
+                                                                premiseNumber: self.premiseNumber,
+                                                                settings: updatedSettings)
+                .trackActivity(self.saveTracker)
+                .materialize()
+        }
+        .share()
+
+    private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
+    private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
+        .map { ($0 as? ServiceError)?.errorDescription ?? "" }
     
 }

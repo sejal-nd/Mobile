@@ -97,11 +97,6 @@ class AdjustThermostatViewController: UIViewController {
                                       NSLocalizedString("Heat", comment: ""),
                                       NSLocalizedString("Off", comment: "")]
         
-        modeSegmentedControl.selectedIndex.asObservable()
-            .map { SmartThermostatMode.allValues[$0] }
-            .bind(to: viewModel.mode)
-            .disposed(by: disposeBag)
-        
         viewModel.mode.asObservable()
             .bind(to: tempSliderView.mode)
             .disposed(by: disposeBag)
@@ -148,6 +143,21 @@ class AdjustThermostatViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.initialHold.drive(permanentHoldSwitch.rx.isOn).disposed(by: disposeBag)
+        
+        // Bind to view model
+        permanentHoldSwitch.rx.isOn.distinctUntilChanged().bind(to: viewModel.hold).disposed(by: disposeBag)
+        
+        modeSegmentedControl.selectedIndex.asObservable()
+            .distinctUntilChanged()
+            .map { SmartThermostatMode.allValues[$0] }
+            .bind(to: viewModel.mode)
+            .disposed(by: disposeBag)
+        
+        fanSegmentedControl.selectedIndex.asObservable()
+            .distinctUntilChanged()
+            .map { SmartThermostatFan.allValues[$0] }
+            .bind(to: viewModel.fan)
+            .disposed(by: disposeBag)
     }
     
     func bindActions() {
@@ -159,8 +169,6 @@ class AdjustThermostatViewController: UIViewController {
     }
     
     func bindSaveStates() {
-        
-        
         viewModel.saveTracker.asDriver()
             .drive(onNext: {
                 if $0 {
@@ -171,19 +179,19 @@ class AdjustThermostatViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-//        viewModel.saveSuccess.asDriver(onErrorDriveWith: .empty())
-//            .drive(onNext: { [weak self] in
-//                self?.navigationController?.popViewController(animated: true)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        viewModel.saveError.asDriver(onErrorDriveWith: .empty())
-//            .drive(onNext: { [weak self] errorDescription in
-//                let alert = UIAlertController(title: "Error", message: errorDescription, preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-//                self?.present(alert, animated: true, completion: nil)
-//            })
-//            .disposed(by: disposeBag)
+        viewModel.saveSuccess.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.saveError.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] errorDescription in
+                let alert = UIAlertController(title: "Error", message: errorDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {

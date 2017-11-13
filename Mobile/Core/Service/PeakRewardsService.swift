@@ -36,6 +36,7 @@ protocol PeakRewardsService {
     /// Fetch the smart thermostat device's settings.
     ///
     /// - Parameters:
+    ///   - device: the device to fetch data for
     ///   - accountNumber: the account to fetch data for
     ///   - premiseNumber: the premise to fetch data for
     ///   - completion: the block to execute upon completion, the ServiceResult
@@ -44,6 +45,21 @@ protocol PeakRewardsService {
                              premiseNumber: String,
                              device: SmartThermostatDevice,
                              completion: @escaping (_ result: ServiceResult<SmartThermostatDeviceSettings>) -> Void)
+    
+    /// Update the smart thermostat device's settings.
+    ///
+    /// - Parameters:
+    ///   - device: the device to update
+    ///   - accountNumber: the account to fetch data for
+    ///   - premiseNumber: the premise to fetch data for
+    ///   - settings: the settings to update the device to
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain a SmartThermostatDeviceSettings on success, or a ServiceError on failure.
+    func updateDeviceSettings(forDevice device: SmartThermostatDevice,
+                              accountNumber: String,
+                              premiseNumber: String,
+                              settings: SmartThermostatDeviceSettings,
+                              completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     /// Fetch the smart thermostat schedule for the specified device.
     ///
@@ -120,6 +136,24 @@ extension PeakRewardsService {
                 switch $0 {
                 case ServiceResult.Success(let settings):
                     observer.onNext(settings)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func updateDeviceSettings(forDevice device: SmartThermostatDevice,
+                              accountNumber: String,
+                              premiseNumber: String,
+                              settings: SmartThermostatDeviceSettings) -> Observable<Void> {
+        return Observable.create { observer in
+            self.updateDeviceSettings(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber, settings: settings) { result in
+                switch result {
+                case ServiceResult.Success():
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

@@ -168,6 +168,20 @@ struct SmartThermostatDeviceSettings: Mappable {
         fan = try map.from("fan")
         hold = try map.from("hold")
     }
+    
+    init(temp: Temperature, mode: SmartThermostatMode, fan: SmartThermostatFan, hold: Bool) {
+        self.temp = temp
+        self.mode = mode
+        self.fan = fan
+        self.hold = hold
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return ["temp": temp.fahrenheit,
+                "mode": mode.rawValue,
+                "fan": fan.rawValue,
+                "hold": hold]
+    }
 }
 
 enum SmartThermostatFan: String {
