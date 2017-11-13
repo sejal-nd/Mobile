@@ -56,8 +56,19 @@ protocol UsageService {
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain a TODO object on success, or a ServiceError on failure.
     func fetchEnergyTips(accountNumber: String, premiseNumber: String, completion: @escaping (_ result: ServiceResult<[EnergyTip]>) -> Void)
-}
 
+
+/// Fetches specific tip
+///
+/// - Parameters:
+///   - accountNumber: the account to fetch data for
+///   - premiseNumber: the premise to fetch data for
+///   - tipName : the tip we are looking for
+///   - completion: the block to execute upon completion, the ServiceResult
+///     that is provided will contain a TODO object on success, or a ServiceError on failure.
+    func fetchEnergyTipByName(accountNumber: String, premiseNumber:String,tipName:String,completion:
+        @escaping (_ result: ServiceResult<EnergyTip>) -> Void)
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // MARK: - Reactive Extension to UsageService
 extension UsageService {
@@ -113,6 +124,21 @@ extension UsageService {
                 switch (result) {
                 case ServiceResult.Success(let energyTips):
                     observer.onNext(energyTips)
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func fetchEnergyTipByName(accountNumber: String, premiseNumber: String, tipName: String) -> Observable<EnergyTip> {
+        return Observable.create { observer in
+            self.fetchEnergyTipByName(accountNumber: accountNumber, premiseNumber: premiseNumber, tipName: tipName,completion: { (result: ServiceResult<EnergyTip>) in
+                switch (result) {
+                case ServiceResult.Success(let energyTip):
+                    observer.onNext(energyTip)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
