@@ -53,8 +53,6 @@ class ForgotUsernameResultViewController: UIViewController {
     }
     
     func styleTopTextView() {
-//        let signInString = NSLocalizedString("Sign In", comment: "")
-//        let localizedString = String(format: NSLocalizedString("Remember your username? You can %@, or you can select an account to answer its security question to view your full username.", comment: ""), signInString)
         let localizedString = NSLocalizedString("You can sign in if you remember your username or you can answer a security question to view your full username.", comment: "")
         
         let attrString = NSMutableAttributedString(string: localizedString)
@@ -67,10 +65,6 @@ class ForgotUsernameResultViewController: UIViewController {
         attrString.addAttribute(NSFontAttributeName, value: SystemFont.semibold.of(textStyle: .subheadline), range: fullRange)
         attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: fullRange)
         
-//        let url = URL(fileURLWithPath: "") // Does not matter
-//        attrString.addAttribute(NSLinkAttributeName, value: url, range: (localizedString as NSString).range(of: signInString))
-        
-//        topTextView.delegate = self
         topTextView.textContainerInset = .zero
         topTextView.textContainer.lineFragmentPadding = 0
         topTextView.attributedText = attrString
@@ -129,12 +123,3 @@ extension ForgotUsernameResultViewController: UITableViewDataSource {
     }
     
 }
-
-//extension ForgotUsernameResultViewController: UITextViewDelegate {
-//    
-//    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-//        onBackToSignInPress()
-//        return false
-//    }
-//    
-//}

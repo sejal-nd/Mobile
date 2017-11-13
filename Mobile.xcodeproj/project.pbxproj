@@ -6796,7 +6796,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				PROVISIONING_PROFILE_SPECIFIER = "MG Dev Profile";
 			};
 			name = Testing;
 		};
