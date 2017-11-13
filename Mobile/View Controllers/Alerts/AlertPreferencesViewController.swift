@@ -257,7 +257,9 @@ class AlertPreferencesViewController: UIViewController {
             onDone: { [weak self] value, index in
                 guard let `self` = self else { return }
                 if self.viewModel.paymentDueDaysBefore.value != index + 1 {
-                    self.viewModel.userChangedPrefs.value = true
+                    if self.viewModel.paymentDue.value {
+                        self.viewModel.userChangedPrefs.value = true
+                    }
                     self.viewModel.paymentDueDaysBefore.value = index + 1
                 }
             },
