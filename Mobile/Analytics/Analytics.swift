@@ -147,12 +147,12 @@ enum AnalyticsOutageSource {
     case Status
 }
 
-enum Dimensions: String {
-    case DIMENSION_KEEP_ME_SIGNIN_IN = "3";
-    case DIMENSION_FINGERPRINT_USED = "4";
-    case DIMENSION_ERROR_CODE = "5";
-    case DIMENSION_OTP_ENABLED = "6";
-    case DIMENSION_LINK = "7";
+enum Dimensions: UInt {
+    case KeepMeSignedIn = 3;
+    case FingerprintUsed = 4;
+    case ErrorCode = 5;
+    case OTPEnabled = 6;
+    case Link = 7;
 }
 
 func isAnalyticsEnabled() -> Bool {
@@ -171,32 +171,33 @@ struct Analytics {
             tracker?.send(GAIDictionaryBuilder.createScreenView()
                 .build() as! [AnyHashable : Any]!)
         } else {
-            print("Analytics: " + screenName)
+            dLog("Analytics: " + screenName)
         }
     }
     
-    func logScreenView(_ screenName: String, dimensionIndex: String, dimensionValue: String) {
+    func logScreenView(_ screenName: String, dimensionIndex: Dimensions, dimensionValue: String) {
+        if(isAnalyticsEnabled()) { 
+            let tracker = GAI.sharedInstance().defaultTracker
+            tracker?.set(kGAIScreenName, value: screenName)
+            tracker?.send(GAIDictionaryBuilder.createScreenView()
+                .set(dimensionValue, forKey: GAIFields.customDimension(for: dimensionIndex.rawValue))
+                
+                .build() as! [AnyHashable : Any]!)
+        } else {
+            dLog("Analytics: " + screenName)
+        }
+    }
+    
+    func logSignIn(_ screenName: String, keepSignedIn: String, usedFingerprint: String) {
         if(isAnalyticsEnabled()) {
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
             tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .set(dimensionIndex, forKey: dimensionValue)
+                .set(keepSignedIn, forKey: GAIFields.customDimension(for: Dimensions.KeepMeSignedIn.rawValue))
+                .set(usedFingerprint, forKey: GAIFields.customDimension(for: Dimensions.FingerprintUsed.rawValue))
                 .build() as! [AnyHashable : Any]!)
         } else {
-            print("Analytics: " + screenName)
-        }
-    }
-    
-    func logSignIn(_ screenName: String, signedIndimensionIndex: String, signedIndimensionValue: String, fingerprintDimensionIndex: String, fingerprintDimensionValue: String) {
-        if(isAnalyticsEnabled()) {
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker?.set(kGAIScreenName, value: screenName)
-            tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .set(signedIndimensionIndex, forKey: signedIndimensionValue)
-                .set(fingerprintDimensionIndex, forKey: fingerprintDimensionValue)
-                .build() as! [AnyHashable : Any]!)
-        } else {
-            print("Analytics: " + screenName)
+            dLog("Analytics: " + screenName)
         }
     }
     

@@ -76,7 +76,7 @@ class TemplateCardView: UIView {
         .withLatestFrom(self.viewModel.ctaUrl)
         .do(onNext: { [weak self] in
             guard let `self` = self else { return }
-            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: $0.absoluteString)
+            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.Link, dimensionValue: $0.absoluteString)
         })
         .map(SFSafariViewController.createWithCustomStyle)
     
@@ -86,7 +86,7 @@ class TemplateCardView: UIView {
         .withLatestFrom(self.viewModel.ctaUrl)
         .do(onNext: { [weak self] in
             guard let `self` = self else { return }
-            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: $0.absoluteString)
+            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.Link, dimensionValue: $0.absoluteString)
         })
         .withLatestFrom(self.viewModel.accountDetailElements.asDriver(onErrorDriveWith: .empty()))
         .map {
