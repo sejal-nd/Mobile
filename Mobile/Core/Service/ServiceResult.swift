@@ -38,6 +38,7 @@ enum ServiceErrorCode : String {
     case FnMultiAccountFound = "FN-MULTI-ACCT-FOUND" // Forgot Username scenario for BGE with multiple account numbers
     case ExpiredTempPassword = "EXPIRED-TEMP-PASSWORD" // Temp password older than an hour
     case FnAccountDisallow = "FN-ACCT-DISALLOW" // BGE only account blocking mechanism
+    case FnOverNotFound = "FN-OVER-NOTFOUND" // BGE PeakRewards overrides
 }
 
 // MARK: - ServiceError

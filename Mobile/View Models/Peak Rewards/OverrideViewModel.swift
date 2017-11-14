@@ -62,7 +62,10 @@ class OverrideViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var scheduledOverride: Driver<PeakRewardsOverride?> = self.overrideEvents.elements()
-        .map { $0.filter { $0.status == .scheduled }.first }
+        .map { [weak self] in
+            guard let device = self?.device else { return nil }
+            return $0.filter { $0.status == .scheduled && $0.serialNumber == device.serialNumber }.first
+        }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var scheduledSerialText: String = String(format: NSLocalizedString("Serial #: %@", comment: ""), self.device.serialNumber)
@@ -70,11 +73,14 @@ class OverrideViewModel {
     private(set) lazy var scheduledDateText: Driver<String?> = self.scheduledOverride
         .map {
             guard let dateString = $0?.start?.mmDdYyyyString else { return nil }
-            return String(format: NSLocalizedString("Serial #: %@", comment: ""), dateString)
+            return String(format: NSLocalizedString("Date: %@", comment: ""), dateString)
     }
     
     private(set) lazy var activeOverride: Driver<PeakRewardsOverride?> = self.overrideEvents.elements()
-        .map { $0.filter { $0.status == .active }.first }
+        .map { [weak self] in
+            guard let device = self?.device else { return nil }
+            return $0.filter { $0.status == .active && $0.serialNumber == device.serialNumber }.first
+        }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var activeSerialText: String = String(format: NSLocalizedString("Serial #: %@", comment: ""), self.device.serialNumber)
@@ -82,7 +88,7 @@ class OverrideViewModel {
     private(set) lazy var activeDateText: Driver<String?> = self.activeOverride
         .map {
             guard let dateString = $0?.start?.mmDdYyyyString else { return nil }
-            return String(format: NSLocalizedString("Serial #: %@", comment: ""), dateString)
+            return String(format: NSLocalizedString("Date: %@", comment: ""), dateString)
     }
     
     private(set) lazy var showMainLoadingState: Driver<Bool> = self.refreshingOverrides
