@@ -48,11 +48,6 @@ class OverrideViewController: UIViewController {
         bindSaveStates()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.viewDidAppear.onNext(())
-    }
-    
     func buildLayout() {
         title = NSLocalizedString("Override", comment: "")
         view.backgroundColor = .white
@@ -209,27 +204,24 @@ class OverrideViewController: UIViewController {
         scheduledCancelButton.rx.tap.bind(to: viewModel.cancelAction).disposed(by: disposeBag)
         
         dateButton.rx.tap.asObservable()
-            .withLatestFrom(viewModel.validConfirmedDate.startWith(Calendar.opCo.startOfDay(for: Date())))
+            .withLatestFrom(viewModel.selectedDate.startWith(Calendar.opCo.startOfDay(for: Date())))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                let calendarVC = PDTSimpleCalendarViewController()
-                calendarVC.delegate = self
-                calendarVC.title = NSLocalizedString("Select Override Date", comment: "")
-                calendarVC.selectedDate = $0
                 let backItem = UIBarButtonItem()
                 backItem.title = NSLocalizedString("Back", comment: "")
                 self.navigationItem.backBarButtonItem = backItem
                 
+                let calendarVC = PDTSimpleCalendarViewController()
+                calendarVC.delegate = self
+                calendarVC.title = NSLocalizedString("Select Override Date", comment: "")
+                
+                let components = Calendar.opCo.dateComponents([.year, .month, .day], from: $0)
+                if let deviceTimeDate = Calendar.current.date(from: components) {
+                    calendarVC.selectedDate = deviceTimeDate
+                }
+                
                 self.navigationController?.pushViewController(calendarVC, animated: true)
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.invalidDateSelected
-            .drive(onNext: { [weak self] in
-                let alert = UIAlertController(title: NSLocalizedString("Override Already Active", comment: ""), message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self?.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }
@@ -258,8 +250,8 @@ class OverrideViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.error.asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] errorDescription in
-                let alert = UIAlertController(title: "Error", message: errorDescription, preferredStyle: .alert)
+            .drive(onNext: { [weak self] (title, message) in
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self?.present(alert, animated: true, completion: nil)
             })

@@ -16,7 +16,6 @@ class OverrideViewModel {
     let device: SmartThermostatDevice
     let overrideEvents: Observable<Event<[PeakRewardsOverride]>>
     
-    let viewDidAppear = PublishSubject<Void>()
     let selectedDate = PublishSubject<Date>()
     
     var premiseNumber: String {
@@ -42,23 +41,9 @@ class OverrideViewModel {
         self.refreshingOverrides = refreshingOverrides
     }
     
-    private(set) lazy var dateButtonText: Driver<String> = self.validConfirmedDate
+    private(set) lazy var dateButtonText: Driver<String> = self.selectedDate.asObservable()
         .map { String(format: NSLocalizedString("Date: %@", comment: ""), $0.mmDdYyyyString) }
         .startWith(NSLocalizedString("Select Date", comment: ""))
-        .asDriver(onErrorDriveWith: .empty())
-    
-    private lazy var confirmedSelectedDate = self.selectedDate.sample(self.viewDidAppear)
-    
-    private(set) lazy var invalidDateSelected: Driver<Void> = Observable.combineLatest(self.confirmedSelectedDate,
-                                                                                       self.activeOverride.asObservable())
-        .filter { Calendar.opCo.isDateInToday($0) && $1 != nil }
-        .mapTo(())
-        .asDriver(onErrorDriveWith: .empty())
-    
-    private(set) lazy var validConfirmedDate: Driver<Date> = Observable.combineLatest(self.confirmedSelectedDate,
-                                                                                      self.activeOverride.asObservable())
-        .filter { !(Calendar.opCo.isDateInToday($0) && $1 != nil) }
-        .map { date, _ in date }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var scheduledOverride: Driver<PeakRewardsOverride?> = self.overrideEvents.elements()
@@ -110,10 +95,10 @@ class OverrideViewModel {
     private(set) lazy var enableDateButton: Driver<Bool> = self.scheduledOverride.isNil()
     private(set) lazy var showScheduledOverride: Driver<Bool> = self.scheduledOverride.isNil().not()
     private(set) lazy var showActiveOverride: Driver<Bool> = self.activeOverride.isNil().not()
-    private(set) lazy var enableSaveButton: Driver<Bool> = self.validConfirmedDate.mapTo(true).startWith(false)
+    private(set) lazy var enableSaveButton: Driver<Bool> = self.selectedDate.mapTo(true).startWith(false).asDriver(onErrorDriveWith: .empty())
     
     //MARK: - Actions
-    private lazy var saveEvents: Observable<Event<Void>> = self.saveAction.withLatestFrom(self.validConfirmedDate.asObservable())
+    private lazy var saveEvents: Observable<Event<Void>> = self.saveAction.withLatestFrom(self.selectedDate.asObservable())
         .flatMapLatest { [weak self] selectedDate -> Observable<Event<Void>> in
             guard let `self` = self else { return .empty() }
             return self.peakRewardsService.scheduleOverride(accountNumber: self.accountDetail.accountNumber,
@@ -138,7 +123,17 @@ class OverrideViewModel {
     
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
     private(set) lazy var cancelSuccess: Observable<Void> = self.cancelEvents.elements()
-    private(set) lazy var error: Observable<String> = Observable.merge(self.saveEvents.errors(), self.cancelEvents.errors())
-        .map { ($0 as? ServiceError)?.errorDescription ?? "" }
+    private(set) lazy var error: Observable<(String?, String?)> = Observable.merge(self.saveEvents.errors(), self.cancelEvents.errors())
+        .map {
+            guard let error = $0 as? ServiceError else {
+                return (NSLocalizedString("Error", comment: ""), $0.localizedDescription)
+            }
+            
+            if error.serviceCode == ServiceErrorCode.FnOverExists.rawValue {
+                return ("Override Already Active", nil)
+            }
+            
+            return (NSLocalizedString("Error", comment: ""), error.errorDescription)
+    }
 
 }
