@@ -56,7 +56,7 @@ class AlertPreferencesViewModel {
     
     // MARK: Web Services
     
-    func fetchData() {
+    func fetchData(onCompletion: @escaping () -> Void) {
         isFetching.value = true
         isError.value = false
         
@@ -69,9 +69,11 @@ class AlertPreferencesViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.isFetching.value = false
+                onCompletion()
             }, onError: { [weak self] err in
                 self?.isFetching.value = false
                 self?.isError.value = true
+                onCompletion()
             })
             .disposed(by: disposeBag)
     }
