@@ -73,7 +73,7 @@ class OverrideViewModel {
     private(set) lazy var scheduledDateText: Driver<String?> = self.scheduledOverride
         .map {
             guard let dateString = $0?.start?.mmDdYyyyString else { return nil }
-            return String(format: NSLocalizedString("Date #: %@", comment: ""), dateString)
+            return String(format: NSLocalizedString("Date: %@", comment: ""), dateString)
     }
     
     private(set) lazy var activeOverride: Driver<PeakRewardsOverride?> = self.overrideEvents.elements()
@@ -88,7 +88,7 @@ class OverrideViewModel {
     private(set) lazy var activeDateText: Driver<String?> = self.activeOverride
         .map {
             guard let dateString = $0?.start?.mmDdYyyyString else { return nil }
-            return String(format: NSLocalizedString("Date #: %@", comment: ""), dateString)
+            return String(format: NSLocalizedString("Date: %@", comment: ""), dateString)
     }
     
     private(set) lazy var showMainLoadingState: Driver<Bool> = self.refreshingOverrides
