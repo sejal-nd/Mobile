@@ -176,7 +176,7 @@ struct Analytics {
     }
     
     func logScreenView(_ screenName: String, dimensionIndex: Dimensions, dimensionValue: String) {
-        if(isAnalyticsEnabled()) { print(dimensionIndex);print(dimensionValue);
+        if(isAnalyticsEnabled()) { 
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
             tracker?.send(GAIDictionaryBuilder.createScreenView()
