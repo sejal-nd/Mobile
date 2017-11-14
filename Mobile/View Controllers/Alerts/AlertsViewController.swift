@@ -120,6 +120,7 @@ class AlertsViewController: AccountPickerViewController {
         preferencesButtonLabel.textColor = .actionBlue
         preferencesButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
+        preferencesButton.accessibilityLabel = preferencesButtonLabel.text
         
         alertsEmptyStateLabel.textColor = .middleGray
         alertsEmptyStateLabel.font = OpenSans.regular.of(size: 18)
@@ -152,6 +153,9 @@ class AlertsViewController: AccountPickerViewController {
         }).disposed(by: disposeBag)
         viewModel.reloadUpdatesTableViewEvent.asObservable().subscribe(onNext: { [weak self] in
             self?.updatesTableView.reloadData()
+        }).disposed(by: disposeBag)
+        viewModel.a11yScreenChangedEvent.asObservable().subscribe(onNext: { [weak self] in
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view)
         }).disposed(by: disposeBag)
     }
     
@@ -235,6 +239,8 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.innerContentView.tag = indexPath.section
             cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
             cell.innerContentView.addTarget(self, action: #selector(onUpdateCellTap(sender:)), for: .touchUpInside)
+            
+            cell.innerContentView.accessibilityLabel = "\(cell.titleLabel.text ?? ""): \(cell.detailLabel.text ?? "")"
             
             return cell
         }

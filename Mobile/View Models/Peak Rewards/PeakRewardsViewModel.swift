@@ -29,6 +29,7 @@ class PeakRewardsViewModel {
     
     //MARK: - Actions
     let loadInitialData = PublishSubject<Void>()
+    let overridesUpdated = PublishSubject<Void>()
     let deviceScheduleChanged = PublishSubject<Void>()
     
     //MARK: - Init
@@ -48,9 +49,10 @@ class PeakRewardsViewModel {
                 .materialize()
                 .filter { !$0.isCompleted }
         }
-        .share()
+        .shareReplay(1)
     
-    private lazy var peakRewardsOverridesEvents: Observable<Event<[PeakRewardsOverride]>> = self.loadInitialData
+    private(set) lazy var peakRewardsOverridesEvents: Observable<Event<[PeakRewardsOverride]>> = Observable
+        .merge(self.loadInitialData, self.overridesUpdated)
         .flatMapLatest { [weak self] _ -> Observable<Event<[PeakRewardsOverride]>> in
             guard let `self` = self else { return .empty() }
             return self.peakRewardsService
@@ -60,10 +62,12 @@ class PeakRewardsViewModel {
                 .materialize()
                 .filter { !$0.isCompleted }
         }
-        .share()
+        .shareReplay(1)
+    
+    private(set) lazy var overrides: Observable<[PeakRewardsOverride]> = self.peakRewardsOverridesEvents.elements()
     
     private lazy var summaryAndOverridesEvents: Observable<(Event<PeakRewardsSummary>, Event<[PeakRewardsOverride]>)> = Observable
-        .zip(self.peakRewardsSummaryEvents, self.peakRewardsOverridesEvents)
+        .combineLatest(self.peakRewardsSummaryEvents, self.peakRewardsOverridesEvents)
     
     private lazy var summaryAndOverridesErrors: Observable<Error> = self.summaryAndOverridesEvents
         .map { $0.error ?? $1.error }
@@ -166,21 +170,20 @@ class PeakRewardsViewModel {
     
     private(set) lazy var showMainErrorState: Driver<Bool> = Observable
         .combineLatest(self.summaryAndOverridesEvents.map { $0.0.error ?? $0.1.error != nil },
-                       self.peakRewardsSummaryFetchTracker.asObservable().not().filter(!)
-                        )
+                       self.peakRewardsSummaryFetchTracker.asObservable())
         { $0 && !$1 }
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMainContent: Driver<Bool> = Observable
         .combineLatest(self.summaryAndOverridesEvents.map { $0.0.error == nil && $0.1.error == nil },
-                       self.peakRewardsSummaryFetchTracker.asObservable().not().filter(!))
-        { $0 && !$1 }
+                       self.peakRewardsSummaryFetchTracker.asObservable())
+        .map { $0 && !$1 }
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showDeviceButton: Driver<Bool> = self.devices.map { $0.count > 1 }
-    private(set) lazy var showAdjustThermostatButton: Driver<Bool> = self.selectedDevice.map { $0.isSmartThermostat }
+    private(set) lazy var selectedDeviceIsSmartThermostat: Driver<Bool> = self.selectedDevice.map { $0.isSmartThermostat }
     
     private(set) lazy var showScheduleLoadingState: Driver<Bool> = self.deviceScheduleFetchTracker.asDriver()
     private(set) lazy var showScheduleErrorState: Driver<Bool> = Observable
@@ -191,9 +194,17 @@ class PeakRewardsViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showScheduleContent: Driver<Bool> = Observable
-        .combineLatest(self.deviceScheduleEvents.map { $0.element != nil },
-                       self.deviceScheduleFetchTracker.asObservable().not().filter(!))
-        { $0 && !$1 }
+        .combineLatest(
+            self.deviceScheduleEvents.map {
+                if case .next(let value) = $0 {
+                    return value != nil
+                } else {
+                    return false
+                }
+            },
+            self.deviceScheduleFetchTracker.asObservable().not().filter(!)
+        )
+        .map { $0 && !$1 }
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
