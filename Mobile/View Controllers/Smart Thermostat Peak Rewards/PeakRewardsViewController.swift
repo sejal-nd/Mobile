@@ -142,12 +142,29 @@ class PeakRewardsViewController: UIViewController {
             .disposed(by: disposeBag)
         
         overrideButton.rx.tap.asDriver()
-            .withLatestFrom(Driver.combineLatest(viewModel.selectedDevice, viewModel.overrides.asDriver(onErrorDriveWith: .empty())))
-            .map { [unowned self] in (self.viewModel.peakRewardsService, self.viewModel.accountDetail, $0, $1) }
+            .withLatestFrom(viewModel.selectedDevice)
+            .map { [unowned self] in (self.viewModel.peakRewardsService,
+                                      self.viewModel.accountDetail,
+                                      $0,
+                                      self.viewModel.peakRewardsOverridesEvents,
+                                      self.viewModel.peakRewardsSummaryFetchTracker.asDriver()) }
             .map(OverrideViewModel.init)
             .map(OverrideViewController.init)
             .drive(onNext: { [weak self] in
-                self?.navigationController?.pushViewController($0, animated: true)
+                guard let `self` = self else { return }
+                $0.viewModel.saveSuccess
+                    .asDriver(onErrorDriveWith: .empty())
+                    .delay(0.5)
+                    .drive(onNext: { [weak self] in
+                        self?.view.makeToast(NSLocalizedString("Override scheduled", comment: ""))
+                    })
+                    .disposed(by: $0.disposeBag)
+                
+                Observable.merge($0.viewModel.saveSuccess, $0.viewModel.cancelSuccess)
+                    .bind(to: self.viewModel.overridesUpdated)
+                    .disposed(by: $0.disposeBag)
+                
+                self.navigationController?.pushViewController($0, animated: true)
             })
             .disposed(by: disposeBag)
         

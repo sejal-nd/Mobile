@@ -15,6 +15,10 @@ class OverrideViewController: UIViewController {
 
     let disposeBag = DisposeBag()
     
+    let mainStack = UIStackView().usingAutoLayout()
+    let errorLabel = UILabel().usingAutoLayout()
+    let loadingIndicator = LoadingIndicator().usingAutoLayout()
+    
     private let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: nil)
     private let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: nil)
     
@@ -52,6 +56,19 @@ class OverrideViewController: UIViewController {
     func buildLayout() {
         title = NSLocalizedString("Override", comment: "")
         view.backgroundColor = .white
+        
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.textColor = .blackText
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textAlignment = .center
+        errorLabel.numberOfLines = 0
+        view.addSubview(errorLabel)
+        errorLabel.addTabletWidthConstraints(horizontalPadding: 29)
+        errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.addSubview(loadingIndicator)
+        loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
@@ -137,10 +154,7 @@ class OverrideViewController: UIViewController {
         activeStack.addArrangedSubview(activeTitleLabel)
         activeStack.addArrangedSubview(activeLabelStack)
         
-        let mainStack = UIStackView(arrangedSubviews: [topLabel,
-                                                       dateButton,
-                                                       scheduledStack,
-                                                       activeStack]).usingAutoLayout()
+        [topLabel, dateButton, scheduledStack, activeStack].forEach(mainStack.addArrangedSubview)
         mainStack.axis = .vertical
         mainStack.spacing = 30
         
@@ -148,7 +162,7 @@ class OverrideViewController: UIViewController {
         contentView.addSubview(mainStack)
         mainStack.addTabletWidthConstraints(horizontalPadding: 29)
         mainStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 30).isActive = true
+        mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30).isActive = true
         
         let scrollView = UIScrollView().usingAutoLayout()
         scrollView.addSubview(contentView)
@@ -167,6 +181,11 @@ class OverrideViewController: UIViewController {
     }
     
     func bindViews() {
+        viewModel.showMainLoadingState.not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showMainContent.not().drive(mainStack.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.enableSaveButton.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         viewModel.enableDateButton.drive(dateButton.rx.isEnabled).disposed(by: disposeBag)
         viewModel.dateButtonText.drive(dateButton.label.rx.text).disposed(by: disposeBag)
         
@@ -187,10 +206,10 @@ class OverrideViewController: UIViewController {
                 self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
-        scheduledCancelButton.rx.tap.debug("CANCEL BUTTON").bind(to: viewModel.cancelAction).disposed(by: disposeBag)
+        scheduledCancelButton.rx.tap.bind(to: viewModel.cancelAction).disposed(by: disposeBag)
         
         dateButton.rx.tap.asObservable()
-            .withLatestFrom(viewModel.confirmedSelectedDate.startWith(Calendar.opCo.startOfDay(for: Date())))
+            .withLatestFrom(viewModel.validConfirmedDate.startWith(Calendar.opCo.startOfDay(for: Date())))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
@@ -198,6 +217,9 @@ class OverrideViewController: UIViewController {
                 calendarVC.delegate = self
                 calendarVC.title = NSLocalizedString("Select Override Date", comment: "")
                 calendarVC.selectedDate = $0
+                let backItem = UIBarButtonItem()
+                backItem.title = NSLocalizedString("Back", comment: "")
+                self.navigationItem.backBarButtonItem = backItem
                 
                 self.navigationController?.pushViewController(calendarVC, animated: true)
             })
