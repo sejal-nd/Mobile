@@ -188,7 +188,7 @@ class PeakRewardsViewModel {
     private(set) lazy var showScheduleLoadingState: Driver<Bool> = self.deviceScheduleFetchTracker.asDriver()
     private(set) lazy var showScheduleErrorState: Driver<Bool> = Observable
         .combineLatest(self.deviceScheduleEvents.map { $0.error != nil },
-                       self.deviceScheduleFetchTracker.asObservable().not().filter(!))
+                       self.deviceScheduleFetchTracker.asObservable())
         { $0 && !$1 }
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
@@ -202,7 +202,7 @@ class PeakRewardsViewModel {
                     return false
                 }
             },
-            self.deviceScheduleFetchTracker.asObservable().not().filter(!)
+            self.deviceScheduleFetchTracker.asObservable()
         )
         .map { $0 && !$1 }
         .startWith(false)
