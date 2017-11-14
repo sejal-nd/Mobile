@@ -108,12 +108,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let alert = aps["alert"] as? [String: Any] else { return }
         
         var accountNumbers: [String]
-        if let accountIds = userInfo["accoundIds"] as? [String] {
+        if let accountIds = userInfo["accountIds"] as? [String] {
             accountNumbers = accountIds
-        } else if let accountIds = userInfo["accountIds"] as? [String] {
-            accountNumbers = accountIds
-        } else if let accountId = userInfo["accoundId"] as? String {
-            accountNumbers = [accountId]
         } else if let accountId = userInfo["accountId"] as? String {
             accountNumbers = [accountId]
         } else {
