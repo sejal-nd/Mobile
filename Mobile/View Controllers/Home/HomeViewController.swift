@@ -141,14 +141,13 @@ class HomeViewController: AccountPickerViewController {
             SKStoreReviewController.requestReview()
         }
         
-//        // TODO: Restore in Sprint 23
-//        if #available(iOS 10.0, *) {
-//            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { _, _ in })
-//        } else {
-//            let settings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
-//            UIApplication.shared.registerUserNotificationSettings(settings)
-//        }
-//        UIApplication.shared.registerForRemoteNotifications()
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { _, _ in })
+        } else {
+            let settings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
     override func viewDidLayoutSubviews() {
