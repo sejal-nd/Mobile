@@ -116,7 +116,7 @@ class HomeViewController: AccountPickerViewController {
                 self?.present(viewController, animated: true, completion: nil)
             }).disposed(by: bag)
         
-        templateCardView.hourlyPricingViewController
+        templateCardView.pushedViewControllers
             .drive(onNext: { [weak self] viewController in
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: bag)

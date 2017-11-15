@@ -45,9 +45,7 @@ class TemplateCardViewModel {
             }
         case .comEd:
             if accountDetail.isResidential {
-                return accountDetail.isHourlyPricing ?
-                        #imageLiteral(resourceName: "EnrolledImage") :
-                        #imageLiteral(resourceName: "UnenrolledImage")
+                return accountDetail.isHourlyPricing ? #imageLiteral(resourceName: "EnrolledImage") : #imageLiteral(resourceName: "UnenrolledImage")
             } else {
                 return #imageLiteral(resourceName: "Commercial")
             }
@@ -67,7 +65,7 @@ class TemplateCardViewModel {
             if accountDetail.isResidential {
                 switch accountDetail.peakRewards {
                 case "ACTIVE"?:
-                    return NSLocalizedString("Stay Connected", comment: "")
+                    return NSLocalizedString("Stay in Control", comment: "")
                 case "ECOBEE WIFI"?:
                     return NSLocalizedString("Enjoy year-round savings and stay connected", comment: "")
                 default:
@@ -100,7 +98,7 @@ class TemplateCardViewModel {
             if accountDetail.isResidential {
                 switch accountDetail.peakRewards {
                 case "ACTIVE"?:
-                    return NSLocalizedString("Update your contact info to receive email and text alerts related to cycling and Energy Savings Days.", comment: "")
+                    return NSLocalizedString("Manage your PeakRewards device from the palm of your hand.", comment: "")
                 case "ECOBEE WIFI"?:
                     return NSLocalizedString("Save energy all year round. Adjust your thermostat from the palm of your hand.", comment: "")
                 default:
@@ -130,7 +128,7 @@ class TemplateCardViewModel {
             if accountDetail.isResidential {
                 switch accountDetail.peakRewards {
                 case "ACTIVE"?:
-                    return NSLocalizedString("Update Your Info", comment: "")
+                    return NSLocalizedString("Adjust Your Settings", comment: "")
                 case "ECOBEE WIFI"?:
                     return NSLocalizedString("Adjust Your Settings", comment: "")
                 default:
@@ -159,9 +157,9 @@ class TemplateCardViewModel {
             if accountDetail.isResidential, let peakRewards = accountDetail.peakRewards {
                 switch peakRewards {
                 case "ACTIVE":
-                    return NSLocalizedString("https://secure.bge.com/Peakrewards/Pages/default.aspx", comment: "")
+                    return nil
                 case "ECOBEE WIFI":
-                    return NSLocalizedString("https://www.ecobee.com/home/ecobeeLogin.jsp", comment: "")
+                    return nil
                 default:
                     return NSLocalizedString("https://bgesavings.com/enroll", comment: "")
                 }
@@ -170,15 +168,32 @@ class TemplateCardViewModel {
             }
         case .comEd:
             if accountDetail.isResidential {
-                 return accountDetail.isHourlyPricing ?
-                        String(format: NSLocalizedString("http://rrtp.comed.com/rrtpmobile/servlet?type=home&account=%@", comment: ""),
-                        accountDetail.accountNumber) :
-                        NSLocalizedString("https://www.comedmarketplace.com/", comment: "")
+                return accountDetail.isHourlyPricing ?
+                    String(format: NSLocalizedString("http://rrtp.comed.com/rrtpmobile/servlet?type=home&account=%@", comment: ""),
+                           accountDetail.accountNumber) :
+                    NSLocalizedString("https://www.comedmarketplace.com/", comment: "")
             } else {
                 return NSLocalizedString("http://comed.com/BusinessSavings", comment: "")
             }
         }
-    }.unwrap().map { URL(string: $0) }.unwrap().asDriver(onErrorDriveWith: .empty())
+        }
+        .unwrap()
+        .map { URL(string: $0) }.unwrap()
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var linkToEcobee: Driver<Bool> = self.accountDetailElements.map {
+        Environment.sharedInstance.opco == .bge
+            && $0.isResidential
+            && $0.peakRewards == "ECOBEE WIFI"
+        }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var linkToPeakRewards: Driver<Bool> = self.accountDetailElements.map {
+        Environment.sharedInstance.opco == .bge
+            && $0.isResidential
+            && $0.peakRewards == "ACTIVE"
+        }
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var shouldShowErrorState: Driver<Bool> = Observable.merge(self.accountDetailElements.map { _ in false },
                                                                                 self.accountDetailErrors.map { _ -> Bool in true })
