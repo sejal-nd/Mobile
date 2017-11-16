@@ -47,5 +47,8 @@ class TutorialView : UIView {
         Bundle.main.loadNibNamed("TutorialView", owner: self, options: nil)
         addSubview(view)
         view.frame = self.bounds
+        
+        titleText.font = OpenSans.bold.of(textStyle: .title1)
+        messageText.font = OpenSans.regular.of(textStyle: .subheadline)
     }
 } 
