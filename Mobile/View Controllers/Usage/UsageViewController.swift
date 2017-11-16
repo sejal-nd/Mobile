@@ -171,8 +171,8 @@ class UsageViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        hourlyPricingEnrollButton.rx.tap.asDriver().withLatestFrom(Driver.just(accountDetail)).drive(onNext: { [weak self] in
-            guard let accountDetail = $0 else { return }
+        hourlyPricingEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+            guard let accountDetail = self?.accountDetail else { return }
             if accountDetail.isHourlyPricing {
                 self?.performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
             } else {
