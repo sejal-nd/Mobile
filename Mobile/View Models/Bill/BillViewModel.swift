@@ -26,42 +26,38 @@ class BillViewModel {
 
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let currentAccountDetail = Variable<AccountDetail?>(nil)
-    let isFetchingAccountDetail: Driver<Bool>
-    let accountDetailError: Driver<ServiceError?>
+    let refreshTracker = ActivityTracker()
+    let switchAccountsTracker = ActivityTracker()
+    
+    private func tracker(forState state: FetchingAccountState) -> ActivityTracker {
+        switch state {
+        case .refresh: return refreshTracker
+        case .switchAccount: return switchAccountsTracker
+        }
+    }
     
     required init(accountService: AccountService) {
         self.accountService = accountService
         
-        let fetchingAccountDetailTracker = ActivityTracker()
-        isFetchingAccountDetail = fetchingAccountDetailTracker.asDriver()
-		
-		let sharedFetchAccountDetail = Observable.merge(fetchAccountDetail,
-		                                                RxNotifications.shared.accountDetailUpdated
-                                                            .mapTo(FetchingAccountState.switchAccount))
-            .share()
-		
-		sharedFetchAccountDetail
-			.filter { $0 != .refresh }
-			.map { _ in nil }
+        accountDetailEvents.elements()
 			.bind(to: currentAccountDetail)
 			.disposed(by: disposeBag)
-        
-        let fetchAccountDetailResult = sharedFetchAccountDetail
-            .flatMapLatest { _ in
-                accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
-                    .trackActivity(fetchingAccountDetailTracker)
-                    .materialize()
-            }
-            .shareReplay(1)
-            
-        fetchAccountDetailResult.elements()
-			.bind(to: currentAccountDetail)
-			.disposed(by: disposeBag)
-        
-        accountDetailError = fetchAccountDetailResult.errors()
-            .map { $0 as? ServiceError }
-            .asDriver(onErrorJustReturn: ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
     }
+    
+    private lazy var accountDetailEvents: Observable<Event<AccountDetail>> = Observable
+        .merge(self.fetchAccountDetail, RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount))
+        .flatMapLatest { [weak self] state -> Observable<Event<AccountDetail>> in
+            guard let `self` = self else { return .empty() }
+            return self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
+                .trackActivity(self.tracker(forState: state))
+                .materialize()
+        }
+        .shareReplay(1)
+        .do(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+    
+    private(set) lazy var accountDetailError: Driver<ServiceError?> = self.accountDetailEvents.errors()
+        .map { $0 as? ServiceError }
+        .asDriver(onErrorJustReturn: ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
 	
 	func fetchAccountDetail(isRefresh: Bool) {
 		fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)
@@ -70,11 +66,6 @@ class BillViewModel {
     private(set) lazy var currentAccountDetailUnwrapped: Driver<AccountDetail> = self.currentAccountDetail.asObservable()
             .unwrap()
             .asDriver(onErrorDriveWith: Driver.empty())
-	
-    private(set) lazy var isFetchingDifferentAccount: Driver<Bool> = self.currentAccountDetail.asDriver()
-        .do(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
-        .isNil()
-	
 	
     // MARK: - Show/Hide Views -
     
@@ -118,7 +109,7 @@ class BillViewModel {
         return Driver.zip(self.shouldShowAlertBanner, showPastDue) { !$0 && $1 }
     }()
     
-    private(set) lazy var shouldShowTopContent: Driver<Bool> = self.isFetchingDifferentAccount.not()
+    private(set) lazy var shouldShowTopContent: Driver<Bool> = self.switchAccountsTracker.asDriver().not()
     
     private(set) lazy var pendingPaymentAmountDueBoxesAlpha: Driver<CGFloat> = self.currentAccountDetail.asDriver().map {
         guard let pendingPaymentAmount = $0?.billingInfo.pendingPayments.first?.amount else { return 1.0 }

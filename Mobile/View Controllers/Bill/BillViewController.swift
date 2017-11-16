@@ -283,15 +283,11 @@ class BillViewController: AccountPickerViewController {
 
 	func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
-        viewModel.isFetchingAccountDetail.filter(!).drive(onNext: { [weak self] refresh in
-            if refresh {
-                self?.refreshControl?.beginRefreshing()
-            } else {
-                self?.refreshControl?.endRefreshing()
-            }
+        viewModel.refreshTracker.asDriver().filter(!).drive(onNext: { [weak self] refresh in
+            self?.refreshControl?.endRefreshing()
         }).disposed(by: bag)
 
-        viewModel.isFetchingDifferentAccount.not().drive(onNext: { [weak self] refresh in
+        viewModel.switchAccountsTracker.asDriver().not().drive(onNext: { [weak self] refresh in
             guard let `self` = self else { return }
             self.topView.isHidden = false
             self.bottomView.isHidden = false
@@ -306,9 +302,9 @@ class BillViewController: AccountPickerViewController {
             }
         }).disposed(by: bag)
         
-        viewModel.isFetchingDifferentAccount.drive(billLoadingIndicator.rx.isAnimating).disposed(by: bag)
-        viewModel.isFetchingDifferentAccount.not().drive(loadingIndicatorView.rx.isHidden).disposed(by: bag)
-        viewModel.isFetchingDifferentAccount.drive(bottomStackContainerView.rx.isHidden).disposed(by: bag)
+        viewModel.switchAccountsTracker.asDriver().drive(billLoadingIndicator.rx.isAnimating).disposed(by: bag)
+        viewModel.switchAccountsTracker.asDriver().not().drive(loadingIndicatorView.rx.isHidden).disposed(by: bag)
+        viewModel.switchAccountsTracker.asDriver().drive(bottomStackContainerView.rx.isHidden).disposed(by: bag)
 	}
 
 	func bindViewHiding() {
