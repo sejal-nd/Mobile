@@ -22,10 +22,16 @@ class UsageViewController: UIViewController {
     @IBOutlet weak var usageGraphPlaceholderButton: DisclosureButton!
     @IBOutlet weak var top5EnergyTipsButton: DisclosureButton!
     @IBOutlet weak var updateYourHomeProfileButton: DisclosureButton!
+    
     @IBOutlet weak var hourlyPricingCard: UIView!
     @IBOutlet weak var hourlyPricingTitleLabel: UILabel!
     @IBOutlet weak var hourlyPricingBodyLabel: UILabel!
-    @IBOutlet weak var takeMeToSavingsButton: UIButton!
+    @IBOutlet weak var hourlyPricingEnrollButton: UIButton!
+    
+    @IBOutlet weak var peakTimeSavingsCard: UIView!
+    @IBOutlet weak var peakTimeSavingsTitleLabel: UILabel!
+    @IBOutlet weak var peakTimeSavingsBodyLabel: UILabel!
+    @IBOutlet weak var peakTimeSavingsEnrollButton: UIButton!
     
     @IBOutlet weak var smartEnergyRewardsContainerView: UIView!
     @IBOutlet weak var smartEnergyRewardsTitleLabel: UILabel!
@@ -94,33 +100,43 @@ class UsageViewController: UIViewController {
     private func styleViews() {
         hourlyPricingCard.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         hourlyPricingCard.layer.cornerRadius = 2
-
-        if Environment.sharedInstance.opco == .comEd && accountDetail.isResidential {
-            if accountDetail.isAMIAccount && !accountDetail.isPTSAccount {
-                hourlyPricingTitleLabel.text = NSLocalizedString("Peak Time Savings", comment: "")
-                hourlyPricingBodyLabel.text = NSLocalizedString("Earn a credit on your bill when you participate in this program that pays you back for using less energy when it is most in demand.", comment: "")
-                takeMeToSavingsButton.setTitle(NSLocalizedString("Enroll Now", comment: ""), for: .normal)
-            } else if accountDetail.isHourlyPricing {
-                hourlyPricingTitleLabel.text = NSLocalizedString("Hourly Pricing", comment: "")
-                hourlyPricingBodyLabel.text = NSLocalizedString("See how your savings stack up, view your usage, check real-time prices, and more.", comment: "")
-                takeMeToSavingsButton.setTitle(NSLocalizedString("Take Me to Savings!", comment: ""), for: .normal)
-            } else {
-                hourlyPricingTitleLabel.text = NSLocalizedString("Consider ComEd’s Other Rate – Hourly Pricing", comment: "")
-                hourlyPricingBodyLabel.text = NSLocalizedString("Save on ComEd’s Hourly Pricing program. It’s simple: shift your usage to times when the price of energy is lower to reduce your bill.", comment: "")
-                takeMeToSavingsButton.setTitle(NSLocalizedString("Enroll Me Now", comment: ""), for: .normal)
-            }
-        } else {
-            hourlyPricingCard.isHidden = true
-        }
-
         hourlyPricingTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
         hourlyPricingTitleLabel.textColor = .blackText
         hourlyPricingBodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
         hourlyPricingBodyLabel.textColor = .deepGray
+        hourlyPricingEnrollButton.setTitleColor(.actionBlue, for: .normal)
+        hourlyPricingEnrollButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
         
-        takeMeToSavingsButton.setTitleColor(.actionBlue, for: .normal)
-        takeMeToSavingsButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
+        peakTimeSavingsCard.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        peakTimeSavingsCard.layer.cornerRadius = 2
+        peakTimeSavingsTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
+        peakTimeSavingsTitleLabel.textColor = .blackText
+        peakTimeSavingsTitleLabel.text = NSLocalizedString("Peak Time Savings", comment: "")
+        peakTimeSavingsBodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        peakTimeSavingsBodyLabel.textColor = .deepGray
+        peakTimeSavingsBodyLabel.text = NSLocalizedString("Earn a credit on your bill when you participate in this program that pays you back for using less energy when it is most in demand.", comment: "")
+        peakTimeSavingsEnrollButton.setTitleColor(.actionBlue, for: .normal)
+        peakTimeSavingsEnrollButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
+        peakTimeSavingsEnrollButton.setTitle(NSLocalizedString("Enroll Now", comment: ""), for: .normal)
         
+        if Environment.sharedInstance.opco == .comEd && accountDetail.isResidential {
+            if !accountDetail.isAMIAccount || accountDetail.isPTSAccount {
+                peakTimeSavingsCard.isHidden = true
+            }
+            if accountDetail.isHourlyPricing {
+                hourlyPricingTitleLabel.text = NSLocalizedString("Hourly Pricing", comment: "")
+                hourlyPricingBodyLabel.text = NSLocalizedString("See how your savings stack up, view your usage, check real-time prices, and more.", comment: "")
+                hourlyPricingEnrollButton.setTitle(NSLocalizedString("Take Me to Savings!", comment: ""), for: .normal)
+            } else {
+                hourlyPricingTitleLabel.text = NSLocalizedString("Consider ComEd’s Other Rate – Hourly Pricing", comment: "")
+                hourlyPricingBodyLabel.text = NSLocalizedString("Save on ComEd’s Hourly Pricing program. It’s simple: shift your usage to times when the price of energy is lower to reduce your bill.", comment: "")
+                hourlyPricingEnrollButton.setTitle(NSLocalizedString("Enroll Me Now", comment: ""), for: .normal)
+            }
+        } else {
+            hourlyPricingCard.isHidden = true
+            peakTimeSavingsCard.isHidden = true
+        }
+
         smartEnergyRewardsTitleLabel.textColor = .blackText
         smartEnergyRewardsTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
         smartEnergyRewardsTitleLabel.text = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
@@ -149,35 +165,26 @@ class UsageViewController: UIViewController {
         Driver.merge(usageGraphPlaceholderButton.rx.tap.asDriver().mapTo("usageWebViewSegue"),
                      top5EnergyTipsButton.rx.tap.asDriver().mapTo("top5EnergyTipsSegue"),
                      updateYourHomeProfileButton.rx.tap.asDriver().mapTo("updateYourHomeProfileSegue"),
-                     takeMeToSavingsButton.rx.tap.asDriver()
-                        .withLatestFrom(Driver.just(accountDetail))
-                        .filter { !(!$0.isHourlyPricing || ($0.isAMIAccount && !$0.isPTSAccount)) }
-                        .mapTo("hourlyPricingSegue"),
                      smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().mapTo("totalSavingsSegue"))
             .drive(onNext: { [weak self] in
                 self?.performSegue(withIdentifier: $0, sender: nil)
             })
             .disposed(by: disposeBag)
         
-        takeMeToSavingsButton.rx.tap.asObservable()
-            .withLatestFrom(Driver.just(accountDetail))
-            .filter { !$0.isHourlyPricing || ($0.isAMIAccount && !$0.isPTSAccount) }
-            .map { accountDetail -> String in
-                if accountDetail.isAMIAccount && !accountDetail.isPTSAccount {
-                    return "http://comed.com/PTS"
-                } else {
-                    return "https://hourlypricing.comed.com"
-                }
+        hourlyPricingEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] in
+            guard let accountDetail = self?.accountDetail else { return }
+            if accountDetail.isHourlyPricing {
+                self?.performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
+            } else {
+                let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
+                self?.present(safariVc, animated: true, completion: nil)
             }
-            .map(URL.init)
-            .unwrap()
-            .map(SFSafariViewController.createWithCustomStyle)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] in
-                self?.present($0, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
+        peakTimeSavingsEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "http://comed.com/PTS")!)
+            self?.present(safariVc, animated: true, completion: nil)
+        }).disposed(by: disposeBag)
     }
     
     private func bindViewModel() {
