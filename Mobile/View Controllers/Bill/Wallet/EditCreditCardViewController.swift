@@ -340,7 +340,7 @@ class EditCreditCardViewController: UIViewController {
         if message.isEmpty {
             saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
+            saveButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save", comment: ""), message)
         }
     }
     

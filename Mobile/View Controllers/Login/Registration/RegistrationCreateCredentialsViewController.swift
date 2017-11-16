@@ -340,7 +340,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         if message.isEmpty {
             nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
+            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
         }
     }
     

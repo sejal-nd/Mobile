@@ -163,7 +163,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         if message.isEmpty {
             submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
+            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
         }
     }
     
