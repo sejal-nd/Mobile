@@ -14,7 +14,6 @@ class HomeBillCardViewModel {
     
     let bag = DisposeBag()
     
-    private let account: Observable<Account>
     let accountDetailEvents: Observable<Event<AccountDetail>>
     private let walletService: WalletService
     private let paymentService: PaymentService
@@ -23,19 +22,32 @@ class HomeBillCardViewModel {
     
     let submitOneTouchPay = PublishSubject<Void>()
     
-    private let fetchingTracker: ActivityTracker
+    let fetchData: Observable<FetchingAccountState>
+    
+    private let refreshFetchTracker: ActivityTracker
+    private let switchAccountFetchTracker: ActivityTracker
+    
+    private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
+        switch state {
+        case .refresh: return refreshFetchTracker
+        case .switchAccount: return switchAccountFetchTracker
+        }
+    }
+    
     let paymentTracker = ActivityTracker()
     
-    required init(withAccount account: Observable<Account>,
+    required init(fetchData: Observable<FetchingAccountState>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   walletService: WalletService,
                   paymentService: PaymentService,
-                  fetchingTracker: ActivityTracker) {
-        self.account = account
+                  refreshFetchTracker: ActivityTracker,
+                  switchAccountFetchTracker: ActivityTracker) {
+        self.fetchData = fetchData
         self.accountDetailEvents = accountDetailEvents
         self.walletService = walletService
         self.paymentService = paymentService
-        self.fetchingTracker = fetchingTracker
+        self.refreshFetchTracker = refreshFetchTracker
+        self.switchAccountFetchTracker = switchAccountFetchTracker
         
         self.oneTouchPayResult
             .withLatestFrom(self.walletItem)
@@ -51,11 +63,11 @@ class HomeBillCardViewModel {
             .disposed(by: bag)
     }
     
-    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = Observable.merge(self.account.mapTo(()),
-                                                                                         RxNotifications.shared.defaultWalletItemUpdated)
+    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = Observable
+        .merge(self.fetchData, RxNotifications.shared.defaultWalletItemUpdated.mapTo(FetchingAccountState.switchAccount))
         .flatMapLatest { [unowned self] in
             self.walletService.fetchWalletItems()
-                .trackActivity(self.fetchingTracker)
+                .trackActivity(self.fetchTracker(forState: $0))
                 .map { $0.first(where: { $0.isDefault }) }
                 .materialize()
         }
@@ -68,6 +80,8 @@ class HomeBillCardViewModel {
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
     
     private lazy var walletItem: Observable<WalletItem?> = self.walletItemEvents.elements()
+    
+    private lazy var account: Observable<Account> = self.fetchData.map { _ in AccountsStore.sharedInstance.currentAccount }
 
     private(set) lazy var data: Observable<Event<(Account, AccountDetail, WalletItem?)>> =
         Observable.combineLatest(self.account,
@@ -76,11 +90,11 @@ class HomeBillCardViewModel {
             .materialize()
             .share()
     
-    private lazy var workDayEvents: Observable<Event<[Date]>> = self.account
-        .flatMapLatest { [unowned self] _ -> Observable<Event<[Date]>> in
+    private lazy var workDayEvents: Observable<Event<[Date]>> = self.fetchData
+        .flatMapLatest { [unowned self] state -> Observable<Event<[Date]>> in
             if Environment.sharedInstance.opco == .peco {
                 return self.paymentService.fetchWorkdays()
-                    .trackActivity(self.fetchingTracker)
+                    .trackActivity(self.fetchTracker(forState: state))
                     .materialize()
             } else {
                 return Observable<[Date]>.just([]).materialize()
