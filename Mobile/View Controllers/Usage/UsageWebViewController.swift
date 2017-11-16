@@ -27,6 +27,11 @@ class UsageWebViewController: UIViewController {
         
         title = NSLocalizedString("Usage Details", comment: "")
         
+        let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_question_white"), style: .plain, target: self, action: #selector(onInfoButtonPress))
+        infoButton.isAccessibilityElement = true
+        infoButton.accessibilityLabel = "Tooltip"
+        navigationItem.rightBarButtonItem = infoButton
+
         view.insertSubview(webView, belowSubview: loadingIndicator)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
@@ -67,6 +72,14 @@ class UsageWebViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
         }
+    }
+    
+    func onInfoButtonPress() {
+        let alertVc = UIAlertController(title: NSLocalizedString("Billing Period Info", comment: ""),
+                                        message: NSLocalizedString("The dates shown represent your billing period. Smart meter data is typically available within 24-48 hours of your usage.", comment: ""),
+                                        preferredStyle: .alert)
+        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+        self.present(alertVc, animated: true, completion: nil)
     }
     
 }
