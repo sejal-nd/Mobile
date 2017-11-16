@@ -118,6 +118,7 @@ class HomeViewController: AccountPickerViewController {
         
         templateCardView.pushedViewControllers
             .drive(onNext: { [weak self] viewController in
+                viewController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: bag)
         
@@ -256,6 +257,7 @@ class HomeViewController: AccountPickerViewController {
                         .disposed(by: vc.disposeBag)
                 }
                 
+                viewController.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: bag)
