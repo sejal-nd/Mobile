@@ -85,7 +85,7 @@ class MyHomeProfileViewController: UIViewController {
         homeSizeTextField.textField.delegate = self
         homeSizeTextField.textField.returnKeyType = .done
         
-        homeSizeTextField.textField.customAccessibilityLabel = NSLocalizedString("Home Size in square feet*", comment: "")
+        homeSizeTextField.textField.customAccessibilityLabel = NSLocalizedString("Home Size in square feet, required", comment: "")
     }
     
     func initialLoadSetup() {
@@ -123,11 +123,10 @@ class MyHomeProfileViewController: UIViewController {
                     self?.homeSizeTextField.textField.text = "\(squareFeet)"
                     self?.viewModel.homeSizeEntry.value = String(squareFeet)
                 }
-                },
-                       onError: { [weak self] _ in
-                        self?.scrollView.isHidden = true
-                        self?.errorLabel.isHidden = false
-                        self?.loadingIndicator.isHidden = true
+            }, onError: { [weak self] _ in
+                self?.scrollView.isHidden = true
+                self?.errorLabel.isHidden = false
+                self?.loadingIndicator.isHidden = true
             })
             .disposed(by: disposeBag)
     }
@@ -156,7 +155,7 @@ class MyHomeProfileViewController: UIViewController {
                                 onDone: { [weak self] value, index in
                                     self?.homeTypeButton.setDetailLabel(text: value, checkHidden: true)
                                     self?.viewModel.homeType.value = HomeType(rawValue: index)
-                    },
+                                },
                                 onCancel: nil)
             })
             .disposed(by: disposeBag)
@@ -179,7 +178,7 @@ class MyHomeProfileViewController: UIViewController {
                                 onDone: { [weak self] value, index in
                                     self?.heatingFuelButton.setDetailLabel(text: value, checkHidden: true)
                                     self?.viewModel.heatType.value = HeatType(rawValue: index)
-                    },
+                                },
                                 onCancel: nil)
             })
             .disposed(by: disposeBag)
@@ -202,7 +201,7 @@ class MyHomeProfileViewController: UIViewController {
                                 onDone: { [weak self] value, index in
                                     self?.numberOfAdultsButton.setDetailLabel(text: value, checkHidden: true)
                                     self?.viewModel.numberOfAdults.value = self?.viewModel.numberOfAdultsOptions[index]
-                    },
+                                },
                                 onCancel: nil)
             })
             .disposed(by: disposeBag)
@@ -225,7 +224,7 @@ class MyHomeProfileViewController: UIViewController {
                                 onDone: { [weak self] value, index in
                                     self?.numberOfChildrenButton.setDetailLabel(text: value, checkHidden: true)
                                     self?.viewModel.numberOfChildren.value = self?.viewModel.numberOfChildrenOptions[index]
-                    },
+                                },
                                 onCancel: nil)
             })
             .disposed(by: disposeBag)
@@ -233,6 +232,8 @@ class MyHomeProfileViewController: UIViewController {
         viewModel.enableSave.asDriver(onErrorDriveWith: .empty())
             .drive(saveButton.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        viewModel.saveA11yLabel.drive(saveButton.rx.accessibilityLabel).disposed(by: disposeBag)
     }
     
     func bindTextField() {
@@ -268,7 +269,12 @@ class MyHomeProfileViewController: UIViewController {
         
         viewModel.homeSizeError.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
-                self?.homeSizeTextField.setError($0)
+                guard let `self` = self else { return }
+                if self.homeSizeTextField.textField.hasText {
+                    self.homeSizeTextField.setError($0)
+                } else {
+                    self.homeSizeTextField.setError(nil)
+                }
             })
             .disposed(by: disposeBag)
         

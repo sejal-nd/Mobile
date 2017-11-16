@@ -175,7 +175,7 @@ fileprivate class BasePickerView: UIView {
             self.layoutIfNeeded()
             self.backgroundColor = UIColor.black.withAlphaComponent(0)
         }, completion: { [weak self] _ in
-            self?.accessibilityViewIsModal = true
+            self?.accessibilityViewIsModal = false
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
             self?.removeFromSuperview()
         })
@@ -188,7 +188,8 @@ fileprivate class BasePickerView: UIView {
             self.layoutIfNeeded()
             self.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         }, completion: { [weak self] _ in
-            self?.accessibilityViewIsModal = false
+            self?.accessibilityViewIsModal = true
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
         })
     }
 
@@ -207,7 +208,6 @@ fileprivate class BasePickerView: UIView {
         get {
             return false
         }
-        
         set {
             super.isAccessibilityElement = newValue
         }
@@ -293,7 +293,7 @@ fileprivate class StringPickerView: BasePickerView {
         pickerView.dataSource = self
         pickerView.delegate = self
         mainStack.addArrangedSubview(pickerView)
-        accessibleElements = [cancelButton, doneButton, pickerView]
+        accessibleElements = [cancelButton, titleLabel, doneButton, pickerView]
     }
     
     @objc override func doneButtonPressed() {
