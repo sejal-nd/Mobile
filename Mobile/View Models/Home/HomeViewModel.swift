@@ -104,7 +104,7 @@ class HomeViewModel {
         }
         .shareReplay(1)
 
-    private(set) lazy var greeting: Driver<String?> = self.fetchData
+    private(set) lazy var greeting: Driver<String?> = self.accountDetailEvents
         .map { _ in Date().localizedGreeting }
         .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())

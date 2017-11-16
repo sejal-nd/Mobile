@@ -65,7 +65,6 @@ class HomeViewController: AccountPickerViewController {
                 guard let `self` = self else { return }
                 switch(state) {
                 case .loadingAccounts:
-                    dLog("setRefreshControlEnabled false")
                     self.setRefreshControlEnabled(enabled: false)
                 case .readyToFetchData:
                     if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
@@ -151,12 +150,6 @@ class HomeViewController: AccountPickerViewController {
         usageCardView.superviewDidLayoutSubviews()
     }
     
-    func killRefresh() -> Void {
-        dLog("killRefresh")
-        self.refreshControl?.endRefreshing()
-        self.scrollView!.alwaysBounceVertical = true
-    }
-    
     func styleViews() {
         view.backgroundColor = .primaryColor
         primaryColorHeaderView.backgroundColor = .primaryColor
@@ -166,6 +159,11 @@ class HomeViewController: AccountPickerViewController {
         temperatureLabel.isAccessibilityElement = true
         weatherIconImage.isAccessibilityElement = true
         weatherView.accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage]
+    }
+    
+    func killRefresh() -> Void {
+        self.refreshControl?.endRefreshing()
+        self.scrollView!.alwaysBounceVertical = true
     }
     
     func setRefreshControlEnabled(enabled: Bool) {
@@ -198,13 +196,11 @@ class HomeViewController: AccountPickerViewController {
         
         viewModel.refreshFetchTracker.asDriver().filter(!)
             .drive(onNext: { [weak self] _ in
-                dLog("endRefreshing")
                 self?.refreshControl?.endRefreshing()
             }).disposed(by: bag)
         
         viewModel.isSwitchingAccounts.asDriver().not().drive(onNext: { [weak self] refresh in
             guard let `self` = self else { return }
-            dLog("setRefreshControlEnabled \(refresh)")
             self.setRefreshControlEnabled(enabled: refresh)
         }).disposed(by: bag)
         
