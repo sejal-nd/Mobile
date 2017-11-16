@@ -139,20 +139,24 @@ class BillViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
-            guard let `self` = self else { return }
-            switch(state) {
-            case .loadingAccounts:
-                // Sam, do your custom loading here
-                break
-            case .readyToFetchData:
-                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
-                    self.viewModel.fetchAccountDetail(isRefresh: false)
-                } else if self.viewModel.currentAccountDetail.value == nil {
-                    self.viewModel.fetchAccountDetail(isRefresh: false)
+        Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
+                                 viewModel.currentAccountDetail.asObservable().map { $0 }.startWith(nil))
+            .sample(accountPickerViewControllerWillAppear)
+            .subscribe(onNext: { [weak self] state, accountDetail in
+                guard let `self` = self else { return }
+                switch(state) {
+                case .loadingAccounts:
+                    // Sam, do your custom loading here
+                    break
+                case .readyToFetchData:
+                    if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                        self.viewModel.fetchAccountDetail(isRefresh: false)
+                    } else if accountDetail == nil {
+                        self.viewModel.fetchAccountDetail(isRefresh: false)
+                    }
                 }
-            }
-        }).disposed(by: bag)
+            })
+            .disposed(by: bag)
 
         styleViews()
         bindViews()
@@ -425,7 +429,7 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
 
         needHelpUnderstandingButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.currentAccountDetailUnwrapped)
+            .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] in
                 let billAnalysis = BillAnalysisViewController()
                 billAnalysis.hidesBottomBarWhenPushed = true
@@ -435,22 +439,23 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
 
         viewBillButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
+            .withLatestFrom(viewModel.currentAccountDetail)
+            .drive(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
                 if Environment.sharedInstance.opco == .comEd &&
-                    self.viewModel.currentAccountDetail.value!.hasElectricSupplier &&
-                    self.viewModel.currentAccountDetail.value!.isSingleBillOption {
+                    accountDetail.hasElectricSupplier &&
+                    accountDetail.isSingleBillOption {
                     let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
                     alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVC, animated: true, completion: nil)
                 } else {
-                    guard let _ = self.viewModel.currentAccountDetail.value?.billingInfo.billDate else {
+                    guard let _ = accountDetail.billingInfo.billDate else {
                         let alertVC = UIAlertController(title: NSLocalizedString("You will be able to view the PDF of your bill once its ready.", comment: ""), message: nil, preferredStyle: .alert)
                         alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                         self.present(alertVC, animated: true, completion: nil)
                         return
                     }
-                    self.performSegue(withIdentifier: "viewBillSegue", sender: self)
+                    self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)
                 }
                 
                 if(self.pastDueView.isHidden) {
@@ -462,7 +467,7 @@ class BillViewController: AccountPickerViewController {
 			.disposed(by: bag)
 
 		autoPayButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.currentAccountDetailUnwrapped)
+            .withLatestFrom(viewModel.currentAccountDetail)
 			.drive(onNext: { [weak self] in
                 self?.navigateToAutoPay(accountDetail: $0)
 			})
@@ -475,16 +480,17 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         walletButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 let walletVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateInitialViewController() as! WalletViewController
-                walletVc.viewModel.accountDetail = self.viewModel.currentAccountDetail.value!
+                walletVc.viewModel.accountDetail = $0
                 self.navigationController?.pushViewController(walletVc, animated: true)
             })
             .disposed(by: bag)
 
 		paperlessButton.rx.touchUpInside.asDriver()
-			.withLatestFrom(viewModel.currentAccountDetailUnwrapped)
+			.withLatestFrom(viewModel.currentAccountDetail)
 			.drive(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
                 if !accountDetail.isResidential && Environment.sharedInstance.opco != .bge {
@@ -496,7 +502,7 @@ class BillViewController: AccountPickerViewController {
 			.disposed(by: bag)
 
         budgetButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.currentAccountDetailUnwrapped)
+            .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
                 if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBillEnrollment {
@@ -516,14 +522,16 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         makeAPaymentButton.rx.touchUpInside.asObservable()
-            .withLatestFrom(viewModel.makePaymentScheduledPaymentAlertInfo)
+            .withLatestFrom(Observable.combineLatest(viewModel.makePaymentScheduledPaymentAlertInfo,
+                                                     viewModel.currentAccountDetail.asObservable()))
             .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] titleOpt, messageOpt in
+            .drive(onNext: { [weak self] alertInfo, accountDetail in
                 guard let `self` = self else { return }
+                let (titleOpt, messageOpt) = alertInfo
                 let goToMakePayment = { [weak self] in
                     guard let `self` = self else { return }
                     let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
-                    paymentVc.accountDetail = self.viewModel.currentAccountDetail.value!
+                    paymentVc.accountDetail = accountDetail
                     self.navigationController?.pushViewController(paymentVc, animated: true)
                 }
                 
@@ -541,7 +549,7 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         makeAPaymentStatusButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(Driver.combineLatest(viewModel.makePaymentStatusTextTapRouting, viewModel.currentAccountDetailUnwrapped))
+            .withLatestFrom(Driver.combineLatest(viewModel.makePaymentStatusTextTapRouting, viewModel.currentAccountDetail))
             .drive(onNext: { [weak self] route, accountDetail in
                 guard let `self` = self else { return }
                 if route == .activity {
@@ -583,23 +591,26 @@ class BillViewController: AccountPickerViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? BudgetBillingViewController {
+        switch (segue.destination, sender) {
+        case let (vc as BudgetBillingViewController, accountDetail as AccountDetail):
             vc.delegate = self
-            vc.accountDetail = viewModel.currentAccountDetail.value!
-        } else if let vc = segue.destination as? PaperlessEBillViewController {
+            vc.accountDetail = accountDetail
+        case let (vc as PaperlessEBillViewController, accountDetail as AccountDetail):
             vc.delegate = self
-            vc.initialAccountDetail = viewModel.currentAccountDetail.value!
-        } else if let vc = segue.destination as? ViewBillViewController {
-            vc.viewModel.billDate = viewModel.currentAccountDetail.value!.billingInfo.billDate
+            vc.initialAccountDetail = accountDetail
+        case let (vc as ViewBillViewController, accountDetail as AccountDetail):
+            vc.viewModel.billDate = accountDetail.billingInfo.billDate
             vc.viewModel.isCurrent = true
-        } else if let vc = segue.destination as? BGEAutoPayViewController, let accountDetail = sender as? AccountDetail {
+        case let (vc as BGEAutoPayViewController, accountDetail as AccountDetail):
             vc.delegate = self
             vc.accountDetail = accountDetail
-        } else if let vc = segue.destination as? AutoPayViewController, let accountDetail = sender as? AccountDetail {
+        case let (vc as AutoPayViewController, accountDetail as AccountDetail):
             vc.delegate = self
             vc.accountDetail = accountDetail
-        } else if let vc = segue.destination as? BillingHistoryViewController {
-            vc.accountDetail = viewModel.currentAccountDetail.value!
+        case let (vc as BillingHistoryViewController, accountDetail as AccountDetail):
+            vc.accountDetail = accountDetail
+        default:
+            break
         }
     }
 
