@@ -30,8 +30,12 @@ class MainTabBarController: UITabBarController {
         setButtonStates(itemTag: 1)
         
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.PushNotificationReceived) {
+            // If push notification was tapped and the user logged in within 5 minutes, take them straight to alerts
+            if let timestamp = UserDefaults.standard.object(forKey: UserDefaultKeys.PushNotificationReceivedTimestamp) as? Date, Float(timestamp.timeIntervalSinceNow) >= -300 {
+                selectedIndex = 3
+            }
             UserDefaults.standard.set(false, forKey: UserDefaultKeys.PushNotificationReceived)
-            selectedIndex = 3
+            UserDefaults.standard.removeObject(forKey: UserDefaultKeys.PushNotificationReceivedTimestamp)
         }
         
         NotificationCenter.default.rx.notification(.DidTapOnPushNotification, object: nil)

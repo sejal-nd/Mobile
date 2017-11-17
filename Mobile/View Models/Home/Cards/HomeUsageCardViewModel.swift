@@ -16,8 +16,18 @@ class HomeUsageCardViewModel {
     let accountDetailEvents: Observable<Event<AccountDetail>>
     private let usageService: UsageService
     
-    let fetchingTracker: ActivityTracker
+    private let fetchData: Observable<FetchingAccountState>
+    
+    let refreshFetchTracker: ActivityTracker
+    let switchAccountFetchTracker: ActivityTracker
     let loadingTracker = ActivityTracker()
+    
+    private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
+        switch state {
+        case .refresh: return refreshFetchTracker
+        case .switchAccount: return switchAccountFetchTracker
+        }
+    }
     
     let electricGasSelectedSegmentIndex = Variable(0)
     
@@ -28,20 +38,25 @@ class HomeUsageCardViewModel {
      */
     let barGraphSelectionStates = Variable([Variable(false), Variable(false), Variable(true)])
     
-    required init(accountDetailEvents: Observable<Event<AccountDetail>>,
+    required init(fetchData: Observable<FetchingAccountState>,
+                  accountDetailEvents: Observable<Event<AccountDetail>>,
                   usageService: UsageService,
-                  fetchingTracker: ActivityTracker) {
+                  refreshFetchTracker: ActivityTracker,
+                  switchAccountFetchTracker: ActivityTracker) {
+        self.fetchData = fetchData
         self.accountDetailEvents = accountDetailEvents
         self.usageService = usageService
-        self.fetchingTracker = fetchingTracker
+        self.refreshFetchTracker = refreshFetchTracker
+        self.switchAccountFetchTracker = switchAccountFetchTracker
     }
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable.merge(self.accountDetailChanged, self.segmentedControlChanged).shareReplay(1)
     
     private(set) lazy var accountDetailChanged = self.accountDetailEvents.elements()
-        .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(),
+        .withLatestFrom(Observable.combineLatest(self.fetchData,
+                                                 self.accountDetailEvents.elements(),
                                                  self.electricGasSelectedSegmentIndex.asObservable().startWith(0)))
-        .flatMapLatest { [unowned self] accountDetail, segmentIndex -> Observable<Event<BillComparison>> in
+        .flatMapLatest { [unowned self] fetchState, accountDetail, segmentIndex -> Observable<Event<BillComparison>> in
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             guard let serviceType = accountDetail.serviceType else { return .empty() }
 
@@ -61,7 +76,7 @@ class HomeUsageCardViewModel {
             }
             
             return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
-                .trackActivity(self.fetchingTracker)
+                .trackActivity(self.fetchTracker(forState: fetchState))
                 .materialize()
         }
     

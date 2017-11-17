@@ -506,11 +506,11 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="BzW-Kg-VTg" firstAttribute="leading" secondItem="5vv-h2-OaI" secondAttribute="leading" id="COb-w5-RzS"/>
-                                <constraint firstItem="CZQ-Co-WS0" firstAttribute="top" secondItem="5vv-h2-OaI" secondAttribute="top" constant="20" id="H0l-fX-q2U"/>
+                                <constraint firstItem="CZQ-Co-WS0" firstAttribute="top" secondItem="5vv-h2-OaI" secondAttribute="top" priority="999" constant="20" id="H0l-fX-q2U"/>
                                 <constraint firstItem="CZQ-Co-WS0" firstAttribute="centerX" secondItem="5vv-h2-OaI" secondAttribute="centerX" id="fgw-Yd-zxy"/>
                                 <constraint firstAttribute="trailing" secondItem="BzW-Kg-VTg" secondAttribute="trailing" id="p8R-mt-EHR"/>
-                                <constraint firstItem="BzW-Kg-VTg" firstAttribute="top" secondItem="CZQ-Co-WS0" secondAttribute="bottom" constant="11" id="srz-6a-hbG"/>
-                                <constraint firstAttribute="bottom" secondItem="BzW-Kg-VTg" secondAttribute="bottom" constant="28" id="vGM-N3-ouE"/>
+                                <constraint firstItem="BzW-Kg-VTg" firstAttribute="top" secondItem="CZQ-Co-WS0" secondAttribute="bottom" priority="999" constant="11" id="srz-6a-hbG"/>
+                                <constraint firstAttribute="bottom" secondItem="BzW-Kg-VTg" secondAttribute="bottom" priority="999" constant="28" id="vGM-N3-ouE"/>
                             </constraints>
                         </view>
                     </subviews>

@@ -72,6 +72,7 @@ class LoginViewController: UIViewController {
         usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .next
+        usernameTextField.textField.keyboardType = .emailAddress
         
         passwordTextField.textField.placeholder = NSLocalizedString("Password", comment: "")
         passwordTextField.textField.isSecureTextEntry = true
@@ -183,10 +184,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func onLoginPress() {
         Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
-                              signedIndimensionIndex: Dimensions.DIMENSION_KEEP_ME_SIGNIN_IN.rawValue,
-                              signedIndimensionValue: String(describing: keepMeSignedInLabel.isEnabled),
-                              fingerprintDimensionIndex: Dimensions.DIMENSION_FINGERPRINT_USED.rawValue,
-                              fingerprintDimensionValue: "false")
+                              keepSignedIn: String(describing: keepMeSignedInSwitch.isOn),
+                              usedFingerprint: "false")
         
         if forgotUsernamePopulated {
             Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAccountValidation.rawValue)
@@ -354,10 +353,8 @@ class LoginViewController: UIViewController {
             guard let `self` = self else { return }
             
             Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
-                                  signedIndimensionIndex: Dimensions.DIMENSION_KEEP_ME_SIGNIN_IN.rawValue,
-                                  signedIndimensionValue: String(describing: self.keepMeSignedInLabel.isEnabled),
-                                  fingerprintDimensionIndex: Dimensions.DIMENSION_FINGERPRINT_USED.rawValue,
-                                  fingerprintDimensionValue: "true")
+                                  keepSignedIn: String(describing: self.keepMeSignedInSwitch.isOn),
+                                  usedFingerprint: "true")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))

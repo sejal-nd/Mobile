@@ -106,7 +106,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard let aps = userInfo["aps"] as? [String: Any] else { return }
         guard let alert = aps["alert"] as? [String: Any] else { return }
-        guard let accountNumbers = userInfo["accoundIds"] as? [String] else { return }
+        
+        var accountNumbers: [String]
+        if let accountIds = userInfo["accountIds"] as? [String] {
+            accountNumbers = accountIds
+        } else if let accountId = userInfo["accountId"] as? String {
+            accountNumbers = [accountId]
+        } else {
+            return // Did not get account number or array of account numbers
+        }
         
         let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
         AlertsStore.sharedInstance.savePushNotification(notification)
@@ -116,6 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NotificationCenter.default.post(name: .DidTapOnPushNotification, object: self)
             } else {
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.PushNotificationReceived)
+                UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.PushNotificationReceivedTimestamp)
             }
         } else {
             // App was in the foreground when notification received - do nothing

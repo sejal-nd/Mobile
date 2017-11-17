@@ -105,6 +105,7 @@ class AlertPreferencesViewController: UIViewController {
         }
         
         styleViews()
+        makeAccessibile()
         bindViewModel()
         
         checkForNotificationsPermissions()
@@ -115,7 +116,9 @@ class AlertPreferencesViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.fetchData()
+        viewModel.fetchData(onCompletion: { [weak self] in
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -197,6 +200,23 @@ class AlertPreferencesViewController: UIViewController {
         languageSelectionLabel.text = NSLocalizedString("I would like to receive my Notifications in", comment: "")
     }
     
+    private func makeAccessibile() {
+        outageTitleLabel.isAccessibilityElement = false
+        outageSwitch.accessibilityLabel = outageTitleLabel.text
+        scheduledMaintTitleLabel.isAccessibilityElement = false
+        scheduledMaintSwitch.accessibilityLabel = scheduledMaintTitleLabel.text
+        severeWeatherTitleLabel.isAccessibilityElement = false
+        severeWeatherSwitch.accessibilityLabel = severeWeatherTitleLabel.text
+        billReadyTitleLabel.isAccessibilityElement = false
+        billReadySwitch.accessibilityLabel = billReadyTitleLabel.text
+        paymentDueTitleLabel.isAccessibilityElement = false
+        paymentDueSwitch.accessibilityLabel = paymentDueTitleLabel.text
+        budgetBillingTitleLabel.isAccessibilityElement = false
+        budgetBillingSwitch.accessibilityLabel = budgetBillingTitleLabel.text
+        forYourInfoTitleLabel.isAccessibilityElement = false
+        forYourInfoSwitch.accessibilityLabel = forYourInfoTitleLabel.text
+    }
+    
     private func bindViewModel() {
         viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
@@ -239,6 +259,8 @@ class AlertPreferencesViewController: UIViewController {
         viewModel.english.asObservable().subscribe(onNext: { [weak self] english in
             self?.englishRadioControl.isSelected = english
             self?.spanishRadioControl.isSelected = !english
+            self?.englishRadioControl.accessibilityLabel = String(format: NSLocalizedString("English, option 1 of 2, %@", comment: ""), english ? "selected" : "")
+            self?.spanishRadioControl.accessibilityLabel = String(format: NSLocalizedString("Spanish, option 2 of 2, %@", comment: ""), !english ? "selected" : "")
         }).disposed(by: disposeBag)
     }
     

@@ -10,10 +10,10 @@ import Foundation
 
 func dLog(_ message: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
     #if DEBUG
-        var logString = "[\((filename as NSString).lastPathComponent):\(line)] \(function)"
         if let message = message {
-            logString += " - \(message)"
+            NSLog("[%@: %d] %@ - %@", (filename as NSString).lastPathComponent, line, function, message)
+        } else {
+            NSLog("[%@: %d] %@", (filename as NSString).lastPathComponent, line, function)
         }
-        NSLog(logString)
     #endif
 }

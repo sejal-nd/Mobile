@@ -31,4 +31,5 @@ struct UserDefaultKeys {
     static let AppRatingEventCount = "kAppRatingEventCount"
     
     static let PushNotificationReceived = "kPushNotificationReceived"
+    static let PushNotificationReceivedTimestamp = "kPushNotificationReceivedTimestamp"
 }
