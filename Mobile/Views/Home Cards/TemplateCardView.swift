@@ -85,8 +85,14 @@ class TemplateCardView: UIView {
                 let appStoreUrl = URL(string:"https://itunes.apple.com/us/app/ecobee/id916985674?mt=8")!
                 
                 if UIApplication.shared.canOpenURL(appLinkUrl) {
+                    Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
+                                              dimensionIndex: Dimensions.Link,
+                                              dimensionValue: appLinkUrl.absoluteString)
                     UIApplication.shared.openURL(appLinkUrl)
                 } else if UIApplication.shared.canOpenURL(appStoreUrl) {
+                    Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
+                                              dimensionIndex: Dimensions.Link,
+                                              dimensionValue: appStoreUrl.absoluteString)
                     UIApplication.shared.openURL(appStoreUrl)
                 }
             })
@@ -120,7 +126,12 @@ class TemplateCardView: UIView {
                 .instantiateInitialViewController() as! PeakRewardsViewController
             peakRewardsVC.accountDetail = $0
             return peakRewardsVC
-    }
+        }
+        .do(onNext: { _ in
+            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
+                                      dimensionIndex: Dimensions.Link,
+                                      dimensionValue: "https://secure.bge.com/Peakrewards/Pages/default.aspx")
+        })
     
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.hourlyPricingViewController,
                                                                                          self.peakRewardsViewController)
