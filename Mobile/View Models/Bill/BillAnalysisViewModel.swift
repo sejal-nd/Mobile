@@ -234,6 +234,21 @@ class BillAnalysisViewModel {
             }
             return nil
         }
+    
+    private(set) lazy var projectedUsage: Driver<Double?> =
+        Driver.combineLatest(self.electricForecast.asDriver(),
+                             self.gasForecast.asDriver(),
+                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] elecForecast, gasForecast, segmentIndex in
+            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
+            guard let `self` = self else { return nil }
+            if let gasForecast = gasForecast, self.isGas {
+                return gasForecast.projectedUsage
+            }
+            if let elecForecast = elecForecast, !self.isGas {
+                return elecForecast.projectedUsage
+            }
+            return nil
+        }
 
     private(set) lazy var shouldShowProjectedBar: Driver<Bool> =
         Driver.combineLatest(self.lastYearPreviousBillSelectedSegmentIndex.asDriver(), self.projectedCost, self.shouldShowProjectionNotAvailableBar) {
@@ -257,10 +272,19 @@ class BillAnalysisViewModel {
             }
         }
 
-    private(set) lazy var projectedBarDollarLabelText: Driver<String?> = self.projectedCost.map {
-        guard let cost = $0 else { return nil }
-        return cost.currencyString!
-    }
+    private(set) lazy var projectedBarDollarLabelText: Driver<String?> =
+        Driver.combineLatest(self.projectedCost, self.projectedUsage, self.currentBillComparison.asDriver()) { [weak self] in
+            guard let `self` = self else { return nil }
+            if self.accountDetail.isModeledForOpower {
+                guard let cost = $0 else { return nil }
+                return cost.currencyString!
+            } else {
+                guard let usage = $1 else { return nil }
+                guard let billCompare = $2 else { return nil }
+                return String(format: "%.2f %@", usage, billCompare.meterUnit)
+            }
+        }
+    
 
     private(set) lazy var projectedBarDateLabelText: Driver<String?> =
         Driver.combineLatest(self.electricForecast.asDriver(),
