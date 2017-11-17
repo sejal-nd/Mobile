@@ -88,6 +88,7 @@ class PeakRewardsViewController: UIViewController {
         
         viewModel.showDeviceButton.not().drive(deviceButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.deviceButtonText.drive(deviceButton.label.rx.text).disposed(by: disposeBag)
+        viewModel.deviceButtonText.drive(deviceButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         viewModel.programCardsData.map { $0.isEmpty }.drive(programCardStack.rx.isHidden).disposed(by: disposeBag)
         

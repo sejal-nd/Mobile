@@ -16,88 +16,32 @@ class TemperatureSliderView: UIView {
     
     let disposeBag = DisposeBag()
 
-    let slider = UISlider().usingAutoLayout()
-    let titleLabel = UILabel().usingAutoLayout()
-    let temperatureLabel = UILabel().usingAutoLayout()
-    let minLabel = UILabel().usingAutoLayout()
-    let maxLabel = UILabel().usingAutoLayout()
+    private let slider = TemperatureSlider().usingAutoLayout()
+    private let titleLabel = UILabel().usingAutoLayout()
+    private let temperatureLabel = UILabel().usingAutoLayout()
+    private let minLabel = UILabel().usingAutoLayout()
+    private let maxLabel = UILabel().usingAutoLayout()
     
     let mode: Variable<SmartThermostatMode>
     let currentTemperature: BehaviorSubject<Temperature>
+    let minTemp: Temperature
+    let maxTemp: Temperature
+    let scale: TemperatureScale
     
     init(currentTemperature: BehaviorSubject<Temperature>, minTemp: Temperature, maxTemp: Temperature, scale: TemperatureScale, mode: Variable<SmartThermostatMode>) {
         self.currentTemperature = currentTemperature
         self.mode = mode
+        self.scale = scale
+        self.minTemp = minTemp
+        self.maxTemp = maxTemp
         super.init(frame: .zero)
-        
-        mode.asDriver()
-            .filter { $0 == .off }
-            .mapTo(NSLocalizedString("Off", comment: ""))
-            .drive(temperatureLabel.rx.text)
-            .addDisposableTo(disposeBag)
-        
-        mode.asDriver()
-            .map {
-                switch $0 {
-                case .cool:
-                    return NSLocalizedString("Cool Temperature", comment: "")
-                case .heat:
-                    return NSLocalizedString("Heat Temperature", comment: "")
-                case .off:
-                    return NSLocalizedString("Thermostat Mode", comment: "")
-                }
-            }
-            .drive(titleLabel.rx.text)
-            .addDisposableTo(disposeBag)
-        
-        mode.asDriver().map { $0 != .off }.drive(slider.rx.isEnabled).disposed(by: disposeBag)
-        
-        let sliderLabelTextColor = mode.asDriver()
-            .map { $0 == .off ? UIColor.middleGray : UIColor.blackText  }
-        
-        sliderLabelTextColor.drive(minLabel.rx.textColor).disposed(by: disposeBag)
-        sliderLabelTextColor.drive(maxLabel.rx.textColor).disposed(by: disposeBag)
-        
-        mode.asDriver()
-            .skip(1)
-            .filter { $0 != .off }
-            .drive(onNext: { [weak self] _ in
-                self?.setGradientTrackingImage()
-            })
-            .disposed(by: disposeBag)
-        
-        titleLabel.font = SystemFont.bold.of(textStyle: .footnote)
-        temperatureLabel.font = SystemFont.regular.of(size: 22)
-        minLabel.font = SystemFont.regular.of(size: 17)
-        maxLabel.font = SystemFont.regular.of(size: 17)
-        
-        slider.minimumValue = Float(minTemp.value(forScale: scale))
-        slider.maximumValue = Float(maxTemp.value(forScale: scale))
-        
-        currentTemperature.asObservable()
-            .distinctUntilChanged()
-            .map { Float($0.value(forScale: scale)) }
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(slider.rx.value)
-            .disposed(by: disposeBag)
-        
-        slider.rx.value.skip(1)
-            .map { Temperature(value: round($0), scale: scale) }
-            .distinctUntilChanged()
-            .bind(to: currentTemperature)
-            .disposed(by: disposeBag)
-        
-        // Label Text
-        Observable.merge(currentTemperature.asObservable().distinctUntilChanged(),
-                         mode.asObservable().filter { $0 != .off }.withLatestFrom(currentTemperature))
-            .map { "\($0.value(forScale: scale))\(scale.displayString)" }
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(temperatureLabel.rx.text)
-            .disposed(by: disposeBag)
-
-        minLabel.text = String(minTemp.value(forScale: scale))
-        maxLabel.text = String(maxTemp.value(forScale: scale))
-        
+        buildLayout()
+        bindViews()
+    }
+    
+    func buildLayout() {
+        titleLabel.isAccessibilityElement = false
+        temperatureLabel.isAccessibilityElement = false
         temperatureLabel.setContentHuggingPriority(1000, for: .horizontal)
         let labelStack = UIStackView(arrangedSubviews: [titleLabel, temperatureLabel]).usingAutoLayout()
         labelStack.axis = .horizontal
@@ -105,7 +49,7 @@ class TemperatureSliderView: UIView {
         
         let labelStackContainer = UIView()
         labelStackContainer.addSubview(labelStack)
-
+        
         labelStack.topAnchor.constraint(equalTo: labelStackContainer.topAnchor).isActive = true
         labelStack.bottomAnchor.constraint(equalTo: labelStackContainer.bottomAnchor).isActive = true
         labelStack.centerXAnchor.constraint(equalTo: labelStackContainer.centerXAnchor).isActive = true
@@ -133,6 +77,94 @@ class TemperatureSliderView: UIView {
         mainStack.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         mainStack.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         mainStack.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+    }
+    
+    func bindViews() {
+        mode.asDriver()
+            .filter { $0 == .off }
+            .mapTo(NSLocalizedString("Off", comment: ""))
+            .drive(temperatureLabel.rx.text)
+            .addDisposableTo(disposeBag)
+        
+        let titleText = mode.asDriver()
+            .map { mode -> String in
+                switch mode {
+                case .cool:
+                    return NSLocalizedString("Cool Temperature", comment: "")
+                case .heat:
+                    return NSLocalizedString("Heat Temperature", comment: "")
+                case .off:
+                    return NSLocalizedString("Thermostat Mode", comment: "")
+                }
+        }
+        
+        titleText
+            .drive(titleLabel.rx.text)
+            .addDisposableTo(disposeBag)
+        
+        titleText
+            .drive(slider.rx.accessibilityLabel)
+            .addDisposableTo(disposeBag)
+        
+        mode.asDriver().map { $0 != .off }.drive(slider.rx.isEnabled).disposed(by: disposeBag)
+        
+        Driver.combineLatest(currentTemperature.asDriver(onErrorDriveWith: .empty()), mode.asDriver())
+            .map { [unowned self] temperature, mode in
+                switch mode {
+                case .cool, .heat:
+                    return String(format: NSLocalizedString("%d degrees", comment: ""),
+                                  temperature.value(forScale: self.scale))
+                case .off:
+                    return NSLocalizedString("Off", comment: "")
+                }
+            }
+            .drive(slider.rx.accessibilityValue)
+            .disposed(by: disposeBag)
+        
+        let sliderLabelTextColor = mode.asDriver()
+            .map { $0 == .off ? UIColor.middleGray : UIColor.blackText  }
+        
+        sliderLabelTextColor.drive(minLabel.rx.textColor).disposed(by: disposeBag)
+        sliderLabelTextColor.drive(maxLabel.rx.textColor).disposed(by: disposeBag)
+        
+        mode.asDriver()
+            .skip(1)
+            .filter { $0 != .off }
+            .drive(onNext: { [weak self] _ in
+                self?.setGradientTrackingImage()
+            })
+            .disposed(by: disposeBag)
+        
+        titleLabel.font = SystemFont.bold.of(textStyle: .footnote)
+        temperatureLabel.font = SystemFont.regular.of(size: 22)
+        minLabel.font = SystemFont.regular.of(size: 17)
+        maxLabel.font = SystemFont.regular.of(size: 17)
+        
+        slider.minimumValue = Float(minTemp.value(forScale: scale))
+        slider.maximumValue = Float(maxTemp.value(forScale: scale))
+        
+        currentTemperature.asObservable()
+            .distinctUntilChanged()
+            .map { [unowned self] in Float($0.value(forScale: self.scale)) }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(slider.rx.value)
+            .disposed(by: disposeBag)
+        
+        slider.rx.value.asDriver().skip(1)
+            .map { [unowned self] in Temperature(value: round($0), scale: self.scale) }
+            .distinctUntilChanged()
+            .drive(currentTemperature)
+            .disposed(by: disposeBag)
+        
+        Observable.merge(currentTemperature.asObservable().distinctUntilChanged(),
+                         mode.asObservable().filter { $0 != .off }.withLatestFrom(currentTemperature))
+            .map { [unowned self] in "\($0.value(forScale: self.scale))\(self.scale.displayString)" }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(temperatureLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        minLabel.text = String(minTemp.value(forScale: scale))
+        maxLabel.text = String(maxTemp.value(forScale: scale))
     }
     
     override func layoutSubviews() {
@@ -175,6 +207,19 @@ class TemperatureSliderView: UIView {
     
     override init(frame: CGRect) {
         fatalError("Not Implemented")
+    }
+}
+
+fileprivate class TemperatureSlider: UISlider {
+    
+    override func accessibilityIncrement() {
+        value += 1
+        sendActions(for: .valueChanged)
+    }
+
+    override func accessibilityDecrement() {
+        value -= 1
+        sendActions(for: .valueChanged)
     }
 }
 

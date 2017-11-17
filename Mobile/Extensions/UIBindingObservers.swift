@@ -25,6 +25,13 @@ extension Reactive where Base: NSObject {
         }
     }
     
+    /// Bindable sink for `accessibilityValue` property.
+    public var accessibilityValue: UIBindingObserver<Base, String?> {
+        return UIBindingObserver(UIElement: self.base) { object, value in
+            object.accessibilityValue = value
+        }
+    }
+    
 }
 
 extension Reactive where Base: UIView {

@@ -56,6 +56,10 @@ class PeakRewardsProgramCard: UIView {
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -21).isActive = true
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+        
+        isAccessibilityElement = true
+        accessibilityElements = nil
+        accessibilityLabel = title + ", " + body
     }
     
     

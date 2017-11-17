@@ -70,6 +70,7 @@ class AdjustThermostatViewController: UIViewController {
         permanentHoldLabel.font = SystemFont.regular.of(size: 16)
         permanentHoldLabel.textColor = .blackText
         permanentHoldLabel.text = NSLocalizedString("Permanent Hold", comment: "")
+        permanentHoldLabel.isAccessibilityElement = false
         permanentHoldLabel.setContentHuggingPriority(1, for: .horizontal)
         permanentHoldLabel.setContentCompressionResistancePriority(1000, for: .horizontal)
         
@@ -142,6 +143,7 @@ class AdjustThermostatViewController: UIViewController {
             .drive(fanSegmentedControl.selectedIndex)
             .disposed(by: disposeBag)
         
+        permanentHoldSwitch.accessibilityLabel = NSLocalizedString("Permanent Hold", comment: "")
         viewModel.initialHold.drive(permanentHoldSwitch.rx.isOn).disposed(by: disposeBag)
         
         // Bind to view model
