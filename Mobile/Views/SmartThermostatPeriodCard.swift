@@ -121,17 +121,33 @@ class SmartThermostatPeriodCard: ButtonControl {
         
         periodInfo.map { $0.startTimeDisplayString }.drive(timeLabel.rx.text).disposed(by: bag)
         
-        Driver.combineLatest(periodInfo,
-                             TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit))
+        let periodInfoAndScale = Driver
+            .combineLatest(periodInfo, TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit))
+        
+        periodInfoAndScale
             .map { "\($0.coolTemp.value(forScale: $1)) \($1.displayString)" }
             .drive(coolTempLabel.rx.text)
             .disposed(by: bag)
         
-        Driver.combineLatest(periodInfo,
-                             TemperatureScaleStore.shared.scaleObservable.asDriver(onErrorJustReturn: .fahrenheit))
+        periodInfoAndScale
             .map { "\($0.heatTemp.value(forScale: $1)) \($1.displayString)" }
             .drive(heatTempLabel.rx.text)
             .disposed(by: bag)
+        
+        periodInfoAndScale
+            .map { periodInfo, scale in
+                let localizedText = NSLocalizedString("%@ %@ schedule, cool set to %d%@, heat set to %d%@", comment: "")
+                return String(format: localizedText,
+                              periodInfo.startTimeDisplayString,
+                              period.displayString,
+                              periodInfo.coolTemp.value(forScale: scale),
+                              scale.displayString,
+                              periodInfo.heatTemp.value(forScale: scale),
+                              scale.displayString)
+            }
+            .drive(rx.accessibilityLabel)
+            .disposed(by: bag)
+        
     }
     
     

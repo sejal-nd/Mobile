@@ -63,7 +63,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWW-FB-ss2" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <accessibility key="accessibilityConfiguration" label="View my usage details"/>
+                                                        <accessibility key="accessibilityConfiguration" label="Device"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="Veb-KN-Hr1"/>
                                                         </constraints>
@@ -88,7 +88,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hlx-Ke-GyS" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <accessibility key="accessibilityConfiguration" label="View my usage details"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Override"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="HWA-vg-yfe"/>
                                                                 </constraints>
@@ -99,7 +99,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-MQ-zow" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="70" width="317" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <accessibility key="accessibilityConfiguration" label="View my usage details"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Adjust Thermostat"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="Ehe-m6-rc7"/>
                                                                 </constraints>
@@ -279,7 +279,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gvO-tC-OQK" firstAttribute="bottom" secondItem="lba-qg-ikB" secondAttribute="bottom" id="98t-1M-zDH"/>
+                            <constraint firstAttribute="bottom" secondItem="lba-qg-ikB" secondAttribute="bottom" id="98t-1M-zDH"/>
                             <constraint firstItem="gvO-tC-OQK" firstAttribute="trailing" secondItem="avC-5q-wSD" secondAttribute="trailing" priority="999" constant="29" id="EZM-YG-sDf"/>
                             <constraint firstItem="lba-qg-ikB" firstAttribute="leading" secondItem="gvO-tC-OQK" secondAttribute="leading" id="FBt-ci-fRA"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="avC-5q-wSD" secondAttribute="trailing" constant="29" id="FE4-1c-OQi"/>
@@ -289,7 +289,7 @@
                             <constraint firstItem="lba-qg-ikB" firstAttribute="trailing" secondItem="gvO-tC-OQK" secondAttribute="trailing" id="POg-8G-8PQ"/>
                             <constraint firstItem="0EV-pp-1sF" firstAttribute="centerX" secondItem="xAd-Rs-pwW" secondAttribute="centerX" id="QAZ-gH-TVF"/>
                             <constraint firstItem="3ZD-gx-g4N" firstAttribute="leading" secondItem="gvO-tC-OQK" secondAttribute="leading" id="Xka-9q-gD3"/>
-                            <constraint firstItem="3ZD-gx-g4N" firstAttribute="bottom" secondItem="gvO-tC-OQK" secondAttribute="bottom" id="YR5-Yw-VNK"/>
+                            <constraint firstItem="3ZD-gx-g4N" firstAttribute="bottom" secondItem="xAd-Rs-pwW" secondAttribute="bottom" id="YR5-Yw-VNK"/>
                             <constraint firstItem="0EV-pp-1sF" firstAttribute="centerY" secondItem="xAd-Rs-pwW" secondAttribute="centerY" id="Zzi-ce-npn"/>
                             <constraint firstItem="avC-5q-wSD" firstAttribute="leading" secondItem="gvO-tC-OQK" secondAttribute="leading" priority="999" constant="29" id="paM-OW-d1W"/>
                             <constraint firstItem="sV5-Zr-gVC" firstAttribute="width" secondItem="xAd-Rs-pwW" secondAttribute="width" id="phh-Ve-kSI"/>

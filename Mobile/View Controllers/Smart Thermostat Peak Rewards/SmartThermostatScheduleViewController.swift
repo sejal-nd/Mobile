@@ -95,13 +95,12 @@ class SmartThermostatScheduleViewController: UIViewController {
     }
     
     func bindViews() {
-        viewModel.updatedPeriodInfo
-            .map {
-                let localizedTimeText = NSLocalizedString("Time: %@", comment: "")
-                return String(format: localizedTimeText, $0.startTimeDisplayString)
-            }
-            .asDriver(onErrorDriveWith: .empty())
+        viewModel.timeButtonText
             .drive(timeButton.label.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.timeButtonText
+            .drive(timeButton.rx.accessibilityLabel)
             .disposed(by: disposeBag)
     }
     
