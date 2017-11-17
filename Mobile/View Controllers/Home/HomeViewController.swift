@@ -39,14 +39,7 @@ class HomeViewController: AccountPickerViewController {
     var usageCardView: HomeUsageCardView!
     
     var refreshDisposable: Disposable?
-    var refreshControl: UIRefreshControl? {
-        didSet {
-            refreshDisposable?.dispose()
-            refreshDisposable = refreshControl?.rx.controlEvent(.valueChanged).asObservable()
-                .map { FetchingAccountState.refresh }
-                .bind(to: viewModel.fetchData)
-        }
-    }
+    var refreshControl: UIRefreshControl?
     
     var alertLottieAnimation = LOTAnimationView(name: "alert_icon")
     
@@ -72,8 +65,7 @@ class HomeViewController: AccountPickerViewController {
                 guard let `self` = self else { return }
                 switch(state) {
                 case .loadingAccounts:
-                    // Sam, do your custom loading here
-                    break
+                    self.setRefreshControlEnabled(enabled: false)
                 case .readyToFetchData:
                     if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchData.onNext(.switchAccount)
@@ -81,7 +73,6 @@ class HomeViewController: AccountPickerViewController {
                         self.viewModel.fetchData.onNext(.switchAccount)
                     }
                 }
-                
             })
             .disposed(by: bag)
         
@@ -159,11 +150,6 @@ class HomeViewController: AccountPickerViewController {
         usageCardView.superviewDidLayoutSubviews()
     }
     
-    func killRefresh() -> Void {
-        self.refreshControl?.endRefreshing()
-        self.scrollView!.alwaysBounceVertical = true
-    }
-    
     func styleViews() {
         view.backgroundColor = .primaryColor
         primaryColorHeaderView.backgroundColor = .primaryColor
@@ -175,38 +161,53 @@ class HomeViewController: AccountPickerViewController {
         weatherView.accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage]
     }
     
+    func killRefresh() -> Void {
+        self.refreshControl?.endRefreshing()
+        self.scrollView!.alwaysBounceVertical = true
+    }
+    
+    func setRefreshControlEnabled(enabled: Bool) {
+        if enabled {
+            refreshControl = UIRefreshControl()
+            refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
+            refreshControl?.tintColor = .white
+            scrollView!.insertSubview(refreshControl!, at: 0)
+            scrollView!.alwaysBounceVertical = true
+        } else {
+            if let rc = refreshControl {
+                rc.endRefreshing()
+                rc.removeFromSuperview()
+                refreshControl = nil
+            }
+            scrollView!.alwaysBounceVertical = false
+        }
+    }
+    
+    func onPullToRefresh() {
+        viewModel.fetchData.onNext(.refresh)
+    }
+    
     func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
         
-        viewModel.isRefreshing.filter(!).drive(onNext: { [weak self] refresh in
-            if refresh {
-                self?.refreshControl?.beginRefreshing()
-            } else {
+        Observable.merge(viewModel.refreshFetchTracker.asObservable(), viewModel.isSwitchingAccounts.asObservable())
+            .subscribe(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .disposed(by: bag)
+        
+        viewModel.refreshFetchTracker.asDriver().filter(!)
+            .drive(onNext: { [weak self] _ in
                 self?.refreshControl?.endRefreshing()
-            }
-        }).disposed(by: bag)
+            }).disposed(by: bag)
         
-        viewModel.isSwitchingAccounts.not().drive(onNext: { [weak self] refresh in
+        viewModel.isSwitchingAccounts.asDriver().not().drive(onNext: { [weak self] refresh in
             guard let `self` = self else { return }
-            if refresh {
-                guard self.refreshControl == nil else { return }
-                let refreshControl = UIRefreshControl()
-                self.refreshControl = refreshControl
-                refreshControl.tintColor = .white
-                self.scrollView!.insertSubview(refreshControl, at: 0)
-                self.scrollView!.alwaysBounceVertical = true
-            } else {
-                self.refreshControl?.endRefreshing()
-                self.refreshControl?.removeFromSuperview()
-                self.refreshControl = nil
-                self.scrollView!.alwaysBounceVertical = false
-            }
+            self.setRefreshControlEnabled(enabled: refresh)
         }).disposed(by: bag)
         
-        viewModel.isSwitchingAccounts.drive(homeLoadingIndicator.rx.isAnimating).disposed(by: bag)
-        viewModel.isSwitchingAccounts.drive(cardStackView.rx.isHidden).disposed(by: bag)
-        viewModel.isSwitchingAccounts.not().drive(loadingView.rx.isHidden).disposed(by: bag)
-        viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.asDriver().drive(homeLoadingIndicator.rx.isAnimating).disposed(by: bag)
+        viewModel.isSwitchingAccounts.asDriver().drive(cardStackView.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.asDriver().drive(greetingLabel.rx.isHidden).disposed(by: bag)
         
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
         viewModel.showNoNetworkConnectionState.drive(scrollView!.rx.isHidden).disposed(by: bag)
