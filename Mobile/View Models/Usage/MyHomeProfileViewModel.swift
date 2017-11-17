@@ -45,7 +45,6 @@ class MyHomeProfileViewModel {
     }
     
     private(set) lazy var homeSizeError: Observable<String?> = self.homeSizeEntry.asObservable()
-        .skip(1)
         .map {
             guard let homeSizeEntry = $0, let squareFeet = Int(homeSizeEntry) else {
                 return NSLocalizedString("Square footage is required", comment: "")
@@ -77,6 +76,36 @@ class MyHomeProfileViewModel {
             homeSizeErrorIsNil
     }
     .startWith(false)
+    
+    private(set) lazy var saveA11yLabel: Driver<String?> = Observable.combineLatest(self.homeType.asObservable(),
+                                                                                    self.heatType.asObservable(),
+                                                                                    self.numberOfAdults.asObservable(),
+                                                                                    self.numberOfChildren.asObservable(),
+                                                                                    self.homeSizeError)
+    { homeType, heatType, numAdults, numChild, homeSizeError in
+        var a11yString = ""
+        if homeType == nil {
+            a11yString += NSLocalizedString("Home type is required,", comment: "")
+        }
+        if heatType == nil {
+            a11yString += NSLocalizedString("Heating fuel is required,", comment: "")
+        }
+        if numAdults == nil {
+            a11yString += NSLocalizedString("Number of adults is required,", comment: "")
+        }
+        if numChild == nil {
+            a11yString += NSLocalizedString("Number of children is required,", comment: "")
+        }
+        if let homeSizeErr = homeSizeError {
+            a11yString += homeSizeErr + ","
+        }
+        
+        if a11yString.isEmpty {
+            return NSLocalizedString("Save", comment: "")
+        } else {
+            return String(format: NSLocalizedString("%@ Save", comment: ""), a11yString)
+        }
+    }.asDriver(onErrorJustReturn: nil)
     
     private lazy var save: Observable<Event<Void>> = self.saveAction
         .withLatestFrom(self.updatedHomeProfile)

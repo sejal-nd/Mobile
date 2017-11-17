@@ -56,6 +56,9 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var convenienceFeeContainer: UIView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
+    @IBOutlet weak var a11yTutorialButtonContainer: UIView!
+    @IBOutlet weak var a11yTutorialButton: UIButton!
+    
     @IBOutlet weak var oneTouchSliderContainer: UIView!
     @IBOutlet weak var oneTouchSlider: OneTouchSlider!
     @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
@@ -104,6 +107,10 @@ class HomeBillCardView: UIView {
     static func create(withViewModel viewModel: HomeBillCardViewModel) -> HomeBillCardView {
         let view = Bundle.main.loadViewFromNib() as HomeBillCardView
         view.viewModel = viewModel
+        
+        let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
+        view.a11yTutorialButtonContainer.isHidden = !a11yEnabled
+    
         return view
     }
     
@@ -123,6 +130,10 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.layer.cornerRadius = 3
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
+        
+        a11yTutorialButton.setTitleColor(.actionBlue, for: .normal)
+        a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        a11yTutorialButton.titleLabel?.text = NSLocalizedString("View Tutorial", comment: "")
         
         dueAmountAndDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
@@ -262,6 +273,16 @@ class HomeBillCardView: UIView {
         oneTouchSliderContainer.removeGestureRecognizer(tutorialSwipe)
         oneTouchSliderContainer.addGestureRecognizer(tutorialTap)
         oneTouchSliderContainer.addGestureRecognizer(tutorialSwipe)
+        
+        Observable.merge(NotificationCenter.default.rx.notification(.UIAccessibilitySwitchControlStatusDidChange, object: nil),
+                         NotificationCenter.default.rx.notification(Notification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil))
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
+                self?.a11yTutorialButtonContainer.isHidden = !a11yEnabled
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+            })
+            .disposed(by: bag)
     }
     
     // Actions
@@ -421,7 +442,7 @@ class HomeBillCardView: UIView {
             return alertController
     }
     
-    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver.merge(self.tutorialTap.rx.event.asDriver().mapTo(()), self.tutorialSwipe.rx.event.asDriver().mapTo(()))
+    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver.merge(self.tutorialTap.rx.event.asDriver().mapTo(()), self.tutorialSwipe.rx.event.asDriver().mapTo(()), self.a11yTutorialButton.rx.tap.asDriver().mapTo(()))
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
         .mapTo(())

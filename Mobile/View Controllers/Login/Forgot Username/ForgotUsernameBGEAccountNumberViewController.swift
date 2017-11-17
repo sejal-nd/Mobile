@@ -68,9 +68,9 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         let message = accountNumberTextField.getError()
         
         if message.isEmpty {
-            self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+            nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            self.nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
+            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
         }
     }
     
