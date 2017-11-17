@@ -85,6 +85,7 @@ struct AccountDetail: Mappable {
     let SERInfo: SERInfo
     let premiseInfo: [Premise]
     
+    let isModeledForOpower: Bool
     let isPasswordProtected: Bool
     let hasElectricSupplier: Bool
     let isSingleBillOption: Bool
@@ -151,6 +152,7 @@ struct AccountDetail: Mappable {
             isSERAccount = false
         }
         
+        isModeledForOpower = map.optionalFrom("isModeledForOpower") ?? false
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
         isBudgetBillEnrollment = map.optionalFrom("isBudgetBill") ?? false
         isBudgetBillEligible = map.optionalFrom("isBudgetBillEligible") ?? false

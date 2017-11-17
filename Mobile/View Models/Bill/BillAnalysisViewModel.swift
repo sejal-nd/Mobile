@@ -234,6 +234,21 @@ class BillAnalysisViewModel {
             }
             return nil
         }
+    
+    private(set) lazy var projectedUsage: Driver<Double?> =
+        Driver.combineLatest(self.electricForecast.asDriver(),
+                             self.gasForecast.asDriver(),
+                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] elecForecast, gasForecast, segmentIndex in
+            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
+            guard let `self` = self else { return nil }
+            if let gasForecast = gasForecast, self.isGas {
+                return gasForecast.projectedUsage
+            }
+            if let elecForecast = elecForecast, !self.isGas {
+                return elecForecast.projectedUsage
+            }
+            return nil
+        }
 
     private(set) lazy var shouldShowProjectedBar: Driver<Bool> =
         Driver.combineLatest(self.lastYearPreviousBillSelectedSegmentIndex.asDriver(), self.projectedCost, self.shouldShowProjectionNotAvailableBar) {
@@ -257,10 +272,19 @@ class BillAnalysisViewModel {
             }
         }
 
-    private(set) lazy var projectedBarDollarLabelText: Driver<String?> = self.projectedCost.map {
-        guard let cost = $0 else { return nil }
-        return cost.currencyString!
-    }
+    private(set) lazy var projectedBarDollarLabelText: Driver<String?> =
+        Driver.combineLatest(self.projectedCost, self.projectedUsage, self.currentBillComparison.asDriver()) { [weak self] in
+            guard let `self` = self else { return nil }
+            if self.accountDetail.isModeledForOpower {
+                guard let cost = $0 else { return nil }
+                return cost.currencyString!
+            } else {
+                guard let usage = $1 else { return nil }
+                guard let billCompare = $2 else { return nil }
+                return String(format: "%d %@", Int(usage), billCompare.meterUnit)
+            }
+        }
+    
 
     private(set) lazy var projectedBarDateLabelText: Driver<String?> =
         Driver.combineLatest(self.electricForecast.asDriver(),
@@ -575,16 +599,31 @@ class BillAnalysisViewModel {
                     }
                 }
             } else if selectionStates[3].value { // Projected
-                let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
-                    "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-                if let gasForecast = gasForecast, self.isGas {
-                    if let projectedCost = gasForecast.projectedCost, let toDateCost = gasForecast.toDateCost {
-                        return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                if self.accountDetail.isModeledForOpower {
+                    let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
+                        "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
+                    if let gasForecast = gasForecast, self.isGas {
+                        if let projectedCost = gasForecast.projectedCost, let toDateCost = gasForecast.toDateCost {
+                            return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                        }
                     }
-                }
-                if let elecForecast = elecForecast, !self.isGas {
-                    if let projectedCost = elecForecast.projectedCost, let toDateCost = elecForecast.toDateCost {
-                        return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                    if let elecForecast = elecForecast, !self.isGas {
+                        if let projectedCost = elecForecast.projectedCost, let toDateCost = elecForecast.toDateCost {
+                            return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                        }
+                    }
+                } else {
+                    let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. This is an estimate and the actual amount may vary.", comment: "")
+                    let meterUnit = billComparison.meterUnit
+                    if let gasForecast = gasForecast, self.isGas {
+                        if let projectedUsage = gasForecast.projectedUsage, let toDateUsage = gasForecast.toDateUsage {
+                            return String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
+                        }
+                    }
+                    if let elecForecast = elecForecast, !self.isGas {
+                        if let projectedUsage = elecForecast.projectedUsage, let toDateUsage = elecForecast.toDateUsage {
+                            return String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
+                        }
                     }
                 }
             } else if selectionStates[4].value { // Projection Not Available
