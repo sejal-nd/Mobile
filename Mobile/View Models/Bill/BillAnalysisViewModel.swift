@@ -281,7 +281,7 @@ class BillAnalysisViewModel {
             } else {
                 guard let usage = $1 else { return nil }
                 guard let billCompare = $2 else { return nil }
-                return String(format: "%.2f %@", usage, billCompare.meterUnit)
+                return String(format: "%d %@", Int(usage), billCompare.meterUnit)
             }
         }
     
@@ -599,16 +599,31 @@ class BillAnalysisViewModel {
                     }
                 }
             } else if selectionStates[3].value { // Projected
-                let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
-                    "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-                if let gasForecast = gasForecast, self.isGas {
-                    if let projectedCost = gasForecast.projectedCost, let toDateCost = gasForecast.toDateCost {
-                        return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                if self.accountDetail.isModeledForOpower {
+                    let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
+                        "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
+                    if let gasForecast = gasForecast, self.isGas {
+                        if let projectedCost = gasForecast.projectedCost, let toDateCost = gasForecast.toDateCost {
+                            return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                        }
                     }
-                }
-                if let elecForecast = elecForecast, !self.isGas {
-                    if let projectedCost = elecForecast.projectedCost, let toDateCost = elecForecast.toDateCost {
-                        return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                    if let elecForecast = elecForecast, !self.isGas {
+                        if let projectedCost = elecForecast.projectedCost, let toDateCost = elecForecast.toDateCost {
+                            return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                        }
+                    }
+                } else {
+                    let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. This is an estimate and the actual amount may vary.", comment: "")
+                    let meterUnit = billComparison.meterUnit
+                    if let gasForecast = gasForecast, self.isGas {
+                        if let projectedUsage = gasForecast.projectedUsage, let toDateUsage = gasForecast.toDateUsage {
+                            return String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
+                        }
+                    }
+                    if let elecForecast = elecForecast, !self.isGas {
+                        if let projectedUsage = elecForecast.projectedUsage, let toDateUsage = elecForecast.toDateUsage {
+                            return String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
+                        }
                     }
                 }
             } else if selectionStates[4].value { // Projection Not Available
