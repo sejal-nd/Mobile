@@ -25,16 +25,19 @@ final class AlertsStore {
     }
     
     func savePushNotification(_ notification: PushNotification) {
+        // BGE notifications are at the user level, so store their username as the key
         if Environment.sharedInstance.opco == .bge {
-            if let array = alerts["bge"] {
-                var arrayCopy = array
-                arrayCopy.insert(notification, at: 0)
-                alerts["bge"] = arrayCopy
-            } else {
-                let newArray = [notification]
-                alerts["bge"] = newArray
+            if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername) {
+                if let array = alerts[loggedInUsername] {
+                    var arrayCopy = array
+                    arrayCopy.insert(notification, at: 0)
+                    alerts[loggedInUsername] = arrayCopy
+                } else {
+                    let newArray = [notification]
+                    alerts[loggedInUsername] = newArray
+                }
             }
-        } else {
+        } else { // ComEd/PECO notifications are at the account level, so store their account number as the key
             for accountNumber in notification.accountNumbers {
                 if let array = alerts[accountNumber] {
                     var arrayCopy = array
@@ -53,8 +56,15 @@ final class AlertsStore {
     }
     
     func getAlerts(forAccountNumber accountNumber: String) -> [PushNotification] {
-        let accountNum = Environment.sharedInstance.opco == .bge ? "bge" : accountNumber
-        guard let notificationsArray = alerts[accountNum] else { return [] }
-        return notificationsArray
+        if Environment.sharedInstance.opco == .bge {
+            if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername), let notificationsArray = alerts[loggedInUsername] {
+                return notificationsArray
+            }
+        } else {
+            if let notificationsArray = alerts[accountNumber] {
+                return notificationsArray
+            }
+        }
+        return []
     }
 }

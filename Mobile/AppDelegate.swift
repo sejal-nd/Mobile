@@ -86,14 +86,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         dLog("*-*-*-*-* APNS Device Token: \(token)")
         
-        let alertsService = ServiceFactory.createAlertsService()
-        alertsService.register(token: token) { (result: ServiceResult<Void>) in
-            switch result {
-            case .Success:
-                dLog("*-*-*-*-* Registered token with MCS")
-            case .Failure(let err):
-                dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
-            }
+        var firstLogin = false
+        if let usernamesArray = UserDefaults.standard.array(forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications) as? [String],
+            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername) {
+                if !usernamesArray.contains(loggedInUsername) {
+                    firstLogin = true
+                }
+            
+                let alertsService = ServiceFactory.createAlertsService()
+                alertsService.register(token: token, firstLogin: firstLogin) { (result: ServiceResult<Void>) in
+                    switch result {
+                    case .Success:
+                        dLog("*-*-*-*-* Registered token with MCS")
+                        if firstLogin { // Add the username to the array
+                            var newUsernamesArray = usernamesArray
+                            newUsernamesArray.append(loggedInUsername)
+                            UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications)
+                        }
+                    case .Failure(let err):
+                        dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
+                    }
+                }
         }
     }
     
@@ -172,7 +185,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefaults = UserDefaults.standard
         userDefaults.register(defaults: [
             UserDefaultKeys.ShouldPromptToEnableTouchID: true,
-            UserDefaultKeys.PaymentDetailsDictionary: [String: NSDictionary]()
+            UserDefaultKeys.PaymentDetailsDictionary: [String: NSDictionary](),
+            UserDefaultKeys.UsernamesRegisteredForPushNotifications: [String]()
         ])
         
         userDefaults.set(false, forKey: UserDefaultKeys.InMainApp)
