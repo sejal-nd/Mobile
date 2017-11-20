@@ -32,4 +32,5 @@ struct UserDefaultKeys {
     
     static let PushNotificationReceived = "kPushNotificationReceived"
     static let PushNotificationReceivedTimestamp = "kPushNotificationReceivedTimestamp"
+    static let UsernamesRegisteredForPushNotifications = "kUsernamesRegisteredForPushNotifications"
 }

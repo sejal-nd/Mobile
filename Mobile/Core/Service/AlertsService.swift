@@ -13,10 +13,11 @@ protocol AlertsService {
     ///
     /// - Parameters:
     ///   - accountNumber: The account to fetch info for
+    ///   - firstLogin: If true, will attempt to enroll the default preferences for this account
     ///   - completion: the completion block to execute upon completion.
     ///     The ServiceResult that is provided will contain an AlertPreferences
     ////    object upon success, or the error on failure.
-    func register(token: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func register(token: String, firstLogin: Bool, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     /// Fetch infomation about what push notifications the user is subscribed for
     ///
@@ -69,9 +70,9 @@ protocol AlertsService {
 
 // MARK: - Reactive Extension to AlertsService
 extension AlertsService {
-    func register(token: String) -> Observable<Void> {
+    func register(token: String, firstLogin: Bool) -> Observable<Void> {
         return Observable.create { observer in
-            self.register(token: token, completion: { (result: ServiceResult<Void>) in
+            self.register(token: token, firstLogin: firstLogin, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
                     observer.onNext()
