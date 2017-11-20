@@ -146,6 +146,11 @@ enum AnalyticsPageView: String {
     case AlertsPayRemind = "AlertsPayRemind"
     case AlertsEnglish = "AlertsEnglish"
     case AlertsSpanish = "AlertsSpanish"
+    case AlertsMainScreen = "AlertsMainScreen"
+    case AlertsiOSPushInitial = "AlertsiOSPushInitial"
+    case AlertsiOSPushDontAllowInitial = "AlertsiOSPushDontAllowInitial"
+    case AlertsiOSPushOKInitial = "AlertsiOSPushOKInitial"
+    case AlertsOpCoUpdate = "AlertsOpCoUpdate"
 }
 
 enum AnalyticsOutageSource {

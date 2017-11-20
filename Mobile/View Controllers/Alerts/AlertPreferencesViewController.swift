@@ -131,7 +131,7 @@ class AlertPreferencesViewController: UIViewController {
     
     func checkForNotificationsPermissions() {
         if let notificationSettings = UIApplication.shared.currentUserNotificationSettings {
-            viewModel.devicePushNotificationsEnabled.value = notificationSettings.types != []
+            viewModel.devicePushNotificationsEnabled.value = !notificationSettings.types.isEmpty
         }
     }
     
