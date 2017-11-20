@@ -39,7 +39,6 @@ class LoginViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(verifyAccountNotificationReceived), name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: nil)
         
         // This is necessary to handle Touch ID prompt's cancel action -- do not remove
         NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
@@ -138,13 +137,23 @@ class LoginViewController: UIViewController {
         keepMeSignedInSwitch.isAccessibilityElement = true
         keepMeSignedInSwitch.accessibilityLabel = keepMeSignedInLabel.text
 
-        checkForMaintenanceMode()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self) // Important for deep linking, do not remove
+        checkForMaintenanceMode(onCompletion: { [weak self] in
+            // We wait until after the maintence mode check due to the issue with calling 2 anon functions at once. See "IMPORTANT NOTE!" in OMCApi.swift for more info
+            if let guid = UserDefaults.standard.string(forKey: UserDefaultKeys.AccountVerificationDeepLinkGuid) {
+                UserDefaults.standard.removeObject(forKey: UserDefaultKeys.AccountVerificationDeepLinkGuid) // Clear once consumed
+                LoadingView.show()
+                self?.viewModel.validateRegistration(guid: guid, onSuccess: { [weak self] in
+                    LoadingView.hide()
+                    self?.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
+                    Analytics().logScreenView(AnalyticsPageView.RegisterAccountVerify.rawValue)
+                }, onError: { [weak self] title, message in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self?.present(alertVc, animated: true, completion: nil)
+                })
+            }
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -381,24 +390,6 @@ class LoginViewController: UIViewController {
         })
     }
     
-    func verifyAccountNotificationReceived(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let guid = userInfo["guid"] as? String {
-                LoadingView.show()
-                viewModel.validateRegistration(guid: guid, onSuccess: { [weak self] in
-                    LoadingView.hide()
-                    self?.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
-                    Analytics().logScreenView(AnalyticsPageView.RegisterAccountVerify.rawValue)
-                }, onError: { [weak self] title, message in
-                    LoadingView.hide()
-                    let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self?.present(alertVc, animated: true, completion: nil)
-                })
-            }
-        }
-    }
-    
     // MARK: - Keyboard
     
     func keyboardWillShow(notification: Notification) {
@@ -417,17 +408,17 @@ class LoginViewController: UIViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
     
-    func checkForMaintenanceMode(){
+    func checkForMaintenanceMode(onCompletion: @escaping () -> Void) {
         viewModel.checkForMaintenance(onSuccess: { [weak self] isMaintenance in
             if isMaintenance {
                 self?.navigationController?.view.isUserInteractionEnabled = true
                 let ad = UIApplication.shared.delegate as! AppDelegate
                 ad.showMaintenanceMode()
+            } else {
+                onCompletion()
             }
-        }, onError: { [weak self] errorMessage in
-            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self?.present(alertController, animated: true, completion: nil)
+        }, onError: { errorMessage in
+            onCompletion()
         })
     }
     

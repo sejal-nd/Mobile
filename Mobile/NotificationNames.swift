@@ -9,7 +9,6 @@
 extension NSNotification.Name {
     
     static let DidReceiveInvalidAuthToken = NSNotification.Name(rawValue: "kDidReceiveInvalidAuthToken")
-    static let DidTapAccountVerificationDeepLink = NSNotification.Name(rawValue: "kDidTapAccountVerificationDeepLink")
     static let DidMaintenanceModeTurnOn = NSNotification.Name(rawValue: "kDidMaintenanceModeTurnOn")
     static let DidSelectEnrollInAutoPay = NSNotification.Name(rawValue: "kDidSelectEnrollInAutoPay")
     static let DidChangeBudgetBillingEnrollment = NSNotification.Name(rawValue: "kDidChangeBudgetBillingEnrollment")

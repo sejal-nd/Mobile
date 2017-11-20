@@ -118,6 +118,8 @@ class LoginViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { maintenanceInfo in
                 onSuccess(maintenanceInfo.allStatus)
+            }, onError: { error in
+                onError(error.localizedDescription)
             }).disposed(by: disposeBag)
     }
     

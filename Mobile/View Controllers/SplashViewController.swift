@@ -84,20 +84,26 @@ class SplashViewController: UIViewController{
         if keepMeSignedIn {
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             self.present(viewController!, animated: true, completion: nil)
-        } else if !self.performDeepLink { // Deep link cold-launched the app, so let our logic below handle it
-            if self.lottieAnimation == nil || !self.lottieAnimation!.isAnimationPlaying {
-                self.performSegue(withIdentifier: "landingSegue", sender: self)
-            } else {
-                self.lottieAnimation!.completionBlock = { [weak self] (value: Bool) in
-                    self?.performSegue(withIdentifier: "landingSegue", sender: self)
+        } else {
+            let navigate = {
+                if self.performDeepLink {
+                    let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                    let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
+                    let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+                    self.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
+                    self.performDeepLink = false // Reset state
+                } else {
+                    self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
             }
-        } else {
-            let storyboard = UIStoryboard(name: "Login", bundle: nil)
-            let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
-            let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-            self.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
-            self.performDeepLink = false // Reset state
+            
+            if self.lottieAnimation == nil || !self.lottieAnimation!.isAnimationPlaying {
+                navigate()
+            } else {
+                self.lottieAnimation!.completionBlock = { _ in
+                    navigate()
+                }
+            }
         }
     }
     

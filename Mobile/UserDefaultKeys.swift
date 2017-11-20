@@ -18,8 +18,7 @@ struct UserDefaultKeys {
     static let ShouldPromptToEnableTouchID = "kShouldPromptToEnableTouchID" // Should we prompt the user to enable Touch ID after a successful login?
     static let LoggedInUsername = "kLoggedInUsername" // The username of the currently logged in user
     
-    // Persist Customer Identifer (from login) to disk
-    static let CustomerIdentifier = "kCustomerIdentifier"
+    static let CustomerIdentifier = "kCustomerIdentifier" // Persist Customer Identifer (from login) to disk
     
     static let PaymentDetailsDictionary = "kPaymentDetailsDictionary"
     
@@ -27,9 +26,10 @@ struct UserDefaultKeys {
     
     static let InMainApp = "kInMainApp" // Is the user in the "Main" area of the app (past-login). Set to true in MainTabBarController
     
-    //Used by AppRating to track number of events that contribute to a rating prompt
-    static let AppRatingEventCount = "kAppRatingEventCount"
+    static let AppRatingEventCount = "kAppRatingEventCount" //Used by AppRating to track number of events that contribute to a rating prompt
     
     static let PushNotificationReceived = "kPushNotificationReceived"
     static let PushNotificationReceivedTimestamp = "kPushNotificationReceivedTimestamp"
+    
+    static let AccountVerificationDeepLinkGuid = "kAccountVerificationDeepLinkGuid"
 }
