@@ -156,19 +156,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard let window = self.window else { return false }
         guard let rootNav = window.rootViewController as? UINavigationController else { return false }
+        
+        if let guid = getQueryStringParameter(url: url, param: "guid") {
+            UserDefaults.standard.set(guid, forKey: UserDefaultKeys.AccountVerificationDeepLinkGuid)
+        }
+        
         if let topMostVC = rootNav.viewControllers.last as? SplashViewController {
             topMostVC.restoreUserActivityState(userActivity)
         } else {
             resetNavigation(sendToLogin: true)
         }
         
-        if let guid = getQueryStringParameter(url: url, param: "guid") {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                // Need delay here for the notification to be properly received by LoginViewController
-                NotificationCenter.default.post(name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: self, userInfo: ["guid": guid])
-            })
-        }
-
         return true
     }
     
