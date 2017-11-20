@@ -140,6 +140,12 @@ enum AnalyticsPageView: String {
     
     case ContactUsAuthCall = "ContactUsAuthCall"
     case ContactUsUnAuthCall = "ContactUsUnAuthCall"
+    
+    case AlertsPrefCenterSave = "PrefCenterSave"
+    case AlertsPrefCenterComplete = "PrefCenterComplete"
+    case AlertsPayRemind = "AlertsPayRemind"
+    case AlertsEnglish = "AlertsEnglish"
+    case AlertsSpanish = "AlertsSpanish"
 }
 
 enum AnalyticsOutageSource {

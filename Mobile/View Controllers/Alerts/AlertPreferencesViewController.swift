@@ -272,6 +272,7 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     @IBAction func onPaymentDueDaysBeforeButtonPress(_ sender: Any) {
+        Analytics().logScreenView(AnalyticsPageView.AlertsPayRemind.rawValue)
         let upperRange = Environment.sharedInstance.opco == .bge ? 14 : 7
         PickerView.showStringPicker(withTitle: NSLocalizedString("Payment Due Reminder", comment: ""),
             data: (1...upperRange).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
@@ -310,6 +311,12 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     @IBAction func onLanguageRadioControlPress(_ sender: RadioSelectControl) {
+        if sender == englishRadioControl {
+            Analytics().logScreenView(AnalyticsPageView.AlertsEnglish.rawValue)
+        } else if sender == spanishRadioControl {
+            Analytics().logScreenView(AnalyticsPageView.AlertsSpanish.rawValue)
+        }
+        
         let newVal = sender == englishRadioControl
         if newVal != viewModel.english.value {
             viewModel.userChangedPrefs.value = true
@@ -343,6 +350,8 @@ class AlertPreferencesViewController: UIViewController {
 //        print("forYourInfo = \(viewModel.forYourInfo.value)")
 //        print("shouldEnrollPaperlessEBill = \(viewModel.shouldEnrollPaperlessEBill)")
 //        print("shouldUnenrollPaperlessEBill = \(viewModel.shouldUnenrollPaperlessEBill)")
+        
+        Analytics().logScreenView(AnalyticsPageView.AlertsPrefCenterSave.rawValue)
         
         LoadingView.show()
         viewModel.saveChanges(onSuccess: { [weak self] in
