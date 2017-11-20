@@ -58,6 +58,7 @@ class UsageViewController: UIViewController {
             let thermbutton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_thermostat"), style: .plain, target: nil, action: nil)
             thermbutton.rx.tap.asDriver()
                 .drive(onNext: { [weak self] in
+                    Analytics().logScreenView(AnalyticsPageView.ViewUsagePeakRewards.rawValue)
                     self?.performSegue(withIdentifier: "peakRewardsSegue", sender: nil)
                 })
                 .disposed(by: disposeBag)
