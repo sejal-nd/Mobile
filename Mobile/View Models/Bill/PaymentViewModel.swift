@@ -233,7 +233,7 @@ class PaymentViewModel {
     }
     
     private func paymentAmountDouble() -> Double {
-        return Double(String(paymentAmount.value.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
+        return Double(String(paymentAmount.value.filter { "0123456789.".contains($0) })) ?? 0
     }
     
     private func scheduleInlineBankPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -493,7 +493,7 @@ class PaymentViewModel {
                                                                                              self.accountDetail.asDriver())
     {
         if Environment.sharedInstance.opco == .bge && !$1.isResidential {
-            let characters = Array($0.characters)
+            let characters = Array($0)
             if characters.count >= 1 {
                 return characters[0] == "4"
             }
@@ -690,7 +690,7 @@ class PaymentViewModel {
         return false
     }
     
-    private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.characters.count == 3 || $0.characters.count == 4 }
+    private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.count == 3 || $0.count == 4 }
     
     private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> = Driver.combineLatest(self.hasWalletItems,
                                                                                                 self.inlineBank.asDriver(),
@@ -700,7 +700,7 @@ class PaymentViewModel {
 
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
         let amount = self.paymentAmount.asDriver().map {
-            Double(String($0.characters.filter { "0123456789.".characters.contains($0) }))
+            Double(String($0.filter { "0123456789.".contains($0) }))
         }
         
         return Driver.combineLatest(self.bankWorkflow, self.cardWorkflow, self.accountDetail.asDriver(), amount, self.amountDue.asDriver())
@@ -815,9 +815,9 @@ class PaymentViewModel {
                                                                                                         self.inlineCard.asDriver(),
                                                                                                         self.addCardFormViewModel.cardNumber.asDriver())
     {
-        if $1 && $2.characters.count >= 4 {
+        if $1 && $2.count >= 4 {
             return "**** \($2.substring(from: $2.index($2.endIndex, offsetBy: -4)))"
-        } else if $3 && $4.characters.count >= 4 {
+        } else if $3 && $4.count >= 4 {
             return "**** \($4.substring(from: $4.index($4.endIndex, offsetBy: -4)))"
         } else {
             guard let walletItem: WalletItem = $0 else { return "" }
@@ -864,13 +864,13 @@ class PaymentViewModel {
             if !$3.isEmpty {
                 a11yLabel += ", \($3)"
             }
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), String($2.characters.suffix(4)))
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), String($2.suffix(4)))
         } else if $4 {
             a11yLabel = NSLocalizedString("Credit card", comment: "")
             if !$6.isEmpty {
                 a11yLabel += ", \($6)"
             }
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), String($5.characters.suffix(4)))
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), String($5.suffix(4)))
         } else {
             if let walletItem: WalletItem = $0 {
                 if walletItem.bankOrCard == .bank {
@@ -1045,7 +1045,7 @@ class PaymentViewModel {
         switch Environment.sharedInstance.opco {
         case .bge:
             return Driver.combineLatest(self.amountDue.asDriver(), self.paymentAmount.asDriver().map {
-                Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
+                Double(String($0.filter { "0123456789.".contains($0) })) ?? 0
             }, resultSelector: <)
         case .comEd, .peco:
             return Driver.just(false)
@@ -1059,7 +1059,7 @@ class PaymentViewModel {
     
     private(set) lazy var overpayingValueDisplayString: Driver<String?> = {
         Driver.combineLatest(self.amountDue.asDriver(), self.paymentAmount.asDriver().map {
-            Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
+            Double(String($0.filter { "0123456789.".contains($0) })) ?? 0
         })
         { ($1 - $0).currencyString }
     }()
@@ -1078,7 +1078,7 @@ class PaymentViewModel {
     
     private(set) lazy var convenienceFeeDisplayString: Driver<String?> = {
         Driver.combineLatest(self.convenienceFee, self.paymentAmount.asDriver().map {
-            Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
+            Double(String($0.filter { "0123456789.".contains($0) })) ?? 0
             })
         { [weak self] in
             guard let `self` = self else { return nil }
@@ -1100,7 +1100,7 @@ class PaymentViewModel {
     
     private(set) lazy var totalPaymentDisplayString: Driver<String?> = {
         Driver.combineLatest(self.paymentAmount.asDriver().map {
-            Double(String($0.characters.filter { "0123456789.".characters.contains($0) })) ?? 0
+            Double(String($0.filter { "0123456789.".contains($0) })) ?? 0
         }, self.reviewPaymentShouldShowConvenienceFeeBox, self.convenienceFee).map { [weak self] in
             guard let `self` = self else { return nil }
             if $1 {
@@ -1141,7 +1141,7 @@ class PaymentViewModel {
         if paymentAmount.value.isEmpty {
             paymentAmount.value = "$0.00"
         } else {
-            let textStr = String(paymentAmount.value.characters.filter { "0123456789".characters.contains($0) })
+            let textStr = String(paymentAmount.value.filter { "0123456789".contains($0) })
             if let intVal = Double(textStr) {
                 if intVal == 0 {
                     paymentAmount.value = "$0.00"

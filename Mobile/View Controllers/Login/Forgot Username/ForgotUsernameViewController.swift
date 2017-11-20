@@ -310,10 +310,10 @@ extension ForgotUsernameViewController: UITextFieldDelegate {
             
             return false
         } else if textField == identifierTextField?.textField {
-            return newString.characters.count <= 4
+            return newString.count <= 4
         } else if textField == accountNumberTextField?.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
         }
         
         return true

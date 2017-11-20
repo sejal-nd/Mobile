@@ -56,7 +56,7 @@ class AddCardFormViewModel {
     }
     
     var cardIcon: UIImage? {
-        let characters = Array(cardNumber.value.characters)
+        let characters = Array(cardNumber.value)
         if characters.count < 2 {
             return nil
         }
@@ -85,13 +85,13 @@ class AddCardFormViewModel {
         }
     }
     
-    private(set) lazy var expMonthIs2Digits: Driver<Bool> = self.expMonth.asDriver().map { $0.characters.count == 2 }
+    private(set) lazy var expMonthIs2Digits: Driver<Bool> = self.expMonth.asDriver().map { $0.count == 2 }
     
     private(set) lazy var expMonthIsValidMonth: Driver<Bool> = self.expMonth.asDriver().map {
         (1...12).map { String(format: "%02d", $0) }.contains($0)
     }
     
-    private(set) lazy var expYearIs4Digits: Driver<Bool> = self.expYear.asDriver().map { $0.characters.count == 4 }
+    private(set) lazy var expYearIs4Digits: Driver<Bool> = self.expYear.asDriver().map { $0.count == 4 }
     
     private(set) lazy var expYearIsNotInPast: Driver<Bool> = self.expYear.asDriver().map {
         let formatter = DateFormatter()
@@ -105,15 +105,15 @@ class AddCardFormViewModel {
         return false
     }
 
-    private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.characters.count == 3 || $0.characters.count == 4 }
+    private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.count == 3 || $0.count == 4 }
     
-    private(set) lazy var zipCodeIs5Digits: Driver<Bool> = self.zipCode.asDriver().map { $0.characters.count == 5 }
+    private(set) lazy var zipCodeIs5Digits: Driver<Bool> = self.zipCode.asDriver().map { $0.count == 5 }
     
     private(set) lazy var nicknameHasText: Driver<Bool> = self.nickname.asDriver().map { !$0.isEmpty }
     
     private(set) lazy var nicknameErrorString: Driver<String?> = self.nickname.asDriver().map { [weak self] in
         // If BGE, check if at least 3 characters
-        if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.characters.count < 3 {
+        if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.count < 3 {
             return NSLocalizedString("Must be at least 3 characters", comment: "")
         }
         
@@ -137,7 +137,7 @@ class AddCardFormViewModel {
     private func luhnCheck(cardNumber: String) -> Bool {
         var oddSum = 0
         var evenSum = 0
-        let reversedCharacters = cardNumber.characters.reversed().map { String($0) }
+        let reversedCharacters = cardNumber.reversed().map { String($0) }
         for (idx, element) in reversedCharacters.enumerated() {
             guard let digit = Int(element) else { return false }
             if (idx % 2 == 0) {
@@ -150,11 +150,11 @@ class AddCardFormViewModel {
     }
     
     private func firstNumberCheck(cardNumber: String) -> Bool {
-        guard let firstChar = cardNumber.characters.first?.description else {
+        guard let firstChar = cardNumber.first?.description else {
             return false
         }
         let charSet = CharacterSet(charactersIn: "23456")
-        return firstChar.trimmingCharacters(in: charSet).characters.count == 0
+        return firstChar.trimmingCharacters(in: charSet).count == 0
     }
     
 }

@@ -806,7 +806,7 @@ extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
         if textField == numberOfPaymentsTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         }
         return true
     }

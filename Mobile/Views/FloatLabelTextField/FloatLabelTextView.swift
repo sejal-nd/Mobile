@@ -100,7 +100,7 @@ class FloatLabelTextView: UIView {
     
     private func enforceCharacterLimit() {
         if let string = self.textView.text {
-            let length = string.characters.count
+            let length = string.count
             if(length >= characterLimit) {
                 self.textView.text = self.textView.text.substring(to: (string.index((string.startIndex), offsetBy:characterLimit)))
             }
@@ -108,7 +108,7 @@ class FloatLabelTextView: UIView {
     }
     
     private func updateInfoMessage() {
-        let remaining = characterLimit-self.textView.text.characters.count
+        let remaining = characterLimit-self.textView.text.count
         self.setInfoMessage(String(format: "%d characters left", remaining))
     }
     

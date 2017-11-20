@@ -44,13 +44,13 @@ class EditCreditCardViewModel {
                                                                                 self.zipCodeIs5Digits])
     { !$0.contains(false) }
     
-    private(set) lazy var expMonthIs2Digits: Driver<Bool> = self.expMonth.asDriver().map { $0.characters.count == 2 }
+    private(set) lazy var expMonthIs2Digits: Driver<Bool> = self.expMonth.asDriver().map { $0.count == 2 }
     
     private(set) lazy var expMonthIsValidMonth: Driver<Bool> = self.expMonth.asDriver().map {
             (1...12).map { String(format: "%02d", $0) }.contains($0)
         }
     
-    private(set) lazy var expYearIs4Digits: Driver<Bool> = self.expYear.asDriver().map { $0.characters.count == 4
+    private(set) lazy var expYearIs4Digits: Driver<Bool> = self.expYear.asDriver().map { $0.count == 4
         }
     
     private(set) lazy var expYearIsNotInPast: Driver<Bool> = self.expYear.asDriver().map {
@@ -65,9 +65,9 @@ class EditCreditCardViewModel {
         return false
     }
     
-    private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.characters.count == 3 || $0.characters.count == 4 }
+    private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.count == 3 || $0.count == 4 }
     
-    private(set) lazy var zipCodeIs5Digits: Driver<Bool> = self.zipCode.asDriver().map { $0.characters.count == 5 }
+    private(set) lazy var zipCodeIs5Digits: Driver<Bool> = self.zipCode.asDriver().map { $0.count == 5 }
     
     func editCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: AccountsStore.sharedInstance.customerIdentifier, expirationMonth: expMonth.value, expirationYear: expYear.value, securityCode: cvv.value, postalCode: zipCode.value)

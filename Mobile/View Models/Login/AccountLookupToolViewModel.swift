@@ -49,17 +49,17 @@ class AccountLookupToolViewModel {
         .map { [weak self] text -> Bool in
             guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.characters.count == 10
+            return digitsOnlyString.count == 10
     }
     
     private(set) lazy var identifierHasFourDigits: Driver<Bool> = self.identifierNumber.asDriver()
-        .map { $0.characters.count == 4 }
+        .map { $0.count == 4 }
     
     private(set) lazy var identifierIsNumeric: Driver<Bool> = self.identifierNumber.asDriver()
         .map { [weak self] text -> Bool in
             guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.characters.count == text.characters.count
+            return digitsOnlyString.count == text.count
     }
     
     private func extractDigitsFrom(_ string: String) -> String {

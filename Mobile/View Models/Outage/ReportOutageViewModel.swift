@@ -34,7 +34,7 @@ class ReportOutageViewModel {
     { [weak self] in
         guard let `self` = self else { return false }
         let digitsOnlyString = self.extractDigitsFrom($1)
-        return !$0 && digitsOnlyString.characters.count == 10
+        return !$0 && digitsOnlyString.count == 10
     }
     
     var footerTextViewText: String {
@@ -57,7 +57,7 @@ class ReportOutageViewModel {
         }
 
         var outageInfo = OutageInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
-        if phoneExtension.value.characters.count > 0 {
+        if phoneExtension.value.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
         if let locationId = self.outageStatus?.locationId {
@@ -84,7 +84,7 @@ class ReportOutageViewModel {
         }
         
         var outageInfo = OutageInfo(accountNumber: outageStatus!.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
-        if phoneExtension.value.characters.count > 0 {
+        if phoneExtension.value.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
         if let locationId = self.outageStatus!.locationId {
@@ -134,7 +134,7 @@ class ReportOutageViewModel {
         .map { [weak self] text -> Bool in
             guard let `self` = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
-            return digitsOnlyString.characters.count == 10
+            return digitsOnlyString.count == 10
         }
     
     private func extractDigitsFrom(_ string: String) -> String {

@@ -541,8 +541,8 @@ class BillViewModel {
 	
     private static func isEnrolledText(topText: String, bottomText: String) -> NSAttributedString {
         let mutableText = NSMutableAttributedString(string: topText + "\n" + bottomText)
-        let topTextRange = NSMakeRange(0, topText.characters.count)
-        let bottomTextRange = NSMakeRange(topText.characters.count + 1, bottomText.characters.count)
+        let topTextRange = NSMakeRange(0, topText.count)
+        let bottomTextRange = NSMakeRange(topText.count + 1, bottomText.count)
         
         mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 16), range: topTextRange)
         mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: topTextRange)
@@ -556,8 +556,8 @@ class BillViewModel {
         let text = NSLocalizedString("Would you like to enroll in ", comment: "")
         let mutableText = NSMutableAttributedString(string: text + boldText, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
         
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 16), range: NSMakeRange(0, text.characters.count))
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 16), range: NSMakeRange(text.characters.count, boldText.characters.count))
+        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 16), range: NSMakeRange(0, text.count))
+        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 16), range: NSMakeRange(text.count, boldText.count))
         
         return mutableText
     }

@@ -178,7 +178,7 @@ extension RegistrationBGEAccountNumberViewController: UITextFieldDelegate {
         
         if textField ==  accountNumberTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
         }
         
         return true
