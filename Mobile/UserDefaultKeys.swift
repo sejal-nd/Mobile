@@ -26,7 +26,7 @@ struct UserDefaultKeys {
     
     static let InMainApp = "kInMainApp" // Is the user in the "Main" area of the app (past-login). Set to true in MainTabBarController
     
-    static let AppRatingEventCount = "kAppRatingEventCount" //Used by AppRating to track number of events that contribute to a rating prompt
+    static let AppRatingEventCount = "kAppRatingEventCount" // Used by AppRating to track number of events that contribute to a rating prompt
     
     static let PushNotificationReceived = "kPushNotificationReceived"
     static let PushNotificationReceivedTimestamp = "kPushNotificationReceivedTimestamp"
