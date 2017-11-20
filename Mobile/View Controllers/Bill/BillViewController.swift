@@ -474,8 +474,9 @@ class BillViewController: AccountPickerViewController {
 			.disposed(by: bag)
         
         activityButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "billingHistorySegue", sender: self)
+                self?.performSegue(withIdentifier: "billingHistorySegue", sender: $0)
             })
             .disposed(by: bag)
         
@@ -494,9 +495,9 @@ class BillViewController: AccountPickerViewController {
 			.drive(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
                 if !accountDetail.isResidential && Environment.sharedInstance.opco != .bge {
-					self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: self)
+					self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: accountDetail)
 				} else {
-					self.performSegue(withIdentifier: "paperlessEBillSegue", sender: self)
+					self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
 				}
 			})
 			.disposed(by: bag)
@@ -506,7 +507,7 @@ class BillViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
                 if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBillEnrollment {
-                    self.performSegue(withIdentifier: "budgetBillingSegue", sender: self)
+                    self.performSegue(withIdentifier: "budgetBillingSegue", sender: accountDetail)
                 } else {
                     var message = NSLocalizedString("Sorry, you are ineligible for Budget Billing", comment: "")
                     if let budgetBillMessage = accountDetail.budgetBillMessage {
@@ -553,7 +554,7 @@ class BillViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] route, accountDetail in
                 guard let `self` = self else { return }
                 if route == .activity {
-                    self.performSegue(withIdentifier: "billingHistorySegue", sender: self)
+                    self.performSegue(withIdentifier: "billingHistorySegue", sender: accountDetail)
                 } else if route == .autoPay {
                     self.navigateToAutoPay(accountDetail: accountDetail)
                 }
