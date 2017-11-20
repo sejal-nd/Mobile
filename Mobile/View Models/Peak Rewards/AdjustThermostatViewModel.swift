@@ -78,7 +78,9 @@ class AdjustThermostatViewModel {
                        self.hold,
                        resultSelector: SmartThermostatDeviceSettings.init)
     
-    private lazy var saveEvents: Observable<Event<Void>> = self.saveAction.withLatestFrom(self.updatedSettings)
+    private lazy var saveEvents: Observable<Event<Void>> = self.saveAction
+        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.AdjustThermSave.rawValue) })
+        .withLatestFrom(self.updatedSettings)
         .flatMapLatest { [weak self] updatedSettings -> Observable<Event<Void>> in
             guard let `self` = self else { return .empty() }
             return self.peakRewardsService.updateDeviceSettings(forDevice: self.device,
@@ -91,6 +93,8 @@ class AdjustThermostatViewModel {
         .share()
 
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
+        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.AdjustThermToast.rawValue) })
+    
     private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
         .map { ($0 as? ServiceError)?.errorDescription ?? "" }
     

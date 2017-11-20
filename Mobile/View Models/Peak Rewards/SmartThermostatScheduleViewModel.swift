@@ -110,6 +110,21 @@ class SmartThermostatScheduleViewModel {
         .share()
     
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
+        .do(onNext: { [weak self] in
+            guard let `self` = self else { return }
+            let pageView: AnalyticsPageView
+            switch self.period {
+            case .wake:
+                pageView = .WakeToast
+            case .leave:
+                pageView = .LeaveToast
+            case .return:
+                pageView = .ReturnToast
+            case .sleep:
+                pageView = .SleepToast
+            }
+            Analytics().logScreenView(pageView.rawValue)
+        })
     private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
         .map { ($0 as? ServiceError)?.errorDescription ?? "" }
 }
