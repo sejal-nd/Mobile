@@ -131,7 +131,7 @@ class AlertPreferencesViewController: UIViewController {
     
     func checkForNotificationsPermissions() {
         if let notificationSettings = UIApplication.shared.currentUserNotificationSettings {
-            viewModel.devicePushNotificationsEnabled.value = notificationSettings.types != []
+            viewModel.devicePushNotificationsEnabled.value = !notificationSettings.types.isEmpty
         }
     }
     
@@ -266,12 +266,13 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBAction func onNotificationsDisabledButtonPress(_ sender: Any) {
         if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            Analytics().logScreenView(AnalyticsPageView.AlertsDevSet.rawValue)
             UIApplication.shared.openURL(url)
         }
-
     }
     
     @IBAction func onPaymentDueDaysBeforeButtonPress(_ sender: Any) {
+        Analytics().logScreenView(AnalyticsPageView.AlertsPayRemind.rawValue)
         let upperRange = Environment.sharedInstance.opco == .bge ? 14 : 7
         PickerView.showStringPicker(withTitle: NSLocalizedString("Payment Due Reminder", comment: ""),
             data: (1...upperRange).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
@@ -291,16 +292,32 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBAction func onSwitchToggle(_ sender: Switch) {
         if sender == billReadySwitch && Environment.sharedInstance.opco != .bge { // ComEd/PECO only requirement
-            let title = sender.isOn ? NSLocalizedString("Go Paperless", comment: "") : NSLocalizedString("Receive Paper Bill", comment: "")
-            let message = sender.isOn ?
-                NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "") :
-                NSLocalizedString("By deselecting this alert, you will be removed from paperless billing and will revert back to receiving your bills through postal mail. Please allow up to one billing cycle for this change to take effect.", comment: "")
+            var title: String, message: String
+            if sender.isOn {
+                title = NSLocalizedString("Go Paperless", comment: "")
+                message = NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "")
+                Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPush.rawValue)
+            } else {
+                title = NSLocalizedString("Receive Paper Bill", comment: "")
+                message = NSLocalizedString("By deselecting this alert, you will be removed from paperless billing and will revert back to receiving your bills through postal mail. Please allow up to one billing cycle for this change to take effect.", comment: "")
+                Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPush.rawValue)
+            }
             
             let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self] _ in
+                if sender.isOn {
+                    Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPushCancel.rawValue)
+                } else {
+                    Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPushCancel.rawValue)
+                }
                 self?.viewModel.billReady.value = !sender.isOn // Need to manually set this because .setOn does not trigger rx binding
             }))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self] _ in
+                if sender.isOn {
+                    Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPushContinue.rawValue)
+                } else {
+                    Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPushContinue.rawValue)
+                }
                 self?.viewModel.userChangedPrefs.value = true
             }))
             present(alertVc, animated: true, completion: nil)
@@ -310,6 +327,12 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     @IBAction func onLanguageRadioControlPress(_ sender: RadioSelectControl) {
+        if sender == englishRadioControl {
+            Analytics().logScreenView(AnalyticsPageView.AlertsEnglish.rawValue)
+        } else if sender == spanishRadioControl {
+            Analytics().logScreenView(AnalyticsPageView.AlertsSpanish.rawValue)
+        }
+        
         let newVal = sender == englishRadioControl
         if newVal != viewModel.english.value {
             viewModel.userChangedPrefs.value = true
@@ -343,6 +366,8 @@ class AlertPreferencesViewController: UIViewController {
 //        print("forYourInfo = \(viewModel.forYourInfo.value)")
 //        print("shouldEnrollPaperlessEBill = \(viewModel.shouldEnrollPaperlessEBill)")
 //        print("shouldUnenrollPaperlessEBill = \(viewModel.shouldUnenrollPaperlessEBill)")
+        
+        Analytics().logScreenView(AnalyticsPageView.AlertsPrefCenterSave.rawValue)
         
         LoadingView.show()
         viewModel.saveChanges(onSuccess: { [weak self] in

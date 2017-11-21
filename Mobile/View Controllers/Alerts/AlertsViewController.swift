@@ -133,6 +133,11 @@ class AlertsViewController: AccountPickerViewController {
     
     private func bindViewModel() {
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
+        segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
+            if index == 1 { // User tapped on "Updates"
+                Analytics().logScreenView(AnalyticsPageView.AlertsOpCoUpdate.rawValue)
+            }
+        }).disposed(by: disposeBag)
         
         viewModel.backgroundViewColor.drive(backgroundView.rx.backgroundColor).disposed(by: disposeBag)
         
@@ -160,6 +165,7 @@ class AlertsViewController: AccountPickerViewController {
     }
     
     @IBAction func onPreferencesButtonTap(_ sender: Any) {
+        Analytics().logScreenView(AnalyticsPageView.AlertsMainScreen.rawValue)
         performSegue(withIdentifier: "preferencesSegue", sender: self)
     }
     
@@ -259,6 +265,7 @@ extension AlertsViewController: AccountPickerDelegate {
 extension AlertsViewController: AlertPreferencesViewControllerDelegate {
     
     func alertPreferencesViewControllerDidSavePreferences(_ alertPreferencesViewController: AlertPreferencesViewController) {
+        Analytics().logScreenView(AnalyticsPageView.AlertsPrefCenterComplete.rawValue)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Preferences saved", comment: ""))
         })

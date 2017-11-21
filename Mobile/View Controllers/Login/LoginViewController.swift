@@ -342,7 +342,19 @@ class LoginViewController: UIViewController {
     }
     
     func launchMainApp() {
-        Analytics().logScreenView(AnalyticsPageView.LoginComplete.rawValue)
+        if let accountDetail = viewModel.accountDetail {
+            let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
+            Analytics().logScreenView(AnalyticsPageView.LoginComplete.rawValue, dimensionIndices: [
+                Dimensions.ResidentialAMI,
+                Dimensions.BGEControlGroup,
+                Dimensions.PeakSmart
+            ], dimensionValues: [
+                residentialAMIString,
+                accountDetail.isBGEControlGroup ? "true" : "false",
+                (Environment.sharedInstance.opco == .bge && accountDetail.isSERAccount) || (Environment.sharedInstance.opco != .bge && accountDetail.isPTSAccount) ? "true" : "false"
+            ])
+        }
+
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         present(viewController!, animated: true, completion: nil)
     }

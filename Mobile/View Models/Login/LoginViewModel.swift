@@ -20,6 +20,8 @@ class LoginViewModel {
     var touchIdEnabled = Variable(false)
     var isLoggingIn = false
     
+    var accountDetail: AccountDetail?
+    
     private var authService: AuthenticationService
     private var fingerprintService: FingerprintService
     private var registrationService: RegistrationService
@@ -57,28 +59,29 @@ class LoginViewModel {
         authService.login(username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
             .asObservable()
-            .subscribe(onNext: { [weak self] (profileStatus: ProfileStatus) in
-                self?.isLoggingIn = false
-                onSuccess(profileStatus.tempPassword)
+            .subscribe(onNext: { [weak self] (responseTuple: (ProfileStatus, AccountDetail)) in
                 guard let `self` = self else { return }
-                if profileStatus.tempPassword {
+                self.isLoggingIn = false
+                self.accountDetail = responseTuple.1
+                onSuccess(responseTuple.0.tempPassword)
+                if responseTuple.0.tempPassword {
                     self.authService.logout().subscribe(onError: { (error) in
                         dLog("Logout Error: \(error)")
                     }).disposed(by: self.disposeBag)
                 }
-                }, onError: { [weak self] error in
-                    self?.isLoggingIn = false
-                    let serviceError = error as! ServiceError
-                    if serviceError.serviceCode == ServiceErrorCode.FnAccountProtected.rawValue {
-                        onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
-                    } else if serviceError.serviceCode == ServiceErrorCode.FnAcctNotActivated.rawValue {
-                        onRegistrationNotComplete()
-                    } else {
-                        onError(nil, error.localizedDescription)
-                    }
-                    Analytics().logScreenView(AnalyticsPageView.LoginError.rawValue,
-                                              dimensionIndex: Dimensions.ErrorCode,
-                                              dimensionValue: serviceError.serviceCode)
+            }, onError: { [weak self] error in
+                self?.isLoggingIn = false
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.FnAccountProtected.rawValue {
+                    onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
+                } else if serviceError.serviceCode == ServiceErrorCode.FnAcctNotActivated.rawValue {
+                    onRegistrationNotComplete()
+                } else {
+                    onError(nil, error.localizedDescription)
+                }
+                Analytics().logScreenView(AnalyticsPageView.LoginError.rawValue,
+                                          dimensionIndex: Dimensions.ErrorCode,
+                                          dimensionValue: serviceError.serviceCode)
             })
             .disposed(by: disposeBag)
     }

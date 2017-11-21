@@ -19,9 +19,9 @@ protocol AuthenticationService {
     ///   - username: the username to authenticate with.
     ///   - password: the password to authenticate with.
     ///   - completion: the completion block to execute upon completion. 
-    ///     The ServiceResult that is provided will contain the ProfileStatus on success,
-    ///     or the error on failure.
-    func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (_ result: ServiceResult<ProfileStatus>) -> Void)
+    ///     The ServiceResult that is provided will contain a tuple with the
+    ///     ProfileStatus and AccountDetail on success, or the error on failure.
+    func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (_ result: ServiceResult<(ProfileStatus, AccountDetail)>) -> Void)
     
     
     /// Validate login credentials
@@ -132,12 +132,12 @@ extension AuthenticationService {
     ///   - username: the username to authenticate with.
     ///   - password: the password to authenticate with.
     /// - Returns: An observable to subscribe to.
-    func login(_ username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
+    func login(_ username: String, password: String, stayLoggedIn: Bool) -> Observable<(ProfileStatus, AccountDetail)> {
         return Observable.create { observer in
-            self.login(username, password: password, stayLoggedIn: stayLoggedIn, completion: { (result: ServiceResult<ProfileStatus>) in
+            self.login(username, password: password, stayLoggedIn: stayLoggedIn, completion: { (result: ServiceResult<(ProfileStatus, AccountDetail)>) in
                 switch (result) {
-                case ServiceResult.Success(let profStatus):
-                    observer.onNext(profStatus)
+                case ServiceResult.Success(let response):
+                    observer.onNext(response)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

@@ -97,6 +97,7 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
             .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
+                Analytics().logScreenView(AnalyticsPageView.AllSavingsSmartEnergy.rawValue)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
             }).disposed(by: bag)
         
@@ -134,12 +135,25 @@ class HomeViewController: AccountPickerViewController {
         }
         
         if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { _, _ in })
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
+                if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
+                    UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
+                    if granted {
+                        Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushOKInitial.rawValue)
+                    } else {
+                        Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushDontAllowInitial.rawValue)
+                    }
+                }
+            })
         } else {
             let settings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
             UIApplication.shared.registerUserNotificationSettings(settings)
         }
         UIApplication.shared.registerForRemoteNotifications()
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
+            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushInitial.rawValue)
+        }
     }
     
     override func viewDidLayoutSubviews() {

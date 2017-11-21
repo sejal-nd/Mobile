@@ -31,6 +31,8 @@ struct UserDefaultKeys {
     static let PushNotificationReceived = "kPushNotificationReceived"
     static let PushNotificationReceivedTimestamp = "kPushNotificationReceivedTimestamp"
     
+    static let InitialPushNotificationPermissionsWorkflowCompleted = "kInitialPushNotificationPermissionsWorkflowCompleted"
+
     static let UsernamesRegisteredForPushNotifications = "kUsernamesRegisteredForPushNotifications"
 
     static let AccountVerificationDeepLinkGuid = "kAccountVerificationDeepLinkGuid"

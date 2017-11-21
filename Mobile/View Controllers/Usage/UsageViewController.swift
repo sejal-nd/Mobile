@@ -54,6 +54,15 @@ class UsageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
+        Analytics().logScreenView(AnalyticsPageView.ViewUsageLink.rawValue, dimensionIndices: [
+            Dimensions.ResidentialAMI,
+            Dimensions.PeakSmart
+        ], dimensionValues: [
+            residentialAMIString,
+            (Environment.sharedInstance.opco == .bge && accountDetail.isSERAccount) || (Environment.sharedInstance.opco != .bge && accountDetail.isPTSAccount) ? "true" : "false"
+        ])
+        
         if accountDetail.peakRewards == "ACTIVE" {
             let thermbutton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_thermostat"), style: .plain, target: nil, action: nil)
             thermbutton.rx.tap.asDriver()
@@ -168,6 +177,9 @@ class UsageViewController: UIViewController {
                      updateYourHomeProfileButton.rx.tap.asDriver().mapTo("updateYourHomeProfileSegue"),
                      smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().mapTo("totalSavingsSegue"))
             .drive(onNext: { [weak self] in
+                if $0 == "totalSavingsSegue" {
+                    Analytics().logScreenView(AnalyticsPageView.AllSavingsUsage.rawValue)
+                }
                 self?.performSegue(withIdentifier: $0, sender: nil)
             })
             .disposed(by: disposeBag)
@@ -175,14 +187,17 @@ class UsageViewController: UIViewController {
         hourlyPricingEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             guard let accountDetail = self?.accountDetail else { return }
             if accountDetail.isHourlyPricing {
+                Analytics().logScreenView(AnalyticsPageView.HourlyPricing.rawValue, dimensionIndex: Dimensions.HourlyPricingEnrollment, dimensionValue: "enrolled")
                 self?.performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
             } else {
+                Analytics().logScreenView(AnalyticsPageView.HourlyPricing.rawValue, dimensionIndex: Dimensions.HourlyPricingEnrollment, dimensionValue: "unenrolled")
                 let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
                 self?.present(safariVc, animated: true, completion: nil)
             }
         }).disposed(by: disposeBag)
         
         peakTimeSavingsEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
+            Analytics().logScreenView(AnalyticsPageView.PeakTimePromo.rawValue)
             let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "http://comed.com/PTS")!)
             self?.present(safariVc, animated: true, completion: nil)
         }).disposed(by: disposeBag)
@@ -190,8 +205,14 @@ class UsageViewController: UIViewController {
     
     private func bindViewModel() {
         smartEnergyRewardsContainerView.isHidden = !viewModel.shouldShowSmartEnergyRewards
-        smartEnergyRewardsContentView.isHidden = !viewModel.shouldShowSmartEnergyRewardsContent
-        smartEnergyRewardsEmptyStateView.isHidden = viewModel.shouldShowSmartEnergyRewardsContent
+        if viewModel.shouldShowSmartEnergyRewardsContent {
+            smartEnergyRewardsContentView.isHidden = false
+            smartEnergyRewardsEmptyStateView.isHidden = true
+        } else {
+            smartEnergyRewardsContentView.isHidden = true
+            smartEnergyRewardsEmptyStateView.isHidden = false
+            Analytics().logScreenView(AnalyticsPageView.EmptyStatePeakSmart.rawValue)
+        }
         smartEnergyRewardsSeasonLabel.text = viewModel.smartEnergyRewardsSeasonLabelText
     }
 

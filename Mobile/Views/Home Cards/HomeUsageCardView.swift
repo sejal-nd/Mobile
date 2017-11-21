@@ -205,7 +205,11 @@ class HomeUsageCardView: UIView {
         // Bill Comparison vs. SER Show/Hide
         viewModel.shouldShowBillComparison.not().drive(billComparisonView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowSmartEnergyRewards.not().drive(smartEnergyRewardsView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowSmartEnergyEmptyState.not().drive(smartEnergyRewardsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowSmartEnergyEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in
+            if !shouldHide {
+                Analytics().logScreenView(AnalyticsPageView.EmptyStateSmartEnergyHome.rawValue)
+            }
+        }).drive(smartEnergyRewardsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         
         // --- Bill Comparison ---
         
@@ -215,11 +219,23 @@ class HomeUsageCardView: UIView {
         viewModel.loadingTracker.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorView.not().drive(errorView.rx.isHidden).disposed(by: disposeBag)
         
-        viewModel.shouldShowBillComparisonEmptyState.not().drive(billComparisonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowBillComparisonEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in
+            if !shouldHide {
+                Analytics().logScreenView(AnalyticsPageView.EmptyStateUsageOverview.rawValue)
+            }
+        }).drive(billComparisonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         
         // Segmented Controls
         viewModel.shouldShowElectricGasSegmentedControl.not().drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
+        segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
+            if index == 0 {
+                Analytics().logScreenView(AnalyticsPageView.ViewUsageElectricity.rawValue)
+            } else {
+                Analytics().logScreenView(AnalyticsPageView.ViewUsageGas.rawValue)
+            }
+        }).disposed(by: disposeBag)
+        
         viewModel.billComparisonEvents.subscribe({ [weak self] _ in
             guard let `self` = self else { return }
             self.moveTriangleTo(centerPoint: self.currentContainerButton.center)
