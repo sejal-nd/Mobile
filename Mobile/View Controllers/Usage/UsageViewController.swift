@@ -54,7 +54,14 @@ class UsageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Analytics().logScreenView(AnalyticsPageView.ViewUsageLink.rawValue)
+        let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
+        Analytics().logScreenView(AnalyticsPageView.ViewUsageLink.rawValue, dimensionIndices: [
+            Dimensions.ResidentialAMI,
+            Dimensions.PeakSmart
+        ], dimensionValues: [
+            residentialAMIString,
+            (Environment.sharedInstance.opco == .bge && accountDetail.isSERAccount) || (Environment.sharedInstance.opco != .bge && accountDetail.isPTSAccount) ? "true" : "false"
+        ])
         
         if accountDetail.peakRewards == "ACTIVE" {
             let thermbutton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_thermostat"), style: .plain, target: nil, action: nil)

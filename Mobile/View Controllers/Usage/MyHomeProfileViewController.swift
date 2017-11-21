@@ -51,6 +51,9 @@ class MyHomeProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
+        Analytics().logScreenView(AnalyticsPageView.ViewHomeProfile.rawValue, dimensionIndex: Dimensions.ResidentialAMI, dimensionValue: residentialAMIString)
+        
         navigationItem.rightBarButtonItem = saveButton
         
         styleViews()

@@ -176,8 +176,21 @@ enum AnalyticsPageView: String {
     case AllSavingsUsage = "AllSavingsUsage"
     case AllSavingsSmartEnergy = "AllSavingsSmartEnergy"
     
+    // Bill Analysis
+    case BillNeedHelp = "BillNeedHelp"
+    case BillElectricityToggle = "BillElectricityToggle"
+    case BillGasToggle = "BillGasToggle"
+    case BillLastYearToggle = "BillLastYearToggle"
+    case BillPreviousToggle = "BillPreviousToggle"
+    case BillPreviousReason = "BillPreviousReason"
+    case BillWeatherReason = "BillWeatherReason"
+    case BillOtherReason = "BillOtherReason"
+    
+    case ViewHomeProfile = "ViewHomeProfile"
     case HomeProfileSave = "HomeProfileSave"
     case HomeProfileConfirmation = "HomeProfileConfirmation"
+    
+    case ViewTopTips = "ViewTopTips"
     
     case WakeSave = "WakeSave"
     case WakeToast = "WakeToast"
@@ -214,12 +227,14 @@ enum Dimensions: UInt {
     case ErrorCode = 5
     case OTPEnabled = 6
     case Link = 7
-    case ResidentialAMI = 8
-    case HourlyPricingEnrollment = 9
+    case ResidentialAMI = 8 // "Residential/AMI", "Residential/Non-AMI", "Commercial/AMI", or "Commercial/Non-AMI"
+    case HourlyPricingEnrollment = 9 // "enrolled" or "unenrolled"
+    case BGEControlGroup = 10 // "true" or "false"
+    case PeakSmart = 11 // "true" or "false"
 }
 
 func isAnalyticsEnabled() -> Bool {
-    if(Environment.sharedInstance.environmentName == "STAGE" || Environment.sharedInstance.environmentName == "PROD") {
+    if Environment.sharedInstance.environmentName == "STAGE" || Environment.sharedInstance.environmentName == "PROD" {
         return true
     }
     
@@ -228,37 +243,54 @@ func isAnalyticsEnabled() -> Bool {
 
 struct Analytics {
     func logScreenView(_ screenName: String) {
-        if(isAnalyticsEnabled()) {
+        if isAnalyticsEnabled() {
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
             tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .build() as! [AnyHashable : Any]!)
+                .build() as! [AnyHashable: Any])
         } else {
             dLog("Analytics: " + screenName)
         }
     }
     
     func logScreenView(_ screenName: String, dimensionIndex: Dimensions, dimensionValue: String) {
-        if(isAnalyticsEnabled()) { 
+        if isAnalyticsEnabled() {
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
             tracker?.send(GAIDictionaryBuilder.createScreenView()
                 .set(dimensionValue, forKey: GAIFields.customDimension(for: dimensionIndex.rawValue))
-                
-                .build() as! [AnyHashable : Any]!)
+                .build() as! [AnyHashable: Any])
+        } else {
+            dLog("Analytics: " + screenName)
+        }
+    }
+    
+    func logScreenView(_ screenName: String, dimensionIndices: [Dimensions], dimensionValues: [String]) {
+        if dimensionIndices.count != dimensionValues.count {
+            fatalError("dimensionIndices and dimensionsValues must have the same number of elements")
+        }
+        
+        if isAnalyticsEnabled() {
+            let tracker = GAI.sharedInstance().defaultTracker
+            tracker?.set(kGAIScreenName, value: screenName)
+            let dimensionBuilder = GAIDictionaryBuilder.createScreenView()!
+            for i in stride(from: 0, to: dimensionIndices.count, by: 1) {
+                dimensionBuilder.set(dimensionValues[i], forKey: GAIFields.customDimension(for: dimensionIndices[i].rawValue))
+            }
+            tracker?.send(dimensionBuilder.build() as! [AnyHashable: Any])
         } else {
             dLog("Analytics: " + screenName)
         }
     }
     
     func logSignIn(_ screenName: String, keepSignedIn: String, usedFingerprint: String) {
-        if(isAnalyticsEnabled()) {
+        if isAnalyticsEnabled() {
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
             tracker?.send(GAIDictionaryBuilder.createScreenView()
                 .set(keepSignedIn, forKey: GAIFields.customDimension(for: Dimensions.KeepMeSignedIn.rawValue))
                 .set(usedFingerprint, forKey: GAIFields.customDimension(for: Dimensions.FingerprintUsed.rawValue))
-                .build() as! [AnyHashable : Any]!)
+                .build() as! [AnyHashable: Any])
         } else {
             dLog("Analytics: " + screenName)
         }

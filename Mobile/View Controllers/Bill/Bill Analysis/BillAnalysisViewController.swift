@@ -118,16 +118,11 @@ class BillAnalysisViewController: UIViewController {
     
     let viewModel = BillAnalysisViewModel(usageService: ServiceFactory.createUsageService())
     
-    init() {
-        super.init(nibName: BillAnalysisViewController.className, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let residentialAMIString = String(format: "%@%@", viewModel.accountDetail.isResidential ? "Residential/" : "Commercial/", viewModel.accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
+        Analytics().logScreenView(AnalyticsPageView.BillNeedHelp.rawValue, dimensionIndex: Dimensions.ResidentialAMI, dimensionValue: residentialAMIString)
         
         title = NSLocalizedString("Bill Analysis", comment: "")
         
@@ -395,12 +390,22 @@ class BillAnalysisViewController: UIViewController {
         
         // Segmented Controls
         electricGasSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
-        electricGasSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] _ in
+        electricGasSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
             self?.fetchData()
+            if index == 0 {
+                Analytics().logScreenView(AnalyticsPageView.BillElectricityToggle.rawValue)
+            } else {
+                Analytics().logScreenView(AnalyticsPageView.BillGasToggle.rawValue)
+            }
         }).addDisposableTo(disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.lastYearPreviousBillSelectedSegmentIndex).disposed(by: disposeBag)
-        billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] _ in
+        billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
             self?.fetchData()
+            if index == 0 {
+                Analytics().logScreenView(AnalyticsPageView.BillLastYearToggle.rawValue)
+            } else {
+                Analytics().logScreenView(AnalyticsPageView.BillPreviousToggle.rawValue)
+            }
         }).addDisposableTo(disposeBag)
         
         // Bar graph height constraints
@@ -504,6 +509,14 @@ class BillAnalysisViewController: UIViewController {
             likelyReasonsDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
         } else {
             likelyReasonsDescriptionTriangleCenterXConstraint.constant = 0
+        }
+        
+        if sender.tag == 0 {
+            Analytics().logScreenView(AnalyticsPageView.BillPreviousReason.rawValue)
+        } else if sender.tag == 1 {
+            Analytics().logScreenView(AnalyticsPageView.BillWeatherReason.rawValue)
+        } else {
+            Analytics().logScreenView(AnalyticsPageView.BillOtherReason.rawValue)
         }
         
         viewModel.setLikelyReasonSelected(tag: sender.tag)
