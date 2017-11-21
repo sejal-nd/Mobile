@@ -694,11 +694,11 @@
                         <viewControllerLayoutGuide type="bottom" id="T0q-Lt-lev"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eSR-UX-XMD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6B-ap-FEB">
-                                <rect key="frame" x="0.0" y="20" width="375" height="730"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdW-TR-Ok5">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="634.5"/>
@@ -869,7 +869,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Akc-pJ-7px"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="N6O-j1-G4v">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bK-OS-FDw">
@@ -1388,7 +1388,7 @@
                                                                                         <rect key="frame" x="0.0" y="0.0" width="48" height="62.5"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fe-xL-vCG" userLabel="Alert Animation View">
-                                                                                                <rect key="frame" x="12" y="18.5" width="26" height="26"/>
+                                                                                                <rect key="frame" x="12" y="19" width="26" height="26"/>
                                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="width" constant="26" id="hRk-gG-vgB"/>

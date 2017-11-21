@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
     func mask() -> String {
-        if self.count < 6 {
+        if count < 6 {
             return self
         }
         let startIndex = self.index(self.startIndex, offsetBy: 6)
