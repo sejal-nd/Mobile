@@ -80,7 +80,23 @@ class SmartThermostatScheduleViewModel {
                        self.heatTemp,
                        resultSelector: SmartThermostatPeriodInfo.init)
     
-    private lazy var saveEvents: Observable<Event<Void>> = self.saveAction.withLatestFrom(self.updatedPeriodInfo)
+    private lazy var saveEvents: Observable<Event<Void>> = self.saveAction
+        .do(onNext: { [weak self] in
+            guard let `self` = self else { return }
+            let pageView: AnalyticsPageView
+            switch self.period {
+            case .wake:
+                pageView = .WakeSave
+            case .leave:
+                pageView = .LeaveSave
+            case .return:
+                pageView = .ReturnSave
+            case .sleep:
+                pageView = .SleepSave
+            }
+            Analytics().logScreenView(pageView.rawValue)
+        })
+        .withLatestFrom(self.updatedPeriodInfo)
         .flatMapLatest { [weak self] periodInfo -> Observable<Event<Void>> in
             guard let `self` = self else { return .empty() }
             let updatedSchedule = self.schedule.newSchedule(forPeriod: self.period, info: periodInfo)
@@ -94,6 +110,21 @@ class SmartThermostatScheduleViewModel {
         .share()
     
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
+        .do(onNext: { [weak self] in
+            guard let `self` = self else { return }
+            let pageView: AnalyticsPageView
+            switch self.period {
+            case .wake:
+                pageView = .WakeToast
+            case .leave:
+                pageView = .LeaveToast
+            case .return:
+                pageView = .ReturnToast
+            case .sleep:
+                pageView = .SleepToast
+            }
+            Analytics().logScreenView(pageView.rawValue)
+        })
     private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
         .map { ($0 as? ServiceError)?.errorDescription ?? "" }
 }

@@ -25,6 +25,8 @@ class UsageWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Analytics().logScreenView(AnalyticsPageView.ViewUsageOfferComplete.rawValue)
+        
         title = NSLocalizedString("Usage Details", comment: "")
         
         let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_question_white"), style: .plain, target: self, action: #selector(onInfoButtonPress))

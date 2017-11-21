@@ -62,7 +62,7 @@ enum AnalyticsPageView: String {
     case RegisterAccountVerify = "RegisterAccountVerify"
     
     case BillingOfferComplete = "BillingOfferComplete"
-    case HomeOfferComplete = "HomeOfferComplete";
+    case HomeOfferComplete = "HomeOfferComplete"
     case CheckBalanceError = "CheckBalanceError"
     
     case OutageStatusDetails = "OutageStatusDetails"
@@ -141,6 +141,7 @@ enum AnalyticsPageView: String {
     case ContactUsAuthCall = "ContactUsAuthCall"
     case ContactUsUnAuthCall = "ContactUsUnAuthCall"
     
+
     case AlertsPrefCenterSave = "PrefCenterSave"
     case AlertsPrefCenterComplete = "PrefCenterComplete"
     case AlertsPayRemind = "AlertsPayRemind"
@@ -151,6 +152,55 @@ enum AnalyticsPageView: String {
     case AlertsiOSPushDontAllowInitial = "AlertsiOSPushDontAllowInitial"
     case AlertsiOSPushOKInitial = "AlertsiOSPushOKInitial"
     case AlertsOpCoUpdate = "AlertsOpCoUpdate"
+    case AlertseBillEnrollPush = "AlertseBillEnrollPush"
+    case AlertseBillEnrollPushCancel = "AlertseBillEnrollPushCancel"
+    case AlertseBillEnrollPushContinue = "AlertseBillEnrollPushContinue"
+    case AlertseBillUnenrollPush = "AlertseBillUnenrollPush"
+    case AlertseBillUnenrollPushCancel = "AlertseBillUnenrollPushCancel"
+    case AlertseBillUnenrollPushContinue = "AlertseBillUnenrollPushContinue"
+    case AlertsDevSet = "AlertsDevSet"
+
+    case ViewUsageOfferComplete = "ViewUsageOfferComplete"
+    case ViewUsagePeakRewards = "ViewUsagePeakRewards"
+    case ViewUsageElectricity = "ViewUsageElectricity"
+    case ViewUsageGas = "ViewUsageGas"
+    case ViewUsageLink = "ViewUsageLink"
+    
+    case PeakTimePromo = "PeakTimePromo"
+    case HourlyPricing = "HourlyPricing"
+    
+    case EmptyStatePeakSmart = "EmptyStatePeakSmart"
+    case EmptyStateUsageOverview = "EmptyStateUsageOverview"
+    case EmptyStateSmartEnergyHome = "EmptyStateSmartEnergyHome"
+    
+    case AllSavingsUsage = "AllSavingsUsage"
+    case AllSavingsSmartEnergy = "AllSavingsSmartEnergy"
+    
+    case HomeProfileSave = "HomeProfileSave"
+    case HomeProfileConfirmation = "HomeProfileConfirmation"
+    
+    case WakeSave = "WakeSave"
+    case WakeToast = "WakeToast"
+    case LeaveSave = "LeaveSave"
+    case LeaveToast = "LeaveToast"
+    case ReturnSave = "ReturnSave"
+    case ReturnToast = "ReturnToast"
+    case SleepSave = "SleepSave"
+    case SleepToast = "SleepToast"
+    case AdjustThermSave = "AdjustThermSave"
+    case AdjustThermToast = "AdjustThermToast"
+    case SystemCool = "SystemCool"
+    case SystemHeat = "SystemHeat"
+    case SystemOff = "SystemOff"
+    case FanAuto = "FanAuto"
+    case FanCirculate = "FanCirculate"
+    case FanOn = "FanOn"
+    case PermanentHoldOn = "PermanentHoldOn"
+    case PermanentHoldOff = "PermanentHoldOff"
+    case OverrideSave = "OverrideSave"
+    case OverrideToast = "OverrideToast"
+    case CancelOverride = "CancelOverride"
+    case CancelOverrideToast = "CancelOverrideToast"
 }
 
 enum AnalyticsOutageSource {
@@ -159,11 +209,13 @@ enum AnalyticsOutageSource {
 }
 
 enum Dimensions: UInt {
-    case KeepMeSignedIn = 3;
-    case FingerprintUsed = 4;
-    case ErrorCode = 5;
-    case OTPEnabled = 6;
-    case Link = 7;
+    case KeepMeSignedIn = 3
+    case FingerprintUsed = 4
+    case ErrorCode = 5
+    case OTPEnabled = 6
+    case Link = 7
+    case ResidentialAMI = 8
+    case HourlyPricingEnrollment = 9
 }
 
 func isAnalyticsEnabled() -> Bool {

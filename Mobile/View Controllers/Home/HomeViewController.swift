@@ -97,6 +97,7 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
             .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
+                Analytics().logScreenView(AnalyticsPageView.AllSavingsSmartEnergy.rawValue)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
             }).disposed(by: bag)
         
