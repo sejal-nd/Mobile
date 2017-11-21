@@ -98,7 +98,9 @@ class OverrideViewModel {
     private(set) lazy var enableSaveButton: Driver<Bool> = self.selectedDate.mapTo(true).startWith(false).asDriver(onErrorDriveWith: .empty())
     
     //MARK: - Actions
-    private lazy var saveEvents: Observable<Event<Void>> = self.saveAction.withLatestFrom(self.selectedDate.asObservable())
+    private lazy var saveEvents: Observable<Event<Void>> = self.saveAction
+        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.OverrideSave.rawValue) })
+        .withLatestFrom(self.selectedDate.asObservable())
         .flatMapLatest { [weak self] selectedDate -> Observable<Event<Void>> in
             guard let `self` = self else { return .empty() }
             return self.peakRewardsService.scheduleOverride(accountNumber: self.accountDetail.accountNumber,
@@ -111,6 +113,7 @@ class OverrideViewModel {
         .share()
     
     private lazy var cancelEvents: Observable<Event<Void>> = self.cancelAction
+        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.CancelOverride.rawValue) })
         .flatMapLatest { [weak self] _ -> Observable<Event<Void>> in
             guard let `self` = self else { return .empty() }
             return self.peakRewardsService.deleteOverride(accountNumber: self.accountDetail.accountNumber,
@@ -122,7 +125,11 @@ class OverrideViewModel {
         .share()
     
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
+        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.OverrideToast.rawValue) })
+    
     private(set) lazy var cancelSuccess: Observable<Void> = self.cancelEvents.elements()
+        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.CancelOverrideToast.rawValue) })
+    
     private(set) lazy var error: Observable<(String?, String?)> = Observable.merge(self.saveEvents.errors(), self.cancelEvents.errors())
         .map {
             guard let error = $0 as? ServiceError else {

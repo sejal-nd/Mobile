@@ -147,17 +147,47 @@ class AdjustThermostatViewController: UIViewController {
         viewModel.initialHold.drive(permanentHoldSwitch.rx.isOn).disposed(by: disposeBag)
         
         // Bind to view model
-        permanentHoldSwitch.rx.isOn.distinctUntilChanged().bind(to: viewModel.hold).disposed(by: disposeBag)
+        permanentHoldSwitch.rx.isOn.distinctUntilChanged()
+            .do(onNext: {
+                let pageView: AnalyticsPageView = $0 ? .PermanentHoldOn : .PermanentHoldOff
+                Analytics().logScreenView(pageView.rawValue)
+            })
+            .bind(to: viewModel.hold)
+            .disposed(by: disposeBag)
         
         modeSegmentedControl.selectedIndex.asObservable()
             .distinctUntilChanged()
             .map { SmartThermostatMode.allValues[$0] }
+            .do(onNext: {
+                let pageView: AnalyticsPageView
+                switch $0 {
+                case .cool:
+                    pageView = .SystemCool
+                case .heat:
+                    pageView = .SystemHeat
+                case .off:
+                    pageView = .SystemOff
+                }
+                Analytics().logScreenView(pageView.rawValue)
+            })
             .bind(to: viewModel.mode)
             .disposed(by: disposeBag)
         
         fanSegmentedControl.selectedIndex.asObservable()
             .distinctUntilChanged()
             .map { SmartThermostatFan.allValues[$0] }
+            .do(onNext: {
+                let pageView: AnalyticsPageView
+                switch $0 {
+                case .auto:
+                    pageView = .FanAuto
+                case .circulate:
+                    pageView = .FanCirculate
+                case .on:
+                    pageView = .FanOn
+                }
+                Analytics().logScreenView(pageView.rawValue)
+            })
             .bind(to: viewModel.fan)
             .disposed(by: disposeBag)
     }
