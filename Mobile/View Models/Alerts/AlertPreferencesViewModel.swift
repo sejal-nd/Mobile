@@ -229,7 +229,7 @@ class AlertPreferencesViewModel {
         case .bge:
             return NSLocalizedString("Occasionally, BGE may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
         case .comEd:
-            return NSLocalizedString("Occasionally, ComEd may may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
+            return NSLocalizedString("Occasionally, ComEd may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
         case .peco:
             return NSLocalizedString("Occasionally, PECO may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
         }
