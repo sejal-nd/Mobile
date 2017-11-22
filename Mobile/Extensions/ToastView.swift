@@ -10,16 +10,8 @@ import ToastSwiftFramework
 
 extension UIView {
     
-    func showToast(_ message: String, twoLines: Bool = false, distanceFromBottom: CGFloat = 50) {
-        if twoLines {
-            var toastStyle = ToastManager.shared.style
-            toastStyle.verticalPadding = 10
-            toastStyle.horizontalPadding = 44
-            toastStyle.cornerRadius = 30
-            self.makeToast(message, duration: 5.0, position: CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height - distanceFromBottom), style: toastStyle)
-        } else {
-            self.makeToast(message, duration: 5.0, position: CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height - distanceFromBottom))
-        }
+    func showToast(_ message: String, twoLines: Bool = false) {
+        makeToast(message, duration: 5, position: .bottom, title: nil, image: nil, style: ToastManager.shared.style, completion: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message)

@@ -280,9 +280,9 @@
 		82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
 		82156F221F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
 		82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
-		8218988E1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */; };
-		8218988F1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */; };
-		821898901F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */; };
+		8218988E1F2A30C00077D7A1 /* Binders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* Binders.swift */; };
+		8218988F1F2A30C00077D7A1 /* Binders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* Binders.swift */; };
+		821898901F2A30C00077D7A1 /* Binders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* Binders.swift */; };
 		821898921F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
 		821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
 		821898941F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
@@ -1372,7 +1372,7 @@
 		820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchTutorialViewController.swift; sourceTree = "<group>"; };
 		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoNetworkConnectionView.swift; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.swift; sourceTree = SOURCE_ROOT; };
 		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoNetworkConnectionView.xib; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.xib; sourceTree = SOURCE_ROOT; };
-		8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBindingObservers.swift; sourceTree = "<group>"; };
+		8218988D1F2A30C00077D7A1 /* Binders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binders.swift; sourceTree = "<group>"; };
 		821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillAlertBannerView.swift; sourceTree = "<group>"; };
 		821898951F3279AB0077D7A1 /* MockPaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPaymentService.swift; sourceTree = "<group>"; };
 		822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewModel.swift; sourceTree = "<group>"; };
@@ -2655,7 +2655,7 @@
 		8FDF8C651E550459000B7BD0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */,
+				8218988D1F2A30C00077D7A1 /* Binders.swift */,
 				82A18F071EBD12D600BE9F21 /* Control.swift */,
 				8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */,
 				8FDF8C661E550502000B7BD0 /* BGEColor.swift */,
@@ -4339,7 +4339,7 @@
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
-				8218988E1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */,
+				8218988E1F2A30C00077D7A1 /* Binders.swift in Sources */,
 				2FA7B9FA1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				2F3FA6371F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
@@ -4569,7 +4569,7 @@
 				545784B41EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFF1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
-				821898901F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */,
+				821898901F2A30C00077D7A1 /* Binders.swift in Sources */,
 				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
@@ -4799,7 +4799,7 @@
 				545784B31EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
-				8218988F1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */,
+				8218988F1F2A30C00077D7A1 /* Binders.swift in Sources */,
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,

@@ -228,8 +228,8 @@ class FloatLabelTextField: UIView {
 
 extension Reactive where Base: FloatLabelTextField {
     
-    var isEnabled: UIBindingObserver<Base, Bool> {
-        return UIBindingObserver(UIElement: self.base) { floatLabelTextField, enabled in
+    var isEnabled: Binder<Bool> {
+        return Binder(base) { floatLabelTextField, enabled in
             floatLabelTextField.setEnabled(enabled)
         }
     }

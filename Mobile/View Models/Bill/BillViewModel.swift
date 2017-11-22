@@ -37,7 +37,7 @@ class BillViewModel {
 		
 		let sharedFetchAccountDetail = Observable.merge(fetchAccountDetail,
 		                                                RxNotifications.shared.accountDetailUpdated
-                                                            .mapTo(FetchingAccountState.switchAccount))
+                                                            .map(to: FetchingAccountState.switchAccount))
             .share()
 		
 		sharedFetchAccountDetail
@@ -53,7 +53,7 @@ class BillViewModel {
                     .trackActivity(fetchingAccountDetailTracker)
                     .materialize()
             }
-            .shareReplay(1)
+            .share(replay: 1)
             
         fetchAccountDetailResult.elements()
 			.bind(to: currentAccountDetail)

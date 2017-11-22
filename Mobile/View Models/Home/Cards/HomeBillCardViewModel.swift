@@ -51,7 +51,7 @@ class HomeBillCardViewModel {
             .disposed(by: bag)
     }
     
-    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = Observable.merge(self.account.mapTo(()),
+    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = Observable.merge(self.account.map(to: ()),
                                                                                          RxNotifications.shared.defaultWalletItemUpdated)
         .flatMapLatest { [unowned self] in
             self.walletService.fetchWalletItems()
@@ -59,7 +59,7 @@ class HomeBillCardViewModel {
                 .map { $0.first(where: { $0.isDefault }) }
                 .materialize()
         }
-        .shareReplay(1)
+        .share(replay: 1)
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents.errors()
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
@@ -86,7 +86,7 @@ class HomeBillCardViewModel {
                 return Observable<[Date]>.just([]).materialize()
             }
         }
-        .shareReplay(1)
+        .share(replay: 1)
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
         .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(),
@@ -131,7 +131,7 @@ class HomeBillCardViewModel {
                     let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
                     RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] = paymentDetails
                 })
-                .toVoid()
+                .map(to: ())
                 .trackActivity(self.paymentTracker)
                 .materialize()
         }

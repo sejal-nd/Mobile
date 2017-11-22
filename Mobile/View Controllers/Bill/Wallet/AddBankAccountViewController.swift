@@ -133,19 +133,19 @@ class AddBankAccountViewController: UIViewController {
         Driver.merge(
             addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
                 .withLatestFrom(viewModel.addBankFormViewModel.routingNumber.asDriver())
-                .filter { !$0.isEmpty }.toVoid(),
+                .filter { !$0.isEmpty }.map(to: ()),
             
-            addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().toVoid(),
+            addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().map(to: ()),
             
             addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
                 .withLatestFrom(viewModel.addBankFormViewModel.accountNumber.asDriver())
-                .filter { !$0.isEmpty }.toVoid(),
+                .filter { !$0.isEmpty }.map(to: ()),
             
-            addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().toVoid(),
+            addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().map(to: ()),
             
-            viewModel.addBankFormViewModel.confirmAccountNumberMatches.toVoid(),
+            viewModel.addBankFormViewModel.confirmAccountNumberMatches.map(to: ()),
             
-            viewModel.addBankFormViewModel.nicknameErrorString.toVoid()
+            viewModel.addBankFormViewModel.nicknameErrorString.map(to: ())
             
             )
             .drive(onNext: { [weak self] _ in

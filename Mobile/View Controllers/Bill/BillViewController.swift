@@ -286,7 +286,7 @@ class BillViewController: AccountPickerViewController {
 
 	func bindViewHiding() {
         viewModel.shouldShowAlertBanner.not().drive(alertBannerView.rx.isHidden).disposed(by: bag)
-        viewModel.shouldShowAlertBanner.filter { $0 }.toVoid()
+        viewModel.shouldShowAlertBanner.filter { $0 }.map(to: ())
             .drive(alertBannerView.rx.resetAnimation)
             .disposed(by: bag)
 

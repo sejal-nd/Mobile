@@ -144,7 +144,7 @@ class AddCreditCardViewController: UIViewController {
             addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
             addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
             addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
-            viewModel.addCardFormViewModel.nicknameErrorString.toVoid()
+            viewModel.addCardFormViewModel.nicknameErrorString.map(to: ())
             )
             .drive(onNext: { [weak self] in
                 self?.accessibilityErrorLabel()
