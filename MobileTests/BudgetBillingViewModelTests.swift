@@ -16,7 +16,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     
     func testSubmitButtonUnenrollingWithNoReason() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isBudgetBill": true, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.currentEnrollment.value = false
         viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
             if Environment.sharedInstance.opco == .bge {
@@ -33,7 +33,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     
     func testSubmitButtonUnenrollingWithReason() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isBudgetBill": true, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.currentEnrollment.value = false
         viewModel.selectedUnenrollmentReason.value = 1
         viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
@@ -51,7 +51,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     
     func testSubmitButtonEnrolling() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isBudgetBill": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.currentEnrollment.value = true
         viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
             if !enabled {
@@ -62,7 +62,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     
     func testGetBudgetBillingInfoSuccess() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.getBudgetBillingInfo(onSuccess: { info in
             // Pass
         }, onError: { errMessage in
@@ -72,7 +72,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     
     func testGetBudgetBillingInfoFailure() {
         let accountDetail = AccountDetail.from(["accountNumber": "0000", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.getBudgetBillingInfo(onSuccess: { info in
             XCTFail("Fetching budget billing info should fail")
         }, onError: { errMessage in
@@ -82,7 +82,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     
     func testEnrollSuccess() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.enroll(onSuccess: { 
             // Pass
         }, onError: { errMessage in
@@ -92,7 +92,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     
     func testEnrollFailure() {
         let accountDetail = AccountDetail.from(["accountNumber": "0000", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.enroll(onSuccess: {
             XCTFail("Enrollment should fail")
         }, onError: { errMessage in
@@ -102,7 +102,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     
     func testUnenrollSuccess() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.selectedUnenrollmentReason.value = 1
         viewModel.unenroll(onSuccess: {
             // Pass
@@ -113,7 +113,7 @@ class BudgetBillingViewModelTests: XCTestCase {
     
     func testUnenrollFailure() {
         let accountDetail = AccountDetail.from(["accountNumber": "0000", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.unenroll(onSuccess: {
             XCTFail("Enrollment should fail")
         }, onError: { errMessage in

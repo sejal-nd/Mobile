@@ -23,7 +23,7 @@ class OutageViewModelTests: XCTestCase {
         
         viewModel.getOutageStatus(onSuccess: {
             asyncExpectation.fulfill()
-        }, onError: {
+        }, onError: { _ in
             XCTFail("Unexpected failure response")
         })
         

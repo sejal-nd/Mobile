@@ -76,6 +76,10 @@
 		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85D1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
+		228877011FC611990024D7F0 /* MockAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228877001FC611990024D7F0 /* MockAlertsService.swift */; };
+		228877021FC611990024D7F0 /* MockAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228877001FC611990024D7F0 /* MockAlertsService.swift */; };
+		228877031FC611990024D7F0 /* MockAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228877001FC611990024D7F0 /* MockAlertsService.swift */; };
+		228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228877001FC611990024D7F0 /* MockAlertsService.swift */; };
 		22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
 		22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
 		22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */; };
@@ -1508,6 +1512,7 @@
 		0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewModel.swift; sourceTree = "<group>"; };
 		0D79C6D01F1FB761004793DD /* Maintenance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maintenance.swift; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		228877001FC611990024D7F0 /* MockAlertsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlertsService.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPremiseAddressView.swift; sourceTree = "<group>"; };
@@ -3027,9 +3032,6 @@
 		8FDF8C651E550459000B7BD0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8218988D1F2A30C00077D7A1 /* Binders.swift */,
-				82A18F071EBD12D600BE9F21 /* Control.swift */,
-				8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */,
 				8FDF8C661E550502000B7BD0 /* BGEColor.swift */,
 				8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */,
 				82A18F071EBD12D600BE9F21 /* Control.swift */,
@@ -3046,7 +3048,7 @@
 				387E5C461F1FCC4600D6710D /* Percentage.swift */,
 				8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */,
 				E8C453141EF3293600F5C781 /* ToastView.swift */,
-				8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */,
+				8218988D1F2A30C00077D7A1 /* Binders.swift */,
 				E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */,
 				E893993C1F86AF1600B9184C /* UIViewDashedBorders.swift */,
 				829E058A1FA7928E00697633 /* Fillable.swift */,
@@ -3081,6 +3083,7 @@
 				B574BAF61E786473001E8A44 /* MockOutageService.swift */,
 				E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */,
 				821898951F3279AB0077D7A1 /* MockPaymentService.swift */,
+				228877001FC611990024D7F0 /* MockAlertsService.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -4117,7 +4120,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -4743,6 +4746,7 @@
 				82EAB3441F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				82A18EDA1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				826DCCED1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
+				228877011FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				82E22B5E1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				01F6121D1F1E400E00A4F9DA /* AddCardFormView.swift in Sources */,
@@ -5032,6 +5036,7 @@
 				82EAB3461F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				CEA215241F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				E80D2E191E721668002626C9 /* MaskedString.swift in Sources */,
+				228877031FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				E86DE4B91F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
 				82E22B601F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
@@ -5321,6 +5326,7 @@
 				82EAB3451F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				CEA215231F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
+				228877021FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				E86DE4B81F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
 				82E22B5F1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				E80D2E181E721668002626C9 /* MaskedString.swift in Sources */,
@@ -5596,6 +5602,7 @@
 				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
+				228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				824004CD1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				E881B1561F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				387E5C4A1F1FCDB800D6710D /* Percentage.swift in Sources */,

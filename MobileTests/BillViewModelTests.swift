@@ -21,7 +21,7 @@ class BillViewModelTests: XCTestCase {
     func testCurrentAccountDetail() {
         AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234567890"])
         viewModel.fetchAccountDetail(isRefresh: false)
-        viewModel.currentAccountDetailUnwrapped.asObservable().single().subscribe(onNext: { accountDetail in
+        viewModel.currentAccountDetail.asObservable().single().subscribe(onNext: { accountDetail in
             if accountDetail.accountNumber != "1234567890" {
                 XCTFail("current account detail fetch should succeed")
             }
