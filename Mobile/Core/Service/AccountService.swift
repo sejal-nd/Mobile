@@ -86,7 +86,7 @@ extension AccountService {
             self.updatePECOReleaseOfInfoPreference(account: account, selectedIndex: selectedIndex, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -101,7 +101,7 @@ extension AccountService {
             self.setDefaultAccount(account: account, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

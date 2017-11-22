@@ -268,7 +268,7 @@ class ReviewPaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         LoadingView.show()
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
@@ -290,7 +290,7 @@ class ReviewPaymentViewController: UIViewController {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
                     action -> Void in
-                    if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                    if let url = URL(string: "tel://\(errMessage[phoneRange])"), UIApplication.shared.canOpenURL(url) {
                         if #available(iOS 10, *) {
                             UIApplication.shared.open(url)
                         } else {

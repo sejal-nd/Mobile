@@ -45,9 +45,9 @@ class MainTabBarController: UITabBarController {
     func setButtonStates (itemTag: Int) {
         for tab in tabBar.items! {
             if tab.tag == itemTag {
-                tab.setTitleTextAttributes([NSFontAttributeName: selectedTitleFont, NSForegroundColorAttributeName: selectedTitleColor], for: .normal)
+                tab.setTitleTextAttributes([.font: selectedTitleFont, .foregroundColor: selectedTitleColor], for: .normal)
             } else {
-                tab.setTitleTextAttributes([NSFontAttributeName: normalTitleFont, NSForegroundColorAttributeName: normalTitleColor], for: .normal)
+                tab.setTitleTextAttributes([.font: normalTitleFont, .foregroundColor: normalTitleColor], for: .normal)
             }
         }
     }

@@ -33,12 +33,12 @@ struct MockAuthenticationService : AuthenticationService {
     }
     
     func logout(completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.Success())
+        completion(ServiceResult.Success(()))
     }
     
     func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
         if currentPassword == validCurrentPassword {
-            completion(ServiceResult.Success())
+            completion(ServiceResult.Success(()))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
         }
@@ -46,7 +46,7 @@ struct MockAuthenticationService : AuthenticationService {
     
     func changePasswordAnon(_ username: String,currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
         if currentPassword == validCurrentPassword {
-            completion(ServiceResult.Success())
+            completion(ServiceResult.Success(()))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
         }
@@ -159,7 +159,7 @@ struct MockAuthenticationService : AuthenticationService {
             if username.lowercased() == "error" {
                 completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnProfNotFound.rawValue)))
             } else {
-                completion(ServiceResult.Success())
+                completion(ServiceResult.Success(()))
             }
         }
     }

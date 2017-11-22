@@ -275,7 +275,7 @@ class BudgetBillingViewController: UIViewController {
         gradientLayer.frame = gradientView.frame
     }
         
-    func onCancelPress() {
+    @objc func onCancelPress() {
         if viewModel.enrolling.value || viewModel.unenrolling.value {
             let message = viewModel.enrolling.value ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
             let alertVc = UIAlertController(title: NSLocalizedString("Exit Budget Billing", comment: ""), message: message, preferredStyle: .alert)
@@ -289,7 +289,7 @@ class BudgetBillingViewController: UIViewController {
         }
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         if viewModel.enrolling.value {
             LoadingView.show()
             Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOffer.rawValue)

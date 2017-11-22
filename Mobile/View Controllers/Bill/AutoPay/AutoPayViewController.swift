@@ -156,11 +156,11 @@ class AutoPayViewController: UIViewController {
         gradientLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: footerView.frame.origin.y + 64)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         view.endEditing(true)
         Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
         
@@ -488,7 +488,7 @@ extension AutoPayViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         if textField == routingNumberTextField.textField && textField.text?.count == 9 {
             accountNumberTextField.textField.becomeFirstResponder()
         }

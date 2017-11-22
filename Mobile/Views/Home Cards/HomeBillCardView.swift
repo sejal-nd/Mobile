@@ -240,7 +240,7 @@ class HomeBillCardView: UIView {
         oneTouchSlider.didFinishSwipe
             .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV))
             .filter { !($0 || $1 || Environment.sharedInstance.opco == .bge) }
-            .toVoid()
+            .map(to: ())
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
             .disposed(by: bag)
@@ -260,7 +260,7 @@ class HomeBillCardView: UIView {
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
             self?.oneTouchSlider.reset(animated: true)
-        }).toVoid()
+        }).map(to: ())
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
@@ -285,7 +285,7 @@ class HomeBillCardView: UIView {
 
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
                 LoadingView.show(animated: true)
-                self?.viewModel.submitOneTouchPay.onNext()
+                self?.viewModel.submitOneTouchPay.onNext(())
             })
             return alertController
     }
@@ -301,7 +301,7 @@ class HomeBillCardView: UIView {
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
                     action -> Void in
-                    if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                    if let url = URL(string: "tel://\(errMessage[phoneRange]))"), UIApplication.shared.canOpenURL(url) {
                         if #available(iOS 10, *) {
                             UIApplication.shared.open(url)
                         } else {
@@ -326,7 +326,7 @@ class HomeBillCardView: UIView {
         })
         alertController2.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
             LoadingView.show(animated: true)
-            self?.viewModel.submitOneTouchPay.onNext()
+            self?.viewModel.submitOneTouchPay.onNext(())
             observer.onCompleted()
         })
         return alertController2
@@ -393,7 +393,7 @@ class HomeBillCardView: UIView {
                 
                 return Disposables.create()
                 }
-                .do(onCompleted: { [weak self] _ in
+                .do(onCompleted: { [weak self] in
                     self?.viewModel.cvv2.value = nil
                 })
         }
@@ -408,10 +408,10 @@ class HomeBillCardView: UIView {
             return alertController
     }
     
-    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver.merge(self.tutorialTap.rx.event.asDriver().mapTo(()), self.tutorialSwipe.rx.event.asDriver().mapTo(()))
+    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver.merge(self.tutorialTap.rx.event.asDriver().map(to: ()), self.tutorialSwipe.rx.event.asDriver().map(to: ()))
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
-        .mapTo(())
+        .map(to: ())
         .map(OneTouchTutorialViewController.init)
     
     private lazy var bgeasyViewController: Driver<UIViewController> = self.automaticPaymentInfoButton.rx.touchUpInside.asObservable()

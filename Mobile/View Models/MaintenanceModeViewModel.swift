@@ -50,9 +50,9 @@ class MaintenanceModeViewModel{
         }
         
         emergencyAttrString = NSMutableAttributedString(string: localizedString)
-        emergencyAttrString.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
-        emergencyAttrString.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phone1))
-        emergencyAttrString.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phone2))
+        emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+        emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phone1))
+        emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phone2))
         
         return emergencyAttrString
     }
@@ -61,7 +61,7 @@ class MaintenanceModeViewModel{
         let phoneString = "1-800-685-0123"
         let localizedString = String(format: NSLocalizedString("For all other inquiries, please call\n%@ M-F 7AM to 7PM", comment: ""), phoneString)
         let attrString = NSMutableAttributedString(string: localizedString)
-        attrString.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phoneString))
+        attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phoneString))
         return attrString
     }
     

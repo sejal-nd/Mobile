@@ -114,7 +114,7 @@ class SegmentedControl: UIControl {
         }
     }
     
-    func onButtonTap(sender: UIButton) {
+    @objc func onButtonTap(sender: UIButton) {
         let index = sender.tag
         
         selectedIndex.value = index

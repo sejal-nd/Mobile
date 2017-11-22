@@ -280,9 +280,9 @@
 		82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
 		82156F221F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
 		82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */; };
-		8218988E1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */; };
-		8218988F1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */; };
-		821898901F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */; };
+		8218988E1F2A30C00077D7A1 /* Binders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* Binders.swift */; };
+		8218988F1F2A30C00077D7A1 /* Binders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* Binders.swift */; };
+		821898901F2A30C00077D7A1 /* Binders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218988D1F2A30C00077D7A1 /* Binders.swift */; };
 		821898921F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
 		821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
 		821898941F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */; };
@@ -1372,7 +1372,7 @@
 		820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchTutorialViewController.swift; sourceTree = "<group>"; };
 		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoNetworkConnectionView.swift; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.swift; sourceTree = SOURCE_ROOT; };
 		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoNetworkConnectionView.xib; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.xib; sourceTree = SOURCE_ROOT; };
-		8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBindingObservers.swift; sourceTree = "<group>"; };
+		8218988D1F2A30C00077D7A1 /* Binders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binders.swift; sourceTree = "<group>"; };
 		821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillAlertBannerView.swift; sourceTree = "<group>"; };
 		821898951F3279AB0077D7A1 /* MockPaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPaymentService.swift; sourceTree = "<group>"; };
 		822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoPayViewModel.swift; sourceTree = "<group>"; };
@@ -2655,7 +2655,7 @@
 		8FDF8C651E550459000B7BD0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8218988D1F2A30C00077D7A1 /* UIBindingObservers.swift */,
+				8218988D1F2A30C00077D7A1 /* Binders.swift */,
 				82A18F071EBD12D600BE9F21 /* Control.swift */,
 				8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */,
 				8FDF8C661E550502000B7BD0 /* BGEColor.swift */,
@@ -3647,13 +3647,13 @@
 				TargetAttributes = {
 					087630DD1E72F5D000FA7020 = {
 						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
 						DevelopmentTeam = LTS485TKXA;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
@@ -3672,7 +3672,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -3689,6 +3689,7 @@
 						ProvisioningStyle = Automatic;
 					};
 					B5AC06D41E52238900BBA4ED = {
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
@@ -4338,7 +4339,7 @@
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
-				8218988E1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */,
+				8218988E1F2A30C00077D7A1 /* Binders.swift in Sources */,
 				2FA7B9FA1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				2F3FA6371F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
@@ -4568,7 +4569,7 @@
 				545784B41EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFF1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
-				821898901F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */,
+				821898901F2A30C00077D7A1 /* Binders.swift in Sources */,
 				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
@@ -4798,7 +4799,7 @@
 				545784B31EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
-				8218988F1F2A30C00077D7A1 /* UIBindingObservers.swift in Sources */,
+				8218988F1F2A30C00077D7A1 /* Binders.swift in Sources */,
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
@@ -5076,7 +5077,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = Develop;
@@ -5090,7 +5092,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = Testing;
@@ -5103,7 +5106,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = Staging;
@@ -5117,7 +5121,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = Automation;
@@ -5130,7 +5135,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = Release;
@@ -5229,6 +5235,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = "Testing-Support";
 		};
@@ -5249,6 +5257,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				SWIFT_VERSION = 4.0;
 			};
 			name = "Testing-Support";
 		};
@@ -5270,6 +5279,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				SWIFT_VERSION = 4.0;
 			};
 			name = "Testing-Support";
 		};
@@ -5305,6 +5315,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
 			name = "Testing-Support";
@@ -5318,7 +5330,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = "Testing-Support";
@@ -5419,6 +5432,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = "Staging-Support";
 		};
@@ -5441,6 +5456,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging";
+				SWIFT_VERSION = 4.0;
 			};
 			name = "Staging-Support";
 		};
@@ -5464,6 +5480,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging";
+				SWIFT_VERSION = 4.0;
 			};
 			name = "Staging-Support";
 		};
@@ -5499,6 +5516,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
 			name = "Staging-Support";
@@ -5511,7 +5530,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = BGE;
 			};
 			name = "Staging-Support";
@@ -5680,6 +5700,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Develop;
 		};
@@ -5703,6 +5725,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "710d12a5-b1c0-4b5d-99ce-ea4a0235c3a2";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Production Beta";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -5801,6 +5825,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Automation;
 		};
@@ -5902,6 +5928,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dd2d0367-d7fb-43e2-80a2-b14e13ad8b95";
 				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Staging;
 		};
@@ -6001,6 +6029,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9620f6c0-fb05-4197-aacf-40775b56478e";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Testing;
 		};
@@ -6022,6 +6052,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Develop;
 		};
@@ -6043,6 +6074,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Testing;
 		};
@@ -6066,6 +6098,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Staging;
 		};
@@ -6087,6 +6120,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Automation;
 		};
@@ -6109,6 +6143,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "71d091af-1e17-4508-bc0f-2974a4a19094";
 				PROVISIONING_PROFILE_SPECIFIER = "PECO Production Beta";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -6129,6 +6164,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Develop;
 		};
@@ -6149,6 +6185,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Dev Profile 2016";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Testing;
 		};
@@ -6171,6 +6208,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Staging;
 		};
@@ -6191,6 +6229,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Automation;
 		};
@@ -6211,6 +6250,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "ComEd Production Beta";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -6361,6 +6401,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
 			name = Develop;
@@ -6373,6 +6415,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
 			name = Testing;
@@ -6385,6 +6429,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
 			name = Staging;
@@ -6397,6 +6443,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
 			name = Automation;
@@ -6409,6 +6457,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 			};
 			name = Release;

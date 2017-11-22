@@ -55,9 +55,9 @@ class ContactUsViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar(hidesBottomBorder: true)
         } else { // Sent from unauthenticated user experience
-            let titleDict: [String: Any] = [
-                NSForegroundColorAttributeName: UIColor.white,
-                NSFontAttributeName: OpenSans.bold.of(size: 18)
+            let titleDict: [NSAttributedStringKey: Any] = [
+                .foregroundColor: UIColor.white,
+                .font: OpenSans.bold.of(size: 18)
             ]
             navigationController?.navigationBar.titleTextAttributes = titleDict
         }

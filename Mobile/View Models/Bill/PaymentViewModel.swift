@@ -273,9 +273,9 @@ class PaymentViewModel {
                     }
                     
                     let accountNum = self.addBankFormViewModel.accountNumber.value
-                    let maskedAccountNumber = accountNum.substring(from: accountNum.index(accountNum.endIndex, offsetBy: -4))
+                    let maskedAccountNumber = accountNum[accountNum.index(accountNum.endIndex, offsetBy: -4)...]
                     
-                    let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addBankFormViewModel.saveToWallet.value, maskedWalletAccountNumber: maskedAccountNumber, paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId, cvv: nil)
+                    let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addBankFormViewModel.saveToWallet.value, maskedWalletAccountNumber: String(maskedAccountNumber), paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId, cvv: nil)
                     self.paymentService.schedulePayment(payment: payment)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { _ in
@@ -341,12 +341,12 @@ class PaymentViewModel {
                         }
                         
                         let cardNum = self.addCardFormViewModel.cardNumber.value
-                        let maskedAccountNumber = cardNum.substring(from: cardNum.index(cardNum.endIndex, offsetBy: -4))
+                        let maskedAccountNumber = cardNum[cardNum.index(cardNum.endIndex, offsetBy: -4)...]
                         
                         let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
                                               existingAccount: false,
                                               saveAccount: self.addCardFormViewModel.saveToWallet.value,
-                                              maskedWalletAccountNumber: maskedAccountNumber,
+                                              maskedWalletAccountNumber: String(maskedAccountNumber),
                                               paymentAmount: self.paymentAmountDouble(),
                                               paymentType: paymentType,
                                               paymentDate: paymentDate,
@@ -816,9 +816,9 @@ class PaymentViewModel {
                                                                                                         self.addCardFormViewModel.cardNumber.asDriver())
     {
         if $1 && $2.count >= 4 {
-            return "**** \($2.substring(from: $2.index($2.endIndex, offsetBy: -4)))"
+            return "**** \($2[$2.index($2.endIndex, offsetBy: -4)...])"
         } else if $3 && $4.count >= 4 {
-            return "**** \($4.substring(from: $4.index($4.endIndex, offsetBy: -4)))"
+            return "**** \($4[$4.index($4.endIndex, offsetBy: -4)...])"
         } else {
             guard let walletItem: WalletItem = $0 else { return "" }
             return "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
@@ -839,8 +839,8 @@ class PaymentViewModel {
             guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
             
             if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                let last4 = maskedNumber.substring(from:maskedNumber.index(maskedNumber.endIndex, offsetBy: -4))
-                return nickname == last4 ? nil : nickname
+                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
+                return nickname == String(last4) ? nil : nickname
             } else {
                 return nickname
             }

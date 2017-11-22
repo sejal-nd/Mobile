@@ -151,19 +151,19 @@ class MiniWalletViewController: UIViewController {
             self.tableView.reloadData()
             self.view.setNeedsLayout()
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
-        }, onError: { [weak self] errMessage in
+        }, onError: { [weak self] in
             guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
     }
     
-    func onBankAccountPress(sender: ButtonControl) {
+    @objc func onBankAccountPress(sender: ButtonControl) {
         let walletItem = viewModel.bankAccounts[sender.tag]
         delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
         navigationController?.popViewController(animated: true)
     }
     
-    func onAddBankAccountPress() {
+    @objc func onAddBankAccountPress() {
         if sentFromPayment {
             delegate?.miniWalletViewControllerDidTapAddBank(self)
             navigationController?.popViewController(animated: true)
@@ -172,13 +172,13 @@ class MiniWalletViewController: UIViewController {
         }
     }
     
-    func onCreditCardPress(sender: ButtonControl) {
+    @objc func onCreditCardPress(sender: ButtonControl) {
         let walletItem = viewModel.creditCards[sender.tag]
         delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
         navigationController?.popViewController(animated: true)
     }
     
-    func onAddCreditCardPress() {
+    @objc func onAddCreditCardPress() {
         if sentFromPayment {
             delegate?.miniWalletViewControllerDidTapAddCard(self)
             navigationController?.popViewController(animated: true)

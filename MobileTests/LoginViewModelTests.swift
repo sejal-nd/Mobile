@@ -26,7 +26,7 @@ class LoginViewModelTests: XCTestCase {
             asyncExpectation.fulfill()
         }, onRegistrationNotComplete: {
             XCTFail("Unexpected onRegistrationNotComplete response")
-        }, onError: { message in
+        }, onError: { title, message in
             print(message)
             XCTFail("Unexpected failure response")
         })
@@ -46,7 +46,7 @@ class LoginViewModelTests: XCTestCase {
             XCTFail("Unexpected success response")
         }, onRegistrationNotComplete: {
             XCTFail("Unexpected onRegistrationNotComplete response")
-        }, onError: { message in
+        }, onError: { title, message in
             asyncExpectation.fulfill()
         })
         

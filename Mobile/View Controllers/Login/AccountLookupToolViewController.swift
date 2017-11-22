@@ -106,11 +106,11 @@ class AccountLookupToolViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSearchPress() {
+    @objc func onSearchPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -132,7 +132,7 @@ class AccountLookupToolViewController: UIViewController {
         })
     }
     
-    func onIndentifierKeyboardDonePress() {
+    @objc func onIndentifierKeyboardDonePress() {
         viewModel.searchButtonEnabled.asObservable()
             .take(1)
             .asDriver(onErrorDriveWith: .empty())
@@ -147,7 +147,7 @@ class AccountLookupToolViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -156,7 +156,7 @@ class AccountLookupToolViewController: UIViewController {
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }

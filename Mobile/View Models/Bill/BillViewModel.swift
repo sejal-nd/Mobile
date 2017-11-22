@@ -37,7 +37,7 @@ class BillViewModel {
 		
 		let sharedFetchAccountDetail = Observable.merge(fetchAccountDetail,
 		                                                RxNotifications.shared.accountDetailUpdated
-                                                            .mapTo(FetchingAccountState.switchAccount))
+                                                            .map(to: FetchingAccountState.switchAccount))
             .share()
 		
 		sharedFetchAccountDetail
@@ -53,7 +53,7 @@ class BillViewModel {
                     .trackActivity(fetchingAccountDetailTracker)
                     .materialize()
             }
-            .shareReplay(1)
+            .share(replay: 1)
             
         fetchAccountDetailResult.elements()
 			.bind(to: currentAccountDetail)
@@ -544,20 +544,20 @@ class BillViewModel {
         let topTextRange = NSMakeRange(0, topText.count)
         let bottomTextRange = NSMakeRange(topText.count + 1, bottomText.count)
         
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 16), range: topTextRange)
-        mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: topTextRange)
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 14), range: bottomTextRange)
-        mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.successGreenText, range: bottomTextRange)
+        mutableText.addAttribute(.font, value: OpenSans.bold.of(size: 16), range: topTextRange)
+        mutableText.addAttribute(.foregroundColor, value: UIColor.blackText, range: topTextRange)
+        mutableText.addAttribute(.font, value: OpenSans.regular.of(size: 14), range: bottomTextRange)
+        mutableText.addAttribute(.foregroundColor, value: UIColor.successGreenText, range: bottomTextRange)
         
         return mutableText
     }
     
     private static func canEnrollText(boldText: String) -> NSAttributedString {
         let text = NSLocalizedString("Would you like to enroll in ", comment: "")
-        let mutableText = NSMutableAttributedString(string: text + boldText, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
+        let mutableText = NSMutableAttributedString(string: text + boldText, attributes: [.foregroundColor: UIColor.blackText])
         
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 16), range: NSMakeRange(0, text.count))
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 16), range: NSMakeRange(text.count, boldText.count))
+        mutableText.addAttribute(.font, value: OpenSans.regular.of(size: 16), range: NSMakeRange(0, text.count))
+        mutableText.addAttribute(.font, value: OpenSans.bold.of(size: 16), range: NSMakeRange(text.count, boldText.count))
         
         return mutableText
     }

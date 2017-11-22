@@ -37,7 +37,7 @@ class PaperlessEBillAccountView: UIView {
     
     func bind(withAccountDetail accountDetail: AccountDetail) {
         let heightConstraint = heightAnchor.constraint(equalToConstant: 65)
-        heightConstraint.priority = 999
+        heightConstraint.priority = UILayoutPriority(rawValue: 999)
         heightConstraint.isActive = true
         
         accountNumberLabel.text = "\(accountDetail.accountNumber)"

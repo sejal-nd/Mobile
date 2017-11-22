@@ -418,17 +418,17 @@ extension BillingHistoryViewController: UITableViewDataSource {
         view.addSubview(stackView)
         
         let leadingConstraint = stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
-        leadingConstraint.priority = 750
+        leadingConstraint.priority = UILayoutPriority(rawValue: 750)
         leadingConstraint.isActive = true
         let trailingConstraint = stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
-        trailingConstraint.priority = 750
+        trailingConstraint.priority = UILayoutPriority(rawValue: 750)
         trailingConstraint.isActive = true
         
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         stackView.widthAnchor.constraint(lessThanOrEqualToConstant: 460)
         let widthConstraint = stackView.widthAnchor.constraint(equalToConstant: 460)
-        widthConstraint.priority = 750
+        widthConstraint.priority = UILayoutPriority(rawValue: 750)
         widthConstraint.isActive = true
         
         return view
@@ -445,13 +445,13 @@ extension BillingHistoryViewController: UITableViewDataSource {
         return view
     }
     
-    func viewAllUpcoming() {
+    @objc func viewAllUpcoming() {
         billingSelection = .upcoming
         
         performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
     }
     
-    func viewMorePast() {
+    @objc func viewMorePast() {
         billingSelection = .history
         
         performSegue(withIdentifier: "showMoreBillingHistorySegue", sender: self)
@@ -534,16 +534,16 @@ extension BillingHistoryViewController: UITableViewDataSource {
         innerContentView.topAnchor.constraint(equalTo: cell.contentView.topAnchor).isActive = true
         innerContentView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
         let leadingConstraint = innerContentView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 0)
-        leadingConstraint.priority = 750
+        leadingConstraint.priority = UILayoutPriority(rawValue: 750)
         leadingConstraint.isActive = true
         let trailingConstraint = innerContentView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: 0)
-        trailingConstraint.priority = 750
+        trailingConstraint.priority = UILayoutPriority(rawValue: 750)
         trailingConstraint.isActive = true
         
         innerContentView.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
         innerContentView.widthAnchor.constraint(lessThanOrEqualToConstant: 460)
         let widthConstraint = innerContentView.widthAnchor.constraint(equalToConstant: 460)
-        widthConstraint.priority = 750
+        widthConstraint.priority = UILayoutPriority(rawValue: 750)
         widthConstraint.isActive = true
         
         return cell

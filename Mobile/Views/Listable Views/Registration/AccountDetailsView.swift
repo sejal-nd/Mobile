@@ -37,7 +37,7 @@ class AccountDetailsView: UIView {
             accountNumber.count > 6 {
             //
             let index = accountNumber.index(accountNumber.startIndex, offsetBy: 6)
-            accountNumberLabel.text = "**** \(accountNumber.substring(from: index))"
+            accountNumberLabel.text = "**** \(accountNumber[index...])"
         } else {
             accountNumberLabel.text = "**** ****"
         }

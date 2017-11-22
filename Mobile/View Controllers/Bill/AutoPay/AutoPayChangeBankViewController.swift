@@ -267,12 +267,12 @@ class AutoPayChangeBankViewController: UIViewController {
 		scrollView.scrollIndicatorInsets = .zero
 	}
 	
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
     
-    func onSavePress() {
+    @objc func onSavePress() {
         LoadingView.show()
         Analytics().logScreenView(AnalyticsPageView.AutoPayModifyBankSave.rawValue)
         viewModel.submit()
@@ -308,7 +308,7 @@ extension AutoPayChangeBankViewController: UITextFieldDelegate {
 		return true
 	}
 	
-	func textFieldDidChange(_ textField: UITextField) {
+	@objc func textFieldDidChange(_ textField: UITextField) {
 		if textField == routingNumberTextField.textField && textField.text?.count == 9 {
 			accountNumberTextField.textField.becomeFirstResponder()
 		}
