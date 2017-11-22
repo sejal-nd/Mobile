@@ -1,6 +1,6 @@
 github "ReactiveX/RxSwift" "4.0.0"
 github "RxSwiftCommunity/RxSwiftExt" "3.0.0"
-github "airbnb/lottie-ios" "2.1.4"
+github "airbnb/lottie-ios" "2.0.3"
 github "ashleymills/Reachability.swift" "v4.0.0"
 github "bitstadium/HockeySDK-iOS" "5.0.0"
 github "dropbox/zxcvbn-ios" "v1.0.4"
