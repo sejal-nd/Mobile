@@ -158,9 +158,6 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollView!.contentInset = .zero
-        scrollView!.scrollIndicatorInsets = .zero
-        
         usageCardView.superviewDidLayoutSubviews()
     }
     
