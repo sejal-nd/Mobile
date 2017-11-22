@@ -404,7 +404,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Keyboard
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
@@ -415,7 +415,7 @@ class LoginViewController: UIViewController {
         scrollView.scrollRectToVisible(rect, animated: true)
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }

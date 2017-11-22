@@ -33,11 +33,11 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
         let boldString = NSLocalizedString("If you do not verify your registration within 48 hours, you will be requested to register again.", comment: "")
         let fullString = NSLocalizedString("Please check your email for a confirmation message to verify your registration. That email will contain a link. Please complete your registration and validate your email address by clicking the link.\n\nIf your email address is not verified, your Paperless eBill enrollment will not be completed.\n\n\(boldString)\n\nPlease be sure to check your spam/junk mail folders and add \(emailAddress) to your safe sender list. Did not receive the confirmation email?", comment: "")
         let attrString = NSMutableAttributedString(string: fullString)
-        attrString.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(textStyle: .body), range: (fullString as NSString).range(of: boldString))
+        attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .body), range: (fullString as NSString).range(of: boldString))
         
         let style = NSMutableParagraphStyle()
         style.minimumLineHeight = 25
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, fullString.count))
+        attrString.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, fullString.count))
         
         bodyLabel.attributedText = attrString
     }

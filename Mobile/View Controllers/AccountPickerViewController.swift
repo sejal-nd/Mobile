@@ -164,10 +164,8 @@ class AccountPickerViewController: UIViewController {
         return defaultStatusBarStyle
     }
     
-    func onMinimizedPickerTap() {
-        if let sv = scrollView {
-            sv.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        }
+    @objc func onMinimizedPickerTap() {
+        scrollView?.setContentOffset(.zero, animated: true)
     }
     
 }

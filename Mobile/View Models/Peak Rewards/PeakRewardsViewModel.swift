@@ -49,7 +49,7 @@ class PeakRewardsViewModel {
                 .materialize()
                 .filter { !$0.isCompleted }
         }
-        .shareReplay(1)
+        .share(replay: 1)
     
     private(set) lazy var peakRewardsOverridesEvents: Observable<Event<[PeakRewardsOverride]>> = Observable
         .merge(self.loadInitialData, self.overridesUpdated)
@@ -62,7 +62,7 @@ class PeakRewardsViewModel {
                 .materialize()
                 .filter { !$0.isCompleted }
         }
-        .shareReplay(1)
+        .share(replay: 1)
     
     private(set) lazy var overrides: Observable<[PeakRewardsOverride]> = self.peakRewardsOverridesEvents.elements()
     
@@ -96,7 +96,7 @@ class PeakRewardsViewModel {
                 .materialize()
                 .filter { !$0.isCompleted }
         }
-        .shareReplay(1)
+        .share(replay: 1)
     
     //MARK: - View Values
     private(set) lazy var devices: Driver<[SmartThermostatDevice]> = self.peakRewardsSummaryEvents.elements()

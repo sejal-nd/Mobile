@@ -86,7 +86,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         }
     }
     
-	func onAccountNumberKeyboardDonePress() {
+	@objc func onAccountNumberKeyboardDonePress() {
 		viewModel.accountNumberHasTenDigits.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
 			.drive(onNext: { [weak self] enabled in
 				if enabled {
@@ -106,16 +106,16 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         
         setNeedsStatusBarAppearanceUpdate()
         
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         LoadingView.show()

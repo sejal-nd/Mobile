@@ -40,7 +40,7 @@ class MyHomeProfileViewModel {
         self.saveAction = saveAction
         
         initialHomeProfile = usageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
-            .shareReplay(1)
+            .share(replay: 1)
         
     }
     

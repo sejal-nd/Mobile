@@ -171,9 +171,9 @@ class ChangePasswordViewController: UIViewController {
             navigationController?.navigationBar.barTintColor = .primaryColor
             navigationController?.navigationBar.isTranslucent = false
             
-            let titleDict: [String: Any] = [
-                NSForegroundColorAttributeName: UIColor.white,
-                NSFontAttributeName: OpenSans.bold.of(size: 18)
+            let titleDict: [NSAttributedStringKey: Any] = [
+                .foregroundColor: UIColor.white,
+                .font: OpenSans.bold.of(size: 18)
             ]
             navigationController?.navigationBar.titleTextAttributes = titleDict
             
@@ -185,11 +185,11 @@ class ChangePasswordViewController: UIViewController {
         Analytics().logScreenView(AnalyticsPageView.ChangePasswordOffer.rawValue)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -199,7 +199,7 @@ class ChangePasswordViewController: UIViewController {
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             self.navigationController?.popViewController(animated: true)
             Analytics().logScreenView(AnalyticsPageView.ChangePasswordDone.rawValue)
-        }, onPasswordNoMatch: { [weak self] _ in
+        }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
             guard let `self` = self else { return }
             self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
@@ -294,7 +294,7 @@ class ChangePasswordViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -303,7 +303,7 @@ class ChangePasswordViewController: UIViewController {
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }

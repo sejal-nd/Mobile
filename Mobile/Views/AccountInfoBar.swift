@@ -75,11 +75,11 @@ class AccountInfoBar: UIView {
         label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         let leadingConstraint = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
-        leadingConstraint.priority = 999
+        leadingConstraint.priority = UILayoutPriority(rawValue: 999)
         leadingConstraint.isActive = true
         
         let trailingConstraint = label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-        trailingConstraint.priority = 999
+        trailingConstraint.priority = UILayoutPriority(rawValue: 999)
         trailingConstraint.isActive = true
         
         label.widthAnchor.constraint(lessThanOrEqualToConstant: 460).isActive = true

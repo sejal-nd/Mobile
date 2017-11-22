@@ -74,7 +74,7 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         }
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -91,7 +91,7 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         })
     }
     
-    func onAccountNumberKeyboardDonePress() {
+    @objc func onAccountNumberKeyboardDonePress() {
         viewModel.accountNumberHasTenDigits.asObservable().take(1).asDriver(onErrorDriveWith: .empty()).drive(onNext: { [weak self] valid in
             if valid {
                 self?.onNextPress()

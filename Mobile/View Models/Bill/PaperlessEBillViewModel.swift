@@ -89,7 +89,7 @@ class PaperlessEBillViewModel {
                     .sorted { $0.0 < $1.0 }
                     .map { $0.1 }
             }
-            .shareReplay(1)
+            .share(replay: 1)
     }()
     
     func submitChanges(onSuccess: @escaping (PaperlessEBillChangedStatus) -> Void, onError: @escaping (String) -> Void) {

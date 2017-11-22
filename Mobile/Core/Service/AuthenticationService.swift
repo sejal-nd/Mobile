@@ -152,8 +152,8 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.validateLogin(username, password: password, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success():
-                    observer.onNext()
+                case ServiceResult.Success(()):
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -175,7 +175,7 @@ extension AuthenticationService {
             self.logout(completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -197,7 +197,7 @@ extension AuthenticationService {
             self.changePassword(currentPassword, newPassword: newPassword, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -220,7 +220,7 @@ extension AuthenticationService {
             self.changePasswordAnon(username, currentPassword: currentPassword, newPassword: newPassword, completion: { (result: ServiceResult<Void>) in
                 switch(result){
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -336,8 +336,8 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.recoverPassword(username: username, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success():
-                    observer.onNext()
+                case ServiceResult.Success(()):
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

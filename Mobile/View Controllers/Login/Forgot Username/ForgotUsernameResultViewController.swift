@@ -60,10 +60,10 @@ class ForgotUsernameResultViewController: UIViewController {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 24 // Line height
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: fullRange)
+        attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: fullRange)
         
-        attrString.addAttribute(NSFontAttributeName, value: SystemFont.semibold.of(textStyle: .subheadline), range: fullRange)
-        attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: fullRange)
+        attrString.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .subheadline), range: fullRange)
+        attrString.addAttribute(.foregroundColor, value: UIColor.blackText, range: fullRange)
         
         topTextView.textContainerInset = .zero
         topTextView.textContainer.lineFragmentPadding = 0

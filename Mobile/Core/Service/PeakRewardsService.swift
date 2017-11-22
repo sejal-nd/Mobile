@@ -163,7 +163,7 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.scheduleOverride(accountNumber: accountNumber, premiseNumber: premiseNumber, device: device, date: date) { result in
                 switch result {
-                case ServiceResult.Success():
+                case ServiceResult.Success(()):
                     observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
@@ -180,7 +180,7 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.deleteOverride(accountNumber: accountNumber, premiseNumber: premiseNumber, device: device) { result in
                 switch result {
-                case ServiceResult.Success():
+                case ServiceResult.Success(()):
                     observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
@@ -215,7 +215,7 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.updateDeviceSettings(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber, settings: settings) { result in
                 switch result {
-                case ServiceResult.Success():
+                case ServiceResult.Success(()):
                     observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
@@ -245,7 +245,7 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.updateSmartThermostatSchedule(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber, schedule: schedule) { result in
                 switch result {
-                case ServiceResult.Success():
+                case ServiceResult.Success(()):
                     observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):

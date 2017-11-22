@@ -80,20 +80,20 @@ class ForgotPasswordViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .primaryColor
         navigationController?.navigationBar.isTranslucent = false
         
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
                 
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()

@@ -47,8 +47,8 @@ import RxCocoa
 extension Reactive where Base: BillAlertBannerView {
     
     /// Bindable sink for `resetAnimation` method.
-    var resetAnimation: UIBindingObserver<Base, Void> {
-        return UIBindingObserver(UIElement: self.base) { view, _ in
+    var resetAnimation: Binder<Void> {
+        return Binder(base) { view, _ in
             view.resetAnimation()
         }
     }

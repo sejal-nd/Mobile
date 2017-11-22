@@ -62,7 +62,7 @@ extension OutageService {
             self.reportOutage(outageInfo: outageInfo, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

@@ -50,7 +50,7 @@ class AccountLookupToolResultViewController: UIViewController {
         firstSeparatorView.backgroundColor = tableView.separatorColor
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         _ = navigationController?.popViewController(animated: true)
     }
     

@@ -169,7 +169,7 @@ class AlertsViewController: AccountPickerViewController {
         performSegue(withIdentifier: "preferencesSegue", sender: self)
     }
     
-    func onUpdateCellTap(sender: ButtonControl) {
+    @objc func onUpdateCellTap(sender: ButtonControl) {
         performSegue(withIdentifier: "opcoUpdateDetailSegue", sender: sender)
     }
     

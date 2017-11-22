@@ -248,7 +248,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     
-    func resetNavigationOnAuthTokenExpire() {
+    @objc func resetNavigationOnAuthTokenExpire() {
         resetNavigation(sendToLogin: false)
         
         let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("Your session has expired. Please sign in again.", comment: ""), preferredStyle: .alert)
@@ -256,7 +256,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
     }
     
-    func showMaintenanceMode(){
+    @objc func showMaintenanceMode(){
         DispatchQueue.main.async { [weak self] in
             LoadingView.hide()
 

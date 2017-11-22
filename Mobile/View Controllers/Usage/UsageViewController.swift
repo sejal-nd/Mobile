@@ -172,10 +172,10 @@ class UsageViewController: UIViewController {
     }
     
     private func buttonTapSetup() {
-        Driver.merge(usageGraphPlaceholderButton.rx.tap.asDriver().mapTo("usageWebViewSegue"),
-                     top5EnergyTipsButton.rx.tap.asDriver().mapTo("top5EnergyTipsSegue"),
-                     updateYourHomeProfileButton.rx.tap.asDriver().mapTo("updateYourHomeProfileSegue"),
-                     smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().mapTo("totalSavingsSegue"))
+        Driver.merge(usageGraphPlaceholderButton.rx.tap.asDriver().map(to: "usageWebViewSegue"),
+                     top5EnergyTipsButton.rx.tap.asDriver().map(to: "top5EnergyTipsSegue"),
+                     updateYourHomeProfileButton.rx.tap.asDriver().map(to: "updateYourHomeProfileSegue"),
+                     smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().map(to: "totalSavingsSegue"))
             .drive(onNext: { [weak self] in
                 if $0 == "totalSavingsSegue" {
                     Analytics().logScreenView(AnalyticsPageView.AllSavingsUsage.rawValue)

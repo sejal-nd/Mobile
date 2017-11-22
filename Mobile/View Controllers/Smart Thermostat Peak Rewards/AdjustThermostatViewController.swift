@@ -71,10 +71,10 @@ class AdjustThermostatViewController: UIViewController {
         permanentHoldLabel.textColor = .blackText
         permanentHoldLabel.text = NSLocalizedString("Permanent Hold", comment: "")
         permanentHoldLabel.isAccessibilityElement = false
-        permanentHoldLabel.setContentHuggingPriority(1, for: .horizontal)
-        permanentHoldLabel.setContentCompressionResistancePriority(1000, for: .horizontal)
+        permanentHoldLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
+        permanentHoldLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         
-        permanentHoldSwitch.setContentHuggingPriority(1000, for: .horizontal)
+        permanentHoldSwitch.setContentHuggingPriority(.required, for: .horizontal)
         
         let permanentHoldStack = UIStackView(arrangedSubviews: [permanentHoldLabel, permanentHoldSwitch]).usingAutoLayout()
         permanentHoldStack.axis = .horizontal

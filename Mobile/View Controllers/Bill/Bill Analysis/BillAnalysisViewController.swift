@@ -242,8 +242,8 @@ class BillAnalysisViewController: UIViewController {
         currentChargesPieChartView.transparentCircleColor = .softGray
         
         let centerAttrText = NSMutableAttributedString(string: totalCharges.currencyString ?? "$0.00")
-        centerAttrText.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSRange(location: 0, length: centerAttrText.length))
-        centerAttrText.addAttribute(NSFontAttributeName, value: OpenSans.semibold.of(size: 24), range: NSRange(location: 0, length: centerAttrText.length))
+        centerAttrText.addAttribute(.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: centerAttrText.length))
+        centerAttrText.addAttribute(.font, value: OpenSans.semibold.of(size: 24), range: NSRange(location: 0, length: centerAttrText.length))
         currentChargesPieChartView.centerAttributedText = centerAttrText
         
         currentChargesPieChartView.accessibilityLabel = totalCharges.currencyString ?? "$0.00"
@@ -397,7 +397,7 @@ class BillAnalysisViewController: UIViewController {
             } else {
                 Analytics().logScreenView(AnalyticsPageView.BillGasToggle.rawValue)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.lastYearPreviousBillSelectedSegmentIndex).disposed(by: disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
             self?.fetchData()
@@ -406,7 +406,7 @@ class BillAnalysisViewController: UIViewController {
             } else {
                 Analytics().logScreenView(AnalyticsPageView.BillPreviousToggle.rawValue)
             }
-        }).addDisposableTo(disposeBag)
+        }).disposed(by: disposeBag)
         
         // Bar graph height constraints
         viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)

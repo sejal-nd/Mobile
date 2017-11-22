@@ -24,7 +24,7 @@ struct EnergyTip: Mappable {
         }
         
         let attributedBody = try NSAttributedString(data: data,
-                                         options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                                         options: [.documentType: NSAttributedString.DocumentType.html],
                                          documentAttributes: nil)
         body = attributedBody.string
         

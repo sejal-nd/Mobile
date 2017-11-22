@@ -69,8 +69,8 @@ import RxCocoa
 
 extension Reactive where Base: LoadingIndicator {
     
-    var isAnimating: UIBindingObserver<Base, Bool> {
-        return UIBindingObserver(UIElement: self.base) { loadingIndicator, active in
+    var isAnimating: Binder<Bool> {
+        return Binder(base) { loadingIndicator, active in
             loadingIndicator.isHidden = !active
         }
     }

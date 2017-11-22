@@ -340,7 +340,7 @@ class AlertPreferencesViewController: UIViewController {
         }
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         if viewModel.userChangedPrefs.value {
             let alertVc = UIAlertController(title: NSLocalizedString("Exit Notification Preferences", comment: ""),
                                             message: NSLocalizedString("Are you sure you want to leave without saving your changes?", comment: ""),
@@ -355,7 +355,7 @@ class AlertPreferencesViewController: UIViewController {
         }
     }
     
-    func onSavePress() {
+    @objc func onSavePress() {
 //        print("outage = \(viewModel.outage.value)")
 //        print("scheduledMaint = \(viewModel.scheduledMaint.value)")
 //        print("severeWeather = \(viewModel.severeWeather.value)")

@@ -129,7 +129,7 @@ class OutageViewController: AccountPickerViewController {
         gradientLayer.frame = gradientBackground.frame
     }
     
-    func killRefresh() -> Void {
+    @objc func killRefresh() -> Void {
         refreshControl?.endRefreshing()
         scrollView!.alwaysBounceVertical = false
     }
@@ -227,7 +227,7 @@ class OutageViewController: AccountPickerViewController {
     
     // MARK: - Actions
     
-    func onPullToRefresh() {
+    @objc func onPullToRefresh() {
         viewModel.getOutageStatus(onSuccess: { [weak self] in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()

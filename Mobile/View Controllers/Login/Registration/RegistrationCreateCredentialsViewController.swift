@@ -95,7 +95,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         viewModel.primaryProfile.value = !viewModel.primaryProfile.value
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -355,7 +355,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
  
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -364,7 +364,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }

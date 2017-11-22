@@ -159,16 +159,16 @@ class ForgotUsernameViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .primaryColor
         navigationController?.navigationBar.isTranslucent = false
 
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         // We do this to cover the case where we push ForgotUsernameViewController from ForgotPasswordViewController.
         // When that happens, we want the cancel action to go straight back to LoginViewController.
         for vc in (navigationController?.viewControllers)! {
@@ -180,7 +180,7 @@ class ForgotUsernameViewController: UIViewController {
         }
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -213,7 +213,7 @@ class ForgotUsernameViewController: UIViewController {
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
-    func onIdentifierAccountNumberKeyboardDonePress() {
+    @objc func onIdentifierAccountNumberKeyboardDonePress() {
         viewModel.nextButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] enabled in
                 if enabled {

@@ -90,17 +90,17 @@ fileprivate class BasePickerView: UIView {
         titleLabel.textAlignment = .center
         titleLabel.font = SystemFont.semibold.of(size: 18)
         titleLabel.textColor = .deepGray
-        titleLabel.setContentHuggingPriority(1, for: .horizontal)
+        titleLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         titleLabel.numberOfLines = 0
         
-        cancelButton.setContentHuggingPriority(1000, for: .horizontal)
-        cancelButton.setContentCompressionResistancePriority(1000, for: .horizontal)
+        cancelButton.setContentHuggingPriority(.required, for: .horizontal)
+        cancelButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         cancelButton.titleLabel?.font = SystemFont.regular.of(size: 18)
         cancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
         cancelButton.setTitleColor(.actionBlue, for: .normal)
         
-        doneButton.setContentHuggingPriority(1000, for: .horizontal)
-        doneButton.setContentCompressionResistancePriority(1000, for: .horizontal)
+        doneButton.setContentHuggingPriority(.required, for: .horizontal)
+        doneButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         doneButton.titleLabel?.font = SystemFont.semibold.of(size: 18)
         doneButton.setTitle(NSLocalizedString("Done", comment: ""), for: .normal)
         doneButton.setTitleColor(.actionBlue, for: .normal)
@@ -116,18 +116,18 @@ fileprivate class BasePickerView: UIView {
         titleLabel.leadingAnchor.constraint(greaterThanOrEqualTo: cancelButton.trailingAnchor, constant: 8).isActive = true
         titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: doneButton.leadingAnchor, constant: 8).isActive = true
         let titleLeading = titleLabel.leadingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 8)
-        titleLeading.priority = 750
+        titleLeading.priority = UILayoutPriority(rawValue: 750)
         titleLeading.isActive = true
         let titleTrailing = titleLabel.trailingAnchor.constraint(equalTo: doneButton.leadingAnchor, constant: 8)
-        titleTrailing.priority = 750
+        titleTrailing.priority = UILayoutPriority(rawValue: 750)
         titleTrailing.isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: topBarContainer.centerXAnchor).isActive = true
         
         let cancelToTop = cancelButton.topAnchor.constraint(equalTo: topBarContainer.topAnchor)
-        cancelToTop.priority = 750
+        cancelToTop.priority = UILayoutPriority(rawValue: 750)
         cancelToTop.isActive = true
         let cancelToBottom = cancelButton.bottomAnchor.constraint(equalTo: topBarContainer.bottomAnchor)
-        cancelToBottom.priority = 750
+        cancelToBottom.priority = UILayoutPriority(rawValue: 750)
         cancelToBottom.isActive = true
         cancelButton.leadingAnchor.constraint(equalTo: topBarContainer.leadingAnchor, constant: 16).isActive = true
         cancelButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true

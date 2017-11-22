@@ -75,7 +75,7 @@ extension AlertsService {
             self.register(token: token, firstLogin: firstLogin, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -105,7 +105,7 @@ extension AlertsService {
             self.setAlertPreferences(accountNumber: accountNumber, alertPreferences: alertPreferences, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -120,7 +120,7 @@ extension AlertsService {
             self.enrollBudgetBillingNotification(accountNumber: accountNumber, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -150,7 +150,7 @@ extension AlertsService {
             self.setAlertLanguage(accountNumber: accountNumber, english: english, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

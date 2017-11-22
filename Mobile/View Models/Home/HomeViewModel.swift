@@ -65,13 +65,13 @@ class HomeViewModel {
     private(set) lazy var isSwitchingAccounts = self.switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.sharedInstance.currentAccount == nil }
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = Observable
-        .merge(self.fetchData.asObservable(), RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount))
+        .merge(self.fetchData.asObservable(), RxNotifications.shared.accountDetailUpdated.map(to:FetchingAccountState.switchAccount))
         .flatMapLatest { [unowned self] in
             self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
                 .trackActivity(self.fetchTracker(forState: $0))
                 .materialize()
         }
-        .shareReplay(1)
+        .share(replay: 1)
 
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
@@ -102,7 +102,7 @@ class HomeViewModel {
             self.weatherService.fetchWeather(address: $0)
                 .materialize()
         }
-        .shareReplay(1)
+        .share(replay: 1)
 
     private(set) lazy var greeting: Driver<String?> = self.accountDetailEvents
         .map { _ in Date().localizedGreeting }

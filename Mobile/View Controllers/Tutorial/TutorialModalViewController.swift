@@ -47,7 +47,7 @@ class TutorialModalViewController: DismissableFormSheetViewController {
         pagerContent.accessibilityElements = [slideViews[page].titleText, slideViews[page].messageText]
     }
     
-    func onPageControlTap(sender: UIPageControl) {
+    @objc func onPageControlTap(sender: UIPageControl) {
         UIView.animate(withDuration: 0.3) {
             self.scrollView.contentOffset.x = self.scrollView.frame.width * CGFloat(sender.currentPage)
         }

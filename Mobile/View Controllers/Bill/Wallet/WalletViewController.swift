@@ -121,7 +121,7 @@ class WalletViewController: UIViewController {
         setupBinding()
         setupButtonTaps()
         
-        viewModel.fetchWalletItems.onNext() // Fetch the items!
+        viewModel.fetchWalletItems.onNext(()) // Fetch the items!
         
         addAccessibility()
     }
@@ -217,7 +217,7 @@ class WalletViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
-    func onWalletItemPress(sender: ButtonControl) {
+    @objc func onWalletItemPress(sender: ButtonControl) {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
             selectedWalletItem = walletItems[sender.tag]
             if selectedWalletItem!.bankOrCard == .card {
@@ -268,7 +268,7 @@ class WalletViewController: UIViewController {
     func didChangeAccount(toastMessage: String) {
         didUpdateSubject.onNext(toastMessage)
         if !shouldPopToRootOnSave {
-            viewModel.fetchWalletItems.onNext()
+            viewModel.fetchWalletItems.onNext(())
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(toastMessage)
             })

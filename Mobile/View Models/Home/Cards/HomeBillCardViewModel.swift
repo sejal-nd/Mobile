@@ -64,14 +64,14 @@ class HomeBillCardViewModel {
     }
     
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = Observable
-        .merge(self.fetchData, RxNotifications.shared.defaultWalletItemUpdated.mapTo(FetchingAccountState.switchAccount))
+        .merge(self.fetchData, RxNotifications.shared.defaultWalletItemUpdated.map(to: FetchingAccountState.switchAccount))
         .flatMapLatest { [unowned self] in
             self.walletService.fetchWalletItems()
                 .trackActivity(self.fetchTracker(forState: $0))
                 .map { $0.first(where: { $0.isDefault }) }
                 .materialize()
         }
-        .shareReplay(1)
+        .share(replay: 1)
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents.errors()
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
@@ -100,7 +100,7 @@ class HomeBillCardViewModel {
                 return Observable<[Date]>.just([]).materialize()
             }
         }
-        .shareReplay(1)
+        .share(replay: 1)
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
         .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(),
@@ -145,7 +145,7 @@ class HomeBillCardViewModel {
                     let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
                     RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] = paymentDetails
                 })
-                .toVoid()
+                .map(to: ())
                 .trackActivity(self.paymentTracker)
                 .materialize()
         }
@@ -482,18 +482,18 @@ class HomeBillCardViewModel {
                 if days > 0 {
                     let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
                     return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                              attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                           NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                              attributes: [.foregroundColor: UIColor.deepGray,
+                                                           .font: SystemFont.regular.of(textStyle: .subheadline)])
                 } else {
                     let localizedText = NSLocalizedString("Due on %@", comment: "")
                     return NSAttributedString(string: String(format: localizedText, extensionDate.mmDdYyyyString),
-                                              attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                           NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                              attributes: [.foregroundColor: UIColor.deepGray,
+                                                           .font: SystemFont.regular.of(textStyle: .subheadline)])
                 }
             } else {
                 return NSAttributedString(string: NSLocalizedString("Due Immediately", comment: ""),
-                                          attributes: [NSForegroundColorAttributeName: UIColor.errorRed,
-                                                       NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                          attributes: [.foregroundColor: UIColor.errorRed,
+                                                       .font: SystemFont.regular.of(textStyle: .subheadline)])
             }
         } else if let dueByDate = accountDetail.billingInfo.dueByDate {
             let calendar = Calendar.opCo
@@ -508,13 +508,13 @@ class HomeBillCardViewModel {
             if days > 0 {
                 let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                          attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                       NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                          attributes: [.foregroundColor: UIColor.deepGray,
+                                                       .font: SystemFont.regular.of(textStyle: .subheadline)])
             } else {
                 let localizedText = NSLocalizedString("Due on %@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
-                                          attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                       NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                          attributes: [.foregroundColor: UIColor.deepGray,
+                                                       .font: SystemFont.regular.of(textStyle: .subheadline)])
             }
             
         } else {
@@ -535,13 +535,13 @@ class HomeBillCardViewModel {
         if days > 0 {
             let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
             return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                      attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                      attributes: [.foregroundColor: UIColor.deepGray,
+                                                   .font: SystemFont.regular.of(textStyle: .subheadline)])
         } else {
             let localizedText = NSLocalizedString("Due on %@", comment: "")
             return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
-                                      attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                      attributes: [.foregroundColor: UIColor.deepGray,
+                                                   .font: SystemFont.regular.of(textStyle: .subheadline)])
         }
     }
     

@@ -175,12 +175,12 @@ class HomeViewController: AccountPickerViewController {
         weatherView.accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage]
     }
     
-    func killRefresh() -> Void {
+    @objc func killRefresh() -> Void {
         self.refreshControl?.endRefreshing()
         self.scrollView!.alwaysBounceVertical = true
     }
     
-    func setRefreshControlEnabled(enabled: Bool) {
+    @objc func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             refreshControl = UIRefreshControl()
             refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
@@ -197,7 +197,7 @@ class HomeViewController: AccountPickerViewController {
         }
     }
     
-    func onPullToRefresh() {
+    @objc func onPullToRefresh() {
         viewModel.fetchData.onNext(.refresh)
     }
     

@@ -168,7 +168,7 @@ class AccountPicker: UIView {
         let accountNumberText = "\(account.accountNumber) " +
                 "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        accountNumberLabel.setContentHuggingPriority(1000, for: .horizontal)
+        accountNumberLabel.setContentHuggingPriority(.required, for: .horizontal)
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
         accountNumberLabel.textColor = tintWhite ? .white: .blackText
         accountNumberLabel.text = accountNumberText
@@ -232,7 +232,7 @@ class AccountPicker: UIView {
         }
     }
     
-    func onAdvancedAccountButtonPress() {
+    @objc func onAdvancedAccountButtonPress() {
         let storyboard = UIStoryboard(name: "Outage", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "advancedAccountPicker") as? AdvancedAccountPickerViewController {
             vc.delegate = self
@@ -248,7 +248,7 @@ class AccountPicker: UIView {
         }
     }
     
-    func onPageControlTap(sender: UIPageControl) {
+    @objc func onPageControlTap(sender: UIPageControl) {
         scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: true)
         currentAccount = AccountsStore.sharedInstance.accounts[pageControl.currentPage]
         AccountsStore.sharedInstance.currentAccount = currentAccount

@@ -44,7 +44,7 @@ class TotalSavingsViewController: UIViewController {
         // the tableView's width, resulting in us always having the 31 margin regardless of text size
         let boundingBox = NSLocalizedString("Energy Savings", comment: "").boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 20),
                                                                                         options: .usesLineFragmentOrigin,
-                                                                                        attributes: [NSFontAttributeName: SystemFont.medium.of(textStyle: .footnote)],
+                                                                                        attributes: [.font: SystemFont.medium.of(textStyle: .footnote)],
                                                                                         context: nil)
         let energySavingsLabelWidth = ceil(boundingBox.width)
         tableViewWidthConstraint.constant = 581 - (115 - energySavingsLabelWidth)

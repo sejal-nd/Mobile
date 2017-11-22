@@ -73,7 +73,7 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         }
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()

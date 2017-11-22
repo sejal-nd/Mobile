@@ -281,7 +281,7 @@ class ReportOutageViewController: UIViewController {
                         
                         self.meterPingFuseBoxView.isHidden = false
                         self.footerContainerView.isHidden = false
-                    }, onError: { error in // VOLTAGE STATUS ERROR
+                    }, onError: { // VOLTAGE STATUS ERROR
                         self.meterPingCurrentStatusLoadingView.isHidden = true
                         self.meterPingCurrentStatusCheckImageView.isHidden = false
                         self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
@@ -300,7 +300,7 @@ class ReportOutageViewController: UIViewController {
                     })
                 }
 
-            }, onError: { error in // POWER STATUS ERROR
+            }, onError: { // POWER STATUS ERROR
                 self.meterPingCurrentStatusLoadingView.isHidden = true
                 self.meterPingCurrentStatusCheckImageView.isHidden = false
                 self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
@@ -324,11 +324,11 @@ class ReportOutageViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         view.endEditing(true)
         
         let errorBlock = { [weak self] (errorMessage: String) in
@@ -373,7 +373,7 @@ class ReportOutageViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
@@ -381,7 +381,7 @@ class ReportOutageViewController: UIViewController {
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }

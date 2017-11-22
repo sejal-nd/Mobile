@@ -86,12 +86,12 @@ class OverrideViewController: UIViewController {
         scheduledSerialLabel.textColor = .blackText
         scheduledSerialLabel.font = OpenSans.regular.of(textStyle: .title1)
         scheduledSerialLabel.numberOfLines = 0
-        scheduledSerialLabel.setContentHuggingPriority(1, for: .horizontal)
+        scheduledSerialLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
         scheduledDateLabel.textColor = .blackText
         scheduledDateLabel.font = OpenSans.regular.of(textStyle: .title1)
         scheduledDateLabel.numberOfLines = 0
-        scheduledDateLabel.setContentHuggingPriority(1, for: .horizontal)
+        scheduledDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
         let scheduledLabelStack = UIStackView(arrangedSubviews: [scheduledSerialLabel, scheduledDateLabel])
         scheduledLabelStack.axis = .vertical
@@ -132,12 +132,12 @@ class OverrideViewController: UIViewController {
         activeSerialLabel.textColor = .blackText
         activeSerialLabel.font = OpenSans.regular.of(textStyle: .title1)
         activeSerialLabel.numberOfLines = 0
-        activeSerialLabel.setContentHuggingPriority(1, for: .horizontal)
+        activeSerialLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
         activeDateLabel.textColor = .blackText
         activeDateLabel.font = OpenSans.regular.of(textStyle: .title1)
         activeDateLabel.numberOfLines = 0
-        activeDateLabel.setContentHuggingPriority(1, for: .horizontal)
+        activeDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
         let activeLabelStack = UIStackView(arrangedSubviews: [activeSerialLabel, activeDateLabel])
         activeLabelStack.axis = .vertical

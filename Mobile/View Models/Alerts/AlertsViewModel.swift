@@ -48,14 +48,14 @@ class AlertsViewModel {
                 guard let `self` = self else { return }
                 self.currentAccountDetail = accountDetail
                 self.isFetchingAccountDetail.value = false
-                self.a11yScreenChangedEvent.onNext()
+                self.a11yScreenChangedEvent.onNext(())
                 self.alertsService.fetchOpcoUpdates(accountDetail: accountDetail)
                     .observeOn(MainScheduler.instance)
                     .subscribe(onNext: { [weak self] opcoUpdates in
                         self?.currentOpcoUpdates.value = opcoUpdates
                         self?.isFetchingUpdates.value = false
-                        self?.reloadUpdatesTableViewEvent.onNext()
-                        self?.a11yScreenChangedEvent.onNext()
+                        self?.reloadUpdatesTableViewEvent.onNext(())
+                        self?.a11yScreenChangedEvent.onNext(())
                     }, onError: { [weak self] err in
                         self?.isFetchingUpdates.value = false
                         self?.isUpdatesError.value = true
@@ -70,7 +70,7 @@ class AlertsViewModel {
     
     func fetchAlertsFromDisk() {
         currentAlerts.value = AlertsStore.sharedInstance.getAlerts(forAccountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
-        self.reloadAlertsTableViewEvent.onNext()
+        self.reloadAlertsTableViewEvent.onNext(())
     }
     
     private(set) lazy var shouldShowLoadingIndicator: Driver<Bool> =

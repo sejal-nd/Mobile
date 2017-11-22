@@ -287,10 +287,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
     func buildAmountToPayGroup() -> UIStackView {
         // start of first group, header
         amountDueHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
-        amountDueHeaderLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        amountDueHeaderLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        amountDueHeaderLabel.setContentHuggingPriority(751, for: .horizontal)
-        amountDueHeaderLabel.setContentHuggingPriority(999, for: .vertical)
+        amountDueHeaderLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        amountDueHeaderLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        amountDueHeaderLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        amountDueHeaderLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         amountDueHeaderLabel.numberOfLines = 0
         amountDueHeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         amountDueHeaderLabel.text = NSLocalizedString("How much do you want to pay?", comment: "")
@@ -359,10 +359,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         // creating details label for second button
         amountNotToExceedDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
-        amountNotToExceedDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        amountNotToExceedDetailsLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        amountNotToExceedDetailsLabel.setContentHuggingPriority(751, for: .horizontal)
-        amountNotToExceedDetailsLabel.setContentHuggingPriority(999, for: .vertical)
+        amountNotToExceedDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        amountNotToExceedDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        amountNotToExceedDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        amountNotToExceedDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         amountNotToExceedDetailsLabel.numberOfLines = 0
         amountNotToExceedDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the payment is created, and you will be responsible for manually scheduling a payment of the remaining amount. \n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in your service being disconnected.", comment: "")
@@ -385,10 +385,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
     func buildWhenToPayGroup() -> UIStackView {
         //
         dueDateHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
-        dueDateHeaderLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        dueDateHeaderLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        dueDateHeaderLabel.setContentHuggingPriority(751, for: .horizontal)
-        dueDateHeaderLabel.setContentHuggingPriority(999, for: .vertical)
+        dueDateHeaderLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        dueDateHeaderLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        dueDateHeaderLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        dueDateHeaderLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         dueDateHeaderLabel.numberOfLines = 0
         dueDateHeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         dueDateHeaderLabel.text = NSLocalizedString("When do you want to pay?", comment: "")
@@ -417,10 +417,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         dueDateRadioControlsSet.append(onDueDateRadioControl)
         
         onDueDateDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
-        onDueDateDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        onDueDateDetailsLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        onDueDateDetailsLabel.setContentHuggingPriority(751, for: .horizontal)
-        onDueDateDetailsLabel.setContentHuggingPriority(999, for: .vertical)
+        onDueDateDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        onDueDateDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        onDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        onDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         onDueDateDetailsLabel.numberOfLines = 0
         onDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         onDueDateDetailsLabel.text = NSLocalizedString("Your payments will process on each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary.", comment: "")
@@ -447,10 +447,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         beforeDueDateRadioControl.detailButton.addTarget(self, action: #selector(beforeDueDateButtonPressed), for: .touchUpInside)
         
         beforeDueDateDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
-        beforeDueDateDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        beforeDueDateDetailsLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        beforeDueDateDetailsLabel.setContentHuggingPriority(751, for: .horizontal)
-        beforeDueDateDetailsLabel.setContentHuggingPriority(999, for: .vertical)
+        beforeDueDateDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        beforeDueDateDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        beforeDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        beforeDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         beforeDueDateDetailsLabel.numberOfLines = 0
         beforeDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         beforeDueDateDetailsLabel.text = NSLocalizedString("Your payment will process on your selected number of days before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary.\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.", comment: "")
@@ -473,10 +473,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
     func buildRegularPaymentGroup() -> UIStackView {
         ///
         numberOfPaymentsHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
-        numberOfPaymentsHeaderLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        numberOfPaymentsHeaderLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        numberOfPaymentsHeaderLabel.setContentHuggingPriority(751, for: .horizontal)
-        numberOfPaymentsHeaderLabel.setContentHuggingPriority(999, for: .vertical)
+        numberOfPaymentsHeaderLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        numberOfPaymentsHeaderLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        numberOfPaymentsHeaderLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        numberOfPaymentsHeaderLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         numberOfPaymentsHeaderLabel.numberOfLines = 0
         numberOfPaymentsHeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         numberOfPaymentsHeaderLabel.text = NSLocalizedString("How long do you want to use AutoPay?", comment: "")
@@ -510,10 +510,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsRadioControlsSet.append(untilCanceledRadioControl)
         
         untilCanceledDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
-        untilCanceledDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        untilCanceledDetailsLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        untilCanceledDetailsLabel.setContentHuggingPriority(751, for: .horizontal)
-        untilCanceledDetailsLabel.setContentHuggingPriority(999, for: .vertical)
+        untilCanceledDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        untilCanceledDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        untilCanceledDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        untilCanceledDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         untilCanceledDetailsLabel.numberOfLines = 0
         untilCanceledDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         untilCanceledDetailsLabel.text = NSLocalizedString("AutoPay will schedule each month's payment until you manually unenroll from AutoPay, or your account is issued a final bill. This is the best way to keep your payments ongoing.", comment: "")
@@ -550,10 +550,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsButtonStackView.addArrangedSubview(numberOfPaymentsSpacerView1)
         
         numberOfPaymentsDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
-        numberOfPaymentsDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        numberOfPaymentsDetailsLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        numberOfPaymentsDetailsLabel.setContentHuggingPriority(751, for: .horizontal)
-        numberOfPaymentsDetailsLabel.setContentHuggingPriority(999, for: .vertical)
+        numberOfPaymentsDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        numberOfPaymentsDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        numberOfPaymentsDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        numberOfPaymentsDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         numberOfPaymentsDetailsLabel.numberOfLines = 0
         numberOfPaymentsDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         numberOfPaymentsDetailsLabel.text = NSLocalizedString("After your selected number of payments have been created, AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your account.", comment: "")
@@ -585,10 +585,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
         untilDateButtonStackView.addArrangedSubview(untilDateSpacerView1)
         
         untilDateDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
-        untilDateDetailsLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        untilDateDetailsLabel.setContentCompressionResistancePriority(999, for: .vertical)
-        untilDateDetailsLabel.setContentHuggingPriority(751, for: .horizontal)
-        untilDateDetailsLabel.setContentHuggingPriority(999, for: .vertical)
+        untilDateDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        untilDateDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        untilDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+        untilDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         untilDateDetailsLabel.numberOfLines = 0
         untilDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         untilDateDetailsLabel.text = NSLocalizedString("AutoPay will schedule each month’s payment until the date you choose, after which AutoPay will automatically stop and you will be responsible for restarting AutoPay or resuming manual payments on your account.", comment: "")
@@ -615,7 +615,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
 
     }
     
-    func beforeDueDateButtonPressed() {
+    @objc func beforeDueDateButtonPressed() {
         view.endEditing(true)
         // Delay here fixes a bug when button is tapped with keyboard up
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: { [weak self] in
@@ -641,7 +641,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
 
     
-    func onDateButtonSelected() {
+    @objc func onDateButtonSelected() {
         view.endEditing(true)
         
         let calendarVC = PDTSimpleCalendarViewController()
@@ -659,7 +659,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
-    func radioControlSet1Pressed(control: UIControl) {
+    @objc func radioControlSet1Pressed(control: UIControl) {
         viewModel.userDidChangeSettings.value = true
         control.isSelected = true
         
@@ -672,7 +672,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         hideAmountNotToExceedControlViews(control != amountNotToExceedRadioControl)
     }
     
-    func radioControlSet2Pressed(control: UIControl) {
+    @objc func radioControlSet2Pressed(control: UIControl) {
         viewModel.userDidChangeSettings.value = true
         control.isSelected = true
         
@@ -685,7 +685,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         hideBeforeDueDateControlViews(control != onDueDateRadioControl)
     }
     
-    func radioControlSet3Pressed(control: UIControl) {
+    @objc func radioControlSet3Pressed(control: UIControl) {
         viewModel.userDidChangeSettings.value = true
         control.isSelected = true
         
@@ -700,7 +700,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         hideUntilDate(control != untilDateRadioControl)
     }
     
-    func onBackPress() {
+    @objc func onBackPress() {
         if let errorMessage = viewModel.getInvalidSettingsMessage() {
             let alertVc = UIAlertController(title: NSLocalizedString("Missing Required Fields", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -712,7 +712,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -721,7 +721,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }

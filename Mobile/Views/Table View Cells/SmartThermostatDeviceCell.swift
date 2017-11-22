@@ -34,7 +34,7 @@ class SmartThermostatDeviceCell: UITableViewCell {
         nameLabel.textColor = .blackText
         nameLabel.numberOfLines = 0
         
-        checkImageView.setContentHuggingPriority(1000, for: .horizontal)
+        checkImageView.setContentHuggingPriority(.required, for: .horizontal)
         
         let stackView = UIStackView(arrangedSubviews: [checkImageView, nameLabel]).usingAutoLayout()
         stackView.axis = .horizontal

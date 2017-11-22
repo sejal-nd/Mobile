@@ -40,14 +40,14 @@ class BillViewModel {
     }
     
     private lazy var accountDetailEvents: Observable<Event<AccountDetail>> = Observable
-        .merge(self.fetchAccountDetail, RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount))
+        .merge(self.fetchAccountDetail, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
         .flatMapLatest { [weak self] state -> Observable<Event<AccountDetail>> in
             guard let `self` = self else { return .empty() }
             return self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
                 .trackActivity(self.tracker(forState: state))
                 .materialize()
         }
-        .shareReplay(1)
+        .share(replay: 1)
         .do(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
     
     private(set) lazy var accountDetailError: Driver<ServiceError?> = self.accountDetailEvents.errors()
@@ -508,20 +508,20 @@ class BillViewModel {
         let topTextRange = NSMakeRange(0, topText.count)
         let bottomTextRange = NSMakeRange(topText.count + 1, bottomText.count)
         
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 16), range: topTextRange)
-        mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.blackText, range: topTextRange)
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 14), range: bottomTextRange)
-        mutableText.addAttribute(NSForegroundColorAttributeName, value: UIColor.successGreenText, range: bottomTextRange)
+        mutableText.addAttribute(.font, value: OpenSans.bold.of(size: 16), range: topTextRange)
+        mutableText.addAttribute(.foregroundColor, value: UIColor.blackText, range: topTextRange)
+        mutableText.addAttribute(.font, value: OpenSans.regular.of(size: 14), range: bottomTextRange)
+        mutableText.addAttribute(.foregroundColor, value: UIColor.successGreenText, range: bottomTextRange)
         
         return mutableText
     }
     
     private static func canEnrollText(boldText: String) -> NSAttributedString {
         let text = NSLocalizedString("Would you like to enroll in ", comment: "")
-        let mutableText = NSMutableAttributedString(string: text + boldText, attributes: [NSForegroundColorAttributeName: UIColor.blackText])
+        let mutableText = NSMutableAttributedString(string: text + boldText, attributes: [.foregroundColor: UIColor.blackText])
         
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.regular.of(size: 16), range: NSMakeRange(0, text.count))
-        mutableText.addAttribute(NSFontAttributeName, value: OpenSans.bold.of(size: 16), range: NSMakeRange(text.count, boldText.count))
+        mutableText.addAttribute(.font, value: OpenSans.regular.of(size: 16), range: NSMakeRange(0, text.count))
+        mutableText.addAttribute(.font, value: OpenSans.bold.of(size: 16), range: NSMakeRange(text.count, boldText.count))
         
         return mutableText
     }

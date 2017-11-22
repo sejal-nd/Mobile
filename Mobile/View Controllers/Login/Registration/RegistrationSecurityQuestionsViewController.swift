@@ -371,7 +371,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -407,7 +407,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -416,7 +416,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -434,15 +434,15 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
 
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
-    func question1Tapped() {
+    @objc func question1Tapped() {
         loadSecretQuestionList(forRow: 1, question: viewModel.securityQuestion1.value)
     }
 
-    func question2Tapped() {
+    @objc func question2Tapped() {
         loadSecretQuestionList(forRow: 2, question: viewModel.securityQuestion2.value)
     }
 
-    func question3Tapped() {
+    @objc func question3Tapped() {
         loadSecretQuestionList(forRow: 3, question: viewModel.securityQuestion3.value)
     }
     

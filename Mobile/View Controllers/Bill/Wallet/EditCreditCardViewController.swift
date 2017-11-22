@@ -212,8 +212,8 @@ class EditCreditCardViewController: UIViewController {
         if let nickname = walletItem.nickName {
             let displayNickname: String
             if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                let last4 = maskedNumber.substring(from:maskedNumber.index(maskedNumber.endIndex, offsetBy: -4))
-                displayNickname = nickname == last4 ? "" : nickname
+                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
+                displayNickname = nickname == String(last4) ? "" : nickname
             } else {
                 displayNickname = nickname
             }
@@ -346,7 +346,7 @@ class EditCreditCardViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -355,7 +355,7 @@ class EditCreditCardViewController: UIViewController {
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -374,7 +374,7 @@ class EditCreditCardViewController: UIViewController {
     }
     
     ///
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
@@ -546,7 +546,7 @@ extension EditCreditCardViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         if textField == expMonthTextField.textField {
             if textField.text?.count == 2 {
                 expYearTextField.textField.becomeFirstResponder()

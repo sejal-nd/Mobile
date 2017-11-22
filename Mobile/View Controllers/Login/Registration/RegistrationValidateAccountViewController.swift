@@ -221,16 +221,16 @@ class RegistrationValidateAccountViewController: UIViewController {
 
         setNeedsStatusBarAppearanceUpdate()
       
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func onIdentifierKeyboardDonePress() {
+    @objc func onIdentifierKeyboardDonePress() {
 		viewModel.nextButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
 			.drive(onNext: { [weak self] enabled in
 				if enabled {
@@ -241,13 +241,13 @@ class RegistrationValidateAccountViewController: UIViewController {
 			}).disposed(by: disposeBag)
     }
 
-    func onCancelPress() {
+    @objc func onCancelPress() {
         // We do this to cover the case where we push RegistrationViewController from LandingViewController.
         // When that happens, we want the cancel action to go straight back to LandingViewController.
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -277,7 +277,7 @@ class RegistrationValidateAccountViewController: UIViewController {
 
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -286,7 +286,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }

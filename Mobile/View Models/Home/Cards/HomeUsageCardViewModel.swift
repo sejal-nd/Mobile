@@ -50,7 +50,7 @@ class HomeUsageCardViewModel {
         self.switchAccountFetchTracker = switchAccountFetchTracker
     }
     
-    private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable.merge(self.accountDetailChanged, self.segmentedControlChanged).shareReplay(1)
+    private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable.merge(self.accountDetailChanged, self.segmentedControlChanged).share(replay: 1)
     
     private(set) lazy var accountDetailChanged = self.accountDetailEvents.elements()
         .withLatestFrom(Observable.combineLatest(self.fetchData,

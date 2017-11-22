@@ -195,7 +195,7 @@ class BillViewController: AccountPickerViewController {
         self.scrollView!.alwaysBounceVertical = true
     }
     
-    func killRefresh() -> Void {
+    @objc func killRefresh() -> Void {
         self.refreshControl?.endRefreshing()
         self.scrollView!.alwaysBounceVertical = false
     }
@@ -313,7 +313,7 @@ class BillViewController: AccountPickerViewController {
 
 	func bindViewHiding() {
         viewModel.shouldShowAlertBanner.not().drive(alertBannerView.rx.isHidden).disposed(by: bag)
-        viewModel.shouldShowAlertBanner.filter { $0 }.toVoid()
+        viewModel.shouldShowAlertBanner.filter { $0 }.map(to: ())
             .drive(alertBannerView.rx.resetAnimation)
             .disposed(by: bag)
 

@@ -42,7 +42,7 @@ class TemperatureSliderView: UIView {
     func buildLayout() {
         titleLabel.isAccessibilityElement = false
         temperatureLabel.isAccessibilityElement = false
-        temperatureLabel.setContentHuggingPriority(1000, for: .horizontal)
+        temperatureLabel.setContentHuggingPriority(.required, for: .horizontal)
         let labelStack = UIStackView(arrangedSubviews: [titleLabel, temperatureLabel]).usingAutoLayout()
         labelStack.axis = .horizontal
         labelStack.alignment = .lastBaseline
@@ -82,9 +82,9 @@ class TemperatureSliderView: UIView {
     func bindViews() {
         mode.asDriver()
             .filter { $0 == .off }
-            .mapTo(NSLocalizedString("Off", comment: ""))
+            .map(to: NSLocalizedString("Off", comment: ""))
             .drive(temperatureLabel.rx.text)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         let titleText = mode.asDriver()
             .map { mode -> String in
@@ -100,11 +100,11 @@ class TemperatureSliderView: UIView {
         
         titleText
             .drive(titleLabel.rx.text)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         titleText
             .drive(slider.rx.accessibilityLabel)
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
         mode.asDriver().map { $0 != .off }.drive(slider.rx.isEnabled).disposed(by: disposeBag)
         
