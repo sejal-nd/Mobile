@@ -146,7 +146,7 @@ class BGEUITests: XCTestCase {
     //Helper function to delete text from a field, 12 is arbitrary
     func clearText (_ field: XCUIElement){
         for _ in 0...12{
-            field.typeText(XCUIKeyboardKeyDelete)
+            field.typeText(XCUIKeyboardKey.delete.rawValue)
         }
     }
     

@@ -285,7 +285,7 @@ class HomeBillCardView: UIView {
 
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
                 LoadingView.show(animated: true)
-                self?.viewModel.submitOneTouchPay.onNext()
+                self?.viewModel.submitOneTouchPay.onNext(())
             })
             return alertController
     }
@@ -301,7 +301,7 @@ class HomeBillCardView: UIView {
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
                     action -> Void in
-                    if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                    if let url = URL(string: "tel://\(errMessage[phoneRange]))"), UIApplication.shared.canOpenURL(url) {
                         if #available(iOS 10, *) {
                             UIApplication.shared.open(url)
                         } else {
@@ -326,7 +326,7 @@ class HomeBillCardView: UIView {
         })
         alertController2.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
             LoadingView.show(animated: true)
-            self?.viewModel.submitOneTouchPay.onNext()
+            self?.viewModel.submitOneTouchPay.onNext(())
             observer.onCompleted()
         })
         return alertController2
@@ -393,7 +393,7 @@ class HomeBillCardView: UIView {
                 
                 return Disposables.create()
                 }
-                .do(onCompleted: { [weak self] _ in
+                .do(onCompleted: { [weak self] in
                     self?.viewModel.cvv2.value = nil
                 })
         }

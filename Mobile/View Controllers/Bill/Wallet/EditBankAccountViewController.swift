@@ -147,8 +147,8 @@ class EditBankAccountViewController: UIViewController {
         if let nickname = walletItem.nickName {
             let displayNickname: String
             if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                let last4 = maskedNumber.substring(from:maskedNumber.index(maskedNumber.endIndex, offsetBy: -4))
-                displayNickname = nickname == last4 ? "" : nickname
+                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
+                displayNickname = nickname == String(last4) ? "" : nickname
             } else {
                 displayNickname = nickname
             }
@@ -206,11 +206,11 @@ class EditBankAccountViewController: UIViewController {
     }
     
     ///
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSavePress() {
+    @objc func onSavePress() {
         view.endEditing(true)
 
         var shouldShowOneTouchPayReplaceWarning = false

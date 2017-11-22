@@ -79,7 +79,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         tableView.reloadData() // To properly set the width constraints
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
@@ -186,7 +186,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
                     // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
-                        if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                        if let url = URL(string: "tel://\(errMessage[phoneRange]))"), UIApplication.shared.canOpenURL(url) {
                             if #available(iOS 10, *) {
                                 UIApplication.shared.open(url)
                             } else {

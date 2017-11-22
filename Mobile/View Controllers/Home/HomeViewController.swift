@@ -117,7 +117,7 @@ class HomeViewController: AccountPickerViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
     
-    func killRefresh() -> Void {
+    @objc func killRefresh() -> Void {
         self.refreshControl?.endRefreshing()
         self.scrollView.alwaysBounceVertical = true
     }

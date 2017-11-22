@@ -141,7 +141,7 @@ struct FiservApi {
         
         var cardDetail = [String: String]()
 
-        let expiration = "" + expirationMonth + expirationYear.substring(from: expirationYear.index(expirationYear.startIndex, offsetBy: 2))
+        let expiration = "" + expirationMonth + expirationYear[expirationYear.index(expirationYear.startIndex, offsetBy: 2)...]
         cardDetail[Parameter.ExpirationDate.rawValue] = expiration
         cardDetail[Parameter.SecurityCode.rawValue] = securityCode
         cardDetail[Parameter.PostalCode.rawValue] = postalCode
@@ -194,7 +194,7 @@ struct FiservApi {
                                             expirationYear: String,
                                             securityCode: String?,
                                             postalCode: String?) -> [String:Any] {
-        let expiration = expirationMonth + expirationYear.substring(from: expirationYear.index(expirationYear.startIndex, offsetBy: 2))
+        let expiration = expirationMonth + expirationYear[expirationYear.index(expirationYear.startIndex, offsetBy: 2)...]
         var details = [Parameter.ExpirationDate.rawValue : expiration] as [String: Any]
         
         if(!(cardNumber ?? "").isEmpty) {

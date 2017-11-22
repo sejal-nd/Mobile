@@ -34,7 +34,7 @@ class MockBillService : BillService {
         if accountNumber == "0000" {
             completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
         } else {
-            completion(ServiceResult.Success())
+            completion(ServiceResult.Success(()))
         }
     }
     
@@ -42,7 +42,7 @@ class MockBillService : BillService {
         if accountNumber == "0000" {
             completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
         } else {
-            completion(ServiceResult.Success())
+            completion(ServiceResult.Success(()))
         }
     }
 
@@ -50,7 +50,7 @@ class MockBillService : BillService {
         if accountNumber == "0000" {
             completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
         } else {
-            completion(ServiceResult.Success())
+            completion(ServiceResult.Success(()))
         }
     }
     
@@ -58,7 +58,7 @@ class MockBillService : BillService {
         if accountNumber == "0000" {
             completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
         } else {
-            completion(ServiceResult.Success())
+            completion(ServiceResult.Success(()))
         }
     }
     

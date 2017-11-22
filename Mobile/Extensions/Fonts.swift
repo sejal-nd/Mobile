@@ -26,18 +26,18 @@ enum OpenSans: String, FontType {
 enum SystemFont: FontType {
     case ultraLight, thin, light, regular, medium, semibold, bold, heavy, black, italic
     
-    private var weight: CGFloat {
+    private var weight: UIFont.Weight {
         switch self {
-        case .ultraLight: return UIFontWeightUltraLight
-        case .thin: return UIFontWeightThin
-        case .light: return UIFontWeightLight
-        case .regular: return UIFontWeightRegular
-        case .medium: return UIFontWeightMedium
-        case .semibold: return UIFontWeightSemibold
-        case .bold: return UIFontWeightBold
-        case .heavy: return UIFontWeightHeavy
-        case .black: return UIFontWeightBlack
-        case .italic: return UIFontWeightRegular
+        case .ultraLight: return .ultraLight
+        case .thin: return .thin
+        case .light: return .light
+        case .regular: return .regular
+        case .medium: return .medium
+        case .semibold: return .semibold
+        case .bold: return .bold
+        case .heavy: return .heavy
+        case .black: return .black
+        case .italic: return .regular
         }
     }
     

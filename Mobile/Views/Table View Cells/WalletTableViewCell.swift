@@ -113,7 +113,7 @@ class WalletTableViewCell: UITableViewCell {
         if let nickname = walletItem.nickName {
             let displayNickname: String
             if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                let last4 = maskedNumber.substring(from:maskedNumber.index(maskedNumber.endIndex, offsetBy: -4))
+                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
                 displayNickname = nickname == last4 ? "" : nickname
             } else {
                 displayNickname = nickname

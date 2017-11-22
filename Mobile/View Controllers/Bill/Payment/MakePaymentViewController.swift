@@ -270,7 +270,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
-        }, onError: { [weak self] _ in
+        }, onError: { [weak self] in
             guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
@@ -302,9 +302,9 @@ class MakePaymentViewController: UIViewController {
         cardIOViewController.navigationBarTintColor = .primaryColor
         cardIOViewController.navigationBar.isTranslucent = false
         cardIOViewController.navigationBar.tintColor = .white
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: OpenSans.bold.of(size: 18)
         ]
         cardIOViewController.navigationBar.titleTextAttributes = titleDict
     }
@@ -549,7 +549,7 @@ class MakePaymentViewController: UIViewController {
         }
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         var shouldShowOneTouchPayWarning = false
@@ -617,7 +617,7 @@ class MakePaymentViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
@@ -626,7 +626,7 @@ class MakePaymentViewController: UIViewController {
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -754,7 +754,7 @@ extension MakePaymentViewController: AddBankFormViewDelegate {
 
 extension MakePaymentViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
-        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
         Analytics().logScreenView(AnalyticsPageView.AddWalletCameraOffer.rawValue)
         if cameraAuthorizationStatus == .denied || cameraAuthorizationStatus == .restricted {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)

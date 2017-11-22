@@ -199,7 +199,7 @@ class BGEAutoPayViewController: UIViewController {
         viewModel.shouldShowExpiredReason.map(!).drive(expirationLabel.rx.isHidden).disposed(by: disposeBag)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         if viewModel.initialEnrollmentStatus.value == .enrolled && (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
             let alertVc = UIAlertController(title: NSLocalizedString("Unsaved Changes", comment: ""), message: NSLocalizedString("You have unsaved changes - are you sure you want to exit this screen without saving your changes? Return to the AutoPay screen and Tap \"Submit\" to save your AutoPay changes.", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -212,7 +212,7 @@ class BGEAutoPayViewController: UIViewController {
         }
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         LoadingView.show()
         Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
         

@@ -463,18 +463,18 @@ class HomeBillCardViewModel {
                 if days > 0 {
                     let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
                     return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                              attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                           NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                              attributes: [.foregroundColor: UIColor.deepGray,
+                                                           .font: SystemFont.regular.of(textStyle: .subheadline)])
                 } else {
                     let localizedText = NSLocalizedString("Due on %@", comment: "")
                     return NSAttributedString(string: String(format: localizedText, extensionDate.mmDdYyyyString),
-                                              attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                           NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                              attributes: [.foregroundColor: UIColor.deepGray,
+                                                           .font: SystemFont.regular.of(textStyle: .subheadline)])
                 }
             } else {
                 return NSAttributedString(string: NSLocalizedString("Due Immediately", comment: ""),
-                                          attributes: [NSForegroundColorAttributeName: UIColor.errorRed,
-                                                       NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                          attributes: [.foregroundColor: UIColor.errorRed,
+                                                       .font: SystemFont.regular.of(textStyle: .subheadline)])
             }
         } else if let dueByDate = accountDetail.billingInfo.dueByDate {
             let calendar = Calendar.opCoTime
@@ -489,13 +489,13 @@ class HomeBillCardViewModel {
             if days > 0 {
                 let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                          attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                       NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                          attributes: [.foregroundColor: UIColor.deepGray,
+                                                       .font: SystemFont.regular.of(textStyle: .subheadline)])
             } else {
                 let localizedText = NSLocalizedString("Due on %@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
-                                          attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                       NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                          attributes: [.foregroundColor: UIColor.deepGray,
+                                                       .font: SystemFont.regular.of(textStyle: .subheadline)])
             }
             
         } else {
@@ -516,13 +516,13 @@ class HomeBillCardViewModel {
         if days > 0 {
             let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
             return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                      attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                      attributes: [.foregroundColor: UIColor.deepGray,
+                                                   .font: SystemFont.regular.of(textStyle: .subheadline)])
         } else {
             let localizedText = NSLocalizedString("Due on %@", comment: "")
             return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
-                                      attributes: [NSForegroundColorAttributeName: UIColor.deepGray,
-                                                   NSFontAttributeName: SystemFont.regular.of(textStyle: .subheadline)])
+                                      attributes: [.foregroundColor: UIColor.deepGray,
+                                                   .font: SystemFont.regular.of(textStyle: .subheadline)])
         }
     }
     

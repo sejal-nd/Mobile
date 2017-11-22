@@ -29,10 +29,10 @@ struct MockAccountService : AccountService {
     }
     
     func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int, completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.Success())
+        completion(ServiceResult.Success(()))
     }
     
     func setDefaultAccount(account: Account, completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.Success())
+        completion(ServiceResult.Success(()))
     }
 }

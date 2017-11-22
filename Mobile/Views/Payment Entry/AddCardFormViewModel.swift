@@ -69,7 +69,7 @@ class AddCardFormViewModel {
             return #imageLiteral(resourceName: "ic_visa_mini")
         } else {
             if characters.count >= 6 {
-                let str = cardNumber.value.substring(to: cardNumber.value.index(cardNumber.value.startIndex, offsetBy: 6))
+                let str = cardNumber.value[...cardNumber.value.index(cardNumber.value.startIndex, offsetBy: 6)]
                 if let doubleVal = Double(str) {
                     if (doubleVal >= Double(601100) && doubleVal <= Double(601109)) ||
                         (doubleVal >= Double(601120) && doubleVal <= Double(601149)) ||

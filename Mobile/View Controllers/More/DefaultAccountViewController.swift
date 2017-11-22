@@ -70,7 +70,7 @@ class DefaultAccountViewController: UIViewController {
         }
     }
     
-    func infoButtonPressed() {
+    @objc func infoButtonPressed() {
         let infoModal = InfoModalViewController(title: NSLocalizedString("Default Account", comment: ""),
                                                 image: #imageLiteral(resourceName: "bge_account_picker"),
                                                 description: NSLocalizedString("Your default account will display automatically when you sign in. You can change your default account at any time.", comment: ""))

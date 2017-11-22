@@ -67,11 +67,11 @@ class PECOReleaseOfInfoViewController: UIViewController {
         Analytics().logScreenView(AnalyticsPageView.ReleaseInfoOffer.rawValue)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         var rowToIntMapping = selectedRowIndex // Address only is mapped correctly
         if selectedRowIndex == 0 {
             rowToIntMapping = 1

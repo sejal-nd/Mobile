@@ -169,7 +169,7 @@ class BillViewController: AccountPickerViewController {
         }
     }
     
-    func killRefresh() -> Void {
+    @objc func killRefresh() -> Void {
         self.refreshControl?.endRefreshing()
         self.scrollView.alwaysBounceVertical = false
     }

@@ -46,7 +46,7 @@ class DismissableFormSheetViewController: UIViewController {
         }
     }
     
-    func handleTapBehind(sender: UITapGestureRecognizer) {
+    @objc func handleTapBehind(sender: UITapGestureRecognizer) {
         
         if sender.state == UIGestureRecognizerState.ended {
             var location: CGPoint = sender.location(in: nil)

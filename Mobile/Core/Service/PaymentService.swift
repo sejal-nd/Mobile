@@ -137,7 +137,7 @@ extension PaymentService {
             self.enrollInAutoPayBGE(accountNumber: accountNumber, walletItemId: walletItemId, amountType: amountType, amountThreshold: amountThreshold, paymentDaysBeforeDue: paymentDatesBeforeDue, effectivePeriod: effectivePeriod, effectiveEndDate: effectiveEndDate, effectiveNumPayments: effectiveNumPayments, isUpdate: isUpdate, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success():
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -154,7 +154,7 @@ extension PaymentService {
             { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -181,7 +181,7 @@ extension PaymentService {
             { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success(_):
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -199,7 +199,7 @@ extension PaymentService {
             { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success(_):
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -231,7 +231,7 @@ extension PaymentService {
             { (result: ServiceResult<String>) in
                 switch (result) {
                 case ServiceResult.Success(_):
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -248,7 +248,7 @@ extension PaymentService {
             { (result: ServiceResult<String>) in
                 switch (result) {
                 case ServiceResult.Success(_):
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -282,7 +282,7 @@ extension PaymentService {
             { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success(_):
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -299,7 +299,7 @@ extension PaymentService {
             { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success():
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

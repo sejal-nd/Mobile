@@ -273,7 +273,7 @@ extension AddCardFormView: UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         if textField == expMonthTextField.textField {
             if textField.text?.count == 2 {
                 expYearTextField.textField.becomeFirstResponder()

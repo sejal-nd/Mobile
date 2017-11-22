@@ -207,7 +207,7 @@ class FloatLabelTextField: UIView {
     }
     
     private func addDoneButton(_ doneButton: UIBarButtonItem) {
-        doneButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.actionBlue], for: .normal)
+        doneButton.setTitleTextAttributes([.foregroundColor: UIColor.actionBlue], for: .normal)
         
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle = UIBarStyle.default

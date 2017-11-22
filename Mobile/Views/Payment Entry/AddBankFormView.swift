@@ -222,7 +222,7 @@ extension AddBankFormView: UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         if textField == routingNumberTextField.textField {
             if textField.text?.count == 9 {
                 accountNumberTextField.textField.becomeFirstResponder()

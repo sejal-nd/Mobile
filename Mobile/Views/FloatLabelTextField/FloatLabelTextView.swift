@@ -102,7 +102,7 @@ class FloatLabelTextView: UIView {
         if let string = self.textView.text {
             let length = string.count
             if(length >= characterLimit) {
-                self.textView.text = self.textView.text.substring(to: (string.index((string.startIndex), offsetBy:characterLimit)))
+                self.textView.text = String(string[...string.index((string.startIndex), offsetBy:characterLimit)])
             }
         }
     }
@@ -170,7 +170,7 @@ class FloatLabelTextView: UIView {
     }
     
     private func addDoneButton(_ doneButton: UIBarButtonItem) {
-        doneButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.actionBlue], for: .normal)
+        doneButton.setTitleTextAttributes([.foregroundColor: UIColor.actionBlue], for: .normal)
         
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle = UIBarStyle.default

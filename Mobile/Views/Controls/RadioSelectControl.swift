@@ -62,17 +62,17 @@ class RadioSelectControl: ButtonControl {
 	func createSubviews() {
 		selectedImageView = UIImageView(image: #imageLiteral(resourceName: "ic_radiobutton_deselected"))
 		selectedImageView.translatesAutoresizingMaskIntoConstraints = false
-		selectedImageView.setContentCompressionResistancePriority(999, for: .horizontal)
-		selectedImageView.setContentCompressionResistancePriority(999, for: .vertical)
-		selectedImageView.setContentHuggingPriority(999, for: .horizontal)
-		selectedImageView.setContentHuggingPriority(999, for: .vertical)
+		selectedImageView.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+		selectedImageView.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+		selectedImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+		selectedImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
 		
 		titleLabel = UILabel(frame: .zero)
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
-		titleLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-		titleLabel.setContentCompressionResistancePriority(999, for: .vertical)
-		titleLabel.setContentHuggingPriority(751, for: .horizontal)
-		titleLabel.setContentHuggingPriority(999, for: .vertical)
+		titleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+		titleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+		titleLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
+		titleLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         titleLabel.textColor = .blackText
         titleLabel.numberOfLines = 0
@@ -81,10 +81,10 @@ class RadioSelectControl: ButtonControl {
 		detailButton.translatesAutoresizingMaskIntoConstraints = false
 		detailButton.setTitleColor(.actionBlue, for: .normal)
 		detailButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .headline)
-		detailButton.setContentCompressionResistancePriority(999, for: .horizontal)
-		detailButton.setContentCompressionResistancePriority(999, for: .vertical)
-		detailButton.setContentHuggingPriority(999, for: .horizontal)
-		detailButton.setContentHuggingPriority(999, for: .vertical)
+		detailButton.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+		detailButton.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+		detailButton.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+		detailButton.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         
 		addSubview(selectedImageView)
 		addSubview(titleLabel)

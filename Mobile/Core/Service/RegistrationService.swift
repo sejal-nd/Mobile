@@ -124,7 +124,7 @@ extension RegistrationService {
                 //
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                     
                 case ServiceResult.Failure(let err):
@@ -145,7 +145,7 @@ extension RegistrationService {
                 //
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                     
                 case ServiceResult.Failure(let err):
@@ -209,7 +209,7 @@ extension RegistrationService {
                                             //
                                             switch (result) {
                                             case ServiceResult.Success:
-                                                observer.onNext()
+                                                observer.onNext(())
                                                 observer.onCompleted()
                                                 
                                             case ServiceResult.Failure(let err):
@@ -229,7 +229,7 @@ extension RegistrationService {
                                             //
                                             switch (result) {
                                             case ServiceResult.Success:
-                                                observer.onNext()
+                                                observer.onNext(())
                                                 observer.onCompleted()
                                                 
                                             case ServiceResult.Failure(let err):
@@ -248,7 +248,7 @@ extension RegistrationService {
                                     //
                                     switch (result) {
                                     case ServiceResult.Success:
-                                        observer.onNext()
+                                        observer.onNext(())
                                         observer.onCompleted()
                                         
                                     case ServiceResult.Failure(let err):
