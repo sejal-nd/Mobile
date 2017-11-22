@@ -1,5 +1,5 @@
 github "ReactiveX/RxSwift" ~> 4.0
-github "airbnb/lottie-ios" == 2.1.4
+github "airbnb/lottie-ios" == 2.0.3
 github "jverdi/JVFloatLabeledTextField" == 1.2.1
 github "scalessec/Toast-Swift" ~> 3.0.1
 github "dropbox/zxcvbn-ios" == 1.0.4
