@@ -239,7 +239,7 @@ class HomeBillCardView: UIView {
         // Actions
         oneTouchSlider.didFinishSwipe
             .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV))
-            .filter { !($0 || $1 || Environment.sharedInstance.opco == .bge) }
+            .filter { !$0 && !$1 }
             .map(to: ())
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
@@ -332,24 +332,6 @@ class HomeBillCardView: UIView {
         return alertController2
     }
     
-    private(set) lazy var oneTouchSliderBGELegalAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
-        .withLatestFrom(self.viewModel.promptForCVV)
-        .asObservable()
-        .filter { !$0 && Environment.sharedInstance.opco == .bge }
-        .flatMap { [weak self] _ in
-            Observable<UIViewController>.create { [weak self] observer in
-                guard let `self` = self else {
-                    observer.onCompleted()
-                    return Disposables.create()
-                }
-                let alert = self.oneTouchBGELegalAlert(observer: observer)
-                observer.onNext(alert)
-                return Disposables.create()
-            }
-        }
-        .asDriver(onErrorDriveWith: .empty())
-    
-    
     private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
         .withLatestFrom(self.viewModel.promptForCVV)
         .asObservable()
@@ -425,7 +407,6 @@ class HomeBillCardView: UIView {
                                                                                         self.paymentTACModal,
                                                                                         self.oneTouchPayErrorAlert,
                                                                                         self.oneTouchSliderCVV2Alert,
-                                                                                        self.oneTouchSliderBGELegalAlert,
                                                                                         self.tutorialViewController,
                                                                                         self.bgeasyViewController)
     
