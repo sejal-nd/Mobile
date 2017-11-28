@@ -461,7 +461,8 @@ class BillAnalysisViewModel {
                     }
                 }
             } else {
-                let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. This is an estimate and the actual amount may vary.", comment: "")
+                let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. " +
+                    "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                 let meterUnit = billComparison.meterUnit
                 if let gasForecast = gasForecast, self.isGas {
                     if let projectedUsage = gasForecast.projectedUsage, let toDateUsage = gasForecast.toDateUsage {
@@ -628,7 +629,8 @@ class BillAnalysisViewModel {
                         }
                     }
                 } else {
-                    let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. This is an estimate and the actual amount may vary.", comment: "")
+                    let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. " +
+                        "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                     let meterUnit = billComparison.meterUnit
                     if let gasForecast = gasForecast, self.isGas {
                         if let projectedUsage = gasForecast.projectedUsage, let toDateUsage = gasForecast.toDateUsage {
