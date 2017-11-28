@@ -598,19 +598,13 @@ class HomeBillCardViewModel {
         
         let minPayment: Double
         let maxPayment: Double
-        switch (walletItem.bankOrCard, Environment.sharedInstance.opco) {
-        case (.bank, .bge):
-            minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 0
-            maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? (accountDetail.isResidential ? 9999.99 : 99999.99)
-        case (.bank, _):
-            minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 5
-            maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? 90000
-        case (.card, .bge):
-            minPayment = accountDetail.billingInfo.minPaymentAmount ?? 0
-            maxPayment = accountDetail.billingInfo.maxPaymentAmount ?? (accountDetail.isResidential ? 600 : 25000)
-        case (.card, _):
-            minPayment = accountDetail.billingInfo.minPaymentAmount ?? 5
-            maxPayment = accountDetail.billingInfo.maxPaymentAmount ?? 5000
+        switch walletItem.bankOrCard {
+        case .bank:
+            minPayment = accountDetail.minPaymentAmount(bankOrCard: .bank)
+            maxPayment = accountDetail.maxPaymentAmount(bankOrCard: .bank)
+        case .card:
+            minPayment = accountDetail.minPaymentAmount(bankOrCard: .card)
+            maxPayment = accountDetail.maxPaymentAmount(bankOrCard: .card)
         }
         
         if paymentAmount < minPayment, let amountText = minPayment.currencyString {
