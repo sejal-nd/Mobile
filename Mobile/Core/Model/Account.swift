@@ -136,6 +136,55 @@ struct AccountDetail: Mappable {
         peakRewards = map.optionalFrom("peakRewards")
         zipCode = map.optionalFrom("zipCode")
     }
+    
+    func minPaymentAmount(bankOrCard: BankOrCard) -> Double {
+        switch bankOrCard {
+        case .bank:
+            if let minPaymentAmount = billingInfo.minPaymentAmountACH {
+                return minPaymentAmount
+            }
+        case .card:
+            if let minPaymentAmount = billingInfo.minPaymentAmount {
+                return minPaymentAmount
+            }
+        }
+        
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            return 0.01
+        case .comEd, .peco:
+            return 5
+        }
+    }
+    
+    func maxPaymentAmount(bankOrCard: BankOrCard) -> Double {
+        switch bankOrCard {
+        case .bank:
+            if let maxPaymentAmount = billingInfo.maxPaymentAmountACH {
+                return maxPaymentAmount
+            }
+        case .card:
+            if let maxPaymentAmount = billingInfo.maxPaymentAmount {
+                return maxPaymentAmount
+            }
+        }
+        
+        
+        switch (bankOrCard, Environment.sharedInstance.opco, isResidential) {
+        case (.bank, .bge, true):
+            return 99_999.99
+        case (.bank, .bge, false):
+            return 999_999.99
+        case (.bank, _, _):
+            return 90000
+        case (.card, .bge, true):
+            return 600
+        case (.card, .bge, false):
+            return 25000
+        case (.card, _, _):
+            return 5000
+        }
+    }
 	
     var eBillEnrollStatus: EBillEnrollStatus {
 		switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "Finaled".lowercased()) {
