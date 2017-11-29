@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var forgotUsernameButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var eyeballButton: UIButton!
+    @IBOutlet weak var biometricImageView: UIImageView!
     @IBOutlet weak var biometricLabel: UILabel!
     @IBOutlet weak var biometricButton: ButtonControl!
     @IBOutlet weak var loginFormViewHeightConstraint: NSLayoutConstraint!
@@ -134,9 +135,13 @@ class LoginViewController: UIViewController {
         forgotUsernameButton.tintColor = .actionBlue
         forgotPasswordButton.tintColor = .actionBlue
         
+        let biometricsString = viewModel.biometricsString()
+        if biometricsString == "Face ID" { // Touch ID icon is default
+            biometricImageView.image = #imageLiteral(resourceName: "ic_faceid")
+        }
         biometricLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-        biometricLabel.text = viewModel.biometricsString()
-        biometricButton.accessibilityLabel = viewModel.biometricsString()
+        biometricLabel.text = biometricsString
+        biometricButton.accessibilityLabel = biometricsString
         
         keepMeSignedInLabel.isAccessibilityElement = false
         keepMeSignedInSwitch.isAccessibilityElement = true
