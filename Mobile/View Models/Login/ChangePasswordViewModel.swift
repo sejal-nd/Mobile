@@ -19,12 +19,12 @@ class ChangePasswordViewModel {
     
     private var userDefaults: UserDefaults
     private var authService: AuthenticationService
-    private var fingerprintService: FingerprintService
+    private var biometricsService: BiometricsService
     
-    required init(userDefaults: UserDefaults, authService: AuthenticationService, fingerprintService: FingerprintService) {
+    required init(userDefaults: UserDefaults, authService: AuthenticationService, biometricsService: BiometricsService) {
         self.userDefaults = userDefaults
         self.authService = authService
-        self.fingerprintService = fingerprintService
+        self.biometricsService = biometricsService
     }
     
     private(set) lazy var currentPasswordHasText: Driver<Bool> = self.currentPassword.asDriver()
@@ -101,13 +101,13 @@ class ChangePasswordViewModel {
     func changePassword(sentFromLogin: Bool, onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
         
         if sentFromLogin {
-            authService.changePasswordAnon(fingerprintService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
+            authService.changePasswordAnon(biometricsService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
                 .observeOn(MainScheduler.instance)
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in
                     guard let `self` = self else { return }
-                    if self.fingerprintService.isTouchIDEnabled() {
-                        self.fingerprintService.setStoredPassword(password: self.newPassword.value)
+                    if self.biometricsService.isBiometricsEnabled() {
+                        self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }
                     onSuccess()
                 }, onError: { (error: Error) in
@@ -126,8 +126,8 @@ class ChangePasswordViewModel {
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in
                     guard let `self` = self else { return }
-                    if self.fingerprintService.isTouchIDEnabled() { // Store the new password in the keychain
-                        self.fingerprintService.setStoredPassword(password: self.newPassword.value)
+                    if self.biometricsService.isBiometricsEnabled() { // Store the new password in the keychain
+                        self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }
                     onSuccess()
                 }, onError: { (error: Error) in

@@ -15,38 +15,42 @@ class LoginViewModel {
     
     var username = Variable("")
     var password = Variable("")
-    var touchIDAutofilledPassword: String? = nil
+    var biometricsAutofilledPassword: String? = nil
     var keepMeSignedIn = Variable(false)
-    var touchIdEnabled = Variable(false)
+    var biometricsEnabled = Variable(false)
     var isLoggingIn = false
     
     var accountDetail: AccountDetail?
     
     private var authService: AuthenticationService
-    private var fingerprintService: FingerprintService
+    private var biometricsService: BiometricsService
     private var registrationService: RegistrationService
     
-    init(authService: AuthenticationService, fingerprintService: FingerprintService, registrationService: RegistrationService) {
+    init(authService: AuthenticationService, biometricsService: BiometricsService, registrationService: RegistrationService) {
         self.authService = authService
-        self.fingerprintService = fingerprintService
+        self.biometricsService = biometricsService
         self.registrationService = registrationService
         
-        if let username = fingerprintService.getStoredUsername() {
+        if let username = biometricsService.getStoredUsername() {
             self.username.value = username
         }
-        touchIdEnabled.value = fingerprintService.isTouchIDEnabled()
+        biometricsEnabled.value = biometricsService.isBiometricsEnabled()
     }
     
-    func isDeviceTouchIDCompatible() -> Bool {
-        return fingerprintService.isDeviceTouchIDCompatible()
+    func isDeviceBiometricCompatible() -> Bool {
+        return biometricsService.deviceBiometryType() != nil
+    }
+    
+    func biometricsString() -> String? {
+        return biometricsService.deviceBiometryType()
     }
         
-    func shouldPromptToEnableTouchID() -> Bool {
-        return UserDefaults.standard.bool(forKey: UserDefaultKeys.ShouldPromptToEnableTouchID)
+    func shouldPromptToEnableBiometrics() -> Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaultKeys.ShouldPromptToEnableBiometrics)
     }
     
-    func setShouldPromptToEnableTouchID(_ prompt: Bool) {
-        UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.ShouldPromptToEnableTouchID)
+    func setShouldPromptToEnableBiometrics(_ prompt: Bool) {
+        UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.ShouldPromptToEnableBiometrics)
     }
     
     func performLogin(onSuccess: @escaping (Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
@@ -87,21 +91,21 @@ class LoginViewModel {
     }
     
     func getStoredUsername() -> String? {
-        return fingerprintService.getStoredUsername()
+        return biometricsService.getStoredUsername()
     }
     
     func storeUsername() {
-        fingerprintService.setStoredUsername(username: username.value)
+        biometricsService.setStoredUsername(username: username.value)
     }
     
-    func storePasswordInTouchIDKeychain() {
-        fingerprintService.setStoredPassword(password: password.value)
+    func storePasswordInSecureEnclave() {
+        biometricsService.setStoredPassword(password: password.value)
     }
     
-    func attemptLoginWithTouchID(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool) -> Void, onError: @escaping (String?, String) -> Void) {
-        if let username = fingerprintService.getStoredUsername(), let password = fingerprintService.getStoredPassword() {
+    func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool) -> Void, onError: @escaping (String?, String) -> Void) {
+        if let username = biometricsService.getStoredUsername(), let password = biometricsService.getStoredPassword() {
             self.username.value = username
-            touchIDAutofilledPassword = password
+            biometricsAutofilledPassword = password
             self.password.value = password
             onLoad()
             isLoggingIn = true
@@ -111,9 +115,9 @@ class LoginViewModel {
         }
     }
     
-    func disableTouchID() {
-        fingerprintService.disableTouchID()
-        touchIdEnabled.value = false
+    func disableBiometrics() {
+        biometricsService.disableBiometrics()
+        biometricsEnabled.value = false
     }
     
     func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {

@@ -41,6 +41,8 @@
 	<string>Would you like to enable GPS/Location Services to interact with the Outage Map relative to your current location?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow photo access to provide screenshots with feedback</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Use Face ID to sign in</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans-Bold.ttf</string>

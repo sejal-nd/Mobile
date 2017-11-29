@@ -21,7 +21,7 @@ class ChangePasswordTests: XCTestCase {
         UserDefaults().removePersistentDomain(forName: userDefaultsSuiteName)
         userDefaults = UserDefaults(suiteName: userDefaultsSuiteName)
         
-        viewModel = ChangePasswordViewModel(userDefaults: userDefaults!, authService: MockAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
+        viewModel = ChangePasswordViewModel(userDefaults: userDefaults!, authService: MockAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService())
     }
 
     func testTooFewCharacterCount() {

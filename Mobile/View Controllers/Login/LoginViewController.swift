@@ -26,11 +26,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var forgotUsernameButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var eyeballButton: UIButton!
-    @IBOutlet weak var touchIDLabel: UILabel!
-    @IBOutlet weak var touchIDButton: ButtonControl!
+    @IBOutlet weak var biometricImageView: UIImageView!
+    @IBOutlet weak var biometricLabel: UILabel!
+    @IBOutlet weak var biometricButton: ButtonControl!
     @IBOutlet weak var loginFormViewHeightConstraint: NSLayoutConstraint!
     
-    var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService(), registrationService: ServiceFactory.createRegistrationService())
+    var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), registrationService: ServiceFactory.createRegistrationService())
     var viewAlreadyAppeared = false
     var forgotUsernamePopulated = false
 
@@ -40,24 +41,28 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
-        // This is necessary to handle Touch ID prompt's cancel action -- do not remove
+        // This is necessary to handle the Touch/Face ID cancel action -- do not remove
         NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = !self.viewModel.isLoggingIn
+                
+                if !self.viewModel.isDeviceBiometricCompatible() { // In case user tapped "Don't Allow" on Face ID Permissions dialog
+                    self.viewModel.biometricsEnabled.value = false
+                }
             })
             .disposed(by: disposeBag)
         
         view.backgroundColor = .primaryColor
 
-        viewModel.touchIdEnabled.asDriver().drive(onNext: { [weak self] touchIDEnabled in
+        viewModel.biometricsEnabled.asDriver().drive(onNext: { [weak self] enabled in
             guard let `self` = self else { return }
-            if touchIDEnabled {
-                self.touchIDButton.isHidden = false
+            if enabled {
+                self.biometricButton.isHidden = false
                 self.loginFormViewHeightConstraint.constant = 420
             } else {
-                self.touchIDButton.isHidden = true
+                self.biometricButton.isHidden = true
                 self.loginFormViewHeightConstraint.constant = 390
             }
         }).disposed(by: disposeBag)
@@ -85,14 +90,14 @@ class LoginViewController: UIViewController {
         viewModel.password.asDriver().drive(passwordTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
         viewModel.password.asDriver().drive(onNext: { [weak self] (password) in
             guard let `self` = self else { return }
-            if let autofilledPw = self.viewModel.touchIDAutofilledPassword, password != autofilledPw {
-                // The password field was successfully auto-filled from Touch ID, but then the user manually changed it,
+            if let autofilledPw = self.viewModel.biometricsAutofilledPassword, password != autofilledPw {
+                // The password field was successfully auto-filled from biometrics, but then the user manually changed it,
                 // presumably because the password has been changed and is now different than what's stored in the keychain.
-                // Therefore, we disable Touch ID, and reset the UserDefaults flag to prompt to enable it upon the 
+                // Therefore, we disable biometrics, and reset the UserDefaults flag to prompt to enable it upon the
                 // next successful login
-                self.viewModel.disableTouchID()
-                self.viewModel.setShouldPromptToEnableTouchID(true)
-                self.viewModel.touchIDAutofilledPassword = nil
+                self.viewModel.disableBiometrics()
+                self.viewModel.setShouldPromptToEnableBiometrics(true)
+                self.viewModel.biometricsAutofilledPassword = nil
             }
         }).disposed(by: disposeBag)
         usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
@@ -130,8 +135,13 @@ class LoginViewController: UIViewController {
         forgotUsernameButton.tintColor = .actionBlue
         forgotPasswordButton.tintColor = .actionBlue
         
-        touchIDLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-        touchIDButton.accessibilityLabel = NSLocalizedString("Touch ID", comment: "")
+        let biometricsString = viewModel.biometricsString()
+        if biometricsString == "Face ID" { // Touch ID icon is default
+            biometricImageView.image = #imageLiteral(resourceName: "ic_faceid")
+        }
+        biometricLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        biometricLabel.text = biometricsString
+        biometricButton.accessibilityLabel = biometricsString
         
         keepMeSignedInLabel.isAccessibilityElement = false
         keepMeSignedInSwitch.isAccessibilityElement = true
@@ -186,7 +196,7 @@ class LoginViewController: UIViewController {
             navigationController?.view.isUserInteractionEnabled = false
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
                 // This delay is necessary to prevent deep link complications -- do not remove
-                self.presentTouchIDPrompt()
+                self.presentBiometricsPrompt()
             })
         }
     }
@@ -229,29 +239,32 @@ class LoginViewController: UIViewController {
                     changePwVc.sentFromLogin = true
                     self.navigationController?.pushViewController(changePwVc, animated: true)
                 } else {
-                    if self.viewModel.isDeviceTouchIDCompatible() {
-                        if self.viewModel.shouldPromptToEnableTouchID() {
-                            let touchIDAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: NSLocalizedString("Would you like to use Touch ID to sign in from now on?", comment: ""), preferredStyle: .alert)
-                            touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
+                    if self.viewModel.isDeviceBiometricCompatible() {
+                        let biometricsString = self.viewModel.biometricsString()!
+                        if self.viewModel.shouldPromptToEnableBiometrics() {
+                            let biometricsAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString),
+                                                                    message: String(format: NSLocalizedString("Would you like to use %@ to sign in from now on?", comment: ""), biometricsString),
+                                                                    preferredStyle: .alert)
+                            biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.launchMainApp()
                             }))
-                            touchIDAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
-                                self?.viewModel.storePasswordInTouchIDKeychain()
+                            biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
+                                self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp()
                                 Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
                             }))
-                            self.present(touchIDAlert, animated: true, completion: nil)
-                            self.viewModel.setShouldPromptToEnableTouchID(false)
+                            self.present(biometricsAlert, animated: true, completion: nil)
+                            self.viewModel.setShouldPromptToEnableBiometrics(false)
                         } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
-                            let message = String(format: NSLocalizedString("Touch ID settings for %@ will be disabled upon signing in as %@. Would you like to enable Touch ID for %@ at this time?", comment: ""), lastLoggedInUsername!, self.viewModel.username.value, self.viewModel.username.value)
+                            let message = String(format: NSLocalizedString("%@ settings for %@ will be disabled upon signing in as %@. Would you like to enable %@ for %@ at this time?", comment: ""), biometricsString, lastLoggedInUsername!, self.viewModel.username.value, biometricsString, self.viewModel.username.value)
                             
-                            let differentAccountAlert = UIAlertController(title: NSLocalizedString("Enable Touch ID", comment: ""), message: message, preferredStyle: .alert)
+                            let differentAccountAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString), message: message, preferredStyle: .alert)
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
-                                self?.viewModel.disableTouchID()
+                                self?.viewModel.disableBiometrics()
                                 self?.launchMainApp()
                             }))
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
-                                self?.viewModel.storePasswordInTouchIDKeychain()
+                                self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp()
                                 Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
                             }))
@@ -332,12 +345,12 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func onTouchIDPress() {
+    @IBAction func onBiometricsButtonPress() {
         navigationController?.view.isUserInteractionEnabled = false
         
         // This delay is necessary to make setting isUserInteractionEnabled work properly -- do not remove
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
-            self.presentTouchIDPrompt()
+            self.presentBiometricsPrompt()
         })
     }
     
@@ -369,8 +382,8 @@ class LoginViewController: UIViewController {
         present(errorAlert, animated: true, completion: nil)
     }
     
-    func presentTouchIDPrompt() {
-        viewModel.attemptLoginWithTouchID(onLoad: { [weak self] in // fingerprint was successful
+    func presentBiometricsPrompt() {
+        viewModel.attemptLoginWithBiometrics(onLoad: { [weak self] in // Face/Touch ID was successful
             guard let `self` = self else { return }
             
             Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
@@ -384,21 +397,22 @@ class LoginViewController: UIViewController {
             self.signInButton.setLoading()
             self.signInButton.accessibilityLabel = "Loading";
             self.signInButton.accessibilityViewIsModal = true;
-            self.touchIDButton.isEnabled = true
+            self.biometricButton.isEnabled = true
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
-            }, onDidNotLoad:  { [weak self] in
-                self?.touchIDButton.isEnabled = true
+        }, onDidNotLoad:  { [weak self] in
+            self?.biometricButton.isEnabled = true
+            self?.navigationController?.view.isUserInteractionEnabled = true
+        }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in // Face/Touch ID and subsequent login successful
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            guard let `self` = self else { return }
+            self.signInButton.setSuccess(animationCompletion: { [weak self] in
                 self?.navigationController?.view.isUserInteractionEnabled = true
-            }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in // fingerprint and subsequent login successful
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
-                guard let `self` = self else { return }
-                self.signInButton.setSuccess(animationCompletion: { [weak self] in
-                    self?.navigationController?.view.isUserInteractionEnabled = true
-                    self?.launchMainApp()
-                })
-            }, onError: { [weak self] (title, message) in // fingerprint successful but login failed
-                self?.navigationController?.view.isUserInteractionEnabled = true
-                self?.showErrorAlertWith(title: title, message: message + "\n\n" + NSLocalizedString("If you have changed your password recently, enter it manually and re-enable Touch ID", comment: ""))
+                self?.launchMainApp()
+            })
+        }, onError: { [weak self] (title, message) in // Face/Touch ID successful but login failed
+            guard let `self` = self else { return }
+            self.navigationController?.view.isUserInteractionEnabled = true
+            self.showErrorAlertWith(title: title, message: message + "\n\n" + String(format: NSLocalizedString("If you have changed your password recently, enter it manually and re-enable %@", comment: ""), self.viewModel.biometricsString()!))
         })
     }
     

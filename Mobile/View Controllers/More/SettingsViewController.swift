@@ -14,12 +14,12 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let viewModel = SettingsViewModel(authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService(), accountService: ServiceFactory.createAccountService())
+    let viewModel = SettingsViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
     
     let disposeBag = DisposeBag()
     
-    var touchIdCell: SettingsTableViewCell?
-    var touchIdPasswordRetryCount = 0
+    var biometricsCell: SettingsTableViewCell?
+    var biometricsPasswordRetryCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,14 +55,14 @@ class SettingsViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
-    // MARK: - Touch ID Switch Handling
+    // MARK: - Touch/Face ID Switch Handling
     
     func switchObserver(cell: SettingsTableViewCell, isOn: Bool) {
         if isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage())
             Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
         } else {
-            viewModel.disableTouchID()
+            viewModel.disableBiometrics()
             Analytics().logScreenView(AnalyticsPageView.TouchIDDisable.rawValue)
         }
     }
@@ -76,22 +76,23 @@ class SettingsViewController: UIViewController {
             textField.rx.text.orEmpty.bind(to: self.viewModel.password).disposed(by: self.disposeBag)
         })
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self] (action) -> Void in
-            self?.touchIdCell?.setSwitch(on: false)
+            self?.biometricsCell?.setSwitch(on: false)
         }))
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) -> Void in
             LoadingView.show()
             self?.viewModel.validateCredentials(onSuccess: { [weak self] in
+                guard let `self` = self else { return }
                 LoadingView.hide()
-                self?.view.showToast(NSLocalizedString("Fingerprint Enabled", comment: ""))
+                self.view.showToast(String(format: NSLocalizedString("%@ Enabled", comment: ""), self.viewModel.biometricsString()!))
             }, onError: { [weak self] (error) in
                 LoadingView.hide()
                 guard let `self` = self else { return }
-                self.touchIdPasswordRetryCount += 1
-                if self.touchIdPasswordRetryCount < 3 {
+                self.biometricsPasswordRetryCount += 1
+                if self.biometricsPasswordRetryCount < 3 {
                     self.presentPasswordAlert(message: NSLocalizedString("Error", comment: "") + ": \(error)")
                 } else {
-                    self.touchIdPasswordRetryCount = 0
-                    self.touchIdCell?.setSwitch(on: false)
+                    self.biometricsPasswordRetryCount = 0
+                    self.biometricsCell?.setSwitch(on: false)
                 }
             })
         }))
@@ -118,7 +119,7 @@ extension SettingsViewController: UITableViewDelegate {
         if indexPath.section == 0 {
             performSegue(withIdentifier: "changePasswordSegue", sender: self)
         } else if indexPath.section == 1 {
-            if !viewModel.isDeviceTouchIDCompatible() {
+            if !viewModel.isDeviceBiometricCompatible() {
                 handleOpcoCellPress()
             }
         } else if indexPath.section == 2 {
@@ -140,7 +141,7 @@ extension SettingsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         var numSections = 1
-        if viewModel.isDeviceTouchIDCompatible() {
+        if viewModel.isDeviceBiometricCompatible() {
             numSections += 1
         }
         if Environment.sharedInstance.opco == .bge && AccountsStore.sharedInstance.accounts != nil && AccountsStore.sharedInstance.accounts.count > 1 {
@@ -175,11 +176,11 @@ extension SettingsViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             cell.configureWith(label: NSLocalizedString("Change Password", comment: ""), carat: true)
         } else if indexPath.section == 1 {
-            if viewModel.isDeviceTouchIDCompatible() {
-                cell.configureWith(label: NSLocalizedString("Touch ID", comment: ""), switchOn: viewModel.isTouchIDEnabled(), switchObserver: { [weak self] isOn in
+            if viewModel.isDeviceBiometricCompatible() {
+                cell.configureWith(label: viewModel.biometricsString()!, switchOn: viewModel.isBiometryEnabled(), switchObserver: { [weak self] isOn in
                     self?.switchObserver(cell: cell, isOn: isOn)
                 })
-                touchIdCell = cell
+                biometricsCell = cell
             } else {
                 configureOpcoCell(cell)
             }

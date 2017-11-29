@@ -79,7 +79,7 @@ class SplashViewController: UIViewController{
     }
 
     func doLoginLogic() {
-        bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch ID alert prompt is dismissed
+        bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch/Face ID alert prompt is dismissed
         
         if keepMeSignedIn {
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()

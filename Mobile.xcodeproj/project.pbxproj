@@ -886,7 +886,7 @@
 		E80043611E6A11B7005CF531 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		E80043621E6A11C3005CF531 /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
 		E80043641E6A11D5005CF531 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
-		E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* FingerprintService.swift */; };
+		E80043661E6A11E7005CF531 /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
 		E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
 		E80043681E6A1250005CF531 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		E800436A1E6A12A3005CF531 /* libOMCCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D31E674089003B9369 /* libOMCCore.a */; };
@@ -1414,9 +1414,9 @@
 		E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
-		E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* FingerprintService.swift */; };
-		E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* FingerprintService.swift */; };
-		E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* FingerprintService.swift */; };
+		E8EEF7161E566FD8006804D4 /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
+		E8EEF7171E566FD8006804D4 /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
+		E8EEF7181E566FD8006804D4 /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
 		E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */; };
 		E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */; };
 		E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */; };
@@ -2125,7 +2125,7 @@
 		E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimumVersion.swift; sourceTree = "<group>"; };
 		E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
-		E8EEF7151E566FD8006804D4 /* FingerprintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
+		E8EEF7151E566FD8006804D4 /* BiometricsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricsService.swift; sourceTree = "<group>"; };
 		E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		E8EEF7281E5777BA006804D4 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		E8EEF7351E57895F006804D4 /* LaunchScreen-BGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-BGE.storyboard"; sourceTree = "<group>"; };
@@ -3455,7 +3455,7 @@
 				B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */,
 				82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */,
 				E840BD391EB3C91D00812DD0 /* BillService.swift */,
-				E8EEF7151E566FD8006804D4 /* FingerprintService.swift */,
+				E8EEF7151E566FD8006804D4 /* BiometricsService.swift */,
 				B54846821E687CEB008CE1B1 /* HttpMethod.swift */,
 				B574BAEA1E785A5F001E8A44 /* OutageService.swift */,
 				E8039FF01EFB0405004DB789 /* PaymentService.swift */,
@@ -4887,7 +4887,7 @@
 				82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				2F3FA6371F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
-				E8EEF7161E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E8EEF7161E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD41E736596001E8A44 /* Macros.swift in Sources */,
 				389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
@@ -5176,7 +5176,7 @@
 				E800434F1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				82EAB33A1F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
-				E8EEF7181E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E8EEF7181E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				E841F3B41F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
 				82A18E5E1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD61E736596001E8A44 /* Macros.swift in Sources */,
@@ -5466,7 +5466,7 @@
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				82EAB3391F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
-				E8EEF7171E566FD8006804D4 /* FingerprintService.swift in Sources */,
+				E8EEF7171E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				E841F3B31F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
 				82A18E5D1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				B574BAD51E736596001E8A44 /* Macros.swift in Sources */,
@@ -5582,7 +5582,7 @@
 				E840BD471EB3D4B300812DD0 /* OMCBillService.swift in Sources */,
 				82AC2A271FAB736600EACB3B /* PeakRewardsService.swift in Sources */,
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
-				E80043661E6A11E7005CF531 /* FingerprintService.swift in Sources */,
+				E80043661E6A11E7005CF531 /* BiometricsService.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
 				E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */,
 				54EDD2E21ECE244100CAB8A6 /* OMCWalletService.swift in Sources */,
