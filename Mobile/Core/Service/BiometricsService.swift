@@ -27,7 +27,7 @@ class BiometricsService {
         let manager = FileManager.default
         var fileUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("FirstLaunchOnNewDevice")
         if !manager.fileExists(atPath: fileUrl.path) {
-            UserDefaults.standard.set(false, forKey: UserDefaultKeys.BiometricsEnabled)
+            disableBiometrics()
             UserDefaults.standard.set(true, forKey: UserDefaultKeys.ShouldPromptToEnableBiometrics)
             
             manager.createFile(atPath: fileUrl.path, contents: Data(), attributes: nil)
