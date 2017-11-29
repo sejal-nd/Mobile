@@ -84,7 +84,7 @@ class HomeViewController: AccountPickerViewController {
         cardStackView.addArrangedSubview(billCardView)
         
         usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
-        usageCardView.viewUsageButton.rx.touchUpInside.asDriver()
+        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(), usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
             .withLatestFrom(viewModel.accountDetailEvents.elements()
             .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
