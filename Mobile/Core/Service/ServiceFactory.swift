@@ -22,8 +22,8 @@ class ServiceFactory {
         }
     }
 
-    class func createFingerprintService() -> FingerprintService {
-        return FingerprintService()
+    class func createBiometricsService() -> BiometricsService {
+        return BiometricsService()
     }
 
     class func createAccountService() -> AccountService {

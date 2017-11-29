@@ -195,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupUserDefaults() {
         let userDefaults = UserDefaults.standard
         userDefaults.register(defaults: [
-            UserDefaultKeys.ShouldPromptToEnableTouchID: true,
+            UserDefaultKeys.ShouldPromptToEnableBiometrics: true,
             UserDefaultKeys.PaymentDetailsDictionary: [String: NSDictionary](),
             UserDefaultKeys.UsernamesRegisteredForPushNotifications: [String]()
         ])
@@ -203,9 +203,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userDefaults.set(false, forKey: UserDefaultKeys.InMainApp)
         
         if userDefaults.bool(forKey: UserDefaultKeys.HasRunBefore) == false {
-            // Clear the Touch ID keychain item on first launch of the app (we found it was persisting after uninstalls)
-            let fingerprintService = ServiceFactory.createFingerprintService()
-            fingerprintService.disableTouchID()
+            // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
+            let biometricsService = ServiceFactory.createBiometricsService()
+            biometricsService.disableBiometrics()
             
             // Log the user out (Oracle SDK appears to be persisting the auth token through uninstalls)
             let auth = OMCApi().getBackend().authorization
