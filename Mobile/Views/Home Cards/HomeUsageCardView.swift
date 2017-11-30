@@ -51,6 +51,7 @@ class HomeUsageCardView: UIView {
     @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var viewUsageButton: UIButton!
+    @IBOutlet weak var viewUsageEmptyStateButton: UIButton!
     
     @IBOutlet weak var loadingView: UIView!
     
@@ -132,7 +133,7 @@ class HomeUsageCardView: UIView {
         billComparisonEmptyStateLabel.setLineHeight(lineHeight: 26)
         billComparisonEmptyStateLabel.textAlignment = .center
         billComparisonEmptyStateLabel.textColor = .middleGray
-        billComparisonEmptyStateLabel.text = NSLocalizedString("Your usage overview will be available here once we have more data.", comment: "")
+        billComparisonEmptyStateLabel.text = NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
         
         billComparisonContentView.backgroundColor = .softGray
         
@@ -167,6 +168,10 @@ class HomeUsageCardView: UIView {
         viewUsageButton.setTitleColor(.actionBlue, for: .normal)
         viewUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
         viewUsageButton.titleLabel?.text = NSLocalizedString("View Usage", comment: "")
+        
+        viewUsageEmptyStateButton.setTitleColor(.actionBlue, for: .normal)
+        viewUsageEmptyStateButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        viewUsageEmptyStateButton.titleLabel?.text = NSLocalizedString("View Usage", comment: "")
     }
     
     private func styleSmartEnergyRewards() {
