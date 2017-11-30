@@ -67,7 +67,7 @@ class AdjustThermostatViewController: UIViewController {
         
         let permanentHoldLabel = UILabel().usingAutoLayout()
         permanentHoldLabel.numberOfLines = 0
-        permanentHoldLabel.font = SystemFont.regular.of(size: 16)
+        permanentHoldLabel.font = SystemFont.regular.of(textStyle: .headline)
         permanentHoldLabel.textColor = .blackText
         permanentHoldLabel.text = NSLocalizedString("Permanent Hold", comment: "")
         permanentHoldLabel.isAccessibilityElement = false
@@ -89,7 +89,7 @@ class AdjustThermostatViewController: UIViewController {
         permanentHoldStack.bottomAnchor.constraint(equalTo: permanentHoldContainer.bottomAnchor, constant: -13).isActive = true
         
         let modeLabel = UILabel()
-        modeLabel.font = SystemFont.regular.of(size: 16)
+        modeLabel.font = SystemFont.regular.of(textStyle: .headline)
         modeLabel.textColor = .blackText
         modeLabel.text = NSLocalizedString("Mode", comment: "")
         
@@ -107,7 +107,7 @@ class AdjustThermostatViewController: UIViewController {
         modeStack.spacing = 10
         
         let fanLabel = UILabel()
-        fanLabel.font = SystemFont.regular.of(size: 16)
+        fanLabel.font = SystemFont.regular.of(textStyle: .headline)
         fanLabel.textColor = .blackText
         fanLabel.text = NSLocalizedString("Fan", comment: "")
         

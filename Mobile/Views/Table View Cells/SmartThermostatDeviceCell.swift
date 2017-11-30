@@ -59,6 +59,19 @@ class SmartThermostatDeviceCell: UITableViewCell {
     
     func configure(withDevice device: SmartThermostatDevice, isChecked: Driver<Bool>) {
         isChecked.not().drive(checkImageView.rx.isHidden).disposed(by: disposeBag)
+        
+        isChecked
+            .map { isChecked in
+                if isChecked {
+                    let localizedText = NSLocalizedString("Selected: %@", comment: "")
+                    return String(format: localizedText, device.name)
+                } else {
+                    return device.name
+                }
+            }
+            .drive(rx.accessibilityLabel)
+            .disposed(by: disposeBag)
+        
         nameLabel.text = device.name
     }
     
