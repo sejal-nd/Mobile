@@ -417,19 +417,8 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         view.addSubview(stackView)
         
-        let leadingConstraint = stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
-        leadingConstraint.priority = UILayoutPriority(rawValue: 750)
-        leadingConstraint.isActive = true
-        let trailingConstraint = stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
-        trailingConstraint.priority = UILayoutPriority(rawValue: 750)
-        trailingConstraint.isActive = true
-        
-        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stackView.addTabletWidthConstraints(horizontalPadding: 0)
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        stackView.widthAnchor.constraint(lessThanOrEqualToConstant: 460)
-        let widthConstraint = stackView.widthAnchor.constraint(equalToConstant: 460)
-        widthConstraint.priority = UILayoutPriority(rawValue: 750)
-        widthConstraint.isActive = true
         
         return view
     }
@@ -494,19 +483,23 @@ extension BillingHistoryViewController: UITableViewDataSource {
             .disposed(by: disposeBag)
         
         let label = UILabel()
+        
+        let labelText: String
         if accountDetail.isAutoPay {
-            label.text = NSLocalizedString("You are enrolled in AutoPay", comment: "")
+            labelText = NSLocalizedString("You are enrolled in AutoPay", comment: "")
         } else {
-            label.text = NSLocalizedString("You are enrolled in BGEasy", comment: "")
+            labelText = NSLocalizedString("You are enrolled in BGEasy", comment: "")
         }
+        
+        label.text = labelText
+        innerContentView.accessibilityLabel = labelText
         
         label.font = SystemFont.medium.of(textStyle: .headline)
         
         let carat = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
         carat.contentMode = .scaleAspectFit
         
-        let stackView = UIStackView(arrangedSubviews: [label, UIView(), carat])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        let stackView = UIStackView(arrangedSubviews: [label, UIView(), carat]).usingAutoLayout()
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.isUserInteractionEnabled = false
@@ -531,23 +524,11 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         cell.contentView.addSubview(innerContentView)
         
+        innerContentView.addTabletWidthConstraints(horizontalPadding: 0)
         innerContentView.topAnchor.constraint(equalTo: cell.contentView.topAnchor).isActive = true
         innerContentView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
-        let leadingConstraint = innerContentView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 0)
-        leadingConstraint.priority = UILayoutPriority(rawValue: 750)
-        leadingConstraint.isActive = true
-        let trailingConstraint = innerContentView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: 0)
-        trailingConstraint.priority = UILayoutPriority(rawValue: 750)
-        trailingConstraint.isActive = true
-        
-        innerContentView.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor).isActive = true
-        innerContentView.widthAnchor.constraint(lessThanOrEqualToConstant: 460)
-        let widthConstraint = innerContentView.widthAnchor.constraint(equalToConstant: 460)
-        widthConstraint.priority = UILayoutPriority(rawValue: 750)
-        widthConstraint.isActive = true
         
         return cell
-        
     }
     
     func onPaymentDelete() { // Called by MakePaymentViewController to display toast and refresh the data
