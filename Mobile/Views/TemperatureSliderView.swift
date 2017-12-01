@@ -40,9 +40,8 @@ class TemperatureSliderView: UIView {
     }
     
     func buildLayout() {
-        titleLabel.isAccessibilityElement = false
-        temperatureLabel.isAccessibilityElement = false
         temperatureLabel.setContentHuggingPriority(.required, for: .horizontal)
+        temperatureLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         let labelStack = UIStackView(arrangedSubviews: [titleLabel, temperatureLabel]).usingAutoLayout()
         labelStack.axis = .horizontal
         labelStack.alignment = .lastBaseline
@@ -80,10 +79,16 @@ class TemperatureSliderView: UIView {
     }
     
     func bindViews() {
-        mode.asDriver()
+        let offText = mode.asDriver()
             .filter { $0 == .off }
             .map(to: NSLocalizedString("Off", comment: ""))
+        
+        offText
             .drive(temperatureLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        offText
+            .drive(temperatureLabel.rx.accessibilityLabel)
             .disposed(by: disposeBag)
         
         let titleText = mode.asDriver()
@@ -102,9 +107,7 @@ class TemperatureSliderView: UIView {
             .drive(titleLabel.rx.text)
             .disposed(by: disposeBag)
         
-        titleText
-            .drive(slider.rx.accessibilityLabel)
-            .disposed(by: disposeBag)
+        slider.accessibilityLabel = NSLocalizedString("temperature control", comment: "")
         
         mode.asDriver().map { $0 != .off }.drive(slider.rx.isEnabled).disposed(by: disposeBag)
         
@@ -137,8 +140,8 @@ class TemperatureSliderView: UIView {
         
         titleLabel.font = SystemFont.bold.of(textStyle: .footnote)
         temperatureLabel.font = SystemFont.regular.of(size: 22)
-        minLabel.font = SystemFont.regular.of(size: 17)
-        maxLabel.font = SystemFont.regular.of(size: 17)
+        minLabel.font = SystemFont.regular.of(textStyle: .title1)
+        maxLabel.font = SystemFont.regular.of(textStyle: .title1)
         
         slider.minimumValue = Float(minTemp.value(forScale: scale))
         slider.maximumValue = Float(maxTemp.value(forScale: scale))
@@ -156,15 +159,25 @@ class TemperatureSliderView: UIView {
             .drive(currentTemperature)
             .disposed(by: disposeBag)
         
-        Observable.merge(currentTemperature.asObservable().distinctUntilChanged(),
+        let temperatureText = Observable.merge(currentTemperature.asObservable().distinctUntilChanged(),
                          mode.asObservable().filter { $0 != .off }.withLatestFrom(currentTemperature))
             .map { [unowned self] in "\($0.value(forScale: self.scale))\(self.scale.displayString)" }
             .asDriver(onErrorDriveWith: .empty())
+        
+        temperatureText
             .drive(temperatureLabel.rx.text)
             .disposed(by: disposeBag)
         
+        temperatureText
+            .map { String(format: NSLocalizedString("set to %@", comment: ""), $0)}
+            .drive(temperatureLabel.rx.accessibilityLabel)
+            .disposed(by: disposeBag)
+        
         minLabel.text = String(minTemp.value(forScale: scale))
+        minLabel.accessibilityLabel = String(format: NSLocalizedString("minimum temperature %d%@", comment: ""), minTemp.value(forScale: scale), scale.displayString)
+        
         maxLabel.text = String(maxTemp.value(forScale: scale))
+        maxLabel.accessibilityLabel = String(format: NSLocalizedString("maximum temperature %d%@", comment: ""), maxTemp.value(forScale: scale), scale.displayString)
     }
     
     override func layoutSubviews() {

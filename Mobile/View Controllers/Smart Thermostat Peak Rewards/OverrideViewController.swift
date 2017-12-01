@@ -183,6 +183,7 @@ class OverrideViewController: UIViewController {
         viewModel.enableSaveButton.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         viewModel.enableDateButton.drive(dateButton.rx.isEnabled).disposed(by: disposeBag)
         viewModel.dateButtonText.drive(dateButton.label.rx.text).disposed(by: disposeBag)
+        viewModel.dateButtonA11yText.drive(dateButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         viewModel.showScheduledOverride.not().drive(scheduledStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.showActiveOverride.not().drive(activeStack.rx.isHidden).disposed(by: disposeBag)

@@ -303,8 +303,11 @@
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="adjustThermostatButton" destination="0mo-MQ-zow" id="sZS-Dw-HIN"/>
+                        <outlet property="coolLegendLabel" destination="HXG-cY-ZeK" id="Gn1-dT-BcU"/>
+                        <outlet property="cyclingStatusLabel" destination="xBk-zX-K9G" id="nRP-OQ-oCZ"/>
                         <outlet property="deviceButton" destination="qWW-FB-ss2" id="nfy-UX-F3c"/>
                         <outlet property="gradientView" destination="lba-qg-ikB" id="mfM-Ex-IrD"/>
+                        <outlet property="heatLegendLabel" destination="YQ1-8J-0MC" id="51t-Xh-cR4"/>
                         <outlet property="leavePeriodCard" destination="mba-Rl-P1R" id="ZSH-1o-Ldv"/>
                         <outlet property="mainErrorLabel" destination="avC-5q-wSD" id="kek-nb-jXR"/>
                         <outlet property="mainLoadingIndicator" destination="0EV-pp-1sF" id="LZE-Fx-cYV"/>
