@@ -114,24 +114,7 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver().drive(onNext: { [weak self] _ in
             self?.onLoginPress()
         }).disposed(by: disposeBag)
-        
-//        // This hack (on editingDidBegin/editingDidEnd) prevents the automatic scrolling that happens when the password field is
-//        // selected on a 4" phone. We want that disabled because of our custom logic in keyboardWillShow.
-//        // MMS: REMOVED ON 5/24 because was breaking text field bottom bar appearence
-//        passwordTextField.textField.rx.controlEvent(.editingDidBegin).subscribe(onNext: { _ in
-//            let wrap = UIScrollView(frame: self.passwordTextField.textField.frame)
-//            self.passwordTextField.textField.superview?.addSubview(wrap)
-//            self.passwordTextField.textField.frame = CGRect(x: 0, y: 0, width: self.passwordTextField.textField.frame.size.width, height: self.passwordTextField.textField.frame.size.height)
-//            wrap.addSubview(self.passwordTextField.textField)
-//        }).disposed(by: disposeBag)
-//        passwordTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: { _ in
-//            if let wrap = self.passwordTextField.textField.superview as? UIScrollView {
-//                self.passwordTextField.textField.frame = CGRect(x: wrap.frame.origin.x, y: wrap.frame.origin.y, width: wrap.frame.size.width, height: wrap.frame.size.height)
-//                wrap.superview?.addSubview(self.passwordTextField.textField)
-//                wrap.removeFromSuperview()
-//            }
-//        }).disposed(by: disposeBag)
-        
+                
         forgotUsernameButton.tintColor = .actionBlue
         forgotPasswordButton.tintColor = .actionBlue
         
@@ -319,17 +302,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {
-//        //TEST CODE - REMOVE BEFORE PUSHING
-//        LoadingView.show()
-//        viewModel.validateRegistration(guid: "6a5bed06-3ac4-4686-ba0d-dd317ea4b0fb", onSuccess: {
-//            LoadingView.hide()
-//            self.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
-//        }, onError: { title, message in
-//            LoadingView.hide()
-//            let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-//            self.present(alertVc, animated: true, completion: nil)
-//        })
         if passwordTextField.textField.isSecureTextEntry {
             passwordTextField.textField.isSecureTextEntry = false
             // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
@@ -424,9 +396,14 @@ class LoginViewController: UIViewController {
         let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
-        
-        let rect = signInButton.convert(signInButton.bounds, to: scrollView)
-        scrollView.scrollRectToVisible(rect, animated: true)
+
+        let screenHeight = UIScreen.main.bounds.size.height
+        if self.passwordTextField.textField.isFirstResponder && screenHeight == 568 { // Handle oddity that only occurs on iPhone 5 size
+            self.scrollView.contentOffset = CGPoint(x: 0, y: 162)
+        } else {
+            let rect = signInButton.convert(signInButton.bounds, to: scrollView)
+            scrollView.scrollRectToVisible(rect, animated: true)
+        }
     }
     
     @objc func keyboardWillHide(notification: Notification) {
