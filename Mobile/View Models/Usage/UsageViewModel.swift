@@ -40,4 +40,13 @@ class UsageViewModel {
         return nil
     }
     
+    var smartEnergyRewardsFooterText: String {
+        if accountDetail.SERInfo.eventResults.count > 0 {
+            return NSLocalizedString("You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
+        }
+        
+        let programName = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") : NSLocalizedString("Smart Energy Rewards", comment: "")
+        return NSLocalizedString("As a \(programName) customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent \(programName) season will display here once available.", comment: "")
+    }
+    
 }
