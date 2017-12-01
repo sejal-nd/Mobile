@@ -84,4 +84,10 @@ class AccountInfoBar: UIView {
         
         label.widthAnchor.constraint(lessThanOrEqualToConstant: 460).isActive = true
     }
+    
+    override var isHidden: Bool {
+        didSet {
+            label.isAccessibilityElement = !isHidden
+        }
+    }
 }
