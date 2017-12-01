@@ -96,6 +96,7 @@ class AddBankFormView: UIView {
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
+        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         if Environment.sharedInstance.opco == .bge {
             saveToWalletStackView.isHidden = true // BGE bank payments must be saved

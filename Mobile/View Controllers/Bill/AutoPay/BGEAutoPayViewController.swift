@@ -31,6 +31,7 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var learnMoreButtonLabel: UILabel!
     
     @IBOutlet weak var enrollmentSwitchView: UIView!
+    @IBOutlet weak var enrollmentStatusLabel: UILabel!
     @IBOutlet weak var enrollmentSwitch: Switch!
     
     @IBOutlet weak var topSpacerView: UIView!
@@ -76,8 +77,11 @@ class BGEAutoPayViewController: UIViewController {
         ]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
+        enrollmentStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
+        
         learnMoreButtonLabel.textColor = .actionBlue
         learnMoreButtonLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
+        learnMoreButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
         expirationLabel.textColor = .blackText
         
@@ -102,6 +106,7 @@ class BGEAutoPayViewController: UIViewController {
         bottomLabelView.backgroundColor = .softGray
         bottomLabel.textColor = .blackText
         bottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
+        bottomLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         settingsButtonLabel.textColor = .actionBlue
         settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -168,6 +173,7 @@ class BGEAutoPayViewController: UIViewController {
         settingsButton.accessibilityLabel = settingsButtonLabel.text
         
         enrollmentSwitch.accessibilityLabel = "Enrollment status: "
+        enrollmentStatusLabel.isAccessibilityElement = false
     }
     
     func setupBindings() {
