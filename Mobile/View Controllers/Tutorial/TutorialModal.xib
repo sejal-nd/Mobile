@@ -29,13 +29,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCJ-x3-N13">
-                    <rect key="frame" x="16" y="30" width="24" height="24"/>
-                    <state key="normal" image="ic_close_white"/>
-                    <connections>
-                        <action selector="onClose:" destination="-1" eventType="touchUpInside" id="yl2-BL-K5y"/>
-                    </connections>
-                </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0w-DH-xDF">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="552"/>
                     <subviews>
@@ -65,6 +58,13 @@
                     </state>
                     <connections>
                         <action selector="onNext:" destination="-1" eventType="touchUpInside" id="LnS-9y-dxS"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCJ-x3-N13">
+                    <rect key="frame" x="16" y="30" width="24" height="24"/>
+                    <state key="normal" image="ic_close_white"/>
+                    <connections>
+                        <action selector="onClose:" destination="-1" eventType="touchUpInside" id="yl2-BL-K5y"/>
                     </connections>
                 </button>
             </subviews>
