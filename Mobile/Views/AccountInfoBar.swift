@@ -72,17 +72,8 @@ class AccountInfoBar: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
-        let leadingConstraint = label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
-        leadingConstraint.priority = UILayoutPriority(rawValue: 999)
-        leadingConstraint.isActive = true
-        
-        let trailingConstraint = label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-        trailingConstraint.priority = UILayoutPriority(rawValue: 999)
-        trailingConstraint.isActive = true
-        
-        label.widthAnchor.constraint(lessThanOrEqualToConstant: 460).isActive = true
+        label.addTabletWidthConstraints(horizontalPadding: 8)
     }
     
     override var isHidden: Bool {

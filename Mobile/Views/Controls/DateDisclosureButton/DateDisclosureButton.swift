@@ -10,7 +10,7 @@ import UIKit
 
 class DateDisclosureButton: ButtonControl {
     
-    let selectedDateText = NSLocalizedString("Select Date", comment: "")
+    private let selectedDateText = NSLocalizedString("Select Date", comment: "")
 
     @IBOutlet weak var dateDisclosureLabel: UILabel!
     @IBOutlet weak var selectedDateLabel: UILabel!
@@ -22,7 +22,7 @@ class DateDisclosureButton: ButtonControl {
     static func create(withLabel label: String) -> DateDisclosureButton {
         let view = Bundle.main.loadViewFromNib() as DateDisclosureButton
         
-        view.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 6)
+        view.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 6)
         
         view.bind(withLabel: label)
         
@@ -35,11 +35,12 @@ class DateDisclosureButton: ButtonControl {
         
         selectedDateLabel.font = OpenSans.regular.of(textStyle: .headline)
         selectedDateLabel.text = selectedDateText
+        accessibilityLabel = selectedDateText
     }
     
     func accessibilityUpdate(dateText: String) {
         isAccessibilityElement = true
-        let localizedText = NSLocalizedString("%@: $@", comment: "")
+        let localizedText = NSLocalizedString("%@: %@", comment: "")
         accessibilityLabel = String(format: localizedText, selectedDateText, dateText)
     }
 

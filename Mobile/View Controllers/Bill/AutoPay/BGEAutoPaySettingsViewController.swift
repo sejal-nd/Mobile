@@ -576,7 +576,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsRadioControlsSet.append(untilDateRadioControl)
         
         untilDateButton.addTarget(self, action: #selector(onDateButtonSelected), for: .touchUpInside)
-        untilDateButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        untilDateButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         untilDateButton.backgroundColorOnPress = .softGray
         
         untilDateButtonStackView.addArrangedSubview(untilDateButton)
@@ -734,9 +734,11 @@ extension BGEAutoPaySettingsViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        let characterSet = CharacterSet(charactersIn: string)
+        let isDecimalNumber = CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string))
         if textField == numberOfPaymentsTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
+            return isDecimalNumber && newString.count <= 4
+        } else if textField == amountNotToExceedTextField.textField {
+            return isDecimalNumber// && newString.count <= 15
         }
         return true
     }

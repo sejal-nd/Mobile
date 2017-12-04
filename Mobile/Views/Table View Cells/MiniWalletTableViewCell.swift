@@ -21,7 +21,7 @@ class MiniWalletTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        innerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         innerContentView.backgroundColorOnPress = .softGray
         
         iconImageView.image = #imageLiteral(resourceName: "opco_bank_mini")
@@ -109,7 +109,7 @@ class MiniWalletAddAccountCell: UITableViewCell {
         
         selectionStyle = .none
         
-        innerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         innerContentView.backgroundColorOnPress = .softGray
         
         label.font = SystemFont.medium.of(textStyle: .title1)

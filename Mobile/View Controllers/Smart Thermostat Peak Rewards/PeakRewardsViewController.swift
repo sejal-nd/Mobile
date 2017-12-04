@@ -18,6 +18,7 @@ class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var deviceButton: DisclosureButton!
     
     @IBOutlet weak var programCardStack: UIStackView!
+    @IBOutlet weak var cyclingStatusLabel: UILabel!
     
     @IBOutlet weak var overrideButton: DisclosureButton!
     @IBOutlet weak var adjustThermostatButton: DisclosureButton!
@@ -30,6 +31,9 @@ class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var leavePeriodCard: SmartThermostatPeriodCard!
     @IBOutlet weak var returnPeriodCard: SmartThermostatPeriodCard!
     @IBOutlet weak var sleepPeriodCard: SmartThermostatPeriodCard!
+    
+    @IBOutlet weak var coolLegendLabel: UILabel!
+    @IBOutlet weak var heatLegendLabel: UILabel!
     
     @IBOutlet weak var scheduleErrorView: UIView!
     @IBOutlet weak var scheduleLoadingView: UIView!
@@ -59,7 +63,12 @@ class PeakRewardsViewController: UIViewController {
         ]
         gradientView.layer.addSublayer(gradientLayer)
         
+        cyclingStatusLabel.font = OpenSans.bold.of(textStyle: .title1)
+        temperatureScaleLabel.font = OpenSans.bold.of(textStyle: .title1)
         segmentedControl.items = [TemperatureScale.fahrenheit, TemperatureScale.celsius].map { $0.displayString }
+        
+        coolLegendLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        heatLegendLabel.font = OpenSans.semibold.of(textStyle: .footnote)
     }
     
     override func viewDidLayoutSubviews() {
@@ -86,6 +95,16 @@ class PeakRewardsViewController: UIViewController {
         viewModel.showMainContent.asDriver().not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showMainContent.asDriver().not().drive(gradientView.rx.isHidden).disposed(by: disposeBag)
         
+        viewModel.showMainContent.asDriver()
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.scrollView) })
+            .disposed(by: disposeBag)
+        
+        viewModel.showMainErrorState.asDriver()
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.mainErrorLabel) })
+            .disposed(by: disposeBag)
+        
         viewModel.showDeviceButton.not().drive(deviceButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.deviceButtonText.drive(deviceButton.label.rx.text).disposed(by: disposeBag)
         viewModel.deviceButtonText.drive(deviceButton.rx.accessibilityLabel).disposed(by: disposeBag)
@@ -98,6 +117,16 @@ class PeakRewardsViewController: UIViewController {
         viewModel.showScheduleContent.asDriver().not().drive(scheduleContentStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleLoadingState.asDriver().not().drive(scheduleLoadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleErrorState.asDriver().not().drive(scheduleErrorView.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.showScheduleContent.asDriver()
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.scheduleContentStack) })
+            .disposed(by: disposeBag)
+        
+        viewModel.showScheduleErrorState.asDriver()
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.scheduleErrorView) })
+            .disposed(by: disposeBag)
         
         viewModel.programCardsData
             .drive(onNext: { [weak self] programCardsData in
@@ -121,13 +150,6 @@ class PeakRewardsViewController: UIViewController {
         leavePeriodCard.configure(withPeriod: .leave, periodInfo: viewModel.leaveInfo)
         returnPeriodCard.configure(withPeriod: .return, periodInfo: viewModel.returnInfo)
         sleepPeriodCard.configure(withPeriod: .sleep, periodInfo: viewModel.sleepInfo)
-
-        segmentedControl.selectedIndex.asObservable()
-            .skip(1)
-            .distinctUntilChanged()
-            .map { TemperatureScale(rawValue: $0) ?? .fahrenheit }
-            .subscribe(onNext: { TemperatureScaleStore.shared.scale = $0 })
-            .disposed(by: disposeBag)
         
         segmentedControl.selectedIndex.value = TemperatureScaleStore.shared.scale.rawValue
     }
@@ -167,6 +189,13 @@ class PeakRewardsViewController: UIViewController {
                 
                 self.navigationController?.pushViewController($0, animated: true)
             })
+            .disposed(by: disposeBag)
+        
+        segmentedControl.selectedIndex.asObservable()
+            .skip(1)
+            .distinctUntilChanged()
+            .map { TemperatureScale(rawValue: $0) ?? .fahrenheit }
+            .subscribe(onNext: { TemperatureScaleStore.shared.scale = $0 })
             .disposed(by: disposeBag)
         
         adjustThermostatButton.rx.tap.asDriver()
