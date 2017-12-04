@@ -156,7 +156,7 @@ class MakePaymentViewController: UIViewController {
         paymentAccountLabel.textColor = .deepGray
         paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        paymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        paymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         paymentAccountButton.backgroundColorOnPress = .softGray
         paymentAccountAccountNumberLabel.textColor = .blackText
         paymentAccountAccountNumberLabel.font = SystemFont.medium.of(textStyle: .headline)
@@ -214,7 +214,7 @@ class MakePaymentViewController: UIViewController {
         paymentDateTextLabel.textColor = .deepGray
         paymentDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        paymentDateButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        paymentDateButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
         paymentDateFixedDateLabel.textColor = .blackText
         paymentDateFixedDateLabel.font = SystemFont.semibold.of(textStyle: .title1)
@@ -224,7 +224,7 @@ class MakePaymentViewController: UIViewController {
         addBankAccountFeeLabel.textColor = .blackText
         addBankAccountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         addBankAccountFeeLabel.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
-        addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addBankAccountButton.backgroundColorOnPress = .softGray
         addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
@@ -238,7 +238,7 @@ class MakePaymentViewController: UIViewController {
             addCreditCardFeeLabel.text = String(format: NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.", comment: ""), accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
             break
         }
-        addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addCreditCardButton.backgroundColorOnPress = .softGray
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
         

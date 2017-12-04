@@ -22,7 +22,7 @@ class DateDisclosureButton: ButtonControl {
     static func create(withLabel label: String) -> DateDisclosureButton {
         let view = Bundle.main.loadViewFromNib() as DateDisclosureButton
         
-        view.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 6)
+        view.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 6)
         
         view.bind(withLabel: label)
         

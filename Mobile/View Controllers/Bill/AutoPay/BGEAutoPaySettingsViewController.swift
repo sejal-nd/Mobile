@@ -576,7 +576,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         numberOfPaymentsRadioControlsSet.append(untilDateRadioControl)
         
         untilDateButton.addTarget(self, action: #selector(onDateButtonSelected), for: .touchUpInside)
-        untilDateButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        untilDateButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         untilDateButton.backgroundColorOnPress = .softGray
         
         untilDateButtonStackView.addArrangedSubview(untilDateButton)
