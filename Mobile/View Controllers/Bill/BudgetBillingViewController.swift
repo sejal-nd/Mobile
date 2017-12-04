@@ -98,7 +98,7 @@ class BudgetBillingViewController: UIViewController {
         
         learnMoreAboutBudgetBillingLabel.textColor = .actionBlue
         learnMoreAboutBudgetBillingLabel.text = NSLocalizedString("Learn more about Budget Billing", comment: "")
-        learnMoreAboutBudgetBillingLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        learnMoreAboutBudgetBillingLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
         yourPaymentWouldBeLabel.font = SystemFont.medium.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .deepGray
