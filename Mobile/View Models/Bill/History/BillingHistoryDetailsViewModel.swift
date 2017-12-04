@@ -38,20 +38,12 @@ class BillingHistoryDetailsViewModel {
     }
     
     //amountPaid and paymentAmount
-    var amountPaid: String { 
-        if let amountPaid = billingHistory.amountPaid, let returnString = amountPaid.currencyString {
-            return returnString
-        } else {
-            return ""
-        }
+    var amountPaid: String {
+        return billingHistory.amountPaid?.currencyString ?? ""
     }
     
-    var chargeAmount: String { 
-        if let chargeAmount = billingHistory.chargeAmount, let returnString = chargeAmount.currencyString {
-            return returnString
-        } else {
-            return ""
-        }
+    var chargeAmount: String {
+        return billingHistory.chargeAmount?.currencyString ?? ""
     }
     
     private(set) lazy var convenienceFee: Driver<String?> = self.paymentDetail.asDriver().map {
@@ -67,19 +59,11 @@ class BillingHistoryDetailsViewModel {
     }
     
     var paymentStatus: String {
-        if let paymentStatus = billingHistory.status {
-            return paymentStatus
-        } else {
-            return ""
-        }
+        return billingHistory.status?.capitalized ?? ""
     }
     
     var confirmationNumber: String {
-        if let confirmationNumber = billingHistory.confirmationNumber {
-            return confirmationNumber
-        } else {
-            return ""
-        }
+        return billingHistory.confirmationNumber ?? ""
     }
     
     var isBGE: Bool {
@@ -96,18 +80,16 @@ class BillingHistoryDetailsViewModel {
     }
     
     var paymentTypeLabel: String {
-        return isCSS ? "PaymentAccountNickname" : "Payment Type"
+        return isCSS ? NSLocalizedString("PaymentAccountNickname", comment: "") : NSLocalizedString("Payment Type", comment: "")
     }
     
     var paymentAmountLabel: String {
-        return isSpeedpay ? "Payment Amount" : "Amount Paid"
+        return isSpeedpay ? NSLocalizedString("Payment Amount", comment: "") : NSLocalizedString("Amount Paid", comment: "")
     }
     
-    var shouldShowContent: Driver<Bool> {
-        return Driver.combineLatest(fetching.asDriver(), isError.asDriver()).map {
-            return !$0 && !$1
-        }
-    }
+    private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(fetching.asDriver(),
+                                                                                 isError.asDriver(),
+                                                                                 resultSelector: { !$0 && !$1 })
     
     required init(paymentService: PaymentService, billingHistoryItem: BillingHistoryItem) {
         self.paymentService = paymentService

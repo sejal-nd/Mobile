@@ -63,12 +63,12 @@ class BillViewModel {
 	
     // MARK: - Show/Hide Views -
     
-    private(set) lazy var shouldShowAlertBanner: Driver<Bool> = {
-        let isCutOutNonPay = self.currentAccountDetail.map { $0.isCutOutNonPay }
-        return Driver.zip(isCutOutNonPay, self.shouldShowRestoreService, self.shouldShowAvoidShutoff)
-        { ($0 && $1) || $2 }
-            .startWith(false)
-    }()
+    private(set) lazy var shouldShowAlertBanner: Driver<Bool> =  Driver.combineLatest(self.currentAccountDetail,
+                                                                                      self.shouldShowRestoreService,
+                                                                                      self.shouldShowAvoidShutoff,
+                                                                                      self.switchAccountsTracker.asDriver())
+    { (($0.isCutOutNonPay && $1) || $2) && !$3 }
+        .startWith(false)
     
     private(set) lazy var shouldShowRestoreService: Driver<Bool> = self.currentAccountDetail.map {
         return $0.billingInfo.restorationAmount ?? 0 > 0 && $0.isCutOutNonPay && Environment.sharedInstance.opco != .bge
@@ -192,7 +192,8 @@ class BillViewModel {
     
     private(set) lazy var alertBannerText: Driver<String?> = Driver.combineLatest(self.restoreServiceAlertText,
                                                                      self.avoidShutoffAlertText,
-                                                                     self.paymentFailedAlertText) { $0 ?? $1 ?? $2 }
+                                                                     self.paymentFailedAlertText)
+    { $0 ?? $1 ?? $2 }
     
     private(set) lazy var alertBannerA11yText: Driver<String?> = self.alertBannerText.map {
         $0?.replacingOccurrences(of: "shutoff", with: "shut-off")

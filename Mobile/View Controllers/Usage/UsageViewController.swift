@@ -65,7 +65,7 @@ class UsageViewController: UIViewController {
         
         if accountDetail.peakRewards == "ACTIVE" {
             let thermbutton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_thermostat"), style: .plain, target: nil, action: nil)
-            thermbutton.accessibilityLabel = NSLocalizedString("Access PeakRewards", comment: "")
+            thermbutton.accessibilityLabel = NSLocalizedString("access peak rewards", comment: "")
             thermbutton.rx.tap.asDriver()
                 .drive(onNext: { [weak self] in
                     Analytics().logScreenView(AnalyticsPageView.ViewUsagePeakRewards.rawValue)

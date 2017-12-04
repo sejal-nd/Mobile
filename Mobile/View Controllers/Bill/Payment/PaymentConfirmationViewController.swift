@@ -78,7 +78,7 @@ class PaymentConfirmationViewController: UIViewController {
         autoPayLabel.textColor = .deepGray
         autoPayLabel.font = SystemFont.regular.of(textStyle: .footnote)
         autoPayLabel.text = NSLocalizedString("Would you like to set up Automatic Payments?", comment: "")
-        enrollAutoPayButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        enrollAutoPayButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
         privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
