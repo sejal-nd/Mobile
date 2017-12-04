@@ -82,6 +82,7 @@ class BGEAutoPayViewController: UIViewController {
         learnMoreButtonLabel.textColor = .actionBlue
         learnMoreButtonLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
         learnMoreButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        learnMoreButtonLabel.numberOfLines = 0
         
         expirationLabel.textColor = .blackText
         
@@ -94,7 +95,7 @@ class BGEAutoPayViewController: UIViewController {
         enrolledPaymentAccountLabel.text = NSLocalizedString("AutoPay Payment Account:", comment: "")
         
         bankAccountButton.backgroundColorOnPress = .softGray
-        bankAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        bankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
         bankAccountButtonSelectLabel.font = SystemFont.medium.of(textStyle: .title1)
         bankAccountButtonSelectLabel.textColor = .blackText

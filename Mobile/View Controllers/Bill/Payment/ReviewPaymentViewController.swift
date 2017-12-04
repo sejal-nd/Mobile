@@ -59,8 +59,8 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var termsConditionsSwitchView: UIView!
     @IBOutlet weak var termsConditionsSwitch: Switch!
     @IBOutlet weak var termsConditionsSwitchLabel: UILabel!
-    @IBOutlet weak var termsConditionsButtonView: UIView!
-    @IBOutlet weak var termsConditionsButton: UIButton!
+    @IBOutlet weak var termsConditionsButton: ButtonControl!
+    @IBOutlet weak var termsConditionsButtonLabel: UILabel!
     
     @IBOutlet weak var overpayingSwitchView: UIView!
     @IBOutlet weak var overpayingSwitch: Switch!
@@ -165,9 +165,9 @@ class ReviewPaymentViewController: UIViewController {
             termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
         }
         termsConditionsSwitchLabel.setLineHeight(lineHeight: 25)
-        termsConditionsButton.setTitleColor(.actionBlue, for: .normal)
-        termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
-        termsConditionsButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        termsConditionsButtonLabel.font = SystemFont.bold.of(textStyle: .headline)
+        termsConditionsButtonLabel.textColor = .actionBlue
+        termsConditionsButtonLabel.text = NSLocalizedString("View terms and conditions", comment: "")
         termsConditionsSwitchLabel.isAccessibilityElement = false
         termsConditionsSwitch.accessibilityLabel = termsConditionsSwitchLabel.text!
         

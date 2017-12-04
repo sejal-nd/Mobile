@@ -255,7 +255,9 @@ class MakePaymentViewController: UIViewController {
         
         stickyPaymentFooterView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         stickyPaymentFooterPaymentLabel.textColor = .blackText
+        stickyPaymentFooterPaymentLabel.font = SystemFont.semibold.of(textStyle: .title1)
         stickyPaymentFooterFeeLabel.textColor = .deepGray
+        stickyPaymentFooterFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
