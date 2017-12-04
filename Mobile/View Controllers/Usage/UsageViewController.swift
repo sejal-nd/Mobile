@@ -162,8 +162,6 @@ class UsageViewController: UIViewController {
         
         smartEnergyRewardsFooterLabel.textColor = .blackText
         smartEnergyRewardsFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        smartEnergyRewardsFooterLabel.text = NSLocalizedString("You earn bill credits for every kWh you save. " +
-            "We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
         
         smartEnergyRewardsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
         smartEnergyRewardsEmptyStateLabel.setLineHeight(lineHeight: 26)
@@ -215,6 +213,7 @@ class UsageViewController: UIViewController {
             Analytics().logScreenView(AnalyticsPageView.EmptyStatePeakSmart.rawValue)
         }
         smartEnergyRewardsSeasonLabel.text = viewModel.smartEnergyRewardsSeasonLabelText
+        smartEnergyRewardsFooterLabel.text = viewModel.smartEnergyRewardsFooterText
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

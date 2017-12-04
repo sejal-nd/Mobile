@@ -46,6 +46,11 @@ class OverrideViewModel {
         .startWith(NSLocalizedString("Select Date", comment: ""))
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var dateButtonA11yText: Driver<String> = self.selectedDate.asObservable()
+        .map { String(format: NSLocalizedString("Date: %@", comment: ""), $0.fullMonthDayAndYearString) }
+        .startWith(NSLocalizedString("Select Date", comment: ""))
+        .asDriver(onErrorDriveWith: .empty())
+    
     private(set) lazy var scheduledOverride: Driver<PeakRewardsOverride?> = self.overrideEvents.elements()
         .map { [weak self] in
             guard let device = self?.device else { return nil }
