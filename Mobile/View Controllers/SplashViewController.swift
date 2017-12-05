@@ -161,12 +161,6 @@ class SplashViewController: UIViewController{
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? LandingViewController {
-            vc.fadeIn = !keepMeSignedIn
-        }
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
