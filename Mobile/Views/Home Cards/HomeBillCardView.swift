@@ -107,10 +107,6 @@ class HomeBillCardView: UIView {
     static func create(withViewModel viewModel: HomeBillCardViewModel) -> HomeBillCardView {
         let view = Bundle.main.loadViewFromNib() as HomeBillCardView
         view.viewModel = viewModel
-        
-        let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
-        view.a11yTutorialButtonContainer.isHidden = !a11yEnabled
-    
         return view
     }
     
@@ -225,6 +221,10 @@ class HomeBillCardView: UIView {
         dueAmountAndDateTooltip.isHidden = !viewModel.showDueAmountAndDateTooltip
         viewModel.showBankCreditButton.not().drive(bankCreditNumberContainer.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.asObservable().subscribe(onNext: { [weak self] show in
+            let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
+            self?.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
+        }).disposed(by: bag)
         viewModel.showConvenienceFee.not().drive(convenienceFeeContainer.rx.isHidden).disposed(by: bag)
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
@@ -278,9 +278,12 @@ class HomeBillCardView: UIView {
                          NotificationCenter.default.rx.notification(Notification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
-                self?.a11yTutorialButtonContainer.isHidden = !a11yEnabled
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+                guard let `self` = self else { return }
+                self.viewModel.showSaveAPaymentAccountButton.asObservable().single().subscribe(onNext: { show in
+                    let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
+                    self.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
+                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+                }).disposed(by: self.bag)
             })
             .disposed(by: bag)
     }

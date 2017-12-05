@@ -91,7 +91,7 @@ class OneTouchSlider: UIControl {
         //Add the slider label and set the constraints that will keep it centered
         sliderLabel.translatesAutoresizingMaskIntoConstraints = false
         sliderLabel.textAlignment = .center
-        sliderLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        sliderLabel.font = OpenSans.semibold.of(size: 16)
         sliderLabel.setLineHeight(lineHeight: 16)
         sliderLabel.textColor = .white
         sliderLabel.text = sliderText

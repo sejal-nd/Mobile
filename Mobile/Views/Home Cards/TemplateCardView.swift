@@ -57,8 +57,9 @@ class TemplateCardView: UIView {
         viewModel.templateImage.drive(imageView.rx.image).disposed(by: bag)
         viewModel.titleString.drive(titleLabel.rx.text).disposed(by: bag)
         viewModel.bodyString.drive(bodyLabel.rx.text).disposed(by: bag)
+        viewModel.bodyStringA11yLabel.drive(bodyLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.ctaString.drive(callToActionButton.rx.title()).disposed(by: bag)
-
+        
         //show error state if an error is received
         viewModel.shouldShowErrorState.drive(clippingView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)

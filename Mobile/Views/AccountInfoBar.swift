@@ -75,4 +75,10 @@ class AccountInfoBar: UIView {
         
         label.addTabletWidthConstraints(horizontalPadding: 8)
     }
+    
+    override var isHidden: Bool {
+        didSet {
+            label.isAccessibilityElement = !isHidden
+        }
+    }
 }

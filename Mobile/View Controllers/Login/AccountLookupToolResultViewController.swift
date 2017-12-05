@@ -48,6 +48,8 @@ class AccountLookupToolResultViewController: UIViewController {
         unitNumberHeaderLabel.text = NSLocalizedString("Unit Number", comment: "")
         
         firstSeparatorView.backgroundColor = tableView.separatorColor
+        
+        tableView.isHidden = true
     }
     
     @objc func onCancelPress() {
@@ -57,12 +59,13 @@ class AccountLookupToolResultViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // TODO: Discovered an iOS 11 only bug where the table view cells would initially
-        // be blank until they were scrolled off screen and reused. This reloadData() is the
-        // workaround. We should remove it if/when this gets fixed.
-        if #available(iOS 11, *) {
-            viewDidLayoutSubviews()
-        }
+        // A few oddities going on here. Discovered an iOS 11 only bug where the table view cells would initially
+        // be blank until they were scrolled off screen and reused. Also an issue when accessibility text is sized up
+        // where we need to re-layout and compute the column width contraints. viewDidLayoutSubviews() will call
+        // tableView.reloadData() and re-compute all the constraints. We hide the tableView initially and unhide
+        // here so that you don't see the re-layout happen.
+        viewDidLayoutSubviews()
+        tableView.isHidden = false
     }
     
     override func viewDidLayoutSubviews() {

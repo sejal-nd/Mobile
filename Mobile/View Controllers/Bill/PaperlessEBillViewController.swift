@@ -67,6 +67,7 @@ class PaperlessEBillViewController: UIViewController {
         
         emailsWillBeSentToLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
+        emailLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         allAccountsLabel.font = SystemFont.medium.of(textStyle: .title1)
         
@@ -132,14 +133,18 @@ class PaperlessEBillViewController: UIViewController {
         
         learnMoreLabel.textColor = .actionBlue
         learnMoreLabel.text = NSLocalizedString("Learn more about Paperless eBill", comment: "")
+        learnMoreLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
         enrollAllAccountsSwitch.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
     }
     
     func colorAndShadowSetup() {
         singleAccountEnrollLabel.textColor = .blackText
-        singleAccountEnrollLabel.font = OpenSans.regular.of(size: 16)
+        singleAccountEnrollLabel.font = OpenSans.regular.of(textStyle: .footnote)
         singleAccountEnrollLabel.text = NSLocalizedString("Paperless eBill Enrollment Status", comment: "")
+        singleAccountEnrollLabel.isAccessibilityElement = false
+        
+        singleAccountEnrollSwitch.accessibilityLabel = singleAccountEnrollLabel.text
         
         enrollAllAccountsHeaderLabel.textColor = .blackText
         enrollAllAccountsHeaderLabel.font = OpenSans.regular.of(textStyle: .footnote)

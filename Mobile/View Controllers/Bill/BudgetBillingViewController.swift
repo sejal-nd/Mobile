@@ -98,6 +98,7 @@ class BudgetBillingViewController: UIViewController {
         
         learnMoreAboutBudgetBillingLabel.textColor = .actionBlue
         learnMoreAboutBudgetBillingLabel.text = NSLocalizedString("Learn more about Budget Billing", comment: "")
+        learnMoreAboutBudgetBillingLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
         yourPaymentWouldBeLabel.font = SystemFont.medium.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .deepGray
@@ -117,11 +118,13 @@ class BudgetBillingViewController: UIViewController {
         }
         
         enrollmentLabel.textColor = .blackText
-        enrollmentLabel.font = OpenSans.regular.of(size: 16)
+        enrollmentLabel.font = OpenSans.regular.of(textStyle: .footnote)
         enrollmentLabel.text = NSLocalizedString("Budget Billing Enrollment Status", comment: "")
+        enrollmentLabel.isAccessibilityElement = false
         
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).disposed(by: disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).disposed(by: disposeBag)
+        enrollSwitch.accessibilityLabel = enrollmentLabel.text
         
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
@@ -185,6 +188,7 @@ class BudgetBillingViewController: UIViewController {
         footerView.backgroundColor = .softGray
         bgeFooterView.backgroundColor = .softGray
         footerLabel.textColor = .blackText
+        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -232,16 +236,13 @@ class BudgetBillingViewController: UIViewController {
                     self.navigationItem.rightBarButtonItem = nil
                     self.enrollSwitch.isHidden = true // USPP Participants cannot unenroll
                 }
-                
             }
-            
-            }, onError: { [weak self] errMessage in
-                guard let `self` = self else { return }
-                self.scrollView.isHidden = true
-                self.loadingIndicator.isHidden = true
-                self.errorLabel.isHidden = false
+        }, onError: { [weak self] errMessage in
+            guard let `self` = self else { return }
+            self.scrollView.isHidden = true
+            self.loadingIndicator.isHidden = true
+            self.errorLabel.isHidden = false
         })
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
