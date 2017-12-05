@@ -279,7 +279,7 @@ class ReportOutageViewController: UIViewController {
                     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
                     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Check Complete", comment: ""))
                 } else { // POWER STATUS SUCCESS
-                    self.meterPingCurrentStatusLabel.text = NSLocalizedString("Verifying voltage level of the meter", comment: "")
+                    self.meterPingCurrentStatusLabel.text = NSLocalizedString("Verifying voltage level of the meter...", comment: "")
                     self.meterPingVoltageStatusView.isHidden = false
                     
                     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
