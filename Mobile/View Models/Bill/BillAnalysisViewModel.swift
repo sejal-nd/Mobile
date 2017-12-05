@@ -686,8 +686,12 @@ class BillAnalysisViewModel {
 
     // MARK: Likely Reasons Button Accessibility Drivers
 
-    private(set) lazy var billPeriodA11yLabel: Driver<String?> = self.currentBillComparison.asDriver().map {
-        guard let billComparison = $0 else { return nil }
+    private(set) lazy var billPeriodA11yLabel: Driver<String?> = Driver.combineLatest(self.noPreviousData.asDriver(), self.currentBillComparison.asDriver()) {
+        if $0 {
+            return NSLocalizedString("Bill period. No data.", comment: "")
+        }
+        
+        guard let billComparison = $1 else { return nil }
         guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
         let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
         let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
@@ -704,8 +708,12 @@ class BillAnalysisViewModel {
         return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString!, self.gasOrElectricityString, billPeriodDiff)
     }
 
-    private(set) lazy var weatherA11yLabel: Driver<String?> = self.currentBillComparison.asDriver().map {
-        guard let billComparison = $0 else { return nil }
+    private(set) lazy var weatherA11yLabel: Driver<String?> = Driver.combineLatest(self.noPreviousData.asDriver(), self.currentBillComparison.asDriver()) {
+        if $0 {
+            return NSLocalizedString("Weather. No data.", comment: "")
+        }
+        
+        guard let billComparison = $1 else { return nil }
         guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
 
         var localizedString: String!
@@ -719,8 +727,12 @@ class BillAnalysisViewModel {
         return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString!, self.gasOrElectricityString)
     }
 
-    private(set) lazy var otherA11yLabel: Driver<String?> = self.currentBillComparison.asDriver().map {
-        guard let billComparison = $0 else { return nil }
+    private(set) lazy var otherA11yLabel: Driver<String?> = Driver.combineLatest(self.noPreviousData.asDriver(), self.currentBillComparison.asDriver()) {
+        if $0 {
+            return NSLocalizedString("Other. No data.", comment: "")
+        }
+        
+        guard let billComparison = $1 else { return nil }
         guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
 
         var localizedString: String!

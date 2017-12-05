@@ -119,6 +119,13 @@ class TemplateCardViewModel {
         }
     }.asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var bodyStringA11yLabel: Driver<String?> = self.bodyString.map {
+        if let bodyString = $0, bodyString.contains("Jun—Sept") {
+            return bodyString.replacingOccurrences(of: "Jun—Sept", with: "June to September")
+        }
+        return $0
+    }
+    
     //Set call to action string
     private(set) lazy var ctaString: Driver<String?> = self.accountDetailElements.map { accountDetail -> String? in
         switch Environment.sharedInstance.opco {

@@ -2182,7 +2182,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sC9-5H-Ifg" userLabel="Tablet View">
-                                        <rect key="frame" x="29" y="0.0" width="317" height="603"/>
+                                        <rect key="frame" x="29" y="0.0" width="317" height="134"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The information entered is associated with" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jA6-cN-5xc">
                                                 <rect key="frame" x="0.0" y="30" width="317" height="20"/>
@@ -2191,7 +2191,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZH-i2-kyN" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="74" width="317" height="529"/>
+                                                <rect key="frame" x="0.0" y="74" width="317" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="250" constant="60" id="WdU-EE-xSs"/>
@@ -2229,7 +2229,6 @@
                                 <constraints>
                                     <constraint firstItem="sC9-5H-Ifg" firstAttribute="leading" secondItem="wAt-6V-SWa" secondAttribute="leading" priority="999" constant="29" id="E43-Z7-Zec"/>
                                     <constraint firstItem="sC9-5H-Ifg" firstAttribute="centerX" secondItem="wAt-6V-SWa" secondAttribute="centerX" id="Nc8-jZ-hm3"/>
-                                    <constraint firstAttribute="bottom" secondItem="sC9-5H-Ifg" secondAttribute="bottom" id="bY2-2x-KbF"/>
                                     <constraint firstAttribute="trailing" secondItem="sC9-5H-Ifg" secondAttribute="trailing" priority="999" constant="29" id="r3M-Nk-Wxx"/>
                                     <constraint firstItem="sC9-5H-Ifg" firstAttribute="top" secondItem="wAt-6V-SWa" secondAttribute="top" id="xie-2m-gzR"/>
                                 </constraints>
@@ -3135,13 +3134,13 @@
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Street #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmx-w0-z69">
-                                                                                                <rect key="frame" x="192.5" y="0.0" width="0.0" height="20.5"/>
+                                                                                                <rect key="frame" x="189.5" y="0.0" width="0.0" height="20.5"/>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Unit #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wcw-vI-gdA">
-                                                                                                <rect key="frame" x="182.5" y="0.0" width="0.0" height="20.5"/>
+                                                                                                <rect key="frame" x="185.5" y="0.0" width="0.0" height="20.5"/>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>

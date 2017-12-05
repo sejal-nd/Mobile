@@ -93,13 +93,14 @@ extension DefaultAccountViewController: UITableViewDataSource {
         let account = viewModel.accounts.value[indexPath.row]
         cell.configure(withAccount: account)
         
-        
         if account.address == nil || (account.serviceType ?? "").isEmpty {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.2
+            cell.accessibilityTraits = UIAccessibilityTraitNotEnabled
         } else {
             cell.selectionStyle = .default
             cell.contentView.alpha = 1
+            cell.accessibilityTraits = UIAccessibilityTraitNone
         }
         
         return cell

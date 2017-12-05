@@ -123,17 +123,18 @@ class AlertsViewController: AccountPickerViewController {
         preferencesButton.accessibilityLabel = preferencesButtonLabel.text
         
         alertsEmptyStateLabel.textColor = .middleGray
-        alertsEmptyStateLabel.font = OpenSans.regular.of(size: 18)
+        alertsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
         alertsEmptyStateLabel.text = NSLocalizedString("You haven't received any\nnotifications yet.", comment: "")
         
         updatesEmptyStateLabel.textColor = .middleGray
-        updatesEmptyStateLabel.font = OpenSans.regular.of(size: 18)
+        updatesEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
         updatesEmptyStateLabel.text = NSLocalizedString("There are no updates at\nthis time.", comment: "")
     }
     
     private func bindViewModel() {
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
             if index == 1 { // User tapped on "Updates"
                 Analytics().logScreenView(AnalyticsPageView.AlertsOpCoUpdate.rawValue)
             }
