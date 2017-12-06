@@ -321,15 +321,15 @@ class MakePaymentViewController: UIViewController {
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Inline Bank/Card
-        viewModel.inlineBank.asObservable().subscribe(onNext: { inlineBank in
+        viewModel.inlineBank.asDriver().drive(onNext: { [weak self] inlineBank in
             UIView.animate(withDuration: 0.33, animations: {
-                self.addBankContainerView.isHidden = !inlineBank
+                self?.addBankContainerView.isHidden = !inlineBank
             })
         }).disposed(by: disposeBag)
         
-        viewModel.inlineCard.asObservable().subscribe(onNext: { inlineCard in
+        viewModel.inlineCard.asDriver().drive(onNext: { [weak self] inlineCard in
             UIView.animate(withDuration: 0.33, animations: {
-                self.addCardContainerView.isHidden = !inlineCard
+                self?.addCardContainerView.isHidden = !inlineCard
             })
         }).disposed(by: disposeBag)
         
