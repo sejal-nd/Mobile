@@ -133,11 +133,13 @@ class MakePaymentViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         // Inline bank fields
+        addBankContainerView.isHidden = true
         addBankFormView.delegate = self
         addBankFormView.viewModel.paymentWorkflow.value = true
         bindInlineBankAccessibility()
         
         // Inline card fields
+        addCardContainerView.isHidden = true
         addCardFormView.delegate = self
         addCardFormView.viewModel.paymentWorkflow.value = true
         bindInlineCardAccessibility()
@@ -319,8 +321,18 @@ class MakePaymentViewController: UIViewController {
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Inline Bank/Card
-        viewModel.inlineBank.asDriver().map(!).drive(addBankContainerView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.inlineCard.asDriver().map(!).drive(addCardContainerView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.inlineBank.asObservable().subscribe(onNext: { inlineBank in
+            UIView.animate(withDuration: 0.33, animations: {
+                self.addBankContainerView.isHidden = !inlineBank
+            })
+        }).disposed(by: disposeBag)
+        
+        viewModel.inlineCard.asObservable().subscribe(onNext: { inlineCard in
+            UIView.animate(withDuration: 0.33, animations: {
+                self.addCardContainerView.isHidden = !inlineCard
+            })
+        }).disposed(by: disposeBag)
+        
         viewModel.shouldShowInlinePaymentDivider.map(!).drive(inlinePaymentDividerLine.rx.isHidden).disposed(by: disposeBag)
         
         // Active Severance Label
