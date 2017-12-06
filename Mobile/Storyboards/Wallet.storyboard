@@ -2320,23 +2320,22 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6s-o1-hyp">
                                 <rect key="frame" x="29" y="218" width="317" height="121"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set this payment account as default to easily pay from the Home and Bill screens." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I94-KP-bhd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set this payment account as default to easily pay from the Home and Bill screens." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I94-KP-bhd">
                                         <rect key="frame" x="0.0" y="21" width="317" height="33"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-gN-jvN" customClass="Switch" customModule="BGE" customModuleProvider="target">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-gN-jvN" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="79" width="51" height="31"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Payment Account" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9e9-wT-59O">
-                                        <rect key="frame" x="61" y="85" width="256" height="19"/>
+                                        <rect key="frame" x="61" y="85.5" width="256" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="9e9-wT-59O" secondAttribute="trailing" id="9YQ-Nw-Rhd"/>
                                     <constraint firstItem="PUk-gN-jvN" firstAttribute="leading" secondItem="A6s-o1-hyp" secondAttribute="leading" id="BdB-fF-INc"/>
@@ -2345,9 +2344,9 @@
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="S8u-4Y-5MC"/>
                                     <constraint firstItem="I94-KP-bhd" firstAttribute="top" secondItem="A6s-o1-hyp" secondAttribute="top" constant="21" id="dui-rj-2cU"/>
                                     <constraint firstItem="9e9-wT-59O" firstAttribute="leading" secondItem="PUk-gN-jvN" secondAttribute="trailing" constant="12" id="hVx-5c-CKd"/>
-                                    <constraint firstAttribute="bottom" secondItem="PUk-gN-jvN" secondAttribute="bottom" constant="11" id="nrQ-5o-Q8q"/>
                                     <constraint firstAttribute="trailing" secondItem="I94-KP-bhd" secondAttribute="trailing" id="xAU-Q1-cIu"/>
                                     <constraint firstItem="PUk-gN-jvN" firstAttribute="top" secondItem="I94-KP-bhd" secondAttribute="bottom" constant="25" id="xuD-1f-w2o"/>
+                                    <constraint firstAttribute="bottom" secondItem="PUk-gN-jvN" secondAttribute="bottom" constant="11" id="yp5-Fu-b44"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jau-Fm-90P" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">

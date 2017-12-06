@@ -118,7 +118,7 @@ class BudgetBillingViewController: UIViewController {
         }
         
         enrollmentLabel.textColor = .blackText
-        enrollmentLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        enrollmentLabel.font = OpenSans.regular.of(textStyle: .headline)
         enrollmentLabel.text = NSLocalizedString("Budget Billing Enrollment Status", comment: "")
         enrollmentLabel.isAccessibilityElement = false
         
