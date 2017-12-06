@@ -102,7 +102,7 @@ class FloatLabelTextView: UIView {
         if let string = self.textView.text {
             let length = string.count
             if(length >= characterLimit) {
-                self.textView.text = String(string[...string.index((string.startIndex), offsetBy:characterLimit)])
+                self.textView.text = String(string[..<string.index((string.startIndex), offsetBy:characterLimit)])
             }
         }
     }
