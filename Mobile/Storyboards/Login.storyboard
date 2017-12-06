@@ -747,7 +747,7 @@
                             <constraint firstItem="mwp-HU-286" firstAttribute="top" secondItem="0Oj-yM-fNP" secondAttribute="bottom" id="LgL-lL-mt1"/>
                             <constraint firstItem="mwp-HU-286" firstAttribute="leading" secondItem="Kt2-qb-mrB" secondAttribute="leading" id="PRz-qk-3ii"/>
                             <constraint firstItem="45j-l0-vzr" firstAttribute="top" secondItem="0Oj-yM-fNP" secondAttribute="bottom" id="TxC-aT-LsG"/>
-                            <constraint firstItem="3Jm-mp-Nv7" firstAttribute="top" secondItem="45j-l0-vzr" secondAttribute="bottom" id="Xll-v5-NRz"/>
+                            <constraint firstAttribute="bottom" secondItem="45j-l0-vzr" secondAttribute="bottom" id="fpU-0i-7Je"/>
                             <constraint firstItem="45j-l0-vzr" firstAttribute="leading" secondItem="Kt2-qb-mrB" secondAttribute="leading" id="knp-fo-vfL"/>
                         </constraints>
                     </view>
