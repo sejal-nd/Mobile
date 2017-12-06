@@ -164,12 +164,6 @@ class BGEAutoPayViewController: UIViewController {
         learnMoreButton.isAccessibilityElement = true
         learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
         bankAccountButton.isAccessibilityElement = true
-        if !bankAccountButtonSelectLabel.isHidden {
-            bankAccountButton.accessibilityLabel = NSLocalizedString(bankAccountButtonSelectLabel.text ?? "", comment: "")
-        } else {
-            let labelString = NSLocalizedString("Bank account: %@.\nNickname: %@", comment: "")
-            bankAccountButton.accessibilityLabel = String(format: labelString, bankAccountButtonAccountNumberLabel.text ?? "", bankAccountButtonNicknameLabel.text ?? "" )
-        }
         settingsButton.isAccessibilityElement = true
         settingsButton.accessibilityLabel = settingsButtonLabel.text
         
