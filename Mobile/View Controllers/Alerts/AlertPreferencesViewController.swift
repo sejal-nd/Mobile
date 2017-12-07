@@ -221,6 +221,8 @@ class AlertPreferencesViewController: UIViewController {
         viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.devicePushNotificationsEnabled.asDriver().drive(notificationsDisabledView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.devicePushNotificationsEnabled.asDriver().not().drive(notificationsDisabledLabel.rx.isAccessibilityElement).disposed(by: disposeBag)
+        viewModel.devicePushNotificationsEnabled.asDriver().not().drive(notificationsDisabledButton.rx.isAccessibilityElement).disposed(by: disposeBag)
         viewModel.shouldShowContent.not().drive(contentStackView.rx.isHidden).disposed(by: disposeBag)
         viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         
