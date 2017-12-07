@@ -15,6 +15,7 @@ class LandingViewController: UIViewController {
     
     let disposeBag = DisposeBag()
 
+    @IBOutlet weak var logoBackgroundView: UIView!
     @IBOutlet weak var signInButton: SecondaryButton!
     @IBOutlet weak var orLabel: UILabel!
     @IBOutlet weak var registerButton: SecondaryButton!
@@ -38,9 +39,10 @@ class LandingViewController: UIViewController {
         registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
         continueAsGuestButon.setTitle(NSLocalizedString("CONTINUE AS GUEST", comment: ""), for: .normal)
 
-        orLabel.font = SystemFont.regular.of(textStyle: .headline)
+        orLabel.font = SystemFont.bold.of(textStyle: .headline)
         continueAsGuestButon.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
 
+        logoBackgroundView.backgroundColor = .primaryColor
         view.backgroundColor = .primaryColor
         
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
