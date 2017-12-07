@@ -49,8 +49,6 @@ class PeakRewardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.scrollView.isHidden = true
-        
         styleViews()
         bindViews()
         bindActions()
@@ -95,14 +93,8 @@ class PeakRewardsViewController: UIViewController {
     func bindViews() {
         viewModel.showMainLoadingState.asDriver().not().drive(mainLoadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.showMainErrorState.asDriver().not().drive(mainErrorLabel.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showMainContent.asDriver().drive(onNext: { [weak self] show in
-            self?.accountInfoBar.isHidden = !show // For accessibility reasons only (VoiceOver would read this while loading screen)
-            self?.scrollView.isHidden = !show
-            self?.gradientView.isHidden = !show
-            if show {
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view)
-            }
-        }).disposed(by: disposeBag)
+        viewModel.showMainContent.asDriver().not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showMainContent.asDriver().not().drive(gradientView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.showMainContent.asDriver()
             .filter { $0 }
