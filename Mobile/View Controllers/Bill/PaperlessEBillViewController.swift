@@ -140,7 +140,7 @@ class PaperlessEBillViewController: UIViewController {
     
     func colorAndShadowSetup() {
         singleAccountEnrollLabel.textColor = .blackText
-        singleAccountEnrollLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        singleAccountEnrollLabel.font = OpenSans.regular.of(textStyle: .headline)
         singleAccountEnrollLabel.text = NSLocalizedString("Paperless eBill Enrollment Status", comment: "")
         singleAccountEnrollLabel.isAccessibilityElement = false
         

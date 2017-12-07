@@ -65,6 +65,7 @@ class MiniWalletViewController: UIViewController {
         tableFooterLabel.text = viewModel.footerLabelText
         
         tableView.estimatedSectionHeaderHeight = 16
+        tableView.estimatedRowHeight = 74 // Required for iOS 9
         
         viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).disposed(by: disposeBag)

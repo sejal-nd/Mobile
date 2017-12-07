@@ -241,13 +241,7 @@ class BGEAutoPayViewModel {
     private(set) lazy var selectedWalletItemA11yLabel: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let walletItem = $0 else { return "" }
         
-        var a11yLabel = ""
-        
-        if walletItem.bankOrCard == .bank {
-            a11yLabel = NSLocalizedString("Bank account", comment: "")
-        } else {
-            a11yLabel = NSLocalizedString("Credit card", comment: "")
-        }
+        var a11yLabel = NSLocalizedString("Bank account", comment: "")
         
         if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
             a11yLabel += ", \(nicknameText)"

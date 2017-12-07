@@ -27,6 +27,7 @@ class TutorialModalViewController: DismissableFormSheetViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .primaryColor
         scrollView.delegate = self
         pageControl.pageIndicatorTintColor = .primaryColorDark
@@ -45,6 +46,7 @@ class TutorialModalViewController: DismissableFormSheetViewController {
         let lastPage = scrollView.currentPage == pageControl.numberOfPages - 1
         nextButton.setTitle(lastPage ? NSLocalizedString("Got It", comment: "") : NSLocalizedString("Next", comment: ""), for: .normal)
         pagerContent.accessibilityElements = [slideViews[page].titleText, slideViews[page].messageText]
+        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, pagerContent)
     }
     
     @objc func onPageControlTap(sender: UIPageControl) {

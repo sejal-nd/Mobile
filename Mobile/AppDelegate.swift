@@ -251,7 +251,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc func resetNavigationOnAuthTokenExpire() {
         resetNavigation(sendToLogin: false)
         
-        let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("Your session has expired. Please sign in again.", comment: ""), preferredStyle: .alert)
+        let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("To protect the security of your account, your login has been expired. Please sign in again.", comment: ""), preferredStyle: .alert)
         alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
     }
