@@ -25,6 +25,13 @@ extension Reactive where Base: NSObject {
         }
     }
     
+    /// Bindable sink for `accessibilityElementsHidden` property.
+    public var accessibilityElementsHidden: Binder<Bool> {
+        return Binder(base) { object, accessibilityElementsHidden in
+            object.accessibilityElementsHidden = accessibilityElementsHidden
+        }
+    }
+    
     /// Bindable sink for `accessibilityValue` property.
     public var accessibilityValue: Binder<String?> {
         return Binder(base) { object, value in
