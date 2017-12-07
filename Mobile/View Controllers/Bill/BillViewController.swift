@@ -667,7 +667,7 @@ extension BillViewController: AutoPayViewControllerDelegate {
         let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
         showDelayedToast(withMessage: message)
         
-        if(enrolled) {
+        if enrolled {
             Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
         } else {
             Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
