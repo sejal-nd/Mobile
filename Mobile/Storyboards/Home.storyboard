@@ -551,10 +551,10 @@
                         <constraints>
                             <constraint firstItem="Wz6-M2-3es" firstAttribute="top" secondItem="6Ut-pw-fhn" secondAttribute="bottom" id="3v5-OV-OHO"/>
                             <constraint firstItem="cG1-IF-6w6" firstAttribute="top" secondItem="6Ut-pw-fhn" secondAttribute="bottom" id="JLF-JU-X73"/>
+                            <constraint firstAttribute="bottom" secondItem="Wz6-M2-3es" secondAttribute="bottom" id="Y6I-wB-gsb"/>
                             <constraint firstAttribute="trailing" secondItem="Wz6-M2-3es" secondAttribute="trailing" id="Zy0-Gq-9jI"/>
                             <constraint firstItem="cG1-IF-6w6" firstAttribute="leading" secondItem="MbZ-y6-3Ph" secondAttribute="leading" id="eQ2-Rw-WfO"/>
                             <constraint firstAttribute="trailing" secondItem="cG1-IF-6w6" secondAttribute="trailing" id="h4t-NY-gQX"/>
-                            <constraint firstItem="3Ac-m9-Znx" firstAttribute="top" secondItem="Wz6-M2-3es" secondAttribute="bottom" id="kGH-3b-WKH"/>
                             <constraint firstItem="Wz6-M2-3es" firstAttribute="leading" secondItem="MbZ-y6-3Ph" secondAttribute="leading" id="oXB-kF-cKO"/>
                             <constraint firstAttribute="bottom" secondItem="cG1-IF-6w6" secondAttribute="bottom" id="yMi-bR-8YK"/>
                         </constraints>
@@ -666,7 +666,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ze8-3c-rwA" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157" y="327" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="327.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUE-gy-cUM">
@@ -720,13 +720,13 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="iT5-oo-dGX" secondAttribute="trailing" id="2C0-Tv-na3"/>
                             <constraint firstItem="iT5-oo-dGX" firstAttribute="leading" secondItem="4cJ-9T-eVb" secondAttribute="leading" id="2LB-Qo-lCp"/>
-                            <constraint firstItem="MvE-dX-Tth" firstAttribute="top" secondItem="iT5-oo-dGX" secondAttribute="bottom" id="Fit-fl-66Z"/>
                             <constraint firstItem="CUE-gy-cUM" firstAttribute="centerX" secondItem="4cJ-9T-eVb" secondAttribute="centerX" id="PQR-2p-oDC"/>
                             <constraint firstItem="Ze8-3c-rwA" firstAttribute="centerX" secondItem="4cJ-9T-eVb" secondAttribute="centerX" id="Plh-ff-Rab"/>
                             <constraint firstItem="qse-yA-fXA" firstAttribute="top" secondItem="Pqg-Dm-aj9" secondAttribute="bottom" id="UgL-t5-Rf6"/>
                             <constraint firstItem="CUE-gy-cUM" firstAttribute="centerY" secondItem="4cJ-9T-eVb" secondAttribute="centerY" id="b74-CD-vaM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CUE-gy-cUM" secondAttribute="trailing" priority="750" constant="29" id="fbJ-YV-FO6"/>
                             <constraint firstAttribute="trailing" secondItem="qse-yA-fXA" secondAttribute="trailing" id="gJU-1J-0Fc"/>
+                            <constraint firstAttribute="bottom" secondItem="iT5-oo-dGX" secondAttribute="bottom" id="gPl-W2-2Gw"/>
                             <constraint firstItem="iT5-oo-dGX" firstAttribute="top" secondItem="qse-yA-fXA" secondAttribute="bottom" id="k4S-O5-h4d"/>
                             <constraint firstItem="CUE-gy-cUM" firstAttribute="leading" secondItem="4cJ-9T-eVb" secondAttribute="leadingMargin" priority="750" constant="29" id="qMk-yk-UfD"/>
                             <constraint firstItem="Ze8-3c-rwA" firstAttribute="centerY" secondItem="4cJ-9T-eVb" secondAttribute="centerY" id="rod-m0-mTp"/>
@@ -758,11 +758,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="GZf-m1-4vy" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157" y="327" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="327.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyN-VV-QzF">
-                                <rect key="frame" x="45" y="313.5" width="285" height="41"/>
+                                <rect key="frame" x="45" y="313" width="285" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="750" constant="460" id="9Bb-QA-4f8"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="urZ-HE-kVn"/>
@@ -911,13 +911,13 @@
                             <constraint firstItem="PZh-KK-jeH" firstAttribute="top" secondItem="1uh-16-ri3" secondAttribute="bottom" id="C6a-6P-A2s"/>
                             <constraint firstItem="ZyN-VV-QzF" firstAttribute="leading" secondItem="UDf-SR-XKQ" secondAttribute="leadingMargin" priority="750" constant="29" id="Fgg-Su-j7b"/>
                             <constraint firstItem="GZf-m1-4vy" firstAttribute="centerX" secondItem="UDf-SR-XKQ" secondAttribute="centerX" id="Jgk-3y-8yc"/>
-                            <constraint firstItem="sul-3g-XTe" firstAttribute="top" secondItem="PZh-KK-jeH" secondAttribute="bottom" id="KV6-EJ-oKf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZyN-VV-QzF" secondAttribute="trailing" priority="750" constant="29" id="Rd0-ga-QQ2"/>
                             <constraint firstItem="ZyN-VV-QzF" firstAttribute="centerY" secondItem="UDf-SR-XKQ" secondAttribute="centerY" id="TCV-1K-hlh"/>
                             <constraint firstItem="ZyN-VV-QzF" firstAttribute="centerX" secondItem="UDf-SR-XKQ" secondAttribute="centerX" id="Vno-Ps-GzK"/>
                             <constraint firstAttribute="trailing" secondItem="PZh-KK-jeH" secondAttribute="trailing" id="ZMd-j9-41X"/>
                             <constraint firstItem="PZh-KK-jeH" firstAttribute="leading" secondItem="UDf-SR-XKQ" secondAttribute="leading" id="czY-TR-XOh"/>
                             <constraint firstItem="dRV-81-fYu" firstAttribute="width" secondItem="UDf-SR-XKQ" secondAttribute="width" id="dWW-zl-DrZ"/>
+                            <constraint firstItem="sul-3g-XTe" firstAttribute="top" secondItem="PZh-KK-jeH" secondAttribute="bottom" id="jPT-QW-LXF"/>
                             <constraint firstItem="GZf-m1-4vy" firstAttribute="centerY" secondItem="UDf-SR-XKQ" secondAttribute="centerY" id="oHK-wU-o7x"/>
                         </constraints>
                     </view>

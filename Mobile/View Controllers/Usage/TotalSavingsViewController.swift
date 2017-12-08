@@ -130,7 +130,7 @@ extension TotalSavingsViewController: UIScrollViewDelegate {
                 leftArrowImageView.alpha = 1
             }
             
-            let offscreenWidth = tableViewWidthConstraint.constant - UIScreen.main.bounds.size.width
+            let offscreenWidth = tableViewWidthConstraint.constant - view.bounds.size.width
             if xPos >= offscreenWidth - 31 {
                 rightArrowImageView.alpha = ((offscreenWidth - xPos) / 31)
             } else {
