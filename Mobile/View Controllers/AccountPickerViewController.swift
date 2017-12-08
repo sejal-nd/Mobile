@@ -35,7 +35,7 @@ class AccountPickerViewController: UIViewController {
         super.viewDidLoad()
         
         if let sv = scrollView {
-            containerView = UIView(frame: CGRect(x: 0, y: -60, width: UIScreen.main.bounds.size.width, height: 60))
+            containerView = UIView(frame: CGRect(x: 0, y: -60, width: view.bounds.size.width, height: 60))
             containerView.backgroundColor = .white
             containerView.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: 2), radius: 2)
             containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMinimizedPickerTap)))
@@ -153,7 +153,7 @@ class AccountPickerViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         if let sv = scrollView {
-            containerView.frame = CGRect(x: 0, y: sv.contentOffset.y <= accountPicker.frame.size.height ? -60 : 0, width: UIScreen.main.bounds.size.width, height: 60)
+            containerView.frame = CGRect(x: 0, y: sv.contentOffset.y <= accountPicker.frame.size.height ? -60 : 0, width: view.bounds.size.width, height: 60)
         }
     }
     
