@@ -319,6 +319,9 @@
 		824004CB1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
 		824004CC1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
 		824004CD1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
+		8246BF5A1FD9CA8F00FF440D /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8246BF591FD9CA8E00FF440D /* landing_video.mp4 */; };
+		8246BF5C1FD9CAA300FF440D /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8246BF5B1FD9CAA300FF440D /* landing_video.mp4 */; };
+		8246BF5E1FD9CAB700FF440D /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8246BF5D1FD9CAB700FF440D /* landing_video.mp4 */; };
 		824A96651FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */; };
 		824A96661FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */; };
 		824A96671FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */; };
@@ -574,9 +577,6 @@
 		82F2BDE21FD6ED4100612309 /* OutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2BDE11FD6ED4100612309 /* OutlineButton.swift */; };
 		82F2BDE31FD6ED4100612309 /* OutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2BDE11FD6ED4100612309 /* OutlineButton.swift */; };
 		82F2BDE41FD6ED4100612309 /* OutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2BDE11FD6ED4100612309 /* OutlineButton.swift */; };
-		82F2BDE71FD6EFBB00612309 /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 82F2BDE61FD6EFBB00612309 /* landing_video.mp4 */; };
-		82F2BDE81FD6EFBC00612309 /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 82F2BDE61FD6EFBB00612309 /* landing_video.mp4 */; };
-		82F2BDE91FD6EFBC00612309 /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 82F2BDE61FD6EFBB00612309 /* landing_video.mp4 */; };
 		8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
 		8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
 		8FD3C25F1E524546005FB1BB /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
@@ -1624,6 +1624,9 @@
 		822BBBA01EFC1A01004EBBAB /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		823694301FA8CB0E0037BD9F /* SafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewController.swift; sourceTree = "<group>"; };
 		824004C91F25F4970012A288 /* TemplateCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardViewModel.swift; sourceTree = "<group>"; };
+		8246BF591FD9CA8E00FF440D /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
+		8246BF5B1FD9CAA300FF440D /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
+		8246BF5D1FD9CAB700FF440D /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewController.swift; sourceTree = "<group>"; };
 		824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewModel.swift; sourceTree = "<group>"; };
 		825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectControl.swift; sourceTree = "<group>"; };
@@ -1703,7 +1706,6 @@
 		82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyPricingViewController.swift; sourceTree = "<group>"; };
 		82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeProfileViewController.swift; sourceTree = "<group>"; };
 		82F2BDE11FD6ED4100612309 /* OutlineButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineButton.swift; sourceTree = "<group>"; };
-		82F2BDE61FD6EFBB00612309 /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		8FD3C25B1E524511005FB1BB /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		8FD3C25D1E524514005FB1BB /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		8FD3C2681E5250AF005FB1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -2681,6 +2683,30 @@
 			path = "Web View Modal";
 			sourceTree = "<group>";
 		};
+		8246BF561FD9CA6500FF440D /* BGE */ = {
+			isa = PBXGroup;
+			children = (
+				8246BF5D1FD9CAB700FF440D /* landing_video.mp4 */,
+			);
+			path = BGE;
+			sourceTree = "<group>";
+		};
+		8246BF571FD9CA7300FF440D /* PECO */ = {
+			isa = PBXGroup;
+			children = (
+				8246BF591FD9CA8E00FF440D /* landing_video.mp4 */,
+			);
+			path = PECO;
+			sourceTree = "<group>";
+		};
+		8246BF581FD9CA7600FF440D /* ComEd */ = {
+			isa = PBXGroup;
+			children = (
+				8246BF5B1FD9CAA300FF440D /* landing_video.mp4 */,
+			);
+			path = ComEd;
+			sourceTree = "<group>";
+		};
 		825171A61F1D1F210020A6CA /* Home Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -2897,7 +2923,9 @@
 		82F2BDE51FD6EF9A00612309 /* Landing Video */ = {
 			isa = PBXGroup;
 			children = (
-				82F2BDE61FD6EFBB00612309 /* landing_video.mp4 */,
+				8246BF581FD9CA7600FF440D /* ComEd */,
+				8246BF571FD9CA7300FF440D /* PECO */,
+				8246BF561FD9CA6500FF440D /* BGE */,
 			);
 			path = "Landing Video";
 			sourceTree = "<group>";
@@ -4151,7 +4179,7 @@
 						};
 					};
 					B58B5B0F1E515BD50051FD5F = {
-						DevelopmentTeam = LTS485TKXA;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -4303,6 +4331,7 @@
 				E87926D61F85580300794CA9 /* BillAnalysisViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
+				8246BF5E1FD9CAB700FF440D /* landing_video.mp4 in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */,
@@ -4341,7 +4370,6 @@
 				6A4FD21BE1692C3726A5C3FF /* otp_step3.json in Resources */,
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				6A4FDD311DA8303DC8CAE88C /* otps4_img_0.png in Resources */,
-				82F2BDE71FD6EFBB00612309 /* landing_video.mp4 in Resources */,
 				6A4FD285E3DA0D900FD129E2 /* otps4_img_1.png in Resources */,
 				6A4FD0682FEE15B62BF52310 /* otp_step4.json in Resources */,
 				6A4FDFD0967659A7C9E11DD6 /* TutorialModal.xib in Resources */,
@@ -4403,6 +4431,7 @@
 				E87926D81F85580300794CA9 /* BillAnalysisViewController.xib in Resources */,
 				82E22B631F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
+				8246BF5A1FD9CA8F00FF440D /* landing_video.mp4 in Resources */,
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				E8EDC53A1F32405D006DD927 /* speedpay_errors.xml in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
@@ -4441,7 +4470,6 @@
 				6A4FDCF675D261AB6008C079 /* otp_step3.json in Resources */,
 				82AC2A131FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				6A4FDA9B436AAD428A74A239 /* otps4_img_0.png in Resources */,
-				82F2BDE91FD6EFBC00612309 /* landing_video.mp4 in Resources */,
 				6A4FD1C7B14B360F2F2C3C51 /* otps4_img_1.png in Resources */,
 				6A4FD4F95BC9EC785486FD59 /* otp_step4.json in Resources */,
 				6A4FDF7B7B5896327BB37392 /* TutorialModal.xib in Resources */,
@@ -4503,6 +4531,7 @@
 				E87926D71F85580300794CA9 /* BillAnalysisViewController.xib in Resources */,
 				82E22B621F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
+				8246BF5C1FD9CAA300FF440D /* landing_video.mp4 in Resources */,
 				B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */,
 				B55736391E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				E8EDC5381F324054006DD927 /* speedpay_errors.xml in Resources */,
@@ -4541,7 +4570,6 @@
 				6A4FD451E3D8B0019DD36819 /* otp_step3.json in Resources */,
 				82AC2A121FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				6A4FD710BA920728F2923F06 /* otps4_img_0.png in Resources */,
-				82F2BDE81FD6EFBC00612309 /* landing_video.mp4 in Resources */,
 				6A4FDD8981BBF03EF9D907AD /* otps4_img_1.png in Resources */,
 				6A4FD65B35FE264A4969DE47 /* otp_step4.json in Resources */,
 				6A4FD129D861EF2367762387 /* TutorialModal.xib in Resources */,
