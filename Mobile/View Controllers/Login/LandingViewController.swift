@@ -61,6 +61,8 @@ class LandingViewController: UIViewController {
     }
     
     func backgroundVideoSetup() {
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+        
         view.sendSubview(toBack: videoView)
         let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video", ofType: "mp4")!)
         let asset = AVAsset(url: movieUrl)
