@@ -393,7 +393,12 @@ class LoginViewController: UIViewController {
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
 
@@ -451,7 +456,11 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        opcoLogo.alpha = lerp(1, 0, scrollView.contentOffset.y / 50.0)
+        if scrollView.contentOffset.y > 20 {
+            opcoLogo.alpha = lerp(1, 0, (scrollView.contentOffset.y - 20.0) / 20.0)
+        } else {
+            opcoLogo.alpha = 1
+        }
     }
     
 }
