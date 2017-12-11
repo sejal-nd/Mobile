@@ -221,6 +221,13 @@ class AlertPreferencesViewController: UIViewController {
         viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.devicePushNotificationsEnabled.asDriver().drive(notificationsDisabledView.rx.isHidden).disposed(by: disposeBag)
+        
+        // Pain in the butt code to make VoiceOver not read this stuff when it's hidden:
+        viewModel.devicePushNotificationsEnabled.asDriver().not().drive(notificationsDisabledLabel.rx.isAccessibilityElement).disposed(by: disposeBag)
+        viewModel.devicePushNotificationsEnabled.asDriver().not().drive(notificationsDisabledButton.rx.isAccessibilityElement).disposed(by: disposeBag)
+        viewModel.devicePushNotificationsEnabled.asDriver().not().drive(notificationsDisabledButton.titleLabel!.rx.isAccessibilityElement).disposed(by: disposeBag)
+        viewModel.devicePushNotificationsEnabled.asDriver().drive(notificationsDisabledButton.rx.accessibilityElementsHidden).disposed(by: disposeBag)
+
         viewModel.shouldShowContent.not().drive(contentStackView.rx.isHidden).disposed(by: disposeBag)
         viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         
@@ -356,17 +363,6 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     @objc func onSavePress() {
-//        print("outage = \(viewModel.outage.value)")
-//        print("scheduledMaint = \(viewModel.scheduledMaint.value)")
-//        print("severeWeather = \(viewModel.severeWeather.value)")
-//        print("billReady = \(viewModel.billReady.value)")
-//        print("paymentDue = \(viewModel.paymentDue.value)")
-//        print("paymentDueDaysBefore = \(viewModel.paymentDueDaysBefore.value)")
-//        print("budgetBilling = \(viewModel.budgetBilling.value)")
-//        print("forYourInfo = \(viewModel.forYourInfo.value)")
-//        print("shouldEnrollPaperlessEBill = \(viewModel.shouldEnrollPaperlessEBill)")
-//        print("shouldUnenrollPaperlessEBill = \(viewModel.shouldUnenrollPaperlessEBill)")
-        
         Analytics().logScreenView(AnalyticsPageView.AlertsPrefCenterSave.rawValue)
         
         LoadingView.show()

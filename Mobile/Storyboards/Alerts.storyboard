@@ -12,7 +12,7 @@
         <!--Alerts-->
         <scene sceneID="XZ0-ku-5Ll">
             <objects>
-                <viewController id="NbY-Og-sPR" customClass="AlertsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="NbY-Og-sPR" customClass="AlertsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4ee-u9-hAb"/>
                         <viewControllerLayoutGuide type="bottom" id="CeP-yu-Zbw"/>

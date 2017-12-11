@@ -1007,13 +1007,13 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tb6-f0-ck4">
-                                                                        <rect key="frame" x="0.0" y="554" width="0.0" height="39"/>
+                                                                        <rect key="frame" x="29" y="554" width="317" height="39"/>
                                                                         <subviews>
                                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fBX-zf-2Px" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                                             </switch>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="fZh-xE-2zt">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="39"/>
+                                                                                <rect key="frame" x="59" y="0.0" width="258" height="39"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Yes, I have read, understand and agree to the terms and conditions below..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GjK-7p-AIo">
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1031,6 +1031,7 @@
                                                                             </stackView>
                                                                         </subviews>
                                                                         <constraints>
+                                                                            <constraint firstAttribute="width" priority="999" constant="460" id="xlz-14-WfJ"/>
                                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="zSh-VB-5js"/>
                                                                         </constraints>
                                                                     </stackView>
@@ -1038,8 +1039,8 @@
                                                                 <constraints>
                                                                     <constraint firstItem="TS6-CJ-aDL" firstAttribute="leading" secondItem="bmX-1C-cOs" secondAttribute="leading" priority="999" constant="29" id="6rD-QN-Vnm"/>
                                                                     <constraint firstItem="XRJ-Bj-KG3" firstAttribute="leading" secondItem="bmX-1C-cOs" secondAttribute="leading" priority="999" constant="29" id="75e-ys-PdF"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="tb6-f0-ck4" secondAttribute="trailing" priority="999" constant="29" id="A52-iS-bVT"/>
-                                                                    <constraint firstItem="tb6-f0-ck4" firstAttribute="leading" secondItem="bmX-1C-cOs" secondAttribute="leading" priority="999" constant="29" id="AIE-J8-mWy"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tb6-f0-ck4" secondAttribute="trailing" constant="29" id="A52-iS-bVT"/>
+                                                                    <constraint firstItem="tb6-f0-ck4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bmX-1C-cOs" secondAttribute="leading" constant="29" id="AIE-J8-mWy"/>
                                                                     <constraint firstItem="8xt-kr-xeQ" firstAttribute="leading" secondItem="bmX-1C-cOs" secondAttribute="leading" priority="999" constant="29" id="BdB-aS-I7v"/>
                                                                     <constraint firstItem="kKQ-mW-wNT" firstAttribute="leading" secondItem="bmX-1C-cOs" secondAttribute="leading" priority="999" constant="29" id="Df7-gZ-fcV"/>
                                                                     <constraint firstAttribute="trailing" secondItem="kKQ-mW-wNT" secondAttribute="trailing" priority="999" constant="29" id="EvK-Pz-bRe"/>

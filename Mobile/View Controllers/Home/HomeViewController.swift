@@ -267,6 +267,10 @@ class HomeViewController: AccountPickerViewController {
                             self?.view.showToast(toastMessage)
                         })
                         .disposed(by: vc.disposeBag)
+                } else if let vc = viewController as? AutoPayViewController {
+                    vc.delegate = self
+                } else if let vc = viewController as? BGEAutoPayViewController {
+                    vc.delegate = self
                 }
                 
                 viewController.hidesBottomBarWhenPushed = true
@@ -300,4 +304,28 @@ extension HomeViewController: AccountPickerDelegate {
     }
 }
 
+extension HomeViewController: AutoPayViewControllerDelegate {
+    
+    func autoPayViewController(_ autoPayViewController: AutoPayViewController, enrolled: Bool) {
+        let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(message)
+        })
+        if enrolled {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
+        } else {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
+        }
+    }
+    
+}
+
+extension HomeViewController: BGEAutoPayViewControllerDelegate {
+    
+    func BGEAutoPayViewController(_ BGEAutoPayViewController: BGEAutoPayViewController, didUpdateWithToastMessage message: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(message)
+        })
+    }
+}
 

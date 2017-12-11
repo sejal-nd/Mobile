@@ -133,6 +133,16 @@ class AdjustThermostatViewController: UIViewController {
         viewModel.showMainContent.not().drive(mainContentStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.showErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
+        viewModel.showMainContent.asDriver()
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view) })
+            .disposed(by: disposeBag)
+        
+        viewModel.showErrorLabel.asDriver()
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view) })
+            .disposed(by: disposeBag)
+        
         viewModel.initialTemp.drive(tempSliderView.currentTemperature).disposed(by: disposeBag)
         viewModel.initialMode.map { SmartThermostatMode.allValues.index(of: $0) ?? 0 }
             .drive(modeSegmentedControl.selectedIndex)

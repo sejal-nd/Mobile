@@ -129,17 +129,17 @@ class AccountPickerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if AccountsStore.sharedInstance.currentAccount == nil {
+        let currentAccount = AccountsStore.sharedInstance.currentAccount
+        if currentAccount == nil {
             accountPickerViewControllerWillAppear.onNext(.loadingAccounts)
             fetchAccounts()
         } else {
             accountPicker.loadAccounts()
             accountPickerViewControllerWillAppear.onNext(.readyToFetchData)
-            if AccountsStore.sharedInstance.currentAccount != accountPicker.currentAccount {
+            if currentAccount != accountPicker.currentAccount || currentAccount?.currentPremise != accountPicker.currentAccount.currentPremise {
                 accountPicker.updateCurrentAccount()
             }
         }
-
     }
     
     func fetchAccounts() {

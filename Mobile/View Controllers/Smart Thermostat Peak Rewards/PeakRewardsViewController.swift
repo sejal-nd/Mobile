@@ -12,6 +12,7 @@ import RxCocoa
 class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     @IBOutlet weak var mainErrorLabel: UILabel!
     @IBOutlet weak var mainLoadingIndicator: LoadingIndicator!
     
