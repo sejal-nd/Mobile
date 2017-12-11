@@ -349,7 +349,7 @@ this time.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="8CD-Cd-ECz" secondAttribute="trailing" id="Mep-5O-tzZ"/>
-                            <constraint firstItem="6Jr-5A-Qye" firstAttribute="top" secondItem="8CD-Cd-ECz" secondAttribute="bottom" id="YO2-he-x3f"/>
+                            <constraint firstAttribute="bottom" secondItem="8CD-Cd-ECz" secondAttribute="bottom" id="VQs-ld-TKe"/>
                             <constraint firstItem="8CD-Cd-ECz" firstAttribute="top" secondItem="hBE-MP-we0" secondAttribute="bottom" id="Z5E-m3-Ko5"/>
                             <constraint firstItem="8CD-Cd-ECz" firstAttribute="leading" secondItem="HEX-jk-O6h" secondAttribute="leading" id="xYr-aa-qeM"/>
                         </constraints>
