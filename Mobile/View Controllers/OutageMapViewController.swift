@@ -26,7 +26,7 @@ class OutageMapViewController: UIViewController {
         view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         webView.isHidden = true

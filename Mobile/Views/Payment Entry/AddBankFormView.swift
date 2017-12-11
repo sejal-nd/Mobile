@@ -83,8 +83,9 @@ class AddBankFormView: UIView {
         confirmAccountNumberTextField.textField.delegate = self
         confirmAccountNumberTextField.setKeyboardType(.numberPad)
         
-        saveToWalletLabel.textColor = .deepGray
+        saveToWalletLabel.textColor = .blackText
         saveToWalletLabel.text = NSLocalizedString("Save to My Wallet", comment: "")
+        saveToWalletLabel.font = SystemFont.regular.of(textStyle: .headline)
         byNotSavingLabel.textColor = .blackText
         byNotSavingLabel.font = OpenSans.regular.of(textStyle: .footnote)
         byNotSavingLabel.text = NSLocalizedString("By not saving this payment account, you will only be eligible to make an instant payment.", comment: "")
