@@ -10,6 +10,7 @@ import UIKit
 import HockeySDK
 import ToastSwiftFramework
 import Firebase
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -45,6 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupToastStyles()
         setupAppearance()
         setupAnalytics()
+        
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+        
         //printFonts()
         
         _ = AlertsStore.sharedInstance.alerts // Triggers the loading of alerts from disk
