@@ -82,8 +82,7 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var walletFooterView: UIView!
     @IBOutlet weak var walletFooterLabel: UILabel!
     
-    @IBOutlet weak var stickyPaymentFooterHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var stickyPaymentFooterTextContainerCenterYConstraint: NSLayoutConstraint!
+    @IBOutlet weak var stickyPaymentFooterStackView: UIStackView!
     @IBOutlet weak var stickyPaymentFooterView: UIView!
     @IBOutlet weak var stickyPaymentFooterTextContainer: UIView!
     @IBOutlet weak var stickyPaymentFooterPaymentLabel: UILabel!
@@ -270,13 +269,6 @@ class MakePaymentViewController: UIViewController {
         bindViewHiding()
         bindViewContent()
         bindButtonTaps()
-        
-        if #available(iOS 11.0, *) {
-            if UIScreen.main.bounds.size.height == 812 { // iPhone X
-                // Remove the centerY constraint so that the text is properly offset from the bottom safe area
-                stickyPaymentFooterTextContainerCenterYConstraint.isActive = false
-            }
-        }
 
         viewModel.formatPaymentAmount() // Initial formatting
         viewModel.fetchData(onSuccess: { [weak self] in
@@ -324,8 +316,7 @@ class MakePaymentViewController: UIViewController {
     func bindViewHiding() {
         // Loading
         viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Inline Bank/Card
@@ -383,17 +374,12 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowWalletFooterView.map(!).drive(walletFooterView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWalletFooterView.drive(walletFooterSpacerView.rx.isHidden).disposed(by: disposeBag)
         
-        // Sticky Footer
         viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
-            guard let `self` = self else { return }
+            self?.stickyPaymentFooterView.isHidden = !shouldShow
             
-            var safeAreaBottomInset: CGFloat = 0
-            if #available(iOS 11.0, *) {
-                safeAreaBottomInset = self.view.safeAreaInsets.bottom
-            }
-            self.stickyPaymentFooterHeightConstraint.constant = shouldShow ? (80 + safeAreaBottomInset) : 0
-            // For some reason, just hiding stickyPaymentFooterView was not enough to hide the label...
-            self.stickyPaymentFooterTextContainer.isHidden = !shouldShow
+            // Needed for correct sizing
+            self?.stickyPaymentFooterStackView.setNeedsLayout()
+            self?.stickyPaymentFooterStackView.layoutIfNeeded()
         }).disposed(by: disposeBag)
     }
     
@@ -649,7 +635,7 @@ class MakePaymentViewController: UIViewController {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - stickyPaymentFooterHeightConstraint.constant, 0)
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
