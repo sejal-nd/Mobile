@@ -1156,6 +1156,7 @@
 		E87C414C1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
 		E87C414D1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
 		E87C414E1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
+		E87E8AE31FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E8AE21FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift */; };
 		E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
 		E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
 		E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */; };
@@ -2035,6 +2036,7 @@
 		E87C41421FAB6D0400448F86 /* AlertPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewController.swift; sourceTree = "<group>"; };
 		E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTableViewCell.swift; sourceTree = "<group>"; };
 		E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewModel.swift; sourceTree = "<group>"; };
+		E87E8AE21FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewModelTests.swift; sourceTree = "<group>"; };
 		E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageValidateAccountViewController.swift; sourceTree = "<group>"; };
 		E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageViewModel.swift; sourceTree = "<group>"; };
 		E882B7E31EA8009500EA3C13 /* BillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
@@ -3411,6 +3413,7 @@
 			children = (
 				B5AC06D91E52238900BBA4ED /* Info.plist */,
 				E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */,
+				E87E8AE21FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift */,
 				B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */,
 				E840CB371F82D13A00357780 /* AutoPayViewModelTests.swift */,
 				E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */,
@@ -5683,6 +5686,7 @@
 				E8F51EEE1ECA51790080AB3E /* BillViewModel.swift in Sources */,
 				E89496391EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */,
+				E87E8AE31FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift in Sources */,
 				E89C162D1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */,
 			);
