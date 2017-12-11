@@ -281,7 +281,11 @@ class RegistrationValidateAccountViewController: UIViewController {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }

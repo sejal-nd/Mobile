@@ -250,7 +250,11 @@ class MyHomeProfileViewController: UIViewController {
                         return
                 }
                 
-                let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+                var safeAreaBottomInset: CGFloat = 0
+                if #available(iOS 11.0, *) {
+                    safeAreaBottomInset = self.view.safeAreaInsets.bottom
+                }
+                let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
                 self.scrollView.contentInset = insets
                 self.scrollView.scrollIndicatorInsets = insets
             })

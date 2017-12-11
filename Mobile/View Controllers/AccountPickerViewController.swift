@@ -31,17 +31,21 @@ class AccountPickerViewController: UIViewController {
     
     var defaultStatusBarStyle: UIStatusBarStyle { return .default }
     
+    var minimizedPickerHeight: CGFloat = 60
+    var safeAreaTop: CGFloat = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let sv = scrollView {
-            containerView = UIView(frame: CGRect(x: 0, y: -60, width: UIScreen.main.bounds.size.width, height: 60))
+            containerView = UIView(frame: CGRect(x: 0, y: -minimizedPickerHeight, width: view.bounds.size.width, height: minimizedPickerHeight))
             containerView.backgroundColor = .white
             containerView.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: 2), radius: 2)
             containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMinimizedPickerTap)))
             
             innerView = UIView(frame: .zero)
             innerView.translatesAutoresizingMaskIntoConstraints = false
+            
             iconView = UIImageView(frame: .zero)
             iconView.translatesAutoresizingMaskIntoConstraints = false
             iconView.isAccessibilityElement = true
@@ -57,14 +61,24 @@ class AccountPickerViewController: UIViewController {
             innerView.addSubview(accountNumberLabel)
             containerView.addSubview(innerView)
             view.addSubview(containerView)
-
+            
+            var topSpaceConstant: CGFloat = 20
+            if #available(iOS 11.0, *) {
+                safeAreaTop = UIApplication.shared.keyWindow!.safeAreaInsets.top
+                if safeAreaTop > 0 { // iPhone X only
+                    minimizedPickerHeight = 40 + safeAreaTop
+                    topSpaceConstant = safeAreaTop
+                }
+            }
+            
             view.addConstraints([
                 // innerView
                 NSLayoutConstraint(item: innerView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: innerView, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 10),
+                NSLayoutConstraint(item: innerView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: topSpaceConstant),
+                NSLayoutConstraint(item: innerView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: 0),
                 NSLayoutConstraint(item: innerView, attribute: .leading, relatedBy: .greaterThanOrEqual, toItem: containerView, attribute: .leading, multiplier: 1, constant: 16),
                 NSLayoutConstraint(item: innerView, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -16),
-
+                
                 // iconView
                 NSLayoutConstraint(item: iconView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
                 NSLayoutConstraint(item: iconView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
@@ -103,7 +117,7 @@ class AccountPickerViewController: UIViewController {
                             self.innerView.alpha = pickerVisible ? 0 : 1
                         })
                         UIView.animate(withDuration: 0.2, animations: {
-                            self.containerView.frame.origin = CGPoint(x: 0, y: pickerVisible ? -60 : 0)
+                            self.containerView.frame.origin = CGPoint(x: 0, y: pickerVisible ? -self.minimizedPickerHeight : 0)
                         })
                     }
                 })
@@ -115,17 +129,17 @@ class AccountPickerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if AccountsStore.sharedInstance.currentAccount == nil {
+        let currentAccount = AccountsStore.sharedInstance.currentAccount
+        if currentAccount == nil {
             accountPickerViewControllerWillAppear.onNext(.loadingAccounts)
             fetchAccounts()
         } else {
             accountPicker.loadAccounts()
             accountPickerViewControllerWillAppear.onNext(.readyToFetchData)
-            if AccountsStore.sharedInstance.currentAccount != accountPicker.currentAccount {
+            if currentAccount != accountPicker.currentAccount || currentAccount?.currentPremise != accountPicker.currentAccount.currentPremise {
                 accountPicker.updateCurrentAccount()
             }
         }
-
     }
     
     func fetchAccounts() {
@@ -153,7 +167,7 @@ class AccountPickerViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         if let sv = scrollView {
-            containerView.frame = CGRect(x: 0, y: sv.contentOffset.y <= accountPicker.frame.size.height ? -60 : 0, width: UIScreen.main.bounds.size.width, height: 60)
+            containerView.frame = CGRect(x: 0, y: sv.contentOffset.y <= accountPicker.frame.size.height ? -minimizedPickerHeight : 0, width: view.bounds.size.width, height: minimizedPickerHeight)
         }
     }
     

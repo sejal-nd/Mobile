@@ -697,23 +697,21 @@ class PaymentViewModel {
                                                                                                 self.inlineCard.asDriver(),
                                                                                                 self.allowEdits.asDriver())
     { ($0 || $1 || $2) && $3 }
-
+    
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
         let amount = self.paymentAmount.asDriver().map {
             Double(String($0.filter { "0123456789.".contains($0) }))
         }
         
         return Driver.combineLatest(self.bankWorkflow, self.cardWorkflow, self.accountDetail.asDriver(), amount, self.amountDue.asDriver())
-            .map { (bankWorkflow, cardWorkflow, accountDetail, paymentAmount, amountDue) -> String? in
+        { (bankWorkflow, cardWorkflow, accountDetail, paymentAmount, amountDue) -> String? in
             guard let paymentAmount: Double = paymentAmount else { return nil }
             
-            let commercialUser = !accountDetail.isResidential
-            
             if bankWorkflow {
+                let minPayment = accountDetail.minPaymentAmount(bankOrCard: .bank)
+                let maxPayment = accountDetail.maxPaymentAmount(bankOrCard: .bank)
                 if Environment.sharedInstance.opco == .bge {
                     // BGE BANK
-                    let minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 0.01
-                    let maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? (commercialUser ? 99999.99 : 9999.99)
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -721,8 +719,6 @@ class PaymentViewModel {
                     }
                 } else {
                     // COMED/PECO BANK
-                    let minPayment = accountDetail.billingInfo.minPaymentAmountACH ?? 5
-                    let maxPayment = accountDetail.billingInfo.maxPaymentAmountACH ?? 90000
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > amountDue {
@@ -732,10 +728,10 @@ class PaymentViewModel {
                     }
                 }
             } else if cardWorkflow {
+                let minPayment = accountDetail.minPaymentAmount(bankOrCard: .card)
+                let maxPayment = accountDetail.maxPaymentAmount(bankOrCard: .card)
                 if Environment.sharedInstance.opco == .bge {
                     // BGE CREDIT CARD
-                    let minPayment = accountDetail.billingInfo.minPaymentAmount ?? 0.01
-                    let maxPayment = accountDetail.billingInfo.maxPaymentAmount ?? (commercialUser ? 25000 : 600)
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > maxPayment {
@@ -743,8 +739,6 @@ class PaymentViewModel {
                     }
                 } else {
                     // COMED/PECO CREDIT CARD
-                    let minPayment = accountDetail.billingInfo.minPaymentAmount ?? 5
-                    let maxPayment = accountDetail.billingInfo.maxPaymentAmount ?? 5000
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > amountDue {
@@ -790,8 +784,8 @@ class PaymentViewModel {
     private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver())
     { $0 || $1 || $2 }
     
-    private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver())
-    { $0 || $1 || $2 }
+    private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver(), self.shouldShowContent)
+    { ($0 || $1 || $2) && $3 }
     
     private(set) lazy var selectedWalletItemImage: Driver<UIImage?> = Driver.combineLatest(self.selectedWalletItem.asDriver(), self.inlineBank.asDriver(), self.inlineCard.asDriver())
     {
