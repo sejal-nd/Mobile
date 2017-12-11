@@ -38,7 +38,7 @@ class LandingViewController: UIViewController {
         orLabel.text = NSLocalizedString("OR", comment: "")
         registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
         continueAsGuestButon.setTitle(NSLocalizedString("CONTINUE AS GUEST", comment: ""), for: .normal)
-
+        
         orLabel.font = SystemFont.bold.of(textStyle: .headline)
         continueAsGuestButon.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
 
@@ -56,6 +56,8 @@ class LandingViewController: UIViewController {
         videoView.alpha = 0
         tabletView.alpha = 0
         versionLabel.alpha = 0
+        
+        logoBackgroundView.addShadow(color: .primaryColorDark, opacity: 0.5, offset: CGSize(width: 0, height: 9), radius: 11)
     }
     
     func backgroundVideoSetup() {
@@ -70,7 +72,8 @@ class LandingViewController: UIViewController {
         
         let videoWidth: CGFloat
         let videoHeight: CGFloat
-        if UI_USER_INTERFACE_IDIOM() == .pad {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // On iPad, the video needs to be square to account for screen rotation
             let widthAndHeight = max(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
             videoWidth = widthAndHeight
             videoHeight = widthAndHeight
