@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MockOutageService : OutageService {
+class MockOutageService: OutageService {
     
     private var outageMap = [String: ReportedOutageResult]()
     

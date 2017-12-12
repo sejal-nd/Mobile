@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MockBillService : BillService {
+class MockBillService: BillService {
     /// Get the BillingHistoryItems for display
     ///
     /// - Parameters:
