@@ -53,6 +53,7 @@ class LandingViewController: UIViewController {
         
         versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
+        logoBackgroundView.alpha = 0
         videoView.alpha = 0
         tabletView.alpha = 0
         versionLabel.alpha = 0
@@ -121,6 +122,7 @@ class LandingViewController: UIViewController {
         if !viewDidAppear {
             viewDidAppear = true
             UIView.animate(withDuration: 0.5) {
+                self.logoBackgroundView.alpha = 1
                 self.videoView.alpha = 1
                 self.tabletView.alpha = 1
                 self.versionLabel.alpha = 1
