@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MockAccountService : AccountService {
+struct MockAccountService: AccountService {
 
     let testAccounts = [
         Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"]),

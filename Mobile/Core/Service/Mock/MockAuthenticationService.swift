@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-struct MockAuthenticationService : AuthenticationService {
+struct MockAuthenticationService: AuthenticationService {
     
     let validUsername = "valid@test.com"
     let validCurrentPassword = "Password1"
