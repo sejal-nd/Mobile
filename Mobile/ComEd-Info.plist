@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.0</string>
 	<key>CFBundleVersion</key>
-	<string>20171128</string>
+	<string>20171212</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -37,12 +37,12 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow camera access to scan your credit/debit card.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Use Face ID to sign in</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Would you like to enable GPS/Location Services to interact with the Outage Map relative to your current location?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow photo access to provide screenshots with feedback</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Use Face ID to sign in</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans-Bold.ttf</string>
