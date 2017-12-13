@@ -331,8 +331,6 @@
 		825171B51F1D25130020A6CA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171B41F1D25130020A6CA /* HomeViewModel.swift */; };
 		825171B61F1D25130020A6CA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171B41F1D25130020A6CA /* HomeViewModel.swift */; };
 		825171B71F1D25130020A6CA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825171B41F1D25130020A6CA /* HomeViewModel.swift */; };
-		825FEE001FDF2E1A00DC1961 /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 825FEDFF1FDF2E1900DC1961 /* landing_video.mp4 */; };
-		825FEE021FDF370100DC1961 /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 825FEE011FDF370100DC1961 /* landing_video.mp4 */; };
 		825FEE041FDF370C00DC1961 /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 825FEE031FDF370B00DC1961 /* landing_video.mp4 */; };
 		826413791EAEAE5E007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		8264137A1EAEAE62007F4615 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
@@ -531,6 +529,8 @@
 		82D599511EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
 		82D599521EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
 		82D599531EC3A00900DDB380 /* alert_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 82D599501EC3A00900DDB380 /* alert_icon.json */; };
+		82D626161FE1AD6B00B09F00 /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 82D626151FE1AD6B00B09F00 /* landing_video.mp4 */; };
+		82D626181FE1AD8B00B09F00 /* landing_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 82D626171FE1AD8B00B09F00 /* landing_video.mp4 */; };
 		82DE61051FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */; };
 		82DE61061FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */; };
 		82DE61071FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */; };
@@ -1633,8 +1633,6 @@
 		824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewModel.swift; sourceTree = "<group>"; };
 		825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectControl.swift; sourceTree = "<group>"; };
 		825171B41F1D25130020A6CA /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		825FEDFF1FDF2E1900DC1961 /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
-		825FEE011FDF370100DC1961 /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		825FEE031FDF370B00DC1961 /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceViewController.swift; sourceTree = "<group>"; };
@@ -1697,6 +1695,8 @@
 		82D599461EC356C800DDB380 /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
 		82D5994A1EC36B5500DDB380 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		82D599501EC3A00900DDB380 /* alert_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_icon.json; sourceTree = "<group>"; };
+		82D626151FE1AD6B00B09F00 /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
+		82D626171FE1AD8B00B09F00 /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewModel.swift; sourceTree = "<group>"; };
 		82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewController.swift; sourceTree = "<group>"; };
 		82E22B571F9FC70A001F1A1B /* EnergyTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTip.swift; sourceTree = "<group>"; };
@@ -2694,7 +2694,7 @@
 		8246BF561FD9CA6500FF440D /* BGE */ = {
 			isa = PBXGroup;
 			children = (
-				825FEDFF1FDF2E1900DC1961 /* landing_video.mp4 */,
+				82D626171FE1AD8B00B09F00 /* landing_video.mp4 */,
 			);
 			path = BGE;
 			sourceTree = "<group>";
@@ -2702,7 +2702,7 @@
 		8246BF571FD9CA7300FF440D /* PECO */ = {
 			isa = PBXGroup;
 			children = (
-				825FEE011FDF370100DC1961 /* landing_video.mp4 */,
+				82D626151FE1AD6B00B09F00 /* landing_video.mp4 */,
 			);
 			path = PECO;
 			sourceTree = "<group>";
@@ -4200,7 +4200,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -4345,13 +4345,13 @@
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */,
+				82D626181FE1AD8B00B09F00 /* landing_video.mp4 in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				B55736381E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				E8494F3F1EBBCB3A0047D6BE /* outage_loading.json in Resources */,
-				825FEE001FDF2E1A00DC1961 /* landing_video.mp4 in Resources */,
 				E873DA781EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				82A18EF31EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
@@ -4431,7 +4431,6 @@
 				385AF2281F27915A001E3619 /* img_1.png in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
-				825FEE021FDF370100DC1961 /* landing_video.mp4 in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				E87C41371FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */,
@@ -4445,6 +4444,7 @@
 				2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				B557363A1E6740A8003B9369 /* OMLocalizable.strings in Resources */,
 				E8EDC53A1F32405D006DD927 /* speedpay_errors.xml in Resources */,
+				82D626161FE1AD6B00B09F00 /* landing_video.mp4 in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */,
 				826DCD001F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,

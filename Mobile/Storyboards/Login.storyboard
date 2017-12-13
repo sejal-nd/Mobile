@@ -826,7 +826,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAP-dP-E5T" userLabel="Logo Background">
-                                <rect key="frame" x="0.0" y="77" width="375" height="121"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="121"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYp-HC-CYV">
                                         <rect key="frame" x="19" y="0.0" width="337" height="121"/>
@@ -963,7 +963,7 @@
                             <constraint firstAttribute="trailing" secondItem="Rwh-jf-fVT" secondAttribute="trailing" constant="29" id="C7m-hU-WlY"/>
                             <constraint firstItem="NyF-Jg-tI8" firstAttribute="top" secondItem="V4v-xx-mGY" secondAttribute="top" id="GYN-b9-NQr"/>
                             <constraint firstItem="cn2-ei-69X" firstAttribute="centerX" secondItem="V4v-xx-mGY" secondAttribute="centerX" id="JwI-sL-3Uu"/>
-                            <constraint firstItem="jAP-dP-E5T" firstAttribute="top" secondItem="asp-PR-d5k" secondAttribute="bottom" priority="750" constant="57" id="QMJ-NI-g8T"/>
+                            <constraint firstItem="jAP-dP-E5T" firstAttribute="top" secondItem="asp-PR-d5k" secondAttribute="bottom" priority="750" constant="72" id="QMJ-NI-g8T"/>
                             <constraint firstItem="cn2-ei-69X" firstAttribute="leading" secondItem="V4v-xx-mGY" secondAttribute="leading" priority="999" constant="29" id="ZEj-6f-u1p"/>
                             <constraint firstItem="cVZ-In-Wc5" firstAttribute="top" secondItem="Rwh-jf-fVT" secondAttribute="bottom" constant="21" id="cuz-Tk-enC"/>
                             <constraint firstAttribute="trailing" secondItem="jAP-dP-E5T" secondAttribute="trailing" id="dLJ-wC-flv"/>
