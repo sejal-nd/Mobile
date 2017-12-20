@@ -52,19 +52,6 @@ class RadioSelectControl: ButtonControl {
 		}
 	}
     
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        if isHidden {
-            return nil
-        }
-        
-        let subPoint = detailButton.convert(point, from: self)
-        if let _ = detailButton.hitTest(subPoint, with: event) {
-            return detailButton
-        }
-        
-        return self
-    }
-	
 	override func commonInit() {
 		super.commonInit()
 		createSubviews()
@@ -93,7 +80,6 @@ class RadioSelectControl: ButtonControl {
 		detailButton.translatesAutoresizingMaskIntoConstraints = false
 		detailButton.setTitleColor(.actionBlue, for: .normal)
 		detailButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .headline)
-        detailButton.isUserInteractionEnabled = true
         detailButton.titleLabel?.numberOfLines = 2
 		detailButton.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .horizontal)
 		detailButton.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
@@ -101,27 +87,30 @@ class RadioSelectControl: ButtonControl {
 		detailButton.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, detailButton]).usingAutoLayout()
-        stackView.isUserInteractionEnabled = false
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.spacing = 4
+        let tgr = UITapGestureRecognizer(target: self, action: #selector(onStackViewTap))
+        stackView.addGestureRecognizer(tgr)
         
 		addSubview(selectedImageView)
 		addSubview(stackView)
 		
 		selectedImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
 		stackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
-//        detailButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
-		
+
 		selectedImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
 		stackView.leadingAnchor.constraint(equalTo: selectedImageView.trailingAnchor, constant: 10).isActive = true
-//        detailButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 4).isActive = true
 		stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
 		
 		detailButton.isHidden = true
         
         accessibilitySetup()
 	}
+    
+    @objc func onStackViewTap() {
+        sendActions(for: .touchUpInside)
+    }
     
     private func accessibilitySetup() {
         isAccessibilityElement = true
