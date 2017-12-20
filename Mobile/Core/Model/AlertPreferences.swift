@@ -77,10 +77,17 @@ struct AlertPreferences {
 
 struct AlertPreference: Mappable {
     let programName: String
-    let daysPrior: Int? // Only sent along with programName = "Payment Reminders"
+    var daysPrior: Int? // Only sent along with programName = "Payment Reminders"
     
     init(map: Mapper) throws {
         try programName = map.from("programName")
-        daysPrior = map.optionalFrom("daysPrior")
+        
+        daysPrior = map.optionalFrom("daysPrior") // ComEd/PECO send daysPrior as an Int
+        
+        // But BGE sends as a String, so handle both cases
+        let daysString: String? = map.optionalFrom("daysPrior")
+        if let string = daysString {
+            daysPrior = Int(string)
+        }
     }
 }
