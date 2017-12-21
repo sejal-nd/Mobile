@@ -24,6 +24,7 @@ class SplashViewController: UIViewController{
     
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorViewBackground: UIView!
+    @IBOutlet weak var errorTitleLabel: UILabel!
     @IBOutlet weak var errorTextView: DataDetectorTextView!
     @IBOutlet weak var retryButton: ButtonControl!
     
@@ -47,7 +48,11 @@ class SplashViewController: UIViewController{
         errorViewBackground.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
         errorViewBackground.layer.cornerRadius = 2
         
+        errorTitleLabel.textColor = .deepGray
+        errorTitleLabel.text = viewModel.errorTitleText
+        
         errorTextView.textContainerInset = .zero
+        errorTextView.textContainer.lineFragmentPadding = 0
         errorTextView.tintColor = .actionBlue // For the phone numbers
         errorTextView.attributedText = viewModel.errorLabelText
 

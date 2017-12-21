@@ -50,28 +50,36 @@ class SplashViewModel{
         }
     }
     
+    var errorTitleText: String? {
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at BGE.com.", comment: "")
+        case .comEd:
+            return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at ComEd.com.", comment: "")
+        case .peco:
+            return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at PECO.com.", comment: "")
+        }
+    }
+    
     var errorLabelText: NSAttributedString? {
         var localizedString: String
         
         switch Environment.sharedInstance.opco {
         case .bge:
-            localizedString = NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at BGE.com.\n\nEmergencies:\n" +
-                "If you smell natural gas or see downed power lines, leave the area immediately, and then call BGE at 1-800-685-0123.\n" +
+            localizedString = NSLocalizedString("If you smell natural gas or see downed power lines, leave the area immediately, and then call BGE at 1-800-685-0123.\n\n" +
                 "If your power is out, please call 1-877-778-2222 to report your outage.", comment: "")
         case .comEd:
-            localizedString = NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at ComEd.com.\n\nEmergencies:\n" +
-                "If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661.\n" +
+            localizedString = NSLocalizedString("If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661.\n\n" +
                 "If your power is out, please call 1-800-334-7661 to report your outage.", comment: "")
         case .peco:
-            localizedString = NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at PECO.com.\n\nEmergencies:\n" +
-                "If you smell natural gas or see downed power lines, leave the area immediately, and then call PECO at 1-800-841-4141.\n" +
+            localizedString = NSLocalizedString("If you smell natural gas or see downed power lines, leave the area immediately, and then call PECO at 1-800-841-4141.\n\n" +
                 "If your power is out, please call 1-800-841-4141 to report your outage.", comment: "")
         }
         
         let attributedString = NSMutableAttributedString(string: localizedString)
         attributedString.addAttribute(.foregroundColor, value: UIColor.blackText, range: NSMakeRange(0, localizedString.count))
-        attributedString.addAttribute(.font, value: OpenSans.regular.of(textStyle: .footnote), range: NSMakeRange(0, localizedString.count))
-        attributedString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: "Emergencies:"))
+        attributedString.addAttribute(.font, value: OpenSans.regular.of(size: 12), range: NSMakeRange(0, localizedString.count))
+        attributedString.addAttribute(.font, value: OpenSans.bold.of(size: 12), range: (localizedString as NSString).range(of: "leave the area immediately"))
         return attributedString
     }
     
