@@ -145,14 +145,17 @@ class SplashViewController: UIViewController{
         }
     }
     
-    func checkAppVersion(callback:@escaping()->Void) {
+    func checkAppVersion(callback: @escaping() -> Void) {
         viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
+            self?.loadingTimer.invalidate()
             if isOutOfDate {
                 self?.handleOutOfDate()
             } else {
                 callback()
             }
         }, onError: { [weak self] _ in
+            self?.loadingTimer.invalidate()
+            self?.imageView.isHidden = true
             self?.splashAnimationContainer.isHidden = true
             self?.loadingContainerView.isHidden = true
             self?.errorView.isHidden = false
@@ -186,6 +189,8 @@ class SplashViewController: UIViewController{
     // MARK: Timeout and Error States
 
     @objc func loadingTimerExpired() {
+        imageView.isHidden = true
+        splashAnimationContainer.isHidden = true
         loadingContainerView.isHidden = false
     }
     
