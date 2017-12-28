@@ -271,12 +271,10 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                     </label>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="yrY-DD-kdB" firstAttribute="centerX" secondItem="a53-WZ-2ae" secondAttribute="centerX" id="3mI-fQ-PDZ"/>
                                                     <constraint firstAttribute="trailing" secondItem="5CE-lL-rQJ" secondAttribute="trailing" priority="999" constant="37" id="HDn-5e-f62"/>
                                                     <constraint firstItem="5CE-lL-rQJ" firstAttribute="top" secondItem="yrY-DD-kdB" secondAttribute="bottom" constant="9" id="PKC-i4-c7w"/>
                                                     <constraint firstItem="5CE-lL-rQJ" firstAttribute="leading" secondItem="a53-WZ-2ae" secondAttribute="leading" priority="999" constant="37" id="Ppo-xx-30N"/>
-                                                    <constraint firstItem="yrY-DD-kdB" firstAttribute="centerX" secondItem="a53-WZ-2ae" secondAttribute="centerX" id="X8b-VZ-s1T"/>
-                                                    <constraint firstItem="yrY-DD-kdB" firstAttribute="leading" secondItem="a53-WZ-2ae" secondAttribute="leading" id="o0r-le-Ymc" userLabel="LottieView.leading = Leading"/>
-                                                    <constraint firstAttribute="trailing" secondItem="yrY-DD-kdB" secondAttribute="trailing" id="vpw-Ux-HbY"/>
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLB-ga-RSd" userLabel="Sign In / Register Button">
