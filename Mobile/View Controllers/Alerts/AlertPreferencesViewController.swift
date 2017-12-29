@@ -68,6 +68,8 @@ class AlertPreferencesViewController: UIViewController {
     @IBOutlet weak var englishRadioControl: RadioSelectControl!
     @IBOutlet weak var spanishRadioControl: RadioSelectControl!
     
+    @IBOutlet var dividerLineConstraints: [NSLayoutConstraint]!
+    
     let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(), billService: ServiceFactory.createBillService())
     
     
@@ -127,6 +129,13 @@ class AlertPreferencesViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
         }
+    }
+    
+    override func updateViewConstraints() {
+        for constraint in dividerLineConstraints {
+            constraint.constant = 1.0 / UIScreen.main.scale
+        }
+        super.updateViewConstraints()
     }
     
     func checkForNotificationsPermissions() {

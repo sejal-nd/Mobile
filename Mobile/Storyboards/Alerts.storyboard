@@ -915,6 +915,15 @@ this time.</string>
                         <outlet property="severeWeatherSwitch" destination="p5M-Ew-Bcg" id="d0u-6Y-qLu"/>
                         <outlet property="severeWeatherTitleLabel" destination="rlO-rq-KdS" id="HIn-1k-gKR"/>
                         <outlet property="spanishRadioControl" destination="1IM-ua-FZP" id="SSr-nG-Vmf"/>
+                        <outletCollection property="dividerLineConstraints" destination="TUY-VI-Op8" collectionClass="NSMutableArray" id="OUv-bS-nF1"/>
+                        <outletCollection property="dividerLineConstraints" destination="Hqx-wO-Z2L" collectionClass="NSMutableArray" id="WGz-8S-alh"/>
+                        <outletCollection property="dividerLineConstraints" destination="ZSw-iu-uht" collectionClass="NSMutableArray" id="cx9-G6-Cch"/>
+                        <outletCollection property="dividerLineConstraints" destination="rmQ-tP-Tgw" collectionClass="NSMutableArray" id="Uo7-J8-SfR"/>
+                        <outletCollection property="dividerLineConstraints" destination="YV3-jl-VdK" collectionClass="NSMutableArray" id="ojb-Zh-eu2"/>
+                        <outletCollection property="dividerLineConstraints" destination="0o2-OE-DXB" collectionClass="NSMutableArray" id="K2D-2I-j9I"/>
+                        <outletCollection property="dividerLineConstraints" destination="Ntq-cz-EAa" collectionClass="NSMutableArray" id="xk6-Fc-qJg"/>
+                        <outletCollection property="dividerLineConstraints" destination="5gW-OD-emV" collectionClass="NSMutableArray" id="Skf-c0-cdX"/>
+                        <outletCollection property="dividerLineConstraints" destination="bXT-tz-Ye2" collectionClass="NSMutableArray" id="yCw-zM-sZ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fkn-g7-y4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
