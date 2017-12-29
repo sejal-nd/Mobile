@@ -200,9 +200,10 @@ class HomeViewModel {
     
     private(set) lazy var showTemperatureTip: Driver<Bool> = Observable
         .combineLatest(self.temperatureTipRequestData.map { ($0 || $1) && $2.premiseNumber != nil && $3 },
-                       self.temperatureTipEvents.map { $0.error == nil })
+                       self.temperatureTipEvents.map { $0.error == nil },
+                       self.isSwitchingAccounts.asObservable())
         {
-            $0 && $1
+            $0 && $1 && !$2
         }
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())

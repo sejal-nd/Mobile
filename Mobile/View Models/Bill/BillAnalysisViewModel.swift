@@ -94,9 +94,7 @@ class BillAnalysisViewModel {
                                                 yearAgo: lastYearPreviousBillSelectedSegmentIndex.value == 0,
                                                 gas: isGas).map { [weak self] billComparison in
             self?.currentBillComparison.value = billComparison
-            if billComparison.reference == nil {
-                self?.isError.value = true // Screen is useless without reference data
-            } else if billComparison.compared == nil {
+            if billComparison.compared == nil {
                 self?.noPreviousData.value = true
             }
         }
@@ -114,8 +112,17 @@ class BillAnalysisViewModel {
     }
 
     private(set) lazy var shouldShowBillComparisonContentView: Driver<Bool> =
-        Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver()).map {
-            !$0 && !$1
+        Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver(), self.shouldShowBillComparisonEmptyState).map {
+            !$0 && !$1 && !$2
+        }
+    
+    private(set) lazy var shouldShowBillComparisonEmptyState: Driver<Bool> =
+        Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver(), self.currentBillComparison.asDriver()).map {
+            if $0 || $1 {
+                return false
+            }
+            guard let billComparison = $2 else { return false }
+            return billComparison.reference == nil
         }
 
     // MARK: No Data Bar Drivers

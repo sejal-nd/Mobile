@@ -46,6 +46,8 @@ class BillAnalysisViewController: UIViewController {
     @IBOutlet weak var billComparisonLoadingView: UIView!
     @IBOutlet weak var billComparisonErrorView: UIView!
     @IBOutlet weak var billComparisonErrorLabel: UILabel!
+    @IBOutlet weak var billComparisonEmptyStateView: UIView!
+    @IBOutlet weak var billComparisonEmptyStateLabel: UILabel!
     
     @IBOutlet weak var barGraphStackView: UIStackView!
     
@@ -199,6 +201,12 @@ class BillAnalysisViewController: UIViewController {
         billComparisonErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
         billComparisonErrorLabel.textColor = .blackText
         billComparisonErrorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        
+        billComparisonEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
+        billComparisonEmptyStateLabel.setLineHeight(lineHeight: 26)
+        billComparisonEmptyStateLabel.textAlignment = .center
+        billComparisonEmptyStateLabel.textColor = .middleGray
+        billComparisonEmptyStateLabel.text = NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
         
         styleBarGraph()
         
@@ -387,6 +395,7 @@ class BillAnalysisViewController: UIViewController {
         viewModel.shouldShowBillComparisonContentView.not().drive(billComparisonContentView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFetching.asDriver().not().drive(billComparisonLoadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(billComparisonErrorView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowBillComparisonEmptyState.not().drive(billComparisonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         
         // Segmented Controls
         electricGasSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)

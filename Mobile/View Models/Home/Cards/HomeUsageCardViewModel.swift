@@ -117,7 +117,11 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var shouldShowBillComparisonEmptyState: Driver<Bool> = Driver.combineLatest(self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()),
                                                                                                   self.shouldShowSmartEnergyRewards,
-                                                                                                  self.shouldShowSmartEnergyEmptyState) {
+                                                                                                  self.shouldShowSmartEnergyEmptyState,
+                                                                                                  self.billComparisonDriver) {
+        if $3.reference == nil {
+            return true
+        }
         return $0.error != nil && !$1 && !$2
     }
     

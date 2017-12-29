@@ -31,7 +31,11 @@ struct BillComparison: Mappable {
     var otherCostDifference: Double = 0
     
     init(map: Mapper) throws {
-        try meterUnit = map.from("meterUnit")
+        do {
+            try meterUnit = map.from("meterUnit")
+        } catch {
+            meterUnit = ""
+        }
         if meterUnit == "KWH" {
             meterUnit = "kWh"
         } else if meterUnit == "THERM" {
