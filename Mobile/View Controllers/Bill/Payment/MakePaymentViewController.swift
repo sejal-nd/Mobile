@@ -708,49 +708,56 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        let today = Calendar.current.startOfDay(for: Date())
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
+        
+        let today = Calendar.opCo.startOfDay(for: Date())
         if Environment.sharedInstance.opco == .bge {
             let minDate: Date
             if Calendar.opCo.component(.hour, from: Date()) >= 20 {
-                minDate = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+                minDate = Calendar.opCo.date(byAdding: .day, value: 1, to: today)!
             } else {
                 minDate = today
             }
-            let todayPlus90 = Calendar.current.date(byAdding: .day, value: 90, to: today)!
-            let todayPlus180 = Calendar.current.date(byAdding: .day, value: 180, to: today)!
+            guard let todayPlus90 = Calendar.opCo.date(byAdding: .day, value: 90, to: today),
+                let todayPlus180 = Calendar.opCo.date(byAdding: .day, value: 180, to: today) else {
+                    return false
+            }
             if viewModel.inlineCard.value {
-                return date >= minDate && date <= todayPlus90
+                return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus90
             } else if viewModel.inlineBank.value {
-                return date >= minDate && date <= todayPlus180
+                return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus180
             } else if let walletItem = viewModel.selectedWalletItem.value {
                 if walletItem.bankOrCard == .card {
-                    return date >= minDate && date <= todayPlus90
+                    return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus90
                 } else {
-                    return date >= minDate && date <= todayPlus180
+                    return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus180
                 }
             }
         } else {
-            if billingHistoryItem != nil && date == today  { // Modifying payment on ComEd/PECO disables changing date to today
+            if billingHistoryItem != nil && opCoTimeDate == today  { // Modifying payment on ComEd/PECO disables changing date to today
                 return false
             }
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
-                let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
+                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
                 if Environment.sharedInstance.opco == .peco {
-                    let isInWorkdaysArray = viewModel.workdayArray.contains(date)
-                    return date >= today && date <= startOfDueDate && isInWorkdaysArray
+                    let isInWorkdaysArray = viewModel.workdayArray.contains(opCoTimeDate)
+                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate && isInWorkdaysArray
                 } else {
-                    return date >= today && date <= startOfDueDate
+                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate
                 }
             }
         }
         
         // Should never get called?
-        return date >= today
+        return opCoTimeDate >= today
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
-        viewModel.paymentDate.value = Calendar.current.isDateInToday(date) ? Date() : date
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
+        viewModel.paymentDate.value = Calendar.current.isDateInToday(opCoTimeDate) ? Date() : opCoTimeDate
     }
 }
 
