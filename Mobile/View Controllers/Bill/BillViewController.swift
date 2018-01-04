@@ -119,14 +119,9 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var customErrorTitleLabel: UILabel!
     @IBOutlet weak var customErrorDetailLabel: UILabel!
     var refreshDisposable: Disposable?
-    var refreshControl: UIRefreshControl? {
-        didSet {
-            refreshDisposable?.dispose()
-            refreshDisposable = refreshControl?.rx.controlEvent(.valueChanged).asObservable()
-				.map { FetchingAccountState.refresh }
-				.bind(to: viewModel.fetchAccountDetail)
-        }
-    }
+    var refreshControl: UIRefreshControl?
+    
+    var viewHasAppeared = false
 
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
 
@@ -184,15 +179,21 @@ class BillViewController: AccountPickerViewController {
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
+        viewHasAppeared = true
     }
     
     func enableRefresh() -> Void {
         guard self.refreshControl == nil else { return }
         let refreshControl = UIRefreshControl()
         self.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
         refreshControl.tintColor = .white
         self.scrollView!.insertSubview(refreshControl, at: 0)
         self.scrollView!.alwaysBounceVertical = true
+    }
+    
+    @objc func onPullToRefresh() {
+        viewModel.fetchAccountDetail(isRefresh: true)
     }
     
     @objc func killRefresh() -> Void {
@@ -284,31 +285,65 @@ class BillViewController: AccountPickerViewController {
 		bindViewHiding()
 		bindViewContent()
     }
+    
+    func showLoadedState() {
+        dLog("showLoadedState")
+        billLoadingIndicator.isHidden = true
+        loadingIndicatorView.isHidden = true
+        topView.isHidden = false
+        bottomView.isHidden = false
+        errorView.isHidden = true
+        bottomStackContainerView.isHidden = false
+        enableRefresh()
+    }
+    
+    func showErrorState(error: ServiceError?) {
+        dLog("showErrorState: \(error)")
+        billLoadingIndicator.isHidden = true
+        loadingIndicatorView.isHidden = true
+        topView.isHidden = false
+        bottomView.isHidden = true
+        errorView.isHidden = false
+        bottomStackContainerView.isHidden = true
+        
+        if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+            genericErrorView.isHidden = true
+            customErrorView.isHidden = false
+        } else {
+            genericErrorView.isHidden = false
+            customErrorView.isHidden = true
+        }
+        enableRefresh()
+    }
+    
+    func showSwitchingAccountState() {
+        dLog("showSwitchingAccountState")
+        billLoadingIndicator.isHidden = false
+        loadingIndicatorView.isHidden = false
+        topView.isHidden = false
+        bottomView.isHidden = false
+        errorView.isHidden = true
+        bottomStackContainerView.isHidden = true
+        
+        refreshControl?.endRefreshing()
+        refreshControl?.removeFromSuperview()
+        refreshControl = nil
+        scrollView!.alwaysBounceVertical = false
+    }
 
 	func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
         viewModel.refreshTracker.asDriver().filter(!).drive(onNext: { [weak self] refresh in
             self?.refreshControl?.endRefreshing()
         }).disposed(by: bag)
-
-        viewModel.switchAccountsTracker.asDriver().not().drive(onNext: { [weak self] refresh in
-            guard let `self` = self else { return }
-            self.topView.isHidden = false
-            self.bottomView.isHidden = false
-            self.errorView.isHidden = true
-            if refresh {
-                self.enableRefresh()
-            } else {
-                self.refreshControl?.endRefreshing()
-                self.refreshControl?.removeFromSuperview()
-                self.refreshControl = nil
-                self.scrollView!.alwaysBounceVertical = false
-            }
-        }).disposed(by: bag)
         
-        viewModel.switchAccountsTracker.asDriver().drive(billLoadingIndicator.rx.isAnimating).disposed(by: bag)
-        viewModel.switchAccountsTracker.asDriver().not().drive(loadingIndicatorView.rx.isHidden).disposed(by: bag)
-        viewModel.switchAccountsTracker.asDriver().drive(bottomStackContainerView.rx.isHidden).disposed(by: bag)
+        viewModel.switchAccountsTracker.asDriver()
+            .filter { $0 }
+            .map(to: ())
+            .drive(onNext: { [weak self] in self?.showSwitchingAccountState() })
+            .disposed(by: bag)
+        viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
+        viewModel.accountDetailError.drive(onNext: { [weak self] in self?.showErrorState(error: $0) }).disposed(by: bag)
 	}
 
 	func bindViewHiding() {
@@ -347,7 +382,7 @@ class BillViewController: AccountPickerViewController {
 		viewModel.shouldEnableMakeAPaymentButton.drive(billPaidView.rx.isHidden).disposed(by: bag)
         viewModel.paymentStatusText.map { $0 == nil }.drive(makeAPaymentStatusButton.rx.isHidden).disposed(by: bag)
 
-		viewModel.shouldShowAutoPay.not().drive(autoPayButton.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowAutoPay.not().drive(autoPayButton.rx.isHidden).disposed(by: bag)
 		viewModel.shouldShowPaperless.not().drive(paperlessButton.rx.isHidden).disposed(by: bag)
 		viewModel.shouldShowBudget.not().drive(budgetButton.rx.isHidden).disposed(by: bag)
 	}
@@ -400,22 +435,6 @@ class BillViewController: AccountPickerViewController {
 		viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).disposed(by: bag)
 		viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).disposed(by: bag)
 		viewModel.budgetButtonText.drive(budgetBillingEnrollmentLabel.rx.attributedText).disposed(by: bag)
-
-        viewModel.accountDetailError
-            .drive(onNext: { [weak self] error in
-                if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
-                    self?.genericErrorView.isHidden = true
-                    self?.customErrorView.isHidden = false
-                } else {
-                    self?.genericErrorView.isHidden = false
-                    self?.customErrorView.isHidden = true
-                }
-                self?.topView.isHidden = true
-                self?.bottomView.isHidden = true
-                self?.errorView.isHidden = false
-                self?.enableRefresh()
-            })
-            .disposed(by: bag)
 	}
 
     func bindButtonTaps() {

@@ -52,8 +52,13 @@ class BillViewModel {
     
     private(set) lazy var accountDetailError: Driver<ServiceError?> = self.accountDetailEvents.errors()
         .map { $0 as? ServiceError }
-        .asDriver(onErrorJustReturn: ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
-	
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showLoadedState: Driver<Void> = self.accountDetailEvents
+        .filter { $0.error == nil }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
+    
 	func fetchAccountDetail(isRefresh: Bool) {
 		fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)
     }
@@ -98,7 +103,10 @@ class BillViewModel {
         return Driver.zip(self.shouldShowAlertBanner, showPastDue) { !$0 && $1 }
     }()
     
-    private(set) lazy var shouldShowTopContent: Driver<Bool> = self.switchAccountsTracker.asDriver().not()
+    private(set) lazy var shouldShowTopContent: Driver<Bool> = Driver.combineLatest(self.switchAccountsTracker.asDriver(),
+                                                                                    self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()))
+    { !$0 && $1.error == nil }
+        .startWith(false)
     
     private(set) lazy var pendingPaymentAmountDueBoxesAlpha: Driver<CGFloat> = self.currentAccountDetail.map {
         guard let pendingPaymentAmount = $0.billingInfo.pendingPayments.first?.amount else { return 1.0 }
