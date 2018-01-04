@@ -117,7 +117,7 @@ class RegistrationViewModel {
                                              question3: securityQuestion3.value,
                                              answer3: securityAnswer3.value,
                                              isPrimary: primaryProfile.value ? "true" : "false",
-                                             isEnrollEBill: paperlessEbill.value ? "true" : "false")
+                                             isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
