@@ -121,8 +121,6 @@ class BillViewController: AccountPickerViewController {
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
     
-    var viewHasAppeared = false
-
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
 
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -179,7 +177,14 @@ class BillViewController: AccountPickerViewController {
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
-        viewHasAppeared = true
+        
+        // Bug was found when initially loading the Bill tab with no network. You could pull the scrollView down
+        // to begin the refresh process, but would not be able to pull it down all the way to trigger the refresh.
+        refreshControl?.removeFromSuperview()
+        refreshControl = nil
+        scrollView!.alwaysBounceVertical = false
+        enableRefresh()
+        // -------------------------------------------------------------------------------------------------------
     }
     
     func enableRefresh() -> Void {
