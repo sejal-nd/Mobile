@@ -15,7 +15,7 @@ fileprivate let coldTips = ["tip080_set_thermostat_wisely_winter","tip033_clear_
 fileprivate let hotTips = ["tip021_let_ac_breathe","tip020_keep_out_solar_heat","tip084_use_fans_for_cooling"]
 
 class HomeViewModel {
-    let defaultZip : String? = Environment.sharedInstance.opco == .bge ? "20201" : nil;
+    let defaultZip : String? = Environment.sharedInstance.opco == .bge ? "20201" : nil
 
     let disposeBag = DisposeBag()
     
