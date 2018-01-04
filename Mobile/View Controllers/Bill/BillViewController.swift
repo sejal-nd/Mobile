@@ -292,7 +292,6 @@ class BillViewController: AccountPickerViewController {
     }
     
     func showLoadedState() {
-        dLog("showLoadedState")
         billLoadingIndicator.isHidden = true
         loadingIndicatorView.isHidden = true
         topView.isHidden = false
@@ -303,7 +302,6 @@ class BillViewController: AccountPickerViewController {
     }
     
     func showErrorState(error: ServiceError?) {
-        dLog("showErrorState: \(error)")
         billLoadingIndicator.isHidden = true
         loadingIndicatorView.isHidden = true
         topView.isHidden = false
@@ -322,7 +320,6 @@ class BillViewController: AccountPickerViewController {
     }
     
     func showSwitchingAccountState() {
-        dLog("showSwitchingAccountState")
         billLoadingIndicator.isHidden = false
         loadingIndicatorView.isHidden = false
         topView.isHidden = false
