@@ -116,11 +116,11 @@ class BudgetBillingViewModel {
         case .bge:
             return NSLocalizedString("Budget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
         case .comEd:
-            if accountDetail.hasElectricSupplier && accountDetail.isDualBillOption {
+            if accountDetail.isSupplier && accountDetail.isDualBillOption {
                 return NSLocalizedString("Budget Billing is available for your ComEd Delivery charges. Electric Supply charges from your Retail Electric Supplier will not be included in your Budget Billing plan.", comment: "")
             }
         case .peco:
-            if accountDetail.hasElectricSupplier && accountDetail.isDualBillOption {
+            if accountDetail.isSupplier && accountDetail.isDualBillOption {
                 return NSLocalizedString("Budget billing option only includes PECO charges. Energy Supply charges are billed by your chosen generation provider.", comment: "")
             } else if let budgetBillMessage = accountDetail.budgetBillMessage {
                 if budgetBillMessage.contains("Your account has not yet been open for a year") {
