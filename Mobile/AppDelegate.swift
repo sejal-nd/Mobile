@@ -105,6 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                     case .Failure(let err):
                         dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
+                        print(err)
                     }
                 }
         }

@@ -11,6 +11,7 @@ import XCTest
 class BGEUITests: XCTestCase {
     let app = XCUIApplication()
     
+    
     override func setUp() {
         super.setUp()
         
@@ -40,6 +41,9 @@ class BGEUITests: XCTestCase {
     }
     
     func testLandingPageLayout(){
+        //Slightly redundant, but this is the easiest way to wait for the splash screen to finish
+        waitForElementToAppear(app.buttons["Sign In"])
+        
         XCTAssert(app.buttons["Sign In"].exists)
         XCTAssert(app.buttons["Register"].exists)
         XCTAssert(app.buttons["CONTINUE AS GUEST"].exists)
@@ -49,46 +53,54 @@ class BGEUITests: XCTestCase {
     func testSignInPageLayout(){
         let elementsQuery = app.scrollViews.otherElements
         
+        waitForElementToAppear(app.buttons["Sign In"])
         app.buttons["Sign In"].tap()
         XCTAssert(elementsQuery.textFields["Username / Email Address"].exists)
         XCTAssert(elementsQuery.secureTextFields["Password"].exists)
         XCTAssert(elementsQuery.images["img_logo_white"].exists)
         XCTAssert(app.navigationBars["BGE.LoginView"].children(matching: .button).matching(identifier: "Back").element(boundBy: 0).exists)
         XCTAssert(app.buttons["Sign In"].exists)
-        XCTAssert(elementsQuery.switches["0"].exists)
-        XCTAssert(elementsQuery.buttons["Forgot password or username?"].exists)
-        XCTAssert(elementsQuery.buttons["Sign In"].exists)
+        XCTAssert(app.scrollViews.otherElements.switches["Keep me signed in"].exists)
+        XCTAssert(elementsQuery.buttons[" username "].exists)
+        XCTAssert(elementsQuery.buttons[" password"].exists)
     }
     
     func testSignIn(){
+        waitForElementToAppear(app.buttons["Sign In"])
         app.buttons["Sign In"].tap()
         let elementsQuery = app.scrollViews.otherElements
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-
-        
+        waitForElementToAppear(usernameEmailAddressTextField)
         usernameEmailAddressTextField.tap()
-        clearText(usernameEmailAddressTextField)
-        usernameEmailAddressTextField.typeText("multprem03")
+        waitForElementToAppear(app.buttons["Next:"])
+        clearText()
+        usernameEmailAddressTextField.typeText("3012541000@example.com")
+        
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         passwordSecureTextField.tap()
-        passwordSecureTextField.typeText("Password3")
+        passwordSecureTextField.typeText("Password1")
         elementsQuery.buttons["Sign In"].tap()
+        waitForElementToAppear(app.tabBars.buttons["Home"])
         
         //Assert that the Home page loaded after a valid login
-        waitForElementToAppear(app.navigationBars["Home"])
-        XCTAssert(app.navigationBars["Home"].staticTexts["Home"].exists)
+        //WILL GET CAUGHT UP ON PUSH NOTFICATION ALERT ON FIRST SIGN FOR NOW
+        XCTAssert(app.tabBars.buttons["Home"].exists, "User was not logged in after 15 seconds or login failed.")
     }
     
     func testNoPassword(){
+        waitForElementToAppear(app.buttons["Sign In"])
         app.buttons["Sign In"].tap()
+        
         let elementsQuery = app.scrollViews.otherElements
-        let errorAlert = app.alerts["Error"]
+        let errorAlert = app.alerts["Sign In Error"]
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        
-        
+        waitForElementToAppear(usernameEmailAddressTextField)
         usernameEmailAddressTextField.tap()
-        clearText(usernameEmailAddressTextField)
-        usernameEmailAddressTextField.typeText("multprem03")
+        
+        
+        
+        clearText()
+        usernameEmailAddressTextField.typeText("3012541000@example.com")
         elementsQuery.buttons["Sign In"].tap()
         
         waitForElementToAppear(errorAlert)
@@ -96,11 +108,14 @@ class BGEUITests: XCTestCase {
     }
     
     func testNoUsername(){
+        waitForElementToAppear(app.buttons["Sign In"])
         app.buttons["Sign In"].tap()
+        
         let elementsQuery = app.scrollViews.otherElements
-        let errorAlert = app.alerts["Error"]
+        let errorAlert = app.alerts["Sign In Error"]
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         
+        waitForElementToAppear(passwordSecureTextField)
         passwordSecureTextField.tap()
         passwordSecureTextField.typeText("Password3")
         elementsQuery.buttons["Sign In"].tap()
@@ -110,11 +125,13 @@ class BGEUITests: XCTestCase {
     }
     
     func testInvalidUsername(){
+        waitForElementToAppear(app.buttons["Sign In"])
         app.buttons["Sign In"].tap()
         let elementsQuery = app.scrollViews.otherElements
-        let errorAlert = app.alerts["Error"]
+        let errorAlert = app.alerts["Sign In Error"]
         
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
+        waitForElementToAppear(usernameEmailAddressTextField)
         usernameEmailAddressTextField.tap()
         usernameEmailAddressTextField.typeText("oisrjthowrothwoitj")
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
@@ -127,11 +144,13 @@ class BGEUITests: XCTestCase {
     }
     
     func testInvalidPassword(){
+        waitForElementToAppear(app.buttons["Sign In"])
         app.buttons["Sign In"].tap()
         let elementsQuery = app.scrollViews.otherElements
-        let errorAlert = app.alerts["Error"]
+        let errorAlert = app.alerts["Sign In Error"]
         
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
+        waitForElementToAppear(usernameEmailAddressTextField)
         usernameEmailAddressTextField.tap()
         usernameEmailAddressTextField.typeText("multprem03")
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
@@ -144,17 +163,27 @@ class BGEUITests: XCTestCase {
     }
     
     //Helper function to delete text from a field, 12 is arbitrary
-    func clearText (_ field: XCUIElement){
-        for _ in 0...12{
-            field.typeText(XCUIKeyboardKey.delete.rawValue)
+    func clearText(){
+        waitForElementToAppear(app.keys["delete"])
+        for _ in 0...21{
+            app/*@START_MENU_TOKEN@*/.keys["delete"]/*[[".keyboards.keys[\"delete\"]",".keys[\"delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         }
+        
+            //field.typeText(XCUIKeyboardKey.delete.rawValue)
     }
     
     //Helper function that waits for a specific element to appear
     func waitForElementToAppear (_ element: XCUIElement){
         let predicate = NSPredicate(format: "exists==true")
         expectation(for: predicate, evaluatedWith: element, handler: nil)
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 30, handler: nil)
+    }
+    
+    //Helper function that waits for a specific element to appear
+    func waitForLogin (_ element: XCUIElement){
+        let predicate = NSPredicate(format: "exists==true")
+        expectation(for: predicate, evaluatedWith: element, handler: nil)
+        waitForExpectations(timeout: 30, handler: nil)
     }
     
 }
