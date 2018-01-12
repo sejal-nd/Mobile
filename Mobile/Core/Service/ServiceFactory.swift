@@ -15,8 +15,10 @@ class ServiceFactory {
 
     class func createAuthenticationService() -> AuthenticationService {
         switch(Environment.sharedInstance.environmentName) {
-        case "DEV", "TEST", "STAGE", "AUT":
+        case "DEV", "TEST", "STAGE", "PROD":
             return OMCAuthenticationService()
+        case "AUT":
+            return MockAuthenticationService()
         default:
             return OMCAuthenticationService()
         }
@@ -27,6 +29,9 @@ class ServiceFactory {
     }
 
     class func createAccountService() -> AccountService {
+        if Environment.sharedInstance.environmentName == "AUT" {
+            return MockAccountService()
+        }
         return OMCAccountService()
     }
 

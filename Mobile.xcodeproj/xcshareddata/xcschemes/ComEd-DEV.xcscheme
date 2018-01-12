@@ -20,20 +20,6 @@
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5AC06D41E52238900BBA4ED"
-               BuildableName = "MobileTests.xctest"
-               BlueprintName = "MobileTests"
-               ReferencedContainer = "container:Mobile.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -43,16 +29,6 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5AC06D41E52238900BBA4ED"
-               BuildableName = "MobileTests.xctest"
-               BlueprintName = "MobileTests"
-               ReferencedContainer = "container:Mobile.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -111,7 +87,7 @@
       buildConfiguration = "Develop">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Testing"
+      buildConfiguration = "Develop"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

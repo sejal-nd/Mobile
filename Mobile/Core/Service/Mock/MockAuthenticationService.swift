@@ -16,7 +16,7 @@ struct MockAuthenticationService: AuthenticationService {
     
     func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (ServiceResult<(ProfileStatus, AccountDetail)>) -> Void) {
         
-        if username == validUsername {
+        if username == validUsername && password == validCurrentPassword {
             let accountDetail = AccountDetail.from(["accountNumber": "123456789", "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
             completion(ServiceResult.Success((ProfileStatus(), accountDetail)))
         } else {
@@ -53,15 +53,16 @@ struct MockAuthenticationService: AuthenticationService {
         }
     }
     
-    func getMaintenanceMode(completion: @escaping (ServiceResult<Maintenance>) -> Void){
+    func getMaintenanceMode(completion: @escaping (ServiceResult<Maintenance>) -> Void) {
+        completion(ServiceResult.Success(Maintenance.from([:])!))
     }
     
     func getMinimumVersion(completion: @escaping (ServiceResult<MinimumVersion>) -> Void) {
-        
+        completion(ServiceResult.Success(MinimumVersion()))
     }
     
     func refreshAuthorization(completion: @escaping (ServiceResult<Void>) -> Void) {
-        
+        completion(ServiceResult.Success(()))
     }
     
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?, completion: @escaping (_ result: ServiceResult<[ForgotUsernameMasked]>) -> Void) {

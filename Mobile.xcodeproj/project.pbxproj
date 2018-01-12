@@ -58,7 +58,7 @@
 		01F6122D1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */; };
 		01F6122E1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */; };
 		01F6122F1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */; };
-		087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087630E01E72F5D000FA7020 /* BGEUITests.swift */; };
+		087630E11E72F5D000FA7020 /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087630E01E72F5D000FA7020 /* LoginUITests.swift */; };
 		0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C6C41F1D3360004793DD /* Maintenance.storyboard */; };
 		0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C6C41F1D3360004793DD /* Maintenance.storyboard */; };
 		0D79C6C71F1D3360004793DD /* Maintenance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C6C41F1D3360004793DD /* Maintenance.storyboard */; };
@@ -474,7 +474,6 @@
 		82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
 		82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
 		82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
-		82A18F161EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
 		82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
@@ -1442,6 +1441,12 @@
 		E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
 		E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */; };
 		E8EFFE261FD739B000DBAE40 /* AlertsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */; };
+		E8F3539E200943E100883CEA /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
+		E8F3539F200943E100883CEA /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
+		E8F353A0200943E200883CEA /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
+		E8F353A2200963B600883CEA /* TabNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353A1200963B600883CEA /* TabNavigationUITests.swift */; };
+		E8F353A3200963B600883CEA /* TabNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353A1200963B600883CEA /* TabNavigationUITests.swift */; };
+		E8F353A4200963B600883CEA /* TabNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353A1200963B600883CEA /* TabNavigationUITests.swift */; };
 		E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */; };
 		E8F51EE31EC9F7F90080AB3E /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */; };
 		E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
@@ -1454,6 +1459,336 @@
 		E8F51EEE1ECA51790080AB3E /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
 		E8F51EEF1ECA5AE40080AB3E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
 		E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
+		E8F62B0F2009207C0077B3DA /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087630E01E72F5D000FA7020 /* LoginUITests.swift */; };
+		E8F62B20200920870077B3DA /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087630E01E72F5D000FA7020 /* LoginUITests.swift */; };
+		E8F62B35200924410077B3DA /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
+		E8F62B36200924410077B3DA /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		E8F62B37200924410077B3DA /* OMCRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */; };
+		E8F62B38200924410077B3DA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
+		E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
+		E8F62B3A200924410077B3DA /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
+		E8F62B3B200924410077B3DA /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
+		E8F62B3C200924410077B3DA /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
+		E8F62B3D200924410077B3DA /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */; };
+		E8F62B3E200924410077B3DA /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
+		E8F62B3F200924410077B3DA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
+		E8F62B40200924410077B3DA /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		E8F62B41200924410077B3DA /* OMCAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02741FB0BFD20062A348 /* OMCAlertsService.swift */; };
+		E8F62B42200924410077B3DA /* AuthTokenParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */; };
+		E8F62B43200924410077B3DA /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
+		E8F62B44200924410077B3DA /* OMCPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A291FAB78E700EACB3B /* OMCPeakRewardsService.swift */; };
+		E8F62B45200924410077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
+		E8F62B46200924410077B3DA /* MockAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BADE1E7837A6001E8A44 /* MockAccountService.swift */; };
+		E8F62B47200924410077B3DA /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
+		E8F62B48200924410077B3DA /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */; };
+		E8F62B49200924410077B3DA /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
+		E8F62B4A200924410077B3DA /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF01E785AE3001E8A44 /* OutageStatus.swift */; };
+		E8F62B4B200924410077B3DA /* UIViewDashedBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893993C1F86AF1600B9184C /* UIViewDashedBorders.swift */; };
+		E8F62B4C200924410077B3DA /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
+		E8F62B4D200924410077B3DA /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
+		E8F62B4E200924410077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */; };
+		E8F62B4F200924410077B3DA /* BillAnalysisViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */; };
+		E8F62B50200924410077B3DA /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
+		E8F62B51200924410077B3DA /* OMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */; };
+		E8F62B52200924410077B3DA /* OpcoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */; };
+		E8F62B53200924410077B3DA /* AddBankFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */; };
+		E8F62B54200924410077B3DA /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D91ECE236000CAB8A6 /* WalletService.swift */; };
+		E8F62B55200924410077B3DA /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
+		E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
+		E8F62B57200924410077B3DA /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */; };
+		E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A16F341F0D44110016952C /* SpeedpayApi.swift */; };
+		E8F62B59200924410077B3DA /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
+		E8F62B5A200924410077B3DA /* OMCBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD431EB3D4B300812DD0 /* OMCBillService.swift */; };
+		E8F62B5B200924410077B3DA /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */; };
+		E8F62B5C200924410077B3DA /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
+		E8F62B5D200924410077B3DA /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
+		E8F62B5E200924410077B3DA /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
+		E8F62B5F200924410077B3DA /* AppRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59606291F7C1F4A00515B72 /* AppRating.swift */; };
+		E8F62B60200924410077B3DA /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
+		E8F62B61200924410077B3DA /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */; };
+		E8F62B62200924410077B3DA /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
+		E8F62B63200924410077B3DA /* BillComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790BE61F8C18C20067BE85 /* BillComparison.swift */; };
+		E8F62B64200924410077B3DA /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
+		E8F62B65200924410077B3DA /* AlertsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E835D1C81FB631AA008CE250 /* AlertsStore.swift */; };
+		E8F62B66200924410077B3DA /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E835D1CD1FB63288008CE250 /* PushNotification.swift */; };
+		E8F62B67200924410077B3DA /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
+		E8F62B68200924410077B3DA /* MockOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF61E786473001E8A44 /* MockOutageService.swift */; };
+		E8F62B69200924410077B3DA /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
+		E8F62B6A200924410077B3DA /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4A11ED87AE200F0198B /* CreditCard.swift */; };
+		E8F62B6B200924410077B3DA /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
+		E8F62B6C200924410077B3DA /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
+		E8F62B6D200924410077B3DA /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
+		E8F62B6E200924410077B3DA /* BudgetBillingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */; };
+		E8F62B6F200924410077B3DA /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
+		E8F62B70200924410077B3DA /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
+		E8F62B71200924410077B3DA /* MockAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228877001FC611990024D7F0 /* MockAlertsService.swift */; };
+		E8F62B72200924410077B3DA /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
+		E8F62B73200924410077B3DA /* UnauthenticatedOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */; };
+		E8F62B74200924410077B3DA /* Percentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387E5C461F1FCC4600D6710D /* Percentage.swift */; };
+		E8F62B75200924410077B3DA /* BudgetBillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD3E1EB3CAA100812DD0 /* BudgetBillingInfo.swift */; };
+		E8F62B76200924410077B3DA /* OMCUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CFB8A91F87D789003E1AB5 /* OMCUsageService.swift */; };
+		E8F62B77200924410077B3DA /* PaperlessEBillViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */; };
+		E8F62B78200924410077B3DA /* ForgotUsernameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */; };
+		E8F62B79200924410077B3DA /* ViewBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */; };
+		E8F62B7A200924410077B3DA /* BGEAutoPayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */; };
+		E8F62B7B200924410077B3DA /* MockWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E631FE05ED70064E242 /* MockWalletService.swift */; };
+		E8F62B7C200924410077B3DA /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
+		E8F62B7D200924410077B3DA /* SpeedpayErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */; };
+		E8F62B7E200924410077B3DA /* DismissableFormSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */; };
+		E8F62B7F200924410077B3DA /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
+		E8F62B80200924410077B3DA /* ResponseParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */; };
+		E8F62B81200924410077B3DA /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		E8F62B82200924410077B3DA /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
+		E8F62B83200924410077B3DA /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
+		E8F62B84200924410077B3DA /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
+		E8F62B85200924410077B3DA /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
+		E8F62B86200924410077B3DA /* AlertPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F026F1FB0B9E10062A348 /* AlertPreferences.swift */; };
+		E8F62B87200924410077B3DA /* OMCAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD81E8C43BB00550F99 /* OMCAccountService.swift */; };
+		E8F62B88200924410077B3DA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E941EB919B300BE9F21 /* LoginViewModel.swift */; };
+		E8F62B89200924410077B3DA /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
+		E8F62B8A200924410077B3DA /* MaskedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* MaskedString.swift */; };
+		E8F62B8B200924410077B3DA /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		E8F62B8C200924410077B3DA /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
+		E8F62B8D200924410077B3DA /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
+		E8F62B8E200924410077B3DA /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
+		E8F62B8F200924410077B3DA /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
+		E8F62B90200924410077B3DA /* ForgotPasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */; };
+		E8F62B91200924410077B3DA /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
+		E8F62B92200924410077B3DA /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
+		E8F62B93200924410077B3DA /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
+		E8F62B94200924410077B3DA /* MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06D71E52238900BBA4ED /* MobileTests.swift */; };
+		E8F62B95200924410077B3DA /* ChangePasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800435E1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift */; };
+		E8F62B96200924410077B3DA /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
+		E8F62B97200924410077B3DA /* AutoPayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840CB371F82D13A00357780 /* AutoPayViewModelTests.swift */; };
+		E8F62B98200924410077B3DA /* BillViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */; };
+		E8F62B99200924410077B3DA /* BGEAutoPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */; };
+		E8F62B9A200924410077B3DA /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06931ECF7809004A1FDA /* RegistrationService.swift */; };
+		E8F62B9B200924410077B3DA /* PeakRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A221FAB729E00EACB3B /* PeakRewardsViewModel.swift */; };
+		E8F62B9C200924410077B3DA /* PeakRewardsSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A1D1FAB66D800EACB3B /* PeakRewardsSummary.swift */; };
+		E8F62B9D200924410077B3DA /* OMCPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF21EFB040E004DB789 /* OMCPaymentService.swift */; };
+		E8F62B9E200924410077B3DA /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
+		E8F62B9F200924410077B3DA /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
+		E8F62BA0200924410077B3DA /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
+		E8F62BA1200924410077B3DA /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
+		E8F62BA2200924410077B3DA /* AddBankFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E611FE05E8B0064E242 /* AddBankFormViewModelTests.swift */; };
+		E8F62BA3200924410077B3DA /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		E8F62BA4200924410077B3DA /* AddBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887C9D31ED4CDDE002433A3 /* AddBankAccountViewModel.swift */; };
+		E8F62BA5200924410077B3DA /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */; };
+		E8F62BA6200924410077B3DA /* Top5EnergyTipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */; };
+		E8F62BA7200924410077B3DA /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
+		E8F62BA8200924410077B3DA /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
+		E8F62BA9200924410077B3DA /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */; };
+		E8F62BAA200924410077B3DA /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAD31E736596001E8A44 /* Macros.swift */; };
+		E8F62BAB200924410077B3DA /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
+		E8F62BAC200924410077B3DA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
+		E8F62BAD200924410077B3DA /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
+		E8F62BAE200924410077B3DA /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
+		E8F62BAF200924410077B3DA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		E8F62BB0200924410077B3DA /* OverrideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */; };
+		E8F62BB1200924410077B3DA /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
+		E8F62BB2200924410077B3DA /* OutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */; };
+		E8F62BB3200924410077B3DA /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
+		E8F62BB4200924410077B3DA /* MiniWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E803A0031EFC12BB004DB789 /* MiniWalletViewModel.swift */; };
+		E8F62BB5200924410077B3DA /* AlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F026A1FB0B5850062A348 /* AlertsService.swift */; };
+		E8F62BB6200924410077B3DA /* AlertsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */; };
+		E8F62BB7200924410077B3DA /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF01EFB0405004DB789 /* PaymentService.swift */; };
+		E8F62BB8200924410077B3DA /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
+		E8F62BB9200924410077B3DA /* AddCardFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */; };
+		E8F62BBA200924410077B3DA /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAD81E78360D001E8A44 /* AccountService.swift */; };
+		E8F62BBB200924410077B3DA /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		E8F62BBC200924410077B3DA /* TemperatureScaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */; };
+		E8F62BBD200924410077B3DA /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */; };
+		E8F62BBE200924410077B3DA /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
+		E8F62BBF200924410077B3DA /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
+		E8F62BC0200924410077B3DA /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */; };
+		E8F62BC1200924410077B3DA /* MockPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898951F3279AB0077D7A1 /* MockPaymentService.swift */; };
+		E8F62BC2200924410077B3DA /* AlertPreferencesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E8AE21FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift */; };
+		E8F62BC3200924410077B3DA /* UsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16291F87D6AE0023DC02 /* UsageService.swift */; };
+		E8F62BC4200924410077B3DA /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */; };
+		E8F62BC6200924410077B3DA /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
+		E8F62BC7200924410077B3DA /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154D1F3A641100AC32B2 /* FirebaseCore.framework */; };
+		E8F62BC8200924410077B3DA /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
+		E8F62BC9200924410077B3DA /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415501F3A641100AC32B2 /* FirebaseNanoPB.framework */; };
+		E8F62BCA200924410077B3DA /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415521F3A641100AC32B2 /* nanopb.framework */; };
+		E8F62BCB200924410077B3DA /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
+		E8F62BCC200924410077B3DA /* libOMCNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D51E674089003B9369 /* libOMCNotifications.a */; };
+		E8F62BCD200924410077B3DA /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */; };
+		E8F62BCE200924410077B3DA /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415511F3A641100AC32B2 /* GoogleToolboxForMac.framework */; };
+		E8F62BCF200924410077B3DA /* libOMCLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D41E674089003B9369 /* libOMCLocation.a */; };
+		E8F62BD0200924410077B3DA /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154F1F3A641100AC32B2 /* FirebaseInstanceID.framework */; };
+		E8F62BD1200924410077B3DA /* libOMCStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D61E674089003B9369 /* libOMCStorage.a */; };
+		E8F62BD2200924410077B3DA /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
+		E8F62BD3200924410077B3DA /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154C1F3A641100AC32B2 /* FirebaseAnalytics.framework */; };
+		E8F62BD4200924410077B3DA /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
+		E8F62BD5200924410077B3DA /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework */; };
+		E8F62BD6200924410077B3DA /* libOMCSynchronization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D71E674089003B9369 /* libOMCSynchronization.a */; };
+		E8F62BD7200924410077B3DA /* libOMCCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D31E674089003B9369 /* libOMCCore.a */; };
+		E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = B574BACE1E7360F4001E8A44 /* ErrorMessages.strings */; };
+		E8F62BDA200924410077B3DA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
+		E8F62BEA200924570077B3DA /* BillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD391EB3C91D00812DD0 /* BillService.swift */; };
+		E8F62BEB200924570077B3DA /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		E8F62BEC200924570077B3DA /* OMCRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06981ECF8E14004A1FDA /* OMCRegistrationService.swift */; };
+		E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
+		E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
+		E8F62BEF200924570077B3DA /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
+		E8F62BF0200924570077B3DA /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
+		E8F62BF1200924570077B3DA /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
+		E8F62BF2200924570077B3DA /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */; };
+		E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
+		E8F62BF4200924570077B3DA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
+		E8F62BF5200924570077B3DA /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		E8F62BF6200924570077B3DA /* OMCAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02741FB0BFD20062A348 /* OMCAlertsService.swift */; };
+		E8F62BF7200924570077B3DA /* AuthTokenParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */; };
+		E8F62BF8200924570077B3DA /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826413781EAEAE5E007F4615 /* Fonts.swift */; };
+		E8F62BF9200924570077B3DA /* OMCPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A291FAB78E700EACB3B /* OMCPeakRewardsService.swift */; };
+		E8F62BFA200924570077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
+		E8F62BFB200924570077B3DA /* MockAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BADE1E7837A6001E8A44 /* MockAccountService.swift */; };
+		E8F62BFC200924570077B3DA /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
+		E8F62BFD200924570077B3DA /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */; };
+		E8F62BFE200924570077B3DA /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
+		E8F62BFF200924570077B3DA /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF01E785AE3001E8A44 /* OutageStatus.swift */; };
+		E8F62C00200924570077B3DA /* UIViewDashedBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893993C1F86AF1600B9184C /* UIViewDashedBorders.swift */; };
+		E8F62C01200924570077B3DA /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
+		E8F62C02200924570077B3DA /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
+		E8F62C03200924570077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */; };
+		E8F62C04200924570077B3DA /* BillAnalysisViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */; };
+		E8F62C05200924570077B3DA /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
+		E8F62C06200924570077B3DA /* OMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */; };
+		E8F62C07200924570077B3DA /* OpcoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */; };
+		E8F62C08200924570077B3DA /* AddBankFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */; };
+		E8F62C09200924570077B3DA /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D91ECE236000CAB8A6 /* WalletService.swift */; };
+		E8F62C0A200924570077B3DA /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
+		E8F62C0B200924570077B3DA /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
+		E8F62C0C200924570077B3DA /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */; };
+		E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A16F341F0D44110016952C /* SpeedpayApi.swift */; };
+		E8F62C0E200924570077B3DA /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
+		E8F62C0F200924570077B3DA /* OMCBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD431EB3D4B300812DD0 /* OMCBillService.swift */; };
+		E8F62C10200924570077B3DA /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */; };
+		E8F62C11200924570077B3DA /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
+		E8F62C12200924570077B3DA /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
+		E8F62C13200924570077B3DA /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
+		E8F62C14200924570077B3DA /* AppRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59606291F7C1F4A00515B72 /* AppRating.swift */; };
+		E8F62C15200924570077B3DA /* OMCWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* OMCWalletService.swift */; };
+		E8F62C16200924570077B3DA /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */; };
+		E8F62C17200924570077B3DA /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
+		E8F62C18200924570077B3DA /* BillComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790BE61F8C18C20067BE85 /* BillComparison.swift */; };
+		E8F62C19200924570077B3DA /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4CA1E5CE1BA0031D934 /* A0SimpleKeychain.m */; };
+		E8F62C1A200924570077B3DA /* AlertsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E835D1C81FB631AA008CE250 /* AlertsStore.swift */; };
+		E8F62C1B200924570077B3DA /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E835D1CD1FB63288008CE250 /* PushNotification.swift */; };
+		E8F62C1C200924570077B3DA /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
+		E8F62C1D200924570077B3DA /* MockOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF61E786473001E8A44 /* MockOutageService.swift */; };
+		E8F62C1E200924570077B3DA /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
+		E8F62C1F200924570077B3DA /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4A11ED87AE200F0198B /* CreditCard.swift */; };
+		E8F62C20200924570077B3DA /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
+		E8F62C21200924570077B3DA /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
+		E8F62C22200924570077B3DA /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
+		E8F62C23200924570077B3DA /* BudgetBillingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */; };
+		E8F62C24200924570077B3DA /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
+		E8F62C25200924570077B3DA /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
+		E8F62C26200924570077B3DA /* MockAlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228877001FC611990024D7F0 /* MockAlertsService.swift */; };
+		E8F62C27200924570077B3DA /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
+		E8F62C28200924570077B3DA /* UnauthenticatedOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */; };
+		E8F62C29200924570077B3DA /* Percentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387E5C461F1FCC4600D6710D /* Percentage.swift */; };
+		E8F62C2A200924570077B3DA /* BudgetBillingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840BD3E1EB3CAA100812DD0 /* BudgetBillingInfo.swift */; };
+		E8F62C2B200924570077B3DA /* OMCUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CFB8A91F87D789003E1AB5 /* OMCUsageService.swift */; };
+		E8F62C2C200924570077B3DA /* PaperlessEBillViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */; };
+		E8F62C2D200924570077B3DA /* ForgotUsernameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */; };
+		E8F62C2E200924570077B3DA /* ViewBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */; };
+		E8F62C2F200924570077B3DA /* BGEAutoPayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */; };
+		E8F62C30200924570077B3DA /* MockWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E631FE05ED70064E242 /* MockWalletService.swift */; };
+		E8F62C31200924570077B3DA /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
+		E8F62C32200924570077B3DA /* SpeedpayErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */; };
+		E8F62C33200924570077B3DA /* DismissableFormSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */; };
+		E8F62C34200924570077B3DA /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
+		E8F62C35200924570077B3DA /* ResponseParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */; };
+		E8F62C36200924570077B3DA /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		E8F62C37200924570077B3DA /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
+		E8F62C38200924570077B3DA /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
+		E8F62C39200924570077B3DA /* EditBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548288DE1ED87CCD002E8DDC /* EditBankAccountViewModel.swift */; };
+		E8F62C3A200924570077B3DA /* OMCOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* OMCOutageService.swift */; };
+		E8F62C3B200924570077B3DA /* AlertPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F026F1FB0B9E10062A348 /* AlertPreferences.swift */; };
+		E8F62C3C200924570077B3DA /* OMCAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD81E8C43BB00550F99 /* OMCAccountService.swift */; };
+		E8F62C3D200924570077B3DA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E941EB919B300BE9F21 /* LoginViewModel.swift */; };
+		E8F62C3E200924570077B3DA /* UIViewAddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882B7FA1EAA92B200EA3C13 /* UIViewAddShadow.swift */; };
+		E8F62C3F200924570077B3DA /* MaskedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E161E721668002626C9 /* MaskedString.swift */; };
+		E8F62C40200924570077B3DA /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		E8F62C41200924570077B3DA /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
+		E8F62C42200924570077B3DA /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
+		E8F62C43200924570077B3DA /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
+		E8F62C44200924570077B3DA /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
+		E8F62C45200924570077B3DA /* ForgotPasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */; };
+		E8F62C46200924570077B3DA /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
+		E8F62C47200924570077B3DA /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
+		E8F62C48200924570077B3DA /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
+		E8F62C49200924570077B3DA /* MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06D71E52238900BBA4ED /* MobileTests.swift */; };
+		E8F62C4A200924570077B3DA /* ChangePasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800435E1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift */; };
+		E8F62C4B200924570077B3DA /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
+		E8F62C4C200924570077B3DA /* AutoPayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840CB371F82D13A00357780 /* AutoPayViewModelTests.swift */; };
+		E8F62C4D200924570077B3DA /* BillViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */; };
+		E8F62C4E200924570077B3DA /* BGEAutoPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */; };
+		E8F62C4F200924570077B3DA /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06931ECF7809004A1FDA /* RegistrationService.swift */; };
+		E8F62C50200924570077B3DA /* PeakRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A221FAB729E00EACB3B /* PeakRewardsViewModel.swift */; };
+		E8F62C51200924570077B3DA /* PeakRewardsSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A1D1FAB66D800EACB3B /* PeakRewardsSummary.swift */; };
+		E8F62C52200924570077B3DA /* OMCPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF21EFB040E004DB789 /* OMCPaymentService.swift */; };
+		E8F62C53200924570077B3DA /* OMCApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* OMCApi.swift */; };
+		E8F62C54200924570077B3DA /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
+		E8F62C55200924570077B3DA /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
+		E8F62C56200924570077B3DA /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
+		E8F62C57200924570077B3DA /* AddBankFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E611FE05E8B0064E242 /* AddBankFormViewModelTests.swift */; };
+		E8F62C58200924570077B3DA /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		E8F62C59200924570077B3DA /* AddBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887C9D31ED4CDDE002433A3 /* AddBankAccountViewModel.swift */; };
+		E8F62C5A200924570077B3DA /* OMCAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* OMCAuthenticationService.swift */; };
+		E8F62C5B200924570077B3DA /* Top5EnergyTipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */; };
+		E8F62C5C200924570077B3DA /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
+		E8F62C5D200924570077B3DA /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
+		E8F62C5E200924570077B3DA /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */; };
+		E8F62C5F200924570077B3DA /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAD31E736596001E8A44 /* Macros.swift */; };
+		E8F62C60200924570077B3DA /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
+		E8F62C61200924570077B3DA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
+		E8F62C62200924570077B3DA /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
+		E8F62C63200924570077B3DA /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
+		E8F62C64200924570077B3DA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		E8F62C65200924570077B3DA /* OverrideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */; };
+		E8F62C66200924570077B3DA /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
+		E8F62C67200924570077B3DA /* OutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */; };
+		E8F62C68200924570077B3DA /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
+		E8F62C69200924570077B3DA /* MiniWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E803A0031EFC12BB004DB789 /* MiniWalletViewModel.swift */; };
+		E8F62C6A200924570077B3DA /* AlertsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F026A1FB0B5850062A348 /* AlertsService.swift */; };
+		E8F62C6B200924570077B3DA /* AlertsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */; };
+		E8F62C6C200924570077B3DA /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF01EFB0405004DB789 /* PaymentService.swift */; };
+		E8F62C6D200924570077B3DA /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
+		E8F62C6E200924570077B3DA /* AddCardFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */; };
+		E8F62C6F200924570077B3DA /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAD81E78360D001E8A44 /* AccountService.swift */; };
+		E8F62C70200924570077B3DA /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		E8F62C71200924570077B3DA /* TemperatureScaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */; };
+		E8F62C72200924570077B3DA /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */; };
+		E8F62C73200924570077B3DA /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
+		E8F62C74200924570077B3DA /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
+		E8F62C75200924570077B3DA /* ReportOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */; };
+		E8F62C76200924570077B3DA /* MockPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898951F3279AB0077D7A1 /* MockPaymentService.swift */; };
+		E8F62C77200924570077B3DA /* AlertPreferencesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E8AE21FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift */; };
+		E8F62C78200924570077B3DA /* UsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16291F87D6AE0023DC02 /* UsageService.swift */; };
+		E8F62C79200924570077B3DA /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */; };
+		E8F62C7B200924570077B3DA /* Zxcvbn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80043481E671F0B005CF531 /* Zxcvbn.framework */; };
+		E8F62C7C200924570077B3DA /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154D1F3A641100AC32B2 /* FirebaseCore.framework */; };
+		E8F62C7D200924570077B3DA /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25D1E524514005FB1BB /* RxSwift.framework */; };
+		E8F62C7E200924570077B3DA /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415501F3A641100AC32B2 /* FirebaseNanoPB.framework */; };
+		E8F62C7F200924570077B3DA /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415521F3A641100AC32B2 /* nanopb.framework */; };
+		E8F62C80200924570077B3DA /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD3C25B1E524511005FB1BB /* RxCocoa.framework */; };
+		E8F62C81200924570077B3DA /* libOMCNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D51E674089003B9369 /* libOMCNotifications.a */; };
+		E8F62C82200924570077B3DA /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */; };
+		E8F62C83200924570077B3DA /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D415511F3A641100AC32B2 /* GoogleToolboxForMac.framework */; };
+		E8F62C84200924570077B3DA /* libOMCLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D41E674089003B9369 /* libOMCLocation.a */; };
+		E8F62C85200924570077B3DA /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154F1F3A641100AC32B2 /* FirebaseInstanceID.framework */; };
+		E8F62C86200924570077B3DA /* libOMCStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D61E674089003B9369 /* libOMCStorage.a */; };
+		E8F62C87200924570077B3DA /* libOMCAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D21E674089003B9369 /* libOMCAnalytics.a */; };
+		E8F62C88200924570077B3DA /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154C1F3A641100AC32B2 /* FirebaseAnalytics.framework */; };
+		E8F62C89200924570077B3DA /* libIDMMobileSDKv2Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54A4B711EC3EADE00E3112E /* libIDMMobileSDKv2Library.a */; };
+		E8F62C8A200924570077B3DA /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D4154E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework */; };
+		E8F62C8B200924570077B3DA /* libOMCSynchronization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D71E674089003B9369 /* libOMCSynchronization.a */; };
+		E8F62C8C200924570077B3DA /* libOMCCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B55735D31E674089003B9369 /* libOMCCore.a */; };
+		E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = B574BACE1E7360F4001E8A44 /* ErrorMessages.strings */; };
+		E8F62C8F200924570077B3DA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82AEF2E31F618F560057E7ED /* Settings.bundle */; };
 		E8FE30B11E787625009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B01E787625009D28B7 /* outage.json */; };
 		E8FE30B61E787632009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B41E78762F009D28B7 /* outage.json */; };
 		E8FE30B71E787635009D28B7 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = E8FE30B21E78762B009D28B7 /* outage.json */; };
@@ -1507,6 +1842,34 @@
 			remoteGlobalIDString = B58B5AC01E4E28740051FD5F;
 			remoteInfo = BGE;
 		};
+		E8F62B2D200920920077B3DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B58B5B201E515C840051FD5F;
+			remoteInfo = ComEd;
+		};
+		E8F62B2F200920A60077B3DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B58B5B0F1E515BD50051FD5F;
+			remoteInfo = PECO;
+		};
+		E8F62C9B200924690077B3DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B58B5B201E515C840051FD5F;
+			remoteInfo = ComEd;
+		};
+		E8F62C9D2009246C0077B3DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B58B5B0F1E515BD50051FD5F;
+			remoteInfo = PECO;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -1516,7 +1879,7 @@
 		01F612281F1E406100A4F9DA /* AddBankFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankFormView.swift; sourceTree = "<group>"; };
 		01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankFormViewModel.swift; sourceTree = "<group>"; };
 		087630DE1E72F5D000FA7020 /* BGEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BGEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		087630E01E72F5D000FA7020 /* BGEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEUITests.swift; sourceTree = "<group>"; };
+		087630E01E72F5D000FA7020 /* LoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITests.swift; sourceTree = "<group>"; };
 		087630E21E72F5D000FA7020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D79C6C41F1D3360004793DD /* Maintenance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Maintenance.storyboard; sourceTree = "<group>"; };
 		0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewController.swift; sourceTree = "<group>"; };
@@ -1889,7 +2252,7 @@
 		B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BGEAssets.xcassets; sourceTree = "<group>"; };
 		B5AC06CD1E521B7B00BBA4ED /* PECOAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PECOAssets.xcassets; sourceTree = "<group>"; };
 		B5AC06CF1E521B8B00BBA4ED /* ComEdAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ComEdAssets.xcassets; sourceTree = "<group>"; };
-		B5AC06D51E52238900BBA4ED /* MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5AC06D51E52238900BBA4ED /* MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MobileTests.xctest; path = BGEUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AC06D71E52238900BBA4ED /* MobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileTests.swift; sourceTree = "<group>"; };
 		B5AC06D91E52238900BBA4ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
@@ -2150,10 +2513,15 @@
 		E8EEF7371E57895F006804D4 /* LaunchScreen-PECO.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen-PECO.storyboard"; sourceTree = "<group>"; };
 		E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModelTests.swift; sourceTree = "<group>"; };
+		E8F353A1200963B600883CEA /* TabNavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationUITests.swift; sourceTree = "<group>"; };
 		E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewModelTests.swift; sourceTree = "<group>"; };
 		E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBillService.swift; sourceTree = "<group>"; };
 		E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewModelTests.swift; sourceTree = "<group>"; };
 		E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModelTests.swift; sourceTree = "<group>"; };
+		E8F62B1A2009207C0077B3DA /* ComEdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComEdUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F62B2B200920870077B3DA /* PECOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PECOUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F62BE4200924410077B3DA /* ComEdUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComEdUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F62C99200924570077B3DA /* PECOUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PECOUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FE30B01E787625009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		E8FE30B21E78762B009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		E8FE30B41E78762F009D28B7 /* outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
@@ -2345,6 +2713,70 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8F62B102009207C0077B3DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F62B21200920870077B3DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F62BC5200924410077B3DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F62BC6200924410077B3DA /* Zxcvbn.framework in Frameworks */,
+				E8F62BC7200924410077B3DA /* FirebaseCore.framework in Frameworks */,
+				E8F62BC8200924410077B3DA /* RxSwift.framework in Frameworks */,
+				E8F62BC9200924410077B3DA /* FirebaseNanoPB.framework in Frameworks */,
+				E8F62BCA200924410077B3DA /* nanopb.framework in Frameworks */,
+				E8F62BCB200924410077B3DA /* RxCocoa.framework in Frameworks */,
+				E8F62BCC200924410077B3DA /* libOMCNotifications.a in Frameworks */,
+				E8F62BCD200924410077B3DA /* Reachability.framework in Frameworks */,
+				E8F62BCE200924410077B3DA /* GoogleToolboxForMac.framework in Frameworks */,
+				E8F62BCF200924410077B3DA /* libOMCLocation.a in Frameworks */,
+				E8F62BD0200924410077B3DA /* FirebaseInstanceID.framework in Frameworks */,
+				E8F62BD1200924410077B3DA /* libOMCStorage.a in Frameworks */,
+				E8F62BD2200924410077B3DA /* libOMCAnalytics.a in Frameworks */,
+				E8F62BD3200924410077B3DA /* FirebaseAnalytics.framework in Frameworks */,
+				E8F62BD4200924410077B3DA /* libIDMMobileSDKv2Library.a in Frameworks */,
+				E8F62BD5200924410077B3DA /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				E8F62BD6200924410077B3DA /* libOMCSynchronization.a in Frameworks */,
+				E8F62BD7200924410077B3DA /* libOMCCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F62C7A200924570077B3DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F62C7B200924570077B3DA /* Zxcvbn.framework in Frameworks */,
+				E8F62C7C200924570077B3DA /* FirebaseCore.framework in Frameworks */,
+				E8F62C7D200924570077B3DA /* RxSwift.framework in Frameworks */,
+				E8F62C7E200924570077B3DA /* FirebaseNanoPB.framework in Frameworks */,
+				E8F62C7F200924570077B3DA /* nanopb.framework in Frameworks */,
+				E8F62C80200924570077B3DA /* RxCocoa.framework in Frameworks */,
+				E8F62C81200924570077B3DA /* libOMCNotifications.a in Frameworks */,
+				E8F62C82200924570077B3DA /* Reachability.framework in Frameworks */,
+				E8F62C83200924570077B3DA /* GoogleToolboxForMac.framework in Frameworks */,
+				E8F62C84200924570077B3DA /* libOMCLocation.a in Frameworks */,
+				E8F62C85200924570077B3DA /* FirebaseInstanceID.framework in Frameworks */,
+				E8F62C86200924570077B3DA /* libOMCStorage.a in Frameworks */,
+				E8F62C87200924570077B3DA /* libOMCAnalytics.a in Frameworks */,
+				E8F62C88200924570077B3DA /* FirebaseAnalytics.framework in Frameworks */,
+				E8F62C89200924570077B3DA /* libIDMMobileSDKv2Library.a in Frameworks */,
+				E8F62C8A200924570077B3DA /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				E8F62C8B200924570077B3DA /* libOMCSynchronization.a in Frameworks */,
+				E8F62C8C200924570077B3DA /* libOMCCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -2361,13 +2793,14 @@
 			path = "Payment Entry";
 			sourceTree = "<group>";
 		};
-		087630DF1E72F5D000FA7020 /* BGEUITests */ = {
+		087630DF1E72F5D000FA7020 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
-				087630E01E72F5D000FA7020 /* BGEUITests.swift */,
 				087630E21E72F5D000FA7020 /* Info.plist */,
+				087630E01E72F5D000FA7020 /* LoginUITests.swift */,
+				E8F353A1200963B600883CEA /* TabNavigationUITests.swift */,
 			);
-			path = BGEUITests;
+			path = UITests;
 			sourceTree = "<group>";
 		};
 		2F3FA63E1F06F10700A1F4BF /* MultiPremiseAddressView */ = {
@@ -3359,7 +3792,7 @@
 				E81CFFE81EC230B5004FDA7E /* Entitlements */,
 				B58B5AC31E4E28740051FD5F /* Mobile */,
 				B5AC06D61E52238900BBA4ED /* MobileTests */,
-				087630DF1E72F5D000FA7020 /* BGEUITests */,
+				087630DF1E72F5D000FA7020 /* UITests */,
 				B58B5AC21E4E28740051FD5F /* Products */,
 				8FD3C25A1E524511005FB1BB /* Frameworks */,
 				8FD5AE931E54EA5E003F640D /* Cartfile */,
@@ -3374,6 +3807,10 @@
 				B58B5B2F1E515C840051FD5F /* ComEd.app */,
 				B5AC06D51E52238900BBA4ED /* MobileTests.xctest */,
 				087630DE1E72F5D000FA7020 /* BGEUITests.xctest */,
+				E8F62B1A2009207C0077B3DA /* ComEdUITests.xctest */,
+				E8F62B2B200920870077B3DA /* PECOUITests.xctest */,
+				E8F62BE4200924410077B3DA /* ComEdUnitTests.xctest */,
+				E8F62C99200924570077B3DA /* PECOUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4142,9 +4579,9 @@
 			productReference = B58B5B2F1E515C840051FD5F /* ComEd.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B5AC06D41E52238900BBA4ED /* MobileTests */ = {
+		B5AC06D41E52238900BBA4ED /* BGEUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5AC06DC1E52238900BBA4ED /* Build configuration list for PBXNativeTarget "MobileTests" */;
+			buildConfigurationList = B5AC06DC1E52238900BBA4ED /* Build configuration list for PBXNativeTarget "BGEUnitTests" */;
 			buildPhases = (
 				B5AC06D11E52238900BBA4ED /* Sources */,
 				B5AC06D21E52238900BBA4ED /* Frameworks */,
@@ -4155,9 +4592,81 @@
 			dependencies = (
 				B5AC06DB1E52238900BBA4ED /* PBXTargetDependency */,
 			);
-			name = MobileTests;
+			name = BGEUnitTests;
 			productName = MobileTests;
 			productReference = B5AC06D51E52238900BBA4ED /* MobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E8F62B0B2009207C0077B3DA /* ComEdUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8F62B122009207C0077B3DA /* Build configuration list for PBXNativeTarget "ComEdUITests" */;
+			buildPhases = (
+				E8F62B0E2009207C0077B3DA /* Sources */,
+				E8F62B102009207C0077B3DA /* Frameworks */,
+				E8F62B112009207C0077B3DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8F62B2E200920920077B3DA /* PBXTargetDependency */,
+			);
+			name = ComEdUITests;
+			productName = BGEUITests;
+			productReference = E8F62B1A2009207C0077B3DA /* ComEdUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		E8F62B1C200920870077B3DA /* PECOUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8F62B23200920870077B3DA /* Build configuration list for PBXNativeTarget "PECOUITests" */;
+			buildPhases = (
+				E8F62B1F200920870077B3DA /* Sources */,
+				E8F62B21200920870077B3DA /* Frameworks */,
+				E8F62B22200920870077B3DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8F62B30200920A60077B3DA /* PBXTargetDependency */,
+			);
+			name = PECOUITests;
+			productName = BGEUITests;
+			productReference = E8F62B2B200920870077B3DA /* PECOUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		E8F62B31200924410077B3DA /* ComEdUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8F62BDC200924410077B3DA /* Build configuration list for PBXNativeTarget "ComEdUnitTests" */;
+			buildPhases = (
+				E8F62B34200924410077B3DA /* Sources */,
+				E8F62BC5200924410077B3DA /* Frameworks */,
+				E8F62BD8200924410077B3DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8F62C9C200924690077B3DA /* PBXTargetDependency */,
+			);
+			name = ComEdUnitTests;
+			productName = MobileTests;
+			productReference = E8F62BE4200924410077B3DA /* ComEdUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E8F62BE6200924570077B3DA /* PECOUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8F62C91200924570077B3DA /* Build configuration list for PBXNativeTarget "PECOUnitTests" */;
+			buildPhases = (
+				E8F62BE9200924570077B3DA /* Sources */,
+				E8F62C7A200924570077B3DA /* Frameworks */,
+				E8F62C8D200924570077B3DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8F62C9E2009246C0077B3DA /* PBXTargetDependency */,
+			);
+			name = PECOUnitTests;
+			productName = MobileTests;
+			productReference = E8F62C99200924570077B3DA /* PECOUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -4224,6 +4733,26 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
+					E8F62B0B2009207C0077B3DA = {
+						DevelopmentTeam = YU7Y757VB5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B58B5B201E515C840051FD5F;
+					};
+					E8F62B1C200920870077B3DA = {
+						DevelopmentTeam = YU7Y757VB5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B58B5B0F1E515BD50051FD5F;
+					};
+					E8F62B31200924410077B3DA = {
+						DevelopmentTeam = YU7Y757VB5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B58B5B201E515C840051FD5F;
+					};
+					E8F62BE6200924570077B3DA = {
+						DevelopmentTeam = YU7Y757VB5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B58B5B0F1E515BD50051FD5F;
+					};
 				};
 			};
 			buildConfigurationList = B58B5ABC1E4E28740051FD5F /* Build configuration list for PBXProject "Mobile" */;
@@ -4273,8 +4802,12 @@
 				B58B5B601E516EEE0051FD5F /* BGE Environment Switch */,
 				B5AC06AA1E5216C300BBA4ED /* ComEd Environment Switch */,
 				B5AC06B21E52171800BBA4ED /* PECO Environment Switch */,
-				B5AC06D41E52238900BBA4ED /* MobileTests */,
+				B5AC06D41E52238900BBA4ED /* BGEUnitTests */,
+				E8F62B31200924410077B3DA /* ComEdUnitTests */,
+				E8F62BE6200924570077B3DA /* PECOUnitTests */,
 				087630DD1E72F5D000FA7020 /* BGEUITests */,
+				E8F62B0B2009207C0077B3DA /* ComEdUITests */,
+				E8F62B1C200920870077B3DA /* PECOUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -4593,7 +5126,38 @@
 			files = (
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
-				82A18F161EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F62B112009207C0077B3DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F62B22200920870077B3DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F62BD8200924410077B3DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */,
+				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F62C8D200924570077B3DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */,
+				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4724,7 +5288,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				087630E11E72F5D000FA7020 /* BGEUITests.swift in Sources */,
+				087630E11E72F5D000FA7020 /* LoginUITests.swift in Sources */,
+				E8F353A2200963B600883CEA /* TabNavigationUITests.swift in Sources */,
+				E8F3539E200943E100883CEA /* UserDefaultKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5752,6 +6318,328 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8F62B0E2009207C0077B3DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F62B0F2009207C0077B3DA /* LoginUITests.swift in Sources */,
+				E8F353A3200963B600883CEA /* TabNavigationUITests.swift in Sources */,
+				E8F3539F200943E100883CEA /* UserDefaultKeys.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F62B1F200920870077B3DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F62B20200920870077B3DA /* LoginUITests.swift in Sources */,
+				E8F353A4200963B600883CEA /* TabNavigationUITests.swift in Sources */,
+				E8F353A0200943E200883CEA /* UserDefaultKeys.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F62B34200924410077B3DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F62B35200924410077B3DA /* BillService.swift in Sources */,
+				E8F62B36200924410077B3DA /* Premise.swift in Sources */,
+				E8F62B37200924410077B3DA /* OMCRegistrationService.swift in Sources */,
+				E8F62B38200924410077B3DA /* RegistrationViewModel.swift in Sources */,
+				E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */,
+				E8F62B3A200924410077B3DA /* WalletViewModel.swift in Sources */,
+				E8F62B3B200924410077B3DA /* SharedColor.swift in Sources */,
+				E8F62B3C200924410077B3DA /* ServiceFactory.swift in Sources */,
+				E8F62B3D200924410077B3DA /* PaperlessEBillViewModel.swift in Sources */,
+				E8F62B3E200924410077B3DA /* ForgotUsername.swift in Sources */,
+				E8F62B3F200924410077B3DA /* Account.swift in Sources */,
+				E8F62B40200924410077B3DA /* Maintenance.swift in Sources */,
+				E8F62B41200924410077B3DA /* OMCAlertsService.swift in Sources */,
+				E8F62B42200924410077B3DA /* AuthTokenParserTests.swift in Sources */,
+				E8F62B43200924410077B3DA /* Fonts.swift in Sources */,
+				E8F62B44200924410077B3DA /* OMCPeakRewardsService.swift in Sources */,
+				E8F62B45200924410077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */,
+				E8F62B46200924410077B3DA /* MockAccountService.swift in Sources */,
+				E8F62B47200924410077B3DA /* WalletItem.swift in Sources */,
+				E8F62B48200924410077B3DA /* BudgetBillingViewModel.swift in Sources */,
+				E8F62B49200924410077B3DA /* AuthenticationService.swift in Sources */,
+				E8F62B4A200924410077B3DA /* OutageStatus.swift in Sources */,
+				E8F62B4B200924410077B3DA /* UIViewDashedBorders.swift in Sources */,
+				E8F62B4C200924410077B3DA /* Control.swift in Sources */,
+				E8F62B4D200924410077B3DA /* BillingHistoryViewModel.swift in Sources */,
+				E8F62B4E200924410077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
+				E8F62B4F200924410077B3DA /* BillAnalysisViewModelTests.swift in Sources */,
+				E8F62B50200924410077B3DA /* AddCreditCardViewModel.swift in Sources */,
+				E8F62B51200924410077B3DA /* OMCResponseParser.swift in Sources */,
+				E8F62B52200924410077B3DA /* OpcoUpdate.swift in Sources */,
+				E8F62B53200924410077B3DA /* AddBankFormViewModel.swift in Sources */,
+				E8F62B54200924410077B3DA /* WalletService.swift in Sources */,
+				E8F62B55200924410077B3DA /* BillAnalysisViewModel.swift in Sources */,
+				E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */,
+				E8F62B57200924410077B3DA /* OutageViewModel.swift in Sources */,
+				E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */,
+				E8F62B59200924410077B3DA /* PendingPaymentView.swift in Sources */,
+				E8F62B5A200924410077B3DA /* OMCBillService.swift in Sources */,
+				E8F62B5B200924410077B3DA /* PeakRewardsService.swift in Sources */,
+				E8F62B5C200924410077B3DA /* AuthTokenResponse.swift in Sources */,
+				E8F62B5D200924410077B3DA /* BiometricsService.swift in Sources */,
+				E8F62B5E200924410077B3DA /* UserDefaultKeys.swift in Sources */,
+				E8F62B5F200924410077B3DA /* AppRating.swift in Sources */,
+				E8F62B60200924410077B3DA /* OMCWalletService.swift in Sources */,
+				E8F62B61200924410077B3DA /* AlertsViewModel.swift in Sources */,
+				E8F62B62200924410077B3DA /* SSOData.swift in Sources */,
+				E8F62B63200924410077B3DA /* BillComparison.swift in Sources */,
+				E8F62B64200924410077B3DA /* A0SimpleKeychain.m in Sources */,
+				E8F62B65200924410077B3DA /* AlertsStore.swift in Sources */,
+				E8F62B66200924410077B3DA /* PushNotification.swift in Sources */,
+				E8F62B67200924410077B3DA /* Fillable.swift in Sources */,
+				E8F62B68200924410077B3DA /* MockOutageService.swift in Sources */,
+				E8F62B69200924410077B3DA /* AuthTokenParser.swift in Sources */,
+				E8F62B6A200924410077B3DA /* CreditCard.swift in Sources */,
+				E8F62B6B200924410077B3DA /* BillForecast.swift in Sources */,
+				E8F62B6C200924410077B3DA /* AlertPreferencesViewModel.swift in Sources */,
+				E8F62B6D200924410077B3DA /* Payment.swift in Sources */,
+				E8F62B6E200924410077B3DA /* BudgetBillingViewModelTests.swift in Sources */,
+				E8F62B6F200924410077B3DA /* MockAuthenticationService.swift in Sources */,
+				E8F62B70200924410077B3DA /* MockBillService.swift in Sources */,
+				E8F62B71200924410077B3DA /* MockAlertsService.swift in Sources */,
+				E8F62B72200924410077B3DA /* TemplateCardViewModel.swift in Sources */,
+				E8F62B73200924410077B3DA /* UnauthenticatedOutageViewModel.swift in Sources */,
+				E8F62B74200924410077B3DA /* Percentage.swift in Sources */,
+				E8F62B75200924410077B3DA /* BudgetBillingInfo.swift in Sources */,
+				E8F62B76200924410077B3DA /* OMCUsageService.swift in Sources */,
+				E8F62B77200924410077B3DA /* PaperlessEBillViewModelTests.swift in Sources */,
+				E8F62B78200924410077B3DA /* ForgotUsernameViewModelTests.swift in Sources */,
+				E8F62B79200924410077B3DA /* ViewBillViewModel.swift in Sources */,
+				E8F62B7A200924410077B3DA /* BGEAutoPayViewModelTests.swift in Sources */,
+				E8F62B7B200924410077B3DA /* MockWalletService.swift in Sources */,
+				E8F62B7C200924410077B3DA /* BillingHistory.swift in Sources */,
+				E8F62B7D200924410077B3DA /* SpeedpayErrorMapper.swift in Sources */,
+				E8F62B7E200924410077B3DA /* DismissableFormSheetViewController.swift in Sources */,
+				E8F62B7F200924410077B3DA /* ObservableExtensions.swift in Sources */,
+				E8F62B80200924410077B3DA /* ResponseParserTests.swift in Sources */,
+				E8F62B81200924410077B3DA /* Environment.swift in Sources */,
+				E8F62B82200924410077B3DA /* AutoPayViewModel.swift in Sources */,
+				E8F62B83200924410077B3DA /* AccountsStore.swift in Sources */,
+				E8F62B84200924410077B3DA /* EditBankAccountViewModel.swift in Sources */,
+				E8F62B85200924410077B3DA /* OMCOutageService.swift in Sources */,
+				E8F62B86200924410077B3DA /* AlertPreferences.swift in Sources */,
+				E8F62B87200924410077B3DA /* OMCAccountService.swift in Sources */,
+				E8F62B88200924410077B3DA /* LoginViewModel.swift in Sources */,
+				E8F62B89200924410077B3DA /* UIViewAddShadow.swift in Sources */,
+				E8F62B8A200924410077B3DA /* MaskedString.swift in Sources */,
+				E8F62B8B200924410077B3DA /* MinimumVersion.swift in Sources */,
+				E8F62B8C200924410077B3DA /* ServiceResult.swift in Sources */,
+				E8F62B8D200924410077B3DA /* ForgotUsernameViewModel.swift in Sources */,
+				E8F62B8E200924410077B3DA /* BGEAutoPayViewModel.swift in Sources */,
+				E8F62B8F200924410077B3DA /* HttpMethod.swift in Sources */,
+				E8F62B90200924410077B3DA /* ForgotPasswordViewModelTests.swift in Sources */,
+				E8F62B91200924410077B3DA /* ProfileStatus.swift in Sources */,
+				E8F62B92200924410077B3DA /* EnergyTip.swift in Sources */,
+				E8F62B93200924410077B3DA /* BankAccount.swift in Sources */,
+				E8F62B94200924410077B3DA /* MobileTests.swift in Sources */,
+				E8F62B95200924410077B3DA /* ChangePasswordViewModelTests.swift in Sources */,
+				E8F62B96200924410077B3DA /* SecurityQuestion.swift in Sources */,
+				E8F62B97200924410077B3DA /* AutoPayViewModelTests.swift in Sources */,
+				E8F62B98200924410077B3DA /* BillViewModelTests.swift in Sources */,
+				E8F62B99200924410077B3DA /* BGEAutoPayInfo.swift in Sources */,
+				E8F62B9A200924410077B3DA /* RegistrationService.swift in Sources */,
+				E8F62B9B200924410077B3DA /* PeakRewardsViewModel.swift in Sources */,
+				E8F62B9C200924410077B3DA /* PeakRewardsSummary.swift in Sources */,
+				E8F62B9D200924410077B3DA /* OMCPaymentService.swift in Sources */,
+				E8F62B9E200924410077B3DA /* OMCApi.swift in Sources */,
+				E8F62B9F200924410077B3DA /* ActivityTracker.swift in Sources */,
+				E8F62BA0200924410077B3DA /* Analytics.swift in Sources */,
+				E8F62BA1200924410077B3DA /* BillingHistoryItem.swift in Sources */,
+				E8F62BA2200924410077B3DA /* AddBankFormViewModelTests.swift in Sources */,
+				E8F62BA3200924410077B3DA /* NibViews.swift in Sources */,
+				E8F62BA4200924410077B3DA /* AddBankAccountViewModel.swift in Sources */,
+				E8F62BA5200924410077B3DA /* OMCAuthenticationService.swift in Sources */,
+				E8F62BA6200924410077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
+				E8F62BA7200924410077B3DA /* SplashViewModel.swift in Sources */,
+				E8F62BA8200924410077B3DA /* FiservErrorMapper.swift in Sources */,
+				E8F62BA9200924410077B3DA /* WeatherService.swift in Sources */,
+				E8F62BAA200924410077B3DA /* Macros.swift in Sources */,
+				E8F62BAB200924410077B3DA /* FiservApi.swift in Sources */,
+				E8F62BAC200924410077B3DA /* Currency.swift in Sources */,
+				E8F62BAD200924410077B3DA /* RxNotifications.swift in Sources */,
+				E8F62BAE200924410077B3DA /* OutageService.swift in Sources */,
+				E8F62BAF200924410077B3DA /* WeatherAPI.swift in Sources */,
+				E8F62BB0200924410077B3DA /* OverrideViewModel.swift in Sources */,
+				E8F62BB1200924410077B3DA /* HomeProfile.swift in Sources */,
+				E8F62BB2200924410077B3DA /* OutageViewModelTests.swift in Sources */,
+				E8F62BB3200924410077B3DA /* Date.swift in Sources */,
+				E8F62BB4200924410077B3DA /* MiniWalletViewModel.swift in Sources */,
+				E8F62BB5200924410077B3DA /* AlertsService.swift in Sources */,
+				E8F62BB6200924410077B3DA /* AlertsViewModelTests.swift in Sources */,
+				E8F62BB7200924410077B3DA /* PaymentService.swift in Sources */,
+				E8F62BB8200924410077B3DA /* ChangePasswordViewModel.swift in Sources */,
+				E8F62BB9200924410077B3DA /* AddCardFormViewModel.swift in Sources */,
+				E8F62BBA200924410077B3DA /* AccountService.swift in Sources */,
+				E8F62BBB200924410077B3DA /* ForgotPasswordViewModel.swift in Sources */,
+				E8F62BBC200924410077B3DA /* TemperatureScaleStore.swift in Sources */,
+				E8F62BBD200924410077B3DA /* PaymentViewModel.swift in Sources */,
+				E8F62BBE200924410077B3DA /* BillViewModel.swift in Sources */,
+				E8F62BBF200924410077B3DA /* NotificationNames.swift in Sources */,
+				E8F62BC0200924410077B3DA /* ReportOutageViewModel.swift in Sources */,
+				E8F62BC1200924410077B3DA /* MockPaymentService.swift in Sources */,
+				E8F62BC2200924410077B3DA /* AlertPreferencesViewModelTests.swift in Sources */,
+				E8F62BC3200924410077B3DA /* UsageService.swift in Sources */,
+				E8F62BC4200924410077B3DA /* LoginViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F62BE9200924570077B3DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8F62BEA200924570077B3DA /* BillService.swift in Sources */,
+				E8F62BEB200924570077B3DA /* Premise.swift in Sources */,
+				E8F62BEC200924570077B3DA /* OMCRegistrationService.swift in Sources */,
+				E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */,
+				E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */,
+				E8F62BEF200924570077B3DA /* WalletViewModel.swift in Sources */,
+				E8F62BF0200924570077B3DA /* SharedColor.swift in Sources */,
+				E8F62BF1200924570077B3DA /* ServiceFactory.swift in Sources */,
+				E8F62BF2200924570077B3DA /* PaperlessEBillViewModel.swift in Sources */,
+				E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */,
+				E8F62BF4200924570077B3DA /* Account.swift in Sources */,
+				E8F62BF5200924570077B3DA /* Maintenance.swift in Sources */,
+				E8F62BF6200924570077B3DA /* OMCAlertsService.swift in Sources */,
+				E8F62BF7200924570077B3DA /* AuthTokenParserTests.swift in Sources */,
+				E8F62BF8200924570077B3DA /* Fonts.swift in Sources */,
+				E8F62BF9200924570077B3DA /* OMCPeakRewardsService.swift in Sources */,
+				E8F62BFA200924570077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */,
+				E8F62BFB200924570077B3DA /* MockAccountService.swift in Sources */,
+				E8F62BFC200924570077B3DA /* WalletItem.swift in Sources */,
+				E8F62BFD200924570077B3DA /* BudgetBillingViewModel.swift in Sources */,
+				E8F62BFE200924570077B3DA /* AuthenticationService.swift in Sources */,
+				E8F62BFF200924570077B3DA /* OutageStatus.swift in Sources */,
+				E8F62C00200924570077B3DA /* UIViewDashedBorders.swift in Sources */,
+				E8F62C01200924570077B3DA /* Control.swift in Sources */,
+				E8F62C02200924570077B3DA /* BillingHistoryViewModel.swift in Sources */,
+				E8F62C03200924570077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
+				E8F62C04200924570077B3DA /* BillAnalysisViewModelTests.swift in Sources */,
+				E8F62C05200924570077B3DA /* AddCreditCardViewModel.swift in Sources */,
+				E8F62C06200924570077B3DA /* OMCResponseParser.swift in Sources */,
+				E8F62C07200924570077B3DA /* OpcoUpdate.swift in Sources */,
+				E8F62C08200924570077B3DA /* AddBankFormViewModel.swift in Sources */,
+				E8F62C09200924570077B3DA /* WalletService.swift in Sources */,
+				E8F62C0A200924570077B3DA /* BillAnalysisViewModel.swift in Sources */,
+				E8F62C0B200924570077B3DA /* OutageInfo.swift in Sources */,
+				E8F62C0C200924570077B3DA /* OutageViewModel.swift in Sources */,
+				E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */,
+				E8F62C0E200924570077B3DA /* PendingPaymentView.swift in Sources */,
+				E8F62C0F200924570077B3DA /* OMCBillService.swift in Sources */,
+				E8F62C10200924570077B3DA /* PeakRewardsService.swift in Sources */,
+				E8F62C11200924570077B3DA /* AuthTokenResponse.swift in Sources */,
+				E8F62C12200924570077B3DA /* BiometricsService.swift in Sources */,
+				E8F62C13200924570077B3DA /* UserDefaultKeys.swift in Sources */,
+				E8F62C14200924570077B3DA /* AppRating.swift in Sources */,
+				E8F62C15200924570077B3DA /* OMCWalletService.swift in Sources */,
+				E8F62C16200924570077B3DA /* AlertsViewModel.swift in Sources */,
+				E8F62C17200924570077B3DA /* SSOData.swift in Sources */,
+				E8F62C18200924570077B3DA /* BillComparison.swift in Sources */,
+				E8F62C19200924570077B3DA /* A0SimpleKeychain.m in Sources */,
+				E8F62C1A200924570077B3DA /* AlertsStore.swift in Sources */,
+				E8F62C1B200924570077B3DA /* PushNotification.swift in Sources */,
+				E8F62C1C200924570077B3DA /* Fillable.swift in Sources */,
+				E8F62C1D200924570077B3DA /* MockOutageService.swift in Sources */,
+				E8F62C1E200924570077B3DA /* AuthTokenParser.swift in Sources */,
+				E8F62C1F200924570077B3DA /* CreditCard.swift in Sources */,
+				E8F62C20200924570077B3DA /* BillForecast.swift in Sources */,
+				E8F62C21200924570077B3DA /* AlertPreferencesViewModel.swift in Sources */,
+				E8F62C22200924570077B3DA /* Payment.swift in Sources */,
+				E8F62C23200924570077B3DA /* BudgetBillingViewModelTests.swift in Sources */,
+				E8F62C24200924570077B3DA /* MockAuthenticationService.swift in Sources */,
+				E8F62C25200924570077B3DA /* MockBillService.swift in Sources */,
+				E8F62C26200924570077B3DA /* MockAlertsService.swift in Sources */,
+				E8F62C27200924570077B3DA /* TemplateCardViewModel.swift in Sources */,
+				E8F62C28200924570077B3DA /* UnauthenticatedOutageViewModel.swift in Sources */,
+				E8F62C29200924570077B3DA /* Percentage.swift in Sources */,
+				E8F62C2A200924570077B3DA /* BudgetBillingInfo.swift in Sources */,
+				E8F62C2B200924570077B3DA /* OMCUsageService.swift in Sources */,
+				E8F62C2C200924570077B3DA /* PaperlessEBillViewModelTests.swift in Sources */,
+				E8F62C2D200924570077B3DA /* ForgotUsernameViewModelTests.swift in Sources */,
+				E8F62C2E200924570077B3DA /* ViewBillViewModel.swift in Sources */,
+				E8F62C2F200924570077B3DA /* BGEAutoPayViewModelTests.swift in Sources */,
+				E8F62C30200924570077B3DA /* MockWalletService.swift in Sources */,
+				E8F62C31200924570077B3DA /* BillingHistory.swift in Sources */,
+				E8F62C32200924570077B3DA /* SpeedpayErrorMapper.swift in Sources */,
+				E8F62C33200924570077B3DA /* DismissableFormSheetViewController.swift in Sources */,
+				E8F62C34200924570077B3DA /* ObservableExtensions.swift in Sources */,
+				E8F62C35200924570077B3DA /* ResponseParserTests.swift in Sources */,
+				E8F62C36200924570077B3DA /* Environment.swift in Sources */,
+				E8F62C37200924570077B3DA /* AutoPayViewModel.swift in Sources */,
+				E8F62C38200924570077B3DA /* AccountsStore.swift in Sources */,
+				E8F62C39200924570077B3DA /* EditBankAccountViewModel.swift in Sources */,
+				E8F62C3A200924570077B3DA /* OMCOutageService.swift in Sources */,
+				E8F62C3B200924570077B3DA /* AlertPreferences.swift in Sources */,
+				E8F62C3C200924570077B3DA /* OMCAccountService.swift in Sources */,
+				E8F62C3D200924570077B3DA /* LoginViewModel.swift in Sources */,
+				E8F62C3E200924570077B3DA /* UIViewAddShadow.swift in Sources */,
+				E8F62C3F200924570077B3DA /* MaskedString.swift in Sources */,
+				E8F62C40200924570077B3DA /* MinimumVersion.swift in Sources */,
+				E8F62C41200924570077B3DA /* ServiceResult.swift in Sources */,
+				E8F62C42200924570077B3DA /* ForgotUsernameViewModel.swift in Sources */,
+				E8F62C43200924570077B3DA /* BGEAutoPayViewModel.swift in Sources */,
+				E8F62C44200924570077B3DA /* HttpMethod.swift in Sources */,
+				E8F62C45200924570077B3DA /* ForgotPasswordViewModelTests.swift in Sources */,
+				E8F62C46200924570077B3DA /* ProfileStatus.swift in Sources */,
+				E8F62C47200924570077B3DA /* EnergyTip.swift in Sources */,
+				E8F62C48200924570077B3DA /* BankAccount.swift in Sources */,
+				E8F62C49200924570077B3DA /* MobileTests.swift in Sources */,
+				E8F62C4A200924570077B3DA /* ChangePasswordViewModelTests.swift in Sources */,
+				E8F62C4B200924570077B3DA /* SecurityQuestion.swift in Sources */,
+				E8F62C4C200924570077B3DA /* AutoPayViewModelTests.swift in Sources */,
+				E8F62C4D200924570077B3DA /* BillViewModelTests.swift in Sources */,
+				E8F62C4E200924570077B3DA /* BGEAutoPayInfo.swift in Sources */,
+				E8F62C4F200924570077B3DA /* RegistrationService.swift in Sources */,
+				E8F62C50200924570077B3DA /* PeakRewardsViewModel.swift in Sources */,
+				E8F62C51200924570077B3DA /* PeakRewardsSummary.swift in Sources */,
+				E8F62C52200924570077B3DA /* OMCPaymentService.swift in Sources */,
+				E8F62C53200924570077B3DA /* OMCApi.swift in Sources */,
+				E8F62C54200924570077B3DA /* ActivityTracker.swift in Sources */,
+				E8F62C55200924570077B3DA /* Analytics.swift in Sources */,
+				E8F62C56200924570077B3DA /* BillingHistoryItem.swift in Sources */,
+				E8F62C57200924570077B3DA /* AddBankFormViewModelTests.swift in Sources */,
+				E8F62C58200924570077B3DA /* NibViews.swift in Sources */,
+				E8F62C59200924570077B3DA /* AddBankAccountViewModel.swift in Sources */,
+				E8F62C5A200924570077B3DA /* OMCAuthenticationService.swift in Sources */,
+				E8F62C5B200924570077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
+				E8F62C5C200924570077B3DA /* SplashViewModel.swift in Sources */,
+				E8F62C5D200924570077B3DA /* FiservErrorMapper.swift in Sources */,
+				E8F62C5E200924570077B3DA /* WeatherService.swift in Sources */,
+				E8F62C5F200924570077B3DA /* Macros.swift in Sources */,
+				E8F62C60200924570077B3DA /* FiservApi.swift in Sources */,
+				E8F62C61200924570077B3DA /* Currency.swift in Sources */,
+				E8F62C62200924570077B3DA /* RxNotifications.swift in Sources */,
+				E8F62C63200924570077B3DA /* OutageService.swift in Sources */,
+				E8F62C64200924570077B3DA /* WeatherAPI.swift in Sources */,
+				E8F62C65200924570077B3DA /* OverrideViewModel.swift in Sources */,
+				E8F62C66200924570077B3DA /* HomeProfile.swift in Sources */,
+				E8F62C67200924570077B3DA /* OutageViewModelTests.swift in Sources */,
+				E8F62C68200924570077B3DA /* Date.swift in Sources */,
+				E8F62C69200924570077B3DA /* MiniWalletViewModel.swift in Sources */,
+				E8F62C6A200924570077B3DA /* AlertsService.swift in Sources */,
+				E8F62C6B200924570077B3DA /* AlertsViewModelTests.swift in Sources */,
+				E8F62C6C200924570077B3DA /* PaymentService.swift in Sources */,
+				E8F62C6D200924570077B3DA /* ChangePasswordViewModel.swift in Sources */,
+				E8F62C6E200924570077B3DA /* AddCardFormViewModel.swift in Sources */,
+				E8F62C6F200924570077B3DA /* AccountService.swift in Sources */,
+				E8F62C70200924570077B3DA /* ForgotPasswordViewModel.swift in Sources */,
+				E8F62C71200924570077B3DA /* TemperatureScaleStore.swift in Sources */,
+				E8F62C72200924570077B3DA /* PaymentViewModel.swift in Sources */,
+				E8F62C73200924570077B3DA /* BillViewModel.swift in Sources */,
+				E8F62C74200924570077B3DA /* NotificationNames.swift in Sources */,
+				E8F62C75200924570077B3DA /* ReportOutageViewModel.swift in Sources */,
+				E8F62C76200924570077B3DA /* MockPaymentService.swift in Sources */,
+				E8F62C77200924570077B3DA /* AlertPreferencesViewModelTests.swift in Sources */,
+				E8F62C78200924570077B3DA /* UsageService.swift in Sources */,
+				E8F62C79200924570077B3DA /* LoginViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -5779,6 +6667,26 @@
 			isa = PBXTargetDependency;
 			target = B58B5AC01E4E28740051FD5F /* BGE */;
 			targetProxy = B5AC06DA1E52238900BBA4ED /* PBXContainerItemProxy */;
+		};
+		E8F62B2E200920920077B3DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B58B5B201E515C840051FD5F /* ComEd */;
+			targetProxy = E8F62B2D200920920077B3DA /* PBXContainerItemProxy */;
+		};
+		E8F62B30200920A60077B3DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B58B5B0F1E515BD50051FD5F /* PECO */;
+			targetProxy = E8F62B2F200920A60077B3DA /* PBXContainerItemProxy */;
+		};
+		E8F62C9C200924690077B3DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B58B5B201E515C840051FD5F /* ComEd */;
+			targetProxy = E8F62C9B200924690077B3DA /* PBXContainerItemProxy */;
+		};
+		E8F62C9E2009246C0077B3DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B58B5B0F1E515BD50051FD5F /* PECO */;
+			targetProxy = E8F62C9D2009246C0077B3DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -5839,15 +6747,19 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = BGEUITests/Info.plist;
+				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -5860,10 +6772,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = BGEUITests/Info.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -5875,10 +6791,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = BGEUITests/Info.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = BGE;
@@ -5889,10 +6809,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = BGEUITests/Info.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -5904,10 +6828,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = BGEUITests/Info.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = BGE;
@@ -6044,7 +6972,6 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.testing;
-				EXM_ENVIRONMENT = TESTING;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -6088,7 +7015,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -6100,10 +7027,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = BGEUITests/Info.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -6247,7 +7178,6 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.staging;
-				EXM_ENVIRONMENT = STAGING;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -6291,7 +7221,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -6303,10 +7233,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = BGEUITests/Info.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = BGE;
@@ -6540,7 +7474,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXM_ENVIRONMENT = AUTOMATION;
+				EXM_ENVIRONMENT = AUT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -7184,7 +8118,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -7199,7 +8133,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -7213,7 +8147,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -7227,7 +8161,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -7241,11 +8175,599 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MobileTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.MobileTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+			};
+			name = Release;
+		};
+		E8F62B132009207C0077B3DA /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = ComEd;
+			};
+			name = Develop;
+		};
+		E8F62B142009207C0077B3DA /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = ComEd;
+			};
+			name = Testing;
+		};
+		E8F62B152009207C0077B3DA /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = ComEd;
+			};
+			name = "Testing-Support";
+		};
+		E8F62B162009207C0077B3DA /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = ComEd;
+			};
+			name = Staging;
+		};
+		E8F62B172009207C0077B3DA /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = ComEd;
+			};
+			name = "Staging-Support";
+		};
+		E8F62B182009207C0077B3DA /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = ComEd;
+			};
+			name = Automation;
+		};
+		E8F62B192009207C0077B3DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = ComEd;
+			};
+			name = Release;
+		};
+		E8F62B24200920870077B3DA /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = PECO;
+			};
+			name = Develop;
+		};
+		E8F62B25200920870077B3DA /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = PECO;
+			};
+			name = Testing;
+		};
+		E8F62B26200920870077B3DA /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = PECO;
+			};
+			name = "Testing-Support";
+		};
+		E8F62B27200920870077B3DA /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = PECO;
+			};
+			name = Staging;
+		};
+		E8F62B28200920870077B3DA /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = PECO;
+			};
+			name = "Staging-Support";
+		};
+		E8F62B29200920870077B3DA /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = PECO;
+			};
+			name = Automation;
+		};
+		E8F62B2A200920870077B3DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = PECO;
+			};
+			name = Release;
+		};
+		E8F62BDD200924410077B3DA /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
+			};
+			name = Develop;
+		};
+		E8F62BDE200924410077B3DA /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
+			};
+			name = Testing;
+		};
+		E8F62BDF200924410077B3DA /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
+			};
+			name = "Testing-Support";
+		};
+		E8F62BE0200924410077B3DA /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
+			};
+			name = Staging;
+		};
+		E8F62BE1200924410077B3DA /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
+			};
+			name = "Staging-Support";
+		};
+		E8F62BE2200924410077B3DA /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
+			};
+			name = Automation;
+		};
+		E8F62BE3200924410077B3DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
+			};
+			name = Release;
+		};
+		E8F62C92200924570077B3DA /* Develop */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
+			};
+			name = Develop;
+		};
+		E8F62C93200924570077B3DA /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
+			};
+			name = Testing;
+		};
+		E8F62C94200924570077B3DA /* Testing-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
+			};
+			name = "Testing-Support";
+		};
+		E8F62C95200924570077B3DA /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
+			};
+			name = Staging;
+		};
+		E8F62C96200924570077B3DA /* Staging-Support */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
+			};
+			name = "Staging-Support";
+		};
+		E8F62C97200924570077B3DA /* Automation */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
+			};
+			name = Automation;
+		};
+		E8F62C98200924570077B3DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = MobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
 			};
 			name = Release;
 		};
@@ -7364,7 +8886,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5AC06DC1E52238900BBA4ED /* Build configuration list for PBXNativeTarget "MobileTests" */ = {
+		B5AC06DC1E52238900BBA4ED /* Build configuration list for PBXNativeTarget "BGEUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5AC06DD1E52238900BBA4ED /* Develop */,
@@ -7374,6 +8896,62 @@
 				82AEF2F91F61E8C70057E7ED /* Staging-Support */,
 				B5AC06E01E52238900BBA4ED /* Automation */,
 				B5AC06E11E52238900BBA4ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8F62B122009207C0077B3DA /* Build configuration list for PBXNativeTarget "ComEdUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8F62B132009207C0077B3DA /* Develop */,
+				E8F62B142009207C0077B3DA /* Testing */,
+				E8F62B152009207C0077B3DA /* Testing-Support */,
+				E8F62B162009207C0077B3DA /* Staging */,
+				E8F62B172009207C0077B3DA /* Staging-Support */,
+				E8F62B182009207C0077B3DA /* Automation */,
+				E8F62B192009207C0077B3DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8F62B23200920870077B3DA /* Build configuration list for PBXNativeTarget "PECOUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8F62B24200920870077B3DA /* Develop */,
+				E8F62B25200920870077B3DA /* Testing */,
+				E8F62B26200920870077B3DA /* Testing-Support */,
+				E8F62B27200920870077B3DA /* Staging */,
+				E8F62B28200920870077B3DA /* Staging-Support */,
+				E8F62B29200920870077B3DA /* Automation */,
+				E8F62B2A200920870077B3DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8F62BDC200924410077B3DA /* Build configuration list for PBXNativeTarget "ComEdUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8F62BDD200924410077B3DA /* Develop */,
+				E8F62BDE200924410077B3DA /* Testing */,
+				E8F62BDF200924410077B3DA /* Testing-Support */,
+				E8F62BE0200924410077B3DA /* Staging */,
+				E8F62BE1200924410077B3DA /* Staging-Support */,
+				E8F62BE2200924410077B3DA /* Automation */,
+				E8F62BE3200924410077B3DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8F62C91200924570077B3DA /* Build configuration list for PBXNativeTarget "PECOUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8F62C92200924570077B3DA /* Develop */,
+				E8F62C93200924570077B3DA /* Testing */,
+				E8F62C94200924570077B3DA /* Testing-Support */,
+				E8F62C95200924570077B3DA /* Staging */,
+				E8F62C96200924570077B3DA /* Staging-Support */,
+				E8F62C97200924570077B3DA /* Automation */,
+				E8F62C98200924570077B3DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

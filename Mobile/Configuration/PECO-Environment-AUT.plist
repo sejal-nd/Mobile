@@ -11,13 +11,15 @@
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>Dev</string>
+	<string>Testing</string>
 	<key>fiservUrl</key>
 	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
 	<key>speedpayUrl</key>
 	<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_peco_testing</string>
 	<key>gaTrackingId</key>
 	<string>N/A</string>
 </dict>

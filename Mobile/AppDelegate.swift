@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        if ProcessInfo.processInfo.arguments.contains("UITest") {
+            UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+            UserDefaults.standard.synchronize()
+        }
+        
         if let appInfo = Bundle.main.infoDictionary,
             let shortVersionString = appInfo["CFBundleShortVersionString"] as? String {
             UserDefaults.standard.set(shortVersionString, forKey: "version")

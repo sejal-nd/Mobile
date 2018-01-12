@@ -14,7 +14,7 @@ class SplashViewModel{
     private var authService: AuthenticationService
     let disposeBag = DisposeBag()
 
-    init(authService: AuthenticationService){
+    init(authService: AuthenticationService) {
         self.authService = authService
     }
     

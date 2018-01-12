@@ -20,7 +20,7 @@ class LoginViewModelTests: XCTestCase {
         let asyncExpectation = expectation(description: "testSuccessfulLogin")
         
         viewModel.username.value = "valid@test.com"
-        viewModel.password.value = "password"
+        viewModel.password.value = "Password1"
         
         viewModel.performLogin(onSuccess: { _ in 
             asyncExpectation.fulfill()
@@ -40,7 +40,7 @@ class LoginViewModelTests: XCTestCase {
         let asyncExpectation = expectation(description: "testUnsuccessfulLogin")
 
         viewModel.username.value = "invalid@test.com"
-        viewModel.password.value = "password"
+        viewModel.password.value = "Password1"
         
         viewModel.performLogin(onSuccess: {_ in 
             XCTFail("Unexpected success response")

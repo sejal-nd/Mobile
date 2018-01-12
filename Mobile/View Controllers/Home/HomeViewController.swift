@@ -134,22 +134,24 @@ class HomeViewController: AccountPickerViewController {
             SKStoreReviewController.requestReview()
         }
         
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
-                if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
-                    UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
-                    if granted {
-                        Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushOKInitial.rawValue)
-                    } else {
-                        Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushDontAllowInitial.rawValue)
+        if Environment.sharedInstance.environmentName != "AUT" {
+            if #available(iOS 10.0, *) {
+                UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
+                    if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
+                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
+                        if granted {
+                            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushOKInitial.rawValue)
+                        } else {
+                            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushDontAllowInitial.rawValue)
+                        }
                     }
-                }
-            })
-        } else {
-            let settings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(settings)
+                })
+            } else {
+                let settings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
+                UIApplication.shared.registerUserNotificationSettings(settings)
+            }
+            UIApplication.shared.registerForRemoteNotifications()
         }
-        UIApplication.shared.registerForRemoteNotifications()
         
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
             Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushInitial.rawValue)

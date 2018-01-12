@@ -11,6 +11,10 @@ import Mapper
 struct MinimumVersion: Mappable {
     var iosObject: Versions
     
+    init() {
+        iosObject = Versions()
+    }
+    
     init(map: Mapper) throws {
         iosObject = try map.from("ios")
     }
@@ -18,6 +22,10 @@ struct MinimumVersion: Mappable {
 
 struct Versions: Mappable {
     var minVersion: String
+    
+    init() {
+        minVersion = "0.0.0"
+    }
     
     init(map: Mapper) throws {
         minVersion = try map.from("minVersion")
