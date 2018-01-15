@@ -29,19 +29,17 @@ class LoginUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
     
     func handleTermsFirstLaunch() {
         let continueButton = app.buttons["Continue"]
-
-        waitForElementToAppear(continueButton)
+        XCTAssert(continueButton.waitForExistence(timeout: 30))
 
         // Assert button is disabled when the switch is not enabled
         XCTAssert(!continueButton.isEnabled)
         app.switches.element(boundBy: 0).tap()
         XCTAssert(continueButton.isEnabled)
         continueButton.tap()
-        waitForElementToAppear(app.buttons["Sign In"])
+        XCTAssert(app.buttons["Sign In"].waitForExistence(timeout: 5))
     }
     
     func testLandingPageLayout(){
@@ -70,16 +68,13 @@ class LoginUITests: XCTestCase {
         
         let elementsQuery = app.scrollViews.otherElements
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        waitForElementToAppear(usernameEmailAddressTextField)
-        usernameEmailAddressTextField.tap()
-        waitForElementToAppear(app.buttons["Next:"])
+        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
         usernameEmailAddressTextField.clearAndEnterText("valid@test.com")
         
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.tap()
         passwordSecureTextField.clearAndEnterText("Password1")
         elementsQuery.buttons["Sign In"].tap()
-        waitForElementToAppear(app.tabBars.buttons["Home"])
+        XCTAssert(app.tabBars.buttons["Home"].waitForExistence(timeout: 5))
         
         // Assert that the Home page loaded after a valid login
         XCTAssert(app.tabBars.buttons["Home"].exists, "User was not logged in after 15 seconds or login failed.")
@@ -92,13 +87,11 @@ class LoginUITests: XCTestCase {
         let errorAlert = app.alerts["Sign In Error"]
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
         
-        waitForElementToAppear(usernameEmailAddressTextField)
-        usernameEmailAddressTextField.tap()
+        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
         usernameEmailAddressTextField.clearAndEnterText("3012541000@example.com")
         elementsQuery.buttons["Sign In"].tap()
         
-        waitForElementToAppear(errorAlert)
-        XCTAssert(errorAlert.exists)
+        XCTAssert(errorAlert.waitForExistence(timeout: 5))
     }
     
     func testNoUsername() {
@@ -108,13 +101,11 @@ class LoginUITests: XCTestCase {
         let errorAlert = app.alerts["Sign In Error"]
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         
-        waitForElementToAppear(passwordSecureTextField)
-        passwordSecureTextField.tap()
+        XCTAssert(passwordSecureTextField.waitForExistence(timeout: 5))
         passwordSecureTextField.clearAndEnterText("Password3")
         elementsQuery.buttons["Sign In"].tap()
         
-        waitForElementToAppear(errorAlert)
-        XCTAssert(errorAlert.exists)
+        XCTAssert(errorAlert.waitForExistence(timeout: 5))
     }
     
     func testInvalidUsername(){
@@ -123,16 +114,13 @@ class LoginUITests: XCTestCase {
         let errorAlert = app.alerts["Sign In Error"]
         
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        waitForElementToAppear(usernameEmailAddressTextField)
-        usernameEmailAddressTextField.tap()
+        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
         usernameEmailAddressTextField.clearAndEnterText("invalid@test.com")
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.tap()
         passwordSecureTextField.clearAndEnterText("Password1")
         elementsQuery.buttons["Sign In"].tap()
         
-        waitForElementToAppear(errorAlert)
-        XCTAssert(errorAlert.exists)
+        XCTAssert(errorAlert.waitForExistence(timeout: 5))
     }
     
     func testInvalidPassword(){
@@ -141,44 +129,13 @@ class LoginUITests: XCTestCase {
         let errorAlert = app.alerts["Sign In Error"]
         
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        waitForElementToAppear(usernameEmailAddressTextField)
-        usernameEmailAddressTextField.tap()
+        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
         usernameEmailAddressTextField.clearAndEnterText("valid@test.com")
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.tap()
         passwordSecureTextField.clearAndEnterText("oijrgoiwjothiqoij")
         elementsQuery.buttons["Sign In"].tap()
         
-        waitForElementToAppear(errorAlert)
-        XCTAssert(errorAlert.exists)
+        XCTAssert(errorAlert.waitForExistence(timeout: 5))
     }
-    
-    //Helper function that waits for a specific element to appear
-    func waitForElementToAppear (_ element: XCUIElement){
-        let predicate = NSPredicate(format: "exists==true")
-        expectation(for: predicate, evaluatedWith: element, handler: nil)
-        waitForExpectations(timeout: 30, handler: nil)
-    }
-    
-}
 
-extension XCUIElement {
-    /**
-     Removes any current text in the field before typing in the new value
-     - Parameter text: the text to enter into the field
-     */
-    func clearAndEnterText(_ text: String) {
-        guard let stringValue = self.value as? String else {
-            XCTFail("Tried to clear and enter text into a non string value")
-            return
-        }
-        
-        self.tap()
-        
-        let characters = Array(stringValue)
-        let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: characters.count)
-        
-        self.typeText(deleteString)
-        self.typeText(text)
-    }
 }

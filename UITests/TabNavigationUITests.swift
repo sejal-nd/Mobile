@@ -31,33 +31,30 @@ class TabNavigationUITests: XCTestCase {
         super.tearDown()
     }
     
-    
     func doLogin() {
         let continueButton = app.buttons["Continue"]
-        
-        waitForElementToAppear(continueButton)
+        XCTAssert(continueButton.waitForExistence(timeout: 30))
         
         // Assert button is disabled when the switch is not enabled
         XCTAssert(!continueButton.isEnabled)
         app.switches.element(boundBy: 0).tap()
         XCTAssert(continueButton.isEnabled)
         continueButton.tap()
-        waitForElementToAppear(app.buttons["Sign In"])
         
-        app.buttons["Sign In"].tap()
+        let signInButton = app.buttons["Sign In"]
+        XCTAssert(signInButton.waitForExistence(timeout: 5))
+        signInButton.tap()
         
         let elementsQuery = app.scrollViews.otherElements
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        waitForElementToAppear(usernameEmailAddressTextField)
-        usernameEmailAddressTextField.tap()
-        waitForElementToAppear(app.buttons["Next:"])
+        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
         usernameEmailAddressTextField.clearAndEnterText("valid@test.com")
         
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.tap()
         passwordSecureTextField.clearAndEnterText("Password1")
         elementsQuery.buttons["Sign In"].tap()
-        waitForElementToAppear(app.tabBars.buttons["Home"])
+        
+        XCTAssert(app.tabBars.buttons["Home"].waitForExistence(timeout: 10))
     }
     
     func testHomeTab() {
@@ -90,10 +87,4 @@ class TabNavigationUITests: XCTestCase {
         XCTAssertTrue(moreTab.isSelected)
     }
     
-    //Helper function that waits for a specific element to appear
-    func waitForElementToAppear (_ element: XCUIElement){
-        let predicate = NSPredicate(format: "exists==true")
-        expectation(for: predicate, evaluatedWith: element, handler: nil)
-        waitForExpectations(timeout: 30, handler: nil)
-    }
 }

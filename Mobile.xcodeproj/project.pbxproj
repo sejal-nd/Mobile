@@ -1447,6 +1447,12 @@
 		E8F353A2200963B600883CEA /* TabNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353A1200963B600883CEA /* TabNavigationUITests.swift */; };
 		E8F353A3200963B600883CEA /* TabNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353A1200963B600883CEA /* TabNavigationUITests.swift */; };
 		E8F353A4200963B600883CEA /* TabNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353A1200963B600883CEA /* TabNavigationUITests.swift */; };
+		E8F353A6200D014000883CEA /* MoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353A5200D014000883CEA /* MoreUITests.swift */; };
+		E8F353A7200D014000883CEA /* MoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353A5200D014000883CEA /* MoreUITests.swift */; };
+		E8F353A8200D014000883CEA /* MoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353A5200D014000883CEA /* MoreUITests.swift */; };
+		E8F353B6200D19E100883CEA /* UITestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353B5200D19E100883CEA /* UITestExtensions.swift */; };
+		E8F353B7200D19E100883CEA /* UITestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353B5200D19E100883CEA /* UITestExtensions.swift */; };
+		E8F353B8200D19E100883CEA /* UITestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F353B5200D19E100883CEA /* UITestExtensions.swift */; };
 		E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */; };
 		E8F51EE31EC9F7F90080AB3E /* BudgetBillingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */; };
 		E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
@@ -2514,6 +2520,8 @@
 		E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewController.swift; sourceTree = "<group>"; };
 		E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModelTests.swift; sourceTree = "<group>"; };
 		E8F353A1200963B600883CEA /* TabNavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationUITests.swift; sourceTree = "<group>"; };
+		E8F353A5200D014000883CEA /* MoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreUITests.swift; sourceTree = "<group>"; };
+		E8F353B5200D19E100883CEA /* UITestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestExtensions.swift; sourceTree = "<group>"; };
 		E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetBillingViewModelTests.swift; sourceTree = "<group>"; };
 		E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBillService.swift; sourceTree = "<group>"; };
 		E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillViewModelTests.swift; sourceTree = "<group>"; };
@@ -2797,8 +2805,10 @@
 			isa = PBXGroup;
 			children = (
 				087630E21E72F5D000FA7020 /* Info.plist */,
+				E8F353B5200D19E100883CEA /* UITestExtensions.swift */,
 				087630E01E72F5D000FA7020 /* LoginUITests.swift */,
 				E8F353A1200963B600883CEA /* TabNavigationUITests.swift */,
+				E8F353A5200D014000883CEA /* MoreUITests.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -5288,6 +5298,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F353A6200D014000883CEA /* MoreUITests.swift in Sources */,
+				E8F353B6200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				087630E11E72F5D000FA7020 /* LoginUITests.swift in Sources */,
 				E8F353A2200963B600883CEA /* TabNavigationUITests.swift in Sources */,
 				E8F3539E200943E100883CEA /* UserDefaultKeys.swift in Sources */,
@@ -6322,6 +6334,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F353A7200D014000883CEA /* MoreUITests.swift in Sources */,
+				E8F353B7200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E8F62B0F2009207C0077B3DA /* LoginUITests.swift in Sources */,
 				E8F353A3200963B600883CEA /* TabNavigationUITests.swift in Sources */,
 				E8F3539F200943E100883CEA /* UserDefaultKeys.swift in Sources */,
@@ -6332,6 +6346,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F353A8200D014000883CEA /* MoreUITests.swift in Sources */,
+				E8F353B8200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E8F62B20200920870077B3DA /* LoginUITests.swift in Sources */,
 				E8F353A4200963B600883CEA /* TabNavigationUITests.swift in Sources */,
 				E8F353A0200943E200883CEA /* UserDefaultKeys.swift in Sources */,
