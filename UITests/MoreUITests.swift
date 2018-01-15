@@ -99,6 +99,11 @@ class MoreUITests: XCTestCase {
         app.buttons["Policies and Terms"].tap()
         XCTAssert(app.navigationBars.element(boundBy: 0).children(matching: .button).matching(identifier: "Back").element(boundBy: 0).exists)
         XCTAssert(app.navigationBars["Policies and Terms"].exists)
+        
+        let privacyPred = NSPredicate(format: "label CONTAINS 'Privacy Policy'")
+        let termsPred = NSPredicate(format: "label CONTAINS 'Terms of Use'")
+        XCTAssert(app.webViews.staticTexts.element(matching: privacyPred).exists)
+        XCTAssert(app.webViews.staticTexts.element(matching: termsPred).exists)
     }
     
     func testSignOut() {
