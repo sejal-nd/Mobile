@@ -46,6 +46,7 @@ class BillViewModel {
             return self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
                 .trackActivity(self.tracker(forState: state))
                 .materialize()
+                .filter { !$0.isCompleted }
         }
         .share(replay: 1)
         .do(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
@@ -68,11 +69,14 @@ class BillViewModel {
 	
     // MARK: - Show/Hide Views -
     
-    private(set) lazy var shouldShowAlertBanner: Driver<Bool> =  Driver.combineLatest(self.currentAccountDetail,
+    private(set) lazy var shouldShowAlertBanner: Driver<Bool> =  Driver.combineLatest(self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()),
                                                                                       self.shouldShowRestoreService,
                                                                                       self.shouldShowAvoidShutoff,
                                                                                       self.switchAccountsTracker.asDriver())
-    { (($0.isCutOutNonPay && $1) || $2) && !$3 }
+    { accountDetailEvent, shouldShowRestoreService, shouldShowAvoidShutoff, isSwitchingAccounts in
+        guard let accountDetail = accountDetailEvent.element else { return false }
+        return ((accountDetail.isCutOutNonPay && shouldShowRestoreService) || shouldShowAvoidShutoff) && !isSwitchingAccounts
+        }
         .startWith(false)
     
     private(set) lazy var shouldShowRestoreService: Driver<Bool> = self.currentAccountDetail.map {
