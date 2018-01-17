@@ -474,6 +474,7 @@ class PaymentViewModelTests: XCTestCase {
             addBankFormViewModel.routingNumber.value = "123456789"
             addBankFormViewModel.accountNumber.value = "12345"
             addBankFormViewModel.confirmAccountNumber.value = "12345"
+            addBankFormViewModel.saveToWallet.value = false
             viewModel.makePaymentNextButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
                 if !enabled {
                     XCTFail("Next button should be enabled for this test case")
@@ -500,6 +501,7 @@ class PaymentViewModelTests: XCTestCase {
             addCardFormViewModel.expYear.value = "2021"
             addCardFormViewModel.cvv.value = "123"
             addCardFormViewModel.zipCode.value = "12345"
+            addCardFormViewModel.saveToWallet.value = false
             viewModel.makePaymentNextButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
                 if !enabled {
                     XCTFail("Next button should be enabled for this test case")
@@ -603,5 +605,7 @@ class PaymentViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
     }
+    
+    
     
 }
