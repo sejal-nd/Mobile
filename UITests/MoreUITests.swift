@@ -106,6 +106,56 @@ class MoreUITests: XCTestCase {
         XCTAssert(app.webViews.staticTexts.element(matching: termsPred).exists)
     }
     
+    func testChangePasswordButtonAndLayout() {
+        app.buttons["Settings"].tap()
+        app.tables.element(boundBy: 0).cells.element(boundBy: 0).tap()
+        
+        XCTAssert(app.navigationBars.element(boundBy: 0).children(matching: .button).matching(identifier: "Cancel").element(boundBy: 0).exists)
+        
+        let submitButton = app.navigationBars.element(boundBy: 0).children(matching: .button).matching(identifier: "Submit").element(boundBy: 0)
+        XCTAssert(submitButton.exists)
+        XCTAssert(app.navigationBars["Change Password"].exists)
+        
+        let elementsQuery = app.scrollViews.otherElements
+        let currentPasswordTextField = elementsQuery.secureTextFields["Current Password"]
+        let newPasswordTextField = elementsQuery.secureTextFields["New Password"]
+        let confirmPasswordTextField = elementsQuery.secureTextFields["Confirm Password"]
+        
+        XCTAssert(currentPasswordTextField.exists)
+        XCTAssert(newPasswordTextField.exists)
+        XCTAssert(confirmPasswordTextField.exists)
+        
+        // Password strength view isn't shown yet
+        XCTAssert(!elementsQuery.images["ic_check"].exists)
+        newPasswordTextField.clearAndEnterText("pass")
+        
+        // Password strength view shown, criteria not yet met
+        XCTAssert(elementsQuery.staticTexts["Password strength weak"].exists)
+        XCTAssert(elementsQuery.images["ic_check"].exists)
+        XCTAssert(!elementsQuery.images["Minimum password criteria met"].exists)
+        newPasswordTextField.typeText("word1A")
+        
+        // Password strength view shown, criteria met
+        XCTAssert(elementsQuery.staticTexts["Password strength weak"].exists)
+        XCTAssert(elementsQuery.images["Minimum password criteria met"].exists)
+        
+        confirmPasswordTextField.tap()
+        confirmPasswordTextField.clearAndEnterText("password1A")
+        
+        // Submit still disabled
+        XCTAssert(!submitButton.isEnabled)
+        
+        currentPasswordTextField.clearAndEnterText("Password1")
+        
+        // Fields all entered, submit now enabled
+        XCTAssert(submitButton.isEnabled)
+        
+        submitButton.tap()
+        
+        // "Password changed" toast shown
+        XCTAssert(app.staticTexts["Password changed"].waitForExistence(timeout: 5))
+    }
+    
     func testSignOut() {
         let signOutButton = app.buttons["Sign out"]
         let alert = app.alerts["Sign Out"]
