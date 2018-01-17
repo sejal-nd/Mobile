@@ -3801,7 +3801,7 @@
 			children = (
 				E81CFFE81EC230B5004FDA7E /* Entitlements */,
 				B58B5AC31E4E28740051FD5F /* Mobile */,
-				B5AC06D61E52238900BBA4ED /* MobileTests */,
+				B5AC06D61E52238900BBA4ED /* UnitTests */,
 				087630DF1E72F5D000FA7020 /* UITests */,
 				B58B5AC21E4E28740051FD5F /* Products */,
 				8FD3C25A1E524511005FB1BB /* Frameworks */,
@@ -3905,7 +3905,7 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		B5AC06D61E52238900BBA4ED /* MobileTests */ = {
+		B5AC06D61E52238900BBA4ED /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
 				B5AC06D91E52238900BBA4ED /* Info.plist */,
@@ -3928,7 +3928,7 @@
 				B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */,
 				E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */,
 			);
-			path = MobileTests;
+			path = UnitTests;
 			sourceTree = "<group>";
 		};
 		B5AC06E21E522E7A00BBA4ED /* Core */ = {
@@ -4719,7 +4719,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -7029,7 +7029,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7235,7 +7235,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8132,7 +8132,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8147,7 +8147,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8161,7 +8161,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8175,7 +8175,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8189,7 +8189,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8522,7 +8522,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8541,7 +8541,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8559,7 +8559,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8577,7 +8577,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8595,7 +8595,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8613,7 +8613,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8631,7 +8631,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8667,7 +8667,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8686,7 +8686,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8704,7 +8704,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8722,7 +8722,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8740,7 +8740,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8758,7 +8758,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8776,7 +8776,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				INFOPLIST_FILE = MobileTests/Info.plist;
+				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
