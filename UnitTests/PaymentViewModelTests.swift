@@ -606,6 +606,65 @@ class PaymentViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
     }
     
+    func testHasWalletItems() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isCashOnly": true, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        // Cash only user test - bank accounts should be ignored
+        viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank)]
+        viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
+            if hasWalletItems {
+                XCTFail("hasWalletItems should be false for a cash only user with only include bank accounts")
+            }
+        }).disposed(by: disposeBag)
+        viewModel.walletItems.value!.append(WalletItem(bankOrCard: .card))
+        viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
+            if !hasWalletItems {
+                XCTFail("hasWalletItems should be true for a cash only user with a credit card")
+            }
+        }).disposed(by: disposeBag)
+        
+        // BGE commercial user test - VISA cards should be ignored
+        if Environment.sharedInstance.opco == .bge {
+            viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
+            let visaCard = WalletItem(bankOrCard: .card)
+            viewModel.walletItems.value = [visaCard]
+            viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
+                if hasWalletItems {
+                    XCTFail("hasWalletItems should be false for a BGE commercial user with only Visa cards")
+                }
+            }).disposed(by: disposeBag)
+            
+            viewModel.walletItems.value!.append(WalletItem(bankOrCard: .bank))
+            viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
+                if !hasWalletItems {
+                    XCTFail("hasWalletItems should be true for a BGE commercial user with a bank account")
+                }
+            }).disposed(by: disposeBag)
+        }
+        
+        // Normal test case
+        viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
+        viewModel.walletItems.value = []
+        viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
+            if hasWalletItems {
+                XCTFail("hasWalletItems should be false for a normal scenario with no wallet items")
+            }
+        }).disposed(by: disposeBag)
+        viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .card)]
+        viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
+            if !hasWalletItems {
+                XCTFail("hasWalletItems should be true for a normal scenario with wallet items")
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    func testShouldShowCvvTextField() {
+        
+    }
+    
     
     
 }

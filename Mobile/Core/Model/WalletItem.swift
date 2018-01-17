@@ -139,8 +139,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
     }
     
     // For unit tests/mock data
-    init(bankOrCard: BankOrCard = .bank) {
-        self = WalletItem.from(["walletItemID": "1234"])!
+    init(bankOrCard: BankOrCard = .bank, cardIssuer: String = "Visa") {
+        self = WalletItem.from(["walletItemID": "1234", cardIssuer: cardIssuer])!
         self.bankOrCard = bankOrCard
     }
     
