@@ -36,6 +36,9 @@ class ServiceFactory {
     }
 
     class func createOutageService() -> OutageService {
+        if Environment.sharedInstance.environmentName == "AUT" {
+            return MockOutageService()
+        }
         return sharedOutageService
     }
 
