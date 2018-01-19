@@ -22,5 +22,7 @@
 	<string>GoogleService-Info_comed</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-3</string>
+	<key>opcoUpdatesHost</key>
+	<string>www.comed.com</string>
 </dict>
 </plist>

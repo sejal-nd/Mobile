@@ -22,5 +22,7 @@
 	<string>GoogleService-Info_comed_testing</string>
 	<key>gaTrackingId</key>
 	<string>N/A</string>
+	<key>opcoUpdatesHost</key>
+	<string>azstg.comed.com</string>
 </dict>
 </plist>

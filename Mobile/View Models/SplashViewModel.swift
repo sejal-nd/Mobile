@@ -44,7 +44,7 @@ class SplashViewModel{
         case .bge:
             return URL(string: "https://itunes.apple.com/us/app/bge-an-exelon-company/id1274170174?ls=1&mt=8")
         case .comEd:
-            return nil // TODO once we get ComEd link
+            return URL(string: "https://itunes.apple.com/us/app/comed-an-exelon-company/id519716176?mt=8")
         case .peco:
             return URL(string: "https://itunes.apple.com/us/app/peco-an-exelon-company/id1274171957?ls=1&mt=8")
         }

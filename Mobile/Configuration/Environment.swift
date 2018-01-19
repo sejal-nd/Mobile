@@ -33,6 +33,7 @@ struct Environment  {
     let outageMapUrl: String
     let gaTrackingId: String
     let firebaseConfigFile: String
+    let opcoUpdatesHost: String
     
     private init() {
         let path = Bundle.main.path(forResource: "environment", ofType: "plist")
@@ -48,6 +49,7 @@ struct Environment  {
         outageMapUrl = dict?["outageMapUrl"] as! String
         gaTrackingId = dict?["gaTrackingId"] as! String
         firebaseConfigFile = dict?["firebaseConfigFile"] as! String
+        opcoUpdatesHost = dict?["opcoUpdatesHost"] as! String
     }
     
     var opcoDateFormatter: DateFormatter {
