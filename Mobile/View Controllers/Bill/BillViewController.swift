@@ -304,7 +304,7 @@ class BillViewController: AccountPickerViewController {
     func showErrorState(error: ServiceError?) {
         billLoadingIndicator.isHidden = true
         loadingIndicatorView.isHidden = true
-        topView.isHidden = false
+        topView.isHidden = true
         bottomView.isHidden = true
         errorView.isHidden = false
         bottomStackContainerView.isHidden = true
