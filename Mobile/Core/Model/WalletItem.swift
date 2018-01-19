@@ -138,12 +138,6 @@ struct WalletItem: Mappable, Equatable, Hashable {
         }
     }
     
-    // For unit tests/mock data
-    init(bankOrCard: BankOrCard = .bank) {
-        self = WalletItem.from(["walletItemID": "1234"])!
-        self.bankOrCard = bankOrCard
-    }
-    
     // Equatable
     static func ==(lhs: WalletItem, rhs: WalletItem) -> Bool {
         return lhs.walletItemID == rhs.walletItemID
