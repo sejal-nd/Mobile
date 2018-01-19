@@ -50,6 +50,7 @@ Carthage/Build/tvOS
 Carthage/Build/watchOS
 Carthage/Build/iOS/*.bcsymbolmap
 Carthage/Build/*.version
+Carthage/Build/.DS_Store
 
 # fastlane
 #

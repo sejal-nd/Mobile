@@ -321,6 +321,12 @@
 		823AA54E20110993009CAEF0 /* AccountDetailTestInits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailTestInits.swift */; };
 		823AA54F20110994009CAEF0 /* AccountDetailTestInits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailTestInits.swift */; };
 		823AA55020110994009CAEF0 /* AccountDetailTestInits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailTestInits.swift */; };
+		823AA55220113357009CAEF0 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55120113356009CAEF0 /* RxTest.framework */; };
+		823AA55620113498009CAEF0 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55520113498009CAEF0 /* RxBlocking.framework */; };
+		823AA557201134BB009CAEF0 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55120113356009CAEF0 /* RxTest.framework */; };
+		823AA558201134E1009CAEF0 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55520113498009CAEF0 /* RxBlocking.framework */; };
+		823AA559201134EE009CAEF0 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55120113356009CAEF0 /* RxTest.framework */; };
+		823AA55A201134FC009CAEF0 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55520113498009CAEF0 /* RxBlocking.framework */; };
 		824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
 		824004CB1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
 		824004CC1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
@@ -2007,6 +2013,10 @@
 		822BBBA01EFC1A01004EBBAB /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		823694301FA8CB0E0037BD9F /* SafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewController.swift; sourceTree = "<group>"; };
 		823AA54A20100352009CAEF0 /* AccountDetailTestInits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailTestInits.swift; sourceTree = "<group>"; };
+		823AA55120113356009CAEF0 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
+		823AA55320113471009CAEF0 /* Build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Build; path = Carthage/Build; sourceTree = "<group>"; };
+		823AA55520113498009CAEF0 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		823AA55F201247CF009CAEF0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		824004C91F25F4970012A288 /* TemplateCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardViewModel.swift; sourceTree = "<group>"; };
 		824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewController.swift; sourceTree = "<group>"; };
 		824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewModel.swift; sourceTree = "<group>"; };
@@ -2711,6 +2721,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823AA55620113498009CAEF0 /* RxBlocking.framework in Frameworks */,
+				823AA55220113357009CAEF0 /* RxTest.framework in Frameworks */,
 				E80043621E6A11C3005CF531 /* Zxcvbn.framework in Frameworks */,
 				B5D4155A1F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */,
 				E80043611E6A11B7005CF531 /* RxSwift.framework in Frameworks */,
@@ -2750,6 +2762,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823AA558201134E1009CAEF0 /* RxBlocking.framework in Frameworks */,
+				823AA557201134BB009CAEF0 /* RxTest.framework in Frameworks */,
 				E8F62BC6200924410077B3DA /* Zxcvbn.framework in Frameworks */,
 				E8F62BC7200924410077B3DA /* FirebaseCore.framework in Frameworks */,
 				E8F62BC8200924410077B3DA /* RxSwift.framework in Frameworks */,
@@ -2775,6 +2789,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823AA55A201134FC009CAEF0 /* RxBlocking.framework in Frameworks */,
+				823AA559201134EE009CAEF0 /* RxTest.framework in Frameworks */,
 				E8F62C7B200924570077B3DA /* Zxcvbn.framework in Frameworks */,
 				E8F62C7C200924570077B3DA /* FirebaseCore.framework in Frameworks */,
 				E8F62C7D200924570077B3DA /* RxSwift.framework in Frameworks */,
@@ -3395,6 +3411,10 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				823AA55F201247CF009CAEF0 /* XCTest.framework */,
+				823AA55520113498009CAEF0 /* RxBlocking.framework */,
+				823AA55320113471009CAEF0 /* Build */,
+				823AA55120113356009CAEF0 /* RxTest.framework */,
 				E83F02821FB380700062A348 /* UserNotifications.framework */,
 				E8B9BD911F8826FD007C824C /* Charts.framework */,
 				B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */,
@@ -4709,7 +4729,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = LTS485TKXA;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -5205,6 +5225,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5231,6 +5253,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5257,6 +5281,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
