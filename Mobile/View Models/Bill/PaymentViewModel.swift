@@ -803,7 +803,7 @@ class PaymentViewModel {
         }
     }
     
-    private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String?> = Driver.combineLatest(self.selectedWalletItem.asDriver(),
+    private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = Driver.combineLatest(self.selectedWalletItem.asDriver(),
                                                                                                         self.inlineBank.asDriver(),
                                                                                                         self.addBankFormViewModel.accountNumber.asDriver(),
                                                                                                         self.inlineCard.asDriver(),

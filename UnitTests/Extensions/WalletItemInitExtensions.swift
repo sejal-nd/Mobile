@@ -9,7 +9,7 @@
 extension WalletItem {
 
     init(bankOrCard: BankOrCard = .bank) {
-        self = WalletItem.from(["walletItemID": "1234"])!
+        self = WalletItem.from(["walletItemID": "1234", "maskedWalletItemAccountNumber": "1234"])!
         self.bankOrCard = bankOrCard
     }
     
