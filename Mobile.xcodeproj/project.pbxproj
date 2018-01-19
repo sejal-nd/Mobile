@@ -7988,7 +7988,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				EXM_BUNDLE_ID = com.exelon.mobile.comed;
+				EXM_BUNDLE_ID = com.iphoneproduction.exelon;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
