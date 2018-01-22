@@ -70,6 +70,7 @@ class HomeViewModel {
             self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
                 .trackActivity(self.fetchTracker(forState: $0))
                 .materialize()
+                .filter { !$0.isCompleted }
         }
         .share(replay: 1)
 

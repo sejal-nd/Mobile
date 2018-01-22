@@ -52,11 +52,18 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable.merge(self.accountDetailChanged, self.segmentedControlChanged).share(replay: 1)
     
-    private(set) lazy var accountDetailChanged = self.accountDetailEvents.elements()
+    private(set) lazy var accountDetailChanged = self.accountDetailEvents
         .withLatestFrom(Observable.combineLatest(self.fetchData,
-                                                 self.accountDetailEvents.elements(),
+                                                 self.accountDetailEvents,
                                                  self.electricGasSelectedSegmentIndex.asObservable().startWith(0)))
-        .flatMapLatest { [unowned self] fetchState, accountDetail, segmentIndex -> Observable<Event<BillComparison>> in
+        .flatMapLatest { [unowned self] fetchState, accountDetailEvent, segmentIndex -> Observable<Event<BillComparison>> in
+            guard let accountDetail = accountDetailEvent.element else {
+                if let error = accountDetailEvent.error {
+                    return Observable.error(error).materialize()
+                }
+                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue)).materialize()
+            }
+            
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             guard let serviceType = accountDetail.serviceType else { return .empty() }
 
@@ -79,6 +86,7 @@ class HomeUsageCardViewModel {
                 .trackActivity(self.fetchTracker(forState: fetchState))
                 .materialize()
         }
+        .share()
     
     private(set) lazy var segmentedControlChanged = self.electricGasSelectedSegmentIndex.asObservable()
         .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(),
@@ -101,6 +109,7 @@ class HomeUsageCardViewModel {
                 .trackActivity(self.loadingTracker)
                 .materialize()
         }
+        .share()
     
     private(set) lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
     
@@ -117,13 +126,12 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var shouldShowBillComparisonEmptyState: Driver<Bool> = Driver.combineLatest(self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()),
                                                                                                   self.shouldShowSmartEnergyRewards,
-                                                                                                  self.shouldShowSmartEnergyEmptyState,
-                                                                                                  self.billComparisonDriver) {
-        if $3.reference == nil {
-            return true
-        }
-        return $0.error != nil && !$1 && !$2
+                                                                                                  self.shouldShowSmartEnergyEmptyState) {
+                                                                                                    $0.element?.reference == nil || ($0.error != nil && !$1 && !$2)
     }
+    
+    private(set) lazy var shouldShowBillComparisonEmptyStateButton: Driver<Bool> = self.accountDetailEvents.map { $0.error == nil }
+        .asDriver(onErrorDriveWith: .empty())
     
     // Not currently using -- we'll show billComparisonEmptyStateView if any errors occur
     private(set) lazy var shouldShowErrorView: Driver<Bool> =
@@ -137,10 +145,10 @@ class HomeUsageCardViewModel {
             !$0 && $1.error == nil
         }.asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowElectricGasSegmentedControl: Driver<Bool> = self.accountDetailDriver.map {
-        guard let serviceType = $0.serviceType else { return false }
-        return serviceType.uppercased() == "GAS/ELECTRIC"
+    private(set) lazy var shouldShowElectricGasSegmentedControl: Driver<Bool> = self.accountDetailEvents.map {
+        $0.element?.serviceType?.uppercased() == "GAS/ELECTRIC"
     }
+    .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var noPreviousData: Driver<Bool> = self.billComparisonDriver.map {
         return $0.compared == nil
@@ -309,19 +317,23 @@ class HomeUsageCardViewModel {
     
     // MARK: Smart Energy Rewards
     
-    private(set) lazy var shouldShowSmartEnergyRewards: Driver<Bool> = self.accountDetailDriver.map {
-        if $0.isBGEControlGroup && $0.isSERAccount {
-            return $0.SERInfo.eventResults.count > 0
+    private(set) lazy var shouldShowSmartEnergyRewards: Driver<Bool> = self.accountDetailEvents.map {
+        guard let accountDetail = $0.element else { return false }
+        if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
+            return accountDetail.SERInfo.eventResults.count > 0
         }
         return false
-    }
+        }
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowSmartEnergyEmptyState: Driver<Bool> = self.accountDetailDriver.map {
-        if $0.isBGEControlGroup && $0.isSERAccount {
-            return $0.SERInfo.eventResults.count == 0
+    private(set) lazy var shouldShowSmartEnergyEmptyState: Driver<Bool> = self.accountDetailEvents.map {
+        guard let accountDetail = $0.element else { return false }
+        if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
+            return accountDetail.SERInfo.eventResults.count == 0
         }
         return false
-    }
+        }
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = self.accountDetailDriver.map {
         let events = $0.SERInfo.eventResults
