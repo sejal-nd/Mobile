@@ -127,7 +127,10 @@ class HomeUsageCardViewModel {
     private(set) lazy var shouldShowBillComparisonEmptyState: Driver<Bool> = Driver.combineLatest(self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()),
                                                                                                   self.shouldShowSmartEnergyRewards,
                                                                                                   self.shouldShowSmartEnergyEmptyState) {
-                                                                                                    $0.element?.reference == nil || ($0.error != nil && !$1 && !$2)
+        if $1 || $2 {
+            return false
+        }
+        return $0.element?.reference == nil
     }
     
     private(set) lazy var shouldShowBillComparisonEmptyStateButton: Driver<Bool> = self.accountDetailEvents.map { $0.error == nil }
@@ -323,8 +326,7 @@ class HomeUsageCardViewModel {
             return accountDetail.SERInfo.eventResults.count > 0
         }
         return false
-        }
-        .asDriver(onErrorDriveWith: .empty())
+    }.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var shouldShowSmartEnergyEmptyState: Driver<Bool> = self.accountDetailEvents.map {
         guard let accountDetail = $0.element else { return false }
@@ -332,8 +334,7 @@ class HomeUsageCardViewModel {
             return accountDetail.SERInfo.eventResults.count == 0
         }
         return false
-        }
-        .asDriver(onErrorDriveWith: .empty())
+    }.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = self.accountDetailDriver.map {
         let events = $0.SERInfo.eventResults
