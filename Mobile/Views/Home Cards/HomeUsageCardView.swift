@@ -229,6 +229,7 @@ class HomeUsageCardView: UIView {
                 Analytics().logScreenView(AnalyticsPageView.EmptyStateUsageOverview.rawValue)
             }
         }).drive(billComparisonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowBillComparisonEmptyStateButton.not().drive(viewUsageEmptyStateButton.rx.isHidden).disposed(by: disposeBag)
         
         // Segmented Controls
         viewModel.shouldShowElectricGasSegmentedControl.not().drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
