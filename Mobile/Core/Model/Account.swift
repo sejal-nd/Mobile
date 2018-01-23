@@ -367,7 +367,7 @@ struct BillingInfo: Mappable {
     let disconnectNoticeArrears: Double?
     let isDisconnectNotice: Bool
     let billDate: Date?
-    let convenienceFee: Double?
+    let convenienceFee: Double? // ComEd/PECO use this
     let scheduledPayment: PaymentItem?
     let pendingPayments: [PaymentItem]
     let atReinstateFee: Double?
@@ -376,8 +376,8 @@ struct BillingInfo: Mappable {
     let minPaymentAmountACH: Double?
     let maxPaymentAmountACH: Double?
     let currentDueAmount: Double?
-    let residentialFee: Double?
-    let commercialFee: Double?
+    let residentialFee: Double? // BGE uses this and
+    let commercialFee: Double? // this
     let turnOffNoticeExtensionStatus: String?
     let turnOffNoticeExtendedDueDate: Date?
     let deliveryCharges: Double?

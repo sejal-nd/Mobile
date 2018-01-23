@@ -22,5 +22,7 @@
 	<string>GoogleService-Info_bge</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-1</string>
+	<key>opcoUpdatesHost</key>
+	<string>www.bge.com</string>
 </dict>
 </plist>
