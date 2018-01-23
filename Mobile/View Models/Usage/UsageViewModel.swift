@@ -27,12 +27,12 @@ class UsageViewModel {
     }
     
     var shouldShowSmartEnergyRewardsContent: Bool {
-        let events = accountDetail.SERInfo.eventResults
+        let events = accountDetail.serInfo.eventResults
         return events.count > 0
     }
     
     var smartEnergyRewardsSeasonLabelText: String? {
-        let events = accountDetail.SERInfo.eventResults
+        let events = accountDetail.serInfo.eventResults
         if let mostRecentEvent = events.last {
             let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
             return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
@@ -41,7 +41,7 @@ class UsageViewModel {
     }
     
     var smartEnergyRewardsFooterText: String {
-        if accountDetail.SERInfo.eventResults.count > 0 {
+        if accountDetail.serInfo.eventResults.count > 0 {
             return NSLocalizedString("You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
         }
         

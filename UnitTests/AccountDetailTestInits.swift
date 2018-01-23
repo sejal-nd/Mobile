@@ -27,9 +27,9 @@ extension AccountDetail {
          premiseNumber: String? = nil,
          address: String? = nil,
          serviceType: String = "GAS/ELECTRIC",
-         customerInfo: CustomerInfo? = nil,
+         customerInfo: CustomerInfo = CustomerInfo(),
          billingInfo: BillingInfo,
-         SERInfo: SERInfo? = nil,
+         serInfo: SERInfo = SERInfo(),
          isPTSAccount: Bool = false,
          premiseInfo: [Premise] = [],
          isModeledForOpower: Bool = false,
@@ -68,9 +68,9 @@ extension AccountDetail {
         map["premiseNumber"] = premiseNumber
         map["address"] = address
         map["serviceType"] = serviceType
-        map["CustomerInfo"] = customerInfo?.toJSON()
+        map["CustomerInfo"] = customerInfo.toJSON()
         map["BillingInfo"] = billingInfo.toJSON()
-        map["SERInfo"] = SERInfo?.toJSON()
+        map["SERInfo"] = serInfo.toJSON()
         map["PremiseInfo"] = premiseInfo.map(Premise.toJSON)
         
         map["isPTSAccount"] = isPTSAccount
@@ -311,7 +311,7 @@ extension Premise: JSONEncodable {
 }
 
 extension SERInfo: JSONEncodable {
-    init(controlGroupFlag: String?, eventResults: [SERResult]) {
+    init(controlGroupFlag: String? = nil, eventResults: [SERResult] = []) {
         
         if Environment.sharedInstance.environmentName != "AUT" {
             fatalError("init only available for tests")

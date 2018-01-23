@@ -311,20 +311,20 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var shouldShowSmartEnergyRewards: Driver<Bool> = self.accountDetailDriver.map {
         if $0.isBGEControlGroup && $0.isSERAccount {
-            return $0.SERInfo.eventResults.count > 0
+            return $0.serInfo.eventResults.count > 0
         }
         return false
     }
     
     private(set) lazy var shouldShowSmartEnergyEmptyState: Driver<Bool> = self.accountDetailDriver.map {
         if $0.isBGEControlGroup && $0.isSERAccount {
-            return $0.SERInfo.eventResults.count == 0
+            return $0.serInfo.eventResults.count == 0
         }
         return false
     }
     
     private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = self.accountDetailDriver.map {
-        let events = $0.SERInfo.eventResults
+        let events = $0.serInfo.eventResults
         if let mostRecentEvent = events.last {
             let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
             return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
