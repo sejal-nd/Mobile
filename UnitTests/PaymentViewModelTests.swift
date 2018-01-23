@@ -1150,5 +1150,47 @@ class PaymentViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
     }
     
+    func testSelectedWalletItemNickname() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        // Inline bank
+        viewModel.inlineBank.value = true
+        viewModel.addBankFormViewModel.nickname.value = "Test"
+        viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
+            XCTAssert(nickname == "Test", "Expected \"Test\", got \"\(nickname ?? "nil")\"")
+        }).disposed(by: disposeBag)
+        
+        // Inline card
+        viewModel.inlineBank.value = false
+        viewModel.inlineCard.value = true
+        viewModel.addCardFormViewModel.nickname.value = "Test"
+        viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
+            XCTAssert(nickname == "Test", "Expected \"Test\", got \"\(nickname ?? "nil")\"")
+        }).disposed(by: disposeBag)
+        
+        // No selected wallet item
+        viewModel.inlineCard.value = false
+        viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
+            XCTAssertNil(nickname, "Expected nil, got \"\(nickname ?? "nil")\"")
+        }).disposed(by: disposeBag)
+        
+        // Selected wallet item
+        viewModel.selectedWalletItem.value = WalletItem(nickname: "Test")
+        viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
+            XCTAssert(nickname == "Test", "Expected \"Test\", got \"\(nickname ?? "nil")\"")
+        }).disposed(by: disposeBag)
+        
+        // ComEd/PECO specific test because by default they set nickname to last 4 digits, so we ignore those nicknames
+        if Environment.sharedInstance.opco != .bge {
+            viewModel.selectedWalletItem.value = WalletItem(nickname: "1234")
+            viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
+                XCTAssertNil(nickname, "Expected nil, got \"\(nickname ?? "nil")\"")
+            }).disposed(by: disposeBag)
+        }
+    }
+    
 
 }
