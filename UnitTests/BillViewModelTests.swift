@@ -46,7 +46,6 @@ class BillViewModelTests: XCTestCase {
     }
     
     func simulateAccountSwitches(at times: [Int]) {
-        
         let events: [Recorded<Event<Account>>] = zip(times, accountService.testAccounts).map(next)
         let accountSwitches = scheduler.createHotObservable(events)
         accountSwitches

@@ -102,7 +102,7 @@ extension AccountDetail {
         map["peakRewards"] = peakRewards
         map["zipCode"] = zipCode
         
-        try! self.init(map: Mapper(JSON: map as NSDictionary))
+        self = AccountDetail.from(map as NSDictionary)!
     }
 }
 
@@ -176,7 +176,7 @@ extension BillingInfo: JSONEncodable {
             "payments" : payments.map(PaymentItem.toJSON)
         ]
         
-        try! self.init(map: Mapper(JSON: map as NSDictionary))
+        self = BillingInfo.from(map as NSDictionary)!
     }
     
     func toJSON() -> [String : Any?] {
@@ -231,7 +231,7 @@ extension PaymentItem: JSONEncodable {
             "paymentDate": date?.apiString
         ]
         
-        try! self.init(map: Mapper(JSON: map as NSDictionary))
+        self = PaymentItem.from(map as NSDictionary)!
     }
     
     func toJSON() -> [String : Any?] {
@@ -258,7 +258,7 @@ extension CustomerInfo: JSONEncodable {
             "nameCompressed" : nameCompressed
         ]
         
-        try! self.init(map: Mapper(JSON: map as NSDictionary))
+        self = CustomerInfo.from(map as NSDictionary)!
     }
     
     func toJSON() -> [String : Any?] {
@@ -292,7 +292,7 @@ extension Premise: JSONEncodable {
             ]
         ]
         
-        try! self.init(map: Mapper(JSON: map as NSDictionary))
+        self = Premise.from(map as NSDictionary)!
     }
     
     func toJSON() -> [String : Any?] {
@@ -320,7 +320,7 @@ extension SERInfo: JSONEncodable {
         var map = [String: Any]()
         map["ControlGroupFlag"] = controlGroupFlag
         map["eventResults"] = eventResults.map(SERResult.toJSON)
-        try! self.init(map: Mapper(JSON: map as NSDictionary))
+        self = SERInfo.from(map as NSDictionary)!
     }
     
     func toJSON() -> [String : Any?] {
@@ -350,7 +350,7 @@ extension SERResult: JSONEncodable {
         map["eventEnd"] = eventEnd
         map["savingDollar"] = savingDollar
         map["savingKWH"] = savingKWH
-        try! self.init(map: Mapper(JSON: map as NSDictionary))
+        self = SERResult.from(map as NSDictionary)!
     }
     
     func toJSON() -> [String : Any?] {
