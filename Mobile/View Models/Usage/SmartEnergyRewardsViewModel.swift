@@ -22,7 +22,7 @@ class SmartEnergyRewardsViewModel {
     }
     
     private(set) lazy var latest3EventsThisSeason: Driver<[SERResult]> = self.accountDetailDriver.map {
-        let eventResults = $0.SERInfo.eventResults
+        let eventResults = $0.serInfo.eventResults
         if eventResults.isEmpty { return [] }
         
         let newestFirst = Array(eventResults.reversed()) // Sort them so the newest event is first

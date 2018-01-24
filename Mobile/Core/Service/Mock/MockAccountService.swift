@@ -8,15 +8,10 @@
 
 import Foundation
 
-struct MockAccountService: AccountService {
-
-    let testAccounts = [
-        Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!,
-        Account.from(["accountNumber": "9836621902", "address": "E. Fort Ave, Ste. 200"])!,
-        Account.from(["accountNumber": "7003238921", "address": "E. Andre Street"])!,
-        Account.from(["accountNumber": "5591032201", "address": "7700 Presidents Street"])!,
-        Account.from(["accountNumber": "5591032202", "address": "7701 Presidents Street"])!,
-    ]
+class MockAccountService: AccountService {
+    
+    var testAccounts: [Account] = []
+    var testAccountDetails: [AccountDetail] = []
     
     func fetchAccounts(completion: @escaping (ServiceResult<[Account]>) -> Void) {
         AccountsStore.sharedInstance.accounts = testAccounts
@@ -25,7 +20,11 @@ struct MockAccountService: AccountService {
     }
     
     func fetchAccountDetail(account: Account, completion: @escaping (ServiceResult<AccountDetail>) -> Void) {
-        let accountDetail = AccountDetail.from(["accountNumber": account.accountNumber, "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
+        guard let accountIndex = testAccounts.index(of: account) else {
+            completion(.Failure(ServiceError(serviceMessage: "No account detail found for the provided account.")))
+            return
+        }
+        let accountDetail = testAccountDetails[accountIndex]
         completion(ServiceResult.Success(accountDetail))
     }
     
