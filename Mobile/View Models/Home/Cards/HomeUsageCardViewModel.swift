@@ -85,6 +85,7 @@ class HomeUsageCardViewModel {
             return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
                 .trackActivity(self.fetchTracker(forState: fetchState))
                 .materialize()
+                .filter { !$0.isCompleted }
         }
         .share()
     
