@@ -56,15 +56,15 @@ class BillViewModelTests: XCTestCase {
     // Tests changes in the `totalAmountText` value after switching
     // through 5 different accounts, then refreshing 2 times.
     func testTotalAmountText() {
-        let totalAmounts: [Double?] = [4, 5000, 435.323, -68.04, nil]
+        let totalAmounts: [Double?] = [4, 5000, nil, -68.04, 435.323]
         let expectedValues: [String] = [
             "$4.00",
             "$5,000.00",
-            "$435.32",
+            "--",
             Environment.sharedInstance.opco == .bge ? "-$68.04" : "$0.00",
-            "--",
-            "--",
-            "--"
+            "$435.32",
+            "$435.32",
+            "$435.32"
         ]
         
         let switchAccountEventTimes = Array(0..<totalAmounts.count)
@@ -89,7 +89,7 @@ class BillViewModelTests: XCTestCase {
     }
     
     // Tests changes in the `totalAmountDescriptionText` value after switching
-    // through 5 different accounts, then refreshing 2 times.
+    // through different accounts.
     func testTotalAmountDescriptionText() {
         let totalAmounts: [Double?] = [4, -5000, 435.323, 68.04, nil]
         let pastDueAmounts: [Double?] = [4, 26.32, nil, 0, nil]
@@ -108,13 +108,10 @@ class BillViewModelTests: XCTestCase {
             "No Amount Due - Credit Balance",
             "Total Amount Due By 12/16/2018",
             "Total Amount Due By --",
-            "Total Amount Due By 06/12/2018",
-            "Total Amount Due By 06/12/2018",
             "Total Amount Due By 06/12/2018"
         ]
         
         let switchAccountEventTimes = Array(0..<totalAmounts.count)
-        let refreshEventTimes = Array(totalAmounts.count..<expectedValues.count)
         
         accountService.testAccountDetails = zip(totalAmounts, zip(pastDueAmounts, dueByDates)).map {
             AccountDetail(accountNumber: "", billingInfo: BillingInfo(netDueAmount: $0.0,
@@ -123,72 +120,67 @@ class BillViewModelTests: XCTestCase {
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
-        simulateRefreshPulls(at: refreshEventTimes)
         
         let observer = scheduler.createObserver(String.self)
         viewModel.totalAmountDescriptionText.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes + refreshEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
         
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
     // Tests changes in the `restoreServiceAmountText` value after switching
-    // through 5 different accounts, then refreshing 2 times.
+    // through different accounts.
     func testRestoreServiceAmountText() {
         let restorationAmounts: [Double?] = [4, 5000, 435.323, -68.04, nil]
-        let expectedValues: [String] = ["$4.00", "$5,000.00", "$435.32", "-$68.04", "--", "--", "--"]
+        let expectedValues: [String] = ["$4.00", "$5,000.00", "$435.32", "-$68.04", "--"]
         
         let switchAccountEventTimes = Array(0..<restorationAmounts.count)
-        let refreshEventTimes = Array(restorationAmounts.count..<expectedValues.count)
         
         accountService.testAccountDetails = restorationAmounts.map {
             AccountDetail(accountNumber: "", billingInfo: BillingInfo(restorationAmount: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
-        simulateRefreshPulls(at: refreshEventTimes)
         
         let observer = scheduler.createObserver(String.self)
         viewModel.restoreServiceAmountText.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes + refreshEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
         
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
     // Tests changes in the `catchUpAmountText` value after switching
-    // through 5 different accounts, then refreshing 2 times.
+    // through different accounts.
     func testCatchUpAmountText() {
         let amtDpaReinsts: [Double?] = [4, 5000, 435.323, -68.04, nil]
-        let expectedValues: [String] = ["$4.00", "$5,000.00", "$435.32", "-$68.04", "--", "--", "--"]
+        let expectedValues: [String] = ["$4.00", "$5,000.00", "$435.32", "-$68.04", "--"]
         
         let switchAccountEventTimes = Array(0..<amtDpaReinsts.count)
-        let refreshEventTimes = Array(amtDpaReinsts.count..<expectedValues.count)
         
         accountService.testAccountDetails = amtDpaReinsts.map {
             AccountDetail(accountNumber: "", billingInfo: BillingInfo(amtDpaReinst: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
-        simulateRefreshPulls(at: refreshEventTimes)
         
         let observer = scheduler.createObserver(String.self)
         viewModel.catchUpAmountText.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes + refreshEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
         
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
     // Tests changes in the `catchUpDateText` value after switching
-    // through 5 different accounts, then refreshing 2 times.
+    // through different accounts.
     func testCatchUpDateText() {
         
         let dateFormatter = DateFormatter()
@@ -205,57 +197,51 @@ class BillViewModelTests: XCTestCase {
                                         "Due by 03/14/2018",
                                         "Due by 12/16/2018",
                                         "Due by ",
-                                        "Due by 06/12/2018",
-                                        "Due by 06/12/2018",
                                         "Due by 06/12/2018"]
         
         let switchAccountEventTimes = Array(0..<dueByDates.count)
-        let refreshEventTimes = Array(dueByDates.count..<expectedValues.count)
         
         accountService.testAccountDetails = dueByDates.map {
             AccountDetail(accountNumber: "", billingInfo: BillingInfo(dueByDate: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
-        simulateRefreshPulls(at: refreshEventTimes)
         
         let observer = scheduler.createObserver(String.self)
         viewModel.catchUpDateText.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes + refreshEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
         
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
     
     // Tests changes in the `catchUpDisclaimerText` value after switching
-    // through 5 different accounts, then refreshing 2 times.
+    // through different accounts.
     func testCatchUpDisclaimerText() {
         let amtDpaReinsts: [Double?] = [4, 5000, 435.323, -68.04, nil]
-        let expectedCurrencyValues: [String] = ["$4.00", "$5,000.00", "$435.32", "-$68.04", "--", "--", "--"]
+        let expectedCurrencyValues: [String] = ["$4.00", "$5,000.00", "$435.32", "-$68.04", "--"]
         let text = "You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill."
         let expectedValues = expectedCurrencyValues.map {
             String(format: text, $0)
         }
         
         let switchAccountEventTimes = Array(0..<amtDpaReinsts.count)
-        let refreshEventTimes = Array(amtDpaReinsts.count..<expectedValues.count)
         
         accountService.testAccountDetails = amtDpaReinsts.map {
             AccountDetail(accountNumber: "", billingInfo: BillingInfo(atReinstateFee: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
-        simulateRefreshPulls(at: refreshEventTimes)
         
         let observer = scheduler.createObserver(String.self)
         viewModel.catchUpDisclaimerText.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes + refreshEventTimes, expectedValues).map(next)
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
         
         XCTAssertEqual(observer.events, expectedEvents)
     }
