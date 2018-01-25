@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>9.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>20180119</string>
+	<string>20180125</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
