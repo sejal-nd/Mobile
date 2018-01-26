@@ -26,7 +26,7 @@ class BillViewModelTests: XCTestCase {
             Account.from(["accountNumber": "7003238921", "address": "E. Andre Street"])!,
             Account.from(["accountNumber": "5591032201", "address": "7700 Presidents Street"])!,
             Account.from(["accountNumber": "5591032202", "address": "7701 Presidents Street"])!,
-            ]
+        ]
         
         AccountsStore.sharedInstance.currentAccount = testAccounts[0]
         accountService = MockAccountService()
