@@ -3948,6 +3948,7 @@
 				B5AC06D91E52238900BBA4ED /* Info.plist */,
 				E8264F092011052A004A7EDA /* Extensions */,
 				E8400E611FE05E8B0064E242 /* AddBankFormViewModelTests.swift */,
+				08C9EC51200FD871000C7BC2 /* AddCardFormViewModelTests.swift */,
 				E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */,
 				E87E8AE21FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift */,
 				B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */,
@@ -3965,7 +3966,6 @@
 				E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */,
 				B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */,
 				E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */,
-				08C9EC51200FD871000C7BC2 /* AddCardFormViewModelTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
