@@ -1192,5 +1192,195 @@ class PaymentViewModelTests: XCTestCase {
         }
     }
     
+    func testConvenienceFee() {
+        if Environment.sharedInstance.opco == .bge {
+            // BGE Residential
+            var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
+                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+                                                    "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.convenienceFee.asObservable().take(1).subscribe(onNext: { fee in
+                XCTAssert(fee == 2, "Expected fee = 2, got fee = \(fee)")
+            }).disposed(by: disposeBag)
+            
+            // BGE Commercial
+            accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+                                                "SERInfo": [:]])!
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.convenienceFee.asObservable().take(1).subscribe(onNext: { fee in
+                XCTAssert(fee == 5, "Expected fee = 5, got fee = \(fee)")
+            }).disposed(by: disposeBag)
+        } else {
+            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
+                                                    "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
+                                                    "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.convenienceFee.asObservable().take(1).subscribe(onNext: { fee in
+                XCTAssert(fee == 2, "Expected fee = 2, got fee = \(fee)")
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    func testAmountDueCurrencyString() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.amountDue.value = 0
+        viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
+            XCTAssert(string == "$0.00", "Expected string = $0.00, got string = \(string ?? "nil")")
+        }).disposed(by: disposeBag)
+        
+        viewModel.amountDue.value = 15.29
+        viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
+            XCTAssert(string == "$15.29", "Expected string = $15.29, got string = \(string ?? "nil")")
+        }).disposed(by: disposeBag)
+        
+        viewModel.amountDue.value = 200.999 // Round up
+        viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
+            XCTAssert(string == "$201.00", "Expected string = $200.99, got string = \(string ?? "nil")")
+        }).disposed(by: disposeBag)
+        
+        viewModel.amountDue.value = 13.922 // Round down
+        viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
+            XCTAssert(string == "$13.92", "Expected string = $200.99, got string = \(string ?? "nil")")
+        }).disposed(by: disposeBag)
+        
+        viewModel.amountDue.value = 0.13
+        viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
+            XCTAssert(string == "$0.13", "Expected string = $0.13, got string = \(string ?? "nil")")
+        }).disposed(by: disposeBag)
+        
+        viewModel.amountDue.value = 5
+        viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
+            XCTAssert(string == "$5.00", "Expected string = $5.00, got string = \(string ?? "nil")")
+        }).disposed(by: disposeBag)
+    }
+    
+    func testDueDate() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["dueByDate": "2018-08-13T04:45:21"], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.dueDate.asObservable().take(1).subscribe(onNext: { dueDate in
+            XCTAssert(dueDate == "08/13/2018", "Expected dueDate = 08/13/2018, got dueDate = \(dueDate ?? "nil")")
+        }).disposed(by: disposeBag)
+        
+        viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
+        viewModel.dueDate.asObservable().take(1).subscribe(onNext: { dueDate in
+            XCTAssert(dueDate == "--", "Expected dueDate = --, got dueDate = \(dueDate ?? "nil")")
+        }).disposed(by: disposeBag)
+    }
+    
+    func testIsFixedPaymentDate() {
+        if Environment.sharedInstance.opco == .bge {
+            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.inlineCard.value = true
+            viewModel.addCardFormViewModel.saveToWallet.value = false
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "Inline card not being saved to wallet should have a fixed payment date")
+            }).disposed(by: disposeBag)
+            
+            viewModel.inlineCard.value = false
+            viewModel.addCardFormViewModel.saveToWallet.value = true
+            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(), activeSeverance: true)
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "Active severance user should have a fixed payment date")
+            }).disposed(by: disposeBag)
+            
+            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo())
+            viewModel.allowEdits.value = false
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "allowEdits = false should have a fixed payment date")
+            }).disposed(by: disposeBag)
+        } else {
+            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.inlineCard.value = true
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "Inline card should have a fixed payment date")
+            }).disposed(by: disposeBag)
+            
+            viewModel.inlineCard.value = false
+            viewModel.addBankFormViewModel.saveToWallet.value = false
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "Not saving a bank account should have a fixed payment date")
+            }).disposed(by: disposeBag)
+            
+            viewModel.addBankFormViewModel.saveToWallet.value = true
+            viewModel.allowEdits.value = false
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "allowEdits = false should have a fixed payment date")
+            }).disposed(by: disposeBag)
+            
+            viewModel.allowEdits.value = true
+            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(pastDueAmount: 50))
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "user with a past due amount should have a fixed payment date")
+            }).disposed(by: disposeBag)
+            
+            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(restorationAmount: 50))
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "user with a restoration amount should have a fixed payment date")
+            }).disposed(by: disposeBag)
+            
+            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(amtDpaReinst: 50))
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "user with amtDpaReinst > 0 should have a fixed payment date")
+            }).disposed(by: disposeBag)
+            
+            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(), isCutOutNonPay: true)
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "user cut for non payment should have a fixed payment date")
+            }).disposed(by: disposeBag)
+            
+            var dateComps = DateComponents()
+            dateComps.day = -1
+            let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
+            let dueByDate = Calendar.opCo.date(byAdding: dateComps, to: startOfTodayDate)
+            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(dueByDate: dueByDate))
+            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
+                XCTAssert(fixed, "A due date in the past should have a fixed payment date")
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    func testIsOverpaying() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        if Environment.sharedInstance.opco == .bge { // Overpayment is a BGE only concept
+            viewModel.amountDue.value = 100
+            viewModel.paymentAmount.value = "200"
+            viewModel.isOverpaying.asObservable().take(1).subscribe(onNext: { overpaying in
+                XCTAssert(overpaying, "isOverpaying should be true when amount due = $100 and payment amount = $200")
+            }).disposed(by: disposeBag)
+        } else {
+            viewModel.isOverpaying.asObservable().take(1).subscribe(onNext: { overpaying in
+                XCTAssertFalse(overpaying, "isOverpaying should always be false for ComEd/PECO")
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    
 
 }
