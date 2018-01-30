@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .comEd: BITHockeyManager.shared().configure(withIdentifier: "7399eb2b4dc44f91ac86e219d947b7b5")
                 case .peco: BITHockeyManager.shared().configure(withIdentifier: "51e89ca780064447b2373609c35e5b68")
             }
+            BITHockeyManager.shared().isUpdateManagerDisabled = true
             BITHockeyManager.shared().crashManager.crashManagerStatus = .autoSend
             BITHockeyManager.shared().isFeedbackManagerDisabled = true
             BITHockeyManager.shared().start()
