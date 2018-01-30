@@ -1381,6 +1381,143 @@ class PaymentViewModelTests: XCTestCase {
         }
     }
     
+    func testOverpayingValueDisplayString() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.paymentAmount.value = "200"
+        viewModel.overpayingValueDisplayString.asObservable().take(1).subscribe(onNext: { str in
+            XCTAssert(str == "$0.00", "Expected $0.00, got \(str ?? "nil")")
+        }).disposed(by: disposeBag)
+        
+        viewModel.paymentAmount.value = "213.88"
+        viewModel.overpayingValueDisplayString.asObservable().take(1).subscribe(onNext: { str in
+            XCTAssert(str == "$13.88", "Expected $13.88, got \(str ?? "nil")")
+        }).disposed(by: disposeBag)
+    }
     
-
+    func testConvenienceFeeDisplayString() {
+        if Environment.sharedInstance.opco == .bge {
+            // BGE Residential
+            var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
+                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+                                                    "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.convenienceFeeDisplayString.asObservable().take(1).subscribe(onNext: { feeStr in
+                XCTAssert(feeStr == "$2.00", "Expected $2.00, got \(feeStr ?? "nil")")
+            }).disposed(by: disposeBag)
+            
+            // BGE Commercial - Percentage of payment amount
+            accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+                                                "SERInfo": [:]])!
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.convenienceFeeDisplayString.asObservable().take(1).subscribe(onNext: { feeStr in
+                XCTAssert(feeStr == "$10.00", "Expected $10.00, got \(feeStr ?? "nil")")
+            }).disposed(by: disposeBag)
+        } else { // ComEd/PECO
+            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
+                                                    "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
+                                                    "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.convenienceFeeDisplayString.asObservable().take(1).subscribe(onNext: { feeStr in
+                XCTAssert(feeStr == "$2.00", "Expected $2.00, got \(feeStr ?? "nil")")
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    func testTotalPaymentDisplayString() {
+        if Environment.sharedInstance.opco == .bge {
+            var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
+                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+                                                    "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            // Bank workflow, no convenience fee
+            viewModel.inlineBank.value = true
+            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
+                XCTAssert(str == "$200.00", "Expected $200.00, got \(str ?? "nil")")
+            }).disposed(by: disposeBag)
+            
+            // Residential card - fixed fee
+            viewModel.inlineBank.value = false
+            viewModel.inlineCard.value = true
+            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
+                XCTAssert(str == "$202.00", "Expected $202.00, got \(str ?? "nil")")
+            }).disposed(by: disposeBag)
+            
+            accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+                                                "SERInfo": [:]])!
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            // Commercial card - percentage fee
+            viewModel.inlineCard.value = true
+            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
+                XCTAssert(str == "$210.00", "Expected $210.00, got \(str ?? "nil")")
+            }).disposed(by: disposeBag)
+        } else {
+            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
+                                                "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.inlineCard.value = true
+            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
+                XCTAssert(str == "$202.00", "Expected $202.00, got \(str ?? "nil")")
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    func testReviewPaymentFooterLabelText() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        if Environment.sharedInstance.opco == .bge {
+            viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
+                XCTAssertNil(text, "Expected nil, got \(text ?? "nil")")
+            }).disposed(by: disposeBag)
+            
+            viewModel.inlineCard.value = true
+            viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
+                XCTAssert(text == NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: ""),
+                          "Got unexpected string")
+            }).disposed(by: disposeBag)
+        } else {
+            viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
+                XCTAssert(text == NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: ""),
+                          "Got unexpected string")
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    func testFormatPaymentAmount() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.formatPaymentAmount()
+        XCTAssert(viewModel.paymentAmount.value == "$0.00", "Expected $0.00, got \(viewModel.paymentAmount.value)")
+        
+        viewModel.paymentAmount.value = "100000"
+        viewModel.formatPaymentAmount()
+        XCTAssert(viewModel.paymentAmount.value == "$1,000.00", "Expected $1,000.00, got \(viewModel.paymentAmount.value)")
+    }
+    
 }
