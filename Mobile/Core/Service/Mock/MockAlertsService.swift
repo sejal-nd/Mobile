@@ -35,6 +35,11 @@ class MockAlertsService: AlertsService {
     }
     
     func fetchOpcoUpdates(accountDetail: AccountDetail, completion: @escaping (ServiceResult<[OpcoUpdate]>) -> Void) {
-        
+        if accountDetail.accountNumber == "1234567890" {
+            let opcoUpdates = [OpcoUpdate.from(["Title": "Test Title", "Message": "Test Message"])!]
+            completion(ServiceResult.Success(opcoUpdates))
+        } else {
+            completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
+        }
     }
 }
