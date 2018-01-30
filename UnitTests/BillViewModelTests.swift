@@ -95,6 +95,7 @@ class BillViewModelTests: XCTestCase {
         let pastDueAmounts: [Double?] = [4, 26.32, nil, 0, nil]
         
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
         let dueByDates: [Date?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
@@ -105,7 +106,7 @@ class BillViewModelTests: XCTestCase {
         
         let expectedValues: [String] = [
             "Total Amount Due Immediately",
-            "No Amount Due - Credit Balance",
+            Environment.sharedInstance.opco == .bge ? "No Amount Due - Credit Balance" : "Total Amount Due By 03/14/2018",
             "Total Amount Due By 12/16/2018",
             "Total Amount Due By --",
             "Total Amount Due By 06/12/2018"
@@ -184,6 +185,7 @@ class BillViewModelTests: XCTestCase {
     func testCatchUpDateText() {
         
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
         let dateStrings: [String?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
