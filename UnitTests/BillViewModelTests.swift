@@ -71,8 +71,7 @@ class BillViewModelTests: XCTestCase {
         let refreshEventTimes = Array(totalAmounts.count..<expectedValues.count)
         
         accountService.testAccountDetails = totalAmounts.map {
-            AccountDetail(accountNumber: "",
-                          billingInfo: BillingInfo(netDueAmount: $0))
+            AccountDetail(billingInfo: BillingInfo(netDueAmount: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -115,9 +114,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<totalAmounts.count)
         
         accountService.testAccountDetails = zip(totalAmounts, zip(pastDueAmounts, dueByDates)).map {
-            AccountDetail(accountNumber: "", billingInfo: BillingInfo(netDueAmount: $0.0,
-                                                                      pastDueAmount: $0.1.0,
-                                                                      dueByDate: $0.1.1))
+            AccountDetail(billingInfo: BillingInfo(netDueAmount: $0.0, pastDueAmount: $0.1.0, dueByDate: $0.1.1))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -141,7 +138,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<restorationAmounts.count)
         
         accountService.testAccountDetails = restorationAmounts.map {
-            AccountDetail(accountNumber: "", billingInfo: BillingInfo(restorationAmount: $0))
+            AccountDetail(billingInfo: BillingInfo(restorationAmount: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -165,7 +162,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<amtDpaReinsts.count)
         
         accountService.testAccountDetails = amtDpaReinsts.map {
-            AccountDetail(accountNumber: "", billingInfo: BillingInfo(amtDpaReinst: $0))
+            AccountDetail(billingInfo: BillingInfo(amtDpaReinst: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -204,7 +201,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<dueByDates.count)
         
         accountService.testAccountDetails = dueByDates.map {
-            AccountDetail(accountNumber: "", billingInfo: BillingInfo(dueByDate: $0))
+            AccountDetail(billingInfo: BillingInfo(dueByDate: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -233,7 +230,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<amtDpaReinsts.count)
         
         accountService.testAccountDetails = amtDpaReinsts.map {
-            AccountDetail(accountNumber: "", billingInfo: BillingInfo(atReinstateFee: $0))
+            AccountDetail(billingInfo: BillingInfo(atReinstateFee: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)

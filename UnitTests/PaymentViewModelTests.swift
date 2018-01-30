@@ -1297,12 +1297,12 @@ class PaymentViewModelTests: XCTestCase {
             
             viewModel.inlineCard.value = false
             viewModel.addCardFormViewModel.saveToWallet.value = true
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(), activeSeverance: true)
+            viewModel.accountDetail.value = AccountDetail(activeSeverance: true)
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "Active severance user should have a fixed payment date")
             }).disposed(by: disposeBag)
             
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo())
+            viewModel.accountDetail.value = AccountDetail()
             viewModel.allowEdits.value = false
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "allowEdits = false should have a fixed payment date")
@@ -1331,22 +1331,22 @@ class PaymentViewModelTests: XCTestCase {
             }).disposed(by: disposeBag)
             
             viewModel.allowEdits.value = true
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(pastDueAmount: 50))
+            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(pastDueAmount: 50))
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "user with a past due amount should have a fixed payment date")
             }).disposed(by: disposeBag)
             
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(restorationAmount: 50))
+            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(restorationAmount: 50))
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "user with a restoration amount should have a fixed payment date")
             }).disposed(by: disposeBag)
             
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(amtDpaReinst: 50))
+            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(amtDpaReinst: 50))
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "user with amtDpaReinst > 0 should have a fixed payment date")
             }).disposed(by: disposeBag)
             
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(), isCutOutNonPay: true)
+            viewModel.accountDetail.value = AccountDetail(isCutOutNonPay: true)
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "user cut for non payment should have a fixed payment date")
             }).disposed(by: disposeBag)
@@ -1355,7 +1355,7 @@ class PaymentViewModelTests: XCTestCase {
             dateComps.day = -1
             let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
             let dueByDate = Calendar.opCo.date(byAdding: dateComps, to: startOfTodayDate)
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(dueByDate: dueByDate))
+            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(dueByDate: dueByDate))
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "A due date in the past should have a fixed payment date")
             }).disposed(by: disposeBag)
