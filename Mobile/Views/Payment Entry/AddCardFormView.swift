@@ -105,8 +105,9 @@ class AddCardFormView: UIView {
         zipCodeTextField.textField.delegate = self
         zipCodeTextField.setKeyboardType(.numberPad)
         
-        saveToWalletLabel.textColor = .deepGray
+        saveToWalletLabel.textColor = .blackText
         saveToWalletLabel.text = NSLocalizedString("Save to My Wallet", comment: "")
+        saveToWalletLabel.font = SystemFont.regular.of(textStyle: .headline)
         byNotSavingLabel.textColor = .blackText
         byNotSavingLabel.font = OpenSans.regular.of(textStyle: .footnote)
         byNotSavingLabel.text = NSLocalizedString("By not saving this payment account, you will only be eligible to make an instant payment.", comment: "")
@@ -117,6 +118,7 @@ class AddCardFormView: UIView {
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
+        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         footnoteLabel.textColor = .blackText
         footnoteLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -260,26 +262,26 @@ extension AddCardFormView: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
         if textField == cardNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 19
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 19
         } else if textField == expMonthTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 2
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 2
         } else if textField == expYearTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         } else if textField == cvvTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         } else if textField == zipCodeTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 5
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 5
         }
         return true
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         if textField == expMonthTextField.textField {
-            if textField.text?.characters.count == 2 {
+            if textField.text?.count == 2 {
                 expYearTextField.textField.becomeFirstResponder()
             }
         } else if textField == expYearTextField.textField {
-            if textField.text?.characters.count == 4 {
+            if textField.text?.count == 4 {
                 cvvTextField.textField.becomeFirstResponder()
             }
         }

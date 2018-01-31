@@ -16,35 +16,39 @@ class SettingsViewModel {
     var password = Variable("")
     
     private var authService: AuthenticationService
-    private var fingerprintService: FingerprintService
+    private var biometricsService: BiometricsService
     private var accountService: AccountService
     
-    init(authService: AuthenticationService, fingerprintService: FingerprintService, accountService: AccountService) {
+    init(authService: AuthenticationService, biometricsService: BiometricsService, accountService: AccountService) {
         self.authService = authService
-        self.fingerprintService = fingerprintService
+        self.biometricsService = biometricsService
         self.accountService = accountService
         
         // We should always have a stored username unless user skipped login, in which case this will probably change
         // in a future sprint anyway
-        if let storedUsername = fingerprintService.getStoredUsername() {
+        if let storedUsername = biometricsService.getStoredUsername() {
             username.value = storedUsername
         }
     }
     
-    func isDeviceTouchIDCompatible() -> Bool {
-        return fingerprintService.isDeviceTouchIDCompatible()
+    func isDeviceBiometricCompatible() -> Bool {
+        return biometricsService.deviceBiometryType() != nil
     }
     
-    func isTouchIDEnabled() -> Bool {
-        return fingerprintService.isTouchIDEnabled()
+    func biometricsString() -> String? {
+        return biometricsService.deviceBiometryType()
     }
     
-    func disableTouchID() {
-        fingerprintService.disableTouchID()
+    func isBiometryEnabled() -> Bool {
+        return biometricsService.isBiometricsEnabled()
+    }
+    
+    func disableBiometrics() {
+        biometricsService.disableBiometrics()
     }
     
     func getConfirmPasswordMessage() -> String {
-        return String(format: NSLocalizedString("Enter the password for %@ to enable Touch ID", comment: ""), username.value)
+        return String(format: NSLocalizedString("Enter the password for %@ to enable \(biometricsService.deviceBiometryType()!)", comment: ""), username.value)
     }
     
     func fetchAccounts() -> Observable<[Account]> {
@@ -55,7 +59,7 @@ class SettingsViewModel {
         authService.validateLogin(username.value, password: password.value).observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
-                self.fingerprintService.setStoredPassword(password: self.password.value)
+                self.biometricsService.setStoredPassword(password: self.password.value)
                 onSuccess()
             }, onError: { (error: Error) in
                 onError(error.localizedDescription)

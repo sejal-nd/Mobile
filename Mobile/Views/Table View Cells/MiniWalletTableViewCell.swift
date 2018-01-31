@@ -21,7 +21,7 @@ class MiniWalletTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        innerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         innerContentView.backgroundColorOnPress = .softGray
         
         iconImageView.image = #imageLiteral(resourceName: "opco_bank_mini")
@@ -51,9 +51,19 @@ class MiniWalletTableViewCell: UITableViewCell {
             a11yLabel = NSLocalizedString("Credit card", comment: "")
         }
         
-        nicknameLabel.text = walletItem.nickName
-        if let nicknameText = nicknameLabel.text, !nicknameText.isEmpty {
-            a11yLabel += ", \(nicknameText)"
+        if let nickname = walletItem.nickName {
+            let displayNickname: String
+            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
+                displayNickname = nickname == String(last4) ? "" : nickname
+            } else {
+                displayNickname = nickname
+            }
+            
+            nicknameLabel.text = displayNickname
+            if let nicknameText = nicknameLabel.text, !nicknameText.isEmpty {
+                a11yLabel += ", \(nicknameText)"
+            }
         }
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
@@ -99,7 +109,7 @@ class MiniWalletAddAccountCell: UITableViewCell {
         
         selectionStyle = .none
         
-        innerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         innerContentView.backgroundColorOnPress = .softGray
         
         label.font = SystemFont.medium.of(textStyle: .title1)

@@ -28,8 +28,8 @@ class OneTouchSlider: UIControl {
     private(set) var progress: CGFloat = 0.0
     
     let sliderWidth: CGFloat = 40
-    let sliderText = NSLocalizedString("Slide to pay now", comment: "")
-    let accessibilityText = NSLocalizedString("Tap to pay now", comment: "")
+    let sliderText = NSLocalizedString("Slide to pay today", comment: "")
+    let accessibilityText = NSLocalizedString("Pay full bill now", comment: "")
     let commitToSwipe: CGFloat = 0.95 //swipe percentage point at which we commit to the swipe and call success
     
     private let sliderValueChangedSubject = PublishSubject<CGFloat>()
@@ -91,7 +91,7 @@ class OneTouchSlider: UIControl {
         //Add the slider label and set the constraints that will keep it centered
         sliderLabel.translatesAutoresizingMaskIntoConstraints = false
         sliderLabel.textAlignment = .center
-        sliderLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        sliderLabel.font = OpenSans.semibold.of(size: 16)
         sliderLabel.setLineHeight(lineHeight: 16)
         sliderLabel.textColor = .white
         sliderLabel.text = sliderText
@@ -107,7 +107,7 @@ class OneTouchSlider: UIControl {
         addSubview(sliderFinish)
         sliderFinish.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
         let sliderFinishBottomConstraint = sliderFinish.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
-        sliderFinishBottomConstraint.priority = 999
+        sliderFinishBottomConstraint.priority = UILayoutPriority(rawValue: 999)
         sliderFinishBottomConstraint.isActive = true
         sliderFinish.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
         sliderFinishWidthConstraint = sliderFinish.widthAnchor.constraint(equalToConstant: sliderWidth)
@@ -121,11 +121,11 @@ class OneTouchSlider: UIControl {
         addSubview(slider)
         slider.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
         let sliderBottomConstraint =  slider.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
-        sliderBottomConstraint.priority = 999
+        sliderBottomConstraint.priority = UILayoutPriority(rawValue: 999)
         sliderBottomConstraint.isActive = true
         slider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
         sliderWidthConstraint = slider.widthAnchor.constraint(equalToConstant: sliderWidth)
-        sliderWidthConstraint.priority = 999
+        sliderWidthConstraint.priority = UILayoutPriority(rawValue: 999)
         sliderWidthConstraint.isActive = true
         slider.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -5).isActive = true
         
@@ -135,8 +135,8 @@ class OneTouchSlider: UIControl {
         imageView.contentMode = .scaleAspectFit
         imageView.centerYAnchor.constraint(equalTo: slider.centerYAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: slider.trailingAnchor, constant: -15).isActive = true
-        imageView.setContentHuggingPriority(999, for: .horizontal)
-        imageView.setContentHuggingPriority(999, for: .vertical)
+        imageView.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+        imageView.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         
         //Add pan gesture to slide the slider view
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
@@ -186,7 +186,7 @@ class OneTouchSlider: UIControl {
         })
     }
     
-    func panGesture(_ recognizer:UIPanGestureRecognizer) {
+    @objc func panGesture(_ recognizer:UIPanGestureRecognizer) {
         let x = recognizer.location(in: self).x
         let padding: CGFloat = 20.0
         switch (recognizer.state) {
@@ -232,9 +232,9 @@ class OneTouchSlider: UIControl {
                             self.layoutIfNeeded()
             }, completion: { finished in
                 if success {
-                    self.didFinishSwipeSubject.onNext()
+                    self.didFinishSwipeSubject.onNext(())
                 } else {
-                    self.didCancelSwipeSubject.onNext()
+                    self.didCancelSwipeSubject.onNext(())
                 }
             })
         default: break

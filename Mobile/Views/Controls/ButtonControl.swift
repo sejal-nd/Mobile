@@ -30,12 +30,12 @@ class ButtonControl: UIControl {
     func commonInit() {
         let normalStateColor = backgroundColor
         
-        let pressed = rx.controlEvent(.touchDown).asDriver().map { true }
+        let pressed = rx.controlEvent(.touchDown).asDriver().map(to: true)
         
         let notPressed = Driver.merge(rx.controlEvent(.touchUpInside).asDriver(),
                                       rx.controlEvent(.touchUpOutside).asDriver(),
                                       rx.controlEvent(.touchDragExit).asDriver(),
-                                      rx.controlEvent(.touchCancel).asDriver()).map { false }
+                                      rx.controlEvent(.touchCancel).asDriver()).map(to: false)
         
         Driver.merge(pressed, notPressed)
             .startWith(false)
@@ -55,7 +55,7 @@ class ButtonControl: UIControl {
     
     override var isEnabled: Bool {
         didSet {
-            alpha = isEnabled ? 1 : 0.33
+            alpha = isEnabled ? 1 : 0.5
             accessibilityTraits = isEnabled ? UIAccessibilityTraitButton : (UIAccessibilityTraitButton|UIAccessibilityTraitNotEnabled)
         }
     }

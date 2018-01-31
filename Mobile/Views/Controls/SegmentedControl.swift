@@ -8,8 +8,11 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class SegmentedControl: UIControl {
+    
+    let disposeBag = DisposeBag()
     
     var items: [String]?
     var selectedIndex = Variable(0)
@@ -19,6 +22,11 @@ class SegmentedControl: UIControl {
     private var buttons = [UIButton]()
     private var bigBottomBar: UIView?
     private var selectedBar: UIView?
+    
+    init() {
+        super.init(frame: .zero)
+        commonInit()
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,6 +74,11 @@ class SegmentedControl: UIControl {
         selectedBar!.isUserInteractionEnabled = false
         selectedBar!.backgroundColor = .primaryColor
         addSubview(selectedBar!)
+        
+        selectedIndex.asDriver()
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] in self?.selectIndex($0) })
+            .disposed(by: disposeBag)
     }
     
     override func layoutSubviews() {
@@ -114,9 +127,12 @@ class SegmentedControl: UIControl {
         }
     }
     
-    func onButtonTap(sender: UIButton) {
+    @objc func onButtonTap(sender: UIButton) {
         let index = sender.tag
-        
+        selectIndex(index)
+    }
+    
+    func selectIndex(_ index: Int) {
         selectedIndex.value = index
         sendActions(for: .valueChanged)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {

@@ -39,5 +39,5 @@ class ForgotPasswordViewModel {
             }).disposed(by: disposeBag)
     }
     
-    private(set) lazy var submitButtonEnabled: Driver<Bool> = self.username.asDriver().map { $0.characters.count > 0 }
+    private(set) lazy var submitButtonEnabled: Driver<Bool> = self.username.asDriver().map { $0.count > 0 }
 }

@@ -28,9 +28,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5AC06D41E52238900BBA4ED"
-               BuildableName = "MobileTests.xctest"
-               BlueprintName = "MobileTests"
+               BlueprintIdentifier = "E8F62B31200924410077B3DA"
+               BuildableName = "ComEdUnitTests.xctest"
+               BlueprintName = "ComEdUnitTests"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -41,15 +41,26 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5AC06D41E52238900BBA4ED"
-               BuildableName = "MobileTests.xctest"
-               BlueprintName = "MobileTests"
+               BlueprintIdentifier = "E8F62B31200924410077B3DA"
+               BuildableName = "ComEdUnitTests.xctest"
+               BlueprintName = "ComEdUnitTests"
+               ReferencedContainer = "container:Mobile.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E8F62B0B2009207C0077B3DA"
+               BuildableName = "ComEdUITests.xctest"
+               BlueprintName = "ComEdUITests"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </TestableReference>

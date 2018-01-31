@@ -13,6 +13,7 @@ class BudgetBillingViewModel {
     let disposeBag = DisposeBag()
     
     private var billService: BillService
+    private var alertsService: AlertsService
 
     let accountDetail: AccountDetail!
     let currentEnrollment: Variable<Bool>!
@@ -20,9 +21,10 @@ class BudgetBillingViewModel {
     let unenrolling = Variable(false)
     let selectedUnenrollmentReason = Variable(-1)
     
-    required init(accountDetail: AccountDetail, billService: BillService) {
+    required init(accountDetail: AccountDetail, billService: BillService, alertsService: AlertsService) {
         self.accountDetail = accountDetail
         self.billService = billService
+        self.alertsService = alertsService
         
         let initialEnrollment = accountDetail.isBudgetBillEnrollment
         currentEnrollment = Variable(initialEnrollment)
@@ -52,8 +54,22 @@ class BudgetBillingViewModel {
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         billService.enrollBudgetBilling(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
-                onSuccess()
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                NotificationCenter.default.post(name: .DidChangeBudgetBillingEnrollment, object: self)
+                if Environment.sharedInstance.opco != .bge {
+                    self.alertsService.enrollBudgetBillingNotification(accountNumber: self.accountDetail.accountNumber)
+                        .observeOn(MainScheduler.instance)
+                        .subscribe(onNext: { _ in
+                            dLog("Enrolled in the budget billing push notification")
+                            onSuccess()
+                        }, onError: { error in
+                            dLog("Failed to enroll in the budget billing push notification")
+                            onSuccess()
+                        }).disposed(by: self.disposeBag)
+                } else {
+                    onSuccess()
+                }
             }, onError: { error in
                 onError(error.localizedDescription)
             })
@@ -64,6 +80,7 @@ class BudgetBillingViewModel {
         billService.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: getReasonString(forIndex: selectedUnenrollmentReason.value))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
+                NotificationCenter.default.post(name: .DidChangeBudgetBillingEnrollment, object: self)
                 onSuccess()
             }, onError: { error in
                 onError(error.localizedDescription)
@@ -88,9 +105,9 @@ class BudgetBillingViewModel {
         case .bge:
             return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.", comment: "")
         case .comEd:
-            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. After 12 months, any credit/debit balances will be included in the calculation for the following year’s Budget Billing payment.", comment: "")
+            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. The ComEd app will be automatically set to notify you when your billing amount is adjusted (and you can modify your alert preferences at any time). After 12 months, any credit/debit balances will be included in the calculation for the following year’s Budget Billing payment.", comment: "")
         case .peco:
-            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage.", comment: "")
+            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. The PECO app will be automatically set to notify you when your billing amount is adjusted (and you can modify your alert preferences at any time). After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage.", comment: "")
         }
     }
     
@@ -99,17 +116,14 @@ class BudgetBillingViewModel {
         case .bge:
             return NSLocalizedString("Budget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
         case .comEd:
-            if accountDetail.hasElectricSupplier && accountDetail.isDualBillOption {
+            if accountDetail.isSupplier && accountDetail.isDualBillOption {
                 return NSLocalizedString("Budget Billing is available for your ComEd Delivery charges. Electric Supply charges from your Retail Electric Supplier will not be included in your Budget Billing plan.", comment: "")
             }
         case .peco:
-            if accountDetail.hasElectricSupplier && accountDetail.isDualBillOption {
+            if accountDetail.isSupplier && accountDetail.isDualBillOption {
                 return NSLocalizedString("Budget billing option only includes PECO charges. Energy Supply charges are billed by your chosen generation provider.", comment: "")
-            } else if let budgetBillMessage = accountDetail.budgetBillMessage {
-                if budgetBillMessage.contains("Your account has not yet been open for a year") {
-                    return NSLocalizedString("PECO bases the monthly budget billing amount on your average bill over the past 12 months. Your account has not yet been open for a year. Therefore, your monthly budget billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your budget billing amount.", comment: "")
-
-                }
+            } else if let budgetBillMessage = accountDetail.budgetBillMessage, budgetBillMessage.contains("PECO bases the monthly") {
+                return NSLocalizedString("PECO bases the monthly Budget Billing amount on your average bill over the past 12 months. If your account has not yet been open for a year, your monthly Budget Billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your Budget Billing amount.", comment: "")
             }
         }
         return nil

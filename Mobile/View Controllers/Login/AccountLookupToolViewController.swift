@@ -106,11 +106,11 @@ class AccountLookupToolViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSearchPress() {
+    @objc func onSearchPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -132,7 +132,7 @@ class AccountLookupToolViewController: UIViewController {
         })
     }
     
-    func onIndentifierKeyboardDonePress() {
+    @objc func onIndentifierKeyboardDonePress() {
         viewModel.searchButtonEnabled.asObservable()
             .take(1)
             .asDriver(onErrorDriveWith: .empty())
@@ -147,16 +147,20 @@ class AccountLookupToolViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -209,7 +213,7 @@ extension AccountLookupToolViewController: UITextFieldDelegate {
             return false
         } else if textField == identifierTextField?.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         }
         
         return true

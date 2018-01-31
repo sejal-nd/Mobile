@@ -72,7 +72,9 @@ struct BillingHistoryItem: Mappable {
         flagAllowEdits = map.optionalFrom("flag_allow_edits") ?? true
         encryptedPaymentId = map.optionalFrom("encrypted_payment_id")
         isFuture = calculateIsFuture(dateToCompare: date)
-        if status == BillingHistoryProperties.StatusPending.rawValue || status == BillingHistoryProperties.StatusProcessing.rawValue {
+        if status == BillingHistoryProperties.StatusPending.rawValue ||
+            status == BillingHistoryProperties.StatusProcessing.rawValue ||
+            status == BillingHistoryProperties.StatusProcessed.rawValue {
             isFuture = true
         } else if status == BillingHistoryProperties.StatusCanceled.rawValue || status == BillingHistoryProperties.StatusCANCELLED.rawValue {
             // EM-2638: Cancelled payments should always be in the past
@@ -85,7 +87,26 @@ struct BillingHistoryItem: Mappable {
     
     func dateString() -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM-dd-yyyy"
         return dateFormatter.string(from: date)
     }
+}
+
+enum BillingHistoryProperties: String {
+    case TypeBilling = "billing"
+    case TypePayment = "payment"
+    case StatusCanceled = "canceled"
+    case StatusCANCELLED = "CANCELLED" //PECO
+    case StatusPosted = "Posted"
+    case StatusFailed = "failed"
+    case StatusPending = "Pending" //TODO: need to confirm case
+    case StatusProcessing = "processing"
+    case StatusProcessed = "processed"
+    case StatusScheduled = "scheduled"
+    case StatusSCHEDULED = "SCHEDULED" //PECO
+    case PaymentMethod_S = "S"
+    case PaymentMethod_R = "R"
+    case PaymentTypeSpeedpay = "SPEEDPAY"
+    case PaymentTypeCSS = "CSS"
 }

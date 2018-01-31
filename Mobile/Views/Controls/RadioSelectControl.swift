@@ -52,7 +52,6 @@ class RadioSelectControl: ButtonControl {
 		}
 	}
     
-	
 	override func commonInit() {
 		super.commonInit()
 		createSubviews()
@@ -62,45 +61,56 @@ class RadioSelectControl: ButtonControl {
 	func createSubviews() {
 		selectedImageView = UIImageView(image: #imageLiteral(resourceName: "ic_radiobutton_deselected"))
 		selectedImageView.translatesAutoresizingMaskIntoConstraints = false
-		selectedImageView.setContentCompressionResistancePriority(999, for: .horizontal)
-		selectedImageView.setContentCompressionResistancePriority(999, for: .vertical)
-		selectedImageView.setContentHuggingPriority(999, for: .horizontal)
-		selectedImageView.setContentHuggingPriority(999, for: .vertical)
+		selectedImageView.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+		selectedImageView.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+		selectedImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+		selectedImageView.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
 		
 		titleLabel = UILabel(frame: .zero)
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
-		titleLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-		titleLabel.setContentCompressionResistancePriority(999, for: .vertical)
-		titleLabel.setContentHuggingPriority(751, for: .horizontal)
-		titleLabel.setContentHuggingPriority(999, for: .vertical)
-        titleLabel.numberOfLines = 0
+		titleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 998), for: .horizontal)
+		titleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+		titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+		titleLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.textColor = .blackText
+        titleLabel.numberOfLines = 2
 		
 		detailButton = UIButton(type: .system)
 		detailButton.translatesAutoresizingMaskIntoConstraints = false
 		detailButton.setTitleColor(.actionBlue, for: .normal)
-		detailButton.titleLabel?.font = SystemFont.regular.of(textStyle: .headline)
-		detailButton.setContentCompressionResistancePriority(999, for: .horizontal)
-		detailButton.setContentCompressionResistancePriority(999, for: .vertical)
-		detailButton.setContentHuggingPriority(999, for: .horizontal)
-		detailButton.setContentHuggingPriority(999, for: .vertical)
+		detailButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .headline)
+        detailButton.titleLabel?.numberOfLines = 2
+		detailButton.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+		detailButton.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
+		detailButton.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .horizontal)
+		detailButton.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
+        
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, detailButton]).usingAutoLayout()
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = 4
+        let tgr = UITapGestureRecognizer(target: self, action: #selector(onStackViewTap))
+        stackView.addGestureRecognizer(tgr)
         
 		addSubview(selectedImageView)
-		addSubview(titleLabel)
-		addSubview(detailButton)
+		addSubview(stackView)
 		
 		selectedImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
-		titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
-		detailButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
-		
+		stackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+
 		selectedImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-		titleLabel.leadingAnchor.constraint(equalTo: selectedImageView.trailingAnchor, constant: 10).isActive = true
-		detailButton.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 4).isActive = true
-		detailButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+		stackView.leadingAnchor.constraint(equalTo: selectedImageView.trailingAnchor, constant: 10).isActive = true
+		stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
 		
 		detailButton.isHidden = true
         
         accessibilitySetup()
 	}
+    
+    @objc func onStackViewTap() {
+        sendActions(for: .touchUpInside)
+    }
     
     private func accessibilitySetup() {
         isAccessibilityElement = true

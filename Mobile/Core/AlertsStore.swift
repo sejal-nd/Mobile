@@ -1,0 +1,70 @@
+//
+//  AlertsStore.swift
+//  Mobile
+//
+//  Created by Marc Shilling on 11/10/17.
+//  Copyright © 2017 Exelon Corporation. All rights reserved.
+//
+
+final class AlertsStore {
+    static let sharedInstance = AlertsStore()
+    
+    var alerts: [String: [PushNotification]] = [:]
+    
+    // Private init protects against another instance being accidentally instantiated
+    private init() {
+        if let storedAlerts = NSKeyedUnarchiver.unarchiveObject(withFile: self.filePath) as? [String: [PushNotification]] {
+            self.alerts = storedAlerts
+        }
+    }
+    
+    var filePath: String {
+        let manager = FileManager.default
+        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        return (url!.appendingPathComponent("AlertsStore").path)
+    }
+    
+    func savePushNotification(_ notification: PushNotification) {
+        // BGE notifications are at the user level, so store their username as the key
+        if Environment.sharedInstance.opco == .bge {
+            if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername) {
+                if let array = alerts[loggedInUsername] {
+                    var arrayCopy = array
+                    arrayCopy.insert(notification, at: 0)
+                    alerts[loggedInUsername] = arrayCopy
+                } else {
+                    let newArray = [notification]
+                    alerts[loggedInUsername] = newArray
+                }
+            }
+        } else { // ComEd/PECO notifications are at the account level, so store their account number as the key
+            for accountNumber in notification.accountNumbers {
+                if let array = alerts[accountNumber] {
+                    var arrayCopy = array
+                    arrayCopy.insert(notification, at: 0)
+                    alerts[accountNumber] = arrayCopy
+                } else {
+                    let newArray = [notification]
+                    alerts[accountNumber] = newArray
+                }
+            }
+        }
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
+            NSKeyedArchiver.archiveRootObject(self.alerts, toFile: self.filePath)
+        }
+    }
+    
+    func getAlerts(forAccountNumber accountNumber: String) -> [PushNotification] {
+        if Environment.sharedInstance.opco == .bge {
+            if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername), let notificationsArray = alerts[loggedInUsername] {
+                return notificationsArray
+            }
+        } else {
+            if let notificationsArray = alerts[accountNumber] {
+                return notificationsArray
+            }
+        }
+        return []
+    }
+}

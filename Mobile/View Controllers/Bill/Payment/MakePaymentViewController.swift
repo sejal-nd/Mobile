@@ -82,7 +82,7 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var walletFooterView: UIView!
     @IBOutlet weak var walletFooterLabel: UILabel!
     
-    @IBOutlet weak var stickyPaymentFooterHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var stickyPaymentFooterStackView: UIStackView!
     @IBOutlet weak var stickyPaymentFooterView: UIView!
     @IBOutlet weak var stickyPaymentFooterTextContainer: UIView!
     @IBOutlet weak var stickyPaymentFooterPaymentLabel: UILabel!
@@ -133,11 +133,13 @@ class MakePaymentViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         // Inline bank fields
+        addBankContainerView.isHidden = true
         addBankFormView.delegate = self
         addBankFormView.viewModel.paymentWorkflow.value = true
         bindInlineBankAccessibility()
         
         // Inline card fields
+        addCardContainerView.isHidden = true
         addCardFormView.delegate = self
         addCardFormView.viewModel.paymentWorkflow.value = true
         bindInlineCardAccessibility()
@@ -156,7 +158,7 @@ class MakePaymentViewController: UIViewController {
         paymentAccountLabel.textColor = .deepGray
         paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        paymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        paymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         paymentAccountButton.backgroundColorOnPress = .softGray
         paymentAccountAccountNumberLabel.textColor = .blackText
         paymentAccountAccountNumberLabel.font = SystemFont.medium.of(textStyle: .headline)
@@ -214,7 +216,7 @@ class MakePaymentViewController: UIViewController {
         paymentDateTextLabel.textColor = .deepGray
         paymentDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        paymentDateButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        paymentDateButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
         paymentDateFixedDateLabel.textColor = .blackText
         paymentDateFixedDateLabel.font = SystemFont.semibold.of(textStyle: .title1)
@@ -224,7 +226,7 @@ class MakePaymentViewController: UIViewController {
         addBankAccountFeeLabel.textColor = .blackText
         addBankAccountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         addBankAccountFeeLabel.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
-        addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addBankAccountButton.backgroundColorOnPress = .softGray
         addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
@@ -238,7 +240,7 @@ class MakePaymentViewController: UIViewController {
             addCreditCardFeeLabel.text = String(format: NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.", comment: ""), accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
             break
         }
-        addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addCreditCardButton.backgroundColorOnPress = .softGray
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
         
@@ -255,7 +257,9 @@ class MakePaymentViewController: UIViewController {
         
         stickyPaymentFooterView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         stickyPaymentFooterPaymentLabel.textColor = .blackText
+        stickyPaymentFooterPaymentLabel.font = SystemFont.semibold.of(textStyle: .title1)
         stickyPaymentFooterFeeLabel.textColor = .deepGray
+        stickyPaymentFooterFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -270,7 +274,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
-        }, onError: { [weak self] _ in
+        }, onError: { [weak self] in
             guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
@@ -302,9 +306,9 @@ class MakePaymentViewController: UIViewController {
         cardIOViewController.navigationBarTintColor = .primaryColor
         cardIOViewController.navigationBar.isTranslucent = false
         cardIOViewController.navigationBar.tintColor = .white
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: OpenSans.bold.of(size: 18)
         ]
         cardIOViewController.navigationBar.titleTextAttributes = titleDict
     }
@@ -312,13 +316,22 @@ class MakePaymentViewController: UIViewController {
     func bindViewHiding() {
         // Loading
         viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowContent.map(!).drive(scrollView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowContent.map(!).drive(stickyPaymentFooterView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Inline Bank/Card
-        viewModel.inlineBank.asDriver().map(!).drive(addBankContainerView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.inlineCard.asDriver().map(!).drive(addCardContainerView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.inlineBank.asDriver().drive(onNext: { [weak self] inlineBank in
+            UIView.animate(withDuration: 0.33, animations: {
+                self?.addBankContainerView.isHidden = !inlineBank
+            })
+        }).disposed(by: disposeBag)
+        
+        viewModel.inlineCard.asDriver().drive(onNext: { [weak self] inlineCard in
+            UIView.animate(withDuration: 0.33, animations: {
+                self?.addCardContainerView.isHidden = !inlineCard
+            })
+        }).disposed(by: disposeBag)
+        
         viewModel.shouldShowInlinePaymentDivider.map(!).drive(inlinePaymentDividerLine.rx.isHidden).disposed(by: disposeBag)
         
         // Active Severance Label
@@ -361,11 +374,12 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowWalletFooterView.map(!).drive(walletFooterView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWalletFooterView.drive(walletFooterSpacerView.rx.isHidden).disposed(by: disposeBag)
         
-        // Sticky Footer
         viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
-            self?.stickyPaymentFooterHeightConstraint.constant = shouldShow ? 80 : 0
-            // For some reason, just hiding stickyPaymentFooterView was not enough to hide the label...
-            self?.stickyPaymentFooterTextContainer.isHidden = !shouldShow
+            self?.stickyPaymentFooterView.isHidden = !shouldShow
+            
+            // Needed for correct sizing
+            self?.stickyPaymentFooterStackView.setNeedsLayout()
+            self?.stickyPaymentFooterStackView.layoutIfNeeded()
         }).disposed(by: disposeBag)
     }
     
@@ -382,10 +396,12 @@ class MakePaymentViewController: UIViewController {
         viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).disposed(by: disposeBag)
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountAccountNumberLabel.rx.text).disposed(by: disposeBag)
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.showSelectedWalletItemNickname.not().drive(paymentAccountNicknameLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.selectedWalletItemA11yLabel.drive(paymentAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.selectedWalletItemImage.drive(fixedPaymentAccountImageView.rx.image).disposed(by: disposeBag)
         viewModel.selectedWalletItemMaskedAccountString.drive(fixedPaymentAccountAccountNumberLabel.rx.text).disposed(by: disposeBag)
         viewModel.selectedWalletItemNickname.drive(fixedPaymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.showSelectedWalletItemNickname.not().drive(fixedPaymentAccountNicknameLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.selectedWalletItemA11yLabel.drive(fixedPaymentAccountView.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // CVV (BGE credit card only)
@@ -482,20 +498,20 @@ class MakePaymentViewController: UIViewController {
             addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
                 .withLatestFrom(viewModel.addBankFormViewModel.routingNumber.asDriver())
                 .filter { !$0.isEmpty }
-                .toVoid(),
+                .map(to: ()),
             
             addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
             
             addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
                 .withLatestFrom(viewModel.addBankFormViewModel.accountNumber.asDriver())
                 .filter { !$0.isEmpty }
-                .toVoid(),
+                .map(to: ()),
             
             addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
             
-            viewModel.addBankFormViewModel.confirmAccountNumberMatches.toVoid(),
+            viewModel.addBankFormViewModel.confirmAccountNumberMatches.map(to: ()),
             
-            viewModel.addBankFormViewModel.nicknameErrorString.toVoid()
+            viewModel.addBankFormViewModel.nicknameErrorString.map(to: ())
             )
             .drive(onNext: { [weak self] in
                 self?.accessibilityErrorLabel()
@@ -513,7 +529,7 @@ class MakePaymentViewController: UIViewController {
                      addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
                      addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
                      addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
-                     viewModel.addCardFormViewModel.nicknameErrorString.toVoid())
+                     viewModel.addCardFormViewModel.nicknameErrorString.map(to: ()))
             .drive(onNext: { [weak self] in
                 self?.accessibilityErrorLabel()
             }).disposed(by: disposeBag)
@@ -543,11 +559,11 @@ class MakePaymentViewController: UIViewController {
         if message.isEmpty {
             nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
+            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
         }
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         var shouldShowOneTouchPayWarning = false
@@ -615,16 +631,16 @@ class MakePaymentViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - stickyPaymentFooterHeightConstraint.constant, 0)
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -649,7 +665,7 @@ class MakePaymentViewController: UIViewController {
 
 extension MakePaymentViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.characters.count == 0 { // Allow backspace
+        if string.count == 0 { // Allow backspace
             return true
         }
         
@@ -662,14 +678,14 @@ extension MakePaymentViewController: UITextFieldDelegate {
             
             if numDec.count > 2 {
                 return false
-            } else if numDec.count == 2 && numDec[1].characters.count > 2 {
+            } else if numDec.count == 2 && numDec[1].count > 2 {
                 return false
             }
             
             let containsDecimal = newString.contains(".")
             let containsBackslash = newString.contains("\\")
             
-            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.characters.count <= 8 && !containsBackslash
+            return (CharacterSet.decimalDigits.isSuperset(of: characterSet) || containsDecimal) && newString.count <= 8 && !containsBackslash
         }
         return true
     }
@@ -692,49 +708,56 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        let today = Calendar.current.startOfDay(for: Date())
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
+        
+        let today = Calendar.opCo.startOfDay(for: Date())
         if Environment.sharedInstance.opco == .bge {
             let minDate: Date
-            if Calendar.opCoTime.component(.hour, from: Date()) >= 20 {
-                minDate = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+            if Calendar.opCo.component(.hour, from: Date()) >= 20 {
+                minDate = Calendar.opCo.date(byAdding: .day, value: 1, to: today)!
             } else {
                 minDate = today
             }
-            let todayPlus90 = Calendar.current.date(byAdding: .day, value: 90, to: today)!
-            let todayPlus180 = Calendar.current.date(byAdding: .day, value: 180, to: today)!
+            guard let todayPlus90 = Calendar.opCo.date(byAdding: .day, value: 90, to: today),
+                let todayPlus180 = Calendar.opCo.date(byAdding: .day, value: 180, to: today) else {
+                    return false
+            }
             if viewModel.inlineCard.value {
-                return date >= minDate && date <= todayPlus90
+                return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus90
             } else if viewModel.inlineBank.value {
-                return date >= minDate && date <= todayPlus180
+                return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus180
             } else if let walletItem = viewModel.selectedWalletItem.value {
                 if walletItem.bankOrCard == .card {
-                    return date >= minDate && date <= todayPlus90
+                    return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus90
                 } else {
-                    return date >= minDate && date <= todayPlus180
+                    return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus180
                 }
             }
         } else {
-            if billingHistoryItem != nil && date == today  { // Modifying payment on ComEd/PECO disables changing date to today
+            if billingHistoryItem != nil && opCoTimeDate == today  { // Modifying payment on ComEd/PECO disables changing date to today
                 return false
             }
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
-                let startOfDueDate = Calendar.current.startOfDay(for: dueDate)
+                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
                 if Environment.sharedInstance.opco == .peco {
-                    let isInWorkdaysArray = viewModel.workdayArray.contains(date)
-                    return date >= today && date <= startOfDueDate && isInWorkdaysArray
+                    let isInWorkdaysArray = viewModel.workdayArray.contains(opCoTimeDate)
+                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate && isInWorkdaysArray
                 } else {
-                    return date >= today && date <= startOfDueDate
+                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate
                 }
             }
         }
         
         // Should never get called?
-        return date >= today
+        return opCoTimeDate >= today
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
-        viewModel.paymentDate.value = Calendar.current.isDateInToday(date) ? Date() : date
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
+        viewModel.paymentDate.value = Calendar.current.isDateInToday(opCoTimeDate) ? Date() : opCoTimeDate
     }
 }
 
@@ -752,7 +775,7 @@ extension MakePaymentViewController: AddBankFormViewDelegate {
 
 extension MakePaymentViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
-        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
         Analytics().logScreenView(AnalyticsPageView.AddWalletCameraOffer.rawValue)
         if cameraAuthorizationStatus == .denied || cameraAuthorizationStatus == .restricted {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)

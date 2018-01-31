@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialModalViewController" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="nextButton" destination="AAG-Ri-eoo" id="GZl-Sx-Of6"/>
                 <outlet property="pageControl" destination="wvI-kX-bVu" id="4Lz-n2-kaT"/>
                 <outlet property="pagerContent" destination="NMd-vo-4jP" id="nxf-Qd-wqQ"/>
-                <outlet property="rootView" destination="TqM-X4-uPx" id="BJb-AX-aLB"/>
                 <outlet property="scrollView" destination="u0w-DH-xDF" id="Xw7-Oi-RSx"/>
                 <outlet property="view" destination="TqM-X4-uPx" id="hDs-7O-kyz"/>
                 <outlet property="xButton" destination="fCJ-x3-N13" id="jJ3-fi-nzP"/>

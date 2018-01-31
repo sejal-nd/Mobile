@@ -187,7 +187,7 @@ extension WalletService {
                                     //
                                     switch (result) {
                                     case ServiceResult.Success:
-                                        observer.onNext()
+                                        observer.onNext(())
                                         observer.onCompleted()
                                             
                                     case ServiceResult.Failure(let err):
@@ -207,7 +207,7 @@ extension WalletService {
                                      completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                     
                 case ServiceResult.Failure(let err):
@@ -226,7 +226,7 @@ extension WalletService {
             self.setOneTouchPayItem(walletItemId: walletItemId, walletId: walletId, customerId: customerId, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                     
                 case ServiceResult.Failure(let err):
@@ -243,7 +243,7 @@ extension WalletService {
             self.removeOneTouchPayItem(customerId: customerId, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                     
                 case ServiceResult.Failure(let err):

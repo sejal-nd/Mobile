@@ -56,6 +56,9 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var convenienceFeeContainer: UIView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
+    @IBOutlet weak var a11yTutorialButtonContainer: UIView!
+    @IBOutlet weak var a11yTutorialButton: UIButton!
+    
     @IBOutlet weak var oneTouchSliderContainer: UIView!
     @IBOutlet weak var oneTouchSlider: OneTouchSlider!
     @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
@@ -81,6 +84,8 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var billNotReadyLabel: UILabel!
     @IBOutlet weak var errorStack: UIStackView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var customErrorView: UIView!
+    @IBOutlet weak var customErrorDetailLabel: UILabel!
     
     let tutorialTap = UITapGestureRecognizer()
     let tutorialSwipe = UISwipeGestureRecognizer()
@@ -122,6 +127,11 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
         
+        a11yTutorialButton.setTitleColor(.actionBlue, for: .normal)
+        a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        a11yTutorialButton.titleLabel?.text = NSLocalizedString("View Tutorial", comment: "")
+        
+        dueAmountAndDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         dueAmountAndDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
@@ -146,6 +156,11 @@ class HomeBillCardView: UIView {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
+        customErrorDetailLabel.font = OpenSans.regular.of(textStyle: .title1)
+        customErrorDetailLabel.setLineHeight(lineHeight: 26)
+        customErrorDetailLabel.textAlignment = .center
+        customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to billing information. " +
+            "Access your account on our responsive website.", comment: "")
         
         // Accessibility
         alertImageView.isAccessibilityElement = true
@@ -176,7 +191,12 @@ class HomeBillCardView: UIView {
             .drive(onNext: { _ in Analytics().logScreenView(AnalyticsPageView.CheckBalanceError.rawValue) })
             .disposed(by: bag)
         
-        viewModel.showErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
+        Driver.combineLatest(viewModel.showErrorState, viewModel.showCustomErrorState)
+            .map { $0 && !$1 }
+            .not()
+            .drive(errorStack.rx.isHidden)
+            .disposed(by: bag)
+        viewModel.showCustomErrorState.not().drive(customErrorView.rx.isHidden).disposed(by: bag)
         
         Driver.combineLatest(viewModel.billNotReady.startWith(false), viewModel.showErrorState)
             .map { $0 || $1 }
@@ -201,6 +221,10 @@ class HomeBillCardView: UIView {
         dueAmountAndDateTooltip.isHidden = !viewModel.showDueAmountAndDateTooltip
         viewModel.showBankCreditButton.not().drive(bankCreditNumberContainer.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.asObservable().subscribe(onNext: { [weak self] show in
+            let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
+            self?.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
+        }).disposed(by: bag)
         viewModel.showConvenienceFee.not().drive(convenienceFeeContainer.rx.isHidden).disposed(by: bag)
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
@@ -239,8 +263,8 @@ class HomeBillCardView: UIView {
         // Actions
         oneTouchSlider.didFinishSwipe
             .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV))
-            .filter { !($0 || $1 || Environment.sharedInstance.opco == .bge) }
-            .toVoid()
+            .filter { !$0 && !$1 }
+            .map(to: ())
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
             .disposed(by: bag)
@@ -249,6 +273,19 @@ class HomeBillCardView: UIView {
         oneTouchSliderContainer.removeGestureRecognizer(tutorialSwipe)
         oneTouchSliderContainer.addGestureRecognizer(tutorialTap)
         oneTouchSliderContainer.addGestureRecognizer(tutorialSwipe)
+        
+        Observable.merge(NotificationCenter.default.rx.notification(.UIAccessibilitySwitchControlStatusDidChange, object: nil),
+                         NotificationCenter.default.rx.notification(Notification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil))
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                self.viewModel.showSaveAPaymentAccountButton.asObservable().single().subscribe(onNext: { show in
+                    let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
+                    self.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
+                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+                }).disposed(by: self.bag)
+            })
+            .disposed(by: bag)
     }
     
     // Actions
@@ -260,7 +297,7 @@ class HomeBillCardView: UIView {
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
             self?.oneTouchSlider.reset(animated: true)
-        }).toVoid()
+        }).map(to: ())
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
@@ -285,7 +322,7 @@ class HomeBillCardView: UIView {
 
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
                 LoadingView.show(animated: true)
-                self?.viewModel.submitOneTouchPay.onNext()
+                self?.viewModel.submitOneTouchPay.onNext(())
             })
             return alertController
     }
@@ -301,7 +338,7 @@ class HomeBillCardView: UIView {
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
                     action -> Void in
-                    if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                    if let url = URL(string: "tel://\(errMessage[phoneRange]))"), UIApplication.shared.canOpenURL(url) {
                         if #available(iOS 10, *) {
                             UIApplication.shared.open(url)
                         } else {
@@ -326,29 +363,11 @@ class HomeBillCardView: UIView {
         })
         alertController2.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
             LoadingView.show(animated: true)
-            self?.viewModel.submitOneTouchPay.onNext()
+            self?.viewModel.submitOneTouchPay.onNext(())
             observer.onCompleted()
         })
         return alertController2
     }
-    
-    private(set) lazy var oneTouchSliderBGELegalAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
-        .withLatestFrom(self.viewModel.promptForCVV)
-        .asObservable()
-        .filter { !$0 && Environment.sharedInstance.opco == .bge }
-        .flatMap { [weak self] _ in
-            Observable<UIViewController>.create { [weak self] observer in
-                guard let `self` = self else {
-                    observer.onCompleted()
-                    return Disposables.create()
-                }
-                let alert = self.oneTouchBGELegalAlert(observer: observer)
-                observer.onNext(alert)
-                return Disposables.create()
-            }
-        }
-        .asDriver(onErrorDriveWith: .empty())
-    
     
     private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
         .withLatestFrom(self.viewModel.promptForCVV)
@@ -393,7 +412,7 @@ class HomeBillCardView: UIView {
                 
                 return Disposables.create()
                 }
-                .do(onCompleted: { [weak self] _ in
+                .do(onCompleted: { [weak self] in
                     self?.viewModel.cvv2.value = nil
                 })
         }
@@ -408,10 +427,10 @@ class HomeBillCardView: UIView {
             return alertController
     }
     
-    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver.merge(self.tutorialTap.rx.event.asDriver().mapTo(()), self.tutorialSwipe.rx.event.asDriver().mapTo(()))
+    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver.merge(self.tutorialTap.rx.event.asDriver().map(to: ()), self.tutorialSwipe.rx.event.asDriver().map(to: ()), self.a11yTutorialButton.rx.tap.asDriver())
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
-        .mapTo(())
+        .map(to: ())
         .map(OneTouchTutorialViewController.init)
     
     private lazy var bgeasyViewController: Driver<UIViewController> = self.automaticPaymentInfoButton.rx.touchUpInside.asObservable()
@@ -425,7 +444,6 @@ class HomeBillCardView: UIView {
                                                                                         self.paymentTACModal,
                                                                                         self.oneTouchPayErrorAlert,
                                                                                         self.oneTouchSliderCVV2Alert,
-                                                                                        self.oneTouchSliderBGELegalAlert,
                                                                                         self.tutorialViewController,
                                                                                         self.bgeasyViewController)
     
@@ -493,7 +511,7 @@ extension HomeBillCardView: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
         
-        if CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4 {
+        if CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4 {
             viewModel.cvv2.value = newString
             return true
         } else {

@@ -37,17 +37,19 @@ class UnauthenticatedUserViewController: UIViewController {
         animationView.contentMode = .scaleAspectFill
         animationView.loopAnimation = true
 
-        // put the animation at the center top screen
-        var center = lottieView.center
-        center.x = self.view.center.x;
-        animationView.center = center;
+        lottieView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
         lottieView.addSubview(animationView)
+        
+        animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         animationView.play()
 
         accessibilitySetup()
     }
 
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 

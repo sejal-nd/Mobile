@@ -83,8 +83,9 @@ class AddBankFormView: UIView {
         confirmAccountNumberTextField.textField.delegate = self
         confirmAccountNumberTextField.setKeyboardType(.numberPad)
         
-        saveToWalletLabel.textColor = .deepGray
+        saveToWalletLabel.textColor = .blackText
         saveToWalletLabel.text = NSLocalizedString("Save to My Wallet", comment: "")
+        saveToWalletLabel.font = SystemFont.regular.of(textStyle: .headline)
         byNotSavingLabel.textColor = .blackText
         byNotSavingLabel.font = OpenSans.regular.of(textStyle: .footnote)
         byNotSavingLabel.text = NSLocalizedString("By not saving this payment account, you will only be eligible to make an instant payment.", comment: "")
@@ -96,6 +97,7 @@ class AddBankFormView: UIView {
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         oneTouchPayLabel.textColor = .blackText
         oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
+        oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         if Environment.sharedInstance.opco == .bge {
             saveToWalletStackView.isHidden = true // BGE bank payments must be saved
@@ -215,16 +217,16 @@ extension AddBankFormView: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
         if textField == routingNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 9
         } else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 17
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 17
         }
         return true
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         if textField == routingNumberTextField.textField {
-            if textField.text?.characters.count == 9 {
+            if textField.text?.count == 9 {
                 accountNumberTextField.textField.becomeFirstResponder()
             }
         }

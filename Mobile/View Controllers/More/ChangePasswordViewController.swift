@@ -42,7 +42,7 @@ class ChangePasswordViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), fingerprintService: ServiceFactory.createFingerprintService())
+    let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService())
     
     lazy var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
     lazy var submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
@@ -159,7 +159,7 @@ class ChangePasswordViewController: UIViewController {
         if message.isEmpty {
             submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
+            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
         }
     }
     
@@ -171,9 +171,9 @@ class ChangePasswordViewController: UIViewController {
             navigationController?.navigationBar.barTintColor = .primaryColor
             navigationController?.navigationBar.isTranslucent = false
             
-            let titleDict: [String: Any] = [
-                NSForegroundColorAttributeName: UIColor.white,
-                NSFontAttributeName: OpenSans.bold.of(size: 18)
+            let titleDict: [NSAttributedStringKey: Any] = [
+                .foregroundColor: UIColor.white,
+                .font: OpenSans.bold.of(size: 18)
             ]
             navigationController?.navigationBar.titleTextAttributes = titleDict
             
@@ -185,11 +185,11 @@ class ChangePasswordViewController: UIViewController {
         Analytics().logScreenView(AnalyticsPageView.ChangePasswordOffer.rawValue)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -199,7 +199,7 @@ class ChangePasswordViewController: UIViewController {
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             self.navigationController?.popViewController(animated: true)
             Analytics().logScreenView(AnalyticsPageView.ChangePasswordDone.rawValue)
-        }, onPasswordNoMatch: { [weak self] _ in
+        }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
             guard let `self` = self else { return }
             self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
@@ -294,16 +294,20 @@ class ChangePasswordViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -314,10 +318,10 @@ extension ChangePasswordViewController: UITextFieldDelegate {
     
     // Don't allow whitespace entry in the newPasswordTextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.characters.count == 0 { // Allow backspace
+        if string.count == 0 { // Allow backspace
             return true
         }
-        if string.trimmingCharacters(in: .whitespacesAndNewlines).characters.count == 0 {
+        if string.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             return false
         }
         return true

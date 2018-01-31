@@ -10,7 +10,7 @@ import UIKit
 
 class MainBaseNavigationController: UINavigationController {
     
-    var storyboardName: String! // Defined as runtime attribute in Main.storyboard
+    @objc var storyboardName: String! // Defined as runtime attribute in Main.storyboard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +34,9 @@ class MainBaseNavigationController: UINavigationController {
         navigationBar.setBackgroundImage(nil, for: .default)
         navigationBar.shadowImage = nil
         
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.blackText,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.blackText,
+            .font: OpenSans.bold.of(size: 18)
         ]
         navigationBar.titleTextAttributes = titleDict
         
@@ -59,9 +59,9 @@ class MainBaseNavigationController: UINavigationController {
             navigationBar.shadowImage = nil
         }
         
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: OpenSans.bold.of(size: 18)
         ]
         navigationBar.titleTextAttributes = titleDict
         

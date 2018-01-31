@@ -72,7 +72,7 @@ class BudgetBillingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = BudgetBillingViewModel(accountDetail: accountDetail, billService: ServiceFactory.createBillService())
+        viewModel = BudgetBillingViewModel(accountDetail: accountDetail, billService: ServiceFactory.createBillService(), alertsService: ServiceFactory.createAlertsService())
         
         title = NSLocalizedString("Budget Billing", comment: "")
         
@@ -98,6 +98,7 @@ class BudgetBillingViewController: UIViewController {
         
         learnMoreAboutBudgetBillingLabel.textColor = .actionBlue
         learnMoreAboutBudgetBillingLabel.text = NSLocalizedString("Learn more about Budget Billing", comment: "")
+        learnMoreAboutBudgetBillingLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
         yourPaymentWouldBeLabel.font = SystemFont.medium.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .deepGray
@@ -117,11 +118,13 @@ class BudgetBillingViewController: UIViewController {
         }
         
         enrollmentLabel.textColor = .blackText
-        enrollmentLabel.font = OpenSans.regular.of(size: 16)
+        enrollmentLabel.font = OpenSans.regular.of(textStyle: .headline)
         enrollmentLabel.text = NSLocalizedString("Budget Billing Enrollment Status", comment: "")
+        enrollmentLabel.isAccessibilityElement = false
         
         viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).disposed(by: disposeBag)
         enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).disposed(by: disposeBag)
+        enrollSwitch.accessibilityLabel = enrollmentLabel.text
         
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
@@ -185,6 +188,7 @@ class BudgetBillingViewController: UIViewController {
         footerView.backgroundColor = .softGray
         bgeFooterView.backgroundColor = .softGray
         footerLabel.textColor = .blackText
+        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -232,16 +236,13 @@ class BudgetBillingViewController: UIViewController {
                     self.navigationItem.rightBarButtonItem = nil
                     self.enrollSwitch.isHidden = true // USPP Participants cannot unenroll
                 }
-                
             }
-            
-            }, onError: { [weak self] errMessage in
-                guard let `self` = self else { return }
-                self.scrollView.isHidden = true
-                self.loadingIndicator.isHidden = true
-                self.errorLabel.isHidden = false
+        }, onError: { [weak self] errMessage in
+            guard let `self` = self else { return }
+            self.scrollView.isHidden = true
+            self.loadingIndicator.isHidden = true
+            self.errorLabel.isHidden = false
         })
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -275,7 +276,7 @@ class BudgetBillingViewController: UIViewController {
         gradientLayer.frame = gradientView.frame
     }
         
-    func onCancelPress() {
+    @objc func onCancelPress() {
         if viewModel.enrolling.value || viewModel.unenrolling.value {
             let message = viewModel.enrolling.value ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
             let alertVc = UIAlertController(title: NSLocalizedString("Exit Budget Billing", comment: ""), message: message, preferredStyle: .alert)
@@ -289,7 +290,7 @@ class BudgetBillingViewController: UIViewController {
         }
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         if viewModel.enrolling.value {
             LoadingView.show()
             Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOffer.rawValue)

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -56,7 +57,7 @@
                             </constraints>
                         </view>
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6oj-e5-VEh" userLabel="Card Number View">
-                            <rect key="frame" x="29" y="99" width="317" height="60"/>
+                            <rect key="frame" x="29" y="96.5" width="317" height="60"/>
                             <subviews>
                                 <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jH3-TE-BZh" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -108,7 +109,7 @@
                             </constraints>
                         </view>
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljP-0Y-qxX" userLabel="Expiration Date View">
-                            <rect key="frame" x="29" y="198" width="317" height="99"/>
+                            <rect key="frame" x="29" y="192.5" width="317" height="99"/>
                             <subviews>
                                 <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Expiration Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZw-2E-5Jx">
                                     <rect key="frame" x="0.0" y="0.0" width="116.5" height="20.5"/>
@@ -148,7 +149,7 @@
                             </constraints>
                         </view>
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n6W-a1-4Qw" userLabel="CVV Zip View">
-                            <rect key="frame" x="29" y="336" width="317" height="60"/>
+                            <rect key="frame" x="29" y="328" width="317" height="60"/>
                             <subviews>
                                 <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVS-yv-NzF" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="129" height="60"/>
@@ -193,17 +194,17 @@
                             </constraints>
                         </view>
                         <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="lR0-wB-1Uc">
-                            <rect key="frame" x="29" y="435.5" width="317" height="78"/>
+                            <rect key="frame" x="29" y="424.5" width="317" height="97"/>
                             <subviews>
                                 <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4gK-pl-XhC">
-                                    <rect key="frame" x="0.0" y="0.0" width="317" height="31"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="317" height="50"/>
                                     <subviews>
-                                        <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAK-U0-5tb" customClass="Switch" customModule="BGE" customModuleProvider="target">
+                                        <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAK-U0-5tb" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                             <accessibility key="accessibilityConfiguration" label="Save to my wallet"/>
                                         </switch>
-                                        <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Save to My Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijN-0B-mFw">
-                                            <rect key="frame" x="61" y="0.5" width="129" height="19.5"/>
+                                        <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Save to My Wallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijN-0B-mFw">
+                                            <rect key="frame" x="61" y="0.5" width="256" height="19.5"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <bool key="isElement" value="NO"/>
                                             </accessibility>
@@ -214,15 +215,16 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="RAK-U0-5tb" secondAttribute="bottom" id="2gu-qb-U1O"/>
+                                        <constraint firstItem="ijN-0B-mFw" firstAttribute="top" secondItem="4gK-pl-XhC" secondAttribute="top" id="CsG-H9-9x5"/>
+                                        <constraint firstAttribute="bottom" secondItem="ijN-0B-mFw" secondAttribute="bottom" id="DJM-vD-lCL"/>
                                         <constraint firstItem="ijN-0B-mFw" firstAttribute="centerY" secondItem="RAK-U0-5tb" secondAttribute="centerY" id="ORh-AS-NMP"/>
-                                        <constraint firstItem="RAK-U0-5tb" firstAttribute="top" secondItem="4gK-pl-XhC" secondAttribute="top" id="Rmz-AS-Kkw"/>
                                         <constraint firstItem="RAK-U0-5tb" firstAttribute="leading" secondItem="4gK-pl-XhC" secondAttribute="leading" id="eLO-yp-u74"/>
+                                        <constraint firstAttribute="trailing" secondItem="ijN-0B-mFw" secondAttribute="trailing" id="gTF-iK-vOw"/>
                                         <constraint firstItem="ijN-0B-mFw" firstAttribute="leading" secondItem="RAK-U0-5tb" secondAttribute="trailing" constant="12" id="pmo-n4-05I"/>
                                     </constraints>
                                 </view>
                                 <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="By not saving this payment account, you will only be eligible to make an instant payment." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOP-DP-Vy2">
-                                    <rect key="frame" x="0.0" y="45" width="317" height="33"/>
+                                    <rect key="frame" x="0.0" y="64" width="317" height="33"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -230,14 +232,14 @@
                             </subviews>
                         </stackView>
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bIB-Jm-Flu" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                            <rect key="frame" x="29" y="552.5" width="317" height="60"/>
+                            <rect key="frame" x="29" y="558" width="317" height="60"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="hCI-KC-sYQ"/>
                             </constraints>
                         </view>
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pJq-aU-YbT" userLabel="One Touch Pay View">
-                            <rect key="frame" x="29" y="651.5" width="317" height="89"/>
+                            <rect key="frame" x="29" y="654" width="317" height="89"/>
                             <subviews>
                                 <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Set this payment account as default to easily pay from the Home and Bill screens." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yp-DR-Zk8">
                                     <rect key="frame" x="0.0" y="0.0" width="317" height="28"/>
@@ -245,12 +247,12 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ifa-US-KMn" customClass="Switch" customModule="BGE" customModuleProvider="target">
+                                <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ifa-US-KMn" customClass="Switch" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="53" width="51" height="31"/>
                                     <accessibility key="accessibilityConfiguration" label="Default payment account"/>
                                 </switch>
-                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Default Payment Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8l-D9-9Ct">
-                                    <rect key="frame" x="61" y="59" width="184" height="19.5"/>
+                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Default Payment Account" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8l-D9-9Ct">
+                                    <rect key="frame" x="61" y="59" width="256" height="19.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -261,13 +263,14 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="m8l-D9-9Ct" secondAttribute="bottom" constant="5.5" id="2j6-62-oUS"/>
                                 <constraint firstItem="m8l-D9-9Ct" firstAttribute="leading" secondItem="Ifa-US-KMn" secondAttribute="trailing" constant="12" id="Apk-4r-0OO"/>
                                 <constraint firstItem="m8l-D9-9Ct" firstAttribute="centerY" secondItem="Ifa-US-KMn" secondAttribute="centerY" id="JyE-Cc-Nrw"/>
                                 <constraint firstItem="3Yp-DR-Zk8" firstAttribute="leading" secondItem="pJq-aU-YbT" secondAttribute="leading" id="Kez-b7-03e"/>
                                 <constraint firstItem="3Yp-DR-Zk8" firstAttribute="top" secondItem="pJq-aU-YbT" secondAttribute="top" id="LkB-Ik-ohr"/>
                                 <constraint firstItem="Ifa-US-KMn" firstAttribute="top" secondItem="3Yp-DR-Zk8" secondAttribute="bottom" priority="999" constant="25" id="Rq3-PS-8vL"/>
                                 <constraint firstAttribute="trailing" secondItem="3Yp-DR-Zk8" secondAttribute="trailing" id="eUl-53-hBf"/>
-                                <constraint firstAttribute="bottom" secondItem="Ifa-US-KMn" secondAttribute="bottom" id="mL0-M4-vRp"/>
+                                <constraint firstAttribute="trailing" secondItem="m8l-D9-9Ct" secondAttribute="trailing" id="fwt-dC-kxZ"/>
                                 <constraint firstItem="Ifa-US-KMn" firstAttribute="leading" secondItem="pJq-aU-YbT" secondAttribute="leading" id="pG3-8l-LLH"/>
                             </constraints>
                         </view>

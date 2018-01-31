@@ -17,8 +17,6 @@ protocol AccountService {
     /// Fetch a page of accounts for the current customer.
     ///
     /// - Parameters:
-    ///   - page: the page number to fetch
-    ///   - offset: the page offset
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain an AccountPage on success, or a ServiceError on failure.
     func fetchAccounts(completion: @escaping (_ result: ServiceResult<[Account]>) -> Void)
@@ -46,6 +44,13 @@ protocol AccountService {
     /// - Parameters:
     ///   - account: the account to set as default
     func setDefaultAccount(account: Account, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    
+    /// Gets single sign-on info so that we can display the logged-in user's usage web view
+    ///
+    /// - Parameters:
+    ///   - accountNumber: the account to fetch SSOData for
+    ///   - premiseNumber: the premiseNumber to fetch SSOData for
+    func fetchSSOData(accountNumber: String, premiseNumber: String, completion: @escaping (_ result: ServiceResult<SSOData>) -> Void)
 }
 
 // MARK: - Reactive Extension to AccountService
@@ -86,7 +91,7 @@ extension AccountService {
             self.updatePECOReleaseOfInfoPreference(account: account, selectedIndex: selectedIndex, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -101,7 +106,22 @@ extension AccountService {
             self.setDefaultAccount(account: account, completion: { (result: ServiceResult<Void>) in
                 switch result {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
+                    observer.onCompleted()
+                case ServiceResult.Failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+    
+    func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
+        return Observable.create { observer in
+            self.fetchSSOData(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<SSOData>) in
+                switch result {
+                case ServiceResult.Success(let ssoData):
+                    observer.onNext(ssoData)
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

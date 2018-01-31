@@ -37,6 +37,10 @@ enum ServiceErrorCode : String {
     case MaintenanceMode = "TC-SYS-MAINTENANCE"
     case FnMultiAccountFound = "FN-MULTI-ACCT-FOUND" // Forgot Username scenario for BGE with multiple account numbers
     case ExpiredTempPassword = "EXPIRED-TEMP-PASSWORD" // Temp password older than an hour
+    case FnAccountDisallow = "FN-ACCT-DISALLOW" // BGE only account blocking mechanism
+    case FnOverNotFound = "FN-OVER-NOTFOUND" // BGE PeakRewards overrides not found
+    case FnOverExists = "FN-OVER-EXISTS" // BGE PeakRewards overrides already exists
+    case FnOverOther = "FN-OVER-OTHER" // BGE PeakRewards overrides
 }
 
 // MARK: - ServiceError

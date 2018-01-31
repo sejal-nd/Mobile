@@ -21,14 +21,15 @@ class ContactUsViewController: UIViewController {
     
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var firstNumberTextView: DataDetectorTextView!
-    @IBOutlet weak var firstNumberSeparator: UIView!
     @IBOutlet weak var secondStack: UIStackView!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var secondNumberTextView: DataDetectorTextView!
-    @IBOutlet weak var secondNumberSeparator: UIView!
     @IBOutlet weak var thirdStack: UIStackView!
     @IBOutlet weak var thirdLabel: UILabel!
     @IBOutlet weak var thirdNumberTextView: DataDetectorTextView!
+    
+    @IBOutlet var dividerLines: [UIView]!
+    @IBOutlet var dividerLineConstraints: [NSLayoutConstraint]!
     
     let contactUsViewModel = ContactUsViewModel()
     
@@ -44,6 +45,10 @@ class ContactUsViewController: UIViewController {
         cardView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         cardView.layer.cornerRadius = 2
         
+        for line in dividerLines {
+            line.backgroundColor = .accentGray
+        }
+
         emergencySetup()
         customerServiceSetup()
         socialMediaButtonsSetup()
@@ -55,12 +60,19 @@ class ContactUsViewController: UIViewController {
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar(hidesBottomBorder: true)
         } else { // Sent from unauthenticated user experience
-            let titleDict: [String: Any] = [
-                NSForegroundColorAttributeName: UIColor.white,
-                NSFontAttributeName: OpenSans.bold.of(size: 18)
+            let titleDict: [NSAttributedStringKey: Any] = [
+                .foregroundColor: UIColor.white,
+                .font: OpenSans.bold.of(size: 18)
             ]
             navigationController?.navigationBar.titleTextAttributes = titleDict
         }
+    }
+    
+    override func updateViewConstraints() {
+        for constraint in dividerLineConstraints {
+            constraint.constant = 1.0 / UIScreen.main.scale
+        }
+        super.updateViewConstraints()
     }
     
     func emergencySetup() {
@@ -78,7 +90,6 @@ class ContactUsViewController: UIViewController {
         firstNumberTextView.text = contactUsViewModel.phoneNumber2
         firstNumberTextView.textContainerInset = .zero
         firstNumberTextView.tintColor = .actionBlue // Color of the phone numbers
-        firstNumberTextView.delegate = self
         
         if let label2 = contactUsViewModel.label2,
             let phoneNumber3 = contactUsViewModel.phoneNumber3 {
@@ -157,17 +168,3 @@ class ContactUsViewController: UIViewController {
     }
     
 }
-
-extension ContactUsViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        if let linkName = firstLabel.text {
-            let screenName = unauthenticatedExperience ?
-                AnalyticsPageView.ContactUsUnAuthCall.rawValue :
-                AnalyticsPageView.ContactUsAuthCall.rawValue
-            Analytics().logScreenView(screenName, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: linkName)
-        }
-        
-        return true
-    }
-}
-

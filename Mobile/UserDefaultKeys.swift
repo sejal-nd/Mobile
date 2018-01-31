@@ -13,18 +13,27 @@ struct UserDefaultKeys {
     // Terms & Policies
     static let HasAcceptedTerms = "kHasAcceptedTerms" // Used to determine whether or not to display the Terms screen on first app launch
     
-    // Touch ID
-    static let TouchIDEnabled = "kTouchIDEnabled"
-    static let ShouldPromptToEnableTouchID = "kShouldPromptToEnableTouchID" // Should we prompt the user to enable Touch ID after a successful login?
+    // Touch/Face ID
+    static let BiometricsEnabled = "kBiometricsEnabled"
+    static let ShouldPromptToEnableBiometrics = "kShouldPromptToEnableBiometrics" // Should we prompt the user to enable Touch/Face ID after a successful login?
     static let LoggedInUsername = "kLoggedInUsername" // The username of the currently logged in user
     
-    // Persist Customer Identifer (from login) to disk
-    static let CustomerIdentifier = "kCustomerIdentifier"
+    static let CustomerIdentifier = "kCustomerIdentifier" // Persist Customer Identifer (from login) to disk
     
     static let PaymentDetailsDictionary = "kPaymentDetailsDictionary"
     
+    static let TemperatureScale = "kPTemperatureScale"
+    
     static let InMainApp = "kInMainApp" // Is the user in the "Main" area of the app (past-login). Set to true in MainTabBarController
     
-    //Used by AppRating to track number of events that contribute to a rating prompt
-    static let AppRatingEventCount = "kAppRatingEventCount"
+    static let AppRatingEventCount = "kAppRatingEventCount" // Used by AppRating to track number of events that contribute to a rating prompt
+    
+    static let PushNotificationReceived = "kPushNotificationReceived"
+    static let PushNotificationReceivedTimestamp = "kPushNotificationReceivedTimestamp"
+    
+    static let InitialPushNotificationPermissionsWorkflowCompleted = "kInitialPushNotificationPermissionsWorkflowCompleted"
+
+    static let UsernamesRegisteredForPushNotifications = "kUsernamesRegisteredForPushNotifications"
+
+    static let AccountVerificationDeepLinkGuid = "kAccountVerificationDeepLinkGuid"
 }

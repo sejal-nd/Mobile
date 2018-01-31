@@ -19,44 +19,44 @@ class ChangePasswordViewModel {
     
     private var userDefaults: UserDefaults
     private var authService: AuthenticationService
-    private var fingerprintService: FingerprintService
+    private var biometricsService: BiometricsService
     
-    required init(userDefaults: UserDefaults, authService: AuthenticationService, fingerprintService: FingerprintService) {
+    required init(userDefaults: UserDefaults, authService: AuthenticationService, biometricsService: BiometricsService) {
         self.userDefaults = userDefaults
         self.authService = authService
-        self.fingerprintService = fingerprintService
+        self.biometricsService = biometricsService
     }
     
     private(set) lazy var currentPasswordHasText: Driver<Bool> = self.currentPassword.asDriver()
-        .map { $0.characters.count > 0 }
+        .map { $0.count > 0 }
     
     private(set) lazy var characterCountValid: Driver<Bool> = self.newPassword.asDriver()
             .map{ $0.components(separatedBy: .whitespacesAndNewlines).joined() }
-            .map{ $0.characters.count >= 8 && $0.characters.count <= 16 }
+            .map{ $0.count >= 8 && $0.count <= 16 }
     
     private(set) lazy var containsUppercaseLetter: Driver<Bool> = self.newPassword.asDriver()
         .map { text -> Bool in
             let regex = try! NSRegularExpression(pattern: ".*[A-Z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-            return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
+            return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
         }
     
     private(set) lazy var containsLowercaseLetter: Driver<Bool> = self.newPassword.asDriver()
         .map { text -> Bool in
             let regex = try! NSRegularExpression(pattern: ".*[a-z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-            return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
+            return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
         }
     
     private(set) lazy var containsNumber: Driver<Bool> = self.newPassword.asDriver()
         .map { text -> Bool in
             let regex = try! NSRegularExpression(pattern: ".*[0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-            return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
+            return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
         }
     
     private(set) lazy var containsSpecialCharacter: Driver<Bool> = self.newPassword.asDriver()
             .map{ $0.components(separatedBy: .whitespacesAndNewlines).joined() }
             .map { text -> Bool in
                 let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-                return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.characters.count)) != nil
+                return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
             }
     
     private(set) lazy var passwordMatchesUsername: Driver<Bool> = self.newPassword.asDriver()
@@ -83,7 +83,7 @@ class ChangePasswordViewModel {
     
     var passwordScore: Int32 {
         var score: Int32 = -1
-        if newPassword.value.characters.count > 0 {
+        if newPassword.value.count > 0 {
             score = DBZxcvbn().passwordStrength(newPassword.value).score
         }
         return score
@@ -101,13 +101,13 @@ class ChangePasswordViewModel {
     func changePassword(sentFromLogin: Bool, onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
         
         if sentFromLogin {
-            authService.changePasswordAnon(fingerprintService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
+            authService.changePasswordAnon(biometricsService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
                 .observeOn(MainScheduler.instance)
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in
                     guard let `self` = self else { return }
-                    if self.fingerprintService.isTouchIDEnabled() {
-                        self.fingerprintService.setStoredPassword(password: self.newPassword.value)
+                    if self.biometricsService.isBiometricsEnabled() {
+                        self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }
                     onSuccess()
                 }, onError: { (error: Error) in
@@ -126,8 +126,8 @@ class ChangePasswordViewModel {
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in
                     guard let `self` = self else { return }
-                    if self.fingerprintService.isTouchIDEnabled() { // Store the new password in the keychain
-                        self.fingerprintService.setStoredPassword(password: self.newPassword.value)
+                    if self.biometricsService.isBiometricsEnabled() { // Store the new password in the keychain
+                        self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }
                     onSuccess()
                 }, onError: { (error: Error) in

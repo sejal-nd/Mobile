@@ -65,6 +65,7 @@ class MiniWalletViewController: UIViewController {
         tableFooterLabel.text = viewModel.footerLabelText
         
         tableView.estimatedSectionHeaderHeight = 16
+        tableView.estimatedRowHeight = 74 // Required for iOS 9
         
         viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).disposed(by: disposeBag)
@@ -151,19 +152,19 @@ class MiniWalletViewController: UIViewController {
             self.tableView.reloadData()
             self.view.setNeedsLayout()
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
-        }, onError: { [weak self] errMessage in
+        }, onError: { [weak self] in
             guard let `self` = self else { return }
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         })
     }
     
-    func onBankAccountPress(sender: ButtonControl) {
+    @objc func onBankAccountPress(sender: ButtonControl) {
         let walletItem = viewModel.bankAccounts[sender.tag]
         delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
         navigationController?.popViewController(animated: true)
     }
     
-    func onAddBankAccountPress() {
+    @objc func onAddBankAccountPress() {
         if sentFromPayment {
             delegate?.miniWalletViewControllerDidTapAddBank(self)
             navigationController?.popViewController(animated: true)
@@ -172,13 +173,13 @@ class MiniWalletViewController: UIViewController {
         }
     }
     
-    func onCreditCardPress(sender: ButtonControl) {
+    @objc func onCreditCardPress(sender: ButtonControl) {
         let walletItem = viewModel.creditCards[sender.tag]
         delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
         navigationController?.popViewController(animated: true)
     }
     
-    func onAddCreditCardPress() {
+    @objc func onAddCreditCardPress() {
         if sentFromPayment {
             delegate?.miniWalletViewControllerDidTapAddCard(self)
             navigationController?.popViewController(animated: true)
@@ -333,7 +334,7 @@ extension MiniWalletViewController: AddBankAccountViewControllerDelegate {
             //TODO: expose otp without having to access the viewmodel
             let otp = addBankAccountViewController.viewModel.addBankFormViewModel.oneTouchPay.value
             Analytics().logScreenView(AnalyticsPageView.ECheckAddNewWallet.rawValue,
-                                      dimensionIndex: Dimensions.DIMENSION_OTP_ENABLED.rawValue, dimensionValue: otp ? "true" : "false")
+                                      dimensionIndex: Dimensions.OTPEnabled, dimensionValue: otp ? "true" : "false")
             
             self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
         })
@@ -349,7 +350,7 @@ extension MiniWalletViewController: AddCreditCardViewControllerDelegate {
             //TODO: expose otp without having to access the viewmodel
             let otp = addCreditCardViewController.viewModel.addCardFormViewModel.oneTouchPay.value
             Analytics().logScreenView(AnalyticsPageView.CardAddNewWallet.rawValue,
-                                      dimensionIndex: Dimensions.DIMENSION_OTP_ENABLED.rawValue, dimensionValue: otp ? "true" : "false")
+                                      dimensionIndex: Dimensions.OTPEnabled, dimensionValue: otp ? "true" : "false")
             
             self.view.showToast(NSLocalizedString("Card added", comment: ""))
         })

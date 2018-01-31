@@ -68,10 +68,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         loadSecurityQuestions()
         
-        if viewModel.isPaperlessEbillEligible {
-            loadAccounts()
-        }
-        
         setupNavigationButtons()
 
         title = NSLocalizedString("Register", comment: "")
@@ -105,14 +101,15 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         viewModel.loadSecurityQuestions(onSuccess: { [weak self] in
             guard let `self` = self else { return }
-            if !self.viewModel.isPaperlessEbillEligible {
+            if self.viewModel.isPaperlessEbillEligible {
+                self.loadAccounts()
+            } else {
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
                 self.scrollView.isHidden = false
                 self.loadingIndicator.isHidden = true
                 
                 self.toggleAccountListing(false)
                 self.eBillSwitchView.isHidden = true
-                
             }
         }, onError: { [weak self] (securityTitle, securityMessage) in
             title = securityTitle
@@ -174,10 +171,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default) { [weak self] _ in
             guard let `self` = self else { return }
             self.loadSecurityQuestions()
-            
-            if self.viewModel.isPaperlessEbillEligible {
-                self.loadAccounts()
-            }
         })
         
         present(alert, animated: true, completion: nil)
@@ -378,7 +371,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -414,16 +407,20 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -441,15 +438,15 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
 
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
-    func question1Tapped() {
+    @objc func question1Tapped() {
         loadSecretQuestionList(forRow: 1, question: viewModel.securityQuestion1.value)
     }
 
-    func question2Tapped() {
+    @objc func question2Tapped() {
         loadSecretQuestionList(forRow: 2, question: viewModel.securityQuestion2.value)
     }
 
-    func question3Tapped() {
+    @objc func question3Tapped() {
         loadSecretQuestionList(forRow: 3, question: viewModel.securityQuestion3.value)
     }
     

@@ -48,27 +48,43 @@ class AccountLookupToolResultViewController: UIViewController {
         unitNumberHeaderLabel.text = NSLocalizedString("Unit Number", comment: "")
         
         firstSeparatorView.backgroundColor = tableView.separatorColor
+        
+        tableView.isHidden = true
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         _ = navigationController?.popViewController(animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // TODO: Discovered an iOS 11 only bug where the table view cells would initially
-        // be blank until they were scrolled off screen and reused. This reloadData() is the
-        // workaround. We should remove it if/when this gets fixed.
-        if #available(iOS 11, *) {
-            tableView.reloadData()
-        }
+        // A few oddities going on here. Discovered an iOS 11 only bug where the table view cells would initially
+        // be blank until they were scrolled off screen and reused. Also an issue when accessibility text is sized up
+        // where we need to re-layout and compute the column width contraints. viewDidLayoutSubviews() will call
+        // tableView.reloadData() and re-compute all the constraints. We hide the tableView initially and unhide
+        // here so that you don't see the re-layout happen.
+        viewDidLayoutSubviews()
+        tableView.isHidden = false
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         tableView.reloadData() // To properly set the width constraints
+        
+        // Dynamic sizing for the table header view
+        if let headerView = tableView.tableHeaderView {
+            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+            
+            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+        }
     }
     
 }
@@ -91,6 +107,18 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
         cell.accountNumberLabel.text = account.accountNumber?.maskAllButLast4Digits()
         cell.streetNumberLabel.text = account.streetNumber
         cell.unitNumberLabel.text = account.unitNumber
+        
+        var a11yLabel = ""
+        if let accountNumber = account.accountNumber, !accountNumber.isEmpty {
+            a11yLabel += String(format: NSLocalizedString("Account number ending in %@,", comment: ""), accountNumber.maskAllButLast4Digits().replacingOccurrences(of: "*", with: ""))
+        }
+        if let streetNumber = account.streetNumber, !streetNumber.isEmpty {
+            a11yLabel += String(format: NSLocalizedString("Street number: %@,", comment: ""), streetNumber)
+        }
+        if let unitNumber = account.unitNumber, !unitNumber.isEmpty {
+            a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+        }
+        cell.accessibilityLabel = a11yLabel
 
         cell.accountNumberLabelWidthConstraint.constant = accountNumberHeaderLabel.frame.size.width
         cell.streetNumberLabelWidthConstraint.constant = streetNumberHeaderLabel.frame.size.width

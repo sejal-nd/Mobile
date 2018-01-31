@@ -50,10 +50,6 @@ class TemplateCardView: UIView {
         errorLabel.font = OpenSans.regular.of(textStyle: .title1)
         errorLabel.setLineHeight(lineHeight: 26)
         errorLabel.textAlignment = .center
-        if let errorLabelText = errorLabel.text {
-            let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
-            errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.sharedInstance.opco.displayString, errorLabelText)
-        }
     }
     
     private func bindViewModel() {
@@ -61,19 +57,83 @@ class TemplateCardView: UIView {
         viewModel.templateImage.drive(imageView.rx.image).disposed(by: bag)
         viewModel.titleString.drive(titleLabel.rx.text).disposed(by: bag)
         viewModel.bodyString.drive(bodyLabel.rx.text).disposed(by: bag)
+        viewModel.bodyStringA11yLabel.drive(bodyLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.ctaString.drive(callToActionButton.rx.title()).disposed(by: bag)
-
+        
         //show error state if an error is received
         viewModel.shouldShowErrorState.drive(clippingView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
+        viewModel.errorLabelText.drive(onNext: { [weak self] errorText in
+            self?.errorLabel.text = errorText
+            let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
+            self?.errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.sharedInstance.opco.displayString, errorText ?? "")
+        }).disposed(by: bag)
+        
+        callToActionButton.rx.tap.asObservable()
+            .withLatestFrom(viewModel.ctaUrl.asObservable())
+            .subscribe(onNext: {
+                Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
+                                          dimensionIndex: Dimensions.Link,
+                                          dimensionValue: $0.absoluteString)
+            })
+            .disposed(by: bag)
+        
+        callToActionButton.rx.tap.asObservable()
+            .withLatestFrom(viewModel.linkToEcobee)
+            .filter { $0 }
+            .subscribe(onNext: { _ in
+                let appLinkUrl = URL(string: "ecobee://")!
+                let appStoreUrl = URL(string:"https://itunes.apple.com/us/app/ecobee/id916985674?mt=8")!
+                
+                if UIApplication.shared.canOpenURL(appLinkUrl) {
+                    Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
+                                              dimensionIndex: Dimensions.Link,
+                                              dimensionValue: appLinkUrl.absoluteString)
+                    UIApplication.shared.openURL(appLinkUrl)
+                } else if UIApplication.shared.canOpenURL(appStoreUrl) {
+                    Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
+                                              dimensionIndex: Dimensions.Link,
+                                              dimensionValue: appStoreUrl.absoluteString)
+                    UIApplication.shared.openURL(appStoreUrl)
+                }
+            })
+            .disposed(by: bag)
+        
     }
     
-    private(set) lazy var callToActionViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()
-        .do(onNext: { [weak self] in
-            guard let `self` = self else { return }
-            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue, dimensionIndex: Dimensions.DIMENSION_LINK.rawValue, dimensionValue: String(describing: self.viewModel.ctaUrl))
-        })
+    private(set) lazy var safariViewController: Driver<SFSafariViewController> = self.callToActionButton.rx.tap.asDriver()
+        .withLatestFrom(self.viewModel.isHourlyPricing)
+        .filter(!)
         .withLatestFrom(self.viewModel.ctaUrl)
-        .map(SFSafariViewController.init)
+        .map(SFSafariViewController.createWithCustomStyle)
     
+    private lazy var hourlyPricingViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()
+        .withLatestFrom(self.viewModel.isHourlyPricing)
+        .filter { $0 }
+        .withLatestFrom(self.viewModel.accountDetailElements.asDriver(onErrorDriveWith: .empty()))
+        .map {
+            let hourlyPricingVC = UIStoryboard(name: "Home", bundle: nil)
+                .instantiateViewController(withIdentifier: "hourlyPricingViewController") as! HourlyPricingViewController
+            hourlyPricingVC.accountDetail = $0
+            return hourlyPricingVC
+    }
+    
+    private lazy var peakRewardsViewController: Driver<UIViewController> = self.callToActionButton.rx.tap.asDriver()
+        .withLatestFrom(self.viewModel.linkToPeakRewards)
+        .filter { $0 }
+        .withLatestFrom(self.viewModel.accountDetailElements.asDriver(onErrorDriveWith: .empty()))
+        .map {
+            let peakRewardsVC = UIStoryboard(name: "PeakRewards", bundle: nil)
+                .instantiateInitialViewController() as! PeakRewardsViewController
+            peakRewardsVC.accountDetail = $0
+            return peakRewardsVC
+        }
+        .do(onNext: { _ in
+            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
+                                      dimensionIndex: Dimensions.Link,
+                                      dimensionValue: "https://secure.bge.com/Peakrewards/Pages/default.aspx")
+        })
+    
+    private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.hourlyPricingViewController,
+                                                                                         self.peakRewardsViewController)
 }

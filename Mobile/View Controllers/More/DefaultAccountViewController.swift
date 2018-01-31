@@ -70,7 +70,7 @@ class DefaultAccountViewController: UIViewController {
         }
     }
     
-    func infoButtonPressed() {
+    @objc func infoButtonPressed() {
         let infoModal = InfoModalViewController(title: NSLocalizedString("Default Account", comment: ""),
                                                 image: #imageLiteral(resourceName: "bge_account_picker"),
                                                 description: NSLocalizedString("Your default account will display automatically when you sign in. You can change your default account at any time.", comment: ""))
@@ -93,13 +93,14 @@ extension DefaultAccountViewController: UITableViewDataSource {
         let account = viewModel.accounts.value[indexPath.row]
         cell.configure(withAccount: account)
         
-        
         if account.address == nil || (account.serviceType ?? "").isEmpty {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.2
+            cell.accessibilityTraits = UIAccessibilityTraitNotEnabled
         } else {
             cell.selectionStyle = .default
             cell.contentView.alpha = 1
+            cell.accessibilityTraits = UIAccessibilityTraitNone
         }
         
         return cell

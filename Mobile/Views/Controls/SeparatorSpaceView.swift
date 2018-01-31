@@ -27,7 +27,7 @@ class SeparatorSpaceView: UIView {
     func commonInit() {
         translatesAutoresizingMaskIntoConstraints = false
         heightConstraint = heightAnchor.constraint(equalToConstant: 10.0)
-        heightConstraint.priority = 999
+        heightConstraint.priority = UILayoutPriority(rawValue: 999)
         heightConstraint.isActive = true
     }
     
@@ -42,7 +42,7 @@ class SeparatorSpaceView: UIView {
             view.removeConstraint(view.heightConstraint)
             
             view.heightConstraint = view.heightAnchor.constraint(equalToConstant: height)
-            view.heightConstraint.priority = 999
+            view.heightConstraint.priority = UILayoutPriority(rawValue: 999)
             view.heightConstraint.isActive = true
         }
         

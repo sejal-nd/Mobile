@@ -209,7 +209,19 @@ class EditCreditCardViewController: UIViewController {
         
         let walletItem = viewModel.walletItem!
         
-        nicknameLabel.text = walletItem.nickName != nil ? walletItem.nickName!.uppercased() : ""
+        if let nickname = walletItem.nickName {
+            let displayNickname: String
+            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
+                displayNickname = nickname == String(last4) ? "" : nickname
+            } else {
+                displayNickname = nickname
+            }
+            
+            nicknameLabel.text = displayNickname.uppercased()
+        } else {
+            nicknameLabel.text = nil
+        }
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
             accountIDLabel.text = "**** \(last4Digits)"
@@ -328,22 +340,26 @@ class EditCreditCardViewController: UIViewController {
         if message.isEmpty {
             saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
+            saveButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save", comment: ""), message)
         }
     }
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -362,7 +378,7 @@ class EditCreditCardViewController: UIViewController {
     }
     
     ///
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
@@ -523,24 +539,24 @@ extension EditCreditCardViewController: UITextFieldDelegate {
         let characterSet = CharacterSet(charactersIn: string)
 
         if textField == expMonthTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 2
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 2
         } else if textField == expYearTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         } else if textField == cvvTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 4
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         } else if textField == zipCodeTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 5
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 5
         }
         return true
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         if textField == expMonthTextField.textField {
-            if textField.text?.characters.count == 2 {
+            if textField.text?.count == 2 {
                 expYearTextField.textField.becomeFirstResponder()
             }
         } else if textField == expYearTextField.textField {
-            if textField.text?.characters.count == 4 {
+            if textField.text?.count == 4 {
                 cvvTextField.textField.becomeFirstResponder()
             }
         }

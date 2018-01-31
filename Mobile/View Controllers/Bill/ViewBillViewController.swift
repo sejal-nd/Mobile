@@ -64,7 +64,7 @@ class ViewBillViewController: UIViewController {
         })
     }
     
-    func onSharePress() {
+    @objc func onSharePress() {
         if viewModel.pdfFileUrl != nil {
             presentDocumentController()
         } else {

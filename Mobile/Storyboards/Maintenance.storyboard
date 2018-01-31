@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="emJ-sh-7g1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="emJ-sh-7g1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,10 +31,10 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="936"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZe-n8-O6q" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="684"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oar-PX-3sy" userLabel="Tablet View">
-                                                <rect key="frame" x="29" y="78" width="262" height="517"/>
+                                                <rect key="frame" x="29" y="78" width="262" height="598"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-Id-7Io">
                                                         <rect key="frame" x="-1" y="20" width="263" height="80"/>
@@ -80,7 +81,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6iq-2M-LHc" userLabel="Main Stack">
                                                                 <rect key="frame" x="22" y="28" width="218" height="358"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bV4-kB-3pq" userLabel="Title and Image Stack">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bV4-kB-3pq" userLabel="Title and Image Stack">
                                                                         <rect key="frame" x="0.0" y="0.0" width="218" height="100.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" restorationIdentifier="Heading" text="The BGE App is currently unavailable due to scheduled maintenance." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iY-Ll-WFa">
@@ -154,16 +155,17 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                                                     <constraint firstAttribute="trailing" secondItem="nKd-gP-q76" secondAttribute="trailing" id="cqN-Hq-EIE"/>
                                                     <constraint firstItem="VcL-AS-HfY" firstAttribute="top" secondItem="ejI-Id-7Io" secondAttribute="bottom" constant="27" id="fU9-jc-l1X"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="gLP-Se-la1"/>
+                                                    <constraint firstAttribute="width" priority="999" constant="460" id="u9h-0Y-cI9"/>
+                                                    <constraint firstAttribute="bottom" secondItem="nKd-gP-q76" secondAttribute="bottom" constant="24" id="wjZ-hg-lNO"/>
                                                     <constraint firstItem="nKd-gP-q76" firstAttribute="top" secondItem="VcL-AS-HfY" secondAttribute="bottom" constant="24" id="zVA-Dn-8If"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="oar-PX-3sy" secondAttribute="trailing" priority="999" constant="29" id="Cqo-o4-gSK"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oar-PX-3sy" secondAttribute="trailing" constant="29" id="Cqo-o4-gSK"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="oar-PX-3sy" secondAttribute="bottom" id="L2v-p4-SGO"/>
-                                            <constraint firstAttribute="height" constant="603" id="UhI-DC-C4V"/>
-                                            <constraint firstItem="oar-PX-3sy" firstAttribute="leading" secondItem="NZe-n8-O6q" secondAttribute="leading" priority="999" constant="29" id="cgE-lZ-6n7"/>
+                                            <constraint firstItem="oar-PX-3sy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NZe-n8-O6q" secondAttribute="leading" constant="29" id="cgE-lZ-6n7"/>
                                             <constraint firstItem="oar-PX-3sy" firstAttribute="top" secondItem="NZe-n8-O6q" secondAttribute="topMargin" constant="70" id="fXi-A3-K6f"/>
                                             <constraint firstItem="oar-PX-3sy" firstAttribute="centerX" secondItem="NZe-n8-O6q" secondAttribute="centerX" id="xca-qf-GCg"/>
                                         </constraints>
@@ -183,7 +185,7 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="N0W-zM-Af5" secondAttribute="trailing" id="Ase-xR-HJb"/>
                             <constraint firstItem="N0W-zM-Af5" firstAttribute="top" secondItem="Ca7-8w-wBE" secondAttribute="bottom" id="FmS-vb-9NT"/>
-                            <constraint firstItem="BlZ-mU-8sJ" firstAttribute="top" secondItem="N0W-zM-Af5" secondAttribute="bottom" id="vkP-30-idI"/>
+                            <constraint firstAttribute="bottom" secondItem="N0W-zM-Af5" secondAttribute="bottom" id="Nte-8r-964"/>
                             <constraint firstItem="N0W-zM-Af5" firstAttribute="leading" secondItem="wU4-Bc-zL5" secondAttribute="leading" id="yUa-k0-Wmh"/>
                         </constraints>
                     </view>

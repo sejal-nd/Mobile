@@ -21,7 +21,7 @@ struct BillingHistory: Mappable {
         
         if !past.isEmpty {
             let firstPastDate = past.first!.date
-            let sixMonthsFromFirstPastDate = Calendar.opCoTime.date(byAdding: .month, value: -6, to: firstPastDate)!
+            let sixMonthsFromFirstPastDate = Calendar.opCo.date(byAdding: .month, value: -6, to: firstPastDate)!
             mostRecentSixMonths = past.filter { $0.date > sixMonthsFromFirstPastDate }
         } else {
             mostRecentSixMonths = []

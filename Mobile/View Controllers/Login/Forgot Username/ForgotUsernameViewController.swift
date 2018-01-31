@@ -148,7 +148,7 @@ class ForgotUsernameViewController: UIViewController {
         if message.isEmpty {
             nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
+            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
         }
     }
     
@@ -159,16 +159,16 @@ class ForgotUsernameViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .primaryColor
         navigationController?.navigationBar.isTranslucent = false
 
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         // We do this to cover the case where we push ForgotUsernameViewController from ForgotPasswordViewController.
         // When that happens, we want the cancel action to go straight back to LoginViewController.
         for vc in (navigationController?.viewControllers)! {
@@ -180,7 +180,7 @@ class ForgotUsernameViewController: UIViewController {
         }
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -213,7 +213,7 @@ class ForgotUsernameViewController: UIViewController {
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
-    func onIdentifierAccountNumberKeyboardDonePress() {
+    @objc func onIdentifierAccountNumberKeyboardDonePress() {
         viewModel.nextButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] enabled in
                 if enabled {
@@ -230,16 +230,20 @@ class ForgotUsernameViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -310,10 +314,10 @@ extension ForgotUsernameViewController: UITextFieldDelegate {
             
             return false
         } else if textField == identifierTextField?.textField {
-            return newString.characters.count <= 4
+            return newString.count <= 4
         } else if textField == accountNumberTextField?.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
         }
         
         return true

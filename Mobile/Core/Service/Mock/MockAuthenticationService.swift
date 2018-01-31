@@ -9,15 +9,16 @@
 import Foundation
 import RxSwift
 
-struct MockAuthenticationService : AuthenticationService {
+struct MockAuthenticationService: AuthenticationService {
     
     let validUsername = "valid@test.com"
     let validCurrentPassword = "Password1"
     
-    func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (ServiceResult<ProfileStatus>) -> Void) {
+    func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (ServiceResult<(ProfileStatus, AccountDetail)>) -> Void) {
         
-        if(username == validUsername) {
-            completion(ServiceResult.Success(ProfileStatus()))
+        if username == validUsername && password == validCurrentPassword {
+            let accountDetail = AccountDetail.from(["accountNumber": "123456789", "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
+            completion(ServiceResult.Success((ProfileStatus(), accountDetail)))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
         }
@@ -33,12 +34,12 @@ struct MockAuthenticationService : AuthenticationService {
     }
     
     func logout(completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.Success())
+        completion(ServiceResult.Success(()))
     }
     
     func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
         if currentPassword == validCurrentPassword {
-            completion(ServiceResult.Success())
+            completion(ServiceResult.Success(()))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
         }
@@ -46,21 +47,22 @@ struct MockAuthenticationService : AuthenticationService {
     
     func changePasswordAnon(_ username: String,currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
         if currentPassword == validCurrentPassword {
-            completion(ServiceResult.Success())
+            completion(ServiceResult.Success(()))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
         }
     }
     
-    func getMaintenanceMode(completion: @escaping (ServiceResult<Maintenance>) -> Void){
+    func getMaintenanceMode(completion: @escaping (ServiceResult<Maintenance>) -> Void) {
+        completion(ServiceResult.Success(Maintenance.from([:])!))
     }
     
     func getMinimumVersion(completion: @escaping (ServiceResult<MinimumVersion>) -> Void) {
-        
+        completion(ServiceResult.Success(MinimumVersion()))
     }
     
     func refreshAuthorization(completion: @escaping (ServiceResult<Void>) -> Void) {
-        
+        completion(ServiceResult.Success(()))
     }
     
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?, completion: @escaping (_ result: ServiceResult<[ForgotUsernameMasked]>) -> Void) {
@@ -159,7 +161,7 @@ struct MockAuthenticationService : AuthenticationService {
             if username.lowercased() == "error" {
                 completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnProfNotFound.rawValue)))
             } else {
-                completion(ServiceResult.Success())
+                completion(ServiceResult.Success(()))
             }
         }
     }

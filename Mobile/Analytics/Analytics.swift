@@ -62,7 +62,7 @@ enum AnalyticsPageView: String {
     case RegisterAccountVerify = "RegisterAccountVerify"
     
     case BillingOfferComplete = "BillingOfferComplete"
-    case HomeOfferComplete = "HomeOfferComplete";
+    case HomeOfferComplete = "HomeOfferComplete"
     case CheckBalanceError = "CheckBalanceError"
     
     case OutageStatusDetails = "OutageStatusDetails"
@@ -140,6 +140,79 @@ enum AnalyticsPageView: String {
     
     case ContactUsAuthCall = "ContactUsAuthCall"
     case ContactUsUnAuthCall = "ContactUsUnAuthCall"
+    
+    case AlertsPrefCenterSave = "PrefCenterSave"
+    case AlertsPrefCenterComplete = "PrefCenterComplete"
+    case AlertsPayRemind = "AlertsPayRemind"
+    case AlertsEnglish = "AlertsEnglish"
+    case AlertsSpanish = "AlertsSpanish"
+    case AlertsMainScreen = "AlertsMainScreen"
+    case AlertsiOSPushInitial = "AlertsiOSPushInitial"
+    case AlertsiOSPushDontAllowInitial = "AlertsiOSPushDontAllowInitial"
+    case AlertsiOSPushOKInitial = "AlertsiOSPushOKInitial"
+    case AlertsOpCoUpdate = "AlertsOpCoUpdate"
+    case AlertseBillEnrollPush = "AlertseBillEnrollPush"
+    case AlertseBillEnrollPushCancel = "AlertseBillEnrollPushCancel"
+    case AlertseBillEnrollPushContinue = "AlertseBillEnrollPushContinue"
+    case AlertseBillUnenrollPush = "AlertseBillUnenrollPush"
+    case AlertseBillUnenrollPushCancel = "AlertseBillUnenrollPushCancel"
+    case AlertseBillUnenrollPushContinue = "AlertseBillUnenrollPushContinue"
+    case AlertsDevSet = "AlertsDevSet"
+
+    case ViewUsageOfferComplete = "ViewUsageOfferComplete"
+    case ViewUsagePeakRewards = "ViewUsagePeakRewards"
+    case ViewUsageElectricity = "ViewUsageElectricity"
+    case ViewUsageGas = "ViewUsageGas"
+    case ViewUsageLink = "ViewUsageLink"
+    
+    case PeakTimePromo = "PeakTimePromo"
+    case HourlyPricing = "HourlyPricing"
+    
+    case EmptyStatePeakSmart = "EmptyStatePeakSmart"
+    case EmptyStateUsageOverview = "EmptyStateUsageOverview"
+    case EmptyStateSmartEnergyHome = "EmptyStateSmartEnergyHome"
+    
+    case AllSavingsUsage = "AllSavingsUsage"
+    case AllSavingsSmartEnergy = "AllSavingsSmartEnergy"
+    
+    // Bill Analysis
+    case BillNeedHelp = "BillNeedHelp"
+    case BillElectricityToggle = "BillElectricityToggle"
+    case BillGasToggle = "BillGasToggle"
+    case BillLastYearToggle = "BillLastYearToggle"
+    case BillPreviousToggle = "BillPreviousToggle"
+    case BillPreviousReason = "BillPreviousReason"
+    case BillWeatherReason = "BillWeatherReason"
+    case BillOtherReason = "BillOtherReason"
+    
+    case ViewHomeProfile = "ViewHomeProfile"
+    case HomeProfileSave = "HomeProfileSave"
+    case HomeProfileConfirmation = "HomeProfileConfirmation"
+    
+    case ViewTopTips = "ViewTopTips"
+    
+    case WakeSave = "WakeSave"
+    case WakeToast = "WakeToast"
+    case LeaveSave = "LeaveSave"
+    case LeaveToast = "LeaveToast"
+    case ReturnSave = "ReturnSave"
+    case ReturnToast = "ReturnToast"
+    case SleepSave = "SleepSave"
+    case SleepToast = "SleepToast"
+    case AdjustThermSave = "AdjustThermSave"
+    case AdjustThermToast = "AdjustThermToast"
+    case SystemCool = "SystemCool"
+    case SystemHeat = "SystemHeat"
+    case SystemOff = "SystemOff"
+    case FanAuto = "FanAuto"
+    case FanCirculate = "FanCirculate"
+    case FanOn = "FanOn"
+    case PermanentHoldOn = "PermanentHoldOn"
+    case PermanentHoldOff = "PermanentHoldOff"
+    case OverrideSave = "OverrideSave"
+    case OverrideToast = "OverrideToast"
+    case CancelOverride = "CancelOverride"
+    case CancelOverrideToast = "CancelOverrideToast"
 }
 
 enum AnalyticsOutageSource {
@@ -147,16 +220,20 @@ enum AnalyticsOutageSource {
     case Status
 }
 
-enum Dimensions: String {
-    case DIMENSION_KEEP_ME_SIGNIN_IN = "3";
-    case DIMENSION_FINGERPRINT_USED = "4";
-    case DIMENSION_ERROR_CODE = "5";
-    case DIMENSION_OTP_ENABLED = "6";
-    case DIMENSION_LINK = "7";
+enum Dimensions: UInt {
+    case KeepMeSignedIn = 3
+    case FingerprintUsed = 4
+    case ErrorCode = 5
+    case OTPEnabled = 6
+    case Link = 7
+    case ResidentialAMI = 8 // "Residential/AMI", "Residential/Non-AMI", "Commercial/AMI", or "Commercial/Non-AMI"
+    case HourlyPricingEnrollment = 9 // "enrolled" or "unenrolled"
+    case BGEControlGroup = 10 // "true" or "false"
+    case PeakSmart = 11 // "true" or "false"
 }
 
 func isAnalyticsEnabled() -> Bool {
-    if(Environment.sharedInstance.environmentName == "STAGE" || Environment.sharedInstance.environmentName == "PROD") {
+    if Environment.sharedInstance.environmentName == "STAGE" || Environment.sharedInstance.environmentName == "PROD" {
         return true
     }
     
@@ -165,38 +242,56 @@ func isAnalyticsEnabled() -> Bool {
 
 struct Analytics {
     func logScreenView(_ screenName: String) {
-        if(isAnalyticsEnabled()) {
+        if isAnalyticsEnabled() {
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
             tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .build() as! [AnyHashable : Any]!)
+                .build() as! [AnyHashable: Any])
         } else {
-            print("Analytics: " + screenName)
+            dLog("Analytics: " + screenName)
         }
     }
     
-    func logScreenView(_ screenName: String, dimensionIndex: String, dimensionValue: String) {
-        if(isAnalyticsEnabled()) {
+    func logScreenView(_ screenName: String, dimensionIndex: Dimensions, dimensionValue: String) {
+        if isAnalyticsEnabled() {
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
             tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .set(dimensionIndex, forKey: dimensionValue)
-                .build() as! [AnyHashable : Any]!)
+                .set(dimensionValue, forKey: GAIFields.customDimension(for: dimensionIndex.rawValue))
+                .build() as! [AnyHashable: Any])
         } else {
-            print("Analytics: " + screenName)
+            dLog("Analytics: " + screenName)
         }
     }
     
-    func logSignIn(_ screenName: String, signedIndimensionIndex: String, signedIndimensionValue: String, fingerprintDimensionIndex: String, fingerprintDimensionValue: String) {
-        if(isAnalyticsEnabled()) {
+    func logScreenView(_ screenName: String, dimensionIndices: [Dimensions], dimensionValues: [String]) {
+        if dimensionIndices.count != dimensionValues.count {
+            fatalError("dimensionIndices and dimensionsValues must have the same number of elements")
+        }
+        
+        if isAnalyticsEnabled() {
+            let tracker = GAI.sharedInstance().defaultTracker
+            tracker?.set(kGAIScreenName, value: screenName)
+            let dimensionBuilder = GAIDictionaryBuilder.createScreenView()!
+            for i in stride(from: 0, to: dimensionIndices.count, by: 1) {
+                dimensionBuilder.set(dimensionValues[i], forKey: GAIFields.customDimension(for: dimensionIndices[i].rawValue))
+            }
+            tracker?.send(dimensionBuilder.build() as! [AnyHashable: Any])
+        } else {
+            dLog("Analytics: " + screenName)
+        }
+    }
+    
+    func logSignIn(_ screenName: String, keepSignedIn: String, usedFingerprint: String) {
+        if isAnalyticsEnabled() {
             let tracker = GAI.sharedInstance().defaultTracker
             tracker?.set(kGAIScreenName, value: screenName)
             tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .set(signedIndimensionIndex, forKey: signedIndimensionValue)
-                .set(fingerprintDimensionIndex, forKey: fingerprintDimensionValue)
-                .build() as! [AnyHashable : Any]!)
+                .set(keepSignedIn, forKey: GAIFields.customDimension(for: Dimensions.KeepMeSignedIn.rawValue))
+                .set(usedFingerprint, forKey: GAIFields.customDimension(for: Dimensions.FingerprintUsed.rawValue))
+                .build() as! [AnyHashable: Any])
         } else {
-            print("Analytics: " + screenName)
+            dLog("Analytics: " + screenName)
         }
     }
     

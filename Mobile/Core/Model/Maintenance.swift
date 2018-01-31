@@ -13,7 +13,7 @@ struct Maintenance: Mappable {
     let homeStatus: Bool
     let billStatus: Bool
     let alertStatus: Bool
-
+    
     init(map: Mapper) throws {
         allStatus = map.optionalFrom("all") ?? false
         homeStatus = map.optionalFrom("home") ?? false

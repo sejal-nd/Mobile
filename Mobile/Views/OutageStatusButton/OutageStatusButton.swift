@@ -244,7 +244,7 @@ class OutageStatusButton: UIView {
         }
     }
     
-    func onBigButtonTap() {
+    @objc func onBigButtonTap() {
         delegate?.outageStatusButtonWasTapped(self)
     }
 }

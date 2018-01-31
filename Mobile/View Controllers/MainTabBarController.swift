@@ -6,9 +6,11 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 
 class MainTabBarController: UITabBarController {
+    
+    let disposeBag = DisposeBag()
     
     let normalTitleFont = SystemFont.regular.of(textStyle: .caption2)
     let selectedTitleFont = SystemFont.bold.of(textStyle: .caption2)
@@ -26,6 +28,22 @@ class MainTabBarController: UITabBarController {
         tabBar.isTranslucent = false
         
         setButtonStates(itemTag: 1)
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.PushNotificationReceived) {
+            // If push notification was tapped and the user logged in within 5 minutes, take them straight to alerts
+            if let timestamp = UserDefaults.standard.object(forKey: UserDefaultKeys.PushNotificationReceivedTimestamp) as? Date, Float(timestamp.timeIntervalSinceNow) >= -300 {
+                selectedIndex = 3
+            }
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.PushNotificationReceived)
+            UserDefaults.standard.removeObject(forKey: UserDefaultKeys.PushNotificationReceivedTimestamp)
+        }
+        
+        NotificationCenter.default.rx.notification(.DidTapOnPushNotification, object: nil)
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.selectedIndex = 3
+            })
+            .disposed(by: disposeBag)
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -45,9 +63,9 @@ class MainTabBarController: UITabBarController {
     func setButtonStates (itemTag: Int) {
         for tab in tabBar.items! {
             if tab.tag == itemTag {
-                tab.setTitleTextAttributes([NSFontAttributeName: selectedTitleFont, NSForegroundColorAttributeName: selectedTitleColor], for: .normal)
+                tab.setTitleTextAttributes([.font: selectedTitleFont, .foregroundColor: selectedTitleColor], for: .normal)
             } else {
-                tab.setTitleTextAttributes([NSFontAttributeName: normalTitleFont, NSForegroundColorAttributeName: normalTitleColor], for: .normal)
+                tab.setTitleTextAttributes([.font: normalTitleFont, .foregroundColor: normalTitleColor], for: .normal)
             }
         }
     }

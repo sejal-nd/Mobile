@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MockOutageService : OutageService {
+class MockOutageService: OutageService {
     
     private var outageMap = [String: ReportedOutageResult]()
     
@@ -109,7 +109,7 @@ class MockOutageService : OutageService {
         if(outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202") {
             outageMap[outageInfo.accountNumber] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-                completion(ServiceResult.Success())
+                completion(ServiceResult.Success(()))
             }
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: "Invalid Account")))

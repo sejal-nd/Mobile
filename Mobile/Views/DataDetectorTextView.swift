@@ -8,8 +8,6 @@
 
 import UIKit
 
-// NOTE: This is used to have a text view with clickable links (like phone numbers), but that disallows 
-//       selection of text by double tapping or pressing and holding
 class DataDetectorTextView: UITextView {
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -28,17 +26,6 @@ class DataDetectorTextView: UITextView {
         isEditable = false
         dataDetectorTypes = .phoneNumber
         accessibilityTraits = UIAccessibilityTraitStaticText
-        
-        gestureRecognizers = gestureRecognizers?.flatMap {
-            if let longPressGestureRecognizer = $0 as? UILongPressGestureRecognizer,
-                longPressGestureRecognizer.minimumPressDuration < 0.3 {
-                return longPressGestureRecognizer
-            } else if let tapGestureRecognizer = $0 as? UITapGestureRecognizer,
-                tapGestureRecognizer.numberOfTapsRequired < 2 {
-                return tapGestureRecognizer
-            }
-            return nil
-        }
     }
 
 }

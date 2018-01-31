@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwiftExt
 import Lottie
 import StoreKit
+import UserNotifications
 
 class HomeViewController: AccountPickerViewController {
     
@@ -26,28 +27,27 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImage: UIImageView!
     
+    @IBOutlet weak var temperatureTipButton: ButtonControl!
+    @IBOutlet weak var temperatureTipImageView: UIImageView!
+    @IBOutlet weak var temperatureTipLabel: UILabel!
+    
     @IBOutlet weak var cardStackView: UIStackView!
     
     @IBOutlet weak var loadingView: UIView!
     
     var billCardView: HomeBillCardView!
+    var usageCardView: HomeUsageCardView!
     
     var refreshDisposable: Disposable?
-    var refreshControl: UIRefreshControl? {
-        didSet {
-            refreshDisposable?.dispose()
-            refreshDisposable = refreshControl?.rx.controlEvent(.valueChanged).asObservable()
-                .map { FetchingAccountState.refresh }
-                .bind(to: viewModel.fetchData)
-        }
-    }
+    var refreshControl: UIRefreshControl?
     
     var alertLottieAnimation = LOTAnimationView(name: "alert_icon")
     
     let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(),
                                   weatherService: ServiceFactory.createWeatherService(),
                                   walletService: ServiceFactory.createWalletService(),
-                                  paymentService: ServiceFactory.createPaymentService())
+                                  paymentService: ServiceFactory.createPaymentService(),
+                                  usageService: ServiceFactory.createUsageService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -65,8 +65,7 @@ class HomeViewController: AccountPickerViewController {
                 guard let `self` = self else { return }
                 switch(state) {
                 case .loadingAccounts:
-                    // Sam, do your custom loading here
-                    break
+                    self.setRefreshControlEnabled(enabled: false)
                 case .readyToFetchData:
                     if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchData.onNext(.switchAccount)
@@ -74,7 +73,6 @@ class HomeViewController: AccountPickerViewController {
                         self.viewModel.fetchData.onNext(.switchAccount)
                     }
                 }
-                
             })
             .disposed(by: bag)
         
@@ -85,11 +83,37 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         cardStackView.addArrangedSubview(billCardView)
         
+        usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
+        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(), usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
+            .withLatestFrom(viewModel.accountDetailEvents.elements()
+            .asDriver(onErrorDriveWith: .empty()))
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "usageSegue", sender: $0)
+            }).disposed(by: bag)
+        cardStackView.addArrangedSubview(usageCardView)
+        viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: bag)
+        
+        usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.accountDetailEvents.elements()
+            .asDriver(onErrorDriveWith: .empty()))
+            .drive(onNext: { [weak self] in
+                Analytics().logScreenView(AnalyticsPageView.AllSavingsSmartEnergy.rawValue)
+                self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
+            }).disposed(by: bag)
+        
         let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
-        templateCardView.callToActionViewController
+        
+        templateCardView.safariViewController
             .drive(onNext: { [weak self] viewController in
                 self?.present(viewController, animated: true, completion: nil)
             }).disposed(by: bag)
+        
+        templateCardView.pushedViewControllers
+            .drive(onNext: { [weak self] viewController in
+                viewController.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }).disposed(by: bag)
+        
         cardStackView.addArrangedSubview(templateCardView)
         cardStackView.isHidden = true
         
@@ -109,17 +133,34 @@ class HomeViewController: AccountPickerViewController {
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
+        
+        if Environment.sharedInstance.environmentName != "AUT" {
+            if #available(iOS 10.0, *) {
+                UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
+                    if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
+                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
+                        if granted {
+                            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushOKInitial.rawValue)
+                        } else {
+                            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushDontAllowInitial.rawValue)
+                        }
+                    }
+                })
+            } else {
+                let settings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
+                UIApplication.shared.registerUserNotificationSettings(settings)
+            }
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
+            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushInitial.rawValue)
+        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
-    
-    func killRefresh() -> Void {
-        self.refreshControl?.endRefreshing()
-        self.scrollView.alwaysBounceVertical = true
+        usageCardView.superviewDidLayoutSubviews()
     }
     
     func styleViews() {
@@ -133,47 +174,61 @@ class HomeViewController: AccountPickerViewController {
         weatherView.accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage]
     }
     
+    @objc func killRefresh() -> Void {
+        self.refreshControl?.endRefreshing()
+        self.scrollView!.alwaysBounceVertical = true
+    }
+    
+    @objc func setRefreshControlEnabled(enabled: Bool) {
+        if enabled {
+            refreshControl = UIRefreshControl()
+            refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
+            refreshControl?.tintColor = .white
+            scrollView!.insertSubview(refreshControl!, at: 0)
+            scrollView!.alwaysBounceVertical = true
+        } else {
+            if let rc = refreshControl {
+                rc.endRefreshing()
+                rc.removeFromSuperview()
+                refreshControl = nil
+            }
+            scrollView!.alwaysBounceVertical = false
+        }
+    }
+    
+    @objc func onPullToRefresh() {
+        viewModel.fetchData.onNext(.refresh)
+    }
+    
     func bindLoadingStates() {
         topLoadingIndicatorView.isHidden = true
         
-        viewModel.isRefreshing.filter(!).drive(onNext: { [weak self] refresh in
-            if refresh {
-                self?.refreshControl?.beginRefreshing()
-            } else {
+        Observable.merge(viewModel.refreshFetchTracker.asObservable(), viewModel.isSwitchingAccounts.asObservable())
+            .subscribe(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .disposed(by: bag)
+        
+        viewModel.refreshFetchTracker.asDriver().filter(!)
+            .drive(onNext: { [weak self] _ in
                 self?.refreshControl?.endRefreshing()
-            }
-        }).disposed(by: bag)
+            }).disposed(by: bag)
         
-        viewModel.isSwitchingAccounts.not().drive(onNext: { [weak self] refresh in
+        viewModel.isSwitchingAccounts.asDriver().not().drive(onNext: { [weak self] refresh in
             guard let `self` = self else { return }
-            if refresh {
-                guard self.refreshControl == nil else { return }
-                let refreshControl = UIRefreshControl()
-                self.refreshControl = refreshControl
-                refreshControl.tintColor = .white
-                self.scrollView.insertSubview(refreshControl, at: 0)
-                self.scrollView.alwaysBounceVertical = true
-            } else {
-                self.refreshControl?.endRefreshing()
-                self.refreshControl?.removeFromSuperview()
-                self.refreshControl = nil
-                self.scrollView.alwaysBounceVertical = false
-            }
+            self.setRefreshControlEnabled(enabled: refresh)
         }).disposed(by: bag)
         
-        viewModel.isSwitchingAccounts.drive(homeLoadingIndicator.rx.isAnimating).disposed(by: bag)
-        viewModel.isSwitchingAccounts.drive(cardStackView.rx.isHidden).disposed(by: bag)
-        viewModel.isSwitchingAccounts.not().drive(loadingView.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.asDriver().drive(homeLoadingIndicator.rx.isAnimating).disposed(by: bag)
+        viewModel.isSwitchingAccounts.asDriver().drive(cardStackView.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.asDriver().drive(greetingLabel.rx.isHidden).disposed(by: bag)
         
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
-        viewModel.showNoNetworkConnectionState.drive(scrollView.rx.isHidden).disposed(by: bag)
-        
-        viewModel.isSwitchingAccounts.drive(greetingLabel.rx.isHidden).disposed(by: bag)
-        viewModel.isSwitchingAccounts.drive(temperatureLabel.rx.isHidden).disposed(by: bag)
-        viewModel.isSwitchingAccounts.drive(weatherIconImage.rx.isHidden).disposed(by: bag)
+        viewModel.showNoNetworkConnectionState.drive(scrollView!.rx.isHidden).disposed(by: bag)
         
         viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
         viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).disposed(by: bag)
+        viewModel.showTemperatureTip.not().drive(temperatureTipButton.rx.isHidden).disposed(by: bag)
+        
         viewModel.showWeatherDetails.drive(temperatureLabel.rx.isAccessibilityElement).disposed(by: bag)
         viewModel.showWeatherDetails.drive(weatherIconImage.rx.isAccessibilityElement).disposed(by: bag)
         
@@ -181,6 +236,9 @@ class HomeViewController: AccountPickerViewController {
         viewModel.weatherTemp.drive(temperatureLabel.rx.text).disposed(by: bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).disposed(by: bag)
         viewModel.weatherIconA11yLabel.drive(weatherIconImage.rx.accessibilityLabel).disposed(by: bag)
+        
+        viewModel.temperatureTipText.drive(temperatureTipLabel.rx.text).disposed(by: bag)
+        viewModel.temperatureTipImage.drive(temperatureTipImageView.rx.image).disposed(by: bag)
         
         noNetworkConnectionView.reload
             .map { FetchingAccountState.switchAccount }
@@ -211,12 +269,33 @@ class HomeViewController: AccountPickerViewController {
                             self?.view.showToast(toastMessage)
                         })
                         .disposed(by: vc.disposeBag)
+                } else if let vc = viewController as? AutoPayViewController {
+                    vc.delegate = self
+                } else if let vc = viewController as? BGEAutoPayViewController {
+                    vc.delegate = self
                 }
                 
+                viewController.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: bag)
         
+        temperatureTipButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.temperatureTipModalData)
+            .map(InfoModalViewController.init)
+            .drive(onNext: { [weak self] in
+                self?.present($0, animated: true, completion: nil)
+            })
+            .disposed(by: bag)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? UsageViewController, let accountDetail = sender as? AccountDetail {
+            vc.accountDetail = accountDetail
+        } else if let vc = segue.destination as? TotalSavingsViewController, let accountDetail = sender as? AccountDetail {
+            vc.eventResults = accountDetail.SERInfo.eventResults
+        }
     }
     
 }
@@ -227,4 +306,28 @@ extension HomeViewController: AccountPickerDelegate {
     }
 }
 
+extension HomeViewController: AutoPayViewControllerDelegate {
+    
+    func autoPayViewController(_ autoPayViewController: AutoPayViewController, enrolled: Bool) {
+        let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(message)
+        })
+        if enrolled {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
+        } else {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
+        }
+    }
+    
+}
+
+extension HomeViewController: BGEAutoPayViewControllerDelegate {
+    
+    func BGEAutoPayViewController(_ BGEAutoPayViewController: BGEAutoPayViewController, didUpdateWithToastMessage message: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(message)
+        })
+    }
+}
 

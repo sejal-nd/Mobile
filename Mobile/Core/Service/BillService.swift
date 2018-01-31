@@ -89,7 +89,7 @@ extension BillService {
             self.enrollBudgetBilling(accountNumber: accountNumber, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -104,7 +104,7 @@ extension BillService {
             self.unenrollBudgetBilling(accountNumber: accountNumber, reason: reason, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -119,7 +119,7 @@ extension BillService {
             self.enrollPaperlessBilling(accountNumber: accountNumber, email: email, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)
@@ -134,7 +134,7 @@ extension BillService {
             self.unenrollPaperlessBilling(accountNumber: accountNumber, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
                 case ServiceResult.Success:
-                    observer.onNext()
+                    observer.onNext(())
                     observer.onCompleted()
                 case ServiceResult.Failure(let err):
                     observer.onError(err)

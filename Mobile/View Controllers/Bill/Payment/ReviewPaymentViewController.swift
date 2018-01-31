@@ -59,8 +59,8 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var termsConditionsSwitchView: UIView!
     @IBOutlet weak var termsConditionsSwitch: Switch!
     @IBOutlet weak var termsConditionsSwitchLabel: UILabel!
-    @IBOutlet weak var termsConditionsButtonView: UIView!
-    @IBOutlet weak var termsConditionsButton: UIButton!
+    @IBOutlet weak var termsConditionsButton: ButtonControl!
+    @IBOutlet weak var termsConditionsButtonLabel: UILabel!
     
     @IBOutlet weak var overpayingSwitchView: UIView!
     @IBOutlet weak var overpayingSwitch: Switch!
@@ -109,7 +109,7 @@ class ReviewPaymentViewController: UIViewController {
         paymentAccountMaskedAccountNumberLabel.textColor = .blackText
         paymentAccountNicknameLabel.textColor = .middleGray
         
-        receiptView.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: 0), radius: 2)
+        receiptView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -165,9 +165,9 @@ class ReviewPaymentViewController: UIViewController {
             termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
         }
         termsConditionsSwitchLabel.setLineHeight(lineHeight: 25)
-        termsConditionsButton.setTitleColor(.actionBlue, for: .normal)
-        termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
-        termsConditionsButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        termsConditionsButtonLabel.font = SystemFont.bold.of(textStyle: .headline)
+        termsConditionsButtonLabel.textColor = .actionBlue
+        termsConditionsButtonLabel.text = NSLocalizedString("View terms and conditions", comment: "")
         termsConditionsSwitchLabel.isAccessibilityElement = false
         termsConditionsSwitch.accessibilityLabel = termsConditionsSwitchLabel.text!
         
@@ -268,7 +268,7 @@ class ReviewPaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         LoadingView.show()
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
@@ -290,7 +290,7 @@ class ReviewPaymentViewController: UIViewController {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
                     action -> Void in
-                    if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                    if let url = URL(string: "tel://\(errMessage[phoneRange])"), UIApplication.shared.canOpenURL(url) {
                         if #available(iOS 10, *) {
                             UIApplication.shared.open(url)
                         } else {

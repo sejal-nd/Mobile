@@ -31,6 +31,7 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var learnMoreButtonLabel: UILabel!
     
     @IBOutlet weak var enrollmentSwitchView: UIView!
+    @IBOutlet weak var enrollmentStatusLabel: UILabel!
     @IBOutlet weak var enrollmentSwitch: Switch!
     
     @IBOutlet weak var topSpacerView: UIView!
@@ -76,8 +77,12 @@ class BGEAutoPayViewController: UIViewController {
         ]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
+        enrollmentStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
+        
         learnMoreButtonLabel.textColor = .actionBlue
         learnMoreButtonLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
+        learnMoreButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        learnMoreButtonLabel.numberOfLines = 0
         
         expirationLabel.textColor = .blackText
         
@@ -90,7 +95,7 @@ class BGEAutoPayViewController: UIViewController {
         enrolledPaymentAccountLabel.text = NSLocalizedString("AutoPay Payment Account:", comment: "")
         
         bankAccountButton.backgroundColorOnPress = .softGray
-        bankAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 0), radius: 3)
+        bankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
         bankAccountButtonSelectLabel.font = SystemFont.medium.of(textStyle: .title1)
         bankAccountButtonSelectLabel.textColor = .blackText
@@ -102,6 +107,7 @@ class BGEAutoPayViewController: UIViewController {
         bottomLabelView.backgroundColor = .softGray
         bottomLabel.textColor = .blackText
         bottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
+        bottomLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         settingsButtonLabel.textColor = .actionBlue
         settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -158,16 +164,11 @@ class BGEAutoPayViewController: UIViewController {
         learnMoreButton.isAccessibilityElement = true
         learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
         bankAccountButton.isAccessibilityElement = true
-        if !bankAccountButtonSelectLabel.isHidden {
-            bankAccountButton.accessibilityLabel = NSLocalizedString(bankAccountButtonSelectLabel.text ?? "", comment: "")
-        } else {
-            let labelString = NSLocalizedString("Bank account: %@.\nNickname: %@", comment: "")
-            bankAccountButton.accessibilityLabel = String(format: labelString, bankAccountButtonAccountNumberLabel.text ?? "", bankAccountButtonNicknameLabel.text ?? "" )
-        }
         settingsButton.isAccessibilityElement = true
         settingsButton.accessibilityLabel = settingsButtonLabel.text
         
         enrollmentSwitch.accessibilityLabel = "Enrollment status: "
+        enrollmentStatusLabel.isAccessibilityElement = false
     }
     
     func setupBindings() {
@@ -199,7 +200,7 @@ class BGEAutoPayViewController: UIViewController {
         viewModel.shouldShowExpiredReason.map(!).drive(expirationLabel.rx.isHidden).disposed(by: disposeBag)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         if viewModel.initialEnrollmentStatus.value == .enrolled && (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
             let alertVc = UIAlertController(title: NSLocalizedString("Unsaved Changes", comment: ""), message: NSLocalizedString("You have unsaved changes - are you sure you want to exit this screen without saving your changes? Return to the AutoPay screen and Tap \"Submit\" to save your AutoPay changes.", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -212,7 +213,7 @@ class BGEAutoPayViewController: UIViewController {
         }
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         LoadingView.show()
         Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
         

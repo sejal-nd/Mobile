@@ -26,6 +26,10 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
+    @IBOutlet weak var customErrorView: UIView!
+    @IBOutlet weak var customErrorTitleLabel: UILabel!
+    @IBOutlet weak var customErrorDetailLabel: UILabel!
+    
     // We keep track of this constraint because AutoLayout uses it to calculate the height of the scrollView's content
     // When the gasOnlyView is hidden, we do not want it's height to impact the scrollView content size (the normal outage
     // view does not need to scroll on iPhone 7 size), so we use this to toggle active/inactive. Cannot be weak reference
@@ -70,7 +74,6 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.footerTextViewText
-        footerTextView.delegate = self
         
         gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
@@ -81,6 +84,12 @@ class OutageViewController: AccountPickerViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
+        customErrorTitleLabel.textColor = .blackText
+        customErrorTitleLabel.text = NSLocalizedString("Account Ineligible", comment: "")
+        customErrorDetailLabel.textColor = .blackText
+        customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to the mobile app. " +
+            "Access your account on our responsive website.", comment: "")
+        
         accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             switch(state) {
@@ -89,6 +98,7 @@ class OutageViewController: AccountPickerViewController {
                 self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 self.gasOnlyView.isHidden = true
                 self.errorLabel.isHidden = true
+                self.customErrorView.isHidden = true
                 self.loadingView.isHidden = true
                 self.loadingView.accessibilityViewIsModal = false
                 self.setRefreshControlEnabled(enabled: false)
@@ -119,24 +129,24 @@ class OutageViewController: AccountPickerViewController {
         gradientLayer.frame = gradientBackground.frame
     }
     
-    func killRefresh() -> Void {
+    @objc func killRefresh() -> Void {
         refreshControl?.endRefreshing()
-        scrollView.alwaysBounceVertical = false
+        scrollView!.alwaysBounceVertical = false
     }
     
     func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             refreshControl = UIRefreshControl()
             refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
-            scrollView.insertSubview(refreshControl!, at: 0)
-            scrollView.alwaysBounceVertical = true
+            scrollView!.insertSubview(refreshControl!, at: 0)
+            scrollView!.alwaysBounceVertical = true
         } else {
             if let rc = refreshControl {
                 rc.endRefreshing()
                 rc.removeFromSuperview()
                 refreshControl = nil
             }
-            scrollView.alwaysBounceVertical = false
+            scrollView!.alwaysBounceVertical = false
         }
     }
     
@@ -189,6 +199,7 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextViewBottomSpaceConstraint.isActive = false
         gasOnlyView.isHidden = true
         errorLabel.isHidden = true
+        customErrorView.isHidden = true
         loadingView.isHidden = false
         loadingView.accessibilityViewIsModal = true
         setRefreshControlEnabled(enabled: false)
@@ -198,27 +209,41 @@ class OutageViewController: AccountPickerViewController {
             self?.loadingView.accessibilityViewIsModal = false
             self?.setRefreshControlEnabled(enabled: true)
             self?.updateContent()
-        }, onError: { [weak self] in
+        }, onError: { [weak self] serviceError in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             self?.loadingView.isHidden = true
             self?.loadingView.accessibilityViewIsModal = false
             self?.setRefreshControlEnabled(enabled: true)
-            self?.errorLabel.isHidden = false
+            
+            if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+                self?.errorLabel.isHidden = true
+                self?.customErrorView.isHidden = false
+            } else {
+                self?.errorLabel.isHidden = false
+                self?.customErrorView.isHidden = true
+            }
         })
     }
     
     // MARK: - Actions
     
-    func onPullToRefresh() {
+    @objc func onPullToRefresh() {
         viewModel.getOutageStatus(onSuccess: { [weak self] in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
             self.viewModel.clearReportedOutage()
             self.updateContent()
-        }, onError: { [weak self] in
+        }, onError: { [weak self] serviceError in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
-            self.errorLabel.isHidden = false
+
+            if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+                self.errorLabel.isHidden = true
+                self.customErrorView.isHidden = false
+            } else {
+                self.errorLabel.isHidden = false
+                self.customErrorView.isHidden = true
+            }
             
             // Hide everything else
             self.accountContentView.isHidden = true
@@ -268,13 +293,6 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
         })
     }
     
-}
-
-extension OutageViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
-        return true
-    }
 }
 
 extension OutageViewController: OutageStatusButtonDelegate {

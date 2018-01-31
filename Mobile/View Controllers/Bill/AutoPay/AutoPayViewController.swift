@@ -156,11 +156,11 @@ class AutoPayViewController: UIViewController {
         gradientLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: footerView.frame.origin.y + 64)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSubmitPress() {
+    @objc func onSubmitPress() {
         view.endEditing(true)
         Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
         
@@ -337,7 +337,7 @@ class AutoPayViewController: UIViewController {
         
         routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver().drive(onNext: { [weak self] in
             guard let `self` = self else { return }
-            if self.viewModel.routingNumber.value.characters.count == 9 {
+            if self.viewModel.routingNumber.value.count == 9 {
                 self.viewModel.getBankName(onSuccess: { [weak self] in
                     guard let `self` = self else { return }
                     self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
@@ -417,7 +417,7 @@ class AutoPayViewController: UIViewController {
         if message.isEmpty {
             submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
         } else {
-            submitButton.accessibilityLabel = NSLocalizedString(message + " Submit", comment: "")
+            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
         }
     }
     
@@ -452,7 +452,11 @@ class AutoPayViewController: UIViewController {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
@@ -481,15 +485,15 @@ extension AutoPayViewController: UITextFieldDelegate {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
         if textField == routingNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 9
         } else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 17
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 17
         }
         return true
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
-        if textField == routingNumberTextField.textField && textField.text?.characters.count == 9 {
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if textField == routingNumberTextField.textField && textField.text?.count == 9 {
             accountNumberTextField.textField.becomeFirstResponder()
         }
     }

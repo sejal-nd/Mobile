@@ -82,11 +82,11 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         if message.isEmpty {
             nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
+            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
         }
     }
     
-	func onAccountNumberKeyboardDonePress() {
+	@objc func onAccountNumberKeyboardDonePress() {
 		viewModel.accountNumberHasTenDigits.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
 			.drive(onNext: { [weak self] enabled in
 				if enabled {
@@ -106,16 +106,16 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         
         setNeedsStatusBarAppearanceUpdate()
         
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -178,7 +178,7 @@ extension RegistrationBGEAccountNumberViewController: UITextFieldDelegate {
         
         if textField ==  accountNumberTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
-            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
+            return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
         }
         
         return true

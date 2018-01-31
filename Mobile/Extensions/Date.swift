@@ -13,6 +13,26 @@ extension Date {
         return DateFormatter.mmDdYyyyFormatter.string(from: self)
     }
     
+    @nonobjc var shortMonthAndDayString: String {
+        return DateFormatter.shortMonthAndDayFormatter.string(from: self)
+    }
+    
+    @nonobjc var fullMonthAndDayString: String {
+        return DateFormatter.fullMonthAndDayFormatter.string(from: self)
+    }
+    
+    @nonobjc var fullMonthDayAndYearString: String {
+        return DateFormatter.fullMonthDayAndYearFormatter.string(from: self)
+    }
+    
+    @nonobjc var shortMonthDayAndYearString: String {
+        return DateFormatter.shortMonthDayAndYearFormatter.string(from: self)
+    }
+    
+    @nonobjc var hourAmPmString: String {
+        return DateFormatter.hourAmPmFormatter.string(from: self)
+    }
+    
     @nonobjc var apiFormatString: String {
         return DateFormatter.apiFormatter.string(from: self)
     }
@@ -43,30 +63,75 @@ extension Date {
             return DateFormatter.noonApiFormatter.string(from: self)
         }
     }
+    
+    func interval(ofComponent comp: Calendar.Component, fromDate date: Date) -> Int {
+        let currentCalendar = Calendar.opCo
+        guard let start = currentCalendar.ordinality(of: comp, in: .era, for: date) else { return 0 }
+        guard let end = currentCalendar.ordinality(of: comp, in: .era, for: self) else { return 0 }
+        return end - start
+    }
 }
 
 extension DateFormatter {
     @nonobjc static let mmDdYyyyFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let shortMonthAndDayFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "MMM dd"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let fullMonthAndDayFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "MMMM dd"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let fullMonthDayAndYearFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let shortMonthDayAndYearFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let hourAmPmFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "ha"
         return dateFormatter
     }()
     
     @nonobjc static let apiFormatterGMT: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(identifier: "GMT")!
+        dateFormatter.timeZone = .gmt
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         return dateFormatter
     }()
     
     @nonobjc static let apiFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         return dateFormatter
     }()
     
     @nonobjc static let noonApiFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd'T'12:00:00"
         return dateFormatter
     }()
@@ -84,16 +149,32 @@ extension String {
 }
 
 extension Calendar {
-    static let opCoTime: Calendar = {
+    static let opCo: Calendar = {
         var calendar = Calendar(identifier: .gregorian)
-        switch Environment.sharedInstance.opco {
-        case .bge, .peco :
-            calendar.timeZone = TimeZone(identifier: "America/New_York")!
-        case .comEd:
-            calendar.timeZone = TimeZone(identifier: "America/Chicago")!
-        }
+        calendar.timeZone = .opCo
         return calendar
     }()
+    
+    func endOfDay(for date: Date) -> Date {
+        let startOfDay = Calendar.opCo.startOfDay(for: date)
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return Calendar.opCo.date(byAdding: components, to: startOfDay)!
+    }
+}
+
+extension TimeZone {
+    static let opCo: TimeZone = {
+        switch Environment.sharedInstance.opco {
+        case .bge, .peco :
+            return TimeZone(identifier: "America/New_York")!
+        case .comEd:
+            return TimeZone(identifier: "America/Chicago")!
+        }
+    }()
+    
+    static let gmt = TimeZone(identifier: "GMT")!
 }
 
 

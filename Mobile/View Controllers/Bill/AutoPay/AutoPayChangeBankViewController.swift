@@ -150,7 +150,7 @@ class AutoPayChangeBankViewController: UIViewController {
         
         
         routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).subscribe(onNext: {
-            if self.viewModel.routingNumber.value.characters.count == 9 {
+            if self.viewModel.routingNumber.value.count == 9 {
                 self.viewModel.getBankName(onSuccess: {
                     self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
                 }, onError: {
@@ -227,9 +227,9 @@ class AutoPayChangeBankViewController: UIViewController {
         message += confirmAccountNumberTextField.getError()
         
         if message.isEmpty {
-            self.saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
+            saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            self.saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
+            saveButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save", comment: ""), message)
         }
     }
 	
@@ -257,7 +257,11 @@ class AutoPayChangeBankViewController: UIViewController {
 		let userInfo = notification.userInfo!
 		let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 		
-		let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+		let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
 		scrollView.contentInset = insets
 		scrollView.scrollIndicatorInsets = insets
 	}
@@ -267,12 +271,12 @@ class AutoPayChangeBankViewController: UIViewController {
 		scrollView.scrollIndicatorInsets = .zero
 	}
 	
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
     
-    func onSavePress() {
+    @objc func onSavePress() {
         LoadingView.show()
         Analytics().logScreenView(AnalyticsPageView.AutoPayModifyBankSave.rawValue)
         viewModel.submit()
@@ -301,15 +305,15 @@ extension AutoPayChangeBankViewController: UITextFieldDelegate {
 		let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
 		let characterSet = CharacterSet(charactersIn: string)
 		if textField == routingNumberTextField.textField {
-			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 9
+			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 9
 		} else if textField == accountNumberTextField.textField || textField == confirmAccountNumberTextField.textField {
-			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 17
+			return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 17
 		}
 		return true
 	}
 	
-	func textFieldDidChange(_ textField: UITextField) {
-		if textField == routingNumberTextField.textField && textField.text?.characters.count == 9 {
+	@objc func textFieldDidChange(_ textField: UITextField) {
+		if textField == routingNumberTextField.textField && textField.text?.count == 9 {
 			accountNumberTextField.textField.becomeFirstResponder()
 		}
 	}

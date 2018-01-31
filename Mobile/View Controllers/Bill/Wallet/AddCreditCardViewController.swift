@@ -70,11 +70,11 @@ class AddCreditCardViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSavePress() {
+    @objc func onSavePress() {
         view.endEditing(true)
         
         var shouldShowOneTouchPayWarning = false
@@ -144,7 +144,7 @@ class AddCreditCardViewController: UIViewController {
             addCardFormView.cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
             addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidEnd).asDriver(),
             addCardFormView.zipCodeTextField.textField.rx.controlEvent(.editingDidBegin).asDriver(),
-            viewModel.addCardFormViewModel.nicknameErrorString.toVoid()
+            viewModel.addCardFormViewModel.nicknameErrorString.map(to: ())
             )
             .drive(onNext: { [weak self] in
                 self?.accessibilityErrorLabel()
@@ -163,7 +163,7 @@ class AddCreditCardViewController: UIViewController {
         if message.isEmpty {
             saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
+            saveButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save", comment: ""), message)
         }
     }
     
@@ -181,25 +181,29 @@ class AddCreditCardViewController: UIViewController {
         cardIOViewController.navigationBarTintColor = .primaryColor
         cardIOViewController.navigationBar.isTranslucent = false
         cardIOViewController.navigationBar.tintColor = .white
-        let titleDict: [String: Any] = [
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: OpenSans.bold.of(size: 18)
+        let titleDict: [NSAttributedStringKey: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: OpenSans.bold.of(size: 18)
         ]
         cardIOViewController.navigationBar.titleTextAttributes = titleDict
     }
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -219,7 +223,7 @@ extension AddCreditCardViewController: CardIOPaymentViewControllerDelegate {
 
 extension AddCreditCardViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
-        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
         Analytics().logScreenView(AnalyticsPageView.AddWalletCameraOffer.rawValue)
         if cameraAuthorizationStatus == .denied || cameraAuthorizationStatus == .restricted {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)

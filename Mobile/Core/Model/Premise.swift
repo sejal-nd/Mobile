@@ -13,12 +13,14 @@ struct Premise: Mappable, Equatable, Hashable {
     let addressGeneral: String?
     let zipCode: String?
     let addressLine: Array<String>?
+    let smartEnergyRewards: String?
     
     init(map: Mapper) throws {
         try premiseNumber = map.from("premiseNumber")
         addressGeneral = map.optionalFrom("mainAddress.addressGeneral")
         addressLine = map.optionalFrom("mainAddress.addressLine")
         zipCode = map.optionalFrom("mainAddress.townDetail.code")
+        smartEnergyRewards = map.optionalFrom("smartEnergyRewards")
     }
     
     var addressLineString: String {

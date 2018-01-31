@@ -68,13 +68,13 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         let message = accountNumberTextField.getError()
         
         if message.isEmpty {
-            self.nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+            nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            self.nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
+            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
         }
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -91,7 +91,7 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         })
     }
     
-    func onAccountNumberKeyboardDonePress() {
+    @objc func onAccountNumberKeyboardDonePress() {
         viewModel.accountNumberHasTenDigits.asObservable().take(1).asDriver(onErrorDriveWith: .empty()).drive(onNext: { [weak self] valid in
             if valid {
                 self?.onNextPress()
@@ -121,7 +121,7 @@ extension ForgotUsernameBGEAccountNumberViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let characterSet = CharacterSet(charactersIn: string)
-        return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.characters.count <= 10
+        return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
     }
     
 }

@@ -58,7 +58,9 @@ class AccountPicker: UIView {
             }
             
             scrollView.contentSize = CGSize(width: frame.size.width * CGFloat(pageViews.count), height: 57)
-            scrollView.scrollRectToVisible(pageViews[pageControl.currentPage].frame, animated: false)
+            if pageControl.currentPage < pageViews.count {
+                scrollView.scrollRectToVisible(pageViews[pageControl.currentPage].frame, animated: false)
+            }
         }
         
     }
@@ -120,6 +122,7 @@ class AccountPicker: UIView {
                 addAccountToScrollView(account)
             }
         } else { // Advanced Account Picker
+            pageControl.isHidden = true
             addAccountToScrollView(pagedAccounts[0], advancedPicker: true)
         }
         
@@ -167,7 +170,7 @@ class AccountPicker: UIView {
         let accountNumberText = "\(account.accountNumber) " +
                 "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        accountNumberLabel.setContentHuggingPriority(1000, for: .horizontal)
+        accountNumberLabel.setContentHuggingPriority(.required, for: .horizontal)
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
         accountNumberLabel.textColor = tintWhite ? .white: .blackText
         accountNumberLabel.text = accountNumberText
@@ -231,7 +234,7 @@ class AccountPicker: UIView {
         }
     }
     
-    func onAdvancedAccountButtonPress() {
+    @objc func onAdvancedAccountButtonPress() {
         let storyboard = UIStoryboard(name: "Outage", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "advancedAccountPicker") as? AdvancedAccountPickerViewController {
             vc.delegate = self
@@ -247,7 +250,7 @@ class AccountPicker: UIView {
         }
     }
     
-    func onPageControlTap(sender: UIPageControl) {
+    @objc func onPageControlTap(sender: UIPageControl) {
         scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: true)
         currentAccount = AccountsStore.sharedInstance.accounts[pageControl.currentPage]
         AccountsStore.sharedInstance.currentAccount = currentAccount
@@ -267,26 +270,10 @@ class AccountPicker: UIView {
             }
         }
         
-        // Update advanced account picker
-        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
-                "Stopped" : "Finaled",
-                comment: "")
-        let linkedString = NSLocalizedString("Linked", comment: "")
-
-        let accountNumberText = "\(currentAccount.accountNumber) " +
-                "\(currentAccount.isFinaled ? "(\(finaledString))" : currentAccount.isLinked ? "(\(linkedString))":"")"
-        advancedAccountNumberLabel?.text = accountNumberText
-        advancedAccountAddressLabel?.text = currentAccount.address ?? " "
+        updateAdvancedAccountPicker(currentAccount)
     }
     
-}
-
-extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
-    func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account) {
-        currentAccount = account
-        AccountsStore.sharedInstance.currentAccount = account
-        
-        // Update advanced account picker
+    func updateAdvancedAccountPicker(_ account: Account) {
         let icon: UIImage
         let a11yDescription: String
         switch (!account.isResidential, tintWhite) {
@@ -305,15 +292,15 @@ extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
         }
         advancedAccountIconImageView?.image = icon
         advancedAccountIconImageView?.accessibilityLabel = a11yDescription
-
+        
         let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
-                "Stopped" : "Finaled",
-                comment: "")
+            "Stopped" : "Finaled",
+                                              comment: "")
         let linkedString = NSLocalizedString("Linked", comment: "")
-
+        
         let accountNumberText = "\(account.accountNumber) " +
-                "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
-
+        "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
+        
         advancedAccountNumberLabel?.text = accountNumberText
         advancedAccountNumberLabel?.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
         if account.currentPremise != nil {
@@ -326,6 +313,16 @@ extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
         } else {
             advancedAccountAddressLabel?.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), advancedAccountAddressLabel?.text ?? "")
         }
+    }
+    
+}
+
+extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
+    func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account) {
+        currentAccount = account
+        AccountsStore.sharedInstance.currentAccount = account
+        
+        updateAdvancedAccountPicker(account)
         
         delegate?.accountPickerDidChangeAccount(self)
     }

@@ -121,7 +121,7 @@ class WalletViewController: UIViewController {
         setupBinding()
         setupButtonTaps()
         
-        viewModel.fetchWalletItems.onNext() // Fetch the items!
+        viewModel.fetchWalletItems.onNext(()) // Fetch the items!
         
         addAccessibility()
     }
@@ -159,12 +159,11 @@ class WalletViewController: UIViewController {
                 if height != headerFrame.size.height {
                     headerFrame.size.height = height
                     headerView.frame = headerFrame
-                    tableView.tableHeaderView = headerView
                 }
             } else {
                 headerView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0.01) // Must be 0.01 to remove empty space when hidden
             }
-            tableView.tableHeaderView = tableView.tableHeaderView;
+            tableView.tableHeaderView = headerView
         }
         
         // Dynamic sizing for the table footer view
@@ -218,7 +217,7 @@ class WalletViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
-    func onWalletItemPress(sender: ButtonControl) {
+    @objc func onWalletItemPress(sender: ButtonControl) {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
             selectedWalletItem = walletItems[sender.tag]
             if selectedWalletItem!.bankOrCard == .card {
@@ -269,7 +268,7 @@ class WalletViewController: UIViewController {
     func didChangeAccount(toastMessage: String) {
         didUpdateSubject.onNext(toastMessage)
         if !shouldPopToRootOnSave {
-            viewModel.fetchWalletItems.onNext()
+            viewModel.fetchWalletItems.onNext(())
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(toastMessage)
             })

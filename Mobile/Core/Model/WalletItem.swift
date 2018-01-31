@@ -138,7 +138,6 @@ struct WalletItem: Mappable, Equatable, Hashable {
         }
     }
     
-    
     // Equatable
     static func ==(lhs: WalletItem, rhs: WalletItem) -> Bool {
         return lhs.walletItemID == rhs.walletItemID

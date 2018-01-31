@@ -57,7 +57,7 @@ class BGEAutoPayViewModel {
     }
     
     private func amountNotToExceedDouble() -> String {
-        return String(amountNotToExceed.value.characters.filter { "0123456789.".characters.contains($0) })
+        return String(amountNotToExceed.value.filter { "0123456789.".contains($0) })
     }
     
     func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
@@ -113,7 +113,7 @@ class BGEAutoPayViewModel {
                 }
                 
                 onSuccess?()
-                }, onError: { [weak self] error in
+            }, onError: { [weak self] error in
                     guard let `self` = self else { return }
                     self.isFetchingAutoPayInfo.value = false
                     self.isError.value = true
@@ -191,9 +191,13 @@ class BGEAutoPayViewModel {
             if amountNotToExceed.value.isEmpty {
                 return defaultString
             } else {
+                let minPaymentAmount = accountDetail.minPaymentAmount(bankOrCard: .bank)
+                let maxPaymentAmount = accountDetail.maxPaymentAmount(bankOrCard: .bank)
                 if let amountDouble = Double(amountNotToExceedDouble()) {
-                    if amountDouble < 0.01 || amountDouble > 9999.99 {
-                        return NSLocalizedString("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between $0.01 and $9,999.99", comment: "")
+                    if amountDouble < minPaymentAmount || amountDouble > maxPaymentAmount,
+                        let minString = minPaymentAmount.currencyString,
+                        let maxString = maxPaymentAmount.currencyString {
+                        return NSLocalizedString("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between \(minString) and \(maxString)", comment: "")
                     }
                 }
             }
@@ -241,13 +245,7 @@ class BGEAutoPayViewModel {
     private(set) lazy var selectedWalletItemA11yLabel: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let walletItem = $0 else { return "" }
         
-        var a11yLabel = ""
-        
-        if walletItem.bankOrCard == .bank {
-            a11yLabel = NSLocalizedString("Bank account", comment: "")
-        } else {
-            a11yLabel = NSLocalizedString("Credit card", comment: "")
-        }
+        var a11yLabel = NSLocalizedString("Bank account", comment: "")
         
         if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
             a11yLabel += ", \(nicknameText)"
@@ -263,7 +261,7 @@ class BGEAutoPayViewModel {
     private(set) lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().isNil().not()
     
     func formatAmountNotToExceed() {
-        let textStr = String(amountNotToExceed.value.characters.filter { "0123456789".characters.contains($0) })
+        let textStr = String(amountNotToExceed.value.filter { "0123456789".contains($0) })
         if let intVal = Double(textStr) {
             if intVal == 0 {
                 amountNotToExceed.value = "$0.00"

@@ -49,13 +49,13 @@ class AddBankFormViewModel {
     
     private(set) lazy var accountHolderNameHasText: Driver<Bool> = self.accountHolderName.asDriver().map { !$0.isEmpty }
     
-    private(set) lazy var accountHolderNameIsValid: Driver<Bool> = self.accountHolderName.asDriver().map { $0.characters.count >= 3 }
+    private(set) lazy var accountHolderNameIsValid: Driver<Bool> = self.accountHolderName.asDriver().map { $0.count >= 3 }
     
-    private(set) lazy var routingNumberIsValid: Driver<Bool> = self.routingNumber.asDriver().map { $0.characters.count == 9 }
+    private(set) lazy var routingNumberIsValid: Driver<Bool> = self.routingNumber.asDriver().map { $0.count == 9 }
     
     private(set) lazy var accountNumberHasText: Driver<Bool> = self.accountNumber.asDriver().map { !$0.isEmpty }
     
-    private(set) lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver().map { 4...17 ~= $0.characters.count }
+    private(set) lazy var accountNumberIsValid: Driver<Bool> = self.accountNumber.asDriver().map { 4...17 ~= $0.count }
     
     private(set) lazy var confirmAccountNumberMatches: Driver<Bool> = Driver.combineLatest(self.accountNumber.asDriver(),
                                                                                            self.confirmAccountNumber.asDriver(),
@@ -69,7 +69,7 @@ class AddBankFormViewModel {
     
     private(set) lazy var nicknameErrorString: Driver<String?> = self.nickname.asDriver().map { [weak self] in
         // If BGE, check if at least 3 characters
-        if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.characters.count < 3 {
+        if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.count < 3 {
             return NSLocalizedString("Must be at least 3 characters", comment: "")
         }
         

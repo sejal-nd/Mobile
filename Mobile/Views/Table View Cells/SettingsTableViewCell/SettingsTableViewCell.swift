@@ -23,6 +23,7 @@ class SettingsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        backgroundColor = .clear // iOS 9 support
         contentView.backgroundColor = .clear
         
         innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)

@@ -38,11 +38,10 @@ class WalletViewModel {
             .fetchWalletItems()
             .trackActivity(self.fetchingWalletItemsTracker)
             .materialize()
-            .share()
-    }
+    }.share()
     
     lazy var isError: Driver<Bool> = self.walletItemEvents.asDriver(onErrorDriveWith: .empty()).map {
-        return $0.error != nil
+        return  $0.error != nil
     }.startWith(false)
     
     lazy var shouldShowEmptyState: Driver<Bool> = {
@@ -50,8 +49,8 @@ class WalletViewModel {
             guard let walletItems = walletItems else { return false }
             return walletItems.count == 0
         }
-        return Driver.combineLatest(self.isFetchingWalletItems, noWalletItems) {
-            return !$0 && $1
+        return Driver.combineLatest(self.isFetchingWalletItems, noWalletItems, self.isError.asDriver()) {
+            return !$0 && $1 && !$2
         }
     }()
     
@@ -60,8 +59,8 @@ class WalletViewModel {
             guard let walletItems = walletItems else { return false }
             return walletItems.count > 0
         }
-        return Driver.combineLatest(self.isFetchingWalletItems, walletNotEmpty) {
-            return !$0 && $1
+        return Driver.combineLatest(self.isFetchingWalletItems, walletNotEmpty, self.isError.asDriver()) {
+            return !$0 && $1 && !$2
         }
     }()
     

@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        if ProcessInfo.processInfo.arguments.contains("UITest") {
+            UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+            UserDefaults.standard.synchronize()
+        }
+        
         if let appInfo = Bundle.main.infoDictionary,
             let shortVersionString = appInfo["CFBundleShortVersionString"] as? String {
             UserDefaults.standard.set(shortVersionString, forKey: "version")
@@ -31,10 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .comEd: BITHockeyManager.shared().configure(withIdentifier: "7399eb2b4dc44f91ac86e219d947b7b5")
                 case .peco: BITHockeyManager.shared().configure(withIdentifier: "51e89ca780064447b2373609c35e5b68")
             }
+            BITHockeyManager.shared().isUpdateManagerDisabled = true
             BITHockeyManager.shared().crashManager.crashManagerStatus = .autoSend
             BITHockeyManager.shared().isFeedbackManagerDisabled = true
             BITHockeyManager.shared().start()
             BITHockeyManager.shared().authenticator.authenticateInstallation()
+        }
+        
+        if Environment.sharedInstance.environmentName == "PROD" {
+            OMCMobileBackendManager.shared().logLevel = "none"
         }
         
         setupUserDefaults()
@@ -43,9 +53,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAnalytics()
         //printFonts()
         
+        _ = AlertsStore.sharedInstance.alerts // Triggers the loading of alerts from disk
+        
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
         
+        // If app was cold-launched from a push notification
+        if let options = launchOptions, let userInfo = options[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
+            self.application(application, didReceiveRemoteNotification: userInfo)
+        }
         
         return true
     }
@@ -72,6 +88,81 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        dLog("*-*-*-*-* APNS Device Token: \(token)")
+        
+        var firstLogin = false
+        if let usernamesArray = UserDefaults.standard.array(forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications) as? [String],
+            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername) {
+                if !usernamesArray.contains(loggedInUsername) {
+                    firstLogin = true
+                }
+            
+                let alertsService = ServiceFactory.createAlertsService()
+                alertsService.register(token: token, firstLogin: firstLogin) { (result: ServiceResult<Void>) in
+                    switch result {
+                    case .Success:
+                        dLog("*-*-*-*-* Registered token with MCS")
+                        if firstLogin { // Add the username to the array
+                            var newUsernamesArray = usernamesArray
+                            newUsernamesArray.append(loggedInUsername)
+                            UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications)
+                        }
+                    case .Failure(let err):
+                        dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
+                    }
+                }
+        }
+    }
+    
+    // Only used on iOS 9 and below -- iOS 10+ uses the new UNUserNotificationCenter and handles the analytics in
+    // the callback in HomeViewController
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
+            UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
+            if notificationSettings.types.isEmpty {
+                Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushDontAllowInitial.rawValue)
+            } else {
+                Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushOKInitial.rawValue)
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        dLog("*-*-*-*-* \(error.localizedDescription)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        dLog("*-*-*-*-* \(userInfo)")
+        
+        guard let aps = userInfo["aps"] as? [String: Any] else { return }
+        guard let alert = aps["alert"] as? [String: Any] else { return }
+        
+        var accountNumbers: [String]
+        if let accountIds = userInfo["accountIds"] as? [String] {
+            accountNumbers = accountIds
+        } else if let accountId = userInfo["accountId"] as? String {
+            accountNumbers = [accountId]
+        } else {
+            return // Did not get account number or array of account numbers
+        }
+        
+        let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
+        AlertsStore.sharedInstance.savePushNotification(notification)
+        
+        if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
+            if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
+                NotificationCenter.default.post(name: .DidTapOnPushNotification, object: self)
+            } else {
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.PushNotificationReceived)
+                UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.PushNotificationReceivedTimestamp)
+            }
+        } else {
+            // App was in the foreground when notification received - do nothing
+        }
+    }
+    
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else {
             return false
@@ -84,19 +175,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard let window = self.window else { return false }
         guard let rootNav = window.rootViewController as? UINavigationController else { return false }
+        
+        if let guid = getQueryStringParameter(url: url, param: "guid") {
+            UserDefaults.standard.set(guid, forKey: UserDefaultKeys.AccountVerificationDeepLinkGuid)
+        }
+        
         if let topMostVC = rootNav.viewControllers.last as? SplashViewController {
             topMostVC.restoreUserActivityState(userActivity)
         } else {
             resetNavigation(sendToLogin: true)
         }
         
-        if let guid = getQueryStringParameter(url: url, param: "guid") {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                // Need delay here for the notification to be properly received by LoginViewController
-                NotificationCenter.default.post(name: NSNotification.Name.DidTapAccountVerificationDeepLink, object: self, userInfo: ["guid": guid])
-            })
-        }
-
         return true
     }
     
@@ -112,16 +201,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupUserDefaults() {
         let userDefaults = UserDefaults.standard
         userDefaults.register(defaults: [
-            UserDefaultKeys.ShouldPromptToEnableTouchID: true,
-            UserDefaultKeys.PaymentDetailsDictionary: [String: NSDictionary]()
+            UserDefaultKeys.ShouldPromptToEnableBiometrics: true,
+            UserDefaultKeys.PaymentDetailsDictionary: [String: NSDictionary](),
+            UserDefaultKeys.UsernamesRegisteredForPushNotifications: [String]()
         ])
         
         userDefaults.set(false, forKey: UserDefaultKeys.InMainApp)
         
         if userDefaults.bool(forKey: UserDefaultKeys.HasRunBefore) == false {
-            // Clear the Touch ID keychain item on first launch of the app (we found it was persisting after uninstalls)
-            let fingerprintService = ServiceFactory.createFingerprintService()
-            fingerprintService.disableTouchID()
+            // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
+            let biometricsService = ServiceFactory.createBiometricsService()
+            biometricsService.disableBiometrics()
             
             // Log the user out (Oracle SDK appears to be persisting the auth token through uninstalls)
             let auth = OMCApi().getBackend().authorization
@@ -164,15 +254,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     
-    func resetNavigationOnAuthTokenExpire() {
+    @objc func resetNavigationOnAuthTokenExpire() {
         resetNavigation(sendToLogin: false)
         
-        let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("Your session has expired. Please sign in again.", comment: ""), preferredStyle: .alert)
+        let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("To protect the security of your account, your login has been expired. Please sign in again.", comment: ""), preferredStyle: .alert)
         alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
     }
     
-    func showMaintenanceMode(){
+    @objc func showMaintenanceMode(){
         DispatchQueue.main.async { [weak self] in
             LoadingView.hide()
 

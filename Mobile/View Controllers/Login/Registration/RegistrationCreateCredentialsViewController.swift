@@ -95,7 +95,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         viewModel.primaryProfile.value = !viewModel.primaryProfile.value
     }
     
-    func onNextPress() {
+    @objc func onNextPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -340,7 +340,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         if message.isEmpty {
             nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
-            nextButton.accessibilityLabel = NSLocalizedString(message + " Next", comment: "")
+            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
         }
     }
     
@@ -355,16 +355,20 @@ class RegistrationCreateCredentialsViewController: UIViewController {
  
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
@@ -375,18 +379,18 @@ class RegistrationCreateCredentialsViewController: UIViewController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.characters.count == 0 { // Allow backspace
+        if string.count == 0 { // Allow backspace
             return true
         }
         
-        if string.trimmingCharacters(in: .whitespacesAndNewlines).characters.count == 0 {
+        if string.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             return false
         }
 
 //        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
 //        
 //        if textField == createUsernameTextField.textField || textField == confirmUsernameTextField?.textField {
-//            return newString.characters.count <= viewModel.MAXUSERNAMECHARS + 10
+//            return newString.count <= viewModel.MAXUSERNAMECHARS + 10
 //        }
         
         return true

@@ -42,7 +42,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         col1HeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         col1HeaderLabel.text = NSLocalizedString("Account Number", comment: "")
         if singleMultipremiseAccount {
-            col1HeaderLabel.removeFromSuperview()
+            col1HeaderLabel.text = nil
         }
         
         col2HeaderLabel.textColor = .middleGray
@@ -54,6 +54,8 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         col3HeaderLabel.text = NSLocalizedString("Unit Number", comment: "")
         
         firstSeparatorView.backgroundColor = tableView.separatorColor
+        
+        tableView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,21 +67,35 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        // TODO: Discovered an iOS 11 only bug where the table view cells would initially
-        // be blank until they were scrolled off screen and reused. This reloadData() is the
-        // workaround. We should remove it if/when this gets fixed.
-        if #available(iOS 11, *) {
-            tableView.reloadData()
-        }
+        // A few oddities going on here. Discovered an iOS 11 only bug where the table view cells would initially
+        // be blank until they were scrolled off screen and reused. Also an issue when accessibility text is sized up
+        // where we need to re-layout and compute the column width contraints. viewDidLayoutSubviews() will call
+        // tableView.reloadData() and re-compute all the constraints. We hide the tableView initially and unhide
+        // here so that you don't see the re-layout happen.
+        viewDidLayoutSubviews()
+        tableView.isHidden = false
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         tableView.reloadData() // To properly set the width constraints
+        
+        // Dynamic sizing for the table header view
+        if let headerView = tableView.tableHeaderView {
+            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+
+            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+        }
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
@@ -118,22 +134,41 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
 
         let outageStatus = viewModel.outageStatusArray![indexPath.row]
 
+        var a11yLabel = ""
         if singleMultipremiseAccount {
             if cell.accountNumberLabel != nil { // Prevents crash if already removed
                 cell.accountNumberLabel.removeFromSuperview()
             }
             cell.streetNumberLabel.text = outageStatus.maskedAddress
             cell.unitNumberLabel.text = outageStatus.unitNumber
+            
+            if let maskedAddress = outageStatus.maskedAddress, !maskedAddress.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Street address: %@,", comment: ""), maskedAddress)
+            }
+            if let unitNumber = outageStatus.unitNumber, !unitNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+            }
         } else {
             cell.accountNumberLabel.text = outageStatus.maskedAccountNumber
             cell.streetNumberLabel.text = outageStatus.addressNumber
             cell.unitNumberLabel.text = outageStatus.unitNumber
             
             cell.accountNumberLabelWidthConstraint.constant = col1HeaderLabel.frame.size.width
+            
+            if let accountNumber = outageStatus.maskedAccountNumber, !accountNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Account number ending in %@,", comment: ""), accountNumber.replacingOccurrences(of: "*", with: ""))
+            }
+            if let addressNumber = outageStatus.addressNumber, !addressNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Street number: %@,", comment: ""), addressNumber)
+            }
+            if let unitNumber = outageStatus.unitNumber, !unitNumber.isEmpty {
+                a11yLabel += String(format: NSLocalizedString("Unit number: %@", comment: ""), unitNumber)
+            }
         }
         
         cell.streetNumberLabelWidthConstraint.constant = col2HeaderLabel.frame.size.width
         cell.unitNumberLabelWidthConstraint.constant = col3HeaderLabel.frame.size.width
+        cell.accessibilityLabel = a11yLabel
         
         return cell
     }
@@ -186,7 +221,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
                     // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
-                        if let url = URL(string: "tel://\(errMessage.substring(with: phoneRange))"), UIApplication.shared.canOpenURL(url) {
+                        if let url = URL(string: "tel://\(errMessage[phoneRange]))"), UIApplication.shared.canOpenURL(url) {
                             if #available(iOS 10, *) {
                                 UIApplication.shared.open(url)
                             } else {

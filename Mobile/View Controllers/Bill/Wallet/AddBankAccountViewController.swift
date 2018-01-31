@@ -65,11 +65,11 @@ class AddBankAccountViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func onCancelPress() {
+    @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    func onSavePress() {
+    @objc func onSavePress() {
         view.endEditing(true)
         
         var shouldShowOneTouchPayWarning = false
@@ -133,19 +133,19 @@ class AddBankAccountViewController: UIViewController {
         Driver.merge(
             addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
                 .withLatestFrom(viewModel.addBankFormViewModel.routingNumber.asDriver())
-                .filter { !$0.isEmpty }.toVoid(),
+                .filter { !$0.isEmpty }.map(to: ()),
             
-            addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().toVoid(),
+            addBankFormView.routingNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().map(to: ()),
             
             addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
                 .withLatestFrom(viewModel.addBankFormViewModel.accountNumber.asDriver())
-                .filter { !$0.isEmpty }.toVoid(),
+                .filter { !$0.isEmpty }.map(to: ()),
             
-            addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().toVoid(),
+            addBankFormView.accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().map(to: ()),
             
-            viewModel.addBankFormViewModel.confirmAccountNumberMatches.toVoid(),
+            viewModel.addBankFormViewModel.confirmAccountNumberMatches.map(to: ()),
             
-            viewModel.addBankFormViewModel.nicknameErrorString.toVoid()
+            viewModel.addBankFormViewModel.nicknameErrorString.map(to: ())
             
             )
             .drive(onNext: { [weak self] _ in
@@ -163,22 +163,26 @@ class AddBankAccountViewController: UIViewController {
         if message.isEmpty {
             saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            saveButton.accessibilityLabel = NSLocalizedString(message + " Save", comment: "")
+            saveButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save", comment: ""), message)
         }
     }
     
     // MARK: - ScrollView
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height, 0)
+        var safeAreaBottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+        }
+        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
