@@ -122,11 +122,8 @@ class BudgetBillingViewModel {
         case .peco:
             if accountDetail.isSupplier && accountDetail.isDualBillOption {
                 return NSLocalizedString("Budget billing option only includes PECO charges. Energy Supply charges are billed by your chosen generation provider.", comment: "")
-            } else if let budgetBillMessage = accountDetail.budgetBillMessage {
-                if budgetBillMessage.contains("Your account has not yet been open for a year") {
-                    return NSLocalizedString("PECO bases the monthly budget billing amount on your average bill over the past 12 months. Your account has not yet been open for a year. Therefore, your monthly budget billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your budget billing amount.", comment: "")
-
-                }
+            } else if let budgetBillMessage = accountDetail.budgetBillMessage, budgetBillMessage.contains("PECO bases the monthly") {
+                return NSLocalizedString("PECO bases the monthly Budget Billing amount on your average bill over the past 12 months. If your account has not yet been open for a year, your monthly Budget Billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your Budget Billing amount.", comment: "")
             }
         }
         return nil
