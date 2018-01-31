@@ -29,7 +29,7 @@ class MockAlertsService: AlertsService {
     }
     
     func fetchAlertLanguage(accountNumber: String, completion: @escaping (ServiceResult<String>) -> Void) {
-        
+        completion(.Success("English"))
     }
     
     func setAlertLanguage(accountNumber: String, english: Bool, completion: @escaping (ServiceResult<Void>) -> Void) {

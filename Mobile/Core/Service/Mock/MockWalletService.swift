@@ -11,7 +11,14 @@ import RxSwift
 
 struct MockWalletService: WalletService {
     func fetchWalletItems(completion: @escaping (_ result: ServiceResult<[WalletItem]>) -> Void) {
-        completion(ServiceResult.Failure(ServiceError(serviceCode: "")))
+        let walletItems = [
+            WalletItem(nickName: "Test Nickname"),
+            WalletItem(nickName: "Test Nickname 2", isDefault: true)
+        ]
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+            completion(.Success(walletItems))
+        }
+        //completion(ServiceResult.Failure(ServiceError(serviceCode: "")))
     }
     
     func fetchBankName(routingNumber: String, completion: @escaping (_ result: ServiceResult<String>) -> Void) {

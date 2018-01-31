@@ -22,6 +22,35 @@ class PaymentViewModelTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
+    func testFetchData() {
+        let accountDetail = AccountDetail(isResidential: true)
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        let expect = expectation(description: "async")
+        viewModel.fetchData(onSuccess: {
+            XCTAssertFalse(self.viewModel.isFetching.value)
+            XCTAssertNotNil(self.viewModel.walletItems.value, "walletItems should have been set")
+            XCTAssert(self.viewModel.walletItems.value!.count == 2, "2 wallet items should have been returned")
+            XCTAssertNotNil(self.viewModel.oneTouchPayItem, "oneTouchPayItem should have been set because one of the wallet items was default")
+            // These are the nicknames returned from MockWalletService
+            XCTAssert(self.addBankFormViewModel.nicknamesInWallet.contains("Test Nickname"))
+            XCTAssert(self.addBankFormViewModel.nicknamesInWallet.contains("Test Nickname 2"))
+            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should have been set to a default")
+            XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname 2", "selectedWalletItem should have been defaulted to OTP item")
+            expect.fulfill()
+        }, onError: {
+            XCTFail("unexpected error response")
+        })
+        
+        XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
     func testBankWorkflow() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
@@ -519,7 +548,7 @@ class PaymentViewModelTests: XCTestCase {
         // BGE commercial user test - VISA cards should be ignored
         if Environment.sharedInstance.opco == .bge {
             viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
-            viewModel.walletItems.value = [WalletItem.initVisaCard()]
+            viewModel.walletItems.value = [WalletItem(cardIssuer: "Visa", bankOrCard: .card)]
             viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
                 XCTAssertFalse(hasWalletItems, "hasWalletItems should be false for a BGE commercial user with only Visa cards")
             }).disposed(by: disposeBag)
@@ -1178,14 +1207,14 @@ class PaymentViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         // Selected wallet item
-        viewModel.selectedWalletItem.value = WalletItem(nickname: "Test")
+        viewModel.selectedWalletItem.value = WalletItem(nickName: "Test")
         viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
             XCTAssert(nickname == "Test", "Expected \"Test\", got \"\(nickname ?? "nil")\"")
         }).disposed(by: disposeBag)
         
         // ComEd/PECO specific test because by default they set nickname to last 4 digits, so we ignore those nicknames
         if Environment.sharedInstance.opco != .bge {
-            viewModel.selectedWalletItem.value = WalletItem(nickname: "1234")
+            viewModel.selectedWalletItem.value = WalletItem(nickName: "1234")
             viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
                 XCTAssertNil(nickname, "Expected nil, got \"\(nickname ?? "nil")\"")
             }).disposed(by: disposeBag)
