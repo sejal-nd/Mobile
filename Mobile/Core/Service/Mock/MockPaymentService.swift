@@ -54,7 +54,6 @@ class MockPaymentService: PaymentService {
     
     func fetchWorkdays(completion: @escaping (_ result: ServiceResult<[Date]>) -> Void) {
         completion(ServiceResult.Success([Date()]))
-        
     }
     
     func schedulePayment(payment: Payment, completion: @escaping (_ result: ServiceResult<String>) -> Void) {
@@ -70,8 +69,7 @@ class MockPaymentService: PaymentService {
     }
     
     func fetchPaymentDetails(accountNumber: String, paymentId: String, completion: @escaping (_ result: ServiceResult<PaymentDetail>) -> Void) {
-        completion(ServiceResult.Failure(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil)))
-        
+        completion(.Success(PaymentDetail(walletItemId: "1234", paymentAmount: 100, paymentDate: Date(timeIntervalSince1970: 13))))
     }
     
     func updatePayment(paymentId: String, payment: Payment, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {

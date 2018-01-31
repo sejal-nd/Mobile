@@ -22,12 +22,13 @@ class PaymentViewModelTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
-    func testFetchData() {
+    func testFetchDataHappyPath() {
         let accountDetail = AccountDetail(isResidential: true)
         addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234"])
         let expect = expectation(description: "async")
         viewModel.fetchData(onSuccess: {
             XCTAssertFalse(self.viewModel.isFetching.value)
@@ -45,6 +46,131 @@ class PaymentViewModelTests: XCTestCase {
         })
         
         XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testFetchDataHappyPathNoOTPItem() {
+        let accountDetail = AccountDetail(isResidential: true)
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+        let expect = expectation(description: "async")
+        viewModel.fetchData(onSuccess: {
+            XCTAssertFalse(self.viewModel.isFetching.value)
+            XCTAssertNotNil(self.viewModel.walletItems.value, "walletItems should have been set")
+            XCTAssert(self.viewModel.walletItems.value!.count == 2, "2 wallet items should have been returned")
+            XCTAssertNil(self.viewModel.oneTouchPayItem, "oneTouchPayItem should be nil because no wallet items are default")
+            // These are the nicknames returned from MockWalletService
+            XCTAssert(self.addBankFormViewModel.nicknamesInWallet.contains("Test Nickname"))
+            XCTAssert(self.addBankFormViewModel.nicknamesInWallet.contains("Test Nickname 2"))
+            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should have been set to a default")
+            XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname", "selectedWalletItem should have been defaulted to first wallet item ")
+            expect.fulfill()
+        }, onError: {
+            XCTFail("unexpected error response")
+        })
+        
+        XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testFetchDataModifyPayment() {
+        let accountDetail = AccountDetail(isResidential: true)
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.paymentId.value = "1"
+        let expect = expectation(description: "async")
+        viewModel.fetchData(onSuccess: {
+            XCTAssert(self.viewModel.paymentAmount.value == "$100.00", "Expected \"$100.00\", got \"\(self.viewModel.paymentAmount.value)\")")
+            XCTAssert(self.viewModel.paymentDate.value == Date(timeIntervalSince1970: 13), "paymentDate should have been updated from the paymentDetail")
+            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should have been set to the matching walletId from the paymentDetail")
+            expect.fulfill()
+        }, onError: {
+            XCTFail("unexpected error response")
+        })
+
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testFetchDataBGECommercial() {
+        if Environment.sharedInstance.opco == .bge { // BGE only test
+            let accountDetail = AccountDetail(isResidential: false)
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234"])
+            let expect1 = expectation(description: "async")
+            viewModel.fetchData(onSuccess: {
+                XCTAssertNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should be nil because OTP item is Visa card")
+                expect1.fulfill()
+            }, onError: {
+                XCTFail("unexpected error response")
+            })
+
+            waitForExpectations(timeout: 3) { err in
+                XCTAssertNil(err, "timeout")
+            }
+            
+            AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+            viewModel.selectedWalletItem.value = nil // Reset
+            let expect2 = expectation(description: "async")
+            viewModel.fetchData(onSuccess: {
+                XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should be defaulted to the first non-Visa item")
+                XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname 2")
+                expect2.fulfill()
+            }, onError: {
+                XCTFail("unexpected error response")
+            })
+            
+            waitForExpectations(timeout: 3) { err in
+                XCTAssertNil(err, "timeout")
+            }
+        }
+    }
+    
+    func testFetchDataCashOnly() {
+        let accountDetail = AccountDetail(isCashOnly: true, isResidential: true)
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234"])
+        let expect1 = expectation(description: "async")
+        viewModel.fetchData(onSuccess: {
+            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should not be nil because OTP item is credit card")
+            XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname 2")
+            expect1.fulfill()
+        }, onError: {
+            XCTFail("unexpected error response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+        viewModel.selectedWalletItem.value = nil // Reset
+        let expect2 = expectation(description: "async")
+        viewModel.fetchData(onSuccess: {
+            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should not be nil because wallet items include a credit card")
+            XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname", "got \(self.viewModel.selectedWalletItem.value!.nickName ?? "nil")")
+            expect2.fulfill()
+        }, onError: {
+            XCTFail("unexpected error response")
+        })
         
         waitForExpectations(timeout: 3) { err in
             XCTAssertNil(err, "timeout")

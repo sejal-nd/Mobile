@@ -11,10 +11,19 @@ import RxSwift
 
 struct MockWalletService: WalletService {
     func fetchWalletItems(completion: @escaping (_ result: ServiceResult<[WalletItem]>) -> Void) {
-        let walletItems = [
-            WalletItem(nickName: "Test Nickname"),
-            WalletItem(nickName: "Test Nickname 2", isDefault: true)
-        ]
+        var walletItems: [WalletItem]
+        if AccountsStore.sharedInstance.currentAccount.accountNumber == "13" { // Set this to test no OTP items
+            walletItems = [
+                WalletItem(nickName: "Test Nickname", cardIssuer: "Visa", bankOrCard: .card),
+                WalletItem(nickName: "Test Nickname 2", cardIssuer: "Mastercard", bankOrCard: .card)
+            ]
+        } else {
+            walletItems = [
+                WalletItem(nickName: "Test Nickname"),
+                WalletItem(nickName: "Test Nickname 2", isDefault: true, cardIssuer: "Visa", bankOrCard: .card)
+            ]
+        }
+
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             completion(.Success(walletItems))
         }
