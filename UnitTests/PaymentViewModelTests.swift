@@ -177,6 +177,164 @@ class PaymentViewModelTests: XCTestCase {
         }
     }
     
+    func testSchedulePaymentInlineBank() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.inlineBank.value = true
+        viewModel.addBankFormViewModel.accountNumber.value = "12345678"
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        let expect1 = expectation(description: "async")
+        viewModel.schedulePayment(onDuplicate: { (title, message) in
+            XCTFail("unexpected onDuplicate response")
+        }, onSuccess: {
+            expect1.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+        
+        AccountsStore.sharedInstance.customerIdentifier = "13" // simulates duplicate in the mock
+        let expect2 = expectation(description: "async")
+        viewModel.schedulePayment(onDuplicate: { (title, message) in
+            expect2.fulfill()
+        }, onSuccess: {
+            XCTFail("unexpected onSuccess response")
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testSchedulePaymentInlineCard() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.inlineCard.value = true
+        addCardFormViewModel.cardNumber.value = "12345678"
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        let expect1 = expectation(description: "async")
+        viewModel.schedulePayment(onDuplicate: { (title, message) in
+            XCTFail("unexpected onDuplicate response")
+        }, onSuccess: {
+            expect1.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+        
+        AccountsStore.sharedInstance.customerIdentifier = "13" // simulates duplicate in the mock
+        let expect2 = expectation(description: "async")
+        viewModel.schedulePayment(onDuplicate: { (title, message) in
+            expect2.fulfill()
+        }, onSuccess: {
+            XCTFail("unexpected onSuccess response")
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testSchedulePaymentExistingWalletItem() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        viewModel.selectedWalletItem.value = WalletItem()
+        let expect = expectation(description: "async")
+        viewModel.schedulePayment(onDuplicate: { (title, message) in
+            XCTFail("unexpected onDuplicate response")
+        }, onSuccess: {
+            expect.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testEnableOneTouchPay() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        let expect = expectation(description: "async")
+        viewModel.enableOneTouchPay(walletItemID: "123", onSuccess: {
+            expect.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testCancelPayment() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        viewModel.paymentId.value = "123"
+        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: Date())
+        let expect = expectation(description: "async")
+        viewModel.cancelPayment(onSuccess: {
+            expect.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testModifyPayment() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        viewModel.paymentId.value = "123"
+        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: Date())
+        viewModel.selectedWalletItem.value = WalletItem()
+        let expect = expectation(description: "async")
+        viewModel.modifyPayment(onSuccess: {
+            expect.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
     func testBankWorkflow() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
