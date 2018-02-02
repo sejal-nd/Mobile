@@ -23,12 +23,12 @@ private extension Date {
 
 extension AccountDetail {
     
-    init(accountNumber: String,
+    init(accountNumber: String = "1234",
          premiseNumber: String? = nil,
          address: String? = nil,
          serviceType: String = "GAS/ELECTRIC",
          customerInfo: CustomerInfo = CustomerInfo(),
-         billingInfo: BillingInfo,
+         billingInfo: BillingInfo = BillingInfo(),
          serInfo: SERInfo = SERInfo(),
          isPTSAccount: Bool = false,
          premiseInfo: [Premise] = [],

@@ -14,6 +14,68 @@ class AlertsViewModelTests: XCTestCase {
     var viewModel: AlertsViewModel!
     let disposeBag = DisposeBag()
     
+    func testFetchDataSuccess() {
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!
+        viewModel = AlertsViewModel(accountService: MockAccountService(), alertsService: MockAlertsService())
+        viewModel.fetchData()
+        
+        let expect = expectation(description: "wait for callbacks")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+            XCTAssertNotNil(self.viewModel.currentAccountDetail, "currentAccountDetail should be set")
+            XCTAssertFalse(self.viewModel.isFetchingAccountDetail.value, "isFetchingAccountDetail should be false")
+            XCTAssertNotNil(self.viewModel.currentOpcoUpdates.value, "currentOpcoUpdates should be set")
+            XCTAssertFalse(self.viewModel.isFetchingUpdates.value, "isFetchingUpdates should be false")
+            expect.fulfill()
+        }
+        
+        waitForExpectations(timeout: 2) { error in
+            XCTAssertNil(error, "timeout")
+        }
+    }
+    
+    func testFetchDataErrors() {
+        // Account detail failure
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "WRONG", "address": "573 Elm Street"])!
+        viewModel = AlertsViewModel(accountService: MockAccountService(), alertsService: MockAlertsService())
+        viewModel.fetchData()
+        
+        let expect1 = expectation(description: "wait for callbacks")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+            XCTAssertNil(self.viewModel.currentAccountDetail, "currentAccountDetail should be nil")
+            XCTAssertNil(self.viewModel.currentOpcoUpdates.value, "currentOpcoUpdates should be nil")
+            XCTAssertFalse(self.viewModel.isFetchingAccountDetail.value, "isFetchingAccountDetail should be false")
+            XCTAssertFalse(self.viewModel.isFetchingUpdates.value, "isFetchingUpdates should be false")
+            XCTAssert(self.viewModel.isAccountDetailError.value, "isAccountDetailError should be true")
+            XCTAssert(self.viewModel.isUpdatesError.value, "isUpdatesError should be true")
+            expect1.fulfill()
+        }
+        
+        waitForExpectations(timeout: 2) { error in
+            XCTAssertNil(error, "timeout")
+        }
+
+        // Opco updates failure
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "9836621902","address": "573 Test Street"])!
+        viewModel = AlertsViewModel(accountService: MockAccountService(), alertsService: MockAlertsService())
+        viewModel.fetchData()
+        
+        let expect2 = expectation(description: "wait for callbacks")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+            XCTAssertNotNil(self.viewModel.currentAccountDetail, "currentAccountDetail should be nil")
+            XCTAssertNil(self.viewModel.currentOpcoUpdates.value, "currentOpcoUpdates should be nil")
+            XCTAssertFalse(self.viewModel.isFetchingAccountDetail.value, "isFetchingAccountDetail should be false")
+            XCTAssertFalse(self.viewModel.isFetchingUpdates.value, "isFetchingUpdates should be false")
+            XCTAssertFalse(self.viewModel.isAccountDetailError.value, "isAccountDetailError should be false")
+            XCTAssert(self.viewModel.isUpdatesError.value, "isUpdatesError should be true")
+            expect2.fulfill()
+        }
+        
+        waitForExpectations(timeout: 2) { error in
+            XCTAssertNil(error, "timeout")
+        }
+        
+    }
+    
     func testShouldShowLoadingIndicator() {
         viewModel = AlertsViewModel(accountService: MockAccountService(), alertsService: MockAlertsService())
         viewModel.selectedSegmentIndex.value = 0

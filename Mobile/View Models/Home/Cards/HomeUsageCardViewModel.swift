@@ -85,6 +85,7 @@ class HomeUsageCardViewModel {
             return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
                 .trackActivity(self.fetchTracker(forState: fetchState))
                 .materialize()
+                .filter { !$0.isCompleted }
         }
         .share()
     
@@ -95,7 +96,7 @@ class HomeUsageCardViewModel {
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             guard let serviceType = accountDetail.serviceType else { return .empty() }
             if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-                return .empty()
+                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue)).materialize()
             }
             
             var gas = false // Default to electric
@@ -108,6 +109,7 @@ class HomeUsageCardViewModel {
             return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
                 .trackActivity(self.loadingTracker)
                 .materialize()
+                .filter { !$0.isCompleted }
         }
         .share()
     

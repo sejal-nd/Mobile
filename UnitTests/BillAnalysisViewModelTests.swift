@@ -14,7 +14,7 @@ class BillAnalysisViewModelTests: XCTestCase {
     var viewModel: BillAnalysisViewModel!
     
     override func setUp() {
-        viewModel = BillAnalysisViewModel(usageService: ServiceFactory.createUsageService())
+        viewModel = BillAnalysisViewModel(usageService: MockUsageService())
     }
     
 //    // Example accountDetail for an account with Bill Comparison

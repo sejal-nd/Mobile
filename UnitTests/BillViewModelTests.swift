@@ -71,8 +71,7 @@ class BillViewModelTests: XCTestCase {
         let refreshEventTimes = Array(totalAmounts.count..<expectedValues.count)
         
         accountService.testAccountDetails = totalAmounts.map {
-            AccountDetail(accountNumber: "",
-                          billingInfo: BillingInfo(netDueAmount: $0))
+            AccountDetail(billingInfo: BillingInfo(netDueAmount: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -95,6 +94,7 @@ class BillViewModelTests: XCTestCase {
         let pastDueAmounts: [Double?] = [4, 26.32, nil, 0, nil]
         
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
         let dueByDates: [Date?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
@@ -105,7 +105,7 @@ class BillViewModelTests: XCTestCase {
         
         let expectedValues: [String] = [
             "Total Amount Due Immediately",
-            "No Amount Due - Credit Balance",
+            Environment.sharedInstance.opco == .bge ? "No Amount Due - Credit Balance" : "Total Amount Due By 03/14/2018",
             "Total Amount Due By 12/16/2018",
             "Total Amount Due By --",
             "Total Amount Due By 06/12/2018"
@@ -114,9 +114,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<totalAmounts.count)
         
         accountService.testAccountDetails = zip(totalAmounts, zip(pastDueAmounts, dueByDates)).map {
-            AccountDetail(accountNumber: "", billingInfo: BillingInfo(netDueAmount: $0.0,
-                                                                      pastDueAmount: $0.1.0,
-                                                                      dueByDate: $0.1.1))
+            AccountDetail(billingInfo: BillingInfo(netDueAmount: $0.0, pastDueAmount: $0.1.0, dueByDate: $0.1.1))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -140,7 +138,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<restorationAmounts.count)
         
         accountService.testAccountDetails = restorationAmounts.map {
-            AccountDetail(accountNumber: "", billingInfo: BillingInfo(restorationAmount: $0))
+            AccountDetail(billingInfo: BillingInfo(restorationAmount: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -164,7 +162,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<amtDpaReinsts.count)
         
         accountService.testAccountDetails = amtDpaReinsts.map {
-            AccountDetail(accountNumber: "", billingInfo: BillingInfo(amtDpaReinst: $0))
+            AccountDetail(billingInfo: BillingInfo(amtDpaReinst: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -184,6 +182,7 @@ class BillViewModelTests: XCTestCase {
     func testCatchUpDateText() {
         
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
         let dateStrings: [String?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
@@ -202,7 +201,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<dueByDates.count)
         
         accountService.testAccountDetails = dueByDates.map {
-            AccountDetail(accountNumber: "", billingInfo: BillingInfo(dueByDate: $0))
+            AccountDetail(billingInfo: BillingInfo(dueByDate: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -231,7 +230,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<amtDpaReinsts.count)
         
         accountService.testAccountDetails = amtDpaReinsts.map {
-            AccountDetail(accountNumber: "", billingInfo: BillingInfo(atReinstateFee: $0))
+            AccountDetail(billingInfo: BillingInfo(atReinstateFee: $0))
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
