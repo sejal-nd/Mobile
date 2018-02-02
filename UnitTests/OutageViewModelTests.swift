@@ -230,21 +230,17 @@ class OutageViewModelTests: XCTestCase {
             return XCTAssert(self.viewModel.gasOnlyMessage == "We currently do not allow reporting of gas issues online but want to hear from you right away.", "Default Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")}
     }
     
-    func testAccountNonPayFinaledMessageBGE() {
-        if Environment.sharedInstance.opco == .bge{
-            XCTAssert(self.viewModel.accountNonPayFinaledMessage == "Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", "BGE specific message was not returned. Received \(self.viewModel.accountNonPayFinaledMessage)")
-        }
-        else {
-            //Other non BGE OpCo's are handled in the two test functions below
-            XCTAssert(true)
-        }
-    }
-    
     func testAccountFinaled() {
         AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "75395146464", "address": "573 Elm Street"])!
         
         viewModel.getOutageStatus(onSuccess: {
-            XCTAssert(self.viewModel.accountNonPayFinaledMessage == "Outage Status and Outage Reporting are not available for this account.", "Finaled string was not returned. Received \(self.viewModel.accountNonPayFinaledMessage)")
+            var expectedString: String
+            if Environment.sharedInstance.opco == .bge {
+                expectedString = NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
+            } else {
+                expectedString = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
+            }
+            XCTAssert(self.viewModel.accountNonPayFinaledMessage == expectedString, "Finaled string was not returned. Received \"\(self.viewModel.accountNonPayFinaledMessage)\"")
         }, onError: { _ in
             XCTFail("Unexpected error response")
         })
@@ -254,7 +250,13 @@ class OutageViewModelTests: XCTestCase {
         AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "3216544560", "address": "573 Elm Street"])!
         
         viewModel.getOutageStatus(onSuccess: {
-            XCTAssert(self.viewModel.accountNonPayFinaledMessage == "Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", "Non pay string was not returned. Received \(self.viewModel.accountNonPayFinaledMessage)")
+            var expectedString: String
+            if Environment.sharedInstance.opco == .bge {
+                expectedString = NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
+            } else {
+                expectedString =  NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
+            }
+            XCTAssert(self.viewModel.accountNonPayFinaledMessage == expectedString, "Non pay string was not returned. Received \"\(self.viewModel.accountNonPayFinaledMessage)\"")
         }, onError: { _ in
             XCTFail("Unexpected error response")
         })
