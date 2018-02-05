@@ -152,8 +152,7 @@ class MockOutageService: OutageService {
     
     
     func reportOutage(outageInfo: OutageInfo, completion: @escaping (ServiceResult<Void>) -> Void) {
-        
-        if(outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202") {
+        if outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202" {
             outageMap[outageInfo.accountNumber] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                 completion(ServiceResult.Success(()))
@@ -180,6 +179,14 @@ class MockOutageService: OutageService {
     }
     
     func reportOutageAnon(outageInfo: OutageInfo, completion: @escaping (ServiceResult<ReportedOutageResult>) -> Void) {
-        // not implemented
+        if outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202" {
+            let reportedOutageResult = ReportedOutageResult.from(NSDictionary())!
+            outageMap[outageInfo.accountNumber] = reportedOutageResult
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+                completion(ServiceResult.Success(reportedOutageResult))
+            }
+        } else {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: "Invalid Account")))
+        }
     }
 }
