@@ -89,7 +89,7 @@ struct MockAuthenticationService: AuthenticationService {
                 maskedUsernames.append(mockModel)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if identifier == "0000" {
                 completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAccountNotFound.rawValue)))
             } else {
@@ -99,7 +99,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String, completion: @escaping (ServiceResult<String>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if questionResponse.lowercased() == "exelon" {
                 completion(ServiceResult.Success("username@email.com"))
             } else {
@@ -114,7 +114,7 @@ struct MockAuthenticationService: AuthenticationService {
         
 
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if identifier == "0000" {
                 completion(ServiceResult.Failure(ServiceError(serviceMessage: "No accounts found")))
                 return
@@ -157,7 +157,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func recoverPassword(username: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if username.lowercased() == "error" {
                 completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnProfNotFound.rawValue)))
             } else {

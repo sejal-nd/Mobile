@@ -18,7 +18,8 @@ class MockAccountService: AccountService {
         Account.from(["accountNumber": "5591032202", "address": "7701 Presidents Street"])!,
     ]
     var testAccountDetails: [AccountDetail] = [
-        AccountDetail.from(["accountNumber": "123456789", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
+        AccountDetail.from(["accountNumber": "1234567890", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
+        AccountDetail.from(["accountNumber": "9836621902", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
     ]
     
     func fetchAccounts(completion: @escaping (ServiceResult<[Account]>) -> Void) {

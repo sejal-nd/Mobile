@@ -14,7 +14,20 @@ class MockOutageService: OutageService {
     
     func fetchOutageStatus(account: Account, completion: @escaping (ServiceResult<OutageStatus>) -> Void) {
         let outageStatus = getOutageStatus(account: account)
-        completion(ServiceResult.Success(outageStatus))
+            
+        if (account.accountNumber == "80000000000") {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAccountFinaled.rawValue)))
+        }
+        else if (account.accountNumber == "70000000000") {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAccountNoPay.rawValue)))
+        }
+        else if (account.accountNumber == "60000000000") {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnNonService.rawValue)))
+        }
+        else{
+            completion(ServiceResult.Success(outageStatus))
+        }
+        
     }
     
     private func getOutageStatus(account: Account) -> OutageStatus {
@@ -77,15 +90,49 @@ class MockOutageService: OutageService {
                 "ETR": "2017-04-10T03:45:00-04:00"
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
-        case "5591032201":
+        case "5591032203":
+            let dict: [AnyHashable: Any] = [
+                "flagGasOnly": false,
+                "contactHomeNumber": "4444444444",
+                "outageReported": reportedMessage,
+                "status": "ACTIVE",
+                "smartMeterStatus": false,
+                "flagFinaled": false,
+                "flagNoPay": true,
+            ]
+            status = OutageStatus.from(NSDictionary(dictionary: dict))!
+        case "3216544560":
+            let dict: [AnyHashable: Any] = [
+                "flagGasOnly": false,
+                "contactHomeNumber": "5555555555",
+                "outageReported": reportedMessage,
+                "status": "ACTIVE",
+                "smartMeterStatus": false,
+                "flagFinaled": false,
+                "flagNoPay": true,
+                "meterInfo": [
+                    "preCheckSuccess": true,
+                    "pingResult": true,
+                    "voltageResult": true,
+                    "voltageReads": "yeah!"
+                ]
+            ]
+            status = OutageStatus.from(NSDictionary(dictionary: dict))!
+        case "75395146464":
             let dict: [AnyHashable: Any] = [
                 "flagGasOnly": false,
                 "contactHomeNumber": "5555555555",
                 "outageReported": reportedMessage,
                 "status": "NOT ACTIVE",
                 "smartMeterStatus": false,
-                "flagFinaled": false,
-                "flagNoPay": true,
+                "flagFinaled": true,
+                "flagNoPay": false,
+                "meterInfo": [
+                    "preCheckSuccess": true,
+                    "pingResult": true,
+                    "voltageResult": true,
+                    "voltageReads": "yeah!"
+                ]
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         default:
@@ -96,7 +143,7 @@ class MockOutageService: OutageService {
                 "status": "NOT ACTIVE",
                 "smartMeterStatus": false,
                 "flagFinaled": false,
-                "flagNoPay": false,
+                "flagNoPay": true,
                 ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         }
@@ -105,8 +152,7 @@ class MockOutageService: OutageService {
     
     
     func reportOutage(outageInfo: OutageInfo, completion: @escaping (ServiceResult<Void>) -> Void) {
-        
-        if(outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202") {
+        if outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202" {
             outageMap[outageInfo.accountNumber] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                 completion(ServiceResult.Success(()))
@@ -133,6 +179,14 @@ class MockOutageService: OutageService {
     }
     
     func reportOutageAnon(outageInfo: OutageInfo, completion: @escaping (ServiceResult<ReportedOutageResult>) -> Void) {
-        // not implemented
+        if outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202" {
+            let reportedOutageResult = ReportedOutageResult.from(NSDictionary())!
+            outageMap[outageInfo.accountNumber] = reportedOutageResult
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+                completion(ServiceResult.Success(reportedOutageResult))
+            }
+        } else {
+            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: "Invalid Account")))
+        }
     }
 }

@@ -22,6 +22,319 @@ class PaymentViewModelTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
+    func testFetchDataHappyPath() {
+        let accountDetail = AccountDetail(isResidential: true)
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234"])
+        let expect = expectation(description: "async")
+        viewModel.fetchData(onSuccess: {
+            XCTAssertFalse(self.viewModel.isFetching.value)
+            XCTAssertNotNil(self.viewModel.walletItems.value, "walletItems should have been set")
+            XCTAssert(self.viewModel.walletItems.value!.count == 2, "2 wallet items should have been returned")
+            XCTAssertNotNil(self.viewModel.oneTouchPayItem, "oneTouchPayItem should have been set because one of the wallet items was default")
+            // These are the nicknames returned from MockWalletService
+            XCTAssert(self.addBankFormViewModel.nicknamesInWallet.contains("Test Nickname"))
+            XCTAssert(self.addBankFormViewModel.nicknamesInWallet.contains("Test Nickname 2"))
+            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should have been set to a default")
+            XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname 2", "selectedWalletItem should have been defaulted to OTP item")
+            expect.fulfill()
+        }, onError: {
+            XCTFail("unexpected error response")
+        })
+        
+        XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testFetchDataHappyPathNoOTPItem() {
+        let accountDetail = AccountDetail(isResidential: true)
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+        let expect = expectation(description: "async")
+        viewModel.fetchData(onSuccess: {
+            XCTAssertFalse(self.viewModel.isFetching.value)
+            XCTAssertNotNil(self.viewModel.walletItems.value, "walletItems should have been set")
+            XCTAssert(self.viewModel.walletItems.value!.count == 2, "2 wallet items should have been returned")
+            XCTAssertNil(self.viewModel.oneTouchPayItem, "oneTouchPayItem should be nil because no wallet items are default")
+            // These are the nicknames returned from MockWalletService
+            XCTAssert(self.addBankFormViewModel.nicknamesInWallet.contains("Test Nickname"))
+            XCTAssert(self.addBankFormViewModel.nicknamesInWallet.contains("Test Nickname 2"))
+            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should have been set to a default")
+            XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname", "selectedWalletItem should have been defaulted to first wallet item ")
+            expect.fulfill()
+        }, onError: {
+            XCTFail("unexpected error response")
+        })
+        
+        XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testFetchDataModifyPayment() {
+        let accountDetail = AccountDetail(isResidential: true)
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.paymentId.value = "1"
+        let expect = expectation(description: "async")
+        viewModel.fetchData(onSuccess: {
+            XCTAssert(self.viewModel.paymentAmount.value == "$100.00", "Expected \"$100.00\", got \"\(self.viewModel.paymentAmount.value)\")")
+            XCTAssert(self.viewModel.paymentDate.value == Date(timeIntervalSince1970: 13), "paymentDate should have been updated from the paymentDetail")
+            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should have been set to the matching walletId from the paymentDetail")
+            expect.fulfill()
+        }, onError: {
+            XCTFail("unexpected error response")
+        })
+
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testFetchDataBGECommercial() {
+        if Environment.sharedInstance.opco == .bge { // BGE only test
+            let accountDetail = AccountDetail(isResidential: false)
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234"])
+            let expect1 = expectation(description: "async")
+            viewModel.fetchData(onSuccess: {
+                XCTAssertNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should be nil because OTP item is Visa card")
+                expect1.fulfill()
+            }, onError: {
+                XCTFail("unexpected error response")
+            })
+
+            waitForExpectations(timeout: 3) { err in
+                XCTAssertNil(err, "timeout")
+            }
+            
+            AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+            viewModel.selectedWalletItem.value = nil // Reset
+            let expect2 = expectation(description: "async")
+            viewModel.fetchData(onSuccess: {
+                XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should be defaulted to the first non-Visa item")
+                XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname 2")
+                expect2.fulfill()
+            }, onError: {
+                XCTFail("unexpected error response")
+            })
+            
+            waitForExpectations(timeout: 3) { err in
+                XCTAssertNil(err, "timeout")
+            }
+        }
+    }
+    
+    func testFetchDataCashOnly() {
+        let accountDetail = AccountDetail(isCashOnly: true, isResidential: true)
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234"])
+        let expect1 = expectation(description: "async")
+        viewModel.fetchData(onSuccess: {
+            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should not be nil because OTP item is credit card")
+            XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname 2")
+            expect1.fulfill()
+        }, onError: {
+            XCTFail("unexpected error response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+        viewModel.selectedWalletItem.value = nil // Reset
+        let expect2 = expectation(description: "async")
+        viewModel.fetchData(onSuccess: {
+            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should not be nil because wallet items include a credit card")
+            XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname", "got \(self.viewModel.selectedWalletItem.value!.nickName ?? "nil")")
+            expect2.fulfill()
+        }, onError: {
+            XCTFail("unexpected error response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testSchedulePaymentInlineBank() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.inlineBank.value = true
+        viewModel.addBankFormViewModel.accountNumber.value = "12345678"
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        let expect1 = expectation(description: "async")
+        viewModel.schedulePayment(onDuplicate: { (title, message) in
+            XCTFail("unexpected onDuplicate response")
+        }, onSuccess: {
+            expect1.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+        
+        AccountsStore.sharedInstance.customerIdentifier = "13" // simulates duplicate in the mock
+        let expect2 = expectation(description: "async")
+        viewModel.schedulePayment(onDuplicate: { (title, message) in
+            expect2.fulfill()
+        }, onSuccess: {
+            XCTFail("unexpected onSuccess response")
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testSchedulePaymentInlineCard() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.inlineCard.value = true
+        addCardFormViewModel.cardNumber.value = "12345678"
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        let expect1 = expectation(description: "async")
+        viewModel.schedulePayment(onDuplicate: { (title, message) in
+            XCTFail("unexpected onDuplicate response")
+        }, onSuccess: {
+            expect1.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+        
+        AccountsStore.sharedInstance.customerIdentifier = "13" // simulates duplicate in the mock
+        let expect2 = expectation(description: "async")
+        viewModel.schedulePayment(onDuplicate: { (title, message) in
+            expect2.fulfill()
+        }, onSuccess: {
+            XCTFail("unexpected onSuccess response")
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testSchedulePaymentExistingWalletItem() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        viewModel.selectedWalletItem.value = WalletItem()
+        let expect = expectation(description: "async")
+        viewModel.schedulePayment(onDuplicate: { (title, message) in
+            XCTFail("unexpected onDuplicate response")
+        }, onSuccess: {
+            expect.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testEnableOneTouchPay() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        let expect = expectation(description: "async")
+        viewModel.enableOneTouchPay(walletItemID: "123", onSuccess: {
+            expect.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testCancelPayment() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        viewModel.paymentId.value = "123"
+        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: Date())
+        let expect = expectation(description: "async")
+        viewModel.cancelPayment(onSuccess: {
+            expect.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
+    func testModifyPayment() {
+        let accountDetail = AccountDetail()
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        viewModel.paymentId.value = "123"
+        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: Date())
+        viewModel.selectedWalletItem.value = WalletItem()
+        let expect = expectation(description: "async")
+        viewModel.modifyPayment(onSuccess: {
+            expect.fulfill()
+        }, onError: { err in
+            XCTFail("unexpected onError response")
+        })
+        
+        waitForExpectations(timeout: 3) { err in
+            XCTAssertNil(err, "timeout")
+        }
+    }
+    
     func testBankWorkflow() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
         addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
@@ -519,7 +832,7 @@ class PaymentViewModelTests: XCTestCase {
         // BGE commercial user test - VISA cards should be ignored
         if Environment.sharedInstance.opco == .bge {
             viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
-            viewModel.walletItems.value = [WalletItem.initVisaCard()]
+            viewModel.walletItems.value = [WalletItem(cardIssuer: "Visa", bankOrCard: .card)]
             viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
                 XCTAssertFalse(hasWalletItems, "hasWalletItems should be false for a BGE commercial user with only Visa cards")
             }).disposed(by: disposeBag)
@@ -1178,14 +1491,14 @@ class PaymentViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         // Selected wallet item
-        viewModel.selectedWalletItem.value = WalletItem(nickname: "Test")
+        viewModel.selectedWalletItem.value = WalletItem(nickName: "Test")
         viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
             XCTAssert(nickname == "Test", "Expected \"Test\", got \"\(nickname ?? "nil")\"")
         }).disposed(by: disposeBag)
         
         // ComEd/PECO specific test because by default they set nickname to last 4 digits, so we ignore those nicknames
         if Environment.sharedInstance.opco != .bge {
-            viewModel.selectedWalletItem.value = WalletItem(nickname: "1234")
+            viewModel.selectedWalletItem.value = WalletItem(nickName: "1234")
             viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
                 XCTAssertNil(nickname, "Expected nil, got \"\(nickname ?? "nil")\"")
             }).disposed(by: disposeBag)
@@ -1297,12 +1610,12 @@ class PaymentViewModelTests: XCTestCase {
             
             viewModel.inlineCard.value = false
             viewModel.addCardFormViewModel.saveToWallet.value = true
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(), activeSeverance: true)
+            viewModel.accountDetail.value = AccountDetail(activeSeverance: true)
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "Active severance user should have a fixed payment date")
             }).disposed(by: disposeBag)
             
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo())
+            viewModel.accountDetail.value = AccountDetail()
             viewModel.allowEdits.value = false
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "allowEdits = false should have a fixed payment date")
@@ -1331,22 +1644,22 @@ class PaymentViewModelTests: XCTestCase {
             }).disposed(by: disposeBag)
             
             viewModel.allowEdits.value = true
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(pastDueAmount: 50))
+            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(pastDueAmount: 50))
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "user with a past due amount should have a fixed payment date")
             }).disposed(by: disposeBag)
             
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(restorationAmount: 50))
+            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(restorationAmount: 50))
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "user with a restoration amount should have a fixed payment date")
             }).disposed(by: disposeBag)
             
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(amtDpaReinst: 50))
+            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(amtDpaReinst: 50))
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "user with amtDpaReinst > 0 should have a fixed payment date")
             }).disposed(by: disposeBag)
             
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(), isCutOutNonPay: true)
+            viewModel.accountDetail.value = AccountDetail(isCutOutNonPay: true)
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "user cut for non payment should have a fixed payment date")
             }).disposed(by: disposeBag)
@@ -1355,7 +1668,7 @@ class PaymentViewModelTests: XCTestCase {
             dateComps.day = -1
             let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
             let dueByDate = Calendar.opCo.date(byAdding: dateComps, to: startOfTodayDate)
-            viewModel.accountDetail.value = AccountDetail(accountNumber: "123456789", billingInfo: BillingInfo(dueByDate: dueByDate))
+            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(dueByDate: dueByDate))
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "A due date in the past should have a fixed payment date")
             }).disposed(by: disposeBag)
@@ -1381,6 +1694,143 @@ class PaymentViewModelTests: XCTestCase {
         }
     }
     
+    func testOverpayingValueDisplayString() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.paymentAmount.value = "200"
+        viewModel.overpayingValueDisplayString.asObservable().take(1).subscribe(onNext: { str in
+            XCTAssert(str == "$0.00", "Expected $0.00, got \(str ?? "nil")")
+        }).disposed(by: disposeBag)
+        
+        viewModel.paymentAmount.value = "213.88"
+        viewModel.overpayingValueDisplayString.asObservable().take(1).subscribe(onNext: { str in
+            XCTAssert(str == "$13.88", "Expected $13.88, got \(str ?? "nil")")
+        }).disposed(by: disposeBag)
+    }
     
-
+    func testConvenienceFeeDisplayString() {
+        if Environment.sharedInstance.opco == .bge {
+            // BGE Residential
+            var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
+                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+                                                    "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.convenienceFeeDisplayString.asObservable().take(1).subscribe(onNext: { feeStr in
+                XCTAssert(feeStr == "$2.00", "Expected $2.00, got \(feeStr ?? "nil")")
+            }).disposed(by: disposeBag)
+            
+            // BGE Commercial - Percentage of payment amount
+            accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+                                                "SERInfo": [:]])!
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.convenienceFeeDisplayString.asObservable().take(1).subscribe(onNext: { feeStr in
+                XCTAssert(feeStr == "$10.00", "Expected $10.00, got \(feeStr ?? "nil")")
+            }).disposed(by: disposeBag)
+        } else { // ComEd/PECO
+            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
+                                                    "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
+                                                    "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.convenienceFeeDisplayString.asObservable().take(1).subscribe(onNext: { feeStr in
+                XCTAssert(feeStr == "$2.00", "Expected $2.00, got \(feeStr ?? "nil")")
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    func testTotalPaymentDisplayString() {
+        if Environment.sharedInstance.opco == .bge {
+            var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
+                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+                                                    "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            // Bank workflow, no convenience fee
+            viewModel.inlineBank.value = true
+            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
+                XCTAssert(str == "$200.00", "Expected $200.00, got \(str ?? "nil")")
+            }).disposed(by: disposeBag)
+            
+            // Residential card - fixed fee
+            viewModel.inlineBank.value = false
+            viewModel.inlineCard.value = true
+            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
+                XCTAssert(str == "$202.00", "Expected $202.00, got \(str ?? "nil")")
+            }).disposed(by: disposeBag)
+            
+            accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+                                                "SERInfo": [:]])!
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            // Commercial card - percentage fee
+            viewModel.inlineCard.value = true
+            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
+                XCTAssert(str == "$210.00", "Expected $210.00, got \(str ?? "nil")")
+            }).disposed(by: disposeBag)
+        } else {
+            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
+                                                "SERInfo": [:]])!
+            addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+            addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+            
+            viewModel.inlineCard.value = true
+            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
+                XCTAssert(str == "$202.00", "Expected $202.00, got \(str ?? "nil")")
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    func testReviewPaymentFooterLabelText() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        if Environment.sharedInstance.opco == .bge {
+            viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
+                XCTAssertNil(text, "Expected nil, got \(text ?? "nil")")
+            }).disposed(by: disposeBag)
+            
+            viewModel.inlineCard.value = true
+            viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
+                XCTAssert(text == NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: ""),
+                          "Got unexpected string")
+            }).disposed(by: disposeBag)
+        } else {
+            viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
+                XCTAssert(text == NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: ""),
+                          "Got unexpected string")
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    func testFormatPaymentAmount() {
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
+        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
+        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.formatPaymentAmount()
+        XCTAssert(viewModel.paymentAmount.value == "$0.00", "Expected $0.00, got \(viewModel.paymentAmount.value)")
+        
+        viewModel.paymentAmount.value = "100000"
+        viewModel.formatPaymentAmount()
+        XCTAssert(viewModel.paymentAmount.value == "$1,000.00", "Expected $1,000.00, got \(viewModel.paymentAmount.value)")
+    }
+    
 }
