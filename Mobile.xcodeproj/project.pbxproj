@@ -2243,7 +2243,7 @@
 		B58B5B1E1E515BD50051FD5F /* PECO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PECO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B2F1E515C840051FD5F /* ComEd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComEd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		B58B5B5C1E516C360051FD5F /* BGE-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
+		B58B5B5C1E516C360051FD5F /* BGE-Environment-RELEASE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-RELEASE.plist"; sourceTree = "<group>"; };
 		B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		B58B5B6B1E51737F0051FD5F /* environment_preprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
 		B59606291F7C1F4A00515B72 /* AppRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRating.swift; sourceTree = "<group>"; };
@@ -2253,10 +2253,10 @@
 		B5AC06781E51763200BBA4ED /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		B5AC067C1E5178AB00BBA4ED /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
 		B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
+		B5AC06821E5212E300BBA4ED /* ComEd-Environment-RELEASE.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-RELEASE.plist"; sourceTree = "<group>"; };
 		B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		B5AC06861E5212E300BBA4ED /* PECO-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
-		B5AC06871E5212E300BBA4ED /* PECO-Environment-PRODUCTION.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-PRODUCTION.plist"; sourceTree = "<group>"; };
+		B5AC06871E5212E300BBA4ED /* PECO-Environment-RELEASE.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-RELEASE.plist"; sourceTree = "<group>"; };
 		B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		B5AC06C71E521B3200BBA4ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5AC06CB1E521B5300BBA4ED /* BGEAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BGEAssets.xcassets; sourceTree = "<group>"; };
@@ -3881,13 +3881,13 @@
 				B5AC067C1E5178AB00BBA4ED /* environment.plist */,
 				B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */,
 				B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */,
-				B58B5B5C1E516C360051FD5F /* BGE-Environment-PRODUCTION.plist */,
+				B58B5B5C1E516C360051FD5F /* BGE-Environment-RELEASE.plist */,
 				B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */,
 				B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */,
-				B5AC06821E5212E300BBA4ED /* ComEd-Environment-PRODUCTION.plist */,
+				B5AC06821E5212E300BBA4ED /* ComEd-Environment-RELEASE.plist */,
 				B5AC06861E5212E300BBA4ED /* PECO-Environment-DEVELOP.plist */,
 				B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */,
-				B5AC06871E5212E300BBA4ED /* PECO-Environment-PRODUCTION.plist */,
+				B5AC06871E5212E300BBA4ED /* PECO-Environment-RELEASE.plist */,
 				B5AC06781E51763200BBA4ED /* Environment.swift */,
 				B574BAD31E736596001E8A44 /* Macros.swift */,
 				0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */,
@@ -6930,7 +6930,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge;
+				EXM_BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
 				OTHER_LDFLAGS = (
@@ -7231,7 +7231,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXM_ENVIRONMENT = PRODUCTION;
+				EXM_ENVIRONMENT = RELEASE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

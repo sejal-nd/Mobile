@@ -9,4 +9,4 @@ github "ashleymills/Reachability.swift" == 4.0
 github "RxSwiftCommunity/RxSwiftExt" == 3.0.0
 github "jivesoftware/PDTSimpleCalendar" == 0.9.1
 github "danielgindi/Charts" == 3.0.4
-github "Microsoft/AppCenter-Test-XUITest-Extensions"
+github "Microsoft/AppCenter-Test-XCUITest-Extensions"

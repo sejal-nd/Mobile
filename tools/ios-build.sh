@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 
-PROJECT_DIR="./"
+PROJECT_DIR="."
 ASSET_DIR="$PROJECT_DIR/Mobile/Assets/"
-INFO_PLIST=""
-APP_PLIST=""
-WORKSPACE=""
+PROJECT="Mobile.xcodeproj"
 CONFIGURATION="Release"
 UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8,OS=11.2"
-
 BUILD_NUMBER=
 BUNDLE_SUFFIX=
 BASE_BUNDLE_NAME=
 BASE_APP_NAME=
 SCHEME=
-WORKSPACE=
 APP_CENTER_APP=
 APP_CENTER_API_TOKEN=
 APP_CENTER_TEST_DEVICES=
@@ -28,7 +24,7 @@ for i in "$@"; do
         --bundle-name) BASE_BUNDLE_NAME="$2"; shift ;;
         --app-name) BASE_APP_NAME="$2"; shift ;;
         --scheme) SCHEME="$2"; shift ;;
-        --workspace) WORKSPACE="$2"; shift ;;
+        --project) PROJECT="$2"; shift ;;
         --configuration) CONFIGURATION="$2"; shift ;;
         --app-center-app) APP_CENTER_APP="$2"; shift ;;
         --app-center-api-token) APP_CENTER_API_TOKEN="$2"; shift ;;
@@ -54,32 +50,29 @@ elif [ -z "$BASE_APP_NAME" ]; then
 elif [ -z "$SCHEME" ]; then
       echo "Missing argument: scheme"
       exit 1
-elif [ -z "$WORKSPACE" ]; then
-      echo "Missing argument: workspace"
-      exit 1
 elif [ -z "$OPCO" ]; then
       echo "Missing argument: opco"
       exit 1
 fi
 
-current_icon_set = "${ASSET_DIR}${OPCO}Assets.xcassets/AppIcon.appiconset"
+current_icon_set="${ASSET_DIR}${OPCO}Assets.xcassets/AppIcon.appiconset"
 
 target_bundle_id=
 target_app_name=
 target_icon_asset=
 
 if [ "$BUNDLE_SUFFIX" == "staging" ]; then
-    target_bundle_id="$BASE_BUNDLE_NAME-staging"
+    target_bundle_id="$BASE_BUNDLE_NAME.staging"
     target_app_name="$BASE_APP_NAME-Staging"
-    target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX/AppIcon.appiconset"
+    target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX"
 elif [ "$BUNDLE_SUFFIX" == "prodbeta" ]; then
-    target_bundle_id="$BASE_BUNDLE_NAME-prodbeta"
+    target_bundle_id="$BASE_BUNDLE_NAME.prodbeta"
     target_app_name="$BASE_APP_NAME-Prodbeta"
-    target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX/AppIcon.appiconset"
+    target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX"
 elif [ "$BUNDLE_SUFFIX" == "release" ]; then
     target_bundle_id="$BASE_BUNDLE_NAME"
     target_app_name="$BASE_APP_NAME"
-    target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX/AppIcon.appiconset"
+    target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX"
 fi
 
 if [ -z "$target_bundle_id" ] || [ -z "$target_app_name" ] || [ -z "$target_icon_asset" ]; then
@@ -94,8 +87,17 @@ plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Mobile/$OPCO-
 plutil -replace CFBundleIdentifier -string $target_bundle_id $PROJECT_DIR/Mobile/$OPCO-Info.plist
 plutil -replace CFBundleName -string $target_app_name $PROJECT_DIR/Mobile/$OPCO-Info.plist
 
-rm -rf "$current_icon_set"
-cp -r "$target_icon_asset" "$current_icon_set"
+subs=`ls $target_icon_asset`
+
+for i in $subs; do
+  if [[ $i == *.png ]]; then
+    echo "Updating: $i"
+    rm -rf "$current_icon_set/$i"
+    cp "$target_icon_asset/$i" "$current_icon_set"
+  fi
+done
+# rm -rf "$current_icon_set"
+# cp "$target_icon_asset/*" "$current_icon_set"
 
 echo "Info.plist updated:"
 echo "   CFBundleVersion=$BUILD_NUMBER"
@@ -103,40 +105,51 @@ echo "   CFBundleIdentifier=$target_bundle_id"
 echo "   CFBundleName=$target_app_name"
 echo ""
 echo "App Icon updated:"
+echo "   Replaced current_icon_set=$current_icon_set"
+echo "   with: "
 echo "   AppIconSet=$target_icon_asset"
 
 # Restore Carthage Packages
 
-carthage update --platform iOS --project-directory $PROJECT_DIR
+# carthage update --platform iOS --project-directory $PROJECT_DIR
 
 # Run Unit Tests
 
-xcrun xcodebuild  -sdk iphonesimulator \
-  -workspace $WORKSPACE \
-  -scheme $SCHEME \
-  -destination $UNIT_TEST_SIMULATOR \
-  test
+# xcrun xcodebuild  -sdk iphonesimulator \
+#   -project $PROJECT \
+#   -scheme "$SCHEME" \
+#   -destination "$UNIT_TEST_SIMULATOR" \
+#   test
 
 # Build App
 
 xcrun xcodebuild -sdk iphoneos \
     -configuration $CONFIGURATION \
-    -workspace $WORKSPACE \
-    -scheme $SCHEME \
-    -archivePath BUILD \
-    build
+    -project $PROJECT \
+    -scheme "$SCHEME" \
+    -archivePath build/archive/$SCHEME.xcarchive \
+    archive
+
+# # Archive App
+xcrun xcodebuild \
+  -exportArchive \
+  -archivePath build/archive/$SCHEME.xcarchive \
+  -exportPath build/output/$SCHEME \
+  -exportOptionsPlist tools/ExportPlists/$SCHEME.plist
+
 
 # Push to App Center Test
 
 if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENTER_TEST_DEVICES" ]; then
 
     rm -rf "DerivedData"
-    xcrun xcodebuild build-for-testing \
+    xcrun xcodebuild \
         -configuration Debug \
-        -workspace $WORKSPACE \
+        -project $PROJECT \
         -sdk iphoneos \
-        -scheme $SCHEME-UITest \
-        -derivedDataPath DerivedData
+        -scheme "$SCHEME-UITest" \
+        -derivedDataPath DerivedData \
+        build-for-testing 
 
     # Upload your test to App Center
     appcenter test run xcuitest \
@@ -144,7 +157,7 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
         --devices $APP_CENTER_TEST_DEVICES \
         --test-series "$APP_CENTER_TEST_SERIES"  \
         --locale "en_US" \
-        --build-dir DerivedData/Build/Products/Debug-iphoneos \
+        --build-dir DerivedData/Build/Products/Develop-iphoneos \
         --token $APP_CENTER_API_TOKEN \
         --async
 
@@ -154,11 +167,11 @@ fi
 
 # Push to App Center Distribute
 if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
-
+  
     appcenter distribute release \
         --app $APP_CENTER_APP \
         --token $APP_CENTER_API_TOKEN
-        --file Build/Products/$CONFIGURATION-iphoneos/*.ipa
+        --file build/output/$SCHEME/$SCHEME.ipa
 
 else
     echo "Skipping App Center Distribution due to missing variables - \"app-center-app\" or \"app-center-api-token\""
