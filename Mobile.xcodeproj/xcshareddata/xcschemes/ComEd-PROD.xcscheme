@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E8F62B31200924410077B3DA"
+               BuildableName = "ComEdUnitTests.xctest"
+               BlueprintName = "ComEdUnitTests"
+               ReferencedContainer = "container:Mobile.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

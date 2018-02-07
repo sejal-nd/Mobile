@@ -29,6 +29,16 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E8F62BE6200924570077B3DA"
+               BuildableName = "PECOUnitTests.xctest"
+               BlueprintName = "PECOUnitTests"
+               ReferencedContainer = "container:Mobile.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
