@@ -3731,7 +3731,8 @@
 				B5EB9EEE1EC3EB430049B586 /* OMOTPService.h */,
 				B5EB9EEF1EC3EB430049B586 /* OMToken.h */,
 			);
-			path = PublicHeaders;
+			name = PublicHeaders;
+			path = "Public Headers";
 			sourceTree = "<group>";
 		};
 		B55736121E6740A8003B9369 /* PublicResources */ = {
