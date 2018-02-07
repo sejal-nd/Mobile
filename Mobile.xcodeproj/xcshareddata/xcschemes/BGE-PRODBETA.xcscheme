@@ -14,28 +14,38 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B58B5B201E515C840051FD5F"
-               BuildableName = "ComEd.app"
-               BlueprintName = "ComEd"
+               BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
+               BuildableName = "BGE.app"
+               BlueprintName = "BGE"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Staging-Support"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B5AC06D41E52238900BBA4ED"
+               BuildableName = "BGEUnitTests.xctest"
+               BlueprintName = "BGEUnitTests"
+               ReferencedContainer = "container:Mobile.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
-            BuildableName = "ComEd.app"
-            BlueprintName = "ComEd"
+            BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
+            BuildableName = "BGE.app"
+            BlueprintName = "BGE"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -43,7 +53,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Staging-Support"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
@@ -57,9 +67,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
-            BuildableName = "ComEd.app"
-            BlueprintName = "ComEd"
+            BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
+            BuildableName = "BGE.app"
+            BlueprintName = "BGE"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -67,7 +77,7 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Staging-Support"
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -76,18 +86,18 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
-            BuildableName = "ComEd.app"
-            BlueprintName = "ComEd"
+            BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
+            BuildableName = "BGE.app"
+            BlueprintName = "BGE"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Staging-Support">
+      buildConfiguration = "Release">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Staging-Support"
+      buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

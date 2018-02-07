@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-PROJECT_DIR="iOSVSTS"
-APP_ICON_SET="$PROJECT_DIR/Assets.xcassets/AppIcon.appiconset"
+PROJECT_DIR="./"
+ASSET_DIR="$PROJECT_DIR/Mobile/Assets/"
 INFO_PLIST=""
 APP_PLIST=""
 WORKSPACE=""
@@ -62,6 +62,8 @@ elif [ -z "$OPCO" ]; then
       exit 1
 fi
 
+current_icon_set = "${ASSET_DIR}${OPCO}Assets.xcassets/AppIcon.appiconset"
+
 target_bundle_id=
 target_app_name=
 target_icon_asset=
@@ -88,12 +90,12 @@ fi
 
 # Update Bundle ID, App Name, App Version, and Icons
 
-plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Info.plist
-plutil -replace CFBundleIdentifier -string $target_bundle_id $PROJECT_DIR/Info.plist
-plutil -replace CFBundleName -string $target_app_name $PROJECT_DIR/Info.plist
+plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Mobile/$OPCO-Info.plist
+plutil -replace CFBundleIdentifier -string $target_bundle_id $PROJECT_DIR/Mobile/$OPCO-Info.plist
+plutil -replace CFBundleName -string $target_app_name $PROJECT_DIR/Mobile/$OPCO-Info.plist
 
-rm -rf "$APP_ICON_SET"
-cp -r "$target_icon_asset" "$APP_ICON_SET"
+rm -rf "$current_icon_set"
+cp -r "$target_icon_asset" "$current_icon_set"
 
 echo "Info.plist updated:"
 echo "   CFBundleVersion=$BUILD_NUMBER"
@@ -111,7 +113,7 @@ carthage update --platform iOS --project-directory $PROJECT_DIR
 
 xcrun xcodebuild  -sdk iphonesimulator \
   -workspace $WORKSPACE \
-  -scheme $SCHEME-UnitTest \
+  -scheme $SCHEME \
   -destination $UNIT_TEST_SIMULATOR \
   test
 
@@ -133,7 +135,7 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
         -configuration Debug \
         -workspace $WORKSPACE \
         -sdk iphoneos \
-        -scheme $SCHEME \
+        -scheme $SCHEME-UITest \
         -derivedDataPath DerivedData
 
     # Upload your test to App Center
