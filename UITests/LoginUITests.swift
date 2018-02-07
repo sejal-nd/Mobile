@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import AppCenterXCUITestExtensions
 
 class LoginUITests: XCTestCase {
     let app = XCUIApplication()
@@ -19,7 +20,8 @@ class LoginUITests: XCTestCase {
         
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchArguments = ["UITest"]
-        app.launch()
+    
+        ACTLaunch.launch(app)
         
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
         handleTermsFirstLaunch()
@@ -61,6 +63,7 @@ class LoginUITests: XCTestCase {
         XCTAssert(app.scrollViews.otherElements.switches["Keep me signed in"].exists)
         XCTAssert(elementsQuery.buttons[" username "].exists)
         XCTAssert(elementsQuery.buttons[" password"].exists)
+        ACTLabel.labelStep("App center test -- test sign in page layout")
     }
     
     func testSignIn(){
@@ -78,6 +81,7 @@ class LoginUITests: XCTestCase {
         
         // Assert that the Home page loaded after a valid login
         XCTAssert(app.tabBars.buttons["Home"].exists, "User was not logged in after 15 seconds or login failed.")
+        ACTLabel.labelStep("App center test -- test sign in")
     }
     
     func testNoPassword() {
@@ -92,6 +96,7 @@ class LoginUITests: XCTestCase {
         elementsQuery.buttons["Sign In"].tap()
         
         XCTAssert(errorAlert.waitForExistence(timeout: 5))
+        ACTLabel.labelStep("App center test -- test no pass")
     }
     
     func testNoUsername() {
@@ -106,6 +111,7 @@ class LoginUITests: XCTestCase {
         elementsQuery.buttons["Sign In"].tap()
         
         XCTAssert(errorAlert.waitForExistence(timeout: 5))
+        ACTLabel.labelStep("App center test -- test no username")
     }
     
     func testInvalidUsername(){
@@ -116,11 +122,14 @@ class LoginUITests: XCTestCase {
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
         XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
         usernameEmailAddressTextField.clearAndEnterText("invalid@test.com")
+        ACTLabel.labelStep("App center test -- invalid username -- just typed in username")
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         passwordSecureTextField.clearAndEnterText("Password1")
+        ACTLabel.labelStep("App center test -- invalid username -- just typed in pass")
         elementsQuery.buttons["Sign In"].tap()
         
         XCTAssert(errorAlert.waitForExistence(timeout: 5))
+        ACTLabel.labelStep("App center test -- invalid username")
     }
     
     func testInvalidPassword(){
@@ -136,6 +145,9 @@ class LoginUITests: XCTestCase {
         elementsQuery.buttons["Sign In"].tap()
         
         XCTAssert(errorAlert.waitForExistence(timeout: 5))
+        
+        ACTLabel.labelStep("App center test -- invalid password")
+        
     }
 
 }

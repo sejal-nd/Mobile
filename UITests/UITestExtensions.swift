@@ -14,14 +14,15 @@ extension XCUIElement {
      - Parameter text: the text to enter into the field
      */
     func clearAndEnterText(_ text: String) {
-        guard let stringValue = self.value as? String else {
+        
+        if self.elementType != XCUIElement.ElementType.textField && self.elementType != XCUIElement.ElementType.secureTextField {
             XCTFail("Tried to clear and enter text into a non string value")
             return
         }
         
         self.tap()
         
-        let characters = Array(stringValue)
+        let characters = Array(text)
         let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: characters.count)
         
         self.typeText(deleteString)

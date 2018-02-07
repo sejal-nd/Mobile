@@ -14,6 +14,7 @@ APP_CENTER_APP=
 APP_CENTER_API_TOKEN=
 APP_CENTER_TEST_DEVICES=
 APP_CENTER_TEST_SERIES="master"
+APP_CENTER_GROUP=
 OPCO=
 
 # Parse arguments.
@@ -30,6 +31,7 @@ for i in "$@"; do
         --app-center-api-token) APP_CENTER_API_TOKEN="$2"; shift ;;
         --app-center-test-devices) APP_CENTER_TEST_DEVICES="$2"; shift ;;
         --app-center-test-series) APP_CENTER_TEST_SERIES="$2"; shift ;;
+        --app-center-group) APP_CENTER_GROUP="$2"; shift ;;
         --opco) OPCO="$2"; shift ;;
     esac
     shift
@@ -144,7 +146,7 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
 
     rm -rf "DerivedData"
     xcrun xcodebuild \
-        -configuration Debug \
+        -configuration $CONFIGURATION \
         -project $PROJECT \
         -sdk iphoneos \
         -scheme "$SCHEME-UITest" \
@@ -157,7 +159,7 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
         --devices $APP_CENTER_TEST_DEVICES \
         --test-series "$APP_CENTER_TEST_SERIES"  \
         --locale "en_US" \
-        --build-dir DerivedData/Build/Products/Develop-iphoneos \
+        --build-dir DerivedData/Build/Products/$CONFIGURATION-iphoneos \
         --token $APP_CENTER_API_TOKEN \
         --async
 
@@ -167,11 +169,13 @@ fi
 
 # Push to App Center Distribute
 if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
-  
+
+   echo "test"
     appcenter distribute release \
         --app $APP_CENTER_APP \
-        --token $APP_CENTER_API_TOKEN
-        --file build/output/$SCHEME/$SCHEME.ipa
+        --token $APP_CENTER_API_TOKEN \
+        --file build/output/$SCHEME/$SCHEME.ipa \
+        --group $APP_CENTER_GROUP
 
 else
     echo "Skipping App Center Distribution due to missing variables - \"app-center-app\" or \"app-center-api-token\""

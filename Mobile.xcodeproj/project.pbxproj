@@ -75,6 +75,14 @@
 		0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		0E13176D202B968E00865819 /* AppCenterXCUITestExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */; };
+		0E13176F202B969A00865819 /* AppCenterXCUITestExtensions.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0E131770202B96A700865819 /* AppCenterXCUITestExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */; };
+		0E131773202B96C400865819 /* AppCenterXCUITestExtensions.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0E131774202B96D000865819 /* AppCenterXCUITestExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */; };
+		0E131776202B96DA00865819 /* AppCenterXCUITestExtensions.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0E131778202BA36900865819 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E131777202BA36800865819 /* GoogleService-Info.plist */; };
+		0E131779202BA36900865819 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E131777202BA36800865819 /* GoogleService-Info.plist */; };
 		225FF85A1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
@@ -1878,6 +1886,39 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0E13176E202B969200865819 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0E13176F202B969A00865819 /* AppCenterXCUITestExtensions.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E131772202B96BC00865819 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0E131773202B96C400865819 /* AppCenterXCUITestExtensions.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E131775202B96D300865819 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0E131776202B96DA00865819 /* AppCenterXCUITestExtensions.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		01F6121C1F1E400E00A4F9DA /* AddCardFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardFormView.swift; sourceTree = "<group>"; };
 		01F612201F1E401900A4F9DA /* AddCardFormView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCardFormView.xib; sourceTree = "<group>"; };
@@ -1895,6 +1936,8 @@
 		0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131760202B5B7D00865819 /* ComEd-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
+		0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterXCUITestExtensions.framework; path = Carthage/Build/iOS/AppCenterXCUITestExtensions.framework; sourceTree = "<group>"; };
+		0E131777202BA36800865819 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		228877001FC611990024D7F0 /* MockAlertsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlertsService.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
@@ -2551,6 +2594,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E13176D202B968E00865819 /* AppCenterXCUITestExtensions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2735,6 +2779,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E131770202B96A700865819 /* AppCenterXCUITestExtensions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2742,6 +2787,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E131774202B96D000865819 /* AppCenterXCUITestExtensions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3398,6 +3444,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */,
 				823AA55F201247CF009CAEF0 /* XCTest.framework */,
 				823AA55520113498009CAEF0 /* RxBlocking.framework */,
 				823AA55320113471009CAEF0 /* Build */,
@@ -3779,6 +3826,7 @@
 		B55A8B001F15640A00F63AC3 /* GoogleAnalytics */ = {
 			isa = PBXGroup;
 			children = (
+				0E131777202BA36800865819 /* GoogleService-Info.plist */,
 				B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */,
 				B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */,
 				B5D415831F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist */,
@@ -4551,6 +4599,7 @@
 				087630DA1E72F5D000FA7020 /* Sources */,
 				087630DB1E72F5D000FA7020 /* Frameworks */,
 				087630DC1E72F5D000FA7020 /* Resources */,
+				0E13176E202B969200865819 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -4644,6 +4693,7 @@
 				E8F62B0E2009207C0077B3DA /* Sources */,
 				E8F62B102009207C0077B3DA /* Frameworks */,
 				E8F62B112009207C0077B3DA /* Resources */,
+				0E131772202B96BC00865819 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -4662,6 +4712,7 @@
 				E8F62B1F200920870077B3DA /* Sources */,
 				E8F62B21200920870077B3DA /* Frameworks */,
 				E8F62B22200920870077B3DA /* Resources */,
+				0E131775202B96D300865819 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -4857,6 +4908,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E131779202BA36900865819 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4865,6 +4917,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */,
+				0E131778202BA36900865819 /* GoogleService-Info.plist in Resources */,
 				2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */,
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
