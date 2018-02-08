@@ -146,6 +146,9 @@ xcrun xcodebuild -sdk iphoneos \
     -archivePath build/archive/$SCHEME.xcarchive \
     archive
 
+echo "--------------------------------- Post archiving  -------------------------------"
+find . 
+
 # # Archive App
 xcrun xcodebuild \
   -exportArchive \
@@ -153,6 +156,8 @@ xcrun xcodebuild \
   -exportPath build/output/$SCHEME \
   -exportOptionsPlist tools/ExportPlists/$SCHEME.plist
 
+echo "--------------------------------- Post exporting -------------------------------"
+find . 
 
 # Push to App Center Test
 
@@ -161,7 +166,7 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
 
 
     # rm -rf "DerivedData"
-    
+
     xcrun xcodebuild \
         -configuration Automation \
         -project $PROJECT \
@@ -169,6 +174,9 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
         -scheme "$OPCO-AUT-UITest" \
         build-for-testing 
 
+    echo "--------------------------------- Post build-for-testing -------------------------------"
+    find . 
+    echo "--------------------------------- Uploading to appcenter -------------------------------"
     # Upload your test to App Center
     appcenter test run xcuitest \
         --app $APP_CENTER_APP \
