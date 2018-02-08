@@ -160,13 +160,13 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
 
 
 
-    rm -rf "DerivedData"
+    # rm -rf "DerivedData"
+    
     xcrun xcodebuild \
         -configuration Automation \
         -project $PROJECT \
         -sdk iphoneos \
         -scheme "$OPCO-AUT-UITest" \
-        -derivedDataPath DerivedData \
         build-for-testing 
 
     # Upload your test to App Center
@@ -175,7 +175,7 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
         --devices $APP_CENTER_TEST_DEVICES \
         --test-series "$APP_CENTER_TEST_SERIES"  \
         --locale "en_US" \
-        --build-dir DerivedData/Build/Products/Automation-iphoneos \
+        --build-dir Build/Products/Automation-iphoneos \
         --token $APP_CENTER_API_TOKEN \
         --async
 
