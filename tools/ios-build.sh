@@ -126,12 +126,17 @@ xcrun xcodebuild  -sdk iphonesimulator \
 echo "Building application"
 # Build App
 
+echo "xcrun xcodebuild -sdk iphoneos -configuration $CONFIGURATION -project $PROJECT -scheme $SCHEME -archivePath build/archive/$SCHEME.xcarchive archive"
+
 xcrun xcodebuild -sdk iphoneos \
     -configuration $CONFIGURATION \
     -project $PROJECT \
     -scheme "$SCHEME" \
     -archivePath build/archive/$SCHEME.xcarchive \
     archive
+
+
+echo "xcrun xcodebuild -exportArchive -archivePath build/archive/$SCHEME.xcarchive -exportPath build/output/$SCHEME -exportOptionsPlist tools/ExportPlists/$SCHEME.plist"
 
 # # Archive App
 xcrun xcodebuild \
