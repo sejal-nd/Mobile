@@ -41,11 +41,11 @@ if [ -z "$BUILD_NUMBER" ]; then
 elif [ -z "$BUNDLE_SUFFIX" ]; then
       echo "Missing argument: bundle-suffix"
       exit 1
-elif [ -z "$BASE_BUNDLE_NAME" ]; then
-      echo "Missing argument: bundle-name"
-      exit 1
 elif [ -z "$SCHEME" ]; then
       echo "Missing argument: scheme"
+      exit 1
+elif [ -z "$CONFIGURATION" ]; then
+      echo "Missing argument: configuration"
       exit 1
 elif [ -z "$OPCO" ]; then
       echo "Missing argument: opco"
@@ -58,6 +58,13 @@ target_bundle_id=
 target_app_name=
 target_icon_asset=
 
+
+OPCO_LOWERCASE=$(echo "$OPCO" | tr '[:upper:]' '[:lower:]')
+
+if [ -z "$BASE_BUNDLE_NAME" ]; then
+  BASE_BUNDLE_NAME="com.exelon.mobile.$OPCO_LOWERCASE"
+fi
+
 if [ "$BUNDLE_SUFFIX" == "staging" ]; then
     target_bundle_id="$BASE_BUNDLE_NAME.staging"
     target_app_name="$OPCO-Staging"
@@ -67,7 +74,12 @@ elif [ "$BUNDLE_SUFFIX" == "prodbeta" ]; then
     target_app_name="$OPCO-Prodbeta"
     target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX"
 elif [ "$BUNDLE_SUFFIX" == "release" ]; then
-    target_bundle_id="$BASE_BUNDLE_NAME"
+    if [ "$OPCO_LOWERCASE" == "comed" ]; then
+      # ComEd's production app bundle is different because of the previous Kony mobile app
+      target_bundle_id="com.iphoneproduction.exelon"
+    else
+      target_bundle_id="$BASE_BUNDLE_NAME"
+    fi
     target_app_name="$OPCO"
     target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX"
 fi
