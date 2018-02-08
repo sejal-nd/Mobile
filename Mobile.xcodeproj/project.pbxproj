@@ -83,6 +83,9 @@
 		0E131776202B96DA00865819 /* AppCenterXCUITestExtensions.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E131778202BA36900865819 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E131777202BA36800865819 /* GoogleService-Info.plist */; };
 		0E131779202BA36900865819 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E131777202BA36800865819 /* GoogleService-Info.plist */; };
+		0EBF2DCB202CCDEC00DCFD30 /* MobileConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */; };
+		0EBF2DCC202CCDED00DCFD30 /* MobileConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */; };
+		0EBF2DCD202CCDED00DCFD30 /* MobileConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */; };
 		225FF85A1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
@@ -1941,6 +1944,7 @@
 		0EB93B6B202CA4DF0049E7A2 /* BGE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-AUT.plist"; sourceTree = "<group>"; };
 		0EB93B6D202CA4F30049E7A2 /* ComEd-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-AUT.plist"; sourceTree = "<group>"; };
 		0EB93B6F202CA5040049E7A2 /* PECO-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-AUT.plist"; sourceTree = "<group>"; };
+		0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MobileConfig.xcconfig; sourceTree = "<group>"; };
 		225FF8591EC56B480079010C /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		228877001FC611990024D7F0 /* MockAlertsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlertsService.swift; sourceTree = "<group>"; };
 		22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
@@ -3871,6 +3875,7 @@
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
+				0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */,
 				E81CFFE81EC230B5004FDA7E /* Entitlements */,
 				B58B5AC31E4E28740051FD5F /* Mobile */,
 				B5AC06D61E52238900BBA4ED /* UnitTests */,
@@ -5002,6 +5007,7 @@
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
 				E89399391F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
 				6A4FD7DC1371BC6129CC594F /* otps1_img_0.png in Resources */,
+				0EBF2DCB202CCDEC00DCFD30 /* MobileConfig.xcconfig in Resources */,
 				6A4FD375948286D6F4A38198 /* otps1_img_1.png in Resources */,
 				6A4FDC511CBF8CE0C50F4E71 /* otp_step1.json in Resources */,
 				6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */,
@@ -5069,6 +5075,7 @@
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				CEA215271F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
+				0EBF2DCD202CCDED00DCFD30 /* MobileConfig.xcconfig in Resources */,
 				E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				E87926D81F85580300794CA9 /* BillAnalysisViewController.xib in Resources */,
@@ -5169,6 +5176,7 @@
 				E87C41361FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				0EBF2DCC202CCDED00DCFD30 /* MobileConfig.xcconfig in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
