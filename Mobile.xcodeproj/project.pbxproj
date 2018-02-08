@@ -6919,6 +6919,7 @@
 		};
 		0E131751202B583000865819 /* Prodbeta */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -7191,6 +7192,7 @@
 		};
 		0EB93B5E202CA3C70049E7A2 /* Automation */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -7661,6 +7663,7 @@
 		};
 		B58B5AE81E4E28740051FD5F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -7782,6 +7785,7 @@
 		};
 		B58B5AF61E51497B0051FD5F /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

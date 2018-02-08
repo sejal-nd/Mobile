@@ -183,7 +183,7 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
         --devices $APP_CENTER_TEST_DEVICES \
         --test-series "$APP_CENTER_TEST_SERIES"  \
         --locale "en_US" \
-        --build-dir Build/Products/Automation-iphoneos \
+        --build-dir Build/Automation \
         --token $APP_CENTER_API_TOKEN \
         --async
 
@@ -194,7 +194,7 @@ fi
 # Push to App Center Distribute
 if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
 
-   echo "test"
+   # echo "test"
     appcenter distribute release \
         --app $APP_CENTER_APP \
         --token $APP_CENTER_API_TOKEN \
