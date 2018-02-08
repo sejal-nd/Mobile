@@ -14,28 +14,29 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-               BuildableName = "BGE.app"
-               BlueprintName = "BGE"
+               BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+               BuildableName = "ComEd.app"
+               BlueprintName = "ComEd"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Automation"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "087630DD1E72F5D000FA7020"
-               BuildableName = "BGEUITests.xctest"
-               BlueprintName = "BGEUITests"
+               BlueprintIdentifier = "E8F62B31200924410077B3DA"
+               BuildableName = "ComEdUnitTests.xctest"
+               BlueprintName = "ComEdUnitTests"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +44,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "BGE.app"
-            BlueprintName = "BGE"
+            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+            BuildableName = "ComEd.app"
+            BlueprintName = "ComEd"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,7 +54,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Automation"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
@@ -67,9 +68,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "BGE.app"
-            BlueprintName = "BGE"
+            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+            BuildableName = "ComEd.app"
+            BlueprintName = "ComEd"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -77,7 +78,7 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Automation"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -86,18 +87,18 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5AC01E4E28740051FD5F"
-            BuildableName = "BGE.app"
-            BlueprintName = "BGE"
+            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+            BuildableName = "ComEd.app"
+            BlueprintName = "ComEd"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Release">
+      buildConfiguration = "Automation">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Automation"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

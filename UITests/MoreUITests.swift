@@ -60,6 +60,7 @@ class MoreUITests: XCTestCase {
     }
     
     func testMoreTabLayout() {
+        
         // Ensure all buttons exist
         XCTAssert(app.buttons["Settings"].exists)
         XCTAssert(app.buttons["Contact us"].exists)

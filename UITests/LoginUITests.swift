@@ -33,6 +33,7 @@ class LoginUITests: XCTestCase {
     }
     
     func handleTermsFirstLaunch() {
+        
         let continueButton = app.buttons["Continue"]
         XCTAssert(continueButton.waitForExistence(timeout: 30))
 

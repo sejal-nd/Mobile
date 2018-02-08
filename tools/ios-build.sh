@@ -8,7 +8,6 @@ UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8,OS=11.2"
 BUILD_NUMBER=
 BUNDLE_SUFFIX=
 BASE_BUNDLE_NAME=
-BASE_APP_NAME=
 SCHEME=
 APP_CENTER_APP=
 APP_CENTER_API_TOKEN=
@@ -23,7 +22,6 @@ for i in "$@"; do
         --build-number) BUILD_NUMBER="$2"; shift ;;
         --bundle-suffix) BUNDLE_SUFFIX="$2"; shift ;;
         --bundle-name) BASE_BUNDLE_NAME="$2"; shift ;;
-        --app-name) BASE_APP_NAME="$2"; shift ;;
         --scheme) SCHEME="$2"; shift ;;
         --project) PROJECT="$2"; shift ;;
         --configuration) CONFIGURATION="$2"; shift ;;
@@ -46,9 +44,6 @@ elif [ -z "$BUNDLE_SUFFIX" ]; then
 elif [ -z "$BASE_BUNDLE_NAME" ]; then
       echo "Missing argument: bundle-name"
       exit 1
-elif [ -z "$BASE_APP_NAME" ]; then
-      echo "Missing argument: app-name"
-      exit 1
 elif [ -z "$SCHEME" ]; then
       echo "Missing argument: scheme"
       exit 1
@@ -65,17 +60,19 @@ target_icon_asset=
 
 if [ "$BUNDLE_SUFFIX" == "staging" ]; then
     target_bundle_id="$BASE_BUNDLE_NAME.staging"
-    target_app_name="$BASE_APP_NAME-Staging"
+    target_app_name="$OPCO-Staging"
     target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX"
 elif [ "$BUNDLE_SUFFIX" == "prodbeta" ]; then
     target_bundle_id="$BASE_BUNDLE_NAME.prodbeta"
-    target_app_name="$BASE_APP_NAME-Prodbeta"
+    target_app_name="$OPCO-Prodbeta"
     target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX"
 elif [ "$BUNDLE_SUFFIX" == "release" ]; then
     target_bundle_id="$BASE_BUNDLE_NAME"
-    target_app_name="$BASE_APP_NAME"
+    target_app_name="$OPCO"
     target_icon_asset="tools/$OPCO/$BUNDLE_SUFFIX"
 fi
+
+# com.iphoneproduction.exelon
 
 if [ -z "$target_bundle_id" ] || [ -z "$target_app_name" ] || [ -z "$target_icon_asset" ]; then
       echo "Invalid argument: bundleSuffix"
@@ -113,16 +110,20 @@ echo "   AppIconSet=$target_icon_asset"
 
 # Restore Carthage Packages
 
-# carthage update --platform iOS --project-directory $PROJECT_DIR
+carthage update --platform iOS --project-directory $PROJECT_DIR
 
 # Run Unit Tests
 
-# xcrun xcodebuild  -sdk iphonesimulator \
-#   -project $PROJECT \
-#   -scheme "$SCHEME" \
-#   -destination "$UNIT_TEST_SIMULATOR" \
-#   test
+echo "Running automation tests"
+xcrun xcodebuild  -sdk iphonesimulator \
+  -project $PROJECT \
+  -scheme "$OPCO-AUT" \
+  -destination "$UNIT_TEST_SIMULATOR" \
+  -configuration Automation \
+  test | xcpretty --report junit
 
+
+echo "Building application"
 # Build App
 
 xcrun xcodebuild -sdk iphoneos \
@@ -144,12 +145,14 @@ xcrun xcodebuild \
 
 if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENTER_TEST_DEVICES" ]; then
 
+
+
     rm -rf "DerivedData"
     xcrun xcodebuild \
-        -configuration $CONFIGURATION \
+        -configuration Automation \
         -project $PROJECT \
         -sdk iphoneos \
-        -scheme "$SCHEME-UITest" \
+        -scheme "$OPCO-AUT-UITest" \
         -derivedDataPath DerivedData \
         build-for-testing 
 
@@ -159,7 +162,7 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
         --devices $APP_CENTER_TEST_DEVICES \
         --test-series "$APP_CENTER_TEST_SERIES"  \
         --locale "en_US" \
-        --build-dir DerivedData/Build/Products/$CONFIGURATION-iphoneos \
+        --build-dir DerivedData/Build/Products/Automation-iphoneos \
         --token $APP_CENTER_API_TOKEN \
         --async
 
