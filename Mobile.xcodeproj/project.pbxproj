@@ -81,8 +81,6 @@
 		0E131773202B96C400865819 /* AppCenterXCUITestExtensions.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E131774202B96D000865819 /* AppCenterXCUITestExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */; };
 		0E131776202B96DA00865819 /* AppCenterXCUITestExtensions.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0E131778202BA36900865819 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E131777202BA36800865819 /* GoogleService-Info.plist */; };
-		0E131779202BA36900865819 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E131777202BA36800865819 /* GoogleService-Info.plist */; };
 		0EBF2DCB202CCDEC00DCFD30 /* MobileConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */; };
 		0EBF2DCC202CCDED00DCFD30 /* MobileConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */; };
 		0EBF2DCD202CCDED00DCFD30 /* MobileConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */; };
@@ -1940,7 +1938,6 @@
 		0E131760202B5B7D00865819 /* ComEd-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterXCUITestExtensions.framework; path = Carthage/Build/iOS/AppCenterXCUITestExtensions.framework; sourceTree = "<group>"; };
-		0E131777202BA36800865819 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0EB93B6B202CA4DF0049E7A2 /* BGE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-AUT.plist"; sourceTree = "<group>"; };
 		0EB93B6D202CA4F30049E7A2 /* ComEd-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-AUT.plist"; sourceTree = "<group>"; };
 		0EB93B6F202CA5040049E7A2 /* PECO-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-AUT.plist"; sourceTree = "<group>"; };
@@ -3833,7 +3830,6 @@
 		B55A8B001F15640A00F63AC3 /* GoogleAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				0E131777202BA36800865819 /* GoogleService-Info.plist */,
 				B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */,
 				B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */,
 				B5D415831F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist */,
@@ -4919,7 +4915,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E131779202BA36900865819 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4928,7 +4923,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */,
-				0E131778202BA36900865819 /* GoogleService-Info.plist in Resources */,
 				2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */,
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,

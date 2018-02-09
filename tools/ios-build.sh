@@ -147,7 +147,7 @@ xcrun xcodebuild -sdk iphoneos \
     archive
 
 echo "--------------------------------- Post archiving  -------------------------------"
-find . 
+# find . 
 
 # # Archive App
 xcrun xcodebuild \
@@ -157,7 +157,7 @@ xcrun xcodebuild \
   -exportOptionsPlist tools/ExportPlists/$SCHEME.plist
 
 echo "--------------------------------- Post exporting -------------------------------"
-find . 
+# find . 
 
 # Push to App Center Test
 
@@ -175,7 +175,7 @@ if [ -n "$APP_CENTER_APP" ] && [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENT
         build-for-testing 
 
     echo "--------------------------------- Post build-for-testing -------------------------------"
-    find . 
+    # find . 
     echo "--------------------------------- Uploading to appcenter -------------------------------"
     # Upload your test to App Center
     appcenter test run xcuitest \
