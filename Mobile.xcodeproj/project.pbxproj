@@ -4779,8 +4779,9 @@
 				TargetAttributes = {
 					087630DD1E72F5D000FA7020 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
@@ -4833,12 +4834,12 @@
 					};
 					E8F62B0B2009207C0077B3DA = {
 						DevelopmentTeam = YU7Y757VB5;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = B58B5B201E515C840051FD5F;
 					};
 					E8F62B1C200920870077B3DA = {
 						DevelopmentTeam = YU7Y757VB5;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = B58B5B0F1E515BD50051FD5F;
 					};
 					E8F62B31200924410077B3DA = {
@@ -6855,7 +6856,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -6880,7 +6881,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
@@ -6898,7 +6899,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
@@ -7135,7 +7136,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
@@ -7153,8 +7154,8 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -7171,8 +7172,8 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
@@ -7482,8 +7483,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -7493,7 +7494,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "210b1ea3-68c8-44a3-ace0-2742aa8de445";
+				PROVISIONING_PROFILE_SPECIFIER = "EU Mobile Devs (Currently only Peter)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -7520,7 +7522,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -7531,7 +7533,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "210b1ea3-68c8-44a3-ace0-2742aa8de445";
+				PROVISIONING_PROFILE_SPECIFIER = "EU Mobile Devs (Currently only Peter)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -7558,7 +7561,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -7569,7 +7572,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "210b1ea3-68c8-44a3-ace0-2742aa8de445";
+				PROVISIONING_PROFILE_SPECIFIER = "EU Mobile Devs (Currently only Peter)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -8174,8 +8178,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -8199,8 +8203,8 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -8217,8 +8221,8 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
@@ -8248,8 +8252,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -8273,8 +8277,8 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
@@ -8291,8 +8295,8 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
