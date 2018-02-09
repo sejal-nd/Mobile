@@ -11,13 +11,21 @@ import RxSwift
 
 struct MockAuthenticationService: AuthenticationService {
     
-    let validUsername = "valid@test.com"
-    let validCurrentPassword = "Password1"
+    let validUsernames = [
+        "valid@test.com",
+        "outageTestPowerOn",
+        "outageTestPowerOut",
+    ]
+    let validPassword = "Password1"
     
     func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (ServiceResult<(ProfileStatus, AccountDetail)>) -> Void) {
         
-        if username == validUsername && password == validCurrentPassword {
+        if validUsernames.contains(username) && password == validPassword {
+            // The account detail returned here does not influence anything in the rest of the app.
+            // Most account-related things will come from the call to fetchAccounts or fetchAccountDetail in MockAccountService,
+            // which we can mock-influence using the customerIdentifier that we set here
             let accountDetail = AccountDetail.from(["accountNumber": "123456789", "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
+            AccountsStore.sharedInstance.customerIdentifier = username
             completion(ServiceResult.Success((ProfileStatus(), accountDetail)))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
@@ -38,7 +46,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        if currentPassword == validCurrentPassword {
+        if currentPassword == validPassword {
             completion(ServiceResult.Success(()))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
@@ -46,7 +54,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func changePasswordAnon(_ username: String,currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        if currentPassword == validCurrentPassword {
+        if currentPassword == validPassword {
             completion(ServiceResult.Success(()))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))

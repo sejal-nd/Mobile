@@ -21,9 +21,6 @@ class OutageTests: XCTestCase {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchArguments = ["UITest"]
         app.launch()
-        
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-        doLoginAndNavigateToOutageTab()
     }
     
     override func tearDown() {
@@ -31,7 +28,7 @@ class OutageTests: XCTestCase {
         super.tearDown()
     }
     
-    func doLoginAndNavigateToOutageTab() {
+    func doLogin(username: String) {
         let continueButton = app.buttons["Continue"]
         XCTAssert(continueButton.waitForExistence(timeout: 30))
         
@@ -48,19 +45,37 @@ class OutageTests: XCTestCase {
         let elementsQuery = app.scrollViews.otherElements
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
         XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
-        usernameEmailAddressTextField.clearAndEnterText("valid@test.com")
+        usernameEmailAddressTextField.clearAndEnterText(username)
         
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         passwordSecureTextField.clearAndEnterText("Password1")
         elementsQuery.buttons["Sign In"].tap()
         
         XCTAssert(app.tabBars.buttons["Home"].waitForExistence(timeout: 10))
-        app.tabBars.buttons["Outage"].tap()
     }
     
     func testOutageTabLayout() {
+        doLogin(username: "valid@test.com")
+        app.tabBars.buttons["Outage"].tap()
+        
         XCTAssert(app.scrollViews.otherElements.buttons["Report outage"].waitForExistence(timeout: 5))
         XCTAssert(app.scrollViews.otherElements.buttons["View outage map"].waitForExistence(timeout: 5))
+    }
+    
+    func testPowerOnState() {
+        doLogin(username: "outageTestPowerOn")
+        app.tabBars.buttons["Outage"].tap()
+        
+        let predicate = NSPredicate(format: "label CONTAINS 'Our records indicate your power is on'")
+        XCTAssert(app.scrollViews.otherElements.buttons.element(matching: predicate).waitForExistence(timeout: 5))
+    }
+    
+    func testPowerOutState() {
+        doLogin(username: "outageTestPowerOut")
+        app.tabBars.buttons["Outage"].tap()
+        
+        let predicate = NSPredicate(format: "label CONTAINS 'Our records indicate your power is out'")
+        XCTAssert(app.scrollViews.otherElements.buttons.element(matching: predicate).waitForExistence(timeout: 5))
     }
 
 }
