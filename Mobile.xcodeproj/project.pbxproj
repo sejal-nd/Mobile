@@ -7238,8 +7238,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "210b1ea3-68c8-44a3-ace0-2742aa8de445";
-				PROVISIONING_PROFILE_SPECIFIER = "EU Mobile Devs (Currently only Peter)";
+				PROVISIONING_PROFILE = "bc63788f-23e4-4fca-a30c-a3d3b2e41b38";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Automation Development Profile Test";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -7261,8 +7261,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "210b1ea3-68c8-44a3-ace0-2742aa8de445";
-				PROVISIONING_PROFILE_SPECIFIER = "EU Mobile Devs (Currently only Peter)";
+				PROVISIONING_PROFILE = "bc63788f-23e4-4fca-a30c-a3d3b2e41b38";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Automation Development Profile Test";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Automation;
@@ -7284,8 +7284,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "210b1ea3-68c8-44a3-ace0-2742aa8de445";
-				PROVISIONING_PROFILE_SPECIFIER = "EU Mobile Devs (Currently only Peter)";
+				PROVISIONING_PROFILE = "bc63788f-23e4-4fca-a30c-a3d3b2e41b38";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Automation Development Profile Test";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Automation;
