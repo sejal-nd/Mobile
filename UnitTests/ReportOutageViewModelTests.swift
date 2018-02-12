@@ -38,7 +38,7 @@ class ReportOutageViewModelTests: XCTestCase {
     }
     
     func testFooterTextViewText() {
-        var expectedString: String
+        let expectedString: String
         switch Environment.sharedInstance.opco {
         case .bge:
             expectedString = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")

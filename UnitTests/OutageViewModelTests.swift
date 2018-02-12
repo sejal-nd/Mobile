@@ -234,7 +234,7 @@ class OutageViewModelTests: XCTestCase {
         AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "75395146464", "address": "573 Elm Street"])!
         
         viewModel.getOutageStatus(onSuccess: {
-            var expectedString: String
+            let expectedString: String
             if Environment.sharedInstance.opco == .bge {
                 expectedString = NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
             } else {
@@ -250,7 +250,7 @@ class OutageViewModelTests: XCTestCase {
         AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "3216544560", "address": "573 Elm Street"])!
         
         viewModel.getOutageStatus(onSuccess: {
-            var expectedString: String
+            let expectedString: String
             if Environment.sharedInstance.opco == .bge {
                 expectedString = NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
             } else {

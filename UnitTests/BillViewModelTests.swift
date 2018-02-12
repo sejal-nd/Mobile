@@ -20,7 +20,7 @@ class BillViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let testAccounts = [
+        let mockAccounts = [
             Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!,
             Account.from(["accountNumber": "9836621902", "address": "E. Fort Ave, Ste. 200"])!,
             Account.from(["accountNumber": "7003238921", "address": "E. Andre Street"])!,
@@ -28,9 +28,9 @@ class BillViewModelTests: XCTestCase {
             Account.from(["accountNumber": "5591032202", "address": "7701 Presidents Street"])!,
         ]
         
-        AccountsStore.sharedInstance.currentAccount = testAccounts[0]
+        AccountsStore.sharedInstance.currentAccount = mockAccounts[0]
         accountService = MockAccountService()
-        accountService.testAccounts = testAccounts
+        accountService.mockAccounts = mockAccounts
         viewModel = BillViewModel(accountService: accountService)
         scheduler = TestScheduler(initialClock: 0)
     }
@@ -42,7 +42,7 @@ class BillViewModelTests: XCTestCase {
     }
     
     func simulateAccountSwitches(at times: [Int]) {
-        let events: [Recorded<Event<Account>>] = zip(times, accountService.testAccounts).map(next)
+        let events: [Recorded<Event<Account>>] = zip(times, accountService.mockAccounts).map(next)
         let accountSwitches = scheduler.createHotObservable(events)
         accountSwitches
             .do(onNext: {
@@ -70,7 +70,7 @@ class BillViewModelTests: XCTestCase {
         let switchAccountEventTimes = Array(0..<totalAmounts.count)
         let refreshEventTimes = Array(totalAmounts.count..<expectedValues.count)
         
-        accountService.testAccountDetails = totalAmounts.map {
+        accountService.mockAccountDetails = totalAmounts.map {
             AccountDetail(billingInfo: BillingInfo(netDueAmount: $0))
         }
         
@@ -113,7 +113,7 @@ class BillViewModelTests: XCTestCase {
         
         let switchAccountEventTimes = Array(0..<totalAmounts.count)
         
-        accountService.testAccountDetails = zip(totalAmounts, zip(pastDueAmounts, dueByDates)).map {
+        accountService.mockAccountDetails = zip(totalAmounts, zip(pastDueAmounts, dueByDates)).map {
             AccountDetail(billingInfo: BillingInfo(netDueAmount: $0.0, pastDueAmount: $0.1.0, dueByDate: $0.1.1))
         }
         
@@ -137,7 +137,7 @@ class BillViewModelTests: XCTestCase {
         
         let switchAccountEventTimes = Array(0..<restorationAmounts.count)
         
-        accountService.testAccountDetails = restorationAmounts.map {
+        accountService.mockAccountDetails = restorationAmounts.map {
             AccountDetail(billingInfo: BillingInfo(restorationAmount: $0))
         }
         
@@ -161,7 +161,7 @@ class BillViewModelTests: XCTestCase {
         
         let switchAccountEventTimes = Array(0..<amtDpaReinsts.count)
         
-        accountService.testAccountDetails = amtDpaReinsts.map {
+        accountService.mockAccountDetails = amtDpaReinsts.map {
             AccountDetail(billingInfo: BillingInfo(amtDpaReinst: $0))
         }
         
@@ -200,7 +200,7 @@ class BillViewModelTests: XCTestCase {
         
         let switchAccountEventTimes = Array(0..<dueByDates.count)
         
-        accountService.testAccountDetails = dueByDates.map {
+        accountService.mockAccountDetails = dueByDates.map {
             AccountDetail(billingInfo: BillingInfo(dueByDate: $0))
         }
         
@@ -229,7 +229,7 @@ class BillViewModelTests: XCTestCase {
         
         let switchAccountEventTimes = Array(0..<amtDpaReinsts.count)
         
-        accountService.testAccountDetails = amtDpaReinsts.map {
+        accountService.mockAccountDetails = amtDpaReinsts.map {
             AccountDetail(billingInfo: BillingInfo(atReinstateFee: $0))
         }
         
