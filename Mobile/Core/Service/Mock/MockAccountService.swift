@@ -20,15 +20,6 @@ class MockAccountService: AccountService {
     ]
     
     func fetchAccounts(completion: @escaping (ServiceResult<[Account]>) -> Void) {
-        let mockAccounts: [Account]
-        if AccountsStore.sharedInstance.customerIdentifier == "outageTestPowerOn" {
-            mockAccounts = [Account.from(["accountNumber": "1234567890"])!]
-        } else if AccountsStore.sharedInstance.customerIdentifier == "outageTestPowerOut" {
-            mockAccounts = [Account.from(["accountNumber": "9836621902"])!]
-        } else {
-            mockAccounts = self.mockAccounts
-        }
-        
         AccountsStore.sharedInstance.accounts = mockAccounts
         AccountsStore.sharedInstance.currentAccount = mockAccounts[0]
         completion(ServiceResult.Success(mockAccounts as [Account]))

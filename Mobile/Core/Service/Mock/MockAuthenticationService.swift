@@ -11,26 +11,19 @@ import RxSwift
 
 struct MockAuthenticationService: AuthenticationService {
     
-    let validUsernames = [
-        "valid@test.com",
-        "outageTestPowerOn",
-        "outageTestPowerOut",
-    ]
+    let invalidUsername = "invalid@test.com"
     let validPassword = "Password1"
     
     func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (ServiceResult<(ProfileStatus, AccountDetail)>) -> Void) {
         
-        if validUsernames.contains(username) && password == validPassword {
+        if username != invalidUsername && password == validPassword {
             // The account detail returned here does not influence anything in the rest of the app.
-            // Most account-related things will come from the call to fetchAccounts or fetchAccountDetail in MockAccountService,
-            // which we can mock-influence using the customerIdentifier that we set here
+            // Most account-related things will come from the call to fetchAccounts or fetchAccountDetail in MockAccountService
             let accountDetail = AccountDetail.from(["accountNumber": "123456789", "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
-            AccountsStore.sharedInstance.customerIdentifier = username
             completion(ServiceResult.Success((ProfileStatus(), accountDetail)))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
         }
-        
     }
     
     func validateLogin(_ username: String, password: String, completion: @escaping (ServiceResult<Void>) -> Void) {

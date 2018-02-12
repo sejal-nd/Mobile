@@ -12,6 +12,7 @@ import Foundation
 class ServiceFactory {
 
     static let sharedOutageService = OMCOutageService()
+    static let sharedMockOutageService = MockOutageService()
 
     class func createAuthenticationService() -> AuthenticationService {
         switch(Environment.sharedInstance.environmentName) {
@@ -37,7 +38,7 @@ class ServiceFactory {
 
     class func createOutageService() -> OutageService {
         if Environment.sharedInstance.environmentName == "AUT" {
-            return MockOutageService()
+            return sharedMockOutageService
         }
         return sharedOutageService
     }

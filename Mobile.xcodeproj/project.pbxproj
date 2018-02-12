@@ -546,9 +546,9 @@
 		82DE610A1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */; };
 		82DE610B1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */; };
 		82DE610C1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */; };
-		82DFBEFD200FC5C100CC6A5F /* OutageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageTests.swift */; };
-		82DFBEFE200FC5C200CC6A5F /* OutageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageTests.swift */; };
-		82DFBEFF200FC5C200CC6A5F /* OutageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageTests.swift */; };
+		82DFBEFD200FC5C100CC6A5F /* OutageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */; };
+		82DFBEFE200FC5C200CC6A5F /* OutageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */; };
+		82DFBEFF200FC5C200CC6A5F /* OutageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */; };
 		82E22B581F9FC70A001F1A1B /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
 		82E22B591F9FC70A001F1A1B /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
 		82E22B5A1F9FC70A001F1A1B /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
@@ -2074,7 +2074,7 @@
 		82D626171FE1AD8B00B09F00 /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewModel.swift; sourceTree = "<group>"; };
 		82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewController.swift; sourceTree = "<group>"; };
-		82DFBEFB200FC5B300CC6A5F /* OutageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTests.swift; sourceTree = "<group>"; };
+		82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageUITests.swift; sourceTree = "<group>"; };
 		82E22B571F9FC70A001F1A1B /* EnergyTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTip.swift; sourceTree = "<group>"; };
 		82E22B5C1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTipTableViewCell.swift; sourceTree = "<group>"; };
 		82E22B5D1F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyTipTableViewCell.xib; sourceTree = "<group>"; };
@@ -2798,7 +2798,7 @@
 				087630E01E72F5D000FA7020 /* LoginUITests.swift */,
 				E8F353A1200963B600883CEA /* TabNavigationUITests.swift */,
 				E8F353A5200D014000883CEA /* MoreUITests.swift */,
-				82DFBEFB200FC5B300CC6A5F /* OutageTests.swift */,
+				82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -5317,7 +5317,7 @@
 				E8F353B6200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				087630E11E72F5D000FA7020 /* LoginUITests.swift in Sources */,
 				E8F353A2200963B600883CEA /* TabNavigationUITests.swift in Sources */,
-				82DFBEFD200FC5C100CC6A5F /* OutageTests.swift in Sources */,
+				82DFBEFD200FC5C100CC6A5F /* OutageUITests.swift in Sources */,
 				E8F3539E200943E100883CEA /* UserDefaultKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6359,7 +6359,7 @@
 				E8F353B7200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E8F62B0F2009207C0077B3DA /* LoginUITests.swift in Sources */,
 				E8F353A3200963B600883CEA /* TabNavigationUITests.swift in Sources */,
-				82DFBEFE200FC5C200CC6A5F /* OutageTests.swift in Sources */,
+				82DFBEFE200FC5C200CC6A5F /* OutageUITests.swift in Sources */,
 				E8F3539F200943E100883CEA /* UserDefaultKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6372,7 +6372,7 @@
 				E8F353B8200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E8F62B20200920870077B3DA /* LoginUITests.swift in Sources */,
 				E8F353A4200963B600883CEA /* TabNavigationUITests.swift in Sources */,
-				82DFBEFF200FC5C200CC6A5F /* OutageTests.swift in Sources */,
+				82DFBEFF200FC5C200CC6A5F /* OutageUITests.swift in Sources */,
 				E8F353A0200943E200883CEA /* UserDefaultKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
