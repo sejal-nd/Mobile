@@ -164,8 +164,8 @@ class MockOutageService: OutageService {
     
     func reportOutage(outageInfo: OutageInfo, completion: @escaping (ServiceResult<Void>) -> Void) {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
-        if loggedInUsername == "valid@test.com" { // UI testing
-            outageMap["valid@test.com"] = ReportedOutageResult.from(NSDictionary())
+        if loggedInUsername == "outageTestPowerOn" { // UI testing
+            outageMap["outageTestPowerOn"] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                 completion(ServiceResult.Success(()))
             }
@@ -182,8 +182,8 @@ class MockOutageService: OutageService {
     
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult? {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
-        if loggedInUsername == "valid@test.com" { // UI testing
-            return self.outageMap["valid@test.com"]
+        if loggedInUsername == "outageTestPowerOn" { // UI testing
+            return self.outageMap["outageTestPowerOn"]
         }
         return self.outageMap[accountNumber]
     }

@@ -17,7 +17,7 @@ class MockBillService: BillService {
     ///   - endDate: the end date of the desired history
     ///   - completion: the completion block to execute upon completion.
     func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date, completion: @escaping (ServiceResult<BillingHistory>) -> Void) {
-        
+        completion(ServiceResult.Success(BillingHistory.from(["billing_and_payment_history": []])!))
     }
 
 

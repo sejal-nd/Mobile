@@ -120,7 +120,7 @@ extension BillingInfo: JSONEncodable {
          disconnectNoticeArrears: Double? = nil,
          isDisconnectNotice: Bool = false,
          billDate: Date? = nil,
-         convenienceFee: Double? = nil,
+         convenienceFee: Double? = 0,
          scheduledPayment: PaymentItem? = nil,
          pendingPayments: [PaymentItem] = [],
          atReinstateFee: Double? = nil,
@@ -129,8 +129,8 @@ extension BillingInfo: JSONEncodable {
          minPaymentAmountACH: Double? = nil,
          maxPaymentAmountACH: Double? = nil,
          currentDueAmount: Double? = nil,
-         residentialFee: Double? = nil,
-         commercialFee: Double? = nil,
+         residentialFee: Double? = 0,
+         commercialFee: Double? = 0,
          turnOffNoticeExtensionStatus: String? = nil,
          turnOffNoticeExtendedDueDate: Date? = nil,
          deliveryCharges: Double? = nil,
@@ -173,7 +173,7 @@ extension BillingInfo: JSONEncodable {
             "deliveryCharges": deliveryCharges,
             "supplyCharges": supplyCharges,
             "taxesAndFees": taxesAndFees,
-            "payments" : payments.map(PaymentItem.toJSON)
+            "payments": payments.map { $0.toJSON() as NSDictionary }
         ]
         
         self = BillingInfo.from(map as NSDictionary)!
@@ -212,14 +212,14 @@ extension BillingInfo: JSONEncodable {
             "deliveryCharges": deliveryCharges,
             "supplyCharges": supplyCharges,
             "taxesAndFees": taxesAndFees,
-            "payments" : payments.map(PaymentItem.toJSON)
+            "payments": payments.map { $0.toJSON() as NSDictionary }
         ]
     }
 }
 
 extension PaymentItem: JSONEncodable {
     
-    init(amount: Double, date: Date? = nil, status: PaymentStatus = .scheduled) {
+    init(amount: Double, date: Date? = Date(), status: PaymentStatus = .scheduled) {
         
         if Environment.sharedInstance.environmentName != "AUT" {
             fatalError("init only available for tests")
