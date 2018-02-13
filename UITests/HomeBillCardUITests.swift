@@ -86,5 +86,18 @@ class HomeBillCardUITests: XCTestCase {
         XCTAssert(app.navigationBars["Activity"].waitForExistence(timeout: 3))
     }
     
+    func testThankYouForPayment() {
+        doLogin(username: "thankYouForPayment")
+        
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Thank you for your payment"].waitForExistence(timeout: 3))
+        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
+    }
+    
+    func testPastDue() {
+        doLogin(username: "pastDue")
+        
+        
+    }
+    
     
 }

@@ -44,6 +44,13 @@ class MockAccountService: AccountService {
             completion(ServiceResult.Success(accountDetail))
             return
         }
+        if loggedInUsername == "thankYouForPayment" {
+            let now = Date()
+            let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: now)
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(lastPaymentAmount: 200, lastPaymentDate: now, billDate: yesterday))
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
         
         guard let accountIndex = mockAccounts.index(of: account) else {
             completion(.Failure(ServiceError(serviceMessage: "No account detail found for the provided account.")))
