@@ -257,8 +257,8 @@ if [ -n "$APP_CENTER_GROUP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
 	appcenter distribute release \
 		--app $target_app_center_app \
 		--token $APP_CENTER_API_TOKEN \
-		--file build/output/$target_scheme/$target_scheme.ipa \
-		--group $APP_CENTER_GROUP
+		--file "build/output/$target_scheme/$target_scheme.ipa" \
+		--group "$APP_CENTER_GROUP"
 
 else
 	echo "Skipping App Center Distribution due to missing variables - \"app-center-group\" or \"app-center-api-token\""
