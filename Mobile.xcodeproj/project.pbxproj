@@ -7007,8 +7007,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "12736387-a365-4f2d-b7f7-b5a739412242";
-				PROVISIONING_PROFILE_SPECIFIER = "PECO Production Beta";
+				PROVISIONING_PROFILE = "c19e61e9-736c-4169-a0ac-f5e34ec908e1";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Production Beta - App Center Distribution";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Prodbeta;
@@ -7451,8 +7451,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "210b1ea3-68c8-44a3-ace0-2742aa8de445";
-				PROVISIONING_PROFILE_SPECIFIER = "EU Mobile Devs (Currently only Peter)";
+				PROVISIONING_PROFILE = "bc63788f-23e4-4fca-a30c-a3d3b2e41b38";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Automation Development Profile Test";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -7490,8 +7490,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "210b1ea3-68c8-44a3-ace0-2742aa8de445";
-				PROVISIONING_PROFILE_SPECIFIER = "EU Mobile Devs (Currently only Peter)";
+				PROVISIONING_PROFILE = "bc63788f-23e4-4fca-a30c-a3d3b2e41b38";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Automation Development Profile Test";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -7529,8 +7529,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "210b1ea3-68c8-44a3-ace0-2742aa8de445";
-				PROVISIONING_PROFILE_SPECIFIER = "EU Mobile Devs (Currently only Peter)";
+				PROVISIONING_PROFILE = "bc63788f-23e4-4fca-a30c-a3d3b2e41b38";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Automation Development Profile Test";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
