@@ -104,7 +104,11 @@ class HomeBillCardUITests: XCTestCase {
     func testAvoidShutoff() {
         doLogin(username: "avoidShutoff")
         
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due to Avoid Service Interruption"].waitForExistence(timeout: 3))
+        if appName.contains("BGE") {
+            XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due to Avoid Service Interruption"].waitForExistence(timeout: 3))
+        } else {
+            XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due to Avoid Shutoff"].waitForExistence(timeout: 3))
+        }
         XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
         XCTAssert(app.scrollViews.otherElements.staticTexts["Due Immediately"].exists)
     }
