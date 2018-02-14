@@ -384,7 +384,7 @@ class BillViewModel {
     }
     
     //MARK: - Payment Received
-    private(set) lazy var paymentReceivedAmountText: Driver<String?> = self.currentAccountDetail.map {
+    private(set) lazy var paymentReceivedAmountText: Driver<String> = self.currentAccountDetail.map {
         $0.billingInfo.lastPaymentAmount?.currencyString ?? "--"
     }
     
