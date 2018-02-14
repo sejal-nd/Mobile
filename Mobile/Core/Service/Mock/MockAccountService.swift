@@ -51,6 +51,21 @@ class MockAccountService: AccountService {
             completion(ServiceResult.Success(accountDetail))
             return
         }
+        if loggedInUsername == "pastDue" {
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200, pastDueAmount: 200))
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
+        if loggedInUsername == "avoidShutoff" {
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(disconnectNoticeArrears: 200, isDisconnectNotice: true))
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
+        if loggedInUsername == "paymentPending" {
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 200, status: .pending)]))
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
         
         guard let accountIndex = mockAccounts.index(of: account) else {
             completion(.Failure(ServiceError(serviceMessage: "No account detail found for the provided account.")))

@@ -96,7 +96,32 @@ class HomeBillCardUITests: XCTestCase {
     func testPastDue() {
         doLogin(username: "pastDue")
         
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Past Due"].waitForExistence(timeout: 3))
+        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Due Immediately"].exists)
+    }
+    
+    func testAvoidShutoff() {
+        doLogin(username: "avoidShutoff")
         
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due to Avoid Service Interruption"].waitForExistence(timeout: 3))
+        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Due Immediately"].exists)
+    }
+    
+    func testPaymentPending() {
+        doLogin(username: "paymentPending")
+        
+        if appName.contains("BGE") {
+            XCTAssert(app.scrollViews.otherElements.staticTexts["Your payment is processing"].waitForExistence(timeout: 3))
+        } else {
+            XCTAssert(app.scrollViews.otherElements.staticTexts["Your payment is pending"].waitForExistence(timeout: 3))
+        }
+        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
+    }
+    
+    private var appName: String {
+        return Bundle.main.infoDictionary?["CFBundleName"] as! String
     }
     
     
