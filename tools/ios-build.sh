@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -o pipefail
 
 echo "
 Exelon Utilities Mobile Build Script for iOS
@@ -9,8 +11,15 @@ Usage:
 ------- Required Arguments ------
 
 --opco                    - BGE, PECO, or ComEd
---configuration           - Staging, Prodbeta, or Release
 --build-number	          - Integer, will be appended to the base version number
+
+--configuration           - Staging, Prodbeta, or Release
+                            
+                            or
+
+--build-branch              refs/heads/stage
+                            refs/heads/prodbeta
+                            refs/heads/master
 
 ------ App Center Arguments -----
 
@@ -22,7 +31,7 @@ groups of users already signed up in App Center
 --app-center-test-series  - Unused?
 --app-center-group        - The app center group to publish signed app to
 --app-center-app          - Optional, app center slug. Defaults are set in this script
-                            to Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO
+                            to Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-\$OPCO
 ------- Optional Arguments ------
 
 The build script already figures these values based on opco + configuration, but if you
@@ -37,6 +46,7 @@ to just update the build script directly if it's a permanent change.
 
 --project                 - Name of the xcodeproj -- defaults to Mobile.xcodeproj
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
+--phase                   - build, unitTest, appCenterTest, distribute, writeDistributionScript
 
 "
 
@@ -55,6 +65,8 @@ APP_CENTER_TEST_DEVICES=
 APP_CENTER_TEST_SERIES="master"
 APP_CENTER_GROUP=
 OPCO=
+PHASE=
+BUILD_BRANCH=
 
 # Parse arguments.
 for i in "$@"; do
@@ -71,9 +83,20 @@ for i in "$@"; do
 		--app-center-test-series) APP_CENTER_TEST_SERIES="$2"; shift ;;
 		--app-center-group) APP_CENTER_GROUP="$2"; shift ;;
 		--opco) OPCO="$2"; shift ;;
+		--phase) PHASE="$2"; shift ;;
+		--build-branch) BUILD_BRANCH="$2"; shift ;;
 	esac
 	shift
 done
+
+# git repo branches can be used to specify the build type instead of the configuration directly
+if [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
+  CONFIGURATION="Staging"
+elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
+  CONFIGURATION="Prodbeta"
+elif [[ "$BUILD_BRANCH" == "refs/heads/master" ]]; then
+  CONFIGURATION="Release"
+fi
 
 if [ -z "$BUILD_NUMBER" ]; then
 	echo "Missing argument: build-number"
@@ -85,6 +108,14 @@ elif [ -z "$OPCO" ]; then
 	echo "Missing argument: opco"
 	exit 1
 fi
+
+target_phases="build, unitTest, appCenterTest, distribute, writeDistributionScript"
+
+if [ -n "$PHASE" ]; then
+  target_phases="$PHASE"
+fi
+
+echo "Executing the following phases: $target_phases"
 
 # Project configurations & schemes
 #   Develop - DEVELOP
@@ -149,117 +180,160 @@ if [ -n "$APP_CENTER_APP" ]; then
 fi
 
 
-echo "Replacing app icon set..."
-subs=`ls $target_icon_asset`
+if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]]; then
 
-for i in $subs; do
-	if [[ $i == *.png ]]; then
-		echo "    Updating: $i"
-		rm -rf "$current_icon_set/$i"
-		cp "$target_icon_asset/$i" "$current_icon_set"
+	echo "Replacing app icon set..."
+	subs=`ls $target_icon_asset`
+
+	for i in $subs; do
+		if [[ $i == *.png ]]; then
+			echo "    Updating: $i"
+			rm -rf "$current_icon_set/$i"
+			cp "$target_icon_asset/$i" "$current_icon_set"
+		fi
+	done
+	echo "App Icon updated:"
+	echo "   Replaced current_icon_set=$current_icon_set"
+	echo "   with: "
+	echo "   AppIconSet=$target_icon_asset"
+
+	echo "Updating plist $PROJECT_DIR/Mobile/$OPCO-Info.plist"
+
+	# Update Bundle ID, App Name, App Version, and Icons
+	plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Mobile/$OPCO-Info.plist
+	plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Mobile/$OPCO-Info.plist
+
+	echo "$PROJECT_DIR/Mobile/$OPCO-Info.plist updated:"
+	echo "   CFBundleVersion=$BUILD_NUMBER"
+	if [ -n "$BUNDLE_SUFFIX" ]; then 
+		# Optional -- the defaults are all defined in the xcode project, this just gives the user the ability to override
+		echo "   CFBundleIdentifier=$target_bundle_id"
+		plutil -replace CFBundleIdentifier -string $target_bundle_id $PROJECT_DIR/Mobile/$OPCO-Info.plist
+	else
+		echo "   CFBundleIdentifier=(Left as is -- should be \${EXM_BUNDLE_ID} which means Xcode project settings take affect)"
 	fi
-done
-echo "App Icon updated:"
-echo "   Replaced current_icon_set=$current_icon_set"
-echo "   with: "
-echo "   AppIconSet=$target_icon_asset"
+	echo "   CFBundleName=$target_app_name"
+	echo ""
 
-echo "Updating plist $PROJECT_DIR/Mobile/$OPCO-Info.plist"
-
-# Update Bundle ID, App Name, App Version, and Icons
-plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Mobile/$OPCO-Info.plist
-plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Mobile/$OPCO-Info.plist
-
-echo "$PROJECT_DIR/Mobile/$OPCO-Info.plist updated:"
-echo "   CFBundleVersion=$BUILD_NUMBER"
-if [ -n "$BUNDLE_SUFFIX" ]; then 
-	# Optional -- the defaults are all defined in the xcode project, this just gives the user the ability to override
-	echo "   CFBundleIdentifier=$target_bundle_id"
-	plutil -replace CFBundleIdentifier -string $target_bundle_id $PROJECT_DIR/Mobile/$OPCO-Info.plist
-else
-	echo "   CFBundleIdentifier=(Left as is -- should be \${EXM_BUNDLE_ID} which means Xcode project settings take affect)"
 fi
-echo "   CFBundleName=$target_app_name"
-echo ""
 
 
 # Restore Carthage Packages
 
-# carthage update --platform iOS --project-directory $PROJECT_DIR
-carthage update --platform iOS --project-directory $PROJECT_DIR --cache-builds
+if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"Test"* ]]; then 
+	# carthage update --platform iOS --project-directory $PROJECT_DIR
+	carthage update --platform iOS --project-directory $PROJECT_DIR --cache-builds
+fi
 
-# Run Unit Tests
+if [[ $target_phases = *"unitTest"* ]]; then
+	# Run Unit Tests
 
-echo "Running automation tests"
-xcrun xcodebuild  -sdk iphonesimulator \
-	-project $PROJECT \
-	-scheme "$OPCO-AUT" \
-	-destination "$UNIT_TEST_SIMULATOR" \
-	-configuration Automation \
-	test | xcpretty --report junit
-
-
-echo "------------------------------ Building Application  ----------------------------"
-# Build App
-
-xcrun xcodebuild -sdk iphoneos \
-	-configuration $CONFIGURATION \
-	-project $PROJECT \
-	-scheme "$target_scheme" \
-	-archivePath build/archive/$target_scheme.xcarchive \
-	archive
-
-echo "--------------------------------- Post archiving  -------------------------------"
-
-
-# # Archive App
-xcrun xcodebuild \
-	-exportArchive \
-	-archivePath build/archive/$target_scheme.xcarchive \
-	-exportPath build/output/$target_scheme \
-	-exportOptionsPlist tools/ExportPlists/$target_scheme.plist
-
-echo "--------------------------------- Post exporting -------------------------------"
-
-# Push to App Center Test
-
-if  [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENTER_TEST_DEVICES" ]; then
-
-	# rm -rf "DerivedData"
-	echo "----------------------------------- Build-for-testing -------------------------------"
-	xcrun xcodebuild \
-		-configuration Automation \
+	echo "Running automation tests"
+	xcrun xcodebuild  -sdk iphonesimulator \
 		-project $PROJECT \
-		-sdk iphoneos \
-		-scheme "$OPCO-AUT-UITest" \
-		build-for-testing 
+		-scheme "$OPCO-AUT" \
+		-destination "$UNIT_TEST_SIMULATOR" \
+		-configuration Automation \
+		test | xcpretty --report junit 
 
-	
-	echo "--------------------------------- Uploading to appcenter -------------------------------"
-	# Upload your test to App Center
-	appcenter test run xcuitest \
-		--app $target_app_center_app \
-		--devices $APP_CENTER_TEST_DEVICES \
-		--test-series "$APP_CENTER_TEST_SERIES"  \
-		--locale "en_US" \
-		--build-dir Build/Automation \
-		--token $APP_CENTER_API_TOKEN \
-		--async
-
-else
-	echo "Skipping App Center Test due to missing variables - \"app-center-test-devices\", or \"app-center-api-token\""
 fi
 
-# Push to App Center Distribute
-if [ -n "$APP_CENTER_GROUP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
+if [[ $target_phases = *"build"* ]]; then
 
-	 # echo "test"
-	appcenter distribute release \
-		--app $target_app_center_app \
-		--token $APP_CENTER_API_TOKEN \
-		--file "build/output/$target_scheme/$target_scheme.ipa" \
-		--group "$APP_CENTER_GROUP"
+	echo "------------------------------ Building Application  ----------------------------"
+	# Build App
 
-else
-	echo "Skipping App Center Distribution due to missing variables - \"app-center-group\" or \"app-center-api-token\""
+	xcrun xcodebuild -sdk iphoneos \
+		-configuration $CONFIGURATION \
+		-project $PROJECT \
+		-scheme "$target_scheme" \
+		-archivePath build/archive/$target_scheme.xcarchive \
+		archive
+
+	echo "--------------------------------- Post archiving  -------------------------------"
+
+
+	# # Archive App
+	xcrun xcodebuild \
+		-exportArchive \
+		-archivePath build/archive/$target_scheme.xcarchive \
+		-exportPath build/output/$target_scheme \
+		-exportOptionsPlist tools/ExportPlists/$target_scheme.plist
+
+	echo "--------------------------------- Post exporting -------------------------------"
+
 fi
+
+
+if [[ $target_phases = *"appCenterTest"* ]]; then
+	# Push to App Center Test
+
+	if  [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENTER_TEST_DEVICES" ]; then
+
+		# rm -rf "DerivedData"
+		echo "----------------------------------- Build-for-testing -------------------------------"
+		xcrun xcodebuild \
+			-configuration Automation \
+			-project $PROJECT \
+			-sdk iphoneos \
+			-scheme "$OPCO-AUT-UITest" \
+			ONLY_ACTIVE_ARCH=NO \
+			ARCH="armv7 armv7s arm64" \
+			VALID_ARCHS="armv7 armv7s arm64" \
+			build-for-testing 
+
+		
+		echo "--------------------------------- Uploading to appcenter -------------------------------"
+		# Upload your test to App Center
+		appcenter test run xcuitest \
+			--app $target_app_center_app \
+			--devices $APP_CENTER_TEST_DEVICES \
+			--test-series "$APP_CENTER_TEST_SERIES"  \
+			--locale "en_US" \
+			--build-dir Build/Automation \
+			--token $APP_CENTER_API_TOKEN \
+			--async
+
+	else
+		echo "Skipping App Center Test due to missing variables - \"app-center-test-devices\", or \"app-center-api-token\""
+	fi
+fi
+
+if [[ $target_phases = *"distribute"* ]]; then
+	# Push to App Center Distribute
+	if [ -n "$APP_CENTER_GROUP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
+		
+		appcenter distribute release \
+			--app $target_app_center_app \
+			--token $APP_CENTER_API_TOKEN \
+			--file "build/output/$target_scheme/$target_scheme.ipa" \
+			--group "$APP_CENTER_GROUP"
+
+	else
+		echo "Skipping App Center Distribution due to missing variables - \"app-center-group\" or \"app-center-api-token\""
+	fi
+fi
+
+if [[ $target_phases = *"writeDistributionScript"* ]]; then
+  echo "#!/usr/bin/env bash
+
+APP_CENTER_API_TOKEN=
+APP_CENTER_GROUP=
+
+# Parse arguments.
+for i in \"\$@\"; do
+    case \$1 in
+        --app-center-api-token) APP_CENTER_API_TOKEN=\"\$2\"; shift ;;
+        --app-center-group) APP_CENTER_GROUP=\"\$2\"; shift ;;
+    esac
+    shift
+done
+
+  echo \"Uploading app to app center for distribution to group \$APP_CENTER_GROUP\"
+  appcenter distribute release \\
+    --app \"$target_app_center_app\" \\
+    --file \"build/output/$target_scheme/$target_scheme.ipa\" \\
+    --token \$APP_CENTER_API_TOKEN \\
+    --group \"\$APP_CENTER_GROUP\"
+  " > ./tools/app_center_push.sh
+fi 
