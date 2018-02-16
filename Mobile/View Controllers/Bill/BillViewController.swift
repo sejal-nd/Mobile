@@ -602,14 +602,14 @@ class BillViewController: AccountPickerViewController {
         activityButton.accessibilityLabel = NSLocalizedString("Activity", comment: "")
         walletButton.accessibilityLabel = NSLocalizedString("My Wallet", comment: "")
         
-        viewModel.autoPayButtonText.map { $0?.string }.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.autoPayButtonText.map { $0.string }.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
         
         viewModel.paperlessButtonText
             .map { $0?.string.replacingOccurrences(of: "eBill", with: "e-bill") }
             .drive(paperlessButton.rx.accessibilityLabel)
             .disposed(by: bag)
         
-        viewModel.budgetButtonText.map { $0?.string }.drive(budgetButton.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.budgetButtonText.map { $0.string }.drive(budgetButton.rx.accessibilityLabel).disposed(by: bag)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
