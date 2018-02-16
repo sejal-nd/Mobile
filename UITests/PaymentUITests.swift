@@ -193,3 +193,4 @@ class PaymentUITests: XCTestCase {
         return Bundle.main.infoDictionary?["CFBundleName"] as! String
     }
 }
+
