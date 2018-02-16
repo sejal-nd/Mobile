@@ -202,7 +202,7 @@ class BillViewModel {
     
     //MARK: - Banner Alert Text
     
-    private(set) lazy var alertBannerText: Driver<String?> = Driver.combineLatest(self.restoreServiceAlertText,
+    private(set) lazy var alertBannerText: Driver<String?> = Driver.zip(self.restoreServiceAlertText,
                                                                      self.avoidShutoffAlertText,
                                                                      self.paymentFailedAlertText)
     { $0 ?? $1 ?? $2 }
@@ -219,10 +219,8 @@ class BillViewModel {
         return NSLocalizedString("Your service is off due to non-payment.", comment: "")
     }
     
-    private(set) lazy var avoidShutoffAlertText: Driver<String?> = Driver.zip(self.currentAccountDetail, self.restoreServiceAlertText)
-    { accountDetail, restoreServiceAlertText in
+    private(set) lazy var avoidShutoffAlertText: Driver<String?> = self.currentAccountDetail.map { accountDetail in
         guard let amountText = accountDetail.billingInfo.disconnectNoticeArrears?.currencyString,
-            restoreServiceAlertText == nil,
             (accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 && accountDetail.billingInfo.isDisconnectNotice) else {
                     return nil
         }
@@ -471,7 +469,7 @@ class BillViewModel {
     
     //MARK: - Enrollment
     
-    private(set) lazy var autoPayButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.map {
+    private(set) lazy var autoPayButtonText: Driver<NSAttributedString> = self.currentAccountDetail.map {
         if $0.isAutoPay || $0.isBGEasy {
             let text = NSLocalizedString("AutoPay", comment: "")
             let enrolledText = $0.isBGEasy ?
@@ -504,7 +502,7 @@ class BillViewModel {
             }
     }
     
-    private(set) lazy var budgetButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.map {
+    private(set) lazy var budgetButtonText: Driver<NSAttributedString> = self.currentAccountDetail.map {
         if $0.isBudgetBillEnrollment {
             return BillViewModel.isEnrolledText(topText: NSLocalizedString("Budget Billing", comment: ""),
                                                 bottomText: NSLocalizedString("enrolled", comment: ""))
