@@ -26,10 +26,10 @@ class BillViewModelTests: XCTestCase {
             Account.from(["accountNumber": "7003238921", "address": "E. Andre Street"])!,
             Account.from(["accountNumber": "5591032201", "address": "7700 Presidents Street"])!,
             Account.from(["accountNumber": "5591032202", "address": "7701 Presidents Street"])!,
-            Account.from(["accountNumber": "5591032203", "address": "7701 Presidents Street"])!,
-            Account.from(["accountNumber": "5591032204", "address": "7701 Presidents Street"])!,
-            Account.from(["accountNumber": "5591032205", "address": "7701 Presidents Street"])!,
-            Account.from(["accountNumber": "5591032206", "address": "7701 Presidents Street"])!
+            Account.from(["accountNumber": "5591032203", "address": "7702 Presidents Street"])!,
+            Account.from(["accountNumber": "5591032204", "address": "7703 Presidents Street"])!,
+            Account.from(["accountNumber": "5591032205", "address": "7704 Presidents Street"])!,
+            Account.from(["accountNumber": "5591032206", "address": "7705 Presidents Street"])!
         ]
         
         AccountsStore.sharedInstance.currentAccount = mockAccounts[0]
@@ -93,6 +93,16 @@ class BillViewModelTests: XCTestCase {
             nil
         ]
         
+        let comEdPecoA11yAvoidShutoffText1 = "Payment due to avoid shut-off is $4.00 due immediately."
+        let comEdPecoA11yAvoidShutoffText2 = "Payment due to avoid shut-off is $6.00 due immediately."
+        let expectedA11yValues: [String?] = [
+            "Your service is off due to non-payment.",
+            nil,
+            opco == .bge ? "A payment of $4.00 is due by 02/12/2018" : comEdPecoA11yAvoidShutoffText1,
+            opco == .bge ? "Payment due to avoid service interruption is $6.00 due by 02/12/2018." : comEdPecoA11yAvoidShutoffText2,
+            nil
+        ]
+        
         let switchAccountEventTimes = Array(0..<expectedValues.count)
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -108,14 +118,19 @@ class BillViewModelTests: XCTestCase {
                                  isCutOutNonPay: isCutOutNonPay[i])
         }
         
-        let observer = scheduler.createObserver(String?.self)
-        viewModel.alertBannerText.drive(observer).disposed(by: disposeBag)
+        let bannerTextObserver = scheduler.createObserver(String?.self)
+        viewModel.alertBannerText.drive(bannerTextObserver).disposed(by: disposeBag)
+        
+        let a11yObserver = scheduler.createObserver(String?.self)
+        viewModel.alertBannerA11yText.drive(a11yObserver).disposed(by: disposeBag)
         
         scheduler.start()
         
         let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        let expectedA11yEvents = zip(switchAccountEventTimes, expectedA11yValues).map(next)
         
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertEqual(bannerTextObserver.events, expectedEvents)
+        XCTAssertEqual(a11yObserver.events, expectedA11yEvents)
     }
     
     // Tests changes in the `totalAmountText` value after switching
