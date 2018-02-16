@@ -208,7 +208,7 @@ extension BillingInfo: JSONEncodable {
             "feeResidential": residentialFee,
             "feeCommercial": commercialFee,
             "turnOffNoticeExtensionStatus": turnOffNoticeExtensionStatus,
-            "turnOffNoticeExtendedDueDate": turnOffNoticeExtendedDueDate,
+            "turnOffNoticeExtendedDueDate": turnOffNoticeExtendedDueDate?.apiString,
             "deliveryCharges": deliveryCharges,
             "supplyCharges": supplyCharges,
             "taxesAndFees": taxesAndFees,

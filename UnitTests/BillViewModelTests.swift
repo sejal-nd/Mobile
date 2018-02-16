@@ -66,7 +66,7 @@ class BillViewModelTests: XCTestCase {
         let isCutOutNonPay = [true, false, false, false, false]
         
         let disconnectNoticeArrears: [Double?] = [nil, nil, 4, 6, nil]
-        let isDisconnectNotice = [false, false, true, false, false]
+        let isDisconnectNotice = [false, false, true, true, false]
         
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = .opCo
@@ -77,17 +77,19 @@ class BillViewModelTests: XCTestCase {
                 guard let string = $0 else { return nil }
                 return dateFormatter.date(from: string)
         }
-        let turnOffNoticeExtendedDueDate: [Date?] = ["02/12/2018", "02/12/2018", "02/12/2018", "02/12/2018", "02/12/2018"]
+        let turnOffNoticeExtendedDueDate: [Date?] = ["02/12/2018", "02/12/2018", "02/12/2018", nil, "02/12/2018"]
             .map {
-                return dateFormatter.date(from: $0)
+                guard let string = $0 else { return nil }
+                return dateFormatter.date(from: string)
         }
         
-        let comEdPecoAvoidShutoffText = "Payment due to avoid shutoff is %@ due immediately."
+        let comEdPecoAvoidShutoffText1 = "Payment due to avoid shutoff is $4.00 due immediately."
+        let comEdPecoAvoidShutoffText2 = "Payment due to avoid shutoff is $6.00 due immediately."
         let expectedValues: [String?] = [
             "Your service is off due to non-payment.",
             nil,
-            opco == .bge ? "A payment of $4.00 is due by 02/12/2018" : comEdPecoAvoidShutoffText,
-            opco == .bge ? "Payment due to avoid service interruption is $6.00 due by 02/12/2018." : comEdPecoAvoidShutoffText,
+            opco == .bge ? "A payment of $4.00 is due by 02/12/2018" : comEdPecoAvoidShutoffText1,
+            opco == .bge ? "Payment due to avoid service interruption is $6.00 due by 02/12/2018." : comEdPecoAvoidShutoffText2,
             nil
         ]
         
@@ -108,26 +110,6 @@ class BillViewModelTests: XCTestCase {
         
         let observer = scheduler.createObserver(String?.self)
         viewModel.alertBannerText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
-    }
-    
-    // Tests changes in the `paymentFailedAlertText` value.
-    func testPaymentFailedAlertText() {
-        let expectedValues: [String?] = [nil]
-        
-        let switchAccountEventTimes = Array(0..<expectedValues.count)
-        
-        accountService.mockAccountDetails = [AccountDetail()]
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String?.self)
-        viewModel.paymentFailedAlertText.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
@@ -944,7 +926,7 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
     // Tests changes in the `paperlessButtonText` value after switching
     // through different accounts.
     func testPaperlessButtonText() {
-        let isResidential = [true, false, false, false, false]
+        let isResidential = [false, true, true, true, true]
         let isEBillEligible = [false, false, true, false, false]
         let isEBillEnrollment = [false, true, false, false, false]
         let status = [nil, nil, nil, "finaled", nil]

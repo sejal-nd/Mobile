@@ -211,7 +211,7 @@ class BillViewModel {
         $0?.replacingOccurrences(of: "shutoff", with: "shut-off")
     }
     
-    private(set) lazy var restoreServiceAlertText: Driver<String?> = self.currentAccountDetail.map {
+    private lazy var restoreServiceAlertText: Driver<String?> = self.currentAccountDetail.map {
         guard !($0.billingInfo.restorationAmount ?? 0 > 0 && $0.billingInfo.amtDpaReinst ?? 0 > 0) &&
             $0.isCutOutNonPay else {
                 return nil
@@ -219,7 +219,7 @@ class BillViewModel {
         return NSLocalizedString("Your service is off due to non-payment.", comment: "")
     }
     
-    private(set) lazy var avoidShutoffAlertText: Driver<String?> = self.currentAccountDetail.map { accountDetail in
+    private lazy var avoidShutoffAlertText: Driver<String?> = self.currentAccountDetail.map { accountDetail in
         guard let amountText = accountDetail.billingInfo.disconnectNoticeArrears?.currencyString,
             (accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 && accountDetail.billingInfo.isDisconnectNotice) else {
                     return nil
@@ -243,7 +243,7 @@ class BillViewModel {
         }
     }
     
-    private(set) lazy var paymentFailedAlertText: Driver<String?> = self.currentAccountDetail.map { _ in
+    private lazy var paymentFailedAlertText: Driver<String?> = self.currentAccountDetail.map { _ in
         //TODO: Implement this alert text
         let localizedText = NSLocalizedString("Your payment of %@ made with $@ failed processing. Please select an alternative payment account", comment: "")
         return nil
