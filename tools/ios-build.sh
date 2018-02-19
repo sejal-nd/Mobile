@@ -50,6 +50,7 @@ to just update the build script directly if it's a permanent change.
 
 "
 
+PROPERTIES_FILE='version.properties'
 PROJECT_DIR="."
 ASSET_DIR="$PROJECT_DIR/Mobile/Assets/"
 PROJECT="Mobile.xcodeproj"
@@ -115,6 +116,20 @@ if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
 fi
 
+
+if [ -f "$PROPERTIES_FILE" ]
+then
+  echo "$PROPERTIES_FILE found."
+
+  while IFS='=' read -r key value
+  do
+    key=$(echo $key | tr '.' '_')
+    eval "${key}='${value}'"
+  done < "$PROPERTIES_FILE"
+else
+  echo "$PROPERTIES_FILE not found."
+fi
+
 echo "Executing the following phases: $target_phases"
 
 # Project configurations & schemes
@@ -132,11 +147,20 @@ target_app_name=
 target_icon_asset=
 target_scheme=
 target_app_center_app=
+target_version_number=
 
 OPCO_LOWERCASE=$(echo "$OPCO" | tr '[:upper:]' '[:lower:]')
 
 if [ -z "$BASE_BUNDLE_NAME" ]; then
 	BASE_BUNDLE_NAME="com.exelon.mobile.$OPCO_LOWERCASE"
+fi
+
+if [ "$OPCO" == "BGE" ]; then
+	target_version_number=$BGE_VERSION_NUMBER
+elif [ "$OPCO" == "ComEd" ]; then
+	target_version_number=$COMED_VERSION_NUMBER
+elif [ "$OPCO" == "PECO" ]; then
+	target_version_number=$PECO_VERSION_NUMBER
 fi
 
 if [ "$CONFIGURATION" == "Staging" ]; then
@@ -145,13 +169,14 @@ if [ "$CONFIGURATION" == "Staging" ]; then
 	target_icon_asset="tools/$OPCO/staging"
 	target_scheme="$OPCO-STAGING"
 	target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Stage-$OPCO"
-
+	target_version_number="$target_version_number.$BUILD_NUMBER-staging"
 elif [ "$CONFIGURATION" == "Prodbeta" ]; then
 	target_bundle_id="$BASE_BUNDLE_NAME.prodbeta"
 	target_app_name="$OPCO Prodbeta"
 	target_icon_asset="tools/$OPCO/prodbeta"
 	target_scheme="$OPCO-PRODBETA"
 	target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
+	target_version_number="$target_version_number.$BUILD_NUMBER-prodbeta"
 elif [ "$CONFIGURATION" == "Release" ]; then
 	if [ "$OPCO_LOWERCASE" == "comed" ]; then
 		# ComEd's production app bundle is different because of the previous Kony mobile app
@@ -202,7 +227,9 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 	# Update Bundle ID, App Name, App Version, and Icons
 	plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Mobile/$OPCO-Info.plist
 	plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Mobile/$OPCO-Info.plist
+	plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Mobile/$OPCO-Info.plist
 
+	
 	echo "$PROJECT_DIR/Mobile/$OPCO-Info.plist updated:"
 	echo "   CFBundleVersion=$BUILD_NUMBER"
 	if [ -n "$BUNDLE_SUFFIX" ]; then 
@@ -213,6 +240,7 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 		echo "   CFBundleIdentifier=(Left as is -- should be \${EXM_BUNDLE_ID} which means Xcode project settings take affect)"
 	fi
 	echo "   CFBundleName=$target_app_name"
+	echo "   CFBundleShortVersionString=$target_version_number"
 	echo ""
 
 fi
@@ -302,7 +330,7 @@ fi
 if [[ $target_phases = *"distribute"* ]]; then
 	# Push to App Center Distribute
 	if [ -n "$APP_CENTER_GROUP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
-		
+
 		appcenter distribute release \
 			--app $target_app_center_app \
 			--token $APP_CENTER_API_TOKEN \
