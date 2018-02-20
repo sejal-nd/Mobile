@@ -399,6 +399,56 @@ class PaymentUITests: XCTestCase {
         }
     }
     
+    func testLayoutExistingWalletItems() {
+        doLogin(username: "billCardWithDefaultPayment")
+        
+        let nextButton = app.navigationBars.buttons["Next"]
+        XCTAssert(nextButton.waitForExistence(timeout: 2))
+        XCTAssert(nextButton.isEnabled, "Next button should be immediately enabled in this scenario")
+        
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Account"].exists)
+        
+        let paymentAccountButton = app.scrollViews.otherElements.buttons["Bank account, Test Nickname, Account number ending in, 1234"]
+        XCTAssert(paymentAccountButton.exists)
+        paymentAccountButton.tap()
+        XCTAssert(app.navigationBars["Select Payment Account"].waitForExistence(timeout: 2))
+        app.navigationBars.buttons["Back"].tap()
+        
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due"].waitForExistence(timeout: 2))
+        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
+        
+        XCTAssert(app.scrollViews.otherElements.staticTexts["No convenience fee will be applied."].exists)
+        let paymentAmountTextField = app.scrollViews.otherElements.textFields["Payment Amount, required"]
+        XCTAssert(paymentAmountTextField.exists)
+        if let textFieldValue = paymentAmountTextField.value as? String {
+            XCTAssert(textFieldValue == "$200.00", "Payment amount value entry should default to the amount due")
+        } else {
+            XCTFail("Could not get paymentAmountTextField value")
+        }
+        
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
+        
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        let dateString = dateFormatter.string(from: Date())
+        let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
+        XCTAssert(paymentDateButton.exists)
+        paymentDateButton.tap()
+        XCTAssert(app.navigationBars["Select Payment Date"].waitForExistence(timeout: 2))
+        app.navigationBars.buttons["Back"].tap()
+        
+        if !appName.contains("BGE") {
+            XCTAssert(app.scrollViews.otherElements.images["ic_billmatrix"].waitForExistence(timeout: 2))
+            
+            let privacyPolicyButton = app.scrollViews.otherElements.buttons["Privacy Policy"]
+            XCTAssert(privacyPolicyButton.exists)
+            privacyPolicyButton.tap()
+            XCTAssert(app.staticTexts["Privacy Policy"].waitForExistence(timeout: 2))
+        }
+    }
+    
     private var appName: String {
         return Bundle.main.infoDictionary?["CFBundleName"] as! String
     }
