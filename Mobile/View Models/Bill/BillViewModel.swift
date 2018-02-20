@@ -69,13 +69,14 @@ class BillViewModel {
 	
     // MARK: - Show/Hide Views -
     
-    private(set) lazy var shouldShowAlertBanner: Driver<Bool> =  Driver.combineLatest(self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()),
-                                                                                      self.shouldShowRestoreService,
-                                                                                      self.shouldShowAvoidShutoff,
-                                                                                      self.switchAccountsTracker.asDriver())
-    { accountDetailEvent, shouldShowRestoreService, shouldShowAvoidShutoff, isSwitchingAccounts in
-        guard let accountDetail = accountDetailEvent.element else { return false }
-        return ((accountDetail.isCutOutNonPay && shouldShowRestoreService) || shouldShowAvoidShutoff) && !isSwitchingAccounts
+    private(set) lazy var shouldShowAlertBanner: Driver<Bool> =  Driver
+        .combineLatest(self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()),
+                       self.shouldShowRestoreService,
+                       self.shouldShowAvoidShutoff,
+                       self.switchAccountsTracker.asDriver())
+        { accountDetailEvent, shouldShowRestoreService, shouldShowAvoidShutoff, isSwitchingAccounts in
+            guard let accountDetail = accountDetailEvent.element else { return false }
+            return ((accountDetail.isCutOutNonPay && shouldShowRestoreService) || shouldShowAvoidShutoff) && !isSwitchingAccounts
         }
         .startWith(false)
     
@@ -107,9 +108,10 @@ class BillViewModel {
         return Driver.zip(self.shouldShowAlertBanner, showPastDue) { !$0 && $1 }
     }()
     
-    private(set) lazy var shouldShowTopContent: Driver<Bool> = Driver.combineLatest(self.switchAccountsTracker.asDriver(),
-                                                                                    self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()))
-    { !$0 && $1.error == nil }
+    private(set) lazy var shouldShowTopContent: Driver<Bool> = Driver
+        .combineLatest(self.switchAccountsTracker.asDriver(),
+                       self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()))
+        { !$0 && $1.error == nil }
         .startWith(false)
     
     private(set) lazy var pendingPaymentAmountDueBoxesAlpha: Driver<CGFloat> = self.currentAccountDetail.map {
@@ -157,7 +159,7 @@ class BillViewModel {
             guard let serviceType = accountDetail.serviceType else { return false }
             
             // We need premiseNumber to make the usage API calls, so hide the button if we don't have it
-            guard let premiseNumber = accountDetail.premiseNumber else { return false }
+            guard let _ = accountDetail.premiseNumber else { return false }
             
             if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
                 return false
