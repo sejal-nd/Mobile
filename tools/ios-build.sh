@@ -91,6 +91,8 @@ done
 # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -eo pipefail
 
+mkdir -p build/logs
+
 # git repo branches can be used to specify the build type instead of the configuration directly
 if [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
   CONFIGURATION="Staging"
@@ -254,7 +256,9 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"Test"* ]]; then
 fi
 
 if [[ $target_phases = *"unitTest"* ]]; then
-	# Run Unit Tests
+
+	# disable error propagation. we do not want to force the whole build script to fail if a unit test fails
+	set +e
 
 	echo "Running automation tests"
 	xcrun xcodebuild  -sdk iphonesimulator \
@@ -262,8 +266,10 @@ if [[ $target_phases = *"unitTest"* ]]; then
 		-scheme "$OPCO-AUT" \
 		-destination "$UNIT_TEST_SIMULATOR" \
 		-configuration Automation \
-		test | xcpretty --report junit 
+		test | tee build/logs/xcodebuild_automation_unittests.log | xcpretty --report junit 
 
+	 # re-enable error propagation
+	set -e
 fi
 
 if [[ $target_phases = *"build"* ]]; then
@@ -276,7 +282,7 @@ if [[ $target_phases = *"build"* ]]; then
 		-project $PROJECT \
 		-scheme "$target_scheme" \
 		-archivePath build/archive/$target_scheme.xcarchive \
-		archive
+		archive | tee build/logs/xcodebuild_archive.log | xcpretty
 
 	echo "--------------------------------- Post archiving  -------------------------------"
 
@@ -308,7 +314,7 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 			ONLY_ACTIVE_ARCH=NO \
 			ARCH="armv7 armv7s arm64" \
 			VALID_ARCHS="armv7 armv7s arm64" \
-			build-for-testing 
+			build-for-testing | tee build/logs/xcodebuild_build_for_testing.log | xcpretty && exit ${PIPESTATUS[0]}
 
 		
 		echo "--------------------------------- Uploading to appcenter -------------------------------"
