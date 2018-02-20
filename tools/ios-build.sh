@@ -314,7 +314,7 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 			ONLY_ACTIVE_ARCH=NO \
 			ARCH="armv7 armv7s arm64" \
 			VALID_ARCHS="armv7 armv7s arm64" \
-			build-for-testing | tee build/logs/xcodebuild_build_for_testing.log | xcpretty && exit ${PIPESTATUS[0]}
+			build-for-testing | tee build/logs/xcodebuild_build_for_testing.log | xcpretty
 
 		
 		echo "--------------------------------- Uploading to appcenter -------------------------------"
