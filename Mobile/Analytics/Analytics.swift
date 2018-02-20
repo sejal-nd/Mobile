@@ -141,6 +141,7 @@ enum AnalyticsPageView: String {
     case ContactUsAuthCall = "ContactUsAuthCall"
     case ContactUsUnAuthCall = "ContactUsUnAuthCall"
     
+    case AlertsPrefCenterOffer = "PrefCenterOffer"
     case AlertsPrefCenterSave = "PrefCenterSave"
     case AlertsPrefCenterComplete = "PrefCenterComplete"
     case AlertsPayRemind = "AlertsPayRemind"

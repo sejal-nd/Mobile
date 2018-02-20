@@ -26,10 +26,10 @@ class BillViewModelTests: XCTestCase {
             Account.from(["accountNumber": "7003238921", "address": "E. Andre Street"])!,
             Account.from(["accountNumber": "5591032201", "address": "7700 Presidents Street"])!,
             Account.from(["accountNumber": "5591032202", "address": "7701 Presidents Street"])!,
-            Account.from(["accountNumber": "5591032203", "address": "7701 Presidents Street"])!,
-            Account.from(["accountNumber": "5591032204", "address": "7701 Presidents Street"])!,
-            Account.from(["accountNumber": "5591032205", "address": "7701 Presidents Street"])!,
-            Account.from(["accountNumber": "5591032206", "address": "7701 Presidents Street"])!
+            Account.from(["accountNumber": "5591032203", "address": "7702 Presidents Street"])!,
+            Account.from(["accountNumber": "5591032204", "address": "7703 Presidents Street"])!,
+            Account.from(["accountNumber": "5591032205", "address": "7704 Presidents Street"])!,
+            Account.from(["accountNumber": "5591032206", "address": "7705 Presidents Street"])!
         ]
         
         AccountsStore.sharedInstance.currentAccount = mockAccounts[0]

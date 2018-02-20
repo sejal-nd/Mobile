@@ -146,7 +146,7 @@ class WalletViewModelTests: XCTestCase {
     func testEmptyStateCreditFeeLabelText() {
         if Environment.sharedInstance.opco == .bge {
             viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(residentialFee: 2, commercialFee: 5))
-            let expectedStr = "A convenience fee will be applied to your payments. Residential accounts: $2.00. Business accounts: 5%"
+            let expectedStr = "A convenience fee will be applied to your payments. Residential accounts: $2.00. Business accounts: 5%."
             XCTAssert(viewModel.emptyStateCreditFeeLabelText == expectedStr, "Expected \"\(expectedStr)\", got \"\(viewModel.emptyStateCreditFeeLabelText)\"")
         } else { // ComEd/PECO
             viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(convenienceFee: 2))
