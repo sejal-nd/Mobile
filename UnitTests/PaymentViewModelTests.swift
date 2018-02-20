@@ -1288,7 +1288,7 @@ class PaymentViewModelTests: XCTestCase {
             
             viewModel.inlineCard.value = true
             viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: $2.00. Business accounts: 5%", comment: "")
+                let expectedFeeString = NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: $2.00. Business accounts: 5%.", comment: "")
                 XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText ?? "nil")\"")
             }).disposed(by: disposeBag)
         } else {

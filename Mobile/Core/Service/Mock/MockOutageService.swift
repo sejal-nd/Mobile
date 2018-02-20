@@ -34,6 +34,8 @@ class MockOutageService: OutageService {
                 accountNum = "5591032201"
             } else if loggedInUsername == "outageTestFinaled" {
                 accountNum = "75395146464"
+            } else if loggedInUsername == "outageTestReport" {
+                accountNum = "7003238921"
             }
             let outageStatus = getOutageStatus(accountNumber: accountNum)
             completion(ServiceResult.Success(outageStatus))

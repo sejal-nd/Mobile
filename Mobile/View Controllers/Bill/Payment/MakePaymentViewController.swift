@@ -234,7 +234,7 @@ class MakePaymentViewController: UIViewController {
         addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         switch Environment.sharedInstance.opco {
         case .comEd, .peco:
-            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill matrix, our payment partner.", comment: ""), accountDetail.billingInfo.convenienceFee!.currencyString!)
+            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: ""), accountDetail.billingInfo.convenienceFee!.currencyString!)
             break
         case .bge:
             addCreditCardFeeLabel.text = String(format: NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.", comment: ""), accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
