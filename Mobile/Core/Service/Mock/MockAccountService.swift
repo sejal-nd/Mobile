@@ -10,30 +10,36 @@ import Foundation
 
 class MockAccountService: AccountService {
     
-    var testAccounts: [Account] = [
+    var mockAccounts: [Account] = [
         Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!,
         Account.from(["accountNumber": "9836621902", "address": "E. Fort Ave, Ste. 200"])!,
-        Account.from(["accountNumber": "7003238921", "address": "E. Andre Street"])!,
-        Account.from(["accountNumber": "5591032201", "address": "7700 Presidents Street"])!,
-        Account.from(["accountNumber": "5591032202", "address": "7701 Presidents Street"])!,
     ]
-    var testAccountDetails: [AccountDetail] = [
+    var mockAccountDetails: [AccountDetail] = [
         AccountDetail.from(["accountNumber": "1234567890", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
         AccountDetail.from(["accountNumber": "9836621902", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
     ]
     
     func fetchAccounts(completion: @escaping (ServiceResult<[Account]>) -> Void) {
-        AccountsStore.sharedInstance.accounts = testAccounts
-        AccountsStore.sharedInstance.currentAccount = testAccounts[0]
-        completion(ServiceResult.Success(testAccounts as [Account]))
+        let mockAccounts: [Account]
+        if AccountsStore.sharedInstance.customerIdentifier == "outageTestPowerOn" {
+            mockAccounts = [Account.from(["accountNumber": "1234567890"])!]
+        } else if AccountsStore.sharedInstance.customerIdentifier == "outageTestPowerOut" {
+            mockAccounts = [Account.from(["accountNumber": "9836621902"])!]
+        } else {
+            mockAccounts = self.mockAccounts
+        }
+        
+        AccountsStore.sharedInstance.accounts = mockAccounts
+        AccountsStore.sharedInstance.currentAccount = mockAccounts[0]
+        completion(ServiceResult.Success(mockAccounts as [Account]))
     }
     
     func fetchAccountDetail(account: Account, completion: @escaping (ServiceResult<AccountDetail>) -> Void) {
-        guard let accountIndex = testAccounts.index(of: account) else {
+        guard let accountIndex = mockAccounts.index(of: account) else {
             completion(.Failure(ServiceError(serviceMessage: "No account detail found for the provided account.")))
             return
         }
-        let accountDetail = testAccountDetails[accountIndex]
+        let accountDetail = mockAccountDetails[accountIndex]
         completion(ServiceResult.Success(accountDetail))
     }
     
