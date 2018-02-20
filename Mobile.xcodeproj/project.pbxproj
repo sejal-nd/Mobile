@@ -558,9 +558,9 @@
 		82DE610A1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */; };
 		82DE610B1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */; };
 		82DE610C1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */; };
-		82DFBEFD200FC5C100CC6A5F /* OutageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageTests.swift */; };
-		82DFBEFE200FC5C200CC6A5F /* OutageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageTests.swift */; };
-		82DFBEFF200FC5C200CC6A5F /* OutageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageTests.swift */; };
+		82DFBEFD200FC5C100CC6A5F /* OutageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */; };
+		82DFBEFE200FC5C200CC6A5F /* OutageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */; };
+		82DFBEFF200FC5C200CC6A5F /* OutageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */; };
 		82E22B581F9FC70A001F1A1B /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
 		82E22B591F9FC70A001F1A1B /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
 		82E22B5A1F9FC70A001F1A1B /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
@@ -639,6 +639,12 @@
 		9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
 		9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
 		9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
+		9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
+		9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
+		9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
+		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
+		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
+		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B01F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B11F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
@@ -1308,6 +1314,9 @@
 		E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
 		E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
 		E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */; };
+		E89E2B5E20333C45004DA072 /* HomeBillCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */; };
+		E89E2B5F20333C45004DA072 /* HomeBillCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */; };
+		E89E2B6020333C45004DA072 /* HomeBillCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */; };
 		E89F493E1F9685120060D084 /* BillAnalysisViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */; };
 		E8AD93911EEF2AFB00882444 /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
 		E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
@@ -2130,7 +2139,7 @@
 		82D626171FE1AD8B00B09F00 /* landing_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = landing_video.mp4; sourceTree = "<group>"; };
 		82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewModel.swift; sourceTree = "<group>"; };
 		82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideViewController.swift; sourceTree = "<group>"; };
-		82DFBEFB200FC5B300CC6A5F /* OutageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageTests.swift; sourceTree = "<group>"; };
+		82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageUITests.swift; sourceTree = "<group>"; };
 		82E22B571F9FC70A001F1A1B /* EnergyTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTip.swift; sourceTree = "<group>"; };
 		82E22B5C1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTipTableViewCell.swift; sourceTree = "<group>"; };
 		82E22B5D1F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyTipTableViewCell.xib; sourceTree = "<group>"; };
@@ -2160,6 +2169,8 @@
 		8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComEdColor.swift; sourceTree = "<group>"; };
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
 		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
+		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
+		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
 		B52CA0AE1F311524002B5674 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
@@ -2491,6 +2502,7 @@
 		E89C16291F87D6AE0023DC02 /* UsageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageService.swift; sourceTree = "<group>"; };
 		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JVFloatLabeledText.framework; path = Carthage/Build/iOS/JVFloatLabeledText.framework; sourceTree = "<group>"; };
+		E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBillCardUITests.swift; sourceTree = "<group>"; };
 		E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillAnalysisViewModelTests.swift; sourceTree = "<group>"; };
 		E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBaseNavigationController.swift; sourceTree = "<group>"; };
 		E8B4F4AE1E5C957A0031D934 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
@@ -2847,11 +2859,14 @@
 			isa = PBXGroup;
 			children = (
 				087630E21E72F5D000FA7020 /* Info.plist */,
-				E8F353B5200D19E100883CEA /* UITestExtensions.swift */,
+				9C287E1D2034BFED00D0D029 /* BillUITests.swift */,
+				E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */,
 				087630E01E72F5D000FA7020 /* LoginUITests.swift */,
-				E8F353A1200963B600883CEA /* TabNavigationUITests.swift */,
 				E8F353A5200D014000883CEA /* MoreUITests.swift */,
-				82DFBEFB200FC5B300CC6A5F /* OutageTests.swift */,
+				82DFBEFB200FC5B300CC6A5F /* OutageUITests.swift */,
+				9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */,
+				E8F353A1200963B600883CEA /* TabNavigationUITests.swift */,
+				E8F353B5200D19E100883CEA /* UITestExtensions.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -3963,12 +3978,12 @@
 		B5AC06D61E52238900BBA4ED /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				B5AC06D91E52238900BBA4ED /* Info.plist */,
 				E8264F092011052A004A7EDA /* Extensions */,
+				B5AC06D91E52238900BBA4ED /* Info.plist */,
 				E8400E611FE05E8B0064E242 /* AddBankFormViewModelTests.swift */,
 				08C9EC51200FD871000C7BC2 /* AddCardFormViewModelTests.swift */,
-				E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */,
 				E87E8AE21FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift */,
+				E8EFFE251FD739B000DBAE40 /* AlertsViewModelTests.swift */,
 				B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */,
 				E840CB371F82D13A00357780 /* AutoPayViewModelTests.swift */,
 				E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */,
@@ -3981,9 +3996,9 @@
 				B548468F1E6F4446008CE1B1 /* LoginViewModelTests.swift */,
 				E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */,
 				E8F51EE91ECA40870080AB3E /* PaperlessEBillViewModelTests.swift */,
+				E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */,
 				E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */,
 				B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */,
-				E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */,
 				E8EC0F8D2028FA3C00956ABD /* WalletViewModelTests.swift */,
 			);
 			path = UnitTests;
@@ -5381,11 +5396,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */,
 				E8F353A6200D014000883CEA /* MoreUITests.swift in Sources */,
 				E8F353B6200D19E100883CEA /* UITestExtensions.swift in Sources */,
+				E89E2B5E20333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
 				087630E11E72F5D000FA7020 /* LoginUITests.swift in Sources */,
 				E8F353A2200963B600883CEA /* TabNavigationUITests.swift in Sources */,
-				82DFBEFD200FC5C100CC6A5F /* OutageTests.swift in Sources */,
+				9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */,
+				82DFBEFD200FC5C100CC6A5F /* OutageUITests.swift in Sources */,
 				E8F3539E200943E100883CEA /* UserDefaultKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6423,11 +6441,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */,
 				E8F353A7200D014000883CEA /* MoreUITests.swift in Sources */,
 				E8F353B7200D19E100883CEA /* UITestExtensions.swift in Sources */,
+				E89E2B5F20333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
 				E8F62B0F2009207C0077B3DA /* LoginUITests.swift in Sources */,
 				E8F353A3200963B600883CEA /* TabNavigationUITests.swift in Sources */,
-				82DFBEFE200FC5C200CC6A5F /* OutageTests.swift in Sources */,
+				9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */,
+				82DFBEFE200FC5C200CC6A5F /* OutageUITests.swift in Sources */,
 				E8F3539F200943E100883CEA /* UserDefaultKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6436,11 +6457,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */,
 				E8F353A8200D014000883CEA /* MoreUITests.swift in Sources */,
 				E8F353B8200D19E100883CEA /* UITestExtensions.swift in Sources */,
+				E89E2B6020333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
 				E8F62B20200920870077B3DA /* LoginUITests.swift in Sources */,
 				E8F353A4200963B600883CEA /* TabNavigationUITests.swift in Sources */,
-				82DFBEFF200FC5C200CC6A5F /* OutageTests.swift in Sources */,
+				9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */,
+				82DFBEFF200FC5C200CC6A5F /* OutageUITests.swift in Sources */,
 				E8F353A0200943E200883CEA /* UserDefaultKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -202,7 +202,7 @@ class BillViewModel {
     
     //MARK: - Banner Alert Text
     
-    private(set) lazy var alertBannerText: Driver<String?> = Driver.combineLatest(self.restoreServiceAlertText,
+    private(set) lazy var alertBannerText: Driver<String?> = Driver.zip(self.restoreServiceAlertText,
                                                                      self.avoidShutoffAlertText,
                                                                      self.paymentFailedAlertText)
     { $0 ?? $1 ?? $2 }
@@ -211,7 +211,7 @@ class BillViewModel {
         $0?.replacingOccurrences(of: "shutoff", with: "shut-off")
     }
     
-    private(set) lazy var restoreServiceAlertText: Driver<String?> = self.currentAccountDetail.map {
+    private lazy var restoreServiceAlertText: Driver<String?> = self.currentAccountDetail.map {
         guard !($0.billingInfo.restorationAmount ?? 0 > 0 && $0.billingInfo.amtDpaReinst ?? 0 > 0) &&
             $0.isCutOutNonPay else {
                 return nil
@@ -219,10 +219,8 @@ class BillViewModel {
         return NSLocalizedString("Your service is off due to non-payment.", comment: "")
     }
     
-    private(set) lazy var avoidShutoffAlertText: Driver<String?> = Driver.zip(self.currentAccountDetail, self.restoreServiceAlertText)
-    { accountDetail, restoreServiceAlertText in
+    private lazy var avoidShutoffAlertText: Driver<String?> = self.currentAccountDetail.map { accountDetail in
         guard let amountText = accountDetail.billingInfo.disconnectNoticeArrears?.currencyString,
-            restoreServiceAlertText == nil,
             (accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 && accountDetail.billingInfo.isDisconnectNotice) else {
                     return nil
         }
@@ -245,7 +243,7 @@ class BillViewModel {
         }
     }
     
-    private(set) lazy var paymentFailedAlertText: Driver<String?> = self.currentAccountDetail.map { _ in
+    private lazy var paymentFailedAlertText: Driver<String?> = self.currentAccountDetail.map { _ in
         //TODO: Implement this alert text
         let localizedText = NSLocalizedString("Your payment of %@ made with $@ failed processing. Please select an alternative payment account", comment: "")
         return nil
@@ -384,7 +382,7 @@ class BillViewModel {
     }
     
     //MARK: - Payment Received
-    private(set) lazy var paymentReceivedAmountText: Driver<String?> = self.currentAccountDetail.map {
+    private(set) lazy var paymentReceivedAmountText: Driver<String> = self.currentAccountDetail.map {
         $0.billingInfo.lastPaymentAmount?.currencyString ?? "--"
     }
     
@@ -471,7 +469,7 @@ class BillViewModel {
     
     //MARK: - Enrollment
     
-    private(set) lazy var autoPayButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.map {
+    private(set) lazy var autoPayButtonText: Driver<NSAttributedString> = self.currentAccountDetail.map {
         if $0.isAutoPay || $0.isBGEasy {
             let text = NSLocalizedString("AutoPay", comment: "")
             let enrolledText = $0.isBGEasy ?
@@ -504,7 +502,7 @@ class BillViewModel {
             }
     }
     
-    private(set) lazy var budgetButtonText: Driver<NSAttributedString?> = self.currentAccountDetail.map {
+    private(set) lazy var budgetButtonText: Driver<NSAttributedString> = self.currentAccountDetail.map {
         if $0.isBudgetBillEnrollment {
             return BillViewModel.isEnrolledText(topText: NSLocalizedString("Budget Billing", comment: ""),
                                                 bottomText: NSLocalizedString("enrolled", comment: ""))

@@ -12,6 +12,7 @@ import Foundation
 class ServiceFactory {
 
     static let sharedOutageService = OMCOutageService()
+    static let sharedMockOutageService = MockOutageService()
 
     class func createAuthenticationService() -> AuthenticationService {
         switch(Environment.sharedInstance.environmentName) {
@@ -37,24 +38,36 @@ class ServiceFactory {
 
     class func createOutageService() -> OutageService {
         if Environment.sharedInstance.environmentName == "AUT" {
-            return MockOutageService()
+            return sharedMockOutageService
         }
         return sharedOutageService
     }
 
     class func createBillService() -> BillService {
+        if Environment.sharedInstance.environmentName == "AUT" {
+            return MockBillService()
+        }
         return OMCBillService()
     }
 
     class func createWalletService() -> WalletService {
+        if Environment.sharedInstance.environmentName == "AUT" {
+            return MockWalletService()
+        }
         return OMCWalletService()
     }
 
     class func createRegistrationService() -> RegistrationService {
+        if Environment.sharedInstance.environmentName == "AUT" {
+            return MockRegistrationService()
+        }
         return OMCRegistrationService()
     }
 
     class func createPaymentService() -> PaymentService {
+        if Environment.sharedInstance.environmentName == "AUT" {
+            return MockPaymentService()
+        }
         return OMCPaymentService()
     }
 
@@ -63,10 +76,16 @@ class ServiceFactory {
     }
 
     class func createUsageService() -> UsageService {
+        if Environment.sharedInstance.environmentName == "AUT" {
+            return MockUsageService()
+        }
         return OMCUsageService()
     }
 
     class func createAlertsService() -> AlertsService {
+        if Environment.sharedInstance.environmentName == "AUT" {
+            return MockAlertsService()
+        }
         return OMCAlertsService()
     }
     
