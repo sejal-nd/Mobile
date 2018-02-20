@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
-set -eo pipefail
-
 echo "
 Exelon Utilities Mobile Build Script for iOS
 
@@ -90,6 +87,10 @@ for i in "$@"; do
 	shift
 done
 
+
+# https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -eo pipefail
+
 # git repo branches can be used to specify the build type instead of the configuration directly
 if [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
   CONFIGURATION="Staging"
@@ -117,8 +118,7 @@ if [ -n "$PHASE" ]; then
 fi
 
 
-if [ -f "$PROPERTIES_FILE" ]
-then
+if [ -f "$PROPERTIES_FILE" ]; then
   echo "$PROPERTIES_FILE found."
 
   while IFS='=' read -r key value
