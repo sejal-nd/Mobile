@@ -12,18 +12,170 @@ import RxTest
 
 class BillViewModelVisibilityTests: BillViewModelTests {
     
-    // Tests changes in the `shouldShowAlertBanner` value after switching
-    // through different accounts.
-    func testShouldShowAlertBanner() {
-        
-        let accountDetail: [AccountDetail] = [
+    let alertBannerTestAccountDetails: [AccountDetail] = [
             AccountDetail(billingInfo: BillingInfo(restorationAmount: 32), isCutOutNonPay: true),
-            AccountDetail(billingInfo: BillingInfo(disconnectNoticeArrears: 43,
+            AccountDetail(billingInfo: BillingInfo(pastDueAmount: 32,
+                                                   pastDueRemaining: 89,
+                                                   disconnectNoticeArrears: 43,
                                                    isDisconnectNotice: true),
                           isCutOutNonPay: true),
             AccountDetail(billingInfo: BillingInfo(restorationAmount: 32, amtDpaReinst: 42)),
             AccountDetail(billingInfo: BillingInfo(restorationAmount: 32, amtDpaReinst: 42),
                           isLowIncome: true)
+        ]
+    
+    // Tests changes in the `showLoadedState` value after switching
+    // through different accounts.
+    func testShowLoadedState() {
+        let accountDetail: [AccountDetail] = [
+            AccountDetail(),
+            AccountDetail(accountNumber: "failure"),
+            AccountDetail()
+        ]
+        let switchAccountEventTimes = Array(0..<accountDetail.count)
+        
+        accountService.mockAccountDetails = accountDetail
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let observer = scheduler.createObserver(Void.self)
+        
+        viewModel.showLoadedState.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events.map { $0.time }, [0, 2])
+    }
+    
+    // Tests changes in the `shouldShowAlertBanner` value after switching
+    // through different accounts.
+    func testShouldShowAlertBanner() {
+        let switchAccountEventTimes = Array(0..<alertBannerTestAccountDetails.count)
+        
+        accountService.mockAccountDetails = alertBannerTestAccountDetails
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let observer = scheduler.createObserver(Bool.self)
+        
+        viewModel.shouldShowAlertBanner.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedAlertBannerEvents = [next(0, false), next(0, false), next(0, Environment.sharedInstance.opco != .bge),
+                                         next(1, false), next(1, false), next(1, false), next(1, false), next(1, true),
+                                         next(2, false), next(2, false), next(2, false), next(2, false), next(2, false),
+                                         next(3, false), next(3, false), next(3, false), next(3, false), next(3, false)]
+        XCTAssertEqual(observer.events, expectedAlertBannerEvents)
+    }
+    
+    // Tests changes in the `shouldShowRestoreService` value after switching
+    // through different accounts.
+    func testShouldShowRestoreService() {
+        let switchAccountEventTimes = Array(0..<alertBannerTestAccountDetails.count)
+        
+        accountService.mockAccountDetails = alertBannerTestAccountDetails
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let observer = scheduler.createObserver(Bool.self)
+        
+        viewModel.shouldShowRestoreService.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedRestoreServiceValues = [Environment.sharedInstance.opco != .bge, false, false, false]
+        let expectedRestoreServiceEvents = zip(switchAccountEventTimes, expectedRestoreServiceValues).map(next)
+        XCTAssertEqual(observer.events, expectedRestoreServiceEvents)
+    }
+    
+    // Tests changes in the `shouldShowAvoidShutoff` value after switching
+    // through different accounts.
+    func testShouldShowAvoidShutoff() {
+        let switchAccountEventTimes = Array(0..<alertBannerTestAccountDetails.count)
+        
+        accountService.mockAccountDetails = alertBannerTestAccountDetails
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let observer = scheduler.createObserver(Bool.self)
+        
+        viewModel.shouldShowAvoidShutoff.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedAvoidShutoffValues = [false, true, false, false]
+        let expectedAvoidShutoffEvents = zip(switchAccountEventTimes, expectedAvoidShutoffValues).map(next)
+        XCTAssertEqual(observer.events, expectedAvoidShutoffEvents)
+    }
+    
+    // Tests changes in the `shouldShowCatchUpAmount` value after switching
+    // through different accounts.
+    func testShouldShowCatchUpAmount() {
+        let switchAccountEventTimes = Array(0..<alertBannerTestAccountDetails.count)
+        
+        accountService.mockAccountDetails = alertBannerTestAccountDetails
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let observer = scheduler.createObserver(Bool.self)
+        
+        viewModel.shouldShowCatchUpAmount.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedCatchUpAmountValues = [false, false, true, true]
+        let expectedCatchupAmountEvents = zip(switchAccountEventTimes, expectedCatchUpAmountValues).map(next)
+        XCTAssertEqual(observer.events, expectedCatchupAmountEvents)
+    }
+    
+    // Tests changes in the `shouldShowCatchUpDisclaimer` value after switching
+    // through different accounts.
+    func testShouldShowCatchUpDisclaimer() {
+        let switchAccountEventTimes = Array(0..<alertBannerTestAccountDetails.count)
+        
+        accountService.mockAccountDetails = alertBannerTestAccountDetails
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let observer = scheduler.createObserver(Bool.self)
+        
+        viewModel.shouldShowCatchUpDisclaimer.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedCatchUpDisclaimerValues = [false, false, Environment.sharedInstance.opco == .comEd, false]
+        let expectedCatchUpDisclaimerEvents = zip(switchAccountEventTimes, expectedCatchUpDisclaimerValues).map(next)
+        XCTAssertEqual(observer.events, expectedCatchUpDisclaimerEvents)
+    }
+    
+    // Tests changes in the `shouldShowPastDue` value after switching
+    // through different accounts.
+    func testShouldShowPastDue() {
+        let switchAccountEventTimes = Array(0..<alertBannerTestAccountDetails.count)
+        
+        accountService.mockAccountDetails = alertBannerTestAccountDetails
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let observer = scheduler.createObserver(Bool.self)
+        
+        viewModel.shouldShowPastDue.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedPastDueValues = [false, true, false, false]
+        let expectedPastDueEvents = zip(switchAccountEventTimes, expectedPastDueValues).map(next)
+        XCTAssertEqual(observer.events, expectedPastDueEvents)
+    }
+    
+    // Tests changes in the `shouldShowTopContent` value after switching
+    // through different accounts.
+    func testShouldShowTopContent() {
+        
+        let accountDetail: [AccountDetail] = [
+            AccountDetail(),
+            AccountDetail(accountNumber: "failure")
         ]
         
         let switchAccountEventTimes = Array(0..<accountDetail.count)
@@ -32,49 +184,15 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedTrackerValues = [false] + switchAccountEventTimes.flatMap { _ in [true, false] }
-        
-        let expectedRestoreServiceValues = [Environment.sharedInstance.opco != .bge, false, false, false]
-        let expectedAvoidShutoffValues = [false, true, false, false]
-        let expectedCatchUpAmountValues = [false, false, true, true]
-        let expectedCatchUpDisclaimerValues = [false, false, Environment.sharedInstance.opco == .comEd, false]
-        
-        let trackerObserver = scheduler.createObserver(Bool.self)
-        viewModel.switchAccountsTracker.asDriver().drive(trackerObserver).disposed(by: disposeBag)
-        
-        let restoreServiceObserver = scheduler.createObserver(Bool.self)
-        viewModel.shouldShowRestoreService.drive(restoreServiceObserver).disposed(by: disposeBag)
-        
-        let avoidShutoffObserver = scheduler.createObserver(Bool.self)
-        viewModel.shouldShowAvoidShutoff.drive(avoidShutoffObserver).disposed(by: disposeBag)
-        
-        let catchUpAmountObserver = scheduler.createObserver(Bool.self)
-        viewModel.shouldShowCatchUpAmount.drive(catchUpAmountObserver).disposed(by: disposeBag)
-        
-        let catchUpDisclaimerObserver = scheduler.createObserver(Bool.self)
-        viewModel.shouldShowCatchUpDisclaimer.drive(catchUpDisclaimerObserver).disposed(by: disposeBag)
-        
-        //TODO: Check these events
-        let alertBannerObserver = scheduler.createObserver(Bool.self)
-        viewModel.shouldShowAlertBanner.drive(alertBannerObserver).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(Bool.self)
+        viewModel.shouldShowTopContent.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
-        let expectedTrackerEvents = zip([0] + switchAccountEventTimes.flatMap { [$0, $0] },
-                                        expectedTrackerValues).map(next)
-        XCTAssertEqual(trackerObserver.events, expectedTrackerEvents)
+        let expectedEvents = [next(0, false), next(0, false), next(0, true),
+                              next(1, false), next(1, false), next(1, false)]
         
-        let expectedRestoreServiceEvents = zip(switchAccountEventTimes, expectedRestoreServiceValues).map(next)
-        XCTAssertEqual(restoreServiceObserver.events, expectedRestoreServiceEvents)
-        
-        let expectedAvoidShutoffEvents = zip(switchAccountEventTimes, expectedAvoidShutoffValues).map(next)
-        XCTAssertEqual(avoidShutoffObserver.events, expectedAvoidShutoffEvents)
-        
-        let expectedCatchupAmountEvents = zip(switchAccountEventTimes, expectedCatchUpAmountValues).map(next)
-        XCTAssertEqual(catchUpAmountObserver.events, expectedCatchupAmountEvents)
-        
-        let expectedCatchUpDisclaimerEvents = zip(switchAccountEventTimes, expectedCatchUpDisclaimerValues).map(next)
-        XCTAssertEqual(catchUpDisclaimerObserver.events, expectedCatchUpDisclaimerEvents)
+        XCTAssertEqual(observer.events, expectedEvents)
     }
     
     // Tests changes in the `pendingPaymentAmountDueBoxesAlpha` value after switching
@@ -151,6 +269,27 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.shouldShowRemainingBalanceDue.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        XCTAssertEqual(observer.events, expectedEvents)
+    }
+    
+    // Tests changes in the `shouldShowRemainingBalancePastDue` value after switching
+    // through different accounts.
+    func testShouldShowRemainingBalancePastDue() {
+        
+        let switchAccountEventTimes = Array(0..<alertBannerTestAccountDetails.count)
+        
+        accountService.mockAccountDetails = alertBannerTestAccountDetails
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let expectedValues = [false, Environment.sharedInstance.opco != .bge, false, false]
+        
+        let observer = scheduler.createObserver(Bool.self)
+        viewModel.shouldShowRemainingBalancePastDue.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         

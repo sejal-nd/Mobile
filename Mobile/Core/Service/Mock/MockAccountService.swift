@@ -72,6 +72,12 @@ class MockAccountService: AccountService {
             return
         }
         let accountDetail = mockAccountDetails[accountIndex]
+        
+        guard accountDetail.accountNumber != "failure" else {
+            completion(.Failure(ServiceError(serviceMessage: "Account detail fetch failed.")))
+            return
+        }
+        
         completion(ServiceResult.Success(accountDetail))
     }
     

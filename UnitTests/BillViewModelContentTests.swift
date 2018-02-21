@@ -12,6 +12,30 @@ import RxTest
 
 class BillViewModelContentTests: BillViewModelTests {
     
+    // Tests changes in the `accountDetailError` value after switching
+    // through different accounts.
+    func testAccountDetailError() {
+        let accountDetail: [AccountDetail] = [
+            AccountDetail(),
+            AccountDetail(accountNumber: "failure"),
+            AccountDetail()
+        ]
+        
+        let switchAccountEventTimes = Array(0..<accountDetail.count)
+        
+        accountService.mockAccountDetails = accountDetail
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let observer = scheduler.createObserver(ServiceError?.self)
+        
+        viewModel.accountDetailError.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events.map { ($0.value.element!)!.serviceMessage! }, ["Account detail fetch failed."])
+    }
+    
     // Tests changes in the `alertBannerText` value.
     func testAlertBannerText() {
         let opco = Environment.sharedInstance.opco
