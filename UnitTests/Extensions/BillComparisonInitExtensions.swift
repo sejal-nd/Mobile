@@ -27,7 +27,7 @@ extension BillComparison {
         map["temperatureUnit"] = temperatureUnit
         map["reference"] = reference.toJSON()
         map["compared"] = compared.toJSON()
-
+        
         self = BillComparison.from(map as NSDictionary)!
         self.billPeriodCostDifference = billPeriodCostDifference
         self.weatherCostDifference = weatherCostDifference
@@ -36,12 +36,12 @@ extension BillComparison {
 }
 
 extension UsageBillPeriod: JSONEncodable {
-
+    
     init(charges: Double = 100,
          usage: Double = 100,
          startDate: String = "2017-08-01", // Pass in yyyy-MM-dd format
-         endDate: String? = "2017-09-01", // Pass in yyyy-MM-dd format
-         averageTemperature: Double = 72) {
+        endDate: String? = "2017-09-01", // Pass in yyyy-MM-dd format
+        averageTemperature: Double = 72) {
         
         if Environment.sharedInstance.environmentName != "AUT" {
             fatalError("init only available for tests")
@@ -70,3 +70,4 @@ extension UsageBillPeriod: JSONEncodable {
         ]
     }
 }
+
