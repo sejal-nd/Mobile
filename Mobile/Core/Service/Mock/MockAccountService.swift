@@ -29,6 +29,7 @@ class MockAccountService: AccountService {
         
         AccountsStore.sharedInstance.accounts = accounts
         AccountsStore.sharedInstance.currentAccount = accounts[0]
+        AccountsStore.sharedInstance.customerIdentifier = "123"
         completion(ServiceResult.Success(accounts as [Account]))
     }
     
