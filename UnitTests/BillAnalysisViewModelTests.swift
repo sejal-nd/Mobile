@@ -13,6 +13,8 @@ class BillAnalysisViewModelTests: XCTestCase {
     
     var viewModel: BillAnalysisViewModel!
     
+    let disposeBag = DisposeBag()
+    
     override func setUp() {
         viewModel = BillAnalysisViewModel(usageService: MockUsageService())
     }
@@ -77,6 +79,32 @@ class BillAnalysisViewModelTests: XCTestCase {
                 XCTFail("Current charges should not be displayed for opcos other than ComEd")
             }
         }
+    }
+    
+    func testNoDataBarDateLabelText() {
+        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(endDate: "2017-08-01"))
+        
+        // Default is Previous Bill
+        viewModel.noDataBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
+            XCTAssert(text == "JUL 01", "Expected \"JUL 01\", got \"\(text ?? "nil")\"")
+        }).disposed(by: disposeBag)
+        
+        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0 // Last Year
+        viewModel.noDataBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
+            XCTAssert(text == "2016", "Expected \"2016\", got \"\(text ?? "nil")\"")
+        }).disposed(by: disposeBag)
+    }
+    
+    func testPreviousBarHeightConstraintValue() {
+        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(), compared: UsageBillPeriod(charges: -10))
+        
+        viewModel.previousBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
+            XCTAssert(val == 3, "Expected 3 because compared charges < 0, got \(val) instead")
+        }).disposed(by: disposeBag)
+        
+        // TODO: Test projection cases
+        
+        // TODO: Test non-projection cases
     }
 
 }

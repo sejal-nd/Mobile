@@ -630,9 +630,21 @@
 		9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
+		9C4C95CC203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
+		9C4C95CD203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
+		9C4C95CE203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
+		9C4C95CF203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
+		9C4C95D0203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
+		9C4C95D1203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
+		9C8A2BDB203E152B0078CB66 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8A2BDA203E152B0078CB66 /* BillComparisonInitExtensions.swift */; };
+		9C8A2BDC203E153C0078CB66 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8A2BDA203E152B0078CB66 /* BillComparisonInitExtensions.swift */; };
+		9C8A2BDD203E153D0078CB66 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8A2BDA203E152B0078CB66 /* BillComparisonInitExtensions.swift */; };
+		9C8A2BDE203E153E0078CB66 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8A2BDA203E152B0078CB66 /* BillComparisonInitExtensions.swift */; };
+		9C8A2BDF203E153E0078CB66 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8A2BDA203E152B0078CB66 /* BillComparisonInitExtensions.swift */; };
+		9C8A2BE0203E153E0078CB66 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8A2BDA203E152B0078CB66 /* BillComparisonInitExtensions.swift */; };
 		B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B01F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B11F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
@@ -2114,7 +2126,9 @@
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
 		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
+		9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillForecastInitExtensions.swift; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
+		9C8A2BDA203E152B0078CB66 /* BillComparisonInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillComparisonInitExtensions.swift; path = ../../../../../MShilling/Development/Exelon_Mobile_iOS/UnitTests/Extensions/BillComparisonInitExtensions.swift; sourceTree = "<group>"; };
 		B52CA0AE1F311524002B5674 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
@@ -4113,8 +4127,10 @@
 		E8264F092011052A004A7EDA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */,
 				823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */,
+				9C8A2BDA203E152B0078CB66 /* BillComparisonInitExtensions.swift */,
+				9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */,
+				E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5374,6 +5390,7 @@
 				82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
+				9C4C95CC203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				E8400E691FE05F0C0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A161FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
@@ -5459,6 +5476,7 @@
 				54AE06991ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
+				9C8A2BDB203E152B0078CB66 /* BillComparisonInitExtensions.swift in Sources */,
 				E8EDC5401F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */,
 				E803A0041EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E81F38131ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
@@ -5669,6 +5687,7 @@
 				54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
+				9C4C95CE203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				E8400E6B1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A181FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
@@ -5754,6 +5773,7 @@
 				54DF4BCE1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				B54F0FF81E9EC8BB00A9B72B /* OMCApi.swift in Sources */,
 				E8039FF71EFB041C004DB789 /* BGEAutoPayInfo.swift in Sources */,
+				9C8A2BDD203E153D0078CB66 /* BillComparisonInitExtensions.swift in Sources */,
 				E8039FFA1EFB0420004DB789 /* PaymentService.swift in Sources */,
 				54C1DEFA1F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				E8EDC5421F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */,
@@ -5964,6 +5984,7 @@
 				54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
 				389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
+				9C4C95CD203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				E8400E6A1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A171FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
@@ -6049,6 +6070,7 @@
 				E8EC6F341E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				54DF4BCD1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				E8039FF61EFB041C004DB789 /* BGEAutoPayInfo.swift in Sources */,
+				9C8A2BDC203E153C0078CB66 /* BillComparisonInitExtensions.swift in Sources */,
 				E8039FF91EFB0420004DB789 /* PaymentService.swift in Sources */,
 				54C1DEF91F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				E8EDC5411F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */,
@@ -6230,6 +6252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E840BD3D1EB3C91D00812DD0 /* BillService.swift in Sources */,
+				9C4C95CF203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				E86414F61F1038CA00DA859A /* Premise.swift in Sources */,
 				54AE06B31ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
@@ -6270,6 +6293,7 @@
 				E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */,
 				E87C41411FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				E80CBD121F98EC930039D9E7 /* SSOData.swift in Sources */,
+				9C8A2BDE203E153E0078CB66 /* BillComparisonInitExtensions.swift in Sources */,
 				E8790BEA1F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E80043671E6A1215005CF531 /* A0SimpleKeychain.m in Sources */,
 				E835D1CC1FB631C1008CE250 /* AlertsStore.swift in Sources */,
@@ -6406,6 +6430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8F62B35200924410077B3DA /* BillService.swift in Sources */,
+				9C4C95D0203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				E8F62B36200924410077B3DA /* Premise.swift in Sources */,
 				E8F62B38200924410077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */,
@@ -6446,6 +6471,7 @@
 				E8F62B5F200924410077B3DA /* AppRating.swift in Sources */,
 				E8F62B61200924410077B3DA /* AlertsViewModel.swift in Sources */,
 				E8F62B62200924410077B3DA /* SSOData.swift in Sources */,
+				9C8A2BDF203E153E0078CB66 /* BillComparisonInitExtensions.swift in Sources */,
 				E8F62B63200924410077B3DA /* BillComparison.swift in Sources */,
 				E8F62B64200924410077B3DA /* A0SimpleKeychain.m in Sources */,
 				E8F62B65200924410077B3DA /* AlertsStore.swift in Sources */,
@@ -6550,6 +6576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8F62BEA200924570077B3DA /* BillService.swift in Sources */,
+				9C4C95D1203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				E8F62BEB200924570077B3DA /* Premise.swift in Sources */,
 				E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */,
@@ -6590,6 +6617,7 @@
 				E8F62C14200924570077B3DA /* AppRating.swift in Sources */,
 				E8F62C16200924570077B3DA /* AlertsViewModel.swift in Sources */,
 				E8F62C17200924570077B3DA /* SSOData.swift in Sources */,
+				9C8A2BE0203E153E0078CB66 /* BillComparisonInitExtensions.swift in Sources */,
 				E8F62C18200924570077B3DA /* BillComparison.swift in Sources */,
 				E8F62C19200924570077B3DA /* A0SimpleKeychain.m in Sources */,
 				E8F62C1A200924570077B3DA /* AlertsStore.swift in Sources */,
