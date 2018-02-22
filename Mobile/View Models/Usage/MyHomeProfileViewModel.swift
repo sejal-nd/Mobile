@@ -77,7 +77,7 @@ class MyHomeProfileViewModel {
     }
     .startWith(false)
     
-    private(set) lazy var saveA11yLabel: Driver<String?> = Observable.combineLatest(self.homeType.asObservable(),
+    private(set) lazy var saveA11yLabel: Driver<String> = Observable.combineLatest(self.homeType.asObservable(),
                                                                                     self.heatType.asObservable(),
                                                                                     self.numberOfAdults.asObservable(),
                                                                                     self.numberOfChildren.asObservable(),
@@ -105,7 +105,7 @@ class MyHomeProfileViewModel {
         } else {
             return String(format: NSLocalizedString("%@ Save", comment: ""), a11yString)
         }
-    }.asDriver(onErrorJustReturn: nil)
+    }.asDriver(onErrorJustReturn: "")
     
     private lazy var save: Observable<Event<Void>> = self.saveAction
         .do(onNext: { Analytics().logScreenView(AnalyticsPageView.HomeProfileSave.rawValue) })
