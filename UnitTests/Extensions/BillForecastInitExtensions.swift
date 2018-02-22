@@ -28,10 +28,9 @@ extension BillForecast {
         map["toDateCost"] = toDateCost
         map["projectedUsage"] = projectedUsage
         map["projectedCost"] = projectedCost
+        map["utilityAccountDTO"] = ["meterType": "ELEC"]
         
         self = BillForecast.from(map as NSDictionary)!
-        
-        
     }
          
 }
