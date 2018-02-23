@@ -72,7 +72,7 @@ class MoreUITests: XCTestCase {
     
     func testSettingsButtonAndLayout() {
         app.buttons["Settings"].tap()
-        XCTAssert(app.navigationBars.element(boundBy: 0).children(matching: .button).matching(identifier: "Back").element(boundBy: 0).exists)
+        XCTAssert(app.navigationBars.buttons["Back"].exists)
         XCTAssert(app.navigationBars["Settings"].exists)
         
         let tableCells = app.tables.element(boundBy: 0).cells
@@ -91,13 +91,13 @@ class MoreUITests: XCTestCase {
     
     func testContactUsButtonAndLayout() {
         app.buttons["Contact us"].tap()
-        XCTAssert(app.navigationBars.element(boundBy: 0).children(matching: .button).matching(identifier: "Back").element(boundBy: 0).exists)
+        XCTAssert(app.navigationBars.buttons["Back"].exists)
         XCTAssert(app.navigationBars["Contact Us"].exists)
     }
     
     func testPoliciesAndTermsButtonAndLayout() {
         app.buttons["Policies and Terms"].tap()
-        XCTAssert(app.navigationBars.element(boundBy: 0).children(matching: .button).matching(identifier: "Back").element(boundBy: 0).exists)
+        XCTAssert(app.navigationBars.buttons["Back"].exists)
         XCTAssert(app.navigationBars["Policies and Terms"].exists)
         
         let privacyPred = NSPredicate(format: "label CONTAINS 'Privacy Policy'")
@@ -114,8 +114,8 @@ class MoreUITests: XCTestCase {
     func testChangePasswordButtonAndLayout() {
         navigateToChangePassword()
         
-        XCTAssert(app.navigationBars.element(boundBy: 0).children(matching: .button).matching(identifier: "Cancel").element(boundBy: 0).exists)
-        XCTAssert(app.navigationBars.element(boundBy: 0).children(matching: .button).matching(identifier: "Submit").element(boundBy: 0).exists)
+        XCTAssert(app.navigationBars.buttons["Cancel"].exists)
+        XCTAssert(app.navigationBars.buttons["Submit"].exists)
         XCTAssert(app.navigationBars["Change Password"].exists)
         
         let elementsQuery = app.scrollViews.otherElements
@@ -127,11 +127,7 @@ class MoreUITests: XCTestCase {
     func testChangePasswordSubmit() {
         navigateToChangePassword()
         
-        let submitButton = app.navigationBars
-            .element(boundBy: 0)
-            .children(matching: .button)
-            .matching(identifier: "Submit")
-            .element(boundBy: 0)
+        let submitButton = app.navigationBars.buttons["Submit"]
         
         let elementsQuery = app.scrollViews.otherElements
         

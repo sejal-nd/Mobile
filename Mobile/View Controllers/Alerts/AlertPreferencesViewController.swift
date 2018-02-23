@@ -72,6 +72,7 @@ class AlertPreferencesViewController: UIViewController {
     
     let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(), billService: ServiceFactory.createBillService())
     
+    var hasMadeAnalyticsOffer = false
     
     // Prevents status bar color flash when pushed
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -297,6 +298,7 @@ class AlertPreferencesViewController: UIViewController {
                 guard let `self` = self else { return }
                 if self.viewModel.paymentDueDaysBefore.value != index + 1 {
                     if self.viewModel.paymentDue.value {
+                        self.makeAnalyticsOffer()
                         self.viewModel.userChangedPrefs.value = true
                     }
                     self.viewModel.paymentDueDaysBefore.value = index + 1
@@ -334,10 +336,12 @@ class AlertPreferencesViewController: UIViewController {
                 } else {
                     Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPushContinue.rawValue)
                 }
+                self?.makeAnalyticsOffer()
                 self?.viewModel.userChangedPrefs.value = true
             }))
             present(alertVc, animated: true, completion: nil)
         } else {
+            makeAnalyticsOffer()
             viewModel.userChangedPrefs.value = true
         }
     }
@@ -351,6 +355,7 @@ class AlertPreferencesViewController: UIViewController {
         
         let newVal = sender == englishRadioControl
         if newVal != viewModel.english.value {
+            makeAnalyticsOffer()
             viewModel.userChangedPrefs.value = true
             viewModel.english.value = newVal
         }
@@ -387,6 +392,13 @@ class AlertPreferencesViewController: UIViewController {
             self?.present(alertVc, animated: true, completion: nil)
         })
 
+    }
+    
+    private func makeAnalyticsOffer() {
+        if !hasMadeAnalyticsOffer {
+            hasMadeAnalyticsOffer = true
+            Analytics().logScreenView(AnalyticsPageView.AlertsPrefCenterOffer.rawValue)
+        }
     }
     
 

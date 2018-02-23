@@ -8,24 +8,77 @@
 
 import Foundation
 
-struct MockAccountService: AccountService {
-
-    let testAccounts = [
+class MockAccountService: AccountService {
+    
+    var mockAccounts: [Account] = [
         Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!,
         Account.from(["accountNumber": "9836621902", "address": "E. Fort Ave, Ste. 200"])!,
-        Account.from(["accountNumber": "7003238921", "address": "E. Andre Street"])!,
-        Account.from(["accountNumber": "5591032201", "address": "7700 Presidents Street"])!,
-        Account.from(["accountNumber": "5591032202", "address": "7701 Presidents Street"])!,
+    ]
+    var mockAccountDetails: [AccountDetail] = [
+        AccountDetail.from(["accountNumber": "1234567890", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
+        AccountDetail.from(["accountNumber": "9836621902", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
     ]
     
     func fetchAccounts(completion: @escaping (ServiceResult<[Account]>) -> Void) {
-        AccountsStore.sharedInstance.accounts = testAccounts
-        AccountsStore.sharedInstance.currentAccount = testAccounts[0]
-        completion(ServiceResult.Success(testAccounts as [Account]))
+        var accounts = mockAccounts
+    
+//        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
+//        if loggedInUsername == "billCardNoDefaultPayment" {
+//            accounts = [Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!]
+//        }
+        
+        AccountsStore.sharedInstance.accounts = accounts
+        AccountsStore.sharedInstance.currentAccount = accounts[0]
+        AccountsStore.sharedInstance.customerIdentifier = "123"
+        completion(ServiceResult.Success(accounts as [Account]))
     }
     
     func fetchAccountDetail(account: Account, completion: @escaping (ServiceResult<AccountDetail>) -> Void) {
-        let accountDetail = AccountDetail.from(["accountNumber": account.accountNumber, "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
+        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
+        if loggedInUsername == "billCardNoDefaultPayment" || loggedInUsername == "billCardWithDefaultPayment" {
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200))
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
+        if loggedInUsername == "scheduledPayment" {
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(scheduledPayment: PaymentItem(amount: 200)))
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
+        if loggedInUsername == "thankYouForPayment" {
+            let now = Date()
+            let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: now)
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(lastPaymentAmount: 200, lastPaymentDate: now, billDate: yesterday))
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
+        if loggedInUsername == "pastDue" {
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200, pastDueAmount: 200))
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
+        if loggedInUsername == "avoidShutoff" {
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(disconnectNoticeArrears: 200, isDisconnectNotice: true))
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
+        if loggedInUsername == "paymentPending" {
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 200, status: .pending)]))
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
+        
+        guard let accountIndex = mockAccounts.index(of: account) else {
+            completion(.Failure(ServiceError(serviceMessage: "No account detail found for the provided account.")))
+            return
+        }
+        let accountDetail = mockAccountDetails[accountIndex]
+        
+        guard accountDetail.accountNumber != "failure" else {
+            completion(.Failure(ServiceError(serviceMessage: "Account detail fetch failed.")))
+            return
+        }
+        
         completion(ServiceResult.Success(accountDetail))
     }
     

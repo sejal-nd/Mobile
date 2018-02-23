@@ -56,7 +56,7 @@ class LoginUITests: XCTestCase {
         XCTAssert(elementsQuery.textFields["Username / Email Address"].exists)
         XCTAssert(elementsQuery.secureTextFields["Password"].exists)
         XCTAssert(elementsQuery.images["img_logo_white"].exists)
-        XCTAssert(app.navigationBars.element(boundBy: 0).children(matching: .button).matching(identifier: "Back").element(boundBy: 0).exists)
+        XCTAssert(app.navigationBars.buttons["Back"].exists)
         XCTAssert(app.buttons["Sign In"].exists)
         XCTAssert(app.scrollViews.otherElements.switches["Keep me signed in"].exists)
         XCTAssert(elementsQuery.buttons[" username "].exists)

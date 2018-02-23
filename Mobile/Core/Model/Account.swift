@@ -82,7 +82,7 @@ struct AccountDetail: Mappable {
     
     let customerInfo: CustomerInfo
     let billingInfo: BillingInfo
-    let SERInfo: SERInfo
+    let serInfo: SERInfo
     let premiseInfo: [Premise]
     
     let isModeledForOpower: Bool
@@ -132,8 +132,8 @@ struct AccountDetail: Mappable {
         try customerInfo = map.from("CustomerInfo")
         try billingInfo = map.from("BillingInfo")
         
-        try SERInfo = map.from("SERInfo")
-        if let controlGroupFlag = SERInfo.controlGroupFlag, controlGroupFlag.uppercased() == "CONTROL" {
+        try serInfo = map.from("SERInfo")
+        if let controlGroupFlag = serInfo.controlGroupFlag, controlGroupFlag.uppercased() == "CONTROL" {
             isBGEControlGroup = true
         } else {
             isBGEControlGroup = false
@@ -430,7 +430,7 @@ struct BillingInfo: Mappable {
     func convenienceFeeString(isComplete: Bool) -> String {
         var convenienceFeeStr = ""
         if isComplete {
-            convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@",
+            convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.",
                                       residentialFee!.currencyString!, commercialFee!.percentString!)
         } else {
             convenienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",

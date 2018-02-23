@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        if ProcessInfo.processInfo.arguments.contains("UITest") {
+        let processInfo = ProcessInfo.processInfo
+        if processInfo.arguments.contains("UITest") || processInfo.environment["XCTestConfigurationFilePath"] != nil {
+            // Clear UserDefaults if Unit or UI testing -- ensures consistent fresh run
             UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
             UserDefaults.standard.synchronize()
         }

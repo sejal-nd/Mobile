@@ -11,18 +11,19 @@ import RxSwift
 
 struct MockAuthenticationService: AuthenticationService {
     
-    let validUsername = "valid@test.com"
-    let validCurrentPassword = "Password1"
+    let invalidUsername = "invalid@test.com"
+    let validPassword = "Password1"
     
     func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (ServiceResult<(ProfileStatus, AccountDetail)>) -> Void) {
         
-        if username == validUsername && password == validCurrentPassword {
+        if username != invalidUsername && password == validPassword {
+            // The account detail returned here does not influence anything in the rest of the app.
+            // Most account-related things will come from the call to fetchAccounts or fetchAccountDetail in MockAccountService
             let accountDetail = AccountDetail.from(["accountNumber": "123456789", "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
             completion(ServiceResult.Success((ProfileStatus(), accountDetail)))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
         }
-        
     }
     
     func validateLogin(_ username: String, password: String, completion: @escaping (ServiceResult<Void>) -> Void) {
@@ -38,7 +39,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        if currentPassword == validCurrentPassword {
+        if currentPassword == validPassword {
             completion(ServiceResult.Success(()))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
@@ -46,7 +47,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func changePasswordAnon(_ username: String,currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        if currentPassword == validCurrentPassword {
+        if currentPassword == validPassword {
             completion(ServiceResult.Success(()))
         } else {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
@@ -89,7 +90,7 @@ struct MockAuthenticationService: AuthenticationService {
                 maskedUsernames.append(mockModel)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if identifier == "0000" {
                 completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAccountNotFound.rawValue)))
             } else {
@@ -99,7 +100,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String, completion: @escaping (ServiceResult<String>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if questionResponse.lowercased() == "exelon" {
                 completion(ServiceResult.Success("username@email.com"))
             } else {
@@ -114,7 +115,7 @@ struct MockAuthenticationService: AuthenticationService {
         
 
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if identifier == "0000" {
                 completion(ServiceResult.Failure(ServiceError(serviceMessage: "No accounts found")))
                 return
@@ -157,7 +158,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func recoverPassword(username: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if username.lowercased() == "error" {
                 completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnProfNotFound.rawValue)))
             } else {
