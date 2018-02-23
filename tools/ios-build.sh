@@ -316,7 +316,8 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 			VALID_ARCHS="armv7 armv7s arm64" \
 			build-for-testing | tee build/logs/xcodebuild_build_for_testing.log | xcpretty
 
-		
+		find . 
+
 		echo "--------------------------------- Uploading to appcenter -------------------------------"
 		# Upload your test to App Center
 		appcenter test run xcuitest \
