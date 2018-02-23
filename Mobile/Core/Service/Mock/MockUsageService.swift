@@ -19,11 +19,25 @@ struct MockUsageService: UsageService {
     }
     
     func fetchHomeProfile(accountNumber: String, premiseNumber: String, completion: @escaping (ServiceResult<HomeProfile>) -> Void) {
-        
+        switch accountNumber {
+        case "0":
+            let homeProfile = HomeProfile(numberOfChildren: 4,
+                                          numberOfAdults: 2,
+                                          squareFeet: 3000,
+                                          heatType: .electric,
+                                          homeType: .singleFamily)
+            completion(.Success(homeProfile))
+        default:
+            completion(.Failure(ServiceError(serviceMessage: "fetch failed")))
+        }
     }
     
     func updateHomeProfile(accountNumber: String, premiseNumber: String, homeProfile: HomeProfile, completion: @escaping (ServiceResult<Void>) -> Void) {
-        
+        if homeProfile.squareFeet == 500 {
+            completion(.Failure(ServiceError(serviceMessage: "update failed")))
+        } else {
+            completion(.Success(()))
+        }
     }
     
     func fetchEnergyTips(accountNumber: String, premiseNumber: String, completion: @escaping (ServiceResult<[EnergyTip]>) -> Void) {
