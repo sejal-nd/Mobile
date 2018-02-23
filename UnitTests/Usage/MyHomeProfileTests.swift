@@ -21,18 +21,97 @@ class MyHomeProfileTests: XCTestCase {
         scheduler = TestScheduler(initialClock: 0)
     }
     
-    func bind<T>(entries: [T], toVariable variable: Variable<T>) {
-        scheduler.createHotObservable(entries.enumerated().map(next))
+    func bind<T>(entries: [T], toVariable variable: Variable<T>, startTime: Int = 0, interval: Int = 1) {
+        scheduler.createHotObservable(entries.enumerated().map { ($0 * interval + startTime, $1) }.map(next))
             .bind(to: variable)
             .disposed(by: disposeBag)
     }
     
+    func bind<T>(entries: [T], toSubject subject: PublishSubject<T>, startTime: Int = 0, interval: Int = 1) {
+        scheduler.createHotObservable(entries.enumerated().map { ($0 * interval + startTime, $1) }.map(next))
+            .bind(to: subject)
+            .disposed(by: disposeBag)
+    }
+    
     func testInitialHomeProfile() {
-        XCTFail()
+        let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
+                                               accountDetail: AccountDetail(accountNumber: "0",
+                                                                            premiseNumber: ""),
+                                               saveAction: saveAction)
+        
+        let observer = scheduler.createObserver(HomeProfile.self)
+        viewModel.initialHomeProfile.subscribe(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        var expectedEvents = [
+            HomeProfile(numberOfChildren: 4,
+                        numberOfAdults: 2,
+                        squareFeet: 3000,
+                        heatType: .electric,
+                        homeType: .singleFamily)
+            ]
+            .enumerated()
+            .map(next)
+        
+        expectedEvents.append(completed(0))
+        
+        XCTAssertEqual(observer.events, expectedEvents)
     }
     
     func testUpdatedHomeProfile() {
-        XCTFail()
+        let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
+                                               accountDetail: AccountDetail(accountNumber: "",
+                                                                            premiseNumber: ""),
+                                               saveAction: saveAction)
+        
+        bind(entries: [4], toVariable: viewModel.numberOfChildren, startTime: 1)
+        bind(entries: [2], toVariable: viewModel.numberOfAdults, startTime: 2)
+        bind(entries: ["3000"], toVariable: viewModel.homeSizeEntry, startTime: 3)
+        bind(entries: [.electric], toVariable: viewModel.heatType, startTime: 4)
+        bind(entries: [.singleFamily], toVariable: viewModel.homeType, startTime: 5)
+        
+        let observer = scheduler.createObserver(HomeProfile.self)
+        viewModel.updatedHomeProfile.subscribe(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedEvents = [
+            HomeProfile(numberOfChildren: nil,
+                        numberOfAdults: nil,
+                        squareFeet: nil,
+                        heatType: nil,
+                        homeType: nil),
+            HomeProfile(numberOfChildren: 4,
+                        numberOfAdults: nil,
+                        squareFeet: nil,
+                        heatType: nil,
+                        homeType: nil),
+            HomeProfile(numberOfChildren: 4,
+                        numberOfAdults: 2,
+                        squareFeet: nil,
+                        heatType: nil,
+                        homeType: nil),
+            HomeProfile(numberOfChildren: 4,
+                        numberOfAdults: 2,
+                        squareFeet: 3000,
+                        heatType: nil,
+                        homeType: nil),
+            HomeProfile(numberOfChildren: 4,
+                        numberOfAdults: 2,
+                        squareFeet: 3000,
+                        heatType: .electric,
+                        homeType: nil),
+            HomeProfile(numberOfChildren: 4,
+                        numberOfAdults: 2,
+                        squareFeet: 3000,
+                        heatType: .electric,
+                        homeType: .singleFamily)
+            ]
+            .enumerated()
+            .map(next)
+        
+        XCTAssertEqual(observer.events, expectedEvents)
     }
     
     func testHomeSizeError() {
@@ -67,15 +146,85 @@ class MyHomeProfileTests: XCTestCase {
     }
     
     func testEnableSave() {
-        XCTFail()
+        let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
+                                               accountDetail: AccountDetail(accountNumber: "0",
+                                                                            premiseNumber: ""),
+                                               saveAction: saveAction)
+        
+        bind(entries: [4], toVariable: viewModel.numberOfChildren, startTime: 1)
+        bind(entries: [2], toVariable: viewModel.numberOfAdults, startTime: 2)
+        
+        // After this, homeSizeError != nil
+        bind(entries: ["3000"], toVariable: viewModel.homeSizeEntry, startTime: 3)
+        bind(entries: [.electric], toVariable: viewModel.heatType, startTime: 4)
+        bind(entries: [.singleFamily], toVariable: viewModel.homeType, startTime: 5)
+        
+        // Now, make the initial and updated HomeProfiles unequal
+        bind(entries: [5], toVariable: viewModel.numberOfChildren, startTime: 6)
+        
+        let observer = scheduler.createObserver(Bool.self)
+        viewModel.enableSave.subscribe(observer).disposed(by: disposeBag)
+        
+        let expectedEvents = [
+            next(0, false),
+            next(0, false),
+            next(0, false),
+            next(1, false),
+            next(2, false),
+            next(3, false),
+            next(3, false),
+            next(4, false),
+            next(5, false),
+            next(6, true)]
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events, expectedEvents)
     }
     
     func testSaveSuccess() {
-        XCTFail()
+        let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
+                                               accountDetail: AccountDetail(accountNumber: "0",
+                                                                            premiseNumber: ""),
+                                               saveAction: saveAction)
+        
+        bind(entries: [5], toVariable: viewModel.numberOfChildren, startTime: 1)
+        bind(entries: [2], toVariable: viewModel.numberOfAdults, startTime: 1)
+        bind(entries: ["3000"], toVariable: viewModel.homeSizeEntry, startTime: 1)
+        bind(entries: [.electric], toVariable: viewModel.heatType, startTime: 1)
+        bind(entries: [.singleFamily], toVariable: viewModel.homeType, startTime: 1)
+        
+        bind(entries: [()], toSubject: saveAction, startTime: 2)
+        
+        let observer = scheduler.createObserver(Void.self)
+        viewModel.saveSuccess.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events.filter { $0.value.element != nil }.count, 1)
     }
     
     func testSaveErrors() {
-        XCTFail()
+        let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
+                                               accountDetail: AccountDetail(accountNumber: "0",
+                                                                            premiseNumber: ""),
+                                               saveAction: saveAction)
+        
+        bind(entries: [5], toVariable: viewModel.numberOfChildren, startTime: 1)
+        bind(entries: [2], toVariable: viewModel.numberOfAdults, startTime: 1)
+        // 500 causes an error in MockUsageService
+        bind(entries: ["500"], toVariable: viewModel.homeSizeEntry, startTime: 1)
+        bind(entries: [.electric], toVariable: viewModel.heatType, startTime: 1)
+        bind(entries: [.singleFamily], toVariable: viewModel.homeType, startTime: 1)
+        
+        bind(entries: [()], toSubject: saveAction, startTime: 2)
+        
+        let observer = scheduler.createObserver(String.self)
+        viewModel.saveErrors.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events, [next(2, "LocalError")])
     }
     
     //MARK: - A11y
@@ -126,18 +275,108 @@ class MyHomeProfileTests: XCTestCase {
     }
     
     func testHomeTypeA11y() {
-        XCTFail()
+        let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
+                                               accountDetail: AccountDetail(accountNumber: "",
+                                                                            premiseNumber: ""),
+                                               saveAction: saveAction)
+        
+        bind(entries: [nil, .multiFamily, .singleFamily],
+             toVariable: viewModel.homeType)
+        
+        let observer = scheduler.createObserver(String.self)
+        viewModel.homeTypeA11y.drive(observer).disposed(by: disposeBag)
+        
+        var expectedEvents = [
+            "Home Type, required",
+            "Home Type, Apartment/Condo",
+            "Home Type, House, Townhome, Row House"
+            ]
+            .enumerated()
+            .map(next)
+        
+        // Initial value of the Variable is nil
+        expectedEvents.insert(next(0, "Home Type, required"), at: 0)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events, expectedEvents)
     }
     
     func testHeatingFuelA11y() {
-        XCTFail()
+        let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
+                                               accountDetail: AccountDetail(accountNumber: "",
+                                                                            premiseNumber: ""),
+                                               saveAction: saveAction)
+        
+        bind(entries: [nil, .naturalGas, .electric, .other, HeatType.none],
+             toVariable: viewModel.heatType)
+        
+        let observer = scheduler.createObserver(String.self)
+        viewModel.heatingFuelA11y.drive(observer).disposed(by: disposeBag)
+        
+        var expectedEvents = [
+            "Heating Fuel, required",
+            "Heating Fuel, Natural Gas",
+            "Heating Fuel, Electric",
+            "Heating Fuel, Other",
+            "Heating Fuel, None"
+            ]
+            .enumerated()
+            .map(next)
+        
+        // Initial value of the Variable is nil
+        expectedEvents.insert(next(0, "Heating Fuel, required"), at: 0)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events, expectedEvents)
     }
     
     func testNumberOfAdultsA11y() {
-        XCTFail()
+        let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
+                                               accountDetail: AccountDetail(accountNumber: "",
+                                                                            premiseNumber: ""),
+                                               saveAction: saveAction)
+        
+        bind(entries: [2, 3], toVariable: viewModel.numberOfAdults, startTime: 1)
+        
+        let observer = scheduler.createObserver(String.self)
+        viewModel.numberOfAdultsA11y.drive(observer).disposed(by: disposeBag)
+        
+        let expectedEvents = [
+            "Number of Adults, required",
+            "Number of Adults, 2",
+            "Number of Adults, 3"
+            ]
+            .enumerated()
+            .map(next)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events, expectedEvents)
     }
     
     func testNumberOfChildrenA11y() {
-        XCTFail()
+        let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
+                                               accountDetail: AccountDetail(accountNumber: "",
+                                                                            premiseNumber: ""),
+                                               saveAction: saveAction)
+        
+        bind(entries: [2, 3], toVariable: viewModel.numberOfChildren, startTime: 1)
+        
+        let observer = scheduler.createObserver(String.self)
+        viewModel.numberOfChildrenA11y.drive(observer).disposed(by: disposeBag)
+        
+        let expectedEvents = [
+            "Number of Children, required",
+            "Number of Children, 2",
+            "Number of Children, 3"
+            ]
+            .enumerated()
+            .map(next)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events, expectedEvents)
     }
 }

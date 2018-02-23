@@ -151,19 +151,19 @@ class MyHomeProfileViewModel {
     
     private(set) lazy var numberOfAdultsA11y: Driver<String> = self.numberOfAdults.asDriver()
         .map { numberOfAdults -> String in
-            let localizedText = NSLocalizedString("Number of Adults, %d", comment: "")
+            let localizedText = NSLocalizedString("Number of Adults, %@", comment: "")
             guard let numberOfAdults = numberOfAdults else {
                 return String(format: localizedText, NSLocalizedString("required", comment: ""))
             }
-            return String(format: localizedText, numberOfAdults)
+            return String(format: localizedText, String(numberOfAdults))
     }
     
     private(set) lazy var numberOfChildrenA11y: Driver<String> = self.numberOfChildren.asDriver()
         .map { numberOfChildren -> String in
-            let localizedText = NSLocalizedString("Number of Children, %d", comment: "")
+            let localizedText = NSLocalizedString("Number of Children, %@", comment: "")
             guard let numberOfChildren = numberOfChildren else {
                 return String(format: localizedText, NSLocalizedString("required", comment: ""))
             }
-            return String(format: localizedText, numberOfChildren)
+            return String(format: localizedText, String(numberOfChildren))
     }
 }
