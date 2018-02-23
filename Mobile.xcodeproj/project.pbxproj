@@ -320,11 +320,8 @@
 		823AA54C20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		823AA54D20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		823AA55220113357009CAEF0 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55120113356009CAEF0 /* RxTest.framework */; };
-		823AA55620113498009CAEF0 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55520113498009CAEF0 /* RxBlocking.framework */; };
 		823AA557201134BB009CAEF0 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55120113356009CAEF0 /* RxTest.framework */; };
-		823AA558201134E1009CAEF0 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55520113498009CAEF0 /* RxBlocking.framework */; };
 		823AA559201134EE009CAEF0 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55120113356009CAEF0 /* RxTest.framework */; };
-		823AA55A201134FC009CAEF0 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823AA55520113498009CAEF0 /* RxBlocking.framework */; };
 		824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
 		824004CB1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
 		824004CC1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824004C91F25F4970012A288 /* TemplateCardViewModel.swift */; };
@@ -2028,8 +2025,6 @@
 		823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailInitExtensions.swift; sourceTree = "<group>"; };
 		823AA55120113356009CAEF0 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
 		823AA55320113471009CAEF0 /* Build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Build; path = Carthage/Build; sourceTree = "<group>"; };
-		823AA55520113498009CAEF0 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
-		823AA55F201247CF009CAEF0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		824004C91F25F4970012A288 /* TemplateCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardViewModel.swift; sourceTree = "<group>"; };
 		824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewController.swift; sourceTree = "<group>"; };
 		824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustThermostatViewModel.swift; sourceTree = "<group>"; };
@@ -2717,7 +2712,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				823AA55620113498009CAEF0 /* RxBlocking.framework in Frameworks */,
 				823AA55220113357009CAEF0 /* RxTest.framework in Frameworks */,
 				E80043621E6A11C3005CF531 /* Zxcvbn.framework in Frameworks */,
 				B5D4155A1F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */,
@@ -2758,7 +2752,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				823AA558201134E1009CAEF0 /* RxBlocking.framework in Frameworks */,
 				823AA557201134BB009CAEF0 /* RxTest.framework in Frameworks */,
 				E8F62BC6200924410077B3DA /* Zxcvbn.framework in Frameworks */,
 				E8F62BC7200924410077B3DA /* FirebaseCore.framework in Frameworks */,
@@ -2785,7 +2778,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				823AA55A201134FC009CAEF0 /* RxBlocking.framework in Frameworks */,
 				823AA559201134EE009CAEF0 /* RxTest.framework in Frameworks */,
 				E8F62C7B200924570077B3DA /* Zxcvbn.framework in Frameworks */,
 				E8F62C7C200924570077B3DA /* FirebaseCore.framework in Frameworks */,
@@ -3410,42 +3402,40 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				823AA55F201247CF009CAEF0 /* XCTest.framework */,
-				823AA55520113498009CAEF0 /* RxBlocking.framework */,
+				E887C9F51ED5D3E1002433A3 /* Accelerate.framework */,
+				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
+				E887C9F71ED5D3EB002433A3 /* AVFoundation.framework */,
 				823AA55320113471009CAEF0 /* Build */,
-				823AA55120113356009CAEF0 /* RxTest.framework */,
-				E83F02821FB380700062A348 /* UserNotifications.framework */,
 				E8B9BD911F8826FD007C824C /* Charts.framework */,
-				B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */,
-				B55A8B0D1F15646E00F63AC3 /* libz.tbd */,
+				B55A8B0B1F15644800F63AC3 /* CoreData.framework */,
+				B5AC07411E52A49900BBA4ED /* CoreLocation.framework */,
+				E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */,
 				B5D4154C1F3A641100AC32B2 /* FirebaseAnalytics.framework */,
 				B5D4154D1F3A641100AC32B2 /* FirebaseCore.framework */,
 				B5D4154E1F3A641100AC32B2 /* FirebaseCoreDiagnostics.framework */,
 				B5D4154F1F3A641100AC32B2 /* FirebaseInstanceID.framework */,
 				B5D415501F3A641100AC32B2 /* FirebaseNanoPB.framework */,
 				B5D415511F3A641100AC32B2 /* GoogleToolboxForMac.framework */,
-				B5D415521F3A641100AC32B2 /* nanopb.framework */,
-				B55A8B0B1F15644800F63AC3 /* CoreData.framework */,
-				E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */,
-				E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */,
-				E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */,
-				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
-				E887C9F71ED5D3EB002433A3 /* AVFoundation.framework */,
-				E887C9F51ED5D3E1002433A3 /* Accelerate.framework */,
-				82D599461EC356C800DDB380 /* RxSwiftExt.framework */,
-				B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */,
-				E801BADC1E8C5A4E00550F99 /* Mapper.framework */,
-				E8D2520D1E6DB78800C90584 /* Lottie.framework */,
 				E8D2520B1E6DB74600C90584 /* HockeySDK.framework */,
-				E80043481E671F0B005CF531 /* Zxcvbn.framework */,
-				E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */,
 				E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */,
+				B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */,
+				B55A8B0D1F15646E00F63AC3 /* libz.tbd */,
 				E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */,
-				B5AC07411E52A49900BBA4ED /* CoreLocation.framework */,
+				E8D2520D1E6DB78800C90584 /* Lottie.framework */,
+				E801BADC1E8C5A4E00550F99 /* Mapper.framework */,
+				E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */,
+				B5D415521F3A641100AC32B2 /* nanopb.framework */,
+				E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */,
+				B54F0FFA1E9F0B8B00A9B72B /* Reachability.framework */,
+				8FD3C25B1E524511005FB1BB /* RxCocoa.framework */,
+				8FD3C25D1E524514005FB1BB /* RxSwift.framework */,
+				82D599461EC356C800DDB380 /* RxSwiftExt.framework */,
+				823AA55120113356009CAEF0 /* RxTest.framework */,
 				B5AC073B1E52A2BD00BBA4ED /* Security.framework */,
 				B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */,
-				8FD3C25D1E524514005FB1BB /* RxSwift.framework */,
-				8FD3C25B1E524511005FB1BB /* RxCocoa.framework */,
+				E80043171E65DFE4005CF531 /* ToastSwiftFramework.framework */,
+				E83F02821FB380700062A348 /* UserNotifications.framework */,
+				E80043481E671F0B005CF531 /* Zxcvbn.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4646,6 +4636,7 @@
 				B5AC06D11E52238900BBA4ED /* Sources */,
 				B5AC06D21E52238900BBA4ED /* Frameworks */,
 				B5AC06D31E52238900BBA4ED /* Resources */,
+				9C25166C20406386007F3F80 /* Copy Carthage Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4700,6 +4691,7 @@
 				E8F62B34200924410077B3DA /* Sources */,
 				E8F62BC5200924410077B3DA /* Frameworks */,
 				E8F62BD8200924410077B3DA /* Resources */,
+				9C25166D204063C4007F3F80 /* Copy Carthage Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4718,6 +4710,7 @@
 				E8F62BE9200924570077B3DA /* Sources */,
 				E8F62C7A200924570077B3DA /* Frameworks */,
 				E8F62C8D200924570077B3DA /* Resources */,
+				9C25166E204063EC007F3F80 /* Copy Carthage Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4741,6 +4734,7 @@
 				TargetAttributes = {
 					087630DD1E72F5D000FA7020 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B58B5AC01E4E28740051FD5F;
@@ -4789,6 +4783,7 @@
 						ProvisioningStyle = Automatic;
 					};
 					B5AC06D41E52238900BBA4ED = {
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B58B5AC01E4E28740051FD5F;
@@ -5242,8 +5237,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5270,8 +5263,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5298,10 +5289,53 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PDTSimpleCalendar.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		9C25166C20406386007F3F80 /* Copy Carthage Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
+			);
+			name = "Copy Carthage Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		9C25166D204063C4007F3F80 /* Copy Carthage Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
+			);
+			name = "Copy Carthage Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		9C25166E204063EC007F3F80 /* Copy Carthage Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
+			);
+			name = "Copy Carthage Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6814,7 +6848,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -6839,7 +6873,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -6858,7 +6892,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -6876,7 +6910,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -6895,7 +6929,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -7078,10 +7112,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
@@ -7094,7 +7132,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -7284,10 +7322,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
@@ -7300,7 +7342,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
@@ -8182,6 +8224,9 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -8191,6 +8236,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -8202,10 +8248,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
@@ -8216,10 +8266,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
@@ -8230,10 +8284,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
@@ -8244,10 +8302,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				INFOPLIST_FILE = UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
