@@ -143,5 +143,50 @@ class BillAnalysisViewModelTests: XCTestCase {
             XCTAssert(text == "2017", "Expected \"2017\", got \"\(text ?? "nil")\"")
         }).disposed(by: disposeBag)
     }
+    
+    func testCurrentBarHeightConstraintValue() {
+        viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC")
+        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: -10), compared: UsageBillPeriod())
+        
+        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
+            XCTAssert(val == 3, "Expected 3 because reference charges < 0, got \(val) instead")
+        }).disposed(by: disposeBag)
+        
+        // If we have a projection:
+        // Test case: Reference charges are the highest
+        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 200), compared: UsageBillPeriod(charges: 180))
+        viewModel.electricForecast.value = BillForecast(projectedCost: 150)
+        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
+            XCTAssert(val == 134, "Expected 134, got \(val) instead")
+        }).disposed(by: disposeBag)
+        
+        // Test case: Projected charges are the highest
+        viewModel.electricForecast.value = BillForecast(projectedCost: 210)
+        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
+            let expectedVal = CGFloat(134.0 * (200 / 210))
+            XCTAssert(val == expectedVal, "Expected \(expectedVal), got \(val) instead")
+        }).disposed(by: disposeBag)
+        
+        // Test case: Compared charges are the highest
+        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 200), compared: UsageBillPeriod(charges: 220))
+        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
+            let expectedVal = CGFloat(134.0 * (200 / 220))
+            XCTAssert(val == expectedVal, "Expected \(expectedVal), got \(val) instead")
+        }).disposed(by: disposeBag)
+        
+        // No projections
+        // Test case: Compared charges are greater than compared charges
+        viewModel.electricForecast.value = nil
+        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
+            let expectedVal = CGFloat(134.0 * (200 / 220))
+            XCTAssert(val == expectedVal, "Expected \(expectedVal), got \(val) instead")
+        }).disposed(by: disposeBag)
+        
+        // Test case: Reference charges are greater than reference charges
+        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 220), compared: UsageBillPeriod(charges: 200))
+        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
+            XCTAssert(val == 134, "Expected 134, got \(val) instead")
+        }).disposed(by: disposeBag)
+    }
 
 }
