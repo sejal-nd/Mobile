@@ -27,7 +27,16 @@ struct MockUsageService: UsageService {
     }
     
     func fetchEnergyTips(accountNumber: String, premiseNumber: String, completion: @escaping (ServiceResult<[EnergyTip]>) -> Void) {
-        
+        switch accountNumber {
+        case "8":
+            let tips = Array(1...8).map { EnergyTip(title: "title \($0)", body: "body \($0)") }
+            completion(ServiceResult.Success(tips))
+        case "3":
+            let tips = Array(1...3).map { EnergyTip(title: "title \($0)", body: "body \($0)") }
+            completion(ServiceResult.Success(tips))
+        default:
+            completion(ServiceResult.Failure(ServiceError(serviceMessage: "fetch failed")))
+        }
     }
     
     func fetchEnergyTipByName(accountNumber: String, premiseNumber: String, tipName: String, completion: @escaping (ServiceResult<EnergyTip>) -> Void) {
