@@ -344,23 +344,23 @@ extension SERResult: JSONEncodable {
         }
         
         var map = [String: Any?]()
-        map["actualKWH"] = actualKWH
-        map["baselineKWH"] = baselineKWH
+        map["actualKWH"] = String(actualKWH)
+        map["baselineKWH"] = String(baselineKWH)
         map["eventStart"] = eventStart.apiString
         map["eventEnd"] = eventEnd.apiString
-        map["savingDollar"] = savingDollar
-        map["savingKWH"] = savingKWH
+        map["savingDollar"] = String(savingDollar)
+        map["savingKWH"] = String(savingKWH)
         self = SERResult.from(map as NSDictionary)!
     }
     
     func toJSON() -> [String : Any?] {
         return [
-            "actualKWH" : actualKWH,
-            "baselineKWH" : baselineKWH,
+            "actualKWH" : String(actualKWH),
+            "baselineKWH" : String(baselineKWH),
             "eventStart" : eventStart.apiString,
             "eventEnd" : eventEnd.apiString,
-            "savingDollar" : savingDollar,
-            "savingKWH" : savingKWH
+            "savingDollar" : String(savingDollar),
+            "savingKWH" : String(savingKWH)
         ]
     }
 }
