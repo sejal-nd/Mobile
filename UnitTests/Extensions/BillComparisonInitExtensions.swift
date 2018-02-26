@@ -13,9 +13,9 @@ extension BillComparison {
          temperatureUnit: String = "FAHRENHEIT",
          reference: UsageBillPeriod = UsageBillPeriod(),
          compared: UsageBillPeriod = UsageBillPeriod(),
-         billPeriodCostDifference: Double = 20,
-         weatherCostDifference: Double = 20,
-         otherCostDifference: Double = 20) {
+         billPeriodCostDifference: Double = 0,
+         weatherCostDifference: Double = 0,
+         otherCostDifference: Double = 0) {
         
         if Environment.sharedInstance.environmentName != "AUT" {
             fatalError("init only available for tests")
@@ -40,8 +40,8 @@ extension UsageBillPeriod: JSONEncodable {
     init(charges: Double = 100,
          usage: Double = 100,
          startDate: String = "2017-08-01", // Pass in yyyy-MM-dd format
-        endDate: String? = "2017-09-01", // Pass in yyyy-MM-dd format
-        averageTemperature: Double = 72) {
+         endDate: String? = "2017-09-01", // Pass in yyyy-MM-dd format
+         averageTemperature: Double = 72) {
         
         if Environment.sharedInstance.environmentName != "AUT" {
             fatalError("init only available for tests")
