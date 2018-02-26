@@ -304,6 +304,14 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 
 	if  [ -n "$APP_CENTER_API_TOKEN" ] && [ -n "$APP_CENTER_TEST_DEVICES" ]; then
 
+		# disable error propagation. we do not want to force the whole build script to fail if the rm fails
+		set +e
+		
+		rm -r build/Automation
+		rm -r build/Mobile.build
+
+		set -e
+
 		# rm -rf "DerivedData"
 		echo "----------------------------------- Build-for-testing -------------------------------"
 		xcrun xcodebuild \
@@ -316,7 +324,8 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 			VALID_ARCHS="armv7 armv7s arm64" \
 			build-for-testing | tee build/logs/xcodebuild_build_for_testing.log | xcpretty
 
-		
+		find .
+
 		echo "--------------------------------- Uploading to appcenter -------------------------------"
 		# Upload your test to App Center
 		appcenter test run xcuitest \
