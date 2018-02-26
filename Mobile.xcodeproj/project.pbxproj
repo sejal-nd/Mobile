@@ -382,6 +382,12 @@
 		82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		82837D161F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
+		828FDAF32040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */; };
+		828FDAF42040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */; };
+		828FDAF52040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */; };
+		828FDAF62040B9F5009B7EE4 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* UsageViewModel.swift */; };
+		828FDAF72040B9F5009B7EE4 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* UsageViewModel.swift */; };
+		828FDAF82040B9F6009B7EE4 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* UsageViewModel.swift */; };
 		8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		8291DD4F1F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
@@ -2059,6 +2065,7 @@
 		826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerTableViewCell.swift; sourceTree = "<group>"; };
 		826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedAccountPickerTableViewCell.xib; sourceTree = "<group>"; };
 		82837D131F20677700C31E1C /* RecentPaymentsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPaymentsStore.swift; sourceTree = "<group>"; };
+		828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModelTests.swift; sourceTree = "<group>"; };
 		8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableExtensions.swift; sourceTree = "<group>"; };
 		829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInitExtensions.swift; sourceTree = "<group>"; };
 		829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5EnergyTipsTests.swift; sourceTree = "<group>"; };
@@ -3232,6 +3239,7 @@
 			children = (
 				829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */,
 				82119FE2203F4BE500A56FEE /* MyHomeProfileTests.swift */,
+				828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */,
 			);
 			path = Usage;
 			sourceTree = "<group>";
@@ -6443,6 +6451,7 @@
 				82E22B6A1F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8EDC5521F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */,
+				828FDAF32040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */,
 				E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
 				B56DD49B1ED84E6000F0198B /* FiservApi.swift in Sources */,
@@ -6462,6 +6471,7 @@
 				E895E9B01EBB849A003B38A1 /* ChangePasswordViewModel.swift in Sources */,
 				E8C6F2A41F1FEB6A00C4644C /* AddCardFormViewModel.swift in Sources */,
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
+				828FDAF62040B9F5009B7EE4 /* UsageViewModel.swift in Sources */,
 				E895E9AE1EBB8489003B38A1 /* ForgotPasswordViewModel.swift in Sources */,
 				8206D01E1FACA93B0056F4CB /* TemperatureScaleStore.swift in Sources */,
 				E86DE4BA1F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
@@ -6627,6 +6637,7 @@
 				E8F62BA6200924410077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8F62BA7200924410077B3DA /* SplashViewModel.swift in Sources */,
 				E8F62BA8200924410077B3DA /* FiservErrorMapper.swift in Sources */,
+				828FDAF42040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */,
 				E8F62BA9200924410077B3DA /* WeatherService.swift in Sources */,
 				E8F62BAA200924410077B3DA /* Macros.swift in Sources */,
 				E8F62BAB200924410077B3DA /* FiservApi.swift in Sources */,
@@ -6646,6 +6657,7 @@
 				E8F62BB8200924410077B3DA /* ChangePasswordViewModel.swift in Sources */,
 				E8F62BB9200924410077B3DA /* AddCardFormViewModel.swift in Sources */,
 				E8F62BBA200924410077B3DA /* AccountService.swift in Sources */,
+				828FDAF72040B9F5009B7EE4 /* UsageViewModel.swift in Sources */,
 				E8F62BBB200924410077B3DA /* ForgotPasswordViewModel.swift in Sources */,
 				E8F62BBC200924410077B3DA /* TemperatureScaleStore.swift in Sources */,
 				E8F62BBD200924410077B3DA /* PaymentViewModel.swift in Sources */,
@@ -6779,6 +6791,7 @@
 				E8F62C5B200924570077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8F62C5C200924570077B3DA /* SplashViewModel.swift in Sources */,
 				E8F62C5D200924570077B3DA /* FiservErrorMapper.swift in Sources */,
+				828FDAF52040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */,
 				E8F62C5E200924570077B3DA /* WeatherService.swift in Sources */,
 				E8F62C5F200924570077B3DA /* Macros.swift in Sources */,
 				E8F62C60200924570077B3DA /* FiservApi.swift in Sources */,
@@ -6798,6 +6811,7 @@
 				E8F62C6D200924570077B3DA /* ChangePasswordViewModel.swift in Sources */,
 				E8F62C6E200924570077B3DA /* AddCardFormViewModel.swift in Sources */,
 				E8F62C6F200924570077B3DA /* AccountService.swift in Sources */,
+				828FDAF82040B9F6009B7EE4 /* UsageViewModel.swift in Sources */,
 				E8F62C70200924570077B3DA /* ForgotPasswordViewModel.swift in Sources */,
 				E8F62C71200924570077B3DA /* TemperatureScaleStore.swift in Sources */,
 				E8F62C72200924570077B3DA /* PaymentViewModel.swift in Sources */,

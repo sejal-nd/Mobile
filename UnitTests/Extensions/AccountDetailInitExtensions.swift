@@ -71,7 +71,7 @@ extension AccountDetail {
         map["CustomerInfo"] = customerInfo.toJSON()
         map["BillingInfo"] = billingInfo.toJSON()
         map["SERInfo"] = serInfo.toJSON()
-        map["PremiseInfo"] = premiseInfo.map(Premise.toJSON)
+        map["PremiseInfo"] = premiseInfo.map { $0.toJSON() }
         
         map["isPTSAccount"] = isPTSAccount
         
@@ -274,7 +274,7 @@ extension CustomerInfo: JSONEncodable {
 
 extension Premise: JSONEncodable {
     
-    init(premiseNumber: String, addressGeneral: String? = nil, zipCode: String? = nil, addressLine: [String]? = nil, smartEnergyRewards: String? = nil) {
+    init(premiseNumber: String = "", addressGeneral: String? = nil, zipCode: String? = nil, addressLine: [String]? = nil, smartEnergyRewards: String? = nil) {
         
         if Environment.sharedInstance.environmentName != "AUT" {
             fatalError("init only available for tests")
@@ -319,35 +319,35 @@ extension SERInfo: JSONEncodable {
         
         var map = [String: Any]()
         map["ControlGroupFlag"] = controlGroupFlag
-        map["eventResults"] = eventResults.map(SERResult.toJSON)
+        map["eventResults"] = eventResults.map { $0.toJSON() }
         self = SERInfo.from(map as NSDictionary)!
     }
     
     func toJSON() -> [String : Any?] {
         return [
             "ControlGroupFlag" : controlGroupFlag,
-            "eventResults" : eventResults.map(SERResult.toJSON)
+            "eventResults" : eventResults.map { $0.toJSON() }
         ]
     }
 }
 
 extension SERResult: JSONEncodable {
-    init(actualKWH: Double,
-         baselineKWH: Double,
-         eventStart: String,
-         eventEnd: String,
-         savingDollar: Double,
-         savingKWH: Double) {
+    init(actualKWH: Double = 0,
+         baselineKWH: Double = 0,
+         eventStart: Date = Date(),
+         eventEnd: Date = Date(),
+         savingDollar: Double = 0,
+         savingKWH: Double = 0) {
         
         if Environment.sharedInstance.environmentName != "AUT" {
             fatalError("init only available for tests")
         }
         
-        var map = [String: Any]()
+        var map = [String: Any?]()
         map["actualKWH"] = actualKWH
         map["baselineKWH"] = baselineKWH
-        map["eventStart"] = eventStart
-        map["eventEnd"] = eventEnd
+        map["eventStart"] = eventStart.apiString
+        map["eventEnd"] = eventEnd.apiString
         map["savingDollar"] = savingDollar
         map["savingKWH"] = savingKWH
         self = SERResult.from(map as NSDictionary)!
