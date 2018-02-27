@@ -113,7 +113,7 @@ class OutageUITests: XCTestCase {
     }
     
     func testReportOutage() {
-        doLogin(username: "outageTestPowerOn")
+        doLogin(username: "outageTestReport")
         app.tabBars.buttons["Outage"].tap()
         
         let reportOutageButton = app.scrollViews.otherElements.buttons["Report outage"]
