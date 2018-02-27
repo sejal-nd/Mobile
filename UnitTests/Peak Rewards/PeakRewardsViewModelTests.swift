@@ -17,12 +17,68 @@ class PeakRewardsViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234567890"])!
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testOverrides() {
+        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        let observer = scheduler.createObserver([PeakRewardsOverride].self)
+        viewModel.overrides.subscribe(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedValues = [[PeakRewardsOverride()]]
+        XCTAssertEqual(observer.events.count, expectedValues.count)
+        XCTAssert(!zip(observer.events, expectedValues)
+            .map { $0.0.value.element! == $0.1 }
+            .contains(false))
+    }
+    
+    func testDevices() {
+        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        let observer = scheduler.createObserver([SmartThermostatDevice].self)
+        viewModel.devices.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedValues = [[SmartThermostatDevice(), SmartThermostatDevice()]]
+        XCTAssertEqual(observer.events.count, expectedValues.count)
+        XCTAssert(!zip(observer.events, expectedValues)
+            .map { $0.0.value.element! == $0.1 }
+            .contains(false))
+    }
+    
+    func testSelectedDevice() {
+        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(1, 0), next(1, 1)])
+            .bind(to: viewModel.selectedDeviceIndex)
+            .disposed(by: disposeBag)
+        
+        let observer = scheduler.createObserver(SmartThermostatDevice.self)
+        viewModel.selectedDevice.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedEvents = [SmartThermostatDevice](repeating: SmartThermostatDevice(), count: 2).enumerated().map(next)
+        XCTAssertEqual(observer.events, expectedEvents)
     }
     
 }
