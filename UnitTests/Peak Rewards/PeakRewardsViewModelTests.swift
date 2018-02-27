@@ -81,4 +81,25 @@ class PeakRewardsViewModelTests: XCTestCase {
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
+    func testDeviceButtonText() {
+        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(1, 0), next(1, 1)])
+            .bind(to: viewModel.selectedDeviceIndex)
+            .disposed(by: disposeBag)
+        
+        let observer = scheduler.createObserver(String.self)
+        viewModel.deviceButtonText.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedEvents = [String](repeating: "Device: ", count: 2).enumerated().map(next)
+        XCTAssertEqual(observer.events, expectedEvents)
+    }
+    
 }
