@@ -3498,15 +3498,12 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */,
 				823AA55F201247CF009CAEF0 /* XCTest.framework */,
 				823AA55520113498009CAEF0 /* RxBlocking.framework */,
-=======
 				E887C9F51ED5D3E1002433A3 /* Accelerate.framework */,
 				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
 				E887C9F71ED5D3EB002433A3 /* AVFoundation.framework */,
->>>>>>> 5e3ecb0bf411e6fabf6e732704a278b34263fe13
 				823AA55320113471009CAEF0 /* Build */,
 				E8B9BD911F8826FD007C824C /* Charts.framework */,
 				B55A8B0B1F15644800F63AC3 /* CoreData.framework */,
