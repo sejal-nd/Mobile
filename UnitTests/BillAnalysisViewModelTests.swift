@@ -758,11 +758,51 @@ class BillAnalysisViewModelTests: XCTestCase {
     }
     
     func testSetBarSelected() {
+        for i in stride(from: 0, to: 5, by: 1) {
+            if viewModel.barGraphSelectionStates.value[i].value {
+                XCTFail("All variables should be false initially")
+            }
+        }
         
+        viewModel.setBarSelected(tag: 2)
+        XCTAssert(viewModel.barGraphSelectionStates.value[2].value, "Index 2's value should be true")
+        for i in stride(from: 0, to: 5, by: 1) {
+            if viewModel.barGraphSelectionStates.value[i].value && i != 2 {
+                XCTFail("All variables should be false except index 2")
+            }
+        }
+        
+        viewModel.setBarSelected(tag: 4)
+        XCTAssert(viewModel.barGraphSelectionStates.value[4].value, "Index 4's value should be true")
+        for i in stride(from: 0, to: 5, by: 1) {
+            if viewModel.barGraphSelectionStates.value[i].value && i != 4 {
+                XCTFail("All variables should be false except index 4")
+            }
+        }
     }
     
     func testSetLikelyReasonSelected() {
+        for i in stride(from: 0, to: 3, by: 1) {
+            if viewModel.likelyReasonsSelectionStates.value[i].value && i != 0 {
+                XCTFail("All variables should be false initially except index 0")
+            }
+        }
         
+        viewModel.setLikelyReasonSelected(tag: 1)
+        XCTAssert(viewModel.likelyReasonsSelectionStates.value[1].value, "Index 1's value should be true")
+        for i in stride(from: 0, to: 3, by: 1) {
+            if viewModel.likelyReasonsSelectionStates.value[i].value && i != 1 {
+                XCTFail("All variables should be false except index 1")
+            }
+        }
+        
+        viewModel.setLikelyReasonSelected(tag: 2)
+        XCTAssert(viewModel.likelyReasonsSelectionStates.value[2].value, "Index 2's value should be true")
+        for i in stride(from: 0, to: 3, by: 1) {
+            if viewModel.likelyReasonsSelectionStates.value[i].value && i != 2 {
+                XCTFail("All variables should be false except index 2")
+            }
+        }
     }
     
     func testShouldShowElectricGasToggle() {
