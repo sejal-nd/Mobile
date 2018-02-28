@@ -44,7 +44,7 @@ class SmartEnergyRewardsViewModel {
                 arrayToReturn.append(event)
             }
         }
-
+        
         return Array(arrayToReturn.reversed()) // Sort back so that the oldest event is first (as the graph displays)
     }
     
@@ -57,7 +57,7 @@ class SmartEnergyRewardsViewModel {
     
     private(set) lazy var bar1DollarLabelText: Driver<String?> = self.latest3EventsThisSeason.map {
         if $0.count < 3 { return nil }
-        return $0[0].savingDollar.currencyString!
+        return $0[0].savingDollar.currencyString
     }
     
     private(set) lazy var bar1DateLabelText: Driver<String?> = self.latest3EventsThisSeason.map {
@@ -97,9 +97,9 @@ class SmartEnergyRewardsViewModel {
     
     private(set) lazy var bar2DollarLabelText: Driver<String?> = self.latest3EventsThisSeason.map {
         if $0.count == 3 {
-            return $0[1].savingDollar.currencyString!
+            return $0[1].savingDollar.currencyString
         } else if $0.count == 2 {
-            return $0[0].savingDollar.currencyString!
+            return $0[0].savingDollar.currencyString
         }
         return nil
     }
