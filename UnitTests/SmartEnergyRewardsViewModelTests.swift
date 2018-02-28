@@ -485,19 +485,47 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     }
     
     func testBarDescriptionTypicalUseValueLabelText() {
+        let eventResults = [SERResult(baselineKWH: 1029.21341)]
         
+        let accountDetailDriver = Driver.just(AccountDetail(serInfo: SERInfo(eventResults: eventResults)))
+        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailDriver)
+        
+        viewModel.barDescriptionTypicalUseValueLabelText.asObservable().take(1).subscribe(onNext: { text in
+            XCTAssertEqual(text, "1029.2 kWh")
+        }).disposed(by: disposeBag)
     }
     
     func testBarDescriptionActualUseValueLabelText() {
+        let eventResults = [SERResult(actualKWH: 18)]
         
+        let accountDetailDriver = Driver.just(AccountDetail(serInfo: SERInfo(eventResults: eventResults)))
+        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailDriver)
+        
+        viewModel.barDescriptionActualUseValueLabelText.asObservable().take(1).subscribe(onNext: { text in
+            XCTAssertEqual(text, "18.0 kWh")
+        }).disposed(by: disposeBag)
     }
     
     func testBarDescriptionEnergySavingsValueLabelText() {
+        let eventResults = [SERResult(savingKWH: 900.19)]
         
+        let accountDetailDriver = Driver.just(AccountDetail(serInfo: SERInfo(eventResults: eventResults)))
+        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailDriver)
+        
+        viewModel.barDescriptionEnergySavingsValueLabelText.asObservable().take(1).subscribe(onNext: { text in
+            XCTAssertEqual(text, "900.2 kWh")
+        }).disposed(by: disposeBag)
     }
     
     func testBarDescriptionBillCreditValueLabelText() {
+        let eventResults = [SERResult(savingDollar: 13.99)]
         
+        let accountDetailDriver = Driver.just(AccountDetail(serInfo: SERInfo(eventResults: eventResults)))
+        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailDriver)
+        
+        viewModel.barDescriptionBillCreditValueLabelText.asObservable().take(1).subscribe(onNext: { text in
+            XCTAssertEqual(text, "$13.99")
+        }).disposed(by: disposeBag)
     }
     
     func testSetBarSelected() {
