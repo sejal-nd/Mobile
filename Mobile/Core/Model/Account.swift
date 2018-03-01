@@ -258,7 +258,7 @@ struct SERInfo: Mappable {
     }
 }
 
-struct SERResult: Mappable {
+struct SERResult: Mappable, Equatable {
     let actualKWH: Double
     let baselineKWH: Double
     let eventStart: Date
@@ -293,6 +293,15 @@ struct SERResult: Mappable {
         } else {
             savingKWH = 0
         }
+    }
+
+    static func ==(lhs: SERResult, rhs: SERResult) -> Bool {
+        return lhs.actualKWH == rhs.actualKWH &&
+            lhs.baselineKWH == rhs.baselineKWH &&
+            lhs.eventStart == rhs.eventStart &&
+            lhs.eventEnd == rhs.eventEnd &&
+            lhs.savingDollar == rhs.savingDollar &&
+            lhs.savingKWH == rhs.savingKWH
     }
 }
 
