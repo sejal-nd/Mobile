@@ -3259,8 +3259,9 @@
 		829D3975203F1E7F008D7BAE /* Usage */ = {
 			isa = PBXGroup;
 			children = (
-				829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */,
 				82119FE2203F4BE500A56FEE /* MyHomeProfileTests.swift */,
+				8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */,
+				829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */,
 				828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */,
 			);
 			path = Usage;
@@ -4024,7 +4025,6 @@
 				E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */,
 				B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */,
 				E8EC0F8D2028FA3C00956ABD /* WalletViewModelTests.swift */,
-				8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";

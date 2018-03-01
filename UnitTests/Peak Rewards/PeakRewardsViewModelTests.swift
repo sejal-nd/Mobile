@@ -102,4 +102,146 @@ class PeakRewardsViewModelTests: XCTestCase {
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
+    func testProgramCardsDataActiveOverride() {
+        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "programCardsDataActiveOverride", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0)])
+            .bind(to: viewModel.selectedDeviceIndex)
+            .disposed(by: disposeBag)
+        
+        let observer = scheduler.createObserver([(String, String)].self)
+        viewModel.programCardsData.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedEvents = [[("Test Program", "Override scheduled for today")]].enumerated().map(next)
+        XCTAssert(!zip(observer.events, expectedEvents)
+            .map {
+                if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
+                    return observedTupleArray[0] == expectedTupleArray[0]
+                }
+                return false
+            }
+            .contains(false))
+    }
+    
+    func testProgramCardsDataNoOverrides() {
+        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "programCardsDataNoOverrides", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0)])
+            .bind(to: viewModel.selectedDeviceIndex)
+            .disposed(by: disposeBag)
+        
+        let observer = scheduler.createObserver([(String, String)].self)
+        viewModel.programCardsData.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+
+        let expectedEvents = [[("Test Program", "Currently cycling")]].enumerated().map(next)
+        XCTAssert(!zip(observer.events, expectedEvents)
+            .map {
+                if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
+                    return observedTupleArray[0] == expectedTupleArray[0]
+                }
+                return false
+            }
+            .contains(false))
+    }
+    
+    func testProgramCardsDataInactiveProgramActiveOverride() {
+        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "programCardsDataInactiveProgram", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0)])
+            .bind(to: viewModel.selectedDeviceIndex)
+            .disposed(by: disposeBag)
+        
+        let observer = scheduler.createObserver([(String, String)].self)
+        viewModel.programCardsData.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedEvents = [[("Test Program", "Override scheduled for today")]].enumerated().map(next)
+        XCTAssert(!zip(observer.events, expectedEvents)
+            .map {
+                if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
+                    return observedTupleArray[0] == expectedTupleArray[0]
+                }
+                return false
+            }
+            .contains(false))
+    }
+    
+    func testProgramCardsDataInactiveProgramScheduledOverride() {
+        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "programCardsDataInactiveProgramScheduledOverride", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0)])
+            .bind(to: viewModel.selectedDeviceIndex)
+            .disposed(by: disposeBag)
+        
+        let observer = scheduler.createObserver([(String, String)].self)
+        viewModel.programCardsData.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedEvents = [[("Test Program", "You have been cycled today")]].enumerated().map(next)
+        XCTAssert(!zip(observer.events, expectedEvents)
+            .map {
+                if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
+                    return observedTupleArray[0] == expectedTupleArray[0]
+                }
+                return false
+            }
+            .contains(false))
+    }
+    
+    func testProgramCardsDataInactiveProgramNoOverrides() {
+        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "programCardsDataInactiveProgramNoOverrides", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0)])
+            .bind(to: viewModel.selectedDeviceIndex)
+            .disposed(by: disposeBag)
+        
+        let observer = scheduler.createObserver([(String, String)].self)
+        viewModel.programCardsData.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedEvents = [[("Test Program", "You have not been cycled today")]].enumerated().map(next)
+        XCTAssert(!zip(observer.events, expectedEvents)
+            .map {
+                if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
+                    return observedTupleArray[0] == expectedTupleArray[0]
+                }
+                return false
+            }
+            .contains(false))
+    }
+    
+    
+
 }
