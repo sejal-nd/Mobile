@@ -242,6 +242,38 @@ class PeakRewardsViewModelTests: XCTestCase {
             .contains(false))
     }
     
+    func testShowDeviceButton() {
+        // Test case: devices.count > 1, should show
+        var viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        var observer = scheduler.createObserver(Bool.self)
+        viewModel.showDeviceButton.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        
+        XCTAssertEqual(observer.events, [true].enumerated().map(next))
+        
+        
+        // Test case: devices.count == 1, should not show
+        viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
+                                             accountDetail: AccountDetail(accountNumber: "programCardsDataActiveOverride", premiseNumber: ""))
+        
+        scheduler.createHotObservable([next(0, ())])
+            .bind(to: viewModel.loadInitialData)
+            .disposed(by: disposeBag)
+        
+        observer = scheduler.createObserver(Bool.self)
+        viewModel.showDeviceButton.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events, [false].enumerated().map(next))
+    }
     
-
 }
