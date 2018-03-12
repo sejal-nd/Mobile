@@ -661,7 +661,7 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
-        Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOffer.rawValue)
+        Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollComplete.rawValue)
     }
 }
 
