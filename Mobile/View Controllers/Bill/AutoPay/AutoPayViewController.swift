@@ -222,6 +222,7 @@ class AutoPayViewController: UIViewController {
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         reasonForStoppingLabel.sizeToFit()
+        Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollOffer.rawValue)
     }
     
     private func textFieldSetup() {
