@@ -101,7 +101,7 @@ struct HomeProfile: Mappable, Equatable, Fillable {
         }
     }
     
-    init(numberOfChildren: Int?, numberOfAdults: Int?, squareFeet: Int?, heatType: HeatType?, homeType: HomeType?) {
+    init(numberOfChildren: Int? = nil, numberOfAdults: Int? = nil, squareFeet: Int? = nil, heatType: HeatType? = nil, homeType: HomeType? = nil) {
         self.numberOfChildren = numberOfChildren
         self.numberOfAdults = numberOfAdults
         self.squareFeet = squareFeet

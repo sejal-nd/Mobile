@@ -29,6 +29,7 @@ class MockAccountService: AccountService {
         
         AccountsStore.sharedInstance.accounts = accounts
         AccountsStore.sharedInstance.currentAccount = accounts[0]
+        AccountsStore.sharedInstance.customerIdentifier = "123"
         completion(ServiceResult.Success(accounts as [Account]))
     }
     
@@ -72,6 +73,12 @@ class MockAccountService: AccountService {
             return
         }
         let accountDetail = mockAccountDetails[accountIndex]
+        
+        guard accountDetail.accountNumber != "failure" else {
+            completion(.Failure(ServiceError(serviceMessage: "Account detail fetch failed.")))
+            return
+        }
+        
         completion(ServiceResult.Success(accountDetail))
     }
     
