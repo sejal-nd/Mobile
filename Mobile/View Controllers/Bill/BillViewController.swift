@@ -671,10 +671,8 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
         switch didChangeStatus {
         case .Enroll:
             toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
-            Analytics().logScreenView(AnalyticsPageView.EBillEnrollComplete.rawValue)
         case .Unenroll:
             toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
-            Analytics().logScreenView(AnalyticsPageView.EBillUnEnrollComplete.rawValue)
         case .Mixed:
             toastMessage = NSLocalizedString("Paperless eBill changes saved", comment: "")
         }
