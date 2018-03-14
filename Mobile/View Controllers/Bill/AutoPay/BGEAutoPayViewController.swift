@@ -283,7 +283,11 @@ class BGEAutoPayViewController: UIViewController {
         miniWalletVC.accountDetail = viewModel.accountDetail
         miniWalletVC.creditCardsDisabled = true
         miniWalletVC.delegate = self
-        Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSelectBank.rawValue)
+        if accountDetail.isAutoPay {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayModifyWallet.rawValue)
+        } else {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSelectBank.rawValue)
+        }
         navigationController?.pushViewController(miniWalletVC, animated: true)
     }
     
