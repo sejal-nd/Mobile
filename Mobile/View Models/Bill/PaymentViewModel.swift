@@ -255,11 +255,13 @@ class PaymentViewModel {
             .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] walletItemResult in
-                Analytics().logScreenView(AnalyticsPageView.AddBankNewWallet.rawValue)
-                
                 guard let `self` = self else { return }
                 
-                if self.addBankFormViewModel.oneTouchPay.value {
+                let otp = self.addBankFormViewModel.oneTouchPay.value
+                Analytics().logScreenView(AnalyticsPageView.ECheckAddNewWallet.rawValue,
+                                          dimensionIndex: Dimensions.OTPEnabled, dimensionValue: otp ? "enabled" : "disabled")
+                
+                if otp {
                     self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
                 }
                 
@@ -326,10 +328,13 @@ class PaymentViewModel {
                 .subscribe(onNext: { [weak self] walletItemResult in
                     guard let `self` = self else { return }
                     
-                    if self.addCardFormViewModel.oneTouchPay.value {
+                    let otp = self.addCardFormViewModel.oneTouchPay.value
+                    Analytics().logScreenView(AnalyticsPageView.CardAddNewWallet.rawValue,
+                                              dimensionIndex: Dimensions.OTPEnabled, dimensionValue: otp ? "enabled" : "disabled")
+                    
+                    if otp {
                         self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
                     }
-                    Analytics().logScreenView(AnalyticsPageView.AddCardNewWallet.rawValue)
                     
                     self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
                         guard let `self` = self else { return }
