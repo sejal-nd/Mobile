@@ -251,10 +251,10 @@ class BGEAutoPayViewController: UIViewController {
                     self.present(alertVc, animated: true, completion: nil)
                 })
             } else { // Unenroll
-                Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
+                Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollOffer.rawValue)
                 viewModel.unenroll(onSuccess: { [weak self] in
                     LoadingView.hide()
-                    Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollOffer.rawValue)
+                    Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
                     
                     guard let `self` = self else { return }
                     self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Unenrolled from AutoPay", comment: ""))
