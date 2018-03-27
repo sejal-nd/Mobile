@@ -661,7 +661,7 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
-        Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOffer.rawValue)
+        Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollComplete.rawValue)
     }
 }
 
@@ -671,10 +671,8 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
         switch didChangeStatus {
         case .Enroll:
             toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
-            Analytics().logScreenView(AnalyticsPageView.EBillEnrollComplete.rawValue)
         case .Unenroll:
             toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
-            Analytics().logScreenView(AnalyticsPageView.EBillUnEnrollComplete.rawValue)
         case .Mixed:
             toastMessage = NSLocalizedString("Paperless eBill changes saved", comment: "")
         }

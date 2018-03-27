@@ -331,11 +331,6 @@ extension MiniWalletViewController: AddBankAccountViewControllerDelegate {
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
         fetchWalletItems()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            //TODO: expose otp without having to access the viewmodel
-            let otp = addBankAccountViewController.viewModel.addBankFormViewModel.oneTouchPay.value
-            Analytics().logScreenView(AnalyticsPageView.ECheckAddNewWallet.rawValue,
-                                      dimensionIndex: Dimensions.OTPEnabled, dimensionValue: otp ? "true" : "false")
-            
             self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
         })
     }
@@ -347,11 +342,6 @@ extension MiniWalletViewController: AddCreditCardViewControllerDelegate {
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
         fetchWalletItems()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            //TODO: expose otp without having to access the viewmodel
-            let otp = addCreditCardViewController.viewModel.addCardFormViewModel.oneTouchPay.value
-            Analytics().logScreenView(AnalyticsPageView.CardAddNewWallet.rawValue,
-                                      dimensionIndex: Dimensions.OTPEnabled, dimensionValue: otp ? "true" : "false")
-            
             self.view.showToast(NSLocalizedString("Card added", comment: ""))
         })
     }
