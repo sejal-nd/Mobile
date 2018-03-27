@@ -258,8 +258,12 @@ class PaymentViewModel {
                 guard let `self` = self else { return }
                 
                 let otp = self.addBankFormViewModel.oneTouchPay.value
-                Analytics().logScreenView(AnalyticsPageView.ECheckAddNewWallet.rawValue,
-                                          dimensionIndex: Dimensions.OTPEnabled, dimensionValue: otp ? "enabled" : "disabled")
+                
+                if self.addBankFormViewModel.saveToWallet.value {
+                    Analytics().logScreenView(AnalyticsPageView.ECheckAddNewWallet.rawValue,
+                                              dimensionIndex: Dimensions.OTPEnabled,
+                                              dimensionValue: otp ? "enabled" : "disabled")
+                }
                 
                 if otp {
                     self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
@@ -330,7 +334,8 @@ class PaymentViewModel {
                     
                     let otp = self.addCardFormViewModel.oneTouchPay.value
                     Analytics().logScreenView(AnalyticsPageView.CardAddNewWallet.rawValue,
-                                              dimensionIndex: Dimensions.OTPEnabled, dimensionValue: otp ? "enabled" : "disabled")
+                                              dimensionIndex: Dimensions.OTPEnabled,
+                                              dimensionValue: otp ? "enabled" : "disabled")
                     
                     if otp {
                         self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
