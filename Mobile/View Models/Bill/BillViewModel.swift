@@ -333,7 +333,7 @@ class BillViewModel {
     //MARK: - Pending Payments
     private(set) lazy var pendingPaymentAmounts: Driver<[Double]> = self.currentAccountDetail.map {
         // In a later release, we can use the whole pendingPayments array for BGE processing payments
-        [$0.billingInfo.pendingPayments.first].flatMap { $0?.amount }
+        [$0.billingInfo.pendingPayments.first].compactMap { $0?.amount }
     }
     
     //MARK: - Remaining Balance Due
