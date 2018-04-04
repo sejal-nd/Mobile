@@ -4,7 +4,7 @@ github "jverdi/JVFloatLabeledTextField" == 1.2.1
 github "scalessec/Toast-Swift" ~> 3.0.1
 github "dropbox/zxcvbn-ios" == 1.0.4
 github "bitstadium/HockeySDK-iOS" == 5.0.0
-github "lyft/mapper" == 7.3.0
+github "lyft/mapper" == 8.0.0
 github "ashleymills/Reachability.swift" == 4.0
 github "RxSwiftCommunity/RxSwiftExt" == 3.0.0
 github "jivesoftware/PDTSimpleCalendar" == 0.9.1

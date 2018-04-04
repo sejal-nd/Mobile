@@ -428,7 +428,7 @@ struct BillingInfo: Mappable {
             return array
         }
         
-        let paymentItems = paymentDicts?.flatMap(PaymentItem.from)
+        let paymentItems = paymentDicts?.compactMap(PaymentItem.from)
         
         scheduledPayment = paymentItems?.filter { $0.status == .scheduled }.last
         pendingPayments = paymentItems?
