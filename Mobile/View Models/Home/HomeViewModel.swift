@@ -88,16 +88,7 @@ class HomeViewModel {
     
     //MARK: - Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
-        .withLatestFrom(
-            Observable.combineLatest(
-                self.fetchData.map{ _ in AccountsStore.sharedInstance.currentAccount }
-                    .unwrap()
-                    .map { $0.currentPremise?.zipCode },
-                self.accountDetailEvents.elements()
-                    .map { [unowned self] in $0.zipCode ?? self.defaultZip } // TODO: Get default zip for current opco
-            )
-        )
-        .map { $0 ?? $1 }
+        .map { [unowned self] in AccountsStore.sharedInstance.currentAccount?.currentPremise?.zipCode ?? $0.zipCode ?? self.defaultZip }
         .unwrap()
         .flatMapLatest { [unowned self] in
             self.weatherService.fetchWeather(address: $0)

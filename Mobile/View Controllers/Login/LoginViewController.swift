@@ -187,7 +187,7 @@ class LoginViewController: UIViewController {
     @IBAction func onLoginPress() {
         Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
                               keepSignedIn: String(describing: keepMeSignedInSwitch.isOn),
-                              usedFingerprint: "false")
+                              usedFingerprint: "disabled")
         
         if forgotUsernamePopulated {
             Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAccountValidation.rawValue)
@@ -360,7 +360,7 @@ class LoginViewController: UIViewController {
             
             Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
                                   keepSignedIn: String(describing: self.keepMeSignedInSwitch.isOn),
-                                  usedFingerprint: "true")
+                                  usedFingerprint: "enabled")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))

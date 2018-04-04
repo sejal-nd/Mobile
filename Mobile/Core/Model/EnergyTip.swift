@@ -9,7 +9,7 @@
 import Mapper
 import Foundation
 
-struct EnergyTip: Mappable {
+struct EnergyTip: Mappable, Equatable {
     let title: String
     let image: UIImage?
     let body: String
@@ -33,6 +33,12 @@ struct EnergyTip: Mappable {
             $0 as? UIImage
         }
         
+    }
+    
+    static func ==(lhs: EnergyTip, rhs: EnergyTip) -> Bool {
+        return lhs.title == rhs.title &&
+            lhs.image == rhs.image &&
+            lhs.body == rhs.body
     }
     
 }
