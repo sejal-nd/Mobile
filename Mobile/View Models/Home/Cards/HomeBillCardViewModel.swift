@@ -658,8 +658,6 @@ class HomeBillCardViewModel {
                 convenienceFeeString = accountDetail.billingInfo.commercialFee?.percentString
             case (_, .bank, _):
                 return NSLocalizedString("No fees applied.", comment: "")
-            default:
-                break
             }
             
             guard let text = localizedText, let convenienceFee = convenienceFeeString else { return nil }

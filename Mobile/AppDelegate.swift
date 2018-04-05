@@ -216,7 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             biometricsService.disableBiometrics()
             
             // Log the user out (Oracle SDK appears to be persisting the auth token through uninstalls)
-            let auth = OMCApi().getBackend().authorization
+            let auth = OMCApi.sharedInstance.getBackend().authorization
             auth.logoutClearCredentials(true, completionBlock: nil)
             
             userDefaults.set(true, forKey: UserDefaultKeys.HasRunBefore)

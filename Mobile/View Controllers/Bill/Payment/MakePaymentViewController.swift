@@ -480,9 +480,16 @@ class MakePaymentViewController: UIViewController {
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).disposed(by: disposeBag)
         
-        addBankAccountButton.rx.touchUpInside.map { _ in true }.bind(to: viewModel.inlineBank).disposed(by: disposeBag)
+        addBankAccountButton.rx.touchUpInside
+            .do(onNext: { Analytics().logScreenView(AnalyticsPageView.AddBankNewWallet.rawValue) })
+            .map { _ in true }
+            .bind(to: viewModel.inlineBank).disposed(by: disposeBag)
         
-        addCreditCardButton.rx.touchUpInside.map { _ in true }.bind(to: viewModel.inlineCard).disposed(by: disposeBag)
+        addCreditCardButton.rx.touchUpInside
+            .do(onNext: { Analytics().logScreenView(AnalyticsPageView.AddCardNewWallet.rawValue) })
+            .map { _ in true }
+            .bind(to: viewModel.inlineCard)
+            .disposed(by: disposeBag)
         
         deletePaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onDeletePaymentPress()

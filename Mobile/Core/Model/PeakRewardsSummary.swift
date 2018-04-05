@@ -98,7 +98,7 @@ enum PeakRewardsProgramStatus: String {
     case inactive = "Inactive"
 }
 
-struct PeakRewardsOverride: Mappable {
+struct PeakRewardsOverride: Mappable, Equatable {
     let serialNumber: String
     let status: OverrideStatus?
     let start: Date?
@@ -136,20 +136,17 @@ struct PeakRewardsOverride: Mappable {
         start = map.optionalFrom("start", transformation: extractDate)
         stop = map.optionalFrom("stop", transformation: extractDate)
         
-        let device: PeakRewardsOverrideDevice = try map.from("device")
-        serialNumber = device.serialNumber
+        serialNumber = try map.from("device.serialNumber")
     }
     
-    private struct PeakRewardsOverrideDevice: Mappable {
-        let serialNumber: String
-        
-        init(map: Mapper) throws {
-            serialNumber = try map.from("serialNumber")
-        }
+    static func ==(lhs: PeakRewardsOverride, rhs: PeakRewardsOverride) -> Bool {
+        return lhs.serialNumber == rhs.serialNumber &&
+            lhs.status == rhs.status &&
+            lhs.start == rhs.start &&
+            lhs.stop == rhs.stop
     }
+    
 }
-
-
 
 enum OverrideStatus: String {
     case scheduled = "Scheduled"
@@ -169,7 +166,10 @@ struct SmartThermostatDeviceSettings: Mappable {
         hold = try map.from("hold")
     }
     
-    init(temp: Temperature, mode: SmartThermostatMode, fan: SmartThermostatFan, hold: Bool) {
+    init(temp: Temperature = Temperature(value: 70.0, scale: .fahrenheit),
+         mode: SmartThermostatMode = .off,
+         fan: SmartThermostatFan = .auto,
+         hold: Bool = false) {
         self.temp = temp
         self.mode = mode
         self.fan = fan
@@ -313,8 +313,6 @@ struct SmartThermostatPeriodInfo: Mappable {
     }
     
     init(map: Mapper) throws {
-        
-        
         coolTemp = try map.from("coolTemp", transformation: tempMapper)
         heatTemp = try map.from("heatTemp", transformation: tempMapper)
         
@@ -334,7 +332,9 @@ struct SmartThermostatPeriodInfo: Mappable {
         }
     }
     
-    init(startTime: Date, coolTemp: Temperature, heatTemp: Temperature) {
+    init(startTime: Date,
+         coolTemp: Temperature,
+         heatTemp: Temperature) {
         self.startTime = startTime
         self.coolTemp = coolTemp
         self.heatTemp = heatTemp
