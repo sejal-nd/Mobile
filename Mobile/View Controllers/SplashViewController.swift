@@ -67,20 +67,6 @@ class SplashViewController: UIViewController{
             .disposed(by: bag)
         
         if ServiceFactory.createAuthenticationService().isAuthenticated() {
-//            ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { [weak self] (result: ServiceResult<Void>) in
-//                guard let `self` = self else { return }
-//                switch (result) {
-//                case .Success:
-//                    self.keepMeSignedIn = true
-//                    self.imageView.isHidden = false
-//                    self.splashAnimationContainer.isHidden = true
-//                case .Failure:
-//                    self.keepMeSignedIn = false
-//                    self.imageView.isHidden = true
-//                    self.splashAnimationContainer.isHidden = false
-//                }
-//            })
-            ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { _ in })
             self.keepMeSignedIn = true
             self.imageView.isHidden = false
             self.splashAnimationContainer.isHidden = true
