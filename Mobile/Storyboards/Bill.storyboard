@@ -2160,7 +2160,7 @@
                                                                                             </view>
                                                                                         </subviews>
                                                                                     </stackView>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yBr-Ha-ice">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yBr-Ha-ice">
                                                                                         <rect key="frame" x="0.0" y="189.5" width="317" height="130"/>
                                                                                         <subviews>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34x-Le-hLJ" userLabel="Activity Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
@@ -2182,14 +2182,8 @@
                                                                                                 </userDefinedRuntimeAttributes>
                                                                                             </button>
                                                                                         </subviews>
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="trailing" secondItem="34x-Le-hLJ" secondAttribute="trailing" id="L2j-cb-or5"/>
-                                                                                            <constraint firstItem="7s0-Ev-Iqt" firstAttribute="leading" secondItem="yBr-Ha-ice" secondAttribute="leading" id="e3R-bE-eEI"/>
-                                                                                            <constraint firstItem="34x-Le-hLJ" firstAttribute="leading" secondItem="yBr-Ha-ice" secondAttribute="leading" id="jTh-Ye-8p5"/>
-                                                                                            <constraint firstAttribute="trailing" secondItem="7s0-Ev-Iqt" secondAttribute="trailing" id="mCy-BC-Ise"/>
-                                                                                        </constraints>
                                                                                     </stackView>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mzh-Mx-j6e">
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mzh-Mx-j6e">
                                                                                         <rect key="frame" x="0.0" y="349.5" width="317" height="290"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fwF-rQ-7A5" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
