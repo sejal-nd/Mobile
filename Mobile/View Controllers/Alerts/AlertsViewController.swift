@@ -13,6 +13,9 @@ class AlertsViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
 
+    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    
+    @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet weak var segmentedControl: AlertsSegmentedControl!
     
     @IBOutlet weak var backgroundView: UIView!
@@ -140,10 +143,17 @@ class AlertsViewController: AccountPickerViewController {
             }
         }).disposed(by: disposeBag)
         
+        noNetworkConnectionView.reload
+            .subscribe(onNext: { [weak self] in self?.viewModel.fetchData() })
+            .disposed(by: disposeBag)
+        
         viewModel.backgroundViewColor.drive(backgroundView.rx.backgroundColor).disposed(by: disposeBag)
         
         viewModel.shouldShowLoadingIndicator.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowNoNetworkConnectionView.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowNoNetworkConnectionView.drive(backgroundView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowNoNetworkConnectionView.drive(topStackView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowAlertsTableView.not().drive(alertsTableView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowAlertsEmptyState.not().drive(alertsEmptyStateView.rx.isHidden).disposed(by: disposeBag)

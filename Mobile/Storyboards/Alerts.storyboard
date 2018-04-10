@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NbY-Og-sPR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NbY-Og-sPR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,6 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1S-W0-fgM" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i1F-C3-Con">
                                 <rect key="frame" x="0.0" y="20" width="375" height="146"/>
                                 <subviews>
@@ -144,7 +151,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyV-yL-9BE" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                     <rect key="frame" x="23" y="0.0" width="329" height="86.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJ4-eL-C1U">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJ4-eL-C1U">
                                                             <rect key="frame" x="17" y="14" width="295" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -264,6 +271,7 @@ this time.</string>
                             <constraint firstAttribute="trailing" secondItem="Fcn-Wj-y0Q" secondAttribute="trailing" priority="999" id="877-Ad-LBn"/>
                             <constraint firstItem="Vbq-sV-lLn" firstAttribute="centerX" secondItem="9Ks-fh-caA" secondAttribute="centerX" id="Awh-wF-Cef"/>
                             <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="Fcn-Wj-y0Q" secondAttribute="bottom" id="Cog-iU-2ro"/>
+                            <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="a1S-W0-fgM" secondAttribute="bottom" id="EV4-UW-ciS"/>
                             <constraint firstItem="MC6-cd-MhW" firstAttribute="centerY" secondItem="Fcn-Wj-y0Q" secondAttribute="centerY" id="Eo6-4H-Lnz"/>
                             <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="gTf-VA-0un" secondAttribute="bottom" id="Ggx-Td-Bye"/>
                             <constraint firstAttribute="trailing" secondItem="gTf-VA-0un" secondAttribute="trailing" id="HA9-4Q-LfT"/>
@@ -278,11 +286,14 @@ this time.</string>
                             <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="centerX" secondItem="SQH-FY-2sQ" secondAttribute="centerX" id="g5q-ii-2i7"/>
                             <constraint firstAttribute="trailing" secondItem="IKg-bb-ob0" secondAttribute="trailing" priority="999" constant="29" id="jCi-Sa-PAy"/>
                             <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" priority="999" id="jdU-e7-dml"/>
+                            <constraint firstItem="a1S-W0-fgM" firstAttribute="top" secondItem="4ee-u9-hAb" secondAttribute="bottom" id="jh3-Yd-LOo"/>
                             <constraint firstItem="MC6-cd-MhW" firstAttribute="centerX" secondItem="Fcn-Wj-y0Q" secondAttribute="centerX" id="kuI-01-vhw"/>
                             <constraint firstItem="IKg-bb-ob0" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" priority="999" constant="29" id="l8W-dC-CcK"/>
                             <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="9Ks-fh-caA" secondAttribute="bottom" id="lyc-Ir-L4v"/>
                             <constraint firstItem="cZW-SD-mnJ" firstAttribute="centerX" secondItem="9Ks-fh-caA" secondAttribute="centerX" id="mDQ-de-RZm"/>
                             <constraint firstItem="cZW-SD-mnJ" firstAttribute="centerY" secondItem="9Ks-fh-caA" secondAttribute="centerY" id="neI-yg-8rd"/>
+                            <constraint firstItem="a1S-W0-fgM" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" id="oNs-g4-6ix"/>
+                            <constraint firstAttribute="trailing" secondItem="a1S-W0-fgM" secondAttribute="trailing" id="uhF-hz-7PC"/>
                             <constraint firstItem="9Ks-fh-caA" firstAttribute="top" secondItem="i1F-C3-Con" secondAttribute="bottom" id="wjX-qG-OGW"/>
                             <constraint firstItem="gTf-VA-0un" firstAttribute="top" secondItem="i1F-C3-Con" secondAttribute="bottom" id="yBX-e0-VIM"/>
                         </constraints>
@@ -298,9 +309,11 @@ this time.</string>
                         <outlet property="backgroundView" destination="gTf-VA-0un" id="0FZ-NN-bVF"/>
                         <outlet property="errorLabel" destination="IKg-bb-ob0" id="WlD-HG-o8E"/>
                         <outlet property="loadingIndicator" destination="cZW-SD-mnJ" id="mC5-de-NqW"/>
+                        <outlet property="noNetworkConnectionView" destination="a1S-W0-fgM" id="69b-Np-hbd"/>
                         <outlet property="preferencesButton" destination="fyw-HH-wzm" id="arJ-vo-3tk"/>
                         <outlet property="preferencesButtonLabel" destination="UfZ-yO-Fmf" id="xWF-Og-ifW"/>
                         <outlet property="segmentedControl" destination="7zY-iZ-Y8Z" id="Z8I-XJ-gTe"/>
+                        <outlet property="topStackView" destination="i1F-C3-Con" id="hat-xF-BGq"/>
                         <outlet property="updatesEmptyStateLabel" destination="X2c-CW-LbN" id="BIh-dv-wRs"/>
                         <outlet property="updatesEmptyStateView" destination="Vbq-sV-lLn" id="Gr0-Za-47V"/>
                         <outlet property="updatesTableView" destination="9Ks-fh-caA" id="ChN-Ex-oxN"/>
