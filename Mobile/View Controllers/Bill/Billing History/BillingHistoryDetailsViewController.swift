@@ -193,7 +193,6 @@ class BillingHistoryDetailsViewController: UIViewController {
     }
     
     func bindLoadingStates() {
-        
         viewModel.paymentAccount.drive(paymentAccountDetailsLabel.rx.text).disposed(by: bag)
         
         paymentTypeLabel.text = viewModel.paymentTypeLabel
@@ -209,7 +208,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         viewModel.convenienceFee.drive(convenienceFeeDetailsLabel.rx.text).disposed(by: bag)
         viewModel.totalAmountPaid.drive(totalAmountPaidDetailsLabel.rx.text).disposed(by: bag)
         
-        paymentStatusDetailsLabel.text = viewModel.paymentStatus
+        paymentStatusDetailsLabel.text = viewModel.paymentStatus.capitalized
         confirmationNumberDetailsLabel.text = viewModel.confirmationNumber
 
     }
