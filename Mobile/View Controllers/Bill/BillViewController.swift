@@ -135,18 +135,17 @@ class BillViewController: AccountPickerViewController {
         accountPicker.parentViewController = self
         
         Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
-                                 viewModel.currentAccountDetail.asObservable().map { $0 }.startWith(nil))
+                                 viewModel.accountDetailEvents.asObservable().map { $0 }.startWith(nil))
             .sample(accountPickerViewControllerWillAppear)
             .subscribe(onNext: { [weak self] state, accountDetail in
                 guard let `self` = self else { return }
                 switch(state) {
                 case .loadingAccounts:
-                    // Sam, do your custom loading here
                     break
                 case .readyToFetchData:
                     if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchAccountDetail(isRefresh: false)
-                    } else if accountDetail == nil {
+                    } else if accountDetail?.element == nil {
                         self.viewModel.fetchAccountDetail(isRefresh: false)
                     }
                 }
