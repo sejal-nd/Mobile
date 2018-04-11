@@ -39,7 +39,7 @@ class BillViewModel {
         self.accountService = accountService
     }
     
-    private lazy var accountDetailEvents: Observable<Event<AccountDetail>> = Observable
+    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = Observable
         .merge(self.fetchAccountDetail, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
         .flatMapLatest { [weak self] state -> Observable<Event<AccountDetail>> in
             guard let `self` = self else { return .empty() }

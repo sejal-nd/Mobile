@@ -13,6 +13,8 @@ import Lottie
 import StoreKit
 
 class BillViewController: AccountPickerViewController {
+    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
     @IBOutlet weak var topLoadingIndicator: LoadingIndicator!
@@ -133,18 +135,17 @@ class BillViewController: AccountPickerViewController {
         accountPicker.parentViewController = self
         
         Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
-                                 viewModel.currentAccountDetail.asObservable().map { $0 }.startWith(nil))
+                                 viewModel.accountDetailEvents.asObservable().map { $0 }.startWith(nil))
             .sample(accountPickerViewControllerWillAppear)
             .subscribe(onNext: { [weak self] state, accountDetail in
                 guard let `self` = self else { return }
                 switch(state) {
                 case .loadingAccounts:
-                    // Sam, do your custom loading here
                     break
                 case .readyToFetchData:
                     if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchAccountDetail(isRefresh: false)
-                    } else if accountDetail == nil {
+                    } else if accountDetail?.element == nil {
                         self.viewModel.fetchAccountDetail(isRefresh: false)
                     }
                 }
@@ -298,10 +299,20 @@ class BillViewController: AccountPickerViewController {
         bottomView.isHidden = false
         errorView.isHidden = true
         bottomStackContainerView.isHidden = false
+        scrollView?.isHidden = false
+        noNetworkConnectionView.isHidden = true
         enableRefresh()
     }
     
     func showErrorState(error: ServiceError?) {
+        if error?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
+            scrollView?.isHidden = true
+            noNetworkConnectionView.isHidden = false
+        } else {
+            scrollView?.isHidden = false
+            noNetworkConnectionView.isHidden = true
+        }
+        
         billLoadingIndicator.isHidden = true
         loadingIndicatorView.isHidden = true
         topView.isHidden = true
@@ -320,6 +331,8 @@ class BillViewController: AccountPickerViewController {
     }
     
     func showSwitchingAccountState() {
+        scrollView?.isHidden = false
+        noNetworkConnectionView.isHidden = true
         billLoadingIndicator.isHidden = false
         loadingIndicatorView.isHidden = false
         topView.isHidden = false
@@ -440,6 +453,11 @@ class BillViewController: AccountPickerViewController {
 	}
 
     func bindButtonTaps() {
+        noNetworkConnectionView.reload
+            .map { FetchingAccountState.switchAccount }
+            .bind(to: viewModel.fetchAccountDetail)
+            .disposed(by: bag)
+        
         questionMarkButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 let alertController = UIAlertController(title: NSLocalizedString("Your Due Date", comment: ""),

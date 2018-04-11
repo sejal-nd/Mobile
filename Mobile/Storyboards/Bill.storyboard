@@ -1346,6 +1346,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="2500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjt-Td-wx3" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="2480"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DL5-8p-VuX">
                                 <rect key="frame" x="0.0" y="20" width="375" height="2480"/>
                                 <subviews>
@@ -2412,10 +2416,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gE4-MJ-svX" firstAttribute="top" secondItem="DL5-8p-VuX" secondAttribute="bottom" id="3bz-1B-EnB"/>
+                            <constraint firstAttribute="trailing" secondItem="kjt-Td-wx3" secondAttribute="trailing" id="BI5-vO-hUu"/>
+                            <constraint firstItem="kjt-Td-wx3" firstAttribute="leading" secondItem="f8I-LW-4KU" secondAttribute="leading" id="I54-li-gEM"/>
                             <constraint firstItem="DL5-8p-VuX" firstAttribute="top" secondItem="Oxu-3h-4ZB" secondAttribute="bottom" id="KQG-OV-czU"/>
                             <constraint firstItem="gE4-MJ-svX" firstAttribute="top" secondItem="52M-Kq-h1c" secondAttribute="bottom" priority="750" id="LwD-Fz-UH1"/>
+                            <constraint firstItem="gE4-MJ-svX" firstAttribute="top" secondItem="kjt-Td-wx3" secondAttribute="bottom" id="UW3-u7-23E"/>
                             <constraint firstItem="DL5-8p-VuX" firstAttribute="leading" secondItem="f8I-LW-4KU" secondAttribute="leading" id="da8-tO-DCY"/>
                             <constraint firstAttribute="trailing" secondItem="DL5-8p-VuX" secondAttribute="trailing" id="osR-Xv-yKg"/>
+                            <constraint firstItem="kjt-Td-wx3" firstAttribute="top" secondItem="Oxu-3h-4ZB" secondAttribute="bottom" id="x0y-s4-1lF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bill" id="l6Q-Py-wRt">
@@ -2465,6 +2473,7 @@
                         <outlet property="makeAPaymentStatusButton" destination="Hcr-PO-NuQ" id="F8X-PO-sq8"/>
                         <outlet property="makeAPaymentStatusLabel" destination="AoK-OV-hPp" id="v0y-Bq-sX6"/>
                         <outlet property="needHelpUnderstandingButton" destination="2Mz-YL-zAT" id="8Xx-cx-wVY"/>
+                        <outlet property="noNetworkConnectionView" destination="kjt-Td-wx3" id="hdU-7F-clf"/>
                         <outlet property="paperlessButton" destination="nSe-Oh-dqm" id="U55-jj-93f"/>
                         <outlet property="paperlessEnrollmentLabel" destination="obw-t8-SXp" id="ggZ-Yi-XJt"/>
                         <outlet property="pastDueAmountLabel" destination="yV5-Wj-soj" id="6Y3-1a-NZP"/>
