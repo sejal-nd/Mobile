@@ -204,6 +204,11 @@ class LoginViewController: UIViewController {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
         })
         
+        // Hide password while loading
+        if !passwordTextField.textField.isSecureTextEntry {
+            onEyeballPress(eyeballButton)
+        }
+        
         viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
             guard let `self` = self else { return }
