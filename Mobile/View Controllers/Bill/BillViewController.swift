@@ -672,8 +672,14 @@ extension BillViewController: AccountPickerDelegate {
 
 extension BillViewController: BudgetBillingViewControllerDelegate {
 
-    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
-        showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
+    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController, averageMonthlyBill: String?) {
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            let textFormat = NSLocalizedString("Enrolled in Budget Billing - your monthly rate is %@", comment: "")
+            showDelayedToast(withMessage: String(format: textFormat, averageMonthlyBill ?? "--"))
+        case .comEd, .peco:
+            showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
+        }
         Analytics().logScreenView(AnalyticsPageView.BudgetBillEnrollComplete.rawValue)
     }
 

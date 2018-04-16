@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol BudgetBillingViewControllerDelegate: class {
-    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController)
+    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController, averageMonthlyBill: String?)
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController)
 }
 
@@ -299,7 +299,7 @@ class BudgetBillingViewController: UIViewController {
                 Analytics().logScreenView(AnalyticsPageView.BudgetBillEnrollOffer.rawValue)
                 
                 guard let `self` = self else { return }
-                self.delegate?.budgetBillingViewControllerDidEnroll(self)
+                self.delegate?.budgetBillingViewControllerDidEnroll(self, averageMonthlyBill: self.viewModel.averageMonthlyBill)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { [weak self] errMessage in
                 LoadingView.hide()
