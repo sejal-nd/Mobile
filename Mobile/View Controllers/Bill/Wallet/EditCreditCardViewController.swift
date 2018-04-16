@@ -371,7 +371,7 @@ class EditCreditCardViewController: UIViewController {
         let messageText: String
         switch Environment.sharedInstance.opco {
         case .bge:
-            messageText = NSLocalizedString("Your security code is usually a 3-4 digit number found on your card.", comment: "")
+            messageText = NSLocalizedString("Your security code is usually a 3 or 4 digit number found on your card.", comment: "")
         case .comEd, .peco:
             messageText = NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: "")
         }
