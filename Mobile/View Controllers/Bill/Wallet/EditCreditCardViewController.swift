@@ -368,7 +368,16 @@ class EditCreditCardViewController: UIViewController {
 
     
     @IBAction func onCVVTooltipPress() {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""), image: #imageLiteral(resourceName: "cvv_info"), description: NSLocalizedString("Your security code is usually a 3-4 digit number found on the back of your card.", comment: ""))
+        let messageText: String
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            messageText = NSLocalizedString("Your security code is usually a 3-4 digit number found on your card.", comment: "")
+        case .comEd, .peco:
+            messageText = NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: "")
+        }
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""),
+                                                image: #imageLiteral(resourceName: "cvv_info"),
+                                                description: messageText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 
