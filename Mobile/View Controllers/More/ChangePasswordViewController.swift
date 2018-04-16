@@ -192,6 +192,11 @@ class ChangePasswordViewController: UIViewController {
     @objc func onSubmitPress() {
         view.endEditing(true)
         
+        // Hide password while loading
+        if !currentPasswordTextField.textField.isSecureTextEntry {
+            onEyeballPress(eyeballButton)
+        }
+        
         LoadingView.show()
         viewModel.changePassword(sentFromLogin: sentFromLogin, onSuccess: { [weak self] in
             LoadingView.hide()
