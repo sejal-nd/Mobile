@@ -376,6 +376,11 @@ class LoginViewController: UIViewController {
             self.signInButton.accessibilityViewIsModal = true;
             self.biometricButton.isEnabled = true
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
+            
+            // Hide password while loading
+            if !self.passwordTextField.textField.isSecureTextEntry {
+                self.onEyeballPress(self.eyeballButton)
+            }
         }, onDidNotLoad:  { [weak self] in
             self?.biometricButton.isEnabled = true
             self?.navigationController?.view.isUserInteractionEnabled = true
