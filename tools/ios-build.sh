@@ -51,7 +51,7 @@ PROJECT_DIR="."
 ASSET_DIR="$PROJECT_DIR/Mobile/Assets/"
 PROJECT="Mobile.xcodeproj"
 CONFIGURATION="Release"
-UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8,OS=11.2"
+UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
 BUILD_NUMBER=
 BUNDLE_SUFFIX=
 BASE_BUNDLE_NAME=
