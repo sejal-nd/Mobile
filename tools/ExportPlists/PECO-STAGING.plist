@@ -12,7 +12,7 @@
 		<string>PECO Staging</string>
 	</dict>
 	<key>signingCertificate</key>
-	<string>ADC9D9FD95A7A26D8FD64E875DE6A0FB84C6E3F8</string>
+	<string>305192A978161F709EFCE001FC6CE04332EA32A2</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>stripSwiftSymbols</key>
