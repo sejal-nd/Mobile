@@ -49,6 +49,8 @@ class MockOutageService: OutageService {
         
         let reportedMessage = "As of 6:21 AM EST on 8/19/2017 we are working to identify the cause of this outage. We currently estimate your service will be restored by 10:30 AM EST on 8/19/2025."
         
+        let opCoGMTOffset = abs(Int(TimeZone.opCo.secondsFromGMT() / 3600))
+        
         switch accountNumber {
         case "1234567890":
             let dict: [AnyHashable: Any] = [
@@ -76,7 +78,7 @@ class MockOutageService: OutageService {
                 "smartMeterStatus": false,
                 "flagFinaled": false,
                 "flagNoPay": false,
-                "ETR": "2017-04-10T03:45:00-04:00"
+                "ETR": "2017-04-10T03:45:00-0\(opCoGMTOffset):00"
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         case "7003238921":
@@ -88,7 +90,7 @@ class MockOutageService: OutageService {
                 "smartMeterStatus": false,
                 "flagFinaled": false,
                 "flagNoPay": false,
-                "ETR": "2017-04-10T03:45:00-04:00"
+                "ETR": "2017-04-10T03:45:00-0\(opCoGMTOffset):00"
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         case "5591032201":
@@ -100,7 +102,7 @@ class MockOutageService: OutageService {
                 "smartMeterStatus": false,
                 "flagFinaled": false,
                 "flagNoPay": false,
-                "ETR": "2017-04-10T03:45:00-04:00"
+                "ETR": "2017-04-10T03:45:00-0\(opCoGMTOffset):00"
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         case "5591032203":
