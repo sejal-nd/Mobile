@@ -110,7 +110,7 @@ class UnauthenticatedOutageViewModel {
     
     var outageReportedDateString: String {
         if let reportedOutage = reportedOutage {
-            let timeString = Environment.sharedInstance.opcoDateFormatter.string(from: reportedOutage.reportedTime)
+            let timeString = DateFormatter.outageOpcoDateFormatter.string(from: reportedOutage.reportedTime)
             return String(format: NSLocalizedString("Reported %@", comment: ""), timeString)
         }
         return NSLocalizedString("Reported", comment: "")
@@ -119,10 +119,10 @@ class UnauthenticatedOutageViewModel {
     var estimatedRestorationDateString: String {
         if let reportedOutage = reportedOutage {
             if let reportedETR = reportedOutage.etr {
-                return Environment.sharedInstance.opcoDateFormatter.string(from: reportedETR)
+                return DateFormatter.outageOpcoDateFormatter.string(from: reportedETR)
             }
         } else if let statusETR = selectedOutageStatus!.etr {
-            return Environment.sharedInstance.opcoDateFormatter.string(from: statusETR)
+            return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
         }
         return NSLocalizedString("Assessing Damage", comment: "")
     }

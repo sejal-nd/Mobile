@@ -25,10 +25,10 @@ private func dollarAmount(fromValue value: Any?) throws -> Double {
 }
 
 private func extractDate(object: Any?) throws -> Date {
-    guard let dateString = object as? String else {
+    guard let dateString = object as? String, let date = dateString.apiFormatDate else {
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
-    return dateString.apiFormatDate
+    return date
 }
 
 private func calculateIsFuture(dateToCompare: Date) -> Bool {
