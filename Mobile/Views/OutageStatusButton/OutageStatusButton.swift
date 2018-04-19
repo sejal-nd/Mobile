@@ -42,7 +42,7 @@ class OutageStatusButton: UIView {
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
         
-        onLottieAnimation.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
+        onLottieAnimation.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
         onLottieAnimation.loopAnimation = true
         onLottieAnimation.contentMode = .scaleAspectFill
         animationView.addSubview(onLottieAnimation)
