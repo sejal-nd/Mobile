@@ -43,7 +43,7 @@ to just update the build script directly if it's a permanent change.
 
 --project                 - Name of the xcodeproj -- defaults to Mobile.xcodeproj
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
---phase                   - build, veracodePrep, unitTest, appCenterTest, distribute, writeDistributionScript
+--phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, distribute, writeDistributionScript
 "
 
 PROPERTIES_FILE='version.properties'
@@ -112,7 +112,7 @@ elif [ -z "$OPCO" ]; then
 	exit 1
 fi
 
-target_phases="build, veracodePrep, unitTest, appCenterTest, distribute, writeDistributionScript"
+target_phases="carthage, build, veracodePrep, unitTest, appCenterTest, distribute, writeDistributionScript"
 
 if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
@@ -249,7 +249,7 @@ fi
 
 # Restore Carthage Packages
 
-if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"Test"* ]]; then 
+if [[ $target_phases = *"carthage"* ]]; then 
 	# carthage update --platform iOS --project-directory $PROJECT_DIR
 	carthage update --platform iOS --project-directory $PROJECT_DIR --cache-builds
 fi
