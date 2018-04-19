@@ -39,7 +39,7 @@ class BillViewModel {
         self.accountService = accountService
     }
     
-    private lazy var accountDetailEvents: Observable<Event<AccountDetail>> = Observable
+    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = Observable
         .merge(self.fetchAccountDetail, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
         .flatMapLatest { [weak self] state -> Observable<Event<AccountDetail>> in
             guard let `self` = self else { return .empty() }
@@ -333,7 +333,7 @@ class BillViewModel {
     //MARK: - Pending Payments
     private(set) lazy var pendingPaymentAmounts: Driver<[Double]> = self.currentAccountDetail.map {
         // In a later release, we can use the whole pendingPayments array for BGE processing payments
-        [$0.billingInfo.pendingPayments.first].flatMap { $0?.amount }
+        [$0.billingInfo.pendingPayments.first].compactMap { $0?.amount }
     }
     
     //MARK: - Remaining Balance Due

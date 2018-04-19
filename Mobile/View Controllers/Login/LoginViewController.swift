@@ -187,7 +187,7 @@ class LoginViewController: UIViewController {
     @IBAction func onLoginPress() {
         Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
                               keepSignedIn: String(describing: keepMeSignedInSwitch.isOn),
-                              usedFingerprint: "false")
+                              usedFingerprint: "disabled")
         
         if forgotUsernamePopulated {
             Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAccountValidation.rawValue)
@@ -203,6 +203,11 @@ class LoginViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
         })
+        
+        // Hide password while loading
+        if !passwordTextField.textField.isSecureTextEntry {
+            onEyeballPress(eyeballButton)
+        }
         
         viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
@@ -360,7 +365,7 @@ class LoginViewController: UIViewController {
             
             Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
                                   keepSignedIn: String(describing: self.keepMeSignedInSwitch.isOn),
-                                  usedFingerprint: "true")
+                                  usedFingerprint: "enabled")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
@@ -371,6 +376,11 @@ class LoginViewController: UIViewController {
             self.signInButton.accessibilityViewIsModal = true;
             self.biometricButton.isEnabled = true
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
+            
+            // Hide password while loading
+            if !self.passwordTextField.textField.isSecureTextEntry {
+                self.onEyeballPress(self.eyeballButton)
+            }
         }, onDidNotLoad:  { [weak self] in
             self?.biometricButton.isEnabled = true
             self?.navigationController?.view.isUserInteractionEnabled = true

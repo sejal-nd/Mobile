@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -61,16 +61,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ZUP-Qy-EaU">
-                                                    <rect key="frame" x="90" y="9" width="214.5" height="45.5"/>
+                                                    <rect key="frame" x="90" y="9" width="42" height="45.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAF-y5-Bj0">
-                                                            <rect key="frame" x="0.0" y="0.0" width="214.5" height="23"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PJ-Lc-fp1">
-                                                            <rect key="frame" x="0.0" y="26" width="214.5" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="26" width="42" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -81,7 +81,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prl-V7-7EA">
-                                                    <rect key="frame" x="311.5" y="23.5" width="46.5" height="17"/>
+                                                    <rect key="frame" x="139" y="23.5" width="219" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -224,6 +224,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDU-Ch-dvR">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZb-kv-znM" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSc-mq-7Vd">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
@@ -387,7 +394,7 @@
                                                 </constraints>
                                             </view>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lL0-H1-J9Q">
-                                                <rect key="frame" x="146.5" y="289" width="83.5" height="20"/>
+                                                <rect key="frame" x="146.5" y="289" width="83.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -469,11 +476,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="VZb-kv-znM" firstAttribute="top" secondItem="rcn-a8-ST7" secondAttribute="bottom" id="8xJ-pW-skK"/>
+                            <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="VZb-kv-znM" secondAttribute="bottom" id="AS7-l5-8W2"/>
                             <constraint firstItem="UDU-Ch-dvR" firstAttribute="leading" secondItem="5sA-d6-43i" secondAttribute="leading" id="KOX-G9-4W6"/>
+                            <constraint firstAttribute="trailing" secondItem="VZb-kv-znM" secondAttribute="trailing" id="O5B-I7-WIM"/>
                             <constraint firstAttribute="trailing" secondItem="qSc-mq-7Vd" secondAttribute="trailing" id="OzI-rA-gjT"/>
                             <constraint firstItem="qSc-mq-7Vd" firstAttribute="top" secondItem="rcn-a8-ST7" secondAttribute="bottom" id="Pf1-ZV-Egm"/>
                             <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="qSc-mq-7Vd" secondAttribute="bottom" id="QyO-hL-LuP"/>
                             <constraint firstItem="qSc-mq-7Vd" firstAttribute="leading" secondItem="5sA-d6-43i" secondAttribute="leading" id="XA5-bY-Jq8"/>
+                            <constraint firstItem="VZb-kv-znM" firstAttribute="leading" secondItem="5sA-d6-43i" secondAttribute="leading" id="aXd-D2-804"/>
                             <constraint firstItem="UDU-Ch-dvR" firstAttribute="top" secondItem="rcn-a8-ST7" secondAttribute="bottom" id="dai-3M-hIG"/>
                             <constraint firstAttribute="trailing" secondItem="UDU-Ch-dvR" secondAttribute="trailing" id="myP-W4-RK3"/>
                             <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="UDU-Ch-dvR" secondAttribute="bottom" id="uRc-Zg-g6e"/>
@@ -497,6 +508,7 @@
                         <outlet property="gradientBackground" destination="UDU-Ch-dvR" id="VEL-GO-tuo"/>
                         <outlet property="loadingAnimationView" destination="hNa-Vb-1pp" id="M29-8m-vrJ"/>
                         <outlet property="loadingView" destination="NzH-9I-b9u" id="Iki-bl-lva"/>
+                        <outlet property="noNetworkConnectionView" destination="VZb-kv-znM" id="OnL-Ot-FoR"/>
                         <outlet property="outageStatusButton" destination="B8h-b7-uBN" id="ckU-Ss-Lt7"/>
                         <outlet property="reportOutageButton" destination="UK3-yj-xRE" id="Mts-dt-8zK"/>
                         <outlet property="scrollView" destination="qSc-mq-7Vd" id="HDB-Yy-L6O"/>
@@ -724,6 +736,9 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="49" id="Lj2-x8-Wm6"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <action selector="switchPressedWithSender:" destination="ZQH-GI-7Fc" eventType="valueChanged" id="k2l-Bj-bY1"/>
+                                                        </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="I have checked my circuit breakers or fuse box and I would still like to report an outage." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsO-JP-Q4X">
                                                         <rect key="frame" x="97" y="24" width="249" height="0.0"/>

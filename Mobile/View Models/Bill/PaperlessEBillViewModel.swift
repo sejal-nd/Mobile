@@ -93,36 +93,27 @@ class PaperlessEBillViewModel {
     }()
     
     func submitChanges(onSuccess: @escaping (PaperlessEBillChangedStatus) -> Void, onError: @escaping (String) -> Void) {
-        var requestObservables = [Observable<Void>]()
-        var enrolled = false //, unenrolled = false
-        for account in accountsToEnroll.value {
-            enrolled = true
-            requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: initialAccountDetail.value.customerInfo.emailAddress))
-            Analytics().logScreenView(AnalyticsPageView.EBillEnrollOffer.rawValue)
-        }
-        for account in accountsToUnenroll.value {
-            //unenrolled = true
-            requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account))
-            Analytics().logScreenView(AnalyticsPageView.EBillUnEnrollOffer.rawValue)
-        }
+        let enrollObservables = accountsToEnroll.value.map {
+            billService.enrollPaperlessBilling(accountNumber: $0,
+                                               email: initialAccountDetail.value.customerInfo.emailAddress)
+                .do(onNext: {Analytics().logScreenView(AnalyticsPageView.EBillEnrollComplete.rawValue)})
+            }
+            .doEach { _ in Analytics().logScreenView(AnalyticsPageView.EBillEnrollOffer.rawValue) }
+        
+        let unenrollObservables = accountsToUnenroll.value.map {
+            billService.unenrollPaperlessBilling(accountNumber: $0)
+                .do(onNext: {Analytics().logScreenView(AnalyticsPageView.EBillUnEnrollComplete.rawValue)})
+            }
+            .doEach { _ in Analytics().logScreenView(AnalyticsPageView.EBillUnEnrollOffer.rawValue) }
         
         var changedStatus: PaperlessEBillChangedStatus
         if Environment.sharedInstance.opco == .bge {
-            changedStatus = enrolled ? .Enroll : .Unenroll
+            changedStatus = !enrollObservables.isEmpty ? .Enroll : .Unenroll
         } else { // EM-1780 ComEd/PECO should always show Mixed
             changedStatus = PaperlessEBillChangedStatus.Mixed
         }
         
-//        // Pre EM-1780:
-//        if enrolled && unenrolled {
-//            changedStatus = PaperlessEBillChangedStatus.Mixed
-//        } else if enrolled {
-//            changedStatus = PaperlessEBillChangedStatus.Enroll
-//        } else { // User cannot submit without enrolling/unenrolling at least 1 account, so it's safe to make this a generic 'else'
-//            changedStatus = PaperlessEBillChangedStatus.Unenroll
-//        }
-        
-        Observable.from(requestObservables)
+        Observable.from(enrollObservables + unenrollObservables)
             .merge(maxConcurrent: 3)
             .toArray()
             .observeOn(MainScheduler.instance)

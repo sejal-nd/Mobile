@@ -480,9 +480,16 @@ class MakePaymentViewController: UIViewController {
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).disposed(by: disposeBag)
         
-        addBankAccountButton.rx.touchUpInside.map { _ in true }.bind(to: viewModel.inlineBank).disposed(by: disposeBag)
+        addBankAccountButton.rx.touchUpInside
+            .do(onNext: { Analytics().logScreenView(AnalyticsPageView.AddBankNewWallet.rawValue) })
+            .map { _ in true }
+            .bind(to: viewModel.inlineBank).disposed(by: disposeBag)
         
-        addCreditCardButton.rx.touchUpInside.map { _ in true }.bind(to: viewModel.inlineCard).disposed(by: disposeBag)
+        addCreditCardButton.rx.touchUpInside
+            .do(onNext: { Analytics().logScreenView(AnalyticsPageView.AddCardNewWallet.rawValue) })
+            .map { _ in true }
+            .bind(to: viewModel.inlineCard)
+            .disposed(by: disposeBag)
         
         deletePaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onDeletePaymentPress()
@@ -652,7 +659,16 @@ class MakePaymentViewController: UIViewController {
     }
     
     @IBAction func onCVVTooltipPress() {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""), image: #imageLiteral(resourceName: "cvv_info"), description: NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: ""))
+        let messageText: String
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            messageText = NSLocalizedString("Your security code is usually a 3 or 4 digit number found on your card.", comment: "")
+        case .comEd, .peco:
+            messageText = NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: "")
+        }
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""),
+                                                image: #imageLiteral(resourceName: "cvv_info"),
+                                                description: messageText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
@@ -792,7 +808,16 @@ extension MakePaymentViewController: AddCardFormViewDelegate {
     }
     
     func addCardFormViewDidTapCVVTooltip(_ addCardFormView: AddCardFormView) {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""), image: #imageLiteral(resourceName: "cvv_info"), description: NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: ""))
+        let messageText: String
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            messageText = NSLocalizedString("Your security code is usually a 3 or 4 digit number found on your card.", comment: "")
+        case .comEd, .peco:
+            messageText = NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: "")
+        }
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""),
+                                                image: #imageLiteral(resourceName: "cvv_info"),
+                                                description: messageText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }

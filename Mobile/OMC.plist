@@ -18,6 +18,15 @@
 			<dict>
 				<key>authenticationType</key>
 				<string>SSOTokenExchange</string>
+				<key>OAuth</key>
+				<dict>
+					<key>tokenEndpoint</key>
+					<string>HTTPS://EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientID</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientSecret</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+				</dict>
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
@@ -46,6 +55,15 @@
 			<dict>
 				<key>authenticationType</key>
 				<string>SSOTokenExchange</string>
+				<key>OAuth</key>
+				<dict>
+					<key>tokenEndpoint</key>
+					<string>HTTPS://EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientID</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientSecret</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+				</dict>
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
@@ -74,6 +92,15 @@
 			<dict>
 				<key>authenticationType</key>
 				<string>SSOTokenExchange</string>
+				<key>OAuth</key>
+				<dict>
+					<key>tokenEndpoint</key>
+					<string>HTTPS://EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientID</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientSecret</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+				</dict>
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
@@ -102,6 +129,15 @@
 			<dict>
 				<key>authenticationType</key>
 				<string>SSOTokenExchange</string>
+				<key>OAuth</key>
+				<dict>
+					<key>tokenEndpoint</key>
+					<string>HTTPS://EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientID</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientSecret</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+				</dict>
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
@@ -130,6 +166,15 @@
 			<dict>
 				<key>authenticationType</key>
 				<string>SSOTokenExchange</string>
+				<key>OAuth</key>
+				<dict>
+					<key>tokenEndpoint</key>
+					<string>HTTPS://EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientID</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientSecret</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+				</dict>
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
@@ -158,6 +203,15 @@
 			<dict>
 				<key>authenticationType</key>
 				<string>SSOTokenExchange</string>
+				<key>OAuth</key>
+				<dict>
+					<key>tokenEndpoint</key>
+					<string>HTTPS://EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientID</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+					<key>clientSecret</key>
+					<string>EDIT_IN_SETTINGS_BUNDLE</string>
+				</dict>
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>

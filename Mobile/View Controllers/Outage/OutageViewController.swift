@@ -13,6 +13,7 @@ class OutageViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
+    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var gradientBackground: UIView!
     @IBOutlet weak var scrollViewContentView: UIView!
     @IBOutlet weak var accountContentView: UIView!
@@ -114,6 +115,11 @@ class OutageViewController: AccountPickerViewController {
         updateContent()
         
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        
+        noNetworkConnectionView.reload
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in self?.getOutageStatus() })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -202,15 +208,26 @@ class OutageViewController: AccountPickerViewController {
         customErrorView.isHidden = true
         loadingView.isHidden = false
         loadingView.accessibilityViewIsModal = true
+        scrollView?.isHidden = false
+        noNetworkConnectionView.isHidden = true
         setRefreshControlEnabled(enabled: false)
         viewModel.getOutageStatus(onSuccess: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+            self?.scrollView?.isHidden = false
+            self?.noNetworkConnectionView.isHidden = true
             self?.loadingView.isHidden = true
             self?.loadingView.accessibilityViewIsModal = false
             self?.setRefreshControlEnabled(enabled: true)
             self?.updateContent()
         }, onError: { [weak self] serviceError in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+            if serviceError.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
+                self?.scrollView?.isHidden = true
+                self?.noNetworkConnectionView.isHidden = false
+            } else {
+                self?.scrollView?.isHidden = false
+                self?.noNetworkConnectionView.isHidden = true
+            }
             self?.loadingView.isHidden = true
             self?.loadingView.accessibilityViewIsModal = false
             self?.setRefreshControlEnabled(enabled: true)
@@ -236,6 +253,14 @@ class OutageViewController: AccountPickerViewController {
         }, onError: { [weak self] serviceError in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
+            
+            if serviceError.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
+                self.scrollView?.isHidden = true
+                self.noNetworkConnectionView.isHidden = false
+            } else {
+                self.scrollView?.isHidden = false
+                self.noNetworkConnectionView.isHidden = true
+            }
 
             if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
                 self.errorLabel.isHidden = true

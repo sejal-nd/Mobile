@@ -380,7 +380,7 @@ class HomeBillCardView: UIView {
                     return Disposables.create()
                 }
                 let alertController = UIAlertController(title: NSLocalizedString("Enter CVV2", comment: ""),
-                                                        message: NSLocalizedString("Enter your 3-4 digit security code to complete your payment.", comment: ""),
+                                                        message: NSLocalizedString("Enter your 3 or 4 digit security code to complete your payment.", comment: ""),
                                                         preferredStyle: .alert)
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .default) { [weak self] _ in

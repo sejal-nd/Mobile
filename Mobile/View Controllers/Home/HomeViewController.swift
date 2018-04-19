@@ -60,8 +60,8 @@ class HomeViewController: AccountPickerViewController {
         
         accountPickerViewControllerWillAppear
             .withLatestFrom(Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
-                                                     viewModel.accountDetailEvents.elements().map { $0 }.startWith(nil)))
-            .subscribe(onNext: { [weak self] state, accountDetail in
+                                                     viewModel.accountDetailEvents.map { $0 }.startWith(nil)))
+            .subscribe(onNext: { [weak self] state, accountDetailEvent in
                 guard let `self` = self else { return }
                 switch(state) {
                 case .loadingAccounts:
@@ -69,7 +69,7 @@ class HomeViewController: AccountPickerViewController {
                 case .readyToFetchData:
                     if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchData.onNext(.switchAccount)
-                    } else if accountDetail == nil {
+                    } else if accountDetailEvent?.element == nil {
                         self.viewModel.fetchData.onNext(.switchAccount)
                     }
                 }

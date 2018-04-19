@@ -17,6 +17,8 @@ class BudgetBillingViewModel {
 
     let accountDetail: AccountDetail!
     let currentEnrollment: Variable<Bool>!
+    var averageMonthlyBill: String?
+    
     let enrolling = Variable(false)
     let unenrolling = Variable(false)
     let selectedUnenrollmentReason = Variable(-1)
@@ -43,7 +45,8 @@ class BudgetBillingViewModel {
     func getBudgetBillingInfo(onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
         billService.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { billingInfo in
+            .subscribe(onNext: { [weak self] billingInfo in
+                self?.averageMonthlyBill = billingInfo.averageMonthlyBill
                 onSuccess(billingInfo)
             }, onError: { error in
                 onError(error.localizedDescription)

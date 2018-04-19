@@ -43,8 +43,7 @@ to just update the build script directly if it's a permanent change.
 
 --project                 - Name of the xcodeproj -- defaults to Mobile.xcodeproj
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
---phase                   - build, unitTest, appCenterTest, distribute, writeDistributionScript
-
+--phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, distribute, writeDistributionScript
 "
 
 PROPERTIES_FILE='version.properties'
@@ -52,7 +51,7 @@ PROJECT_DIR="."
 ASSET_DIR="$PROJECT_DIR/Mobile/Assets/"
 PROJECT="Mobile.xcodeproj"
 CONFIGURATION="Release"
-UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8,OS=11.2"
+UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
 BUILD_NUMBER=
 BUNDLE_SUFFIX=
 BASE_BUNDLE_NAME=
@@ -113,7 +112,7 @@ elif [ -z "$OPCO" ]; then
 	exit 1
 fi
 
-target_phases="build, unitTest, appCenterTest, distribute, writeDistributionScript"
+target_phases="carthage, build, veracodePrep, unitTest, appCenterTest, distribute, writeDistributionScript"
 
 if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
@@ -250,7 +249,7 @@ fi
 
 # Restore Carthage Packages
 
-if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"Test"* ]]; then 
+if [[ $target_phases = *"carthage"* ]]; then 
 	# carthage update --platform iOS --project-directory $PROJECT_DIR
 	carthage update --platform iOS --project-directory $PROJECT_DIR --cache-builds
 fi
@@ -296,6 +295,34 @@ if [[ $target_phases = *"build"* ]]; then
 
 	echo "--------------------------------- Post exporting -------------------------------"
 
+fi
+
+if [[ $target_phases = *"veracodePrep"* ]]; then
+
+	if [ "$CONFIGURATION" == "Staging" ]; then
+
+
+		# disable error propagation. we do not want to force the whole build script to fail if the rm fails
+		set +e
+
+		rm -r build/veracode
+
+		set -e
+
+		mkdir build/veracode
+		mkdir build/veracode/Payload
+
+		cp -a build/$CONFIGURATION/$OPCO.app.dSYM/. build/veracode/Payload/$OPCO.app.dSYM/
+		cp -a build/$CONFIGURATION/$OPCO.swiftmodule/. build/veracode/Payload/$OPCO.swiftmodule/
+		cp -a build/archive/$target_scheme.xcarchive/Products/Applications/$OPCO.app/. build/veracode/Payload/$OPCO.app/
+		pushd ./build/veracode
+		zip -r $OPCO-Veracode-$target_version_number.zip ./Payload
+		popd
+
+		rm -r build/veracode/Payload
+	else
+		echo "Skipping Veracode prep. Only Staging configuration is setup for Veracode analysis currently"
+	fi
 fi
 
 
