@@ -41,6 +41,9 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var dueAmountAndDateLabel: UILabel!
     @IBOutlet weak var dueAmountAndDateTooltip: UIButton!
     
+    @IBOutlet weak var slideToPay24DisclaimerContainer: UIView!
+    @IBOutlet weak var slideToPay24DisclaimerLabel: UILabel!
+    
     @IBOutlet weak var bankCreditNumberContainer: UIView!
     @IBOutlet weak var bankCreditNumberButton: ButtonControl!
     @IBOutlet weak var bankCreditCardImageView: UIImageView!
@@ -135,6 +138,8 @@ class HomeBillCardView: UIView {
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         dueAmountAndDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
+        slideToPay24DisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         convenienceFeeLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
@@ -207,6 +212,7 @@ class HomeBillCardView: UIView {
         viewModel.showAlertIcon.not().drive(alertContainer.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).disposed(by: bag)
         viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showSlideToPay24DisclaimerLabel.not().drive(slideToPay24DisclaimerContainer.rx.isHidden).disposed(by: bag)
         
         Driver.zip(viewModel.showAlertIcon, viewModel.showPaymentPendingIcon, viewModel.showBillPaidIcon)
             .map { $0 || $1 || $2 }
