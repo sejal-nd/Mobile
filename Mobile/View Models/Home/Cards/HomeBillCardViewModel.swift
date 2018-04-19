@@ -302,6 +302,8 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showBillPaidIcon: Driver<Bool> = self.billState.map { $0 == .billPaid || $0 == .billPaidIntermediate }
     
+    private(set) lazy var showSlideToPay24DisclaimerLabel: Driver<Bool> = self.billState.map { $0 == .billPaidIntermediate }
+    
     private(set) lazy var showAmount: Driver<Bool> = self.billState.map { $0 != .billPaidIntermediate }
     
     private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.walletItemDriver,
