@@ -54,6 +54,7 @@ struct Environment  {
     
     var opcoDateFormatter: DateFormatter {
         let formatter = DateFormatter()
+        formatter.timeZone = .opCo
         switch opco {
         case .bge:
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
