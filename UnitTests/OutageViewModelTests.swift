@@ -91,7 +91,7 @@ class OutageViewModelTests: XCTestCase {
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
         let testEtr = Date()
-        let testEtrString = Environment.sharedInstance.opcoDateFormatter.string(from: testEtr)
+        let testEtrString = DateFormatter.outageOpcoDateFormatter.string(from: testEtr)
         
         let expect = expectation(description: "Test report outage expectation")
         reportViewModel.reportOutage(onSuccess: {
@@ -194,7 +194,7 @@ class OutageViewModelTests: XCTestCase {
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
         let testDate = Date()
-        let testDateString = Environment.sharedInstance.opcoDateFormatter.string(from: testDate)
+        let testDateString = DateFormatter.outageOpcoDateFormatter.string(from: testDate)
         
         let expect = expectation(description: "Test report outage expectation")
         

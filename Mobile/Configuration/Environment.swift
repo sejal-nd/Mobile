@@ -51,17 +51,4 @@ struct Environment  {
         firebaseConfigFile = dict?["firebaseConfigFile"] as! String
         opcoUpdatesHost = dict?["opcoUpdatesHost"] as! String
     }
-    
-    var opcoDateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        switch opco {
-        case .bge:
-            formatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        case .comEd:
-            formatter.dateFormat = "hh:mm a 'on' M/dd/yyyy"
-        case .peco:
-            formatter.dateFormat = "h:mm a zz 'on' M/dd/yyyy"
-        }
-        return formatter
-    }
 }
