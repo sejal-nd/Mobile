@@ -55,7 +55,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
     
-    var errorMessageLoaded = false
     var loadAccountsError = false
     
     let displayAccountsIfGreaterThan = 1
@@ -159,18 +158,13 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     }
     
     func loadErrorMessage(_ title: String, message: String) {
-        if errorMessageLoaded {
-            return
-        }
-        
-        errorMessageLoaded = true
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        })
         alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default) { [weak self] _ in
-            guard let `self` = self else { return }
-            self.loadSecurityQuestions()
+            self?.loadSecurityQuestions()
         })
         
         present(alert, animated: true, completion: nil)
