@@ -55,7 +55,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
     
-    var errorMessageLoaded = false
     var loadAccountsError = false
     
     let displayAccountsIfGreaterThan = 1
