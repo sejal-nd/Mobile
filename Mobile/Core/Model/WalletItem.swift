@@ -84,6 +84,27 @@ private func extractLast4(object: Any?) throws -> String? {
     return string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
 }
 
+private func extractDate(object: Any?) throws -> Date {
+    guard let dateString = object as? String else {
+        throw MapperError.convertibleError(value: object, type: Date.self)
+    }
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeZone = .opCo
+    
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+    if let date = dateFormatter.date(from: dateString) {
+        return date
+    }
+    
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    if let date = dateFormatter.date(from: dateString) {
+        return date
+    }
+    
+    throw MapperError.convertibleError(value: object, type: Date.self)
+}
+
 struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemID: String?
     let walletExternalID: String?
@@ -101,6 +122,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let isDefault: Bool
     
     let cardIssuer: String?
+    
+    let dateCreated: Date?
     
     init(map: Mapper) throws {
         walletItemID = map.optionalFrom("walletItemID")
@@ -122,6 +145,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         isDefault = map.optionalFrom("isDefault") ?? false
         cardIssuer = map.optionalFrom("cardIssuer")
         bankOrCard = .card // default value
+        dateCreated = map.optionalFrom("dateCreated", transformation: extractDate)
         
         if Environment.sharedInstance.opco == .bge {
             walletItemStatusTypeBGE = map.optionalFrom("walletItemStatusType")
