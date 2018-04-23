@@ -967,7 +967,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="oRl-ty-kRc">
                                                 <rect key="frame" x="86" y="21" width="251" height="80"/>
-                                                <accessibility key="accessibilityConfiguration" label="BGE, an Exelon Company">
+                                                <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
                                             </imageView>
@@ -1109,6 +1109,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                     <connections>
                         <outlet property="continueAsGuestButon" destination="SSH-Ni-ZZW" id="w0C-Sb-5mR"/>
                         <outlet property="logoBackgroundView" destination="jAP-dP-E5T" id="UQC-qZ-3Av"/>
+                        <outlet property="logoImageView" destination="oRl-ty-kRc" id="dwf-CY-vhE"/>
                         <outlet property="orLabel" destination="cRy-eH-SXJ" id="5NA-Uz-AHa"/>
                         <outlet property="registerButton" destination="Mtv-0B-6Rn" id="niA-n6-3Nw"/>
                         <outlet property="signInButton" destination="oHs-4V-Y7S" id="S4e-LI-eWW"/>
