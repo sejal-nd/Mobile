@@ -22,6 +22,7 @@
 	<string>20180206</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fb</string>
 		<string>ecobee</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
