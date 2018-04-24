@@ -573,6 +573,19 @@ class MakePaymentViewController: UIViewController {
     @objc func onNextPress() {
         view.endEditing(true)
         
+        if viewModel.inlineBank.value {
+            Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
+        } else if viewModel.inlineCard.value {
+            Analytics().logScreenView(AnalyticsPageView.CardOffer.rawValue)
+        } else if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard { // Existing wallet item
+            switch bankOrCard {
+            case .bank:
+                Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
+            case .card:
+                Analytics().logScreenView(AnalyticsPageView.CardOffer.rawValue)
+            }
+        }
+        
         var shouldShowOneTouchPayWarning = false
         if viewModel.inlineBank.value {
             if viewModel.addBankFormViewModel.oneTouchPay.value {
