@@ -215,9 +215,9 @@ class BGEAutoPayViewController: UIViewController {
     
     @objc func onSubmitPress() {
         LoadingView.show()
-        Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
         
         if viewModel.initialEnrollmentStatus.value == .unenrolled {
+            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
             viewModel.enrollOrUpdate(onSuccess: { [weak self] in
                 LoadingView.hide()
                 Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
@@ -235,9 +235,10 @@ class BGEAutoPayViewController: UIViewController {
             })
         } else if viewModel.initialEnrollmentStatus.value == .enrolled {
             if viewModel.enrollSwitchValue.value { // Update
+                Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingSubmit.rawValue)
                 viewModel.enrollOrUpdate(update: true, onSuccess: { [weak self] in
                     LoadingView.hide()
-                    Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsComplete.rawValue)
+                    Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingComplete.rawValue)
                     
                     guard let `self` = self else { return }
                     self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
