@@ -135,6 +135,11 @@ class OutageViewController: AccountPickerViewController {
         gradientLayer.frame = gradientBackground.frame
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
+    }
+    
     @objc func killRefresh() -> Void {
         refreshControl?.endRefreshing()
         scrollView!.alwaysBounceVertical = false
@@ -325,13 +330,11 @@ extension OutageViewController: OutageStatusButtonDelegate {
         Analytics().logScreenView(AnalyticsPageView.OutageStatusDetails.rawValue)
         if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
             tabBarController?.selectedIndex = 1 // Jump to Bill tab
-            Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
         } else {
             if let message = viewModel.currentOutageStatus!.outageDescription {
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
-                Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
             }
         }
     }

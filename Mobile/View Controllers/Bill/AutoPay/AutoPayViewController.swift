@@ -162,7 +162,6 @@ class AutoPayViewController: UIViewController {
     
     @objc func onSubmitPress() {
         view.endEditing(true)
-        Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
         
         LoadingView.show()
         viewModel.submit()
@@ -222,7 +221,6 @@ class AutoPayViewController: UIViewController {
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         reasonForStoppingLabel.sizeToFit()
-        Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollOffer.rawValue)
     }
     
     private func textFieldSetup() {

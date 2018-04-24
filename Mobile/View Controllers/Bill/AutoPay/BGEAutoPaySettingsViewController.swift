@@ -144,9 +144,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if viewModel.initialEnrollmentStatus.value == .enrolled {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsOffer.rawValue)
+            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingOffer.rawValue)
         } else {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsOfferNew.rawValue)
+            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingOfferNew.rawValue)
         }
     }
     
@@ -632,7 +632,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
                                     self.viewModel.userDidChangeSettings.value = true
                                     self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"
                                     self.modifyBeforeDueDateDetailsLabel()
-                                    Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsSubmit.rawValue)
                                 }
                 },
                             onCancel: nil)
