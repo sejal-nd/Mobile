@@ -207,6 +207,7 @@ class ReportOutageViewController: UIViewController {
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.footerTextViewText
         footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
+        footerTextView.linkTapDelegate = self
         
         commentTextView.textView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
         
@@ -454,4 +455,14 @@ extension ReportOutageViewController: UITextFieldDelegate {
         
     }
     
+}
+
+extension ReportOutageViewController: DataDetectorTextViewLinkTapDelegate {
+    
+    func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
+        let screenName = unauthenticatedExperience ?
+            AnalyticsPageView.ReportAnOutageUnAuthEmergencyPhone.rawValue :
+            AnalyticsPageView.ReportOutageEmergencyCall.rawValue
+        Analytics().logScreenView(screenName)
+    }
 }

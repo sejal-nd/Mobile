@@ -56,6 +56,7 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.footerText
+        footerTextView.linkTapDelegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -125,4 +126,11 @@ extension UnauthenticatedOutageStatusViewController: ReportOutageViewControllerD
         })
     }
     
+}
+
+extension UnauthenticatedOutageStatusViewController: DataDetectorTextViewLinkTapDelegate {
+    
+    func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
+        Analytics().logScreenView(AnalyticsPageView.OutageScreenUnAuthEmergencyPhone.rawValue)
+    }
 }
