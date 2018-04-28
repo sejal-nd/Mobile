@@ -4913,7 +4913,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = 38R4RRBYR8;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -8285,7 +8285,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d15b7075-3ed4-406b-bf63-8ce80b8252d9";
+				PROVISIONING_PROFILE = "7a366aa0-e405-4b7d-9c89-f5590f1249f4";
 				PROVISIONING_PROFILE_SPECIFIER = "ComEd App Store";
 				SWIFT_VERSION = 4.0;
 			};

@@ -9,16 +9,16 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.exelon.mobile.peco.staging</key>
-		<string>PECO Staging</string>
+		<string>PECO Staging Enterprise Dist</string>
 	</dict>
 	<key>signingCertificate</key>
-	<string>305192A978161F709EFCE001FC6CE04332EA32A2</string>
+	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>stripSwiftSymbols</key>
 	<true/>
 	<key>teamID</key>
-	<string>YU7Y757VB5</string>
+	<string>38R4RRBYR8</string>
 	<key>thinning</key>
 	<string>&lt;none&gt;</string>
 </dict>
