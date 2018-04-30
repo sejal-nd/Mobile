@@ -12,6 +12,9 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -157,23 +160,41 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNO-0Y-K8O">
-                                    <rect key="frame" x="112.5" y="477" width="113.5" height="158.5"/>
+                                    <rect key="frame" x="84.5" y="477" width="169.5" height="153"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gA-6f-vmQ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="24" width="113.5" height="127.5"/>
+                                            <rect key="frame" x="0.0" y="24" width="169.5" height="122"/>
                                             <subviews>
                                                 <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="fhF-mN-jhs">
-                                                    <rect key="frame" x="7" y="4" width="92.5" height="119.5"/>
+                                                    <rect key="frame" x="7" y="4" width="148.5" height="114"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_creditcard" translatesAutoresizingMaskIntoConstraints="NO" id="Ild-3Y-ezu">
-                                                            <rect key="frame" x="0.0" y="47" width="31" height="26"/>
+                                                            <rect key="frame" x="0.0" y="44" width="31" height="26"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="**** 1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5F-y7-LKK">
-                                                            <rect key="frame" x="37" y="52.5" width="55.5" height="14.5"/>
+                                                            <rect key="frame" x="37" y="50" width="55.5" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                             <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" horizontalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="EBS-40-KjO">
+                                                            <rect key="frame" x="98.5" y="0.0" width="50" height="114"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="Expired" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGf-rO-cXW">
+                                                                    <rect key="frame" x="14" y="0.0" width="36" height="114"/>
+                                                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
+                                                                    <color key="textColor" red="0.44313725490196076" green="0.0" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="AGf-rO-cXW" secondAttribute="bottom" id="7Ju-uZ-Snb"/>
+                                                                <constraint firstAttribute="trailing" secondItem="AGf-rO-cXW" secondAttribute="trailing" id="KSi-yR-kF4"/>
+                                                                <constraint firstItem="AGf-rO-cXW" firstAttribute="top" secondItem="EBS-40-KjO" secondAttribute="top" id="ZKT-yO-0xt"/>
+                                                                <constraint firstItem="AGf-rO-cXW" firstAttribute="leading" secondItem="EBS-40-KjO" secondAttribute="leading" constant="14" id="j8F-wk-5sB"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -191,14 +212,14 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="5gA-6f-vmQ" secondAttribute="trailing" id="GwD-YH-YOZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="5gA-6f-vmQ" secondAttribute="trailing" id="00Z-og-tIY"/>
                                         <constraint firstAttribute="bottom" secondItem="5gA-6f-vmQ" secondAttribute="bottom" priority="999" constant="7" id="T59-s4-LyK"/>
+                                        <constraint firstItem="5gA-6f-vmQ" firstAttribute="leading" secondItem="vNO-0Y-K8O" secondAttribute="leading" id="cee-mw-sUt"/>
                                         <constraint firstItem="5gA-6f-vmQ" firstAttribute="top" secondItem="vNO-0Y-K8O" secondAttribute="top" priority="999" constant="24" id="d8R-T4-WhT"/>
-                                        <constraint firstItem="5gA-6f-vmQ" firstAttribute="leading" secondItem="vNO-0Y-K8O" secondAttribute="leading" id="pEv-ya-3qd"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQi-zi-eg5">
-                                    <rect key="frame" x="34.5" y="635.5" width="269.5" height="72.5"/>
+                                    <rect key="frame" x="34.5" y="630" width="269.5" height="72.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTc-qG-fne" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="28" width="269.5" height="26.5"/>
@@ -231,7 +252,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="har-lF-GNF">
-                                    <rect key="frame" x="48.5" y="708" width="241.5" height="48"/>
+                                    <rect key="frame" x="48.5" y="702.5" width="241.5" height="48"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Minimum payment allowed is $5.00." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frg-BE-BO9">
                                             <rect key="frame" x="0.0" y="21" width="241.5" height="17"/>
@@ -249,7 +270,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRP-dR-wFH">
-                                    <rect key="frame" x="9" y="756" width="320" height="39"/>
+                                    <rect key="frame" x="9" y="750.5" width="320" height="39"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="A $2.35 convenience fee will be applied by Bill Matrix, our payment partner." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URg-hW-5L8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
@@ -267,10 +288,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygv-AU-pzi">
-                                    <rect key="frame" x="49" y="795" width="240" height="42"/>
+                                    <rect key="frame" x="49" y="789.5" width="240" height="47.5"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lai-wo-Cje">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="32"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="37.5"/>
                                             <state key="normal" title="View Tutorial"/>
                                         </button>
                                     </subviews>
@@ -553,6 +574,7 @@
                 <outlet property="autoPayImageView" destination="Uk6-Fs-NZW" id="afO-1d-TZV"/>
                 <outlet property="automaticPaymentInfoButton" destination="Evf-zb-9Gh" id="JM9-L9-k6w"/>
                 <outlet property="automaticPaymentInfoButtonLabel" destination="8lZ-GJ-csL" id="KtR-1W-exH"/>
+                <outlet property="bankCreditCardExpiredView" destination="EBS-40-KjO" id="ce5-je-iDf"/>
                 <outlet property="bankCreditCardImageView" destination="Ild-3Y-ezu" id="tk5-CE-wsi"/>
                 <outlet property="bankCreditCardNumberLabel" destination="H5F-y7-LKK" id="wJm-ZW-bVK"/>
                 <outlet property="bankCreditNumberButton" destination="5gA-6f-vmQ" id="sxF-jO-88b"/>
