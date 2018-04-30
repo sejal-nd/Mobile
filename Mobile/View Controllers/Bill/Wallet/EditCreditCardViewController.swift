@@ -24,6 +24,8 @@ class EditCreditCardViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var innerContentView: UIView!
+    @IBOutlet weak var innerContentViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var innerContentViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var bottomBarView: UIView!
     @IBOutlet weak var bottomBarShadowView: UIView!
@@ -34,6 +36,8 @@ class EditCreditCardViewController: UIViewController {
     @IBOutlet weak var oneTouchPayCardLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
+    @IBOutlet weak var expiredView: UIView!
+    @IBOutlet weak var expiredLabel: UILabel!
     
     @IBOutlet weak var expDateLabel: UILabel!
     @IBOutlet weak var expMonthTextField: FloatLabelTextField!
@@ -84,6 +88,11 @@ class EditCreditCardViewController: UIViewController {
         bindValidation()
         
         scrollView.alwaysBounceHorizontal = false
+        
+        if UIScreen.main.bounds.width < 375 { // iPhone 5/SE size
+            innerContentViewLeadingConstraint.constant = 15
+            innerContentViewTrailingConstraint.constant = 15
+        }
     }
     
     func buildGradientAndBackgrounds() {
@@ -120,6 +129,10 @@ class EditCreditCardViewController: UIViewController {
         
         convenienceFeeLabel.textColor = .blackText
         convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        expiredView.layer.borderWidth = 2
+        expiredView.layer.borderColor = UIColor.errorRed.cgColor
+        expiredLabel.textColor = .errorRed
     }
     
     func buildNavigationButtons() {
@@ -224,10 +237,19 @@ class EditCreditCardViewController: UIViewController {
         }
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            accountIDLabel.text = "**** \(last4Digits)"
+            if UIScreen.main.bounds.width < 375 && viewModel.walletItem.isExpired { // iPhone 5/SE size
+                accountIDLabel.text = "...\(last4Digits)"
+            } else {
+                accountIDLabel.text = "**** \(last4Digits)"
+            }
             accountIDLabel.accessibilityLabel = String(format: NSLocalizedString(", Account number ending in %@", comment: ""), last4Digits)
         } else {
             accountIDLabel.text = ""
+        }
+        
+        if !viewModel.walletItem.isExpired {
+            expiredLabel.text = ""
+            expiredView.isHidden = true
         }
         
         creditImageView.image = #imageLiteral(resourceName: "opco_credit_card")

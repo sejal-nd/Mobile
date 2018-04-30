@@ -21,6 +21,7 @@ class WalletTableViewCell: UITableViewCell {
     @IBOutlet private weak var bottomBarView: UIView!
     @IBOutlet weak var bottomBarLabel: UILabel!
     @IBOutlet weak var expiredView: UIView!
+    @IBOutlet weak var expiredLabel: UILabel!
     
     var gradientLayer = CAGradientLayer()
 
@@ -59,6 +60,7 @@ class WalletTableViewCell: UITableViewCell {
         
         expiredView.layer.borderWidth = 2
         expiredView.layer.borderColor = UIColor.errorRed.cgColor
+        expiredLabel.textColor = .errorRed
     }
         
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
@@ -150,7 +152,11 @@ class WalletTableViewCell: UITableViewCell {
         
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            accountNumberLabel.text = "**** \(last4Digits)"
+            if UIScreen.main.bounds.width < 375 && walletItem.isExpired { // iPhone 5/SE size
+                accountNumberLabel.text = "...\(last4Digits)"
+            } else {
+                accountNumberLabel.text = "**** \(last4Digits)"
+            }
             a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
         } else {
             accountNumberLabel.text = ""
@@ -164,6 +170,7 @@ class WalletTableViewCell: UITableViewCell {
         innerContentView.accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"
         
         expiredView.isHidden = !walletItem.isExpired
+        expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""
     }
     
 }

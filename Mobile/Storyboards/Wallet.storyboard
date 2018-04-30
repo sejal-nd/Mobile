@@ -2704,7 +2704,7 @@ to your payments.</string>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymG-e3-kmI">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymG-e3-kmI">
                                                                             <rect key="frame" x="110" y="38" width="133" height="25"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                                             <nil key="textColor"/>
@@ -2832,6 +2832,7 @@ to your payments.</string>
                                                     <outlet property="bottomBarLabel" destination="oxH-Yl-Loj" id="Emx-0C-gTl"/>
                                                     <outlet property="bottomBarShadowView" destination="2kX-Xy-rz5" id="a0f-gl-es9"/>
                                                     <outlet property="bottomBarView" destination="Rna-sJ-STt" id="c1F-7I-Gyt"/>
+                                                    <outlet property="expiredLabel" destination="MRf-Uw-J5g" id="zHg-v6-N3J"/>
                                                     <outlet property="expiredView" destination="D4c-dK-5i6" id="Wge-HP-rwI"/>
                                                     <outlet property="gradientView" destination="agA-Wc-45w" id="cbP-hc-8y8"/>
                                                     <outlet property="innerContentView" destination="F69-Fr-LLp" id="Th5-RH-JA5"/>
@@ -3111,13 +3112,31 @@ to your payments.</string>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrx-aF-2Sd">
-                                                                <rect key="frame" x="111" y="55" width="86" height="25"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrx-aF-2Sd">
+                                                                <rect key="frame" x="111" y="55" width="97" height="25"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMy-R8-Ot9">
+                                                                <rect key="frame" x="218" y="56" width="60" height="20.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Expired" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5P-bS-Qsv">
+                                                                        <rect key="frame" x="7" y="3" width="46" height="14.5"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                        <color key="textColor" red="0.4431372549" green="0.0" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="R5P-bS-Qsv" firstAttribute="top" secondItem="GMy-R8-Ot9" secondAttribute="top" constant="3" id="E4X-Je-BAB"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="R5P-bS-Qsv" secondAttribute="trailing" constant="7" id="RNQ-8I-U8E"/>
+                                                                    <constraint firstItem="R5P-bS-Qsv" firstAttribute="leading" secondItem="GMy-R8-Ot9" secondAttribute="leading" constant="7" id="icy-lm-gCx"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="R5P-bS-Qsv" secondAttribute="bottom" constant="3" id="qoV-rd-g7Q"/>
+                                                                </constraints>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gv1-Sy-SrI">
                                                                 <rect key="frame" x="111" y="85" width="55" height="14.5"/>
                                                                 <subviews>
@@ -3145,8 +3164,10 @@ to your payments.</string>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstItem="GMy-R8-Ot9" firstAttribute="leading" secondItem="Zrx-aF-2Sd" secondAttribute="trailing" constant="10" id="05a-RH-Ab9"/>
                                                             <constraint firstItem="dxq-f1-5vH" firstAttribute="leading" secondItem="O2j-YW-TDk" secondAttribute="leading" constant="10" id="3vG-v6-8A0"/>
                                                             <constraint firstItem="gv1-Sy-SrI" firstAttribute="top" secondItem="Zrx-aF-2Sd" secondAttribute="bottom" constant="5" id="6RT-3H-Y7S"/>
+                                                            <constraint firstAttribute="trailing" secondItem="GMy-R8-Ot9" secondAttribute="trailing" constant="28" id="6Ta-X8-Svk"/>
                                                             <constraint firstItem="dxq-f1-5vH" firstAttribute="centerY" secondItem="O2j-YW-TDk" secondAttribute="centerY" id="Caf-Pu-37w"/>
                                                             <constraint firstItem="gv1-Sy-SrI" firstAttribute="leading" secondItem="Zrx-aF-2Sd" secondAttribute="leading" id="Grm-gb-cGt"/>
                                                             <constraint firstItem="yDL-jy-dbQ" firstAttribute="top" secondItem="O2j-YW-TDk" secondAttribute="top" constant="14" id="PRI-2z-zuc"/>
@@ -3154,6 +3175,7 @@ to your payments.</string>
                                                             <constraint firstAttribute="trailing" secondItem="yDL-jy-dbQ" secondAttribute="trailing" constant="28" id="VQd-iA-1Vd"/>
                                                             <constraint firstItem="Zrx-aF-2Sd" firstAttribute="centerY" secondItem="O2j-YW-TDk" secondAttribute="centerY" id="oeb-72-dDb"/>
                                                             <constraint firstItem="yDL-jy-dbQ" firstAttribute="leading" secondItem="Zrx-aF-2Sd" secondAttribute="leading" id="okh-xN-qFN"/>
+                                                            <constraint firstItem="GMy-R8-Ot9" firstAttribute="centerY" secondItem="O2j-YW-TDk" secondAttribute="centerY" id="tzW-kR-dC8"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhE-FC-F0K">
@@ -3423,8 +3445,12 @@ to your payments.</string>
                         <outlet property="expDateLabel" destination="7wg-iw-nf9" id="hOm-dG-6UR"/>
                         <outlet property="expMonthTextField" destination="VGm-7t-w5c" id="T5e-f5-YVF"/>
                         <outlet property="expYearTextField" destination="Ce6-3A-fCa" id="Unh-of-vbk"/>
+                        <outlet property="expiredLabel" destination="R5P-bS-Qsv" id="qW6-UX-4bM"/>
+                        <outlet property="expiredView" destination="GMy-R8-Ot9" id="PSz-kl-Xa2"/>
                         <outlet property="gradientView" destination="O2j-YW-TDk" id="PBm-qh-tr0"/>
                         <outlet property="innerContentView" destination="9Mk-Yq-YPo" id="B8z-gE-Ycq"/>
+                        <outlet property="innerContentViewLeadingConstraint" destination="5oR-KG-GUI" id="cMS-uX-FoY"/>
+                        <outlet property="innerContentViewTrailingConstraint" destination="gnJ-mk-6py" id="4he-P9-G5F"/>
                         <outlet property="nicknameLabel" destination="yDL-jy-dbQ" id="drf-93-Cbp"/>
                         <outlet property="oneTouchPayCardLabel" destination="Otg-XS-xac" id="N3r-np-us6"/>
                         <outlet property="oneTouchPayCardView" destination="gv1-Sy-SrI" id="CvH-wr-kF7"/>
