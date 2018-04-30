@@ -20,6 +20,7 @@ class WalletTableViewCell: UITableViewCell {
     @IBOutlet private weak var bottomBarShadowView: UIView!
     @IBOutlet private weak var bottomBarView: UIView!
     @IBOutlet weak var bottomBarLabel: UILabel!
+    @IBOutlet weak var expiredView: UIView!
     
     var gradientLayer = CAGradientLayer()
 
@@ -55,6 +56,9 @@ class WalletTableViewCell: UITableViewCell {
         
         bottomBarLabel.textColor = .blackText
         bottomBarLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        expiredView.layer.borderWidth = 2
+        expiredView.layer.borderColor = UIColor.errorRed.cgColor
     }
         
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
@@ -158,6 +162,8 @@ class WalletTableViewCell: UITableViewCell {
         }
         
         innerContentView.accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"
+        
+        expiredView.isHidden = !walletItem.isExpired
     }
     
 }
