@@ -124,7 +124,7 @@ class HomeViewModel {
     
     private(set) lazy var shouldShowUsageCard: Driver<Bool> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()).map { accountDetail in
         guard let serviceType = accountDetail.serviceType else { return false }
-        guard let premiseNumber = accountDetail.premiseNumber else { return false }
+        guard let _ = accountDetail.premiseNumber else { return false }
         
         if accountDetail.isBGEControlGroup {
             return accountDetail.isSERAccount // BGE Control Group + SER enrollment get the SER graph on usage card
@@ -140,7 +140,7 @@ class HomeViewModel {
         }
         
         return true
-    }
+        }
     
     private(set) lazy var isTemperatureTipEligible: Observable<Bool> = Observable.combineLatest(self.weatherEvents.elements().asObservable(),
                                                                                                 self.accountDetailEvents.elements())

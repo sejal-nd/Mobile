@@ -42,6 +42,8 @@ class OutageViewController: AccountPickerViewController {
     var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")
     var refreshControl: UIRefreshControl?
     
+    var shortcutItem = ShortcutItem.none
+    
     let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(), outageService: ServiceFactory.createOutageService())
     
     override func viewDidLoad() {
@@ -140,6 +142,11 @@ class OutageViewController: AccountPickerViewController {
         Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shortcutItem = .none
+    }
+    
     @objc func killRefresh() -> Void {
         refreshControl?.endRefreshing()
         scrollView!.alwaysBounceVertical = false
@@ -224,7 +231,12 @@ class OutageViewController: AccountPickerViewController {
             self?.loadingView.accessibilityViewIsModal = false
             self?.setRefreshControlEnabled(enabled: true)
             self?.updateContent()
+            if self?.shortcutItem == .reportOutage {
+                self?.performSegue(withIdentifier: "reportOutageSegue", sender: self)
+            }
+            self?.shortcutItem = .none
         }, onError: { [weak self] serviceError in
+            self?.shortcutItem = .none
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             if serviceError.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
                 self?.scrollView?.isHidden = true
