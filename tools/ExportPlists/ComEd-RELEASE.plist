@@ -2,24 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>compileBitcode</key>
-	<true/>
 	<key>method</key>
-	<string>enterprise</string>
+	<string>app-store</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>com.exelon.mobile.bge.staging</key>
-		<string>BGE Staging Enterprise Dist</string>
+		<key>com.iphoneproduction.exelon</key>
+		<string>ComEd App Store</string>
 	</dict>
 	<key>signingCertificate</key>
-	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>
+	<string>305192A978161F709EFCE001FC6CE04332EA32A2</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>stripSwiftSymbols</key>
 	<true/>
 	<key>teamID</key>
-	<string>38R4RRBYR8</string>
-	<key>thinning</key>
-	<string>&lt;none&gt;</string>
+	<string>YU7Y757VB5</string>
+	<key>uploadBitcode</key>
+	<false/>
+	<key>uploadSymbols</key>
+	<true/>
 </dict>
 </plist>
