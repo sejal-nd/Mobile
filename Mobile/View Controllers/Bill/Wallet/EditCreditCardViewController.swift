@@ -237,7 +237,7 @@ class EditCreditCardViewController: UIViewController {
         }
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            if UIScreen.main.bounds.width < 375 && viewModel.walletItem.isExpired { // iPhone 5/SE size
+            if viewModel.walletItem.isExpired { // Need smaller width
                 accountIDLabel.text = "...\(last4Digits)"
             } else {
                 accountIDLabel.text = "**** \(last4Digits)"

@@ -23,6 +23,7 @@ class PaymentViewModel {
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
+    let wouldBeSelectedWalletItemIsExpired = Variable(false)
     let cvv = Variable("")
     
     let amountDue: Variable<Double>
@@ -184,6 +185,10 @@ class PaymentViewModel {
                                 self.selectedWalletItem.value = walletItems[0]
                             }
                         }
+                    }
+                    if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
+                        self.selectedWalletItem.value = nil
+                        self.wouldBeSelectedWalletItemIsExpired.value = true
                     }
                 }
                 onSuccess?()
@@ -657,10 +662,14 @@ class PaymentViewModel {
     
     private(set) lazy var shouldShowPaymentAccountView: Driver<Bool> = Driver.combineLatest(self.selectedWalletItem.asDriver(),
                                                                                             self.inlineBank.asDriver(),
-                                                                                            self.inlineCard.asDriver())
+                                                                                            self.inlineCard.asDriver(),
+                                                                                            self.wouldBeSelectedWalletItemIsExpired.asDriver())
     {
         if $1 || $2 {
             return false
+        }
+        if $3 {
+            return true
         }
         return $0 != nil
     }
