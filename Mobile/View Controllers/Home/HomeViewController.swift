@@ -21,6 +21,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var topLoadingIndicatorView: UIView!
     @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
     @IBOutlet weak var weatherView: UIView!
     @IBOutlet weak var greetingLabel: UILabel!
@@ -47,7 +48,8 @@ class HomeViewController: AccountPickerViewController {
                                   weatherService: ServiceFactory.createWeatherService(),
                                   walletService: ServiceFactory.createWalletService(),
                                   paymentService: ServiceFactory.createPaymentService(),
-                                  usageService: ServiceFactory.createUsageService())
+                                  usageService: ServiceFactory.createUsageService(),
+                                  authService: ServiceFactory.createAuthenticationService())
     
     var shortcutItem = ShortcutItem.none
     
@@ -234,8 +236,11 @@ class HomeViewController: AccountPickerViewController {
         viewModel.isSwitchingAccounts.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
         viewModel.isSwitchingAccounts.asDriver().drive(greetingLabel.rx.isHidden).disposed(by: bag)
         
-        viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
-        viewModel.showNoNetworkConnectionState.drive(scrollView!.rx.isHidden).disposed(by: bag)
+        viewModel.showNoNetworkConnectionState.debug("NONETWORK").not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
+        viewModel.showMaintenanceModeState.debug("MAINTMODE").not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
+        
+        Driver.merge(viewModel.showNoNetworkConnectionState, viewModel.showMaintenanceModeState)
+            .drive(scrollView!.rx.isHidden).disposed(by: bag)
         
         viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
         viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).disposed(by: bag)
@@ -252,8 +257,8 @@ class HomeViewController: AccountPickerViewController {
         viewModel.temperatureTipText.drive(temperatureTipLabel.rx.text).disposed(by: bag)
         viewModel.temperatureTipImage.drive(temperatureTipImageView.rx.image).disposed(by: bag)
         
-        noNetworkConnectionView.reload
-            .map { FetchingAccountState.switchAccount }
+        Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
+            .map(to: FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchData)
             .disposed(by: bag)
         
