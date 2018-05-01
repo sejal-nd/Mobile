@@ -1346,6 +1346,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="2500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NC9-vF-Qye" customClass="MaintenanceModeView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="2500"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showInfoText" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjt-Td-wx3" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="2480"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2415,15 +2423,19 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="NC9-vF-Qye" secondAttribute="trailing" id="2MU-nA-DPb"/>
                             <constraint firstItem="gE4-MJ-svX" firstAttribute="top" secondItem="DL5-8p-VuX" secondAttribute="bottom" id="3bz-1B-EnB"/>
                             <constraint firstAttribute="trailing" secondItem="kjt-Td-wx3" secondAttribute="trailing" id="BI5-vO-hUu"/>
                             <constraint firstItem="kjt-Td-wx3" firstAttribute="leading" secondItem="f8I-LW-4KU" secondAttribute="leading" id="I54-li-gEM"/>
                             <constraint firstItem="DL5-8p-VuX" firstAttribute="top" secondItem="Oxu-3h-4ZB" secondAttribute="bottom" id="KQG-OV-czU"/>
                             <constraint firstItem="gE4-MJ-svX" firstAttribute="top" secondItem="52M-Kq-h1c" secondAttribute="bottom" priority="750" id="LwD-Fz-UH1"/>
                             <constraint firstItem="gE4-MJ-svX" firstAttribute="top" secondItem="kjt-Td-wx3" secondAttribute="bottom" id="UW3-u7-23E"/>
+                            <constraint firstItem="NC9-vF-Qye" firstAttribute="leading" secondItem="f8I-LW-4KU" secondAttribute="leading" id="Vni-HR-K23"/>
+                            <constraint firstItem="NC9-vF-Qye" firstAttribute="top" secondItem="f8I-LW-4KU" secondAttribute="top" id="W3R-Mf-aWW"/>
                             <constraint firstItem="DL5-8p-VuX" firstAttribute="leading" secondItem="f8I-LW-4KU" secondAttribute="leading" id="da8-tO-DCY"/>
                             <constraint firstAttribute="trailing" secondItem="DL5-8p-VuX" secondAttribute="trailing" id="osR-Xv-yKg"/>
                             <constraint firstItem="kjt-Td-wx3" firstAttribute="top" secondItem="Oxu-3h-4ZB" secondAttribute="bottom" id="x0y-s4-1lF"/>
+                            <constraint firstItem="gE4-MJ-svX" firstAttribute="top" secondItem="NC9-vF-Qye" secondAttribute="bottom" id="zCr-Zm-tHX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bill" id="l6Q-Py-wRt">
@@ -2469,6 +2481,7 @@
                         <outlet property="genericErrorLabel" destination="tzo-vJ-13J" id="k8C-jl-qoD"/>
                         <outlet property="genericErrorView" destination="KV6-S8-LRw" id="13v-lt-F2U"/>
                         <outlet property="loadingIndicatorView" destination="qHU-9Z-Ody" id="Lm4-gM-Kvw"/>
+                        <outlet property="maintenanceModeView" destination="NC9-vF-Qye" id="4N3-iZ-tKg"/>
                         <outlet property="makeAPaymentButton" destination="5kP-03-nkd" id="fM0-dK-iK8"/>
                         <outlet property="makeAPaymentStatusButton" destination="Hcr-PO-NuQ" id="F8X-PO-sq8"/>
                         <outlet property="makeAPaymentStatusLabel" destination="AoK-OV-hPp" id="v0y-Bq-sX6"/>

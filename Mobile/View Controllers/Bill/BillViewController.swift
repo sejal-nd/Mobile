@@ -14,6 +14,7 @@ import StoreKit
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
@@ -120,10 +121,11 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var customErrorView: UIView!
     @IBOutlet weak var customErrorTitleLabel: UILabel!
     @IBOutlet weak var customErrorDetailLabel: UILabel!
-    var refreshDisposable: Disposable?
+    
     var refreshControl: UIRefreshControl?
     
-    let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
+    let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService(),
+                                  authService: ServiceFactory.createAuthenticationService())
 
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
 
@@ -301,6 +303,7 @@ class BillViewController: AccountPickerViewController {
         bottomStackContainerView.isHidden = false
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
         enableRefresh()
     }
     
@@ -327,6 +330,26 @@ class BillViewController: AccountPickerViewController {
             genericErrorView.isHidden = false
             customErrorView.isHidden = true
         }
+        maintenanceModeView.isHidden = true
+        
+        enableRefresh()
+    }
+    
+    func showMaintenanceModeState() {
+        maintenanceModeView.isHidden = false
+        
+        scrollView?.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        
+        billLoadingIndicator.isHidden = true
+        loadingIndicatorView.isHidden = true
+        topView.isHidden = true
+        bottomView.isHidden = true
+        errorView.isHidden = true
+        bottomStackContainerView.isHidden = true
+        
+        genericErrorView.isHidden = true
+        customErrorView.isHidden = true
         enableRefresh()
     }
     
@@ -344,6 +367,8 @@ class BillViewController: AccountPickerViewController {
         refreshControl?.removeFromSuperview()
         refreshControl = nil
         scrollView!.alwaysBounceVertical = false
+        
+        maintenanceModeView.isHidden = true
     }
 
 	func bindLoadingStates() {
@@ -359,6 +384,7 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
         viewModel.accountDetailError.drive(onNext: { [weak self] in self?.showErrorState(error: $0) }).disposed(by: bag)
+        viewModel.showMaintenanceMode.drive(onNext: { [weak self] in self?.showMaintenanceModeState() }).disposed(by: bag)
 	}
 
 	func bindViewHiding() {
@@ -453,8 +479,13 @@ class BillViewController: AccountPickerViewController {
 	}
 
     func bindButtonTaps() {
+        maintenanceModeView.reload
+            .map(to: FetchingAccountState.switchAccount)
+            .bind(to: viewModel.fetchAccountDetail)
+            .disposed(by: maintenanceModeView.disposeBag)
+        
         noNetworkConnectionView.reload
-            .map { FetchingAccountState.switchAccount }
+            .map(to: FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchAccountDetail)
             .disposed(by: bag)
         
