@@ -225,6 +225,15 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ZA-lk-6E2" customClass="MaintenanceModeView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showInfoText" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="sectionName" value="Outage"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZb-kv-znM" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -476,15 +485,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="0ZA-lk-6E2" secondAttribute="bottom" id="6G3-Rx-sK3"/>
                             <constraint firstItem="VZb-kv-znM" firstAttribute="top" secondItem="rcn-a8-ST7" secondAttribute="bottom" id="8xJ-pW-skK"/>
                             <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="VZb-kv-znM" secondAttribute="bottom" id="AS7-l5-8W2"/>
                             <constraint firstItem="UDU-Ch-dvR" firstAttribute="leading" secondItem="5sA-d6-43i" secondAttribute="leading" id="KOX-G9-4W6"/>
                             <constraint firstAttribute="trailing" secondItem="VZb-kv-znM" secondAttribute="trailing" id="O5B-I7-WIM"/>
+                            <constraint firstItem="0ZA-lk-6E2" firstAttribute="top" secondItem="rcn-a8-ST7" secondAttribute="bottom" id="OUQ-o3-GAe"/>
                             <constraint firstAttribute="trailing" secondItem="qSc-mq-7Vd" secondAttribute="trailing" id="OzI-rA-gjT"/>
                             <constraint firstItem="qSc-mq-7Vd" firstAttribute="top" secondItem="rcn-a8-ST7" secondAttribute="bottom" id="Pf1-ZV-Egm"/>
                             <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="qSc-mq-7Vd" secondAttribute="bottom" id="QyO-hL-LuP"/>
+                            <constraint firstItem="0ZA-lk-6E2" firstAttribute="leading" secondItem="5sA-d6-43i" secondAttribute="leading" id="S2u-SM-YG0"/>
                             <constraint firstItem="qSc-mq-7Vd" firstAttribute="leading" secondItem="5sA-d6-43i" secondAttribute="leading" id="XA5-bY-Jq8"/>
                             <constraint firstItem="VZb-kv-znM" firstAttribute="leading" secondItem="5sA-d6-43i" secondAttribute="leading" id="aXd-D2-804"/>
+                            <constraint firstAttribute="trailing" secondItem="0ZA-lk-6E2" secondAttribute="trailing" id="c5S-NG-kPh"/>
                             <constraint firstItem="UDU-Ch-dvR" firstAttribute="top" secondItem="rcn-a8-ST7" secondAttribute="bottom" id="dai-3M-hIG"/>
                             <constraint firstAttribute="trailing" secondItem="UDU-Ch-dvR" secondAttribute="trailing" id="myP-W4-RK3"/>
                             <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="UDU-Ch-dvR" secondAttribute="bottom" id="uRc-Zg-g6e"/>
@@ -508,6 +521,7 @@
                         <outlet property="gradientBackground" destination="UDU-Ch-dvR" id="VEL-GO-tuo"/>
                         <outlet property="loadingAnimationView" destination="hNa-Vb-1pp" id="M29-8m-vrJ"/>
                         <outlet property="loadingView" destination="NzH-9I-b9u" id="Iki-bl-lva"/>
+                        <outlet property="maintenanceModeView" destination="0ZA-lk-6E2" id="JAe-2g-2NB"/>
                         <outlet property="noNetworkConnectionView" destination="VZb-kv-znM" id="OnL-Ot-FoR"/>
                         <outlet property="outageStatusButton" destination="B8h-b7-uBN" id="ckU-Ss-Lt7"/>
                         <outlet property="reportOutageButton" destination="UK3-yj-xRE" id="Mts-dt-8zK"/>
