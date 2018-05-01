@@ -35,7 +35,7 @@ class BillViewModelTests: XCTestCase {
         AccountsStore.sharedInstance.currentAccount = mockAccounts[0]
         accountService = MockAccountService()
         accountService.mockAccounts = mockAccounts
-        viewModel = BillViewModel(accountService: accountService)
+        viewModel = BillViewModel(accountService: accountService, authService: MockAuthenticationService())
         scheduler = TestScheduler(initialClock: 0)
     }
     

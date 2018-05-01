@@ -89,6 +89,8 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var customErrorView: UIView!
     @IBOutlet weak var customErrorDetailLabel: UILabel!
+    @IBOutlet weak var maintenanceModeView: UIView!
+    @IBOutlet weak var maintenanceModeLabel: UILabel!
     
     let tutorialTap = UITapGestureRecognizer()
     let tutorialSwipe = UISwipeGestureRecognizer()
@@ -167,6 +169,8 @@ class HomeBillCardView: UIView {
         customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to billing information. " +
             "Access your account on our responsive website.", comment: "")
         
+        maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
+        
         // Accessibility
         alertImageView.isAccessibilityElement = true
         alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
@@ -201,10 +205,16 @@ class HomeBillCardView: UIView {
             .not()
             .drive(errorStack.rx.isHidden)
             .disposed(by: bag)
-        viewModel.showCustomErrorState.not().drive(customErrorView.rx.isHidden).disposed(by: bag)
         
-        Driver.combineLatest(viewModel.billNotReady.startWith(false), viewModel.showErrorState)
-            .map { $0 || $1 }
+        Driver.combineLatest(viewModel.showCustomErrorState, viewModel.showMaintenanceModeState)
+        { $0 && !$1 }
+            .not()
+            .drive(customErrorView.rx.isHidden).disposed(by: bag)
+        
+        viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
+        
+        Driver.combineLatest(viewModel.billNotReady.startWith(false), viewModel.showErrorState, viewModel.showMaintenanceModeState)
+            .map { $0 || $1 || $2 }
             .startWith(false)
             .drive(infoStack.rx.isHidden)
             .disposed(by: bag)
