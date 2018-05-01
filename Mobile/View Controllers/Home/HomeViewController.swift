@@ -236,10 +236,11 @@ class HomeViewController: AccountPickerViewController {
         viewModel.isSwitchingAccounts.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
         viewModel.isSwitchingAccounts.asDriver().drive(greetingLabel.rx.isHidden).disposed(by: bag)
         
-        viewModel.showNoNetworkConnectionState.debug("NONETWORK").not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
-        viewModel.showMaintenanceModeState.debug("MAINTMODE").not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
+        viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
+        viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
         
-        Driver.merge(viewModel.showNoNetworkConnectionState, viewModel.showMaintenanceModeState)
+        Driver.combineLatest(viewModel.showNoNetworkConnectionState, viewModel.showMaintenanceModeState)
+        { $0 || $1 }
             .drive(scrollView!.rx.isHidden).disposed(by: bag)
         
         viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
