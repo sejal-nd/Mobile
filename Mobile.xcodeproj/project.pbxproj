@@ -708,6 +708,9 @@
 		B0AD7FF1205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FF2205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FF3205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
+		B0EA71BF2090FF7C002A2B45 /* ShortcutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */; };
+		B0EA71C02090FF7C002A2B45 /* ShortcutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */; };
+		B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */; };
 		B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B01F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B11F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
@@ -2247,6 +2250,7 @@
 		B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPeakRewardsService.swift; sourceTree = "<group>"; };
 		B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsInitExtensions.swift; sourceTree = "<group>"; };
 		B0AD7FED205841C80090B40D /* SequenceForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceForEach.swift; sourceTree = "<group>"; };
+		B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutItem.swift; sourceTree = "<group>"; };
 		B52CA0AE1F311524002B5674 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
@@ -4178,6 +4182,7 @@
 				E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */,
 				82AC2A1D1FAB66D800EACB3B /* PeakRewardsSummary.swift */,
 				E835D1CD1FB63288008CE250 /* PushNotification.swift */,
+				B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5859,6 +5864,7 @@
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8B9BD891F88212A007C824C /* BillAnalysisViewModel.swift in Sources */,
 				2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */,
+				B0EA71BF2090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399351F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				E827D2311ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
@@ -6159,6 +6165,7 @@
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E8B9BD8B1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
+				B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399371F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
 				E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
@@ -6459,6 +6466,7 @@
 				E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E8B9BD8A1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
+				B0EA71C02090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399361F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
 				E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
