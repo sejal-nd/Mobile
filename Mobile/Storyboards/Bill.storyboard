@@ -1352,6 +1352,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showInfoText" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="sectionName" value="Billing"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjt-Td-wx3" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">

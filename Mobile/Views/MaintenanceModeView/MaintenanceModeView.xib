@@ -38,7 +38,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="88x-aH-OQP">
-                    <rect key="frame" x="16" y="176" width="343" height="316"/>
+                    <rect key="frame" x="16" y="175.5" width="343" height="316"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_maint_mode_white" translatesAutoresizingMaskIntoConstraints="NO" id="CBa-iG-eug">
                             <rect key="frame" x="96" y="8" width="151" height="91"/>
@@ -139,7 +139,7 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
             <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sjN-RG-fyz" secondAttribute="trailing" constant="29" id="Cuf-5v-QNn"/>
-                <constraint firstItem="88x-aH-OQP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FsF-ip-H4w"/>
+                <constraint firstItem="88x-aH-OQP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" priority="750" id="FsF-ip-H4w"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="sjN-RG-fyz" secondAttribute="bottom" constant="25" id="GMc-LJ-jLa"/>
                 <constraint firstItem="sjN-RG-fyz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="29" id="Ky9-Id-Yzv"/>
                 <constraint firstItem="88x-aH-OQP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YKZ-U3-h7B"/>
@@ -147,9 +147,11 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="88x-aH-OQP" secondAttribute="trailing" constant="16" id="cPe-Rg-MKa"/>
                 <constraint firstItem="88x-aH-OQP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="cqM-Kx-R1X"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="88x-aH-OQP" secondAttribute="trailing" priority="999" constant="16" id="d5t-So-MwS"/>
+                <constraint firstItem="88x-aH-OQP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="top" id="eeX-AV-Rnu"/>
                 <constraint firstItem="88x-aH-OQP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" priority="999" constant="16" id="sn8-mn-1NV"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sjN-RG-fyz" secondAttribute="trailing" priority="999" constant="29" id="uYo-Se-Jh9"/>
                 <constraint firstItem="sjN-RG-fyz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" priority="999" constant="29" id="xJB-cc-NWM"/>
+                <constraint firstItem="sjN-RG-fyz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="22Z-U5-hHf" secondAttribute="bottom" constant="12" id="xV2-Cl-5C8"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
