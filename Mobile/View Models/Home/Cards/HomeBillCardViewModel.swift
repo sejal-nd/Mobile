@@ -80,7 +80,7 @@ class HomeBillCardViewModel {
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable.merge(self.fetchDataMMEvents, self.defaultWalletItemUpdatedMMEvents)
     
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.maintenanceModeEvents
-        .filter { !($0.element?.billStatus ?? false) }
+        .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [unowned self] in
             self.walletService.fetchWalletItems()
@@ -107,7 +107,9 @@ class HomeBillCardViewModel {
             .materialize()
             .share()
     
-    private lazy var workDayEvents: Observable<Event<[Date]>> = self.fetchData
+    private lazy var workDayEvents: Observable<Event<[Date]>> = self.maintenanceModeEvents
+        .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
+        .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [unowned self] state -> Observable<Event<[Date]>> in
             if Environment.sharedInstance.opco == .peco {
                 return self.paymentService.fetchWorkdays()
