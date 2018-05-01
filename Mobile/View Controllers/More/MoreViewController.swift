@@ -103,6 +103,7 @@ class MoreViewController: UIViewController {
         authService.logout().subscribe(onNext: { (success) in
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.resetNavigation()
+            appDelegate.configureQuickActions()
         }, onError: { (error) in
             print("Logout Error: \(error)")
         }).disposed(by: disposeBag)

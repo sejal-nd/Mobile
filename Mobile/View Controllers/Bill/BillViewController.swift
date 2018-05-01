@@ -128,6 +128,8 @@ class BillViewController: AccountPickerViewController {
                                   authService: ServiceFactory.createAuthenticationService())
 
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
+    var shortcutItem = ShortcutItem.none
 
     let bag = DisposeBag()
 
@@ -188,6 +190,11 @@ class BillViewController: AccountPickerViewController {
         scrollView!.alwaysBounceVertical = false
         enableRefresh()
         // -------------------------------------------------------------------------------------------------------
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shortcutItem = .none
     }
     
     func enableRefresh() -> Void {
@@ -385,6 +392,13 @@ class BillViewController: AccountPickerViewController {
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
         viewModel.accountDetailError.drive(onNext: { [weak self] in self?.showErrorState(error: $0) }).disposed(by: bag)
         viewModel.showMaintenanceMode.drive(onNext: { [weak self] in self?.showMaintenanceModeState() }).disposed(by: bag)
+        
+        // Clear shortcut handling in the case of an error.
+        viewModel.accountDetailError.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.shortcutItem = .none
+            })
+            .disposed(by: bag)
 	}
 
 	func bindViewHiding() {
@@ -592,13 +606,20 @@ class BillViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        makeAPaymentButton.rx.touchUpInside.asObservable()
-            .withLatestFrom(Observable.combineLatest(viewModel.makePaymentScheduledPaymentAlertInfo,
-                                                     viewModel.currentAccountDetail.asObservable()))
+        let shortcutReady = Observable.zip(viewModel.makePaymentScheduledPaymentAlertInfo,
+                                           viewModel.shouldEnableMakeAPaymentButton.asObservable())
+            .filter { [weak self] in $1 && self?.shortcutItem == .payBill }
+            .map { $0.0 }
+        
+        let makeAPaymentButtonTapped = makeAPaymentButton.rx.touchUpInside.asObservable()
+            .withLatestFrom(viewModel.makePaymentScheduledPaymentAlertInfo)
+        
+        Observable.merge(makeAPaymentButtonTapped, shortcutReady)
             .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] alertInfo, accountDetail in
+            .drive(onNext: { [weak self] alertInfo in
                 guard let `self` = self else { return }
-                let (titleOpt, messageOpt) = alertInfo
+                self.shortcutItem = .none
+                let (titleOpt, messageOpt, accountDetail) = alertInfo
                 let goToMakePayment = { [weak self] in
                     guard let `self` = self else { return }
                     let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController

@@ -49,6 +49,8 @@ class HomeViewController: AccountPickerViewController {
                                   paymentService: ServiceFactory.createPaymentService(),
                                   usageService: ServiceFactory.createUsageService())
     
+    var shortcutItem = ShortcutItem.none
+    
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
     let bag = DisposeBag()
@@ -84,12 +86,17 @@ class HomeViewController: AccountPickerViewController {
         cardStackView.addArrangedSubview(billCardView)
         
         usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
-        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(), usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
-            .withLatestFrom(viewModel.accountDetailEvents.elements()
-            .asDriver(onErrorDriveWith: .empty()))
+        
+        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
+                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver(),
+                     viewModel.shouldShowUsageCard.filter { [weak self] in $0 && self?.shortcutItem == .viewUsageOptions }.map(to: ())) // Shortcut response
+            .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
+                self?.shortcutItem = .none
                 self?.performSegue(withIdentifier: "usageSegue", sender: $0)
-            }).disposed(by: bag)
+            })
+            .disposed(by: bag)
+        
         cardStackView.addArrangedSubview(usageCardView)
         viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: bag)
         
@@ -161,6 +168,11 @@ class HomeViewController: AccountPickerViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         usageCardView.superviewDidLayoutSubviews()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shortcutItem = .none
     }
     
     func styleViews() {
@@ -288,6 +300,13 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
+        // Clear shortcut handling in the case of an error.
+        Observable.merge(viewModel.usageCardViewModel.accountDetailChanged.errors(),
+                         viewModel.accountDetailEvents.errors())
+            .subscribe(onNext: { [weak self] _ in
+                self?.shortcutItem = .none
+            })
+            .disposed(by: bag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

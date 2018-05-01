@@ -13,7 +13,7 @@ import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -34,9 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if Environment.sharedInstance.environmentName == "STAGE" || Environment.sharedInstance.environmentName == "PROD" {
             switch Environment.sharedInstance.opco {
-                case .bge: BITHockeyManager.shared().configure(withIdentifier: "bec696e55dec44239187ffc959dec386")
-                case .comEd: BITHockeyManager.shared().configure(withIdentifier: "7399eb2b4dc44f91ac86e219d947b7b5")
-                case .peco: BITHockeyManager.shared().configure(withIdentifier: "51e89ca780064447b2373609c35e5b68")
+            case .bge: BITHockeyManager.shared().configure(withIdentifier: "bec696e55dec44239187ffc959dec386")
+            case .comEd: BITHockeyManager.shared().configure(withIdentifier: "7399eb2b4dc44f91ac86e219d947b7b5")
+            case .peco: BITHockeyManager.shared().configure(withIdentifier: "51e89ca780064447b2373609c35e5b68")
             }
             BITHockeyManager.shared().isUpdateManagerDisabled = true
             BITHockeyManager.shared().crashManager.crashManagerStatus = .autoSend
@@ -63,31 +63,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If app was cold-launched from a push notification
         if let options = launchOptions, let userInfo = options[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
             self.application(application, didReceiveRemoteNotification: userInfo)
+        } else if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            handleShortcut(shortcutItem)
+            return false
+        }
+        
+        // Set "Report Outage" quick action for unauthenticated users
+        if !OMCAuthenticationService().isAuthenticated() {
+            configureQuickActions()
         }
         
         return true
-    }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -97,24 +83,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var firstLogin = false
         if let usernamesArray = UserDefaults.standard.array(forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications) as? [String],
             let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername) {
-                if !usernamesArray.contains(loggedInUsername) {
-                    firstLogin = true
-                }
+            if !usernamesArray.contains(loggedInUsername) {
+                firstLogin = true
+            }
             
-                let alertsService = ServiceFactory.createAlertsService()
-                alertsService.register(token: token, firstLogin: firstLogin) { (result: ServiceResult<Void>) in
-                    switch result {
-                    case .Success:
-                        dLog("*-*-*-*-* Registered token with MCS")
-                        if firstLogin { // Add the username to the array
-                            var newUsernamesArray = usernamesArray
-                            newUsernamesArray.append(loggedInUsername)
-                            UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications)
-                        }
-                    case .Failure(let err):
-                        dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
+            let alertsService = ServiceFactory.createAlertsService()
+            alertsService.register(token: token, firstLogin: firstLogin) { (result: ServiceResult<Void>) in
+                switch result {
+                case .Success:
+                    dLog("*-*-*-*-* Registered token with MCS")
+                    if firstLogin { // Add the username to the array
+                        var newUsernamesArray = usernamesArray
+                        newUsernamesArray.append(loggedInUsername)
+                        UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications)
                     }
+                case .Failure(let err):
+                    dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
                 }
+            }
         }
     }
     
@@ -169,7 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else {
             return false
         }
-                
+        
         // For now, no deep links require being logged in. So if the user is already in the app, don't do anything special
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
             return false
@@ -206,7 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaultKeys.ShouldPromptToEnableBiometrics: true,
             UserDefaultKeys.PaymentDetailsDictionary: [String: NSDictionary](),
             UserDefaultKeys.UsernamesRegisteredForPushNotifications: [String]()
-        ])
+            ])
         
         userDefaults.set(false, forKey: UserDefaultKeys.InMainApp)
         
@@ -249,11 +235,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let filePath = Bundle.main.path(forResource: Environment.sharedInstance.firebaseConfigFile, ofType: "plist")
         if let fileopts = FirebaseOptions.init(contentsOfFile: filePath!) {
-                    FirebaseApp.configure(options: fileopts)
+            FirebaseApp.configure(options: fileopts)
         } else {
             dLog("Failed to load Firebase Analytics")
         }
-
+        
     }
     
     @objc func resetNavigationOnAuthTokenExpire() {
@@ -267,13 +253,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc func showMaintenanceMode(){
         DispatchQueue.main.async { [weak self] in
             LoadingView.hide()
-
+            
             if let rootVC = self?.window?.rootViewController {
                 var topmostVC = rootVC
                 while let presentedVC = topmostVC.presentedViewController {
                     topmostVC = presentedVC
                 }
-
+                
                 let maintenanceStoryboard = UIStoryboard(name: "Maintenance", bundle: nil)
                 let vc = maintenanceStoryboard.instantiateInitialViewController()!
                 topmostVC.present(vc, animated: true, completion: nil)
@@ -305,7 +291,79 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Font Names = \(names)")
         }
     }
-
-
+    
+    func application(_ application: UIApplication,
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(handleShortcut(shortcutItem))
+    }
+    
+    @discardableResult
+    private func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
+        guard let window = window else { return false }
+        
+        let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newTabBarController = mainStoryboard.instantiateInitialViewController()
+            window.rootViewController = newTabBarController
+            NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+        } else if let splashVC = (window.rootViewController as? UINavigationController)?.viewControllers.last as? SplashViewController {
+            splashVC.shortcutItem = shortcutItem
+        } else if shortcutItem == .reportOutage {
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+            let unauthenticatedUser = loginStoryboard.instantiateViewController(withIdentifier: "unauthenticatedUserViewController")
+            guard let unauthenticatedOutageValidate = loginStoryboard
+                .instantiateViewController(withIdentifier: "unauthenticatedOutageValidateAccountViewController")
+                as? UnauthenticatedOutageValidateAccountViewController else {
+                return false
+            }
+            
+            let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
+            
+            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthOffer.rawValue)
+            unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.Report
+            
+            // Reset the unauthenticated nav stack
+            let newNavController = loginStoryboard.instantiateInitialViewController() as! UINavigationController
+            newNavController.setViewControllers(vcArray, animated: false)
+            window.rootViewController = newNavController
+        } else {
+            return false
+        }
+        
+        return true
+    }
+    
+    func configureQuickActions(showViewUsageOptions: Bool = false) {
+        let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_outage")
+        let reportOutageShortcut = UIApplicationShortcutItem(type: "ReportOutage", localizedTitle: "Report Outage", localizedSubtitle: nil, icon: reportOutageIcon, userInfo: nil)
+        
+        guard let accounts = AccountsStore.sharedInstance.accounts else {
+            // Unauthenticated report outage
+            if OMCAuthenticationService().isAuthenticated() {
+                UIApplication.shared.shortcutItems = []
+            } else {
+                UIApplication.shared.shortcutItems = [reportOutageShortcut]
+            }
+            return
+        }
+        
+        let payBillIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_bill")
+        let payBillShortcut = UIApplicationShortcutItem(type: "PayBill", localizedTitle: "Pay Bill", localizedSubtitle: nil, icon: payBillIcon, userInfo: nil)
+        
+        if accounts.count == 1 && showViewUsageOptions {
+            let usageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_usage")
+            let usageShortcut = UIApplicationShortcutItem(type: "ViewUsageOptions", localizedTitle: "View Usage", localizedSubtitle: nil, icon: usageIcon, userInfo: nil)
+            UIApplication.shared.shortcutItems = [payBillShortcut, reportOutageShortcut, usageShortcut]
+        } else if accounts.count == 1 {
+            UIApplication.shared.shortcutItems = [payBillShortcut, reportOutageShortcut]
+        } else {
+            UIApplication.shared.shortcutItems = []
+        }
+    }
+    
 }
 
