@@ -69,8 +69,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Set "Report Outage" quick action for unauthenticated users
-        if !OMCAuthenticationService().isAuthenticated() {
-            configureQuickActions()
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.IsKeepMeSignedInChecked) &&
+            UserDefaults.standard.bool(forKey:  UserDefaultKeys.HasAcceptedTerms) {
+            configureQuickActions(isAuthenticated: false)
         }
         
         return true
@@ -248,6 +249,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("To protect the security of your account, your login has been expired. Please sign in again.", comment: ""), preferredStyle: .alert)
         alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+        
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.IsKeepMeSignedInChecked)
+        configureQuickActions(isAuthenticated: false)
     }
     
     @objc func showMaintenanceMode(){
@@ -337,15 +341,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func configureQuickActions(showViewUsageOptions: Bool = false) {
+    func configureQuickActions(isAuthenticated: Bool, showViewUsageOptions: Bool = false) {
         let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_outage")
         let reportOutageShortcut = UIApplicationShortcutItem(type: "ReportOutage", localizedTitle: "Report Outage", localizedSubtitle: nil, icon: reportOutageIcon, userInfo: nil)
         
         guard let accounts = AccountsStore.sharedInstance.accounts else {
-            // Unauthenticated report outage
-            if OMCAuthenticationService().isAuthenticated() {
+            // Signed in, but no accounts pulled yet
+            if isAuthenticated {
                 UIApplication.shared.shortcutItems = []
-            } else {
+            }
+            
+            // Not signed in
+            else {
                 UIApplication.shared.shortcutItems = [reportOutageShortcut]
             }
             return
@@ -354,15 +361,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let payBillIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_bill")
         let payBillShortcut = UIApplicationShortcutItem(type: "PayBill", localizedTitle: "Pay Bill", localizedSubtitle: nil, icon: payBillIcon, userInfo: nil)
         
-        if accounts.count == 1 && showViewUsageOptions {
+        switch (accounts.count == 1, UserDefaults.standard.bool(forKey: UserDefaultKeys.IsKeepMeSignedInChecked), showViewUsageOptions) {
+        case (true, false, _):
+            // Single account, no keep me signed in
+            UIApplication.shared.shortcutItems = [reportOutageShortcut]
+        case (true, true, true):
+            // Single account, keep me signed in, show usage
             let usageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_usage")
             let usageShortcut = UIApplicationShortcutItem(type: "ViewUsageOptions", localizedTitle: "View Usage", localizedSubtitle: nil, icon: usageIcon, userInfo: nil)
             UIApplication.shared.shortcutItems = [payBillShortcut, reportOutageShortcut, usageShortcut]
-        } else if accounts.count == 1 {
+        case (true, true, false):
+            // Single account, keep me signed in, don't show usage
             UIApplication.shared.shortcutItems = [payBillShortcut, reportOutageShortcut]
-        } else {
+        case (false, _, _):
+            // Multi-account user
             UIApplication.shared.shortcutItems = []
         }
+        
     }
     
 }

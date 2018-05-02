@@ -8,49 +8,6 @@
 
 import Mapper
 
-
-/* WalletItem:: (Comed/PECO)
- 
- "walletItemID": "2487071",
- "walletExternalID": "226734",
- "maskedWalletItemAccountNumber": "6789",
- "nickName": "6789",
- "walletItemStatusType": "Registered",
- "paymentCategoryType": "Check",
- "paymentMethodType": "ACH"
- 
- */
-
-/* WalletItem:: (BGE)
- 
- "walletItemID": "dbk:15xNk4+rK4T7UZiO2eFzxM9STu81LqRqd133rgVkC58=",
- "nickName": "from POSTMAN",
- "maskedWalletItemAccountNumber": "0987",
- "walletItemStatusType": "pnd_active",
- "bankAccountType": "checking",
- "flagnocViewed": "true",
- "bankAccountNumber": "876543210987",
- "bankAccountName": "test account"
- 
- */
-
-enum WalletItemStatusType: String {
-    case suspended = "Suspended"
-    case expired = "Expired"
-    case registered = "Registered"
-    case validated = "Validated"
-    case deleted = "Deleted"
-}
-
-enum WalletItemStatusTypeBGE: String {
-    case pndActive = "pnd_active"
-    case pndWait = "pnd_wait"
-    case active = "active"
-    case cancel = "cancel"
-    case bad_active = "bad_active"
-    case deleted = "deleted"
-}
-
 // Used internally for Payment model
 enum PaymentType: String {
     case check = "Check"
@@ -110,12 +67,12 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let walletExternalID: String?
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
-    let walletItemStatusType: WalletItemStatusType?
-    let walletItemStatusTypeBGE: WalletItemStatusTypeBGE?
+    let walletItemStatusType: String?
+    var isExpired: Bool = false
     
     let paymentCategoryType: PaymentCategoryType? // Do not use this for determining bank vs card - use bankOrCard
     let bankAccountType: BankAccountType? // Do not use this for determining bank vs card - use bankOrCard
-    var bankOrCard: BankOrCard
+    var bankOrCard: BankOrCard = .card
     
     let bankAccountNumber: String?
     let bankAccountName: String?
@@ -144,21 +101,17 @@ struct WalletItem: Mappable, Equatable, Hashable {
         bankAccountName = map.optionalFrom("bankAccountName")
         isDefault = map.optionalFrom("isDefault") ?? false
         cardIssuer = map.optionalFrom("cardIssuer")
-        bankOrCard = .card // default value
         dateCreated = map.optionalFrom("dateCreated", transformation: extractDate)
         
-        if Environment.sharedInstance.opco == .bge {
-            walletItemStatusTypeBGE = map.optionalFrom("walletItemStatusType")
-            walletItemStatusType = nil
-            if let type = bankAccountType {
-                bankOrCard = type == .card ? .card : .bank
-            }
-        } else {
-            walletItemStatusTypeBGE = nil
-            walletItemStatusType = map.optionalFrom("walletItemStatusType")
-            if let type = paymentCategoryType {
-                bankOrCard = (type == .credit || type == .debit) ? .card : .bank
-            }
+        walletItemStatusType = map.optionalFrom("walletItemStatusType")
+        if let statusType = walletItemStatusType {
+            isExpired = statusType.lowercased() == "expired"
+        }
+        
+        if let type = bankAccountType, Environment.sharedInstance.opco == .bge {
+            bankOrCard = type == .card ? .card : .bank
+        } else if let type = paymentCategoryType {
+            bankOrCard = (type == .credit || type == .debit) ? .card : .bank
         }
     }
     

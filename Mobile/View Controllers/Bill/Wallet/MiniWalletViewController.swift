@@ -301,7 +301,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 if let cardIssuer = cardItem.cardIssuer, cardIssuer == "Visa", sentFromPayment, !accountDetail.isResidential, Environment.sharedInstance.opco == .bge { // BGE Commercial cannot pay with VISA
                     cell.innerContentView.isEnabled = false
                 }
-                if creditCardsDisabled {
+                if creditCardsDisabled || cardItem.isExpired {
                     cell.innerContentView.isEnabled = false
                 }
                 return cell

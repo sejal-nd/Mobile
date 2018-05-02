@@ -102,10 +102,11 @@ class MoreViewController: UIViewController {
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout().subscribe(onNext: { (success) in
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.IsKeepMeSignedInChecked)
+            appDelegate.configureQuickActions(isAuthenticated: false)
             appDelegate.resetNavigation()
-            appDelegate.configureQuickActions()
         }, onError: { (error) in
-            print("Logout Error: \(error)")
+            dLog("Logout Error: \(error)")
         }).disposed(by: disposeBag)
     }
     

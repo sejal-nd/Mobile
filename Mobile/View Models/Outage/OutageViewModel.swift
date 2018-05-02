@@ -14,28 +14,47 @@ class OutageViewModel {
     
     private var accountService: AccountService
     private var outageService: OutageService
+    private var authService: AuthenticationService
     
+    private var currentGetMaintenanceModeStatusDisposable: Disposable?
     private var currentGetOutageStatusDisposable: Disposable?
     
     var currentOutageStatus: OutageStatus?
 
-    required init(accountService: AccountService, outageService: OutageService) {
+    required init(accountService: AccountService, outageService: OutageService, authService: AuthenticationService) {
         self.accountService = accountService
         self.outageService = outageService
+        self.authService = authService
     }
     
     deinit {
-        if let disposable = currentGetOutageStatusDisposable {
-            disposable.dispose()
-        }
+        currentGetMaintenanceModeStatusDisposable?.dispose()
+        currentGetOutageStatusDisposable?.dispose()
+    }
+    
+    func fetchData(onSuccess: @escaping () -> Void,
+                   onError: @escaping (ServiceError) -> Void,
+                   onMaintenance: @escaping () -> Void) {
+        // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
+        currentGetMaintenanceModeStatusDisposable?.dispose()
+        currentGetOutageStatusDisposable?.dispose()
+        
+        currentGetMaintenanceModeStatusDisposable = authService.getMaintenanceMode()
+            .subscribe(onNext: { [weak self] status in
+                if status.outageStatus {
+                    onMaintenance()
+                } else {
+                    self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
+                }
+                }, onError: { [weak self] _ in
+                    self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
+            })
     }
     
     func getOutageStatus(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
 
         // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
-        if let disposable = currentGetOutageStatusDisposable {
-            disposable.dispose()
-        }
+        currentGetOutageStatusDisposable?.dispose()
         
         currentGetOutageStatusDisposable = outageService.fetchOutageStatus(account: AccountsStore.sharedInstance.currentAccount)
             .observeOn(MainScheduler.instance)

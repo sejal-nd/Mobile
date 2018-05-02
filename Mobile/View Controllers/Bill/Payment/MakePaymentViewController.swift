@@ -32,6 +32,7 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAccountImageView: UIImageView!
     @IBOutlet weak var paymentAccountAccountNumberLabel: UILabel!
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
+    @IBOutlet weak var paymentAccountExpiredSelectLabel: UILabel!
     @IBOutlet weak var fixedPaymentAccountView: UIView!
     @IBOutlet weak var fixedPaymentAccountImageView: UIImageView!
     @IBOutlet weak var fixedPaymentAccountAccountNumberLabel: UILabel!
@@ -344,6 +345,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
         viewModel.allowEdits.asDriver().not().drive(paymentAccountButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.wouldBeSelectedWalletItemIsExpired.asDriver().not().drive(paymentAccountExpiredSelectLabel.rx.isHidden).disposed(by: disposeBag)
         
         // CVV (BGE credit card only)
         viewModel.shouldShowCvvTextField.map(!).drive(cvvView.rx.isHidden).disposed(by: disposeBag)

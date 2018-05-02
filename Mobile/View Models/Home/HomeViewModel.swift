@@ -24,6 +24,7 @@ class HomeViewModel {
     private let walletService: WalletService
     private let paymentService: PaymentService
     private let usageService: UsageService
+    private let authService: AuthenticationService
     
     let fetchData = PublishSubject<FetchingAccountState>()
 
@@ -39,18 +40,21 @@ class HomeViewModel {
         }
     }
     
-    required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService, usageService: UsageService) {
+    required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService, usageService: UsageService, authService: AuthenticationService) {
         self.accountService = accountService
         self.weatherService = weatherService
         self.walletService = walletService
         self.paymentService = paymentService
         self.usageService = usageService
+        self.authService = authService
     }
     
-    private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(fetchData: self.fetchData.asObservable(),
+    private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(fetchData: self.maintenanceModeEvents.withLatestFrom(self.fetchData),
+                                                                                           fetchDataMMEvents: self.fetchDataMMEvents,
                                                                                            accountDetailEvents: self.accountDetailEvents,
                                                                                            walletService: self.walletService,
                                                                                            paymentService: self.paymentService,
+                                                                                           authService: self.authService,
                                                                                            refreshFetchTracker: self.refreshFetchTracker,
                                                                                            switchAccountFetchTracker: self.switchAccountFetchTracker)
     
@@ -64,8 +68,22 @@ class HomeViewModel {
     
     private(set) lazy var isSwitchingAccounts = self.switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.sharedInstance.currentAccount == nil }
     
-    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = Observable
-        .merge(self.fetchData.asObservable(), RxNotifications.shared.accountDetailUpdated.map(to:FetchingAccountState.switchAccount))
+    private lazy var fetchTrigger = Observable.merge(self.fetchData, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
+    
+    // Awful maintenance mode check
+    private lazy var fetchDataMMEvents: Observable<Event<Maintenance>> = self.fetchData
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
+                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+    
+    private lazy var accountDetailUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.accountDetailUpdated
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: .switchAccount) },
+                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+    
+    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable.merge(self.fetchDataMMEvents, self.accountDetailUpdatedMMEvents)
+    
+    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.maintenanceModeEvents
+        .filter { !($0.element?.homeStatus ?? false) }
+        .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [unowned self] in
             self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
                 .trackActivity(self.fetchTracker(forState: $0))
@@ -83,8 +101,17 @@ class HomeViewModel {
                                                    self.billCardViewModel.workDaysNoNetworkConnection)
             .asDriver(onErrorDriveWith: .empty())
         
-        return Driver.combineLatest(noNetworkConnection, self.switchAccountFetchTracker.asDriver()) { $0 && !$1 }
+        return Driver.combineLatest(noNetworkConnection,
+                                    self.showMaintenanceModeState,
+                                    self.switchAccountFetchTracker.asDriver()) { $0 && !$1 && !$2 }
+            .startWith(false)
     }()
+    
+    private(set) lazy var showMaintenanceModeState: Driver<Bool> = Observable
+        .combineLatest(self.maintenanceModeEvents.map { $0.element?.homeStatus ?? false },
+                       self.switchAccountFetchTracker.asObservable()) { $0 && !$1 }
+        .startWith(false)
+        .asDriver(onErrorDriveWith: .empty())
     
     //MARK: - Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()

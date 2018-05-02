@@ -14,9 +14,11 @@ class HomeBillCardViewModel {
     
     let bag = DisposeBag()
     
+    let fetchDataMMEvents: Observable<Event<Maintenance>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
     private let walletService: WalletService
     private let paymentService: PaymentService
+    private let authService: AuthenticationService
     
     let cvv2 = Variable<String?>(nil)
     
@@ -37,15 +39,19 @@ class HomeBillCardViewModel {
     let paymentTracker = ActivityTracker()
     
     required init(fetchData: Observable<FetchingAccountState>,
+                  fetchDataMMEvents: Observable<Event<Maintenance>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   walletService: WalletService,
                   paymentService: PaymentService,
+                  authService: AuthenticationService,
                   refreshFetchTracker: ActivityTracker,
                   switchAccountFetchTracker: ActivityTracker) {
         self.fetchData = fetchData
+        self.fetchDataMMEvents = fetchDataMMEvents
         self.accountDetailEvents = accountDetailEvents
         self.walletService = walletService
         self.paymentService = paymentService
+        self.authService = authService
         self.refreshFetchTracker = refreshFetchTracker
         self.switchAccountFetchTracker = switchAccountFetchTracker
         
@@ -63,8 +69,19 @@ class HomeBillCardViewModel {
             .disposed(by: bag)
     }
     
-    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = Observable
+    private lazy var fetchTrigger = Observable
         .merge(self.fetchData, RxNotifications.shared.defaultWalletItemUpdated.map(to: FetchingAccountState.switchAccount))
+    
+    // Awful maintenance mode check
+    private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated
+        .toAsyncRequest(activityTracker: { [weak self] _ in self?.fetchTracker(forState: .switchAccount) },
+                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+    
+    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable.merge(self.fetchDataMMEvents, self.defaultWalletItemUpdatedMMEvents)
+    
+    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.maintenanceModeEvents
+        .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
+        .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [unowned self] in
             self.walletService.fetchWalletItems()
                 .trackActivity(self.fetchTracker(forState: $0))
@@ -90,7 +107,9 @@ class HomeBillCardViewModel {
             .materialize()
             .share()
     
-    private lazy var workDayEvents: Observable<Event<[Date]>> = self.fetchData
+    private lazy var workDayEvents: Observable<Event<[Date]>> = self.maintenanceModeEvents
+        .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
+        .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [unowned self] state -> Observable<Event<[Date]>> in
             if Environment.sharedInstance.opco == .peco {
                 return self.paymentService.fetchWorkdays()
@@ -190,12 +209,14 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showErrorState: Driver<Bool> = {
         if Environment.sharedInstance.opco == .peco {
-            return Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents, self.workDayEvents)
-                .map { $0.0.error != nil || $0.1.error != nil || $0.2.error != nil }
+            return Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents, self.workDayEvents, self.showMaintenanceModeState.asObservable())
+                .map { ($0.0.error != nil || $0.1.error != nil || $0.2.error != nil) && !$0.3 }
+                .startWith(false)
                 .asDriver(onErrorDriveWith: .empty())
         } else {
-            return Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents)
-                .map { $0.0.error != nil || $0.1.error != nil }
+            return Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents, self.showMaintenanceModeState.asObservable())
+                .map { ($0.0.error != nil || $0.1.error != nil) && !$0.2 }
+                .startWith(false)
                 .asDriver(onErrorDriveWith: .empty())
         }
         
@@ -207,6 +228,12 @@ class HomeBillCardViewModel {
         }
         return false
     }
+        .startWith(false)
+    
+    private(set) lazy var showMaintenanceModeState: Driver<Bool> = self.maintenanceModeEvents
+        .map { $0.element?.billStatus ?? false }
+        .startWith(false)
+        .asDriver(onErrorDriveWith: .empty())
     
     // MARK: - Title States
     
@@ -340,7 +367,12 @@ class HomeBillCardViewModel {
                                                                           self.walletItemDriver,
                                                                           self.showOneTouchPaySlider,
                                                                           self.enableOneTouchSlider)
-        { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .billReadyAutoPay && $1 != nil && $2 && $3 }
+        { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .billReadyAutoPay && $1 != nil && $2 && ($3 || $1!.isExpired) }
+    
+    private(set) lazy var showBankCreditExpiredLabel: Driver<Bool> = self.walletItemDriver.map {
+        guard let walletItem = $0 else { return false }
+        return walletItem.isExpired
+    }
     
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                                    self.walletItemDriver,
@@ -675,6 +707,9 @@ class HomeBillCardViewModel {
             if walletItem == nil {
                 return false
             }
+            if walletItem!.isExpired {
+                return false
+            }
             if let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount,
                 accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.sharedInstance.opco != .bge {
                 return false
@@ -743,6 +778,13 @@ class HomeBillCardViewModel {
     
     private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = self.enableOneTouchPayTCButton.map {
         $0 ? UIColor.actionBlue: UIColor.blackText
+    }
+    
+    private(set) lazy var bankCreditButtonBorderColor: Driver<CGColor> = self.walletItemDriver.map {
+        if let walletItem = $0, walletItem.isExpired {
+            return UIColor.errorRed.cgColor
+        }
+        return UIColor.accentGray.cgColor
     }
     
     var paymentTACUrl: URL {
