@@ -233,7 +233,7 @@ class HomeUsageCardView: UIView {
         
         Driver.combineLatest(viewModel.shouldShowBillComparison, viewModel.shouldShowBillComparisonEmptyStateButton)
             .drive(onNext: {
-                (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(showViewUsageOptions: $0 || $1)
+                (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: true, showViewUsageOptions: $0 || $1)
             })
             .disposed(by: disposeBag)
         
