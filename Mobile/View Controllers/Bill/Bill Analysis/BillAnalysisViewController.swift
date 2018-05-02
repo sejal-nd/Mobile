@@ -135,9 +135,11 @@ class BillAnalysisViewController: UIViewController {
         styleViews()
         bindViewModel()
         
-        if UIScreen.main.bounds.size.width < 375 { // If smaller than iPhone 6 width
-            barGraphStackView.spacing = 11
-            likelyReasonsStackView.spacing = 8
+        if let ad = UIApplication.shared.delegate as? AppDelegate, let window = ad.window {
+            if window.bounds.width < 375 { // If smaller than iPhone 6 width
+                barGraphStackView.spacing = 11
+                likelyReasonsStackView.spacing = 8
+            }
         }
         
         // layoutIfNeeded() for the initial selection triangle positions

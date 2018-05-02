@@ -12,6 +12,9 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -174,6 +177,24 @@
                                                             <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" horizontalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="EBS-40-KjO">
+                                                            <rect key="frame" x="98.5" y="0.0" width="50" height="114"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="Expired" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGf-rO-cXW">
+                                                                    <rect key="frame" x="14" y="0.0" width="36" height="114"/>
+                                                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
+                                                                    <color key="textColor" red="0.44313725490196076" green="0.0" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="AGf-rO-cXW" secondAttribute="bottom" id="7Ju-uZ-Snb"/>
+                                                                <constraint firstAttribute="trailing" secondItem="AGf-rO-cXW" secondAttribute="trailing" id="KSi-yR-kF4"/>
+                                                                <constraint firstItem="AGf-rO-cXW" firstAttribute="top" secondItem="EBS-40-KjO" secondAttribute="top" id="ZKT-yO-0xt"/>
+                                                                <constraint firstItem="AGf-rO-cXW" firstAttribute="leading" secondItem="EBS-40-KjO" secondAttribute="leading" constant="14" id="j8F-wk-5sB"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -191,10 +212,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="5gA-6f-vmQ" secondAttribute="trailing" id="GwD-YH-YOZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="5gA-6f-vmQ" secondAttribute="trailing" id="00Z-og-tIY"/>
                                         <constraint firstAttribute="bottom" secondItem="5gA-6f-vmQ" secondAttribute="bottom" priority="999" constant="7" id="T59-s4-LyK"/>
+                                        <constraint firstItem="5gA-6f-vmQ" firstAttribute="leading" secondItem="vNO-0Y-K8O" secondAttribute="leading" id="cee-mw-sUt"/>
                                         <constraint firstItem="5gA-6f-vmQ" firstAttribute="top" secondItem="vNO-0Y-K8O" secondAttribute="top" priority="999" constant="24" id="d8R-T4-WhT"/>
-                                        <constraint firstItem="5gA-6f-vmQ" firstAttribute="leading" secondItem="vNO-0Y-K8O" secondAttribute="leading" id="pEv-ya-3qd"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VQi-zi-eg5">
@@ -576,6 +597,7 @@
                 <outlet property="autoPayImageView" destination="Uk6-Fs-NZW" id="afO-1d-TZV"/>
                 <outlet property="automaticPaymentInfoButton" destination="Evf-zb-9Gh" id="JM9-L9-k6w"/>
                 <outlet property="automaticPaymentInfoButtonLabel" destination="8lZ-GJ-csL" id="KtR-1W-exH"/>
+                <outlet property="bankCreditCardExpiredView" destination="EBS-40-KjO" id="ce5-je-iDf"/>
                 <outlet property="bankCreditCardImageView" destination="Ild-3Y-ezu" id="tk5-CE-wsi"/>
                 <outlet property="bankCreditCardNumberLabel" destination="H5F-y7-LKK" id="wJm-ZW-bVK"/>
                 <outlet property="bankCreditNumberButton" destination="5gA-6f-vmQ" id="sxF-jO-88b"/>

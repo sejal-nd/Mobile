@@ -15,6 +15,8 @@ class MiniWalletTableViewCell: UITableViewCell {
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var checkmarkImageView: UIImageView!
+    @IBOutlet weak var expiredView: UIView!
+    @IBOutlet weak var expiredLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +34,10 @@ class MiniWalletTableViewCell: UITableViewCell {
         nicknameLabel.textColor = .middleGray
         
         checkmarkImageView.isHidden = true
+        
+        expiredView.layer.borderWidth = 2
+        expiredView.layer.borderColor = UIColor.errorRed.cgColor
+        expiredLabel.textColor = .errorRed
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -81,6 +87,9 @@ class MiniWalletTableViewCell: UITableViewCell {
         }
         
         innerContentView.accessibilityLabel = a11yLabel
+        
+        expiredView.isHidden = !walletItem.isExpired
+        expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""
     }
 
 }

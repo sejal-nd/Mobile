@@ -367,7 +367,12 @@ class HomeBillCardViewModel {
                                                                           self.walletItemDriver,
                                                                           self.showOneTouchPaySlider,
                                                                           self.enableOneTouchSlider)
-        { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .billReadyAutoPay && $1 != nil && $2 && $3 }
+        { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .billReadyAutoPay && $1 != nil && $2 && ($3 || $1!.isExpired) }
+    
+    private(set) lazy var showBankCreditExpiredLabel: Driver<Bool> = self.walletItemDriver.map {
+        guard let walletItem = $0 else { return false }
+        return walletItem.isExpired
+    }
     
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                                    self.walletItemDriver,
@@ -702,6 +707,9 @@ class HomeBillCardViewModel {
             if walletItem == nil {
                 return false
             }
+            if walletItem!.isExpired {
+                return false
+            }
             if let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount,
                 accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.sharedInstance.opco != .bge {
                 return false
@@ -770,6 +778,13 @@ class HomeBillCardViewModel {
     
     private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = self.enableOneTouchPayTCButton.map {
         $0 ? UIColor.actionBlue: UIColor.blackText
+    }
+    
+    private(set) lazy var bankCreditButtonBorderColor: Driver<CGColor> = self.walletItemDriver.map {
+        if let walletItem = $0, walletItem.isExpired {
+            return UIColor.errorRed.cgColor
+        }
+        return UIColor.accentGray.cgColor
     }
     
     var paymentTACUrl: URL {

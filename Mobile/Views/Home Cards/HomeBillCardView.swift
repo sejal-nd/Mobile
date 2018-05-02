@@ -48,6 +48,7 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var bankCreditNumberButton: ButtonControl!
     @IBOutlet weak var bankCreditCardImageView: UIImageView!
     @IBOutlet weak var bankCreditCardNumberLabel: UILabel!
+    @IBOutlet weak var bankCreditCardExpiredView: UIView!
     
     @IBOutlet weak var saveAPaymentAccountContainer: UIView!
     @IBOutlet weak var saveAPaymentAccountButton: ButtonControl!
@@ -121,7 +122,6 @@ class HomeBillCardView: UIView {
         
         alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         
-        bankCreditNumberButton.layer.borderColor = UIColor.accentGray.cgColor
         bankCreditNumberButton.layer.borderWidth = 2
         bankCreditNumberButton.layer.cornerRadius = 3
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
@@ -236,6 +236,8 @@ class HomeBillCardView: UIView {
         viewModel.showDueAmountAndDate.not().drive(dueAmountAndDateContainer.rx.isHidden).disposed(by: bag)
         dueAmountAndDateTooltip.isHidden = !viewModel.showDueAmountAndDateTooltip
         viewModel.showBankCreditButton.not().drive(bankCreditNumberContainer.rx.isHidden).disposed(by: bag)
+        viewModel.bankCreditButtonBorderColor.drive(bankCreditNumberButton.rx.borderColor).disposed(by: bag)
+        viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredView.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountContainer.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.asObservable().subscribe(onNext: { [weak self] show in
             let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
