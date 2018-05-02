@@ -256,9 +256,6 @@ fi
 
 if [[ $target_phases = *"unitTest"* ]]; then
 
-	# disable error propagation. we do not want to force the whole build script to fail if a unit test fails
-	set +e
-
 	echo "Running automation tests"
 	xcrun xcodebuild  -sdk iphonesimulator \
 		-project $PROJECT \
@@ -267,8 +264,6 @@ if [[ $target_phases = *"unitTest"* ]]; then
 		-configuration Automation \
 		test | tee build/logs/xcodebuild_automation_unittests.log | xcpretty --report junit 
 
-	 # re-enable error propagation
-	set -e
 fi
 
 if [[ $target_phases = *"build"* ]]; then

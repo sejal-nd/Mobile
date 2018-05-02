@@ -134,6 +134,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests changes in the `totalAmountDescriptionText` value after switching
     // through different accounts.
     func testTotalAmountDescriptionText() {
+
         let totalAmounts: [Double?] = [4, -5000, 435.323, 68.04, nil]
         let pastDueAmounts: [Double?] = [4, 26.32, nil, 0, nil]
         
