@@ -12,12 +12,14 @@ struct Maintenance: Mappable {
     let allStatus: Bool
     let homeStatus: Bool
     let billStatus: Bool
+    let outageStatus: Bool
     let alertStatus: Bool
     
     init(map: Mapper) throws {
         allStatus = map.optionalFrom("all") ?? false
         homeStatus = map.optionalFrom("home") ?? false
-        billStatus = map.optionalFrom("outage") ?? false
+        billStatus = map.optionalFrom("bill") ?? false
+        outageStatus = map.optionalFrom("outage") ?? false
         alertStatus = map.optionalFrom("alerts") ?? false
     }
     

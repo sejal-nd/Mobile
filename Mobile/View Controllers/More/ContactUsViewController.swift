@@ -79,6 +79,7 @@ class ContactUsViewController: UIViewController {
         emergencyNumberTextView.text = contactUsViewModel.phoneNumber1
         emergencyNumberTextView.textContainerInset = .zero
         emergencyNumberTextView.tintColor = .actionBlue // Color of the phone numbers
+        emergencyNumberTextView.linkTapDelegate = self
         
         emergencyDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         emergencyDescriptionLabel.attributedText = contactUsViewModel.emergencyAttrString
@@ -90,6 +91,7 @@ class ContactUsViewController: UIViewController {
         firstNumberTextView.text = contactUsViewModel.phoneNumber2
         firstNumberTextView.textContainerInset = .zero
         firstNumberTextView.tintColor = .actionBlue // Color of the phone numbers
+        firstNumberTextView.linkTapDelegate = self
         
         if let label2 = contactUsViewModel.label2,
             let phoneNumber3 = contactUsViewModel.phoneNumber3 {
@@ -98,6 +100,7 @@ class ContactUsViewController: UIViewController {
             secondNumberTextView.text = phoneNumber3
             secondNumberTextView.textContainerInset = .zero
             secondNumberTextView.tintColor = .actionBlue // Color of the phone numbers
+            secondNumberTextView.linkTapDelegate = self
         } else {
             secondStack.isHidden = true
         }
@@ -109,6 +112,7 @@ class ContactUsViewController: UIViewController {
             thirdNumberTextView.text = phoneNumber4
             thirdNumberTextView.textContainerInset = .zero
             thirdNumberTextView.tintColor = .actionBlue // Color of the phone numbers
+            thirdNumberTextView.linkTapDelegate = self
         } else {
             thirdStack.isHidden = true
         }
@@ -167,4 +171,28 @@ class ContactUsViewController: UIViewController {
         return .lightContent
     }
     
+}
+
+extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
+    
+    func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
+        let screenName = unauthenticatedExperience ?
+            AnalyticsPageView.ContactUsUnAuthCall.rawValue :
+            AnalyticsPageView.ContactUsAuthCall.rawValue
+        var dimensionValue: String?
+        
+        if textView == emergencyNumberTextView {
+            dimensionValue = "Emergency"
+        } else if textView == firstNumberTextView {
+            dimensionValue = "Residential"
+        } else if textView == secondNumberTextView {
+            dimensionValue = "Business"
+        } else if textView == thirdNumberTextView {
+            dimensionValue = "TTY/TTD"
+        }
+        
+        if let value = dimensionValue {
+            Analytics().logScreenView(screenName, dimensionIndex: Dimensions.Link, dimensionValue: value)
+        }
+    }
 }

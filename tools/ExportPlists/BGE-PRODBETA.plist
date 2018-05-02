@@ -8,8 +8,8 @@
 	<string>enterprise</string>
 	<key>provisioningProfiles</key>
 	<dict>
-		<key>com.exelon.mobile.bge.staging</key>
-		<string>BGE Staging Enterprise Dist</string>
+		<key>com.exelon.mobile.bge.prodbeta</key>
+		<string>BGE Production Beta Enterprise Dist</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>

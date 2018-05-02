@@ -14,6 +14,7 @@ import StoreKit
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
@@ -120,12 +121,15 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var customErrorView: UIView!
     @IBOutlet weak var customErrorTitleLabel: UILabel!
     @IBOutlet weak var customErrorDetailLabel: UILabel!
-    var refreshDisposable: Disposable?
+    
     var refreshControl: UIRefreshControl?
     
-    let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
+    let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService(),
+                                  authService: ServiceFactory.createAuthenticationService())
 
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
+    var shortcutItem = ShortcutItem.none
 
     let bag = DisposeBag()
 
@@ -186,6 +190,11 @@ class BillViewController: AccountPickerViewController {
         scrollView!.alwaysBounceVertical = false
         enableRefresh()
         // -------------------------------------------------------------------------------------------------------
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shortcutItem = .none
     }
     
     func enableRefresh() -> Void {
@@ -301,6 +310,7 @@ class BillViewController: AccountPickerViewController {
         bottomStackContainerView.isHidden = false
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
         enableRefresh()
     }
     
@@ -327,6 +337,26 @@ class BillViewController: AccountPickerViewController {
             genericErrorView.isHidden = false
             customErrorView.isHidden = true
         }
+        maintenanceModeView.isHidden = true
+        
+        enableRefresh()
+    }
+    
+    func showMaintenanceModeState() {
+        maintenanceModeView.isHidden = false
+        
+        scrollView?.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        
+        billLoadingIndicator.isHidden = true
+        loadingIndicatorView.isHidden = true
+        topView.isHidden = true
+        bottomView.isHidden = true
+        errorView.isHidden = true
+        bottomStackContainerView.isHidden = true
+        
+        genericErrorView.isHidden = true
+        customErrorView.isHidden = true
         enableRefresh()
     }
     
@@ -344,6 +374,8 @@ class BillViewController: AccountPickerViewController {
         refreshControl?.removeFromSuperview()
         refreshControl = nil
         scrollView!.alwaysBounceVertical = false
+        
+        maintenanceModeView.isHidden = true
     }
 
 	func bindLoadingStates() {
@@ -359,6 +391,14 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
         viewModel.accountDetailError.drive(onNext: { [weak self] in self?.showErrorState(error: $0) }).disposed(by: bag)
+        viewModel.showMaintenanceMode.drive(onNext: { [weak self] in self?.showMaintenanceModeState() }).disposed(by: bag)
+        
+        // Clear shortcut handling in the case of an error.
+        viewModel.accountDetailError.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.shortcutItem = .none
+            })
+            .disposed(by: bag)
 	}
 
 	func bindViewHiding() {
@@ -453,8 +493,13 @@ class BillViewController: AccountPickerViewController {
 	}
 
     func bindButtonTaps() {
+        maintenanceModeView.reload
+            .map(to: FetchingAccountState.switchAccount)
+            .bind(to: viewModel.fetchAccountDetail)
+            .disposed(by: maintenanceModeView.disposeBag)
+        
         noNetworkConnectionView.reload
-            .map { FetchingAccountState.switchAccount }
+            .map(to: FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchAccountDetail)
             .disposed(by: bag)
         
@@ -561,13 +606,20 @@ class BillViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        makeAPaymentButton.rx.touchUpInside.asObservable()
-            .withLatestFrom(Observable.combineLatest(viewModel.makePaymentScheduledPaymentAlertInfo,
-                                                     viewModel.currentAccountDetail.asObservable()))
+        let shortcutReady = Observable.zip(viewModel.makePaymentScheduledPaymentAlertInfo,
+                                           viewModel.shouldEnableMakeAPaymentButton.asObservable())
+            .filter { [weak self] in $1 && self?.shortcutItem == .payBill }
+            .map { $0.0 }
+        
+        let makeAPaymentButtonTapped = makeAPaymentButton.rx.touchUpInside.asObservable()
+            .withLatestFrom(viewModel.makePaymentScheduledPaymentAlertInfo)
+        
+        Observable.merge(makeAPaymentButtonTapped, shortcutReady)
             .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] alertInfo, accountDetail in
+            .drive(onNext: { [weak self] alertInfo in
                 guard let `self` = self else { return }
-                let (titleOpt, messageOpt) = alertInfo
+                self.shortcutItem = .none
+                let (titleOpt, messageOpt, accountDetail) = alertInfo
                 let goToMakePayment = { [weak self] in
                     guard let `self` = self else { return }
                     let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController

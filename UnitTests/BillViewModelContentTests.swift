@@ -809,7 +809,7 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let observer = scheduler.createObserver((String?, String?).self)
+        let observer = scheduler.createObserver((String?, String?, AccountDetail).self)
         viewModel.makePaymentScheduledPaymentAlertInfo.bind(to: observer).disposed(by: disposeBag)
         
         scheduler.start()
