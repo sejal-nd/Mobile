@@ -150,12 +150,13 @@ class WalletTableViewCell: UITableViewCell {
             a11yLabel += ", \(nicknameText)"
         }
         
-        
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            if UIScreen.main.bounds.width < 375 && walletItem.isExpired { // iPhone 5/SE size
-                accountNumberLabel.text = "...\(last4Digits)"
-            } else {
-                accountNumberLabel.text = "**** \(last4Digits)"
+            if let ad = UIApplication.shared.delegate as? AppDelegate, let window = ad.window {
+                if window.bounds.width < 375 { // If smaller than iPhone 6 width
+                    accountNumberLabel.text = "...\(last4Digits)"
+                } else {
+                    accountNumberLabel.text = "**** \(last4Digits)"
+                }
             }
             a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
         } else {

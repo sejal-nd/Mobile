@@ -89,9 +89,11 @@ class EditCreditCardViewController: UIViewController {
         
         scrollView.alwaysBounceHorizontal = false
         
-        if UIScreen.main.bounds.width < 375 { // iPhone 5/SE size
-            innerContentViewLeadingConstraint.constant = 15
-            innerContentViewTrailingConstraint.constant = 15
+        if let ad = UIApplication.shared.delegate as? AppDelegate, let window = ad.window {
+            if window.bounds.width < 375 { // If smaller than iPhone 6 width
+                innerContentViewLeadingConstraint.constant = 15
+                innerContentViewTrailingConstraint.constant = 15
+            }
         }
     }
     
