@@ -4,51 +4,14 @@
 <dict>
 	<key>mobileBackends</key>
 	<dict>
-		<key>Dev</key>
+		<key>Develop</key>
 		<dict>
 			<key>networkConnectionTimeout</key>
 			<string>60</string>
 			<key>default</key>
 			<true/>
 			<key>baseURL</key>
-			<string>https://exeloneumobileappdev-a453576.mobileenv.us2.oraclecloud.com:443</string>
-			<key>appKey</key>
-			<string>076abdcd-0f21-4c90-961c-ee223ee9e97d</string>
-			<key>authorization</key>
-			<dict>
-				<key>authenticationType</key>
-				<string>SSOTokenExchange</string>
-				<key>OAuth</key>
-				<dict>
-					<key>tokenEndpoint</key>
-					<string>HTTPS://EDIT_IN_SETTINGS_BUNDLE</string>
-					<key>clientID</key>
-					<string>EDIT_IN_SETTINGS_BUNDLE</string>
-					<key>clientSecret</key>
-					<string>EDIT_IN_SETTINGS_BUNDLE</string>
-				</dict>
-				<key>SSOTokenExchange</key>
-				<dict>
-					<key>mobileBackendID</key>
-					<string>2b69703f-83b5-4ee2-95b6-316d90bb2838</string>
-					<key>anonymousKey</key>
-					<string>YW5vbl9kZXY6QDNEdGx0ZiQ3VVF4YUdTYTZESCo=</string>
-				</dict>
-				<key>Basic</key>
-				<dict>
-					<key>mobileBackendID</key>
-					<string>2b69703f-83b5-4ee2-95b6-316d90bb2838</string>
-					<key>anonymousKey</key>
-					<string>YW5vbl9kZXY6QDNEdGx0ZiQ3VVF4YUdTYTZESCo=</string>
-				</dict>
-			</dict>
-		</dict>
-		<key>Testing</key>
-		<dict>
-			<key>networkConnectionTimeout</key>
-			<string>15</string>
-			<key>baseURL</key>
-			<string>https://exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
 			<key>appKey</key>
 			<string>9cffc381-5e88-475f-a8d4-10b89321676a</string>
 			<key>authorization</key>
@@ -67,16 +30,16 @@
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
-					<string>09282f50-ed11-4d68-b5cb-20bbed263373</string>
+					<string>471e5945-7a9b-40ef-8b0e-19b8230a7872</string>
 					<key>anonymousKey</key>
-					<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
+					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 				</dict>
 				<key>Basic</key>
 				<dict>
 					<key>mobileBackendID</key>
-					<string>09282f50-ed11-4d68-b5cb-20bbed263373</string>
+					<string>471e5945-7a9b-40ef-8b0e-19b8230a7872</string>
 					<key>anonymousKey</key>
-					<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
+					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 				</dict>
 			</dict>
 		</dict>
@@ -104,14 +67,14 @@
 				<key>SSOTokenExchange</key>
 				<dict>
 					<key>mobileBackendID</key>
-					<string>d612762f-f41d-432b-a056-83ef7780b44c</string>
+					<string>75926ee8-5d41-4375-92d3-d4c01f73b432</string>
 					<key>anonymousKey</key>
 					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 				</dict>
 				<key>Basic</key>
 				<dict>
 					<key>mobileBackendID</key>
-					<string>d612762f-f41d-432b-a056-83ef7780b44c</string>
+					<string>75926ee8-5d41-4375-92d3-d4c01f73b432</string>
 					<key>anonymousKey</key>
 					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 				</dict>
