@@ -49,7 +49,7 @@ class HomeBillCardViewModel {
         self.refreshFetchTracker = refreshFetchTracker
         self.switchAccountFetchTracker = switchAccountFetchTracker
         
-        self.oneTouchPayResult
+        self.oneTouchPayResult.elements()
             .withLatestFrom(self.walletItem)
             .unwrap()
             .subscribe(onNext: {
