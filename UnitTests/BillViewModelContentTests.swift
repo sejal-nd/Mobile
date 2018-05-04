@@ -134,6 +134,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests changes in the `totalAmountDescriptionText` value after switching
     // through different accounts.
     func testTotalAmountDescriptionText() {
+
         let totalAmounts: [Double?] = [4, -5000, 435.323, 68.04, nil]
         let pastDueAmounts: [Double?] = [4, 26.32, nil, 0, nil]
         
@@ -809,7 +810,7 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let observer = scheduler.createObserver((String?, String?).self)
+        let observer = scheduler.createObserver((String?, String?, AccountDetail).self)
         viewModel.makePaymentScheduledPaymentAlertInfo.bind(to: observer).disposed(by: disposeBag)
         
         scheduler.start()

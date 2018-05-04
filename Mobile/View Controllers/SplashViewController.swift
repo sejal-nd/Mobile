@@ -29,7 +29,8 @@ class SplashViewController: UIViewController{
     @IBOutlet weak var retryButton: ButtonControl!
     
     var performDeepLink = false
-    var keepMeSignedIn: Bool = false
+    var keepMeSignedIn = false
+    var shortcutItem = ShortcutItem.none
     
     var loadingTimer = Timer()
     
@@ -110,10 +111,19 @@ class SplashViewController: UIViewController{
         bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch/Face ID alert prompt is dismissed
         
         if keepMeSignedIn {
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-            self.present(viewController!, animated: true, completion: nil)
+            guard let viewController = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateInitialViewController() as? MainTabBarController else {
+                return
+            }
+            
+            self.present(viewController, animated: true, completion: { [weak self] in
+                if let shortcutItem = self?.shortcutItem, shortcutItem != .none {
+                    NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+                }
+            })
         } else {
-            let navigate = {
+            let navigate = { [weak self] in
+                guard let `self` = self else { return }
                 if self.performDeepLink {
                     let storyboard = UIStoryboard(name: "Login", bundle: nil)
                     let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
@@ -168,7 +178,7 @@ class SplashViewController: UIViewController{
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         if activity.activityType == NSUserActivityTypeBrowsingWeb { // Universal Link from Reset Password email
-            self.performDeepLink = true
+            performDeepLink = true
         }
     }
     

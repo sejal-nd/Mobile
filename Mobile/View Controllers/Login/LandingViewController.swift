@@ -16,6 +16,7 @@ class LandingViewController: UIViewController {
     let disposeBag = DisposeBag()
 
     @IBOutlet weak var logoBackgroundView: UIView!
+    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var signInButton: SecondaryButton!
     @IBOutlet weak var orLabel: UILabel!
     @IBOutlet weak var registerButton: SecondaryButton!
@@ -59,6 +60,8 @@ class LandingViewController: UIViewController {
         versionLabel.alpha = 0
         
         logoBackgroundView.addShadow(color: .primaryColorDark, opacity: 0.5, offset: CGSize(width: 0, height: 9), radius: 11)
+        let a11yText = NSLocalizedString("%@, an Exelon Company", comment: "")
+        logoImageView.accessibilityLabel = String(format: a11yText, Environment.sharedInstance.opco.displayString)
     }
     
     func backgroundVideoSetup() {

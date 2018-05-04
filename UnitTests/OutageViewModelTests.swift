@@ -12,7 +12,7 @@ class OutageViewModelTests: XCTestCase {
     var viewModel: OutageViewModel!
     
     override func setUp() {
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: MockOutageService())
+        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: MockOutageService(), authService: MockAuthenticationService())
     }
         
     func testGetOutageStatusSuccess() {
@@ -87,7 +87,7 @@ class OutageViewModelTests: XCTestCase {
         AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
         
         let mockOutageService = MockOutageService()
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService)
+        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
         let testEtr = Date()
@@ -111,7 +111,7 @@ class OutageViewModelTests: XCTestCase {
         
         let expect = expectation(description: "Test report outage expectation")
         let mockOutageService = MockOutageService()
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService)
+        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
         reportViewModel.reportOutage(onSuccess: {
@@ -135,7 +135,7 @@ class OutageViewModelTests: XCTestCase {
         
         let expect = expectation(description: "Test report outage expectation")
         let mockOutageService = MockOutageService()
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService)
+        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
         reportViewModel.reportOutage(onSuccess: {
@@ -190,7 +190,7 @@ class OutageViewModelTests: XCTestCase {
         AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
         
         let mockOutageService = MockOutageService()
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService)
+        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
         let testDate = Date()

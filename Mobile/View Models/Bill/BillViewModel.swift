@@ -22,7 +22,8 @@ class BillViewModel {
     
     let disposeBag = DisposeBag()
     
-    private var accountService: AccountService
+    private let accountService: AccountService
+    private let authService: AuthenticationService
 
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let refreshTracker = ActivityTracker()
@@ -35,12 +36,24 @@ class BillViewModel {
         }
     }
     
-    required init(accountService: AccountService) {
+    required init(accountService: AccountService, authService: AuthenticationService) {
         self.accountService = accountService
+        self.authService = authService
     }
     
-    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = Observable
-        .merge(self.fetchAccountDetail, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
+    private lazy var fetchTrigger = Observable.merge(self.fetchAccountDetail,
+                                                     RxNotifications.shared.accountDetailUpdated
+                                                        .map(to: FetchingAccountState.switchAccount))
+    
+    // Awful maintenance mode check
+    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = self.fetchTrigger
+        .toAsyncRequest(activityTracker: { [weak self] in self?.tracker(forState: $0) },
+                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+    
+    
+    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.maintenanceModeEvents
+        .filter { !($0.element?.billStatus ?? false) }
+        .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [weak self] state -> Observable<Event<AccountDetail>> in
             guard let `self` = self else { return .empty() }
             return self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
@@ -68,6 +81,11 @@ class BillViewModel {
             .asDriver(onErrorDriveWith: Driver.empty())
 	
     // MARK: - Show/Hide Views -
+    
+    private(set) lazy var showMaintenanceMode: Driver<Void> = self.maintenanceModeEvents.elements()
+        .filter { $0.billStatus }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var shouldShowAlertBanner: Driver<Bool> =  Driver
         .combineLatest(self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()),
@@ -431,20 +449,20 @@ class BillViewModel {
         return nil
     }
     
-    private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?)> = self.currentAccountDetail.asObservable()
+    private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = self.currentAccountDetail.asObservable()
         .map { accountDetail in
             if Environment.sharedInstance.opco == .bge && accountDetail.isBGEasy {
                 return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already " +
                     "enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date " +
                     "of your bill from the bank account you originally submitted. You may make a one-time payment " +
                     "now, but it may result in duplicate payment processing. Do you want to continue with a " +
-                    "one-time payment?", comment: ""))
+                    "one-time payment?", comment: ""), accountDetail)
             } else if accountDetail.isAutoPay {
                 return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You currently " +
                     "have automatic payments set up. To avoid a duplicate payment, please review your payment " +
                     "activity before proceeding. Would you like to continue making an additional payment?\n\nNote: " +
                     "If you recently enrolled in AutoPay and you have not yet received a new bill, you will need " +
-                    "to submit a payment for your current bill if you have not already done so.", comment: ""))
+                    "to submit a payment for your current bill if you have not already done so.", comment: ""), accountDetail)
             } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount,
                 let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
                 let amountString = scheduledPaymentAmount.currencyString, scheduledPaymentAmount > 0 {
@@ -452,9 +470,9 @@ class BillViewModel {
                 return (localizedTitle, String(format: NSLocalizedString("You have a payment of %@ scheduled for %@. " +
                     "To avoid a duplicate payment, please review your payment activity before proceeding. Would " +
                     "you like to continue making an additional payment?", comment: ""),
-                                               amountString, scheduledPaymentDate.mmDdYyyyString))
+                                               amountString, scheduledPaymentDate.mmDdYyyyString), accountDetail)
             }
-            return (nil, nil)
+            return (nil, nil, accountDetail)
     }
     
     private(set) lazy var makePaymentStatusTextTapRouting: Driver<MakePaymentStatusTextRouting> = self.currentAccountDetail.map {

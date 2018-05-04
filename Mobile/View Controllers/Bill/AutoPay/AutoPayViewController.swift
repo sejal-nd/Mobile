@@ -162,7 +162,6 @@ class AutoPayViewController: UIViewController {
     
     @objc func onSubmitPress() {
         view.endEditing(true)
-        Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
         
         LoadingView.show()
         viewModel.submit()

@@ -21,6 +21,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var topLoadingIndicatorView: UIView!
     @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
     @IBOutlet weak var weatherView: UIView!
     @IBOutlet weak var greetingLabel: UILabel!
@@ -47,7 +48,10 @@ class HomeViewController: AccountPickerViewController {
                                   weatherService: ServiceFactory.createWeatherService(),
                                   walletService: ServiceFactory.createWalletService(),
                                   paymentService: ServiceFactory.createPaymentService(),
-                                  usageService: ServiceFactory.createUsageService())
+                                  usageService: ServiceFactory.createUsageService(),
+                                  authService: ServiceFactory.createAuthenticationService())
+    
+    var shortcutItem = ShortcutItem.none
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -84,12 +88,17 @@ class HomeViewController: AccountPickerViewController {
         cardStackView.addArrangedSubview(billCardView)
         
         usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
-        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(), usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
-            .withLatestFrom(viewModel.accountDetailEvents.elements()
-            .asDriver(onErrorDriveWith: .empty()))
+        
+        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
+                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver(),
+                     viewModel.shouldShowUsageCard.filter { [weak self] in $0 && self?.shortcutItem == .viewUsageOptions }.map(to: ())) // Shortcut response
+            .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
+                self?.shortcutItem = .none
                 self?.performSegue(withIdentifier: "usageSegue", sender: $0)
-            }).disposed(by: bag)
+            })
+            .disposed(by: bag)
+        
         cardStackView.addArrangedSubview(usageCardView)
         viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: bag)
         
@@ -163,6 +172,11 @@ class HomeViewController: AccountPickerViewController {
         usageCardView.superviewDidLayoutSubviews()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shortcutItem = .none
+    }
+    
     func styleViews() {
         view.backgroundColor = .primaryColor
         primaryColorHeaderView.backgroundColor = .primaryColor
@@ -223,7 +237,11 @@ class HomeViewController: AccountPickerViewController {
         viewModel.isSwitchingAccounts.asDriver().drive(greetingLabel.rx.isHidden).disposed(by: bag)
         
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
-        viewModel.showNoNetworkConnectionState.drive(scrollView!.rx.isHidden).disposed(by: bag)
+        viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
+        
+        Driver.combineLatest(viewModel.showNoNetworkConnectionState, viewModel.showMaintenanceModeState)
+        { $0 || $1 }
+            .drive(scrollView!.rx.isHidden).disposed(by: bag)
         
         viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
         viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).disposed(by: bag)
@@ -240,8 +258,8 @@ class HomeViewController: AccountPickerViewController {
         viewModel.temperatureTipText.drive(temperatureTipLabel.rx.text).disposed(by: bag)
         viewModel.temperatureTipImage.drive(temperatureTipImageView.rx.image).disposed(by: bag)
         
-        noNetworkConnectionView.reload
-            .map { FetchingAccountState.switchAccount }
+        Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
+            .map(to: FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchData)
             .disposed(by: bag)
         
@@ -288,6 +306,13 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
+        // Clear shortcut handling in the case of an error.
+        Observable.merge(viewModel.usageCardViewModel.accountDetailChanged.errors(),
+                         viewModel.accountDetailEvents.errors())
+            .subscribe(onNext: { [weak self] _ in
+                self?.shortcutItem = .none
+            })
+            .disposed(by: bag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

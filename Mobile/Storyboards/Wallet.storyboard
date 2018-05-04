@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4aX-NF-dKM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4aX-NF-dKM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -131,17 +131,35 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6I-lh-JqZ">
-                                                            <rect key="frame" x="80" y="11" width="198" height="20"/>
+                                                            <rect key="frame" x="80" y="11" width="149" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFr-kO-yGc">
-                                                            <rect key="frame" x="80" y="34" width="198" height="15"/>
+                                                            <rect key="frame" x="80" y="34" width="149" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXh-UB-s4r">
+                                                            <rect key="frame" x="237" y="19.5" width="60" height="20.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Expired" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9v-5M-L5j">
+                                                                    <rect key="frame" x="7" y="3" width="46" height="14.5"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                    <color key="textColor" red="0.4431372549" green="0.0" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="V9v-5M-L5j" firstAttribute="leading" secondItem="bXh-UB-s4r" secondAttribute="leading" constant="7" id="CRz-kq-Bke"/>
+                                                                <constraint firstItem="V9v-5M-L5j" firstAttribute="top" secondItem="bXh-UB-s4r" secondAttribute="top" constant="3" id="fsA-nN-kDY"/>
+                                                                <constraint firstAttribute="trailing" secondItem="V9v-5M-L5j" secondAttribute="trailing" constant="7" id="h7T-j9-us4"/>
+                                                                <constraint firstAttribute="bottom" secondItem="V9v-5M-L5j" secondAttribute="bottom" constant="3" id="kBp-8b-cVF"/>
+                                                            </constraints>
+                                                        </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_meterping" translatesAutoresizingMaskIntoConstraints="NO" id="Bd3-RA-fnV">
                                                             <rect key="frame" x="286" y="23" width="18" height="14"/>
                                                             <constraints>
@@ -154,15 +172,17 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="0NA-xT-JjP"/>
                                                         <constraint firstItem="tLb-WZ-kUz" firstAttribute="centerY" secondItem="58q-3c-dwO" secondAttribute="centerY" id="2JL-Fr-Gl9"/>
-                                                        <constraint firstItem="Bd3-RA-fnV" firstAttribute="leading" secondItem="G6I-lh-JqZ" secondAttribute="trailing" constant="8" id="7eD-Tc-z7e"/>
+                                                        <constraint firstItem="bXh-UB-s4r" firstAttribute="leading" secondItem="G6I-lh-JqZ" secondAttribute="trailing" constant="8" id="4yg-uV-dhd"/>
+                                                        <constraint firstItem="bXh-UB-s4r" firstAttribute="leading" secondItem="tFr-kO-yGc" secondAttribute="trailing" constant="8" id="B88-6r-UFv"/>
                                                         <constraint firstItem="Bd3-RA-fnV" firstAttribute="centerY" secondItem="58q-3c-dwO" secondAttribute="centerY" id="ByJ-mm-V1m"/>
+                                                        <constraint firstItem="bXh-UB-s4r" firstAttribute="centerY" secondItem="58q-3c-dwO" secondAttribute="centerY" id="CAW-7N-dVe"/>
                                                         <constraint firstItem="tFr-kO-yGc" firstAttribute="top" secondItem="G6I-lh-JqZ" secondAttribute="bottom" constant="3" id="Eux-pS-o4h"/>
                                                         <constraint firstAttribute="trailing" secondItem="Bd3-RA-fnV" secondAttribute="trailing" constant="13" id="LWh-OX-2A6"/>
                                                         <constraint firstItem="G6I-lh-JqZ" firstAttribute="top" secondItem="58q-3c-dwO" secondAttribute="top" constant="11" id="YgE-gU-dsE"/>
                                                         <constraint firstItem="G6I-lh-JqZ" firstAttribute="leading" secondItem="tLb-WZ-kUz" secondAttribute="trailing" constant="18" id="aEr-Dg-0kM"/>
                                                         <constraint firstItem="tFr-kO-yGc" firstAttribute="leading" secondItem="tLb-WZ-kUz" secondAttribute="trailing" constant="18" id="cnN-24-nZU"/>
                                                         <constraint firstItem="tLb-WZ-kUz" firstAttribute="leading" secondItem="58q-3c-dwO" secondAttribute="leading" constant="12" id="kmZ-Oy-Obp"/>
-                                                        <constraint firstItem="Bd3-RA-fnV" firstAttribute="leading" secondItem="tFr-kO-yGc" secondAttribute="trailing" constant="8" id="rZE-fT-UM6"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bXh-UB-s4r" secondAttribute="trailing" constant="20" id="qtb-5b-XSp"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -177,6 +197,8 @@
                                         <connections>
                                             <outlet property="accountNumberLabel" destination="G6I-lh-JqZ" id="8gN-GU-7xr"/>
                                             <outlet property="checkmarkImageView" destination="Bd3-RA-fnV" id="Art-ay-fHN"/>
+                                            <outlet property="expiredLabel" destination="V9v-5M-L5j" id="OqP-Li-8i3"/>
+                                            <outlet property="expiredView" destination="bXh-UB-s4r" id="FpW-Qx-8Vl"/>
                                             <outlet property="iconImageView" destination="tLb-WZ-kUz" id="VF2-NN-wYI"/>
                                             <outlet property="innerContentView" destination="58q-3c-dwO" id="7Lt-KK-SNh"/>
                                             <outlet property="nicknameLabel" destination="tFr-kO-yGc" id="2I5-nD-Bcr"/>
@@ -242,7 +264,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ml-14-vto">
-                                <rect key="frame" x="45" y="291" width="285" height="21"/>
+                                <rect key="frame" x="45" y="291.5" width="285" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -272,12 +294,8 @@
                         <outlet property="tableFooterLabel" destination="5w9-7Z-Hbe" id="ED5-XD-sCE"/>
                         <outlet property="tableHeaderLabel" destination="7op-72-SXP" id="Ah0-Xh-q4G"/>
                         <outlet property="tableView" destination="LCy-cb-IPG" id="yJN-j2-tOA"/>
-                        <segue destination="aBa-SE-DiV" kind="show" identifier="miniWalletAddBankAccountSegue" id="t7P-RQ-Ct7">
-                            <nil key="action"/>
-                        </segue>
-                        <segue destination="GZe-bq-njy" kind="show" identifier="miniWalletAddCreditCardSegue" id="7YH-hS-G7V">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="aBa-SE-DiV" kind="show" identifier="miniWalletAddBankAccountSegue" id="t7P-RQ-Ct7"/>
+                        <segue destination="GZe-bq-njy" kind="show" identifier="miniWalletAddCreditCardSegue" id="7YH-hS-G7V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kdt-Dp-yom" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -322,7 +340,7 @@
                                         <rect key="frame" x="0.0" y="70" width="375" height="1674.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active severance text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mo4-35-vd0">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="19.5"/>
+                                                <rect key="frame" x="29" y="0.0" width="317" height="19.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="JmZ-EJ-jqO"/>
                                                 </constraints>
@@ -426,17 +444,25 @@
                                                                             <constraint firstAttribute="height" constant="13" id="Y6x-uX-1KK"/>
                                                                         </constraints>
                                                                     </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Payment Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkT-ew-syS">
+                                                                        <rect key="frame" x="16" y="19" width="202.5" height="21.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstItem="qrE-Ur-u8N" firstAttribute="centerY" secondItem="82z-nj-ooH" secondAttribute="centerY" id="0p4-UW-02D"/>
                                                                     <constraint firstItem="UpP-Io-U3q" firstAttribute="centerY" secondItem="82z-nj-ooH" secondAttribute="centerY" id="Hrk-lO-mRB"/>
                                                                     <constraint firstItem="qrE-Ur-u8N" firstAttribute="leading" secondItem="UpP-Io-U3q" secondAttribute="trailing" constant="18" id="MIe-fS-jgX"/>
+                                                                    <constraint firstItem="fkT-ew-syS" firstAttribute="leading" secondItem="82z-nj-ooH" secondAttribute="leading" constant="16" id="NvW-sl-a7Y"/>
                                                                     <constraint firstAttribute="height" priority="999" constant="60" id="Pve-lX-8bS"/>
                                                                     <constraint firstAttribute="trailing" secondItem="qrE-Ur-u8N" secondAttribute="trailing" constant="18" id="UPe-pi-D7B"/>
                                                                     <constraint firstItem="q0r-Em-tJO" firstAttribute="leading" secondItem="82z-nj-ooH" secondAttribute="leading" constant="12" id="dGf-JQ-r50"/>
                                                                     <constraint firstItem="UpP-Io-U3q" firstAttribute="leading" secondItem="q0r-Em-tJO" secondAttribute="trailing" constant="18" id="dXl-BD-Lnz"/>
                                                                     <constraint firstItem="q0r-Em-tJO" firstAttribute="centerY" secondItem="82z-nj-ooH" secondAttribute="centerY" id="i1e-sg-BWB"/>
+                                                                    <constraint firstItem="fkT-ew-syS" firstAttribute="centerY" secondItem="82z-nj-ooH" secondAttribute="centerY" id="jXY-ip-yKK"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nW5-bs-WcE">
@@ -531,13 +557,13 @@
                                                 <rect key="frame" x="29" y="719.5" width="317" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount Due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpq-3Z-BRl">
-                                                        <rect key="frame" x="0.0" y="0.0" width="80.5" height="25.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="80.5" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$120.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q31-Wc-xnA">
-                                                        <rect key="frame" x="0.0" y="28.5" width="70" height="21.5"/>
+                                                        <rect key="frame" x="0.0" y="20" width="70" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1051,6 +1077,7 @@
                         <outlet property="loadingIndicator" destination="VB9-7f-nyr" id="po4-zZ-Avc"/>
                         <outlet property="paymentAccountAccountNumberLabel" destination="dvj-E8-H4c" id="6Is-cZ-gk3"/>
                         <outlet property="paymentAccountButton" destination="82z-nj-ooH" id="xpD-Yu-YZ8"/>
+                        <outlet property="paymentAccountExpiredSelectLabel" destination="fkT-ew-syS" id="Ey8-j3-g0N"/>
                         <outlet property="paymentAccountImageView" destination="q0r-Em-tJO" id="Alv-nw-MB1"/>
                         <outlet property="paymentAccountLabel" destination="2aT-Ep-GlE" id="6wS-0O-boH"/>
                         <outlet property="paymentAccountNicknameLabel" destination="J0v-X2-EA8" id="7kF-pU-gNK"/>
@@ -1104,7 +1131,7 @@
                                                 <rect key="frame" x="0.0" y="20" width="375" height="1155.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active Severance Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEm-0f-fFC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="20.5"/>
+                                                        <rect key="frame" x="29" y="0.0" width="317" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="HQi-P0-wbJ"/>
                                                         </constraints>
@@ -1113,7 +1140,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BGE Overpayment Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MJ-oF-6Qv">
-                                                        <rect key="frame" x="0.0" y="40.5" width="0.0" height="20.5"/>
+                                                        <rect key="frame" x="29" y="40.5" width="317" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="veM-aX-EI7"/>
                                                         </constraints>
@@ -1611,16 +1638,16 @@
                                                                 </constraints>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes, I have read, understand, and agree to the terms and conditions provided below:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pq3-k6-sNT">
-                                                                <rect key="frame" x="61" y="0.0" width="274" height="67"/>
+                                                                <rect key="frame" x="61" y="0.0" width="274" height="57.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="Hyo-W8-y4V" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="61" y="80" width="202.5" height="20.5"/>
+                                                                <rect key="frame" x="61" y="70.5" width="202.5" height="30"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View terms and conditions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffz-iA-WfL">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2279,7 +2306,7 @@
                                                 <rect key="frame" x="0.0" y="134" width="305" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Fee Applied" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nS2-9H-MqM">
-                                                        <rect key="frame" x="0.0" y="7.5" width="305" height="16.5"/>
+                                                        <rect key="frame" x="0.0" y="8" width="305" height="16.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                         <nil key="textColor"/>
@@ -2708,12 +2735,30 @@ to your payments.</string>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymG-e3-kmI">
-                                                                            <rect key="frame" x="110" y="38" width="203" height="25"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymG-e3-kmI">
+                                                                            <rect key="frame" x="110" y="38" width="133" height="25"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4c-dK-5i6">
+                                                                            <rect key="frame" x="253" y="40" width="60" height="20.5"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Expired" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRf-Uw-J5g">
+                                                                                    <rect key="frame" x="7" y="3" width="46" height="14.5"/>
+                                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                                    <color key="textColor" red="0.44313725490196076" green="0.0" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstItem="MRf-Uw-J5g" firstAttribute="leading" secondItem="D4c-dK-5i6" secondAttribute="leading" constant="7" id="cwG-et-nqO"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="MRf-Uw-J5g" secondAttribute="bottom" constant="3" id="dPO-WW-Inn"/>
+                                                                                <constraint firstItem="MRf-Uw-J5g" firstAttribute="top" secondItem="D4c-dK-5i6" secondAttribute="top" constant="3" id="jXk-vM-iCa"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="MRf-Uw-J5g" secondAttribute="trailing" constant="7" id="vht-2H-rIi"/>
+                                                                            </constraints>
+                                                                        </view>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ObG-jx-YLO">
                                                                             <rect key="frame" x="110" y="68" width="55" height="15"/>
                                                                             <subviews>
@@ -2748,10 +2793,12 @@ to your payments.</string>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <constraints>
                                                                         <constraint firstItem="ymG-e3-kmI" firstAttribute="centerY" secondItem="agA-Wc-45w" secondAttribute="centerY" id="07N-vf-tmy"/>
-                                                                        <constraint firstItem="0xj-Hr-mDo" firstAttribute="leading" secondItem="ymG-e3-kmI" secondAttribute="trailing" constant="10" id="4vq-Jh-Kmx"/>
                                                                         <constraint firstItem="sCc-cJ-emT" firstAttribute="leading" secondItem="agA-Wc-45w" secondAttribute="leading" constant="9" id="BPd-uH-9HO"/>
                                                                         <constraint firstItem="ObG-jx-YLO" firstAttribute="top" secondItem="ymG-e3-kmI" secondAttribute="bottom" constant="5" id="BgX-jY-pON"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="D4c-dK-5i6" secondAttribute="trailing" constant="28" id="Qzn-St-3N3"/>
                                                                         <constraint firstAttribute="trailing" secondItem="4sH-2p-GVe" secondAttribute="trailing" constant="28" id="TZf-JJ-F3L"/>
+                                                                        <constraint firstItem="D4c-dK-5i6" firstAttribute="leading" secondItem="ymG-e3-kmI" secondAttribute="trailing" constant="10" id="Xzj-TF-3yD"/>
+                                                                        <constraint firstItem="D4c-dK-5i6" firstAttribute="centerY" secondItem="agA-Wc-45w" secondAttribute="centerY" id="ckf-XO-Opr"/>
                                                                         <constraint firstItem="0xj-Hr-mDo" firstAttribute="centerY" secondItem="agA-Wc-45w" secondAttribute="centerY" id="dq1-Ec-e58"/>
                                                                         <constraint firstItem="ymG-e3-kmI" firstAttribute="leading" secondItem="sCc-cJ-emT" secondAttribute="trailing" constant="17" id="eB2-rF-C4J"/>
                                                                         <constraint firstItem="4sH-2p-GVe" firstAttribute="leading" secondItem="ymG-e3-kmI" secondAttribute="leading" id="eve-z6-7Oc"/>
@@ -2770,7 +2817,7 @@ to your payments.</string>
                                                                     <rect key="frame" x="0.0" y="100" width="341" height="31"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.50 Convenience Fee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-Yl-Loj">
-                                                                            <rect key="frame" x="0.0" y="8" width="341" height="16.5"/>
+                                                                            <rect key="frame" x="0.0" y="7.5" width="341" height="16.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -2816,6 +2863,8 @@ to your payments.</string>
                                                     <outlet property="bottomBarLabel" destination="oxH-Yl-Loj" id="Emx-0C-gTl"/>
                                                     <outlet property="bottomBarShadowView" destination="2kX-Xy-rz5" id="a0f-gl-es9"/>
                                                     <outlet property="bottomBarView" destination="Rna-sJ-STt" id="c1F-7I-Gyt"/>
+                                                    <outlet property="expiredLabel" destination="MRf-Uw-J5g" id="zHg-v6-N3J"/>
+                                                    <outlet property="expiredView" destination="D4c-dK-5i6" id="Wge-HP-rwI"/>
                                                     <outlet property="gradientView" destination="agA-Wc-45w" id="cbP-hc-8y8"/>
                                                     <outlet property="innerContentView" destination="F69-Fr-LLp" id="Th5-RH-JA5"/>
                                                     <outlet property="nicknameLabel" destination="4sH-2p-GVe" id="vUY-JU-e5z"/>
@@ -2839,13 +2888,13 @@ to your payments.</string>
                                                         <rect key="frame" x="27" y="12" width="334" height="40.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Add Payment Account" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUX-Kl-NMj">
-                                                                <rect key="frame" x="0.0" y="10" width="0.0" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="10" width="169.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ak-ov-hHk">
-                                                                <rect key="frame" x="-27" y="20.5" width="0.0" height="0.0"/>
+                                                                <rect key="frame" x="181.5" y="20.5" width="12.5" height="0.0"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" id="Pr2-eW-omb"/>
@@ -2995,18 +3044,10 @@ to your payments.</string>
                         <outlet property="nonEmptyStateView" destination="07H-3r-ibw" id="XVL-cZ-72H"/>
                         <outlet property="tableView" destination="4HA-SU-Q3V" id="ehj-uR-klc"/>
                         <outlet property="tableViewFooter" destination="4Kk-Ss-GYy" id="mcW-UY-hwd"/>
-                        <segue destination="aBa-SE-DiV" kind="show" identifier="addBankAccountSegue" id="bsy-MF-jk9">
-                            <nil key="action"/>
-                        </segue>
-                        <segue destination="K7O-2Y-fP7" kind="show" identifier="editBankAccountSegue" id="Tat-79-PNG">
-                            <nil key="action"/>
-                        </segue>
-                        <segue destination="GZe-bq-njy" kind="show" identifier="addCreditCardSegue" id="A8Z-wI-v0q">
-                            <nil key="action"/>
-                        </segue>
-                        <segue destination="LOs-rF-5zC" kind="show" identifier="editCreditCardSegue" id="9Ga-lp-LNx">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="aBa-SE-DiV" kind="show" identifier="addBankAccountSegue" id="bsy-MF-jk9"/>
+                        <segue destination="K7O-2Y-fP7" kind="show" identifier="editBankAccountSegue" id="Tat-79-PNG"/>
+                        <segue destination="GZe-bq-njy" kind="show" identifier="addCreditCardSegue" id="A8Z-wI-v0q"/>
+                        <segue destination="LOs-rF-5zC" kind="show" identifier="editCreditCardSegue" id="9Ga-lp-LNx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d3a-FS-Dgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3102,13 +3143,31 @@ to your payments.</string>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrx-aF-2Sd">
-                                                                <rect key="frame" x="111" y="55" width="86" height="25"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 7890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrx-aF-2Sd">
+                                                                <rect key="frame" x="111" y="55" width="97" height="25"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GMy-R8-Ot9">
+                                                                <rect key="frame" x="218" y="56" width="60" height="20.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Expired" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5P-bS-Qsv">
+                                                                        <rect key="frame" x="7" y="3" width="46" height="14.5"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                        <color key="textColor" red="0.4431372549" green="0.0" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="R5P-bS-Qsv" firstAttribute="top" secondItem="GMy-R8-Ot9" secondAttribute="top" constant="3" id="E4X-Je-BAB"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="R5P-bS-Qsv" secondAttribute="trailing" constant="7" id="RNQ-8I-U8E"/>
+                                                                    <constraint firstItem="R5P-bS-Qsv" firstAttribute="leading" secondItem="GMy-R8-Ot9" secondAttribute="leading" constant="7" id="icy-lm-gCx"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="R5P-bS-Qsv" secondAttribute="bottom" constant="3" id="qoV-rd-g7Q"/>
+                                                                </constraints>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gv1-Sy-SrI">
                                                                 <rect key="frame" x="111" y="85" width="55" height="14.5"/>
                                                                 <subviews>
@@ -3136,8 +3195,10 @@ to your payments.</string>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstItem="GMy-R8-Ot9" firstAttribute="leading" secondItem="Zrx-aF-2Sd" secondAttribute="trailing" constant="10" id="05a-RH-Ab9"/>
                                                             <constraint firstItem="dxq-f1-5vH" firstAttribute="leading" secondItem="O2j-YW-TDk" secondAttribute="leading" constant="10" id="3vG-v6-8A0"/>
                                                             <constraint firstItem="gv1-Sy-SrI" firstAttribute="top" secondItem="Zrx-aF-2Sd" secondAttribute="bottom" constant="5" id="6RT-3H-Y7S"/>
+                                                            <constraint firstAttribute="trailing" secondItem="GMy-R8-Ot9" secondAttribute="trailing" constant="28" id="6Ta-X8-Svk"/>
                                                             <constraint firstItem="dxq-f1-5vH" firstAttribute="centerY" secondItem="O2j-YW-TDk" secondAttribute="centerY" id="Caf-Pu-37w"/>
                                                             <constraint firstItem="gv1-Sy-SrI" firstAttribute="leading" secondItem="Zrx-aF-2Sd" secondAttribute="leading" id="Grm-gb-cGt"/>
                                                             <constraint firstItem="yDL-jy-dbQ" firstAttribute="top" secondItem="O2j-YW-TDk" secondAttribute="top" constant="14" id="PRI-2z-zuc"/>
@@ -3145,6 +3206,7 @@ to your payments.</string>
                                                             <constraint firstAttribute="trailing" secondItem="yDL-jy-dbQ" secondAttribute="trailing" constant="28" id="VQd-iA-1Vd"/>
                                                             <constraint firstItem="Zrx-aF-2Sd" firstAttribute="centerY" secondItem="O2j-YW-TDk" secondAttribute="centerY" id="oeb-72-dDb"/>
                                                             <constraint firstItem="yDL-jy-dbQ" firstAttribute="leading" secondItem="Zrx-aF-2Sd" secondAttribute="leading" id="okh-xN-qFN"/>
+                                                            <constraint firstItem="GMy-R8-Ot9" firstAttribute="centerY" secondItem="O2j-YW-TDk" secondAttribute="centerY" id="tzW-kR-dC8"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhE-FC-F0K">
@@ -3155,7 +3217,7 @@ to your payments.</string>
                                                         <rect key="frame" x="0.0" y="134" width="306" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2.50 Convenience Fee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zPd-Y3-TTP">
-                                                                <rect key="frame" x="0.0" y="7.5" width="306" height="16.5"/>
+                                                                <rect key="frame" x="0.0" y="8" width="306" height="16.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                 <nil key="textColor"/>
@@ -3414,8 +3476,12 @@ to your payments.</string>
                         <outlet property="expDateLabel" destination="7wg-iw-nf9" id="hOm-dG-6UR"/>
                         <outlet property="expMonthTextField" destination="VGm-7t-w5c" id="T5e-f5-YVF"/>
                         <outlet property="expYearTextField" destination="Ce6-3A-fCa" id="Unh-of-vbk"/>
+                        <outlet property="expiredLabel" destination="R5P-bS-Qsv" id="qW6-UX-4bM"/>
+                        <outlet property="expiredView" destination="GMy-R8-Ot9" id="PSz-kl-Xa2"/>
                         <outlet property="gradientView" destination="O2j-YW-TDk" id="PBm-qh-tr0"/>
                         <outlet property="innerContentView" destination="9Mk-Yq-YPo" id="B8z-gE-Ycq"/>
+                        <outlet property="innerContentViewLeadingConstraint" destination="5oR-KG-GUI" id="cMS-uX-FoY"/>
+                        <outlet property="innerContentViewTrailingConstraint" destination="gnJ-mk-6py" id="4he-P9-G5F"/>
                         <outlet property="nicknameLabel" destination="yDL-jy-dbQ" id="drf-93-Cbp"/>
                         <outlet property="oneTouchPayCardLabel" destination="Otg-XS-xac" id="N3r-np-us6"/>
                         <outlet property="oneTouchPayCardView" destination="gv1-Sy-SrI" id="CvH-wr-kF7"/>
@@ -3450,7 +3516,7 @@ to your payments.</string>
         <image name="opco_bank_mini" width="50" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bsy-MF-jk9"/>
-        <segue reference="A8Z-wI-v0q"/>
+        <segue reference="t7P-RQ-Ct7"/>
+        <segue reference="7YH-hS-G7V"/>
     </inferredMetricsTieBreakers>
 </document>

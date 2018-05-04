@@ -34,6 +34,8 @@ struct UserDefaultKeys {
     static let InitialPushNotificationPermissionsWorkflowCompleted = "kInitialPushNotificationPermissionsWorkflowCompleted"
 
     static let UsernamesRegisteredForPushNotifications = "kUsernamesRegisteredForPushNotifications"
-
+    
     static let AccountVerificationDeepLinkGuid = "kAccountVerificationDeepLinkGuid"
+    
+    static let IsKeepMeSignedInChecked = "kIsKeepMeSignedInChecked"
 }

@@ -14,6 +14,7 @@ class OutageViewController: AccountPickerViewController {
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet weak var gradientBackground: UIView!
     @IBOutlet weak var scrollViewContentView: UIView!
     @IBOutlet weak var accountContentView: UIView!
@@ -42,7 +43,11 @@ class OutageViewController: AccountPickerViewController {
     var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")
     var refreshControl: UIRefreshControl?
     
-    let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(), outageService: ServiceFactory.createOutageService())
+    var shortcutItem = ShortcutItem.none
+    
+    let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(),
+                                    outageService: ServiceFactory.createOutageService(),
+                                    authService: ServiceFactory.createAuthenticationService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +80,7 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.footerTextViewText
+        footerTextView.linkTapDelegate = self
         
         gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
         gasOnlyTextView.textContainerInset = .zero
@@ -116,7 +122,7 @@ class OutageViewController: AccountPickerViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
         
-        noNetworkConnectionView.reload
+        Observable.merge(noNetworkConnectionView.reload, maintenanceModeView.reload)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.getOutageStatus() })
             .disposed(by: disposeBag)
@@ -133,6 +139,16 @@ class OutageViewController: AccountPickerViewController {
         super.viewDidLayoutSubviews()
         
         gradientLayer.frame = gradientBackground.frame
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shortcutItem = .none
     }
     
     @objc func killRefresh() -> Void {
@@ -210,16 +226,23 @@ class OutageViewController: AccountPickerViewController {
         loadingView.accessibilityViewIsModal = true
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
         setRefreshControlEnabled(enabled: false)
-        viewModel.getOutageStatus(onSuccess: { [weak self] in
+        viewModel.fetchData(onSuccess: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             self?.scrollView?.isHidden = false
             self?.noNetworkConnectionView.isHidden = true
             self?.loadingView.isHidden = true
             self?.loadingView.accessibilityViewIsModal = false
+            self?.maintenanceModeView.isHidden = true
             self?.setRefreshControlEnabled(enabled: true)
             self?.updateContent()
+            if self?.shortcutItem == .reportOutage {
+                self?.performSegue(withIdentifier: "reportOutageSegue", sender: self)
+            }
+            self?.shortcutItem = .none
         }, onError: { [weak self] serviceError in
+            self?.shortcutItem = .none
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             if serviceError.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
                 self?.scrollView?.isHidden = true
@@ -239,15 +262,29 @@ class OutageViewController: AccountPickerViewController {
                 self?.errorLabel.isHidden = false
                 self?.customErrorView.isHidden = true
             }
+            self?.maintenanceModeView.isHidden = true
+            }, onMaintenance: { [weak self] in
+                self?.shortcutItem = .none
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+                self?.maintenanceModeView.isHidden = false
+                self?.scrollView?.isHidden = true
+                self?.noNetworkConnectionView.isHidden = true
+                self?.loadingView.isHidden = true
+                self?.loadingView.accessibilityViewIsModal = false
+                self?.setRefreshControlEnabled(enabled: true)
+                self?.errorLabel.isHidden = true
+                self?.customErrorView.isHidden = true
+                
         })
     }
     
     // MARK: - Actions
     
     @objc func onPullToRefresh() {
-        viewModel.getOutageStatus(onSuccess: { [weak self] in
+        viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
+            self.maintenanceModeView.isHidden = true
             self.viewModel.clearReportedOutage()
             self.updateContent()
         }, onError: { [weak self] serviceError in
@@ -274,6 +311,20 @@ class OutageViewController: AccountPickerViewController {
             self.accountContentView.isHidden = true
             self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
             self.gasOnlyView.isHidden = true
+            self.maintenanceModeView.isHidden = true
+            }, onMaintenance: { [weak self] in
+                guard let `self` = self else { return }
+                self.refreshControl?.endRefreshing()
+                self.maintenanceModeView.isHidden = false
+                self.scrollView?.isHidden = true
+                self.noNetworkConnectionView.isHidden = true
+                self.errorLabel.isHidden = true
+                self.customErrorView.isHidden = true
+                
+                // Hide everything else
+                self.accountContentView.isHidden = true
+                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+                self.gasOnlyView.isHidden = true
         })
     }
     
@@ -325,14 +376,19 @@ extension OutageViewController: OutageStatusButtonDelegate {
         Analytics().logScreenView(AnalyticsPageView.OutageStatusDetails.rawValue)
         if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
             tabBarController?.selectedIndex = 1 // Jump to Bill tab
-            Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
         } else {
             if let message = viewModel.currentOutageStatus!.outageDescription {
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 present(alert, animated: true, completion: nil)
-                Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
             }
         }
+    }
+}
+
+extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
+    
+    func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
+        Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
     }
 }

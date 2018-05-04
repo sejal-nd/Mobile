@@ -231,6 +231,12 @@ class HomeUsageCardView: UIView {
         }).drive(billComparisonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowBillComparisonEmptyStateButton.not().drive(viewUsageEmptyStateButton.rx.isHidden).disposed(by: disposeBag)
         
+        Driver.combineLatest(viewModel.shouldShowBillComparison, viewModel.shouldShowBillComparisonEmptyStateButton)
+            .drive(onNext: {
+                (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: true, showViewUsageOptions: $0 || $1)
+            })
+            .disposed(by: disposeBag)
+        
         // Segmented Controls
         viewModel.shouldShowElectricGasSegmentedControl.not().drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)

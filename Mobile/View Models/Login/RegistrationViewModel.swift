@@ -144,7 +144,7 @@ class RegistrationViewModel {
                     fallthrough
                     
                 default:
-                    onError(NSLocalizedString("Unknown Error", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
             })
             .disposed(by: disposeBag)
@@ -158,7 +158,7 @@ class RegistrationViewModel {
                 self.securityQuestions.value = array.map(SecurityQuestion.init)
                 onSuccess()
             }, onError: { error in
-                onError(NSLocalizedString("Unknown Error", comment: ""), error.localizedDescription)
+                onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
             })
             .disposed(by: disposeBag)
     }
@@ -180,7 +180,7 @@ class RegistrationViewModel {
                     fallthrough
                     
                 default:
-                    onError(NSLocalizedString("Unknown Error", comment: ""), error.localizedDescription)
+                    onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
                 }
             })
             .disposed(by: disposeBag)

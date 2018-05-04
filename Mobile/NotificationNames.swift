@@ -13,4 +13,5 @@ extension NSNotification.Name {
     static let DidSelectEnrollInAutoPay = NSNotification.Name(rawValue: "kDidSelectEnrollInAutoPay")
     static let DidChangeBudgetBillingEnrollment = NSNotification.Name(rawValue: "kDidChangeBudgetBillingEnrollment")
     static let DidTapOnPushNotification = NSNotification.Name(rawValue: "kDidTapOnPushNotification")
+    static let DidTapOnShortcutItem = NSNotification.Name(rawValue: "kDidTapOnShortcutItem")
 }

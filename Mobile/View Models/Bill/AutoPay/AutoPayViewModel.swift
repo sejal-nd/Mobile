@@ -46,6 +46,7 @@ class AutoPayViewModel {
     func submit() -> Observable<Bool> {
         switch enrollmentStatus.value {
         case .enrolling:
+            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
             return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
                                                   nameOfAccount: nameOnAccount.value,
                                                   bankAccountType: bankAccountType.value,
@@ -53,6 +54,7 @@ class AutoPayViewModel {
                                                   bankAccountNumber: accountNumber.value,
                                                   isUpdate: false).map { _ in true }
         case .unenrolling:
+            Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollOffer.rawValue)
             return paymentService.unenrollFromAutoPay(accountNumber: accountDetail.accountNumber,
                                                       reason: selectedUnenrollmentReason.value!).map { _ in false }
         case .isEnrolled:

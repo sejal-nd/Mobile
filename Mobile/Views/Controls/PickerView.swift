@@ -14,22 +14,10 @@ enum PickerView {
                      selectedIndex: Int,
                      onDone: ((_ selectedValue: String, _ selectedIndex: Int) -> ())?,
                      onCancel: (()->())?) {
+        
         let picker = StringPickerView(title: title, dataArray: data, onDone: onDone, onCancel: onCancel)
         picker.selectedIndex = selectedIndex
-        
-        guard let window = UIApplication.shared.keyWindow else { return }
-        
-        window.addSubview(picker)
-        
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        picker.leadingAnchor.constraint(equalTo: window.leadingAnchor).isActive = true
-        picker.trailingAnchor.constraint(equalTo: window.trailingAnchor).isActive = true
-        picker.topAnchor.constraint(equalTo: window.topAnchor).isActive = true
-        picker.bottomAnchor.constraint(equalTo: window.bottomAnchor).isActive = true
-        
-        picker.layoutIfNeeded()
-        
-        picker.show()
+        picker.showInWindow()
     }
     
     static func showTimePicker(withTitle title: String,
@@ -39,26 +27,13 @@ enum PickerView {
                                onDone: ((_ selectedDate: Date) -> ())?,
                                onCancel: (()->())?) {
         
-        let picker = TimePickerView(title: title,
-                                    selectedTime: selectedTime,
-                                    minTime: minTime,
-                                    maxTime: maxTime,
-                                    onDone: onDone,
-                                    onCancel: onCancel)
-        
-        guard let window = UIApplication.shared.keyWindow else { return }
-        
-        window.addSubview(picker)
-        
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        picker.leadingAnchor.constraint(equalTo: window.leadingAnchor).isActive = true
-        picker.trailingAnchor.constraint(equalTo: window.trailingAnchor).isActive = true
-        picker.topAnchor.constraint(equalTo: window.topAnchor).isActive = true
-        picker.bottomAnchor.constraint(equalTo: window.bottomAnchor).isActive = true
-        
-        picker.layoutIfNeeded()
-        
-        picker.show()
+        TimePickerView(title: title,
+                       selectedTime: selectedTime,
+                       minTime: minTime,
+                       maxTime: maxTime,
+                       onDone: onDone,
+                       onCancel: onCancel)
+            .showInWindow()
     }
 }
 
@@ -81,6 +56,10 @@ fileprivate class BasePickerView: UIView {
         self.onCancel = onCancel
         super.init(frame: UIApplication.shared.keyWindow?.bounds ?? .zero)
         commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Not implemented")
     }
     
     func commonInit() {
@@ -140,7 +119,7 @@ fileprivate class BasePickerView: UIView {
         mainStack.axis = .vertical
         
         mainContainer.backgroundColor = .white
-        mainContainer.layer.cornerRadius = 8
+        mainContainer.layer.cornerRadius = 13
         mainContainer.addSubview(mainStack)
         mainStack.topAnchor.constraint(equalTo: mainContainer.topAnchor, constant: 8).isActive = true
         mainStack.bottomAnchor.constraint(equalTo: mainContainer.bottomAnchor, constant: -22).isActive = true
@@ -149,9 +128,17 @@ fileprivate class BasePickerView: UIView {
         
         addSubview(mainContainer)
         mainContainer.addTabletWidthConstraints(horizontalPadding: 8)
-        shownConstraint = mainContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -13)
-        shownConstraint.isActive = false
+        
+        let bottom: NSLayoutYAxisAnchor
+        if #available(iOS 11, *) {
+            bottom = safeAreaLayoutGuide.bottomAnchor
+        } else {
+            bottom = bottomAnchor
+        }
+        
+        shownConstraint = mainContainer.bottomAnchor.constraint(equalTo: bottom, constant: -13)
         hiddenConstraint = mainContainer.topAnchor.constraint(equalTo: bottomAnchor)
+        shownConstraint.isActive = false
         hiddenConstraint.isActive = true
         
         cancelButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
@@ -162,11 +149,21 @@ fileprivate class BasePickerView: UIView {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("Not implemented")
+    func showInWindow() {
+        guard let window = UIApplication.shared.keyWindow else { return }
+        
+        window.addSubview(self)
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        leadingAnchor.constraint(equalTo: window.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: window.trailingAnchor).isActive = true
+        topAnchor.constraint(equalTo: window.topAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: window.bottomAnchor).isActive = true
+        
+        layoutIfNeeded()
+        
+        show()
     }
-    
-    
     
     @objc private func dismiss() {
         shownConstraint.isActive = false
