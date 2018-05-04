@@ -123,7 +123,7 @@ class BillViewModel {
         let showPastDue = self.currentAccountDetail.map { accountDetail -> Bool in
             accountDetail.billingInfo.pastDueAmount ?? 0 > 0 && accountDetail.billingInfo.amtDpaReinst ?? 0 == 0
         }
-        return Driver.zip(self.shouldShowAlertBanner, showPastDue) { !$0 && $1 }
+        return Driver.combineLatest(self.shouldShowAlertBanner, showPastDue) { !$0 && $1 }
     }()
     
     private(set) lazy var shouldShowTopContent: Driver<Bool> = Driver
