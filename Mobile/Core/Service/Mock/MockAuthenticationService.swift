@@ -65,7 +65,7 @@ struct MockAuthenticationService: AuthenticationService {
         case "maintNotHome":
             result = .Success(Maintenance(home: false, bill: true, outage: true, alert: true))
         case "maintError":
-            result = .Failure(ServiceError(serviceCode: "TC-UNKNOWN"))
+            result = .Failure(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
         default:
             result = .Success(Maintenance())
         }
