@@ -423,6 +423,19 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NX-Yr-3gm" customClass="MaintenanceModeView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showInfoText" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="sectionName" value="Outage"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="QKd-Wq-WbO" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="157" y="327" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTa-i1-tMy">
                                 <rect key="frame" x="0.0" y="64" width="375" height="476.5"/>
                                 <subviews>
@@ -547,9 +560,15 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                             <constraint firstItem="pTa-i1-tMy" firstAttribute="leading" secondItem="9qb-D3-9Rs" secondAttribute="leading" id="7EH-Qa-0k0"/>
                             <constraint firstItem="nKj-r7-vHK" firstAttribute="top" secondItem="iGR-H2-rIQ" secondAttribute="bottom" constant="30" id="HoH-Fl-sJr"/>
                             <constraint firstAttribute="bottom" secondItem="Zhf-KV-7UG" secondAttribute="bottom" id="Mb3-q8-pdC"/>
+                            <constraint firstItem="1NX-Yr-3gm" firstAttribute="top" secondItem="7m6-5k-3ZY" secondAttribute="bottom" id="OTc-nJ-BWF"/>
+                            <constraint firstAttribute="trailing" secondItem="1NX-Yr-3gm" secondAttribute="trailing" id="Odu-90-3Ye"/>
+                            <constraint firstItem="QKd-Wq-WbO" firstAttribute="centerY" secondItem="9qb-D3-9Rs" secondAttribute="centerY" id="WTd-zf-P5m"/>
                             <constraint firstAttribute="trailing" secondItem="pTa-i1-tMy" secondAttribute="trailing" id="cff-NI-Lha"/>
                             <constraint firstAttribute="trailing" secondItem="Zhf-KV-7UG" secondAttribute="trailing" id="iC9-KY-5eG"/>
+                            <constraint firstAttribute="bottom" secondItem="1NX-Yr-3gm" secondAttribute="bottom" id="oqW-io-m2Y"/>
+                            <constraint firstItem="1NX-Yr-3gm" firstAttribute="leading" secondItem="9qb-D3-9Rs" secondAttribute="leading" id="tTl-T5-zvB"/>
                             <constraint firstItem="pTa-i1-tMy" firstAttribute="top" secondItem="7m6-5k-3ZY" secondAttribute="bottom" id="u9z-8U-SBr"/>
+                            <constraint firstItem="QKd-Wq-WbO" firstAttribute="centerX" secondItem="9qb-D3-9Rs" secondAttribute="centerX" id="vy3-46-TDY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Outage" id="8tr-Ks-LVG">
@@ -561,6 +580,8 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="footerTextView" destination="iGR-H2-rIQ" id="pSK-GG-MDw"/>
                         <outlet property="footerView" destination="Zhf-KV-7UG" id="MQu-4s-Q40"/>
                         <outlet property="headerLabel" destination="1k8-cb-p98" id="2BT-zY-CR7"/>
+                        <outlet property="loadingIndicator" destination="QKd-Wq-WbO" id="MzC-RK-i3m"/>
+                        <outlet property="maintenanceModeView" destination="1NX-Yr-3gm" id="h58-lm-pNh"/>
                         <outlet property="phoneNumberTextField" destination="zcw-mP-0oB" id="65Y-CO-onM"/>
                         <outlet property="scrollView" destination="pTa-i1-tMy" id="umu-wz-b6o"/>
                         <segue destination="Qkc-QN-Mot" kind="show" identifier="outageValidateAccountResultSegue" id="QX9-7H-mNK"/>

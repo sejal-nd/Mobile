@@ -23,6 +23,7 @@
             <connections>
                 <outlet property="containerView" destination="iN0-l3-epB" id="FZr-WY-33r"/>
                 <outlet property="detailLabel" destination="22Z-U5-hHf" id="Bk1-XB-5VT"/>
+                <outlet property="gradientView" destination="YKi-Iu-dN6" id="QXO-AS-ZNB"/>
                 <outlet property="infoTextContainerView" destination="sjN-RG-fyz" id="Ug3-Bj-Dou"/>
                 <outlet property="infoTextView" destination="4A1-zL-FUI" id="Kdt-Ty-oni"/>
                 <outlet property="maintenanceImageView" destination="CBa-iG-eug" id="tfX-dY-4ma"/>
@@ -37,6 +38,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKi-Iu-dN6">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="88x-aH-OQP">
                     <rect key="frame" x="16" y="175.5" width="343" height="316"/>
                     <subviews>
@@ -141,13 +146,17 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sjN-RG-fyz" secondAttribute="trailing" constant="29" id="Cuf-5v-QNn"/>
                 <constraint firstItem="88x-aH-OQP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" priority="750" id="FsF-ip-H4w"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="sjN-RG-fyz" secondAttribute="bottom" constant="25" id="GMc-LJ-jLa"/>
+                <constraint firstItem="YKi-Iu-dN6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="I1t-yf-b6X"/>
                 <constraint firstItem="sjN-RG-fyz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="29" id="Ky9-Id-Yzv"/>
                 <constraint firstItem="88x-aH-OQP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YKZ-U3-h7B"/>
+                <constraint firstAttribute="trailing" secondItem="YKi-Iu-dN6" secondAttribute="trailing" id="a8v-mj-c52"/>
                 <constraint firstItem="sjN-RG-fyz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bN9-Rf-e9u"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="88x-aH-OQP" secondAttribute="trailing" constant="16" id="cPe-Rg-MKa"/>
                 <constraint firstItem="88x-aH-OQP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="cqM-Kx-R1X"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="88x-aH-OQP" secondAttribute="trailing" priority="999" constant="16" id="d5t-So-MwS"/>
                 <constraint firstItem="88x-aH-OQP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="top" id="eeX-AV-Rnu"/>
+                <constraint firstAttribute="bottom" secondItem="YKi-Iu-dN6" secondAttribute="bottom" id="h5Y-dk-dpX"/>
+                <constraint firstItem="YKi-Iu-dN6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kbX-jF-VKM"/>
                 <constraint firstItem="88x-aH-OQP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" priority="999" constant="16" id="sn8-mn-1NV"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sjN-RG-fyz" secondAttribute="trailing" priority="999" constant="29" id="uYo-Se-Jh9"/>
                 <constraint firstItem="sjN-RG-fyz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" priority="999" constant="29" id="xJB-cc-NWM"/>
