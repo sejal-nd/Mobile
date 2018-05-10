@@ -309,10 +309,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
         
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newTabBarController = mainStoryboard.instantiateInitialViewController()
-            window.rootViewController = newTabBarController
-            NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+            if let root = window.rootViewController {
+                root.dismiss(animated: false) {
+                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let newTabBarController = mainStoryboard.instantiateInitialViewController()
+                    window.rootViewController = newTabBarController
+                    NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+                }
+            } else {
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newTabBarController = mainStoryboard.instantiateInitialViewController()
+                window.rootViewController = newTabBarController
+                NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+            }
         } else if let splashVC = (window.rootViewController as? UINavigationController)?.viewControllers.last as? SplashViewController {
             splashVC.shortcutItem = shortcutItem
         } else if shortcutItem == .reportOutage {
@@ -333,6 +342,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Reset the unauthenticated nav stack
             let newNavController = loginStoryboard.instantiateInitialViewController() as! UINavigationController
             newNavController.setViewControllers(vcArray, animated: false)
+            window.rootViewController?.dismiss(animated: false)
             window.rootViewController = newNavController
         } else {
             return false
