@@ -125,6 +125,19 @@ class HomeBillCardUITests: XCTestCase {
         XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
     }
     
+    func testBgeSlideToPayCvv() {
+        doLogin(username: "billCardWithDefaultCcPayment")
+        
+        if appName.contains("BGE") {
+            
+        }
+        else {
+            //Skipping BGE specific test
+            XCTAssert(true)
+        }
+        
+    }
+    
     private var appName: String {
         return Bundle.main.infoDictionary?["CFBundleName"] as! String
     }

@@ -84,7 +84,6 @@ class WalletUITests: XCTestCase {
         XCTAssert(app.staticTexts["What's a CVV?"].exists)
         XCTAssert(elementsQuery.containing(.image, identifier:"cvv_info").element.exists)
         XCTAssert(app.buttons["Close"].exists)
-        
     }
     
     override func tearDown() {
