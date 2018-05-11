@@ -148,6 +148,7 @@ class HomeBillCardViewModel {
                 .map(to: ())
                 .trackActivity(self.paymentTracker)
                 .materialize()
+                .filter { !$0.isCompleted }
         }
         .share()
     
