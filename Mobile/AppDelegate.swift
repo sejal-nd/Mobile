@@ -274,16 +274,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func resetNavigation(sendToLogin: Bool = false) {
         LoadingView.hide() // Just in case we left one stranded
         
-        if let rootNav = window?.rootViewController as? UINavigationController {
-            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-            let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
-            let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
-            let vcArray = sendToLogin ? [landing, login] : [landing]
-            rootNav.setViewControllers(vcArray, animated: false)
-            rootNav.view.isUserInteractionEnabled = true // If 401 occured during Login, we need to re-enable
-        }
+        let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+        let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+        let vcArray = sendToLogin ? [landing, login] : [landing]
         
         window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app (or the registration confirmation modal)
+        
+        if let rootNav = window?.rootViewController as? UINavigationController {
+            rootNav.setViewControllers(vcArray, animated: false)
+            rootNav.view.isUserInteractionEnabled = true // If 401 occured during Login, we need to re-enable
+        } else {
+            let rootNav = loginStoryboard.instantiateInitialViewController() as! UINavigationController
+            rootNav.setViewControllers(vcArray, animated: false)
+            window?.rootViewController = rootNav
+        }
+        
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
     }
     
