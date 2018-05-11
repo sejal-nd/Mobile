@@ -130,6 +130,13 @@ class HomeViewController: AccountPickerViewController {
         bindLoadingStates()
         
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        
+        viewModel.shouldShowUsageCard
+            .filter(!)
+            .drive(onNext: { _ in
+                (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: true, showViewUsageOptions: false)
+            })
+            .disposed(by: bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

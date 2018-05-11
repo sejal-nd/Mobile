@@ -274,16 +274,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func resetNavigation(sendToLogin: Bool = false) {
         LoadingView.hide() // Just in case we left one stranded
         
-        if let rootNav = window?.rootViewController as? UINavigationController {
-            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-            let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
-            let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
-            let vcArray = sendToLogin ? [landing, login] : [landing]
-            rootNav.setViewControllers(vcArray, animated: false)
-            rootNav.view.isUserInteractionEnabled = true // If 401 occured during Login, we need to re-enable
-        }
+        let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+        let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+        let vcArray = sendToLogin ? [landing, login] : [landing]
         
         window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app (or the registration confirmation modal)
+        
+        if let rootNav = window?.rootViewController as? UINavigationController {
+            rootNav.setViewControllers(vcArray, animated: false)
+            rootNav.view.isUserInteractionEnabled = true // If 401 occured during Login, we need to re-enable
+        } else {
+            let rootNav = loginStoryboard.instantiateInitialViewController() as! UINavigationController
+            rootNav.setViewControllers(vcArray, animated: false)
+            window?.rootViewController = rootNav
+        }
+        
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
     }
     
@@ -309,10 +315,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
         
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newTabBarController = mainStoryboard.instantiateInitialViewController()
-            window.rootViewController = newTabBarController
-            NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+            if let root = window.rootViewController {
+                root.dismiss(animated: false) {
+                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let newTabBarController = mainStoryboard.instantiateInitialViewController()
+                    window.rootViewController = newTabBarController
+                    NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+                }
+            } else {
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newTabBarController = mainStoryboard.instantiateInitialViewController()
+                window.rootViewController = newTabBarController
+                NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+            }
         } else if let splashVC = (window.rootViewController as? UINavigationController)?.viewControllers.last as? SplashViewController {
             splashVC.shortcutItem = shortcutItem
         } else if shortcutItem == .reportOutage {
@@ -333,6 +348,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Reset the unauthenticated nav stack
             let newNavController = loginStoryboard.instantiateInitialViewController() as! UINavigationController
             newNavController.setViewControllers(vcArray, animated: false)
+            window.rootViewController?.dismiss(animated: false)
             window.rootViewController = newNavController
         } else {
             return false
