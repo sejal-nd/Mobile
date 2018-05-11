@@ -35,7 +35,7 @@ class MockAccountService: AccountService {
     
     func fetchAccountDetail(account: Account, completion: @escaping (ServiceResult<AccountDetail>) -> Void) {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
-        if loggedInUsername == "billCardNoDefaultPayment" || loggedInUsername == "billCardWithDefaultPayment" {
+        if loggedInUsername == "billCardNoDefaultPayment" || loggedInUsername == "billCardWithDefaultPayment" || loggedInUsername == "billCardWithDefaultCcPayment" {
             let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200))
             completion(ServiceResult.Success(accountDetail))
             return
