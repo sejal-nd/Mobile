@@ -40,6 +40,11 @@ class WalletViewModel {
             .materialize()
     }.share()
     
+    private(set) lazy var hasExpiredWalletItem = self.walletItemEvents.elements()
+        .filter { $0.contains { $0.isExpired } }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
+    
     lazy var isError: Driver<Bool> = self.walletItemEvents.asDriver(onErrorDriveWith: .empty()).map {
         return  $0.error != nil
     }.startWith(false)
