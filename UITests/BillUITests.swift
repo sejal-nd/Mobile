@@ -102,6 +102,14 @@ class BillUITests: XCTestCase {
         XCTAssert(app.scrollViews.otherElements.staticTexts["-$200.00"].exists)
     }
     
+    func testMaintModeBill() {
+        doLogin(username: "maintNotHome")
+        
+        XCTAssert(app.buttons["Reload"].exists)
+        XCTAssert(app.staticTexts["Scheduled Maintenance"].exists)
+        XCTAssert(app.staticTexts["Billing is currently unavailable due to\nscheduled maintenance."].exists)
+    }
+    
     private var appName: String {
         return Bundle.main.infoDictionary?["CFBundleName"] as! String
     }

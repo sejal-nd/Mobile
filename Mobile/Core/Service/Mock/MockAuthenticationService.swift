@@ -17,6 +17,7 @@ struct MockAuthenticationService: AuthenticationService {
     func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (ServiceResult<(ProfileStatus, AccountDetail)>) -> Void) {
         
         if username != invalidUsername && password == validPassword {
+            MockData.shared.username = username
             // The account detail returned here does not influence anything in the rest of the app.
             // Most account-related things will come from the call to fetchAccounts or fetchAccountDetail in MockAccountService
             let accountDetail = AccountDetail.from(["accountNumber": "123456789", "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
@@ -31,7 +32,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func isAuthenticated() -> Bool {
-        return false;
+        return false
     }
     
     func logout(completion: @escaping (ServiceResult<Void>) -> Void) {
@@ -55,7 +56,20 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func getMaintenanceMode(completion: @escaping (ServiceResult<Maintenance>) -> Void) {
-        completion(ServiceResult.Success(Maintenance.from([:])!))
+        let result: ServiceResult<Maintenance>
+        switch MockData.shared.username {
+        case "maintAll":
+            result = .Success(Maintenance(all: true))
+        case "maintAllTabs":
+            result = .Success(Maintenance(home: true, bill: true, outage: true, alert: true))
+        case "maintNotHome":
+            result = .Success(Maintenance(home: false, bill: true, outage: true, alert: true))
+        case "maintError":
+            result = .Failure(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
+        default:
+            result = .Success(Maintenance())
+        }
+        completion(result)
     }
     
     func getMinimumVersion(completion: @escaping (ServiceResult<MinimumVersion>) -> Void) {
