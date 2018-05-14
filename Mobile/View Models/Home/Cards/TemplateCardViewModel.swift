@@ -178,7 +178,7 @@ class TemplateCardViewModel {
                 return accountDetail.isHourlyPricing ?
                     String(format: NSLocalizedString("http://rrtp.comed.com/rrtpmobile/servlet?type=home&account=%@", comment: ""),
                            accountDetail.accountNumber) :
-                    NSLocalizedString("https://www.comedmarketplace.com/", comment: "")
+                    NSLocalizedString("https://www.comedmarketplace.com/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app", comment: "")
             } else {
                 return NSLocalizedString("http://comed.com/BusinessSavings", comment: "")
             }

@@ -130,6 +130,22 @@ class SplashViewController: UIViewController{
                     let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
                     self.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
                     self.performDeepLink = false // Reset state
+                } else if self.shortcutItem == .reportOutage {
+                    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+                    let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+                    let unauthenticatedUser = loginStoryboard.instantiateViewController(withIdentifier: "unauthenticatedUserViewController")
+                    guard let unauthenticatedOutageValidate = loginStoryboard
+                        .instantiateViewController(withIdentifier: "unauthenticatedOutageValidateAccountViewController")
+                        as? UnauthenticatedOutageValidateAccountViewController else {
+                            return
+                    }
+                    
+                    let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
+                    
+                    Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthOffer.rawValue)
+                    unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.Report
+                    
+                    self.navigationController?.setViewControllers(vcArray, animated: true)
                 } else {
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }

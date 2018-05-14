@@ -13,6 +13,8 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
@@ -61,6 +63,8 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.linkTapDelegate = self
         
+        maintenanceModeView.isHidden = true
+        
         NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: { [weak self] in
@@ -77,17 +81,40 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         
         bindViewModel()
         bindValidation()
-
-        viewModel.checkForMaintenance(onSuccess: { [weak self] isMaintenance in
-            if isMaintenance {
+        
+        checkForMaintenance()
+        
+        maintenanceModeView.reload
+            .subscribe(onNext: { [weak self] in
+                self?.checkForMaintenance()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func checkForMaintenance() {
+        loadingIndicator.isHidden = false
+        maintenanceModeView.isHidden = true
+        scrollView.isHidden = true
+        footerView.isHidden = true
+        navigationItem.rightBarButtonItem = nil
+        
+        viewModel.checkForMaintenance(
+            onAll: { [weak self] in
                 self?.navigationController?.view.isUserInteractionEnabled = true
                 let ad = UIApplication.shared.delegate as! AppDelegate
                 ad.showMaintenanceMode()
-            }
-        }, onError: { [weak self] errorMessage in
-            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self?.present(alertController, animated: true, completion: nil)
+            }, onOutage: { [weak self] in
+                self?.loadingIndicator.isHidden = true
+                self?.maintenanceModeView.isHidden = false
+                self?.scrollView.isHidden = true
+                self?.footerView.isHidden = true
+                self?.navigationItem.rightBarButtonItem = nil
+            }, onNeither: { [weak self] in
+                self?.loadingIndicator.isHidden = true
+                self?.maintenanceModeView.isHidden = true
+                self?.scrollView.isHidden = false
+                self?.footerView.isHidden = false
+                self?.navigationItem.rightBarButtonItem = self?.submitButton
         })
     }
     

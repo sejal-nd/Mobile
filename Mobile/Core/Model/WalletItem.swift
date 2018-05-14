@@ -68,7 +68,9 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
     let walletItemStatusType: String?
-    var isExpired: Bool = false
+    var isExpired: Bool {
+        return walletItemStatusType?.lowercased() == "expired"
+    }
     
     let paymentCategoryType: PaymentCategoryType? // Do not use this for determining bank vs card - use bankOrCard
     let bankAccountType: BankAccountType? // Do not use this for determining bank vs card - use bankOrCard
@@ -104,9 +106,6 @@ struct WalletItem: Mappable, Equatable, Hashable {
         dateCreated = map.optionalFrom("dateCreated", transformation: extractDate)
         
         walletItemStatusType = map.optionalFrom("walletItemStatusType")
-        if let statusType = walletItemStatusType {
-            isExpired = statusType.lowercased() == "expired"
-        }
         
         if let type = bankAccountType, Environment.sharedInstance.opco == .bge {
             bankOrCard = type == .card ? .card : .bank
