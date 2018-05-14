@@ -71,9 +71,17 @@ class UsageWebViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
+        }
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            if let navController = navigationController as? MainBaseNavigationController {
+                navController.setWhiteNavBar()
+            }
         }
     }
     
