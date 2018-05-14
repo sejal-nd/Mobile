@@ -87,16 +87,13 @@ class BillViewModel {
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowAlertBanner: Driver<Bool> =  Driver
-        .combineLatest(self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()),
-                       self.shouldShowRestoreService,
-                       self.shouldShowAvoidShutoff,
-                       self.switchAccountsTracker.asDriver())
-        { accountDetailEvent, shouldShowRestoreService, shouldShowAvoidShutoff, isSwitchingAccounts in
-            guard let accountDetail = accountDetailEvent.element else { return false }
-            return ((accountDetail.isCutOutNonPay && shouldShowRestoreService) || shouldShowAvoidShutoff) && !isSwitchingAccounts
-        }
-        .startWith(false)
+    private(set) lazy var shouldShowAlertBanner: Driver<Bool> = {
+        let showFromResponse = Driver
+            .merge(self.accountDetailEvents.errors().map(to: false).asDriver(onErrorDriveWith: .empty()),
+                   Driver.zip(self.shouldShowRestoreService, self.shouldShowAvoidShutoff).map { $0 || $1 })
+        return Driver.combineLatest(showFromResponse, self.switchAccountsTracker.asDriver()) { $0 && !$1 }
+            .startWith(false)
+    }()
     
     private(set) lazy var shouldShowRestoreService: Driver<Bool> = self.currentAccountDetail.map {
         return $0.billingInfo.restorationAmount ?? 0 > 0 && $0.isCutOutNonPay && Environment.sharedInstance.opco != .bge
@@ -119,12 +116,27 @@ class BillViewModel {
     private(set) lazy var shouldShowCatchUpDisclaimer: Driver<Bool> = Driver.zip(self.currentAccountDetail, self.shouldShowCatchUpAmount)
     { !$0.isLowIncome && $1 && Environment.sharedInstance.opco == .comEd }
     
-    private(set) lazy var shouldShowPastDue: Driver<Bool> = {
-        let showPastDue = self.currentAccountDetail.map { accountDetail -> Bool in
-            accountDetail.billingInfo.pastDueAmount ?? 0 > 0 && accountDetail.billingInfo.amtDpaReinst ?? 0 == 0
-        }
-        return Driver.combineLatest(self.shouldShowAlertBanner, showPastDue) { !$0 && $1 }
-    }()
+    private(set) lazy var shouldShowPastDue: Driver<Bool> = self.currentAccountDetail
+        .map { accountDetail -> Bool in
+            // shouldShowRestoreService
+            if accountDetail.billingInfo.restorationAmount ?? 0 > 0 &&
+                accountDetail.isCutOutNonPay &&
+                Environment.sharedInstance.opco != .bge {
+                return false
+            }
+            
+            // shouldShowAvoidShutoff
+            if (accountDetail.billingInfo.disconnectNoticeArrears ?? 0) > 0 && accountDetail.billingInfo.isDisconnectNotice {
+                return false
+            }
+            
+            // shouldShowCatchUpAmount
+            if accountDetail.billingInfo.amtDpaReinst ?? 0 > 0 {
+                return false
+            }
+            
+            return accountDetail.billingInfo.pastDueAmount ?? 0 > 0
+    }
     
     private(set) lazy var shouldShowTopContent: Driver<Bool> = Driver
         .combineLatest(self.switchAccountsTracker.asDriver(),
