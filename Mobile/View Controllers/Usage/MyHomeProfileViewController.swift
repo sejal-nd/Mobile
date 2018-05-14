@@ -71,6 +71,15 @@ class MyHomeProfileViewController: UIViewController {
         }
     }
     
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            if let navController = navigationController as? MainBaseNavigationController {
+                navController.setWhiteNavBar()
+            }
+        }
+    }
+    
     func styleViews() {
         headerLabel.numberOfLines = 0
         headerLabel.font = SystemFont.regular.of(textStyle: .headline)
