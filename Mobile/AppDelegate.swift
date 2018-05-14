@@ -315,7 +315,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
         
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
-            if let root = window.rootViewController {
+            if let root = window.rootViewController, let _ = root.presentedViewController {
                 root.dismiss(animated: false) {
                     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let newTabBarController = mainStoryboard.instantiateInitialViewController()
