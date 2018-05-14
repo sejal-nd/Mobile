@@ -74,6 +74,8 @@ class MaintenanceModeView: UIView {
         containerView.translatesAutoresizingMaskIntoConstraints = true
         addSubview(containerView)
         containerView.backgroundColor = .primaryColor
+        reloadButton.isAccessibilityElement = true
+        reloadButton.accessibilityLabel = NSLocalizedString("Reload", comment: "")
     }
     
     override func layoutSubviews() {
