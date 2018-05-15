@@ -56,9 +56,6 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func getMaintenanceMode(completion: @escaping (ServiceResult<Maintenance>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            completion(ServiceResult.Success(Maintenance.from([:])!))
-        }
         let result: ServiceResult<Maintenance>
         switch MockData.shared.username {
         case "maintAll":
@@ -72,7 +69,9 @@ struct MockAuthenticationService: AuthenticationService {
         default:
             result = .Success(Maintenance())
         }
-        completion(result)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+            completion(result)
+        }
     }
     
     func getMinimumVersion(completion: @escaping (ServiceResult<MinimumVersion>) -> Void) {

@@ -125,18 +125,6 @@ class HomeBillCardUITests: XCTestCase {
         XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
     }
     
-    func testBgeSlideToPayCvv() {
-        doLogin(username: "billCardWithDefaultCcPayment")
-        
-        if appName.contains("BGE") {
-            
-        }
-        else {
-            //Skipping BGE specific test
-            XCTAssert(true)
-        }
-    }
-    
     func testMaintModeHomeBillCard() {
         doLogin(username: "maintNotHome")
         XCTAssert(app.scrollViews.otherElements.staticTexts["Billing is currently unavailable due to scheduled maintenance."].exists)
@@ -148,6 +136,15 @@ class HomeBillCardUITests: XCTestCase {
         XCTAssert(app.buttons["Reload"].exists)
         XCTAssert(app.staticTexts["Scheduled Maintenance"].exists)
         XCTAssert(app.staticTexts["Home is currently unavailable due to\nscheduled maintenance."].exists)
+    }
+    
+    func testExpiredSlideToPay(){
+        doLogin(username: "billCardWithExpiredDefaultPayment")
+        
+        //Assert slider is disabled since card is expired
+        let slideToPayControl = app.scrollViews.otherElements["Slide to pay today"]
+        XCTAssert(slideToPayControl.waitForExistence(timeout: 5))
+        XCTAssertFalse(slideToPayControl.isEnabled, "Slider should be disabled when card is expired")
     }
     
     private var appName: String {

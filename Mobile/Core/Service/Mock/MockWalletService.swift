@@ -18,9 +18,13 @@ struct MockWalletService: WalletService {
         } else if loggedInUsername == "billCardWithDefaultPayment" {
             walletItems = [
                 WalletItem(nickName: "Test Nickname", isDefault: true),
-                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", cardIssuer: "Visa", bankOrCard: .card)
+                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", isDefault: false, cardIssuer: "Visa", bankOrCard: .card)
             ]
-        } else if loggedInUsername == "billCardWithDefaultCcPayment" {
+        } else if loggedInUsername == "billCardWithExpiredDefaultPayment" {
+            walletItems = [
+                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", isDefault: true, cardIssuer: "Visa", bankOrCard: .card)
+            ]
+        }else if loggedInUsername == "billCardWithDefaultCcPayment" {
             walletItems = [
                 WalletItem(nickName: "Test Nickname", isDefault: true, cardIssuer: "Visa", bankOrCard: .card),
             ]
