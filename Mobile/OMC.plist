@@ -7,7 +7,7 @@
 		<key>Develop</key>
 		<dict>
 			<key>networkConnectionTimeout</key>
-			<string>60</string>
+			<string>120</string>
 			<key>default</key>
 			<true/>
 			<key>baseURL</key>
@@ -46,7 +46,7 @@
 		<key>Staging</key>
 		<dict>
 			<key>networkConnectionTimeout</key>
-			<string>60</string>
+			<string>120</string>
 			<key>baseURL</key>
 			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
 			<key>appKey</key>
@@ -83,7 +83,7 @@
 		<key>ProdBGE</key>
 		<dict>
 			<key>networkConnectionTimeout</key>
-			<string>60</string>
+			<string>120</string>
 			<key>baseURL</key>
 			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
 			<key>appKey</key>
@@ -120,7 +120,7 @@
 		<key>ProdComEd</key>
 		<dict>
 			<key>networkConnectionTimeout</key>
-			<string>60</string>
+			<string>120</string>
 			<key>baseURL</key>
 			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
 			<key>appKey</key>
@@ -157,7 +157,7 @@
 		<key>ProdPECO</key>
 		<dict>
 			<key>networkConnectionTimeout</key>
-			<string>60</string>
+			<string>120</string>
 			<key>baseURL</key>
 			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
 			<key>appKey</key>
