@@ -69,9 +69,8 @@ struct MockAuthenticationService: AuthenticationService {
         default:
             result = .Success(Maintenance())
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            completion(result)
-        }
+        
+        completion(result)
     }
     
     func getMinimumVersion(completion: @escaping (ServiceResult<MinimumVersion>) -> Void) {
