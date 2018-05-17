@@ -13,7 +13,7 @@
 	<key>mcsInstanceName</key>
 	<string>Develop</string>
 	<key>fiservUrl</key>
-	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
+	<string>https://billerwebui.clienttestmatrix.com/Mobile</string>
 	<key>speedpayUrl</key>
 	<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 	<key>outageMapUrl</key>
