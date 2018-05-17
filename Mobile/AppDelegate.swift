@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import HockeySDK
 import ToastSwiftFramework
 import Firebase
+import AppCenter
+import AppCenterCrashes
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,17 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("Environment %@", Environment.sharedInstance.environmentName)
         NSLog("AppName %@", Environment.sharedInstance.appName)
         
-        if Environment.sharedInstance.environmentName == "STAGE" || Environment.sharedInstance.environmentName == "PROD" {
-            switch Environment.sharedInstance.opco {
-            case .bge: BITHockeyManager.shared().configure(withIdentifier: "bec696e55dec44239187ffc959dec386")
-            case .comEd: BITHockeyManager.shared().configure(withIdentifier: "7399eb2b4dc44f91ac86e219d947b7b5")
-            case .peco: BITHockeyManager.shared().configure(withIdentifier: "51e89ca780064447b2373609c35e5b68")
-            }
-            BITHockeyManager.shared().isUpdateManagerDisabled = true
-            BITHockeyManager.shared().crashManager.crashManagerStatus = .autoSend
-            BITHockeyManager.shared().isFeedbackManagerDisabled = true
-            BITHockeyManager.shared().start()
-            BITHockeyManager.shared().authenticator.authenticateInstallation()
+        if let appCenterId = Environment.sharedInstance.appCenterId {
+            MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
         }
         
         if Environment.sharedInstance.environmentName == "PROD" {

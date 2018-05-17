@@ -687,6 +687,12 @@
 		9C4C95CF203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95D0203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95D1203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
+		9C6BC8A820ADCED000B4399B /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */; };
+		9C6BC8A920ADCED000B4399B /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6BC8A620ADCECF00B4399B /* AppCenter.framework */; };
+		9C6BC8AB20ADD80900B4399B /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6BC8A620ADCECF00B4399B /* AppCenter.framework */; };
+		9C6BC8AC20ADD80900B4399B /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6BC8A620ADCECF00B4399B /* AppCenter.framework */; };
+		9C6BC8AD20ADD80D00B4399B /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */; };
+		9C6BC8AE20ADD80D00B4399B /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */; };
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
@@ -1506,11 +1512,8 @@
 		E8CFB8AA1F87D789003E1AB5 /* OMCUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CFB8A91F87D789003E1AB5 /* OMCUsageService.swift */; };
 		E8CFB8AB1F87D789003E1AB5 /* OMCUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CFB8A91F87D789003E1AB5 /* OMCUsageService.swift */; };
 		E8CFB8AC1F87D789003E1AB5 /* OMCUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CFB8A91F87D789003E1AB5 /* OMCUsageService.swift */; };
-		E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
 		E8D2520E1E6DB78800C90584 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520D1E6DB78800C90584 /* Lottie.framework */; };
-		E8D2520F1E6DB7B400C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
 		E8D252101E6DB7B400C90584 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520D1E6DB78800C90584 /* Lottie.framework */; };
-		E8D252111E6DB82C00C90584 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520B1E6DB74600C90584 /* HockeySDK.framework */; };
 		E8D252121E6DB82C00C90584 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D2520D1E6DB78800C90584 /* Lottie.framework */; };
 		E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
 		E8D340921EBA6A8700BA2D42 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
@@ -2263,6 +2266,8 @@
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
 		9C47AED4203E3101000AECF4 /* BillComparisonInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillComparisonInitExtensions.swift; sourceTree = "<group>"; };
 		9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillForecastInitExtensions.swift; sourceTree = "<group>"; };
+		9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
+		9C6BC8A620ADCECF00B4399B /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
 		B0030D072097BC8300327A3D /* MaintenanceModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModeView.swift; sourceTree = "<group>"; };
 		B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceModeView.xib; sourceTree = "<group>"; };
@@ -2641,7 +2646,6 @@
 		E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageViewModelTests.swift; sourceTree = "<group>"; };
 		E8CFB8A91F87D789003E1AB5 /* OMCUsageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMCUsageService.swift; sourceTree = "<group>"; };
-		E8D2520B1E6DB74600C90584 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
 		E8D2520D1E6DB78800C90584 /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
 		E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPickerViewController.swift; sourceTree = "<group>"; };
@@ -2714,8 +2718,8 @@
 				E887C9F81ED5D3EB002433A3 /* AVFoundation.framework in Frameworks */,
 				E887C9F61ED5D3E1002433A3 /* Accelerate.framework in Frameworks */,
 				82D599471EC356C800DDB380 /* RxSwiftExt.framework in Frameworks */,
+				9C6BC8A920ADCED000B4399B /* AppCenter.framework in Frameworks */,
 				B5AC07421E52A49900BBA4ED /* CoreLocation.framework in Frameworks */,
-				E8D2520C1E6DB74600C90584 /* HockeySDK.framework in Frameworks */,
 				E89DB4391E5F63E70072E014 /* JVFloatLabeledText.framework in Frameworks */,
 				B55735D81E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
 				B55735DB1E674089003B9369 /* libOMCCore.a in Frameworks */,
@@ -2735,6 +2739,7 @@
 				8FD3C25C1E524511005FB1BB /* RxCocoa.framework in Frameworks */,
 				8FD3C25E1E524514005FB1BB /* RxSwift.framework in Frameworks */,
 				B5AC073C1E52A2BD00BBA4ED /* Security.framework in Frameworks */,
+				9C6BC8A820ADCED000B4399B /* AppCenterCrashes.framework in Frameworks */,
 				E887C9EF1ED5D367002433A3 /* libCardIO.a in Frameworks */,
 				B54A4B721EC3EADE00E3112E /* libIDMMobileSDKv2Library.a in Frameworks */,
 				E887C9EC1ED5D367002433A3 /* libopencv_core.a in Frameworks */,
@@ -2753,6 +2758,7 @@
 				B55A8B1A1F15650200F63AC3 /* libsqlite3.tbd in Frameworks */,
 				B55A8B191F1564F900F63AC3 /* libz.tbd in Frameworks */,
 				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				9C6BC8AC20ADD80900B4399B /* AppCenter.framework in Frameworks */,
 				B5D4156D1F3A641100AC32B2 /* nanopb.framework in Frameworks */,
 				B5D415611F3A641100AC32B2 /* FirebaseInstanceID.framework in Frameworks */,
 				B55A8B181F1564ED00F63AC3 /* CoreData.framework in Frameworks */,
@@ -2765,7 +2771,6 @@
 				E887CA041ED5D45D002433A3 /* Accelerate.framework in Frameworks */,
 				82D599481EC3571700DDB380 /* RxSwiftExt.framework in Frameworks */,
 				E8EEF7221E567941006804D4 /* CoreLocation.framework in Frameworks */,
-				E8D252111E6DB82C00C90584 /* HockeySDK.framework in Frameworks */,
 				E89DB43B1E5F640E0072E014 /* JVFloatLabeledText.framework in Frameworks */,
 				B55735DA1E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
 				B55735DD1E674089003B9369 /* libOMCCore.a in Frameworks */,
@@ -2776,6 +2781,7 @@
 				B55735E91E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
 				B5D415591F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */,
 				E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */,
+				9C6BC8AE20ADD80D00B4399B /* AppCenterCrashes.framework in Frameworks */,
 				E8D252121E6DB82C00C90584 /* Lottie.framework in Frameworks */,
 				E801BADF1E8C5A8A00550F99 /* Mapper.framework in Frameworks */,
 				E8C453351EF4550200F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
@@ -2803,6 +2809,7 @@
 				B55A8B171F1564E500F63AC3 /* libsqlite3.tbd in Frameworks */,
 				B55A8B161F1564DF00F63AC3 /* libz.tbd in Frameworks */,
 				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
+				9C6BC8AB20ADD80900B4399B /* AppCenter.framework in Frameworks */,
 				B5D4156C1F3A641100AC32B2 /* nanopb.framework in Frameworks */,
 				B5D415601F3A641100AC32B2 /* FirebaseInstanceID.framework in Frameworks */,
 				B55A8B151F1564D200F63AC3 /* CoreData.framework in Frameworks */,
@@ -2815,7 +2822,6 @@
 				E887C9FF1ED5D42F002433A3 /* Accelerate.framework in Frameworks */,
 				82D599491EC3572700DDB380 /* RxSwiftExt.framework in Frameworks */,
 				E8EEF7211E56793B006804D4 /* CoreLocation.framework in Frameworks */,
-				E8D2520F1E6DB7B400C90584 /* HockeySDK.framework in Frameworks */,
 				E89DB43A1E5F64020072E014 /* JVFloatLabeledText.framework in Frameworks */,
 				B55735D91E674089003B9369 /* libOMCAnalytics.a in Frameworks */,
 				B55735DC1E674089003B9369 /* libOMCCore.a in Frameworks */,
@@ -2826,6 +2832,7 @@
 				B55735E81E674089003B9369 /* libOMCSynchronization.a in Frameworks */,
 				B5D415581F3A641100AC32B2 /* FirebaseCore.framework in Frameworks */,
 				E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */,
+				9C6BC8AD20ADD80D00B4399B /* AppCenterCrashes.framework in Frameworks */,
 				E8D252101E6DB7B400C90584 /* Lottie.framework in Frameworks */,
 				E801BADE1E8C5A7300550F99 /* Mapper.framework in Frameworks */,
 				E8C453341EF454E400F5C781 /* PDTSimpleCalendar.framework in Frameworks */,
@@ -3554,6 +3561,8 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C6BC8A620ADCECF00B4399B /* AppCenter.framework */,
+				9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */,
 				0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */,
 				823AA55F201247CF009CAEF0 /* XCTest.framework */,
 				823AA55520113498009CAEF0 /* RxBlocking.framework */,
@@ -3571,7 +3580,6 @@
 				B5D4154F1F3A641100AC32B2 /* FirebaseInstanceID.framework */,
 				B5D415501F3A641100AC32B2 /* FirebaseNanoPB.framework */,
 				B5D415511F3A641100AC32B2 /* GoogleToolboxForMac.framework */,
-				E8D2520B1E6DB74600C90584 /* HockeySDK.framework */,
 				E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */,
 				B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */,
 				B55A8B0D1F15646E00F63AC3 /* libz.tbd */,
@@ -4929,7 +4937,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = 38R4RRBYR8;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -5429,7 +5437,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
@@ -5446,7 +5453,6 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/JVFloatLabeledText.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ToastSwiftFramework.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Zxcvbn.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HockeySDK.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Mapper.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Reachability.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwiftExt.framework",
@@ -5469,7 +5475,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
@@ -5486,7 +5491,6 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/JVFloatLabeledText.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ToastSwiftFramework.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Zxcvbn.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HockeySDK.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Mapper.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Reachability.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwiftExt.framework",
@@ -5509,7 +5513,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/JVFloatLabeledText.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ToastSwiftFramework.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Zxcvbn.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwiftExt.framework",
@@ -5526,7 +5529,6 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/JVFloatLabeledText.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ToastSwiftFramework.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Zxcvbn.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/HockeySDK.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Mapper.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Reachability.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwiftExt.framework",

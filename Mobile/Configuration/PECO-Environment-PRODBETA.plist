@@ -24,5 +24,7 @@
 	<string>UA-76742208-2</string>
 	<key>opcoUpdatesHost</key>
 	<string>www.peco.com</string>
+	<key>appCenterId</key>
+	<string>fbc9f960-869c-47c4-a765-a650369ffca1</string>
 </dict>
 </plist>
