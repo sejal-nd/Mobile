@@ -51,6 +51,15 @@ class ViewBillViewController: UIViewController {
         fetchBillPDFData()
     }
     
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            if let navController = navigationController as? MainBaseNavigationController {
+                navController.setColoredNavBar()
+            }
+        }
+    }
+    
     func fetchBillPDFData() {
         loadingIndicator.isHidden = false
         webView.isHidden = true

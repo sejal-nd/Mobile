@@ -237,32 +237,40 @@ class OutageViewController: AccountPickerViewController {
             self?.maintenanceModeView.isHidden = true
             self?.setRefreshControlEnabled(enabled: true)
             self?.updateContent()
-            if self?.shortcutItem == .reportOutage {
+            
+            // If coming from shortcut, check these flags for report outage button availablility
+            if let outageStatus = self?.viewModel.currentOutageStatus,
+                !outageStatus.flagGasOnly &&
+                    !outageStatus.flagNoPay &&
+                    !outageStatus.flagFinaled &&
+                    !outageStatus.flagNonService &&
+                    self?.shortcutItem == .reportOutage {
                 self?.performSegue(withIdentifier: "reportOutageSegue", sender: self)
             }
-            self?.shortcutItem = .none
-        }, onError: { [weak self] serviceError in
-            self?.shortcutItem = .none
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-            if serviceError.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
-                self?.scrollView?.isHidden = true
-                self?.noNetworkConnectionView.isHidden = false
-            } else {
-                self?.scrollView?.isHidden = false
-                self?.noNetworkConnectionView.isHidden = true
-            }
-            self?.loadingView.isHidden = true
-            self?.loadingView.accessibilityViewIsModal = false
-            self?.setRefreshControlEnabled(enabled: true)
             
-            if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
-                self?.errorLabel.isHidden = true
-                self?.customErrorView.isHidden = false
-            } else {
-                self?.errorLabel.isHidden = false
-                self?.customErrorView.isHidden = true
-            }
-            self?.maintenanceModeView.isHidden = true
+            self?.shortcutItem = .none
+            }, onError: { [weak self] serviceError in
+                self?.shortcutItem = .none
+                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+                if serviceError.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
+                    self?.scrollView?.isHidden = true
+                    self?.noNetworkConnectionView.isHidden = false
+                } else {
+                    self?.scrollView?.isHidden = false
+                    self?.noNetworkConnectionView.isHidden = true
+                }
+                self?.loadingView.isHidden = true
+                self?.loadingView.accessibilityViewIsModal = false
+                self?.setRefreshControlEnabled(enabled: true)
+                
+                if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+                    self?.errorLabel.isHidden = true
+                    self?.customErrorView.isHidden = false
+                } else {
+                    self?.errorLabel.isHidden = false
+                    self?.customErrorView.isHidden = true
+                }
+                self?.maintenanceModeView.isHidden = true
             }, onMaintenance: { [weak self] in
                 self?.shortcutItem = .none
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
