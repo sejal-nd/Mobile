@@ -13,7 +13,7 @@
 	<key>mcsInstanceName</key>
 	<string>ProdComEd</string>
 	<key>fiservUrl</key>
-	<string>https://billerdirectui.onefiserv.com/BillerDirectUI/Mobile</string>
+	<string>https://billerwebui.fiservapps.com/Mobile</string>
 	<key>speedpayUrl</key>
 	<string>https://tokenservice.speedpay.com/api/token/GetToken</string>
 	<key>outageMapUrl</key>
