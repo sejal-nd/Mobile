@@ -24,5 +24,7 @@
 	<string>UA-76742208-1</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.bge.com</string>
+	<key>appCenterId</key>
+	<string>3bf3242e-af11-4b1e-9242-99dce77bbbc8</string>
 </dict>
 </plist>
