@@ -321,17 +321,33 @@ class ReviewPaymentViewController: UIViewController {
                 LoadingView.hide()
                 
                 if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
+                    let pageView: AnalyticsPageView
                     switch bankOrCard {
                     case .bank:
-                        Analytics().logScreenView(AnalyticsPageView.ECheckComplete.rawValue)
+                        pageView = .ECheckComplete
                     case .card:
-                        Analytics().logScreenView(AnalyticsPageView.CardComplete.rawValue)
+                        pageView = .CardComplete
                     }
+                    
+                    Analytics().logScreenView(pageView.rawValue)
                 }
                 
                 self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-            }, onError: { errMessage in
-                handleError(errMessage)
+            }, onError: { [weak self] error in
+                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
+                    let pageView: AnalyticsPageView
+                    switch bankOrCard {
+                    case .bank:
+                        pageView = .EcheckError
+                    case .card:
+                        pageView = .CardError
+                    }
+                    
+                    Analytics().logScreenView(pageView.rawValue,
+                                              dimensionIndex: .ErrorCode,
+                                              dimensionValue: error.serviceCode)
+                }
+                handleError(error.localizedDescription)
             })
         }
 

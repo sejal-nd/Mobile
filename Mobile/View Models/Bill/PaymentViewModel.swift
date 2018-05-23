@@ -199,7 +199,7 @@ class PaymentViewModel {
             }).disposed(by: disposeBag)
     }
     
-    func schedulePayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func schedulePayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
         if inlineBank.value {
             scheduleInlineBankPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
             Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
@@ -231,7 +231,7 @@ class PaymentViewModel {
                     .subscribe(onNext: { _ in
                         onSuccess()
                     }, onError: { err in
-                        onError(err.localizedDescription)
+                        onError(err as! ServiceError)
                     }).disposed(by: self.disposeBag)
             }).disposed(by: disposeBag)
         }
@@ -241,7 +241,7 @@ class PaymentViewModel {
         return Double(String(paymentAmount.value.filter { "0123456789.".contains($0) })) ?? 0
     }
     
-    private func scheduleInlineBankPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    private func scheduleInlineBankPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
         var accountType: String?
         if Environment.sharedInstance.opco == .bge {
             accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
@@ -297,7 +297,7 @@ class PaymentViewModel {
                                 // Rollback the wallet add
                                 self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
                             }
-                            onError(err.localizedDescription)
+                            onError(err as! ServiceError)
                         }).disposed(by: self.disposeBag)
                 }).disposed(by: self.disposeBag)
             }, onError: { (error: Error) in
@@ -305,13 +305,13 @@ class PaymentViewModel {
                 if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
                     onDuplicate(NSLocalizedString("Duplicate Bank Account", comment: ""), error.localizedDescription)
                 } else {
-                    onError(error.localizedDescription)
+                    onError(error as! ServiceError)
                 }
             })
             .disposed(by: disposeBag)
     }
     
-    private func scheduleInlineCardPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    private func scheduleInlineCardPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
         let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value, securityCode: addCardFormViewModel.cvv.value, cardHolderName: addCardFormViewModel.nameOnCard.value, expirationMonth: addCardFormViewModel.expMonth.value, expirationYear: addCardFormViewModel.expYear.value, postalCode: addCardFormViewModel.zipCode.value, nickname: addCardFormViewModel.nickname.value)
         
         if Environment.sharedInstance.opco == .bge && !addCardFormViewModel.saveToWallet.value {
@@ -326,7 +326,7 @@ class PaymentViewModel {
                     .subscribe(onNext: { _ in
                         onSuccess()
                     }, onError: { err in
-                        onError(err.localizedDescription)
+                        onError(err as! ServiceError)
                     }).disposed(by: self.disposeBag)
             }).disposed(by: self.disposeBag)
             
@@ -379,7 +379,7 @@ class PaymentViewModel {
                                     // Rollback the wallet add
                                     self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
                                 }
-                                onError(err.localizedDescription)
+                                onError(err as! ServiceError)
                             }).disposed(by: self.disposeBag)
                     }).disposed(by: self.disposeBag)
                     
@@ -388,7 +388,7 @@ class PaymentViewModel {
                     if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
                         onDuplicate(NSLocalizedString("Duplicate Card", comment: ""), error.localizedDescription)
                     } else {
-                        onError(error.localizedDescription)
+                        onError(error as! ServiceError)
                     }
                 })
                 .disposed(by: disposeBag)
