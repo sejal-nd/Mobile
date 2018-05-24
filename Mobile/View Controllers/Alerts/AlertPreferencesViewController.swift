@@ -310,18 +310,26 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBAction func onSwitchToggle(_ sender: Switch) {
         if sender == billReadySwitch && Environment.sharedInstance.opco != .bge { // ComEd/PECO only requirement
-            var title: String, message: String
+            var alertTitle: String?, alertMessage: String?
             if sender.isOn {
-                title = NSLocalizedString("Go Paperless", comment: "")
-                message = NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "")
-                Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPush.rawValue)
+                if !viewModel.accountDetail.isEBillEnrollment {
+                    alertTitle = NSLocalizedString("Go Paperless", comment: "")
+                    alertMessage = NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "")
+                    Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPush.rawValue)
+                }
             } else {
-                title = NSLocalizedString("Receive Paper Bill", comment: "")
-                message = NSLocalizedString("By deselecting this alert, you will be removed from paperless billing and will revert back to receiving your bills through postal mail. Please allow up to one billing cycle for this change to take effect.", comment: "")
+                alertTitle = NSLocalizedString("Paperless eBill", comment: "")
+                alertMessage = NSLocalizedString("Your paperless eBill enrollment status will not be affected. If you are enrolled in paperless eBill, to completely unsubscribe, please update your paperless eBill preference.", comment: "")
                 Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPush.rawValue)
             }
             
+            guard let title = alertTitle, let message = alertMessage else {
+                viewModel.userChangedPrefs.value = true
+                return
+            }
+            
             let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self] _ in
                 if sender.isOn {
                     Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPushCancel.rawValue)
