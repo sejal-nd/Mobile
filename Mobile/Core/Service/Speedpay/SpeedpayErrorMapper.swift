@@ -19,9 +19,7 @@ class SpeedpayErrorMapper : NSObject, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if (elementName as String == "item") {
-            SpeedpayErrorMapper.speedpayError = SpeedpayError()
-            SpeedpayErrorMapper.speedpayError?.context = attributeDict["context"]!
-            SpeedpayErrorMapper.speedpayError?.id = attributeDict["id"]!
+            SpeedpayErrorMapper.speedpayError = SpeedpayError(id: attributeDict["id"]!, context: attributeDict["context"]!)
         }
     }
     
@@ -50,7 +48,7 @@ class SpeedpayErrorMapper : NSObject, XMLParserDelegate {
         }
         
         let error = items.filter {
-            message.uppercased().contains($0.id!) && (context == nil || $0.context == context)
+            message.uppercased().contains($0.id) && (context == nil || $0.context == context)
         }.first;
         
         guard let err = error else {
@@ -69,11 +67,11 @@ class SpeedpayErrorMapper : NSObject, XMLParserDelegate {
 }
 
 class SpeedpayError : NSObject {
-    var id: String? = nil
-    var context: String = ""
-    var text: String = ""
+    let id: String
+    let context: String
+    var text: String
     
-    init(id: String? = nil, context: String = "", text: String = "") {
+    init(id: String, context: String = "", text: String = "") {
         self.id = id
         self.context = context
         self.text = text

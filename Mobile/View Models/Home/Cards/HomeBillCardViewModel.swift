@@ -56,14 +56,21 @@ class HomeBillCardViewModel {
         self.switchAccountFetchTracker = switchAccountFetchTracker
         
         self.oneTouchPayResult
-            .withLatestFrom(self.walletItem)
-            .unwrap()
-            .subscribe(onNext: {
-                switch $0.bankOrCard {
-                case .bank:
+            .withLatestFrom(Observable.combineLatest(self.walletItem.unwrap(), self.oneTouchPayResult))
+            .subscribe(onNext: { walletItem, oneTouchPayEvent in
+                switch (walletItem.bankOrCard, oneTouchPayEvent.error) {
+                case (.bank, nil):
                     Analytics().logScreenView(AnalyticsPageView.OneTouchBankComplete.rawValue)
-                case .card:
+                case (.bank, let error):
+                    Analytics().logScreenView(AnalyticsPageView.OneTouchBankError.rawValue,
+                                              dimensionIndex: .ErrorCode,
+                                              dimensionValue: (error as! ServiceError).serviceCode)
+                case (.card, nil):
                     Analytics().logScreenView(AnalyticsPageView.OneTouchCardComplete.rawValue)
+                case (.card, let error):
+                    Analytics().logScreenView(AnalyticsPageView.OneTouchCardError.rawValue,
+                                              dimensionIndex: .ErrorCode,
+                                              dimensionValue: (error as! ServiceError).serviceCode)
                 }
             })
             .disposed(by: bag)
@@ -167,6 +174,7 @@ class HomeBillCardViewModel {
                 .map(to: ())
                 .trackActivity(self.paymentTracker)
                 .materialize()
+                .filter { !$0.isCompleted }
         }
         .share()
     
