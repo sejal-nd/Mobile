@@ -129,26 +129,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
         }
     }
     
-    func testSaveChangesWithEbillUnenroll() {
-        if Environment.sharedInstance.opco != .bge { // Only ComEd/PECO perform eBill changes
-            viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(), billService: MockBillService())
-            viewModel.accountDetail = AccountDetail()
-            viewModel.initialBillReadyValue = true
-            viewModel.billReady.value = false
-            
-            let expect = expectation(description: "callback")
-            viewModel.saveChanges(onSuccess: {
-                expect.fulfill()
-            }, onError: { err in
-                XCTFail("Unexpected onError response")
-            })
-            
-            waitForExpectations(timeout: 3, handler: { error in
-                XCTAssertNil(error, "timeout")
-            })
-        }
-    }
-    
     func testShouldShowContent() {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(), billService: MockBillService())
         viewModel.isFetching.value = false
