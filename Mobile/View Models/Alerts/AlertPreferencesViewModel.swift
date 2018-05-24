@@ -42,10 +42,6 @@ class AlertPreferencesViewModel {
         if Environment.sharedInstance.opco == .bge { return false }
         return initialBillReadyValue == false && billReady.value == true
     }
-    var shouldUnenrollPaperlessEBill: Bool {
-        if Environment.sharedInstance.opco == .bge { return false }
-        return initialBillReadyValue == true && billReady.value == false
-    }
     
     let devicePushNotificationsEnabled = Variable(false)
     
@@ -107,10 +103,9 @@ class AlertPreferencesViewModel {
         if Environment.sharedInstance.opco == .comEd && english.value != initialEnglishValue {
             observables.append(saveAlertLanguage())
         }
+        
         if shouldEnrollPaperlessEBill {
             observables.append(enrollPaperlessEBill())
-        } else if shouldUnenrollPaperlessEBill {
-            observables.append(unenrollPaperlessEBill())
         }
         
         Observable.zip(observables)
@@ -141,10 +136,6 @@ class AlertPreferencesViewModel {
     
     private func enrollPaperlessEBill() -> Observable<Void> {
         return billService.enrollPaperlessBilling(accountNumber: accountDetail.accountNumber, email: accountDetail.customerInfo.emailAddress)
-    }
-    
-    private func unenrollPaperlessEBill() -> Observable<Void> {
-        return billService.unenrollPaperlessBilling(accountNumber: accountDetail.accountNumber)
     }
     
     private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver()) {
