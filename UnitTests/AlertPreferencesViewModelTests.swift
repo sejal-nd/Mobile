@@ -24,16 +24,6 @@ class AlertPreferencesViewModelTests: XCTestCase {
         }
     }
     
-    func testShouldUnenrollPaperlessEBill() {
-        viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(), billService: MockBillService())
-        if Environment.sharedInstance.opco == .bge {
-            XCTAssertFalse(viewModel.shouldUnenrollPaperlessEBill, "shouldUnenrollPaperlessEBill should always be false for BGE users")
-        } else {
-            viewModel.initialBillReadyValue = true
-            XCTAssert(viewModel.shouldUnenrollPaperlessEBill, "shouldUnenrollPaperlessEBill should be true when initialBillReadyValue = true and billReady = false")
-        }
-    }
-    
     func testFetchData() {
         if Environment.sharedInstance.opco != .comEd { // BGE/PECO logic
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(), billService: MockBillService())
