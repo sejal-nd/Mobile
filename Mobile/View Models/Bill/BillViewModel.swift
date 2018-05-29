@@ -269,7 +269,7 @@ class BillViewModel {
                     let localizedText = NSLocalizedString("Payment due to avoid service interruption is %@ due %@.", comment: "")
                     return String(format: localizedText, amountText, turnOffDueDateText)
                 } else {
-                    let localizedText = NSLocalizedString("Payment due to avoid shutoff is %@ due immediately.", comment: "")
+                    let localizedText = NSLocalizedString("Payment due to avoid service interruption is %@ due immediately.", comment: "")
                     return String(format: localizedText, amountText)
                 }
             } else {
