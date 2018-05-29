@@ -110,6 +110,7 @@ class BillingHistoryViewController: UIViewController {
         } else if let vc = segue.destination as? ViewBillViewController {
             let billingHistoryItem = selectedIndexPath.section == 0 ? billingHistory.upcoming[selectedIndexPath.row] : billingHistory.past[selectedIndexPath.row]
             vc.viewModel.billDate = billingHistoryItem.date.apiFormatDate
+            Analytics().logScreenView(AnalyticsPageView.BillViewPastOfferComplete.rawValue)
             AppRating.logRatingEvent()
         } else if let vc = segue.destination as? BGEAutoPayViewController {
             vc.accountDetail = accountDetail
