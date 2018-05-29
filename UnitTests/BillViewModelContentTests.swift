@@ -62,13 +62,16 @@ class BillViewModelContentTests: BillViewModelTests {
                 return dateFormatter.date(from: string)
         }
         
+        let turnOffNoticeDueDate: [Date?] = ["02/12/2018", "02/12/2018", "02/12/2018", "02/10/2018", "02/12/2018"]
+            .map { dateFormatter.date(from: $0) }
+        
         let comEdPecoAvoidShutoffText1 = "Payment due to avoid shutoff is $4.00 due immediately."
         let comEdPecoAvoidShutoffText2 = "Payment due to avoid shutoff is $6.00 due immediately."
         let expectedValues: [String?] = [
             "Your service is off due to non-payment.",
             nil,
             opco == .bge ? "A payment of $4.00 is due by 02/12/2018" : comEdPecoAvoidShutoffText1,
-            opco == .bge ? "Payment due to avoid service interruption is $6.00 due by 02/12/2018." : comEdPecoAvoidShutoffText2,
+            opco == .bge ? "Payment due to avoid service interruption is $6.00 due 02/10/2018." : comEdPecoAvoidShutoffText2,
             nil
         ]
         
@@ -81,7 +84,8 @@ class BillViewModelContentTests: BillViewModelTests {
                                           dueByDate: dueByDate[i],
                                           disconnectNoticeArrears: disconnectNoticeArrears[i],
                                           isDisconnectNotice: isDisconnectNotice[i],
-                                          turnOffNoticeExtendedDueDate: turnOffNoticeExtendedDueDate[i])
+                                          turnOffNoticeExtendedDueDate: turnOffNoticeExtendedDueDate[i],
+                                          turnOffNoticeDueDate: turnOffNoticeDueDate[i])
             
             return AccountDetail(billingInfo: billingInfo,
                                  isCutOutNonPay: isCutOutNonPay[i])
