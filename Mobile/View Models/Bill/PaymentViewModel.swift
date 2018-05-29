@@ -202,10 +202,8 @@ class PaymentViewModel {
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
         if inlineBank.value {
             scheduleInlineBankPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
-            Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
         } else if inlineCard.value {
             scheduleInlineCardPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
-            Analytics().logScreenView(AnalyticsPageView.CardOffer.rawValue)
         } else { // Existing wallet item
             self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
                 guard let `self` = self else { return }

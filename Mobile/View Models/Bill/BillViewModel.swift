@@ -261,12 +261,19 @@ class BillViewModel {
         case .bge:
             guard let dateText = accountDetail.billingInfo.dueByDate?.mmDdYyyyString else { return nil }
             if accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 &&
-                accountDetail.billingInfo.isDisconnectNotice,
-                let extensionDateText = accountDetail.billingInfo.turnOffNoticeExtendedDueDate?.mmDdYyyyString {
-                let localizedExtText = NSLocalizedString("A payment of %@ is due by %@", comment: "")
-                return String(format: localizedExtText, amountText, extensionDateText)
+                accountDetail.billingInfo.isDisconnectNotice {
+                if let extensionDateText = accountDetail.billingInfo.turnOffNoticeExtendedDueDate?.mmDdYyyyString {
+                    let localizedExtText = NSLocalizedString("A payment of %@ is due by %@", comment: "")
+                    return String(format: localizedExtText, amountText, extensionDateText)
+                } else if let turnOffDueDateText = accountDetail.billingInfo.turnOffNoticeDueDate?.mmDdYyyyString {
+                    let localizedText = NSLocalizedString("Payment due to avoid service interruption is %@ due %@.", comment: "")
+                    return String(format: localizedText, amountText, turnOffDueDateText)
+                } else {
+                    let localizedText = NSLocalizedString("Payment due to avoid shutoff is %@ due immediately.", comment: "")
+                    return String(format: localizedText, amountText)
+                }
             } else {
-                let localizedText = NSLocalizedString("Payment due to avoid service interruption is %@ due by %@.", comment: "")
+                let localizedText = NSLocalizedString("Payment due to avoid service interruption is %@ due %@.", comment: "")
                 return String(format: localizedText, amountText, dateText)
             }
         case .comEd, .peco:
@@ -345,12 +352,22 @@ class BillViewModel {
         $0.billingInfo.disconnectNoticeArrears?.currencyString ?? "--"
     }
     
-    private(set) lazy var avoidShutoffDueDateText: Driver<String> = self.currentAccountDetail.map {
-        if Environment.sharedInstance.opco == .bge {
+    private(set) lazy var avoidShutoffDueDateText: Driver<String> = self.currentAccountDetail.map { accountDetail in
+        switch Environment.sharedInstance.opco {
+        case .bge:
+            let dueDate = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
+                accountDetail.billingInfo.turnOffNoticeDueDate ??
+                accountDetail.billingInfo.dueByDate
+            
+            if accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 &&
+                accountDetail.billingInfo.isDisconnectNotice &&
+                dueDate == nil {
+                return NSLocalizedString("Due Immediately", comment: "")
+            }
+            
             let localizedText = NSLocalizedString("Due by %@", comment: "")
-            let dueByDateString = $0.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
-            return String(format: localizedText, dueByDateString)
-        } else {
+            return String(format: localizedText, dueDate?.mmDdYyyyString ?? "--")
+        case .comEd, .peco:
             return NSLocalizedString("Due Immediately", comment: "")
         }
     }

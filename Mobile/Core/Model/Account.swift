@@ -389,6 +389,7 @@ struct BillingInfo: Mappable {
     let commercialFee: Double? // this
     let turnOffNoticeExtensionStatus: String?
     let turnOffNoticeExtendedDueDate: Date?
+    let turnOffNoticeDueDate: Date?
     let deliveryCharges: Double?
     let supplyCharges: Double?
     let taxesAndFees: Double?
@@ -417,6 +418,7 @@ struct BillingInfo: Mappable {
         commercialFee = map.optionalFrom("feeCommercial")
         turnOffNoticeExtensionStatus = map.optionalFrom("turnOffNoticeExtensionStatus")
         turnOffNoticeExtendedDueDate = map.optionalFrom("turnOffNoticeExtendedDueDate", transformation: extractDate)
+        turnOffNoticeDueDate = map.optionalFrom("turnOffNoticeDueDate", transformation: extractDate)
         deliveryCharges = map.optionalFrom("deliveryCharges")
         supplyCharges = map.optionalFrom("supplyCharges")
         taxesAndFees = map.optionalFrom("taxesAndFees")
