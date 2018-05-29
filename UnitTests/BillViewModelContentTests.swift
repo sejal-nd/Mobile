@@ -36,6 +36,28 @@ class BillViewModelContentTests: BillViewModelTests {
         XCTAssertEqual(observer.events.map { ($0.value.element!)!.serviceMessage! }, ["Account detail fetch failed."])
     }
     
+    func testMaintenanceMode() {
+        MockData.shared.username = "maintAllTabs"
+        
+        let accountDetail = [AccountDetail()]
+        
+        let switchAccountEventTimes = Array(0..<accountDetail.count)
+        
+        accountService.mockAccountDetails = accountDetail
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let observer = scheduler.createObserver(Event<AccountDetail>.self)
+        
+        viewModel.accountDetailEvents.subscribe(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssert(observer.events.isEmpty)
+        
+        MockData.shared.username = ""
+    }
+    
     // Tests changes in the `alertBannerText` value.
     func testAlertBannerText() {
         let opco = Environment.sharedInstance.opco
