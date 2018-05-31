@@ -78,11 +78,13 @@ enum AnalyticsPageView: String {
     case ECheckAddNewWallet = "EcheckAddNewWallet"
     case ECheckSubmit = "EcheckSubmit"
     case ECheckComplete = "EcheckComplete"
+    case EcheckError = "EcheckError"
     
     case CardOffer = "CardOffer"
     case CardAddNewWallet = "CardAddNewWallet"
     case CardSubmit = "CardSubmit"
     case CardComplete = "CardComplete"
+    case CardError = "CardError"
     case ConfirmationScreenAutopayEnroll = "ConfirmationScreenAutoPayEnroll"
     
     case AddBankNewWallet = "AddBankNewWallet"
@@ -109,8 +111,10 @@ enum AnalyticsPageView: String {
 
     case OneTouchBankOffer = "OneTouchBankOffer"
     case OneTouchBankComplete = "OneTouchBankComplete"
+    case OneTouchBankError = "OneTouchBankError"
     case OneTouchCardOffer = "OneTouchCardOffer"
     case OneTouchCardComplete = "OneTouchCardComplete"
+    case OneTouchCardError = "OneTouchCardError"
     case OneTouchTermsView = "OneTouchTermsView"
     case OneTouchEnabledBillCard = "OneTouchPayEnableBillCard"
     case ViewBillBillCard = "ViewBillBillCard"

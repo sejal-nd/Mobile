@@ -54,16 +54,23 @@ class HomeBillCardViewModel {
         self.authService = authService
         self.refreshFetchTracker = refreshFetchTracker
         self.switchAccountFetchTracker = switchAccountFetchTracker
-        
+                
         self.oneTouchPayResult
-            .withLatestFrom(self.walletItem)
-            .unwrap()
-            .subscribe(onNext: {
-                switch $0.bankOrCard {
-                case .bank:
+            .withLatestFrom(Observable.combineLatest(self.walletItem.unwrap(), self.oneTouchPayResult))
+            .subscribe(onNext: { walletItem, oneTouchPayEvent in
+                switch (walletItem.bankOrCard, oneTouchPayEvent.error) {
+                case (.bank, nil):
                     Analytics().logScreenView(AnalyticsPageView.OneTouchBankComplete.rawValue)
-                case .card:
+                case (.bank, let error):
+                    Analytics().logScreenView(AnalyticsPageView.OneTouchBankError.rawValue,
+                                              dimensionIndex: .ErrorCode,
+                                              dimensionValue: (error as! ServiceError).serviceCode)
+                case (.card, nil):
                     Analytics().logScreenView(AnalyticsPageView.OneTouchCardComplete.rawValue)
+                case (.card, let error):
+                    Analytics().logScreenView(AnalyticsPageView.OneTouchCardError.rawValue,
+                                              dimensionIndex: .ErrorCode,
+                                              dimensionValue: (error as! ServiceError).serviceCode)
                 }
             })
             .disposed(by: bag)
@@ -167,6 +174,7 @@ class HomeBillCardViewModel {
                 .map(to: ())
                 .trackActivity(self.paymentTracker)
                 .materialize()
+                .filter { !$0.isCompleted }
         }
         .share()
     
@@ -502,12 +510,14 @@ class HomeBillCardViewModel {
             if Environment.sharedInstance.opco == .bge &&
                 accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 &&
                 accountDetail.billingInfo.isDisconnectNotice,
-                let extensionDate = accountDetail.billingInfo.dueByDate {
+                let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
+                    accountDetail.billingInfo.turnOffNoticeDueDate ??
+                    accountDetail.billingInfo.dueByDate {
                 
                 let calendar = Calendar.opCo
                 
                 let date1 = calendar.startOfDay(for: Date())
-                let date2 = calendar.startOfDay(for: extensionDate)
+                let date2 = calendar.startOfDay(for: date)
                 
                 guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {
                     return nil
@@ -520,7 +530,7 @@ class HomeBillCardViewModel {
                                                            .font: SystemFont.regular.of(textStyle: .subheadline)])
                 } else {
                     let localizedText = NSLocalizedString("Due on %@", comment: "")
-                    return NSAttributedString(string: String(format: localizedText, extensionDate.mmDdYyyyString),
+                    return NSAttributedString(string: String(format: localizedText, date.mmDdYyyyString),
                                               attributes: [.foregroundColor: UIColor.deepGray,
                                                            .font: SystemFont.regular.of(textStyle: .subheadline)])
                 }
@@ -556,36 +566,13 @@ class HomeBillCardViewModel {
         }
     }
     
-    func getDueInOnText(dueByDate: Date) -> NSAttributedString? {
-        let calendar = Calendar.opCo
-        
-        let date1 = calendar.startOfDay(for: Date())
-        let date2 = calendar.startOfDay(for: dueByDate)
-        
-        guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {
-            return nil
-        }
-        
-        if days > 0 {
-            let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
-            return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                      attributes: [.foregroundColor: UIColor.deepGray,
-                                                   .font: SystemFont.regular.of(textStyle: .subheadline)])
-        } else {
-            let localizedText = NSLocalizedString("Due on %@", comment: "")
-            return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
-                                      attributes: [.foregroundColor: UIColor.deepGray,
-                                                   .font: SystemFont.regular.of(textStyle: .subheadline)])
-        }
-    }
-    
     private(set) lazy var dueAmountAndDateText: Driver<String?> = self.accountDetailDriver.map {
         guard let amountDueString = $0.billingInfo.netDueAmount?.currencyString else { return nil }
-        guard let dueByDate = $0.billingInfo.dueByDate else { return nil }
+        guard let dueDate = $0.billingInfo.dueByDate else { return nil }
 
         let calendar = Calendar.opCo
         let date1 = calendar.startOfDay(for: Date())
-        let date2 = calendar.startOfDay(for: dueByDate)
+        let date2 = calendar.startOfDay(for: dueDate)
         guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else { return nil }
 
         var result = ""
@@ -595,7 +582,7 @@ class HomeBillCardViewModel {
             result.append(String(format: localizedText, amountDueString, days, days == 1 ? "": "s"))
         } else if $0.billingInfo.pastDueAmount == nil {
             let localizedText = NSLocalizedString("Your bill total of %@ is due %@.", comment: "")
-            result.append(String(format: localizedText, amountDueString, dueByDate.mmDdYyyyString))
+            result.append(String(format: localizedText, amountDueString, dueDate.mmDdYyyyString))
         } else {
             let localizedText = NSLocalizedString("Your bill total of %@ is due immediately.", comment: "")
             result.append(String(format: localizedText, amountDueString))

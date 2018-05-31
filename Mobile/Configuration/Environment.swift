@@ -34,6 +34,7 @@ struct Environment  {
     let gaTrackingId: String
     let firebaseConfigFile: String
     let opcoUpdatesHost: String
+    let appCenterId: String?
     
     private init() {
         let path = Bundle.main.path(forResource: "environment", ofType: "plist")
@@ -50,5 +51,6 @@ struct Environment  {
         gaTrackingId = dict?["gaTrackingId"] as! String
         firebaseConfigFile = dict?["firebaseConfigFile"] as! String
         opcoUpdatesHost = dict?["opcoUpdatesHost"] as! String
+        appCenterId = dict?["appCenterId"] as? String
     }
 }

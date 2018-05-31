@@ -16,7 +16,18 @@ struct MockWalletService: WalletService {
         if loggedInUsername == "billCardNoDefaultPayment" {
             walletItems = []
         } else if loggedInUsername == "billCardWithDefaultPayment" {
-            walletItems = [WalletItem(nickName: "Test Nickname", isDefault: true)]
+            walletItems = [
+                WalletItem(nickName: "Test Nickname", isDefault: true),
+                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", isDefault: false, cardIssuer: "Visa", bankOrCard: .card)
+            ]
+        } else if loggedInUsername == "billCardWithExpiredDefaultPayment" {
+            walletItems = [
+                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", isDefault: true, cardIssuer: "Visa", bankOrCard: .card)
+            ]
+        }else if loggedInUsername == "billCardWithDefaultCcPayment" {
+            walletItems = [
+                WalletItem(nickName: "Test Nickname", isDefault: true, cardIssuer: "Visa", bankOrCard: .card),
+            ]
         } else if AccountsStore.sharedInstance.currentAccount.accountNumber == "13" { // Set this to test no OTP items
             walletItems = [
                 WalletItem(nickName: "Test Nickname", cardIssuer: "Visa", bankOrCard: .card),

@@ -69,6 +69,7 @@ struct MockAuthenticationService: AuthenticationService {
         default:
             result = .Success(Maintenance())
         }
+        
         completion(result)
     }
     

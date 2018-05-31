@@ -218,20 +218,27 @@ class BGEAutoPayViewController: UIViewController {
         
         if viewModel.initialEnrollmentStatus.value == .unenrolled {
             Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
+            if viewModel.userDidChangeSettings.value {
+                Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingSubmit.rawValue)
+            }
+            
             viewModel.enrollOrUpdate(onSuccess: { [weak self] in
                 LoadingView.hide()
                 Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
+                if self?.viewModel.userDidChangeSettings.value ?? false {
+                    Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingCompleteNew.rawValue)
+                }
                 
                 guard let `self` = self else { return }
                 self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Enrolled in AutoPay", comment: ""))
                 self.navigationController?.popViewController(animated: true)
-            }, onError: { [weak self] errMessage in
-                LoadingView.hide()
-                
-                guard let `self` = self else { return }
-                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
+                }, onError: { [weak self] errMessage in
+                    LoadingView.hide()
+                    
+                    guard let `self` = self else { return }
+                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
             })
         } else if viewModel.initialEnrollmentStatus.value == .enrolled {
             if viewModel.enrollSwitchValue.value { // Update

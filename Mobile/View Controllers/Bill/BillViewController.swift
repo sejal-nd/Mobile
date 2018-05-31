@@ -542,11 +542,7 @@ class BillViewController: AccountPickerViewController {
                     self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)
                 }
                 
-                if(self.pastDueView.isHidden) {
-                    Analytics().logScreenView(AnalyticsPageView.BillViewCurrentOfferComplete.rawValue)
-                } else {
-                    Analytics().logScreenView(AnalyticsPageView.BillViewPastOfferComplete.rawValue)
-                }
+                Analytics().logScreenView(AnalyticsPageView.BillViewCurrentOfferComplete.rawValue)
             })
 			.disposed(by: bag)
 

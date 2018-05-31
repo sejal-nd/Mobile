@@ -133,6 +133,7 @@ extension BillingInfo: JSONEncodable {
          commercialFee: Double? = 0,
          turnOffNoticeExtensionStatus: String? = nil,
          turnOffNoticeExtendedDueDate: Date? = nil,
+         turnOffNoticeDueDate: Date? = nil,
          deliveryCharges: Double? = nil,
          supplyCharges: Double? = nil,
          taxesAndFees: Double? = nil) {
@@ -170,6 +171,7 @@ extension BillingInfo: JSONEncodable {
             "feeCommercial": commercialFee,
             "turnOffNoticeExtensionStatus": turnOffNoticeExtensionStatus,
             "turnOffNoticeExtendedDueDate": turnOffNoticeExtendedDueDate?.apiString,
+            "turnOffNoticeDueDate": turnOffNoticeDueDate?.apiString,
             "deliveryCharges": deliveryCharges,
             "supplyCharges": supplyCharges,
             "taxesAndFees": taxesAndFees,
@@ -209,6 +211,7 @@ extension BillingInfo: JSONEncodable {
             "feeCommercial": commercialFee,
             "turnOffNoticeExtensionStatus": turnOffNoticeExtensionStatus,
             "turnOffNoticeExtendedDueDate": turnOffNoticeExtendedDueDate?.apiString,
+            "turnOffNoticeDueDate": turnOffNoticeDueDate?.apiString,
             "deliveryCharges": deliveryCharges,
             "supplyCharges": supplyCharges,
             "taxesAndFees": taxesAndFees,

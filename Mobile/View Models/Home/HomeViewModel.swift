@@ -27,6 +27,7 @@ class HomeViewModel {
     private let authService: AuthenticationService
     
     let fetchData = PublishSubject<FetchingAccountState>()
+    let fetchDataObservable: Observable<FetchingAccountState>
 
     let refreshFetchTracker = ActivityTracker()
     private let switchAccountFetchTracker = ActivityTracker()
@@ -41,6 +42,7 @@ class HomeViewModel {
     }
     
     required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService, usageService: UsageService, authService: AuthenticationService) {
+        self.fetchDataObservable = fetchData.share()
         self.accountService = accountService
         self.weatherService = weatherService
         self.walletService = walletService
@@ -49,7 +51,7 @@ class HomeViewModel {
         self.authService = authService
     }
     
-    private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(fetchData: self.maintenanceModeEvents.withLatestFrom(self.fetchData),
+    private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(fetchData: self.fetchDataObservable,
                                                                                            fetchDataMMEvents: self.fetchDataMMEvents,
                                                                                            accountDetailEvents: self.accountDetailEvents,
                                                                                            walletService: self.walletService,
@@ -58,7 +60,7 @@ class HomeViewModel {
                                                                                            refreshFetchTracker: self.refreshFetchTracker,
                                                                                            switchAccountFetchTracker: self.switchAccountFetchTracker)
     
-    private(set) lazy var usageCardViewModel = HomeUsageCardViewModel(fetchData: self.fetchData.asObservable(),
+    private(set) lazy var usageCardViewModel = HomeUsageCardViewModel(fetchData: self.fetchDataObservable,
                                                                       accountDetailEvents: self.accountDetailEvents,
                                                                       usageService: self.usageService,
                                                                       refreshFetchTracker: self.refreshFetchTracker,
@@ -68,7 +70,7 @@ class HomeViewModel {
     
     private(set) lazy var isSwitchingAccounts = self.switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.sharedInstance.currentAccount == nil }
     
-    private lazy var fetchTrigger = Observable.merge(self.fetchData, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
+    private lazy var fetchTrigger = Observable.merge(self.fetchDataObservable, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
     private lazy var fetchDataMMEvents: Observable<Event<Maintenance>> = self.fetchData

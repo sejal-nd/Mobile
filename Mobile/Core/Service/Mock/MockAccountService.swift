@@ -40,6 +40,11 @@ class MockAccountService: AccountService {
             completion(ServiceResult.Success(accountDetail))
             return
         }
+        if loggedInUsername == "billCardWithDefaultCcPayment" || loggedInUsername == "billCardWithExpiredDefaultPayment"{
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200), isResidential: true)
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
         if loggedInUsername == "scheduledPayment" {
             let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(scheduledPayment: PaymentItem(amount: 200)))
             completion(ServiceResult.Success(accountDetail))

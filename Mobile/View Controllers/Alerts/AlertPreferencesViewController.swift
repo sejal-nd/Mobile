@@ -310,36 +310,50 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBAction func onSwitchToggle(_ sender: Switch) {
         if sender == billReadySwitch && Environment.sharedInstance.opco != .bge { // ComEd/PECO only requirement
-            var title: String, message: String
             if sender.isOn {
-                title = NSLocalizedString("Go Paperless", comment: "")
-                message = NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "")
-                Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPush.rawValue)
+                if !viewModel.accountDetail.isEBillEnrollment {
+                    let alertTitle = NSLocalizedString("Go Paperless", comment: "")
+                    let alertMessage = NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "")
+                    Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPush.rawValue)
+                    
+                    let alertVc = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+                    
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self, weak sender] _ in
+                        if sender?.isOn ?? false {
+                            Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPushCancel.rawValue)
+                        } else {
+                            Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPushCancel.rawValue)
+                        }
+                        self?.viewModel.billReady.value = !(sender?.isOn ?? false) // Need to manually set this because .setOn does not trigger rx binding
+                    }))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self, weak sender] _ in
+                        if sender?.isOn ?? false {
+                            Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPushContinue.rawValue)
+                        } else {
+                            Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPushContinue.rawValue)
+                        }
+                        self?.makeAnalyticsOffer()
+                        self?.viewModel.userChangedPrefs.value = true
+                    }))
+                    
+                    present(alertVc, animated: true, completion: nil)
+                } else {
+                    makeAnalyticsOffer()
+                    viewModel.userChangedPrefs.value = true
+                }
             } else {
-                title = NSLocalizedString("Receive Paper Bill", comment: "")
-                message = NSLocalizedString("By deselecting this alert, you will be removed from paperless billing and will revert back to receiving your bills through postal mail. Please allow up to one billing cycle for this change to take effect.", comment: "")
-                Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPush.rawValue)
+                let alertTitle = NSLocalizedString("Paperless eBill", comment: "")
+                let alertMessage = NSLocalizedString("Your Paperless eBill enrollment status will not be affected. If you are enrolled in Paperless eBill, to completely unsubscribe, please update your Paperless eBill preference.", comment: "")
+                
+                let alertVc = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+                
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in
+                    self?.makeAnalyticsOffer()
+                    self?.viewModel.userChangedPrefs.value = true
+                }))
+                
+                present(alertVc, animated: true, completion: nil)
             }
-            
-            let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self] _ in
-                if sender.isOn {
-                    Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPushCancel.rawValue)
-                } else {
-                    Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPushCancel.rawValue)
-                }
-                self?.viewModel.billReady.value = !sender.isOn // Need to manually set this because .setOn does not trigger rx binding
-            }))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self] _ in
-                if sender.isOn {
-                    Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPushContinue.rawValue)
-                } else {
-                    Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPushContinue.rawValue)
-                }
-                self?.makeAnalyticsOffer()
-                self?.viewModel.userChangedPrefs.value = true
-            }))
-            present(alertVc, animated: true, completion: nil)
         } else {
             makeAnalyticsOffer()
             viewModel.userChangedPrefs.value = true

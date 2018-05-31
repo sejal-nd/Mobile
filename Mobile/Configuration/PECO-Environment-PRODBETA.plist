@@ -13,7 +13,7 @@
 	<key>mcsInstanceName</key>
 	<string>ProdPECO</string>
 	<key>fiservUrl</key>
-	<string>https://billerdirectui.onefiserv.com/BillerDirectUI/Mobile</string>
+	<string>https://billerwebui.fiservapps.com/Mobile</string>
 	<key>speedpayUrl</key>
 	<string>https://tokenservice.speedpay.com/api/token/GetToken</string>
 	<key>outageMapUrl</key>
@@ -24,5 +24,7 @@
 	<string>UA-76742208-2</string>
 	<key>opcoUpdatesHost</key>
 	<string>www.peco.com</string>
+	<key>appCenterId</key>
+	<string>fbc9f960-869c-47c4-a765-a650369ffca1</string>
 </dict>
 </plist>
