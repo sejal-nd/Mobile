@@ -15,7 +15,7 @@ class AdjustThermostatViewModel {
     let device: SmartThermostatDevice
     
     var premiseNumber: String {
-        return AccountsStore.sharedInstance.currentAccount.currentPremise?.premiseNumber ??
+        return AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ??
             accountDetail.premiseNumber!
     }
     
@@ -79,7 +79,7 @@ class AdjustThermostatViewModel {
                        resultSelector: SmartThermostatDeviceSettings.init)
     
     private lazy var saveEvents: Observable<Event<Void>> = self.saveAction
-        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.AdjustThermSave.rawValue) })
+        .do(onNext: { Analytics.log(event: .AdjustThermSave) })
         .withLatestFrom(self.updatedSettings)
         .flatMapLatest { [weak self] updatedSettings -> Observable<Event<Void>> in
             guard let `self` = self else { return .empty() }
@@ -93,7 +93,7 @@ class AdjustThermostatViewModel {
         .share()
 
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
-        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.AdjustThermToast.rawValue) })
+        .do(onNext: { Analytics.log(event: .AdjustThermToast) })
     
     private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
         .map { ($0 as? ServiceError)?.errorDescription ?? "" }

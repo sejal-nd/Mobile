@@ -63,7 +63,7 @@ class PaperlessEBillViewController: UIViewController {
         
         colorAndShadowSetup()
         
-		updateDetailsView.isHidden = Environment.sharedInstance.opco == .bge
+		updateDetailsView.isHidden = Environment.shared.opco == .bge
         
         emailsWillBeSentToLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
@@ -121,7 +121,7 @@ class PaperlessEBillViewController: UIViewController {
         
         learnMoreButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             let description: String
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 description = NSLocalizedString("Eliminate your paper bill.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  You will receive bill ready email notifications regardless of preference.  Your preference will be updated with your next month’s bill.", comment: "")
             } else {
                 description = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  Your preference will be updated with your next month’s bill.", comment: "")

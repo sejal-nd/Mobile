@@ -375,7 +375,7 @@ class AddCardFormViewModelTests: XCTestCase {
     
     func testNicknameErrorString() {
         viewModel.nickname.value = "Io"
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
         viewModel.nicknameErrorString.asObservable().take(1).subscribe(onNext:
             {errString in
                 XCTAssert(errString == "Must be at least 3 characters", "No error string was returned")
@@ -383,7 +383,7 @@ class AddCardFormViewModelTests: XCTestCase {
         }
         
         viewModel.nickname.value = "My Card"
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             viewModel.nicknameErrorString.asObservable().take(1).subscribe(onNext:
                 {errString in
                     if (errString == "Must be at least 3 characters"){

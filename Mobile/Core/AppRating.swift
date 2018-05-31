@@ -37,11 +37,9 @@ struct AppRating {
     /// - Returns: true if the threshold was met and the
     ///     user should be prompted to rate the app.
     static func shouldRequestRating() -> Bool {
-        let environment = Environment.sharedInstance.environmentName
-        let isTest = environment.uppercased() == "TEST"
+        let isDev = Environment.shared.environmentName == .dev
+        let value = UserDefaults.standard.integer(forKey: UserDefaultKeys.AppRatingEventCount)
         
-        let defaults = UserDefaults.standard
-        let value = defaults.integer(forKey: UserDefaultKeys.AppRatingEventCount)
-        return value >= EventThreshold && !isTest;
+        return value >= EventThreshold && !isDev;
     }
 }

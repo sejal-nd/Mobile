@@ -48,7 +48,7 @@ class AccountInfoBar: UIView {
             }
             label.text = labelText
             label.accessibilityLabel = a11y
-        } else if let currentAccount = AccountsStore.sharedInstance.currentAccount {
+        } else if let currentAccount = AccountsStore.shared.currentAccount {
             var labelText = "ACCOUNT \(currentAccount.accountNumber)"
             a11y.append("Account number: \(currentAccount.accountNumber)")
             if let address = currentAccount.address {

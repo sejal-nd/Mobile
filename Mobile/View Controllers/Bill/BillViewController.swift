@@ -147,7 +147,7 @@ class BillViewController: AccountPickerViewController {
                 case .loadingAccounts:
                     break
                 case .readyToFetchData:
-                    if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchAccountDetail(isRefresh: false)
                     } else if accountDetail?.element == nil {
                         self.viewModel.fetchAccountDetail(isRefresh: false)
@@ -526,7 +526,7 @@ class BillViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
-                if Environment.sharedInstance.opco == .comEd &&
+                if Environment.shared.opco == .comEd &&
                     accountDetail.hasElectricSupplier &&
                     accountDetail.isSingleBillOption {
                     let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
@@ -542,7 +542,7 @@ class BillViewController: AccountPickerViewController {
                     self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)
                 }
                 
-                Analytics().logScreenView(AnalyticsPageView.BillViewCurrentOfferComplete.rawValue)
+                Analytics.log(event: .BillViewCurrentOfferComplete)
             })
 			.disposed(by: bag)
 
@@ -574,7 +574,7 @@ class BillViewController: AccountPickerViewController {
 			.withLatestFrom(viewModel.currentAccountDetail)
 			.drive(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
-                if !accountDetail.isResidential && Environment.sharedInstance.opco != .bge {
+                if !accountDetail.isResidential && Environment.shared.opco != .bge {
 					self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: accountDetail)
 				} else {
 					self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
@@ -650,7 +650,7 @@ class BillViewController: AccountPickerViewController {
     }
     
     func navigateToAutoPay(accountDetail: AccountDetail) {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             if accountDetail.isBGEasy {
                 self.performSegue(withIdentifier: "viewBGEasySegue", sender: accountDetail)
             } else {
@@ -721,19 +721,19 @@ extension BillViewController: AccountPickerDelegate {
 extension BillViewController: BudgetBillingViewControllerDelegate {
 
     func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController, averageMonthlyBill: String?) {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             let textFormat = NSLocalizedString("Enrolled in Budget Billing - your monthly rate is %@", comment: "")
             showDelayedToast(withMessage: String(format: textFormat, averageMonthlyBill ?? "--"))
         case .comEd, .peco:
             showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
         }
-        Analytics().logScreenView(AnalyticsPageView.BudgetBillEnrollComplete.rawValue)
+        Analytics.log(event: .BudgetBillEnrollComplete)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
-        Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollComplete.rawValue)
+        Analytics.log(event: .BudgetBillUnEnrollComplete)
     }
 }
 
@@ -759,9 +759,9 @@ extension BillViewController: AutoPayViewControllerDelegate {
         showDelayedToast(withMessage: message)
         
         if enrolled {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
+            Analytics.log(event: .AutoPayEnrollComplete)
         } else {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
+            Analytics.log(event: .AutoPayUnenrollComplete)
         }
     }
 

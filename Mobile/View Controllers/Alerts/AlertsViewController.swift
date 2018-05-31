@@ -46,7 +46,7 @@ class AlertsViewController: AccountPickerViewController {
                                   rightLabel: NSLocalizedString("Updates", comment: ""),
                                   initialSelectedIndex: 0)
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             accountPicker.isHidden = true
         }
         
@@ -83,7 +83,7 @@ class AlertsViewController: AccountPickerViewController {
                 break
             case .readyToFetchData:
                 self.viewModel.fetchAlertsFromDisk()
-                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                     self.viewModel.fetchData()
                 } else if self.viewModel.currentAccountDetail == nil {
                     self.viewModel.fetchData()
@@ -139,7 +139,7 @@ class AlertsViewController: AccountPickerViewController {
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
             if index == 1 { // User tapped on "Updates"
-                Analytics().logScreenView(AnalyticsPageView.AlertsOpCoUpdate.rawValue)
+                Analytics.log(event: .AlertsOpCoUpdate)
             }
         }).disposed(by: disposeBag)
         
@@ -176,7 +176,7 @@ class AlertsViewController: AccountPickerViewController {
     }
     
     @IBAction func onPreferencesButtonTap(_ sender: Any) {
-        Analytics().logScreenView(AnalyticsPageView.AlertsMainScreen.rawValue)
+        Analytics.log(event: .AlertsMainScreen)
         performSegue(withIdentifier: "preferencesSegue", sender: self)
     }
     
@@ -276,7 +276,7 @@ extension AlertsViewController: AccountPickerDelegate {
 extension AlertsViewController: AlertPreferencesViewControllerDelegate {
     
     func alertPreferencesViewControllerDidSavePreferences(_ alertPreferencesViewController: AlertPreferencesViewController) {
-        Analytics().logScreenView(AnalyticsPageView.AlertsPrefCenterComplete.rawValue)
+        Analytics.log(event: .AlertsPrefCenterComplete)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Preferences saved", comment: ""))
         })

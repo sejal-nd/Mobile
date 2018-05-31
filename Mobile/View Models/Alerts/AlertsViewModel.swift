@@ -44,7 +44,7 @@ class AlertsViewModel {
         isUpdatesError.value = false
         isNoNetworkConnection.value = false
         
-        accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
+        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
@@ -79,7 +79,7 @@ class AlertsViewModel {
     }
     
     func fetchAlertsFromDisk() {
-        currentAlerts.value = AlertsStore.sharedInstance.getAlerts(forAccountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
+        currentAlerts.value = AlertsStore.shared.getAlerts(forAccountNumber: AccountsStore.shared.currentAccount.accountNumber)
         self.reloadAlertsTableViewEvent.onNext(())
     }
     

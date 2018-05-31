@@ -15,13 +15,11 @@ class ServiceFactory {
     static let sharedMockOutageService = MockOutageService()
 
     class func createAuthenticationService() -> AuthenticationService {
-        switch(Environment.sharedInstance.environmentName) {
-        case "DEV", "TEST", "STAGE", "PROD":
+        switch(Environment.shared.environmentName) {
+        case .dev, .stage, .prod:
             return OMCAuthenticationService()
-        case "AUT":
+        case .aut:
             return MockAuthenticationService()
-        default:
-            return OMCAuthenticationService()
         }
     }
 
@@ -30,45 +28,57 @@ class ServiceFactory {
     }
 
     class func createAccountService() -> AccountService {
-        if Environment.sharedInstance.environmentName == "AUT" {
+        switch(Environment.shared.environmentName) {
+        case .dev, .stage, .prod:
+            return OMCAccountService()
+        case .aut:
             return MockAccountService()
         }
-        return OMCAccountService()
     }
 
     class func createOutageService() -> OutageService {
-        if Environment.sharedInstance.environmentName == "AUT" {
+        switch(Environment.shared.environmentName) {
+        case .dev, .stage, .prod:
+            return sharedOutageService
+        case .aut:
             return sharedMockOutageService
         }
-        return sharedOutageService
     }
 
     class func createBillService() -> BillService {
-        if Environment.sharedInstance.environmentName == "AUT" {
+        switch(Environment.shared.environmentName) {
+        case .dev, .stage, .prod:
+            return OMCBillService()
+        case .aut:
             return MockBillService()
         }
-        return OMCBillService()
     }
 
     class func createWalletService() -> WalletService {
-        if Environment.sharedInstance.environmentName == "AUT" {
+        switch(Environment.shared.environmentName) {
+        case .dev, .stage, .prod:
+            return OMCWalletService()
+        case .aut:
             return MockWalletService()
         }
-        return OMCWalletService()
     }
 
     class func createRegistrationService() -> RegistrationService {
-        if Environment.sharedInstance.environmentName == "AUT" {
+        switch(Environment.shared.environmentName) {
+        case .dev, .stage, .prod:
+            return OMCRegistrationService()
+        case .aut:
             return MockRegistrationService()
         }
-        return OMCRegistrationService()
     }
 
     class func createPaymentService() -> PaymentService {
-        if Environment.sharedInstance.environmentName == "AUT" {
+        switch(Environment.shared.environmentName) {
+        case .dev, .stage, .prod:
+            return OMCPaymentService()
+        case .aut:
             return MockPaymentService()
         }
-        return OMCPaymentService()
     }
 
     class func createWeatherService() -> WeatherService {
@@ -76,17 +86,21 @@ class ServiceFactory {
     }
 
     class func createUsageService() -> UsageService {
-        if Environment.sharedInstance.environmentName == "AUT" {
+        switch(Environment.shared.environmentName) {
+        case .dev, .stage, .prod:
+            return OMCUsageService()
+        case .aut:
             return MockUsageService()
         }
-        return OMCUsageService()
     }
 
     class func createAlertsService() -> AlertsService {
-        if Environment.sharedInstance.environmentName == "AUT" {
+        switch(Environment.shared.environmentName) {
+        case .dev, .stage, .prod:
+            return OMCAlertsService()
+        case .aut:
             return MockAlertsService()
         }
-        return OMCAlertsService()
     }
     
     class func createPeakRewardsService() -> PeakRewardsService {

@@ -340,7 +340,7 @@ extension WalletViewController: AddBankAccountViewControllerDelegate {
     
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
         didChangeAccount(toastMessage: NSLocalizedString("Bank account added", comment: ""))
-        Analytics().logScreenView(AnalyticsPageView.AddWalletComplete.rawValue)
+        Analytics.log(event: .AddWalletComplete)
     }
     
 }
@@ -357,7 +357,7 @@ extension WalletViewController: AddCreditCardViewControllerDelegate {
     
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
         didChangeAccount(toastMessage: NSLocalizedString("Card added", comment: ""))
-        Analytics().logScreenView(AnalyticsPageView.AddWalletComplete.rawValue)
+        Analytics.log(event: .AddWalletComplete)
     }
 }
 

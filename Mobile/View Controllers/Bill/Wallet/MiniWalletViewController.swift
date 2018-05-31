@@ -235,7 +235,7 @@ extension MiniWalletViewController: UITableViewDataSource {
             }
         } else {
             var creditCardFeeString: String {
-                switch Environment.sharedInstance.opco {
+                switch Environment.shared.opco {
                 case .bge:
                     return NSLocalizedString(accountDetail.billingInfo.convenienceFeeString(isComplete: true), comment: "")
                 case .comEd, .peco:
@@ -298,7 +298,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.innerContentView.addTarget(self, action: #selector(onCreditCardPress(sender:)), for: .touchUpInside)
                 
                 cell.innerContentView.isEnabled = true
-                if let cardIssuer = cardItem.cardIssuer, cardIssuer == "Visa", sentFromPayment, !accountDetail.isResidential, Environment.sharedInstance.opco == .bge { // BGE Commercial cannot pay with VISA
+                if let cardIssuer = cardItem.cardIssuer, cardIssuer == "Visa", sentFromPayment, !accountDetail.isResidential, Environment.shared.opco == .bge { // BGE Commercial cannot pay with VISA
                     cell.innerContentView.isEnabled = false
                 }
                 if creditCardsDisabled || cardItem.isExpired {

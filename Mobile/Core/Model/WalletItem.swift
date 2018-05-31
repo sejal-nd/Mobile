@@ -107,7 +107,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         
         walletItemStatusType = map.optionalFrom("walletItemStatusType")
         
-        if let type = bankAccountType, Environment.sharedInstance.opco == .bge {
+        if let type = bankAccountType, Environment.shared.opco == .bge {
             bankOrCard = type == .card ? .card : .bank
         } else if let type = paymentCategoryType {
             bankOrCard = (type == .credit || type == .debit) ? .card : .bank

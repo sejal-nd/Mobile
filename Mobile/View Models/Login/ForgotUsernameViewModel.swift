@@ -35,7 +35,7 @@ class ForgotUsernameViewModel {
             .subscribe(onNext: { usernames in
                 self.maskedUsernames = usernames
                 onSuccess()
-                Analytics().logScreenView(AnalyticsPageView.ForgotUsernameAccountValidate.rawValue)
+                Analytics.log(event: .ForgotUsernameAccountValidate)
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue ||
@@ -54,7 +54,7 @@ class ForgotUsernameViewModel {
         let cipher = maskedUsername.cipher
         let acctNum: String? = accountNumber.value.count > 0 ? accountNumber.value : nil
         let identifier: String? = identifierNumber.value.count > 0 ? identifierNumber.value : nil
-        Analytics().logScreenView(AnalyticsPageView.ForgotUsernameSecuritySubmit.rawValue)
+        Analytics.log(event: .ForgotUsernameSecuritySubmit)
         
         authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value, cipher: cipher)
             .observeOn(MainScheduler.instance)
@@ -75,7 +75,7 @@ class ForgotUsernameViewModel {
     }
     
     private(set) lazy var nextButtonEnabled: Driver<Bool> = {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             return Driver.combineLatest(self.phoneNumberHasTenDigits, self.identifierHasFourDigits, self.identifierIsNumeric)
             { $0 && $1 && $2 }
         } else {

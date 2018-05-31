@@ -74,12 +74,12 @@ class PaymentViewModel {
         let startOfTodayDate = Calendar.current.startOfDay(for: now)
         let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
         
-        if Environment.sharedInstance.opco == .bge &&
+        if Environment.shared.opco == .bge &&
             Calendar.opCo.component(.hour, from: Date()) >= 20 &&
             !accountDetail.isActiveSeverance {
             self.paymentDate.value = tomorrow
         }
-        if Environment.sharedInstance.opco == .bge &&
+        if Environment.shared.opco == .bge &&
             !accountDetail.isActiveSeverance &&
             !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
             self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
@@ -119,7 +119,7 @@ class PaymentViewModel {
     
     func fetchData(onSuccess: (() -> Void)?, onError: (() -> Void)?) {
         var observables = [fetchWalletItems()]
-        if Environment.sharedInstance.opco == .peco {
+        if Environment.shared.opco == .peco {
             observables.append(fetchPECOWorkdays())
         }
         if let paymentId = paymentId.value, paymentDetail.value == nil {
@@ -145,7 +145,7 @@ class PaymentViewModel {
                             }
                         }
                     } else {
-                        if Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential {
+                        if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
                             // Default to One Touch Pay item IF it's not a VISA credit card
                             if let otpItem = self.oneTouchPayItem {
                                 if otpItem.bankOrCard == .bank {
@@ -220,7 +220,7 @@ class PaymentViewModel {
                                       paymentAmount: self.paymentAmountDouble(),
                                       paymentType: paymentType,
                                       paymentDate: paymentDate,
-                                      walletId: AccountsStore.sharedInstance.customerIdentifier,
+                                      walletId: AccountsStore.shared.customerIdentifier,
                                       walletItemId: self.selectedWalletItem.value!.walletItemID!,
                                       cvv: self.cvv.value)
                 
@@ -241,7 +241,7 @@ class PaymentViewModel {
     
     private func scheduleInlineBankPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
         var accountType: String?
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
         }
         let accountName: String? = addBankFormViewModel.accountHolderName.value.isEmpty ? nil : addBankFormViewModel.accountHolderName.value
@@ -255,7 +255,7 @@ class PaymentViewModel {
                                       oneTimeUse: !addBankFormViewModel.saveToWallet.value)
         
         walletService
-            .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
+            .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] walletItemResult in
                 guard let `self` = self else { return }
@@ -263,9 +263,7 @@ class PaymentViewModel {
                 let otp = self.addBankFormViewModel.oneTouchPay.value
                 
                 if self.addBankFormViewModel.saveToWallet.value {
-                    Analytics().logScreenView(AnalyticsPageView.ECheckAddNewWallet.rawValue,
-                                              dimensionIndex: Dimensions.OTPEnabled,
-                                              dimensionValue: otp ? "enabled" : "disabled")
+                    Analytics.log(event: .ECheckAddNewWallet, dimensions: [.OTPEnabled: otp ? "enabled" : "disabled"])
                 }
                 
                 if otp {
@@ -284,7 +282,7 @@ class PaymentViewModel {
                     let accountNum = self.addBankFormViewModel.accountNumber.value
                     let maskedAccountNumber = accountNum[accountNum.index(accountNum.endIndex, offsetBy: -4)...]
                     
-                    let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addBankFormViewModel.saveToWallet.value, maskedWalletAccountNumber: String(maskedAccountNumber), paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: walletItemResult.walletItemId, cvv: nil)
+                    let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: false, saveAccount: self.addBankFormViewModel.saveToWallet.value, maskedWalletAccountNumber: String(maskedAccountNumber), paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.shared.customerIdentifier, walletItemId: walletItemResult.walletItemId, cvv: nil)
                     self.paymentService.schedulePayment(payment: payment)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { _ in
@@ -312,7 +310,7 @@ class PaymentViewModel {
     private func scheduleInlineCardPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
         let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value, securityCode: addCardFormViewModel.cvv.value, cardHolderName: addCardFormViewModel.nameOnCard.value, expirationMonth: addCardFormViewModel.expMonth.value, expirationYear: addCardFormViewModel.expYear.value, postalCode: addCardFormViewModel.zipCode.value, nickname: addCardFormViewModel.nickname.value)
         
-        if Environment.sharedInstance.opco == .bge && !addCardFormViewModel.saveToWallet.value {
+        if Environment.shared.opco == .bge && !addCardFormViewModel.saveToWallet.value {
             self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
                 guard let `self` = self else { return }
                 var paymentDate = self.paymentDate.value
@@ -330,15 +328,13 @@ class PaymentViewModel {
             
         } else {
             walletService
-                .addCreditCard(card, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
+                .addCreditCard(card, forCustomerNumber: AccountsStore.shared.customerIdentifier)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] walletItemResult in
                     guard let `self` = self else { return }
                     
                     let otp = self.addCardFormViewModel.oneTouchPay.value
-                    Analytics().logScreenView(AnalyticsPageView.CardAddNewWallet.rawValue,
-                                              dimensionIndex: Dimensions.OTPEnabled,
-                                              dimensionValue: otp ? "enabled" : "disabled")
+                    Analytics.log(event: .CardAddNewWallet, dimensions: [.OTPEnabled: otp ? "enabled" : "disabled"])
                     
                     if otp {
                         self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
@@ -363,7 +359,7 @@ class PaymentViewModel {
                                               paymentAmount: self.paymentAmountDouble(),
                                               paymentType: paymentType,
                                               paymentDate: paymentDate,
-                                              walletId: AccountsStore.sharedInstance.customerIdentifier,
+                                              walletId: AccountsStore.shared.customerIdentifier,
                                               walletItemId: walletItemResult.walletItemId,
                                               cvv: self.addCardFormViewModel.cvv.value)
                         
@@ -396,7 +392,7 @@ class PaymentViewModel {
     func enableOneTouchPay(walletItemID: String, onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
         walletService.setOneTouchPayItem(walletItemId: walletItemID,
                                          walletId: nil,
-                                         customerId: AccountsStore.sharedInstance.customerIdentifier)
+                                         customerId: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess?()
@@ -430,7 +426,7 @@ class PaymentViewModel {
             if isFixed {
                 paymentDate = Date()
             }
-            let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.sharedInstance.customerIdentifier, walletItemId: self.selectedWalletItem.value!.walletItemID!, cvv: self.cvv.value)
+            let payment = Payment(accountNumber: self.accountDetail.value.accountNumber, existingAccount: true, saveAccount: false, maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!, paymentAmount: self.paymentAmountDouble(), paymentType: paymentType, paymentDate: paymentDate, walletId: AccountsStore.shared.customerIdentifier, walletItemId: self.selectedWalletItem.value!.walletItemID!, cvv: self.cvv.value)
             self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { _ in
@@ -505,7 +501,7 @@ class PaymentViewModel {
     private(set) lazy var bgeCommercialUserEnteringVisa: Driver<Bool> = Driver.combineLatest(self.addCardFormViewModel.cardNumber.asDriver(),
                                                                                              self.accountDetail.asDriver())
     {
-        if Environment.sharedInstance.opco == .bge && !$1.isResidential {
+        if Environment.shared.opco == .bge && !$1.isResidential {
             let characters = Array($0)
             if characters.count >= 1 {
                 return characters[0] == "4"
@@ -570,9 +566,9 @@ class PaymentViewModel {
                                                                                self.noSaveToWalletBankFormValidComEdPECO)
     {
         if $0 { // Save to wallet
-            return Environment.sharedInstance.opco == .bge ? $1 : $2
+            return Environment.shared.opco == .bge ? $1 : $2
         } else { // No save
-            return Environment.sharedInstance.opco == .bge ? $3 : $4
+            return Environment.shared.opco == .bge ? $3 : $4
         }
     }
     
@@ -583,9 +579,9 @@ class PaymentViewModel {
                                                                                self.noSaveToWalletCardFormValidComEdPECO)
     {
         if $0 { // Save to wallet
-            return Environment.sharedInstance.opco == .bge ? $1 : $2
+            return Environment.shared.opco == .bge ? $1 : $2
         } else { // No save
-            return Environment.sharedInstance.opco == .bge ? $3 : $4
+            return Environment.shared.opco == .bge ? $3 : $4
         }
     }
     
@@ -609,7 +605,7 @@ class PaymentViewModel {
         } else if inlineCard {
             return inlineCardValid && paymentFieldsValid
         } else {
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 if let walletItem = selectedWalletItem {
                     if walletItem.bankOrCard == .card {
                         return paymentFieldsValid && cvvIsCorrectLength
@@ -645,7 +641,7 @@ class PaymentViewModel {
     private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isActiveSeverance }
     
     private(set) lazy var isBGECommercialUser: Driver<Bool> = self.accountDetail.asDriver().map {
-        Environment.sharedInstance.opco == .bge && !$0.isResidential
+        Environment.shared.opco == .bge && !$0.isResidential
     }
     
     private(set) lazy var shouldShowNextButton: Driver<Bool> = Driver.combineLatest(self.paymentId.asDriver(), self.allowEdits.asDriver()).map {
@@ -701,7 +697,7 @@ class PaymentViewModel {
         if !$2 {
             return false
         }
-        if Environment.sharedInstance.opco == .bge && $0 && !$1 {
+        if Environment.shared.opco == .bge && $0 && !$1 {
             return true
         }
         return false
@@ -727,7 +723,7 @@ class PaymentViewModel {
             if bankWorkflow {
                 let minPayment = accountDetail.minPaymentAmount(bankOrCard: .bank)
                 let maxPayment = accountDetail.maxPaymentAmount(bankOrCard: .bank)
-                if Environment.sharedInstance.opco == .bge {
+                if Environment.shared.opco == .bge {
                     // BGE BANK
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
@@ -747,7 +743,7 @@ class PaymentViewModel {
             } else if cardWorkflow {
                 let minPayment = accountDetail.minPaymentAmount(bankOrCard: .card)
                 let maxPayment = accountDetail.maxPaymentAmount(bankOrCard: .card)
-                if Environment.sharedInstance.opco == .bge {
+                if Environment.shared.opco == .bge {
                     // BGE CREDIT CARD
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
@@ -775,7 +771,7 @@ class PaymentViewModel {
         if bankWorkflow {
             return NSLocalizedString("No convenience fee will be applied.", comment: "")
         } else if cardWorkflow {
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 return NSLocalizedString(self.accountDetail.value.billingInfo.convenienceFeeString(isComplete: true), comment: "")
             } else {
                 return String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: ""), fee.currencyString!)
@@ -793,7 +789,7 @@ class PaymentViewModel {
             return NSLocalizedString("No convenience fee will be applied.", comment: "")
         } else if cardWorkflow {
             return String(format: NSLocalizedString("Your payment includes a %@ convenience fee.", comment: ""),
-                          Environment.sharedInstance.opco == .bge && !accountDetail.isResidential ? fee.percentString! : fee.currencyString!)
+                          Environment.shared.opco == .bge && !accountDetail.isResidential ? fee.percentString! : fee.currencyString!)
         }
         return ""
     }
@@ -849,7 +845,7 @@ class PaymentViewModel {
         } else {
             guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
             
-            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
                 let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
                 return nickname == String(last4) ? nil : nickname
             } else {
@@ -905,7 +901,7 @@ class PaymentViewModel {
     }
     
     private(set) lazy var convenienceFee: Driver<Double> = {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return self.accountDetail.value.isResidential ?
                 Driver.just(self.accountDetail.value.billingInfo.residentialFee!) :
@@ -938,7 +934,7 @@ class PaymentViewModel {
                                                                                           self.inlineBank.asDriver(),
                                                                                           self.inlineCard.asDriver())
     {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             return true
         } else {
             if $1 || $2 {
@@ -952,7 +948,7 @@ class PaymentViewModel {
                                                                                        self.inlineCard.asDriver(),
                                                                                        self.inlineBank.asDriver())
     {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             if $0 || $2 {
                 return NSLocalizedString("Any payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
             } else {
@@ -980,7 +976,7 @@ class PaymentViewModel {
     }
     
     private func fixedPaymentDateLogic(accountDetail: AccountDetail, cardWorkflow: Bool, inlineCard: Bool, saveBank: Bool, saveCard: Bool, allowEdits: Bool) -> Bool {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             if (inlineCard && !saveCard) || accountDetail.isActiveSeverance || !allowEdits {
                 return true
             }
@@ -1005,13 +1001,13 @@ class PaymentViewModel {
     }
     
     private(set) lazy var isFixedPaymentDatePastDue: Driver<Bool> = self.accountDetail.asDriver().map {
-        Environment.sharedInstance.opco != .bge && $0.billingInfo.pastDueAmount ?? 0 > 0
+        Environment.shared.opco != .bge && $0.billingInfo.pastDueAmount ?? 0 > 0
     }
     
     private(set) lazy var paymentDateString: Driver<String> = Driver.combineLatest(self.paymentDate.asDriver(), self.isFixedPaymentDate).map {
         if $1 {
             let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
-            if Environment.sharedInstance.opco == .bge && Calendar.opCo.component(.hour, from: Date()) >= 20 {
+            if Environment.shared.opco == .bge && Calendar.opCo.component(.hour, from: Date()) >= 20 {
                 return Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString
             }
             return startOfTodayDate.mmDdYyyyString
@@ -1027,7 +1023,7 @@ class PaymentViewModel {
         return false
     }
     
-    var shouldShowBillMatrixView: Bool = Environment.sharedInstance.opco != .bge
+    var shouldShowBillMatrixView: Bool = Environment.shared.opco != .bge
     
     // MARK: - Review Payment Drivers
     
@@ -1053,7 +1049,7 @@ class PaymentViewModel {
     private(set) lazy var reviewPaymentShouldShowConvenienceFeeBox: Driver<Bool> = self.cardWorkflow
     
     private(set) lazy var isOverpaying: Driver<Bool> = {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return Driver.combineLatest(self.amountDue.asDriver(), self.paymentAmount.asDriver().map {
                 Double(String($0.filter { "0123456789.".contains($0) })) ?? 0
@@ -1076,7 +1072,7 @@ class PaymentViewModel {
     }()
     
     private(set) lazy var shouldShowTermsConditionsSwitchView: Driver<Bool> = self.cardWorkflow.map {
-        if Environment.sharedInstance.opco == .bge { // On BGE, Speedpay is only for credit cards
+        if Environment.shared.opco == .bge { // On BGE, Speedpay is only for credit cards
             return $0
         } else { // On ComEd/PECO, it's always shown for the terms and conditions agreement
             return true
@@ -1093,7 +1089,7 @@ class PaymentViewModel {
             })
         { [weak self] in
             guard let `self` = self else { return nil }
-            if Environment.sharedInstance.opco == .bge && !self.accountDetail.value.isResidential {
+            if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
                 return (($0 / 100) * $1).currencyString
             } else {
                 return $0.currencyString
@@ -1115,7 +1111,7 @@ class PaymentViewModel {
         }, self.reviewPaymentShouldShowConvenienceFeeBox, self.convenienceFee).map { [weak self] in
             guard let `self` = self else { return nil }
             if $1 {
-                if (Environment.sharedInstance.opco == .bge) {
+                if (Environment.shared.opco == .bge) {
                     if (self.accountDetail.value.isResidential) {
                         return ($0 + $2).currencyString
                     } else {
@@ -1131,7 +1127,7 @@ class PaymentViewModel {
     }()
     
     private(set) lazy var reviewPaymentFooterLabelText: Driver<String?> = self.cardWorkflow.map {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             if $0 {
                 return NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: "")
             }

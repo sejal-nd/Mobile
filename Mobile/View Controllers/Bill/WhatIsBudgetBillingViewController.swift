@@ -84,7 +84,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         card2Bullet4View.isHidden = true
         card2Bullet5View.isHidden = true
         
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case OpCo.bge:
             navDescriptionLabel.text = NSLocalizedString("Budget Billing spreads out your utility payments evenly throughout the year, so you will know what to expect each month.", comment: "")
             card1Bullet1Label.text = NSLocalizedString("Under this payment plan, BGE calculates your budget bill amount by averaging your 12 most recent gas and electric bills plus any accumulated imbalance amount.", comment: "")

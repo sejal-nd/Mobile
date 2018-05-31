@@ -28,7 +28,7 @@ struct MockWalletService: WalletService {
             walletItems = [
                 WalletItem(nickName: "Test Nickname", isDefault: true, cardIssuer: "Visa", bankOrCard: .card),
             ]
-        } else if AccountsStore.sharedInstance.currentAccount.accountNumber == "13" { // Set this to test no OTP items
+        } else if AccountsStore.shared.currentAccount.accountNumber == "13" { // Set this to test no OTP items
             walletItems = [
                 WalletItem(nickName: "Test Nickname", cardIssuer: "Visa", bankOrCard: .card),
                 WalletItem(nickName: "Test Nickname 2", cardIssuer: "Mastercard", bankOrCard: .card)

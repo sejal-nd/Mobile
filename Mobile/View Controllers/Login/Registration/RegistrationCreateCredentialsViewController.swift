@@ -101,7 +101,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         LoadingView.show()
         viewModel.verifyUniqueUsername(onSuccess: { [weak self] in
             LoadingView.hide()
-            Analytics().logScreenView(AnalyticsPageView.RegisterAccountSetup.rawValue)
+            Analytics.log(event: .RegisterAccountSetup)
             self?.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
             }, onEmailAlreadyExists: { [weak self] in
                 LoadingView.hide()
@@ -315,7 +315,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 })
             }).disposed(by: disposeBag)
         
-        let opCo = Environment.sharedInstance.opco
+        let opCo = Environment.shared.opco
         
         if opCo == .bge || viewModel.accountType.value == "residential" {
             primaryProfileSwitchView.isHidden = true

@@ -69,7 +69,7 @@ class MoreBillingHistoryViewController: UIViewController {
             vc.billingHistoryItem = billingHistoryItem
         } else if let vc = segue.destination as? ViewBillViewController {
             vc.viewModel.billDate = billingHistoryItem.date
-            Analytics().logScreenView(AnalyticsPageView.BillViewPastOfferComplete.rawValue)
+            Analytics.log(event: .BillViewPastOfferComplete)
             AppRating.logRatingEvent()
         }
     }
@@ -100,7 +100,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
             }
             //upcoming billing history
         } else {
-            let opco = Environment.sharedInstance.opco
+            let opco = Environment.shared.opco
             
             if opco == .bge {
                 if accountDetail.isBGEasy {
@@ -151,7 +151,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
     }
     
     private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             guard let paymentMethod = billingItem.paymentMethod else { return }
             if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
                 showModifyScheduledItem(billingItem: billingItem)
@@ -171,7 +171,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
     }
     
     private func showBillPdf() {
-        if Environment.sharedInstance.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
+        if Environment.shared.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
             let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             present(alertVC, animated: true, completion: nil)

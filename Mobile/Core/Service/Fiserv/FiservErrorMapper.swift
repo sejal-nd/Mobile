@@ -9,7 +9,7 @@
 import Foundation
 
 class FiservErrorMapper : NSObject, XMLParserDelegate {
-    static let sharedInstance = FiservErrorMapper()
+    static let shared = FiservErrorMapper()
     
     var items = [FiservError]()
     
@@ -43,7 +43,7 @@ class FiservErrorMapper : NSObject, XMLParserDelegate {
                 parser = XMLParser(contentsOf: URL(fileURLWithPath: path!))
             }
             
-            parser?.delegate = FiservErrorMapper.sharedInstance
+            parser?.delegate = FiservErrorMapper.shared
             parser?.parse()
         }
 

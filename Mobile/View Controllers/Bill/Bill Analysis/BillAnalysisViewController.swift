@@ -124,7 +124,8 @@ class BillAnalysisViewController: UIViewController {
         super.viewDidLoad()
 
         let residentialAMIString = String(format: "%@%@", viewModel.accountDetail.isResidential ? "Residential/" : "Commercial/", viewModel.accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics().logScreenView(AnalyticsPageView.BillNeedHelp.rawValue, dimensionIndex: Dimensions.ResidentialAMI, dimensionValue: residentialAMIString)
+        Analytics.log(event: .BillNeedHelp,
+                             dimensions: [.ResidentialAMI: residentialAMIString])
         
         title = NSLocalizedString("Bill Analysis", comment: "")
         
@@ -324,7 +325,7 @@ class BillAnalysisViewController: UIViewController {
         currentBarView.backgroundColor = .primaryColor
         projectionNotAvailableBarView.addDashedBorder(color: dashedBorderColor)
         
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             projectedBarImage.tintColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 1)
         case .comEd:
@@ -404,18 +405,18 @@ class BillAnalysisViewController: UIViewController {
         electricGasSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
             self?.fetchData()
             if index == 0 {
-                Analytics().logScreenView(AnalyticsPageView.BillElectricityToggle.rawValue)
+                Analytics.log(event: .BillElectricityToggle)
             } else {
-                Analytics().logScreenView(AnalyticsPageView.BillGasToggle.rawValue)
+                Analytics.log(event: .BillGasToggle)
             }
         }).disposed(by: disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.lastYearPreviousBillSelectedSegmentIndex).disposed(by: disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
             self?.fetchData()
             if index == 0 {
-                Analytics().logScreenView(AnalyticsPageView.BillLastYearToggle.rawValue)
+                Analytics.log(event: .BillLastYearToggle)
             } else {
-                Analytics().logScreenView(AnalyticsPageView.BillPreviousToggle.rawValue)
+                Analytics.log(event: .BillPreviousToggle)
             }
         }).disposed(by: disposeBag)
         
@@ -520,11 +521,11 @@ class BillAnalysisViewController: UIViewController {
         }
         
         if sender.tag == 0 {
-            Analytics().logScreenView(AnalyticsPageView.BillPreviousReason.rawValue)
+            Analytics.log(event: .BillPreviousReason)
         } else if sender.tag == 1 {
-            Analytics().logScreenView(AnalyticsPageView.BillWeatherReason.rawValue)
+            Analytics.log(event: .BillWeatherReason)
         } else {
-            Analytics().logScreenView(AnalyticsPageView.BillOtherReason.rawValue)
+            Analytics.log(event: .BillOtherReason)
         }
         
         viewModel.setLikelyReasonSelected(tag: sender.tag)

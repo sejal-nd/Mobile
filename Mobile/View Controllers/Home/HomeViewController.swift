@@ -71,7 +71,7 @@ class HomeViewController: AccountPickerViewController {
                 case .loadingAccounts:
                     self.setRefreshControlEnabled(enabled: false)
                 case .readyToFetchData:
-                    if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchData.onNext(.switchAccount)
                     } else if accountDetailEvent?.element == nil {
                         self.viewModel.fetchData.onNext(.switchAccount)
@@ -106,7 +106,7 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
             .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                Analytics().logScreenView(AnalyticsPageView.AllSavingsSmartEnergy.rawValue)
+                Analytics.log(event: .AllSavingsSmartEnergy)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
             }).disposed(by: bag)
         
@@ -145,20 +145,20 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics().logScreenView(AnalyticsPageView.HomeOfferComplete.rawValue)
+        Analytics.log(event: .HomeOfferComplete)
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             if #available(iOS 10.0, *) {
                 UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
                     if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
                         UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
                         if granted {
-                            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushOKInitial.rawValue)
+                            Analytics.log(event: .AlertsiOSPushOKInitial)
                         } else {
-                            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushDontAllowInitial.rawValue)
+                            Analytics.log(event: .AlertsiOSPushDontAllowInitial)
                         }
                     }
                 })
@@ -170,7 +170,7 @@ class HomeViewController: AccountPickerViewController {
         }
         
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
-            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushInitial.rawValue)
+            Analytics.log(event: .AlertsiOSPushInitial)
         }
     }
     
@@ -346,9 +346,9 @@ extension HomeViewController: AutoPayViewControllerDelegate {
             self.view.showToast(message)
         })
         if enrolled {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
+            Analytics.log(event: .AutoPayEnrollComplete)
         } else {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
+            Analytics.log(event: .AutoPayUnenrollComplete)
         }
     }
     

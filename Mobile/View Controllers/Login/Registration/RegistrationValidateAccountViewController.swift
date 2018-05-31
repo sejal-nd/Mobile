@@ -49,7 +49,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics().logScreenView(AnalyticsPageView.RegisterOffer.rawValue)
+        Analytics.log(event: .RegisterOffer)
     }
     
     func checkForMaintenanceMode(){
@@ -88,7 +88,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         
         var identifierString = "Last 4 Digits of primary account holder’s Social Security Number"
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             identifierString.append(", Business Tax ID, or BGE Pin")
         } else {
             identifierString.append(" or Business Tax ID.")
@@ -101,7 +101,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     
     func prepareTextFieldsForInput() {
         //
-        let opCo = Environment.sharedInstance.opco
+        let opCo = Environment.shared.opco
 
         // if opco is not BGE, then format it and ready it for usage; else hide it.
         if opCo != .bge {
@@ -158,7 +158,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         
         //
 		let ssString: String
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
 			ssString = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
 		} else {
 			ssString = NSLocalizedString("SSN/Business Tax ID*", comment: "")
@@ -254,11 +254,11 @@ class RegistrationValidateAccountViewController: UIViewController {
         
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
-            Analytics().logScreenView(AnalyticsPageView.RegisterAccountValidation.rawValue)
+            Analytics.log(event: .RegisterAccountValidation)
             self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
         }, onMultipleAccounts:  { [weak self] in
             LoadingView.hide()
-            Analytics().logScreenView(AnalyticsPageView.RegisterAccountValidation.rawValue)
+            Analytics.log(event: .RegisterAccountValidation)
             self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { [weak self] (title, message) in
             LoadingView.hide()
@@ -309,7 +309,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     
     @IBAction func onAccountNumberTooltipPress() {
         let description: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             description = NSLocalizedString("Your Customer Account Number may be found in the top right portion on your bill in the bill summary section. Please enter 10-digits including leading zeros.", comment: "")
         case .comEd:

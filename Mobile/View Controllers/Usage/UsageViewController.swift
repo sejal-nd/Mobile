@@ -55,20 +55,20 @@ class UsageViewController: UIViewController {
         super.viewDidLoad()
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics().logScreenView(AnalyticsPageView.ViewUsageLink.rawValue, dimensionIndices: [
-            Dimensions.ResidentialAMI,
-            Dimensions.PeakSmart
-        ], dimensionValues: [
-            residentialAMIString,
-            (Environment.sharedInstance.opco == .bge && accountDetail.isSERAccount) || (Environment.sharedInstance.opco != .bge && accountDetail.isPTSAccount) ? "true" : "false"
-        ])
+        
+        let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
+            (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
+        
+        Analytics.log(event: .ViewUsageLink,
+                             dimensions: [.ResidentialAMI: residentialAMIString,
+                                          .PeakSmart: isPeakSmart ? "true" : "false"])
         
         if accountDetail.peakRewards == "ACTIVE" {
             let thermbutton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_thermostat"), style: .plain, target: nil, action: nil)
             thermbutton.accessibilityLabel = NSLocalizedString("access peak rewards", comment: "")
             thermbutton.rx.tap.asDriver()
                 .drive(onNext: { [weak self] in
-                    Analytics().logScreenView(AnalyticsPageView.ViewUsagePeakRewards.rawValue)
+                    Analytics.log(event: .ViewUsagePeakRewards)
                     self?.performSegue(withIdentifier: "peakRewardsSegue", sender: nil)
                 })
                 .disposed(by: disposeBag)
@@ -130,7 +130,7 @@ class UsageViewController: UIViewController {
         peakTimeSavingsEnrollButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
         peakTimeSavingsEnrollButton.setTitle(NSLocalizedString("Enroll Now", comment: ""), for: .normal)
         
-        if Environment.sharedInstance.opco == .comEd && accountDetail.isResidential {
+        if Environment.shared.opco == .comEd && accountDetail.isResidential {
             if !accountDetail.isAMIAccount || accountDetail.isPTSAccount {
                 peakTimeSavingsCard.isHidden = true
             }
@@ -150,7 +150,7 @@ class UsageViewController: UIViewController {
 
         smartEnergyRewardsTitleLabel.textColor = .blackText
         smartEnergyRewardsTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
-        smartEnergyRewardsTitleLabel.text = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+        smartEnergyRewardsTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsSeasonLabel.textColor = .deepGray
@@ -177,7 +177,7 @@ class UsageViewController: UIViewController {
                      smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().map(to: "totalSavingsSegue"))
             .drive(onNext: { [weak self] in
                 if $0 == "totalSavingsSegue" {
-                    Analytics().logScreenView(AnalyticsPageView.AllSavingsUsage.rawValue)
+                    Analytics.log(event: .AllSavingsUsage)
                 }
                 self?.performSegue(withIdentifier: $0, sender: nil)
             })
@@ -186,17 +186,19 @@ class UsageViewController: UIViewController {
         hourlyPricingEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             guard let accountDetail = self?.accountDetail else { return }
             if accountDetail.isHourlyPricing {
-                Analytics().logScreenView(AnalyticsPageView.HourlyPricing.rawValue, dimensionIndex: Dimensions.HourlyPricingEnrollment, dimensionValue: "enrolled")
+                Analytics.log(event: .HourlyPricing,
+                                     dimensions: [.HourlyPricingEnrollment: "enrolled"])
                 self?.performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
             } else {
-                Analytics().logScreenView(AnalyticsPageView.HourlyPricing.rawValue, dimensionIndex: Dimensions.HourlyPricingEnrollment, dimensionValue: "unenrolled")
+                Analytics.log(event: .HourlyPricing,
+                                     dimensions: [.HourlyPricingEnrollment: "unenrolled"])
                 let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
                 self?.present(safariVc, animated: true, completion: nil)
             }
         }).disposed(by: disposeBag)
         
         peakTimeSavingsEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            Analytics().logScreenView(AnalyticsPageView.PeakTimePromo.rawValue)
+            Analytics.log(event: .PeakTimePromo)
             let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "http://comed.com/PTS")!)
             self?.present(safariVc, animated: true, completion: nil)
         }).disposed(by: disposeBag)
@@ -210,7 +212,7 @@ class UsageViewController: UIViewController {
         } else {
             smartEnergyRewardsContentView.isHidden = true
             smartEnergyRewardsEmptyStateView.isHidden = false
-            Analytics().logScreenView(AnalyticsPageView.EmptyStatePeakSmart.rawValue)
+            Analytics.log(event: .EmptyStatePeakSmart)
         }
         smartEnergyRewardsSeasonLabel.text = viewModel.smartEnergyRewardsSeasonLabelText
         smartEnergyRewardsFooterLabel.text = viewModel.smartEnergyRewardsFooterText

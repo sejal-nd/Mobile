@@ -32,7 +32,7 @@ class BillViewModelTests: XCTestCase {
             Account.from(["accountNumber": "5591032206", "address": "7705 Presidents Street"])!
         ]
         
-        AccountsStore.sharedInstance.currentAccount = mockAccounts[0]
+        AccountsStore.shared.currentAccount = mockAccounts[0]
         accountService = MockAccountService()
         accountService.mockAccounts = mockAccounts
         viewModel = BillViewModel(accountService: accountService, authService: MockAuthenticationService())
@@ -50,7 +50,7 @@ class BillViewModelTests: XCTestCase {
         let accountSwitches = scheduler.createHotObservable(events)
         accountSwitches
             .do(onNext: {
-                AccountsStore.sharedInstance.currentAccount = $0
+                AccountsStore.shared.currentAccount = $0
             })
             .map { _ in FetchingAccountState.switchAccount }
             .bind(to: viewModel.fetchAccountDetail)

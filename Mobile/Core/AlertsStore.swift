@@ -7,7 +7,7 @@
 //
 
 final class AlertsStore {
-    static let sharedInstance = AlertsStore()
+    static let shared = AlertsStore()
     
     var alerts: [String: [PushNotification]] = [:]
     
@@ -26,7 +26,7 @@ final class AlertsStore {
     
     func savePushNotification(_ notification: PushNotification) {
         // BGE notifications are at the user level, so store their username as the key
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername) {
                 if let array = alerts[loggedInUsername] {
                     var arrayCopy = array
@@ -56,7 +56,7 @@ final class AlertsStore {
     }
     
     func getAlerts(forAccountNumber accountNumber: String) -> [PushNotification] {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername), let notificationsArray = alerts[loggedInUsername] {
                 return notificationsArray
             }

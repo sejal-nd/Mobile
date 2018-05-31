@@ -110,7 +110,7 @@ class OutageViewController: AccountPickerViewController {
                 self.loadingView.accessibilityViewIsModal = false
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
-                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                     self.getOutageStatus()
                 } else if self.viewModel.currentOutageStatus == nil {
                     self.getOutageStatus()
@@ -143,7 +143,7 @@ class OutageViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
+        Analytics.log(event: .OutageStatusOfferComplete)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -341,7 +341,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     @IBAction func onViewOutageMapPress() {
-        Analytics().logScreenView(AnalyticsPageView.ViewMapOfferComplete.rawValue)
+        Analytics.log(event: .ViewMapOfferComplete)
         performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
@@ -373,7 +373,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
         updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthComplete.rawValue)
+            Analytics.log(event: .ReportOutageAuthComplete)
         })
     }
     
@@ -381,8 +381,8 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
 
 extension OutageViewController: OutageStatusButtonDelegate {
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
-        Analytics().logScreenView(AnalyticsPageView.OutageStatusDetails.rawValue)
-        if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
+        Analytics.log(event: .OutageStatusDetails)
+        if viewModel.currentOutageStatus!.flagNoPay && Environment.shared.opco != .bge  {
             tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {
             if let message = viewModel.currentOutageStatus!.outageDescription {
@@ -397,6 +397,6 @@ extension OutageViewController: OutageStatusButtonDelegate {
 extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
+        Analytics.log(event: .OutageAuthEmergencyCall)
     }
 }

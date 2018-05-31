@@ -7,7 +7,7 @@
 //
 
 final class AccountsStore {
-    static let sharedInstance = AccountsStore()
+    static let shared = AccountsStore()
     
     var accounts: [Account]!
     var currentAccount: Account!

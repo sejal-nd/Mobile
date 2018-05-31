@@ -59,7 +59,7 @@ class MiniWalletTableViewCell: UITableViewCell {
         
         if let nickname = walletItem.nickName {
             let displayNickname: String
-            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
                 let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
                 displayNickname = nickname == String(last4) ? "" : nickname
             } else {

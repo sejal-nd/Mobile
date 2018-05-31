@@ -60,7 +60,7 @@ class BillViewModelContentTests: BillViewModelTests {
     
     // Tests changes in the `alertBannerText` value.
     func testAlertBannerText() {
-        let opco = Environment.sharedInstance.opco
+        let opco = Environment.shared.opco
         
         let restorationAmount: [Double?] = [9, nil, nil, nil, nil]
         let amtDpaReinst: [Double?] = [nil, nil, nil, nil, nil]
@@ -131,7 +131,7 @@ class BillViewModelContentTests: BillViewModelTests {
             "$4.00",
             "$5,000.00",
             "--",
-            Environment.sharedInstance.opco == .bge ? "-$68.04" : "$0.00",
+            Environment.shared.opco == .bge ? "-$68.04" : "$0.00",
             "$435.32",
             "$435.32",
             "$435.32"
@@ -176,7 +176,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         let expectedValues: [String] = [
             "Total Amount Due Immediately",
-            Environment.sharedInstance.opco == .bge ? "No Amount Due - Credit Balance" : "Total Amount Due By 03/14/2018",
+            Environment.shared.opco == .bge ? "No Amount Due - Credit Balance" : "Total Amount Due By 03/14/2018",
             "Total Amount Due By 12/16/2018",
             "Total Amount Due By --",
             "Total Amount Due By 06/12/2018"
@@ -317,7 +317,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests the `avoidShutoffText` value, which is only dependent on OpCo.
     func testAvoidShutoffText() {
         let expectedText: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             expectedText = NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
         case .comEd, .peco:
@@ -330,7 +330,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests the `avoidShutoffA11yText` value, which is only dependent on OpCo.
     func testAvoidShutoffA11yText() {
         let expectedText: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             expectedText = NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
         case .comEd, .peco:
@@ -379,7 +379,7 @@ class BillViewModelContentTests: BillViewModelTests {
         }
         
         let expectedValues: [String]
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             expectedValues = ["Due by 02/12/2018",
                               "Due by 03/14/2018",
@@ -474,7 +474,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests the `remainingBalanceDueText` value, which is only dependent on OpCo.
     func testRemainingBalanceDueText() {
         let expectedText: String?
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             expectedText = nil
         case .comEd, .peco:
@@ -559,7 +559,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests the `remainingBalancePastDueText` value, which is only dependent on OpCo.
     func testRemainingBalancePastDueText() {
         let expectedText: String?
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             expectedText = nil
         case .comEd, .peco:
@@ -722,7 +722,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         let firstExpectedValue: String
         let thirdExpectedValue: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             firstExpectedValue = "You are enrolled in BGEasy"
             thirdExpectedValue = "You have a payment of $435.32 processing"
@@ -809,7 +809,7 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
         let isAutoPay = [true, true, false, false, false]
         let scheduledPaymentAmounts: [Double?] = [4, 5000, 50.55, -68.04, nil]
         let expectedValues: [(String?, String?)] = [
-            ("Existing Automatic Payment", Environment.sharedInstance.opco == .bge ? bgEasyText : autoPayText),
+            ("Existing Automatic Payment", Environment.shared.opco == .bge ? bgEasyText : autoPayText),
             ("Existing Automatic Payment", autoPayText),
             ("Existing Scheduled Payment", scheduledPaymentText),
             (nil, nil),
@@ -937,7 +937,7 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
         let isEBillEnrollment = [false, true, false, false, false]
         let status = [nil, nil, nil, "finaled", nil]
         let expectedValues = [
-            Environment.sharedInstance.opco == .bge ? nil : "Would you like to enroll in Paperless eBill?",
+            Environment.shared.opco == .bge ? nil : "Would you like to enroll in Paperless eBill?",
             "Paperless eBill\nenrolled",
             "Would you like to enroll in Paperless eBill?",
             nil,

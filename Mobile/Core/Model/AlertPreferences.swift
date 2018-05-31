@@ -58,9 +58,9 @@ struct AlertPreferences {
     
     // Used by the setAlertPreferences web service call
     func createAlertPreferencesJSONArray() -> [[String: Any]] {
-        let billReadyProgramName = Environment.sharedInstance.opco == .bge ? "Bill is Ready" : "Paperless Billing"
-        let paymentDueProgramName = Environment.sharedInstance.opco == .bge ? "Payment Reminder" : "Payment Reminders"
-        let forYourInfoProgramName = Environment.sharedInstance.opco == .bge ? "Marketing" : "News"
+        let billReadyProgramName = Environment.shared.opco == .bge ? "Bill is Ready" : "Paperless Billing"
+        let paymentDueProgramName = Environment.shared.opco == .bge ? "Payment Reminder" : "Payment Reminders"
+        let forYourInfoProgramName = Environment.shared.opco == .bge ? "Marketing" : "News"
         let array = [
             ["programName": "Outage Notifications", "type": "push", "isActive": outage],
             ["programName": "Planned Outage", "type": "push", "isActive": scheduledMaint],

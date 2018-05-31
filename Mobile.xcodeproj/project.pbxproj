@@ -84,9 +84,6 @@
 		0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF09202E22CD009D1ADB /* GoogleService-Info_comed_prodbeta.plist */; };
 		0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */; };
 		0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0C202E2389009D1ADB /* GoogleService-Info_peco_prodbeta.plist */; };
-		0EBF2DCB202CCDEC00DCFD30 /* MobileConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */; };
-		0EBF2DCC202CCDED00DCFD30 /* MobileConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */; };
-		0EBF2DCD202CCDED00DCFD30 /* MobileConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */; };
 		225FF85A1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85B1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		225FF85C1EC56B480079010C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
@@ -4926,7 +4923,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Exelon Corporation";
 				TargetAttributes = {
 					087630DD1E72F5D000FA7020 = {
@@ -5157,7 +5154,6 @@
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
 				E89399391F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
 				6A4FD7DC1371BC6129CC594F /* otps1_img_0.png in Resources */,
-				0EBF2DCB202CCDEC00DCFD30 /* MobileConfig.xcconfig in Resources */,
 				6A4FD375948286D6F4A38198 /* otps1_img_1.png in Resources */,
 				6A4FDC511CBF8CE0C50F4E71 /* otp_step1.json in Resources */,
 				6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */,
@@ -5225,7 +5221,6 @@
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				CEA215271F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
-				0EBF2DCD202CCDED00DCFD30 /* MobileConfig.xcconfig in Resources */,
 				E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				E87926D81F85580300794CA9 /* BillAnalysisViewController.xib in Resources */,
@@ -5328,7 +5323,6 @@
 				E87C41361FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
-				0EBF2DCC202CCDED00DCFD30 /* MobileConfig.xcconfig in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,

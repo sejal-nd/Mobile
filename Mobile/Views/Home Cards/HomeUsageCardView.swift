@@ -177,7 +177,7 @@ class HomeUsageCardView: UIView {
     private func styleSmartEnergyRewards() {
         smartEnergyRewardsTitleLabel.textColor = .blackText
         smartEnergyRewardsTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        smartEnergyRewardsTitleLabel.text = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+        smartEnergyRewardsTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsSeasonLabel.textColor = .deepGray
@@ -196,7 +196,7 @@ class HomeUsageCardView: UIView {
         
         smartEnergyRewardsEmptyStateTitleLabel.textColor = .blackText
         smartEnergyRewardsEmptyStateTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        smartEnergyRewardsEmptyStateTitleLabel.text = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+        smartEnergyRewardsEmptyStateTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsEmptyStateDetailLabel.textColor = .middleGray
@@ -212,7 +212,7 @@ class HomeUsageCardView: UIView {
         viewModel.shouldShowSmartEnergyRewards.not().drive(smartEnergyRewardsView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowSmartEnergyEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in
             if !shouldHide {
-                Analytics().logScreenView(AnalyticsPageView.EmptyStateSmartEnergyHome.rawValue)
+                Analytics.log(event: .EmptyStateSmartEnergyHome)
             }
         }).drive(smartEnergyRewardsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         
@@ -226,7 +226,7 @@ class HomeUsageCardView: UIView {
         
         viewModel.shouldShowBillComparisonEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in
             if !shouldHide {
-                Analytics().logScreenView(AnalyticsPageView.EmptyStateUsageOverview.rawValue)
+                Analytics.log(event: .EmptyStateUsageOverview)
             }
         }).drive(billComparisonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowBillComparisonEmptyStateButton.not().drive(viewUsageEmptyStateButton.rx.isHidden).disposed(by: disposeBag)
@@ -242,9 +242,9 @@ class HomeUsageCardView: UIView {
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             if index == 0 {
-                Analytics().logScreenView(AnalyticsPageView.ViewUsageElectricity.rawValue)
+                Analytics.log(event: .ViewUsageElectricity)
             } else {
-                Analytics().logScreenView(AnalyticsPageView.ViewUsageGas.rawValue)
+                Analytics.log(event: .ViewUsageGas)
             }
         }).disposed(by: disposeBag)
         

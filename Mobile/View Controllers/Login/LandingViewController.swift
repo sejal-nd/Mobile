@@ -61,7 +61,7 @@ class LandingViewController: UIViewController {
         
         logoBackgroundView.addShadow(color: .primaryColorDark, opacity: 0.5, offset: CGSize(width: 0, height: 9), radius: 11)
         let a11yText = NSLocalizedString("%@, an Exelon Company", comment: "")
-        logoImageView.accessibilityLabel = String(format: a11yText, Environment.sharedInstance.opco.displayString)
+        logoImageView.accessibilityLabel = String(format: a11yText, Environment.shared.opco.displayString)
     }
     
     func backgroundVideoSetup() {

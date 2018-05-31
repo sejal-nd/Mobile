@@ -30,14 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(shortVersionString, forKey: "version")
         }
         
-        NSLog("Environment %@", Environment.sharedInstance.environmentName)
-        NSLog("AppName %@", Environment.sharedInstance.appName)
+        dLog("Environment " + Environment.shared.environmentName.rawValue)
+        dLog("AppName" + Environment.shared.appName)
         
-        if let appCenterId = Environment.sharedInstance.appCenterId {
+        if let appCenterId = Environment.shared.appCenterId {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
         }
         
-        if Environment.sharedInstance.environmentName == "PROD" {
+        if Environment.shared.environmentName == .prod {
             OMCMobileBackendManager.shared().logLevel = "none"
         }
         
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAnalytics()
         //printFonts()
         
-        _ = AlertsStore.sharedInstance.alerts // Triggers the loading of alerts from disk
+        _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
@@ -103,9 +103,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
             UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
             if notificationSettings.types.isEmpty {
-                Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushDontAllowInitial.rawValue)
+                Analytics.log(event: .AlertsiOSPushDontAllowInitial)
             } else {
-                Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushOKInitial.rawValue)
+                Analytics.log(event: .AlertsiOSPushOKInitial)
             }
         }
     }
@@ -130,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
-        AlertsStore.sharedInstance.savePushNotification(notification)
+        AlertsStore.shared.savePushNotification(notification)
         
         if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
             if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
@@ -195,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             biometricsService.disableBiometrics()
             
             // Log the user out (Oracle SDK appears to be persisting the auth token through uninstalls)
-            let auth = OMCApi.sharedInstance.getBackend().authorization
+            let auth = OMCApi.shared.getBackend().authorization
             auth.logoutClearCredentials(true, completionBlock: nil)
             
             userDefaults.set(true, forKey: UserDefaultKeys.HasRunBefore)
@@ -224,9 +224,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupAnalytics() {
         let gai = GAI.sharedInstance()
-        _ = gai?.tracker(withTrackingId: Environment.sharedInstance.gaTrackingId)
+        _ = gai?.tracker(withTrackingId: Environment.shared.gaTrackingId)
         
-        let filePath = Bundle.main.path(forResource: Environment.sharedInstance.firebaseConfigFile, ofType: "plist")
+        let filePath = Bundle.main.path(forResource: Environment.shared.firebaseConfigFile, ofType: "plist")
         if let fileopts = FirebaseOptions.init(contentsOfFile: filePath!) {
             FirebaseApp.configure(options: fileopts)
         } else {
@@ -334,7 +334,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
             
-            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthOffer.rawValue)
+            Analytics.log(event: .ReportAnOutageUnAuthOffer)
             unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.Report
             
             // Reset the unauthenticated nav stack
@@ -353,7 +353,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_outage")
         let reportOutageShortcut = UIApplicationShortcutItem(type: "ReportOutage", localizedTitle: "Report Outage", localizedSubtitle: nil, icon: reportOutageIcon, userInfo: nil)
         
-        guard let accounts = AccountsStore.sharedInstance.accounts else {
+        guard let accounts = AccountsStore.shared.accounts else {
             // Signed in, but no accounts pulled yet
             if isAuthenticated {
                 UIApplication.shared.shortcutItems = []

@@ -88,7 +88,7 @@ class AlertPreferencesViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             accountInfoBar.isHidden = true
             budgetBillingView.isHidden = true
         } else {
@@ -103,7 +103,7 @@ class AlertPreferencesViewController: UIViewController {
                 budgetBillingView.isHidden = true
             }
         }
-        if Environment.sharedInstance.opco != .comEd {
+        if Environment.shared.opco != .comEd {
             languageSelectionView.isHidden = true
         }
         
@@ -153,7 +153,7 @@ class AlertPreferencesViewController: UIViewController {
         notificationsDisabledView.backgroundColor = .softGray
         notificationsDisabledLabel.textColor = .blackText
         notificationsDisabledLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        notificationsDisabledLabel.text = String(format: NSLocalizedString("Your notifications are currently disabled on your device. Please visit your device settings to allow %@ to send notifications.", comment: ""), Environment.sharedInstance.opco.displayString)
+        notificationsDisabledLabel.text = String(format: NSLocalizedString("Your notifications are currently disabled on your device. Please visit your device settings to allow %@ to send notifications.", comment: ""), Environment.shared.opco.displayString)
         notificationsDisabledButton.setTitleColor(.actionBlue, for: .normal)
         notificationsDisabledButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
         notificationsDisabledButton.titleLabel?.text = NSLocalizedString("Go to Settings", comment: "")
@@ -283,14 +283,14 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBAction func onNotificationsDisabledButtonPress(_ sender: Any) {
         if let url = URL(string: UIApplicationOpenSettingsURLString) {
-            Analytics().logScreenView(AnalyticsPageView.AlertsDevSet.rawValue)
+            Analytics.log(event: .AlertsDevSet)
             UIApplication.shared.openURL(url)
         }
     }
     
     @IBAction func onPaymentDueDaysBeforeButtonPress(_ sender: Any) {
-        Analytics().logScreenView(AnalyticsPageView.AlertsPayRemind.rawValue)
-        let upperRange = Environment.sharedInstance.opco == .bge ? 14 : 7
+        Analytics.log(event: .AlertsPayRemind)
+        let upperRange = Environment.shared.opco == .bge ? 14 : 7
         PickerView.showStringPicker(withTitle: NSLocalizedString("Payment Due Reminder", comment: ""),
             data: (1...upperRange).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
             selectedIndex: viewModel.paymentDueDaysBefore.value - 1,
@@ -309,28 +309,28 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     @IBAction func onSwitchToggle(_ sender: Switch) {
-        if sender == billReadySwitch && Environment.sharedInstance.opco != .bge { // ComEd/PECO only requirement
+        if sender == billReadySwitch && Environment.shared.opco != .bge { // ComEd/PECO only requirement
             if sender.isOn {
                 if !viewModel.accountDetail.isEBillEnrollment {
                     let alertTitle = NSLocalizedString("Go Paperless", comment: "")
                     let alertMessage = NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "")
-                    Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPush.rawValue)
+                    Analytics.log(event: .AlertseBillEnrollPush)
                     
                     let alertVc = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
                     
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self, weak sender] _ in
                         if sender?.isOn ?? false {
-                            Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPushCancel.rawValue)
+                            Analytics.log(event: .AlertseBillEnrollPushCancel)
                         } else {
-                            Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPushCancel.rawValue)
+                            Analytics.log(event: .AlertseBillUnenrollPushCancel)
                         }
                         self?.viewModel.billReady.value = !(sender?.isOn ?? false) // Need to manually set this because .setOn does not trigger rx binding
                     }))
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self, weak sender] _ in
                         if sender?.isOn ?? false {
-                            Analytics().logScreenView(AnalyticsPageView.AlertseBillEnrollPushContinue.rawValue)
+                            Analytics.log(event: .AlertseBillEnrollPushContinue)
                         } else {
-                            Analytics().logScreenView(AnalyticsPageView.AlertseBillUnenrollPushContinue.rawValue)
+                            Analytics.log(event: .AlertseBillUnenrollPushContinue)
                         }
                         self?.makeAnalyticsOffer()
                         self?.viewModel.userChangedPrefs.value = true
@@ -362,9 +362,9 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBAction func onLanguageRadioControlPress(_ sender: RadioSelectControl) {
         if sender == englishRadioControl {
-            Analytics().logScreenView(AnalyticsPageView.AlertsEnglish.rawValue)
+            Analytics.log(event: .AlertsEnglish)
         } else if sender == spanishRadioControl {
-            Analytics().logScreenView(AnalyticsPageView.AlertsSpanish.rawValue)
+            Analytics.log(event: .AlertsSpanish)
         }
         
         let newVal = sender == englishRadioControl
@@ -391,7 +391,7 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     @objc func onSavePress() {
-        Analytics().logScreenView(AnalyticsPageView.AlertsPrefCenterSave.rawValue)
+        Analytics.log(event: .AlertsPrefCenterSave)
         
         LoadingView.show()
         viewModel.saveChanges(onSuccess: { [weak self] in
@@ -411,7 +411,7 @@ class AlertPreferencesViewController: UIViewController {
     private func makeAnalyticsOffer() {
         if !hasMadeAnalyticsOffer {
             hasMadeAnalyticsOffer = true
-            Analytics().logScreenView(AnalyticsPageView.AlertsPrefCenterOffer.rawValue)
+            Analytics.log(event: .AlertsPrefCenterOffer)
         }
     }
     

@@ -225,7 +225,7 @@ enum AnalyticsOutageSource {
     case Status
 }
 
-enum Dimensions: UInt {
+enum AnalyticsDimension: UInt {
     case KeepMeSignedIn = 3
     case FingerprintUsed = 4
     case ErrorCode = 5
@@ -237,67 +237,31 @@ enum Dimensions: UInt {
     case PeakSmart = 11 // "true" or "false"
 }
 
-func isAnalyticsEnabled() -> Bool {
-    if Environment.sharedInstance.environmentName == "STAGE" || Environment.sharedInstance.environmentName == "PROD" {
-        return true
-    }
-    
-    return false
-}
-
 struct Analytics {
-    func logScreenView(_ screenName: String) {
-        if isAnalyticsEnabled() {
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker?.set(kGAIScreenName, value: screenName)
-            tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .build() as! [AnyHashable: Any])
-        } else {
-            dLog("Analytics: " + screenName)
+    private init() {}
+    
+    static var isAnalyticsEnabled: Bool {
+        switch Environment.shared.environmentName {
+        case .stage, .prod:
+            return true
+        default:
+            return false
         }
     }
     
-    func logScreenView(_ screenName: String, dimensionIndex: Dimensions, dimensionValue: String) {
-        if isAnalyticsEnabled() {
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker?.set(kGAIScreenName, value: screenName)
-            tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .set(dimensionValue, forKey: GAIFields.customDimension(for: dimensionIndex.rawValue))
-                .build() as! [AnyHashable: Any])
-        } else {
-            dLog("Analytics: " + screenName)
-        }
-    }
-    
-    func logScreenView(_ screenName: String, dimensionIndices: [Dimensions], dimensionValues: [String]) {
-        if dimensionIndices.count != dimensionValues.count {
-            fatalError("dimensionIndices and dimensionsValues must have the same number of elements")
+    static func log(event: AnalyticsPageView, dimensions: [AnalyticsDimension: String] = [:]) {
+        dLog("Analytics: " + event.rawValue)
+        
+        guard isAnalyticsEnabled else { return }
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker?.set(kGAIScreenName, value: event.rawValue)
+        
+        let dimensionBuilder = GAIDictionaryBuilder.createScreenView()!
+        dimensions.forEach { dimension, value in
+            dimensionBuilder.set(value, forKey: GAIFields.customDimension(for: dimension.rawValue))
         }
         
-        if isAnalyticsEnabled() {
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker?.set(kGAIScreenName, value: screenName)
-            let dimensionBuilder = GAIDictionaryBuilder.createScreenView()!
-            for i in stride(from: 0, to: dimensionIndices.count, by: 1) {
-                dimensionBuilder.set(dimensionValues[i], forKey: GAIFields.customDimension(for: dimensionIndices[i].rawValue))
-            }
-            tracker?.send(dimensionBuilder.build() as! [AnyHashable: Any])
-        } else {
-            dLog("Analytics: " + screenName)
-        }
+        tracker?.send(dimensionBuilder.build() as! [AnyHashable: Any])
     }
-    
-    func logSignIn(_ screenName: String, keepSignedIn: String, usedFingerprint: String) {
-        if isAnalyticsEnabled() {
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker?.set(kGAIScreenName, value: screenName)
-            tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .set(keepSignedIn, forKey: GAIFields.customDimension(for: Dimensions.KeepMeSignedIn.rawValue))
-                .set(usedFingerprint, forKey: GAIFields.customDimension(for: Dimensions.FingerprintUsed.rawValue))
-                .build() as! [AnyHashable: Any])
-        } else {
-            dLog("Analytics: " + screenName)
-        }
-    }
-    
 }

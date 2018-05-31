@@ -54,7 +54,7 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
         
         accountStatusLabel.isHidden = !(account.isDefault || account.isFinaled || account.isLinked)
         
-        if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
+        if account.accountNumber == AccountsStore.shared.currentAccount.accountNumber {
             separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
             checkMarkImageView.isHidden = false
             checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")

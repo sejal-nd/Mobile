@@ -879,7 +879,7 @@ class BillAnalysisViewModel {
     // MARK: Random helpers
 
     var shouldShowElectricGasToggle: Bool {
-        if Environment.sharedInstance.opco != .comEd {
+        if Environment.shared.opco != .comEd {
             // We can force unwrap here because this view is unreachable if it's null
             return accountDetail.serviceType!.uppercased() == "GAS/ELECTRIC"
         }
@@ -887,7 +887,7 @@ class BillAnalysisViewModel {
     }
 
     var shouldShowCurrentChargesSection: Bool {
-        if Environment.sharedInstance.opco == .comEd {
+        if Environment.shared.opco == .comEd {
             let supplyCharges = accountDetail.billingInfo.supplyCharges ?? 0
             let taxesAndFees = accountDetail.billingInfo.taxesAndFees ?? 0
             let deliveryCharges = accountDetail.billingInfo.deliveryCharges ?? 0

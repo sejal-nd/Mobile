@@ -242,13 +242,13 @@ struct FiservApi {
     
     private func createBaseParameters(token: String, customerNumber: String, nickname: String?, oneTimeUse: Bool) -> [String:Any] {
         
-        let opCo = Environment.sharedInstance.opco
+        let opCo = Environment.shared.opco
         let time = Int(NSDate().timeIntervalSince1970)
         let billerId = "\(opCo.rawValue)Registered"
         
         var params = [Parameter.RequestTimestamp.rawValue: "/Date(" + String(time) + ")/",
                       Parameter.AppId.rawValue: "FiservProxy",
-                      Parameter.ProcessingRegionCode.rawValue: Environment.sharedInstance.environmentName == "PROD" ? 5 : 2,
+                      Parameter.ProcessingRegionCode.rawValue: Environment.shared.environmentName == .prod ? 5 : 2,
                       Parameter.BillerId.rawValue: billerId,
                       Parameter.ConsumerId.rawValue: customerNumber,
                       Parameter.SessionToken.rawValue: token,
@@ -300,7 +300,7 @@ struct FiservApi {
     
     private func createFiservRequest(with body: Data?, method: String, guid: String? = nil) -> URLRequest {
         let endpoint = guid != nil ? "FiservJsonMessenger?v=\(guid!)" : "Process"
-        var urlRequest = URLRequest(url: URL(string: "\(Environment.sharedInstance.fiservUrl)/\(endpoint)")!)
+        var urlRequest = URLRequest(url: URL(string: "\(Environment.shared.fiservUrl)/\(endpoint)")!)
         urlRequest.httpMethod = method
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         if let body = body {

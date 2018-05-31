@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class MaintenanceModeViewModel{
-    let opco = Environment.sharedInstance.opco
+    let opco = Environment.shared.opco
     let disposeBag = DisposeBag()
 
     private var authService: AuthenticationService

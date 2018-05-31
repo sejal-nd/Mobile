@@ -16,16 +16,16 @@ class UsageViewModelTests: XCTestCase {
         
         viewModel = UsageViewModel(accountDetail: AccountDetail(isPTSAccount: true))
         XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards,
-                       Environment.sharedInstance.opco != .peco)
+                       Environment.shared.opco != .peco)
         
         viewModel = UsageViewModel(accountDetail: AccountDetail(premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")]))
         XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards,
-                       Environment.sharedInstance.opco != .peco)
+                       Environment.shared.opco != .peco)
         
         viewModel = UsageViewModel(accountDetail: AccountDetail(isPTSAccount: true,
                                                                 premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")]))
         XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards,
-                       Environment.sharedInstance.opco != .peco)
+                       Environment.shared.opco != .peco)
         
     }
     
@@ -54,7 +54,7 @@ class UsageViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.smartEnergyRewardsFooterText, "You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.")
         
         viewModel = UsageViewModel(accountDetail: AccountDetail())
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .comEd:
             XCTAssertEqual(viewModel.smartEnergyRewardsFooterText, "As a Peak Time Savings customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent Peak Time Savings season will display here once available.")
         case .bge, .peco:

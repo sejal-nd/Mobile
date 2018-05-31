@@ -46,7 +46,7 @@ class EditBankAccountViewModel {
     func enableOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         walletService.setOneTouchPayItem(walletItemId: walletItem.walletItemID!,
                                          walletId: walletItem.walletExternalID,
-                                         customerId: AccountsStore.sharedInstance.customerIdentifier)
+                                         customerId: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -57,7 +57,7 @@ class EditBankAccountViewModel {
     }
     
     func deleteOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        walletService.removeOneTouchPayItem(customerId: AccountsStore.sharedInstance.customerIdentifier)
+        walletService.removeOneTouchPayItem(customerId: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

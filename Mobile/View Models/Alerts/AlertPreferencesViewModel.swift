@@ -39,7 +39,7 @@ class AlertPreferencesViewModel {
     var initialEnglishValue = true
     
     var shouldEnrollPaperlessEBill: Bool {
-        if Environment.sharedInstance.opco == .bge { return false }
+        if Environment.shared.opco == .bge { return false }
         return initialBillReadyValue == false && billReady.value == true
     }
     
@@ -57,7 +57,7 @@ class AlertPreferencesViewModel {
         isError.value = false
         
         var observables = [fetchAlertPreferences()]
-        if Environment.sharedInstance.opco == .comEd {
+        if Environment.shared.opco == .comEd {
             observables.append(fetchAlertLanguage())
         }
         
@@ -100,7 +100,7 @@ class AlertPreferencesViewModel {
     
     func saveChanges(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var observables = [saveAlertPreferences()]
-        if Environment.sharedInstance.opco == .comEd && english.value != initialEnglishValue {
+        if Environment.shared.opco == .comEd && english.value != initialEnglishValue {
             observables.append(saveAlertLanguage())
         }
         
@@ -156,7 +156,7 @@ class AlertPreferencesViewModel {
     // MARK: Detail Label Strings
     
     var outageDetailLabelText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Receive updates on unplanned outages due to storms.", comment: "")
         case .comEd:
@@ -167,7 +167,7 @@ class AlertPreferencesViewModel {
     }
     
     var scheduledMaintDetailLabelText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("From time to time, BGE must temporarily stop service in order to perform system maintenance or repairs. BGE typically informs customers of planned outages in their area by letter, however, in emergency situations we can inform customers by push notification. Planned outage information will also be available on the planned outages web page on BGE.com.", comment: "")
         case .comEd, .peco:
@@ -176,7 +176,7 @@ class AlertPreferencesViewModel {
     }
     
     var severeWeatherDetailLabelText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("BGE may choose to contact you if a severe-impact storm, such as a hurricane or blizzard, is imminent in our service area to encourage you to prepare for potential outages.", comment: "")
         case .comEd:
@@ -187,7 +187,7 @@ class AlertPreferencesViewModel {
     }
     
     var billReadyDetailLabelText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert will contain the bill due date and amount due.", comment: "")
         case .comEd, .peco:
@@ -196,7 +196,7 @@ class AlertPreferencesViewModel {
     }
     
     var paymentDueDetailLabelText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Choose to receive an alert 1 to 14 days before your payment due date. Customers are responsible for payment for the total amount due on their account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
         case .comEd, .peco:
@@ -205,7 +205,7 @@ class AlertPreferencesViewModel {
     }
     
     var budgetBillingDetailLabelText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return nil
         case .comEd:
@@ -216,7 +216,7 @@ class AlertPreferencesViewModel {
     }
     
     var forYourInfoDetailLabelText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Occasionally, BGE may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
         case .comEd:

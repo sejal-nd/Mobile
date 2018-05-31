@@ -60,7 +60,7 @@ class BudgetBillingViewModel {
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 NotificationCenter.default.post(name: .DidChangeBudgetBillingEnrollment, object: self)
-                if Environment.sharedInstance.opco != .bge {
+                if Environment.shared.opco != .bge {
                     self.alertsService.enrollBudgetBillingNotification(accountNumber: self.accountDetail.accountNumber)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { _ in
@@ -94,7 +94,7 @@ class BudgetBillingViewModel {
     func submitButtonEnabled() -> Observable<Bool> {
         return Observable.combineLatest(enrolling.asObservable(), unenrolling.asObservable(), selectedUnenrollmentReason.asObservable()) {
             if $0 { return true }
-            if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
+            if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
                 if $1 && $2 != -1 { return true }
             } else { // BGE
                 if $1 { return true }
@@ -104,7 +104,7 @@ class BudgetBillingViewModel {
     }
     
     func getAmountDescriptionText() -> String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.", comment: "")
         case .comEd:
@@ -115,7 +115,7 @@ class BudgetBillingViewModel {
     }
     
     func getFooterText() -> String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Budget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
         case .comEd:
@@ -134,7 +134,7 @@ class BudgetBillingViewModel {
     
     func getReasonString(forIndex index: Int) -> String {
         if index == 0 {
-            return String(format: NSLocalizedString("Closing %@ Account", comment: ""), Environment.sharedInstance.opco.displayString)
+            return String(format: NSLocalizedString("Closing %@ Account", comment: ""), Environment.shared.opco.displayString)
         } else if index == 1 {
             return NSLocalizedString("Changing Bank Account", comment: "")
         } else if index == 2 {

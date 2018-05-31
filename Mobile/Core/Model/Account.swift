@@ -197,7 +197,7 @@ struct AccountDetail: Mappable {
             }
         }
         
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return 0.01
         case .comEd, .peco:
@@ -218,7 +218,7 @@ struct AccountDetail: Mappable {
         }
         
         
-        switch (bankOrCard, Environment.sharedInstance.opco, isResidential) {
+        switch (bankOrCard, Environment.shared.opco, isResidential) {
         case (.bank, .bge, true):
             return 99_999.99
         case (.bank, .bge, false):

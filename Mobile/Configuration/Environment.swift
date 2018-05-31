@@ -18,12 +18,19 @@ enum OpCo: String {
     }
 }
 
+enum EnvironmentName: String {
+    case aut = "AUT"
+    case dev = "DEV"
+    case stage = "STAGE"
+    case prod = "PROD"
+}
+
 /// Convenience singleton that wraps environment variables.
 struct Environment  {
     
-    static let sharedInstance = Environment()
+    static let shared = Environment()
     
-    let environmentName: String
+    let environmentName: EnvironmentName
     let appName: String
     let opco: OpCo
     let oAuthEndpoint: String
@@ -40,7 +47,7 @@ struct Environment  {
         let path = Bundle.main.path(forResource: "environment", ofType: "plist")
         let dict = NSDictionary(contentsOfFile: path!)
     
-        environmentName = dict?["environment"] as! String
+        environmentName = EnvironmentName(rawValue: dict?["environment"] as! String)!
         appName = dict?["appName"] as! String
         opco = OpCo(rawValue: dict?["opco"] as! String)!
         oAuthEndpoint = dict?["oauthEndpoint"] as! String

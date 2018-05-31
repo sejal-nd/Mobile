@@ -116,7 +116,7 @@ class MaintenanceModeView: UIView {
         
         let phone1: String
         let phone2: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             phone1 = "1-800-685-0123"
             phone2 = "1-877-778-2222"

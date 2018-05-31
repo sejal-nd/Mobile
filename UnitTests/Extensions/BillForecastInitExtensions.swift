@@ -16,7 +16,7 @@ extension BillForecast {
          projectedUsage: Double = 500,
          projectedCost: Double = 100) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         

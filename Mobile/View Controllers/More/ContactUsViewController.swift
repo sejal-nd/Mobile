@@ -176,9 +176,7 @@ class ContactUsViewController: UIViewController {
 extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName = unauthenticatedExperience ?
-            AnalyticsPageView.ContactUsUnAuthCall.rawValue :
-            AnalyticsPageView.ContactUsAuthCall.rawValue
+        let screenName: AnalyticsPageView = unauthenticatedExperience ? .ContactUsUnAuthCall : .ContactUsAuthCall
         var dimensionValue: String?
         
         if textView == emergencyNumberTextView {
@@ -192,7 +190,7 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
         }
         
         if let value = dimensionValue {
-            Analytics().logScreenView(screenName, dimensionIndex: Dimensions.Link, dimensionValue: value)
+            Analytics.log(event: screenName, dimensions: [.Link: value])
         }
     }
 }

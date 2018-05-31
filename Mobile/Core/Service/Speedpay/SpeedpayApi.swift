@@ -13,7 +13,7 @@ struct SpeedpayApi {
         do {
             let params = ["DEBIT_ACCOUNT":cardNumber] as [String : Any]
             
-            var urlRequest = URLRequest(url: URL(string: Environment.sharedInstance.speedpayUrl)!)
+            var urlRequest = URLRequest(url: URL(string: Environment.shared.speedpayUrl)!)
             urlRequest.httpMethod = "POST"
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let jsonData: NSData = try JSONSerialization.data(withJSONObject: params) as NSData

@@ -63,7 +63,7 @@ class BGEAutoPayViewModel {
     func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
         isFetchingAutoPayInfo.value = true
         self.isError.value = false
-        paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
+        paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (autoPayInfo: BGEAutoPayInfo) in
                 guard let `self` = self else { return }

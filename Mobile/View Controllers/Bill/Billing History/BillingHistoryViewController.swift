@@ -63,7 +63,7 @@ class BillingHistoryViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics().logScreenView(AnalyticsPageView.BillingOfferComplete.rawValue)
+        Analytics.log(event: .BillingOfferComplete)
     }
     
     func getBillingHistory() {
@@ -110,7 +110,7 @@ class BillingHistoryViewController: UIViewController {
         } else if let vc = segue.destination as? ViewBillViewController {
             let billingHistoryItem = selectedIndexPath.section == 0 ? billingHistory.upcoming[selectedIndexPath.row] : billingHistory.past[selectedIndexPath.row]
             vc.viewModel.billDate = billingHistoryItem.date
-            Analytics().logScreenView(AnalyticsPageView.BillViewPastOfferComplete.rawValue)
+            Analytics.log(event: .BillViewPastOfferComplete)
             AppRating.logRatingEvent()
         } else if let vc = segue.destination as? BGEAutoPayViewController {
             vc.accountDetail = accountDetail
@@ -160,7 +160,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
             }
         //upcoming billing history
         } else {
-            let opco = Environment.sharedInstance.opco
+            let opco = Environment.shared.opco
             
             if (accountDetail.isBGEasy || accountDetail.isAutoPay) {
                 selectedIndexPath.row = selectedIndexPath.row - 1 //everything is offset by BGEasy cell
@@ -218,7 +218,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             guard let paymentMethod = billingItem.paymentMethod else { return }
             if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
                 showModifyScheduledItem(billingItem: billingItem)
@@ -238,7 +238,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func showBillPdf() {
-        if Environment.sharedInstance.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
+        if Environment.shared.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
             let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             present(alertVC, animated: true, completion: nil)

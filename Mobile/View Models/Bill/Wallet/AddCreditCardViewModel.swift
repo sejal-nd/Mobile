@@ -25,7 +25,7 @@ class AddCreditCardViewModel {
     }
     
     private(set) lazy var saveButtonIsEnabled: Driver<Bool> = {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             return Driver.combineLatest([self.addCardFormViewModel.nameOnCardHasText,
                                          self.addCardFormViewModel.cardNumberHasText,
                                          self.addCardFormViewModel.cardNumberIsValid,
@@ -59,7 +59,7 @@ class AddCreditCardViewModel {
         let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value, securityCode: addCardFormViewModel.cvv.value, cardHolderName: addCardFormViewModel.nameOnCard.value, expirationMonth: addCardFormViewModel.expMonth.value, expirationYear: addCardFormViewModel.expYear.value, postalCode: addCardFormViewModel.zipCode.value, nickname: addCardFormViewModel.nickname.value)
         
         walletService
-            .addCreditCard(card, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
+            .addCreditCard(card, forCustomerNumber: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { walletItemResult in
                 onSuccess(walletItemResult)
@@ -77,7 +77,7 @@ class AddCreditCardViewModel {
     func enableOneTouchPay(walletItemID: String, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         walletService.setOneTouchPayItem(walletItemId: walletItemID,
                                          walletId: nil,
-                                         customerId: AccountsStore.sharedInstance.customerIdentifier)
+                                         customerId: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

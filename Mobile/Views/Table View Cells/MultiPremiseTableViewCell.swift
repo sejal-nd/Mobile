@@ -38,7 +38,7 @@ class MultiPremiseTableViewCell: UITableViewCell {
     
     func configureCellWith(account: Account) {
         
-        let isCurrentAccount = account == AccountsStore.sharedInstance.currentAccount
+        let isCurrentAccount = account == AccountsStore.shared.currentAccount
         
         //top portion is the same as AdvancedAccountPickerTableViewCell
         let commercialUser = !account.isResidential
@@ -68,7 +68,7 @@ class MultiPremiseTableViewCell: UITableViewCell {
             self.accountStatusLabel.text = ""
         }
         
-        if account.accountNumber == AccountsStore.sharedInstance.currentAccount.accountNumber {
+        if account.accountNumber == AccountsStore.shared.currentAccount.accountNumber {
             
             self.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
             self.checkMarkImageView.isHidden = false

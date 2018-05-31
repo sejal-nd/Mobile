@@ -9,7 +9,7 @@
 import Foundation
 
 class ContactUsViewModel {
-    let opco = Environment.sharedInstance.opco
+    let opco = Environment.shared.opco
     
     var emergencyAttrString: NSAttributedString {
         let emergencyAttrString: NSMutableAttributedString

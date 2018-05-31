@@ -15,7 +15,7 @@ fileprivate let coldTips = ["tip080_set_thermostat_wisely_winter","tip033_clear_
 fileprivate let hotTips = ["tip021_let_ac_breathe","tip020_keep_out_solar_heat","tip084_use_fans_for_cooling"]
 
 class HomeViewModel {
-    let defaultZip : String? = Environment.sharedInstance.opco == .bge ? "20201" : nil
+    let defaultZip : String? = Environment.shared.opco == .bge ? "20201" : nil
 
     let disposeBag = DisposeBag()
     
@@ -68,7 +68,7 @@ class HomeViewModel {
     
     private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
     
-    private(set) lazy var isSwitchingAccounts = self.switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.sharedInstance.currentAccount == nil }
+    private(set) lazy var isSwitchingAccounts = self.switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.shared.currentAccount == nil }
     
     private lazy var fetchTrigger = Observable.merge(self.fetchDataObservable, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
     
@@ -87,7 +87,7 @@ class HomeViewModel {
         .filter { !($0.element?.homeStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [unowned self] in
-            self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
+            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
                 .trackActivity(self.fetchTracker(forState: $0))
                 .materialize()
                 .filter { !$0.isCompleted }
@@ -117,7 +117,7 @@ class HomeViewModel {
     
     //MARK: - Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = self.accountDetailEvents.elements()
-        .map { [unowned self] in AccountsStore.sharedInstance.currentAccount?.currentPremise?.zipCode ?? $0.zipCode ?? self.defaultZip }
+        .map { [unowned self] in AccountsStore.shared.currentAccount?.currentPremise?.zipCode ?? $0.zipCode ?? self.defaultZip }
         .unwrap()
         .flatMapLatest { [unowned self] in
             self.weatherService.fetchWeather(address: $0)
@@ -178,7 +178,7 @@ class HomeViewModel {
                 return false
             }
             
-            let opco = Environment.sharedInstance.opco
+            let opco = Environment.shared.opco
             
             if (opco == .comEd || opco == .peco) && $1.isFinaled {
                 return false
@@ -197,7 +197,7 @@ class HomeViewModel {
     
     private(set) lazy var isHighTemperature: Observable<Bool> = self.weatherEvents.elements()
         .map {
-            switch Environment.sharedInstance.opco {
+            switch Environment.shared.opco {
             case .bge:
                 return $0.temperature >= 86
             case .comEd:
@@ -209,7 +209,7 @@ class HomeViewModel {
     
     private(set) lazy var isLowTemperature: Observable<Bool> = self.weatherEvents.elements()
         .map {
-            switch Environment.sharedInstance.opco {
+            switch Environment.shared.opco {
             case .bge:
                 return $0.temperature <= 32
             case .comEd:

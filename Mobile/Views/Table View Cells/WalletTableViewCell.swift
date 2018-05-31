@@ -92,7 +92,7 @@ class WalletTableViewCell: UITableViewCell {
         var a11yLabel = ""
         
         bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .comEd, .peco:
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
@@ -118,7 +118,7 @@ class WalletTableViewCell: UITableViewCell {
         // Nickname
         if let nickname = walletItem.nickName {
             let displayNickname: String
-            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
                 let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
                 displayNickname = nickname == last4 ? "" : nickname
             } else {
@@ -126,7 +126,7 @@ class WalletTableViewCell: UITableViewCell {
             }
             
             nicknameLabel.text = displayNickname.uppercased()
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 if walletItem.bankOrCard == .bank {
                     if let bankAccountType = walletItem.bankAccountType {
                         if bankAccountType.rawValue.uppercased() == "SAVING"{
@@ -139,7 +139,7 @@ class WalletTableViewCell: UITableViewCell {
             }
         } else {
             nicknameLabel.text = ""
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 if let bankAccountType = walletItem.bankAccountType {
                     nicknameLabel.text = bankAccountType.rawValue.uppercased()
                 }

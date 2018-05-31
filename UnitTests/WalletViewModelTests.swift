@@ -21,7 +21,7 @@ class WalletViewModelTests: XCTestCase {
     }
     
     func testFetchingWalletItems() {
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!
         
         let scheduler = TestScheduler(initialClock: 0)
         let events: [Recorded<Event<Void>>] = [next(2, ())]
@@ -60,7 +60,7 @@ class WalletViewModelTests: XCTestCase {
     }
     
     func testCreditCardLimitReached() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             var walletItems = [WalletItem]()
             for _ in 0..<100 {
                 walletItems.append(WalletItem(bankOrCard: .card))
@@ -92,7 +92,7 @@ class WalletViewModelTests: XCTestCase {
     }
     
     func testBankAccountLimitReached() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             var walletItems = [WalletItem]()
             for _ in 0..<100 {
                 walletItems.append(WalletItem(bankOrCard: .bank))
@@ -124,7 +124,7 @@ class WalletViewModelTests: XCTestCase {
     }
     
     func testAddBankDisabled() {
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .card)]
             viewModel.addBankDisabled.asObservable().take(1).subscribe(onNext: { disabled in
                 XCTAssert(disabled, "addBankDisabled should be true for ComEd/PECO user with 3 bank accounts")
@@ -144,7 +144,7 @@ class WalletViewModelTests: XCTestCase {
     }
     
     func testEmptyStateCreditFeeLabelText() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(residentialFee: 2, commercialFee: 5))
             let expectedStr = "A convenience fee will be applied to your payments. Residential accounts: $2.00. Business accounts: 5%."
             XCTAssert(viewModel.emptyStateCreditFeeLabelText == expectedStr, "Expected \"\(expectedStr)\", got \"\(viewModel.emptyStateCreditFeeLabelText)\"")
@@ -157,7 +157,7 @@ class WalletViewModelTests: XCTestCase {
     
     func testFooterLabelText() {
         let expectedStr: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             expectedStr = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
         case .comEd, .peco:

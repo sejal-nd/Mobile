@@ -233,7 +233,7 @@ class MakePaymentViewController: UIViewController {
         
         addCreditCardFeeLabel.textColor = .blackText
         addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .comEd, .peco:
             addCreditCardFeeLabel.text = String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: ""), accountDetail.billingInfo.convenienceFee!.currencyString!)
             break
@@ -454,7 +454,7 @@ class MakePaymentViewController: UIViewController {
             miniWalletVC.sentFromPayment = true
             miniWalletVC.delegate = self
             if self.billingHistoryItem != nil, let walletItem = self.viewModel.selectedWalletItem.value {
-                if Environment.sharedInstance.opco == .bge {
+                if Environment.shared.opco == .bge {
                     if walletItem.bankOrCard == .bank {
                         miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
                         miniWalletVC.creditCardsDisabled = true
@@ -483,12 +483,12 @@ class MakePaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         addBankAccountButton.rx.touchUpInside
-            .do(onNext: { Analytics().logScreenView(AnalyticsPageView.AddBankNewWallet.rawValue) })
+            .do(onNext: { Analytics.log(event: .AddBankNewWallet) })
             .map { _ in true }
             .bind(to: viewModel.inlineBank).disposed(by: disposeBag)
         
         addCreditCardButton.rx.touchUpInside
-            .do(onNext: { Analytics().logScreenView(AnalyticsPageView.AddCardNewWallet.rawValue) })
+            .do(onNext: { Analytics.log(event: .AddCardNewWallet) })
             .map { _ in true }
             .bind(to: viewModel.inlineCard)
             .disposed(by: disposeBag)
@@ -576,15 +576,15 @@ class MakePaymentViewController: UIViewController {
         view.endEditing(true)
         
         if viewModel.inlineBank.value {
-            Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
+            Analytics.log(event: .ECheckOffer)
         } else if viewModel.inlineCard.value {
-            Analytics().logScreenView(AnalyticsPageView.CardOffer.rawValue)
+            Analytics.log(event: .CardOffer)
         } else if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard { // Existing wallet item
             switch bankOrCard {
             case .bank:
-                Analytics().logScreenView(AnalyticsPageView.ECheckOffer.rawValue)
+                Analytics.log(event: .ECheckOffer)
             case .card:
-                Analytics().logScreenView(AnalyticsPageView.CardOffer.rawValue)
+                Analytics.log(event: .CardOffer)
             }
         }
         
@@ -675,7 +675,7 @@ class MakePaymentViewController: UIViewController {
     
     @IBAction func onCVVTooltipPress() {
         let messageText: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             messageText = NSLocalizedString("Your security code is usually a 3 or 4 digit number found on your card.", comment: "")
         case .comEd, .peco:
@@ -743,7 +743,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
         let today = Calendar.opCo.startOfDay(for: Date())
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let minDate: Date
             if Calendar.opCo.component(.hour, from: Date()) >= 20 {
                 minDate = Calendar.opCo.date(byAdding: .day, value: 1, to: today)!
@@ -772,7 +772,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                if Environment.sharedInstance.opco == .peco {
+                if Environment.shared.opco == .peco {
                     let isInWorkdaysArray = viewModel.workdayArray.contains(opCoTimeDate)
                     return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate && isInWorkdaysArray
                 } else {
@@ -807,7 +807,7 @@ extension MakePaymentViewController: AddBankFormViewDelegate {
 extension MakePaymentViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        Analytics().logScreenView(AnalyticsPageView.AddWalletCameraOffer.rawValue)
+        Analytics.log(event: .AddWalletCameraOffer)
         if cameraAuthorizationStatus == .denied || cameraAuthorizationStatus == .restricted {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -824,7 +824,7 @@ extension MakePaymentViewController: AddCardFormViewDelegate {
     
     func addCardFormViewDidTapCVVTooltip(_ addCardFormView: AddCardFormView) {
         let messageText: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             messageText = NSLocalizedString("Your security code is usually a 3 or 4 digit number found on your card.", comment: "")
         case .comEd, .peco:

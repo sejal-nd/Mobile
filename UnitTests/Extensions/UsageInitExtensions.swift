@@ -12,7 +12,7 @@ extension EnergyTip {
          image: UIImage? = nil,
          body: String = "") {
         
-        assert(Environment.sharedInstance.environmentName == "AUT",
+        assert(Environment.shared.environmentName == .aut,
                "init only available for tests")
 
         self.title = title

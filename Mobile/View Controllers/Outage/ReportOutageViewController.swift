@@ -64,7 +64,7 @@ class ReportOutageViewController: UIViewController {
     
     
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
-    let opco = Environment.sharedInstance.opco
+    let opco = Environment.shared.opco
     
     let disposeBag = DisposeBag()
     
@@ -91,7 +91,7 @@ class ReportOutageViewController: UIViewController {
         }
         
         // METER PING
-        if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
+        if Environment.shared.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             bg.backgroundColor = .softGray
@@ -249,14 +249,14 @@ class ReportOutageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if unauthenticatedExperience {
-            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthScreenView.rawValue)
+            Analytics.log(event: .ReportAnOutageUnAuthScreenView)
         } else {
-            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthOffer.rawValue)
+            Analytics.log(event: .ReportOutageAuthOffer)
         }
         
         
         // METER PING
-        if Environment.sharedInstance.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
+        if Environment.shared.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Verifying meter has power", comment: ""))
             })
@@ -368,7 +368,7 @@ class ReportOutageViewController: UIViewController {
                 self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: reportedOutage)
                 self.navigationController?.popViewController(animated: true)
             }, onError: errorBlock)
-            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthSubmit.rawValue)
+            Analytics.log(event: .ReportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 LoadingView.hide()
@@ -376,7 +376,7 @@ class ReportOutageViewController: UIViewController {
                 self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: nil)
                 self.navigationController?.popViewController(animated: true)
             }, onError: errorBlock)
-            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthSubmit.rawValue)
+            Analytics.log(event: .ReportOutageAuthSubmit)
         }
         
 
@@ -385,9 +385,9 @@ class ReportOutageViewController: UIViewController {
     @IBAction func switchPressed(sender: AnyObject) {
         if(sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn) {
             if unauthenticatedExperience {
-                Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthCircuitBreakCheck.rawValue)
+                Analytics.log(event: .ReportAnOutageUnAuthCircuitBreakCheck)
             } else {
-                Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthCircuitBreak.rawValue)
+                Analytics.log(event: .ReportOutageAuthCircuitBreak)
             }
             
         }
@@ -460,9 +460,10 @@ extension ReportOutageViewController: UITextFieldDelegate {
 extension ReportOutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName = unauthenticatedExperience ?
-            AnalyticsPageView.ReportAnOutageUnAuthEmergencyPhone.rawValue :
-            AnalyticsPageView.ReportOutageEmergencyCall.rawValue
-        Analytics().logScreenView(screenName)
+        let screenName: AnalyticsPageView = unauthenticatedExperience ?
+            .ReportAnOutageUnAuthEmergencyPhone :
+            .ReportOutageEmergencyCall
+        
+        Analytics.log(event: screenName)
     }
 }

@@ -89,7 +89,7 @@ class AuthTokenParser : NSObject {
         }
         
         UserDefaults.standard.set(customerIdentifier, forKey: UserDefaultKeys.CustomerIdentifier)
-        AccountsStore.sharedInstance.customerIdentifier = customerIdentifier
+        AccountsStore.shared.customerIdentifier = customerIdentifier
         
         if let assertion = data["assertion"] as? String {
             // SUCCESS

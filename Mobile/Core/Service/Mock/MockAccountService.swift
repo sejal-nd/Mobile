@@ -27,9 +27,9 @@ class MockAccountService: AccountService {
 //            accounts = [Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!]
 //        }
         
-        AccountsStore.sharedInstance.accounts = accounts
-        AccountsStore.sharedInstance.currentAccount = accounts[0]
-        AccountsStore.sharedInstance.customerIdentifier = "123"
+        AccountsStore.shared.accounts = accounts
+        AccountsStore.shared.currentAccount = accounts[0]
+        AccountsStore.shared.customerIdentifier = "123"
         completion(ServiceResult.Success(accounts as [Account]))
     }
     

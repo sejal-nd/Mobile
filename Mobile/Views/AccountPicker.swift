@@ -96,7 +96,7 @@ class AccountPicker: UIView {
         if loadedAccounts { return } // Prevent calling this multiple times
         loadedAccounts = true
 
-        let allAccounts: [Account] = AccountsStore.sharedInstance.accounts
+        let allAccounts: [Account] = AccountsStore.shared.accounts
         currentAccount = allAccounts[0]
         var pagedAccounts: [Account] = allAccounts
         
@@ -162,7 +162,7 @@ class AccountPicker: UIView {
         iconImageView.accessibilityLabel = a11yDescription
         
         let accountNumberLabel = UILabel(frame: .zero)
-        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
+        let finaledString = NSLocalizedString(Environment.shared.opco == .bge ?
                 "Stopped" : "Finaled",
                 comment: "")
         let linkedString = NSLocalizedString("Linked", comment: "")
@@ -238,7 +238,7 @@ class AccountPicker: UIView {
         let storyboard = UIStoryboard(name: "Outage", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "advancedAccountPicker") as? AdvancedAccountPickerViewController {
             vc.delegate = self
-            vc.accounts = AccountsStore.sharedInstance.accounts
+            vc.accounts = AccountsStore.shared.accounts
             if let parentVc = parentViewController {
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     vc.modalPresentationStyle = .formSheet
@@ -252,16 +252,16 @@ class AccountPicker: UIView {
     
     @objc func onPageControlTap(sender: UIPageControl) {
         scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: true)
-        currentAccount = AccountsStore.sharedInstance.accounts[pageControl.currentPage]
-        AccountsStore.sharedInstance.currentAccount = currentAccount
+        currentAccount = AccountsStore.shared.accounts[pageControl.currentPage]
+        AccountsStore.shared.currentAccount = currentAccount
         delegate?.accountPickerDidChangeAccount(self)
     }
     
     func updateCurrentAccount() {
-        currentAccount = AccountsStore.sharedInstance.currentAccount
+        currentAccount = AccountsStore.shared.currentAccount
         
         if pageViews.count > 0 {
-            for (index, account) in AccountsStore.sharedInstance.accounts.enumerated() {
+            for (index, account) in AccountsStore.shared.accounts.enumerated() {
                 if account == currentAccount {
                     pageControl.currentPage = index
                     scrollView.scrollRectToVisible(CGRect(x: frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: frame.size.width, height: 57), animated: false)
@@ -293,7 +293,7 @@ class AccountPicker: UIView {
         advancedAccountIconImageView?.image = icon
         advancedAccountIconImageView?.accessibilityLabel = a11yDescription
         
-        let finaledString = NSLocalizedString(Environment.sharedInstance.opco == .bge ?
+        let finaledString = NSLocalizedString(Environment.shared.opco == .bge ?
             "Stopped" : "Finaled",
                                               comment: "")
         let linkedString = NSLocalizedString("Linked", comment: "")
@@ -320,7 +320,7 @@ class AccountPicker: UIView {
 extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
     func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account) {
         currentAccount = account
-        AccountsStore.sharedInstance.currentAccount = account
+        AccountsStore.shared.currentAccount = account
         
         updateAdvancedAccountPicker(account)
         
@@ -335,8 +335,8 @@ extension AccountPicker: UIScrollViewDelegate {
 
         if currentPage != pageControl.currentPage {
             pageControl.currentPage = currentPage
-            currentAccount = AccountsStore.sharedInstance.accounts[currentPage]
-            AccountsStore.sharedInstance.currentAccount = currentAccount
+            currentAccount = AccountsStore.shared.accounts[currentPage]
+            AccountsStore.shared.currentAccount = currentAccount
             delegate?.accountPickerDidChangeAccount(self)
         }
     }

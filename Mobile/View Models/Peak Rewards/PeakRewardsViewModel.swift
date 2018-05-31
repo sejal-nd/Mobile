@@ -18,7 +18,7 @@ class PeakRewardsViewModel {
     let accountDetail: AccountDetail
     
     var premiseNumber: String {
-        return AccountsStore.sharedInstance.currentAccount.currentPremise?.premiseNumber ??
+        return AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ??
             accountDetail.premiseNumber!
     }
     

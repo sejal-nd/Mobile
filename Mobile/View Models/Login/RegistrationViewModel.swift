@@ -190,7 +190,7 @@ class RegistrationViewModel {
 
     // THIS IS FOR THE NEXT BUTTON ON THE FIRST STEP (VALIDATE ACCOUNT)
 	private(set) lazy var nextButtonEnabled: Driver<Bool> = {
-		if Environment.sharedInstance.opco == .bge {
+		if Environment.shared.opco == .bge {
 			return Driver.combineLatest(self.phoneNumberHasTenDigits,
 			                            self.identifierHasFourDigits,
 			                            self.identifierIsNumeric)
@@ -403,7 +403,7 @@ class RegistrationViewModel {
 		
         var count = 4
 		
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             inArray.append(self.question3Selected)
             inArray.append(self.question3Answered)
             

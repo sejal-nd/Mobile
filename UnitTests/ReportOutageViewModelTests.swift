@@ -39,7 +39,7 @@ class ReportOutageViewModelTests: XCTestCase {
     
     func testFooterTextViewText() {
         let expectedString: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             expectedString = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
         case .comEd:
@@ -53,7 +53,7 @@ class ReportOutageViewModelTests: XCTestCase {
     func testReportOutageSuccess() {
         let asyncExpectation = expectation(description: "testReportOutageSuccess")
         
-        AccountsStore.sharedInstance.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
+        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
         
         viewModel.reportOutage(onSuccess: { 
             asyncExpectation.fulfill()
@@ -70,7 +70,7 @@ class ReportOutageViewModelTests: XCTestCase {
         let asyncExpectation = expectation(description: "testReportOutageError")
         
         // The mock outage service is configured to throw an error for account number "5591032201"
-        AccountsStore.sharedInstance.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "5591032201", "address": "573 Elm Street"]))
+        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "5591032201", "address": "573 Elm Street"]))
         
         viewModel.reportOutage(onSuccess: {
             XCTFail("Unexpected success response")
@@ -86,7 +86,7 @@ class ReportOutageViewModelTests: XCTestCase {
     func testReportOutageAnonSuccess() {
         let asyncExpectation = expectation(description: "testReportOutageSuccess")
         
-        AccountsStore.sharedInstance.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
+        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
         viewModel.outageStatus = OutageStatus.from(["accountNumber": "1234567890"])!
         viewModel.reportOutageAnon(onSuccess: { result in
             asyncExpectation.fulfill()
@@ -103,7 +103,7 @@ class ReportOutageViewModelTests: XCTestCase {
         let asyncExpectation = expectation(description: "testReportOutageError")
         
         // The mock outage service is configured to throw an error for account number "5591032201"
-        AccountsStore.sharedInstance.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "5591032201", "address": "573 Elm Street"]))
+        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "5591032201", "address": "573 Elm Street"]))
         viewModel.outageStatus = OutageStatus.from(["accountNumber": "5591032201"])!
         viewModel.reportOutageAnon(onSuccess: { result in
             XCTFail("Unexpected success response")
