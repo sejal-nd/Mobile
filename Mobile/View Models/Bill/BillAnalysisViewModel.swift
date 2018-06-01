@@ -887,14 +887,11 @@ class BillAnalysisViewModel {
     }
 
     var shouldShowCurrentChargesSection: Bool {
-        if Environment.shared.opco == .comEd {
-            let supplyCharges = accountDetail.billingInfo.supplyCharges ?? 0
-            let taxesAndFees = accountDetail.billingInfo.taxesAndFees ?? 0
-            let deliveryCharges = accountDetail.billingInfo.deliveryCharges ?? 0
-            let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
-            return totalCharges > 0
-        }
-        return false
+        let supplyCharges = accountDetail.billingInfo.supplyCharges ?? 0
+        let taxesAndFees = accountDetail.billingInfo.taxesAndFees ?? 0
+        let deliveryCharges = accountDetail.billingInfo.deliveryCharges ?? 0
+        let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
+        return totalCharges > 0
     }
 
     // If a gas only account, return true, if an electric only account, returns false, if both gas/electric, returns selected segemented control
