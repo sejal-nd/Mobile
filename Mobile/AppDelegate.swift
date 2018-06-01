@@ -226,12 +226,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let gai = GAI.sharedInstance()
         _ = gai?.tracker(withTrackingId: Environment.shared.gaTrackingId)
         
-        let filePath = Bundle.main.path(forResource: Environment.shared.firebaseConfigFile, ofType: "plist")
-        if let fileopts = FirebaseOptions.init(contentsOfFile: filePath!) {
-            FirebaseApp.configure(options: fileopts)
-        } else {
-            dLog("Failed to load Firebase Analytics")
+        guard let filePath = Bundle.main.path(forResource: Environment.shared.firebaseConfigFile, ofType: "plist"),
+            let fileopts = FirebaseOptions(contentsOfFile: filePath) else {
+                return dLog("Failed to load Firebase Analytics")
         }
+        
+        FirebaseApp.configure(options: fileopts)
         
     }
     
