@@ -31,7 +31,7 @@ class ForgotPasswordViewModel {
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnProfNotFound.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
                     onProfileNotFound(serviceError.localizedDescription)
                 } else {
                     onError(serviceError.localizedDescription)

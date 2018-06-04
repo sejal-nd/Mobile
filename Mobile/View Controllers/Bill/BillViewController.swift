@@ -161,9 +161,9 @@ class BillViewController: AccountPickerViewController {
         bindButtonTaps()
         configureAccessibility()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
 
-        NotificationCenter.default.rx.notification(.DidSelectEnrollInAutoPay, object: nil)
+        NotificationCenter.default.rx.notification(.didSelectEnrollInAutoPay, object: nil)
         .subscribe(onNext: { [weak self] notification in
             guard let `self` = self else { return }
             if let accountDetail = notification.object as? AccountDetail {
@@ -315,7 +315,7 @@ class BillViewController: AccountPickerViewController {
     }
     
     func showErrorState(error: ServiceError?) {
-        if error?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
+        if error?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
             scrollView?.isHidden = true
             noNetworkConnectionView.isHidden = false
         } else {
@@ -330,7 +330,7 @@ class BillViewController: AccountPickerViewController {
         errorView.isHidden = false
         bottomStackContainerView.isHidden = true
         
-        if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+        if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
             genericErrorView.isHidden = true
             customErrorView.isHidden = false
         } else {
@@ -741,11 +741,11 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
         var toastMessage: String
         switch didChangeStatus {
-        case .Enroll:
+        case .enroll:
             toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
-        case .Unenroll:
+        case .unenroll:
             toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
-        case .Mixed:
+        case .mixed:
             toastMessage = NSLocalizedString("Paperless eBill changes saved", comment: "")
         }
         showDelayedToast(withMessage: toastMessage)

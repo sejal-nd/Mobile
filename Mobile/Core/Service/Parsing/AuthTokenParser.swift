@@ -9,19 +9,19 @@
 import Foundation
 
 private enum ProfileStatusKey : String {
-    case ProfileStatus = "profileStatus"
-    case Status = "status"
-    case Name = "name"
-    case Value = "value"
-    case Offset = "offset"
-    case TempPasswordFailReason = "reason"
+    case profileStatus = "profileStatus"
+    case status = "status"
+    case name = "name"
+    case value = "value"
+    case offset = "offset"
+    case tempPasswordFailReason = "reason"
 }
 
 private enum ProfileStatusNameValue : String {
-    case LockedPassword = "isLockedPassword"
-    case Inactive = "inactive"
-    case Primary = "primary"
-    case TempPassword = "tempPassword"
+    case lockedPassword = "isLockedPassword"
+    case inactive = "inactive"
+    case primary = "primary"
+    case tempPassword = "tempPassword"
 }
 
 class AuthTokenParser : NSObject {
@@ -48,15 +48,15 @@ class AuthTokenParser : NSObject {
                         return self.parseSuccess(parsedData: parsedData)
                     }
                 } else {
-                    return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue))
+                    return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue))
                 }
                 
             } catch let err as NSError {
-                return ServiceResult.Failure(ServiceError(cause: err))
+                return ServiceResult.failure(ServiceError(cause: err))
             }
             
         } else {
-            return ServiceResult.Failure(ServiceError(cause: error!))
+            return ServiceResult.failure(ServiceError(cause: error!))
         }
     }
     
@@ -71,41 +71,41 @@ class AuthTokenParser : NSObject {
         
         guard let profileType = data["profileType"] as? String,
             (profileType == "commercial" || profileType == "residential") else {
-            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.InvalidProfileType.rawValue))
+                return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.invalidProfileType.rawValue))
         }
         
         guard let statusData = data["profileStatus"] as? [String:Any] else {
-            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue))
+            return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue))
         }
         
         profileStatus = parseProfileStatus(profileStatus: statusData)
         
         guard !profileStatus.inactive else {
-            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
+            return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnAcctNotActivated.rawValue))
         }
         
         guard let customerIdentifier = data["customerIdentifier"] as? String else {
-            return ServiceResult.Failure(ServiceError(serviceMessage: NSLocalizedString("Customer Identifier not found", comment: "")))
+            return ServiceResult.failure(ServiceError(serviceMessage: NSLocalizedString("Customer Identifier not found", comment: "")))
         }
         
-        UserDefaults.standard.set(customerIdentifier, forKey: UserDefaultKeys.CustomerIdentifier)
+        UserDefaults.standard.set(customerIdentifier, forKey: UserDefaultKeys.customerIdentifier)
         AccountsStore.shared.customerIdentifier = customerIdentifier
         
         if let assertion = data["assertion"] as? String {
             // SUCCESS
-            return ServiceResult.Success(AuthTokenResponse(token: assertion, profileStatus: profileStatus))
+            return ServiceResult.success(AuthTokenResponse(token: assertion, profileStatus: profileStatus))
         }
         
         guard !profileStatus.passwordLocked else {
-            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
+            return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnAcctLockedLogin.rawValue))
         }
         
         guard !profileStatus.expiredTempPassword else {
-            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.ExpiredTempPassword.rawValue))
+            return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.expiredTempPassword.rawValue))
         }
         
         
-        return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue))
+        return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
     }
     
     
@@ -121,19 +121,19 @@ class AuthTokenParser : NSObject {
         var tempPassword = false;
         var expiredTempPassword = false;
         
-        if let status = profileStatus[ProfileStatusKey.Status.rawValue] as? Array<NSDictionary> {
+        if let status = profileStatus[ProfileStatusKey.status.rawValue] as? Array<NSDictionary> {
             for item in status {
-                if let name = item[ProfileStatusKey.Name.rawValue] as? String {
+                if let name = item[ProfileStatusKey.name.rawValue] as? String {
                     switch name {
-                    case ProfileStatusNameValue.LockedPassword.rawValue:
-                        lockedPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
-                    case ProfileStatusNameValue.Inactive.rawValue:
-                        inactive = item[ProfileStatusKey.Value.rawValue] as! Bool
-                    case ProfileStatusNameValue.Primary.rawValue:
-                        primary = item[ProfileStatusKey.Value.rawValue] as! Bool
-                    case ProfileStatusNameValue.TempPassword.rawValue:
-                        tempPassword = item[ProfileStatusKey.Value.rawValue] as! Bool
-                        expiredTempPassword = item[ProfileStatusKey.TempPasswordFailReason.rawValue] as? String == "expired"
+                    case ProfileStatusNameValue.lockedPassword.rawValue:
+                        lockedPassword = item[ProfileStatusKey.value.rawValue] as! Bool
+                    case ProfileStatusNameValue.inactive.rawValue:
+                        inactive = item[ProfileStatusKey.value.rawValue] as! Bool
+                    case ProfileStatusNameValue.primary.rawValue:
+                        primary = item[ProfileStatusKey.value.rawValue] as! Bool
+                    case ProfileStatusNameValue.tempPassword.rawValue:
+                        tempPassword = item[ProfileStatusKey.value.rawValue] as! Bool
+                        expiredTempPassword = item[ProfileStatusKey.tempPasswordFailReason.rawValue] as? String == "expired"
                     default:
                         break
                     }
@@ -154,17 +154,17 @@ class AuthTokenParser : NSObject {
         let description = meta[OMCResponseKey.Description.rawValue] as! String
         
         if let data = parsedData[OMCResponseKey.Data.rawValue] as? [String:Any] {
-            if let statusData = data[ProfileStatusKey.ProfileStatus.rawValue] as? [String:Any] {
+            if let statusData = data[ProfileStatusKey.profileStatus.rawValue] as? [String:Any] {
                 let profileStatus = parseProfileStatus(profileStatus: statusData)
             
                 if profileStatus.passwordLocked {
-                    return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctLockedLogin.rawValue))
+                    return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnAcctLockedLogin.rawValue))
                 } else if profileStatus.inactive {
-                    return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAcctNotActivated.rawValue))
+                    return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnAcctNotActivated.rawValue))
                 }
             }
         }
         let serviceError = ServiceError(serviceCode: code, serviceMessage: description)
-        return ServiceResult.Failure(serviceError)
+        return ServiceResult.failure(serviceError)
     }
 }

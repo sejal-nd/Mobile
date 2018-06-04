@@ -74,10 +74,10 @@ extension AlertsService {
         return Observable.create { observer in
             self.register(token: token, firstLogin: firstLogin, completion: { (result: ServiceResult<Void>) in
                 switch result {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -89,10 +89,10 @@ extension AlertsService {
         return Observable.create { observer in
             self.fetchAlertPreferences(accountNumber: accountNumber, completion: { (result: ServiceResult<AlertPreferences>) in
                 switch result {
-                case ServiceResult.Success(let alertPrefs):
+                case ServiceResult.success(let alertPrefs):
                     observer.onNext(alertPrefs)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -104,10 +104,10 @@ extension AlertsService {
         return Observable.create { observer in
             self.setAlertPreferences(accountNumber: accountNumber, alertPreferences: alertPreferences, completion: { (result: ServiceResult<Void>) in
                 switch result {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -119,10 +119,10 @@ extension AlertsService {
         return Observable.create { observer in
             self.enrollBudgetBillingNotification(accountNumber: accountNumber, completion: { (result: ServiceResult<Void>) in
                 switch result {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -134,10 +134,10 @@ extension AlertsService {
         return Observable.create { observer in
             self.fetchAlertLanguage(accountNumber: accountNumber, completion: { (result: ServiceResult<String>) in
                 switch result {
-                case ServiceResult.Success(let language):
+                case ServiceResult.success(let language):
                     observer.onNext(language)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -149,10 +149,10 @@ extension AlertsService {
         return Observable.create { observer in
             self.setAlertLanguage(accountNumber: accountNumber, english: english, completion: { (result: ServiceResult<Void>) in
                 switch result {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -164,10 +164,10 @@ extension AlertsService {
         return Observable.create { observer in
             self.fetchOpcoUpdates(accountDetail: accountDetail, completion: { (result: ServiceResult<[OpcoUpdate]>) in
                 switch result {
-                case ServiceResult.Success(let opcoUpdates):
+                case ServiceResult.success(let opcoUpdates):
                     observer.onNext(opcoUpdates)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })

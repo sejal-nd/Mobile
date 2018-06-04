@@ -62,17 +62,17 @@ class UnauthenticatedOutageViewModel {
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountFinaled.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
                     onError(NSLocalizedString("Finaled Account", comment: ""), NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: ""))
-                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNoPay.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
                     if Environment.shared.opco == .bge {
                         onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: ""))
                     } else {
                         onError(NSLocalizedString("Cut for non pay", comment: ""), NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: ""))
                     }
-                } else if serviceError.serviceCode == ServiceErrorCode.FnNonService.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
                     onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: ""))
-                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNotFound.rawValue {
                     onError(NSLocalizedString("Error", comment: ""), self.accountNotFoundMessage)
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)

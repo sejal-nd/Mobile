@@ -95,7 +95,7 @@ class HomeViewModel {
         .share(replay: 1)
 
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
     private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = {
         let noNetworkConnection = Observable.merge(self.accountDetailNoNetworkConnection,
@@ -136,7 +136,7 @@ class HomeViewModel {
         .asDriver(onErrorJustReturn: nil)
     
     private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherEvents.elements()
-        .map { $0.iconName != WeatherIconNames.UNKNOWN.rawValue ? UIImage(named: $0.iconName) : nil }
+        .map { $0.iconName != WeatherIconNames.unknown.rawValue ? UIImage(named: $0.iconName) : nil }
         .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
     

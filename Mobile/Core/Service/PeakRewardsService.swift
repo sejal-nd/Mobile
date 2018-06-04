@@ -130,10 +130,10 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.fetchPeakRewardsSummary(accountNumber: accountNumber, premiseNumber: premiseNumber) {
                 switch $0 {
-                case ServiceResult.Success(let peakRewardsSummary):
+                case ServiceResult.success(let peakRewardsSummary):
                     observer.onNext(peakRewardsSummary)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -145,10 +145,10 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.fetchPeakRewardsOverrides(accountNumber: accountNumber, premiseNumber: premiseNumber) {
                 switch $0 {
-                case ServiceResult.Success(let overrides):
+                case ServiceResult.success(let overrides):
                     observer.onNext(overrides)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -163,10 +163,10 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.scheduleOverride(accountNumber: accountNumber, premiseNumber: premiseNumber, device: device, date: date) { result in
                 switch result {
-                case ServiceResult.Success(()):
+                case ServiceResult.success(()):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -180,10 +180,10 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.deleteOverride(accountNumber: accountNumber, premiseNumber: premiseNumber, device: device) { result in
                 switch result {
-                case ServiceResult.Success(()):
+                case ServiceResult.success(()):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -197,10 +197,10 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.fetchDeviceSettings(accountNumber: accountNumber, premiseNumber: premiseNumber, device: device) {
                 switch $0 {
-                case ServiceResult.Success(let settings):
+                case ServiceResult.success(let settings):
                     observer.onNext(settings)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -215,10 +215,10 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.updateDeviceSettings(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber, settings: settings) { result in
                 switch result {
-                case ServiceResult.Success(()):
+                case ServiceResult.success(()):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -230,10 +230,10 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.fetchSmartThermostatSchedule(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber) { result in
                 switch result {
-                case ServiceResult.Success(let smartThermostatDeviceSchedule):
+                case ServiceResult.success(let smartThermostatDeviceSchedule):
                     observer.onNext(smartThermostatDeviceSchedule)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -245,10 +245,10 @@ extension PeakRewardsService {
         return Observable.create { observer in
             self.updateSmartThermostatSchedule(forDevice: device, accountNumber: accountNumber, premiseNumber: premiseNumber, schedule: schedule) { result in
                 switch result {
-                case ServiceResult.Success(()):
+                case ServiceResult.success(()):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }

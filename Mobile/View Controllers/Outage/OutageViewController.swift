@@ -120,7 +120,7 @@ class OutageViewController: AccountPickerViewController {
         
         updateContent()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
         
         Observable.merge(noNetworkConnectionView.reload, maintenanceModeView.reload)
             .asDriver(onErrorDriveWith: .empty())
@@ -252,7 +252,7 @@ class OutageViewController: AccountPickerViewController {
             }, onError: { [weak self] serviceError in
                 self?.shortcutItem = .none
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-                if serviceError.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self?.scrollView?.isHidden = true
                     self?.noNetworkConnectionView.isHidden = false
                 } else {
@@ -263,7 +263,7 @@ class OutageViewController: AccountPickerViewController {
                 self?.loadingView.accessibilityViewIsModal = false
                 self?.setRefreshControlEnabled(enabled: true)
                 
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
                     self?.errorLabel.isHidden = true
                     self?.customErrorView.isHidden = false
                 } else {
@@ -299,7 +299,7 @@ class OutageViewController: AccountPickerViewController {
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
             
-            if serviceError.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
+            if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                 self.scrollView?.isHidden = true
                 self.noNetworkConnectionView.isHidden = false
             } else {
@@ -307,7 +307,7 @@ class OutageViewController: AccountPickerViewController {
                 self.noNetworkConnectionView.isHidden = true
             }
 
-            if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+            if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
                 self.errorLabel.isHidden = true
                 self.customErrorView.isHidden = false
             } else {

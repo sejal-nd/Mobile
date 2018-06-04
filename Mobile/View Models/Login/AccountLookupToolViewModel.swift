@@ -32,7 +32,7 @@ class AccountLookupToolViewModel {
                 onSuccess()
             }, onError: { (error: Error) in
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnNotFound.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnNotFound.rawValue {
                     onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)

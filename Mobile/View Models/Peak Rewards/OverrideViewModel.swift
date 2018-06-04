@@ -141,7 +141,7 @@ class OverrideViewModel {
                 return (NSLocalizedString("Error", comment: ""), $0.localizedDescription)
             }
             
-            if error.serviceCode == ServiceErrorCode.FnOverExists.rawValue {
+            if error.serviceCode == ServiceErrorCode.fnOverExists.rawValue {
                 return ("Override Already Active", nil)
             }
             

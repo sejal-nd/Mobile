@@ -35,12 +35,12 @@ class OMCResponseParser : NSObject {
             if let d = data as? [String: Any] {
                 result = parseData(data: d) //1.
             } else {
-                result = ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue)) //2.
+                result = ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)) //2.
             }
         } else if error != nil {
-            result = ServiceResult.Failure(ServiceError(cause: error!)) //4.
+            result = ServiceResult.failure(ServiceError(cause: error!)) //4.
         } else {
-            result = ServiceResult.Failure(ServiceError())
+            result = ServiceResult.failure(ServiceError())
         }
         
         return result
@@ -55,25 +55,25 @@ class OMCResponseParser : NSObject {
         if let success = data[OMCResponseKey.Success.rawValue] as? Bool {
             if success {
                 if let returnData = data[OMCResponseKey.Data.rawValue] as? [String: Any] { // Dictionary
-                    return ServiceResult.Success(returnData)
+                    return ServiceResult.success(returnData)
                 } else if let returnData = data[OMCResponseKey.Data.rawValue] as? [[String: Any]] { // Array of Dictionaries
-                    return ServiceResult.Success(returnData)
+                    return ServiceResult.success(returnData)
                 } else if let returnData = data[OMCResponseKey.Data.rawValue] as? [String] { // Array of Strings
-                    return ServiceResult.Success(returnData)
+                    return ServiceResult.success(returnData)
                 } else if let returnData = data[OMCResponseKey.Data.rawValue] as? String { //String
-                    return ServiceResult.Success(returnData)
+                    return ServiceResult.success(returnData)
                 } else {
-                    return ServiceResult.Success([:])
+                    return ServiceResult.success([:])
                 }
             } else {
                 if let meta = data[OMCResponseKey.Meta.rawValue] as? [String:Any] {
-                    return ServiceResult.Failure(parseMetaError(meta:meta))
+                    return ServiceResult.failure(parseMetaError(meta:meta))
                 } else {
-                    return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue))
+                    return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue))
                 }
             }
         } else {
-            return ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue))
+            return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue))
         }
     }
     
@@ -92,7 +92,7 @@ class OMCResponseParser : NSObject {
                 return ServiceError(serviceCode: code)
             }
         } else {
-            return ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue)
+            return ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
         }
     }
 }

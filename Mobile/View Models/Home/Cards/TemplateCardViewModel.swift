@@ -207,7 +207,7 @@ class TemplateCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var errorLabelText: Driver<String?> = self.accountDetailErrors.asDriver(onErrorJustReturn: ServiceError(serviceCode: "")).map {
-        if let serviceError = $0 as? ServiceError, serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+        if let serviceError = $0 as? ServiceError, serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
             return NSLocalizedString("This profile type does not have access to the mobile app. Access your account on our responsive website.", comment: "")
         }
         return NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")

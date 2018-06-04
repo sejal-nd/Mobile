@@ -65,7 +65,7 @@ class AddCreditCardViewModel {
                 onSuccess(walletItemResult)
             }, onError: { err in
                 let serviceError = err as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.dupPaymentAccount.rawValue {
                     onDuplicate(err.localizedDescription)
                 } else {
                     onError(err.localizedDescription)

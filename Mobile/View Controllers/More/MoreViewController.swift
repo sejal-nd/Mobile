@@ -102,7 +102,7 @@ class MoreViewController: UIViewController {
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout().subscribe(onNext: { (success) in
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            UserDefaults.standard.set(false, forKey: UserDefaultKeys.IsKeepMeSignedInChecked)
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
             appDelegate.configureQuickActions(isAuthenticated: false)
             appDelegate.resetNavigation()
         }, onError: { (error) in

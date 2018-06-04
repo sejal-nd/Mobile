@@ -31,9 +31,9 @@ class ResponseParserTests: XCTestCase {
         let result = OMCResponseParser.parse(data: validSuccess, error: nil, response: response)
              
         switch result {
-        case .Failure( _):
+        case .failure( _):
             XCTFail("Incorrect Result - Valid Success response should result in a Success return value.")
-        case .Success:
+        case .success:
             break
         }
     }
@@ -46,11 +46,11 @@ class ResponseParserTests: XCTestCase {
         let result = OMCResponseParser.parse(data: invalidSuccess, error: nil, response: response)
         
         switch result {
-        case .Failure(let err):
-            if(err.serviceCode != ServiceErrorCode.Parsing.rawValue) {
+        case .failure(let err):
+            if(err.serviceCode != ServiceErrorCode.parsing.rawValue) {
                 XCTFail("Incorrect Result - Invalid Success response should result in a parse error return value.")
             }
-        case .Success:
+        case .success:
             XCTFail("Incorrect Result - Invalid response should result in a Failure return value.")
         }
     }
@@ -63,9 +63,9 @@ class ResponseParserTests: XCTestCase {
         let result = OMCResponseParser.parse(data: validFailure, error: nil, response: response)
         
         switch result {
-        case .Failure:
+        case .failure:
             break
-        case .Success:
+        case .success:
             XCTFail("Incorrect Result - Valid Failure response should result in a Failure return value.")
         }
     }
@@ -81,9 +81,9 @@ class ResponseParserTests: XCTestCase {
         let result = OMCResponseParser.parse(data: validFailure, error: error, response: response)
  
         switch result {
-        case .Failure(let err):
+        case .failure(let err):
             XCTAssert(err.localizedDescription == "Account Locked", "Incorrect error description")
-        case .Success:
+        case .success:
             XCTFail("Incorrect Result - Valid Failure response should result in a Failure return value.")
         }
     }

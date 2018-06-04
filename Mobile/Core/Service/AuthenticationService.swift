@@ -136,10 +136,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.login(username, password: password, stayLoggedIn: stayLoggedIn, completion: { (result: ServiceResult<(ProfileStatus, AccountDetail)>) in
                 switch (result) {
-                case ServiceResult.Success(let response):
+                case ServiceResult.success(let response):
                     observer.onNext(response)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -152,10 +152,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.validateLogin(username, password: password, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success(()):
+                case ServiceResult.success(()):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -174,10 +174,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.logout(completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }) 
@@ -196,10 +196,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.changePassword(currentPassword, newPassword: newPassword, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -219,10 +219,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.changePasswordAnon(username, currentPassword: currentPassword, newPassword: newPassword, completion: { (result: ServiceResult<Void>) in
                 switch(result){
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -235,10 +235,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.getMaintenanceMode( completion: { (result: ServiceResult<Maintenance>) in
                 switch(result){
-                case ServiceResult.Success(let maintenanceInfo):
+                case ServiceResult.success(let maintenanceInfo):
                     observer.onNext(maintenanceInfo)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -250,10 +250,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.getMinimumVersion( completion: { (result: ServiceResult<MinimumVersion>) in
                 switch(result){
-                case ServiceResult.Success(let minimumVersion):
+                case ServiceResult.success(let minimumVersion):
                     observer.onNext(minimumVersion)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -271,10 +271,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.recoverMaskedUsername(phone: phone, identifier: identifier, accountNumber: accountNumber, completion: { (result: ServiceResult<[ForgotUsernameMasked]>) in
                 switch (result) {
-                case ServiceResult.Success(let usernameArray):
+                case ServiceResult.success(let usernameArray):
                     observer.onNext(usernameArray)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -295,10 +295,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.recoverUsername(phone: phone, identifier: identifier, accountNumber: accountNumber, questionId: questionId, questionResponse: questionResponse, cipher: cipher, completion: { (result: ServiceResult<String>) in
                 switch (result) {
-                case ServiceResult.Success(let username):
+                case ServiceResult.success(let username):
                     observer.onNext(username)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -316,10 +316,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.lookupAccount(phone: phone, identifier: identifier, completion: { (result: ServiceResult<[AccountLookupResult]>) in
                 switch (result) {
-                case ServiceResult.Success(let accounts):
+                case ServiceResult.success(let accounts):
                     observer.onNext(accounts)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -336,10 +336,10 @@ extension AuthenticationService {
         return Observable.create { observer in
             self.recoverPassword(username: username, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success(()):
+                case ServiceResult.success(()):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })

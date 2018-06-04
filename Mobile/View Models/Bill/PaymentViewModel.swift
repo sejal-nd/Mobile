@@ -298,7 +298,7 @@ class PaymentViewModel {
                 }).disposed(by: self.disposeBag)
             }, onError: { (error: Error) in
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.dupPaymentAccount.rawValue {
                     onDuplicate(NSLocalizedString("Duplicate Bank Account", comment: ""), error.localizedDescription)
                 } else {
                     onError(error as! ServiceError)
@@ -379,7 +379,7 @@ class PaymentViewModel {
                     
                 }, onError: { error in
                     let serviceError = error as! ServiceError
-                    if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
+                    if serviceError.serviceCode == ServiceErrorCode.dupPaymentAccount.rawValue {
                         onDuplicate(NSLocalizedString("Duplicate Card", comment: ""), error.localizedDescription)
                     } else {
                         onError(error as! ServiceError)
