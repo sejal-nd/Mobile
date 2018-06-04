@@ -15,6 +15,8 @@ import UserNotifications
 
 class HomeViewController: AccountPickerViewController {
     
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var backgroundTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
@@ -53,6 +55,13 @@ class HomeViewController: AccountPickerViewController {
         super.viewDidLoad()
         accountPicker.delegate = self
         accountPicker.parentViewController = self
+        
+        backgroundView.backgroundColor = .primaryColor
+        scrollView?.rx.contentOffset.asDriver()
+            .map { -min(0, $0.y) }
+            .distinctUntilChanged()
+            .drive(backgroundTopConstraint.rx.constant)
+            .disposed(by: bag)
         
         accountPickerViewControllerWillAppear
             .withLatestFrom(Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
@@ -182,7 +191,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func styleViews() {
-        view.backgroundColor = .primaryColor
+        view.backgroundColor = .primaryColorAccountPicker
         loadingView.layer.cornerRadius = 10
         loadingView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
     }

@@ -156,6 +156,8 @@ class AccountPicker: UIView {
             a11yDescription = NSLocalizedString("Residential account", comment: "")
         }
         
+        backgroundColor = tintWhite ? .primaryColorAccountPicker : .clear
+        
         let iconImageView = UIImageView(image: icon)
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         iconImageView.isAccessibilityElement = true

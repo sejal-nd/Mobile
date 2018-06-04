@@ -74,6 +74,7 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="width" priority="999" constant="492" id="2BI-8s-Bf7"/>
                         <constraint firstItem="YPp-Uj-Jc0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BMC-No-7F0" secondAttribute="trailing" constant="8" id="3wv-d7-BzD"/>
                         <constraint firstAttribute="bottom" secondItem="OUa-ac-9jQ" secondAttribute="bottom" constant="11" id="5ua-Ub-pjq"/>
                         <constraint firstAttribute="trailing" secondItem="YPp-Uj-Jc0" secondAttribute="trailing" constant="68" id="6fV-RE-JnH"/>
@@ -91,9 +92,9 @@
             <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="BP2-c6-ApN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1ho-vD-jPC"/>
-                <constraint firstAttribute="trailing" secondItem="BP2-c6-ApN" secondAttribute="trailing" id="6lz-oQ-j7B"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BP2-c6-ApN" secondAttribute="trailing" id="6lz-oQ-j7B"/>
                 <constraint firstItem="BP2-c6-ApN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DeS-Rr-Bxd"/>
-                <constraint firstItem="BP2-c6-ApN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OqL-hv-elk"/>
+                <constraint firstItem="BP2-c6-ApN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" id="OqL-hv-elk"/>
                 <constraint firstItem="BP2-c6-ApN" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="fLF-6b-8qS"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
