@@ -89,10 +89,10 @@ struct FiservApi {
                 let encodedBody = try self.encodePayload(params, action: Action.insert.rawValue, unique: unique, guid: guid, hashResult: hashResult)
                 self.post(body: encodedBody, completion: completion)
             } catch let err as NSError {
-                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: err)))
             }
         }, onError: {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue)))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue)))
         })
     
     }
@@ -122,10 +122,10 @@ struct FiservApi {
                 let encodedBody = try self.encodePayload(params, action: Action.insert.rawValue, unique: unique, guid: guid, hashResult: hashResult)
                 self.post(body: encodedBody, completion: completion)
             } catch let err as NSError {
-                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: err)))
             }
         }, onError: {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue)))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue)))
         })
     }
     
@@ -155,10 +155,10 @@ struct FiservApi {
                 let encodedBody = try self.encodePayload(params, action: Action.update.rawValue, unique: unique, guid: guid, hashResult: hashResult)
                 self.post(body: encodedBody, completion: completion)
             } catch let err as NSError {
-                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: err)))
             }
         }, onError: {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue)))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue)))
         })
     }
     
@@ -272,8 +272,8 @@ struct FiservApi {
     private func execute(request: URLRequest, completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
         URLSession.shared.dataTask(with:request, completionHandler: { (data:Data?, resp: URLResponse?, err: Error?) in
             if let error = err {
-                let serviceError = ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: error)
-                completion(ServiceResult.Failure(serviceError))
+                let serviceError = ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)
+                completion(ServiceResult.failure(serviceError))
                 
             } else {
                 let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
@@ -284,15 +284,15 @@ struct FiservApi {
                     let responseValue = self.parseResponse(with: resultDictionary!)
                     
                     if(responseValue.responseCode == 0) {
-                        completion(ServiceResult.Success(responseValue))
+                        completion(ServiceResult.success(responseValue))
                     } else {
                         let serviceError = ServiceError(serviceCode: "Fiserv", serviceMessage:responseValue.statusMessage)
-                        completion(ServiceResult.Failure(serviceError))
+                        completion(ServiceResult.failure(serviceError))
                     }
                 }
                 catch let error as NSError {
-                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
-                    completion(ServiceResult.Failure(serviceError))
+                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
+                    completion(ServiceResult.failure(serviceError))
                 }
             }
         }).resume()

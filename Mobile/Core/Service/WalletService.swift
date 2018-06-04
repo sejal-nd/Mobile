@@ -108,10 +108,10 @@ extension WalletService {
             self.fetchWalletItems(completion: { (result: ServiceResult<[WalletItem]>) in
                 //
                 switch result {
-                case ServiceResult.Success(let walletItems):
+                case ServiceResult.success(let walletItems):
                     observer.onNext(walletItems)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -125,10 +125,10 @@ extension WalletService {
         return Observable.create { observer in
             self.fetchBankName(routingNumber: routingNumber, completion: { (result: ServiceResult<String>) in
                 switch(result) {
-                case ServiceResult.Success(let bankName):
+                case ServiceResult.success(let bankName):
                     observer.onNext(bankName)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -141,10 +141,10 @@ extension WalletService {
         return Observable.create { observer in
             self.addBankAccount(bankAccount, forCustomerNumber: customerNumber, completion: { (result: ServiceResult<WalletItemResult>) in
                 switch(result) {
-                case ServiceResult.Success(let walletItemResult):
+                case ServiceResult.success(let walletItemResult):
                     observer.onNext(walletItemResult)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -157,10 +157,10 @@ extension WalletService {
         return Observable.create { observer in
             self.addCreditCard(creditCard, forCustomerNumber: customerNumber, completion: { (result: ServiceResult<WalletItemResult>) in
                 switch(result) {
-                case ServiceResult.Success(let walletItemResult):
+                case ServiceResult.success(let walletItemResult):
                     observer.onNext(walletItemResult)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -186,11 +186,11 @@ extension WalletService {
                                   completion: { (result: ServiceResult<Void>) in
                                     //
                                     switch (result) {
-                                    case ServiceResult.Success:
+                                    case ServiceResult.success:
                                         observer.onNext(())
                                         observer.onCompleted()
                                             
-                                    case ServiceResult.Failure(let err):
+                                    case ServiceResult.failure(let err):
                                         observer.onError(err)
                                     }
             })
@@ -206,11 +206,11 @@ extension WalletService {
             self.deletePaymentMethod(walletItem,
                                      completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
                     
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -225,11 +225,11 @@ extension WalletService {
         return Observable.create { observer in
             self.setOneTouchPayItem(walletItemId: walletItemId, walletId: walletId, customerId: customerId, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
                     
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -242,11 +242,11 @@ extension WalletService {
         return Observable.create { observer in
             self.removeOneTouchPayItem(customerId: customerId, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
                     
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })

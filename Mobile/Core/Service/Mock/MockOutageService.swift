@@ -16,13 +16,13 @@ class MockOutageService: OutageService {
         var accountNum = account.accountNumber
         
         if accountNum == "80000000000" {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAccountFinaled.rawValue)))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnAccountFinaled.rawValue)))
         }
         else if accountNum == "70000000000" {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAccountNoPay.rawValue)))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnAccountNoPay.rawValue)))
         }
         else if accountNum == "60000000000" {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnNonService.rawValue)))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnNonService.rawValue)))
         }
         else {
             let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
@@ -38,7 +38,7 @@ class MockOutageService: OutageService {
                 accountNum = "7003238921"
             }
             let outageStatus = getOutageStatus(accountNumber: accountNum)
-            completion(ServiceResult.Success(outageStatus))
+            completion(ServiceResult.success(outageStatus))
         }
         
     }
@@ -171,16 +171,16 @@ class MockOutageService: OutageService {
         if loggedInUsername == "outageTestPowerOn" { // UI testing
             outageMap["outageTestPowerOn"] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-                completion(ServiceResult.Success(()))
+                completion(ServiceResult.success(()))
             }
         }
         if outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202" {
             outageMap[outageInfo.accountNumber] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-                completion(ServiceResult.Success(()))
+                completion(ServiceResult.success(()))
             }
         } else {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: "Invalid Account")))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: "Invalid Account")))
         }
     }
     
@@ -209,10 +209,10 @@ class MockOutageService: OutageService {
             let reportedOutageResult = ReportedOutageResult.from(NSDictionary())!
             outageMap[outageInfo.accountNumber] = reportedOutageResult
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-                completion(ServiceResult.Success(reportedOutageResult))
+                completion(ServiceResult.success(reportedOutageResult))
             }
         } else {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: "Invalid Account")))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: "Invalid Account")))
         }
     }
 }

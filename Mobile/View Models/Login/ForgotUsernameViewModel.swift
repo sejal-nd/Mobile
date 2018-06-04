@@ -38,10 +38,10 @@ class ForgotUsernameViewModel {
                 Analytics.log(event: .ForgotUsernameAccountValidate)
             }, onError: { error in
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue ||
-                    serviceError.serviceCode == ServiceErrorCode.FnProfNotFound.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountNotFound.rawValue ||
+                    serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
                     onError(NSLocalizedString("Invalid Information", comment: ""), error.localizedDescription)
-                } else if serviceError.serviceCode == ServiceErrorCode.FnMultiAccountFound.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnMultiAccountFound.rawValue {
                     onNeedAccountNumber()
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
@@ -62,7 +62,7 @@ class ForgotUsernameViewModel {
                 onSuccess(username)
             }, onError: { error in
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnProfBadSecurity.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnProfBadSecurity.rawValue {
                     onAnswerNoMatch(serviceError.localizedDescription)
                 } else {
                     onError(error.localizedDescription)

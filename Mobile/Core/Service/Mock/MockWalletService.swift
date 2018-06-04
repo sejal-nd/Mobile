@@ -41,22 +41,22 @@ struct MockWalletService: WalletService {
         }
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            completion(.Success(walletItems))
+            completion(.success(walletItems))
         }
     }
     
     func fetchBankName(routingNumber: String, completion: @escaping (_ result: ServiceResult<String>) -> Void) {
-        completion(ServiceResult.Failure(ServiceError(serviceCode: "")))
+        completion(ServiceResult.failure(ServiceError(serviceCode: "")))
     }
     
     func addBankAccount(_ bankAccount : BankAccount,
                         forCustomerNumber: String,
                         completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Void) {
         if forCustomerNumber == "13" { // Simulate duplicate payment
-            completion(.Failure(ServiceError(serviceCode: ServiceErrorCode.DupPaymentAccount.rawValue)))
+            completion(.failure(ServiceError(serviceCode: ServiceErrorCode.dupPaymentAccount.rawValue)))
         } else {
             let walletResult = WalletItemResult(responseCode: 1, statusMessage: "pretty good", walletItemId: "123")
-            completion(.Success(walletResult))
+            completion(.success(walletResult))
         }
     }
     
@@ -64,10 +64,10 @@ struct MockWalletService: WalletService {
                        forCustomerNumber: String,
                        completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Void) {
         if forCustomerNumber == "13" { // Simulate duplicate payment
-            completion(.Failure(ServiceError(serviceCode: ServiceErrorCode.DupPaymentAccount.rawValue)))
+            completion(.failure(ServiceError(serviceCode: ServiceErrorCode.dupPaymentAccount.rawValue)))
         } else {
             let walletResult = WalletItemResult(responseCode: 1, statusMessage: "pretty good", walletItemId: "123")
-            completion(.Success(walletResult))
+            completion(.success(walletResult))
         }
     }
 
@@ -78,19 +78,19 @@ struct MockWalletService: WalletService {
                           securityCode: String,
                           postalCode: String,
                           completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.Failure(ServiceError(serviceCode: "")))
+        completion(ServiceResult.failure(ServiceError(serviceCode: "")))
     }
 
     func deletePaymentMethod(_ walletItem : WalletItem,
                              completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.Failure(ServiceError(serviceCode: "")))
+        completion(ServiceResult.failure(ServiceError(serviceCode: "")))
     }
 
     func setOneTouchPayItem(walletItemId: String,
                             walletId: String?,
                             customerId: String,
                             completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        completion(.Success(()))
+        completion(.success(()))
     }
     
     func removeOneTouchPayItem(customerId: String,

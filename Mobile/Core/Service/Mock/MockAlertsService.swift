@@ -13,35 +13,35 @@ class MockAlertsService: AlertsService {
     
     func fetchAlertPreferences(accountNumber: String, completion: @escaping (ServiceResult<AlertPreferences>) -> Void) {
         let testPrefs = AlertPreferences(outage: true, scheduledMaint: false, severeWeather: true, billReady: false, paymentDue: true, paymentDueDaysBefore: 99, budgetBilling: true, forYourInfo: false)
-        completion(.Success(testPrefs))
+        completion(.success(testPrefs))
     }
     
     func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences, completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(.Success(()))
+        completion(.success(()))
     }
     
     func enrollBudgetBillingNotification(accountNumber: String, completion: @escaping (ServiceResult<Void>) -> Void) {
         if accountNumber == "0000" {
-            completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
+            completion(ServiceResult.failure(ServiceError(serviceMessage: "Mock Error")))
         } else {
-            completion(ServiceResult.Success(()))
+            completion(ServiceResult.success(()))
         }
     }
     
     func fetchAlertLanguage(accountNumber: String, completion: @escaping (ServiceResult<String>) -> Void) {
-        completion(.Success("English"))
+        completion(.success("English"))
     }
     
     func setAlertLanguage(accountNumber: String, english: Bool, completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(.Success(()))
+        completion(.success(()))
     }
     
     func fetchOpcoUpdates(accountDetail: AccountDetail, completion: @escaping (ServiceResult<[OpcoUpdate]>) -> Void) {
         if accountDetail.accountNumber == "1234567890" {
             let opcoUpdates = [OpcoUpdate.from(["Title": "Test Title", "Message": "Test Message"])!]
-            completion(ServiceResult.Success(opcoUpdates))
+            completion(ServiceResult.success(opcoUpdates))
         } else {
-            completion(ServiceResult.Failure(ServiceError(serviceMessage: "Mock Error")))
+            completion(ServiceResult.failure(ServiceError(serviceMessage: "Mock Error")))
         }
     }
 }

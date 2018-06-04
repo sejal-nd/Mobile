@@ -137,8 +137,8 @@ struct WeatherAPI: WeatherService {
                 urlRequest.httpMethod = "GET"
                 URLSession.shared.dataTask(with:urlRequest, completionHandler: { (data:Data?, resp: URLResponse?, err: Error?) in
                     if let error = err {
-                        let serviceError = ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: error)
-                        completion(ServiceResult.Failure(serviceError))
+                        let serviceError = ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)
+                        completion(ServiceResult.failure(serviceError))
                         
                     } else {
                         let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
@@ -148,24 +148,24 @@ struct WeatherAPI: WeatherService {
                             let results = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
                             guard let json = results,
                                 let weatherItem = WeatherItem(json: json) else {
-                                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
-                                    completion(ServiceResult.Failure(serviceError))
+                                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
+                                    completion(ServiceResult.failure(serviceError))
                                     return
                             }
                             
-                            completion(ServiceResult.Success(weatherItem))
+                            completion(ServiceResult.success(weatherItem))
                             
                         }
                         catch let error as NSError {
-                            let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
-                            completion(ServiceResult.Failure(serviceError))
+                            let serviceError = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
+                            completion(ServiceResult.failure(serviceError))
                         }
                     }
                 }).resume()
                 
             } else {
-                let serviceError = ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: error)
-                completion(ServiceResult.Failure(serviceError))
+                let serviceError = ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)
+                completion(ServiceResult.failure(serviceError))
             }
         })
     }

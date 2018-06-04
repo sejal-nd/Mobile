@@ -315,7 +315,7 @@ class BillViewController: AccountPickerViewController {
     }
     
     func showErrorState(error: ServiceError?) {
-        if error?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
+        if error?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
             scrollView?.isHidden = true
             noNetworkConnectionView.isHidden = false
         } else {
@@ -330,7 +330,7 @@ class BillViewController: AccountPickerViewController {
         errorView.isHidden = false
         bottomStackContainerView.isHidden = true
         
-        if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+        if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
             genericErrorView.isHidden = true
             customErrorView.isHidden = false
         } else {

@@ -77,10 +77,10 @@ extension UsageService {
         return Observable.create { observer in
             self.fetchBillComparison(accountNumber: accountNumber, premiseNumber: premiseNumber, yearAgo: yearAgo, gas: gas, completion: { (result: ServiceResult<BillComparison>) in
                 switch (result) {
-                case ServiceResult.Success(let billComparison):
+                case ServiceResult.success(let billComparison):
                     observer.onNext(billComparison)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -92,10 +92,10 @@ extension UsageService {
         return Observable.create { observer in
             self.fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<[BillForecast?]>) in
                 switch (result) {
-                case ServiceResult.Success(let billForecast):
+                case ServiceResult.success(let billForecast):
                     observer.onNext(billForecast)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -107,10 +107,10 @@ extension UsageService {
         return Observable.create { observer in
             self.fetchHomeProfile(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<HomeProfile>) in
                 switch (result) {
-                case ServiceResult.Success(let homeProfile):
+                case ServiceResult.success(let homeProfile):
                     observer.onNext(homeProfile)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -122,10 +122,10 @@ extension UsageService {
         return Observable.create { observer in
             self.fetchEnergyTips(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<[EnergyTip]>) in
                 switch (result) {
-                case ServiceResult.Success(let energyTips):
+                case ServiceResult.success(let energyTips):
                     observer.onNext(energyTips)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -137,10 +137,10 @@ extension UsageService {
         return Observable.create { observer in
             self.fetchEnergyTipByName(accountNumber: accountNumber, premiseNumber: premiseNumber, tipName: tipName,completion: { (result: ServiceResult<EnergyTip>) in
                 switch (result) {
-                case ServiceResult.Success(let energyTip):
+                case ServiceResult.success(let energyTip):
                     observer.onNext(energyTip)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -152,10 +152,10 @@ extension UsageService {
         return Observable.create { observer in
             self.updateHomeProfile(accountNumber: accountNumber, premiseNumber: premiseNumber, homeProfile: homeProfile) {
                 switch ($0) {
-                case ServiceResult.Success(_):
+                case ServiceResult.success(_):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }

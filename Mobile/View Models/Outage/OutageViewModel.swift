@@ -64,13 +64,13 @@ class OutageViewModel {
             }, onError: { [weak self] error in
                 guard let `self` = self else { return }
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountFinaled.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
                     self.currentOutageStatus = OutageStatus.from(["flagFinaled": true])
                     onSuccess()
-                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNoPay.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
                     self.currentOutageStatus = OutageStatus.from(["flagNoPay": true])
                     onSuccess()
-                } else if serviceError.serviceCode == ServiceErrorCode.FnNonService.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
                     self.currentOutageStatus = OutageStatus.from(["flagNonService": true])
                     onSuccess()
                 } else {

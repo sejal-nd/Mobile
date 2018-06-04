@@ -22,17 +22,17 @@ struct SpeedpayApi {
             
             URLSession.shared.dataTask(with:urlRequest, completionHandler: { (data:Data?, resp: URLResponse?, err: Error?) in
                 if err != nil {
-                    completion(ServiceResult.Failure(ServiceError.init(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: nil, cause: err)))
+                    completion(ServiceResult.failure(ServiceError.init(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: nil, cause: err)))
                 } else {
                     let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
                     let trimmed = responseString.trimmingCharacters(in: CharacterSet.init(charactersIn: "\""))
                     
-                    completion(ServiceResult.Success(trimmed))
+                    completion(ServiceResult.success(trimmed))
                 }
             }).resume()      }
         catch let error as NSError {
-            let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
-            completion(ServiceResult.Failure(serviceError))
+            let serviceError = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
+            completion(ServiceResult.failure(serviceError))
         }
     }
 }

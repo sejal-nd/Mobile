@@ -95,7 +95,7 @@ class HomeViewModel {
         .share(replay: 1)
 
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
-        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
     private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = {
         let noNetworkConnection = Observable.merge(self.accountDetailNoNetworkConnection,

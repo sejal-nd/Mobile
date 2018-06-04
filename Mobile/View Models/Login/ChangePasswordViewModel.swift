@@ -113,7 +113,7 @@ class ChangePasswordViewModel {
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
                     
-                    if(serviceError.serviceCode == ServiceErrorCode.FNPwdNoMatch.rawValue) {
+                    if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
                         onPasswordNoMatch()
                     } else {
                         onError(error.localizedDescription)
@@ -133,7 +133,7 @@ class ChangePasswordViewModel {
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
                     
-                    if(serviceError.serviceCode == ServiceErrorCode.FNPwdNoMatch.rawValue) {
+                    if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
                         onPasswordNoMatch()
                     } else {
                         onError(error.localizedDescription)

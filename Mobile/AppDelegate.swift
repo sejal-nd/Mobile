@@ -82,14 +82,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let alertsService = ServiceFactory.createAlertsService()
             alertsService.register(token: token, firstLogin: firstLogin) { (result: ServiceResult<Void>) in
                 switch result {
-                case .Success:
+                case .success:
                     dLog("*-*-*-*-* Registered token with MCS")
                     if firstLogin { // Add the username to the array
                         var newUsernamesArray = usernamesArray
                         newUsernamesArray.append(loggedInUsername)
                         UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
                     }
-                case .Failure(let err):
+                case .failure(let err):
                     dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
                 }
             }

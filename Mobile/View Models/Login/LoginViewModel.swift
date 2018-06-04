@@ -76,9 +76,9 @@ class LoginViewModel {
             }, onError: { [weak self] error in
                 self?.isLoggingIn = false
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountProtected.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
                     onError(NSLocalizedString("Password Protected Account", comment: ""), serviceError.localizedDescription)
-                } else if serviceError.serviceCode == ServiceErrorCode.FnAcctNotActivated.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAcctNotActivated.rawValue {
                     onRegistrationNotComplete()
                 } else {
                     onError(nil, error.localizedDescription)
@@ -136,7 +136,7 @@ class LoginViewModel {
                 onSuccess()
             }, onError: { err in
                 let serviceError = err as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnProfNotFound.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnProfNotFound.rawValue {
                     onError(NSLocalizedString("Your verification link is no longer valid", comment: ""), NSLocalizedString("If you have already verified your account, please sign in to access your account. If your link has expired, please re-register.", comment: ""))
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), err.localizedDescription)

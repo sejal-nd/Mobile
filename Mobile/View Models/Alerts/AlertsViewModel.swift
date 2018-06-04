@@ -64,7 +64,7 @@ class AlertsViewModel {
                         self?.isFetchingUpdates.value = false
                         self?.isUpdatesError.value = true
                         if let error = err as? ServiceError {
-                            self?.isNoNetworkConnection.value = error.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue
+                            self?.isNoNetworkConnection.value = error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue
                         }
                     }).disposed(by: self.disposeBag)
             }, onError: { [weak self] err in
@@ -73,7 +73,7 @@ class AlertsViewModel {
                 self?.isAccountDetailError.value = true
                 self?.isUpdatesError.value = true
                 if let error = err as? ServiceError {
-                    self?.isNoNetworkConnection.value = error.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue
+                    self?.isNoNetworkConnection.value = error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue
                 }
             }).disposed(by: disposeBag)
     }
