@@ -46,11 +46,11 @@ class LoginViewModel {
     }
         
     func shouldPromptToEnableBiometrics() -> Bool {
-        return UserDefaults.standard.bool(forKey: UserDefaultKeys.ShouldPromptToEnableBiometrics)
+        return UserDefaults.standard.bool(forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
     }
     
     func setShouldPromptToEnableBiometrics(_ prompt: Bool) {
-        UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.ShouldPromptToEnableBiometrics)
+        UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
     }
     
     func performLogin(onSuccess: @escaping (Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {

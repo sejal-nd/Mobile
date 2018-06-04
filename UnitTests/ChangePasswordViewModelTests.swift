@@ -155,7 +155,7 @@ class ChangePasswordTests: XCTestCase {
     func testPasswordMatchesUsername() {
         // Test case match
         viewModel.newPassword.value = "multprem02"
-        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.LoggedInUsername)
+        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.passwordMatchesUsername.asObservable().single().subscribe(onNext: { matches in
             if !matches {
                 XCTFail("Password \"multprem02\" should pass the matches username check")
@@ -164,7 +164,7 @@ class ChangePasswordTests: XCTestCase {
         
         // Test case mismatch
         viewModel.newPassword.value = "mUltpRem02"
-        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.LoggedInUsername)
+        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.passwordMatchesUsername.asObservable().single().subscribe(onNext: { matches in
             if !matches {
                 XCTFail("Password \"mUltpRem02\" (with capital letters) should pass the matches username check")
@@ -174,7 +174,7 @@ class ChangePasswordTests: XCTestCase {
     
     func testPasswordDoesNotMatchUsername() {
         viewModel.newPassword.value = "abcdefgh"
-        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.LoggedInUsername)
+        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.passwordMatchesUsername.asObservable().single().subscribe(onNext: { matches in
             if matches {
                 XCTFail("Password \"abcdefgh\" should fail the matches username check")
@@ -185,7 +185,7 @@ class ChangePasswordTests: XCTestCase {
     func testEverythingValid() {
         // Meets requirements
         viewModel.newPassword.value = "Abcdefg123"
-        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.LoggedInUsername)
+        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.everythingValid.asObservable().single().subscribe(onNext: { valid in
             if !valid {
                 XCTFail("Password \"Abcdefg123\" should be a valid password")
@@ -194,7 +194,7 @@ class ChangePasswordTests: XCTestCase {
         
         // Does not meet requirements
         viewModel.newPassword.value = "abcdefg123"
-        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.LoggedInUsername)
+        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.everythingValid.asObservable().single().subscribe(onNext: { valid in
             if valid {
                 XCTFail("Password \"abcdefg123\" should not be a valid password")
@@ -203,7 +203,7 @@ class ChangePasswordTests: XCTestCase {
         
         // Meets requirements but matches username
         viewModel.newPassword.value = "Multprem02"
-        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.LoggedInUsername)
+        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.everythingValid.asObservable().single().subscribe(onNext: { valid in
             if valid {
                 XCTFail("Password \"Multprem02\" should not be a valid password because it matches the username")
@@ -216,7 +216,7 @@ class ChangePasswordTests: XCTestCase {
         // Blank current password -> Disabled
         viewModel.newPassword.value = "Abcdefg123"
         viewModel.confirmPassword.value = "Abcdefg123"
-        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.LoggedInUsername)
+        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.doneButtonEnabled.asObservable().single().subscribe(onNext: { enabled in
             if enabled {
                 XCTFail("Done button should not be enabled because current password is blank")
@@ -226,7 +226,7 @@ class ChangePasswordTests: XCTestCase {
         // Confirm password does not match -> Disabled
         viewModel.newPassword.value = "Abcdefg123"
         viewModel.confirmPassword.value = "abcdefg123"
-        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.LoggedInUsername)
+        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.doneButtonEnabled.asObservable().single().subscribe(onNext: { enabled in
             if enabled {
                 XCTFail("Done button should not be enabled because confirm password does not match")
@@ -236,7 +236,7 @@ class ChangePasswordTests: XCTestCase {
         viewModel.currentPassword.value = "Password2"
         viewModel.newPassword.value = "Abcdefg123"
         viewModel.confirmPassword.value = "Abcdefg123"
-        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.LoggedInUsername)
+        userDefaults!.setValue("multprem02", forKey: UserDefaultKeys.loggedInUsername)
         viewModel.doneButtonEnabled.asObservable().single().subscribe(onNext: { enabled in
             if !enabled {
                 XCTFail("Done button should be enabled")

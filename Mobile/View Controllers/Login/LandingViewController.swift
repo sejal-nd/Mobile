@@ -118,7 +118,7 @@ class LandingViewController: UIViewController {
         
         avPlayer.play()
         
-        if (!UserDefaults.standard.bool(forKey: UserDefaultKeys.HasAcceptedTerms)) {
+        if (!UserDefaults.standard.bool(forKey: UserDefaultKeys.hasAcceptedTerms)) {
             performSegue(withIdentifier: "termsPoliciesModalSegue", sender: self)
         }
         

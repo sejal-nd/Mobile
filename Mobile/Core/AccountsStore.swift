@@ -16,7 +16,7 @@ final class AccountsStore {
     // Private init protects against another instance being accidentally instantiated
     private init() {
         // Load from disk
-        if let customerId = UserDefaults.standard.string(forKey: UserDefaultKeys.CustomerIdentifier) {
+        if let customerId = UserDefaults.standard.string(forKey: UserDefaultKeys.customerIdentifier) {
             customerIdentifier = customerId
         }
     }

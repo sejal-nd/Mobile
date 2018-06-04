@@ -12,7 +12,7 @@ import RxSwift
 struct MockWalletService: WalletService {
     func fetchWalletItems(completion: @escaping (_ result: ServiceResult<[WalletItem]>) -> Void) {
         var walletItems: [WalletItem]
-        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
+        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         if loggedInUsername == "billCardNoDefaultPayment" {
             walletItems = []
         } else if loggedInUsername == "billCardWithDefaultPayment" {

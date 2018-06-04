@@ -25,7 +25,7 @@ class MockOutageService: OutageService {
             completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnNonService.rawValue)))
         }
         else {
-            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
+            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
             if loggedInUsername == "outageTestPowerOn" {
                 accountNum = "1234567890"
             } else if loggedInUsername == "outageTestPowerOut" {
@@ -167,7 +167,7 @@ class MockOutageService: OutageService {
     
     
     func reportOutage(outageInfo: OutageInfo, completion: @escaping (ServiceResult<Void>) -> Void) {
-        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
+        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         if loggedInUsername == "outageTestPowerOn" { // UI testing
             outageMap["outageTestPowerOn"] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
@@ -185,7 +185,7 @@ class MockOutageService: OutageService {
     }
     
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult? {
-        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
+        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         if loggedInUsername == "outageTestPowerOn" { // UI testing
             return self.outageMap["outageTestPowerOn"]
         }

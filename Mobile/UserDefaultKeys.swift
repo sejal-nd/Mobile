@@ -8,34 +8,34 @@
 
 struct UserDefaultKeys {
     
-    static let HasRunBefore = "kHasRunBefore"
+    static let hasRunBefore = "kHasRunBefore"
     
     // Terms & Policies
-    static let HasAcceptedTerms = "kHasAcceptedTerms" // Used to determine whether or not to display the Terms screen on first app launch
+    static let hasAcceptedTerms = "kHasAcceptedTerms" // Used to determine whether or not to display the Terms screen on first app launch
     
     // Touch/Face ID
-    static let BiometricsEnabled = "kBiometricsEnabled"
-    static let ShouldPromptToEnableBiometrics = "kShouldPromptToEnableBiometrics" // Should we prompt the user to enable Touch/Face ID after a successful login?
-    static let LoggedInUsername = "kLoggedInUsername" // The username of the currently logged in user
+    static let isBiometricsEnabled = "kBiometricsEnabled"
+    static let shouldPromptToEnableBiometrics = "kShouldPromptToEnableBiometrics" // Should we prompt the user to enable Touch/Face ID after a successful login?
+    static let loggedInUsername = "kLoggedInUsername" // The username of the currently logged in user
     
-    static let CustomerIdentifier = "kCustomerIdentifier" // Persist Customer Identifer (from login) to disk
+    static let customerIdentifier = "kCustomerIdentifier" // Persist Customer Identifer (from login) to disk
     
-    static let PaymentDetailsDictionary = "kPaymentDetailsDictionary"
+    static let paymentDetailsDictionary = "kPaymentDetailsDictionary"
     
-    static let TemperatureScale = "kPTemperatureScale"
+    static let temperatureScale = "kPTemperatureScale"
     
-    static let InMainApp = "kInMainApp" // Is the user in the "Main" area of the app (past-login). Set to true in MainTabBarController
+    static let inMainApp = "kInMainApp" // Is the user in the "Main" area of the app (past-login). Set to true in MainTabBarController
     
-    static let AppRatingEventCount = "kAppRatingEventCount" // Used by AppRating to track number of events that contribute to a rating prompt
+    static let appRatingEventCount = "kAppRatingEventCount" // Used by AppRating to track number of events that contribute to a rating prompt
     
-    static let PushNotificationReceived = "kPushNotificationReceived"
-    static let PushNotificationReceivedTimestamp = "kPushNotificationReceivedTimestamp"
+    static let pushNotificationReceived = "kPushNotificationReceived"
+    static let pushNotificationReceivedTimestamp = "kPushNotificationReceivedTimestamp"
     
-    static let InitialPushNotificationPermissionsWorkflowCompleted = "kInitialPushNotificationPermissionsWorkflowCompleted"
+    static let isInitialPushNotificationPermissionsWorkflowCompleted = "kInitialPushNotificationPermissionsWorkflowCompleted"
 
-    static let UsernamesRegisteredForPushNotifications = "kUsernamesRegisteredForPushNotifications"
+    static let usernamesRegisteredForPushNotifications = "kUsernamesRegisteredForPushNotifications"
     
-    static let AccountVerificationDeepLinkGuid = "kAccountVerificationDeepLinkGuid"
+    static let accountVerificationDeepLinkGuid = "kAccountVerificationDeepLinkGuid"
     
-    static let IsKeepMeSignedInChecked = "kIsKeepMeSignedInChecked"
+    static let isKeepMeSignedInChecked = "kIsKeepMeSignedInChecked"
 }

@@ -61,7 +61,7 @@ class ChangePasswordViewModel {
     
     private(set) lazy var passwordMatchesUsername: Driver<Bool> = self.newPassword.asDriver()
         .map { [weak self] text -> Bool in
-            let username = self?.userDefaults.string(forKey: UserDefaultKeys.LoggedInUsername)
+            let username = self?.userDefaults.string(forKey: UserDefaultKeys.loggedInUsername)
             return text.lowercased() == username?.lowercased()
         }
     

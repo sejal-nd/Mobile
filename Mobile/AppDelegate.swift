@@ -60,8 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Set "Report Outage" quick action for unauthenticated users
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.IsKeepMeSignedInChecked) &&
-            UserDefaults.standard.bool(forKey:  UserDefaultKeys.HasAcceptedTerms) {
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked) &&
+            UserDefaults.standard.bool(forKey:  UserDefaultKeys.hasAcceptedTerms) {
             configureQuickActions(isAuthenticated: false)
         }
         
@@ -73,8 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dLog("*-*-*-*-* APNS Device Token: \(token)")
         
         var firstLogin = false
-        if let usernamesArray = UserDefaults.standard.array(forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications) as? [String],
-            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername) {
+        if let usernamesArray = UserDefaults.standard.array(forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications) as? [String],
+            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername) {
             if !usernamesArray.contains(loggedInUsername) {
                 firstLogin = true
             }
@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if firstLogin { // Add the username to the array
                         var newUsernamesArray = usernamesArray
                         newUsernamesArray.append(loggedInUsername)
-                        UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications)
+                        UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
                     }
                 case .Failure(let err):
                     dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
@@ -99,8 +99,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Only used on iOS 9 and below -- iOS 10+ uses the new UNUserNotificationCenter and handles the analytics in
     // the callback in HomeViewController
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
-            UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
+            UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
             if notificationSettings.types.isEmpty {
                 Analytics.log(event: .AlertsiOSPushDontAllowInitial)
             } else {
@@ -132,11 +132,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AlertsStore.shared.savePushNotification(notification)
         
         if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
-            if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
+            if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
                 NotificationCenter.default.post(name: .DidTapOnPushNotification, object: self)
             } else {
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.PushNotificationReceived)
-                UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.PushNotificationReceivedTimestamp)
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
+                UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
             }
         } else {
             // App was in the foreground when notification received - do nothing
@@ -149,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // For now, no deep links require being logged in. So if the user is already in the app, don't do anything special
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
             return false
         }
         
@@ -157,7 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let rootNav = window.rootViewController as? UINavigationController else { return false }
         
         if let guid = getQueryStringParameter(url: url, param: "guid") {
-            UserDefaults.standard.set(guid, forKey: UserDefaultKeys.AccountVerificationDeepLinkGuid)
+            UserDefaults.standard.set(guid, forKey: UserDefaultKeys.accountVerificationDeepLinkGuid)
         }
         
         if let topMostVC = rootNav.viewControllers.last as? SplashViewController {
@@ -181,14 +181,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupUserDefaults() {
         let userDefaults = UserDefaults.standard
         userDefaults.register(defaults: [
-            UserDefaultKeys.ShouldPromptToEnableBiometrics: true,
-            UserDefaultKeys.PaymentDetailsDictionary: [String: NSDictionary](),
-            UserDefaultKeys.UsernamesRegisteredForPushNotifications: [String]()
+            UserDefaultKeys.shouldPromptToEnableBiometrics: true,
+            UserDefaultKeys.paymentDetailsDictionary: [String: NSDictionary](),
+            UserDefaultKeys.usernamesRegisteredForPushNotifications: [String]()
             ])
         
-        userDefaults.set(false, forKey: UserDefaultKeys.InMainApp)
+        userDefaults.set(false, forKey: UserDefaultKeys.inMainApp)
         
-        if userDefaults.bool(forKey: UserDefaultKeys.HasRunBefore) == false {
+        if userDefaults.bool(forKey: UserDefaultKeys.hasRunBefore) == false {
             // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
             let biometricsService = ServiceFactory.createBiometricsService()
             biometricsService.disableBiometrics()
@@ -197,7 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let auth = OMCApi.shared.getBackend().authorization
             auth.logoutClearCredentials(true, completionBlock: nil)
             
-            userDefaults.set(true, forKey: UserDefaultKeys.HasRunBefore)
+            userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }
     }
     
@@ -239,7 +239,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
         
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.IsKeepMeSignedInChecked)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
         configureQuickActions(isAuthenticated: false)
     }
     
@@ -279,7 +279,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = rootNav
         }
         
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.inMainApp)
     }
     
     func printFonts() {
@@ -303,7 +303,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
             if let root = window.rootViewController, let _ = root.presentedViewController {
                 root.dismiss(animated: false) {
                     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -366,7 +366,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let payBillIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_bill")
         let payBillShortcut = UIApplicationShortcutItem(type: "PayBill", localizedTitle: "Pay Bill", localizedSubtitle: nil, icon: payBillIcon, userInfo: nil)
         
-        switch (accounts.count == 1, UserDefaults.standard.bool(forKey: UserDefaultKeys.IsKeepMeSignedInChecked), showViewUsageOptions) {
+        switch (accounts.count == 1, UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), showViewUsageOptions) {
         case (true, false, _):
             // Single account, no keep me signed in
             UIApplication.shared.shortcutItems = [reportOutageShortcut]

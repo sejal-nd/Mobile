@@ -21,7 +21,7 @@ class MainTabBarController: UITabBarController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.InMainApp)
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.inMainApp)
         
         tabBar.barTintColor = .white
         tabBar.tintColor = .primaryColor
@@ -29,13 +29,13 @@ class MainTabBarController: UITabBarController {
         
         setButtonStates(itemTag: 1)
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.PushNotificationReceived) {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.pushNotificationReceived) {
             // If push notification was tapped and the user logged in within 5 minutes, take them straight to alerts
-            if let timestamp = UserDefaults.standard.object(forKey: UserDefaultKeys.PushNotificationReceivedTimestamp) as? Date, Float(timestamp.timeIntervalSinceNow) >= -300 {
+            if let timestamp = UserDefaults.standard.object(forKey: UserDefaultKeys.pushNotificationReceivedTimestamp) as? Date, Float(timestamp.timeIntervalSinceNow) >= -300 {
                 selectedIndex = 3
             }
-            UserDefaults.standard.set(false, forKey: UserDefaultKeys.PushNotificationReceived)
-            UserDefaults.standard.removeObject(forKey: UserDefaultKeys.PushNotificationReceivedTimestamp)
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.pushNotificationReceived)
+            UserDefaults.standard.removeObject(forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
         }
         
         NotificationCenter.default.rx.notification(.DidTapOnPushNotification, object: nil)

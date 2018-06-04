@@ -51,7 +51,7 @@ class RecentPaymentsStore {
                     removePaymentDetails(forAccount: account)
                     return nil
                 }
-            } else if let paymentDetailsDictionary = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.PaymentDetailsDictionary),
+            } else if let paymentDetailsDictionary = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.paymentDetailsDictionary),
                 let paymentDictionary = paymentDetailsDictionary[account.accountNumber] as? NSDictionary,
                 let paymentDetails = PaymentDetails.from(paymentDictionary) {
                 
@@ -70,7 +70,7 @@ class RecentPaymentsStore {
             paymentDetailsCache[account.accountNumber] = newValue
             
             var paymentDetailsDictionary = [String: Any]()
-            if let existingDict = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.PaymentDetailsDictionary) {
+            if let existingDict = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.paymentDetailsDictionary) {
                 paymentDetailsDictionary = existingDict
             }
             
@@ -79,10 +79,10 @@ class RecentPaymentsStore {
                     "amount": paymentDetails.amount,
                     "date": paymentDetails.date.apiFormatString
                 ]
-                UserDefaults.standard.set(paymentDetailsDictionary, forKey: UserDefaultKeys.PaymentDetailsDictionary)
+                UserDefaults.standard.set(paymentDetailsDictionary, forKey: UserDefaultKeys.paymentDetailsDictionary)
             } else {
                 paymentDetailsDictionary.removeValue(forKey: account.accountNumber)
-                UserDefaults.standard.set(paymentDetailsDictionary, forKey: UserDefaultKeys.PaymentDetailsDictionary)
+                UserDefaults.standard.set(paymentDetailsDictionary, forKey: UserDefaultKeys.paymentDetailsDictionary)
             }
             
         }
@@ -91,11 +91,11 @@ class RecentPaymentsStore {
     private func removePaymentDetails(forAccount account: Account) {
         paymentDetailsCache.removeValue(forKey: account.accountNumber)
         var paymentDetailsDictionary = [String: Any]()
-        if let existingDict = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.PaymentDetailsDictionary) {
+        if let existingDict = UserDefaults.standard.dictionary(forKey: UserDefaultKeys.paymentDetailsDictionary) {
             paymentDetailsDictionary = existingDict
         }
         paymentDetailsDictionary.removeValue(forKey: account.accountNumber)
-        UserDefaults.standard.set(paymentDetailsDictionary, forKey: UserDefaultKeys.PaymentDetailsDictionary)
+        UserDefaults.standard.set(paymentDetailsDictionary, forKey: UserDefaultKeys.paymentDetailsDictionary)
     }
     
 }

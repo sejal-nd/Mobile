@@ -88,7 +88,7 @@ class AuthTokenParser : NSObject {
             return ServiceResult.Failure(ServiceError(serviceMessage: NSLocalizedString("Customer Identifier not found", comment: "")))
         }
         
-        UserDefaults.standard.set(customerIdentifier, forKey: UserDefaultKeys.CustomerIdentifier)
+        UserDefaults.standard.set(customerIdentifier, forKey: UserDefaultKeys.customerIdentifier)
         AccountsStore.shared.customerIdentifier = customerIdentifier
         
         if let assertion = data["assertion"] as? String {
