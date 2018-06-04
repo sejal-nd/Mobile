@@ -42,7 +42,7 @@ class AuthTokenParserTests: XCTestCase {
             
             switch result {
             case .failure(let serviceError):
-                XCTAssert(serviceError.serviceCode == ServiceErrorCode.arsing.rawValue, "Incorrect Result - ServiceError should be parse error")
+                XCTAssert(serviceError.serviceCode == ServiceErrorCode.parsing.rawValue, "Incorrect Result - ServiceError should be parse error")
             default:
                 XCTFail("Unable to correctly parse a 'failure' response value - result should be success-false")
             }
