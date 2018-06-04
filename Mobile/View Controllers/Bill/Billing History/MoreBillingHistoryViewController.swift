@@ -87,13 +87,13 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                 let type = billingItem.type else { return }
             
             let status = billingItem.status
-            if type == BillingHistoryProperties.TypeBilling.rawValue {
+            if type == BillingHistoryProperties.typeBilling.rawValue {
                 showBillPdf()
-            } else if status == BillingHistoryProperties.StatusProcessing.rawValue ||
-                status == BillingHistoryProperties.StatusProcessed.rawValue ||
-                status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
-                status == BillingHistoryProperties.StatusScheduled.rawValue ||
-                status == BillingHistoryProperties.StatusPending.rawValue {
+            } else if status == BillingHistoryProperties.statusProcessing.rawValue ||
+                status == BillingHistoryProperties.statusProcessed.rawValue ||
+                status == BillingHistoryProperties.statusSCHEDULED.rawValue ||
+                status == BillingHistoryProperties.statusScheduled.rawValue ||
+                status == BillingHistoryProperties.statusPending.rawValue {
                 handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
             } else {
                 performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
@@ -119,14 +119,14 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                     let status = billingItem.status else { return }
                 
                 //pending payments do not get a tap so we only handle scheduled/cancelled payments
-                if status == BillingHistoryProperties.StatusProcessing.rawValue ||
-                    status == BillingHistoryProperties.StatusProcessed.rawValue ||
-                    status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
-                    status == BillingHistoryProperties.StatusPending.rawValue {
+                if status == BillingHistoryProperties.statusProcessing.rawValue ||
+                    status == BillingHistoryProperties.statusProcessed.rawValue ||
+                    status == BillingHistoryProperties.statusSCHEDULED.rawValue ||
+                    status == BillingHistoryProperties.statusPending.rawValue {
                     handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
-                } else if status == BillingHistoryProperties.StatusCanceled.rawValue ||
-                    status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
-                    status == BillingHistoryProperties.StatusFailed.rawValue {
+                } else if status == BillingHistoryProperties.statusCanceled.rawValue ||
+                    status == BillingHistoryProperties.statusCANCELLED.rawValue ||
+                    status == BillingHistoryProperties.statusFailed.rawValue {
                     performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
                 }
             }
@@ -137,11 +137,11 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         guard let billingItem = billingHistory?.upcoming[indexPath.row],
             let status = billingItem.status else { return }
         
-        if status == BillingHistoryProperties.StatusProcessing.rawValue ||
-            status == BillingHistoryProperties.StatusProcessed.rawValue ||
-            status == BillingHistoryProperties.StatusCanceled.rawValue ||
-            status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
-            status == BillingHistoryProperties.StatusFailed.rawValue {
+        if status == BillingHistoryProperties.statusProcessing.rawValue ||
+            status == BillingHistoryProperties.statusProcessed.rawValue ||
+            status == BillingHistoryProperties.statusCanceled.rawValue ||
+            status == BillingHistoryProperties.statusCANCELLED.rawValue ||
+            status == BillingHistoryProperties.statusFailed.rawValue {
             
             performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
             
@@ -153,7 +153,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
     private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
         if Environment.shared.opco == .bge {
             guard let paymentMethod = billingItem.paymentMethod else { return }
-            if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
+            if paymentMethod == BillingHistoryProperties.paymentMethod_S.rawValue { //scheduled
                 showModifyScheduledItem(billingItem: billingItem)
             } else {  // recurring/automatic
                 let storyboard = UIStoryboard(name: "Bill", bundle: nil)
