@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if processInfo.arguments.contains("UITest") || processInfo.environment["XCTestConfigurationFilePath"] != nil {
             // Clear UserDefaults if Unit or UI testing -- ensures consistent fresh run
             UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-            UserDefaults.standard.synchronize()
         }
         
         if let appInfo = Bundle.main.infoDictionary,
@@ -200,8 +199,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             userDefaults.set(true, forKey: UserDefaultKeys.HasRunBefore)
         }
-        
-        userDefaults.synchronize()
     }
     
     func setupToastStyles() {

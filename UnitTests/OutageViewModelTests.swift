@@ -129,7 +129,6 @@ class OutageViewModelTests: XCTestCase {
     func testClearReportedOutage() {
         // Clear the user defaults first (UI testing may interfere with this test)
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        UserDefaults.standard.synchronize()
         
         AccountsStore.shared.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
         
