@@ -49,11 +49,11 @@ class ReportOutageViewModel {
     }
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        var outageIssue = OutageIssue.AllOut
+        var outageIssue = OutageIssue.allOut
         if selectedSegmentIndex.value == 1 {
-            outageIssue = OutageIssue.PartOut
+            outageIssue = OutageIssue.partOut
         } else if selectedSegmentIndex.value == 2 {
-            outageIssue = OutageIssue.Flickering
+            outageIssue = OutageIssue.flickering
         }
 
         var outageInfo = OutageInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
@@ -76,11 +76,11 @@ class ReportOutageViewModel {
     }
     
     func reportOutageAnon(onSuccess: @escaping (ReportedOutageResult) -> Void, onError: @escaping (String) -> Void) {
-        var outageIssue = OutageIssue.AllOut
+        var outageIssue = OutageIssue.allOut
         if selectedSegmentIndex.value == 1 {
-            outageIssue = OutageIssue.PartOut
+            outageIssue = OutageIssue.partOut
         } else if selectedSegmentIndex.value == 2 {
-            outageIssue = OutageIssue.Flickering
+            outageIssue = OutageIssue.flickering
         }
         
         var outageInfo = OutageInfo(accountNumber: outageStatus!.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)

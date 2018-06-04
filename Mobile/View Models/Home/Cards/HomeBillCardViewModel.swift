@@ -96,10 +96,10 @@ class HomeBillCardViewModel {
         .share(replay: 1)
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
     private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = self.workDayEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
     private lazy var walletItem: Observable<WalletItem?> = self.walletItemEvents.elements()
     
@@ -230,7 +230,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showCustomErrorState: Driver<Bool> = self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()).map {
         if let serviceError = $0.error as? ServiceError {
-            return serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue
+            return serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue
         }
         return false
     }

@@ -19,8 +19,8 @@ struct AppRating {
     /// user to rate the app.
     static func logRatingEvent() {
         let defaults = UserDefaults.standard
-        let value = defaults.integer(forKey: UserDefaultKeys.AppRatingEventCount)
-        defaults.set(value+1, forKey: UserDefaultKeys.AppRatingEventCount)
+        let value = defaults.integer(forKey: UserDefaultKeys.appRatingEventCount)
+        defaults.set(value+1, forKey: UserDefaultKeys.appRatingEventCount)
     }
     
     /// Reset the event count, after calling this
@@ -28,7 +28,7 @@ struct AppRating {
     /// the event threshold has been reached again.
     static func clearEventCount() {
         let defaults = UserDefaults.standard
-        defaults.set(0, forKey: UserDefaultKeys.AppRatingEventCount)
+        defaults.set(0, forKey: UserDefaultKeys.appRatingEventCount)
     }
     
     /// Check if the event threshold has been met
@@ -38,7 +38,7 @@ struct AppRating {
     ///     user should be prompted to rate the app.
     static func shouldRequestRating() -> Bool {
         let isDev = Environment.shared.environmentName == .dev
-        let value = UserDefaults.standard.integer(forKey: UserDefaultKeys.AppRatingEventCount)
+        let value = UserDefaults.standard.integer(forKey: UserDefaultKeys.appRatingEventCount)
         
         return value >= EventThreshold && !isDev;
     }

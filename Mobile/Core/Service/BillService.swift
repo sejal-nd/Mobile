@@ -73,10 +73,10 @@ extension BillService {
         return Observable.create { observer in
             self.fetchBudgetBillingInfo(accountNumber: accountNumber, completion: { (result: ServiceResult<BudgetBillingInfo>) in
                 switch (result) {
-                case ServiceResult.Success(let info):
+                case ServiceResult.success(let info):
                     observer.onNext(info)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -88,10 +88,10 @@ extension BillService {
         return Observable.create { observer in
             self.enrollBudgetBilling(accountNumber: accountNumber, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -103,10 +103,10 @@ extension BillService {
         return Observable.create { observer in
             self.unenrollBudgetBilling(accountNumber: accountNumber, reason: reason, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -118,10 +118,10 @@ extension BillService {
         return Observable.create { observer in
             self.enrollPaperlessBilling(accountNumber: accountNumber, email: email, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -133,10 +133,10 @@ extension BillService {
         return Observable.create { observer in
             self.unenrollPaperlessBilling(accountNumber: accountNumber, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -148,10 +148,10 @@ extension BillService {
         return Observable.create { observer in
             self.fetchBillPdf(accountNumber: accountNumber, billDate: billDate, completion: { (result: ServiceResult<String>) in
                 switch (result) {
-                case ServiceResult.Success(let billImageData):
+                case ServiceResult.success(let billImageData):
                     observer.onNext(billImageData)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -163,10 +163,10 @@ extension BillService {
         return Observable.create { observer in
             self.fetchBillingHistory(accountNumber: accountNumber, startDate: startDate, endDate: endDate, completion: { (result: ServiceResult<BillingHistory>) in
                 switch (result) {
-                case ServiceResult.Success(let billingHistory):
+                case ServiceResult.success(let billingHistory):
                     observer.onNext(billingHistory)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })

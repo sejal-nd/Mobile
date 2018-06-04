@@ -66,7 +66,7 @@ class AddBankAccountViewModel {
             }, onError: { (error: Error) in
                 let serviceError = error as! ServiceError
                 
-                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.dupPaymentAccount.rawValue {
                     onDuplicate(error.localizedDescription)
                 } else {
                     onError(error.localizedDescription)

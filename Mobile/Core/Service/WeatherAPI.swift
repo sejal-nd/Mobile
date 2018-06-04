@@ -39,87 +39,87 @@ struct WeatherItem {
         
         if let iconName = WeatherIconNames.values.first(where: { iconString.contains($0.rawValue) }) {
             switch iconName {
-            case .HOT, .SKC, .WIND_SKC:
+            case .hot, .skc, .windSkc:
                 if isDaytime {
                     return ("ic_day_clear", NSLocalizedString("Clear", comment: ""))
                 } else {
                     return ("ic_nt_clear", NSLocalizedString("Clear", comment: ""))
                 }
-            case .FEW, .SCT, .WIND_FEW, .WIND_SCT, .SMOKE, .HAZE, .DUST:
+            case .few, .sct, .windFew, .windSct, .smoke, .haze, .dust:
                 if isDaytime {
                     return ("ic_day_partlycloudy", NSLocalizedString("Partly Cloudy", comment: ""))
                 } else {
                     return ("ic_nt_partlycloudy", NSLocalizedString("Partly Cloudy", comment: ""))
                 }
-            case .BKN, .WIND_BKN, .FOG:
+            case .bkn, .windBkn, .fog:
                 if isDaytime {
                     return ("ic_day_mostlycloudy", NSLocalizedString("Mostly Cloudy", comment: ""))
                 } else {
                     return ("ic_nt_mostlycloudy", NSLocalizedString("Mostly Cloudy", comment: ""))
                 }
-            case .RAIN, .RAIN_SHOWERS, .RAIN_SLEET, .RAIN_SHOWERS_HI, .RAIN_FZRA:
+            case .rain, .rainShowers, .rainSleet, .rainShowersHi, .rainFzra:
                 return ("ic_rain", NSLocalizedString("Rain", comment: ""))
-            case .SNOW_SLEET, .FZRA, .RAIN_SNOW, .SNOW_FZRA, .SLEET:
+            case .snowSleet, .fzra, .rainSnow, .snowFzra, .sleet:
                 return ("ic_sleet", NSLocalizedString("Sleet", comment: ""))
-            case .TSRA, .TSRA_SCT, .TSRA_HI, .TS_HURR_WARN, .TS_WARN, .TS_WATCH, .HURR_WARN, .HURR_WATCH, .TORNADO:
+            case .tsra, .tsraSct, .tsraHi, .tsHurrWarn, .tsWarn, .tsWatch, .hurrWarn, .hurrWatch, .tornado:
                 return ("ic_tstorms", NSLocalizedString("Thunderstorm", comment: ""))
-            case .OVC, .WIND_OVC:
+            case .ovc, .windOvc:
                 return ("ic_cloudy", NSLocalizedString("Overcast", comment: ""))
-            case .SNOW, .BLIZZARD, .COLD:
+            case .snow, .blizzard, .cold:
                 return ("ic_snow", NSLocalizedString("Snow", comment: ""))
             default:
-                return (WeatherIconNames.UNKNOWN.rawValue, "")
+                return (WeatherIconNames.unknown.rawValue, "")
             }
         }
-        return (WeatherIconNames.UNKNOWN.rawValue, "")
+        return (WeatherIconNames.unknown.rawValue, "")
     }
 }
 
 
 //TODO: when swift is refactorable make this more readable 
 enum WeatherIconNames: String { 
-    case HOT = "hot"
-    case COLD = "cold"
-    case TS_WARN = "ts_warn"
-    case TS_WATCH = "ts_watch"
-    case TS_HURR_WARN = "ts_hurr_warn" 
-    case HURR_WARN = "hurr_warn" 
-    case HURR_WATCH = "hurr_watch"
-    case FOG = "fog"
-    case HAZE = "haze"
-    case SMOKE = "smoke"
-    case DUST = "dust"
-    case SKC = "skc"
-    case WIND_SKC = "wind_skc"
-    case BKN = "bkn"
-    case WIND_BKN = "wind_bkn"
-    case FEW = "few"
-    case SCT = "sct"
-    case WIND_FEW = "wind_few"
-    case WIND_SCT = "wind_sct"
-    case TORNADO = "tornado"
-    case RAIN = "rain"
-    case RAIN_SHOWERS = "rain_showers"
-    case RAIN_SHOWERS_HI = "rain_showers_hi"
-    case RAIN_SLEET = "rain_sleet"
-    case RAIN_FZRA = "rain_fzra"
-    case SNOW_SLEET = "snow_sleet"
-    case FZRA = "fzra"
-    case RAIN_SNOW = "rain_snow"
-    case SNOW_FZRA = "snow_fzra"
-    case SLEET = "sleet"
-    case TSRA = "tsra"
-    case TSRA_SCT = "tsra_sct"
-    case TSRA_HI = "tsra_hi"
-    case OVC = "ovc"
-    case WIND_OVC = "wind_ovc"
-    case SNOW = "snow"
-    case BLIZZARD = "blizzard"
-    case UNKNOWN = "unknown"
+    case hot = "hot"
+    case cold = "cold"
+    case tsWarn = "ts_warn"
+    case tsWatch = "ts_watch"
+    case tsHurrWarn = "ts_hurr_warn"
+    case hurrWarn = "hurr_warn"
+    case hurrWatch = "hurr_watch"
+    case fog = "fog"
+    case haze = "haze"
+    case smoke = "smoke"
+    case dust = "dust"
+    case skc = "skc"
+    case windSkc = "wind_skc"
+    case bkn = "bkn"
+    case windBkn = "wind_bkn"
+    case few = "few"
+    case sct = "sct"
+    case windFew = "wind_few"
+    case windSct = "wind_sct"
+    case tornado = "tornado"
+    case rain = "rain"
+    case rainShowers = "rain_showers"
+    case rainShowersHi = "rain_showers_hi"
+    case rainSleet = "rain_sleet"
+    case rainFzra = "rain_fzra"
+    case snowSleet = "snow_sleet"
+    case fzra = "fzra"
+    case rainSnow = "rain_snow"
+    case snowFzra = "snow_fzra"
+    case sleet = "sleet"
+    case tsra = "tsra"
+    case tsraSct = "tsra_sct"
+    case tsraHi = "tsra_hi"
+    case ovc = "ovc"
+    case windOvc = "wind_ovc"
+    case snow = "snow"
+    case blizzard = "blizzard"
+    case unknown = "unknown"
 }
 
 extension WeatherIconNames {
-    static let values = [HOT, COLD, TS_WARN, TS_WATCH, TS_HURR_WARN, HURR_WARN, HURR_WATCH, FOG, HAZE, SMOKE, DUST, SKC, WIND_SKC, BKN, WIND_BKN, FEW, SCT, TORNADO, RAIN, RAIN_SHOWERS, RAIN_SHOWERS_HI, RAIN_SLEET, RAIN_FZRA, SNOW_SLEET, FZRA, RAIN_SNOW, SNOW_FZRA, SLEET, TSRA, TSRA_SCT, TSRA_HI, OVC, WIND_OVC, SNOW, BLIZZARD]
+    static let values = [hot, cold, tsWarn, tsWatch, tsHurrWarn, hurrWarn, hurrWatch, fog, haze, smoke, dust, skc, windSkc, bkn, windBkn, few, sct, tornado, rain, rainShowers, rainShowersHi, rainSleet, rainFzra, snowSleet, fzra, rainSnow, snowFzra, sleet, tsra, tsraSct, tsraHi, ovc, windOvc, snow, blizzard]
 }
 
 struct WeatherAPI: WeatherService { 
@@ -137,8 +137,8 @@ struct WeatherAPI: WeatherService {
                 urlRequest.httpMethod = "GET"
                 URLSession.shared.dataTask(with:urlRequest, completionHandler: { (data:Data?, resp: URLResponse?, err: Error?) in
                     if let error = err {
-                        let serviceError = ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: error)
-                        completion(ServiceResult.Failure(serviceError))
+                        let serviceError = ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)
+                        completion(ServiceResult.failure(serviceError))
                         
                     } else {
                         let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
@@ -148,24 +148,24 @@ struct WeatherAPI: WeatherService {
                             let results = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
                             guard let json = results,
                                 let weatherItem = WeatherItem(json: json) else {
-                                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
-                                    completion(ServiceResult.Failure(serviceError))
+                                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
+                                    completion(ServiceResult.failure(serviceError))
                                     return
                             }
                             
-                            completion(ServiceResult.Success(weatherItem))
+                            completion(ServiceResult.success(weatherItem))
                             
                         }
                         catch let error as NSError {
-                            let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
-                            completion(ServiceResult.Failure(serviceError))
+                            let serviceError = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
+                            completion(ServiceResult.failure(serviceError))
                         }
                     }
                 }).resume()
                 
             } else {
-                let serviceError = ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: error)
-                completion(ServiceResult.Failure(serviceError))
+                let serviceError = ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)
+                completion(ServiceResult.failure(serviceError))
             }
         })
     }

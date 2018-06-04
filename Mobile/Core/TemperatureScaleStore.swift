@@ -35,13 +35,13 @@ final class TemperatureScaleStore {
         }
         set(newValue) {
             temperatureScaleCache.value = newValue
-            UserDefaults.standard.set(newValue.rawValue, forKey: UserDefaultKeys.TemperatureScale)
+            UserDefaults.standard.set(newValue.rawValue, forKey: UserDefaultKeys.temperatureScale)
         }
     }
     
     // Private init protects against another instance being accidentally instantiated
     private init() {
-        let storedTempScale = UserDefaults.standard.integer(forKey: UserDefaultKeys.TemperatureScale)
+        let storedTempScale = UserDefaults.standard.integer(forKey: UserDefaultKeys.temperatureScale)
         let initialScaleValue: TemperatureScale = TemperatureScale(rawValue: storedTempScale) ?? .fahrenheit
         temperatureScaleCache = Variable(initialScaleValue)
         

@@ -8,10 +8,10 @@
 
 extension NSNotification.Name {
     
-    static let DidReceiveInvalidAuthToken = NSNotification.Name(rawValue: "kDidReceiveInvalidAuthToken")
-    static let DidMaintenanceModeTurnOn = NSNotification.Name(rawValue: "kDidMaintenanceModeTurnOn")
-    static let DidSelectEnrollInAutoPay = NSNotification.Name(rawValue: "kDidSelectEnrollInAutoPay")
-    static let DidChangeBudgetBillingEnrollment = NSNotification.Name(rawValue: "kDidChangeBudgetBillingEnrollment")
-    static let DidTapOnPushNotification = NSNotification.Name(rawValue: "kDidTapOnPushNotification")
-    static let DidTapOnShortcutItem = NSNotification.Name(rawValue: "kDidTapOnShortcutItem")
+    static let didReceiveInvalidAuthToken = NSNotification.Name(rawValue: "kDidReceiveInvalidAuthToken")
+    static let didMaintenanceModeTurnOn = NSNotification.Name(rawValue: "kDidMaintenanceModeTurnOn")
+    static let didSelectEnrollInAutoPay = NSNotification.Name(rawValue: "kDidSelectEnrollInAutoPay")
+    static let didChangeBudgetBillingEnrollment = NSNotification.Name(rawValue: "kDidChangeBudgetBillingEnrollment")
+    static let didTapOnPushNotification = NSNotification.Name(rawValue: "kDidTapOnPushNotification")
+    static let didTapOnShortcutItem = NSNotification.Name(rawValue: "kDidTapOnShortcutItem")
 }

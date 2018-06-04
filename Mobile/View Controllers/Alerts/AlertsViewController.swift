@@ -57,7 +57,7 @@ class AlertsViewController: AccountPickerViewController {
         styleViews()
         bindViewModel()
         
-        NotificationCenter.default.rx.notification(.DidChangeBudgetBillingEnrollment, object: nil)
+        NotificationCenter.default.rx.notification(.didChangeBudgetBillingEnrollment, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 // Clear account detail, which would force a refresh (in the .readyToFetchData block below) when the screen appears
@@ -65,7 +65,7 @@ class AlertsViewController: AccountPickerViewController {
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.DidTapOnPushNotification, object: nil)
+        NotificationCenter.default.rx.notification(.didTapOnPushNotification, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.viewModel.fetchAlertsFromDisk()

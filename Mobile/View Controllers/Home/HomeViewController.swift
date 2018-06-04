@@ -126,7 +126,7 @@ class HomeViewController: AccountPickerViewController {
         styleViews()
         bindLoadingStates()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
         
         viewModel.shouldShowUsageCard
             .filter(!)
@@ -150,8 +150,8 @@ class HomeViewController: AccountPickerViewController {
         if Environment.shared.environmentName != .aut {
             if #available(iOS 10.0, *) {
                 UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
-                    if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
-                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
+                    if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
+                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
                         if granted {
                             Analytics.log(event: .AlertsiOSPushOKInitial)
                         } else {
@@ -166,7 +166,7 @@ class HomeViewController: AccountPickerViewController {
             UIApplication.shared.registerForRemoteNotifications()
         }
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
             Analytics.log(event: .AlertsiOSPushInitial)
         }
     }

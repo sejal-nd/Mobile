@@ -11,9 +11,9 @@ import RxCocoa
 import RxSwiftExt
 
 enum PaperlessEBillChangedStatus {
-    case Enroll
-    case Unenroll
-    case Mixed
+    case enroll
+    case unenroll
+    case mixed
 }
 
 class PaperlessEBillViewModel {
@@ -108,9 +108,9 @@ class PaperlessEBillViewModel {
         
         var changedStatus: PaperlessEBillChangedStatus
         if Environment.shared.opco == .bge {
-            changedStatus = !enrollObservables.isEmpty ? .Enroll : .Unenroll
+            changedStatus = !enrollObservables.isEmpty ? .enroll : .unenroll
         } else { // EM-1780 ComEd/PECO should always show Mixed
-            changedStatus = PaperlessEBillChangedStatus.Mixed
+            changedStatus = .mixed
         }
         
         Observable.from(enrollObservables + unenrollObservables)
