@@ -15,7 +15,6 @@ import UserNotifications
 
 class HomeViewController: AccountPickerViewController {
     
-    @IBOutlet weak var primaryColorHeaderView: UIView!
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var topLoadingIndicatorView: UIView!
@@ -184,8 +183,7 @@ class HomeViewController: AccountPickerViewController {
     
     func styleViews() {
         view.backgroundColor = .primaryColor
-        primaryColorHeaderView.backgroundColor = .primaryColor
-        loadingView.layer.cornerRadius = 2
+        loadingView.layer.cornerRadius = 10
         loadingView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
     }
     

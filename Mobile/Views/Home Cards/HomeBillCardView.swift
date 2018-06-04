@@ -117,8 +117,8 @@ class HomeBillCardView: UIView {
     }
     
     private func styleViews() {
-        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        layer.cornerRadius = 2
+        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 13)
+        layer.cornerRadius = 10
         
         alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         
