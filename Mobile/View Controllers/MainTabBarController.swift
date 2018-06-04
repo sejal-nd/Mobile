@@ -38,14 +38,14 @@ class MainTabBarController: UITabBarController {
             UserDefaults.standard.removeObject(forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
         }
         
-        NotificationCenter.default.rx.notification(.DidTapOnPushNotification, object: nil)
+        NotificationCenter.default.rx.notification(.didTapOnPushNotification, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.selectedIndex = 3
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.DidTapOnShortcutItem, object: nil)
+        NotificationCenter.default.rx.notification(.didTapOnShortcutItem, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] notification in
                 guard let `self` = self else { return }

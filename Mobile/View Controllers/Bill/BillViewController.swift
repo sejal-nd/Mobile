@@ -161,9 +161,9 @@ class BillViewController: AccountPickerViewController {
         bindButtonTaps()
         configureAccessibility()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
 
-        NotificationCenter.default.rx.notification(.DidSelectEnrollInAutoPay, object: nil)
+        NotificationCenter.default.rx.notification(.didSelectEnrollInAutoPay, object: nil)
         .subscribe(onNext: { [weak self] notification in
             guard let `self` = self else { return }
             if let accountDetail = notification.object as? AccountDetail {

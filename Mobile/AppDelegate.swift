@@ -48,8 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
         
-        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: .didMaintenanceModeTurnOn, object: nil)
         
         // If app was cold-launched from a push notification
         if let options = launchOptions, let userInfo = options[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
@@ -133,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
             if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
-                NotificationCenter.default.post(name: .DidTapOnPushNotification, object: self)
+                NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
             } else {
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
                 UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
@@ -309,13 +309,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let newTabBarController = mainStoryboard.instantiateInitialViewController()
                     window.rootViewController = newTabBarController
-                    NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+                    NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
                 }
             } else {
                 let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let newTabBarController = mainStoryboard.instantiateInitialViewController()
                 window.rootViewController = newTabBarController
-                NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+                NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
             }
         } else if let splashVC = (window.rootViewController as? UINavigationController)?.viewControllers.last as? SplashViewController {
             splashVC.shortcutItem = shortcutItem

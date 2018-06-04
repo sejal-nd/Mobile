@@ -146,7 +146,7 @@ class PaymentConfirmationViewController: UIViewController {
                 presentingNavController.popToViewController(dest, animated: false)
                 //dest.viewModel.fetchAccountDetail(isRefresh: false) // Can't do this because currentAccountDetail will be nil in prepareForSegue
                 presentingNavController.dismiss(animated: true, completion: { [weak self] in
-                    NotificationCenter.default.post(name: .DidSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
+                    NotificationCenter.default.post(name: .didSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
                 })
                 break
             } else if let dest = vc as? HomeViewController {
@@ -156,7 +156,7 @@ class PaymentConfirmationViewController: UIViewController {
                 tabController.selectedIndex = 1
                 presentingNavController.setNavigationBarHidden(true, animated: true)
                 presentingNavController.dismiss(animated: true, completion: { [weak self] in
-                    NotificationCenter.default.post(name: .DidSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
+                    NotificationCenter.default.post(name: .didSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
                 })
                 break
             }
