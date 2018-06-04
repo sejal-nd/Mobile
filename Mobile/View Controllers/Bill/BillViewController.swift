@@ -741,11 +741,11 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
         var toastMessage: String
         switch didChangeStatus {
-        case .Enroll:
+        case .enroll:
             toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
-        case .Unenroll:
+        case .unenroll:
             toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
-        case .Mixed:
+        case .mixed:
             toastMessage = NSLocalizedString("Paperless eBill changes saved", comment: "")
         }
         showDelayedToast(withMessage: toastMessage)

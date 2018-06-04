@@ -136,7 +136,7 @@ class HomeViewModel {
         .asDriver(onErrorJustReturn: nil)
     
     private(set) lazy var weatherIcon: Driver<UIImage?> = self.weatherEvents.elements()
-        .map { $0.iconName != WeatherIconNames.UNKNOWN.rawValue ? UIImage(named: $0.iconName) : nil }
+        .map { $0.iconName != WeatherIconNames.unknown.rawValue ? UIImage(named: $0.iconName) : nil }
         .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
     
