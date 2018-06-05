@@ -217,8 +217,8 @@ class BillViewController: AccountPickerViewController {
     }
     
     func styleViews() {
-        view.backgroundColor = .primaryColor
-        contentView.backgroundColor = .primaryColor
+        view.backgroundColor = .primaryColorAccountPicker
+        contentView.backgroundColor = .primaryColorAccountPicker
 
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)

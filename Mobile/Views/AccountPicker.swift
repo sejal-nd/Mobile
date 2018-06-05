@@ -21,6 +21,7 @@ class AccountPicker: UIView {
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
     var loadingIndicator: LoadingIndicator!
+    let shadowView = UIView().usingAutoLayout()
 
     var currentAccount: Account!
     private var loadedAccounts = false
@@ -44,8 +45,8 @@ class AccountPicker: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 57)
-        pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: 57, width: 160, height: 7)
+        scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: intrinsicContentSize.height)
+        pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: intrinsicContentSize.height - 23, width: 160, height: 7)
         
         if let button = advancedAccountButton {
             button.frame = scrollView.frame
@@ -54,18 +55,23 @@ class AccountPicker: UIView {
         if pageViews.count > 0 {
             for index in 0..<pageViews.count {
                 let pageView = pageViews[index]
-                pageView.frame = CGRect(x: CGFloat(index) * frame.size.width, y: 0, width: frame.size.width, height: 57)
+                pageView.frame = CGRect(x: CGFloat(index) * frame.size.width, y: 0, width: frame.size.width, height: intrinsicContentSize.height)
             }
             
-            scrollView.contentSize = CGSize(width: frame.size.width * CGFloat(pageViews.count), height: 57)
+            scrollView.contentSize = CGSize(width: frame.size.width * CGFloat(pageViews.count), height: intrinsicContentSize.height)
             if pageControl.currentPage < pageViews.count {
                 scrollView.scrollRectToVisible(pageViews[pageControl.currentPage].frame, animated: false)
             }
         }
         
     }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 0, height: 90)
+    }
 
     func commonInit() {
+        clipsToBounds = true
         backgroundColor = .clear
 
         scrollView = UIScrollView(frame: .zero)
@@ -86,6 +92,13 @@ class AccountPicker: UIView {
         addSubview(loadingIndicator)
         loadingIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        addSubview(shadowView)
+        shadowView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        shadowView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        shadowView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        shadowView.topAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        shadowView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 3)
     }
     
     func setLoading(_ loading: Bool) {
@@ -156,7 +169,8 @@ class AccountPicker: UIView {
             a11yDescription = NSLocalizedString("Residential account", comment: "")
         }
         
-        backgroundColor = tintWhite ? .primaryColorAccountPicker : .clear
+        shadowView.backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
+        backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
         
         let iconImageView = UIImageView(image: icon)
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -206,7 +220,7 @@ class AccountPicker: UIView {
         scrollView.addSubview(pageView)
         
         accountStackView.centerXAnchor.constraint(equalTo: pageView.centerXAnchor, constant: 0).isActive = true
-        accountStackView.centerYAnchor.constraint(equalTo: pageView.centerYAnchor, constant: 0).isActive = true
+        accountStackView.topAnchor.constraint(equalTo: pageView.topAnchor, constant: 10).isActive = true
         //addressLabel.widthAnchor.constraint(equalTo: accountNumberLabel.widthAnchor, multiplier: 1.2).isActive = true
         addressLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 220).isActive = true
         
@@ -227,11 +241,11 @@ class AccountPicker: UIView {
             caretImageView.translatesAutoresizingMaskIntoConstraints = false
             pageView.addSubview(caretImageView)
             
-            self.addConstraints([
-                NSLayoutConstraint(item: caretImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 8),
-                NSLayoutConstraint(item: caretImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 13),
-                NSLayoutConstraint(item: caretImageView, attribute: .trailing, relatedBy: .equal, toItem: pageView, attribute: .trailing, multiplier: 1, constant: -18),
-                NSLayoutConstraint(item: caretImageView, attribute: .centerY, relatedBy: .equal, toItem: pageView, attribute: .centerY, multiplier: 1, constant: 0)
+            addConstraints([
+                caretImageView.widthAnchor.constraint(equalToConstant: 8),
+                caretImageView.heightAnchor.constraint(equalToConstant: 13),
+                caretImageView.trailingAnchor.constraint(equalTo: pageView.trailingAnchor, constant: -18),
+                caretImageView.centerYAnchor.constraint(equalTo: pageView.centerYAnchor)
             ])
         }
     }
