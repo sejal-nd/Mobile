@@ -17,8 +17,6 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var topLoadingIndicatorView: UIView!
-    @IBOutlet weak var topLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
 	@IBOutlet weak var bottomStackContainerView: UIView!
@@ -379,7 +377,6 @@ class BillViewController: AccountPickerViewController {
     }
 
 	func bindLoadingStates() {
-        topLoadingIndicatorView.isHidden = true
         viewModel.refreshTracker.asDriver().filter(!).drive(onNext: { [weak self] refresh in
             self?.refreshControl?.endRefreshing()
         }).disposed(by: bag)
