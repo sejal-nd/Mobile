@@ -18,9 +18,6 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var backgroundTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerContentView: UIView!
-    @IBOutlet weak var headerStackView: UIStackView!
-    @IBOutlet weak var topLoadingIndicatorView: UIView!
-    @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
@@ -223,8 +220,6 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func bindLoadingStates() {
-        topLoadingIndicatorView.isHidden = true
-        
         Observable.merge(viewModel.refreshFetchTracker.asObservable(), viewModel.isSwitchingAccounts.asObservable())
             .subscribe(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
             .disposed(by: bag)
@@ -239,7 +234,6 @@ class HomeViewController: AccountPickerViewController {
             self.setRefreshControlEnabled(enabled: refresh)
         }).disposed(by: bag)
         
-        viewModel.isSwitchingAccounts.asDriver().drive(homeLoadingIndicator.rx.isAnimating).disposed(by: bag)
         viewModel.isSwitchingAccounts.asDriver().drive(cardStackView.rx.isHidden).disposed(by: bag)
         viewModel.isSwitchingAccounts.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
         

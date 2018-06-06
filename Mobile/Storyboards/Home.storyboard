@@ -48,47 +48,27 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-go-05Y" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="572"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="508"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UPV-GL-s03" userLabel="Main Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="552"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="488"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rxw-UV-VRQ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YJl-JH-94o">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                                                <subviews>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="IEW-ff-2hC" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="157.5" y="25.5" width="60" height="12"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    </view>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" priority="999" constant="64" id="MOu-z9-rOY"/>
-                                                                    <constraint firstItem="IEW-ff-2hC" firstAttribute="centerX" secondItem="YJl-JH-94o" secondAttribute="centerX" id="mEK-lb-5kf"/>
-                                                                    <constraint firstItem="IEW-ff-2hC" firstAttribute="centerY" secondItem="YJl-JH-94o" secondAttribute="centerY" id="mrT-bu-RdS"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="tbt-1n-lFy" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="64" width="375" height="90"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="tbt-1n-lFy" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Opk-mo-Gnw" userLabel="Card Stack View">
-                                                        <rect key="frame" x="16" y="154" width="343" height="0.0"/>
+                                                        <rect key="frame" x="16" y="90" width="343" height="0.0"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="b4e-Ff-Dp9"/>
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uhp-nq-HuH">
-                                                        <rect key="frame" x="16" y="154" width="343" height="398"/>
+                                                        <rect key="frame" x="16" y="90" width="343" height="398"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="MHH-Vr-MxZ" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="141" y="193" width="60" height="12"/>
@@ -107,13 +87,13 @@
                                                 <constraints>
                                                     <constraint firstItem="Opk-mo-Gnw" firstAttribute="centerX" secondItem="UPV-GL-s03" secondAttribute="centerX" id="7Je-Sl-Xyd"/>
                                                     <constraint firstAttribute="trailing" secondItem="Opk-mo-Gnw" secondAttribute="trailing" priority="999" constant="16" id="D8p-TS-VMZ"/>
-                                                    <constraint firstItem="Rxw-UV-VRQ" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" id="IHA-du-AaV"/>
+                                                    <constraint firstItem="tbt-1n-lFy" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" id="DAL-tK-kzv"/>
                                                     <constraint firstItem="Uhp-nq-HuH" firstAttribute="centerX" secondItem="UPV-GL-s03" secondAttribute="centerX" id="YXy-Zu-8yQ"/>
                                                     <constraint firstItem="Uhp-nq-HuH" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" priority="999" constant="16" id="Ynt-tS-KIm"/>
                                                     <constraint firstItem="Opk-mo-Gnw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UPV-GL-s03" secondAttribute="leading" constant="16" id="dST-qt-i1H"/>
                                                     <constraint firstItem="Opk-mo-Gnw" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" priority="999" constant="16" id="fgh-lg-jhF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tbt-1n-lFy" secondAttribute="trailing" id="gxd-aZ-Faa"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Opk-mo-Gnw" secondAttribute="trailing" constant="16" id="k67-3X-mgH"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Rxw-UV-VRQ" secondAttribute="trailing" id="sTe-8d-mU8"/>
                                                     <constraint firstAttribute="trailing" secondItem="Uhp-nq-HuH" secondAttribute="trailing" priority="999" constant="16" id="wNg-bn-8DW"/>
                                                 </constraints>
                                             </stackView>
@@ -162,14 +142,11 @@
                         <outlet property="backgroundView" destination="MQ4-Ev-TTi" id="zoa-kA-PFz"/>
                         <outlet property="cardStackView" destination="Opk-mo-Gnw" id="4fa-tb-ffm"/>
                         <outlet property="headerContentView" destination="QgD-go-05Y" id="p1j-X0-Ik8"/>
-                        <outlet property="headerStackView" destination="Rxw-UV-VRQ" id="DvQ-fc-VLC"/>
-                        <outlet property="homeLoadingIndicator" destination="IEW-ff-2hC" id="faI-27-HeU"/>
                         <outlet property="loadingView" destination="Uhp-nq-HuH" id="rog-Ur-XfM"/>
                         <outlet property="mainStackView" destination="UPV-GL-s03" id="ZuN-Jr-0oO"/>
                         <outlet property="maintenanceModeView" destination="ire-RJ-okt" id="5zM-Va-oie"/>
                         <outlet property="noNetworkConnectionView" destination="dh2-eA-K7U" id="yak-Mz-FN4"/>
                         <outlet property="scrollView" destination="mzY-0e-rXR" id="ejP-8Y-Dy4"/>
-                        <outlet property="topLoadingIndicatorView" destination="YJl-JH-94o" id="3um-iH-9up"/>
                         <segue destination="PED-vj-t5U" kind="show" identifier="usageSegue" id="84U-Il-aeI"/>
                         <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="Gdb-8Z-K6i"/>
                     </connections>
