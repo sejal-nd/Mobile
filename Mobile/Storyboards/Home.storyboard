@@ -32,7 +32,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ire-RJ-okt" customClass="MaintenanceModeView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
@@ -41,7 +41,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dh2-eA-K7U" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzY-0e-rXR">
@@ -122,7 +122,7 @@
                             <constraint firstItem="dh2-eA-K7U" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="5Cn-0L-f8J"/>
                             <constraint firstAttribute="trailing" secondItem="dh2-eA-K7U" secondAttribute="trailing" id="Dav-Ba-dta"/>
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="mzY-0e-rXR" secondAttribute="bottom" id="HBG-DW-3ss"/>
-                            <constraint firstItem="dh2-eA-K7U" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="HbX-4w-z3I"/>
+                            <constraint firstItem="dh2-eA-K7U" firstAttribute="top" secondItem="5uc-ch-d5G" secondAttribute="top" id="HbX-4w-z3I"/>
                             <constraint firstAttribute="bottom" secondItem="MQ4-Ev-TTi" secondAttribute="bottom" id="IiJ-3U-C3L"/>
                             <constraint firstAttribute="right" secondItem="MQ4-Ev-TTi" secondAttribute="right" id="Xpb-Gj-cZh"/>
                             <constraint firstItem="mzY-0e-rXR" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="Zc0-fs-mhR"/>
@@ -130,7 +130,7 @@
                             <constraint firstItem="mzY-0e-rXR" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="kwX-DU-XYv"/>
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="dh2-eA-K7U" secondAttribute="bottom" id="mSC-yd-SiM"/>
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="ire-RJ-okt" secondAttribute="bottom" id="mzr-ZN-jkE"/>
-                            <constraint firstItem="ire-RJ-okt" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="qwP-2r-mbl"/>
+                            <constraint firstItem="ire-RJ-okt" firstAttribute="top" secondItem="5uc-ch-d5G" secondAttribute="top" id="qwP-2r-mbl"/>
                             <constraint firstItem="MQ4-Ev-TTi" firstAttribute="top" secondItem="mzY-0e-rXR" secondAttribute="top" id="vq0-T1-HTa"/>
                             <constraint firstItem="ire-RJ-okt" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="wOj-r1-L8h"/>
                             <constraint firstAttribute="trailing" secondItem="ire-RJ-okt" secondAttribute="trailing" id="yav-7O-Cbq"/>
@@ -1195,6 +1195,6 @@
         <image name="ic_smartenergyempty" width="109" height="103"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PGo-sN-iCf"/>
+        <segue reference="Gdb-8Z-K6i"/>
     </inferredMetricsTieBreakers>
 </document>
