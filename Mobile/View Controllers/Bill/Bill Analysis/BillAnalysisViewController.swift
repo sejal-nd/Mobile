@@ -120,6 +120,8 @@ class BillAnalysisViewController: UIViewController {
     
     let viewModel = BillAnalysisViewModel(usageService: ServiceFactory.createUsageService())
     
+    private var cornderRadius: CGFloat = 4.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -213,6 +215,7 @@ class BillAnalysisViewController: UIViewController {
         
         styleBarGraph()
         
+        barDescriptionView.layer.cornerRadius = cornderRadius
         barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
         barDescriptionDateLabel.font = OpenSans.bold.of(textStyle: .subheadline)
         barDescriptionDateLabel.textColor = .blackText
@@ -226,6 +229,7 @@ class BillAnalysisViewController: UIViewController {
         
         styleLikelyReasonsButtons()
         
+        likelyReasonsDescriptionView.layer.cornerRadius = cornderRadius
         likelyReasonsDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
         likelyReasonsDescriptionTitleLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         likelyReasonsDescriptionTitleLabel.textColor = .blackText
@@ -325,6 +329,11 @@ class BillAnalysisViewController: UIViewController {
         currentBarView.backgroundColor = .primaryColor
         projectionNotAvailableBarView.addDashedBorder(color: dashedBorderColor)
         
+        noDataBarView.layer.cornerRadius = cornderRadius
+        previousBarView.layer.cornerRadius = cornderRadius
+        currentBarView.layer.cornerRadius = cornderRadius
+        projectionNotAvailableBarView.layer.cornerRadius = cornderRadius
+
         switch Environment.shared.opco {
         case .bge:
             projectedBarImage.tintColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 1)

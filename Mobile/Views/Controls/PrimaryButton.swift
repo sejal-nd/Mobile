@@ -41,7 +41,7 @@ class PrimaryButton: UIButton {
         
         // If button is not full width, add rounded corners
         if frame.size.width != UIScreen.main.bounds.size.width {
-            layer.cornerRadius = 2
+            layer.cornerRadius = 4
         }
     }
     

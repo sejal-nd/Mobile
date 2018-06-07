@@ -24,7 +24,7 @@ class BillViewController: AccountPickerViewController {
 	@IBOutlet weak var bottomStackContainerView: UIView!
 
     @IBOutlet weak var alertBannerView: BillAlertBannerView!
-
+    
     @IBOutlet weak var totalAmountView: UIView!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
@@ -75,7 +75,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var remainingBalancePastDueAmountLabel: UILabel!
     @IBOutlet weak var remainingBalancePastDueDateLabel: UILabel!
 
-	// Bill Issued
+    // Bill Issued
     @IBOutlet weak var billIssuedView: UIView!
     @IBOutlet weak var billIssuedLabel: UILabel!
     @IBOutlet weak var billIssuedAmountLabel: UILabel!
@@ -121,6 +121,8 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var customErrorView: UIView!
     @IBOutlet weak var customErrorTitleLabel: UILabel!
     @IBOutlet weak var customErrorDetailLabel: UILabel!
+    
+    private var cornerRadius: CGFloat = 4.0
     
     var refreshControl: UIRefreshControl?
     
@@ -222,22 +224,33 @@ class BillViewController: AccountPickerViewController {
 
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
-        
+
         totalAmountView.superview?.bringSubview(toFront: totalAmountView)
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
 
         needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
 
-        billPaidView.layer.cornerRadius = 2
+        alertBannerView.layer.cornerRadius = cornerRadius
+        avoidShutoffView.layer.cornerRadius = cornerRadius
+        billIssuedView.layer.cornerRadius = cornerRadius
+        catchUpView.layer.cornerRadius = cornerRadius
+        creditView.layer.cornerRadius = cornerRadius
+        needHelpUnderstandingButton.layer.cornerRadius = cornerRadius
+        pastDueView.layer.cornerRadius = cornerRadius
+        paymentReceivedView.layer.cornerRadius = cornerRadius
+        remainingBalancePastDueView.layer.cornerRadius = cornerRadius
+        restoreServiceView.layer.cornerRadius = cornerRadius
+        
+        billPaidView.layer.cornerRadius = cornerRadius
 
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
-        autoPayButton.layer.cornerRadius = 2
+        autoPayButton.layer.cornerRadius = cornerRadius
 
         paperlessButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
-        paperlessButton.layer.cornerRadius = 2
+        paperlessButton.layer.cornerRadius = cornerRadius
 
         budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        budgetButton.layer.cornerRadius = 2
+        budgetButton.layer.cornerRadius = cornerRadius
 
         // Set Fonts
         totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -294,7 +307,7 @@ class BillViewController: AccountPickerViewController {
         customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to the mobile app. " +
             "Access your account on our responsive website.", comment: "")
     }
-
+    
     func bindViews() {
 		bindLoadingStates()
 		bindViewHiding()
