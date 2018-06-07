@@ -15,27 +15,18 @@ import UserNotifications
 
 class HomeViewController: AccountPickerViewController {
     
-    @IBOutlet weak var primaryColorHeaderView: UIView!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var backgroundTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerContentView: UIView!
-    @IBOutlet weak var headerStackView: UIStackView!
-    @IBOutlet weak var topLoadingIndicatorView: UIView!
-    @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
-    @IBOutlet weak var weatherView: UIView!
-    @IBOutlet weak var greetingLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var weatherIconImage: UIImageView!
-    
-    @IBOutlet weak var temperatureTipButton: ButtonControl!
-    @IBOutlet weak var temperatureTipImageView: UIImageView!
-    @IBOutlet weak var temperatureTipLabel: UILabel!
-    
+    @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var cardStackView: UIStackView!
     
     @IBOutlet weak var loadingView: UIView!
     
+    var weatherView: HomeWeatherView!
     var billCardView: HomeBillCardView!
     var usageCardView: HomeUsageCardView!
     
@@ -62,6 +53,13 @@ class HomeViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
+        backgroundView.backgroundColor = .primaryColor
+        scrollView?.rx.contentOffset.asDriver()
+            .map { -min(0, $0.y) }
+            .distinctUntilChanged()
+            .drive(backgroundTopConstraint.rx.constant)
+            .disposed(by: bag)
+        
         accountPickerViewControllerWillAppear
             .withLatestFrom(Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
                                                      viewModel.accountDetailEvents.map { $0 }.startWith(nil)))
@@ -79,6 +77,11 @@ class HomeViewController: AccountPickerViewController {
                 }
             })
             .disposed(by: bag)
+        
+        weatherView = HomeWeatherView.create(withViewModel: viewModel.weatherViewModel)
+        mainStackView.insertArrangedSubview(weatherView, at: 1)
+        weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
+        weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
         
         billCardView = HomeBillCardView.create(withViewModel: viewModel.billCardViewModel)
         billCardView.oneTouchPayFinished
@@ -185,14 +188,9 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func styleViews() {
-        view.backgroundColor = .primaryColor
-        primaryColorHeaderView.backgroundColor = .primaryColor
-        loadingView.layer.cornerRadius = 2
+        view.backgroundColor = .primaryColorAccountPicker
+        loadingView.layer.cornerRadius = 10
         loadingView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        greetingLabel.isAccessibilityElement = true
-        temperatureLabel.isAccessibilityElement = true
-        weatherIconImage.isAccessibilityElement = true
-        weatherView.accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage]
     }
     
     @objc func killRefresh() -> Void {
@@ -222,8 +220,6 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func bindLoadingStates() {
-        topLoadingIndicatorView.isHidden = true
-        
         Observable.merge(viewModel.refreshFetchTracker.asObservable(), viewModel.isSwitchingAccounts.asObservable())
             .subscribe(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
             .disposed(by: bag)
@@ -238,10 +234,8 @@ class HomeViewController: AccountPickerViewController {
             self.setRefreshControlEnabled(enabled: refresh)
         }).disposed(by: bag)
         
-        viewModel.isSwitchingAccounts.asDriver().drive(homeLoadingIndicator.rx.isAnimating).disposed(by: bag)
         viewModel.isSwitchingAccounts.asDriver().drive(cardStackView.rx.isHidden).disposed(by: bag)
         viewModel.isSwitchingAccounts.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
-        viewModel.isSwitchingAccounts.asDriver().drive(greetingLabel.rx.isHidden).disposed(by: bag)
         
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
         viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
@@ -249,21 +243,6 @@ class HomeViewController: AccountPickerViewController {
         Driver.combineLatest(viewModel.showNoNetworkConnectionState, viewModel.showMaintenanceModeState)
         { $0 || $1 }
             .drive(scrollView!.rx.isHidden).disposed(by: bag)
-        
-        viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
-        viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).disposed(by: bag)
-        viewModel.showTemperatureTip.not().drive(temperatureTipButton.rx.isHidden).disposed(by: bag)
-        
-        viewModel.showWeatherDetails.drive(temperatureLabel.rx.isAccessibilityElement).disposed(by: bag)
-        viewModel.showWeatherDetails.drive(weatherIconImage.rx.isAccessibilityElement).disposed(by: bag)
-        
-        viewModel.greeting.drive(greetingLabel.rx.text).disposed(by: bag)
-        viewModel.weatherTemp.drive(temperatureLabel.rx.text).disposed(by: bag)
-        viewModel.weatherIcon.drive(weatherIconImage.rx.image).disposed(by: bag)
-        viewModel.weatherIconA11yLabel.drive(weatherIconImage.rx.accessibilityLabel).disposed(by: bag)
-        
-        viewModel.temperatureTipText.drive(temperatureTipLabel.rx.text).disposed(by: bag)
-        viewModel.temperatureTipImage.drive(temperatureTipImageView.rx.image).disposed(by: bag)
         
         Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
             .map(to: FetchingAccountState.switchAccount)
@@ -305,8 +284,7 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        temperatureTipButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.temperatureTipModalData)
+        weatherView.didTapTemperatureTip
             .map(InfoModalViewController.init)
             .drive(onNext: { [weak self] in
                 self?.present($0, animated: true, completion: nil)

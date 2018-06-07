@@ -13,6 +13,8 @@ class HomeUsageCardView: UIView {
     
     var disposeBag = DisposeBag()
     
+    @IBOutlet weak var clippingView: UIView!
+    
     // Bill Comparison
     @IBOutlet weak var billComparisonView: UIView!
     @IBOutlet weak var usageOverviewLabel: UILabel!
@@ -101,7 +103,8 @@ class HomeUsageCardView: UIView {
                                   initialSelectedIndex: 0)
         
         billComparisonStackView.bringSubview(toFront: segmentedControl)
-    
+        
+        clippingView.layer.cornerRadius = 10
         styleBillComparison()
         styleSmartEnergyRewards()
     }
@@ -118,7 +121,7 @@ class HomeUsageCardView: UIView {
     
     private func styleBillComparison() {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        layer.cornerRadius = 2
+        layer.cornerRadius = 10
         
         usageOverviewLabel.textColor = .blackText
         usageOverviewLabel.font = OpenSans.semibold.of(size: 18)
@@ -140,7 +143,9 @@ class HomeUsageCardView: UIView {
         let dashedBorderColor = UIColor(red: 0, green: 80/255, blue: 125/255, alpha: 0.24)
         noDataBarView.addDashedBorder(color: dashedBorderColor)
         previousBarView.backgroundColor = .primaryColor
+        previousBarView.layer.cornerRadius = 10
         currentBarView.backgroundColor = .primaryColor
+        currentBarView.layer.cornerRadius = 10
         
         // Bar Graph Text Colors
         noDataLabel.textColor = .deepGray
@@ -154,6 +159,7 @@ class HomeUsageCardView: UIView {
         noDataLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         
         barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
+        barDescriptionView.layer.cornerRadius = 10
         barDescriptionDateLabel.textColor = .blackText
         barDescriptionDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         barDescriptionTotalBillTitleLabel.textColor = .blackText

@@ -16,6 +16,7 @@ class TemplateCardView: UIView {
     
     var bag = DisposeBag()
     @IBOutlet weak var clippingView: UIView!
+    @IBOutlet weak var contentView: UIStackView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
@@ -39,10 +40,11 @@ class TemplateCardView: UIView {
     }
     
     private func styleViews() {
-        layer.cornerRadius = 2
+        layer.cornerRadius = 10
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        clippingView.layer.cornerRadius = 2
+        clippingView.layer.cornerRadius = 10
         titleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        titleLabel.setLineHeight(lineHeight: 30)
         bodyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         bodyLabel.setLineHeight(lineHeight: 18)
         callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
@@ -61,7 +63,7 @@ class TemplateCardView: UIView {
         viewModel.ctaString.drive(callToActionButton.rx.title()).disposed(by: bag)
         
         //show error state if an error is received
-        viewModel.shouldShowErrorState.drive(clippingView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowErrorState.drive(contentView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
         viewModel.errorLabelText.drive(onNext: { [weak self] errorText in
             self?.errorLabel.text = errorText

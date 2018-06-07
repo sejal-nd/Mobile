@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Light.ttf">
+            <string>OpenSans-Light</string>
+        </array>
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HomeWeatherView" customModule="BGE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BP2-c6-ApN">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1000" image="ic_day_clear" translatesAutoresizingMaskIntoConstraints="NO" id="SHa-ya-BJD">
+                            <rect key="frame" x="315" y="-2" width="100" height="100"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUa-ac-9jQ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                            <rect key="frame" x="16" y="66" width="142.5" height="23"/>
+                            <subviews>
+                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5eL-ox-LKN">
+                                    <rect key="frame" x="0.0" y="2" width="142.5" height="19"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_home_hightemp" translatesAutoresizingMaskIntoConstraints="NO" id="Qc5-tR-0Xp">
+                                            <rect key="frame" x="0.0" y="0.0" width="12" height="19"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Temperature Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j26-NK-XnX">
+                                            <rect key="frame" x="17" y="0.0" width="125.5" height="19"/>
+                                            <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="5eL-ox-LKN" firstAttribute="top" secondItem="OUa-ac-9jQ" secondAttribute="top" constant="2" id="bee-sA-adl"/>
+                                <constraint firstAttribute="trailing" secondItem="5eL-ox-LKN" secondAttribute="trailing" id="hwl-li-B9J"/>
+                                <constraint firstAttribute="bottom" secondItem="5eL-ox-LKN" secondAttribute="bottom" constant="2" id="iBz-VN-3La"/>
+                                <constraint firstItem="5eL-ox-LKN" firstAttribute="leading" secondItem="OUa-ac-9jQ" secondAttribute="leading" id="iL4-7Z-aIw"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="751" text="Good Evening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BMC-No-7F0">
+                            <rect key="frame" x="16" y="23" width="175" height="38.5"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="98°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPp-Uj-Jc0">
+                            <rect key="frame" x="263" y="23" width="44" height="38.5"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" priority="999" constant="492" id="2BI-8s-Bf7"/>
+                        <constraint firstItem="YPp-Uj-Jc0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BMC-No-7F0" secondAttribute="trailing" constant="8" id="3wv-d7-BzD"/>
+                        <constraint firstAttribute="bottom" secondItem="OUa-ac-9jQ" secondAttribute="bottom" constant="11" id="5ua-Ub-pjq"/>
+                        <constraint firstAttribute="trailing" secondItem="YPp-Uj-Jc0" secondAttribute="trailing" constant="68" id="6fV-RE-JnH"/>
+                        <constraint firstItem="OUa-ac-9jQ" firstAttribute="leading" secondItem="BP2-c6-ApN" secondAttribute="leading" constant="16" id="8E3-eM-Zum"/>
+                        <constraint firstItem="BMC-No-7F0" firstAttribute="leading" secondItem="BP2-c6-ApN" secondAttribute="leading" constant="16" id="Awc-GE-5kT"/>
+                        <constraint firstItem="SHa-ya-BJD" firstAttribute="leading" secondItem="YPp-Uj-Jc0" secondAttribute="trailing" constant="8" id="Q3b-q8-kTM"/>
+                        <constraint firstItem="YPp-Uj-Jc0" firstAttribute="centerY" secondItem="BP2-c6-ApN" secondAttribute="centerY" constant="-8" id="btx-cV-Hby"/>
+                        <constraint firstItem="SHa-ya-BJD" firstAttribute="centerY" secondItem="BP2-c6-ApN" secondAttribute="centerY" constant="-2" id="nL2-Vv-w51"/>
+                        <constraint firstItem="BMC-No-7F0" firstAttribute="centerY" secondItem="BP2-c6-ApN" secondAttribute="centerY" constant="-8" id="r39-yc-Y6S"/>
+                        <constraint firstAttribute="height" constant="100" id="wpi-yI-3Z5"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="Gd1-Xp-Cgf"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="BP2-c6-ApN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1ho-vD-jPC"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BP2-c6-ApN" secondAttribute="trailing" id="6lz-oQ-j7B"/>
+                <constraint firstItem="BP2-c6-ApN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DeS-Rr-Bxd"/>
+                <constraint firstItem="BP2-c6-ApN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" id="OqL-hv-elk"/>
+                <constraint firstItem="BP2-c6-ApN" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="fLF-6b-8qS"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="greetingLabel" destination="BMC-No-7F0" id="xP0-nU-VYP"/>
+                <outlet property="temperatureLabel" destination="YPp-Uj-Jc0" id="Far-TV-Kkb"/>
+                <outlet property="temperatureTipButton" destination="OUa-ac-9jQ" id="2a1-sr-baR"/>
+                <outlet property="temperatureTipImageView" destination="Qc5-tR-0Xp" id="to8-46-uvg"/>
+                <outlet property="temperatureTipLabel" destination="j26-NK-XnX" id="d6D-Yz-9bc"/>
+                <outlet property="weatherIconImage" destination="SHa-ya-BJD" id="tMs-7x-Pv0"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_day_clear" width="100" height="100"/>
+        <image name="ic_home_hightemp" width="12" height="19"/>
+    </resources>
+</document>
