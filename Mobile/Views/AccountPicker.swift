@@ -14,7 +14,7 @@ protocol AccountPickerDelegate: class {
 
 class AccountPicker: UIView {
     
-    let MAX_ACCOUNTS = 5
+    let maxAccounts = 5
     
     weak var delegate: AccountPickerDelegate?
 
@@ -48,7 +48,7 @@ class AccountPicker: UIView {
     }
     
     private var shouldScroll: Bool {
-        return 2...MAX_ACCOUNTS ~= accounts?.count ?? 0 && !isMultiPremise
+        return 2...maxAccounts ~= accounts?.count ?? 0 && !isMultiPremise
     }
     
     private var loadedAccounts = false
@@ -184,15 +184,15 @@ class AccountPicker: UIView {
         currentAccount = AccountsStore.shared.currentAccount ?? accounts[0]
         var pagedAccounts: [Account] = accounts
 
-        if accounts.count > 1 && accounts.count <= MAX_ACCOUNTS {
+        if accounts.count > 1 && accounts.count <= maxAccounts {
             pageControl.numberOfPages = accounts.count
         } else {
-            pagedAccounts = Array(accounts.prefix(MAX_ACCOUNTS))
+            pagedAccounts = Array(accounts.prefix(maxAccounts))
             pageControl.isHidden = true
         }
 
         pageViews.removeAll()
-        if accounts.count <= MAX_ACCOUNTS && !isMultiPremise {
+        if accounts.count <= maxAccounts && !isMultiPremise {
             for account in pagedAccounts {
                 addAccountToScrollView(account)
             }
@@ -289,6 +289,8 @@ class AccountPicker: UIView {
         
         accountStackView.centerXAnchor.constraint(equalTo: pageView.centerXAnchor, constant: 0).isActive = true
         accountStackView.topAnchor.constraint(equalTo: pageView.topAnchor, constant: 10).isActive = true
+        accountStackView.leadingAnchor.constraint(greaterThanOrEqualTo: pageView.leadingAnchor).isActive = true
+        accountStackView.trailingAnchor.constraint(lessThanOrEqualTo: pageView.trailingAnchor).isActive = true
         addressLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 220).isActive = true
         
         leftCaretImageView.image = tintWhite ? #imageLiteral(resourceName: "ic_caret_white_left"):#imageLiteral(resourceName: "ic_caret_left")
