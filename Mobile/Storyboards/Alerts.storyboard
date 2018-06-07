@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NbY-Og-sPR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NbY-Og-sPR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,43 +29,45 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i1F-C3-Con">
-                                <rect key="frame" x="0.0" y="20" width="375" height="146"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="218"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmz-Qs-KFn" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="cmz-Qs-KFn" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="64" id="E5a-oY-97a"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7W-Aj-0Xa" userLabel="Spacer View">
-                                        <rect key="frame" x="67.5" y="64" width="240" height="28"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-Mv-BJQ">
+                                        <rect key="frame" x="0.0" y="90" width="375" height="128"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="54" translatesAutoresizingMaskIntoConstraints="NO" id="7zY-iZ-Y8Z" customClass="AlertsSegmentedControl" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="27" y="28" width="321" height="100"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="28" id="F2R-Zu-6YI"/>
+                                            <constraint firstAttribute="bottom" secondItem="7zY-iZ-Y8Z" secondAttribute="bottom" id="FdE-Tf-NVB"/>
+                                            <constraint firstItem="7zY-iZ-Y8Z" firstAttribute="leading" secondItem="eHI-Mv-BJQ" secondAttribute="leading" constant="27" id="Hzd-6w-RQg"/>
+                                            <constraint firstItem="7zY-iZ-Y8Z" firstAttribute="top" secondItem="eHI-Mv-BJQ" secondAttribute="top" constant="28" id="a5k-6F-99c"/>
+                                            <constraint firstAttribute="trailing" secondItem="7zY-iZ-Y8Z" secondAttribute="trailing" constant="27" id="zD2-Vg-Aiy"/>
                                         </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="54" translatesAutoresizingMaskIntoConstraints="NO" id="7zY-iZ-Y8Z" customClass="AlertsSegmentedControl" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="67.5" y="92" width="240" height="54"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="7zY-iZ-Y8Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i1F-C3-Con" secondAttribute="leading" constant="27" id="H30-sN-37a"/>
+                                    <constraint firstItem="eHI-Mv-BJQ" firstAttribute="leading" secondItem="i1F-C3-Con" secondAttribute="leading" id="AGu-aC-C6H"/>
                                     <constraint firstItem="cmz-Qs-KFn" firstAttribute="leading" secondItem="i1F-C3-Con" secondAttribute="leading" id="UPx-jO-fPf"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7zY-iZ-Y8Z" secondAttribute="trailing" constant="27" id="bVz-nO-SNn"/>
                                     <constraint firstAttribute="trailing" secondItem="cmz-Qs-KFn" secondAttribute="trailing" id="jgm-Pc-Yi2"/>
+                                    <constraint firstAttribute="trailing" secondItem="eHI-Mv-BJQ" secondAttribute="trailing" id="l5X-6i-Oie"/>
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-VA-0un">
-                                <rect key="frame" x="0.0" y="166" width="375" height="501"/>
+                                <rect key="frame" x="0.0" y="238" width="375" height="429"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fcn-Wj-y0Q">
-                                <rect key="frame" x="0.0" y="166" width="375" height="501"/>
+                                <rect key="frame" x="0.0" y="238" width="375" height="429"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Vou-NX-UMt"/>
@@ -138,7 +140,7 @@
                                 </connections>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="90" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9Ks-fh-caA">
-                                <rect key="frame" x="0.0" y="166" width="375" height="501"/>
+                                <rect key="frame" x="0.0" y="238" width="375" height="429"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpdatesCell" rowHeight="87" id="ytX-zA-seJ" customClass="UpdatesTableViewCell" customModule="BGE" customModuleProvider="target">
@@ -201,11 +203,11 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="cZW-SD-mnJ" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="410.5" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="446.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKg-bb-ob0">
-                                <rect key="frame" x="29" y="406.5" width="316" height="20.5"/>
+                                <rect key="frame" x="29" y="442.5" width="316" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Hp5-3i-xC4"/>
                                 </constraints>
@@ -214,7 +216,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MC6-cd-MhW">
-                                <rect key="frame" x="96" y="341" width="182.5" height="151"/>
+                                <rect key="frame" x="96" y="377" width="182.5" height="151"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_alerts_empty" translatesAutoresizingMaskIntoConstraints="NO" id="SNi-DM-9xY">
                                         <rect key="frame" x="41" y="0.0" width="100" height="100"/>
@@ -239,7 +241,7 @@ this time.</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbq-sV-lLn">
-                                <rect key="frame" x="96" y="341.5" width="182.5" height="151"/>
+                                <rect key="frame" x="96" y="377.5" width="182.5" height="151"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_updates_empty" translatesAutoresizingMaskIntoConstraints="NO" id="hFg-1v-xod">
                                         <rect key="frame" x="41" y="0.0" width="100" height="100"/>
@@ -313,6 +315,7 @@ this time.</string>
                         <outlet property="preferencesButton" destination="fyw-HH-wzm" id="arJ-vo-3tk"/>
                         <outlet property="preferencesButtonLabel" destination="UfZ-yO-Fmf" id="xWF-Og-ifW"/>
                         <outlet property="segmentedControl" destination="7zY-iZ-Y8Z" id="Z8I-XJ-gTe"/>
+                        <outlet property="segmentedControlContainer" destination="eHI-Mv-BJQ" id="8ub-lF-rEw"/>
                         <outlet property="topStackView" destination="i1F-C3-Con" id="hat-xF-BGq"/>
                         <outlet property="updatesEmptyStateLabel" destination="X2c-CW-LbN" id="BIh-dv-wRs"/>
                         <outlet property="updatesEmptyStateView" destination="Vbq-sV-lLn" id="Gr0-Za-47V"/>
