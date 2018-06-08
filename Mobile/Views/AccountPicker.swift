@@ -64,6 +64,12 @@ class AccountPicker: UIView {
     
     @IBInspectable var tintWhite: Bool = false
     
+    @IBInspectable var showShadow: Bool = true {
+        didSet {
+            shadowView.isHidden = !showShadow
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
