@@ -28,7 +28,8 @@ class SettingsTableViewCell: UITableViewCell {
         
         innerContentView.layer.cornerRadius = 4.0
         innerContentView.layer.masksToBounds = true
-        self.layer.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        
+        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3.0)
         
         label.textColor = .blackText
         label.font = SystemFont.medium.of(textStyle: .title1)

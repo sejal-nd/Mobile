@@ -122,7 +122,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var customErrorTitleLabel: UILabel!
     @IBOutlet weak var customErrorDetailLabel: UILabel!
     
-    private var cornerRadius: CGFloat = 4.0
+    private let cornerRadius: CGFloat = 4.0
     
     var refreshControl: UIRefreshControl?
     

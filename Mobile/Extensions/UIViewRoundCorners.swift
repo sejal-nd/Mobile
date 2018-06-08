@@ -17,7 +17,7 @@ extension UIView {
      - parameter radius:  Radius to round to
      */
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-        _ = _round(corners: corners, radius: radius)
+        _round(corners: corners, radius: radius)
     }
     
     /**

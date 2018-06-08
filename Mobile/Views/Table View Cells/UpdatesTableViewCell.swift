@@ -24,7 +24,7 @@ class UpdatesTableViewCell: UITableViewCell {
         innerContentView.layer.masksToBounds = true
         innerContentView.backgroundColorOnPress = .softGray
         
-        self.layer.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 2.0)
         
         titleLabel.textColor = .blackText
         titleLabel.font = SystemFont.bold.of(textStyle: .headline)

@@ -120,7 +120,7 @@ class BillAnalysisViewController: UIViewController {
     
     let viewModel = BillAnalysisViewModel(usageService: ServiceFactory.createUsageService())
     
-    private var cornderRadius: CGFloat = 4.0
+    private let cornderRadius: CGFloat = 4.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
