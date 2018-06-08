@@ -43,7 +43,7 @@ class ContactUsViewController: UIViewController {
         view.backgroundColor = .primaryColor
         
         cardView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        cardView.layer.cornerRadius = 2
+        cardView.layer.cornerRadius = 10.0
         
         for line in dividerLines {
             line.backgroundColor = .accentGray

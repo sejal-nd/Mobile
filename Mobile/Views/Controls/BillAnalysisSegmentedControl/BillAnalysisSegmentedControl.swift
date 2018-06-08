@@ -51,6 +51,9 @@ class BillAnalysisSegmentedControl: UIControl {
         rightLabel.textColor = .blackText
         rightLabel.font = OpenSans.semibold.of(textStyle: .headline)
         
+        leftBar.layer.cornerRadius = 2.0
+        rightBar.layer.cornerRadius = 2.0
+        
         leftTriangle.tintColor = .primaryColor
         rightTriangle.tintColor = .primaryColor
         

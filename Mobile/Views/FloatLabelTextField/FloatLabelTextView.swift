@@ -197,6 +197,8 @@ class FloatLabelTextView: UIView {
         borders[0].frame = CGRect(origin: .zero ,size: CGSize(width: viewFrame.width, height: frameWidth))
         borders[1].frame = CGRect(x: viewFrame.width-frameWidth, y: 0, width: frameWidth, height: viewFrame.height)
         borders[2].frame = CGRect(x: 0, y: viewFrame.height-frameWidth, width: viewFrame.width, height: frameWidth)
+        
+        roundCorners([.topLeft, .topRight], radius: 4.0)
     }
     
 }
