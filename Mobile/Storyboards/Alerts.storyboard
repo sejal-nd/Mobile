@@ -36,6 +36,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="showShadow" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-Mv-BJQ">
@@ -46,7 +47,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="7zY-iZ-Y8Z" secondAttribute="bottom" id="FdE-Tf-NVB"/>
                                             <constraint firstItem="7zY-iZ-Y8Z" firstAttribute="leading" secondItem="eHI-Mv-BJQ" secondAttribute="leading" constant="27" id="Hzd-6w-RQg"/>
@@ -315,7 +316,6 @@ this time.</string>
                         <outlet property="preferencesButton" destination="fyw-HH-wzm" id="arJ-vo-3tk"/>
                         <outlet property="preferencesButtonLabel" destination="UfZ-yO-Fmf" id="xWF-Og-ifW"/>
                         <outlet property="segmentedControl" destination="7zY-iZ-Y8Z" id="Z8I-XJ-gTe"/>
-                        <outlet property="segmentedControlContainer" destination="eHI-Mv-BJQ" id="8ub-lF-rEw"/>
                         <outlet property="topStackView" destination="i1F-C3-Con" id="hat-xF-BGq"/>
                         <outlet property="updatesEmptyStateLabel" destination="X2c-CW-LbN" id="BIh-dv-wRs"/>
                         <outlet property="updatesEmptyStateView" destination="Vbq-sV-lLn" id="Gr0-Za-47V"/>

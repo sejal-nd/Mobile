@@ -16,7 +16,6 @@ class AlertsViewController: AccountPickerViewController {
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     
     @IBOutlet weak var topStackView: UIStackView!
-    @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var segmentedControl: AlertsSegmentedControl!
     
     @IBOutlet weak var backgroundView: UIView!
@@ -42,7 +41,6 @@ class AlertsViewController: AccountPickerViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .primaryColorAccountPicker
-        segmentedControlContainer.backgroundColor = .primaryColor
         
         segmentedControl.setItems(leftLabel: NSLocalizedString("My Alerts", comment: ""),
                                   rightLabel: NSLocalizedString("Updates", comment: ""),
