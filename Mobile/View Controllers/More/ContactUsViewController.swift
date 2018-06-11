@@ -39,7 +39,7 @@ class ContactUsViewController: UIViewController {
     
     let bag = DisposeBag()
     
-    var unauthenticatedExperience = false;
+    var unauthenticatedExperience = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +94,9 @@ class ContactUsViewController: UIViewController {
         submitFormButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
+                
+                Analytics.log(event: self.unauthenticatedExperience ? .UnAuthContactUsForm : .ContactUsForm)
+                
                 let safariVC = SFSafariViewController.createWithCustomStyle(url: self.contactUsViewModel.onlineFormUrl)
                 self.present(safariVC, animated: true, completion: nil)
             })
