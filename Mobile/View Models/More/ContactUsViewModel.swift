@@ -33,6 +33,20 @@ class ContactUsViewModel {
         return emergencyAttrString
     }
     
+    var onlineFormUrl: URL {
+        let urlString: String
+        switch Environment.shared.opco {
+        case .bge:
+            urlString = "https://bge.custhelp.com/app/ContactUs"
+        case .comEd:
+            urlString = "https://secure.comed.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
+        case .peco:
+            urlString = "https://secure.peco.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
+        }
+        
+        return URL(string: urlString)!
+    }
+    
     var label1: String {
         switch opco {
         case .bge: return NSLocalizedString("Residential", comment: "")
