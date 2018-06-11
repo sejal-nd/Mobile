@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import SafariServices
 
 class ContactUsViewController: UIViewController {
     
@@ -18,6 +19,9 @@ class ContactUsViewController: UIViewController {
     
     @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
     @IBOutlet weak var emergencyDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var submitFormButton: UIButton!
+    @IBOutlet weak var onlineDescriptionLabel: UILabel!
     
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var firstNumberTextView: DataDetectorTextView!
@@ -35,7 +39,7 @@ class ContactUsViewController: UIViewController {
     
     let bag = DisposeBag()
     
-    var unauthenticatedExperience = false;
+    var unauthenticatedExperience = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +54,7 @@ class ContactUsViewController: UIViewController {
         }
 
         emergencySetup()
+        onlineSetup()
         customerServiceSetup()
         socialMediaButtonsSetup()
     }
@@ -83,6 +88,21 @@ class ContactUsViewController: UIViewController {
         
         emergencyDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         emergencyDescriptionLabel.attributedText = contactUsViewModel.emergencyAttrString
+    }
+    
+    func onlineSetup() {
+        submitFormButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                
+                Analytics.log(event: self.unauthenticatedExperience ? .UnAuthContactUsForm : .ContactUsForm)
+                
+                let safariVC = SFSafariViewController.createWithCustomStyle(url: self.contactUsViewModel.onlineFormUrl)
+                self.present(safariVC, animated: true, completion: nil)
+            })
+            .disposed(by: bag)
+        
+        onlineDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
     }
     
     func customerServiceSetup() {
