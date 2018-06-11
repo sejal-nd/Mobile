@@ -13,6 +13,7 @@ class OutageViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
+    @IBOutlet weak var backgroundScrollConstraint: NSLayoutConstraint!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet weak var gradientBackground: UIView!
@@ -128,6 +129,14 @@ class OutageViewController: AccountPickerViewController {
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.getOutageStatus() })
             .disposed(by: disposeBag)
+        
+        
+        scrollView?.rx.contentOffset.asDriver()
+            .map { min(0, $0.y) }
+            .distinctUntilChanged()
+            .drive(backgroundScrollConstraint.rx.constant)
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
