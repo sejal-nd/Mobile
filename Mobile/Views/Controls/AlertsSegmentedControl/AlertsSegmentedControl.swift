@@ -64,6 +64,12 @@ class AlertsSegmentedControl: UIControl {
         rightButton.accessibilityTraits = UIAccessibilityTraitNone
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        leftBar.roundCorners([.topLeft, .topRight], radius: 2.0)
+        rightBar.roundCorners([.topLeft, .topRight], radius: 2.0)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         leftBar.roundCorners([.topLeft, .topRight], radius: 2.0)
