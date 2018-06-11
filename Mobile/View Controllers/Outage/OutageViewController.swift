@@ -108,6 +108,8 @@ class OutageViewController: AccountPickerViewController {
                 self.customErrorView.isHidden = true
                 self.loadingView.isHidden = true
                 self.loadingView.accessibilityViewIsModal = false
+                self.noNetworkConnectionView.isHidden = true
+                self.maintenanceModeView.isHidden = true
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
                 if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
