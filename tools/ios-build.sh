@@ -296,7 +296,7 @@ if [[ $target_phases = *"build"* ]]; then
 		if [ -n "$APP_CENTER_API_TOKEN" ]; then
 
 			appcenter crashes upload-symbols -s \
-				build/$target_scheme/$OPCO.app.DSYM \
+				build/$CONFIGURATION/$OPCO.app.DSYM \
 				--app $target_app_center_app \
 				--token $APP_CENTER_API_TOKEN
 				
