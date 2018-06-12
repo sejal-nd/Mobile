@@ -239,7 +239,7 @@ class BillViewController: AccountPickerViewController {
         remainingBalancePastDueView.layer.cornerRadius = cornerRadius
         restoreServiceView.layer.cornerRadius = cornerRadius
         
-        billPaidView.layer.cornerRadius = cornerRadius
+        billPaidView.layer.cornerRadius = 10
 
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = cornerRadius
