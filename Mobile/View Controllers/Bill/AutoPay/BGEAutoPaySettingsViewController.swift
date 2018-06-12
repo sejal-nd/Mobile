@@ -108,9 +108,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         let backButton = UIBarButtonItem(customView: systemBack)
         backButton.isAccessibilityElement = true
         backButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
-        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        negativeSpacer.width = -8
-        navigationItem.leftBarButtonItems = [negativeSpacer, backButton]
+        navigationItem.leftBarButtonItems = [backButton]
         
         buildStackViews()
         
