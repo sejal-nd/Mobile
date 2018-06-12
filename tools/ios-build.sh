@@ -43,7 +43,7 @@ to just update the build script directly if it's a permanent change.
 
 --project                 - Name of the xcodeproj -- defaults to Mobile.xcodeproj
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
---phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, distribute, writeDistributionScript
+--phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
 "
 
 PROPERTIES_FILE='version.properties'
@@ -112,7 +112,7 @@ elif [ -z "$OPCO" ]; then
 	exit 1
 fi
 
-target_phases="carthage, build, veracodePrep, unitTest, appCenterTest, distribute, writeDistributionScript"
+target_phases="carthage, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript"
 
 if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
@@ -290,6 +290,60 @@ if [[ $target_phases = *"build"* ]]; then
 
 	echo "--------------------------------- Post exporting -------------------------------"
 
+
+	if [[ $target_phases = *"appCenterSymbols"* ]]; then
+		# Push to App Center Distribute
+		if [ -n "$APP_CENTER_API_TOKEN" ]; then
+
+			appcenter crashes upload-symbols -s \
+				build/$CONFIGURATION/$OPCO.app.DSYM \
+				--app $target_app_center_app \
+				--token $APP_CENTER_API_TOKEN
+				
+		else
+			echo "Skipping App Center symbol uploading due to missing variables - \"app-center-api-token\""
+		fi
+	fi
+
+	if [[ $target_phases = *"distribute"* ]]; then
+		# Push to App Center Distribute
+		if [ -n "$APP_CENTER_GROUP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
+
+			appcenter distribute release \
+				--app $target_app_center_app \
+				--token $APP_CENTER_API_TOKEN \
+				--file "build/output/$target_scheme/$target_scheme.ipa" \
+				--group "$APP_CENTER_GROUP"
+
+		else
+			echo "Skipping App Center Distribution due to missing variables - \"app-center-group\" or \"app-center-api-token\""
+		fi
+	fi
+
+	if [[ $target_phases = *"writeDistributionScript"* ]]; then
+	  echo "#!/usr/bin/env bash
+
+APP_CENTER_API_TOKEN=
+APP_CENTER_GROUP=
+
+# Parse arguments.
+for i in \"\$@\"; do
+case \$1 in
+    --app-center-api-token) APP_CENTER_API_TOKEN=\"\$2\"; shift ;;
+    --app-center-group) APP_CENTER_GROUP=\"\$2\"; shift ;;
+esac
+shift
+done
+
+echo \"Uploading app to app center for distribution to group \$APP_CENTER_GROUP\"
+appcenter distribute release \\
+--app \"$target_app_center_app\" \\
+--file \"build/output/$target_scheme/$target_scheme.ipa\" \\
+--token \$APP_CENTER_API_TOKEN \\
+--group \"\$APP_CENTER_GROUP\"
+" > ./tools/app_center_push.sh
+	fi 
+
 fi
 
 if [[ $target_phases = *"veracodePrep"* ]]; then
@@ -363,42 +417,3 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 		echo "Skipping App Center Test due to missing variables - \"app-center-test-devices\", or \"app-center-api-token\""
 	fi
 fi
-
-if [[ $target_phases = *"distribute"* ]]; then
-	# Push to App Center Distribute
-	if [ -n "$APP_CENTER_GROUP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
-
-		appcenter distribute release \
-			--app $target_app_center_app \
-			--token $APP_CENTER_API_TOKEN \
-			--file "build/output/$target_scheme/$target_scheme.ipa" \
-			--group "$APP_CENTER_GROUP"
-
-	else
-		echo "Skipping App Center Distribution due to missing variables - \"app-center-group\" or \"app-center-api-token\""
-	fi
-fi
-
-if [[ $target_phases = *"writeDistributionScript"* ]]; then
-  echo "#!/usr/bin/env bash
-
-APP_CENTER_API_TOKEN=
-APP_CENTER_GROUP=
-
-# Parse arguments.
-for i in \"\$@\"; do
-    case \$1 in
-        --app-center-api-token) APP_CENTER_API_TOKEN=\"\$2\"; shift ;;
-        --app-center-group) APP_CENTER_GROUP=\"\$2\"; shift ;;
-    esac
-    shift
-done
-
-  echo \"Uploading app to app center for distribution to group \$APP_CENTER_GROUP\"
-  appcenter distribute release \\
-    --app \"$target_app_center_app\" \\
-    --file \"build/output/$target_scheme/$target_scheme.ipa\" \\
-    --token \$APP_CENTER_API_TOKEN \\
-    --group \"\$APP_CENTER_GROUP\"
-  " > ./tools/app_center_push.sh
-fi 

@@ -45,15 +45,11 @@ class DisclosureButton: UIButton {
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         detailLabel.textColor = .middleGray
         setDetailLabel(text: "", checkHidden: true)
+        
+        view.layer.cornerRadius = 4
+        view.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        view.cornerRadiusWithShadow(cornerRadius: 4.0, color: .black, opacity: 0.2, offset: .zero, shadowRadius: 3.0)
-        
-    }
-
     func setDetailLabel(text: String?, checkHidden: Bool) {
         detailLabel.text = text
         detailLabel.isHidden = (text ?? "").isEmpty
