@@ -103,6 +103,7 @@ class SmartEnergyRewardsView: UIView {
         bar3DollarLabel.textColor = .blackText
         bar3DateLabel.textColor = .blackText
         
+        barDescriptionView.layer.cornerRadius = 10
         barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
         barDescriptionDateLabel.textColor = .blackText
         barDescriptionDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
@@ -151,6 +152,11 @@ class SmartEnergyRewardsView: UIView {
         viewModel.bar1HeightConstraintValue.drive(bar1HeightConstraint.rx.constant).disposed(by: disposeBag)
         viewModel.bar2HeightConstraintValue.drive(bar2HeightConstraint.rx.constant).disposed(by: disposeBag)
         viewModel.bar3HeightConstraintValue.drive(bar3HeightConstraint.rx.constant).disposed(by: disposeBag)
+        
+        // Bar corner radius
+        viewModel.bar1HeightConstraintValue.map { min(10, $0/2) }.drive(bar1BarView.rx.cornerRadius).disposed(by: disposeBag)
+        viewModel.bar2HeightConstraintValue.map { min(10, $0/2) }.drive(bar2BarView.rx.cornerRadius).disposed(by: disposeBag)
+        viewModel.bar3HeightConstraintValue.map { min(10, $0/2) }.drive(bar3BarView.rx.cornerRadius).disposed(by: disposeBag)
         
         // Bar Accessibility
         viewModel.bar1A11yLabel.drive(bar1ContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
