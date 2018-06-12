@@ -23,6 +23,7 @@ class MiniWalletTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
+        innerContentView.layer.cornerRadius = 10
         innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         innerContentView.backgroundColorOnPress = .softGray
         
@@ -118,6 +119,7 @@ class MiniWalletAddAccountCell: UITableViewCell {
         
         selectionStyle = .none
         
+        innerContentView.layer.cornerRadius = 10
         innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         innerContentView.backgroundColorOnPress = .softGray
         

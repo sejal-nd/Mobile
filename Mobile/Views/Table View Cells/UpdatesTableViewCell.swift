@@ -20,7 +20,7 @@ class UpdatesTableViewCell: UITableViewCell {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         
-        innerContentView.layer.cornerRadius = 4.0
+        innerContentView.layer.cornerRadius = 10.0
         innerContentView.layer.masksToBounds = true
         innerContentView.backgroundColorOnPress = .softGray
         

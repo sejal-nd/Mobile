@@ -109,6 +109,7 @@ class ReviewPaymentViewController: UIViewController {
         paymentAccountMaskedAccountNumberLabel.textColor = .blackText
         paymentAccountNicknameLabel.textColor = .middleGray
         
+        receiptView.layer.cornerRadius = 10
         receiptView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         amountDueTextLabel.textColor = .deepGray

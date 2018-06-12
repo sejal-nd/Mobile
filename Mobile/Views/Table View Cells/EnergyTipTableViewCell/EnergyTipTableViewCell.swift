@@ -25,7 +25,7 @@ class EnergyTipTableViewCell: UITableViewCell {
         bodyLabel.font = OpenSans.regular.of(textStyle: .body)
         bodyLabel.numberOfLines = 0
         
-        roundedView.layer.cornerRadius = 4.0
+        roundedView.layer.cornerRadius = 10
         roundedView.layer.masksToBounds = true
     }
     

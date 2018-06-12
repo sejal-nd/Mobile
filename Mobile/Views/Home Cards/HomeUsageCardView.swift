@@ -143,9 +143,7 @@ class HomeUsageCardView: UIView {
         let dashedBorderColor = UIColor(red: 0, green: 80/255, blue: 125/255, alpha: 0.24)
         noDataBarView.addDashedBorder(color: dashedBorderColor)
         previousBarView.backgroundColor = .primaryColor
-        previousBarView.layer.cornerRadius = 10
         currentBarView.backgroundColor = .primaryColor
-        currentBarView.layer.cornerRadius = 10
         
         // Bar Graph Text Colors
         noDataLabel.textColor = .deepGray
@@ -263,6 +261,10 @@ class HomeUsageCardView: UIView {
         // Bar graph height constraints
         viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)
         viewModel.currentBarHeightConstraintValue.drive(currentBarHeightConstraint.rx.constant).disposed(by: disposeBag)
+        
+        // Bar graph corner radius
+        viewModel.previousBarHeightConstraintValue.map { min(10, $0/2) }.drive(previousBarView.rx.cornerRadius).disposed(by: disposeBag)
+        viewModel.currentBarHeightConstraintValue.map { min(10, $0/2) }.drive(currentBarView.rx.cornerRadius).disposed(by: disposeBag)
 
         // Bar show/hide
         viewModel.noPreviousData.asDriver().not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)

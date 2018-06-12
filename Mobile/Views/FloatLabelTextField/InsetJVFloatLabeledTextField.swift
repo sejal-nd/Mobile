@@ -80,9 +80,12 @@ class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
             layer.removeFromSuperlayer()
         }
         
-        borderLayers.append(addTopBorder(color: .accentGray, width: 0.5))
-        borderLayers.append(addRightBorder(color: .accentGray, width: 0.5))
-        borderLayers.append(addBottomBorder(color: .accentGray, width: 0.5))
+        let edgeWidth = 1.0 / UIScreen.main.scale
+        
+        borderLayers.append(addRoundedTopRightBorder(radius: 4, borderColor: .accentGray, borderWidth: 2 * edgeWidth))
+        borderLayers.append(addTopBorder(color: .accentGray, width: edgeWidth))
+        borderLayers.append(addRightBorder(color: .accentGray, width: edgeWidth))
+        borderLayers.append(addBottomBorder(color: .accentGray, width: edgeWidth))
     }
     
 }

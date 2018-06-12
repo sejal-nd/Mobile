@@ -159,6 +159,7 @@ class MakePaymentViewController: UIViewController {
         paymentAccountLabel.textColor = .deepGray
         paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
+        paymentAccountButton.layer.cornerRadius = 10
         paymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         paymentAccountButton.backgroundColorOnPress = .softGray
         paymentAccountAccountNumberLabel.textColor = .blackText
@@ -227,6 +228,7 @@ class MakePaymentViewController: UIViewController {
         addBankAccountFeeLabel.textColor = .blackText
         addBankAccountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         addBankAccountFeeLabel.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
+        addBankAccountButton.layer.cornerRadius = 10
         addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addBankAccountButton.backgroundColorOnPress = .softGray
         addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
@@ -241,6 +243,7 @@ class MakePaymentViewController: UIViewController {
             addCreditCardFeeLabel.text = String(format: NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.", comment: ""), accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
             break
         }
+        addCreditCardButton.layer.cornerRadius = 10
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addCreditCardButton.backgroundColorOnPress = .softGray
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")

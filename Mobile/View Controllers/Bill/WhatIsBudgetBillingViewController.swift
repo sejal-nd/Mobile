@@ -20,6 +20,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
     @IBOutlet var bulletCollection: [UIView]!
     
     // Card 1
+    @IBOutlet weak var card1View: UIView!
     @IBOutlet weak var card1TitleLabel: UILabel!
     @IBOutlet weak var card1Bullet1Label: UILabel!
     @IBOutlet weak var card1Bullet2Label: UILabel!
@@ -27,6 +28,7 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
     @IBOutlet weak var card1Bullet3Label: UILabel!
     
     // Card 2
+    @IBOutlet weak var card2View: UIView!
     @IBOutlet weak var card2TitleLabel: UILabel!
     @IBOutlet weak var card2Bullet1Label: UILabel!
     @IBOutlet weak var card2Bullet2Label: UILabel!
@@ -51,6 +53,9 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         
         navDescriptionLabel.textColor = .deepGray
         navDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
+        
+        card1View.layer.cornerRadius = 10
+        card2View.layer.cornerRadius = 10
         
         card1TitleLabel.textColor = .primaryColorADA
         card1TitleLabel.text = NSLocalizedString("1 consistent bill over 12 months", comment: "")

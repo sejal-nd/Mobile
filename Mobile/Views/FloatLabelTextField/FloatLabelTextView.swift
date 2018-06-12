@@ -20,6 +20,7 @@ class FloatLabelTextView: UIView {
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet var borders: [UIView]!
+    @IBOutlet var borderWidthConstraints: [NSLayoutConstraint]!
     @IBOutlet weak var disabledColorBar: UIView!
     
     var textFieldIsFocused = false
@@ -124,6 +125,10 @@ class FloatLabelTextView: UIView {
         for view in borders {
             view.backgroundColor = .accentGray
         }
+        
+        borderWidthConstraints.forEach {
+            $0.constant = 1.0 / UIScreen.main.scale
+        }
     }
     
     private func setInfoMessage(_ message: String?) {
@@ -189,15 +194,6 @@ class FloatLabelTextView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        let frameWidth: CGFloat = 0.5
-        let viewFrame = textFieldView.frame
-        
-        //Adjust border views - IB won't respect half pixel resolution (order: top/right/bottom)
-        borders[0].frame = CGRect(origin: .zero ,size: CGSize(width: viewFrame.width, height: frameWidth))
-        borders[1].frame = CGRect(x: viewFrame.width-frameWidth, y: 0, width: frameWidth, height: viewFrame.height)
-        borders[2].frame = CGRect(x: 0, y: viewFrame.height-frameWidth, width: viewFrame.width, height: frameWidth)
-        
         view.roundCorners([.topLeft, .topRight], radius: 4.0)
     }
     

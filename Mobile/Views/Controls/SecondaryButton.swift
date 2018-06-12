@@ -32,11 +32,8 @@ class SecondaryButton: UIButton {
         setTitleColor(.actionBlue, for: .normal)
         setTitleColor(.actionBlue, for: .highlighted)
         setTitleColor(.middleGray, for: .disabled)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layer.cornerRadius = 4.0
+        
+        layer.cornerRadius = 10.0
     }
     
     override var isHighlighted: Bool {

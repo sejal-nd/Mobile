@@ -57,6 +57,36 @@ extension UIView {
         return layer
     }
     
+    @discardableResult func addRoundedTopRightBorder(radius: CGFloat, borderColor: UIColor, borderWidth: CGFloat) -> CALayer {
+        let borderLayer = CAShapeLayer()
+        borderLayer.path = UIBezierPath(arcCenter: CGPoint(x: bounds.width - radius, y: radius),
+                                        radius: radius,
+                                        startAngle: 3 * .pi / 2,
+                                        endAngle: 0,
+                                        clockwise: true).cgPath
+        borderLayer.fillColor = UIColor.clear.cgColor
+        borderLayer.strokeColor = borderColor.cgColor
+        borderLayer.lineWidth = borderWidth
+        borderLayer.frame = bounds
+        layer.addSublayer(borderLayer)
+        return borderLayer
+    }
+    
+    @discardableResult func addRoundedTopLeftBorder(radius: CGFloat, borderColor: UIColor, borderWidth: CGFloat) -> CALayer {
+        let borderLayer = CAShapeLayer()
+        borderLayer.path = UIBezierPath(arcCenter: CGPoint(x: radius, y: radius),
+                                        radius: radius,
+                                        startAngle: 3 * .pi / 2,
+                                        endAngle: .pi,
+                                        clockwise: false).cgPath
+        borderLayer.fillColor = UIColor.clear.cgColor
+        borderLayer.strokeColor = borderColor.cgColor
+        borderLayer.lineWidth = borderWidth
+        borderLayer.frame = bounds
+        layer.addSublayer(borderLayer)
+        return borderLayer
+    }
+    
     private func removeSublayer(named name: String) {
         if let sublayers = self.layer.sublayers {
             for layer in sublayers {

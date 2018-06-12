@@ -22,6 +22,9 @@
                 <outletCollection property="borders" destination="roa-Xn-0yw" collectionClass="NSMutableArray" id="mGU-wF-ErA"/>
                 <outletCollection property="borders" destination="v1h-Pj-JPF" collectionClass="NSMutableArray" id="NhC-Vw-XYs"/>
                 <outletCollection property="borders" destination="wth-ZX-ulD" collectionClass="NSMutableArray" id="eLR-R9-YMu"/>
+                <outletCollection property="borderWidthConstraints" destination="v8L-aM-pYA" collectionClass="NSMutableArray" id="NjS-GV-Fi0"/>
+                <outletCollection property="borderWidthConstraints" destination="P7K-Pn-uLx" collectionClass="NSMutableArray" id="jnZ-63-OMe"/>
+                <outletCollection property="borderWidthConstraints" destination="qQp-a6-NqO" collectionClass="NSMutableArray" id="tfh-cS-nRv"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -32,7 +35,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yrs-y8-dOq">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uU3-Y0-NVh" userLabel="Text View" customClass="JVFloatLabeledTextView">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uU3-Y0-NVh" userLabel="Text View" customClass="BorderedFloatLabeledTextView" customModule="BGE" customModuleProvider="target">
                             <rect key="frame" x="14" y="0.0" width="306" height="58.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>

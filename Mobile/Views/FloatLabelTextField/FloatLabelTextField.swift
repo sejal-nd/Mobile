@@ -87,7 +87,6 @@ class FloatLabelTextField: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
         view.roundCorners([.topLeft, .topRight], radius: 4.0)
     }
     

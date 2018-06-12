@@ -56,6 +56,12 @@ extension Reactive where Base: UIView {
         }
     }
     
+    public var cornerRadius: Binder<CGFloat> {
+        return Binder(base) { view, radius in
+            view.layer.cornerRadius = radius
+        }
+    }
+    
 }
 
 extension Reactive where Base: UILabel {
