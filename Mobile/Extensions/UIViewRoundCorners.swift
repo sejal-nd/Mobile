@@ -17,7 +17,12 @@ extension UIView {
      - parameter radius:  Radius to round to
      */
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-        _round(corners: corners, radius: radius)
+        if #available(iOS 11.0, *) {
+            layer.maskedCorners = corners.cornerMask
+            layer.cornerRadius = radius
+        } else {
+            _roundWithMask(corners: corners, radius: radius)
+        }
     }
     
     /**
@@ -29,8 +34,15 @@ extension UIView {
      - parameter borderWidth: The border width
      */
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat, borderColor: UIColor, borderWidth: CGFloat) {
-        let mask = _round(corners: corners, radius: radius)
-        addBorder(mask: mask, borderColor: borderColor, borderWidth: borderWidth)
+        if #available(iOS 11.0, *) {
+            layer.maskedCorners = corners.cornerMask
+            layer.cornerRadius = radius
+            layer.borderColor = borderColor.cgColor
+            layer.borderWidth = borderWidth
+        } else {
+            let mask = _roundWithMask(corners: corners, radius: radius)
+            addBorder(mask: mask, borderColor: borderColor, borderWidth: borderWidth)
+        }
     }
     
     /**
@@ -47,31 +59,12 @@ extension UIView {
         layer.borderColor = borderColor.cgColor
     }
     
-    /**
-     Rounds the corner radius of a UIView & sets a shadow to that UIView
-     
-     - parameter cornerRadius: Corner Radius of UIView
-     - parameter color:        Color of shadow
-     - parameter opacity:      Opacity of shadow
-     - parameter offset:       offset of shadow
-     - parameter shadowRadius: radius of shadow
-     */
-    func cornerRadiusWithShadow(cornerRadius : CGFloat, color: UIColor, opacity: Float, offset: CGSize, shadowRadius: CGFloat) {
-        layer.cornerRadius = cornerRadius
-        clipsToBounds = true
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
-        layer.shadowColor = color.cgColor
-        layer.shadowOpacity = opacity
-        layer.shadowOffset = offset
-        layer.shadowRadius = shadowRadius
-        layer.masksToBounds = false
-    }
-    
 }
 
 private extension UIView {
     
-    @discardableResult func _round(corners: UIRectCorner, radius: CGFloat) -> CAShapeLayer {
+    @available(iOS, deprecated: 11.0, message: "In iOS 11+, use `CALayer.maskedCorners` instead")
+    @discardableResult func _roundWithMask(corners: UIRectCorner, radius: CGFloat) -> CAShapeLayer {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
         mask.path = path.cgPath
@@ -79,6 +72,7 @@ private extension UIView {
         return mask
     }
     
+    @available(iOS, deprecated: 11.0, message: "In iOS 11+, use `CALayer.maskedCorners` instead")
     func addBorder(mask: CAShapeLayer, borderColor: UIColor, borderWidth: CGFloat) {
         let borderLayer = CAShapeLayer()
         borderLayer.path = mask.path
@@ -89,4 +83,28 @@ private extension UIView {
         layer.addSublayer(borderLayer)
     }
     
+}
+
+extension UIRectCorner {
+    var cornerMask: CACornerMask {
+        var cornerMask: CACornerMask = []
+        
+        if contains(.topLeft) {
+            cornerMask.formUnion(.layerMinXMinYCorner)
+        }
+        
+        if contains(.topRight) {
+            cornerMask.formUnion(.layerMaxXMinYCorner)
+        }
+        
+        if contains(.bottomLeft) {
+            cornerMask.formUnion(.layerMinXMaxYCorner)
+        }
+        
+        if contains(.bottomRight) {
+            cornerMask.formUnion(.layerMaxXMaxYCorner)
+        }
+        
+        return cornerMask
+    }
 }
