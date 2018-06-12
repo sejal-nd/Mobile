@@ -93,7 +93,7 @@ class SegmentedControl: UIControl {
         
         borderLayers.removeAll()
         
-        let edgeWidth: CGFloat = 1.0
+        let edgeWidth: CGFloat = 1.0 / UIScreen.main.scale
         
         if let items = items {
             let itemWidth = frame.width / CGFloat(items.count)

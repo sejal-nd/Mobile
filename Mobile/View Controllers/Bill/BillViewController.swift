@@ -222,22 +222,14 @@ class BillViewController: AccountPickerViewController {
 
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
+        
+        alertBannerView.layer.cornerRadius = 10
 
         totalAmountView.superview?.bringSubview(toFront: totalAmountView)
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
 
         needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
-
-        alertBannerView.layer.cornerRadius = cornerRadius
-        avoidShutoffView.layer.cornerRadius = cornerRadius
-        billIssuedView.layer.cornerRadius = cornerRadius
-        catchUpView.layer.cornerRadius = cornerRadius
-        creditView.layer.cornerRadius = cornerRadius
         needHelpUnderstandingButton.layer.cornerRadius = 10
-        pastDueView.layer.cornerRadius = cornerRadius
-        paymentReceivedView.layer.cornerRadius = cornerRadius
-        remainingBalancePastDueView.layer.cornerRadius = cornerRadius
-        restoreServiceView.layer.cornerRadius = cornerRadius
         
         billPaidView.layer.cornerRadius = 10
 
