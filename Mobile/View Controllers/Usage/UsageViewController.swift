@@ -110,7 +110,7 @@ class UsageViewController: UIViewController {
     
     private func styleViews() {
         hourlyPricingCard.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        hourlyPricingCard.layer.cornerRadius = 2
+        hourlyPricingCard.layer.cornerRadius = 10
         hourlyPricingTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
         hourlyPricingTitleLabel.textColor = .blackText
         hourlyPricingBodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -119,7 +119,7 @@ class UsageViewController: UIViewController {
         hourlyPricingEnrollButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
         
         peakTimeSavingsCard.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        peakTimeSavingsCard.layer.cornerRadius = 2
+        peakTimeSavingsCard.layer.cornerRadius = 10
         peakTimeSavingsTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
         peakTimeSavingsTitleLabel.textColor = .blackText
         peakTimeSavingsTitleLabel.text = NSLocalizedString("Peak Time Savings", comment: "")

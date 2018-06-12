@@ -4570,6 +4570,7 @@ the year</string>
                         <outlet property="card1Bullet3Label" destination="FcI-tU-mdt" id="XZm-Rj-9NW"/>
                         <outlet property="card1Bullet3View" destination="h2Q-Je-AmD" id="yM5-UC-xJR"/>
                         <outlet property="card1TitleLabel" destination="DLe-s8-s1i" id="u6r-xa-Oag"/>
+                        <outlet property="card1View" destination="6Zu-8F-NCO" id="F6e-3a-4gk"/>
                         <outlet property="card2Bullet1Label" destination="9jU-eY-2Ul" id="6BH-Ih-MYh"/>
                         <outlet property="card2Bullet2Label" destination="7eX-dL-i20" id="4pN-Fa-cQF"/>
                         <outlet property="card2Bullet3Label" destination="XpX-Pr-ARc" id="fRJ-Sa-z1m"/>
@@ -4578,6 +4579,7 @@ the year</string>
                         <outlet property="card2Bullet5Label" destination="60e-2g-gLx" id="Hfq-5V-n4S"/>
                         <outlet property="card2Bullet5View" destination="hE1-o1-nt6" id="stR-ib-jBv"/>
                         <outlet property="card2TitleLabel" destination="pFX-G5-VQ9" id="jAU-4L-wlJ"/>
+                        <outlet property="card2View" destination="Bbb-ZZ-nVv" id="c7a-hT-z1o"/>
                         <outlet property="navBar" destination="Jo5-xI-0gc" id="GsC-ql-pGN"/>
                         <outlet property="navDescriptionLabel" destination="cp0-jm-bkz" id="M7O-L5-hwL"/>
                         <outlet property="navTitleLabel" destination="Gos-Aq-4Ke" id="7re-yS-JWg"/>

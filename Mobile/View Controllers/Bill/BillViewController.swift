@@ -233,7 +233,7 @@ class BillViewController: AccountPickerViewController {
         billIssuedView.layer.cornerRadius = cornerRadius
         catchUpView.layer.cornerRadius = cornerRadius
         creditView.layer.cornerRadius = cornerRadius
-        needHelpUnderstandingButton.layer.cornerRadius = cornerRadius
+        needHelpUnderstandingButton.layer.cornerRadius = 10
         pastDueView.layer.cornerRadius = cornerRadius
         paymentReceivedView.layer.cornerRadius = cornerRadius
         remainingBalancePastDueView.layer.cornerRadius = cornerRadius
@@ -242,13 +242,13 @@ class BillViewController: AccountPickerViewController {
         billPaidView.layer.cornerRadius = 10
 
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
-        autoPayButton.layer.cornerRadius = cornerRadius
+        autoPayButton.layer.cornerRadius = 2
 
         paperlessButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
-        paperlessButton.layer.cornerRadius = cornerRadius
+        paperlessButton.layer.cornerRadius = 2
 
         budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        budgetButton.layer.cornerRadius = cornerRadius
+        budgetButton.layer.cornerRadius = 2
 
         // Set Fonts
         totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)

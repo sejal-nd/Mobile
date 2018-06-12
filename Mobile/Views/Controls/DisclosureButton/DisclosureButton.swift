@@ -46,7 +46,7 @@ class DisclosureButton: UIButton {
         detailLabel.textColor = .middleGray
         setDetailLabel(text: "", checkHidden: true)
         
-        view.layer.cornerRadius = 4
+        view.layer.cornerRadius = 10
         view.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
     }
     
