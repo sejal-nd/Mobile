@@ -218,8 +218,6 @@ class MakePaymentViewController: UIViewController {
         paymentDateTextLabel.textColor = .deepGray
         paymentDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        paymentDateButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        
         paymentDateFixedDateLabel.textColor = .blackText
         paymentDateFixedDateLabel.font = SystemFont.semibold.of(textStyle: .title1)
         paymentDateFixedDatePastDueLabel.textColor = .blackText
