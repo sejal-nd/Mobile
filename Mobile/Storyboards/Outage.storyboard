@@ -249,14 +249,14 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LE-Ih-Txu" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="606"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="FN2-AG-tRU" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lx-Wl-bvy">
-                                                <rect key="frame" x="0.0" y="90" width="375" height="516"/>
+                                                <rect key="frame" x="0.0" y="90" width="375" height="520"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8h-b7-uBN" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="37" y="9" width="300" height="300"/>
@@ -293,7 +293,7 @@
                                                         </connections>
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QN1-1Y-eoZ" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="29" y="459" width="317" height="45"/>
+                                                        <rect key="frame" x="29" y="459" width="317" height="49"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -318,7 +318,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0L-QG-hAo">
-                                                <rect key="frame" x="0.0" y="90" width="375" height="516"/>
+                                                <rect key="frame" x="0.0" y="90" width="375" height="520"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="rwO-5r-SUq">
                                                         <rect key="frame" x="72.5" y="42" width="230" height="230"/>
@@ -334,7 +334,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-Ah-Ffw" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="46" y="366.5" width="283" height="120.5"/>
+                                                        <rect key="frame" x="46" y="366.5" width="283" height="124.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.38039215686274508" green="0.3803921569" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -358,7 +358,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NzH-9I-b9u">
-                                                <rect key="frame" x="0.0" y="90" width="375" height="516"/>
+                                                <rect key="frame" x="0.0" y="90" width="375" height="520"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-Vb-1pp">
                                                         <rect key="frame" x="62" y="34" width="250" height="250"/>
@@ -408,19 +408,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SgL-GX-Dgb">
-                                                <rect key="frame" x="0.0" y="191.5" width="375" height="216"/>
+                                                <rect key="frame" x="0.0" y="177.5" width="375" height="244.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_opco" translatesAutoresizingMaskIntoConstraints="NO" id="ih2-NM-40p">
                                                         <rect key="frame" x="125.5" y="0.0" width="125" height="126"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnI-1I-gKb">
-                                                        <rect key="frame" x="0.0" y="160" width="375" height="21"/>
+                                                        <rect key="frame" x="0.0" y="160" width="375" height="25"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account is password protected and cannot be accessed through this app." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ig-jI-vMy">
-                                                        <rect key="frame" x="57" y="183" width="261" height="33"/>
+                                                        <rect key="frame" x="57" y="187" width="261" height="57.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -918,7 +918,7 @@
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="doS-PF-4Ay" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="29" y="20" width="317" height="253"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>

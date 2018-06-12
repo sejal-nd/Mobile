@@ -201,12 +201,10 @@ class ReportOutageViewController: UIViewController {
         footerBackgroundView.backgroundColor = .softGray
         footerBackgroundView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
         
-        footerTextView.textContainerInset = UIEdgeInsets(top: 16, left: 29, bottom: 16, right: 29)
         footerTextView.font = OpenSans.regular.of(textStyle: .footnote)
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.footerTextViewText
-        footerTextView.addShadow(color: .black, opacity: 0.06, offset: CGSize(width: 0, height: 2), radius: 2)
         footerTextView.linkTapDelegate = self
         
         commentTextView.textView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
