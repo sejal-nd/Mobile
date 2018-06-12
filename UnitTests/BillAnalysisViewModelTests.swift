@@ -830,21 +830,14 @@ class BillAnalysisViewModelTests: XCTestCase {
     }
     
     func testShouldShowCurrentChargesSection() {
-        if Environment.shared.opco == .comEd { // Only ComEd
-            viewModel.accountDetail = AccountDetail()
-            if viewModel.shouldShowCurrentChargesSection {
-                XCTFail("Current charges should not be displayed if deliveryCharges, supplyCharges, and taxesAndFees are not provided or total 0")
-            }
-            
-            viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(deliveryCharges: 1))
-            if !viewModel.shouldShowCurrentChargesSection {
-                XCTFail("Current charges should be displayed if deliveryCharges, supplyCharges, and taxesAndFees total more than 0")
-            }
-            
-        } else {
-            if viewModel.shouldShowCurrentChargesSection {
-                XCTFail("Current charges should not be displayed for opcos other than ComEd")
-            }
+        viewModel.accountDetail = AccountDetail()
+        if viewModel.shouldShowCurrentChargesSection {
+            XCTFail("Current charges should not be displayed if deliveryCharges, supplyCharges, and taxesAndFees are not provided or total 0")
+        }
+        
+        viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(deliveryCharges: 1))
+        if !viewModel.shouldShowCurrentChargesSection {
+            XCTFail("Current charges should be displayed if deliveryCharges, supplyCharges, and taxesAndFees total more than 0")
         }
     }
 
