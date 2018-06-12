@@ -38,7 +38,7 @@ class PrimaryButton: UIButton {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = 4.0
+        layer.cornerRadius = 10.0
     }
     
     override var isHighlighted: Bool {
