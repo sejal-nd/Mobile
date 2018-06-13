@@ -45,6 +45,11 @@ class MockAccountService: AccountService {
             completion(ServiceResult.success(accountDetail))
             return
         }
+        if loggedInUsername == "billCardWithDefaultCcPayment" || loggedInUsername == "billCardWithExpiredDefaultPayment"{
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200), isResidential: true)
+            completion(ServiceResult.Success(accountDetail))
+            return
+        }
         if loggedInUsername == "scheduledPayment" {
             let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(scheduledPayment: PaymentItem(amount: 200)))
             completion(ServiceResult.success(accountDetail)) // fix for sprint 4 merge...
