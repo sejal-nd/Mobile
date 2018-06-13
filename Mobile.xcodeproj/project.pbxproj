@@ -4967,7 +4967,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = 38R4RRBYR8;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
