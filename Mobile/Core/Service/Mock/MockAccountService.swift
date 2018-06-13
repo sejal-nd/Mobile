@@ -47,7 +47,7 @@ class MockAccountService: AccountService {
         }
         if loggedInUsername == "scheduledPayment" {
             let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(scheduledPayment: PaymentItem(amount: 200)))
-            completion(ServiceResult.success(accountDetail))
+            completion(ServiceResult.success(accountDetail)) // fix for sprint 4 merge...
             return
         }
         if loggedInUsername == "thankYouForPayment" {
