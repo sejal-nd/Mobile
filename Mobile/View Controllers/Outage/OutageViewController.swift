@@ -13,6 +13,7 @@ class OutageViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
+    @IBOutlet weak var backgroundScrollConstraint: NSLayoutConstraint!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet weak var gradientBackground: UIView!
@@ -108,9 +109,11 @@ class OutageViewController: AccountPickerViewController {
                 self.customErrorView.isHidden = true
                 self.loadingView.isHidden = true
                 self.loadingView.accessibilityViewIsModal = false
+                self.noNetworkConnectionView.isHidden = true
+                self.maintenanceModeView.isHidden = true
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
-                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                     self.getOutageStatus()
                 } else if self.viewModel.currentOutageStatus == nil {
                     self.getOutageStatus()
@@ -120,12 +123,20 @@ class OutageViewController: AccountPickerViewController {
         
         updateContent()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
         
         Observable.merge(noNetworkConnectionView.reload, maintenanceModeView.reload)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.getOutageStatus() })
             .disposed(by: disposeBag)
+        
+        
+        scrollView?.rx.contentOffset.asDriver()
+            .map { min(0, $0.y) }
+            .distinctUntilChanged()
+            .drive(backgroundScrollConstraint.rx.constant)
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,7 +154,7 @@ class OutageViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Analytics().logScreenView(AnalyticsPageView.OutageStatusOfferComplete.rawValue)
+        Analytics.log(event: .OutageStatusOfferComplete)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -252,7 +263,7 @@ class OutageViewController: AccountPickerViewController {
             }, onError: { [weak self] serviceError in
                 self?.shortcutItem = .none
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-                if serviceError.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self?.scrollView?.isHidden = true
                     self?.noNetworkConnectionView.isHidden = false
                 } else {
@@ -263,7 +274,7 @@ class OutageViewController: AccountPickerViewController {
                 self?.loadingView.accessibilityViewIsModal = false
                 self?.setRefreshControlEnabled(enabled: true)
                 
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
                     self?.errorLabel.isHidden = true
                     self?.customErrorView.isHidden = false
                 } else {
@@ -299,7 +310,7 @@ class OutageViewController: AccountPickerViewController {
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
             
-            if serviceError.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue {
+            if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                 self.scrollView?.isHidden = true
                 self.noNetworkConnectionView.isHidden = false
             } else {
@@ -307,7 +318,7 @@ class OutageViewController: AccountPickerViewController {
                 self.noNetworkConnectionView.isHidden = true
             }
 
-            if serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+            if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
                 self.errorLabel.isHidden = true
                 self.customErrorView.isHidden = false
             } else {
@@ -341,7 +352,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     @IBAction func onViewOutageMapPress() {
-        Analytics().logScreenView(AnalyticsPageView.ViewMapOfferComplete.rawValue)
+        Analytics.log(event: .ViewMapOfferComplete)
         performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
@@ -373,7 +384,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
         updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-            Analytics().logScreenView(AnalyticsPageView.ReportOutageAuthComplete.rawValue)
+            Analytics.log(event: .ReportOutageAuthComplete)
         })
     }
     
@@ -381,8 +392,8 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
 
 extension OutageViewController: OutageStatusButtonDelegate {
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
-        Analytics().logScreenView(AnalyticsPageView.OutageStatusDetails.rawValue)
-        if viewModel.currentOutageStatus!.flagNoPay && Environment.sharedInstance.opco != .bge  {
+        Analytics.log(event: .OutageStatusDetails)
+        if viewModel.currentOutageStatus!.flagNoPay && Environment.shared.opco != .bge  {
             tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {
             if let message = viewModel.currentOutageStatus!.outageDescription {
@@ -397,6 +408,6 @@ extension OutageViewController: OutageStatusButtonDelegate {
 extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        Analytics().logScreenView(AnalyticsPageView.OutageAuthEmergencyCall.rawValue)
+        Analytics.log(event: .OutageAuthEmergencyCall)
     }
 }

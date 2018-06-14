@@ -19,7 +19,7 @@ class OverrideViewModel {
     let selectedDate = PublishSubject<Date>()
     
     var premiseNumber: String {
-        return AccountsStore.sharedInstance.currentAccount.currentPremise?.premiseNumber ??
+        return AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ??
             accountDetail.premiseNumber!
     }
     
@@ -104,7 +104,7 @@ class OverrideViewModel {
     
     //MARK: - Actions
     private lazy var saveEvents: Observable<Event<Void>> = self.saveAction
-        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.OverrideSave.rawValue) })
+        .do(onNext: { Analytics.log(event: .OverrideSave) })
         .withLatestFrom(self.selectedDate.asObservable())
         .flatMapLatest { [weak self] selectedDate -> Observable<Event<Void>> in
             guard let `self` = self else { return .empty() }
@@ -118,7 +118,7 @@ class OverrideViewModel {
         .share()
     
     private lazy var cancelEvents: Observable<Event<Void>> = self.cancelAction
-        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.CancelOverride.rawValue) })
+        .do(onNext: { Analytics.log(event: .CancelOverride) })
         .flatMapLatest { [weak self] _ -> Observable<Event<Void>> in
             guard let `self` = self else { return .empty() }
             return self.peakRewardsService.deleteOverride(accountNumber: self.accountDetail.accountNumber,
@@ -130,10 +130,10 @@ class OverrideViewModel {
         .share()
     
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
-        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.OverrideToast.rawValue) })
+        .do(onNext: { Analytics.log(event: .OverrideToast) })
     
     private(set) lazy var cancelSuccess: Observable<Void> = self.cancelEvents.elements()
-        .do(onNext: { Analytics().logScreenView(AnalyticsPageView.CancelOverrideToast.rawValue) })
+        .do(onNext: { Analytics.log(event: .CancelOverrideToast) })
     
     private(set) lazy var error: Observable<(String?, String?)> = Observable.merge(self.saveEvents.errors(), self.cancelEvents.errors())
         .map {
@@ -141,7 +141,7 @@ class OverrideViewModel {
                 return (NSLocalizedString("Error", comment: ""), $0.localizedDescription)
             }
             
-            if error.serviceCode == ServiceErrorCode.FnOverExists.rawValue {
+            if error.serviceCode == ServiceErrorCode.fnOverExists.rawValue {
                 return ("Override Already Active", nil)
             }
             

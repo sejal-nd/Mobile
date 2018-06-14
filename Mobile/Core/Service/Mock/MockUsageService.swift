@@ -26,17 +26,17 @@ struct MockUsageService: UsageService {
                                           squareFeet: 3000,
                                           heatType: .electric,
                                           homeType: .singleFamily)
-            completion(.Success(homeProfile))
+            completion(.success(homeProfile))
         default:
-            completion(.Failure(ServiceError(serviceMessage: "fetch failed")))
+            completion(.failure(ServiceError(serviceMessage: "fetch failed")))
         }
     }
     
     func updateHomeProfile(accountNumber: String, premiseNumber: String, homeProfile: HomeProfile, completion: @escaping (ServiceResult<Void>) -> Void) {
         if homeProfile.squareFeet == 500 {
-            completion(.Failure(ServiceError(serviceMessage: "update failed")))
+            completion(.failure(ServiceError(serviceMessage: "update failed")))
         } else {
-            completion(.Success(()))
+            completion(.success(()))
         }
     }
     
@@ -44,12 +44,12 @@ struct MockUsageService: UsageService {
         switch accountNumber {
         case "8":
             let tips = Array(1...8).map { EnergyTip(title: "title \($0)", body: "body \($0)") }
-            completion(ServiceResult.Success(tips))
+            completion(ServiceResult.success(tips))
         case "3":
             let tips = Array(1...3).map { EnergyTip(title: "title \($0)", body: "body \($0)") }
-            completion(ServiceResult.Success(tips))
+            completion(ServiceResult.success(tips))
         default:
-            completion(ServiceResult.Failure(ServiceError(serviceMessage: "fetch failed")))
+            completion(ServiceResult.failure(ServiceError(serviceMessage: "fetch failed")))
         }
     }
     

@@ -56,7 +56,7 @@ class OutageViewModel {
         // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
         currentGetOutageStatusDisposable?.dispose()
         
-        currentGetOutageStatusDisposable = outageService.fetchOutageStatus(account: AccountsStore.sharedInstance.currentAccount)
+        currentGetOutageStatusDisposable = outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] outageStatus in
                 self?.currentOutageStatus = outageStatus
@@ -64,13 +64,13 @@ class OutageViewModel {
             }, onError: { [weak self] error in
                 guard let `self` = self else { return }
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountFinaled.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
                     self.currentOutageStatus = OutageStatus.from(["flagFinaled": true])
                     onSuccess()
-                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNoPay.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
                     self.currentOutageStatus = OutageStatus.from(["flagNoPay": true])
                     onSuccess()
-                } else if serviceError.serviceCode == ServiceErrorCode.FnNonService.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
                     self.currentOutageStatus = OutageStatus.from(["flagNonService": true])
                     onSuccess()
                 } else {
@@ -81,11 +81,11 @@ class OutageViewModel {
     }
     
     var reportedOutage: ReportedOutageResult? {
-        return outageService.getReportedOutageResult(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
+        return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
     }
     
     func clearReportedOutage() {
-        outageService.clearReportedOutageStatus(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
+        outageService.clearReportedOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
     }
     
     var estimatedRestorationDateString: String {
@@ -111,7 +111,7 @@ class OutageViewModel {
     }
     
     var footerTextViewText: String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
         case .comEd:
@@ -122,7 +122,7 @@ class OutageViewModel {
     }
     
     var gasOnlyMessage: String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: "")
         case .peco:
@@ -133,7 +133,7 @@ class OutageViewModel {
     }
     
     var accountNonPayFinaledMessage: String {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
         } else {
             if currentOutageStatus!.flagFinaled {

@@ -9,7 +9,7 @@
 import Foundation
 
 class SpeedpayErrorMapper : NSObject, XMLParserDelegate {
-    static let sharedInstance = SpeedpayErrorMapper()
+    static let shared = SpeedpayErrorMapper()
     
     var items = [SpeedpayError]()
     
@@ -43,7 +43,7 @@ class SpeedpayErrorMapper : NSObject, XMLParserDelegate {
                 parser = XMLParser(contentsOf: URL(fileURLWithPath: path!))
             }
             
-            parser?.delegate = SpeedpayErrorMapper.sharedInstance
+            parser?.delegate = SpeedpayErrorMapper.shared
             parser?.parse()
         }
         

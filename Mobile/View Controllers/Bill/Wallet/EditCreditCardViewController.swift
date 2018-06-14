@@ -220,13 +220,13 @@ class EditCreditCardViewController: UIViewController {
     /////////////////////////////////////////////////////////////////////////////////////////////////
     func bindWalletItemToViewElements() {
         
-        let opco = Environment.sharedInstance.opco
+        let opco = Environment.shared.opco
         
         let walletItem = viewModel.walletItem!
         
         if let nickname = walletItem.nickName {
             let displayNickname: String
-            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
                 let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
                 displayNickname = nickname == String(last4) ? "" : nickname
             } else {
@@ -393,7 +393,7 @@ class EditCreditCardViewController: UIViewController {
     
     @IBAction func onCVVTooltipPress() {
         let messageText: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             messageText = NSLocalizedString("Your security code is usually a 3 or 4 digit number found on your card.", comment: "")
         case .comEd, .peco:

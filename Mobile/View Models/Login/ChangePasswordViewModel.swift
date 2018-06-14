@@ -61,7 +61,7 @@ class ChangePasswordViewModel {
     
     private(set) lazy var passwordMatchesUsername: Driver<Bool> = self.newPassword.asDriver()
         .map { [weak self] text -> Bool in
-            let username = self?.userDefaults.string(forKey: UserDefaultKeys.LoggedInUsername)
+            let username = self?.userDefaults.string(forKey: UserDefaultKeys.loggedInUsername)
             return text.lowercased() == username?.lowercased()
         }
     
@@ -113,7 +113,7 @@ class ChangePasswordViewModel {
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
                     
-                    if(serviceError.serviceCode == ServiceErrorCode.FNPwdNoMatch.rawValue) {
+                    if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
                         onPasswordNoMatch()
                     } else {
                         onError(error.localizedDescription)
@@ -133,7 +133,7 @@ class ChangePasswordViewModel {
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
                     
-                    if(serviceError.serviceCode == ServiceErrorCode.FNPwdNoMatch.rawValue) {
+                    if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
                         onPasswordNoMatch()
                     } else {
                         onError(error.localizedDescription)

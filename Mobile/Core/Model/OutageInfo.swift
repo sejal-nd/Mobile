@@ -9,15 +9,15 @@
 import Mapper
 
 enum OutageIssue : String {
-    case AllOut = "allOut"
-    case PartOut = "partOut"
-    case Flickering = "flickering"
+    case allOut = "allOut"
+    case partOut = "partOut"
+    case flickering = "flickering"
 }
 
 enum OutageTrivalent : String {
-    case Yes = "Yes"
-    case No = "No"
-    case Unsure = "Unsure"
+    case yes = "Yes"
+    case no = "No"
+    case unsure = "Unsure"
 }
 
 private func extractDate(object: Any?) throws -> Date? {

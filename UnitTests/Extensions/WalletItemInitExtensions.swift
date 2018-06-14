@@ -19,7 +19,7 @@ extension WalletItem {
          cardIssuer: String? = nil,
          bankOrCard: BankOrCard = .bank) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         

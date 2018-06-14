@@ -13,9 +13,8 @@ extension Maintenance {
          outage: Bool = false,
          alert: Bool = false) {
         
-        guard Environment.sharedInstance.environmentName == "AUT" else {
-            fatalError("init only available for tests")
-        }
+        assert(Environment.shared.environmentName == .aut,
+               "init only available for tests")
         
         allStatus = all
         homeStatus = home

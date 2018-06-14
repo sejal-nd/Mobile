@@ -44,7 +44,7 @@ class AlertsViewModel {
         isUpdatesError.value = false
         isNoNetworkConnection.value = false
         
-        accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
+        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
@@ -64,7 +64,7 @@ class AlertsViewModel {
                         self?.isFetchingUpdates.value = false
                         self?.isUpdatesError.value = true
                         if let error = err as? ServiceError {
-                            self?.isNoNetworkConnection.value = error.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue
+                            self?.isNoNetworkConnection.value = error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue
                         }
                     }).disposed(by: self.disposeBag)
             }, onError: { [weak self] err in
@@ -73,13 +73,13 @@ class AlertsViewModel {
                 self?.isAccountDetailError.value = true
                 self?.isUpdatesError.value = true
                 if let error = err as? ServiceError {
-                    self?.isNoNetworkConnection.value = error.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue
+                    self?.isNoNetworkConnection.value = error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue
                 }
             }).disposed(by: disposeBag)
     }
     
     func fetchAlertsFromDisk() {
-        currentAlerts.value = AlertsStore.sharedInstance.getAlerts(forAccountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
+        currentAlerts.value = AlertsStore.shared.getAlerts(forAccountNumber: AccountsStore.shared.currentAccount.accountNumber)
         self.reloadAlertsTableViewEvent.onNext(())
     }
     

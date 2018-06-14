@@ -117,8 +117,8 @@ class HomeBillCardView: UIView {
     }
     
     private func styleViews() {
-        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        layer.cornerRadius = 2
+        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 13)
+        layer.cornerRadius = 10
         
         alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         
@@ -197,7 +197,7 @@ class HomeBillCardView: UIView {
         
         viewModel.showErrorState
             .filter { $0 }
-            .drive(onNext: { _ in Analytics().logScreenView(AnalyticsPageView.CheckBalanceError.rawValue) })
+            .drive(onNext: { _ in Analytics.log(event: .CheckBalanceError) })
             .disposed(by: bag)
         
         Driver.combineLatest(viewModel.showErrorState, viewModel.showCustomErrorState)
@@ -309,7 +309,7 @@ class HomeBillCardView: UIView {
     // Actions
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.tap.asDriver()
         .do(onNext: {
-            Analytics().logScreenView(AnalyticsPageView.ViewBillBillCard.rawValue)
+            Analytics.log(event: .ViewBillBillCard)
         })
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
         .do(onNext: { [weak self] _ in
@@ -320,7 +320,7 @@ class HomeBillCardView: UIView {
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
         .do(onNext: {
-            Analytics().logScreenView(AnalyticsPageView.OneTouchTermsView.rawValue)
+            Analytics.log(event: .OneTouchTermsView)
         })
         .map { [weak self] in self?.viewModel.paymentTACUrl }
         .unwrap()
@@ -483,7 +483,7 @@ class HomeBillCardView: UIView {
             vc.viewModel.accountDetail = accountDetail
             vc.shouldPopToRootOnSave = true
             vc.shouldSetOneTouchPayByDefault = true
-            Analytics().logScreenView(AnalyticsPageView.OneTouchEnabledBillCard.rawValue)
+            Analytics.log(event: .OneTouchEnabledBillCard)
             return vc
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -501,7 +501,7 @@ class HomeBillCardView: UIView {
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { !$0.isBGEasy }
         .map { accountDetail in
-            switch Environment.sharedInstance.opco {
+            switch Environment.shared.opco {
             case .bge:
                 let vc = UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
                 vc.accountDetail = accountDetail

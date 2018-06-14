@@ -70,7 +70,7 @@ class EditCreditCardViewModel {
     private(set) lazy var zipCodeIs5Digits: Driver<Bool> = self.zipCode.asDriver().map { $0.count == 5 }
     
     func editCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: AccountsStore.sharedInstance.customerIdentifier, expirationMonth: expMonth.value, expirationYear: expYear.value, securityCode: cvv.value, postalCode: zipCode.value)
+        walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: AccountsStore.shared.customerIdentifier, expirationMonth: expMonth.value, expirationYear: expYear.value, securityCode: cvv.value, postalCode: zipCode.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -94,7 +94,7 @@ class EditCreditCardViewModel {
     func enableOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         walletService.setOneTouchPayItem(walletItemId: walletItem.walletItemID!,
                                          walletId: walletItem.walletExternalID,
-                                         customerId: AccountsStore.sharedInstance.customerIdentifier)
+                                         customerId: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -105,7 +105,7 @@ class EditCreditCardViewModel {
     }
     
     func deleteOneTouchPay(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        walletService.removeOneTouchPayItem(customerId: AccountsStore.sharedInstance.customerIdentifier)
+        walletService.removeOneTouchPayItem(customerId: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

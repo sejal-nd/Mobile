@@ -60,10 +60,10 @@ extension AccountService {
         return Observable.create { observer in
             self.fetchAccounts { (result: ServiceResult<[Account]>) in
                 switch result {
-                case ServiceResult.Success(let accounts):
+                case ServiceResult.success(let accounts):
                     observer.onNext(accounts)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -75,10 +75,10 @@ extension AccountService {
         return Observable.create { observer in
             self.fetchAccountDetail(account: account, completion: { (result: ServiceResult<AccountDetail>) in
                 switch result {
-                case ServiceResult.Success(let accountDetail):
+                case ServiceResult.success(let accountDetail):
                     observer.onNext(accountDetail)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -90,10 +90,10 @@ extension AccountService {
         return Observable.create { observer in
             self.updatePECOReleaseOfInfoPreference(account: account, selectedIndex: selectedIndex, completion: { (result: ServiceResult<Void>) in
                 switch result {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -105,10 +105,10 @@ extension AccountService {
         return Observable.create { observer in
             self.setDefaultAccount(account: account, completion: { (result: ServiceResult<Void>) in
                 switch result {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -120,10 +120,10 @@ extension AccountService {
         return Observable.create { observer in
             self.fetchSSOData(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<SSOData>) in
                 switch result {
-                case ServiceResult.Success(let ssoData):
+                case ServiceResult.success(let ssoData):
                     observer.onNext(ssoData)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })

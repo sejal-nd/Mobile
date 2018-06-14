@@ -63,9 +63,9 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
         super.viewDidAppear(animated)
         switch analyticsSource {
         case .Report:
-            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthOutScreen.rawValue)
+            Analytics.log(event: .ReportAnOutageUnAuthOutScreen)
         case .Status:
-            Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthComplete.rawValue)
+            Analytics.log(event: .OutageStatusUnAuthComplete)
         default:
             break
         }
@@ -82,7 +82,7 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
     }
     
     @IBAction func onViewOutageMapPress() {
-        Analytics().logScreenView(AnalyticsPageView.ViewOutageUnAuthMenu.rawValue)
+        Analytics.log(event: .ViewOutageUnAuthMenu)
         performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
@@ -104,7 +104,7 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
 
 extension UnauthenticatedOutageStatusViewController: OutageStatusButtonDelegate {
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
-        Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthStatusButton.rawValue)
+        Analytics.log(event: .OutageStatusUnAuthStatusButton)
         if let message = viewModel.selectedOutageStatus!.outageDescription {
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -122,7 +122,7 @@ extension UnauthenticatedOutageStatusViewController: ReportOutageViewControllerD
         reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.outageReportedDateString)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthComplete.rawValue)
+            Analytics.log(event: .ReportAnOutageUnAuthComplete)
         })
     }
     
@@ -131,6 +131,6 @@ extension UnauthenticatedOutageStatusViewController: ReportOutageViewControllerD
 extension UnauthenticatedOutageStatusViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        Analytics().logScreenView(AnalyticsPageView.OutageScreenUnAuthEmergencyPhone.rawValue)
+        Analytics.log(event: .OutageScreenUnAuthEmergencyPhone)
     }
 }

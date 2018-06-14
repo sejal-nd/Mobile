@@ -28,7 +28,7 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
         super.viewDidLoad()
         
         // Make the currently selected account the first item in list
-        let index = AccountsStore.sharedInstance.accounts.index(of: AccountsStore.sharedInstance.currentAccount)
+        let index = AccountsStore.shared.accounts.index(of: AccountsStore.shared.currentAccount)
         let currentAccount = accounts.remove(at: index!)
         accounts.insert(currentAccount, at: 0)
         
@@ -63,7 +63,7 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
                                 guard let `self` = self else { return }
                                 self.accounts[self.accountIndexToEditPremise].currentPremise = self.accounts[self.accountIndexToEditPremise].premises[index]
                                 
-                                AccountsStore.sharedInstance.accounts = self.accounts
+                                AccountsStore.shared.accounts = self.accounts
                                 
                                 self.exitWith(selectedAccount: self.accounts[self.accountIndexToEditPremise])
                 },

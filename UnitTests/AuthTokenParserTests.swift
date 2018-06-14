@@ -41,8 +41,8 @@ class AuthTokenParserTests: XCTestCase {
             let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
             
             switch result {
-            case .Failure(let serviceError):
-                XCTAssert(serviceError.serviceCode == ServiceErrorCode.Parsing.rawValue, "Incorrect Result - ServiceError should be parse error")
+            case .failure(let serviceError):
+                XCTAssert(serviceError.serviceCode == ServiceErrorCode.parsing.rawValue, "Incorrect Result - ServiceError should be parse error")
             default:
                 XCTFail("Unable to correctly parse a 'failure' response value - result should be success-false")
             }
@@ -59,7 +59,7 @@ class AuthTokenParserTests: XCTestCase {
             let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
             
             switch result {
-            case .Failure(let serviceError):
+            case .failure(let serviceError):
                 XCTAssert(serviceError.localizedDescription == "Invalid user name or password")
             default:
                 XCTFail("Unable to correctly parse a 'failure' response value - result should be success-false")
@@ -77,7 +77,7 @@ class AuthTokenParserTests: XCTestCase {
             let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
             
             switch result {
-            case .Success(let value):
+            case .success(let value):
                 XCTAssert(value.token == "token_value")
             default:
                 XCTFail("Unable to correctly parse a 'success' response value - result should be success-true")
@@ -95,7 +95,7 @@ class AuthTokenParserTests: XCTestCase {
             let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
             
             switch result {
-            case .Success:
+            case .success:
                 XCTFail("Users with no profileType should not be able to log in")
             default:
                 break
@@ -113,7 +113,7 @@ class AuthTokenParserTests: XCTestCase {
             let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
             
             switch result {
-            case .Success:
+            case .success:
                 XCTFail("Users with profileType not equal to \"residential\" or \"commercial\" should not be able to log in")
             default:
                 break

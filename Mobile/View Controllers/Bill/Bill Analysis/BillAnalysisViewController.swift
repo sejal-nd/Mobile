@@ -120,11 +120,14 @@ class BillAnalysisViewController: UIViewController {
     
     let viewModel = BillAnalysisViewModel(usageService: ServiceFactory.createUsageService())
     
+    private let corderRadius: CGFloat = 10.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let residentialAMIString = String(format: "%@%@", viewModel.accountDetail.isResidential ? "Residential/" : "Commercial/", viewModel.accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics().logScreenView(AnalyticsPageView.BillNeedHelp.rawValue, dimensionIndex: Dimensions.ResidentialAMI, dimensionValue: residentialAMIString)
+        Analytics.log(event: .BillNeedHelp,
+                             dimensions: [.ResidentialAMI: residentialAMIString])
         
         title = NSLocalizedString("Bill Analysis", comment: "")
         
@@ -212,6 +215,7 @@ class BillAnalysisViewController: UIViewController {
         
         styleBarGraph()
         
+        barDescriptionView.layer.cornerRadius = corderRadius
         barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
         barDescriptionDateLabel.font = OpenSans.bold.of(textStyle: .subheadline)
         barDescriptionDateLabel.textColor = .blackText
@@ -225,6 +229,7 @@ class BillAnalysisViewController: UIViewController {
         
         styleLikelyReasonsButtons()
         
+        likelyReasonsDescriptionView.layer.cornerRadius = corderRadius
         likelyReasonsDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
         likelyReasonsDescriptionTitleLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         likelyReasonsDescriptionTitleLabel.textColor = .blackText
@@ -323,8 +328,9 @@ class BillAnalysisViewController: UIViewController {
         previousBarView.backgroundColor = .primaryColor
         currentBarView.backgroundColor = .primaryColor
         projectionNotAvailableBarView.addDashedBorder(color: dashedBorderColor)
-        
-        switch Environment.sharedInstance.opco {
+        projectionNotAvailableBarView.layer.cornerRadius = corderRadius
+
+        switch Environment.shared.opco {
         case .bge:
             projectedBarImage.tintColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 1)
         case .comEd:
@@ -404,18 +410,18 @@ class BillAnalysisViewController: UIViewController {
         electricGasSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
             self?.fetchData()
             if index == 0 {
-                Analytics().logScreenView(AnalyticsPageView.BillElectricityToggle.rawValue)
+                Analytics.log(event: .BillElectricityToggle)
             } else {
-                Analytics().logScreenView(AnalyticsPageView.BillGasToggle.rawValue)
+                Analytics.log(event: .BillGasToggle)
             }
         }).disposed(by: disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.lastYearPreviousBillSelectedSegmentIndex).disposed(by: disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
             self?.fetchData()
             if index == 0 {
-                Analytics().logScreenView(AnalyticsPageView.BillLastYearToggle.rawValue)
+                Analytics.log(event: .BillLastYearToggle)
             } else {
-                Analytics().logScreenView(AnalyticsPageView.BillPreviousToggle.rawValue)
+                Analytics.log(event: .BillPreviousToggle)
             }
         }).disposed(by: disposeBag)
         
@@ -423,6 +429,11 @@ class BillAnalysisViewController: UIViewController {
         viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)
         viewModel.currentBarHeightConstraintValue.drive(currentBarHeightConstraint.rx.constant).disposed(by: disposeBag)
         viewModel.projectedBarHeightConstraintValue.drive(projectedBarHeightConstraint.rx.constant).disposed(by: disposeBag)
+        
+        // Bar graph corner radius
+        viewModel.previousBarHeightConstraintValue.map { min(10, $0/2) }.drive(previousBarView.rx.cornerRadius).disposed(by: disposeBag)
+        viewModel.currentBarHeightConstraintValue.map { min(10, $0/2) }.drive(currentBarView.rx.cornerRadius).disposed(by: disposeBag)
+        viewModel.projectedBarHeightConstraintValue.map { min(10, $0/2) }.drive(projectedBarImage.rx.cornerRadius).disposed(by: disposeBag)
         
         // Bar show/hide
         viewModel.noPreviousData.asDriver().not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)
@@ -520,11 +531,11 @@ class BillAnalysisViewController: UIViewController {
         }
         
         if sender.tag == 0 {
-            Analytics().logScreenView(AnalyticsPageView.BillPreviousReason.rawValue)
+            Analytics.log(event: .BillPreviousReason)
         } else if sender.tag == 1 {
-            Analytics().logScreenView(AnalyticsPageView.BillWeatherReason.rawValue)
+            Analytics.log(event: .BillWeatherReason)
         } else {
-            Analytics().logScreenView(AnalyticsPageView.BillOtherReason.rawValue)
+            Analytics.log(event: .BillOtherReason)
         }
         
         viewModel.setLikelyReasonSelected(tag: sender.tag)

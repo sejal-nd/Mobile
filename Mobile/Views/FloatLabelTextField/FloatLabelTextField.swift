@@ -47,7 +47,7 @@ class FloatLabelTextField: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
-
+        
         leftColorBar.backgroundColor = .primaryColor
         bottomColorBar.isHidden = true
         
@@ -83,6 +83,11 @@ class FloatLabelTextField: UIView {
         }).disposed(by: disposeBag)
         
         setDefaultStyles()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        view.roundCorners([.topLeft, .topRight], radius: 4.0)
     }
     
     func setDefaultStyles() {

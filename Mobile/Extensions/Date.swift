@@ -134,7 +134,7 @@ extension DateFormatter {
     @nonobjc static let outageOpcoDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.timeZone = .opCo
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             formatter.dateFormat = "MM/dd/yyyy hh:mm a"
         case .comEd:
@@ -170,7 +170,7 @@ extension Calendar {
 
 extension TimeZone {
     static let opCo: TimeZone = {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge, .peco :
             return TimeZone(identifier: "America/New_York")!
         case .comEd:

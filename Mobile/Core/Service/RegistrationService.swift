@@ -123,11 +123,11 @@ extension RegistrationService {
                                   completion: { (result: ServiceResult<Void>) in
                 //
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
                     
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -144,11 +144,11 @@ extension RegistrationService {
                                           completion: { (result: ServiceResult<Void>) in
                 //
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
                     
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -164,13 +164,13 @@ extension RegistrationService {
             self.loadSecretQuestions{ (result: ServiceResult<[String]>) in
                 //
                 switch (result) {
-                case ServiceResult.Success(let questions):
+                case ServiceResult.success(let questions):
                     observer.onNext(questions)
                     observer.onCompleted()
                     
                     print(questions)
                     
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -188,11 +188,11 @@ extension RegistrationService {
                                             completion: { (result: ServiceResult<[String: Any]>) in
                                                 //
                                                 switch (result) {
-                                                case ServiceResult.Success(let response):
+                                                case ServiceResult.success(let response):
                                                     observer.onNext(response)
                                                     observer.onCompleted()
                                                     
-                                                case ServiceResult.Failure(let err):
+                                                case ServiceResult.failure(let err):
                                                     observer.onError(err)
                                                 }
             })
@@ -208,11 +208,11 @@ extension RegistrationService {
                                          completion: { (result: ServiceResult<Void>) in
                                             //
                                             switch (result) {
-                                            case ServiceResult.Success:
+                                            case ServiceResult.success:
                                                 observer.onNext(())
                                                 observer.onCompleted()
                                                 
-                                            case ServiceResult.Failure(let err):
+                                            case ServiceResult.failure(let err):
                                                 observer.onError(err)
                                             }
             })
@@ -228,11 +228,11 @@ extension RegistrationService {
                                            completion: { (result: ServiceResult<Void>) in
                                             //
                                             switch (result) {
-                                            case ServiceResult.Success:
+                                            case ServiceResult.success:
                                                 observer.onNext(())
                                                 observer.onCompleted()
                                                 
-                                            case ServiceResult.Failure(let err):
+                                            case ServiceResult.failure(let err):
                                                 observer.onError(err)
                                             }
             })
@@ -247,11 +247,11 @@ extension RegistrationService {
                                  completion: { (result: ServiceResult<Void>) in
                                     //
                                     switch (result) {
-                                    case ServiceResult.Success:
+                                    case ServiceResult.success:
                                         observer.onNext(())
                                         observer.onCompleted()
                                         
-                                    case ServiceResult.Failure(let err):
+                                    case ServiceResult.failure(let err):
                                         observer.onError(err)
                                     }
             })

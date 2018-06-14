@@ -61,7 +61,7 @@ class HomeUsageCardViewModel {
                 if let error = accountDetailEvent.error {
                     return Observable.error(error).materialize()
                 }
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue)).materialize()
+                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
             }
             
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
@@ -69,10 +69,10 @@ class HomeUsageCardViewModel {
 
             // Throw these Observable.errors to trigger a billComparisonDriver event even when we don't make the API call
             if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue)).materialize()
+                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
             }
             if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue)).materialize()
+                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
             }
             
             var gas = false // Default to electric
@@ -96,7 +96,7 @@ class HomeUsageCardViewModel {
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             guard let serviceType = accountDetail.serviceType else { return .empty() }
             if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.TcUnknown.rawValue)).materialize()
+                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
             }
             
             var gas = false // Default to electric

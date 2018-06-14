@@ -17,7 +17,7 @@ extension BillComparison {
          weatherCostDifference: Double = 0,
          otherCostDifference: Double = 0) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -43,7 +43,7 @@ extension UsageBillPeriod: JSONEncodable {
          endDate: String? = "2017-09-01", // Pass in yyyy-MM-dd format
          averageTemperature: Double = 72) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         

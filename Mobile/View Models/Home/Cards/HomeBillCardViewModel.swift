@@ -60,17 +60,15 @@ class HomeBillCardViewModel {
             .subscribe(onNext: { walletItem, oneTouchPayEvent in
                 switch (walletItem.bankOrCard, oneTouchPayEvent.error) {
                 case (.bank, nil):
-                    Analytics().logScreenView(AnalyticsPageView.OneTouchBankComplete.rawValue)
+                    Analytics.log(event: .OneTouchBankComplete)
                 case (.bank, let error):
-                    Analytics().logScreenView(AnalyticsPageView.OneTouchBankError.rawValue,
-                                              dimensionIndex: .ErrorCode,
-                                              dimensionValue: (error as! ServiceError).serviceCode)
+                    Analytics.log(event: .OneTouchBankError,
+                                         dimensions: [.ErrorCode: (error as! ServiceError).serviceCode])
                 case (.card, nil):
-                    Analytics().logScreenView(AnalyticsPageView.OneTouchCardComplete.rawValue)
+                    Analytics.log(event: .OneTouchCardComplete)
                 case (.card, let error):
-                    Analytics().logScreenView(AnalyticsPageView.OneTouchCardError.rawValue,
-                                              dimensionIndex: .ErrorCode,
-                                              dimensionValue: (error as! ServiceError).serviceCode)
+                    Analytics.log(event: .OneTouchCardError,
+                                         dimensions: [.ErrorCode: (error as! ServiceError).serviceCode])
                 }
             })
             .disposed(by: bag)
@@ -98,14 +96,14 @@ class HomeBillCardViewModel {
         .share(replay: 1)
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
     private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = self.workDayEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.NoNetworkConnection.rawValue }
+        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
     private lazy var walletItem: Observable<WalletItem?> = self.walletItemEvents.elements()
     
-    private lazy var account: Observable<Account> = self.fetchData.map { _ in AccountsStore.sharedInstance.currentAccount }
+    private lazy var account: Observable<Account> = self.fetchData.map { _ in AccountsStore.shared.currentAccount }
 
     private(set) lazy var data: Observable<Event<(Account, AccountDetail, WalletItem?)>> =
         Observable.combineLatest(self.account,
@@ -118,7 +116,7 @@ class HomeBillCardViewModel {
         .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [unowned self] state -> Observable<Event<[Date]>> in
-            if Environment.sharedInstance.opco == .peco {
+            if Environment.shared.opco == .peco {
                 return self.paymentService.fetchWorkdays()
                     .trackActivity(self.fetchTracker(forState: state))
                     .materialize()
@@ -137,9 +135,9 @@ class HomeBillCardViewModel {
         .do(onNext: { _, walletItem, _, _, _ in
             switch walletItem.bankOrCard {
             case .bank:
-                Analytics().logScreenView(AnalyticsPageView.OneTouchBankOffer.rawValue)
+                Analytics.log(event: .OneTouchBankOffer)
             case .card:
-                Analytics().logScreenView(AnalyticsPageView.OneTouchCardOffer.rawValue)
+                Analytics.log(event: .OneTouchCardOffer)
             }
         })
         .map { accountDetail, walletItem, cvv2, isWeekendOrHoliday, workDays in
@@ -147,7 +145,7 @@ class HomeBillCardViewModel {
             let paymentDate: Date
             if isWeekendOrHoliday, let nextWorkDay = workDays.sorted().first(where: { $0 > Date() }) {
                 paymentDate = nextWorkDay
-            } else if Environment.sharedInstance.opco == .bge &&
+            } else if Environment.shared.opco == .bge &&
                 Calendar.opCo.component(.hour, from: Date()) >= 20,
                 let tomorrow = Calendar.opCo.date(byAdding: .day, value: 1, to: startOfToday) {
                 paymentDate = tomorrow
@@ -161,7 +159,7 @@ class HomeBillCardViewModel {
                            paymentAmount: accountDetail.billingInfo.netDueAmount!,
                            paymentType: (walletItem.bankOrCard == .bank) ? .check : .credit,
                            paymentDate: paymentDate,
-                           walletId: AccountsStore.sharedInstance.customerIdentifier,
+                           walletId: AccountsStore.shared.customerIdentifier,
                            walletItemId: walletItem.walletItemID!,
                            cvv: cvv2)
         }
@@ -169,7 +167,7 @@ class HomeBillCardViewModel {
             self.paymentService.schedulePayment(payment: payment)
                 .do(onNext: {
                     let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
-                    RecentPaymentsStore.shared[AccountsStore.sharedInstance.currentAccount] = paymentDetails
+                    RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = paymentDetails
                 })
                 .map(to: ())
                 .trackActivity(self.paymentTracker)
@@ -179,7 +177,7 @@ class HomeBillCardViewModel {
         .share()
     
     private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
-        if Environment.sharedInstance.opco == .peco {
+        if Environment.shared.opco == .peco {
             return self.workDayEvents.elements()
                 .map { $0.filter(Calendar.opCo.isDateInToday).isEmpty }
                 .asDriver(onErrorDriveWith: .empty())
@@ -189,7 +187,7 @@ class HomeBillCardViewModel {
     }()
     
     private(set) lazy var promptForCVV: Driver<Bool> = {
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             return Driver.just(false)
         } else {
             return self.walletItemDriver.map {
@@ -216,7 +214,7 @@ class HomeBillCardViewModel {
         .asDriver(onErrorJustReturn: false)
     
     private(set) lazy var showErrorState: Driver<Bool> = {
-        if Environment.sharedInstance.opco == .peco {
+        if Environment.shared.opco == .peco {
             return Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents, self.workDayEvents, self.showMaintenanceModeState.asObservable())
                 .map { ($0.0.error != nil || $0.1.error != nil || $0.2.error != nil) && !$0.3 }
                 .startWith(false)
@@ -232,7 +230,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showCustomErrorState: Driver<Bool> = self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()).map {
         if let serviceError = $0.error as? ServiceError {
-            return serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue
+            return serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue
         }
         return false
     }
@@ -273,7 +271,7 @@ class HomeBillCardViewModel {
         self.data.elements()
             .map { account, accountDetail, walletItem -> BillState in
                 let billingInfo = accountDetail.billingInfo
-                let opco = Environment.sharedInstance.opco
+                let opco = Environment.shared.opco
                 
                 if RecentPaymentsStore.shared[account] != nil {
                     return .billPaidIntermediate
@@ -367,9 +365,9 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var showDueDateTooltip: Driver<Bool> = Driver.zip(self.showDueAmountAndDate, self.billState)
-    { !$0 && !$1.isPrecariousBillSituation && Environment.sharedInstance.opco == .peco }
+    { !$0 && !$1.isPrecariousBillSituation && Environment.shared.opco == .peco }
     
-    let showDueAmountAndDateTooltip = Environment.sharedInstance.opco == .peco
+    let showDueAmountAndDateTooltip = Environment.shared.opco == .peco
     
     private(set) lazy var showBankCreditButton: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                           self.walletItemDriver,
@@ -408,11 +406,11 @@ class HomeBillCardViewModel {
         if !$0 {
             // These first two if statements copy logic from self.enableOneTouchSlider - to ensure that we ONLY show the label if the
             // reason that the slider is disabled is because of the BGE Commercial Visa scenario
-            if let minPaymentAmount = $1.billingInfo.minPaymentAmount, $1.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.sharedInstance.opco != .bge {
+            if let minPaymentAmount = $1.billingInfo.minPaymentAmount, $1.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.shared.opco != .bge {
                 return false
-            } else if $1.billingInfo.netDueAmount ?? 0 < 0 && Environment.sharedInstance.opco == .bge {
+            } else if $1.billingInfo.netDueAmount ?? 0 < 0 && Environment.shared.opco == .bge {
                 return false
-            } else if let cardIssuer = walletItem.cardIssuer, cardIssuer == "Visa", Environment.sharedInstance.opco == .bge, !$1.isResidential {
+            } else if let cardIssuer = walletItem.cardIssuer, cardIssuer == "Visa", Environment.shared.opco == .bge, !$1.isResidential {
                 return true
             }
         }
@@ -443,7 +441,7 @@ class HomeBillCardViewModel {
         case .catchUp:
             return NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")
         case .avoidShutoff:
-            switch Environment.sharedInstance.opco {
+            switch Environment.shared.opco {
             case .bge:
                 if account.isMultipremise {
                     return NSLocalizedString("Amount due to avoid shutoff for your multi-premise bill", comment: "")
@@ -458,7 +456,7 @@ class HomeBillCardViewModel {
         case .billReady, .billReadyAutoPay, .paymentScheduled:
             if accountDetail.billingInfo.netDueAmount ?? 0 < 0 {
                 return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
-            } else if Environment.sharedInstance.opco == .bge && account.isMultipremise {
+            } else if Environment.shared.opco == .bge && account.isMultipremise {
                 return NSLocalizedString("Your multi-premise bill is ready", comment: "")
             } else {
                 return NSLocalizedString("Your bill is ready", comment: "")
@@ -468,7 +466,7 @@ class HomeBillCardViewModel {
         case .credit:
             return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
         case .paymentPending:
-            switch Environment.sharedInstance.opco {
+            switch Environment.shared.opco {
             case .bge:
                 return NSLocalizedString("Your payment is processing", comment: "")
             case .comEd, .peco:
@@ -507,7 +505,7 @@ class HomeBillCardViewModel {
     private(set) lazy var dueDateText: Driver<NSAttributedString?> = Driver.combineLatest(self.accountDetailDriver, self.billState)
     { accountDetail, billState in
         if billState.isPrecariousBillSituation {
-            if Environment.sharedInstance.opco == .bge &&
+            if Environment.shared.opco == .bge &&
                 accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 &&
                 accountDetail.billingInfo.isDisconnectNotice,
                 let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
@@ -589,7 +587,7 @@ class HomeBillCardViewModel {
         }
         
         if let reinstateString = $0.billingInfo.atReinstateFee?.currencyString,
-            Environment.sharedInstance.opco == .comEd &&
+            Environment.shared.opco == .comEd &&
                 $0.billingInfo.amtDpaReinst ?? 0 > 0 &&
                 $0.billingInfo.atReinstateFee ?? 0 > 0 &&
                 !$0.isLowIncome {
@@ -664,7 +662,7 @@ class HomeBillCardViewModel {
             
             var localizedText: String? = nil
             var convenienceFeeString: String? = nil
-            switch (accountDetail.isResidential, walletItem.bankOrCard, Environment.sharedInstance.opco) {
+            switch (accountDetail.isResidential, walletItem.bankOrCard, Environment.shared.opco) {
             case (_, .card, .peco):
                 localizedText = NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
                 convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
@@ -698,13 +696,13 @@ class HomeBillCardViewModel {
                 return false
             }
             if let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount,
-                accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.sharedInstance.opco != .bge {
+                accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.shared.opco != .bge {
                 return false
             }
-            if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.sharedInstance.opco == .bge {
+            if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.shared.opco == .bge {
                 return false
             }
-            if let cardIssuer = walletItem?.cardIssuer, cardIssuer == "Visa", Environment.sharedInstance.opco == .bge, !accountDetail.isResidential {
+            if let cardIssuer = walletItem?.cardIssuer, cardIssuer == "Visa", Environment.shared.opco == .bge, !accountDetail.isResidential {
                 return false
             }
             return true
@@ -729,7 +727,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String?> = self.accountDetailDriver
         .map { accountDetail in
-            if Environment.sharedInstance.opco == .bge && accountDetail.isBGEasy {
+            if Environment.shared.opco == .bge && accountDetail.isBGEasy {
                 return NSLocalizedString("You are enrolled in BGEasy", comment: "")
             } else {
                 return NSLocalizedString("You are enrolled in AutoPay." , comment: "")
@@ -745,7 +743,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var oneTouchPayTCButtonText: Driver<String?> = self.walletItemDriver.map {
         guard let walletItem = $0 else { return nil }
-        switch (Environment.sharedInstance.opco, walletItem.bankOrCard) {
+        switch (Environment.shared.opco, walletItem.bankOrCard) {
         case (.bge, .bank):
             return NSLocalizedString("Payments made on the Home screen cannot be canceled.", comment: "")
         default:
@@ -755,7 +753,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var enableOneTouchPayTCButton: Driver<Bool> = self.walletItemDriver.map {
         guard let walletItem = $0 else { return false }
-        switch (Environment.sharedInstance.opco, walletItem.bankOrCard) {
+        switch (Environment.shared.opco, walletItem.bankOrCard) {
         case (.bge, .bank):
             return false
         default:
@@ -775,7 +773,7 @@ class HomeBillCardViewModel {
     }
     
     var paymentTACUrl: URL {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return URL(string: "https://www.speedpay.com/terms/")!
         case .comEd, .peco:

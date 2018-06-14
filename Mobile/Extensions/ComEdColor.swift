@@ -23,4 +23,7 @@ extension UIColor {
         return UIColor(red: 120/255, green: 12/255, blue: 39/255, alpha: 1)
     }
     
+    @nonobjc static var primaryColorAccountPicker: UIColor {
+        return UIColor(red: 187/255, green: 21/255, blue: 65/255, alpha: 1)
+    }
 }

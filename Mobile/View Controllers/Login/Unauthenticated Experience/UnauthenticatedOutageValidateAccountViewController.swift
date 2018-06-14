@@ -267,9 +267,9 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         
         switch analyticsSource {
         case .Report:
-            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthSubmitAcctVal.rawValue)
+            Analytics.log(event: .ReportAnOutageUnAuthSubmitAcctVal)
         case .Status:
-            Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthAcctValidate.rawValue)
+            Analytics.log(event: .OutageStatusUnAuthAcctValidate)
         default:
             break
         }
@@ -277,7 +277,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     
     @IBAction func onAccountNumberTooltipPress() {
         let description: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             description = NSLocalizedString("Your Customer Account Number can be found in the lower right portion of your bill. Please enter 10-digits including leading zeros.", comment: "")
         case .comEd:
@@ -366,6 +366,6 @@ extension UnauthenticatedOutageValidateAccountViewController: UITextFieldDelegat
 extension UnauthenticatedOutageValidateAccountViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthAcctValEmergencyPhone.rawValue)
+        Analytics.log(event: .OutageStatusUnAuthAcctValEmergencyPhone)
     }
 }

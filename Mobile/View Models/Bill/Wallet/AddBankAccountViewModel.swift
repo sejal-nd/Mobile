@@ -25,7 +25,7 @@ class AddBankAccountViewModel {
     }
     
     private(set) lazy var saveButtonIsEnabled: Driver<Bool> = {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             return Driver.combineLatest([self.addBankFormViewModel.accountHolderNameHasText,
                                          self.addBankFormViewModel.accountHolderNameIsValid,
                                          self.addBankFormViewModel.routingNumberIsValid,
@@ -45,7 +45,7 @@ class AddBankAccountViewModel {
     
     func addBankAccount(onDuplicate: @escaping (String) -> Void, onSuccess: @escaping (WalletItemResult) -> Void, onError: @escaping (String) -> Void) {
         var accountType: String?
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
         }
         let accountName: String? = addBankFormViewModel.accountHolderName.value.isEmpty ? nil : addBankFormViewModel.accountHolderName.value
@@ -59,14 +59,14 @@ class AddBankAccountViewModel {
                                       oneTimeUse: false)
         
         walletService
-            .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.sharedInstance.customerIdentifier)
+            .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { walletItemResult in
                 onSuccess(walletItemResult)
             }, onError: { (error: Error) in
                 let serviceError = error as! ServiceError
                 
-                if serviceError.serviceCode == ServiceErrorCode.DupPaymentAccount.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.dupPaymentAccount.rawValue {
                     onDuplicate(error.localizedDescription)
                 } else {
                     onError(error.localizedDescription)
@@ -79,7 +79,7 @@ class AddBankAccountViewModel {
     func enableOneTouchPay(walletItemID: String, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         walletService.setOneTouchPayItem(walletItemId: walletItemID,
                                          walletId: nil,
-                                         customerId: AccountsStore.sharedInstance.customerIdentifier)
+                                         customerId: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

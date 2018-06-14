@@ -40,13 +40,13 @@ class AutoPayViewModel {
         self.walletService = walletService
         self.accountDetail = accountDetail
         enrollmentStatus = Variable(accountDetail.isAutoPay ? .isEnrolled:.enrolling)
-        termsAndConditionsCheck = Variable(Environment.sharedInstance.opco != .comEd)
+        termsAndConditionsCheck = Variable(Environment.shared.opco != .comEd)
     }
     
     func submit() -> Observable<Bool> {
         switch enrollmentStatus.value {
         case .enrolling:
-            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollSubmit.rawValue)
+            Analytics.log(event: .AutoPayEnrollSubmit)
             return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
                                                   nameOfAccount: nameOnAccount.value,
                                                   bankAccountType: bankAccountType.value,
@@ -54,7 +54,7 @@ class AutoPayViewModel {
                                                   bankAccountNumber: accountNumber.value,
                                                   isUpdate: false).map { _ in true }
         case .unenrolling:
-            Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollOffer.rawValue)
+            Analytics.log(event: .AutoPayUnenrollOffer)
             return paymentService.unenrollFromAutoPay(accountNumber: accountDetail.accountNumber,
                                                       reason: selectedUnenrollmentReason.value!).map { _ in false }
         case .isEnrolled:
@@ -115,7 +115,7 @@ class AutoPayViewModel {
                                  self.accountNumberIsValid,
                                  self.confirmAccountNumberMatches]
         
-        if Environment.sharedInstance.opco == .comEd {
+        if Environment.shared.opco == .comEd {
             validationDrivers.append(self.termsAndConditionsCheck.asDriver())
         }
         
@@ -165,13 +165,13 @@ class AutoPayViewModel {
     
     private(set) lazy var confirmAccountNumberIsEnabled: Driver<Bool> = self.accountNumberHasText
     
-    let shouldShowTermsAndConditionsCheck = Environment.sharedInstance.opco == .comEd
+    let shouldShowTermsAndConditionsCheck = Environment.shared.opco == .comEd
     
     var shouldShowThirdPartyLabel: Bool {
-        return Environment.sharedInstance.opco == .peco && (accountDetail.isSupplier || accountDetail.isDualBillOption)
+        return Environment.shared.opco == .peco && (accountDetail.isSupplier || accountDetail.isDualBillOption)
     }
     
-    let reasonStrings = [String(format: NSLocalizedString("Closing %@ account", comment: ""), Environment.sharedInstance.opco.displayString),
+    let reasonStrings = [String(format: NSLocalizedString("Closing %@ account", comment: ""), Environment.shared.opco.displayString),
                          NSLocalizedString("Changing bank account", comment: ""),
                          NSLocalizedString("Dissatisfied with the program", comment: ""),
                          NSLocalizedString("Program no longer meets my needs", comment: ""),
@@ -180,7 +180,7 @@ class AutoPayViewModel {
     private(set) lazy var footerText: Driver<String?> = self.enrollmentStatus.asDriver().map { [weak self] enrollmentStatus in
         guard let `self` = self else { return nil }
 		var footerText: String
-        switch (Environment.sharedInstance.opco, enrollmentStatus) {
+        switch (Environment.shared.opco, enrollmentStatus) {
         case (.peco, .enrolling):
             footerText = NSLocalizedString("Your recurring payment will apply to the next PECO bill you receive. You will need to submit a payment for your current PECO bill if you have not already done so.", comment: "")
         case (.comEd, .enrolling):

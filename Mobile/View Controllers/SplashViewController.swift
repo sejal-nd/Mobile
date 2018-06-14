@@ -118,7 +118,7 @@ class SplashViewController: UIViewController{
             
             self.present(viewController, animated: true, completion: { [weak self] in
                 if let shortcutItem = self?.shortcutItem, shortcutItem != .none {
-                    NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+                    NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
                 }
             })
         } else {
@@ -142,7 +142,7 @@ class SplashViewController: UIViewController{
                     
                     let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
                     
-                    Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthOffer.rawValue)
+                    Analytics.log(event: .ReportAnOutageUnAuthOffer)
                     unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.Report
                     
                     self.navigationController?.setViewControllers(vcArray, animated: true)

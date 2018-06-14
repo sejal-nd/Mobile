@@ -56,7 +56,7 @@ class BillViewModel {
         .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [weak self] state -> Observable<Event<AccountDetail>> in
             guard let `self` = self else { return .empty() }
-            return self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount)
+            return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
                 .trackActivity(self.tracker(forState: state))
                 .materialize()
                 .filter { !$0.isCompleted }
@@ -96,7 +96,7 @@ class BillViewModel {
     }()
     
     private(set) lazy var shouldShowRestoreService: Driver<Bool> = self.currentAccountDetail.map {
-        return $0.billingInfo.restorationAmount ?? 0 > 0 && $0.isCutOutNonPay && Environment.sharedInstance.opco != .bge
+        return $0.billingInfo.restorationAmount ?? 0 > 0 && $0.isCutOutNonPay && Environment.shared.opco != .bge
     }
     
     private(set) lazy var shouldShowAvoidShutoff: Driver<Bool> = {
@@ -114,14 +114,14 @@ class BillViewModel {
     }()
     
     private(set) lazy var shouldShowCatchUpDisclaimer: Driver<Bool> = Driver.zip(self.currentAccountDetail, self.shouldShowCatchUpAmount)
-    { !$0.isLowIncome && $1 && Environment.sharedInstance.opco == .comEd }
+    { !$0.isLowIncome && $1 && Environment.shared.opco == .comEd }
     
     private(set) lazy var shouldShowPastDue: Driver<Bool> = self.currentAccountDetail
         .map { accountDetail -> Bool in
             // shouldShowRestoreService
             if accountDetail.billingInfo.restorationAmount ?? 0 > 0 &&
                 accountDetail.isCutOutNonPay &&
-                Environment.sharedInstance.opco != .bge {
+                Environment.shared.opco != .bge {
                 return false
             }
             
@@ -156,14 +156,14 @@ class BillViewModel {
     private(set) lazy var shouldShowRemainingBalanceDue: Driver<Bool> = self.currentAccountDetail.map {
         return $0.billingInfo.pendingPayments.first?.amount ?? 0 > 0 &&
             $0.billingInfo.remainingBalanceDue ?? 0 > 0  &&
-            Environment.sharedInstance.opco != .bge
+            Environment.shared.opco != .bge
     }
     
     private(set) lazy var shouldShowRemainingBalancePastDue: Driver<Bool> = {
         let showRemainingPastDue = self.currentAccountDetail.map { accountDetail -> Bool in
             accountDetail.billingInfo.pastDueRemaining ?? 0 > 0
         }
-        return Driver.zip(showRemainingPastDue, self.shouldShowPastDue) { $0 && $1 && Environment.sharedInstance.opco != .bge }
+        return Driver.zip(showRemainingPastDue, self.shouldShowPastDue) { $0 && $1 && Environment.shared.opco != .bge }
     }()
     
     private(set) lazy var shouldShowBillIssued: Driver<Bool> = self.currentAccountDetail.map { _ in
@@ -177,11 +177,11 @@ class BillViewModel {
     
     private(set) lazy var shouldShowCredit: Driver<Bool> = self.currentAccountDetail.map {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return false }
-        return netDueAmount < 0 && Environment.sharedInstance.opco == .bge
+        return netDueAmount < 0 && Environment.shared.opco == .bge
     }
     
     private(set) lazy var shouldShowAmountDueTooltip: Driver<Bool> = self.currentAccountDetail.map {
-        $0.billingInfo.pastDueAmount ?? 0 <= 0 && Environment.sharedInstance.opco == .peco
+        $0.billingInfo.pastDueAmount ?? 0 <= 0 && Environment.shared.opco == .peco
     }
     
     private(set) lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail
@@ -204,7 +204,7 @@ class BillViewModel {
     }
     
     private(set) lazy var shouldEnableMakeAPaymentButton: Driver<Bool> = self.currentAccountDetail.map {
-        $0.billingInfo.netDueAmount ?? 0 > 0 || Environment.sharedInstance.opco == .bge
+        $0.billingInfo.netDueAmount ?? 0 > 0 || Environment.shared.opco == .bge
     }
     
     private(set) lazy var shouldShowAutoPay: Driver<Bool> = self.currentAccountDetail.map {
@@ -212,7 +212,7 @@ class BillViewModel {
     }
     
     private(set) lazy var shouldShowPaperless: Driver<Bool> = self.currentAccountDetail.map {
-        if !$0.isResidential && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
+        if !$0.isResidential && (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) {
             return true
         }
         
@@ -225,7 +225,7 @@ class BillViewModel {
     private(set) lazy var shouldShowBudget: Driver<Bool> = self.currentAccountDetail.map {
         return $0.isBudgetBillEligible ||
             $0.isBudgetBillEnrollment ||
-            Environment.sharedInstance.opco == .bge
+            Environment.shared.opco == .bge
     }
     
     
@@ -257,7 +257,7 @@ class BillViewModel {
                     return nil
         }
         
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             guard let dateText = accountDetail.billingInfo.dueByDate?.mmDdYyyyString else { return nil }
             if accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 &&
@@ -292,7 +292,7 @@ class BillViewModel {
     
     private(set) lazy var totalAmountText: Driver<String> = self.currentAccountDetail.map {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return "--" }
-        if Environment.sharedInstance.opco == .bge { // BGE should display the negative value if there is a credit
+        if Environment.shared.opco == .bge { // BGE should display the negative value if there is a credit
             return netDueAmount.currencyString ?? "--"
         }
         return max(netDueAmount, 0).currencyString ?? "--"
@@ -302,7 +302,7 @@ class BillViewModel {
         let billingInfo = $0.billingInfo
         if (billingInfo.pastDueAmount ?? 0) > 0 && billingInfo.pastDueAmount == billingInfo.netDueAmount { // Confluence Billing 11.10
             return NSLocalizedString("Total Amount Due Immediately", comment: "")
-        } else if Environment.sharedInstance.opco == .bge {
+        } else if Environment.shared.opco == .bge {
             if let netDueAmount = billingInfo.netDueAmount {
                 if netDueAmount < 0 {
                     return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
@@ -336,7 +336,7 @@ class BillViewModel {
     
     //MARK: - Avoid Shutoff
     var avoidShutoffText: String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
         case .comEd, .peco:
@@ -353,7 +353,7 @@ class BillViewModel {
     }
     
     private(set) lazy var avoidShutoffDueDateText: Driver<String> = self.currentAccountDetail.map { accountDetail in
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             let dueDate = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
                 accountDetail.billingInfo.turnOffNoticeDueDate ??
@@ -385,7 +385,7 @@ class BillViewModel {
     
     //MARK: - Remaining Balance Due
     var remainingBalanceDueText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return nil
         case .comEd, .peco:
@@ -409,7 +409,7 @@ class BillViewModel {
     
     //MARK: - Remaining Balance Past Due
     var remainingBalancePastDueText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return nil
         case .comEd, .peco:
@@ -449,13 +449,13 @@ class BillViewModel {
     
     //MARK: - Payment Status
     private(set) lazy var paymentStatusText: Driver<String?> = self.currentAccountDetail.map { accountDetail in
-        if Environment.sharedInstance.opco == .bge && accountDetail.isBGEasy {
+        if Environment.shared.opco == .bge && accountDetail.isBGEasy {
             return NSLocalizedString("You are enrolled in BGEasy", comment: "")
         } else if accountDetail.isAutoPay {
             return NSLocalizedString("You are enrolled in AutoPay", comment: "")
         } else if let pendingPaymentAmount = accountDetail.billingInfo.pendingPayments.first?.amount, let amountString = pendingPaymentAmount.currencyString, pendingPaymentAmount > 0 {
             let localizedText: String
-            switch Environment.sharedInstance.opco {
+            switch Environment.shared.opco {
             case .bge:
                 localizedText = NSLocalizedString("You have a payment of %@ processing", comment: "")
             case .comEd, .peco:
@@ -480,7 +480,7 @@ class BillViewModel {
     
     private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = self.currentAccountDetail.asObservable()
         .map { accountDetail in
-            if Environment.sharedInstance.opco == .bge && accountDetail.isBGEasy {
+            if Environment.shared.opco == .bge && accountDetail.isBGEasy {
                 return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already " +
                     "enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date " +
                     "of your bill from the bank account you originally submitted. You may make a one-time payment " +
@@ -532,7 +532,7 @@ class BillViewModel {
     
     private(set) lazy var paperlessButtonText: Driver<NSAttributedString?> = self.currentAccountDetail
         .map { accountDetail in
-            if !accountDetail.isResidential && (Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco) {
+            if !accountDetail.isResidential && (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) {
                 return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
             }
             

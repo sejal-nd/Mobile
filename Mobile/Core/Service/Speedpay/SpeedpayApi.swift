@@ -13,7 +13,7 @@ struct SpeedpayApi {
         do {
             let params = ["DEBIT_ACCOUNT":cardNumber] as [String : Any]
             
-            var urlRequest = URLRequest(url: URL(string: Environment.sharedInstance.speedpayUrl)!)
+            var urlRequest = URLRequest(url: URL(string: Environment.shared.speedpayUrl)!)
             urlRequest.httpMethod = "POST"
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let jsonData: NSData = try JSONSerialization.data(withJSONObject: params) as NSData
@@ -22,17 +22,17 @@ struct SpeedpayApi {
             
             URLSession.shared.dataTask(with:urlRequest, completionHandler: { (data:Data?, resp: URLResponse?, err: Error?) in
                 if err != nil {
-                    completion(ServiceResult.Failure(ServiceError.init(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: nil, cause: err)))
+                    completion(ServiceResult.failure(ServiceError.init(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: nil, cause: err)))
                 } else {
                     let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
                     let trimmed = responseString.trimmingCharacters(in: CharacterSet.init(charactersIn: "\""))
                     
-                    completion(ServiceResult.Success(trimmed))
+                    completion(ServiceResult.success(trimmed))
                 }
             }).resume()      }
         catch let error as NSError {
-            let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
-            completion(ServiceResult.Failure(serviceError))
+            let serviceError = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
+            completion(ServiceResult.failure(serviceError))
         }
     }
 }

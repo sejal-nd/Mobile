@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if processInfo.arguments.contains("UITest") || processInfo.environment["XCTestConfigurationFilePath"] != nil {
             // Clear UserDefaults if Unit or UI testing -- ensures consistent fresh run
             UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-            UserDefaults.standard.synchronize()
         }
         
         if let appInfo = Bundle.main.infoDictionary,
@@ -30,14 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(shortVersionString, forKey: "version")
         }
         
-        NSLog("Environment %@", Environment.sharedInstance.environmentName)
-        NSLog("AppName %@", Environment.sharedInstance.appName)
+        dLog("Environment " + Environment.shared.environmentName.rawValue)
+        dLog("AppName" + Environment.shared.appName)
         
-        if let appCenterId = Environment.sharedInstance.appCenterId {
+        if let appCenterId = Environment.shared.appCenterId {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
         }
         
-        if Environment.sharedInstance.environmentName == "PROD" {
+        if Environment.shared.environmentName == .prod {
             OMCMobileBackendManager.shared().logLevel = "none"
         }
         
@@ -47,10 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAnalytics()
         //printFonts()
         
-        _ = AlertsStore.sharedInstance.alerts // Triggers the loading of alerts from disk
+        _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
         
-        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: NSNotification.Name.DidReceiveInvalidAuthToken, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: .didMaintenanceModeTurnOn, object: nil)
         
         // If app was cold-launched from a push notification
         if let options = launchOptions, let userInfo = options[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
@@ -61,8 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Set "Report Outage" quick action for unauthenticated users
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.IsKeepMeSignedInChecked) &&
-            UserDefaults.standard.bool(forKey:  UserDefaultKeys.HasAcceptedTerms) {
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked) &&
+            UserDefaults.standard.bool(forKey:  UserDefaultKeys.hasAcceptedTerms) {
             configureQuickActions(isAuthenticated: false)
         }
         
@@ -74,8 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dLog("*-*-*-*-* APNS Device Token: \(token)")
         
         var firstLogin = false
-        if let usernamesArray = UserDefaults.standard.array(forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications) as? [String],
-            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername) {
+        if let usernamesArray = UserDefaults.standard.array(forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications) as? [String],
+            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername) {
             if !usernamesArray.contains(loggedInUsername) {
                 firstLogin = true
             }
@@ -83,14 +82,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let alertsService = ServiceFactory.createAlertsService()
             alertsService.register(token: token, firstLogin: firstLogin) { (result: ServiceResult<Void>) in
                 switch result {
-                case .Success:
+                case .success:
                     dLog("*-*-*-*-* Registered token with MCS")
                     if firstLogin { // Add the username to the array
                         var newUsernamesArray = usernamesArray
                         newUsernamesArray.append(loggedInUsername)
-                        UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.UsernamesRegisteredForPushNotifications)
+                        UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
                     }
-                case .Failure(let err):
+                case .failure(let err):
                     dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
                 }
             }
@@ -100,12 +99,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Only used on iOS 9 and below -- iOS 10+ uses the new UNUserNotificationCenter and handles the analytics in
     // the callback in HomeViewController
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
-            UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
+            UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
             if notificationSettings.types.isEmpty {
-                Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushDontAllowInitial.rawValue)
+                Analytics.log(event: .AlertsiOSPushDontAllowInitial)
             } else {
-                Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushOKInitial.rawValue)
+                Analytics.log(event: .AlertsiOSPushOKInitial)
             }
         }
     }
@@ -130,14 +129,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         let notification = PushNotification(accountNumbers: accountNumbers, title: alert["title"] as? String, message: alert["body"] as? String)
-        AlertsStore.sharedInstance.savePushNotification(notification)
+        AlertsStore.shared.savePushNotification(notification)
         
         if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
-            if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
-                NotificationCenter.default.post(name: .DidTapOnPushNotification, object: self)
+            if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+                NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
             } else {
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.PushNotificationReceived)
-                UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.PushNotificationReceivedTimestamp)
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
+                UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
             }
         } else {
             // App was in the foreground when notification received - do nothing
@@ -150,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // For now, no deep links require being logged in. So if the user is already in the app, don't do anything special
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
             return false
         }
         
@@ -158,7 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let rootNav = window.rootViewController as? UINavigationController else { return false }
         
         if let guid = getQueryStringParameter(url: url, param: "guid") {
-            UserDefaults.standard.set(guid, forKey: UserDefaultKeys.AccountVerificationDeepLinkGuid)
+            UserDefaults.standard.set(guid, forKey: UserDefaultKeys.accountVerificationDeepLinkGuid)
         }
         
         if let topMostVC = rootNav.viewControllers.last as? SplashViewController {
@@ -182,26 +181,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupUserDefaults() {
         let userDefaults = UserDefaults.standard
         userDefaults.register(defaults: [
-            UserDefaultKeys.ShouldPromptToEnableBiometrics: true,
-            UserDefaultKeys.PaymentDetailsDictionary: [String: NSDictionary](),
-            UserDefaultKeys.UsernamesRegisteredForPushNotifications: [String]()
+            UserDefaultKeys.shouldPromptToEnableBiometrics: true,
+            UserDefaultKeys.paymentDetailsDictionary: [String: NSDictionary](),
+            UserDefaultKeys.usernamesRegisteredForPushNotifications: [String]()
             ])
         
-        userDefaults.set(false, forKey: UserDefaultKeys.InMainApp)
+        userDefaults.set(false, forKey: UserDefaultKeys.inMainApp)
         
-        if userDefaults.bool(forKey: UserDefaultKeys.HasRunBefore) == false {
+        if userDefaults.bool(forKey: UserDefaultKeys.hasRunBefore) == false {
             // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
             let biometricsService = ServiceFactory.createBiometricsService()
             biometricsService.disableBiometrics()
             
             // Log the user out (Oracle SDK appears to be persisting the auth token through uninstalls)
-            let auth = OMCApi.sharedInstance.getBackend().authorization
+            let auth = OMCApi.shared.getBackend().authorization
             auth.logoutClearCredentials(true, completionBlock: nil)
             
-            userDefaults.set(true, forKey: UserDefaultKeys.HasRunBefore)
+            userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }
-        
-        userDefaults.synchronize()
     }
     
     func setupToastStyles() {
@@ -224,14 +221,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupAnalytics() {
         let gai = GAI.sharedInstance()
-        _ = gai?.tracker(withTrackingId: Environment.sharedInstance.gaTrackingId)
+        _ = gai?.tracker(withTrackingId: Environment.shared.gaTrackingId)
         
-        let filePath = Bundle.main.path(forResource: Environment.sharedInstance.firebaseConfigFile, ofType: "plist")
-        if let fileopts = FirebaseOptions.init(contentsOfFile: filePath!) {
-            FirebaseApp.configure(options: fileopts)
-        } else {
-            dLog("Failed to load Firebase Analytics")
+        guard let filePath = Bundle.main.path(forResource: Environment.shared.firebaseConfigFile, ofType: "plist"),
+            let fileopts = FirebaseOptions(contentsOfFile: filePath) else {
+                return dLog("Failed to load Firebase Analytics")
         }
+        
+        FirebaseApp.configure(options: fileopts)
         
     }
     
@@ -242,7 +239,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
         self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
         
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.IsKeepMeSignedInChecked)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
         configureQuickActions(isAuthenticated: false)
     }
     
@@ -282,7 +279,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = rootNav
         }
         
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.InMainApp)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.inMainApp)
     }
     
     func printFonts() {
@@ -306,19 +303,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InMainApp) {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
             if let root = window.rootViewController, let _ = root.presentedViewController {
                 root.dismiss(animated: false) {
                     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let newTabBarController = mainStoryboard.instantiateInitialViewController()
                     window.rootViewController = newTabBarController
-                    NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+                    NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
                 }
             } else {
                 let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let newTabBarController = mainStoryboard.instantiateInitialViewController()
                 window.rootViewController = newTabBarController
-                NotificationCenter.default.post(name: .DidTapOnShortcutItem, object: shortcutItem)
+                NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
             }
         } else if let splashVC = (window.rootViewController as? UINavigationController)?.viewControllers.last as? SplashViewController {
             splashVC.shortcutItem = shortcutItem
@@ -334,7 +331,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
             
-            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthOffer.rawValue)
+            Analytics.log(event: .ReportAnOutageUnAuthOffer)
             unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.Report
             
             // Reset the unauthenticated nav stack
@@ -353,7 +350,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_outage")
         let reportOutageShortcut = UIApplicationShortcutItem(type: "ReportOutage", localizedTitle: "Report Outage", localizedSubtitle: nil, icon: reportOutageIcon, userInfo: nil)
         
-        guard let accounts = AccountsStore.sharedInstance.accounts else {
+        guard let accounts = AccountsStore.shared.accounts else {
             // Signed in, but no accounts pulled yet
             if isAuthenticated {
                 UIApplication.shared.shortcutItems = []
@@ -369,7 +366,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let payBillIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_bill")
         let payBillShortcut = UIApplicationShortcutItem(type: "PayBill", localizedTitle: "Pay Bill", localizedSubtitle: nil, icon: payBillIcon, userInfo: nil)
         
-        switch (accounts.count == 1, UserDefaults.standard.bool(forKey: UserDefaultKeys.IsKeepMeSignedInChecked), showViewUsageOptions) {
+        switch (accounts.count == 1, UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), showViewUsageOptions) {
         case (true, false, _):
             // Single account, no keep me signed in
             UIApplication.shared.shortcutItems = [reportOutageShortcut]

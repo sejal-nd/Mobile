@@ -17,7 +17,7 @@ class PeakRewardsViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234567890"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234567890"])!
     }
     
     func testOverrides() {

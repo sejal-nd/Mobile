@@ -75,7 +75,7 @@ class LoginTermsPoliciesViewController: UIViewController {
     }
     
     @IBAction func onContinuePress() {
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.HasAcceptedTerms)
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.hasAcceptedTerms)
         // Set "Report Outage" quick action
         (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: false)
         dismiss(animated: true, completion: nil)

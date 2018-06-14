@@ -19,7 +19,7 @@ extension PeakRewardsSummary: JSONEncodable {
     
     init(devices: [SmartThermostatDevice] = [], programs: [PeakRewardsProgram] = []) {
         
-        assert(Environment.sharedInstance.environmentName == "AUT",
+        assert(Environment.shared.environmentName == .aut,
                "init only available for tests")
         
         let map: [String: Any?] = [
@@ -47,7 +47,7 @@ extension PeakRewardsProgram: JSONEncodable {
          startDate: Date? = nil,
          stopDate: Date? = nil) {
         
-        assert(Environment.sharedInstance.environmentName == "AUT",
+        assert(Environment.shared.environmentName == .aut,
                "init only available for tests")
         
         let map: [String: Any?] = [
@@ -86,7 +86,7 @@ extension SmartThermostatDevice: JSONEncodable {
          type: String = "",
          inventoryId: Int = 0) {
         
-        assert(Environment.sharedInstance.environmentName == "AUT",
+        assert(Environment.shared.environmentName == .aut,
                "init only available for tests")
         
         let map: [String: Any?] = [
@@ -120,7 +120,7 @@ extension PeakRewardsOverride: JSONEncodable {
          start: Date? = nil,
          stop: Date? = nil) {
         
-        assert(Environment.sharedInstance.environmentName == "AUT",
+        assert(Environment.shared.environmentName == .aut,
                "init only available for tests")
         
         let map: [String: Any?] = [

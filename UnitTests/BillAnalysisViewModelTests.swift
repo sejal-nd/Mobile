@@ -190,7 +190,7 @@ class BillAnalysisViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        if Environment.sharedInstance.opco != .comEd { // ComEd is electric only
+        if Environment.shared.opco != .comEd { // ComEd is electric only
             viewModel.electricGasSelectedSegmentIndex.value = 1
             viewModel.projectedCost.asObservable().take(1).subscribe(onNext: { cost in
                 if let expectedVal = cost {
@@ -215,7 +215,7 @@ class BillAnalysisViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        if Environment.sharedInstance.opco != .comEd { // ComEd is electric only
+        if Environment.shared.opco != .comEd { // ComEd is electric only
             viewModel.electricGasSelectedSegmentIndex.value = 1
             viewModel.projectedUsage.asObservable().take(1).subscribe(onNext: { cost in
                 if let expectedVal = cost {
@@ -293,7 +293,7 @@ class BillAnalysisViewModelTests: XCTestCase {
             XCTAssertEqual(text, "AUG 13")
         }).disposed(by: disposeBag)
         
-        if Environment.sharedInstance.opco != .comEd { // ComEd is electric only
+        if Environment.shared.opco != .comEd { // ComEd is electric only
             // Test case: Gas
             viewModel.electricGasSelectedSegmentIndex.value = 1
             viewModel.projectedBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
@@ -330,7 +330,7 @@ class BillAnalysisViewModelTests: XCTestCase {
             XCTAssertFalse(shouldShow, "shouldShowProjectionNotAvailableBar should be false when more than 7 days from billingStartDate")
         }).disposed(by: disposeBag)
         
-        if Environment.sharedInstance.opco != .comEd { // ComEd is electric only
+        if Environment.shared.opco != .comEd { // ComEd is electric only
             // Test case: Gas forecast with less than 7 days since start
             viewModel.electricGasSelectedSegmentIndex.value = 1
             viewModel.gasForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: tomorrow))
@@ -368,7 +368,7 @@ class BillAnalysisViewModelTests: XCTestCase {
             XCTAssertEqual(text, "4 days")
         }).disposed(by: disposeBag)
         
-        if Environment.sharedInstance.opco != .comEd { // ComEd is electric only
+        if Environment.shared.opco != .comEd { // ComEd is electric only
             // Test case: Gas forecast with less than 7 days since start
             viewModel.electricGasSelectedSegmentIndex.value = 1
             viewModel.gasForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: sixDaysOut))
@@ -427,7 +427,7 @@ class BillAnalysisViewModelTests: XCTestCase {
             XCTAssertEqual(text, expectedText)
         }).disposed(by: disposeBag)
         
-        if Environment.sharedInstance.opco != .comEd { // ComEd is electric only
+        if Environment.shared.opco != .comEd { // ComEd is electric only
             // Test case: Projected bar selected (gas)
             viewModel.gasForecast.value = BillForecast(billingStartDate: "2018-05-23", billingEndDate: "2018-06-24")
             viewModel.electricGasSelectedSegmentIndex.value = 1
@@ -521,7 +521,7 @@ class BillAnalysisViewModelTests: XCTestCase {
             XCTAssertEqual(text, expectedText)
         }).disposed(by: disposeBag)
         
-        if Environment.sharedInstance.opco != .comEd { // ComEd is electric only
+        if Environment.shared.opco != .comEd { // ComEd is electric only
             // Test case: Projected bar selected, modeled for OPower, gas
             viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC", isModeledForOpower: true)
             viewModel.electricGasSelectedSegmentIndex.value = 1
@@ -806,7 +806,7 @@ class BillAnalysisViewModelTests: XCTestCase {
     }
     
     func testShouldShowElectricGasToggle() {
-        if Environment.sharedInstance.opco == .comEd {
+        if Environment.shared.opco == .comEd {
             if viewModel.shouldShowElectricGasToggle {
                 XCTFail("Electric/Gas toggle should not be displayed for ComEd")
             }
@@ -830,21 +830,14 @@ class BillAnalysisViewModelTests: XCTestCase {
     }
     
     func testShouldShowCurrentChargesSection() {
-        if Environment.sharedInstance.opco == .comEd { // Only ComEd
-            viewModel.accountDetail = AccountDetail()
-            if viewModel.shouldShowCurrentChargesSection {
-                XCTFail("Current charges should not be displayed if deliveryCharges, supplyCharges, and taxesAndFees are not provided or total 0")
-            }
-            
-            viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(deliveryCharges: 1))
-            if !viewModel.shouldShowCurrentChargesSection {
-                XCTFail("Current charges should be displayed if deliveryCharges, supplyCharges, and taxesAndFees total more than 0")
-            }
-            
-        } else {
-            if viewModel.shouldShowCurrentChargesSection {
-                XCTFail("Current charges should not be displayed for opcos other than ComEd")
-            }
+        viewModel.accountDetail = AccountDetail()
+        if viewModel.shouldShowCurrentChargesSection {
+            XCTFail("Current charges should not be displayed if deliveryCharges, supplyCharges, and taxesAndFees are not provided or total 0")
+        }
+        
+        viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(deliveryCharges: 1))
+        if !viewModel.shouldShowCurrentChargesSection {
+            XCTFail("Current charges should be displayed if deliveryCharges, supplyCharges, and taxesAndFees total more than 0")
         }
     }
 

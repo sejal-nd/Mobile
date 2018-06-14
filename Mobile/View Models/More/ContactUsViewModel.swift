@@ -9,7 +9,7 @@
 import Foundation
 
 class ContactUsViewModel {
-    let opco = Environment.sharedInstance.opco
+    let opco = Environment.shared.opco
     
     var emergencyAttrString: NSAttributedString {
         let emergencyAttrString: NSMutableAttributedString
@@ -31,6 +31,20 @@ class ContactUsViewModel {
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         }
         return emergencyAttrString
+    }
+    
+    var onlineFormUrl: URL {
+        let urlString: String
+        switch Environment.shared.opco {
+        case .bge:
+            urlString = "https://bge.custhelp.com/app/ContactUs"
+        case .comEd:
+            urlString = "https://secure.comed.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
+        case .peco:
+            urlString = "https://secure.peco.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
+        }
+        
+        return URL(string: urlString)!
     }
     
     var label1: String {

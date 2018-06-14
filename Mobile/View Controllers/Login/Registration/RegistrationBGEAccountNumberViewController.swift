@@ -122,7 +122,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
-            Analytics().logScreenView(AnalyticsPageView.RegisterAccountSetup.rawValue)
+            Analytics.log(event: .RegisterAccountSetup)
             self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
             
         }, onMultipleAccounts:  { // should never happen
@@ -155,7 +155,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     
     @IBAction func onAccountNumberTooltipPress() {
         let description: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             description = NSLocalizedString("Your Customer Account Number may be found in the top right portion on your bill in the bill summary section. Please enter 10-digits including leading zeros.", comment: "")
         case .comEd:

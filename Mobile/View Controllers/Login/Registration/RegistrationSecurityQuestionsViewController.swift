@@ -123,7 +123,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         viewModel.loadAccounts(onSuccess: { [weak self] in
             guard let `self` = self else { return }
-            let opco = Environment.sharedInstance.opco
+            let opco = Environment.shared.opco
             
             if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
@@ -229,7 +229,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question2ViewWrapper.addGestureRecognizer(tap2)
 
         // if opco is not BGE, then format it and ready it for usage; else hide it.
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             question3Label.text = NSLocalizedString("Security Question 3*", comment: "")
             question3Label.font = SystemFont.regular.of(textStyle: .title1)
             question3ContentLabel.isHidden = true
@@ -259,7 +259,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question2AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question2AnswerTextField.setEnabled(false)
 
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             question3AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 3*", comment: "")
             question3AnswerTextField.textField.autocorrectionType = .no
             question3AnswerTextField.textField.returnKeyType = .next
@@ -349,7 +349,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         question1Label.accessibilityTraits = UIAccessibilityTraitButton
         question2Label.accessibilityTraits = UIAccessibilityTraitButton
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
            question3Label.accessibilityTraits = UIAccessibilityTraitButton 
         }
         
@@ -372,7 +372,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         viewModel.registerUser(onSuccess: { [weak self] in
             LoadingView.hide()
-            Analytics().logScreenView(AnalyticsPageView.RegisterAccountSecurityQuestions.rawValue)
+            Analytics.log(event: .RegisterAccountSecurityQuestions)
             self?.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
         }, onError: { [weak self] (title, message) in
             LoadingView.hide()
@@ -390,7 +390,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
         
         if(enrollIneBillSwitch.isOn) {
-            Analytics().logScreenView(AnalyticsPageView.RegisterEBillEnroll.rawValue)
+            Analytics.log(event: .RegisterEBillEnroll)
         }
     }
     

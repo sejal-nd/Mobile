@@ -74,11 +74,11 @@ class RegistrationViewModel {
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountNotFound.rawValue {
                     onError(NSLocalizedString("Invalid Information", comment: ""), NSLocalizedString("The information entered does not match our records. Please try again.", comment: ""))
-                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountMultiple.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountMultiple.rawValue {
                     onMultipleAccounts()
-                } else if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
                     onError(NSLocalizedString("Profile Exists", comment: ""), NSLocalizedString("An online profile already exists for this account. Please log in to view the profile.", comment: ""))
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
@@ -95,7 +95,7 @@ class RegistrationViewModel {
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 
-                if serviceError.serviceCode == ServiceErrorCode.FnProfileExists.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
                     onEmailAlreadyExists()
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
@@ -125,22 +125,22 @@ class RegistrationViewModel {
                 let serviceError = error as! ServiceError
                 
                 switch (serviceError.serviceCode) {
-                case ServiceErrorCode.FnAccountMultiple.rawValue:
+                case ServiceErrorCode.fnAccountMultiple.rawValue:
                     onError(NSLocalizedString("Multiple Accounts", comment: ""), error.localizedDescription)
                     
-                case ServiceErrorCode.FnCustomerNotFound.rawValue:
+                case ServiceErrorCode.fnCustomerNotFound.rawValue:
                     onError(NSLocalizedString("Customer Not Found", comment: ""), error.localizedDescription)
                     
-                case ServiceErrorCode.FnUserInvalid.rawValue:
+                case ServiceErrorCode.fnUserInvalid.rawValue:
                     onError(NSLocalizedString("User Invalid", comment: ""), error.localizedDescription)
                     
-                case ServiceErrorCode.FnUserExists.rawValue:
+                case ServiceErrorCode.fnUserExists.rawValue:
                     onError(NSLocalizedString("User Exists", comment: ""), error.localizedDescription)
                     
-                case ServiceErrorCode.FnProfileExists.rawValue:
+                case ServiceErrorCode.fnProfileExists.rawValue:
                     onError(NSLocalizedString("Profile Exists", comment: ""), error.localizedDescription)
                     
-                case ServiceErrorCode.TcUnknown.rawValue:
+                case ServiceErrorCode.tcUnknown.rawValue:
                     fallthrough
                     
                 default:
@@ -173,10 +173,10 @@ class RegistrationViewModel {
                 let serviceError = error as! ServiceError
                 
                 switch (serviceError.serviceCode) {
-                case ServiceErrorCode.FnNotFound.rawValue:
+                case ServiceErrorCode.fnNotFound.rawValue:
                     onError(NSLocalizedString("No Account Found", comment: ""), error.localizedDescription)
                     
-                case ServiceErrorCode.TcUnknown.rawValue:
+                case ServiceErrorCode.tcUnknown.rawValue:
                     fallthrough
                     
                 default:
@@ -190,7 +190,7 @@ class RegistrationViewModel {
 
     // THIS IS FOR THE NEXT BUTTON ON THE FIRST STEP (VALIDATE ACCOUNT)
 	private(set) lazy var nextButtonEnabled: Driver<Bool> = {
-		if Environment.sharedInstance.opco == .bge {
+		if Environment.shared.opco == .bge {
 			return Driver.combineLatest(self.phoneNumberHasTenDigits,
 			                            self.identifierHasFourDigits,
 			                            self.identifierIsNumeric)
@@ -403,7 +403,7 @@ class RegistrationViewModel {
 		
         var count = 4
 		
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             inArray.append(self.question3Selected)
             inArray.append(self.question3Answered)
             

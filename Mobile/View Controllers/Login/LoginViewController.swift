@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         loginFormView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
-        loginFormView.layer.cornerRadius = 2
+        loginFormView.layer.cornerRadius = 10
         
         keepMeSignedInLabel.font = SystemFont.regular.of(textStyle: .headline)
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
@@ -132,13 +132,13 @@ class LoginViewController: UIViewController {
 
         checkForMaintenanceMode(onCompletion: { [weak self] in
             // We wait until after the maintence mode check due to the issue with calling 2 anon functions at once. See "IMPORTANT NOTE!" in OMCApi.swift for more info
-            if let guid = UserDefaults.standard.string(forKey: UserDefaultKeys.AccountVerificationDeepLinkGuid) {
-                UserDefaults.standard.removeObject(forKey: UserDefaultKeys.AccountVerificationDeepLinkGuid) // Clear once consumed
+            if let guid = UserDefaults.standard.string(forKey: UserDefaultKeys.accountVerificationDeepLinkGuid) {
+                UserDefaults.standard.removeObject(forKey: UserDefaultKeys.accountVerificationDeepLinkGuid) // Clear once consumed
                 LoadingView.show()
                 self?.viewModel.validateRegistration(guid: guid, onSuccess: { [weak self] in
                     LoadingView.hide()
                     self?.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
-                    Analytics().logScreenView(AnalyticsPageView.RegisterAccountVerify.rawValue)
+                    Analytics.log(event: .RegisterAccountVerify)
                 }, onError: { [weak self] title, message in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -185,12 +185,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
-        Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
-                              keepSignedIn: String(describing: keepMeSignedInSwitch.isOn),
-                              usedFingerprint: "disabled")
+        Analytics.log(event: .LoginOffer,
+                        dimensions: [.KeepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
+                                     .FingerprintUsed: "disabled"])
         
         if forgotUsernamePopulated {
-            Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAccountValidation.rawValue)
+            Analytics.log(event: .ForgotUsernameCompleteAccountValidation)
         }
         
         view.endEditing(true)
@@ -239,7 +239,7 @@ class LoginViewController: UIViewController {
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp()
-                                Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
+                                Analytics.log(event: .TouchIDEnable)
                             }))
                             self.present(biometricsAlert, animated: true, completion: nil)
                             self.viewModel.setShouldPromptToEnableBiometrics(false)
@@ -254,7 +254,7 @@ class LoginViewController: UIViewController {
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp()
-                                Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
+                                Analytics.log(event: .TouchIDEnable)
                             }))
                             self.present(differentAccountAlert, animated: true, completion: nil)
                         } else {
@@ -293,8 +293,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
-        Analytics().logScreenView(AnalyticsPageView.ForgotUsernameOffer.rawValue)
-        if Environment.sharedInstance.opco == .bge {
+        Analytics.log(event: .ForgotUsernameOffer)
+        if Environment.shared.opco == .bge {
             performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
         } else {
             performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
@@ -302,7 +302,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotPasswordPress() {
-        Analytics().logScreenView(AnalyticsPageView.ForgotPasswordOffer.rawValue)
+        Analytics.log(event: .ForgotPasswordOffer)
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
     }
     
@@ -334,15 +334,14 @@ class LoginViewController: UIViewController {
     func launchMainApp() {
         if let accountDetail = viewModel.accountDetail {
             let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-            Analytics().logScreenView(AnalyticsPageView.LoginComplete.rawValue, dimensionIndices: [
-                Dimensions.ResidentialAMI,
-                Dimensions.BGEControlGroup,
-                Dimensions.PeakSmart
-            ], dimensionValues: [
-                residentialAMIString,
-                accountDetail.isBGEControlGroup ? "true" : "false",
-                (Environment.sharedInstance.opco == .bge && accountDetail.isSERAccount) || (Environment.sharedInstance.opco != .bge && accountDetail.isPTSAccount) ? "true" : "false"
-            ])
+            
+            let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
+                (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
+            
+            Analytics.log(event: .LoginComplete,
+                                 dimensions: [.ResidentialAMI: residentialAMIString,
+                                              .BGEControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
+                                              .PeakSmart: isPeakSmart ? "true" : "false"])
         }
 
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
@@ -363,9 +362,9 @@ class LoginViewController: UIViewController {
         viewModel.attemptLoginWithBiometrics(onLoad: { [weak self] in // Face/Touch ID was successful
             guard let `self` = self else { return }
             
-            Analytics().logSignIn(AnalyticsPageView.LoginOffer.rawValue,
-                                  keepSignedIn: String(describing: self.keepMeSignedInSwitch.isOn),
-                                  usedFingerprint: "enabled")
+            Analytics.log(event: .LoginOffer,
+                                 dimensions: [.KeepMeSignedIn: self.keepMeSignedInSwitch.isOn ? "true":"false",
+                                              .FingerprintUsed: "enabled"])
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
@@ -480,7 +479,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))
-            Analytics().logScreenView(AnalyticsPageView.ForgotPasswordComplete.rawValue)
+            Analytics.log(event: .ForgotPasswordComplete)
         })
     }
 }
@@ -489,7 +488,7 @@ extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDeleg
     
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String) {
         viewModel.username.value = username
-        Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAutoPopup.rawValue)
+        Analytics.log(event: .ForgotUsernameCompleteAutoPopup)
         forgotUsernamePopulated = true
     }
 }

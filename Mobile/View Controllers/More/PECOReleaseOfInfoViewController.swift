@@ -64,7 +64,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics().logScreenView(AnalyticsPageView.ReleaseInfoOffer.rawValue)
+        Analytics.log(event: .ReleaseInfoOffer)
     }
     
     @objc func onCancelPress() {
@@ -80,8 +80,8 @@ class PECOReleaseOfInfoViewController: UIViewController {
         }
         
         LoadingView.show()
-        Analytics().logScreenView(AnalyticsPageView.ReleaseInfoSubmit.rawValue)
-        accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.sharedInstance.currentAccount!, selectedIndex: rowToIntMapping)
+        Analytics.log(event: .ReleaseInfoSubmit)
+        accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.shared.currentAccount!, selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 LoadingView.hide()
@@ -101,7 +101,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     func fetchCurrentSelection() {
         let fetchReleaseOfInfo = { [weak self] in
             guard let `self` = self else { return }
-            self.accountService.fetchAccountDetail(account: AccountsStore.sharedInstance.currentAccount!)
+            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount!)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] accountDetail in
                     guard let `self` = self else { return }
@@ -129,7 +129,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
                 .disposed(by: self.disposeBag)
         }
         
-        if AccountsStore.sharedInstance.currentAccount == nil {
+        if AccountsStore.shared.currentAccount == nil {
             accountService.fetchAccounts()
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] _ in

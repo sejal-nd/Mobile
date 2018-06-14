@@ -43,7 +43,7 @@ to just update the build script directly if it's a permanent change.
 
 --project                 - Name of the xcodeproj -- defaults to Mobile.xcodeproj
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
---phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, distribute, writeDistributionScript
+--phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
 "
 
 PROPERTIES_FILE='version.properties'
@@ -112,7 +112,7 @@ elif [ -z "$OPCO" ]; then
 	exit 1
 fi
 
-target_phases="carthage, build, veracodePrep, unitTest, appCenterTest, distribute, writeDistributionScript"
+target_phases="carthage, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript"
 
 if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
@@ -281,7 +281,7 @@ if [[ $target_phases = *"build"* ]]; then
 	echo "--------------------------------- Post archiving  -------------------------------"
 
 
-	# # Archive App
+	# Archive App
 	xcrun xcodebuild \
 		-exportArchive \
 		-archivePath build/archive/$target_scheme.xcarchive \
@@ -289,6 +289,82 @@ if [[ $target_phases = *"build"* ]]; then
 		-exportOptionsPlist tools/ExportPlists/$target_scheme.plist
 
 	echo "--------------------------------- Post exporting -------------------------------"
+
+
+	if [[ $target_phases = *"distribute"* ]]; then
+		# Push to App Center Distribute
+		echo "--------------------------------- Uploading release  -------------------------------"
+		if [ -n "$APP_CENTER_GROUP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
+
+			appcenter distribute release \
+				--app $target_app_center_app \
+				--token $APP_CENTER_API_TOKEN \
+				--file "build/output/$target_scheme/$target_scheme.ipa" \
+				--group "$APP_CENTER_GROUP"
+		echo "--------------------------------- Completed release to $APP_CENTER_GROUP -------------------------------"
+		else
+			echo "Skipping App Center Distribution due to missing variables - \"app-center-group\" or \"app-center-api-token\""
+		fi
+	fi
+
+	if [[ $target_phases = *"appCenterSymbols"* ]]; then
+		echo "--------------------------------- Uploading symbols  -------------------------------"
+		# Push to App Center Distribute
+		if [ -n "$APP_CENTER_API_TOKEN" ]; then
+
+
+			# disable error propagation. we do not want to force the whole build script to fail if the rm fails
+			set +e
+
+			rm -r build/appcentersymbols
+
+			set -e
+
+			mkdir build/appcentersymbols
+
+			cp -a build/archive/$target_scheme.xcarchive/dSYMs/. build/appcentersymbols
+			pushd ./build/appcentersymbols
+			zip -r ../$OPCO-appcentersymbols-$target_version_number.zip .
+			popd
+
+			appcenter crashes upload-symbols -s \
+				./build/$OPCO-appcentersymbols-$target_version_number.zip \
+				--app $target_app_center_app \
+				--token $APP_CENTER_API_TOKEN
+
+			rm -r build/appcentersymbols
+		
+		echo "--------------------------------- Completed symbols  -------------------------------"
+
+		else
+			echo "Skipping App Center symbol uploading due to missing variables - \"app-center-api-token\""
+		fi
+
+	fi
+
+	if [[ $target_phases = *"writeDistributionScript"* ]]; then
+	  echo "#!/usr/bin/env bash
+
+APP_CENTER_API_TOKEN=
+APP_CENTER_GROUP=
+
+# Parse arguments.
+for i in \"\$@\"; do
+case \$1 in
+    --app-center-api-token) APP_CENTER_API_TOKEN=\"\$2\"; shift ;;
+    --app-center-group) APP_CENTER_GROUP=\"\$2\"; shift ;;
+esac
+shift
+done
+
+echo \"Uploading app to app center for distribution to group \$APP_CENTER_GROUP\"
+appcenter distribute release \\
+--app \"$target_app_center_app\" \\
+--file \"build/output/$target_scheme/$target_scheme.ipa\" \\
+--token \$APP_CENTER_API_TOKEN \\
+--group \"\$APP_CENTER_GROUP\"
+" > ./tools/app_center_push.sh
+	fi 
 
 fi
 
@@ -363,42 +439,3 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 		echo "Skipping App Center Test due to missing variables - \"app-center-test-devices\", or \"app-center-api-token\""
 	fi
 fi
-
-if [[ $target_phases = *"distribute"* ]]; then
-	# Push to App Center Distribute
-	if [ -n "$APP_CENTER_GROUP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
-
-		appcenter distribute release \
-			--app $target_app_center_app \
-			--token $APP_CENTER_API_TOKEN \
-			--file "build/output/$target_scheme/$target_scheme.ipa" \
-			--group "$APP_CENTER_GROUP"
-
-	else
-		echo "Skipping App Center Distribution due to missing variables - \"app-center-group\" or \"app-center-api-token\""
-	fi
-fi
-
-if [[ $target_phases = *"writeDistributionScript"* ]]; then
-  echo "#!/usr/bin/env bash
-
-APP_CENTER_API_TOKEN=
-APP_CENTER_GROUP=
-
-# Parse arguments.
-for i in \"\$@\"; do
-    case \$1 in
-        --app-center-api-token) APP_CENTER_API_TOKEN=\"\$2\"; shift ;;
-        --app-center-group) APP_CENTER_GROUP=\"\$2\"; shift ;;
-    esac
-    shift
-done
-
-  echo \"Uploading app to app center for distribution to group \$APP_CENTER_GROUP\"
-  appcenter distribute release \\
-    --app \"$target_app_center_app\" \\
-    --file \"build/output/$target_scheme/$target_scheme.ipa\" \\
-    --token \$APP_CENTER_API_TOKEN \\
-    --group \"\$APP_CENTER_GROUP\"
-  " > ./tools/app_center_push.sh
-fi 
