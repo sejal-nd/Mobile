@@ -129,6 +129,18 @@ class HomeViewController: AccountPickerViewController {
         cardStackView.addArrangedSubview(templateCardView)
         cardStackView.isHidden = true
         
+        let personalizeButton = UIButton().usingAutoLayout()
+        personalizeButton.setTitle(NSLocalizedString("Personalize Your Dashboard", comment: ""), for: .normal)
+        personalizeButton.setTitleColor(.white, for: .normal)
+        personalizeButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
+        personalizeButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "editHomeSegue", sender: nil)
+            })
+            .disposed(by: bag)
+        
+        cardStackView.addArrangedSubview(personalizeButton)
+        
         styleViews()
         bindLoadingStates()
         

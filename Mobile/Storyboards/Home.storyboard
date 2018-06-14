@@ -15,6 +15,77 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Home Edit View Controller-->
+        <scene sceneID="mlh-GY-QXk">
+            <objects>
+                <viewController id="kPP-Jm-evK" customClass="HomeEditViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cbx-sg-23w"/>
+                        <viewControllerLayoutGuide type="bottom" id="qDW-Vd-JpY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lgf-Bb-18R">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Lys-5J-Izu">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SsG-PH-fk3">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mQP-gd-QyE">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7r-bj-XSy">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Edit Dashboard" id="FdI-Ps-Dfu">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="L2J-IP-ru7">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="uIf-Nz-KgZ">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="E7r-bj-XSy" secondAttribute="trailing" id="7bQ-sB-wVb"/>
+                            <constraint firstItem="Lys-5J-Izu" firstAttribute="leading" secondItem="lgf-Bb-18R" secondAttribute="leading" id="Dun-NA-KRK"/>
+                            <constraint firstItem="Lys-5J-Izu" firstAttribute="top" secondItem="E7r-bj-XSy" secondAttribute="bottom" id="JC6-uQ-g8b"/>
+                            <constraint firstItem="E7r-bj-XSy" firstAttribute="leading" secondItem="lgf-Bb-18R" secondAttribute="leading" id="gDt-qa-yH6"/>
+                            <constraint firstAttribute="trailing" secondItem="Lys-5J-Izu" secondAttribute="trailing" id="hHz-SE-0u4"/>
+                            <constraint firstAttribute="bottom" secondItem="Lys-5J-Izu" secondAttribute="bottom" id="pew-84-gDV"/>
+                            <constraint firstItem="E7r-bj-XSy" firstAttribute="top" secondItem="cbx-sg-23w" secondAttribute="bottom" id="vK2-v3-mrb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="L2J-IP-ru7" id="fl7-Jb-h4h"/>
+                        <outlet property="navigationBar" destination="E7r-bj-XSy" id="ixG-7D-tHI"/>
+                        <outlet property="saveButton" destination="uIf-Nz-KgZ" id="nXb-db-7DO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YVr-NI-vRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1441" y="-2183"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="cod-qW-QjA">
             <objects>
@@ -149,6 +220,7 @@
                         <outlet property="scrollView" destination="mzY-0e-rXR" id="ejP-8Y-Dy4"/>
                         <segue destination="PED-vj-t5U" kind="show" identifier="usageSegue" id="84U-Il-aeI"/>
                         <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="Gdb-8Z-K6i"/>
+                        <segue destination="kPP-Jm-evK" kind="presentation" identifier="editHomeSegue" id="K35-ng-Fvp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
