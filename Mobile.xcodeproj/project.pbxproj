@@ -717,6 +717,12 @@
 		B067E0AE2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
 		B067E0AF2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
 		B067E0B02045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
+		B068DB5620D2E99300930589 /* HomeEditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5520D2E99300930589 /* HomeEditCardCell.swift */; };
+		B068DB5720D2E99300930589 /* HomeEditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5520D2E99300930589 /* HomeEditCardCell.swift */; };
+		B068DB5820D2E99300930589 /* HomeEditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5520D2E99300930589 /* HomeEditCardCell.swift */; };
+		B068DB5A20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */; };
+		B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */; };
+		B068DB5C20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */; };
 		B06B40F920D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */; };
 		B06B40FA20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */; };
 		B06B40FB20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */; };
@@ -2297,6 +2303,8 @@
 		B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsViewModelTests.swift; sourceTree = "<group>"; };
 		B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPeakRewardsService.swift; sourceTree = "<group>"; };
 		B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsInitExtensions.swift; sourceTree = "<group>"; };
+		B068DB5520D2E99300930589 /* HomeEditCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditCardCell.swift; sourceTree = "<group>"; };
+		B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditFlowLayout.swift; sourceTree = "<group>"; };
 		B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedFloatLabeledTextView.swift; sourceTree = "<group>"; };
 		B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditViewController.swift; sourceTree = "<group>"; };
 		B07D247220C590AB00BD22EB /* HomeWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
@@ -3680,6 +3688,7 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B068DB5420D2E88700930589 /* Home Edit */,
 				B0030D062097BC5500327A3D /* MaintenanceModeView */,
 				E8B8C8461F9E354B005828B0 /* SmartEnergyRewardsView */,
 				E8C29C761F630F9E00DB73FC /* OutageStatusButton */,
@@ -3788,6 +3797,15 @@
 				B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */,
 			);
 			path = "Peak Rewards";
+			sourceTree = "<group>";
+		};
+		B068DB5420D2E88700930589 /* Home Edit */ = {
+			isa = PBXGroup;
+			children = (
+				B068DB5520D2E99300930589 /* HomeEditCardCell.swift */,
+				B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */,
+			);
+			path = "Home Edit";
 			sourceTree = "<group>";
 		};
 		B52CA0AD1F3114D5002B5674 /* Analytics */ = {
@@ -5684,6 +5702,7 @@
 				E8EA601A1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
+				B068DB5A20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A1E1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
@@ -5883,6 +5902,7 @@
 				E835D1C91FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027A1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				B068DB5620D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
@@ -5994,6 +6014,7 @@
 				E8EA601C1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60181FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
+				B068DB5C20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				82AC2A201FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
@@ -6193,6 +6214,7 @@
 				E835D1CB1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027C1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				E89983E31F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
+				B068DB5820D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
@@ -6304,6 +6326,7 @@
 				E8EA601B1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60171FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
+				B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				82AC2A1F1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
@@ -6503,6 +6526,7 @@
 				E835D1CA1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027B1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				E89983E21F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
+				B068DB5720D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,

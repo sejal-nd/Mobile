@@ -13,78 +13,116 @@
         <array key="OpenSans-Bold.ttf">
             <string>OpenSans-Bold</string>
         </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
     </customFonts>
     <scenes>
-        <!--Home Edit View Controller-->
-        <scene sceneID="mlh-GY-QXk">
+        <!--Edit Dashboard-->
+        <scene sceneID="t7p-iW-psx">
             <objects>
-                <viewController id="kPP-Jm-evK" customClass="HomeEditViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cbx-sg-23w"/>
-                        <viewControllerLayoutGuide type="bottom" id="qDW-Vd-JpY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lgf-Bb-18R">
+                <collectionViewController id="ATH-nk-Olk" customClass="HomeEditViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="7Me-YR-WlA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Lys-5J-Izu">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SsG-PH-fk3">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="mQP-gd-QyE">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2z0-7Z-C0Y">
+                            <size key="itemSize" width="375" height="60"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeEditCardCell" id="Jjd-so-i6p" customClass="HomeEditCardCell" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Skw-se-oy0">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ana-DM-IHb">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="60"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5x-Bt-1pq">
+                                                            <rect key="frame" x="0.0" y="19" width="16" height="22"/>
+                                                            <state key="normal" image="ic_add"/>
+                                                        </button>
+                                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="K6B-iL-fSC">
+                                                            <rect key="frame" x="31" y="9.5" width="282" height="41.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn0-Dc-aMU">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="38" height="25"/>
+                                                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
+                                                                    <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May not be available for all accounts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIC-PU-bUz">
+                                                                    <rect key="frame" x="0.0" y="25" width="203.5" height="16.5"/>
+                                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_grip" translatesAutoresizingMaskIntoConstraints="NO" id="QFp-op-twT">
+                                                            <rect key="frame" x="328" y="17.5" width="15" height="25"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="Ana-DM-IHb" firstAttribute="leading" secondItem="Skw-se-oy0" secondAttribute="leading" constant="16" id="9k9-ty-LR7"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ana-DM-IHb" secondAttribute="bottom" id="Ses-uW-G10"/>
+                                                <constraint firstAttribute="height" constant="60" id="a7A-8H-WBf"/>
+                                                <constraint firstItem="Ana-DM-IHb" firstAttribute="top" secondItem="Skw-se-oy0" secondAttribute="top" id="dhO-q9-hMS"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ana-DM-IHb" secondAttribute="trailing" constant="16" id="e7Y-gF-gS0"/>
+                                            </constraints>
                                         </view>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7r-bj-XSy">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="barTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Edit Dashboard" id="FdI-Ps-Dfu">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="L2J-IP-ru7">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="uIf-Nz-KgZ">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="E7r-bj-XSy" secondAttribute="trailing" id="7bQ-sB-wVb"/>
-                            <constraint firstItem="Lys-5J-Izu" firstAttribute="leading" secondItem="lgf-Bb-18R" secondAttribute="leading" id="Dun-NA-KRK"/>
-                            <constraint firstItem="Lys-5J-Izu" firstAttribute="top" secondItem="E7r-bj-XSy" secondAttribute="bottom" id="JC6-uQ-g8b"/>
-                            <constraint firstItem="E7r-bj-XSy" firstAttribute="leading" secondItem="lgf-Bb-18R" secondAttribute="leading" id="gDt-qa-yH6"/>
-                            <constraint firstAttribute="trailing" secondItem="Lys-5J-Izu" secondAttribute="trailing" id="hHz-SE-0u4"/>
-                            <constraint firstAttribute="bottom" secondItem="Lys-5J-Izu" secondAttribute="bottom" id="pew-84-gDV"/>
-                            <constraint firstItem="E7r-bj-XSy" firstAttribute="top" secondItem="cbx-sg-23w" secondAttribute="bottom" id="vK2-v3-mrb"/>
-                        </constraints>
-                    </view>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Skw-se-oy0" secondAttribute="bottom" id="GRW-7S-yDu"/>
+                                    <constraint firstItem="Skw-se-oy0" firstAttribute="top" secondItem="Jjd-so-i6p" secondAttribute="top" id="LMs-Aq-Ygp"/>
+                                    <constraint firstAttribute="trailing" secondItem="Skw-se-oy0" secondAttribute="trailing" id="Tcm-Xn-7JE"/>
+                                    <constraint firstItem="Skw-se-oy0" firstAttribute="leading" secondItem="Jjd-so-i6p" secondAttribute="leading" id="YVu-nJ-N2t"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="addRemoveButton" destination="C5x-Bt-1pq" id="ihN-97-uHk"/>
+                                    <outlet property="cardView" destination="Skw-se-oy0" id="XVd-SR-toq"/>
+                                    <outlet property="gripImageView" destination="QFp-op-twT" id="hnf-ui-lS0"/>
+                                    <outlet property="nameLabel" destination="rn0-Dc-aMU" id="ON1-Jx-3iM"/>
+                                    <outlet property="subLabel" destination="eIC-PU-bUz" id="2tY-7U-RfQ"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ATH-nk-Olk" id="K8d-yr-jxf"/>
+                            <outlet property="delegate" destination="ATH-nk-Olk" id="slX-0J-JRv"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Edit Dashboard" id="nA6-DF-Obh">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Rdg-rd-Eus">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="6w6-zK-ZaD">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="cancelButton" destination="L2J-IP-ru7" id="fl7-Jb-h4h"/>
-                        <outlet property="navigationBar" destination="E7r-bj-XSy" id="ixG-7D-tHI"/>
-                        <outlet property="saveButton" destination="uIf-Nz-KgZ" id="nXb-db-7DO"/>
+                        <outlet property="cancelButton" destination="Rdg-rd-Eus" id="isM-vH-LSd"/>
+                        <outlet property="saveButton" destination="6w6-zK-ZaD" id="j8p-Os-zgm"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YVr-NI-vRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ele-wa-cpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1441" y="-2183"/>
+            <point key="canvasLocation" x="1477.5999999999999" y="-2187.2563718140932"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="cod-qW-QjA">
@@ -220,7 +258,7 @@
                         <outlet property="scrollView" destination="mzY-0e-rXR" id="ejP-8Y-Dy4"/>
                         <segue destination="PED-vj-t5U" kind="show" identifier="usageSegue" id="84U-Il-aeI"/>
                         <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="Gdb-8Z-K6i"/>
-                        <segue destination="kPP-Jm-evK" kind="presentation" identifier="editHomeSegue" id="K35-ng-Fvp"/>
+                        <segue destination="Ywc-8s-IBo" kind="presentation" identifier="editHomeSegue" id="6Qx-eL-PNO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -566,7 +604,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yss-Hv-HTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2348" y="-1553"/>
+            <point key="canvasLocation" x="3287.1999999999998" y="-1553.5232383808097"/>
         </scene>
         <!--Usage-->
         <scene sceneID="7PC-Mn-FKi">
@@ -613,7 +651,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7A-jf-feU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3225" y="-2166"/>
+            <point key="canvasLocation" x="4164" y="-2166.5667166416792"/>
         </scene>
         <!--PeakRewards-->
         <scene sceneID="D5J-Is-GFm">
@@ -1259,9 +1297,29 @@
             </objects>
             <point key="canvasLocation" x="2348" y="-423"/>
         </scene>
+        <!--Main Base Navigation Controller-->
+        <scene sceneID="lfl-ym-K3d">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ywc-8s-IBo" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dNi-cQ-q0H">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ATH-nk-Olk" kind="relationship" relationship="rootViewController" id="hpf-k3-b7l"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Mv-Fh-LW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="764" y="-2187.2563718140932"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="ic_add" width="16" height="16"/>
         <image name="ic_close" width="24" height="24"/>
+        <image name="ic_grip" width="15" height="25"/>
         <image name="ic_savings_caretleft" width="24" height="24"/>
         <image name="ic_savings_caretright" width="24" height="24"/>
         <image name="ic_smartenergyempty" width="109" height="103"/>
