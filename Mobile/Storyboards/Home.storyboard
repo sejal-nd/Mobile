@@ -31,13 +31,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2z0-7Z-C0Y">
                             <size key="itemSize" width="375" height="60"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeEditCardCell" id="Jjd-so-i6p" customClass="HomeEditCardCell" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -51,6 +51,9 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5x-Bt-1pq">
                                                             <rect key="frame" x="0.0" y="19" width="16" height="22"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="54j-fS-dYB"/>
+                                                            </constraints>
                                                             <state key="normal" image="ic_add"/>
                                                         </button>
                                                         <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="K6B-iL-fSC">
@@ -117,6 +120,38 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeEditSectionHeaderView" id="wZW-zD-bZ5" customClass="HomeEditSectionHeaderView" customModule="BGE" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tl-q2-3Yp">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sai-UF-P6f">
+                                            <rect key="frame" x="16" y="26.5" width="98" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Sai-UF-P6f" secondAttribute="bottom" constant="2" id="JGv-Pb-nT3"/>
+                                        <constraint firstItem="Sai-UF-P6f" firstAttribute="leading" secondItem="5tl-q2-3Yp" secondAttribute="leading" constant="16" id="r86-AC-SbP"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="5tl-q2-3Yp" firstAttribute="leading" secondItem="wZW-zD-bZ5" secondAttribute="leading" id="FNh-2Q-aUe"/>
+                                <constraint firstAttribute="bottom" secondItem="5tl-q2-3Yp" secondAttribute="bottom" id="Gsx-pH-sKz"/>
+                                <constraint firstItem="5tl-q2-3Yp" firstAttribute="top" secondItem="wZW-zD-bZ5" secondAttribute="top" id="UA8-wv-3DI"/>
+                                <constraint firstAttribute="trailing" secondItem="5tl-q2-3Yp" secondAttribute="trailing" id="lNy-Rn-BBj"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="label" destination="Sai-UF-P6f" id="tG3-fU-KMR"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="ATH-nk-Olk" id="K8d-yr-jxf"/>
                             <outlet property="delegate" destination="ATH-nk-Olk" id="slX-0J-JRv"/>
