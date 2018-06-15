@@ -47,14 +47,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ana-DM-IHb">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="60"/>
+                                                    <rect key="frame" x="16" y="0.0" width="355" height="60"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5x-Bt-1pq">
                                                             <rect key="frame" x="0.0" y="19" width="16" height="22"/>
                                                             <state key="normal" image="ic_add"/>
                                                         </button>
                                                         <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="K6B-iL-fSC">
-                                                            <rect key="frame" x="31" y="9.5" width="282" height="41.5"/>
+                                                            <rect key="frame" x="31" y="9.5" width="270" height="41.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn0-Dc-aMU">
                                                                     <rect key="frame" x="0.0" y="0.0" width="38" height="25"/>
@@ -70,10 +70,25 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_grip" translatesAutoresizingMaskIntoConstraints="NO" id="QFp-op-twT">
-                                                            <rect key="frame" x="328" y="17.5" width="15" height="25"/>
-                                                        </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bdy-cz-8Mr">
+                                                            <rect key="frame" x="316" y="0.0" width="39" height="60"/>
+                                                            <subviews>
+                                                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_grip" translatesAutoresizingMaskIntoConstraints="NO" id="QFp-op-twT">
+                                                                    <rect key="frame" x="12" y="18" width="15" height="25"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="QFp-op-twT" secondAttribute="trailing" constant="12" id="dQ9-hN-Glx"/>
+                                                                <constraint firstItem="QFp-op-twT" firstAttribute="leading" secondItem="Bdy-cz-8Mr" secondAttribute="leading" constant="12" id="gD3-Gh-Xfs"/>
+                                                                <constraint firstItem="QFp-op-twT" firstAttribute="centerY" secondItem="Bdy-cz-8Mr" secondAttribute="centerY" id="lvP-K6-LYm"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Bdy-cz-8Mr" firstAttribute="top" secondItem="Ana-DM-IHb" secondAttribute="top" id="ctv-Rx-2OD"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Bdy-cz-8Mr" secondAttribute="bottom" id="s3v-bd-gwD"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -82,7 +97,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="Ana-DM-IHb" secondAttribute="bottom" id="Ses-uW-G10"/>
                                                 <constraint firstAttribute="height" constant="60" id="a7A-8H-WBf"/>
                                                 <constraint firstItem="Ana-DM-IHb" firstAttribute="top" secondItem="Skw-se-oy0" secondAttribute="top" id="dhO-q9-hMS"/>
-                                                <constraint firstAttribute="trailing" secondItem="Ana-DM-IHb" secondAttribute="trailing" constant="16" id="e7Y-gF-gS0"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ana-DM-IHb" secondAttribute="trailing" constant="4" id="e7Y-gF-gS0"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -96,7 +111,7 @@
                                 <connections>
                                     <outlet property="addRemoveButton" destination="C5x-Bt-1pq" id="ihN-97-uHk"/>
                                     <outlet property="cardView" destination="Skw-se-oy0" id="XVd-SR-toq"/>
-                                    <outlet property="gripImageView" destination="QFp-op-twT" id="hnf-ui-lS0"/>
+                                    <outlet property="gripView" destination="Bdy-cz-8Mr" id="CvA-Ez-xz1"/>
                                     <outlet property="nameLabel" destination="rn0-Dc-aMU" id="ON1-Jx-3iM"/>
                                     <outlet property="subLabel" destination="eIC-PU-bUz" id="2tY-7U-RfQ"/>
                                 </connections>

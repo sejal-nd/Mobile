@@ -14,7 +14,7 @@ class HomeEditCardCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subLabel: UILabel!
     @IBOutlet weak var addRemoveButton: UIButton!
-    @IBOutlet weak var gripImageView: UIImageView!
+    @IBOutlet weak var gripView: UIView!
     
     var disposeBag = DisposeBag()
     
@@ -27,7 +27,7 @@ class HomeEditCardCell: UICollectionViewCell {
     func configure(withTitle title: String, canReorder: Bool, isAlwaysAvailable: Bool) {
         nameLabel.text = title
         subLabel.isHidden = isAlwaysAvailable
-        gripImageView.isHidden = !canReorder
+        gripView.isHidden = !canReorder
     }
     
     override func prepareForReuse() {

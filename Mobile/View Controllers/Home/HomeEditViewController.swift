@@ -80,7 +80,7 @@ extension HomeEditViewController {
             .disposed(by: cell.disposeBag)
         
         let longPressGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLongGesture(gesture:)))
-        cell.gripImageView.addGestureRecognizer(longPressGesture)
+        cell.gripView.addGestureRecognizer(longPressGesture)
         
         return cell
     }
