@@ -756,6 +756,9 @@
 		B092185020A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
 		B092185120A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
 		B092185220A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
+		B09356AC20D8042000DABC73 /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B09356AB20D8042000DABC73 /* RxGesture.framework */; };
+		B09356AD20D8049C00DABC73 /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B09356AB20D8042000DABC73 /* RxGesture.framework */; };
+		B09356AE20D804B200DABC73 /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B09356AB20D8042000DABC73 /* RxGesture.framework */; };
 		B0AD7FEE205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FEF205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FF0205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
@@ -2316,6 +2319,7 @@
 		B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherViewModel.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
 		B092184C20A24CA400695888 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		B09356AB20D8042000DABC73 /* RxGesture.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxGesture.framework; path = Carthage/Build/iOS/RxGesture.framework; sourceTree = "<group>"; };
 		B0AD7FED205841C80090B40D /* SequenceForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceForEach.swift; sourceTree = "<group>"; };
 		B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutItem.swift; sourceTree = "<group>"; };
 		B52CA0AE1F311524002B5674 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
@@ -2742,6 +2746,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B09356AC20D8042000DABC73 /* RxGesture.framework in Frameworks */,
 				E83F02831FB380700062A348 /* UserNotifications.framework in Frameworks */,
 				E8B9BD921F8826FD007C824C /* Charts.framework in Frameworks */,
 				B55A8B101F15647D00F63AC3 /* libsqlite3.tbd in Frameworks */,
@@ -2793,6 +2798,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B09356AE20D804B200DABC73 /* RxGesture.framework in Frameworks */,
 				E83F02851FB3807D0062A348 /* UserNotifications.framework in Frameworks */,
 				E8B9BD941F882742007C824C /* Charts.framework in Frameworks */,
 				B55A8B1A1F15650200F63AC3 /* libsqlite3.tbd in Frameworks */,
@@ -2844,6 +2850,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B09356AD20D8049C00DABC73 /* RxGesture.framework in Frameworks */,
 				E83F02841FB380770062A348 /* UserNotifications.framework in Frameworks */,
 				E8B9BD931F882732007C824C /* Charts.framework in Frameworks */,
 				B55A8B171F1564E500F63AC3 /* libsqlite3.tbd in Frameworks */,
@@ -3605,6 +3612,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B09356AB20D8042000DABC73 /* RxGesture.framework */,
 				9C6BC8A620ADCECF00B4399B /* AppCenter.framework */,
 				9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */,
 				0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */,
@@ -5018,7 +5026,7 @@
 						};
 					};
 					B58B5B201E515C840051FD5F = {
-						DevelopmentTeam = 38R4RRBYR8;
+						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -5502,6 +5510,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5516,6 +5525,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwiftExt.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PDTSimpleCalendar.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxGesture.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -5540,6 +5550,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5554,6 +5565,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwiftExt.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PDTSimpleCalendar.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxGesture.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -5578,6 +5590,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5592,6 +5605,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwiftExt.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PDTSimpleCalendar.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxGesture.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
