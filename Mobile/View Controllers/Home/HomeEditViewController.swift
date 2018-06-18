@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxGesture
 
 class HomeEditViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -18,6 +19,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
     
     let defaultNamesOrder = ["Bill", "Usage", "Template", "Projected Bill", "Outage Status", "PeakRewards", "Test1", "Test2"]
     lazy var names = [Array(self.defaultNamesOrder[0..<3]), Array(self.defaultNamesOrder[3...])]
+    var isReordering = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +35,29 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         
         installsStandardGestureForInteractiveMovement = false
         
+        
+        saveButton.rx.tap.asDriver()
+            .drive(onNext: {
+                
+            })
+            .disposed(by: disposeBag)
     }
     
-    @objc func handleLongGesture(gesture: UIPanGestureRecognizer) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar(hidesBottomBorder: true)
+        }
+    }
+    
+    func handleDragToReorder(gesture: UIPanGestureRecognizer) {
         guard let collectionView = collectionView else { return }
         
         let offset = gesture.location(in: collectionView).x - collectionView.bounds.width / 2
         switch(gesture.state) {
         case .began:
+            isReordering = true
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
                 break
             }
@@ -50,17 +67,11 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
                                    y: max(55, min(CGFloat(55 + 70 * (self.names[0].count - 1)), gesture.location(in: collectionView).y)))
             collectionView.updateInteractiveMovementTargetPosition(location)
         case .ended:
+            isReordering = false
             collectionView.endInteractiveMovement()
-        default:
+        case .cancelled, .failed, .possible:
+            isReordering = false
             collectionView.cancelInteractiveMovement()
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar(hidesBottomBorder: true)
         }
     }
     
@@ -89,24 +100,50 @@ extension HomeEditViewController {
                        canRemove: indexPath.section == 0,
                        isAlwaysAvailable: name != "Usage")
         
-        cell.addRemoveButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
-                let sourceIndexPath = IndexPath(item: self.names[indexPath.section].index(of: name)!, section: indexPath.section)
-                self.names[indexPath.section].remove(at: sourceIndexPath.item)
-                self.names[otherSection].append(name)
-                let destination = IndexPath(item: self.names[otherSection].count - 1, section: otherSection)
-                self.collectionView?.performBatchUpdates({
-                    self.collectionView?.moveItem(at: sourceIndexPath, to: destination)
-                }, completion: { success in
-                    guard success else { return }
-                    self.collectionView?.reloadItems(at: [destination])
-                })
+        let removeTapped = { [weak self] in
+            guard let `self` = self else { return }
+            let sourceIndexPath = IndexPath(item: self.names[indexPath.section].index(of: name)!, section: indexPath.section)
+            self.names[indexPath.section].remove(at: sourceIndexPath.item)
+            
+            self.names[otherSection].append(name)
+            let destinationIndexPath = IndexPath(item: self.names[otherSection].count - 1, section: otherSection)
+            
+            self.collectionView?.performBatchUpdates({
+                self.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
+            }, completion: { success in
+                guard success else { return }
+                self.collectionView?.reloadItems(at: [destinationIndexPath])
             })
-            .disposed(by: cell.disposeBag)
+        }
         
-        let longPressGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLongGesture(gesture:)))
-        cell.gripView.addGestureRecognizer(longPressGesture)
+        let addTapped = { [weak self] in
+            guard let `self` = self else { return }
+            let sourceIndexPath = IndexPath(item: self.names[indexPath.section].index(of: name)!, section: indexPath.section)
+            self.names[indexPath.section].remove(at: sourceIndexPath.item)
+            self.names[otherSection].append(name)
+            let destinationIndexPath = IndexPath(item: self.names[otherSection].count - 1, section: otherSection)
+            
+            self.collectionView?.performBatchUpdates({
+                self.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
+            }, completion: { success in
+                guard success else { return }
+                self.collectionView?.reloadItems(at: [destinationIndexPath])
+            })
+        }
+        
+        if indexPath.section == 0 {
+            cell.addRemoveButton.rx.tap.asDriver().drive(onNext: removeTapped).disposed(by: cell.disposeBag)
+        } else {
+            cell.addRemoveButton.rx.tap.asDriver().drive(onNext: addTapped).disposed(by: cell.disposeBag)
+        }
+        
+        cell.gripView.rx.panGesture(minimumNumberOfTouches: 1, maximumNumberOfTouches: 1) { _, delegate in
+            delegate.beginPolicy = .custom { [weak self] _ in !(self?.isReordering ?? false) }
+            delegate.simultaneousRecognitionPolicy = .never
+            }
+            .asDriver()
+            .drive(onNext: { [weak self] in self?.handleDragToReorder(gesture: $0)})
+            .disposed(by: cell.disposeBag)
         
         return cell
     }
