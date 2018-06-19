@@ -24,11 +24,13 @@ class HomeEditCardCell: UICollectionViewCell {
         cardView.addShadow(color: .black, opacity: 0, offset: CGSize(width: 0, height: 1), radius: 3)
     }
     
-    func configure(withTitle title: String, canReorder: Bool, canRemove: Bool, isAlwaysAvailable: Bool) {
-        nameLabel.text = title
-        subLabel.isHidden = isAlwaysAvailable
-        gripView.isHidden = !canReorder
-        addRemoveButton.setImage(canRemove ? #imageLiteral(resourceName: "ic_remove"):#imageLiteral(resourceName: "ic_add"), for: .normal)
+    func configure(withCard card: HomeCard, isActive: Bool, addRemoveTapped: @escaping ()->()) {
+        nameLabel.text = card.displayString
+        subLabel.isHidden = card.isAlwaysAvailable
+        gripView.isHidden = !isActive
+        addRemoveButton.setImage(isActive ? #imageLiteral(resourceName: "ic_remove"):#imageLiteral(resourceName: "ic_add"), for: .normal)
+        addRemoveButton.isHidden = !card.isOptional
+        addRemoveButton.rx.tap.asDriver().drive(onNext: addRemoveTapped).disposed(by: disposeBag)
     }
     
     override func prepareForReuse() {

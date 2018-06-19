@@ -46,18 +46,31 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Skw-se-oy0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ana-DM-IHb">
-                                                    <rect key="frame" x="16" y="0.0" width="355" height="60"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ana-DM-IHb">
+                                                    <rect key="frame" x="12" y="0.0" width="359" height="60"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5x-Bt-1pq">
-                                                            <rect key="frame" x="0.0" y="19" width="16" height="22"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3z-We-UIJ">
+                                                            <rect key="frame" x="0.0" y="18" width="24" height="24"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5x-Bt-1pq">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="24" id="54j-fS-dYB"/>
+                                                                        <constraint firstAttribute="height" constant="24" id="bb6-nv-g6c"/>
+                                                                    </constraints>
+                                                                    <state key="normal" image="ic_add"/>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="16" id="54j-fS-dYB"/>
+                                                                <constraint firstAttribute="trailing" secondItem="C5x-Bt-1pq" secondAttribute="trailing" id="YXc-AQ-vvw"/>
+                                                                <constraint firstAttribute="bottom" secondItem="C5x-Bt-1pq" secondAttribute="bottom" id="fZo-Oe-QUG"/>
+                                                                <constraint firstItem="C5x-Bt-1pq" firstAttribute="leading" secondItem="T3z-We-UIJ" secondAttribute="leading" id="kXd-H4-5Vs"/>
+                                                                <constraint firstItem="C5x-Bt-1pq" firstAttribute="top" secondItem="T3z-We-UIJ" secondAttribute="top" id="m86-QS-20w"/>
                                                             </constraints>
-                                                            <state key="normal" image="ic_add"/>
-                                                        </button>
+                                                        </view>
                                                         <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="K6B-iL-fSC">
-                                                            <rect key="frame" x="31" y="9.5" width="270" height="41.5"/>
+                                                            <rect key="frame" x="36" y="9.5" width="272" height="41.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn0-Dc-aMU">
                                                                     <rect key="frame" x="0.0" y="0.0" width="38" height="25"/>
@@ -74,7 +87,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bdy-cz-8Mr">
-                                                            <rect key="frame" x="316" y="0.0" width="39" height="60"/>
+                                                            <rect key="frame" x="320" y="0.0" width="39" height="60"/>
                                                             <subviews>
                                                                 <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_grip" translatesAutoresizingMaskIntoConstraints="NO" id="QFp-op-twT">
                                                                     <rect key="frame" x="12" y="18" width="15" height="25"/>
@@ -96,7 +109,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="Ana-DM-IHb" firstAttribute="leading" secondItem="Skw-se-oy0" secondAttribute="leading" constant="16" id="9k9-ty-LR7"/>
+                                                <constraint firstItem="Ana-DM-IHb" firstAttribute="leading" secondItem="Skw-se-oy0" secondAttribute="leading" constant="12" id="9k9-ty-LR7"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ana-DM-IHb" secondAttribute="bottom" id="Ses-uW-G10"/>
                                                 <constraint firstAttribute="height" constant="60" id="a7A-8H-WBf"/>
                                                 <constraint firstItem="Ana-DM-IHb" firstAttribute="top" secondItem="Skw-se-oy0" secondAttribute="top" id="dhO-q9-hMS"/>

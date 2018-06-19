@@ -17,8 +17,17 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
     
     let disposeBag = DisposeBag()
     
-    let defaultNamesOrder = ["Bill", "Usage", "Template", "Projected Bill", "Outage Status", "PeakRewards", "Test1", "Test2"]
-    lazy var names = [Array(self.defaultNamesOrder[0..<3]), Array(self.defaultNamesOrder[3...])]
+    lazy var cards: [[HomeCard]] = {
+        let selectedCards = HomeCardPrefsStore.shared.list
+        
+        var rejectedCards = HomeCard.allCases
+        let partitionIndex = rejectedCards.partition(by: { selectedCards.contains($0) })
+        rejectedCards.removeSubrange(partitionIndex...)
+        rejectedCards.sort { $0.rawValue < $1.rawValue }
+        
+        return [selectedCards, rejectedCards]
+    }()
+    
     var isReordering = false
     
     override func viewDidLoad() {
@@ -35,10 +44,11 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         
         installsStandardGestureForInteractiveMovement = false
         
-        
         saveButton.rx.tap.asDriver()
-            .drive(onNext: {
-                
+            .drive(onNext: { [weak self] in
+                guard let welf = self else { return }
+                HomeCardPrefsStore.shared.list = welf.cards[0]
+                self?.presentingViewController?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }
@@ -64,7 +74,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case .changed:
             let location = CGPoint(x: gesture.location(in: collectionView).x - offset,
-                                   y: max(55, min(CGFloat(55 + 70 * (self.names[0].count - 1)), gesture.location(in: collectionView).y)))
+                                   y: max(55, min(CGFloat(55 + 70 * (self.cards[0].count - 1)), gesture.location(in: collectionView).y)))
             collectionView.updateInteractiveMovementTargetPosition(location)
         case .ended:
             isReordering = false
@@ -87,55 +97,43 @@ extension HomeEditViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return names[section].count
+        return cards[section].count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditCardCell.className, for: indexPath) as! HomeEditCardCell
-        let name = names[indexPath.section][indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditCardCell.className,
+                                                      for: indexPath) as! HomeEditCardCell
+        let card = cards[indexPath.section][indexPath.item]
         let otherSection = (indexPath.section + 1) % 2
         
-        cell.configure(withTitle: name,
-                       canReorder: indexPath.section == 0,
-                       canRemove: indexPath.section == 0,
-                       isAlwaysAvailable: name != "Usage")
-        
-        let removeTapped = { [weak self] in
-            guard let `self` = self else { return }
-            let sourceIndexPath = IndexPath(item: self.names[indexPath.section].index(of: name)!, section: indexPath.section)
-            self.names[indexPath.section].remove(at: sourceIndexPath.item)
+        let addRemoveTapped = { [weak self] in
+            guard let welf = self else { return }
+            let sourceIndexPath = IndexPath(item: welf.cards[indexPath.section].index(of: card)!, section: indexPath.section)
+            welf.cards[indexPath.section].remove(at: sourceIndexPath.item)
             
-            self.names[otherSection].append(name)
-            let destinationIndexPath = IndexPath(item: self.names[otherSection].count - 1, section: otherSection)
+            let destinationIndex: Int
+            if indexPath.section == 0 {
+                 destinationIndex = welf.cards[otherSection].enumerated()
+                    .first(where: { $1.rawValue > card.rawValue })?.0 ??
+                    welf.cards[otherSection].count
+            } else {
+                destinationIndex = welf.cards[otherSection].count
+            }
             
-            self.collectionView?.performBatchUpdates({
-                self.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
-            }, completion: { success in
+            let destinationIndexPath = IndexPath(item: destinationIndex, section: otherSection)
+            welf.cards[otherSection].insert(card, at: destinationIndex)
+            
+            welf.collectionView?.performBatchUpdates({
+                welf.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
+            }, completion: { [weak welf] success in
                 guard success else { return }
-                self.collectionView?.reloadItems(at: [destinationIndexPath])
+                welf?.collectionView?.reloadItems(at: [destinationIndexPath])
             })
         }
         
-        let addTapped = { [weak self] in
-            guard let `self` = self else { return }
-            let sourceIndexPath = IndexPath(item: self.names[indexPath.section].index(of: name)!, section: indexPath.section)
-            self.names[indexPath.section].remove(at: sourceIndexPath.item)
-            self.names[otherSection].append(name)
-            let destinationIndexPath = IndexPath(item: self.names[otherSection].count - 1, section: otherSection)
-            
-            self.collectionView?.performBatchUpdates({
-                self.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
-            }, completion: { success in
-                guard success else { return }
-                self.collectionView?.reloadItems(at: [destinationIndexPath])
-            })
-        }
-        
-        if indexPath.section == 0 {
-            cell.addRemoveButton.rx.tap.asDriver().drive(onNext: removeTapped).disposed(by: cell.disposeBag)
-        } else {
-            cell.addRemoveButton.rx.tap.asDriver().drive(onNext: addTapped).disposed(by: cell.disposeBag)
-        }
+        cell.configure(withCard: card,
+                       isActive: indexPath.section == 0,
+                       addRemoveTapped: addRemoveTapped)
         
         cell.gripView.rx.panGesture(minimumNumberOfTouches: 1, maximumNumberOfTouches: 1) { _, delegate in
             delegate.beginPolicy = .custom { [weak self] _ in !(self?.isReordering ?? false) }
@@ -153,9 +151,9 @@ extension HomeEditViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let name = names[sourceIndexPath.section][sourceIndexPath.item]
-        names[sourceIndexPath.section].remove(at: sourceIndexPath.item)
-        names[destinationIndexPath.section].insert(name, at: destinationIndexPath.item)
+        let name = cards[sourceIndexPath.section][sourceIndexPath.item]
+        cards[sourceIndexPath.section].remove(at: sourceIndexPath.item)
+        cards[destinationIndexPath.section].insert(name, at: destinationIndexPath.item)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
