@@ -86,16 +86,19 @@ final class HomeCardPrefsStore {
         }
         set(newValue) {
             listCache.value = newValue
-            let stringValues = newValue.map { $0.displayString }
+            let stringValues = newValue.map { $0.id }
             UserDefaults.standard.set(stringValues, forKey: UserDefaultKeys.homeCardPrefsList)
         }
     }
     
+    static let defaultList: [HomeCard] = [.bill, .usage, .template]
+    
     // Private init protects against another instance being accidentally instantiated
     private init() {
-        let defaultList: [HomeCard] = [.bill, .usage, .template]
         let storedStringList = UserDefaults.standard.stringArray(forKey: UserDefaultKeys.homeCardPrefsList)
-        var storedList = storedStringList?.map { HomeCard(id: $0) }.compactMap { $0 } ?? defaultList
+        var storedList = storedStringList?
+            .map { HomeCard(id: $0) }
+            .compactMap { $0 } ?? HomeCardPrefsStore.defaultList
         
         HomeCard.allCases.filter { !$0.isOptional }.forEach {
             if !storedList.contains($0) {

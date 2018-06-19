@@ -21,7 +21,7 @@ class HomeEditCardCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         cardView.layer.cornerRadius = 10
-        cardView.addShadow(color: .black, opacity: 0, offset: CGSize(width: 0, height: 1), radius: 3)
+        cardView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
     }
     
     func configure(withCard card: HomeCard, isActive: Bool, addRemoveTapped: @escaping ()->()) {
