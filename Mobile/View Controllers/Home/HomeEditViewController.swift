@@ -20,10 +20,14 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
     lazy var cards: [[HomeCard]] = {
         let selectedCards = HomeCardPrefsStore.shared.list
         
-        var rejectedCards = HomeCard.allCases
+        // generate the sorted array of rejected cards
+        var rejectedCards = HomeCard.allCards
         let partitionIndex = rejectedCards.partition(by: { selectedCards.contains($0) })
         rejectedCards.removeSubrange(partitionIndex...)
         rejectedCards.sort { $0.rawValue < $1.rawValue }
+        if rejectedCards.isEmpty {
+            rejectedCards.append(.nothing)
+        }
         
         return [selectedCards, rejectedCards]
     }()
@@ -97,10 +101,18 @@ extension HomeEditViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cards[section].count
+//        if section == 1 {
+//            return max(cards[section].count, 1)
+//        } else {
+            return cards[section].count
+//        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.section == 1 && cards[1][0] == .nothing {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "HomeEditEmptyCell", for: indexPath)
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditCardCell.className,
                                                       for: indexPath) as! HomeEditCardCell
         let card = cards[indexPath.section][indexPath.item]
@@ -125,9 +137,17 @@ extension HomeEditViewController {
             
             welf.collectionView?.performBatchUpdates({
                 welf.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
-            }, completion: { [weak welf] success in
+            }, completion: { success in
                 guard success else { return }
-                welf?.collectionView?.reloadItems(at: [destinationIndexPath])
+                welf.collectionView?.reloadItems(at: [destinationIndexPath])
+                
+                if welf.cards[1].isEmpty {
+                    welf.cards[1].append(.nothing)
+                    welf.collectionView?.reloadSections(IndexSet(integer: 1))
+                } else if welf.cards[1].last == .nothing {
+                    welf.cards[1].removeLast()
+                    welf.collectionView?.reloadSections(IndexSet(integer: 1))
+                }
             })
         }
         

@@ -132,6 +132,43 @@
                                     <outlet property="subLabel" destination="eIC-PU-bUz" id="2tY-7U-RfQ"/>
                                 </connections>
                             </collectionViewCell>
+                            <collectionViewCell autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeEditEmptyCell" id="V9i-DU-NfZ" customClass="HomeEditEmptyCell" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="120" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSh-He-fhl">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All cards have been added" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAd-Nh-MXH">
+                                                    <rect key="frame" x="89.5" y="19.5" width="196" height="22"/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="0.097326144366197187" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="HAd-Nh-MXH" firstAttribute="centerY" secondItem="WSh-He-fhl" secondAttribute="centerY" id="aC2-SU-l7p"/>
+                                                <constraint firstItem="HAd-Nh-MXH" firstAttribute="centerX" secondItem="WSh-He-fhl" secondAttribute="centerX" id="cNM-IT-Tx6"/>
+                                                <constraint firstAttribute="height" constant="60" id="jCB-2i-fkI"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="WSh-He-fhl" firstAttribute="top" secondItem="V9i-DU-NfZ" secondAttribute="top" id="Uva-ta-hdy"/>
+                                    <constraint firstAttribute="bottom" secondItem="WSh-He-fhl" secondAttribute="bottom" id="VCT-ES-6wL"/>
+                                    <constraint firstAttribute="trailing" secondItem="WSh-He-fhl" secondAttribute="trailing" id="oGt-SV-HNr"/>
+                                    <constraint firstItem="WSh-He-fhl" firstAttribute="leading" secondItem="V9i-DU-NfZ" secondAttribute="leading" id="prx-Kr-aPv"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="background" destination="WSh-He-fhl" id="buf-Hp-8B5"/>
+                                    <outlet property="label" destination="HAd-Nh-MXH" id="JXp-mQ-afa"/>
+                                </connections>
+                            </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeEditSectionHeaderView" id="wZW-zD-bZ5" customClass="HomeEditSectionHeaderView" customModule="BGE" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>

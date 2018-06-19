@@ -9,12 +9,21 @@
 import RxSwift
 
 enum HomeCard: Int {
-    case bill, usage, template, projectedBill, outageStatus, peakRewards
+    case bill, usage, template, projectedBill, outageStatus, peakRewards, newBusiness, nothing
     
-    static let allCases: [HomeCard] = [.bill, .usage, .template, .projectedBill, .outageStatus, .peakRewards]
+    static let allCards: [HomeCard] = {
+        switch Environment.shared.opco {
+        case .bge:
+            return [.bill, .usage, .template, .projectedBill, .outageStatus, .peakRewards]
+        case .comEd:
+            return [.bill, .usage, .template, .projectedBill, .outageStatus, .newBusiness]
+        case .peco:
+            return [.bill, .usage, .template, .projectedBill, .outageStatus]
+        }
+        }()
     
     init?(id: String) {
-        guard let homeCard = HomeCard.allCases.first(where: { $0.id == id }) else {
+        guard let homeCard = HomeCard.allCards.first(where: { $0.id == id }) else {
             return nil
         }
         self = homeCard
@@ -34,6 +43,10 @@ enum HomeCard: Int {
             return NSLocalizedString("Outage Status", comment: "")
         case .peakRewards:
             return NSLocalizedString("PeakRewards", comment: "")
+        case .newBusiness:
+            return NSLocalizedString("New Business", comment: "")
+        case .nothing:
+            return ""
         }
     }
     
@@ -51,6 +64,10 @@ enum HomeCard: Int {
             return "outageStatus"
         case .peakRewards:
             return "peakRewards"
+        case .newBusiness:
+            return "newBusiness"
+        case .nothing:
+            return "nothing"
         }
     }
     
@@ -100,7 +117,7 @@ final class HomeCardPrefsStore {
             .map { HomeCard(id: $0) }
             .compactMap { $0 } ?? HomeCardPrefsStore.defaultList
         
-        HomeCard.allCases.filter { !$0.isOptional }.forEach {
+        HomeCard.allCards.filter { !$0.isOptional }.forEach {
             if !storedList.contains($0) {
                 storedList.append($0)
             }
@@ -110,7 +127,9 @@ final class HomeCardPrefsStore {
         
         listObservable = listCache.asObservable()
         
-        let stringValues = storedList.map { $0.id }
-        UserDefaults.standard.set(stringValues, forKey: UserDefaultKeys.homeCardPrefsList)
+        if storedStringList != nil {
+            let stringValues = storedList.map { $0.id }
+            UserDefaults.standard.set(stringValues, forKey: UserDefaultKeys.homeCardPrefsList)
+        }
     }
 }
