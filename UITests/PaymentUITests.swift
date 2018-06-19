@@ -75,10 +75,12 @@ class PaymentUITests: XCTestCase {
         
         if appName.contains("BGE") {
             XCTAssert(app.scrollViews.otherElements.staticTexts["A convenience fee will be applied to this payment. Residential accounts: $0.00. Business accounts: 0%."].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts[NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")].exists)
+            let pred = NSPredicate(format: "label like %@", "We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.")
+            XCTAssert(app.scrollViews.otherElements.staticTexts.element(matching: pred).exists)
         } else {
             XCTAssert(app.scrollViews.otherElements.staticTexts["A $0.00 convenience fee will be applied by Bill Matrix, our payment partner."].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts[NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")].exists)
+            let pred = NSPredicate(format: "label like %@", "Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.")
+            XCTAssert(app.scrollViews.otherElements.staticTexts.element(matching: pred).exists)
         }
         XCTAssert(app.scrollViews.otherElements.buttons["Add credit/debit card"].exists)
     }
@@ -616,8 +618,10 @@ class PaymentUITests: XCTestCase {
             
             XCTAssert(app.navigationBars["Review Payment"].waitForExistence(timeout: 2))
             
-            let bgeCardSwitch = app.scrollViews.otherElements.switches["I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records."]
+            let pred = NSPredicate(format: "label like %@", "I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records.")
+            let bgeCardSwitch = app.scrollViews.otherElements.switches.element(matching: pred)
             XCTAssert(bgeCardSwitch.exists)
+            
             if let switchValueStr = bgeCardSwitch.value as? String {
                 XCTAssert(switchValueStr == "0", "Switch should be OFF by default")
             } else {
