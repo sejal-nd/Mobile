@@ -152,7 +152,9 @@
                                             <constraints>
                                                 <constraint firstItem="HAd-Nh-MXH" firstAttribute="centerY" secondItem="WSh-He-fhl" secondAttribute="centerY" id="aC2-SU-l7p"/>
                                                 <constraint firstItem="HAd-Nh-MXH" firstAttribute="centerX" secondItem="WSh-He-fhl" secondAttribute="centerX" id="cNM-IT-Tx6"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HAd-Nh-MXH" secondAttribute="trailing" constant="12" id="dOj-6x-A6w"/>
                                                 <constraint firstAttribute="height" constant="60" id="jCB-2i-fkI"/>
+                                                <constraint firstItem="HAd-Nh-MXH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WSh-He-fhl" secondAttribute="leading" constant="12" id="u7g-Ho-c3y"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -167,6 +169,44 @@
                                 <connections>
                                     <outlet property="background" destination="WSh-He-fhl" id="buf-Hp-8B5"/>
                                     <outlet property="label" destination="HAd-Nh-MXH" id="JXp-mQ-afa"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeEditRestoreDefaultCell" id="SdN-F3-DM2" customClass="HomeEditRestoreDefaultCell" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="190" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gET-fd-a6V">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3s5-up-Mq4">
+                                                    <rect key="frame" x="120" y="13" width="135" height="34"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <state key="normal" title="Restore Default"/>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3s5-up-Mq4" secondAttribute="trailing" constant="12" id="H0k-pB-feX"/>
+                                                <constraint firstItem="3s5-up-Mq4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gET-fd-a6V" secondAttribute="leading" constant="12" id="HQh-M0-hTp"/>
+                                                <constraint firstItem="3s5-up-Mq4" firstAttribute="centerX" secondItem="gET-fd-a6V" secondAttribute="centerX" id="SqC-B7-Csx"/>
+                                                <constraint firstAttribute="height" constant="60" id="gdt-5B-FMq"/>
+                                                <constraint firstItem="3s5-up-Mq4" firstAttribute="centerY" secondItem="gET-fd-a6V" secondAttribute="centerY" id="hd1-vw-vPU"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="gET-fd-a6V" firstAttribute="leading" secondItem="SdN-F3-DM2" secondAttribute="leading" id="GvI-Iu-Pb6"/>
+                                    <constraint firstAttribute="trailing" secondItem="gET-fd-a6V" secondAttribute="trailing" id="QYd-cQ-tie"/>
+                                    <constraint firstAttribute="bottom" secondItem="gET-fd-a6V" secondAttribute="bottom" id="axQ-kJ-w7f"/>
+                                    <constraint firstItem="gET-fd-a6V" firstAttribute="top" secondItem="SdN-F3-DM2" secondAttribute="top" id="ikp-LP-7sS"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="button" destination="3s5-up-Mq4" id="nW8-qB-bJ9"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

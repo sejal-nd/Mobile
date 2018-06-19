@@ -101,16 +101,39 @@ extension HomeEditViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if section == 1 {
-//            return max(cards[section].count, 1)
-//        } else {
+        if section == 1 {
+            return cards[section].count + 1
+        } else {
             return cards[section].count
-//        }
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.section == 1 && indexPath.item == cards[1].count {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditRestoreDefaultCell.className, for: indexPath) as! HomeEditRestoreDefaultCell
+            cell.button.rx.tap.asDriver().drive(onNext: { [weak self] in
+                guard let welf = self else { return }
+                
+                let selectedCards = HomeCardPrefsStore.defaultList
+                
+                // generate the sorted array of rejected cards
+                var rejectedCards = HomeCard.allCards
+                let partitionIndex = rejectedCards.partition(by: { selectedCards.contains($0) })
+                rejectedCards.removeSubrange(partitionIndex...)
+                rejectedCards.sort { $0.rawValue < $1.rawValue }
+                if rejectedCards.isEmpty {
+                    rejectedCards.append(.nothing)
+                }
+                
+                welf.cards = [selectedCards, rejectedCards]
+                welf.collectionView?.reloadData()
+            }).disposed(by: cell.disposeBag)
+            
+            return cell
+        }
+        
         if indexPath.section == 1 && cards[1][0] == .nothing {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: "HomeEditEmptyCell", for: indexPath)
+            return collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditEmptyCell.className, for: indexPath)
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditCardCell.className,
