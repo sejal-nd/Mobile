@@ -51,8 +51,8 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         
         saveButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
-                guard let welf = self else { return }
-                HomeCardPrefsStore.shared.list = welf.cards[0]
+                guard let this = self else { return }
+                HomeCardPrefsStore.shared.list = this.cards[0]
                 self?.presentingViewController?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
@@ -119,7 +119,7 @@ extension HomeEditViewController {
         if indexPath.section == 1 && indexPath.item == cards[1].count {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditRestoreDefaultCell.className, for: indexPath) as! HomeEditRestoreDefaultCell
             cell.button.rx.tap.asDriver().drive(onNext: { [weak self] in
-                guard let welf = self else { return }
+                guard let this = self else { return }
                 
                 let selectedCards = HomeCardPrefsStore.defaultList
                 
@@ -129,8 +129,8 @@ extension HomeEditViewController {
                     rejectedCards.append(.nothing)
                 }
                 
-                welf.cards = [selectedCards, rejectedCards]
-                welf.collectionView?.reloadData()
+                this.cards = [selectedCards, rejectedCards]
+                this.collectionView?.reloadData()
             }).disposed(by: cell.disposeBag)
             
             return cell
@@ -146,34 +146,34 @@ extension HomeEditViewController {
         let otherSection = (indexPath.section + 1) % 2
         
         let addRemoveTapped = { [weak self] in
-            guard let welf = self else { return }
-            let sourceIndexPath = IndexPath(item: welf.cards[indexPath.section].index(of: card)!, section: indexPath.section)
-            welf.cards[indexPath.section].remove(at: sourceIndexPath.item)
+            guard let this = self else { return }
+            let sourceIndexPath = IndexPath(item: this.cards[indexPath.section].index(of: card)!, section: indexPath.section)
+            this.cards[indexPath.section].remove(at: sourceIndexPath.item)
             
             let destinationIndex: Int
             if indexPath.section == 0 {
-                 destinationIndex = welf.cards[otherSection].enumerated()
+                 destinationIndex = this.cards[otherSection].enumerated()
                     .first(where: { $1.rawValue > card.rawValue })?.0 ??
-                    welf.cards[otherSection].count
+                    this.cards[otherSection].count
             } else {
-                destinationIndex = welf.cards[otherSection].count
+                destinationIndex = this.cards[otherSection].count
             }
             
             let destinationIndexPath = IndexPath(item: destinationIndex, section: otherSection)
-            welf.cards[otherSection].insert(card, at: destinationIndex)
+            this.cards[otherSection].insert(card, at: destinationIndex)
             
-            welf.collectionView?.performBatchUpdates({
-                welf.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
+            this.collectionView?.performBatchUpdates({
+                this.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
             }, completion: { success in
                 guard success else { return }
-                welf.collectionView?.reloadItems(at: [destinationIndexPath])
+                this.collectionView?.reloadItems(at: [destinationIndexPath])
                 
-                if welf.cards[1].isEmpty {
-                    welf.cards[1].append(.nothing)
-                    welf.collectionView?.reloadSections(IndexSet(integer: 1))
-                } else if welf.cards[1].last == .nothing {
-                    welf.cards[1].removeLast()
-                    welf.collectionView?.reloadSections(IndexSet(integer: 1))
+                if this.cards[1].isEmpty {
+                    this.cards[1].append(.nothing)
+                    this.collectionView?.reloadSections(IndexSet(integer: 1))
+                } else if this.cards[1].last == .nothing {
+                    this.cards[1].removeLast()
+                    this.collectionView?.reloadSections(IndexSet(integer: 1))
                 }
             })
         }
