@@ -257,7 +257,6 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="5xy-TY-hSi"/>
                                                                 <constraint firstItem="Ebs-dO-SYI" firstAttribute="top" secondItem="3aN-vt-GrN" secondAttribute="bottom" priority="999" id="GdD-0g-SbX"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Ebs-dO-SYI" secondAttribute="bottom" priority="999" id="JFS-ZR-eLb"/>
                                                                 <constraint firstItem="3aN-vt-GrN" firstAttribute="top" secondItem="n08-7D-H4N" secondAttribute="top" priority="999" constant="-39" id="s3J-dB-KcH"/>
@@ -269,14 +268,12 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="n08-7D-H4N" firstAttribute="leading" secondItem="xPo-rA-9qq" secondAttribute="leading" priority="999" constant="29" id="2q5-4x-Uof"/>
                                                         <constraint firstAttribute="bottom" secondItem="n08-7D-H4N" secondAttribute="bottom" priority="999" constant="20" id="3Pp-Sa-ZgN"/>
                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UJ5-gS-ygZ" secondAttribute="trailing" constant="29" id="ADz-vs-xG3"/>
                                                         <constraint firstItem="UJ5-gS-ygZ" firstAttribute="centerX" secondItem="xPo-rA-9qq" secondAttribute="centerX" id="C19-0U-Nh0"/>
                                                         <constraint firstItem="n08-7D-H4N" firstAttribute="top" secondItem="UJ5-gS-ygZ" secondAttribute="bottom" priority="999" constant="8" id="CAK-jd-6EB"/>
                                                         <constraint firstItem="UJ5-gS-ygZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xPo-rA-9qq" secondAttribute="leading" constant="29" id="pG1-Ky-8Ig"/>
                                                         <constraint firstItem="n08-7D-H4N" firstAttribute="centerX" secondItem="xPo-rA-9qq" secondAttribute="centerX" id="sRB-pp-QJS"/>
-                                                        <constraint firstAttribute="trailing" secondItem="n08-7D-H4N" secondAttribute="trailing" priority="999" constant="29" id="sfS-ne-eix"/>
                                                         <constraint firstItem="UJ5-gS-ygZ" firstAttribute="top" secondItem="xPo-rA-9qq" secondAttribute="top" priority="999" constant="44" id="wFA-Ty-wVe"/>
                                                     </constraints>
                                                 </view>
