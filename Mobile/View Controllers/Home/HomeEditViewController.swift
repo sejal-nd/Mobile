@@ -16,6 +16,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     let disposeBag = DisposeBag()
+    let topSectionHeaderHeight: CGFloat = 15
     
     lazy var cards: [[HomeCard]] = {
         let selectedCards = HomeCardPrefsStore.shared.list
@@ -36,6 +37,9 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         view.backgroundColor = .primaryColor
         collectionView?.backgroundColor = .clear
         collectionView?.collectionViewLayout = HomeEditFlowLayout()
+        
+        cancelButton.tintColor = .white
+        saveButton.tintColor = .white
         
         cancelButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
@@ -65,17 +69,23 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
     func handleDragToReorder(gesture: UIPanGestureRecognizer) {
         guard let collectionView = collectionView else { return }
         
-        let offset = gesture.location(in: collectionView).x - collectionView.bounds.width / 2
         switch(gesture.state) {
         case .began:
             isReordering = true
-            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
-                break
-            }
+            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else { break }
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case .changed:
-            let location = CGPoint(x: gesture.location(in: collectionView).x - offset,
-                                   y: max(55, min(CGFloat(55 + 70 * (self.cards[0].count - 1)), gesture.location(in: collectionView).y)))
+            // Prevent dragging to reorder outside of the first section
+            guard let layout = collectionView.collectionViewLayout as? HomeEditFlowLayout else { return }
+            let touchLocation = gesture.location(in: collectionView)
+            let xOffset = touchLocation.x - collectionView.bounds.width / 2
+            let initialYOffset = layout.sectionInset.top + (layout.itemSize.height / 2) + topSectionHeaderHeight
+            let rowDistance = layout.minimumLineSpacing + layout.itemSize.height
+            let maxYValue = initialYOffset + rowDistance * CGFloat(self.cards[0].count - 1)
+            
+            let location = CGPoint(x: touchLocation.x - xOffset,
+                                   y: max(initialYOffset, min(maxYValue, touchLocation.y)))
+            
             collectionView.updateInteractiveMovementTargetPosition(location)
         case .ended:
             isReordering = false
@@ -209,7 +219,7 @@ extension HomeEditViewController {
         case 1:
             return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left, height: 67)
         default:
-            return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left, height: 15)
+            return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left, height: topSectionHeaderHeight)
         }
     }
     

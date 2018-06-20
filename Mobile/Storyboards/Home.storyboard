@@ -253,12 +253,8 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Edit Dashboard" id="nA6-DF-Obh">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Rdg-rd-Eus">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="6w6-zK-ZaD">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Rdg-rd-Eus"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="6w6-zK-ZaD"/>
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="Rdg-rd-Eus" id="isM-vH-LSd"/>
