@@ -21,10 +21,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         let selectedCards = HomeCardPrefsStore.shared.list
         
         // generate the sorted array of rejected cards
-        var rejectedCards = HomeCard.allCards
-        let partitionIndex = rejectedCards.partition(by: { selectedCards.contains($0) })
-        rejectedCards.removeSubrange(partitionIndex...)
-        rejectedCards.sort { $0.rawValue < $1.rawValue }
+        var rejectedCards = HomeCard.allCards.removingAll { selectedCards.contains($0) }
         if rejectedCards.isEmpty {
             rejectedCards.append(.nothing)
         }
@@ -117,10 +114,7 @@ extension HomeEditViewController {
                 let selectedCards = HomeCardPrefsStore.defaultList
                 
                 // generate the sorted array of rejected cards
-                var rejectedCards = HomeCard.allCards
-                let partitionIndex = rejectedCards.partition(by: { selectedCards.contains($0) })
-                rejectedCards.removeSubrange(partitionIndex...)
-                rejectedCards.sort { $0.rawValue < $1.rawValue }
+                var rejectedCards = HomeCard.allCards.removingAll { selectedCards.contains($0) }
                 if rejectedCards.isEmpty {
                     rejectedCards.append(.nothing)
                 }
