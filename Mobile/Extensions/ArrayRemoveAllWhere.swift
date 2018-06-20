@@ -8,7 +8,7 @@
 
 import Foundation
 
-@available(iOS, deprecated: 12.0, message: "`removeAll(where:)` is in the Swift 4.2 standard library, so we can remove this when we update.")
+@available(swift, deprecated: 4.2, message: "`removeAll(where:)` is in the Swift 4.2 standard library, so we can remove this when we update.")
 extension Array {
     mutating func removeAll(where shouldRemove: (Element) -> Bool) {
         let partitionIndex = halfStablePartition(isSuffixElement: shouldRemove)
