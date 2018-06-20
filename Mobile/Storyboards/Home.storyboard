@@ -215,10 +215,10 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tl-q2-3Yp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <rect key="frame" x="16" y="0.0" width="343" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sai-UF-P6f">
-                                            <rect key="frame" x="16" y="26.5" width="98" height="21.5"/>
+                                            <rect key="frame" x="0.0" y="26.5" width="98" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -226,17 +226,22 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstItem="Sai-UF-P6f" firstAttribute="leading" secondItem="5tl-q2-3Yp" secondAttribute="leading" id="A4h-gl-zpC"/>
                                         <constraint firstAttribute="bottom" secondItem="Sai-UF-P6f" secondAttribute="bottom" constant="2" id="JGv-Pb-nT3"/>
-                                        <constraint firstItem="Sai-UF-P6f" firstAttribute="leading" secondItem="5tl-q2-3Yp" secondAttribute="leading" constant="16" id="r86-AC-SbP"/>
+                                        <constraint firstAttribute="width" priority="999" constant="460" id="JTj-4y-eUZ"/>
+                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="qtk-ea-GyN"/>
                                     </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="5tl-q2-3Yp" firstAttribute="leading" secondItem="wZW-zD-bZ5" secondAttribute="leading" id="FNh-2Q-aUe"/>
+                                <constraint firstItem="5tl-q2-3Yp" firstAttribute="centerX" secondItem="wZW-zD-bZ5" secondAttribute="centerX" id="BaU-2u-Yz3"/>
+                                <constraint firstItem="5tl-q2-3Yp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wZW-zD-bZ5" secondAttribute="leading" constant="16" id="FNh-2Q-aUe"/>
                                 <constraint firstAttribute="bottom" secondItem="5tl-q2-3Yp" secondAttribute="bottom" id="Gsx-pH-sKz"/>
+                                <constraint firstAttribute="trailing" secondItem="5tl-q2-3Yp" secondAttribute="trailing" priority="999" constant="16" id="TVy-Qf-taV"/>
                                 <constraint firstItem="5tl-q2-3Yp" firstAttribute="top" secondItem="wZW-zD-bZ5" secondAttribute="top" id="UA8-wv-3DI"/>
-                                <constraint firstAttribute="trailing" secondItem="5tl-q2-3Yp" secondAttribute="trailing" id="lNy-Rn-BBj"/>
+                                <constraint firstItem="5tl-q2-3Yp" firstAttribute="leading" secondItem="wZW-zD-bZ5" secondAttribute="leading" priority="999" constant="16" id="fve-Pr-dTl"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5tl-q2-3Yp" secondAttribute="trailing" constant="16" id="lNy-Rn-BBj"/>
                             </constraints>
                             <connections>
                                 <outlet property="label" destination="Sai-UF-P6f" id="tG3-fU-KMR"/>

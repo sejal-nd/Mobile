@@ -213,9 +213,9 @@ extension HomeEditViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch section {
         case 1:
-            return CGSize(width: collectionView.bounds.size.width, height: 67)
+            return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left, height: 67)
         default:
-            return CGSize(width: collectionView.bounds.size.width, height: 15)
+            return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left, height: 15)
         }
     }
     

@@ -12,17 +12,19 @@ class HomeEditFlowLayout: UICollectionViewFlowLayout {
     
     override func prepare() {
         super.prepare()
-        
         guard let collectionView = collectionView else { return }
+        
+        // Ensures a single column
+        minimumInteritemSpacing = 10000
         
         let horizontalInset = max(16.0, (collectionView.bounds.width - 460.0)/2.0)
         collectionView.layoutMargins = UIEdgeInsets(top: 0, left: horizontalInset,
                                                     bottom: 0, right: horizontalInset)
         
-        itemSize = CGSize(width: collectionView.bounds.width - collectionView.layoutMargins.left,
+        itemSize = CGSize(width: collectionView.bounds.width - 2 * collectionView.layoutMargins.left,
                           height: 60)
         
-        sectionInset = UIEdgeInsets(top: minimumInteritemSpacing, left: 0, bottom: 0, right: 0)
+        sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         
         if #available(iOS 11, *) {
             sectionInsetReference = .fromSafeArea
