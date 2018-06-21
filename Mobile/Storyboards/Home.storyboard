@@ -298,10 +298,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-go-05Y" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="508"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UPV-GL-s03" userLabel="Main Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="488"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="544"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="tbt-1n-lFy" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
@@ -311,14 +311,38 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Opk-mo-Gnw" userLabel="Card Stack View">
-                                                        <rect key="frame" x="16" y="90" width="343" height="0.0"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="xaj-LQ-p93">
+                                                        <rect key="frame" x="16" y="90" width="343" height="56"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Opk-mo-Gnw" userLabel="Card Stack View">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="0.0"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="b4e-Ff-Dp9"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxd-b0-qbk">
+                                                                <rect key="frame" x="0.0" y="14" width="343" height="42"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqW-8P-SEa">
+                                                                        <rect key="frame" x="75" y="12" width="193" height="30"/>
+                                                                        <state key="normal" title="Personalize Your Dashboard"/>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="JqW-8P-SEa" secondAttribute="bottom" priority="999" id="Wk2-Ay-SzZ"/>
+                                                                    <constraint firstItem="JqW-8P-SEa" firstAttribute="top" secondItem="rxd-b0-qbk" secondAttribute="top" priority="999" constant="12" id="g5r-z4-8EN"/>
+                                                                    <constraint firstItem="JqW-8P-SEa" firstAttribute="centerX" secondItem="rxd-b0-qbk" secondAttribute="centerX" id="hWN-ZF-5Kc"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="b4e-Ff-Dp9"/>
+                                                            <constraint firstAttribute="width" priority="999" constant="460" id="Bt0-l0-6fA"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="WqE-eQ-Wx3"/>
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uhp-nq-HuH">
-                                                        <rect key="frame" x="16" y="90" width="343" height="398"/>
+                                                        <rect key="frame" x="16" y="146" width="343" height="398"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="MHH-Vr-MxZ" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="141" y="193" width="60" height="12"/>
@@ -335,15 +359,15 @@
                                                     </view>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="Opk-mo-Gnw" firstAttribute="centerX" secondItem="UPV-GL-s03" secondAttribute="centerX" id="7Je-Sl-Xyd"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Opk-mo-Gnw" secondAttribute="trailing" priority="999" constant="16" id="D8p-TS-VMZ"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xaj-LQ-p93" secondAttribute="trailing" constant="16" id="7M7-Cg-uqG"/>
                                                     <constraint firstItem="tbt-1n-lFy" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" id="DAL-tK-kzv"/>
+                                                    <constraint firstItem="xaj-LQ-p93" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UPV-GL-s03" secondAttribute="leading" constant="16" id="YM6-Fe-03G"/>
                                                     <constraint firstItem="Uhp-nq-HuH" firstAttribute="centerX" secondItem="UPV-GL-s03" secondAttribute="centerX" id="YXy-Zu-8yQ"/>
                                                     <constraint firstItem="Uhp-nq-HuH" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" priority="999" constant="16" id="Ynt-tS-KIm"/>
-                                                    <constraint firstItem="Opk-mo-Gnw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UPV-GL-s03" secondAttribute="leading" constant="16" id="dST-qt-i1H"/>
-                                                    <constraint firstItem="Opk-mo-Gnw" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" priority="999" constant="16" id="fgh-lg-jhF"/>
                                                     <constraint firstAttribute="trailing" secondItem="tbt-1n-lFy" secondAttribute="trailing" id="gxd-aZ-Faa"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Opk-mo-Gnw" secondAttribute="trailing" constant="16" id="k67-3X-mgH"/>
+                                                    <constraint firstItem="xaj-LQ-p93" firstAttribute="centerX" secondItem="UPV-GL-s03" secondAttribute="centerX" id="hU4-Ko-9dD"/>
+                                                    <constraint firstItem="xaj-LQ-p93" firstAttribute="leading" secondItem="UPV-GL-s03" secondAttribute="leading" priority="999" constant="16" id="oPN-3f-Qch"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xaj-LQ-p93" secondAttribute="trailing" priority="999" constant="16" id="w4M-ON-j9c"/>
                                                     <constraint firstAttribute="trailing" secondItem="Uhp-nq-HuH" secondAttribute="trailing" priority="999" constant="16" id="wNg-bn-8DW"/>
                                                 </constraints>
                                             </stackView>
@@ -352,7 +376,7 @@
                                         <constraints>
                                             <constraint firstItem="UPV-GL-s03" firstAttribute="top" secondItem="QgD-go-05Y" secondAttribute="top" id="2VY-xm-wem"/>
                                             <constraint firstAttribute="trailing" secondItem="UPV-GL-s03" secondAttribute="trailing" id="LqA-p0-UNB"/>
-                                            <constraint firstAttribute="bottom" secondItem="UPV-GL-s03" secondAttribute="bottom" priority="999" constant="20" id="RKg-ey-8Qo"/>
+                                            <constraint firstAttribute="bottom" secondItem="UPV-GL-s03" secondAttribute="bottom" priority="999" constant="30" id="RKg-ey-8Qo"/>
                                             <constraint firstItem="UPV-GL-s03" firstAttribute="leading" secondItem="QgD-go-05Y" secondAttribute="leading" id="xuK-H1-hh4"/>
                                         </constraints>
                                     </view>
@@ -391,11 +415,13 @@
                         <outlet property="backgroundTopConstraint" destination="vq0-T1-HTa" id="vkW-4P-bND"/>
                         <outlet property="backgroundView" destination="MQ4-Ev-TTi" id="zoa-kA-PFz"/>
                         <outlet property="cardStackView" destination="Opk-mo-Gnw" id="4fa-tb-ffm"/>
+                        <outlet property="contentStackView" destination="xaj-LQ-p93" id="sVw-dZ-BvQ"/>
                         <outlet property="headerContentView" destination="QgD-go-05Y" id="p1j-X0-Ik8"/>
                         <outlet property="loadingView" destination="Uhp-nq-HuH" id="rog-Ur-XfM"/>
                         <outlet property="mainStackView" destination="UPV-GL-s03" id="ZuN-Jr-0oO"/>
                         <outlet property="maintenanceModeView" destination="ire-RJ-okt" id="5zM-Va-oie"/>
                         <outlet property="noNetworkConnectionView" destination="dh2-eA-K7U" id="yak-Mz-FN4"/>
+                        <outlet property="personalizeButton" destination="JqW-8P-SEa" id="6Z6-rp-KfJ"/>
                         <outlet property="scrollView" destination="mzY-0e-rXR" id="ejP-8Y-Dy4"/>
                         <segue destination="PED-vj-t5U" kind="show" identifier="usageSegue" id="84U-Il-aeI"/>
                         <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="Gdb-8Z-K6i"/>
@@ -1466,6 +1492,6 @@
         <image name="ic_smartenergyempty" width="109" height="103"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PGo-sN-iCf"/>
+        <segue reference="Gdb-8Z-K6i"/>
     </inferredMetricsTieBreakers>
 </document>

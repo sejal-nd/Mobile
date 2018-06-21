@@ -22,9 +22,12 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
     @IBOutlet weak var mainStackView: UIStackView!
+    @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var cardStackView: UIStackView!
     
     @IBOutlet weak var loadingView: UIView!
+    
+    @IBOutlet weak var personalizeButton: UIButton!
     
     var weatherView: HomeWeatherView!
     var billCardView: HomeBillCardView!
@@ -127,10 +130,8 @@ class HomeViewController: AccountPickerViewController {
             }).disposed(by: bag)
         
         cardStackView.addArrangedSubview(templateCardView)
-        cardStackView.isHidden = true
+        contentStackView.isHidden = true
         
-        let personalizeButton = UIButton().usingAutoLayout()
-        personalizeButton.setTitle(NSLocalizedString("Personalize Your Dashboard", comment: ""), for: .normal)
         personalizeButton.setTitleColor(.white, for: .normal)
         personalizeButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
         personalizeButton.rx.tap.asDriver()
@@ -138,8 +139,6 @@ class HomeViewController: AccountPickerViewController {
                 self?.performSegue(withIdentifier: "editHomeSegue", sender: nil)
             })
             .disposed(by: bag)
-        
-        cardStackView.addArrangedSubview(personalizeButton)
         
         styleViews()
         bindLoadingStates()
@@ -246,7 +245,7 @@ class HomeViewController: AccountPickerViewController {
             self.setRefreshControlEnabled(enabled: refresh)
         }).disposed(by: bag)
         
-        viewModel.isSwitchingAccounts.asDriver().drive(cardStackView.rx.isHidden).disposed(by: bag)
+        viewModel.isSwitchingAccounts.asDriver().drive(contentStackView.rx.isHidden).disposed(by: bag)
         viewModel.isSwitchingAccounts.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
         
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
