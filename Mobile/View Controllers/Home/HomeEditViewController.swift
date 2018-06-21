@@ -30,7 +30,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         return [selectedCards, rejectedCards]
     }()
     
-    var isReordering = false
+    let isReordering = Variable(false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +48,16 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             .disposed(by: disposeBag)
         
         installsStandardGestureForInteractiveMovement = false
+        collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleDragToReorder(gesture:))))
         
         saveButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
-                guard let this = self else { return }
+                guard let this = self, !this.isReordering.value else { return }
                 HomeCardPrefsStore.shared.list = this.cards[0]
                 self?.presentingViewController?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,12 +68,12 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
-    func handleDragToReorder(gesture: UIPanGestureRecognizer) {
+    @objc func handleDragToReorder(gesture: UIGestureRecognizer) {
         guard let collectionView = collectionView else { return }
         
         switch(gesture.state) {
         case .began:
-            isReordering = true
+            isReordering.value = true
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else { break }
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case .changed:
@@ -88,11 +90,13 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             
             collectionView.updateInteractiveMovementTargetPosition(location)
         case .ended:
-            isReordering = false
+            isReordering.value = false
             collectionView.endInteractiveMovement()
-        case .cancelled, .failed, .possible:
-            isReordering = false
+        case .cancelled, .failed:
+            isReordering.value = false
             collectionView.cancelInteractiveMovement()
+        case .possible:
+            break
         }
     }
     
@@ -118,20 +122,25 @@ extension HomeEditViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 1 && indexPath.item == cards[1].count {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditRestoreDefaultCell.className, for: indexPath) as! HomeEditRestoreDefaultCell
-            cell.button.rx.tap.asDriver().drive(onNext: { [weak self] in
-                guard let this = self else { return }
-                
-                let selectedCards = HomeCardPrefsStore.defaultList
-                
-                // generate the sorted array of rejected cards
-                var rejectedCards = HomeCard.allCards.filter { !selectedCards.contains($0) }
-                if rejectedCards.isEmpty {
-                    rejectedCards.append(.nothing)
-                }
-                
-                this.cards = [selectedCards, rejectedCards]
-                this.collectionView?.reloadData()
-            }).disposed(by: cell.disposeBag)
+            cell.button.rx.tap.asDriver()
+                .throttle(0.25)
+                .drive(onNext: { [weak self] in
+                    guard let this = self, !this.isReordering.value else { return }
+                    
+                    let selectedCards = HomeCardPrefsStore.defaultList
+                    
+                    // generate the sorted array of rejected cards
+                    var rejectedCards = HomeCard.allCards.filter { !selectedCards.contains($0) }
+                    if rejectedCards.isEmpty {
+                        rejectedCards.append(.nothing)
+                    }
+                    
+                    this.cards = [selectedCards, rejectedCards]
+                    this.collectionView?.reloadData()
+                })
+                .disposed(by: cell.disposeBag)
+            
+            isReordering.asDriver().not().drive(cell.button.rx.isEnabled).disposed(by: cell.disposeBag)
             
             return cell
         }
@@ -146,7 +155,8 @@ extension HomeEditViewController {
         let otherSection = (indexPath.section + 1) % 2
         
         let addRemoveTapped = { [weak self] in
-            guard let this = self else { return }
+            guard let this = self, !this.isReordering.value else { return }
+            
             let sourceIndexPath = IndexPath(item: this.cards[indexPath.section].index(of: card)!, section: indexPath.section)
             this.cards[indexPath.section].remove(at: sourceIndexPath.item)
             
@@ -163,18 +173,24 @@ extension HomeEditViewController {
             this.cards[otherSection].insert(card, at: destinationIndex)
             
             this.collectionView?.performBatchUpdates({
+                this.isReordering.value = true
                 this.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
             }, completion: { success in
                 guard success else { return }
-                this.collectionView?.reloadItems(at: [destinationIndexPath])
                 
-                if this.cards[1].isEmpty {
-                    this.cards[1].append(.nothing)
-                    this.collectionView?.reloadSections(IndexSet(integer: 1))
-                } else if this.cards[1].last == .nothing {
-                    this.cards[1].removeLast()
-                    this.collectionView?.reloadSections(IndexSet(integer: 1))
-                }
+                this.collectionView?.performBatchUpdates({
+                    this.collectionView?.reloadItems(at: [destinationIndexPath])
+                    
+                    if this.cards[1].isEmpty {
+                        this.cards[1].append(.nothing)
+                        this.collectionView?.reloadSections(IndexSet(integer: 1))
+                    } else if this.cards[1].last == .nothing {
+                        this.cards[1].removeLast()
+                        this.collectionView?.reloadSections(IndexSet(integer: 1))
+                    }
+                }, completion: { success in
+                    this.isReordering.value = false
+                })
             })
         }
         
@@ -183,7 +199,7 @@ extension HomeEditViewController {
                        addRemoveTapped: addRemoveTapped)
         
         cell.gripView.rx.panGesture(minimumNumberOfTouches: 1, maximumNumberOfTouches: 1) { _, delegate in
-            delegate.beginPolicy = .custom { [weak self] _ in !(self?.isReordering ?? false) }
+            delegate.beginPolicy = .custom { [weak self] _ in !(self?.isReordering.value ?? false) }
             delegate.simultaneousRecognitionPolicy = .never
             }
             .asDriver()
