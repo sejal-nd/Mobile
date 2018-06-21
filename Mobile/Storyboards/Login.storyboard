@@ -1157,10 +1157,6 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5c-2w-tbz">
-                                <rect key="frame" x="0.0" y="64" width="375" height="470"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mr-pS-i57">
                                 <rect key="frame" x="0.0" y="534" width="375" height="133"/>
                                 <subviews>
@@ -1209,16 +1205,20 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                     <constraint firstItem="ysV-1o-zls" firstAttribute="leading" secondItem="5mr-pS-i57" secondAttribute="leading" priority="999" constant="16" id="eOJ-RZ-TQR"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qak-9V-0XF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="470"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5mr-pS-i57" firstAttribute="top" secondItem="E5c-2w-tbz" secondAttribute="bottom" id="3dF-Yd-Lc0"/>
+                            <constraint firstItem="5mr-pS-i57" firstAttribute="top" secondItem="qak-9V-0XF" secondAttribute="bottom" id="5Wk-1w-0JU"/>
                             <constraint firstItem="5mr-pS-i57" firstAttribute="leading" secondItem="dDU-GJ-Gqf" secondAttribute="leading" id="AUs-E8-fR0"/>
-                            <constraint firstAttribute="trailing" secondItem="E5c-2w-tbz" secondAttribute="trailing" id="IHZ-y2-epZ"/>
-                            <constraint firstItem="E5c-2w-tbz" firstAttribute="leading" secondItem="dDU-GJ-Gqf" secondAttribute="leading" id="Met-xQ-1o6"/>
+                            <constraint firstItem="qak-9V-0XF" firstAttribute="leading" secondItem="dDU-GJ-Gqf" secondAttribute="leading" id="Lm6-GY-6iS"/>
                             <constraint firstAttribute="trailing" secondItem="5mr-pS-i57" secondAttribute="trailing" id="S0N-qf-I5C"/>
+                            <constraint firstAttribute="trailing" secondItem="qak-9V-0XF" secondAttribute="trailing" id="WWd-pf-rZU"/>
                             <constraint firstItem="HRe-wR-dkC" firstAttribute="top" secondItem="ysV-1o-zls" secondAttribute="bottom" constant="14" id="jMX-2T-ovk"/>
-                            <constraint firstItem="E5c-2w-tbz" firstAttribute="top" secondItem="LV1-2o-5O7" secondAttribute="bottom" id="rKW-hu-JOT"/>
+                            <constraint firstItem="qak-9V-0XF" firstAttribute="top" secondItem="LV1-2o-5O7" secondAttribute="bottom" id="yD7-OW-Fbh"/>
                             <constraint firstAttribute="bottom" secondItem="5mr-pS-i57" secondAttribute="bottom" id="zRT-pk-NoS"/>
                         </constraints>
                     </view>
@@ -1228,7 +1228,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="agreeSwitch" destination="STf-Fi-lUb" id="MBP-U7-G8X"/>
                         <outlet property="agreeView" destination="5mr-pS-i57" id="vLz-ZC-p8z"/>
                         <outlet property="continueButton" destination="T2d-t3-Jmn" id="Wz7-t5-9NI"/>
-                        <outlet property="webView" destination="E5c-2w-tbz" id="H0V-AZ-cRf"/>
+                        <outlet property="webContainerView" destination="qak-9V-0XF" id="BkX-fw-7cx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuu-u2-aL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
