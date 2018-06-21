@@ -25,15 +25,17 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var videoView: UIView!
     
-    var playerLayer: AVPlayerLayer!
-    var avPlayer: AVPlayer!
+    private var playerLayer: AVPlayerLayer!
+    private var avPlayer: AVPlayer?
+    private var avPlayerPlaybackTime = kCMTimeZero
     
-    var viewDidAppear = false
+    private var viewDidAppear = false
 
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        backgroundVideoSetup()
 
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         orLabel.text = NSLocalizedString("OR", comment: "")
@@ -64,59 +66,16 @@ class LandingViewController: UIViewController {
         logoImageView.accessibilityLabel = String(format: a11yText, Environment.shared.opco.displayString)
     }
     
-    func backgroundVideoSetup() {
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
-        
-        view.sendSubview(toBack: videoView)
-        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video", ofType: "mp4")!)
-        let asset = AVAsset(url: movieUrl)
-        let avPlayerItem = AVPlayerItem(asset: asset)
-        avPlayer = AVPlayer(playerItem: avPlayerItem)
-        avPlayer.isMuted = true
-        playerLayer = AVPlayerLayer(player: avPlayer)
-        playerLayer.videoGravity = .resizeAspectFill
-        
-        let videoWidth: CGFloat
-        let videoHeight: CGFloat
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            // On iPad, the video needs to be square to account for screen rotation
-            let widthAndHeight = max(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
-            videoWidth = widthAndHeight
-            videoHeight = widthAndHeight
-        } else {
-            videoWidth = UIScreen.main.bounds.width
-            videoHeight = UIScreen.main.bounds.height
-        }
-        playerLayer.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
-        videoView.layer.addSublayer(playerLayer)
-        
-        avPlayer.seek(to: kCMTimeZero)
-        avPlayer.actionAtItemEnd = .none
-        
-        NotificationCenter.default.rx.notification(.AVPlayerItemDidPlayToEndTime)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: {
-                ($0.object as? AVPlayerItem)?.seek(to: kCMTimeZero)
-            })
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                self?.avPlayer.play()
-            })
-            .disposed(by: disposeBag)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        backgroundVideoSetup(at: avPlayerPlaybackTime)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        avPlayer.play()
+        avPlayer?.play()
         
         if (!UserDefaults.standard.bool(forKey: UserDefaultKeys.hasAcceptedTerms)) {
             performSegue(withIdentifier: "termsPoliciesModalSegue", sender: self)
@@ -135,8 +94,14 @@ class LandingViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        avPlayer.pause()
+        guard let player = avPlayer else { return }
+        player.pause()
+        avPlayerPlaybackTime = player.currentTime()
+        avPlayer = nil
     }
+    
+    
+    // MARK: - Actions
     
     @IBAction func onContinueAsGuestPress(_ sender: UIButton) {
         performSegue(withIdentifier: "UnauthenticatedUserSegue", sender: self)
@@ -144,6 +109,54 @@ class LandingViewController: UIViewController {
     
     @IBAction func onSignInPress() {
         performSegue(withIdentifier: "loginSegue", sender: self)
+    }
+    
+    
+    // MARK: - Helper
+    
+    private func backgroundVideoSetup(at playbackTime: CMTime) {
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+        
+        view.sendSubview(toBack: videoView)
+        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video", ofType: "mp4")!)
+        let asset = AVAsset(url: movieUrl)
+        let avPlayerItem = AVPlayerItem(asset: asset)
+        avPlayer = AVPlayer(playerItem: avPlayerItem)
+        avPlayer?.isMuted = true
+        playerLayer = AVPlayerLayer(player: avPlayer)
+        playerLayer.videoGravity = .resizeAspectFill
+        
+        let videoWidth: CGFloat
+        let videoHeight: CGFloat
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // On iPad, the video needs to be square to account for screen rotation
+            let widthAndHeight = max(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+            videoWidth = widthAndHeight
+            videoHeight = widthAndHeight
+        } else {
+            videoWidth = UIScreen.main.bounds.width
+            videoHeight = UIScreen.main.bounds.height
+        }
+        playerLayer.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
+        videoView.layer.addSublayer(playerLayer)
+        
+        
+        avPlayer?.seek(to: playbackTime)
+        avPlayer?.actionAtItemEnd = .none
+        
+        NotificationCenter.default.rx.notification(.AVPlayerItemDidPlayToEndTime)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: {
+                ($0.object as? AVPlayerItem)?.seek(to: kCMTimeZero)
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.avPlayer?.play()
+            })
+            .disposed(by: disposeBag)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
