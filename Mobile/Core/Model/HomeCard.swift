@@ -1,5 +1,5 @@
 //
-//  HomeCardPrefsStore.swift
+//  HomeCard.swift
 //  Mobile
 //
 //  Created by Samuel Francis on 6/19/18.
