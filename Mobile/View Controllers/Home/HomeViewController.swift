@@ -30,8 +30,9 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var personalizeButton: UIButton!
     
     var weatherView: HomeWeatherView!
-    var billCardView: HomeBillCardView!
-    var usageCardView: HomeUsageCardView!
+    var billCardView: HomeBillCardView?
+    var usageCardView: HomeUsageCardView?
+    var templateCardView: TemplateCardView?
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
@@ -86,50 +87,16 @@ class HomeViewController: AccountPickerViewController {
         weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
         weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
         
-        billCardView = HomeBillCardView.create(withViewModel: viewModel.billCardViewModel)
-        billCardView.oneTouchPayFinished
-            .map { FetchingAccountState.switchAccount }
-            .bind(to: viewModel.fetchData)
-            .disposed(by: bag)
-        cardStackView.addArrangedSubview(billCardView)
-        
-        usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
-        
-        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
-                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver(),
-                     viewModel.shouldShowUsageCard.filter { [weak self] in $0 && self?.shortcutItem == .viewUsageOptions }.map(to: ())) // Shortcut response
-            .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
-            .drive(onNext: { [weak self] in
-                self?.shortcutItem = .none
-                self?.performSegue(withIdentifier: "usageSegue", sender: $0)
+        HomeCardPrefsStore.shared.listObservable
+            .scan(([HomeCard](), [HomeCard]())) { oldCards, newCards in (oldCards.1, newCards) }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] cards in
+                self?.setCards(oldCards: cards.0, newCards: cards.1)
+//                self?.scrollView?.setContentOffset(.zero, animated: false)
+//                self?.viewModel.fetchData.onNext(.switchAccount)
             })
             .disposed(by: bag)
         
-        cardStackView.addArrangedSubview(usageCardView)
-        viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: bag)
-        
-        usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.accountDetailEvents.elements()
-            .asDriver(onErrorDriveWith: .empty()))
-            .drive(onNext: { [weak self] in
-                Analytics.log(event: .AllSavingsSmartEnergy)
-                self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
-            }).disposed(by: bag)
-        
-        let templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
-        
-        templateCardView.safariViewController
-            .drive(onNext: { [weak self] viewController in
-                self?.present(viewController, animated: true, completion: nil)
-            }).disposed(by: bag)
-        
-        templateCardView.pushedViewControllers
-            .drive(onNext: { [weak self] viewController in
-                viewController.hidesBottomBarWhenPushed = true
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }).disposed(by: bag)
-        
-        cardStackView.addArrangedSubview(templateCardView)
         contentStackView.isHidden = true
         
         personalizeButton.setTitleColor(.white, for: .normal)
@@ -190,7 +157,7 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        usageCardView.superviewDidLayoutSubviews()
+        usageCardView?.superviewDidLayoutSubviews()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -202,6 +169,146 @@ class HomeViewController: AccountPickerViewController {
         view.backgroundColor = .primaryColorAccountPicker
         loadingView.layer.cornerRadius = 10
         loadingView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+    }
+    
+    func setCards(oldCards: [HomeCard], newCards: [HomeCard]) {
+        Set(oldCards)
+            .subtracting(newCards)
+            .map(cardView)
+            .forEach { view in
+                cardStackView.removeArrangedSubview(view)
+                view.removeFromSuperview()
+        }
+        
+        newCards
+            .map(cardView)
+            .enumerated()
+            .forEach { index, view in
+                cardStackView.insertArrangedSubview(view, at: index)
+        }
+    }
+    
+    func cardView(forCard card: HomeCard) -> UIView {
+        switch card {
+        case .bill:
+            let billCardView: HomeBillCardView
+            if let billCard = self.billCardView {
+                billCardView = billCard
+            } else {
+                billCardView = HomeBillCardView.create(withViewModel: viewModel.billCardViewModel)
+                self.billCardView = billCardView
+                bindBillCard()
+            }
+            
+            return billCardView
+        case .usage:
+            let usageCardView: HomeUsageCardView
+            if let billCard = self.usageCardView {
+                usageCardView = billCard
+            } else {
+                usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
+                self.usageCardView = usageCardView
+                bindUsageCard()
+            }
+            
+            return usageCardView
+        case .template:
+            let templateCardView: TemplateCardView
+            if let templateCard = self.templateCardView {
+                templateCardView = templateCard
+            } else {
+                templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
+                self.templateCardView = templateCardView
+                bindTemplateCard()
+            }
+            
+            return templateCardView
+        default:
+            fatalError()
+        }
+    }
+    
+    func bindBillCard() {
+        guard let billCardView = billCardView else { return }
+        
+        billCardView.oneTouchPayFinished
+            .map { FetchingAccountState.switchAccount }
+            .bind(to: viewModel.fetchData)
+            .disposed(by: billCardView.bag)
+        
+        billCardView.viewBillPressed
+            .drive(onNext: { [weak self] in
+                self?.tabBarController?.selectedIndex = 1
+            })
+            .disposed(by: billCardView.bag)
+        
+        billCardView.modalViewControllers
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            })
+            .disposed(by: billCardView.bag)
+        
+        billCardView.pushedViewControllers
+            .drive(onNext: { [weak self] viewController in
+                guard let `self` = self else { return }
+                
+                if let vc = viewController as? WalletViewController {
+                    vc.didUpdate
+                        .asDriver(onErrorDriveWith: .empty())
+                        .delay(0.5)
+                        .drive(onNext: { [weak self] toastMessage in
+                            self?.view.showToast(toastMessage)
+                        })
+                        .disposed(by: vc.disposeBag)
+                } else if let vc = viewController as? AutoPayViewController {
+                    vc.delegate = self
+                } else if let vc = viewController as? BGEAutoPayViewController {
+                    vc.delegate = self
+                }
+                
+                viewController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: billCardView.bag)
+    }
+    
+    func bindUsageCard() {
+        guard let usageCardView = usageCardView else { return }
+        
+        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
+                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver(),
+                     viewModel.shouldShowUsageCard.filter { [weak self] in $0 && self?.shortcutItem == .viewUsageOptions }.map(to: ())) // Shortcut response
+            .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+            .drive(onNext: { [weak self] in
+                self?.shortcutItem = .none
+                self?.performSegue(withIdentifier: "usageSegue", sender: $0)
+            })
+            .disposed(by: usageCardView.disposeBag)
+        
+        viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: usageCardView.disposeBag)
+        
+        usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.accountDetailEvents.elements()
+                .asDriver(onErrorDriveWith: .empty()))
+            .drive(onNext: { [weak self] in
+                Analytics.log(event: .AllSavingsSmartEnergy)
+                self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
+            }).disposed(by: usageCardView.disposeBag)
+    }
+    
+    func bindTemplateCard() {
+        guard let templateCardView = templateCardView else { return }
+        
+        templateCardView.safariViewController
+            .drive(onNext: { [weak self] viewController in
+                self?.present(viewController, animated: true, completion: nil)
+            }).disposed(by: templateCardView.bag)
+        
+        templateCardView.pushedViewControllers
+            .drive(onNext: { [weak self] viewController in
+                viewController.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }).disposed(by: templateCardView.bag)
     }
     
     @objc func killRefresh() -> Void {
@@ -258,41 +365,6 @@ class HomeViewController: AccountPickerViewController {
         Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
             .map(to: FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchData)
-            .disposed(by: bag)
-        
-        billCardView.viewBillPressed
-            .drive(onNext: { [weak self] in
-                self?.tabBarController?.selectedIndex = 1
-            })
-            .disposed(by: bag)
-        
-        billCardView.modalViewControllers
-            .drive(onNext: { [weak self] viewController in
-                self?.present(viewController, animated: true, completion: nil)
-            })
-            .disposed(by: bag)
-        
-        billCardView.pushedViewControllers
-            .drive(onNext: { [weak self] viewController in
-                guard let `self` = self else { return }
-                
-                if let vc = viewController as? WalletViewController {
-                    vc.didUpdate
-                        .asDriver(onErrorDriveWith: .empty())
-                        .delay(0.5)
-                        .drive(onNext: { [weak self] toastMessage in
-                            self?.view.showToast(toastMessage)
-                        })
-                        .disposed(by: vc.disposeBag)
-                } else if let vc = viewController as? AutoPayViewController {
-                    vc.delegate = self
-                } else if let vc = viewController as? BGEAutoPayViewController {
-                    vc.delegate = self
-                }
-                
-                viewController.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(viewController, animated: true)
-            })
             .disposed(by: bag)
         
         weatherView.didTapTemperatureTip

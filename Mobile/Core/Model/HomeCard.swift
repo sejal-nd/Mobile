@@ -12,14 +12,15 @@ enum HomeCard: Int {
     case bill, usage, template, projectedBill, outageStatus, peakRewards, newBusiness, nothing
     
     static let allCards: [HomeCard] = {
-        switch Environment.shared.opco {
-        case .bge:
-            return [.bill, .usage, .template, .projectedBill, .outageStatus, .peakRewards]
-        case .comEd:
-            return [.bill, .usage, .template, .projectedBill, .outageStatus, .newBusiness]
-        case .peco:
-            return [.bill, .usage, .template, .projectedBill, .outageStatus]
-        }
+        return [.bill, .usage, .template]
+//        switch Environment.shared.opco {
+//        case .bge:
+//            return [.bill, .usage, .template, .projectedBill, .outageStatus, .peakRewards]
+//        case .comEd:
+//            return [.bill, .usage, .template, .projectedBill, .outageStatus, .newBusiness]
+//        case .peco:
+//            return [.bill, .usage, .template, .projectedBill, .outageStatus]
+//        }
         }()
     
     init?(id: String) {
