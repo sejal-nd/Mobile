@@ -8,57 +8,14 @@
 
 import XCTest
 import AppCenterXCUITestExtensions
-class PaymentUITests: XCTestCase {
-    
-    let app = XCUIApplication()
-    
-    override func setUp() {
-        super.setUp()
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        app.launchArguments = ["UITest"]
-        ACTLaunch.launch(app)
-    }
-    
-    func doLogin(username: String) {
-        let continueButton = app.buttons["Continue"]
-        XCTAssert(continueButton.waitForExistence(timeout: 30))
-        
-        // Assert button is disabled when the switch is not enabled
-        XCTAssert(!continueButton.isEnabled)
-        app.switches.element(boundBy: 0).tap()
-        XCTAssert(continueButton.isEnabled)
-        continueButton.tap()
-        
-        let signInButton = app.buttons["Sign In"]
-        XCTAssert(signInButton.waitForExistence(timeout: 5))
-        signInButton.tap()
-        
-        let elementsQuery = app.scrollViews.otherElements
-        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
-        usernameEmailAddressTextField.clearAndEnterText(username)
-        
-        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.clearAndEnterText("Password1")
-        elementsQuery.buttons["Sign In"].tap()
-        
-        let billTab = app.tabBars.buttons["Bill"]
-        XCTAssert(billTab.waitForExistence(timeout: 10))
-        billTab.tap()
-        
-        let makePaymentButton = app.scrollViews.otherElements.buttons["Make a Payment"]
-        XCTAssert(makePaymentButton.waitForExistence(timeout: 3))
-        makePaymentButton.tap()
-    }
-    
+class PaymentUITests: ExelonUITestCase {
+   
     // MARK: MakePaymentViewController Layout Tests
     
     func testLayoutNoPaymentMethods() {
         doLogin(username: "billCardNoDefaultPayment")
+        selectTab(tabName: "Bill")
+        tapButton(buttonText: "Make a Payment")
         
         XCTAssert(app.navigationBars["Make a Payment"].waitForExistence(timeout: 3))
         XCTAssertFalse(app.navigationBars.buttons["Next"].isEnabled, "Next button should be disabed initially")
@@ -87,6 +44,8 @@ class PaymentUITests: XCTestCase {
     
     func testLayoutExistingWalletItems() {
         doLogin(username: "billCardWithDefaultPayment")
+        selectTab(tabName: "Bill")
+        tapButton(buttonText: "Make a Payment")
         
         let nextButton = app.navigationBars.buttons["Next"]
         XCTAssert(nextButton.waitForExistence(timeout: 2))
@@ -138,6 +97,8 @@ class PaymentUITests: XCTestCase {
     func testInlineBankLayoutBGE() {
         if appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addBankButton = app.scrollViews.otherElements.buttons["Add bank account"]
             XCTAssert(addBankButton.waitForExistence(timeout: 3))
@@ -210,6 +171,8 @@ class PaymentUITests: XCTestCase {
     func testInlineBankLayoutComEdPECO() {
         if !appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addBankButton = app.scrollViews.otherElements.buttons["Add bank account"]
             XCTAssert(addBankButton.waitForExistence(timeout: 3))
@@ -296,6 +259,8 @@ class PaymentUITests: XCTestCase {
     func testInlineCardLayoutBGE() {
         if appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
             XCTAssert(addCardButton.waitForExistence(timeout: 3))
@@ -374,6 +339,8 @@ class PaymentUITests: XCTestCase {
     func testInlineCardLayoutComEdPECO() {
         if !appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
             XCTAssert(addCardButton.waitForExistence(timeout: 3))
@@ -457,6 +424,8 @@ class PaymentUITests: XCTestCase {
     
     func testMakePaymentExistingWalletItem() {
         doLogin(username: "billCardWithDefaultPayment")
+        selectTab(tabName: "Bill")
+        tapButton(buttonText: "Make a Payment")
         
         let nextButton = app.navigationBars.buttons["Next"]
         XCTAssert(nextButton.waitForExistence(timeout: 2))
@@ -528,6 +497,8 @@ class PaymentUITests: XCTestCase {
     func testMakePaymentBGEOverpaying() {
         if appName.contains("BGE") {
             doLogin(username: "billCardWithDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let paymentAmountTextField = app.scrollViews.otherElements.textFields["Payment Amount, required"]
             XCTAssert(paymentAmountTextField.waitForExistence(timeout: 2))
@@ -573,6 +544,8 @@ class PaymentUITests: XCTestCase {
     func testBGEInlineBankPayment() {
         if appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addBankButton = app.scrollViews.otherElements.buttons["Add bank account"]
             XCTAssert(addBankButton.waitForExistence(timeout: 3))
@@ -597,6 +570,8 @@ class PaymentUITests: XCTestCase {
     func testBGEInlineCardPayment() {
         if appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
             XCTAssert(addCardButton.waitForExistence(timeout: 3))
@@ -642,6 +617,8 @@ class PaymentUITests: XCTestCase {
     func testComEdPECOInlineBankPayment() {
         if !appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addBankButton = app.scrollViews.otherElements.buttons["Add bank account"]
             XCTAssert(addBankButton.waitForExistence(timeout: 3))
@@ -664,6 +641,8 @@ class PaymentUITests: XCTestCase {
     func testComEdPECOInlineCardPayment() {
         if !appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
             XCTAssert(addCardButton.waitForExistence(timeout: 3))
