@@ -31,6 +31,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
     }()
     
     let isReordering = Variable(false)
+    var reorderingCell: HomeEditCardCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +77,13 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             isReordering.value = true
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else { break }
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            if let cell = collectionView.cellForItem(at: selectedIndexPath) as? HomeEditCardCell {
+                reorderingCell = cell
+                UIView.animate(withDuration: 0.1) {
+                    cell.cardView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                    cell.cardView.alpha = 0.95
+                }
+            }
         case .changed:
             // Prevent dragging to reorder outside of the first section
             guard let layout = collectionView.collectionViewLayout as? HomeEditFlowLayout else { return }
@@ -90,11 +98,27 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             
             collectionView.updateInteractiveMovementTargetPosition(location)
         case .ended:
-            isReordering.value = false
             collectionView.endInteractiveMovement()
+            if let cell = reorderingCell {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.25, options: .curveEaseIn, animations: {
+                    cell.cardView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    cell.cardView.alpha = 1
+                }, completion: { _ in
+                    self.isReordering.value = false
+                    self.reorderingCell = nil
+                })
+            }
         case .cancelled, .failed:
-            isReordering.value = false
             collectionView.cancelInteractiveMovement()
+            if let cell = reorderingCell {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.25, options: .curveEaseIn, animations: {
+                    cell.cardView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    cell.cardView.alpha = 1
+                }, completion: { _ in
+                    self.isReordering.value = false
+                    self.reorderingCell = nil
+                })
+            }
         case .possible:
             break
         }
@@ -205,7 +229,7 @@ extension HomeEditViewController {
             .asDriver()
             .drive(onNext: { [weak self] in self?.handleDragToReorder(gesture: $0)})
             .disposed(by: cell.disposeBag)
-        
+    
         return cell
     }
     
