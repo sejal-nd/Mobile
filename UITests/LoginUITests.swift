@@ -9,41 +9,13 @@
 import XCTest
 import AppCenterXCUITestExtensions
 
-class LoginUITests: XCTestCase {
-    let app = XCUIApplication()
+class LoginUITests: ExelonUITestCase {
     
     override func setUp() {
         super.setUp()
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        app.launchArguments = ["UITest"]
-    
-        ACTLaunch.launch(app)
-        
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
         handleTermsFirstLaunch()
     }
     
-    override func tearDown() {
-        ACTLabel.labelStep("Tearing down")
-        super.tearDown()
-    }
-    
-    func handleTermsFirstLaunch() {
-        
-        let continueButton = app.buttons["Continue"]
-        XCTAssert(continueButton.waitForExistence(timeout: 30))
-
-        // Assert button is disabled when the switch is not enabled
-        XCTAssert(!continueButton.isEnabled)
-        app.switches.element(boundBy: 0).tap()
-        XCTAssert(continueButton.isEnabled)
-        continueButton.tap()
-        XCTAssert(app.buttons["Sign In"].waitForExistence(timeout: 5))
-    }
     
     func testLandingPageLayout(){
         XCTAssert(app.buttons["Sign In"].exists)
@@ -178,7 +150,7 @@ class LoginUITests: XCTestCase {
             let pred = NSPredicate(format: "label like %@", "If you see downed power lines or smell natural gas, leave the area immediately and then call BGE. Representatives are available 24 hours a day, 7 days a week.")
             XCTAssert(elementsQuery.staticTexts.element(matching: pred).exists)
             
-        } else if appName.contains("PECO"){
+            } else if appName.contains("PECO"){
             XCTAssert(elementsQuery.staticTexts["1-800-841-4141"].exists)
             XCTAssert(elementsQuery.staticTexts["1-800-494-4000"].exists)
             XCTAssert(elementsQuery.staticTexts["All Customers"].exists)

@@ -27,10 +27,12 @@ class ExelonUITestCase: XCTestCase{
     
     override func tearDown() {
         ACTLabel.labelStep("Tearing down")
+        
         super.tearDown()
     }
     
-    func doLogin(username: String) {
+    func handleTermsFirstLaunch() {
+        
         let continueButton = app.buttons["Continue"]
         XCTAssert(continueButton.waitForExistence(timeout: 30))
         
@@ -39,7 +41,13 @@ class ExelonUITestCase: XCTestCase{
         app.switches.element(boundBy: 0).tap()
         XCTAssert(continueButton.isEnabled)
         continueButton.tap()
-        
+        XCTAssert(app.buttons["Sign In"].waitForExistence(timeout: 5))
+    }
+    
+    func doLogin(username: String) {
+    
+        handleTermsFirstLaunch()
+    
         let signInButton = app.buttons["Sign In"]
         XCTAssert(signInButton.waitForExistence(timeout: 5))
         signInButton.tap()
