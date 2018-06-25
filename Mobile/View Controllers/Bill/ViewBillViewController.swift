@@ -16,7 +16,6 @@ class ViewBillViewController: UIViewController {
     @IBOutlet weak var webContainerView: UIView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
-    private var webView: WKWebView!
 
     var documentController: UIDocumentInteractionController?
     
@@ -51,8 +50,7 @@ class ViewBillViewController: UIViewController {
 
         // Programtically Configure WKWebView due to a bug with using IB WKWebView before iOS 11
         let webConfiguration = WKWebViewConfiguration()
-        let customFrame = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: 0.0, height: webContainerView.frame.size.height))
-        webView = WKWebView(frame: customFrame , configuration: webConfiguration)
+        let webView = WKWebView(frame: .zero , configuration: webConfiguration)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
         webContainerView.addSubview(webView)
@@ -60,7 +58,6 @@ class ViewBillViewController: UIViewController {
         webView.rightAnchor.constraint(equalTo: webContainerView.rightAnchor).isActive = true
         webView.leftAnchor.constraint(equalTo: webContainerView.leftAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: webContainerView.bottomAnchor).isActive = true
-        webView.heightAnchor.constraint(equalTo: webContainerView.heightAnchor).isActive = true
         
         guard let pdfData = viewModel.pdfData, let baseUrl = URL(string: "https://www.google.com") else { return }
         webView.load(pdfData, mimeType: "application/pdf", characterEncodingName: "utf-8", baseURL: baseUrl)

@@ -93,15 +93,13 @@ class LoginTermsPoliciesViewController: UIViewController {
     private func setupWKWebView(with url: URL) {
         // Programtically Configure WKWebView due to a bug with using IB WKWebView before iOS 11
         let webConfiguration = WKWebViewConfiguration()
-        let customFrame = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: 0.0, height: webContainerView.frame.size.height))
-        webView = WKWebView(frame: customFrame , configuration: webConfiguration)
+        webView = WKWebView(frame: .zero , configuration: webConfiguration)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webContainerView.addSubview(webView)
         webView.topAnchor.constraint(equalTo: webContainerView.topAnchor).isActive = true
         webView.rightAnchor.constraint(equalTo: webContainerView.rightAnchor).isActive = true
         webView.leftAnchor.constraint(equalTo: webContainerView.leftAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: webContainerView.bottomAnchor).isActive = true
-        webView.heightAnchor.constraint(equalTo: webContainerView.heightAnchor).isActive = true
         
         let request = URLRequest(url: url)
         webView.load(request)
