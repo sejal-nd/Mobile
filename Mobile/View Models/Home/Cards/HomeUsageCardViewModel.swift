@@ -29,7 +29,7 @@ class HomeUsageCardViewModel {
         }
     }
     
-    let electricGasSelectedSegmentIndex = Variable(0)
+    let electricGasSelectedSegmentIndex = PublishSubject<Int>()
     
     /*
      * 0 = No Data

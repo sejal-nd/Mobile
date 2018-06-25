@@ -46,6 +46,7 @@ class HomeViewController: AccountPickerViewController {
                                   usageService: ServiceFactory.createUsageService(),
                                   authService: ServiceFactory.createAuthenticationService())
     
+    // Should be moved when we add the Usage tab.
     var shortcutItem = ShortcutItem.none
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -90,10 +91,17 @@ class HomeViewController: AccountPickerViewController {
         HomeCardPrefsStore.shared.listObservable
             .scan(([HomeCard](), [HomeCard]())) { oldCards, newCards in (oldCards.1, newCards) }
             .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] cards in
-                self?.setCards(oldCards: cards.0, newCards: cards.1)
-//                self?.scrollView?.setContentOffset(.zero, animated: false)
-//                self?.viewModel.fetchData.onNext(.switchAccount)
+            .drive(onNext: { [weak self] (oldCards, newCards) in
+                self?.scrollView?.setContentOffset(.zero, animated: false)
+                
+                // Perform reorder if preference changed
+                guard oldCards != newCards else { return }
+                self?.setCards(oldCards: oldCards, newCards: newCards)
+                
+                // Refresh if not first load and new card(s) added
+                if !oldCards.isEmpty && !Set(newCards).subtracting(oldCards).isEmpty {
+                    self?.viewModel.fetchData.onNext(.switchAccount)
+                }
             })
             .disposed(by: bag)
         
@@ -174,17 +182,30 @@ class HomeViewController: AccountPickerViewController {
     func setCards(oldCards: [HomeCard], newCards: [HomeCard]) {
         Set(oldCards)
             .subtracting(newCards)
-            .map(cardView)
-            .forEach { view in
-                cardStackView.removeArrangedSubview(view)
-                view.removeFromSuperview()
-        }
+            .forEach { removeCardView(forCard: $0) }
         
         newCards
             .map(cardView)
             .enumerated()
             .forEach { index, view in
                 cardStackView.insertArrangedSubview(view, at: index)
+        }
+    }
+    
+    func removeCardView(forCard card: HomeCard) {
+        let view = cardView(forCard: card)
+        cardStackView.removeArrangedSubview(view)
+        view.removeFromSuperview()
+        
+        switch card {
+        case .bill:
+            billCardView = nil
+        case .usage:
+            usageCardView = nil
+        case .template:
+            templateCardView = nil
+        default:
+            fatalError(card.displayString + " card view doesn't exist yet")
         }
     }
     
@@ -224,7 +245,7 @@ class HomeViewController: AccountPickerViewController {
             
             return templateCardView
         default:
-            fatalError()
+            fatalError(card.displayString + " card view doesn't exist yet")
         }
     }
     
