@@ -74,7 +74,7 @@ enum HomeCard: Int {
     
     var isOptional: Bool {
         switch self {
-        case .bill, .usage:
+        case .bill://, .usage:
             return false
         default:
             return true
