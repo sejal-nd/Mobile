@@ -90,7 +90,7 @@ class OutageUITests: ExelonUITestCase {
         selectTab(tabName: "Outage")
         XCTAssert(app.buttons["Reload"].exists)
         XCTAssert(app.staticTexts["Scheduled Maintenance"].exists)
-        XCTAssert(app.staticTexts["Outage is currently unavailable due to\nscheduled maintenance."].exists)
+        XCTAssert(app.staticTexts["Outage is currently unavailable due to\nscheduled maintenance."].waitForExistence(timeout: 3))
         var outageMmStaticText: XCUIElement
         
         if appName.contains("BGE") {

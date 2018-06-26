@@ -89,7 +89,7 @@ class HomeBillCardUITests: ExelonUITestCase {
     func testMaintModeHomeBillCard() {
         doLogin(username: "maintNotHome")
         
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Billing is currently unavailable due to scheduled maintenance."].exists)
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Billing is currently unavailable due to scheduled maintenance."].waitForExistence(timeout: 5))
     }
     
     func testMaintModeHome() {
@@ -97,7 +97,7 @@ class HomeBillCardUITests: ExelonUITestCase {
         
         XCTAssert(app.buttons["Reload"].exists)
         XCTAssert(app.staticTexts["Scheduled Maintenance"].exists)
-        XCTAssert(app.staticTexts["Home is currently unavailable due to\nscheduled maintenance."].exists)
+        XCTAssert(app.staticTexts["Home is currently unavailable due to\nscheduled maintenance."].waitForExistence(timeout: 5))
     }
     
     func testExpiredSlideToPay(){
