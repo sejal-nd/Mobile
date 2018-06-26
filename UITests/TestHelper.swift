@@ -59,22 +59,27 @@ class ExelonUITestCase: XCTestCase{
         
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         passwordSecureTextField.clearAndEnterText("Password1")
+        ACTLabel.labelStep("Signing in...")
         elementsQuery.buttons["Sign In"].tap()
     
         XCTAssert(app.tabBars.buttons["Home"].waitForExistence(timeout: 10))
-    
+        ACTLabel.labelStep("Signed in")
     
     }
 
     func selectTab(tabName: String){
+        ACTLabel.labelStep("Pre-select tab \(tabName)")
         let tab = app.tabBars.buttons[tabName]
         XCTAssert(tab.waitForExistence(timeout: 10))
         tab.tap()
+        ACTLabel.labelStep("Post-select tab \(tabName)")
     }
     
     func tapButton(buttonText: String){
+        ACTLabel.labelStep("Pre-tap button \(buttonText)")
         let makePaymentButton = app.scrollViews.otherElements.buttons[buttonText]
         XCTAssert(makePaymentButton.waitForExistence(timeout: 3))
         makePaymentButton.tap()
+        ACTLabel.labelStep("Post-tap button \(buttonText)")
     }
 }
