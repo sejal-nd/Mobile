@@ -272,9 +272,9 @@ class PaymentUITests: ExelonUITestCase {
             // Card IO test
             let cardIOButton = app.scrollViews.otherElements.buttons["Take a photo to scan credit card number"]
             XCTAssert(cardIOButton.exists)
-            cardIOButton.tap()
-            XCTAssert(app.navigationBars["Card"].waitForExistence(timeout: 2))
-            app.navigationBars.buttons["Cancel"].tap()
+//            cardIOButton.tap()
+//            XCTAssert(app.navigationBars["Card"].waitForExistence(timeout: 2))
+//            app.navigationBars.buttons["Cancel"].tap()
             
             XCTAssert(app.scrollViews.otherElements.staticTexts["Expiration Date"].waitForExistence(timeout: 2))
             XCTAssert(app.scrollViews.otherElements.textFields["Month, two digits"].exists)
@@ -351,9 +351,9 @@ class PaymentUITests: ExelonUITestCase {
             // Card IO test
             let cardIOButton = app.scrollViews.otherElements.buttons["Take a photo to scan credit card number"]
             XCTAssert(cardIOButton.exists)
-            cardIOButton.tap()
-            XCTAssert(app.navigationBars["Card"].waitForExistence(timeout: 2))
-            app.navigationBars.buttons["Cancel"].tap()
+//            cardIOButton.tap()
+//            XCTAssert(app.navigationBars["Card"].waitForExistence(timeout: 2))
+//            app.navigationBars.buttons["Cancel"].tap()
             
             XCTAssert(app.scrollViews.otherElements.staticTexts["Expiration Date"].waitForExistence(timeout: 2))
             XCTAssert(app.scrollViews.otherElements.textFields["Month, two digits"].exists)

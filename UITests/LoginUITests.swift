@@ -141,9 +141,10 @@ class LoginUITests: ExelonUITestCase {
         XCTAssert(elementsQuery.buttons["LinkedIn"].exists)
         
         if appName.contains("BGE"){
-            XCTAssert(elementsQuery.staticTexts["1-800-685-0123"].exists)
-            XCTAssert(elementsQuery.staticTexts["1-800-265-6177"].exists)
-            XCTAssert(elementsQuery.staticTexts["1-800-735-2258"].exists)
+            
+            XCTAssert(elementsQuery.links["1-800-685-0123"].exists)
+            XCTAssert(elementsQuery.links["1-800-265-6177"].exists)
+            XCTAssert(elementsQuery.links["1-800-735-2258"].exists)
             XCTAssert(elementsQuery.staticTexts["Residential"].exists)
             XCTAssert(elementsQuery.staticTexts["Business"].exists)
             XCTAssert(elementsQuery.staticTexts["TTY/TTD"].exists)
@@ -151,15 +152,15 @@ class LoginUITests: ExelonUITestCase {
             XCTAssert(elementsQuery.staticTexts.element(matching: pred).exists)
             
             } else if appName.contains("PECO"){
-            XCTAssert(elementsQuery.staticTexts["1-800-841-4141"].exists)
-            XCTAssert(elementsQuery.staticTexts["1-800-494-4000"].exists)
+            XCTAssert(elementsQuery.links["1-800-841-4141"].waitForExistence(timeout: 5))
+            XCTAssert(elementsQuery.links["1-800-494-4000"].waitForExistence(timeout: 5))
             XCTAssert(elementsQuery.staticTexts["All Customers"].exists)
             let pred = NSPredicate(format: "label like %@", "If you see downed power lines or smell natural gas, leave the area immediately and then call PECO. Representatives are available 24 hours a day, 7 days a week.")
             XCTAssert(elementsQuery.staticTexts.element(matching: pred).exists)
         } else {
-            XCTAssert(elementsQuery.staticTexts["1-800-334-7661"].exists)
-            XCTAssert(elementsQuery.staticTexts["1-877-426-6331"].exists)
-            XCTAssert(elementsQuery.staticTexts["1-800-955-8237"].exists)
+            XCTAssert(elementsQuery.links["1-800-334-7661"].exists)
+            XCTAssert(elementsQuery.links["1-877-426-6331"].exists)
+            XCTAssert(elementsQuery.links["1-800-955-8237"].exists)
             XCTAssert(elementsQuery.staticTexts["Residential"].exists)
             XCTAssert(elementsQuery.staticTexts["Business"].exists)
             XCTAssert(elementsQuery.staticTexts["Spanish"].exists)
