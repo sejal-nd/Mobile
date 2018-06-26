@@ -64,12 +64,14 @@ class LandingViewController: UIViewController {
         logoBackgroundView.addShadow(color: .primaryColorDark, opacity: 0.5, offset: CGSize(width: 0, height: 9), radius: 11)
         let a11yText = NSLocalizedString("%@, an Exelon Company", comment: "")
         logoImageView.accessibilityLabel = String(format: a11yText, Environment.shared.opco.displayString)
+        
+        backgroundVideoSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        backgroundVideoSetup(at: avPlayerPlaybackTime)
+        backgroundVideoResume(at: avPlayerPlaybackTime)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -114,7 +116,7 @@ class LandingViewController: UIViewController {
     
     // MARK: - Helper
     
-    private func backgroundVideoSetup(at playbackTime: CMTime) {
+    private func backgroundVideoSetup() {
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
         
         view.sendSubview(toBack: videoView)
@@ -123,6 +125,7 @@ class LandingViewController: UIViewController {
         let avPlayerItem = AVPlayerItem(asset: asset)
         avPlayer = AVPlayer(playerItem: avPlayerItem)
         avPlayer?.isMuted = true
+        
         playerLayer = AVPlayerLayer(player: avPlayer)
         playerLayer.videoGravity = .resizeAspectFill
         
@@ -138,10 +141,10 @@ class LandingViewController: UIViewController {
             videoHeight = UIScreen.main.bounds.height
         }
         playerLayer.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
+        
         videoView.layer.addSublayer(playerLayer)
         
-        
-        avPlayer?.seek(to: playbackTime)
+        avPlayer?.seek(to: kCMTimeZero)
         avPlayer?.actionAtItemEnd = .none
         
         NotificationCenter.default.rx.notification(.AVPlayerItemDidPlayToEndTime)
@@ -158,6 +161,22 @@ class LandingViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    private func backgroundVideoResume(at playbackTime: CMTime) {
+        let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video", ofType: "mp4")!)
+        let asset = AVAsset(url: movieUrl)
+        let avPlayerItem = AVPlayerItem(asset: asset)
+        avPlayer = AVPlayer(playerItem: avPlayerItem)
+        avPlayer?.isMuted = true
+        avPlayer?.seek(to: playbackTime)
+        avPlayer?.actionAtItemEnd = .none
+        
+        guard let avPlayer = avPlayer else { return }
+        playerLayer.player = avPlayer
+    }
+    
+    
+    // MARK: - Setup
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
