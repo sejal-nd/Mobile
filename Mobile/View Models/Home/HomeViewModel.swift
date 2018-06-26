@@ -37,6 +37,8 @@ class HomeViewModel {
         }
     }
     
+    let latestNewCardVersion = HomeCard.latestNewCardVersion
+    
     required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService, usageService: UsageService, authService: AuthenticationService) {
         self.fetchDataObservable = fetchData.share()
         self.accountService = accountService

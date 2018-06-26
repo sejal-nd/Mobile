@@ -24,6 +24,7 @@ struct UserDefaultKeys {
     
     static let temperatureScale = "kPTemperatureScale"
     
+    static let homeCardCustomizeTappedVersion = "kHomeCardCustomizeTappedVersion"
     static let homeCardPrefsList = "kHomeCardPrefsList"
     
     static let inMainApp = "kInMainApp" // Is the user in the "Main" area of the app (past-login). Set to true in MainTabBarController

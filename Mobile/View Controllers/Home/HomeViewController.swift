@@ -13,6 +13,8 @@ import Lottie
 import StoreKit
 import UserNotifications
 
+fileprivate let editHomeSegueId = "editHomeSegue"
+
 class HomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var backgroundView: UIView!
@@ -33,6 +35,7 @@ class HomeViewController: AccountPickerViewController {
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
+    var topPersonalizeButton: ButtonControl?
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
@@ -107,11 +110,28 @@ class HomeViewController: AccountPickerViewController {
         
         contentStackView.isHidden = true
         
+        let versionString = UserDefaults.standard.string(forKey: UserDefaultKeys.homeCardCustomizeTappedVersion) ?? "0.0.0"
+        let tappedVersion = Version(string: versionString) ?? Version(major: 0, minor: 0, patch: 0)
+        if tappedVersion < viewModel.latestNewCardVersion {
+            topPersonalizeButtonSetup()
+        }
+        
         personalizeButton.setTitleColor(.white, for: .normal)
         personalizeButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
         personalizeButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "editHomeSegue", sender: nil)
+                guard let this = self else { return }
+                UserDefaults.standard.set(Version.current.string, forKey: UserDefaultKeys.homeCardCustomizeTappedVersion)
+                this.performSegue(withIdentifier: editHomeSegueId, sender: nil)
+                
+                guard let button = this.topPersonalizeButton else { return }
+                UIView.animate(withDuration: 0.15, animations: {
+                    button.isHidden = true
+                }, completion: { _ in
+                    this.cardStackView.removeArrangedSubview(button)
+                    button.removeFromSuperview()
+                    this.topPersonalizeButton = nil
+                })
             })
             .disposed(by: bag)
         
@@ -126,6 +146,59 @@ class HomeViewController: AccountPickerViewController {
                 (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: true, showViewUsageOptions: false)
             })
             .disposed(by: bag)
+    }
+    
+    func topPersonalizeButtonSetup() {
+            let topPersonalizeButton = ButtonControl().usingAutoLayout()
+            topPersonalizeButton.backgroundColorOnPress = .softGray
+            topPersonalizeButton.backgroundColor = .white
+            topPersonalizeButton.layer.cornerRadius = 10
+            topPersonalizeButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+            let label = UILabel()
+            label.text = NSLocalizedString("Did you know you can personalize your dashboard?", comment: "")
+            label.font = SystemFont.semibold.of(textStyle: .subheadline)
+            label.textColor = .actionBlue
+            label.numberOfLines = 0
+            label.setLineHeight(lineHeight: 20)
+            let caretImageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
+            caretImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
+            caretImageView.setContentHuggingPriority(.required, for: .horizontal)
+            let buttonStack = UIStackView().usingAutoLayout()
+            buttonStack.axis = .horizontal
+            buttonStack.spacing = 15
+            buttonStack.distribution = .fill
+            buttonStack.alignment = .center
+            buttonStack.isUserInteractionEnabled = false
+            
+            [label, caretImageView].forEach(buttonStack.addArrangedSubview)
+            
+            topPersonalizeButton.addSubview(buttonStack)
+            
+            NSLayoutConstraint.activate([
+                buttonStack.leadingAnchor.constraint(equalTo: topPersonalizeButton.leadingAnchor, constant: 25),
+                buttonStack.trailingAnchor.constraint(equalTo: topPersonalizeButton.trailingAnchor, constant: -14),
+                buttonStack.topAnchor.constraint(equalTo: topPersonalizeButton.topAnchor, constant: 12),
+                buttonStack.bottomAnchor.constraint(equalTo: topPersonalizeButton.bottomAnchor, constant: -12)
+                ])
+            
+            contentStackView.insertArrangedSubview(topPersonalizeButton, at: 0)
+            
+            topPersonalizeButton.rx.touchUpInside.asDriver()
+                .drive(onNext: { [weak self, weak topPersonalizeButton] in
+                    guard let this = self, let button = topPersonalizeButton else { return }
+                    UserDefaults.standard.set(Version.current.string, forKey: UserDefaultKeys.homeCardCustomizeTappedVersion)
+                    this.performSegue(withIdentifier: editHomeSegueId, sender: nil)
+                    UIView.animate(withDuration: 0.15, animations: {
+                        button.isHidden = true
+                    }, completion: { _ in
+                        this.cardStackView.removeArrangedSubview(button)
+                        button.removeFromSuperview()
+                        this.topPersonalizeButton = nil
+                    })
+                })
+                .disposed(by: bag)
+        
+        self.topPersonalizeButton = topPersonalizeButton
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -89,6 +89,18 @@ enum HomeCard: Int {
             return true
         }
     }
+    
+    static let latestNewCardVersion: Version = {
+        // Update these in versions with new cards
+        switch Environment.shared.opco {
+        case .bge:
+            return Version(major: 1, minor: 2, patch: 5)
+        case .peco:
+            return Version(major: 1, minor: 2, patch: 5)
+        case .comEd:
+            return Version(major: 9, minor: 0, patch: 5)
+        }
+    }()
 }
 
 final class HomeCardPrefsStore {
