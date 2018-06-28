@@ -11,9 +11,9 @@ import RxCocoa
 
 class HomeEditCardCell: UICollectionViewCell {
     @IBOutlet weak var cardView: UIView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var subLabel: UILabel!
-    @IBOutlet weak var addRemoveButton: UIButton!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var subLabel: UILabel!
+    @IBOutlet private weak var addRemoveButton: UIButton!
     @IBOutlet weak var gripView: UIView!
     
     var disposeBag = DisposeBag()

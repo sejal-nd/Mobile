@@ -10,15 +10,19 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
+fileprivate let topSectionHeaderHeight: CGFloat = 15
+
 class HomeEditViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
     
-    let disposeBag = DisposeBag()
-    let topSectionHeaderHeight: CGFloat = 15
+    private let disposeBag = DisposeBag()
     
-    lazy var cards: [[HomeCard]] = {
+    let isReordering = Variable(false)
+    var reorderingCell: HomeEditCardCell?
+    
+    lazy var cards: Variable<[[HomeCard]]> = {
         let selectedCards = HomeCardPrefsStore.shared.list
         
         // generate the sorted array of rejected cards
@@ -27,11 +31,12 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             rejectedCards.append(.nothing)
         }
         
-        return [selectedCards, rejectedCards]
+        return Variable([selectedCards, rejectedCards])
     }()
     
-    let isReordering = Variable(false)
-    var reorderingCell: HomeEditCardCell?
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,19 +47,20 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         cancelButton.tintColor = .white
         saveButton.tintColor = .white
         
+        installsStandardGestureForInteractiveMovement = false
+        collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
+                                                                          action: #selector(handleDragToReorder(gesture:))))
+        
         cancelButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 self?.presentingViewController?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         
-        installsStandardGestureForInteractiveMovement = false
-        collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleDragToReorder(gesture:))))
-        
         saveButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 guard let this = self, !this.isReordering.value else { return }
-                HomeCardPrefsStore.shared.list = this.cards[0]
+                HomeCardPrefsStore.shared.list = this.cards.value[0]
                 self?.presentingViewController?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
@@ -69,20 +75,19 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
+    // MARK - Drag Handling
+    
     @objc func handleDragToReorder(gesture: UIGestureRecognizer) {
         guard let collectionView = collectionView else { return }
         
         switch(gesture.state) {
         case .began:
+            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)), selectedIndexPath.section == 0 else { break }
             isReordering.value = true
-            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else { break }
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
             if let cell = collectionView.cellForItem(at: selectedIndexPath) as? HomeEditCardCell {
                 reorderingCell = cell
-                UIView.animate(withDuration: 0.1) {
-                    cell.cardView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-                    cell.cardView.alpha = 0.95
-                }
+                transformCardCell(pickUp: true)
             }
         case .changed:
             // Prevent dragging to reorder outside of the first section
@@ -91,7 +96,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             let xOffset = touchLocation.x - collectionView.bounds.width / 2
             let initialYOffset = layout.sectionInset.top + (layout.itemSize.height / 2) + topSectionHeaderHeight
             let rowDistance = layout.minimumLineSpacing + layout.itemSize.height
-            let maxYValue = initialYOffset + rowDistance * CGFloat(self.cards[0].count - 1)
+            let maxYValue = initialYOffset + rowDistance * CGFloat(self.cards.value[0].count - 1)
             
             let location = CGPoint(x: touchLocation.x - xOffset,
                                    y: max(initialYOffset, min(maxYValue, touchLocation.y)))
@@ -99,37 +104,41 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             collectionView.updateInteractiveMovementTargetPosition(location)
         case .ended:
             collectionView.endInteractiveMovement()
-            if let cell = reorderingCell {
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.25, options: .curveEaseIn, animations: {
-                    cell.cardView.transform = CGAffineTransform(scaleX: 1, y: 1)
-                    cell.cardView.alpha = 1
-                }, completion: { _ in
-                    self.isReordering.value = false
-                    self.reorderingCell = nil
-                })
-            }
+            transformCardCell(pickUp: false)
         case .cancelled, .failed:
             collectionView.cancelInteractiveMovement()
-            if let cell = reorderingCell {
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.25, options: .curveEaseIn, animations: {
-                    cell.cardView.transform = CGAffineTransform(scaleX: 1, y: 1)
-                    cell.cardView.alpha = 1
-                }, completion: { _ in
-                    self.isReordering.value = false
-                    self.reorderingCell = nil
-                })
-            }
+            transformCardCell(pickUp: false)
         case .possible:
             break
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    func transformCardCell(pickUp: Bool) {
+        guard let cell = reorderingCell else { return }
+        
+        if pickUp {
+            UIView.animate(withDuration: 0.1) {
+                cell.cardView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                cell.cardView.alpha = 0.95
+            }
+        } else {
+            UIView.animate(withDuration: 0.5,
+                           delay: 0,
+                           usingSpringWithDamping: 0.4,
+                           initialSpringVelocity: 0.25,
+                           options: .curveEaseIn,
+                           animations: {
+                            cell.cardView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                            cell.cardView.alpha = 1
+            },
+                           completion: { _ in
+                            self.isReordering.value = false
+                            self.reorderingCell = nil
+            })
+        }
     }
-}
-
-extension HomeEditViewController {
+    
+    // MARK: - Collection View Delegate
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
@@ -137,64 +146,72 @@ extension HomeEditViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 1 {
-            return cards[section].count + 1
+            return cards.value[section].count + 1
         } else {
-            return cards[section].count
+            return cards.value[section].count
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 1 && indexPath.item == cards[1].count {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditRestoreDefaultCell.className, for: indexPath) as! HomeEditRestoreDefaultCell
-            cell.button.rx.tap.asDriver()
-                .throttle(0.25)
-                .drive(onNext: { [weak self] in
-                    guard let this = self, !this.isReordering.value else { return }
-                    
-                    let selectedCards = HomeCardPrefsStore.defaultList
-                    
-                    // generate the sorted array of rejected cards
-                    var rejectedCards = HomeCard.allCards.filter { !selectedCards.contains($0) }
-                    if rejectedCards.isEmpty {
-                        rejectedCards.append(.nothing)
-                    }
-                    
-                    this.cards = [selectedCards, rejectedCards]
-                    this.collectionView?.reloadData()
-                })
-                .disposed(by: cell.disposeBag)
-            
-            isReordering.asDriver().not().drive(cell.button.rx.isEnabled).disposed(by: cell.disposeBag)
-            
-            return cell
-        }
-        
-        if indexPath.section == 1 && cards[1][0] == .nothing {
+        if indexPath.section == 1 && indexPath.item == cards.value[1].count {
+            return restoreDefaultCell(collectionView: collectionView, indexPath: indexPath)
+        } else if indexPath.section == 1 && cards.value[1][0] == .nothing {
             return collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditEmptyCell.className, for: indexPath)
+        } else if 0...1 ~= indexPath.section {
+            return editCardCell(collectionView: collectionView, indexPath: indexPath)
+        } else {
+            fatalError("There should only be 2 sections")
         }
+    }
+    
+    func restoreDefaultCell(collectionView: UICollectionView, indexPath: IndexPath) -> HomeEditRestoreDefaultCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditRestoreDefaultCell.className, for: indexPath) as! HomeEditRestoreDefaultCell
         
+        let isEnabled = cards.asDriver().map { $0[0] != HomeCardPrefsStore.defaultList }
+            .distinctUntilChanged()
+        
+        cell.configure(isEnabled: isEnabled,
+                       isReordering: isReordering.asDriver(),
+                       onTap: { [weak self] in
+                        guard let this = self, !this.isReordering.value else { return }
+                        
+                        let selectedCards = HomeCardPrefsStore.defaultList
+                        
+                        // generate the sorted array of rejected cards
+                        var rejectedCards = HomeCard.allCards.filter { !selectedCards.contains($0) }
+                        if rejectedCards.isEmpty {
+                            rejectedCards.append(.nothing)
+                        }
+                        
+                        this.cards.value = [selectedCards, rejectedCards]
+                        this.collectionView?.reloadData()
+        })
+        return cell
+    }
+    
+    func editCardCell(collectionView: UICollectionView, indexPath: IndexPath) -> HomeEditCardCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditCardCell.className,
                                                       for: indexPath) as! HomeEditCardCell
-        let card = cards[indexPath.section][indexPath.item]
+        let card = cards.value[indexPath.section][indexPath.item]
         let otherSection = (indexPath.section + 1) % 2
         
         let addRemoveTapped = { [weak self] in
             guard let this = self, !this.isReordering.value else { return }
             
-            let sourceIndexPath = IndexPath(item: this.cards[indexPath.section].index(of: card)!, section: indexPath.section)
-            this.cards[indexPath.section].remove(at: sourceIndexPath.item)
+            let sourceIndexPath = IndexPath(item: this.cards.value[indexPath.section].index(of: card)!, section: indexPath.section)
+            this.cards.value[indexPath.section].remove(at: sourceIndexPath.item)
             
             let destinationIndex: Int
             if indexPath.section == 0 {
-                 destinationIndex = this.cards[otherSection].enumerated()
+                destinationIndex = this.cards.value[otherSection].enumerated()
                     .first(where: { $1.rawValue > card.rawValue })?.0 ??
-                    this.cards[otherSection].count
+                    this.cards.value[otherSection].count
             } else {
-                destinationIndex = this.cards[otherSection].count
+                destinationIndex = this.cards.value[otherSection].count
             }
             
             let destinationIndexPath = IndexPath(item: destinationIndex, section: otherSection)
-            this.cards[otherSection].insert(card, at: destinationIndex)
+            this.cards.value[otherSection].insert(card, at: destinationIndex)
             
             this.collectionView?.performBatchUpdates({
                 this.isReordering.value = true
@@ -205,11 +222,11 @@ extension HomeEditViewController {
                 this.collectionView?.performBatchUpdates({
                     this.collectionView?.reloadItems(at: [destinationIndexPath])
                     
-                    if this.cards[1].isEmpty {
-                        this.cards[1].append(.nothing)
+                    if this.cards.value[1].isEmpty {
+                        this.cards.value[1].append(.nothing)
                         this.collectionView?.reloadSections(IndexSet(integer: 1))
-                    } else if this.cards[1].last == .nothing {
-                        this.cards[1].removeLast()
+                    } else if this.cards.value[1].last == .nothing {
+                        this.cards.value[1].removeLast()
                         this.collectionView?.reloadSections(IndexSet(integer: 1))
                     }
                 }, completion: { success in
@@ -229,7 +246,7 @@ extension HomeEditViewController {
             .asDriver()
             .drive(onNext: { [weak self] in self?.handleDragToReorder(gesture: $0)})
             .disposed(by: cell.disposeBag)
-    
+        
         return cell
     }
     
@@ -238,9 +255,9 @@ extension HomeEditViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let name = cards[sourceIndexPath.section][sourceIndexPath.item]
-        cards[sourceIndexPath.section].remove(at: sourceIndexPath.item)
-        cards[destinationIndexPath.section].insert(name, at: destinationIndexPath.item)
+        let name = cards.value[sourceIndexPath.section][sourceIndexPath.item]
+        cards.value[sourceIndexPath.section].remove(at: sourceIndexPath.item)
+        cards.value[destinationIndexPath.section].insert(name, at: destinationIndexPath.item)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -250,16 +267,18 @@ extension HomeEditViewController {
              headerView.label.isHidden = indexPath.section != 1
             return headerView
         default:
-            fatalError()
+            fatalError("\(kind) not supported.")
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch section {
         case 1:
-            return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left, height: 67)
+            return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left,
+                          height: 67)
         default:
-            return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left, height: topSectionHeaderHeight)
+            return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left,
+                          height: topSectionHeaderHeight)
         }
     }
     
