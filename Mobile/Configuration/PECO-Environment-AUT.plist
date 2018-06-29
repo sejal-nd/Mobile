@@ -24,5 +24,7 @@
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.peco.com</string>
+	<key>associatedDomain</key>
+	<string>applinks:stgd15-secure.peco.com</string>
 </dict>
 </plist>

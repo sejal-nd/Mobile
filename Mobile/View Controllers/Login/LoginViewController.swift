@@ -199,7 +199,7 @@ class LoginViewController: UIViewController {
             }
         }
         
-        print("POST SAVE")
+        print("POST SAVE: \(Environment.shared.associatedDomain)")
 
 //        Analytics.log(event: .LoginOffer,
 //                        dimensions: [.KeepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",

@@ -121,7 +121,7 @@ class LoginViewModel {
     
     func saveSharedWebCredentials() {
         // Todo: grab domain out of env struct.
-        SharedWebCredentials.save(credential: (account: username.value, password: password.value), domain: "applinks:stgd15-secure.comed.com") { (error) in
+        SharedWebCredentials.save(credential: (account: username.value, password: password.value), domain: Environment.shared.associatedDomain) { (error) in
             if let error = error {
                 print("ERROR: \(error.localizedDescription)")
             } else {

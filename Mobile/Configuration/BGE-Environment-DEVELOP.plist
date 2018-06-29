@@ -24,5 +24,7 @@
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.bge.com</string>
+	<key>associatedDomain</key>
+	<string>applinks:stgd15-secure.bge.com</string>
 </dict>
 </plist>

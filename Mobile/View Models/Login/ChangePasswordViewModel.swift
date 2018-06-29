@@ -146,7 +146,7 @@ class ChangePasswordViewModel {
     func saveSharedWebCredentials() {
         guard let storedUsername = biometricsService.getStoredUsername() else { return }
         // Todo: grab domain out of env struct.
-        SharedWebCredentials.save(credential: (account: storedUsername, password: newPassword.value), domain: "applinks:stgd15-secure.comed.com") { (error) in
+        SharedWebCredentials.save(credential: (account: storedUsername, password: newPassword.value), domain: Environment.shared.associatedDomain) { (error) in
             if let error = error {
                 print("ERROR: \(error.localizedDescription)")
             } else {
