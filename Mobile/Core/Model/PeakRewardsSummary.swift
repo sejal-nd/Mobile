@@ -78,6 +78,7 @@ struct PeakRewardsProgram: Mappable {
             }
             
             let dateFormatter = DateFormatter()
+            dateFormatter.calendar = .opCo
             dateFormatter.timeZone = .opCo
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
             
@@ -123,6 +124,7 @@ struct PeakRewardsOverride: Mappable, Equatable {
             }
             
             let dateFormatter = DateFormatter()
+            dateFormatter.calendar = .opCo
             dateFormatter.timeZone = .opCo
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
             
@@ -307,6 +309,7 @@ struct SmartThermostatPeriodInfo: Mappable {
     
     var startTimeDisplayString: String {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "h:mm a"
         return dateFormatter.string(from: startTime)
@@ -322,6 +325,7 @@ struct SmartThermostatPeriodInfo: Mappable {
             }
             
             let dateFormatter = DateFormatter()
+            dateFormatter.calendar = .opCo
             dateFormatter.timeZone = .opCo
             dateFormatter.dateFormat = "HH:mm"
             guard let date = dateFormatter.date(from: string) else {
@@ -342,6 +346,7 @@ struct SmartThermostatPeriodInfo: Mappable {
     
     func toDictionary() -> [String: Any] {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "HH:mm"
         

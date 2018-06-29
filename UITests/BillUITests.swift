@@ -55,6 +55,8 @@ class BillUITests: XCTestCase {
         doLogin(username: "scheduledPayment")
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let dateString = dateFormatter.string(from: Date())
         XCTAssert(app.scrollViews.otherElements.buttons["Thank you for scheduling your $200.00 payment for \(dateString)"].waitForExistence(timeout: 3))
@@ -64,6 +66,8 @@ class BillUITests: XCTestCase {
         doLogin(username: "thankYouForPayment")
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let dateString = dateFormatter.string(from: Date())
         XCTAssert(app.scrollViews.otherElements.buttons["Thank you for $200.00 payment on \(dateString)"].waitForExistence(timeout: 3))

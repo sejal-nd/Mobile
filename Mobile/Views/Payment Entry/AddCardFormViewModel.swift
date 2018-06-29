@@ -95,6 +95,8 @@ class AddCardFormViewModel {
     
     private(set) lazy var expYearIsNotInPast: Driver<Bool> = self.expYear.asDriver().map {
         let formatter = DateFormatter()
+        formatter.calendar = .opCo
+        formatter.timeZone = .opCo
         formatter.dateFormat = "yyyy"
         let enteredYear = formatter.date(from: $0)
         let todayYear = formatter.date(from: formatter.string(from: Date()))

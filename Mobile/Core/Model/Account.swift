@@ -15,6 +15,7 @@ private func extractDate(object: Any?) throws -> Date {
     }
     
     let dateFormatter = DateFormatter()
+    dateFormatter.calendar = .opCo
     dateFormatter.timeZone = .opCo
     
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"

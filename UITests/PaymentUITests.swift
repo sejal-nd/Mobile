@@ -117,6 +117,8 @@ class PaymentUITests: XCTestCase {
         XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let dateString = dateFormatter.string(from: Date())
         let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
@@ -198,6 +200,8 @@ class PaymentUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
             
             let dateFormatter = DateFormatter()
+            dateFormatter.calendar = .opCo
+            dateFormatter.timeZone = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
                         let dateString = dateFormatter.string(from: Date())
             let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
@@ -276,6 +280,8 @@ class PaymentUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
             
             let dateFormatter = DateFormatter()
+            dateFormatter.calendar = .opCo
+            dateFormatter.timeZone = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
             let dateString = dateFormatter.string(from: Date())
             let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
@@ -362,6 +368,8 @@ class PaymentUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
             
             let dateFormatter = DateFormatter()
+            dateFormatter.calendar = .opCo
+            dateFormatter.timeZone = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
             let dateString = dateFormatter.string(from: Date())
             let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
@@ -439,6 +447,8 @@ class PaymentUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
             
             let dateFormatter = DateFormatter()
+            dateFormatter.calendar = .opCo
+            dateFormatter.timeZone = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
             let dateString = dateFormatter.string(from: Date())
             XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)
@@ -473,6 +483,8 @@ class PaymentUITests: XCTestCase {
         XCTAssert(app.scrollViews.otherElements.staticTexts["--"].exists)
         XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let dateString = dateFormatter.string(from: Date())
         XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)
@@ -546,6 +558,8 @@ class PaymentUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["$100.00"].exists)
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
             let dateFormatter = DateFormatter()
+            dateFormatter.calendar = .opCo
+            dateFormatter.timeZone = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
             let dateString = dateFormatter.string(from: Date())
             XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)

@@ -312,6 +312,8 @@ class BillAnalysisViewModelTests: XCTestCase {
         viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let today = Date()
@@ -350,6 +352,8 @@ class BillAnalysisViewModelTests: XCTestCase {
         viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let today = Date()

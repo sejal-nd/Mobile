@@ -15,6 +15,7 @@ protocol JSONEncodable {
 private extension Date {
     var apiString: String {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         return dateFormatter.string(from: self)
