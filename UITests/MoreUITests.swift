@@ -145,8 +145,8 @@ class MoreUITests: XCTestCase {
         
         let privacyPred = NSPredicate(format: "label CONTAINS 'Privacy Policy'")
         let termsPred = NSPredicate(format: "label CONTAINS 'Terms of Use'")
-        XCTAssert(app.webViews.staticTexts.element(matching: privacyPred).exists)
-        XCTAssert(app.webViews.staticTexts.element(matching: termsPred).exists)
+        XCTAssert(app.webViews.staticTexts.element(matching: privacyPred).waitForExistence(timeout: 5))
+        XCTAssert(app.webViews.staticTexts.element(matching: termsPred).waitForExistence(timeout: 5))
     }
     
     func navigateToChangePassword() {
