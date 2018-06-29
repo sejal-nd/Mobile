@@ -85,7 +85,7 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.setEnabled(false)
-        
+
         mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .headline)
         for label in passwordRequirementLabels {
             label.font = SystemFont.regular.of(textStyle: .headline)
@@ -201,6 +201,7 @@ class ChangePasswordViewController: UIViewController {
         viewModel.changePassword(sentFromLogin: sentFromLogin, onSuccess: { [weak self] in
             LoadingView.hide()
             guard let `self` = self else { return }
+            self.viewModel.saveSharedWebCredentials()
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             self.navigationController?.popViewController(animated: true)
             Analytics.log(event: .ChangePasswordDone)
