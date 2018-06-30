@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
-fileprivate let topSectionHeaderHeight: CGFloat = 15
+fileprivate let topSectionHeaderHeight: CGFloat = 39
 
 class HomeEditViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -264,7 +264,14 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeEditSectionHeaderView.className, for: indexPath) as! HomeEditSectionHeaderView
-             headerView.label.isHidden = indexPath.section != 1
+            switch indexPath.section {
+            case 0:
+                headerView.label.text = NSLocalizedString("Cards in Use", comment: "")
+            case 1:
+                headerView.label.text = NSLocalizedString("Additional Cards", comment: "")
+            default:
+                headerView.label.text = ""
+            }
             return headerView
         default:
             fatalError("\(kind) not supported.")

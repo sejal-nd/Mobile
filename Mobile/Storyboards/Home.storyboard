@@ -21,7 +21,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Edit Dashboard-->
+        <!--Edit Home-->
         <scene sceneID="t7p-iW-psx">
             <objects>
                 <collectionViewController id="ATH-nk-Olk" customClass="HomeEditViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
@@ -252,7 +252,7 @@
                             <outlet property="delegate" destination="ATH-nk-Olk" id="slX-0J-JRv"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Edit Dashboard" id="nA6-DF-Obh">
+                    <navigationItem key="navigationItem" title="Edit Home" id="nA6-DF-Obh">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Rdg-rd-Eus"/>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="6w6-zK-ZaD"/>
                     </navigationItem>
@@ -323,16 +323,18 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxd-b0-qbk">
                                                                 <rect key="frame" x="0.0" y="14" width="343" height="42"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqW-8P-SEa">
-                                                                        <rect key="frame" x="75" y="12" width="193" height="30"/>
-                                                                        <state key="normal" title="Personalize Your Dashboard"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="JqW-8P-SEa">
+                                                                        <rect key="frame" x="66" y="12" width="211" height="30"/>
+                                                                        <state key="normal" title="Personalize Your Home Screen"/>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JqW-8P-SEa" secondAttribute="trailing" id="3oI-ux-97u"/>
                                                                     <constraint firstAttribute="bottom" secondItem="JqW-8P-SEa" secondAttribute="bottom" priority="999" id="Wk2-Ay-SzZ"/>
                                                                     <constraint firstItem="JqW-8P-SEa" firstAttribute="top" secondItem="rxd-b0-qbk" secondAttribute="top" priority="999" constant="12" id="g5r-z4-8EN"/>
                                                                     <constraint firstItem="JqW-8P-SEa" firstAttribute="centerX" secondItem="rxd-b0-qbk" secondAttribute="centerX" id="hWN-ZF-5Kc"/>
+                                                                    <constraint firstItem="JqW-8P-SEa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rxd-b0-qbk" secondAttribute="leading" id="tXk-IA-pa7"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>

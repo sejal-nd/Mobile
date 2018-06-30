@@ -118,6 +118,8 @@ class HomeViewController: AccountPickerViewController {
         
         personalizeButton.setTitleColor(.white, for: .normal)
         personalizeButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
+        personalizeButton.titleLabel?.numberOfLines = 0
+        personalizeButton.titleLabel?.textAlignment = .center
         personalizeButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 guard let this = self else { return }
@@ -155,7 +157,7 @@ class HomeViewController: AccountPickerViewController {
         topPersonalizeButton.layer.cornerRadius = 10
         topPersonalizeButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         let label = UILabel()
-        label.text = NSLocalizedString("Did you know you can personalize your dashboard?", comment: "")
+        label.text = NSLocalizedString("Did you know you can personalize your home screen?", comment: "")
         label.font = SystemFont.semibold.of(textStyle: .subheadline)
         label.textColor = .actionBlue
         label.numberOfLines = 0
