@@ -10,10 +10,6 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-fileprivate let coldTips = ["tip080_set_thermostat_wisely_winter","tip033_clear_around_vents","tip046_let_in_sun_for_warmth"]
-
-fileprivate let hotTips = ["tip021_let_ac_breathe","tip020_keep_out_solar_heat","tip084_use_fans_for_cooling"]
-
 class HomeViewModel {
     let defaultZip : String? = Environment.shared.opco == .bge ? "20201" : nil
 
@@ -40,6 +36,8 @@ class HomeViewModel {
             return switchAccountFetchTracker
         }
     }
+    
+    let latestNewCardVersion = HomeCard.latestNewCardVersion
     
     required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService, usageService: UsageService, authService: AuthenticationService) {
         self.fetchDataObservable = fetchData.share()
