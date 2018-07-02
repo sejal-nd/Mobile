@@ -70,6 +70,7 @@ extension Date {
 extension DateFormatter {
     @nonobjc static let mmDdYyyyFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         return dateFormatter
@@ -77,6 +78,7 @@ extension DateFormatter {
     
     @nonobjc static let shortMonthAndDayFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MMM dd"
         return dateFormatter
@@ -84,6 +86,7 @@ extension DateFormatter {
     
     @nonobjc static let fullMonthAndDayFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MMMM dd"
         return dateFormatter
@@ -91,6 +94,7 @@ extension DateFormatter {
     
     @nonobjc static let fullMonthDayAndYearFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         return dateFormatter
@@ -98,6 +102,7 @@ extension DateFormatter {
     
     @nonobjc static let shortMonthDayAndYearFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MMM dd, yyyy"
         return dateFormatter
@@ -105,6 +110,7 @@ extension DateFormatter {
     
     @nonobjc static let hourAmPmFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "ha"
         return dateFormatter
@@ -112,6 +118,7 @@ extension DateFormatter {
     
     @nonobjc static let apiFormatterGMT: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .gmt
         dateFormatter.timeZone = .gmt
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         return dateFormatter
@@ -119,6 +126,7 @@ extension DateFormatter {
     
     @nonobjc static let apiFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         return dateFormatter
@@ -126,6 +134,7 @@ extension DateFormatter {
     
     @nonobjc static let noonApiFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd'T'12:00:00"
         return dateFormatter
@@ -133,6 +142,7 @@ extension DateFormatter {
     
     @nonobjc static let outageOpcoDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.calendar = .opCo
         formatter.timeZone = .opCo
         switch Environment.shared.opco {
         case .bge:
@@ -156,6 +166,12 @@ extension Calendar {
     static let opCo: Calendar = {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = .opCo
+        return calendar
+    }()
+    
+    static let gmt: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = .gmt
         return calendar
     }()
     

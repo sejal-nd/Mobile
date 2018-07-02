@@ -42,6 +42,7 @@ class UsageViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.smartEnergyRewardsSeasonLabelText)
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
