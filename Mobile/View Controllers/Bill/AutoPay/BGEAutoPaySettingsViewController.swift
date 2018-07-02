@@ -643,6 +643,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         let calendarVC = PDTSimpleCalendarViewController()
         
+        calendarVC.calendar = .opCo
         calendarVC.delegate = self
         calendarVC.title = NSLocalizedString("Select Date", comment: "")
         calendarVC.firstDate = now

@@ -70,6 +70,7 @@ class BillViewModelContentTests: BillViewModelTests {
         let isDisconnectNotice = [false, false, true, true, false]
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
@@ -165,6 +166,7 @@ class BillViewModelContentTests: BillViewModelTests {
         let pastDueAmounts: [Double?] = [4, 26.32, nil, 0, nil]
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
@@ -252,6 +254,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // through different accounts.
     func testCatchUpDateText() {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
@@ -368,6 +371,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // through different accounts.
     func testAvoidShutoffDueDateText() {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
@@ -522,6 +526,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // through different accounts.
     func testRemainingBalanceDueDateText() {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
@@ -631,6 +636,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // through different accounts.
     func testPaymentReceivedDateText() {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
@@ -697,6 +703,7 @@ class BillViewModelContentTests: BillViewModelTests {
     // through different accounts.
     func testPaymentStatusText() {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
@@ -800,6 +807,7 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
 """
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         

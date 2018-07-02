@@ -720,9 +720,21 @@
 		B067E0AE2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
 		B067E0AF2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
 		B067E0B02045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
+		B068DB5620D2E99300930589 /* HomeEditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5520D2E99300930589 /* HomeEditCardCell.swift */; };
+		B068DB5720D2E99300930589 /* HomeEditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5520D2E99300930589 /* HomeEditCardCell.swift */; };
+		B068DB5820D2E99300930589 /* HomeEditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5520D2E99300930589 /* HomeEditCardCell.swift */; };
+		B068DB5A20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */; };
+		B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */; };
+		B068DB5C20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */; };
+		B068DB5E20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */; };
+		B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */; };
+		B068DB6020D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */; };
 		B06B40F920D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */; };
 		B06B40FA20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */; };
 		B06B40FB20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */; };
+		B06B40FD20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */; };
+		B06B40FE20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */; };
+		B06B40FF20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */; };
 		B07D247320C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
 		B07D247420C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
 		B07D247520C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
@@ -747,6 +759,30 @@
 		B092185020A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
 		B092185120A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
 		B092185220A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
+		B09356AC20D8042000DABC73 /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B09356AB20D8042000DABC73 /* RxGesture.framework */; };
+		B09356AD20D8049C00DABC73 /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B09356AB20D8042000DABC73 /* RxGesture.framework */; };
+		B09356AE20D804B200DABC73 /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B09356AB20D8042000DABC73 /* RxGesture.framework */; };
+		B094A34D20D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
+		B094A34E20D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
+		B094A34F20D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
+		B094A35020D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
+		B094A35120D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
+		B094A35220D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
+		B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */; };
+		B094A35520D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */; };
+		B094A35620D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */; };
+		B094A35820D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */; };
+		B094A35920D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */; };
+		B094A35A20D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */; };
+		B0A79B0720E2BD1100E04DD8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B0620E2BD1100E04DD8 /* Version.swift */; };
+		B0A79B0820E2BD1100E04DD8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B0620E2BD1100E04DD8 /* Version.swift */; };
+		B0A79B0920E2BD1100E04DD8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B0620E2BD1100E04DD8 /* Version.swift */; };
+		B0A79B0A20E2BD1100E04DD8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B0620E2BD1100E04DD8 /* Version.swift */; };
+		B0A79B0B20E2BD1100E04DD8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B0620E2BD1100E04DD8 /* Version.swift */; };
+		B0A79B0C20E2BD1100E04DD8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B0620E2BD1100E04DD8 /* Version.swift */; };
+		B0A79B1120E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */; };
+		B0A79B1220E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */; };
+		B0A79B1320E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */; };
 		B0AD7FEE205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FEF205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FF0205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
@@ -2300,12 +2336,22 @@
 		B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsViewModelTests.swift; sourceTree = "<group>"; };
 		B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPeakRewardsService.swift; sourceTree = "<group>"; };
 		B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsInitExtensions.swift; sourceTree = "<group>"; };
+		B068DB5520D2E99300930589 /* HomeEditCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditCardCell.swift; sourceTree = "<group>"; };
+		B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditFlowLayout.swift; sourceTree = "<group>"; };
+		B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditSectionHeaderView.swift; sourceTree = "<group>"; };
 		B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedFloatLabeledTextView.swift; sourceTree = "<group>"; };
+		B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditViewController.swift; sourceTree = "<group>"; };
 		B07D247220C590AB00BD22EB /* HomeWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
 		B07D247620C590BE00BD22EB /* HomeWeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWeatherView.xib; sourceTree = "<group>"; };
 		B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherViewModel.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
 		B092184C20A24CA400695888 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		B09356AB20D8042000DABC73 /* RxGesture.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxGesture.framework; path = Carthage/Build/iOS/RxGesture.framework; sourceTree = "<group>"; };
+		B094A34C20D9442400E81303 /* HomeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCard.swift; sourceTree = "<group>"; };
+		B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditEmptyCell.swift; sourceTree = "<group>"; };
+		B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditRestoreDefaultCell.swift; sourceTree = "<group>"; };
+		B0A79B0620E2BD1100E04DD8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
+		B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUITestUtil.swift; sourceTree = "<group>"; };
 		B0AD7FED205841C80090B40D /* SequenceForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceForEach.swift; sourceTree = "<group>"; };
 		B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutItem.swift; sourceTree = "<group>"; };
 		B52CA0AE1F311524002B5674 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
@@ -2732,6 +2778,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B09356AC20D8042000DABC73 /* RxGesture.framework in Frameworks */,
 				E83F02831FB380700062A348 /* UserNotifications.framework in Frameworks */,
 				E8B9BD921F8826FD007C824C /* Charts.framework in Frameworks */,
 				B55A8B101F15647D00F63AC3 /* libsqlite3.tbd in Frameworks */,
@@ -2783,6 +2830,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B09356AE20D804B200DABC73 /* RxGesture.framework in Frameworks */,
 				E83F02851FB3807D0062A348 /* UserNotifications.framework in Frameworks */,
 				E8B9BD941F882742007C824C /* Charts.framework in Frameworks */,
 				B55A8B1A1F15650200F63AC3 /* libsqlite3.tbd in Frameworks */,
@@ -2834,6 +2882,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B09356AD20D8049C00DABC73 /* RxGesture.framework in Frameworks */,
 				E83F02841FB380770062A348 /* UserNotifications.framework in Frameworks */,
 				E8B9BD931F882732007C824C /* Charts.framework in Frameworks */,
 				B55A8B171F1564E500F63AC3 /* libsqlite3.tbd in Frameworks */,
@@ -3006,6 +3055,7 @@
 				9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */,
 				E8F353A1200963B600883CEA /* TabNavigationUITests.swift */,
 				E8F353B5200D19E100883CEA /* UITestExtensions.swift */,
+				B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -3032,6 +3082,7 @@
 			isa = PBXGroup;
 			children = (
 				2FA5D8631F17D88500A8B16B /* HomeViewController.swift */,
+				B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -3597,6 +3648,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B09356AB20D8042000DABC73 /* RxGesture.framework */,
 				9C6BC8A620ADCECF00B4399B /* AppCenter.framework */,
 				9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */,
 				0E131764202B95BE00865819 /* AppCenterXCUITestExtensions.framework */,
@@ -3684,6 +3736,7 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B068DB5420D2E88700930589 /* Home Edit */,
 				B0030D062097BC5500327A3D /* MaintenanceModeView */,
 				E8B8C8461F9E354B005828B0 /* SmartEnergyRewardsView */,
 				E8C29C761F630F9E00DB73FC /* OutageStatusButton */,
@@ -3792,6 +3845,18 @@
 				B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */,
 			);
 			path = "Peak Rewards";
+			sourceTree = "<group>";
+		};
+		B068DB5420D2E88700930589 /* Home Edit */ = {
+			isa = PBXGroup;
+			children = (
+				B068DB5520D2E99300930589 /* HomeEditCardCell.swift */,
+				B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */,
+				B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */,
+				B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */,
+				B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */,
+			);
+			path = "Home Edit";
 			sourceTree = "<group>";
 		};
 		B52CA0AD1F3114D5002B5674 /* Analytics */ = {
@@ -4262,6 +4327,8 @@
 				82AC2A1D1FAB66D800EACB3B /* PeakRewardsSummary.swift */,
 				E835D1CD1FB63288008CE250 /* PushNotification.swift */,
 				B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */,
+				B094A34C20D9442400E81303 /* HomeCard.swift */,
+				B0A79B0620E2BD1100E04DD8 /* Version.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5484,6 +5551,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5498,6 +5566,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwiftExt.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PDTSimpleCalendar.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxGesture.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -5522,6 +5591,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5536,6 +5606,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwiftExt.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PDTSimpleCalendar.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxGesture.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -5560,6 +5631,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5574,6 +5646,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwiftExt.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PDTSimpleCalendar.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxGesture.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -5671,6 +5744,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */,
+				B0A79B1120E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				E8F353A6200D014000883CEA /* MoreUITests.swift in Sources */,
 				E8F353B6200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E89E2B5E20333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
@@ -5689,6 +5763,7 @@
 				E8EA601A1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
+				B068DB5A20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A1E1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
@@ -5700,6 +5775,7 @@
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */,
 				8FD5AE8C1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				B06B40FD20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				82D599421EC2374500DDB380 /* ActivityTracker.swift in Sources */,
@@ -5721,6 +5797,7 @@
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				E8400E691FE05F0C0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A161FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
+				B094A35820D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
 				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
 				826773391FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
@@ -5728,6 +5805,7 @@
 				B574BAEB1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				82A18EBE1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
 				E84705ED202514CB00A749A3 /* MockUsageService.swift in Sources */,
+				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				82A18E681EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				E801BAD51E8C439500550F99 /* OMCAuthenticationService.swift in Sources */,
@@ -5752,6 +5830,7 @@
 				E80D2E171E721668002626C9 /* MaskedString.swift in Sources */,
 				E8F51EE61EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
+				B068DB5E20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				E8C29C731F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
 				826773351FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
@@ -5889,6 +5968,8 @@
 				E835D1C91FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027A1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				B068DB5620D2E99300930589 /* HomeEditCardCell.swift in Sources */,
+				B094A34D20D9442400E81303 /* HomeCard.swift in Sources */,
 				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
@@ -5987,6 +6068,7 @@
 				B07D247320C590AB00BD22EB /* HomeWeatherView.swift in Sources */,
 				E87C41301FAA522B00448F86 /* AlertsViewController.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
+				B0A79B0720E2BD1100E04DD8 /* Version.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 				6A4FD45A4A53BE785EDA8FF4 /* TutorialModalViewController.swift in Sources */,
@@ -6000,6 +6082,7 @@
 				E8EA601C1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60181FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
+				B068DB5C20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				82AC2A201FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
@@ -6011,6 +6094,7 @@
 				82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
+				B06B40FF20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3421F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				E827D2331ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
@@ -6032,6 +6116,7 @@
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				E8400E6B1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A181FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
+				B094A35A20D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
 				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				8267733B1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
@@ -6039,6 +6124,7 @@
 				2FA5D8661F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				2FA5D8611F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				E84705EF202514CB00A749A3 /* MockUsageService.swift in Sources */,
+				B094A35620D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8FF08651F7EDD790030F1BF /* TutorialView.swift in Sources */,
@@ -6063,6 +6149,7 @@
 				387E5C491F1FCDAD00D6710D /* Percentage.swift in Sources */,
 				E803A0061EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
+				B068DB6020D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
@@ -6198,6 +6285,8 @@
 				E835D1CB1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027C1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				E89983E31F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
+				B068DB5820D2E99300930589 /* HomeEditCardCell.swift in Sources */,
+				B094A34F20D9442400E81303 /* HomeCard.swift in Sources */,
 				82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
@@ -6296,6 +6385,7 @@
 				B07D247520C590AB00BD22EB /* HomeWeatherView.swift in Sources */,
 				E87C41321FAA522B00448F86 /* AlertsViewController.swift in Sources */,
 				E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */,
+				B0A79B0920E2BD1100E04DD8 /* Version.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 				6A4FDD3ABED114C309AF6B3D /* TutorialModalViewController.swift in Sources */,
@@ -6309,6 +6399,7 @@
 				E8EA601B1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60171FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
+				B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				82AC2A1F1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
@@ -6320,6 +6411,7 @@
 				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF81E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
+				B06B40FE20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3411F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* OMCOutageService.swift in Sources */,
 				E827D2321ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
@@ -6341,6 +6433,7 @@
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				E8400E6A1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A171FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
+				B094A35920D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
 				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				8267733A1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
@@ -6348,6 +6441,7 @@
 				2FA5D8651F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				E84705EE202514CB00A749A3 /* MockUsageService.swift in Sources */,
+				B094A35520D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8FF08641F7EDD790030F1BF /* TutorialView.swift in Sources */,
@@ -6372,6 +6466,7 @@
 				387E5C481F1FCDAD00D6710D /* Percentage.swift in Sources */,
 				E803A0051EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
+				B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E81F38141ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				826773361FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
@@ -6507,6 +6602,8 @@
 				E835D1CA1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027B1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				E89983E21F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
+				B068DB5720D2E99300930589 /* HomeEditCardCell.swift in Sources */,
+				B094A34E20D9442400E81303 /* HomeCard.swift in Sources */,
 				82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
@@ -6605,6 +6702,7 @@
 				B07D247420C590AB00BD22EB /* HomeWeatherView.swift in Sources */,
 				E87C41311FAA522B00448F86 /* AlertsViewController.swift in Sources */,
 				E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */,
+				B0A79B0820E2BD1100E04DD8 /* Version.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* OMCResponseParser.swift in Sources */,
 				6A4FDC6FCEC722F72EA840D3 /* TutorialModalViewController.swift in Sources */,
@@ -6707,6 +6805,7 @@
 				548288E21ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
 				E83F02731FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				E895E9B21EBB84B7003B38A1 /* LoginViewModel.swift in Sources */,
+				B094A35020D9442400E81303 /* HomeCard.swift in Sources */,
 				E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* MaskedString.swift in Sources */,
 				E8EDC54D1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
@@ -6764,6 +6863,7 @@
 				E895E9AE1EBB8489003B38A1 /* ForgotPasswordViewModel.swift in Sources */,
 				8206D01E1FACA93B0056F4CB /* TemperatureScaleStore.swift in Sources */,
 				E86DE4BA1F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
+				B0A79B0A20E2BD1100E04DD8 /* Version.swift in Sources */,
 				E8F51EEE1ECA51790080AB3E /* BillViewModel.swift in Sources */,
 				E89496391EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */,
@@ -6779,6 +6879,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */,
+				B0A79B1220E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				E8F353A7200D014000883CEA /* MoreUITests.swift in Sources */,
 				E8F353B7200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E89E2B5F20333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
@@ -6795,6 +6896,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */,
+				B0A79B1320E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				E8F353A8200D014000883CEA /* MoreUITests.swift in Sources */,
 				E8F353B8200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E89E2B6020333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
@@ -6902,6 +7004,7 @@
 				E8F62B84200924410077B3DA /* EditBankAccountViewModel.swift in Sources */,
 				E8F62B86200924410077B3DA /* AlertPreferences.swift in Sources */,
 				E8F62B88200924410077B3DA /* LoginViewModel.swift in Sources */,
+				B094A35120D9442400E81303 /* HomeCard.swift in Sources */,
 				E8F62B89200924410077B3DA /* UIViewAddShadow.swift in Sources */,
 				E8F62B8A200924410077B3DA /* MaskedString.swift in Sources */,
 				E8F62B8B200924410077B3DA /* MinimumVersion.swift in Sources */,
@@ -6959,6 +7062,7 @@
 				E8F62BBB200924410077B3DA /* ForgotPasswordViewModel.swift in Sources */,
 				E8F62BBC200924410077B3DA /* TemperatureScaleStore.swift in Sources */,
 				E8F62BBD200924410077B3DA /* PaymentViewModel.swift in Sources */,
+				B0A79B0B20E2BD1100E04DD8 /* Version.swift in Sources */,
 				E8F62BBE200924410077B3DA /* BillViewModel.swift in Sources */,
 				E8F62BBF200924410077B3DA /* NotificationNames.swift in Sources */,
 				E8F62BC0200924410077B3DA /* ReportOutageViewModel.swift in Sources */,
@@ -7065,6 +7169,7 @@
 				E8F62C39200924570077B3DA /* EditBankAccountViewModel.swift in Sources */,
 				E8F62C3B200924570077B3DA /* AlertPreferences.swift in Sources */,
 				E8F62C3D200924570077B3DA /* LoginViewModel.swift in Sources */,
+				B094A35220D9442400E81303 /* HomeCard.swift in Sources */,
 				E8F62C3E200924570077B3DA /* UIViewAddShadow.swift in Sources */,
 				E8F62C3F200924570077B3DA /* MaskedString.swift in Sources */,
 				E8F62C40200924570077B3DA /* MinimumVersion.swift in Sources */,
@@ -7122,6 +7227,7 @@
 				E8F62C70200924570077B3DA /* ForgotPasswordViewModel.swift in Sources */,
 				E8F62C71200924570077B3DA /* TemperatureScaleStore.swift in Sources */,
 				E8F62C72200924570077B3DA /* PaymentViewModel.swift in Sources */,
+				B0A79B0C20E2BD1100E04DD8 /* Version.swift in Sources */,
 				E8F62C73200924570077B3DA /* BillViewModel.swift in Sources */,
 				E8F62C74200924570077B3DA /* NotificationNames.swift in Sources */,
 				E8F62C75200924570077B3DA /* ReportOutageViewModel.swift in Sources */,
