@@ -24,6 +24,9 @@ struct UserDefaultKeys {
     
     static let temperatureScale = "kPTemperatureScale"
     
+    static let homeCardCustomizeTappedVersion = "kHomeCardCustomizeTappedVersion"
+    static let homeCardPrefsList = "kHomeCardPrefsList"
+    
     static let inMainApp = "kInMainApp" // Is the user in the "Main" area of the app (past-login). Set to true in MainTabBarController
     
     static let appRatingEventCount = "kAppRatingEventCount" // Used by AppRating to track number of events that contribute to a rating prompt
