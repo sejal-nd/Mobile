@@ -11,6 +11,7 @@ import Foundation
 extension NumberFormatter {
     @nonobjc static let currencyFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
+        numberFormatter.locale = Locale(identifier: "en_US")
         numberFormatter.numberStyle = .currency
         numberFormatter.groupingSeparator = ","
         numberFormatter.usesGroupingSeparator = true
