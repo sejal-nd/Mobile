@@ -35,6 +35,7 @@ class HomeViewController: AccountPickerViewController {
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
+    var outageCardView: HomeOutageCardView?
     var topPersonalizeButton: ButtonControl?
     
     var refreshDisposable: Disposable?
@@ -279,6 +280,8 @@ class HomeViewController: AccountPickerViewController {
             usageCardView = nil
         case .template:
             templateCardView = nil
+        case .outageStatus:
+            outageCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -319,6 +322,17 @@ class HomeViewController: AccountPickerViewController {
             }
             
             return templateCardView
+        case .outageStatus:
+            let outageCardView: HomeOutageCardView
+            if let outageCard = self.outageCardView {
+                outageCardView = outageCard
+            } else {
+                outageCardView = HomeOutageCardView.create(withViewModel: viewModel.outageCardViewModel)
+                self.outageCardView = outageCardView
+                bindOutageCard()
+            }
+            
+            return outageCardView
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -407,6 +421,17 @@ class HomeViewController: AccountPickerViewController {
             }).disposed(by: templateCardView.bag)
     }
     
+    func bindOutageCard() {
+        guard let outageCardView = outageCardView else { return }
+        
+        
+        outageCardView.callToActionButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "outageSegue", sender: $0)
+            })
+            .disposed(by: bag)
+    }
+    
     @objc func killRefresh() -> Void {
         self.refreshControl?.endRefreshing()
         self.scrollView!.alwaysBounceVertical = true
@@ -484,6 +509,11 @@ class HomeViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         } else if let vc = segue.destination as? TotalSavingsViewController, let accountDetail = sender as? AccountDetail {
             vc.eventResults = accountDetail.serInfo.eventResults
+        } else if let vc = segue.destination as? ReportOutageViewController, let currentOutageStatus = viewModel.outageCardViewModel.currentOutageStatus {
+            vc.viewModel.outageStatus = currentOutageStatus
+            if let phone = currentOutageStatus.contactHomeNumber {
+                vc.viewModel.phoneNumber.value = phone
+            }
         }
     }
     

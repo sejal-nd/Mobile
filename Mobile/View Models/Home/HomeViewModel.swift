@@ -70,6 +70,8 @@ class HomeViewModel {
     
     private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
     
+    private(set) lazy var outageCardViewModel = HomeOutageCardViewModel(maintenanceModeEvents: self.fetchDataMMEvents, fetchDataObservable: self.fetchDataObservable, refreshFetchTracker: self.refreshFetchTracker, switchAccountFetchTracker: self.switchAccountFetchTracker)
+    
     private(set) lazy var isSwitchingAccounts = self.switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.shared.currentAccount == nil }
     
     private lazy var fetchTrigger = Observable.merge(self.fetchDataObservable, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))

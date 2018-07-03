@@ -265,6 +265,14 @@
             </objects>
             <point key="canvasLocation" x="1477.5999999999999" y="-2187.2563718140932"/>
         </scene>
+        <!--ReportOutageViewController-->
+        <scene sceneID="Hv2-cW-QlF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="ReportOutageViewController" id="ho2-TI-3tb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WeT-AG-oJw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2143" y="-2174"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="cod-qW-QjA">
             <objects>
@@ -428,6 +436,7 @@
                         <segue destination="PED-vj-t5U" kind="show" identifier="usageSegue" id="84U-Il-aeI"/>
                         <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="Gdb-8Z-K6i"/>
                         <segue destination="Ywc-8s-IBo" kind="presentation" identifier="editHomeSegue" id="6Qx-eL-PNO"/>
+                        <segue destination="ho2-TI-3tb" kind="show" identifier="outageSegue" id="P2D-Ry-Yj3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>

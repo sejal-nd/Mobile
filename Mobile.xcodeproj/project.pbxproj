@@ -136,6 +136,12 @@
 		35ACCB4320EA590D0022907F /* HomeOutageCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */; };
 		35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACCB4420EA5ECE0022907F /* HomeOutageCardView.swift */; };
 		35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */; };
+		35ACCB4820EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */; };
+		35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */; };
+		35ACCB4A20EA7ABC0022907F /* HomeOutageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACCB4420EA5ECE0022907F /* HomeOutageCardView.swift */; };
+		35ACCB4B20EA7ABD0022907F /* HomeOutageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACCB4420EA5ECE0022907F /* HomeOutageCardView.swift */; };
+		35ACCB4C20EA7ABF0022907F /* HomeOutageCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */; };
+		35ACCB4D20EA7AC00022907F /* HomeOutageCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */; };
 		35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
 		35AFB41A20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
 		35AFB41B20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
@@ -5358,6 +5364,7 @@
 				82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
+				35ACCB4D20EA7AC00022907F /* HomeOutageCardView.xib in Resources */,
 				82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */,
 				B0030D0E2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
@@ -5461,6 +5468,7 @@
 				82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */,
 				E8494F3C1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
+				35ACCB4C20EA7ABF0022907F /* HomeOutageCardView.xib in Resources */,
 				B55736421E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				B0030D0D2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
@@ -6155,6 +6163,7 @@
 				826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				E8C29C751F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
+				35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				825171B71F1D25130020A6CA /* HomeViewModel.swift in Sources */,
@@ -6332,6 +6341,7 @@
 				54C1DEFE1F02B8FC00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				82AEF2E11F5F50F40057E7ED /* RxNotifications.swift in Sources */,
+				35ACCB4B20EA7ABD0022907F /* HomeOutageCardView.swift in Sources */,
 				82837D161F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				E8C453291EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */,
@@ -6472,6 +6482,7 @@
 				826773361FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				E8C29C741F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
 				E873DA761EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
+				35ACCB4820EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				825171B61F1D25130020A6CA /* HomeViewModel.swift in Sources */,
@@ -6649,6 +6660,7 @@
 				54C1DEFD1F02B8FB00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */,
+				35ACCB4A20EA7ABC0022907F /* HomeOutageCardView.swift in Sources */,
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				2F5A3F811EFD870200B9E49E /* BillingHistory.swift in Sources */,
