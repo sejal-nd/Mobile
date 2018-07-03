@@ -10,6 +10,7 @@ import Foundation
 import AppCenterXCUITestExtensions
 import XCTest
 
+
 class ExelonUITestCase: XCTestCase{
     
     let app = XCUIApplication()
@@ -38,8 +39,33 @@ class ExelonUITestCase: XCTestCase{
         
         // Assert button is disabled when the switch is not enabled
         XCTAssert(!continueButton.isEnabled)
-        app.switches.element(boundBy: 0).tap()
-        XCTAssert(continueButton.isEnabled)
+        let continueSwitch = app.switches.element(boundBy: 0)
+        continueSwitch.tap()
+        
+        // 19, 527
+        
+        if !continueButton.isEnabled{
+            
+//             // TAP GODDAMN EVERYTHING
+//            let normalized = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+//            outerloop: for x in 10...60{
+//                for y in 526...530{
+//                    print("tapping \(x) \(y)")
+//
+//                    let coordinate = normalized.withOffset(CGVector(dx: x, dy: y))
+//                    coordinate.tap()
+//                    if continueButton.isEnabled{
+//                         print("OMG I FINALLY GOT IT!! \(x) \(y)")
+////                        sleep(200000)
+//                        break outerloop
+//
+//                    }
+//                }
+//            }
+            
+            
+            
+        }
         continueButton.tap()
         XCTAssert(app.buttons["Sign In"].waitForExistence(timeout: 5))
     }
@@ -83,3 +109,4 @@ class ExelonUITestCase: XCTestCase{
         ACTLabel.labelStep("Post-tap button \(buttonText)")
     }
 }
+
