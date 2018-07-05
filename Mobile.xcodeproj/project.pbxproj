@@ -3423,8 +3423,8 @@
 				4465DE881F1FD07C0014537F /* TemplateCardView.xib */,
 				B07D247220C590AB00BD22EB /* HomeWeatherView.swift */,
 				B07D247620C590BE00BD22EB /* HomeWeatherView.xib */,
-				35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */,
 				35ACCB4420EA5ECE0022907F /* HomeOutageCardView.swift */,
+				35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */,
 			);
 			path = "Home Cards";
 			sourceTree = "<group>";

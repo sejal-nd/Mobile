@@ -12,8 +12,6 @@ import RxSwiftExt
 
 class HomeOutageCardViewModel {
     
-    private let bag = DisposeBag()
-    
     private let maintenanceModeEvents: Observable<Event<Maintenance>>
     private let fetchDataObservable: Observable<FetchingAccountState>
     private let refreshFetchTracker: ActivityTracker
@@ -44,27 +42,35 @@ class HomeOutageCardViewModel {
     
     // MARK: - Variables
     
-    var currentOutageStatus: OutageStatus?
+    private(set) lazy var currentOutageStatus: Driver<OutageStatus> = self.outageStatusEvents.elements()
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var shouldShowErrorState: Driver<Bool> = self.outageStatusEvents
+        .asDriver(onErrorDriveWith: .empty())
+        .map { $0.error != nil }
+        .startWith(false)
+    
+    private(set) lazy var shouldShowMaintenanceModeState: Driver<Bool> = self.maintenanceModeEvents
+        .map { $0.element?.outageStatus ?? false }
+        .startWith(false)
+        .asDriver(onErrorDriveWith: .empty())
 
-    private(set) lazy var powerStatusImage: Driver<UIImage> = self.outageStatusEvents.elements()
+    private(set) lazy var powerStatusImage: Driver<UIImage> = self.currentOutageStatus
         .map { $0.activeOutage ? #imageLiteral(resourceName: "ic_lightbulb_off") : #imageLiteral(resourceName: "ic_outagestatus_on") }
-        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var powerStatus: Driver<String> = self.outageStatusEvents.elements()
+    private(set) lazy var powerStatus: Driver<String> = self.currentOutageStatus
         .map { $0.activeOutage ? "POWER IS OFF" : "POWER IS ON" }
-        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var restorationTime: Driver<String> = self.outageStatusEvents.elements()
+    private(set) lazy var restorationTime: Driver<String> = self.currentOutageStatus
         .map { "Estimated Restoration\n \(DateFormatter.outageOpcoDateFormatter.string(from: ($0.etr) ?? Date()))" }
-        .asDriver(onErrorDriveWith: .empty())
 
-    private(set) lazy var shouldShowRestorationTime: Driver<Bool> = self.outageStatusEvents.elements()
+    private(set) lazy var shouldShowRestorationTime: Driver<Bool> = self.currentOutageStatus
         .map { $0.etr == nil }
-        .asDriver(onErrorDriveWith: .empty())
     
-//    private(set) lazy var isGasOnly: Driver<Bool> = self.outageStatusEvents.elements()
-//        .map { $0.flagGasOnly == nil }
-//        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var isGasOnly: Driver<Bool> = self.currentOutageStatus
+        .map { $0.flagGasOnly }
+    
+    let hasReportedOutage = BehaviorSubject<Bool>(value: false)
     
     private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {
@@ -79,27 +85,19 @@ class HomeOutageCardViewModel {
     // MARK: - Service
     
     private func retrieveOutageStatus() -> Observable<OutageStatus> {
-        //return ServiceFactory.createOutageService().fetchOutageStatus(account: AccountsStore.shared.currentAccount)
-        
-        let outageStatusObservable = ServiceFactory.createOutageService().fetchOutageStatus(account: AccountsStore.shared.currentAccount)
-            
-            let _ = outageStatusObservable.observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] outageStatus in
-                self?.currentOutageStatus = outageStatus
-                }, onError: { [weak self] error in
-                    guard let `self` = self else { return }
-                    let serviceError = error as! ServiceError
-                    if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
-                        self.currentOutageStatus = OutageStatus.from(["flagFinaled": true])
-                    } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
-                        self.currentOutageStatus = OutageStatus.from(["flagNoPay": true])
-                    } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
-                        self.currentOutageStatus = OutageStatus.from(["flagNonService": true])
-                    } else {
-                        self.currentOutageStatus = nil
-                    }
-            })
-        return outageStatusObservable
+        return ServiceFactory.createOutageService().fetchOutageStatus(account: AccountsStore.shared.currentAccount)
+            .catchError { error -> Observable<OutageStatus> in
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
+                    return .just(OutageStatus.from(["flagFinaled": true])!)
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
+                    return .just(OutageStatus.from(["flagNoPay": true])!)
+                } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
+                    return .just(OutageStatus.from(["flagNonService": true])!)
+                } else {
+                    return .error(serviceError)
+                }
+        }
     }
     
 }

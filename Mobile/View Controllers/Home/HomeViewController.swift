@@ -423,11 +423,10 @@ class HomeViewController: AccountPickerViewController {
     
     func bindOutageCard() {
         guard let outageCardView = outageCardView else { return }
-        
-        
-        outageCardView.callToActionButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "outageSegue", sender: $0)
+
+        outageCardView.buttonTapped
+            .drive(onNext: { [weak self] outageStatus in
+                self?.performSegue(withIdentifier: "outageSegue", sender: outageStatus)
             })
             .disposed(by: bag)
     }
@@ -509,11 +508,12 @@ class HomeViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         } else if let vc = segue.destination as? TotalSavingsViewController, let accountDetail = sender as? AccountDetail {
             vc.eventResults = accountDetail.serInfo.eventResults
-        } else if let vc = segue.destination as? ReportOutageViewController, let currentOutageStatus = viewModel.outageCardViewModel.currentOutageStatus {
+        } else if let vc = segue.destination as? ReportOutageViewController, let currentOutageStatus = sender as? OutageStatus {
             vc.viewModel.outageStatus = currentOutageStatus
             if let phone = currentOutageStatus.contactHomeNumber {
                 vc.viewModel.phoneNumber.value = phone
             }
+            vc.delegate = self
         }
     }
     
@@ -550,3 +550,14 @@ extension HomeViewController: BGEAutoPayViewControllerDelegate {
     }
 }
 
+extension HomeViewController: ReportOutageViewControllerDelegate {
+    
+    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.viewModel.outageCardViewModel.hasReportedOutage.onNext(true)
+            self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
+            Analytics.log(event: .ReportOutageAuthComplete)
+        })
+    }
+    
+}

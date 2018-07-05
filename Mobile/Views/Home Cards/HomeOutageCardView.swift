@@ -17,6 +17,10 @@ class HomeOutageCardView: UIView {
     var bag = DisposeBag()
     @IBOutlet weak var clippingView: UIView!
     @IBOutlet weak var contentView: UIStackView!
+    @IBOutlet weak var errorView: UIStackView!
+    @IBOutlet weak var maintenanceModeView: UIView!
+    
+    @IBOutlet weak var reportStatusView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var powerStatusTitleLabel: UILabel!
@@ -55,9 +59,20 @@ class HomeOutageCardView: UIView {
         // Bind Model to UI
         viewModel.powerStatusImage.drive(imageView.rx.image).disposed(by: bag)
         viewModel.powerStatus.drive(powerStatusLabel.rx.text).disposed(by: bag)
-        viewModel.restorationTime.drive(restorationStatusLabel.rx.text).disposed(by: bag)
         viewModel.shouldShowRestorationTime.not().drive(restorationView.rx.isHidden).disposed(by: bag)
-        // Insert gas only gasOnlyView.rx.isHidden
+        viewModel.restorationTime.drive(restorationStatusLabel.rx.text).disposed(by: bag)
+        viewModel.hasReportedOutage.asDriver(onErrorDriveWith: .empty()).not().drive(reportStatusView.rx.isHidden).disposed(by: bag)
+        
+        // show error state if an error is received
+        viewModel.shouldShowErrorState.drive(contentView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowErrorState.not().drive(errorView.rx.isHidden).disposed(by: bag)
+        
+        // Maintenance Mode State
+        viewModel.shouldShowMaintenanceModeState.drive(contentView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
     }
+    
+    private(set) lazy var buttonTapped: Driver<OutageStatus> = callToActionButton.rx.tap.asDriver()
+        .withLatestFrom(viewModel.currentOutageStatus)
     
 }
