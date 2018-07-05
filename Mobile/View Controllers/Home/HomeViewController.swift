@@ -548,6 +548,7 @@ extension HomeViewController: BGEAutoPayViewControllerDelegate {
             self.view.showToast(message)
         })
     }
+    
 }
 
 extension HomeViewController: ReportOutageViewControllerDelegate {

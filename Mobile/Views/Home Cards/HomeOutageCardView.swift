@@ -14,11 +14,11 @@ import SafariServices
 
 class HomeOutageCardView: UIView {
     
-    var bag = DisposeBag()
     @IBOutlet weak var clippingView: UIView!
     @IBOutlet weak var contentView: UIStackView!
     @IBOutlet weak var errorView: UIStackView!
     @IBOutlet weak var maintenanceModeView: UIView!
+    @IBOutlet weak var gasOnlyView: UIView!
     
     @IBOutlet weak var reportStatusView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -28,6 +28,11 @@ class HomeOutageCardView: UIView {
     @IBOutlet weak var restorationView: UIView!
     @IBOutlet weak var restorationStatusLabel: UILabel!
     @IBOutlet weak var callToActionButton: UIButton!
+    
+    var bag = DisposeBag()
+    
+    private(set) lazy var buttonTapped: Driver<OutageStatus> = callToActionButton.rx.tap.asDriver()
+        .withLatestFrom(viewModel.currentOutageStatus)
     
     private var viewModel: HomeOutageCardViewModel! {
         didSet {
@@ -63,16 +68,16 @@ class HomeOutageCardView: UIView {
         viewModel.restorationTime.drive(restorationStatusLabel.rx.text).disposed(by: bag)
         viewModel.hasReportedOutage.asDriver(onErrorDriveWith: .empty()).not().drive(reportStatusView.rx.isHidden).disposed(by: bag)
         
+        viewModel.shouldShowContentView.not().drive(contentView.rx.isHidden).disposed(by: bag)
+        
         // show error state if an error is received
-        viewModel.shouldShowErrorState.drive(contentView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowErrorState.not().drive(errorView.rx.isHidden).disposed(by: bag)
         
         // Maintenance Mode State
-        viewModel.shouldShowMaintenanceModeState.drive(contentView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
+        
+        // Gas Only State
+        viewModel.shouldShowGasOnly.not().drive(gasOnlyView.rx.isHidden).disposed(by: bag)
     }
-    
-    private(set) lazy var buttonTapped: Driver<OutageStatus> = callToActionButton.rx.tap.asDriver()
-        .withLatestFrom(viewModel.currentOutageStatus)
     
 }

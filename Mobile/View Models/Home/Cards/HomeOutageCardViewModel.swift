@@ -17,6 +17,9 @@ class HomeOutageCardViewModel {
     private let refreshFetchTracker: ActivityTracker
     private let switchAccountFetchTracker: ActivityTracker
     
+    
+    // MARK: - INIT
+    
     required init(maintenanceModeEvents: Observable<Event<Maintenance>>,
                   fetchDataObservable: Observable<FetchingAccountState>,
                   refreshFetchTracker: ActivityTracker,
@@ -45,10 +48,16 @@ class HomeOutageCardViewModel {
     private(set) lazy var currentOutageStatus: Driver<OutageStatus> = self.outageStatusEvents.elements()
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowErrorState: Driver<Bool> = self.outageStatusEvents
+    private(set) lazy var shouldShowContentView: Driver<Bool> = Driver.combineLatest(isOutageErrorStatus, shouldShowMaintenanceModeState, isGasOnly)
+        { !$0 && !$1 && !$2 }
+    
+    private lazy var isOutageErrorStatus: Driver<Bool> = self.outageStatusEvents
         .asDriver(onErrorDriveWith: .empty())
         .map { $0.error != nil }
         .startWith(false)
+
+    private(set) lazy var shouldShowErrorState: Driver<Bool> = Driver.combineLatest(isOutageErrorStatus, shouldShowMaintenanceModeState)
+        { $0 && !$1 }
     
     private(set) lazy var shouldShowMaintenanceModeState: Driver<Bool> = self.maintenanceModeEvents
         .map { $0.element?.outageStatus ?? false }
@@ -67,10 +76,17 @@ class HomeOutageCardViewModel {
     private(set) lazy var shouldShowRestorationTime: Driver<Bool> = self.currentOutageStatus
         .map { $0.etr == nil }
     
-    private(set) lazy var isGasOnly: Driver<Bool> = self.currentOutageStatus
-        .map { $0.flagGasOnly }
+    private lazy var isGasOnly: Driver<Bool> = self.outageStatusEvents
+        .map { $0.element?.flagGasOnly ?? false }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var shouldShowGasOnly: Driver<Bool> = Driver.combineLatest(isGasOnly, shouldShowMaintenanceModeState)
+        { $0 && !$1 }
     
     let hasReportedOutage = BehaviorSubject<Bool>(value: false)
+    
+    
+    // MARK: - Service
     
     private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {
@@ -80,9 +96,6 @@ class HomeOutageCardViewModel {
             return switchAccountFetchTracker
         }
     }
-    
-    
-    // MARK: - Service
     
     private func retrieveOutageStatus() -> Observable<OutageStatus> {
         return ServiceFactory.createOutageService().fetchOutageStatus(account: AccountsStore.shared.currentAccount)
