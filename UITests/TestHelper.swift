@@ -34,41 +34,14 @@ class ExelonUITestCase: XCTestCase{
     }
     
     func handleTermsFirstLaunch() {
-        
-        ACTLabel.labelStep("First launch")
         let continueButton = app.buttons["Continue"]
         XCTAssert(continueButton.waitForExistence(timeout: 30))
-        ACTLabel.labelStep("Continue button exists")
         // Assert button is disabled when the switch is not enabled
         XCTAssert(!continueButton.isEnabled)
         let continueSwitch = app.switches.element(boundBy: 0)
         continueSwitch.tap()
         
         ACTLabel.labelStep("Continue switch tapped")
-        // 19, 527
-        
-        if !continueButton.isEnabled{
-            
-//             // TAP GODDAMN EVERYTHING
-//            let normalized = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
-//            outerloop: for x in 10...60{
-//                for y in 526...530{
-//                    print("tapping \(x) \(y)")
-//
-//                    let coordinate = normalized.withOffset(CGVector(dx: x, dy: y))
-//                    coordinate.tap()
-//                    if continueButton.isEnabled{
-//                         print("OMG I FINALLY GOT IT!! \(x) \(y)")
-////                        sleep(200000)
-//                        break outerloop
-//
-//                    }
-//                }
-//            }
-            
-            
-            
-        }
         continueButton.tap()
         ACTLabel.labelStep("Continue button tapped")
         XCTAssert(app.buttons["Sign In"].waitForExistence(timeout: 5))
@@ -103,6 +76,7 @@ class ExelonUITestCase: XCTestCase{
         let tab = app.tabBars.buttons[tabName]
         XCTAssert(tab.waitForExistence(timeout: 10))
         tab.tap()
+        sleep(1)
         ACTLabel.labelStep("Post-select tab \(tabName)")
     }
     
@@ -111,6 +85,7 @@ class ExelonUITestCase: XCTestCase{
         let makePaymentButton = app.scrollViews.otherElements.buttons[buttonText]
         XCTAssert(makePaymentButton.waitForExistence(timeout: 3))
         makePaymentButton.tap()
+        sleep(1)
         ACTLabel.labelStep("Post-tap button \(buttonText)")
     }
 }

@@ -15,14 +15,18 @@ import AppCenterCrashes
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var customWindow: GSTouchesShowingWindow?
-    var window: UIWindow? {
-        get {
-            customWindow = customWindow ?? GSTouchesShowingWindow(frame: UIScreen.main.bounds)
-            return customWindow
+    #if SHOWTOUCHES
+        var customWindow: GSTouchesShowingWindow?
+        var window: UIWindow? {
+            get {
+                customWindow = customWindow ?? GSTouchesShowingWindow(frame: UIScreen.main.bounds)
+                return customWindow
+            }
+            set { }
         }
-        set { }
-    }
+    #else
+        var window: UIWindow?
+    #endif
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let processInfo = ProcessInfo.processInfo
