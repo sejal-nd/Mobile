@@ -116,11 +116,11 @@ class SplashViewController: UIViewController{
                 return
             }
             
-            self.present(viewController, animated: true, completion: { [weak self] in
-                if let shortcutItem = self?.shortcutItem, shortcutItem != .none {
-                    NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
-                }
-            })
+            guard let navController = self.navigationController else { return }
+            navController.setViewControllers([viewController], animated: false)
+            if shortcutItem != .none {
+                NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
+            }
         } else {
             let navigate = { [weak self] in
                 guard let `self` = self else { return }
