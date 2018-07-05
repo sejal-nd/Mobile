@@ -428,7 +428,7 @@ class HomeViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] outageStatus in
                 self?.performSegue(withIdentifier: "outageSegue", sender: outageStatus)
             })
-            .disposed(by: bag)
+            .disposed(by: outageCardView.bag)
     }
     
     @objc func killRefresh() -> Void {
