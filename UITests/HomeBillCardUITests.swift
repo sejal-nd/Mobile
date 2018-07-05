@@ -9,46 +9,7 @@
 import XCTest
 import AppCenterXCUITestExtensions
 
-class HomeBillCardUITests: XCTestCase {
-    
-    let app = XCUIApplication()
-    
-    override func setUp() {
-        super.setUp()
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        app.launchArguments = ["UITest"]
-        ACTLaunch.launch(app)
-    }
-    
-    func doLogin(username: String) {
-        let continueButton = app.buttons["Continue"]
-        XCTAssert(continueButton.waitForExistence(timeout: 30))
-        
-        // Assert button is disabled when the switch is not enabled
-        XCTAssert(!continueButton.isEnabled)
-        app.switches.element(boundBy: 0).tap()
-        XCTAssert(continueButton.isEnabled)
-        continueButton.tap()
-        
-        let signInButton = app.buttons["Sign In"]
-        XCTAssert(signInButton.waitForExistence(timeout: 5))
-        signInButton.tap()
-        
-        let elementsQuery = app.scrollViews.otherElements
-        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
-        usernameEmailAddressTextField.clearAndEnterText(username)
-        
-        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.clearAndEnterText("Password1")
-        elementsQuery.buttons["Sign In"].tap()
-        
-        XCTAssert(app.tabBars.buttons["Home"].waitForExistence(timeout: 10))
-    }
+class HomeBillCardUITests: ExelonUITestCase {
     
     func testNoDefaultPaymentSetWithBill() {
         doLogin(username: "billCardNoDefaultPayment")
@@ -127,7 +88,8 @@ class HomeBillCardUITests: XCTestCase {
     
     func testMaintModeHomeBillCard() {
         doLogin(username: "maintNotHome")
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Billing is currently unavailable due to scheduled maintenance."].exists)
+        
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Billing is currently unavailable due to scheduled maintenance."].waitForExistence(timeout: 5))
     }
     
     func testMaintModeHome() {
@@ -135,7 +97,7 @@ class HomeBillCardUITests: XCTestCase {
         
         XCTAssert(app.buttons["Reload"].exists)
         XCTAssert(app.staticTexts["Scheduled Maintenance"].exists)
-        XCTAssert(app.staticTexts["Home is currently unavailable due to\nscheduled maintenance."].exists)
+        XCTAssert(app.staticTexts["Home is currently unavailable due to\nscheduled maintenance."].waitForExistence(timeout: 5))
     }
     
     func testExpiredSlideToPay(){
