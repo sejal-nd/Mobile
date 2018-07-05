@@ -35,14 +35,16 @@ class ExelonUITestCase: XCTestCase{
     
     func handleTermsFirstLaunch() {
         
+        ACTLabel.labelStep("First launch")
         let continueButton = app.buttons["Continue"]
         XCTAssert(continueButton.waitForExistence(timeout: 30))
-        
+        ACTLabel.labelStep("Continue button exists")
         // Assert button is disabled when the switch is not enabled
         XCTAssert(!continueButton.isEnabled)
         let continueSwitch = app.switches.element(boundBy: 0)
         continueSwitch.tap()
         
+        ACTLabel.labelStep("Continue switch tapped")
         // 19, 527
         
         if !continueButton.isEnabled{
@@ -68,7 +70,9 @@ class ExelonUITestCase: XCTestCase{
             
         }
         continueButton.tap()
+        ACTLabel.labelStep("Continue button tapped")
         XCTAssert(app.buttons["Sign In"].waitForExistence(timeout: 5))
+        ACTLabel.labelStep("Sign in ready")
     }
     
     func doLogin(username: String) {
