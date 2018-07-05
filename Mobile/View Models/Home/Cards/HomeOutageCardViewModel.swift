@@ -50,6 +50,7 @@ class HomeOutageCardViewModel {
     
     private(set) lazy var shouldShowContentView: Driver<Bool> = Driver.combineLatest(isOutageErrorStatus, shouldShowMaintenanceModeState, isGasOnly)
         { !$0 && !$1 && !$2 }
+        .distinctUntilChanged()
     
     private lazy var isOutageErrorStatus: Driver<Bool> = self.outageStatusEvents
         .asDriver(onErrorDriveWith: .empty())
@@ -58,6 +59,7 @@ class HomeOutageCardViewModel {
 
     private(set) lazy var shouldShowErrorState: Driver<Bool> = Driver.combineLatest(isOutageErrorStatus, shouldShowMaintenanceModeState)
         { $0 && !$1 }
+        .distinctUntilChanged()
     
     private(set) lazy var shouldShowMaintenanceModeState: Driver<Bool> = self.maintenanceModeEvents
         .map { $0.element?.outageStatus ?? false }
@@ -75,6 +77,7 @@ class HomeOutageCardViewModel {
 
     private(set) lazy var shouldShowRestorationTime: Driver<Bool> = self.currentOutageStatus
         .map { $0.etr == nil }
+        .distinctUntilChanged()
     
     private lazy var isGasOnly: Driver<Bool> = self.outageStatusEvents
         .map { $0.element?.flagGasOnly ?? false }
@@ -82,6 +85,7 @@ class HomeOutageCardViewModel {
     
     private(set) lazy var shouldShowGasOnly: Driver<Bool> = Driver.combineLatest(isGasOnly, shouldShowMaintenanceModeState)
         { $0 && !$1 }
+        .distinctUntilChanged()
     
     let hasReportedOutage = BehaviorSubject<Bool>(value: false)
     

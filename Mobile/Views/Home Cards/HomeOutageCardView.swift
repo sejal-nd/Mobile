@@ -27,11 +27,12 @@ class HomeOutageCardView: UIView {
     @IBOutlet weak var powerStatusLabel: UILabel!
     @IBOutlet weak var restorationView: UIView!
     @IBOutlet weak var restorationStatusLabel: UILabel!
-    @IBOutlet weak var callToActionButton: UIButton!
+    @IBOutlet weak var callToActionButton: ButtonControl!
+    @IBOutlet weak var buttonControlLabel: UILabel!
     
     var bag = DisposeBag()
     
-    private(set) lazy var buttonTapped: Driver<OutageStatus> = callToActionButton.rx.tap.asDriver()
+    private(set) lazy var buttonTapped: Driver<OutageStatus> = callToActionButton.rx.touchUpInside.asDriver()
         .withLatestFrom(viewModel.currentOutageStatus)
     
     private var viewModel: HomeOutageCardViewModel! {
@@ -57,7 +58,8 @@ class HomeOutageCardView: UIView {
         powerStatusTitleLabel.font = OpenSans.regular.of(size: 14)
         powerStatusLabel.font = OpenSans.bold.of(size: 22)
         restorationStatusLabel.font = OpenSans.regular.of(size: 12)
-        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        buttonControlLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        callToActionButton.backgroundColorOnPress = .softGray
     }
     
     private func bindViewModel() {

@@ -34,7 +34,7 @@
                                             <rect key="frame" x="166.5" y="29" width="107" height="72"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Gas Only" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggl-vJ-CF8">
-                                            <rect key="frame" x="182.5" y="122" width="74.5" height="21"/>
+                                            <rect key="frame" x="182" y="118" width="75.5" height="25"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                             <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -164,26 +164,37 @@
                                                         <constraint firstAttribute="height" constant="1" id="Wbk-YI-pAA"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZR-4t-3AG">
-                                                    <rect key="frame" x="0.0" y="1" width="438.5" height="50"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEn-1T-kMU" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="1" width="439" height="50"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report Outage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6V-sh-bMq">
+                                                            <rect key="frame" x="8" y="8" width="423" height="34"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                            <color key="textColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="Kqr-vh-R2C"/>
+                                                        <constraint firstItem="P6V-sh-bMq" firstAttribute="leading" secondItem="FEn-1T-kMU" secondAttribute="leading" constant="8" id="OXh-DG-8bG"/>
+                                                        <constraint firstAttribute="height" constant="50" id="bhf-MU-WLO"/>
+                                                        <constraint firstItem="P6V-sh-bMq" firstAttribute="top" secondItem="FEn-1T-kMU" secondAttribute="top" constant="8" id="jvO-HX-z6I"/>
+                                                        <constraint firstAttribute="trailing" secondItem="P6V-sh-bMq" secondAttribute="trailing" constant="8" id="kot-dm-ejj"/>
+                                                        <constraint firstAttribute="bottom" secondItem="P6V-sh-bMq" secondAttribute="bottom" constant="8" id="mag-bo-khp"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                    <state key="normal" title="Report Outage">
-                                                        <color key="titleColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                </button>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="o4g-OT-ZFK" secondAttribute="trailing" id="5M1-3d-Gk4"/>
                                                 <constraint firstAttribute="trailing" secondItem="o4g-OT-ZFK" secondAttribute="trailing" id="6NV-4w-Mmb"/>
-                                                <constraint firstAttribute="trailing" secondItem="XZR-4t-3AG" secondAttribute="trailing" id="BJi-Fz-lNG"/>
-                                                <constraint firstItem="XZR-4t-3AG" firstAttribute="top" secondItem="o4g-OT-ZFK" secondAttribute="bottom" id="V86-3h-Gw8"/>
-                                                <constraint firstItem="XZR-4t-3AG" firstAttribute="leading" secondItem="U51-22-rmA" secondAttribute="leading" id="VDq-o5-xys"/>
+                                                <constraint firstItem="o4g-OT-ZFK" firstAttribute="leading" secondItem="U51-22-rmA" secondAttribute="leading" id="L9U-1R-0xE"/>
                                                 <constraint firstAttribute="height" constant="51" id="a39-9n-hhS"/>
-                                                <constraint firstAttribute="bottom" secondItem="XZR-4t-3AG" secondAttribute="bottom" id="eos-8d-a1h"/>
                                                 <constraint firstItem="o4g-OT-ZFK" firstAttribute="leading" secondItem="U51-22-rmA" secondAttribute="leading" id="lke-rD-Wjw"/>
+                                                <constraint firstAttribute="bottom" secondItem="FEn-1T-kMU" secondAttribute="bottom" id="rHf-m6-VzG"/>
+                                                <constraint firstItem="FEn-1T-kMU" firstAttribute="leading" secondItem="U51-22-rmA" secondAttribute="leading" id="rXc-bE-fiT"/>
+                                                <constraint firstAttribute="trailing" secondItem="FEn-1T-kMU" secondAttribute="trailing" id="rgU-5w-IF0"/>
+                                                <constraint firstItem="o4g-OT-ZFK" firstAttribute="top" secondItem="U51-22-rmA" secondAttribute="top" id="xtv-MS-kTI"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -258,7 +269,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="callToActionButton" destination="XZR-4t-3AG" id="SWL-AE-au7"/>
+                <outlet property="buttonControlLabel" destination="P6V-sh-bMq" id="JXY-PZ-FnF"/>
+                <outlet property="callToActionButton" destination="FEn-1T-kMU" id="0Ot-Ed-SWc"/>
                 <outlet property="clippingView" destination="FsD-05-H6M" id="7gK-ZD-QAo"/>
                 <outlet property="contentView" destination="KKt-Io-RCy" id="hnD-SR-x8V"/>
                 <outlet property="errorView" destination="Xvq-tV-wVQ" id="56Y-Uk-Nqq"/>
@@ -272,7 +284,7 @@
                 <outlet property="restorationView" destination="4OI-Y1-0dQ" id="CnL-xK-7FA"/>
                 <outlet property="titleLabel" destination="9g2-Cf-njo" id="MMU-K0-M7Q"/>
             </connections>
-            <point key="canvasLocation" x="34.5" y="52.5"/>
+            <point key="canvasLocation" x="34.5" y="52"/>
         </view>
     </objects>
     <resources>
