@@ -88,13 +88,10 @@ class HomeViewModel {
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.maintenanceModeEvents
         .filter { !($0.element?.homeStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
-        .flatMapLatest { [unowned self] in
-            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
-                .trackActivity(self.fetchTracker(forState: $0))
-                .materialize()
-                .filter { !$0.isCompleted }
-        }
-        .share(replay: 1)
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
+                        requestSelector: { [unowned self] _ in
+                            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        })
 
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }

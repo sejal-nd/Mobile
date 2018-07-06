@@ -10,15 +10,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import Lottie
 
 class HomeBillCardView: UIView {
     
     var bag = DisposeBag()
     
+    @IBOutlet weak var clippingView: UIView!
+    
     @IBOutlet weak var infoStack: UIStackView!
     
-    @IBOutlet weak var alertContainer: UIView!
-    @IBOutlet weak var alertImageView: UIImageView!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var headerAlertAnimationContainer: UIView!
+    var alertAnimation = LOTAnimationView(name: "alert_icon")
     
     @IBOutlet weak var paymentPendingContainer: UIView!
     @IBOutlet weak var paymentPendingImageView: UIImageView!
@@ -26,20 +31,13 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var paymentConfirmationContainer: UIView!
     @IBOutlet weak var paymentConfirmationImageView: UIImageView!
     
-    @IBOutlet weak var titleContainer: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleLabelTopConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var amountLabel: UILabel!
     
     @IBOutlet weak var dueDateStack: UIStackView!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var dueDateTooltip: UIButton!
     
-    @IBOutlet weak var dueAmountAndDateContainer: UIView!
-    @IBOutlet weak var dueAmountAndDateStack: UIStackView!
-    @IBOutlet weak var dueAmountAndDateLabel: UILabel!
-    @IBOutlet weak var dueAmountAndDateTooltip: UIButton!
+    @IBOutlet weak var reinstatementFeeLabel: UILabel!
     
     @IBOutlet weak var slideToPay24DisclaimerContainer: UIView!
     @IBOutlet weak var slideToPay24DisclaimerLabel: UILabel!
@@ -116,11 +114,24 @@ class HomeBillCardView: UIView {
         return view
     }
     
+    func resetAnimation() {
+        alertAnimation.removeFromSuperview()
+        alertAnimation = LOTAnimationView(name: "alert_icon")
+        alertAnimation.frame = headerAlertAnimationContainer.bounds
+        alertAnimation.contentMode = .scaleAspectFit
+        headerAlertAnimationContainer.addSubview(alertAnimation)
+        alertAnimation.play()
+    }
+    
     private func styleViews() {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 13)
         layer.cornerRadius = 10
+        clippingView.layer.cornerRadius = 10
         
-        alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        headerView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
+        
+        reinstatementFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        reinstatementFeeLabel.setLineHeight(lineHeight: 16)
         
         bankCreditNumberButton.layer.borderWidth = 2
         bankCreditNumberButton.layer.cornerRadius = 3
@@ -136,9 +147,8 @@ class HomeBillCardView: UIView {
         a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
         a11yTutorialButton.titleLabel?.text = NSLocalizedString("View Tutorial", comment: "")
         
-        dueAmountAndDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        dueDateLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-        dueAmountAndDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         slideToPay24DisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
@@ -172,10 +182,10 @@ class HomeBillCardView: UIView {
         maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
         
         // Accessibility
-        alertImageView.isAccessibilityElement = true
-        alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+//        alertImageView.isAccessibilityElement = true
+//        alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         bankCreditCardImageView.isAccessibilityElement = true
-        
+        resetAnimation()
     }
     
     private func bindViewModel() {
@@ -219,22 +229,22 @@ class HomeBillCardView: UIView {
             .drive(infoStack.rx.isHidden)
             .disposed(by: bag)
         
-        viewModel.showAlertIcon.not().drive(alertContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showHeaderView.not().drive(headerView.rx.isHidden).disposed(by: bag)
+//        viewModel.showAlertIcon.not().drive(alertContainer.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).disposed(by: bag)
         viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).disposed(by: bag)
         viewModel.showSlideToPay24DisclaimerLabel.not().drive(slideToPay24DisclaimerContainer.rx.isHidden).disposed(by: bag)
         
-        Driver.zip(viewModel.showAlertIcon, viewModel.showPaymentPendingIcon, viewModel.showBillPaidIcon)
-            .map { $0 || $1 || $2 }
-            .map { $0 ? 0: 32 }
-            .drive(titleLabelTopConstraint.rx.constant)
-            .disposed(by: bag)
+//        Driver.zip(viewModel.showAlertIcon, viewModel.showPaymentPendingIcon, viewModel.showBillPaidIcon)
+//            .map { $0 || $1 || $2 }
+//            .map { $0 ? 0: 32 }
+//            .drive(titleLabelTopConstraint.rx.constant)
+//            .disposed(by: bag)
         
         viewModel.showAmount.not().drive(amountLabel.rx.isHidden).disposed(by: bag)
         viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).disposed(by: bag)
-        viewModel.showDueDateTooltip.not().drive(dueDateTooltip.rx.isHidden).disposed(by: bag)
-        viewModel.showDueAmountAndDate.not().drive(dueAmountAndDateContainer.rx.isHidden).disposed(by: bag)
-        dueAmountAndDateTooltip.isHidden = !viewModel.showDueAmountAndDateTooltip
+        dueDateTooltip.isHidden = !viewModel.showDueDateTooltip
+        viewModel.showReinstatementFeeText.not().drive(reinstatementFeeLabel.rx.isHidden).disposed(by: bag)
         viewModel.showBankCreditButton.not().drive(bankCreditNumberContainer.rx.isHidden).disposed(by: bag)
         viewModel.bankCreditButtonBorderColor.drive(bankCreditNumberButton.rx.borderColor).disposed(by: bag)
         viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredView.rx.isHidden).disposed(by: bag)
@@ -254,12 +264,15 @@ class HomeBillCardView: UIView {
         viewModel.showOneTouchPayTCButton.not().drive(oneTouchPayTCButton.rx.isHidden).disposed(by: bag)
         
         // Subview States
-        viewModel.titleText.drive(titleLabel.rx.text).disposed(by: bag)
-        viewModel.titleFont.drive(titleLabel.rx.font).disposed(by: bag)
+//        viewModel.titleText.drive(titleLabel.rx.text).disposed(by: bag)
+//        viewModel.titleFont.drive(titleLabel.rx.font).disposed(by: bag)
+        viewModel.showAlertAnimation.not().drive(headerAlertAnimationContainer.rx.isHidden).disposed(by: bag)
+        viewModel.resetAlertAnimation.drive(onNext: { [weak self] in self?.resetAnimation() }).disposed(by: bag)
+        viewModel.headerText.drive(headerLabel.rx.attributedText).disposed(by: bag)
         viewModel.amountFont.drive(amountLabel.rx.font).disposed(by: bag)
         viewModel.amountText.drive(amountLabel.rx.text).disposed(by: bag)
         viewModel.dueDateText.drive(dueDateLabel.rx.attributedText).disposed(by: bag)
-        viewModel.dueAmountAndDateText.drive(dueAmountAndDateLabel.rx.text).disposed(by: bag)
+        viewModel.reinstatementFeeText.drive(reinstatementFeeLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardNumberText.drive(bankCreditCardNumberLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardImage.drive(bankCreditCardImageView.rx.image).disposed(by: bag)
         viewModel.bankCreditCardButtonAccessibilityLabel.drive(bankCreditNumberButton.rx.accessibilityLabel).disposed(by: bag)
@@ -436,8 +449,7 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var tooltipModal: Driver<UIViewController> = Driver.merge(self.dueDateTooltip.rx.tap.asDriver(),
-                                                                           self.dueAmountAndDateTooltip.rx.tap.asDriver())
+    private lazy var tooltipModal: Driver<UIViewController> = self.dueDateTooltip.rx.tap.asDriver()
         .map {
             let alertController = UIAlertController(title: NSLocalizedString("Your Due Date", comment: ""),
                                                     message: NSLocalizedString("If you recently changed your energy supplier, a portion of your balance may have an earlier due date. Please view your previous bills and corresponding due dates.", comment: ""), preferredStyle: .alert)
