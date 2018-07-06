@@ -726,6 +726,15 @@
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
+		9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
+		9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
+		9C97DB1920EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
+		9C97DB1B20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */; };
+		9C97DB1C20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */; };
+		9C97DB1D20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */; };
+		9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
+		9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
+		9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
 		B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
 		B0030D0A2097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
@@ -2357,6 +2366,9 @@
 		9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
 		9C6BC8A620ADCECF00B4399B /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
+		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
+		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
+		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
 		B0030D072097BC8300327A3D /* MaintenanceModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModeView.swift; sourceTree = "<group>"; };
 		B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceModeView.xib; sourceTree = "<group>"; };
 		B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsViewModelTests.swift; sourceTree = "<group>"; };
@@ -3457,6 +3469,8 @@
 				4465DE881F1FD07C0014537F /* TemplateCardView.xib */,
 				B07D247220C590AB00BD22EB /* HomeWeatherView.swift */,
 				B07D247620C590BE00BD22EB /* HomeWeatherView.xib */,
+				9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */,
+				9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */,
 			);
 			path = "Home Cards";
 			sourceTree = "<group>";
@@ -3468,6 +3482,7 @@
 				E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */,
 				824004C91F25F4970012A288 /* TemplateCardViewModel.swift */,
 				B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */,
+				9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -5255,6 +5270,7 @@
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				82A18ECF1EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				B5D415761F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist in Resources */,
+				9C97DB1B20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
@@ -5359,6 +5375,7 @@
 				E80043431E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895791E8AACFF009485E3 /* loading_blue.json in Resources */,
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
+				9C97DB1D20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				0D79C6C71F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				82A18EFE1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				385AF2281F27915A001E3619 /* img_1.png in Resources */,
@@ -5463,6 +5480,7 @@
 				B574BAD01E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				82A18ED01EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
+				9C97DB1C20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				E800432D1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895781E8AACFF009485E3 /* loading_blue.json in Resources */,
@@ -5834,6 +5852,7 @@
 				01F612291F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
 				82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
+				9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
 				E807A9E52022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				E8C4532B1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				E8CFB8AA1F87D789003E1AB5 /* OMCUsageService.swift in Sources */,
@@ -5965,6 +5984,7 @@
 				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
+				9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				9C47AED5203E3101000AECF4 /* BillComparisonInitExtensions.swift in Sources */,
 				E89C162A1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
@@ -6154,6 +6174,7 @@
 				01F6122B1F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
 				82EAB33E1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
+				9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
 				E807A9E72022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				E8CFB8AC1F87D789003E1AB5 /* OMCUsageService.swift in Sources */,
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
@@ -6285,6 +6306,7 @@
 				54036BAF1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
 				82A18EA01EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B281EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
+				9C97DB1920EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				E89C162C1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
@@ -6474,6 +6496,7 @@
 				01F6122A1F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
 				82EAB33D1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
+				9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
 				E807A9E62022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				E8CFB8AB1F87D789003E1AB5 /* OMCUsageService.swift in Sources */,
 				54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
@@ -6605,6 +6628,7 @@
 				54036BAE1EDA12F50028176E /* EditCreditCardViewController.swift in Sources */,
 				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
+				9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				E89C162B1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
@@ -6936,7 +6960,7 @@
 				9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */,
 				B0A79B1220E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				0E863D8820DD4992004D77EC /* TestHelper.swift in Sources */,
-			E8F353A7200D014000883CEA /* MoreUITests.swift in Sources */,
+				E8F353A7200D014000883CEA /* MoreUITests.swift in Sources */,
 				E8F353B7200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E89E2B5F20333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
 				0EF60FC720EE78F7006ABC18 /* GSTouchesShowingController.swift in Sources */,

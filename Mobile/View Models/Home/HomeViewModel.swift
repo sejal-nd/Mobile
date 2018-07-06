@@ -49,18 +49,18 @@ class HomeViewModel {
         self.authService = authService
     }
     
-    private(set) lazy var weatherViewModel: HomeWeatherViewModel = HomeWeatherViewModel(accountDetailEvents: self.accountDetailEvents,
-                                                                                        weatherService: self.weatherService,
-                                                                                        usageService: self.usageService)
+    private(set) lazy var weatherViewModel = HomeWeatherViewModel(accountDetailEvents: self.accountDetailEvents,
+                                                                  weatherService: self.weatherService,
+                                                                  usageService: self.usageService)
     
-    private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(fetchData: self.fetchDataObservable,
-                                                                                           fetchDataMMEvents: self.fetchDataMMEvents,
-                                                                                           accountDetailEvents: self.accountDetailEvents,
-                                                                                           walletService: self.walletService,
-                                                                                           paymentService: self.paymentService,
-                                                                                           authService: self.authService,
-                                                                                           refreshFetchTracker: self.refreshFetchTracker,
-                                                                                           switchAccountFetchTracker: self.switchAccountFetchTracker)
+    private(set) lazy var billCardViewModel = HomeBillCardViewModel(fetchData: self.fetchDataObservable,
+                                                                    fetchDataMMEvents: self.fetchDataMMEvents,
+                                                                    accountDetailEvents: self.accountDetailEvents,
+                                                                    walletService: self.walletService,
+                                                                    paymentService: self.paymentService,
+                                                                    authService: self.authService,
+                                                                    refreshFetchTracker: self.refreshFetchTracker,
+                                                                    switchAccountFetchTracker: self.switchAccountFetchTracker)
     
     private(set) lazy var usageCardViewModel = HomeUsageCardViewModel(fetchData: self.fetchDataObservable,
                                                                       accountDetailEvents: self.accountDetailEvents,
@@ -69,6 +69,12 @@ class HomeViewModel {
                                                                       switchAccountFetchTracker: self.switchAccountFetchTracker)
     
     private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
+    
+    private(set) lazy var projectedBillCardViewModel = HomeProjectedBillCardViewModel(fetchData: self.fetchDataObservable,
+                                                                                      accountDetailEvents: self.accountDetailEvents,
+                                                                                      usageService: self.usageService,
+                                                                                      refreshFetchTracker: self.refreshFetchTracker,
+                                                                                      switchAccountFetchTracker: self.switchAccountFetchTracker)
     
     private(set) lazy var isSwitchingAccounts = self.switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.shared.currentAccount == nil }
     

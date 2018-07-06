@@ -35,6 +35,7 @@ class HomeViewController: AccountPickerViewController {
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
+    var projectedBillCardView: HomeProjectedBillCardView?
     var topPersonalizeButton: ButtonControl?
     
     var refreshDisposable: Disposable?
@@ -319,6 +320,16 @@ class HomeViewController: AccountPickerViewController {
             }
             
             return templateCardView
+        case .projectedBill:
+            let projectedBillCardView: HomeProjectedBillCardView
+            if let projectedBillCard = self.projectedBillCardView {
+                projectedBillCardView = projectedBillCard
+            } else {
+                projectedBillCardView = HomeProjectedBillCardView.create(withViewModel: viewModel.projectedBillCardViewModel)
+                self.projectedBillCardView = projectedBillCardView
+                bindProjectedBillCard()
+            }
+            return projectedBillCardView
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -405,6 +416,21 @@ class HomeViewController: AccountPickerViewController {
                 viewController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: templateCardView.bag)
+    }
+    
+    func bindProjectedBillCard() {
+        guard let projectedBillCardView = projectedBillCardView else { return }
+        
+        projectedBillCardView.viewMoreButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.accountDetailEvents.elements()
+                .asDriver(onErrorDriveWith: .empty()))
+            .drive(onNext: { [weak self] in
+                let billAnalysis = BillAnalysisViewController()
+                billAnalysis.hidesBottomBarWhenPushed = true
+                billAnalysis.viewModel.accountDetail = $0
+                self?.navigationController?.pushViewController(billAnalysis, animated: true)
+            }).disposed(by: projectedBillCardView.disposeBag)
+        
     }
     
     @objc func killRefresh() -> Void {
