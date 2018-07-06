@@ -142,9 +142,9 @@
 		35AFB42B20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
 		35AFB42C20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
 		35AFB42D20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
-		35CDEB7C20EFBAB100243910 /* ViewControllerAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDEB7B20EFBAB100243910 /* ViewControllerAlertView.swift */; };
-		35CDEB7D20EFBAB100243910 /* ViewControllerAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDEB7B20EFBAB100243910 /* ViewControllerAlertView.swift */; };
-		35CDEB7E20EFBAB100243910 /* ViewControllerAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDEB7B20EFBAB100243910 /* ViewControllerAlertView.swift */; };
+		35CDEB7C20EFBAB100243910 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDEB7B20EFBAB100243910 /* ViewControllerAlertable.swift */; };
+		35CDEB7D20EFBAB100243910 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDEB7B20EFBAB100243910 /* ViewControllerAlertable.swift */; };
+		35CDEB7E20EFBAB100243910 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDEB7B20EFBAB100243910 /* ViewControllerAlertable.swift */; };
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
@@ -2087,7 +2087,7 @@
 		351FB0E820E514AC00CEB77A /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedWebCredentialService.swift; sourceTree = "<group>"; };
 		35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRoundCorners.swift; sourceTree = "<group>"; };
 		35AFB42A20C82DA0000312B9 /* MaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
-		35CDEB7B20EFBAB100243910 /* ViewControllerAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerAlertView.swift; path = ../../../../ViewControllerAlertView.swift; sourceTree = "<group>"; };
+		35CDEB7B20EFBAB100243910 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewControllerAlertable.swift; path = ../../../../ViewControllerAlertable.swift; sourceTree = "<group>"; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		385AF21B1F278EFD001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
 		385AF21D1F278F06001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
@@ -3772,7 +3772,7 @@
 				826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */,
 				B0AD7FED205841C80090B40D /* SequenceForEach.swift */,
 				35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */,
-				35CDEB7B20EFBAB100243910 /* ViewControllerAlertView.swift */,
+				35CDEB7B20EFBAB100243910 /* ViewControllerAlertable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5696,7 +5696,7 @@
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				E87C413E1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				B06B40F920D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */,
-				35CDEB7C20EFBAB100243910 /* ViewControllerAlertView.swift in Sources */,
+				35CDEB7C20EFBAB100243910 /* ViewControllerAlertable.swift in Sources */,
 				820125471F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */,
@@ -6007,7 +6007,7 @@
 				824004CC1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				E87C41401FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				B06B40FB20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */,
-				35CDEB7E20EFBAB100243910 /* ViewControllerAlertView.swift in Sources */,
+				35CDEB7E20EFBAB100243910 /* ViewControllerAlertable.swift in Sources */,
 				820125491F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
@@ -6318,7 +6318,7 @@
 				E857C5221F269FF6002A8E94 /* TemplateCardView.swift in Sources */,
 				E87C413F1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				B06B40FA20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */,
-				35CDEB7D20EFBAB100243910 /* ViewControllerAlertView.swift in Sources */,
+				35CDEB7D20EFBAB100243910 /* ViewControllerAlertable.swift in Sources */,
 				820125481F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
