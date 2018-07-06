@@ -344,10 +344,10 @@ class LoginViewController: UIViewController {
                                               .PeakSmart: isPeakSmart ? "true" : "false"])
         }
 
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController else {
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+            let navController = self.navigationController else {
             return
         }
-        guard let navController = self.navigationController else { return }
         navController.setNavigationBarHidden(true, animated: false)
         navController.setViewControllers([viewController], animated: false)
     }

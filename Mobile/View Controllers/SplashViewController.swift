@@ -111,12 +111,10 @@ class SplashViewController: UIViewController{
         bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch/Face ID alert prompt is dismissed
         
         if keepMeSignedIn {
-            guard let viewController = UIStoryboard(name: "Main", bundle: nil)
-                .instantiateInitialViewController() as? MainTabBarController else {
+            guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+                let navController = self.navigationController else {
                 return
             }
-            
-            guard let navController = self.navigationController else { return }
             navController.setViewControllers([viewController], animated: false)
             if shortcutItem != .none {
                 NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
