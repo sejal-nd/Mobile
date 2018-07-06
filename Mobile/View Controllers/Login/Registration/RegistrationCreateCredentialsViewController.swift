@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import ToastSwiftFramework
 
-class RegistrationCreateCredentialsViewController: UIViewController {
+class RegistrationCreateCredentialsViewController: UIViewController, Alertable {
 
     let disposeBag = DisposeBag()
 
@@ -45,6 +45,18 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
     
     var nextButton = UIBarButtonItem()
+    
+    lazy var toolbar: UIToolbar = {
+        let toolbar = UIToolbar()
+        let suggestPasswordButton = UIBarButtonItem(title: "Suggest Password", style: .plain, target: self, action: #selector(suggestPassword))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        let items = [suggestPasswordButton, space]
+        toolbar.setItems(items, animated: false)
+        toolbar.sizeToFit()
+        toolbar.tintColor = UIColor.primaryColor
+        return toolbar
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,6 +126,22 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self?.present(alertController, animated: true, completion: nil)
         })
+    }
+    
+    @objc private func suggestPassword() {
+        guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
+        presentAlert(title: "Suggested Password:\n\n\(strongPassword)",
+            message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
+            style: .actionSheet,
+            actions:
+            [UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
+                self?.viewModel.newPassword.value = strongPassword
+                self?.viewModel.confirmPassword.value = strongPassword
+                self?.createPasswordTextField.textField.text = strongPassword
+                self?.confirmPasswordTextField.textField.text = strongPassword
+                self?.createPasswordTextField.textField.resignFirstResponder()
+                },
+             UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
     }
 
     func setupValidation() {
@@ -248,12 +276,14 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         createPasswordTextField.textField.returnKeyType = .next
         createPasswordTextField.textField.delegate = self
         createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        createPasswordTextField.textField.inputAccessoryView = toolbar
         
         confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        confirmPasswordTextField.textField.inputAccessoryView = toolbar
         
         // Bind to the view model
         createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)

@@ -48,7 +48,6 @@ class ChangePasswordViewController: UIViewController, Alertable {
     lazy var submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
 
     lazy var toolbar: UIToolbar = {
-        //print("toolbar initialized")
         let toolbar = UIToolbar()
         let suggestPasswordButton = UIBarButtonItem(title: "Suggest Password", style: .plain, target: self, action: #selector(suggestPassword))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -78,12 +77,15 @@ class ChangePasswordViewController: UIViewController, Alertable {
         
         passwordStrengthView.isHidden = true
         passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        confirmPasswordTextField.setEnabled(false)
         
         currentPasswordTextField.textField.placeholder = sentFromLogin ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
         currentPasswordTextField.textField.returnKeyType = .next
         currentPasswordTextField.textField.isShowingAccessory = true
+        
+        if #available(iOS 11.0, *) {
+            currentPasswordTextField.textField.textContentType = .password
+        }
         
         newPasswordTextField.textField.placeholder = NSLocalizedString("New Password", comment: "")
         newPasswordTextField.textField.isSecureTextEntry = true
@@ -240,10 +242,11 @@ class ChangePasswordViewController: UIViewController, Alertable {
                      style: .actionSheet,
                      actions:
                         [UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
-                            self?.newPasswordTextField.textField.text = strongPassword
-                            self?.confirmPasswordTextField.textField.text = strongPassword
                             self?.viewModel.newPassword.value = strongPassword
                             self?.viewModel.confirmPassword.value = strongPassword
+                            self?.newPasswordTextField.textField.text = strongPassword
+                            self?.confirmPasswordTextField.textField.text = strongPassword
+                            self?.newPasswordTextField.textField.resignFirstResponder()
                             },
                          UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
     }
