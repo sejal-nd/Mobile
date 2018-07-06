@@ -139,6 +139,8 @@ class RegistrationCreateCredentialsViewController: UIViewController, Alertable {
                 self?.viewModel.confirmPassword.value = strongPassword
                 self?.createPasswordTextField.textField.text = strongPassword
                 self?.confirmPasswordTextField.textField.text = strongPassword
+                self?.createPasswordTextField.textField.backgroundColor = .yellow
+                self?.confirmPasswordTextField.textField.backgroundColor = .yellow
                 self?.createPasswordTextField.textField.resignFirstResponder()
                 },
              UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
@@ -409,6 +411,10 @@ class RegistrationCreateCredentialsViewController: UIViewController, Alertable {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        createPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+        confirmPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+        
         if string.count == 0 { // Allow backspace
             return true
         }
