@@ -56,7 +56,7 @@ class ChangePasswordViewController: UIViewController, Alertable {
         let items = [suggestPasswordButton, space]
         toolbar.setItems(items, animated: false)
         toolbar.sizeToFit()
-        //toolbar.tintColor =
+        toolbar.tintColor = UIColor.primaryColor
         return toolbar
     }()
     
@@ -235,17 +235,17 @@ class ChangePasswordViewController: UIViewController, Alertable {
     
     @objc private func suggestPassword() {
         guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
-        // present action sheet
-        presentAlert(title: "Strong Password", message: "We will generate a special secure password", style: .actionSheet, actions: [UIAlertAction(title: "No Thanks, i like weak passwords", style: .default) { action in
-            print("WEAK SELECTED")
-            }, UIAlertAction(title: "Use Strong Password: \(strongPassword)", style: .cancel) { action in
-                print("STRONG SELECTED")
-            }])
-        
-        
-        // on confirm of action sheet set variables and input values into textfields
-        
-        //on cancel, do nothing close acton sheet
+        presentAlert(title: "Suggested Password:\n\n\(strongPassword)",
+                     message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
+                     style: .actionSheet,
+                     actions:
+                        [UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
+                            self?.newPasswordTextField.textField.text = strongPassword
+                            self?.confirmPasswordTextField.textField.text = strongPassword
+                            self?.viewModel.newPassword.value = strongPassword
+                            self?.viewModel.confirmPassword.value = strongPassword
+                            },
+                         UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {

@@ -191,122 +191,122 @@ class LoginViewController: UIViewController {
     
     @IBAction func onLoginPress() {
         
-        SharedWebCredentials.save(credential: (account: "hello world", password: "password"), domain: "applinks:stgd15-secure.comed.com") { (error) in
-            if let error = error {
-                print("ERROR: \(error.localizedDescription)")
-            } else {
-                print("COMPLETED: \(self.viewModel.username.value) \(self.viewModel.password.value)  ")
-            }
-        }
-        
-        print("POST SAVE: \(Environment.shared.associatedDomain)")
+//        SharedWebCredentials.save(credential: (account: "hello world", password: "password"), domain: "applinks:stgd15-secure.comed.com") { (error) in
+//            if let error = error {
+//                print("ERROR: \(error.localizedDescription)")
+//            } else {
+//                print("COMPLETED: \(self.viewModel.username.value) \(self.viewModel.password.value)  ")
+//            }
+//        }
+//        
+//        print("POST SAVE: \(Environment.shared.associatedDomain)")
 
-//        Analytics.log(event: .LoginOffer,
-//                        dimensions: [.KeepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
-//                                     .FingerprintUsed: "disabled"])
-//
-//        if forgotUsernamePopulated {
-//            Analytics.log(event: .ForgotUsernameCompleteAccountValidation)
-//        }
-//
-//        view.endEditing(true)
-//        navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
-//
-//        signInButton.setLoading()
-//        signInButton.accessibilityLabel = "Loading";
-//        signInButton.accessibilityViewIsModal = true;
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
-//            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
-//        })
-//
-//        // Hide password while loading
-//        if !passwordTextField.textField.isSecureTextEntry {
-//            onEyeballPress(eyeballButton)
-//        }
-//
-//        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in
-//            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
-//            guard let `self` = self else { return }
-//            self.signInButton.setSuccess(animationCompletion: { [weak self] in
-//                guard let `self` = self else { return }
-//                self.navigationController?.view.isUserInteractionEnabled = true
-//
-//                // Get the last username that logged in first, and then store the one currently logging in
-//                let lastLoggedInUsername: String? = self.viewModel.getStoredUsername()
-//                self.viewModel.storeUsername()
-//                self.viewModel.saveSharedWebCredentials()
-//
-//                if loggedInWithTempPassword {
-//                    let storyboard = UIStoryboard(name: "More", bundle: nil)
-//                    let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
-//                    changePwVc.delegate = self
-//                    changePwVc.sentFromLogin = true
-//                    self.navigationController?.pushViewController(changePwVc, animated: true)
-//                } else {
-//                    if self.viewModel.isDeviceBiometricCompatible() {
-//                        let biometricsString = self.viewModel.biometricsString()!
-//                        if self.viewModel.shouldPromptToEnableBiometrics() {
-//                            let biometricsAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString),
-//                                                                    message: String(format: NSLocalizedString("Would you like to use %@ to sign in from now on?", comment: ""), biometricsString),
-//                                                                    preferredStyle: .alert)
-//                            biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
-//                                self?.launchMainApp()
-//                            }))
-//                            biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
-//                                self?.viewModel.storePasswordInSecureEnclave()
-//                                self?.launchMainApp()
-//                                Analytics.log(event: .TouchIDEnable)
-//                            }))
-//                            self.present(biometricsAlert, animated: true, completion: nil)
-//                            self.viewModel.setShouldPromptToEnableBiometrics(false)
-//                        } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
-//                            let message = String(format: NSLocalizedString("%@ settings for %@ will be disabled upon signing in as %@. Would you like to enable %@ for %@ at this time?", comment: ""), biometricsString, lastLoggedInUsername!, self.viewModel.username.value, biometricsString, self.viewModel.username.value)
-//
-//                            let differentAccountAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString), message: message, preferredStyle: .alert)
-//                            differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
-//                                self?.viewModel.disableBiometrics()
-//                                self?.launchMainApp()
-//                            }))
-//                            differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
-//                                self?.viewModel.storePasswordInSecureEnclave()
-//                                self?.launchMainApp()
-//                                Analytics.log(event: .TouchIDEnable)
-//                            }))
-//                            self.present(differentAccountAlert, animated: true, completion: nil)
-//                        } else {
-//                            self.launchMainApp()
-//                        }
-//                    } else {
-//                        self.launchMainApp()
-//                    }
-//                }
-//            })
-//        }, onRegistrationNotComplete: { [weak self] in
-//            guard let `self` = self else { return }
-//            self.navigationController?.view.isUserInteractionEnabled = true
-//            self.signInButton.reset()
-//            self.signInButton.accessibilityLabel = "Sign In";
-//            self.signInButton.accessibilityViewIsModal = false;
-//
-//            let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
-//            alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-//            alertVC.addAction(UIAlertAction(title: NSLocalizedString("Resend", comment: ""), style: .default, handler: { [weak self] (action) in
-//                LoadingView.show()
-//                guard let `self` = self else { return }
-//                self.viewModel.resendValidationEmail(onSuccess: { [weak self] in
-//                    LoadingView.hide()
-//                    self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
-//                }, onError: { [weak self] errMessage in
-//                    LoadingView.hide()
-//                    self?.showErrorAlertWith(title: NSLocalizedString("Error", comment: ""), message: errMessage)
-//                })
-//            }))
-//            self.present(alertVC, animated: true, completion: nil)
-//        }, onError: { [weak self] (title, message) in
-//            self?.navigationController?.view.isUserInteractionEnabled = true
-//            self?.showErrorAlertWith(title: title, message: message)
-//        })
+        Analytics.log(event: .LoginOffer,
+                        dimensions: [.KeepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
+                                     .FingerprintUsed: "disabled"])
+
+        if forgotUsernamePopulated {
+            Analytics.log(event: .ForgotUsernameCompleteAccountValidation)
+        }
+
+        view.endEditing(true)
+        navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
+
+        signInButton.setLoading()
+        signInButton.accessibilityLabel = "Loading";
+        signInButton.accessibilityViewIsModal = true;
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+        })
+
+        // Hide password while loading
+        if !passwordTextField.textField.isSecureTextEntry {
+            onEyeballPress(eyeballButton)
+        }
+
+        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            guard let `self` = self else { return }
+            self.signInButton.setSuccess(animationCompletion: { [weak self] in
+                guard let `self` = self else { return }
+                self.navigationController?.view.isUserInteractionEnabled = true
+
+                // Get the last username that logged in first, and then store the one currently logging in
+                let lastLoggedInUsername: String? = self.viewModel.getStoredUsername()
+                self.viewModel.storeUsername()
+                self.viewModel.saveSharedWebCredentials()
+
+                if loggedInWithTempPassword {
+                    let storyboard = UIStoryboard(name: "More", bundle: nil)
+                    let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
+                    changePwVc.delegate = self
+                    changePwVc.sentFromLogin = true
+                    self.navigationController?.pushViewController(changePwVc, animated: true)
+                } else {
+                    if self.viewModel.isDeviceBiometricCompatible() {
+                        let biometricsString = self.viewModel.biometricsString()!
+                        if self.viewModel.shouldPromptToEnableBiometrics() {
+                            let biometricsAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString),
+                                                                    message: String(format: NSLocalizedString("Would you like to use %@ to sign in from now on?", comment: ""), biometricsString),
+                                                                    preferredStyle: .alert)
+                            biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
+                                self?.launchMainApp()
+                            }))
+                            biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
+                                self?.viewModel.storePasswordInSecureEnclave()
+                                self?.launchMainApp()
+                                Analytics.log(event: .TouchIDEnable)
+                            }))
+                            self.present(biometricsAlert, animated: true, completion: nil)
+                            self.viewModel.setShouldPromptToEnableBiometrics(false)
+                        } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
+                            let message = String(format: NSLocalizedString("%@ settings for %@ will be disabled upon signing in as %@. Would you like to enable %@ for %@ at this time?", comment: ""), biometricsString, lastLoggedInUsername!, self.viewModel.username.value, biometricsString, self.viewModel.username.value)
+
+                            let differentAccountAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString), message: message, preferredStyle: .alert)
+                            differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
+                                self?.viewModel.disableBiometrics()
+                                self?.launchMainApp()
+                            }))
+                            differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
+                                self?.viewModel.storePasswordInSecureEnclave()
+                                self?.launchMainApp()
+                                Analytics.log(event: .TouchIDEnable)
+                            }))
+                            self.present(differentAccountAlert, animated: true, completion: nil)
+                        } else {
+                            self.launchMainApp()
+                        }
+                    } else {
+                        self.launchMainApp()
+                    }
+                }
+            })
+        }, onRegistrationNotComplete: { [weak self] in
+            guard let `self` = self else { return }
+            self.navigationController?.view.isUserInteractionEnabled = true
+            self.signInButton.reset()
+            self.signInButton.accessibilityLabel = "Sign In";
+            self.signInButton.accessibilityViewIsModal = false;
+
+            let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertVC.addAction(UIAlertAction(title: NSLocalizedString("Resend", comment: ""), style: .default, handler: { [weak self] (action) in
+                LoadingView.show()
+                guard let `self` = self else { return }
+                self.viewModel.resendValidationEmail(onSuccess: { [weak self] in
+                    LoadingView.hide()
+                    self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
+                }, onError: { [weak self] errMessage in
+                    LoadingView.hide()
+                    self?.showErrorAlertWith(title: NSLocalizedString("Error", comment: ""), message: errMessage)
+                })
+            }))
+            self.present(alertVC, animated: true, completion: nil)
+        }, onError: { [weak self] (title, message) in
+            self?.navigationController?.view.isUserInteractionEnabled = true
+            self?.showErrorAlertWith(title: title, message: message)
+        })
     }
     
     @IBAction func onForgotUsernamePress() {
