@@ -54,6 +54,7 @@ class RegistrationViewModel {
     var registrationService: RegistrationService
     var authenticationService: AuthenticationService
     
+    
     required init(registrationService: RegistrationService, authenticationService: AuthenticationService) {
         self.registrationService = registrationService
         self.authenticationService = authenticationService
@@ -119,7 +120,11 @@ class RegistrationViewModel {
                                              isPrimary: primaryProfile.value ? "true" : "false",
                                              isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                SharedWebCredentials.save(credential: (self.username.value, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                let KEYCHAIN_KEY = "kExelon_PW"
+                A0SimpleKeychain().setString(self.newPassword.value, forKey: KEYCHAIN_KEY)
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
