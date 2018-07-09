@@ -76,7 +76,7 @@ class HomeOutageCardViewModel {
         .map { "Estimated Restoration\n \(DateFormatter.outageOpcoDateFormatter.string(from: ($0.etr) ?? Date()))" }
 
     private(set) lazy var shouldShowRestorationTime: Driver<Bool> = self.currentOutageStatus
-        .map { $0.etr == nil }
+        .map { $0.etr == nil && $0.activeOutage }
         .distinctUntilChanged()
     
     private lazy var isGasOnly: Driver<Bool> = self.outageStatusEvents
