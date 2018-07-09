@@ -224,6 +224,7 @@ class RegistrationCreateCredentialsViewController: UIViewController, Alertable {
         passwordStrengthView.isHidden = true
         
         createUsernameTextField.textField.placeholder = NSLocalizedString("Email Address*", comment: "")
+        createUsernameTextField.setKeyboardType(.emailAddress)
         createUsernameTextField.textField.returnKeyType = .next
         createUsernameTextField.textField.delegate = self
         createUsernameTextField.textField.isShowingAccessory = true
@@ -247,6 +248,7 @@ class RegistrationCreateCredentialsViewController: UIViewController, Alertable {
         }).disposed(by: disposeBag)
         
         confirmUsernameTextField.textField.placeholder = NSLocalizedString("Confirm Email Address*", comment: "")
+        confirmUsernameTextField.setKeyboardType(.emailAddress)
         confirmUsernameTextField.textField.returnKeyType = .next
         confirmUsernameTextField.textField.delegate = self
         confirmUsernameTextField.setEnabled(false)
