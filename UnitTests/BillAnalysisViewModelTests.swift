@@ -312,6 +312,8 @@ class BillAnalysisViewModelTests: XCTestCase {
         viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let today = Date()
@@ -350,11 +352,13 @@ class BillAnalysisViewModelTests: XCTestCase {
         viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
         
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let today = Date()
-        let sixDaysOut = Calendar.current.date(byAdding: .day, value: 6, to: today)!
-        let threeDaysOut = Calendar.current.date(byAdding: .day, value: 3, to: today)!
+        let sixDaysOut = Calendar.opCo.date(byAdding: .day, value: 6, to: today)!
+        let threeDaysOut = Calendar.opCo.date(byAdding: .day, value: 3, to: today)!
         
         // Test case: Electric forecast with less than 7 days since start
         viewModel.electricForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: sixDaysOut))

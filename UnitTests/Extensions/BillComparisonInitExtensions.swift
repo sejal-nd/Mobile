@@ -59,6 +59,8 @@ extension UsageBillPeriod: JSONEncodable {
     
     func toJSON() -> [String : Any?] {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         return [

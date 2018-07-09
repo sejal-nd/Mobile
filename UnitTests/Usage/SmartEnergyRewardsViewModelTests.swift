@@ -20,6 +20,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     
     lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         return dateFormatter
@@ -27,6 +28,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     
     lazy var hourDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
         return dateFormatter

@@ -317,19 +317,21 @@ class BillAnalysisViewModel {
         Driver.combineLatest(self.lastYearPreviousBillSelectedSegmentIndex.asDriver(),
                              self.electricForecast.asDriver(),
                              self.gasForecast.asDriver(),
-                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] lastYearPrevBillSegmentIndex, elecForecast, gasForecast, elecGasSegmentIndex in
+                             self.electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] lastYearPrevBillSegmentIndex, elecForecast, gasForecast, elecGasSegmentIndex in
             // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
             guard let `self` = self else { return false }
             if lastYearPrevBillSegmentIndex == 0 { return false } // Projections are only for "Previous Bill" selection
+            let today = Calendar.opCo.startOfDay(for: Date())
             if let gasForecast = gasForecast, self.isGas {
                 if let startDate = gasForecast.billingStartDate {
-                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
+                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     return daysSinceBillingStart < 7
                 }
             }
             if let elecForecast = elecForecast, !self.isGas {
                 if let startDate = elecForecast.billingStartDate {
-                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
+                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     return daysSinceBillingStart < 7
                 }
             }
@@ -339,14 +341,16 @@ class BillAnalysisViewModel {
     private(set) lazy var projectionNotAvailableDaysRemainingText: Driver<String?> =
         Driver.combineLatest(self.electricForecast.asDriver(),
                              self.gasForecast.asDriver(),
-                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] elecForecast, gasForecast, segmentIndex in
+                             self.electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] elecForecast, gasForecast, segmentIndex in
             // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
             guard let `self` = self else { return nil }
+            let today = Calendar.opCo.startOfDay(for: Date())
 
             let localizedString = NSLocalizedString("%@ days", comment: "")
             if let gasForecast = gasForecast, self.isGas {
                 if let startDate = gasForecast.billingStartDate {
-                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
+                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     let daysRemaining = 7 - daysSinceBillingStart
                     if daysRemaining == 1 {
                         return NSLocalizedString("1 day", comment: "")
@@ -355,9 +359,10 @@ class BillAnalysisViewModel {
                     }
                 }
             }
+                                
             if let elecForecast = elecForecast, !self.isGas {
                 if let startDate = elecForecast.billingStartDate {
-                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
+                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     let daysRemaining = 7 - daysSinceBillingStart
                     if daysRemaining == 1 {
                         return NSLocalizedString("1 day", comment: "")
@@ -489,14 +494,16 @@ class BillAnalysisViewModel {
     private(set) lazy var projectionNotAvailableA11yLabel: Driver<String?> =
         Driver.combineLatest(self.electricForecast.asDriver(),
                              self.gasForecast.asDriver(),
-                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] elecForecast, gasForecast, segmentIndex in
+                             self.electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] elecForecast, gasForecast, segmentIndex in
             // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
             guard let `self` = self else { return nil }
+            let today = Calendar.opCo.startOfDay(for: Date())
             var daysRemainingString = ""
             let localizedDaysRemaining = NSLocalizedString("%@ days until next forecast.", comment: "")
             if let gasForecast = gasForecast, self.isGas {
                 if let startDate = gasForecast.billingStartDate {
-                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
+                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     let daysRemaining = 7 - daysSinceBillingStart
                     if daysRemaining == 1 {
                         daysRemainingString = NSLocalizedString("1 day until next forecast.", comment: "")
@@ -507,7 +514,7 @@ class BillAnalysisViewModel {
             }
             if let elecForecast = elecForecast, !self.isGas {
                 if let startDate = elecForecast.billingStartDate {
-                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: Date()))
+                    let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     let daysRemaining = 7 - daysSinceBillingStart
                     if daysRemaining == 1 {
                         daysRemainingString = NSLocalizedString("1 day until next forecast.", comment: "")
