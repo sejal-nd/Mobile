@@ -344,8 +344,12 @@ class LoginViewController: UIViewController {
                                               .PeakSmart: isPeakSmart ? "true" : "false"])
         }
 
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        present(viewController!, animated: true, completion: nil)
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+            let navController = self.navigationController else {
+            return
+        }
+        navController.setNavigationBarHidden(true, animated: false)
+        navController.setViewControllers([viewController], animated: false)
     }
     
     func showErrorAlertWith(title: String?, message: String) {
