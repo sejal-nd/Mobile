@@ -292,6 +292,10 @@ class HomeBillCardViewModel {
                     return .paymentPending
                 }
                 
+                if billingInfo.netDueAmount ?? 0 > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
+                    return .billReadyAutoPay
+                }
+                
                 if billingInfo.scheduledPayment?.amount ?? 0 > 0 {
                     return .paymentScheduled
                 }
@@ -301,11 +305,7 @@ class HomeBillCardViewModel {
                 }
                 
                 if billingInfo.netDueAmount ?? 0 > 0 {
-                    if accountDetail.isAutoPay || accountDetail.isBGEasy {
-                        return .billReadyAutoPay
-                    } else {
-                        return .billReady
-                    }
+                    return .billReady
                 }
                 
                 if let billDate = billingInfo.billDate,
@@ -752,9 +752,14 @@ class HomeBillCardViewModel {
     private(set) lazy var amountFont: Driver<UIFont> = self.billState
         .map { $0 == .paymentPending ? OpenSans.semiboldItalic.of(size: 28): OpenSans.semibold.of(size: 36) }
     
-    private(set) lazy var automaticPaymentInfoButtonText: Driver<String?> = self.accountDetailDriver
+    private(set) lazy var automaticPaymentInfoButtonText: Driver<String> = self.accountDetailDriver
         .map { accountDetail in
-            if Environment.shared.opco == .bge && accountDetail.isBGEasy {
+            if let paymentAmountText = accountDetail.billingInfo.scheduledPayment?.amount.currencyString,
+                let paymentDateText = accountDetail.billingInfo.scheduledPayment?.date?.mmDdYyyyString {
+                return String.localizedStringWithFormat("You have an automatic payment of %@ for %@.",
+                                                        paymentAmountText,
+                                                        paymentDateText)
+            } else if Environment.shared.opco == .bge && accountDetail.isBGEasy {
                 return NSLocalizedString("You are enrolled in BGEasy", comment: "")
             } else {
                 return NSLocalizedString("You are enrolled in AutoPay." , comment: "")

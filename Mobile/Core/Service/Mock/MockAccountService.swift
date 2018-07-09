@@ -50,7 +50,24 @@ class MockAccountService: AccountService {
             return completion(ServiceResult.success(accountDetail))
             
         case "scheduledPayment":
-            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(scheduledPayment: PaymentItem(amount: 200)))
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 82,
+                                                                                              dueByDate: Date().addingTimeInterval(864_000),
+                                                                                              scheduledPayment: PaymentItem(amount: 82)))
+            return completion(ServiceResult.success(accountDetail))
+            
+        case "autoPay":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 82,
+                                                                       dueByDate: Date().addingTimeInterval(864_000)),
+                                              isAutoPay: true)
+            return completion(ServiceResult.success(accountDetail))
+            
+        case "autoPayScheduled":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 82,
+                                                                       dueByDate: Date().addingTimeInterval(864_000),
+                                                                       scheduledPayment: PaymentItem(amount: 82)),
+                                              isAutoPay: true)
             return completion(ServiceResult.success(accountDetail))
             
         case "thankYouForPayment":
@@ -110,6 +127,10 @@ class MockAccountService: AccountService {
         case "credit":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: -350.34))
+            return completion(ServiceResult.success(accountDetail))
+            
+        case "billNotReady":
+            let accountDetail = AccountDetail(accountNumber: "1234")
             return completion(ServiceResult.success(accountDetail))
             
         default:

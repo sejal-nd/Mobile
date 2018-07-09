@@ -43,7 +43,7 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var slideToPay24DisclaimerContainer: UIView!
     @IBOutlet weak var slideToPay24DisclaimerLabel: UILabel!
     
-    @IBOutlet weak var bankCreditNumberContainer: UIView!
+    @IBOutlet weak var walletItemInfoContainer: UIView!
     @IBOutlet weak var bankCreditNumberButton: ButtonControl!
     @IBOutlet weak var bankCreditCardImageView: UIImageView!
     @IBOutlet weak var bankCreditCardNumberLabel: UILabel!
@@ -56,7 +56,6 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var minimumPaymentContainer: UIView!
     @IBOutlet weak var minimumPaymentLabel: UILabel!
     
-    @IBOutlet weak var convenienceFeeContainer: UIView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
     @IBOutlet weak var a11yTutorialButtonContainer: UIView!
@@ -67,16 +66,14 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
     @IBOutlet weak var commericalBgeOtpVisaLabel: UILabel!
     
-    @IBOutlet weak var scheduledImageContainer: UIView!
+    @IBOutlet weak var scheduledPaymentContainer: UIView!
     @IBOutlet weak var scheduledImageView: UIImageView!
+    @IBOutlet weak var thankYouForSchedulingButton: UIButton!
     
-    @IBOutlet weak var autoPayImageContainer: UIView!
+    @IBOutlet weak var autoPayContainer: UIView!
     @IBOutlet weak var autoPayImageView: UIImageView!
+    @IBOutlet weak var autoPayButton: UIButton!
     
-    @IBOutlet weak var automaticPaymentInfoButton: ButtonControl!
-    @IBOutlet weak var automaticPaymentInfoButtonLabel: UILabel!
-    @IBOutlet weak var thankYouForSchedulingButton: ButtonControl!
-    @IBOutlet weak var thankYouForSchedulingButtonLabel: UILabel!
     @IBOutlet weak var oneTouchPayTCButton: ButtonControl!
     @IBOutlet weak var oneTouchPayTCButtonLabel: UILabel!
     
@@ -158,8 +155,12 @@ class HomeBillCardView: UIView {
         
         commericalBgeOtpVisaLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
-        automaticPaymentInfoButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
-        thankYouForSchedulingButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        autoPayContainer.layer.cornerRadius = 6
+        autoPayButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
+        autoPayButton.titleLabel?.numberOfLines = 0
+        scheduledPaymentContainer.layer.cornerRadius = 6
+        thankYouForSchedulingButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
+        thankYouForSchedulingButton.titleLabel?.numberOfLines = 0
         oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         viewBillButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
@@ -248,7 +249,7 @@ class HomeBillCardView: UIView {
         viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).disposed(by: bag)
         dueDateTooltip.isHidden = !viewModel.showDueDateTooltip
         viewModel.showReinstatementFeeText.not().drive(reinstatementFeeLabel.rx.isHidden).disposed(by: bag)
-        viewModel.showBankCreditButton.not().drive(bankCreditNumberContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showBankCreditButton.not().drive(walletItemInfoContainer.rx.isHidden).disposed(by: bag)
         viewModel.bankCreditButtonBorderColor.drive(bankCreditNumberButton.rx.borderColor).disposed(by: bag)
         viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredView.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountContainer.rx.isHidden).disposed(by: bag)
@@ -256,13 +257,13 @@ class HomeBillCardView: UIView {
             let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
             self?.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
         }).disposed(by: bag)
-        viewModel.showConvenienceFee.not().drive(convenienceFeeContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showConvenienceFee.not().drive(convenienceFeeLabel.rx.isHidden).disposed(by: bag)
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
         viewModel.showCommercialBgeOtpVisaLabel.not().drive(commercialBgeOtpVisaLabelContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showScheduledImageView.not().drive(scheduledImageContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showAutoPayIcon.not().drive(autoPayImageContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showAutomaticPaymentInfoButton.not().drive(automaticPaymentInfoButton.rx.isHidden).disposed(by: bag)
+        viewModel.showScheduledImageView.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showAutoPayIcon.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showAutomaticPaymentInfoButton.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
         viewModel.showScheduledPaymentInfoButton.not().drive(thankYouForSchedulingButton.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPayTCButton.not().drive(oneTouchPayTCButton.rx.isHidden).disposed(by: bag)
         
@@ -281,9 +282,9 @@ class HomeBillCardView: UIView {
         viewModel.minMaxPaymentAllowedText.drive(minimumPaymentLabel.rx.text).disposed(by: bag)
         viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).disposed(by: bag)
         viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).disposed(by: bag)
-        viewModel.automaticPaymentInfoButtonText.drive(automaticPaymentInfoButtonLabel.rx.text).disposed(by: bag)
-        viewModel.automaticPaymentInfoButtonText.drive(automaticPaymentInfoButton.rx.accessibilityLabel).disposed(by: bag)
-        viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButtonLabel.rx.text).disposed(by: bag)
+        viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.title(for: .normal)).disposed(by: bag)
+        viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButtonLabel.rx.text).disposed(by: bag)
         viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButton.rx.accessibilityLabel).disposed(by: bag)
@@ -465,7 +466,7 @@ class HomeBillCardView: UIView {
         .map(to: ())
         .map(OneTouchTutorialViewController.init)
     
-    private lazy var bgeasyViewController: Driver<UIViewController> = self.automaticPaymentInfoButton.rx.touchUpInside.asObservable()
+    private lazy var bgeasyViewController: Driver<UIViewController> = self.autoPayButton.rx.tap.asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { $0.isBGEasy }
         .map { _ in UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEasy") }
@@ -511,7 +512,7 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var autoPayViewController: Driver<UIViewController> = self.automaticPaymentInfoButton.rx.touchUpInside.asObservable()
+    private lazy var autoPayViewController: Driver<UIViewController> = self.autoPayButton.rx.tap.asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { !$0.isBGEasy }
         .map { accountDetail in
