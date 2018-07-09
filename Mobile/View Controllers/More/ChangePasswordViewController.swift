@@ -59,6 +59,9 @@ class ChangePasswordViewController: UIViewController, Alertable {
         return toolbar
     }()
     
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -162,23 +165,6 @@ class ChangePasswordViewController: UIViewController, Alertable {
             }).disposed(by: disposeBag)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    private func accessibilityErrorLabel() {
-        var message = ""
-        message += currentPasswordTextField.getError()
-        message += newPasswordTextField.getError()
-        message += confirmPasswordTextField.getError()
-        
-        if message.isEmpty {
-            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
-        } else {
-            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -200,6 +186,13 @@ class ChangePasswordViewController: UIViewController, Alertable {
     override func viewDidAppear(_ animated: Bool) {
         Analytics.log(event: .ChangePasswordOffer)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    // MARK: - Actions
     
     @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
@@ -266,6 +259,22 @@ class ChangePasswordViewController: UIViewController, Alertable {
             currentPasswordTextField.textField.isSecureTextEntry = true
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
             eyeballButton.accessibilityLabel = NSLocalizedString("Hide password activated", comment: "")
+        }
+    }
+    
+    
+    // MARK: - Helper
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        message += currentPasswordTextField.getError()
+        message += newPasswordTextField.getError()
+        message += confirmPasswordTextField.getError()
+        
+        if message.isEmpty {
+            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+        } else {
+            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
         }
     }
     
@@ -353,6 +362,9 @@ class ChangePasswordViewController: UIViewController, Alertable {
     }
     
 }
+
+
+// MARK: - TextField Delegate
 
 extension ChangePasswordViewController: UITextFieldDelegate {
     
