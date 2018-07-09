@@ -31,6 +31,7 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var paymentConfirmationContainer: UIView!
     @IBOutlet weak var paymentConfirmationImageView: UIImageView!
     
+    @IBOutlet weak var paymentDescriptionLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     
     @IBOutlet weak var dueDateStack: UIStackView!
@@ -230,6 +231,7 @@ class HomeBillCardView: UIView {
             .disposed(by: bag)
         
         viewModel.showHeaderView.not().drive(headerView.rx.isHidden).disposed(by: bag)
+        viewModel.showAlertAnimation.not().drive(headerAlertAnimationContainer.rx.isHidden).disposed(by: bag)
 //        viewModel.showAlertIcon.not().drive(alertContainer.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).disposed(by: bag)
         viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).disposed(by: bag)
@@ -241,6 +243,7 @@ class HomeBillCardView: UIView {
 //            .drive(titleLabelTopConstraint.rx.constant)
 //            .disposed(by: bag)
         
+        viewModel.showPaymentDescription.not().drive(paymentDescriptionLabel.rx.isHidden).disposed(by: bag)
         viewModel.showAmount.not().drive(amountLabel.rx.isHidden).disposed(by: bag)
         viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).disposed(by: bag)
         dueDateTooltip.isHidden = !viewModel.showDueDateTooltip
@@ -264,9 +267,8 @@ class HomeBillCardView: UIView {
         viewModel.showOneTouchPayTCButton.not().drive(oneTouchPayTCButton.rx.isHidden).disposed(by: bag)
         
         // Subview States
-//        viewModel.titleText.drive(titleLabel.rx.text).disposed(by: bag)
-//        viewModel.titleFont.drive(titleLabel.rx.font).disposed(by: bag)
-        viewModel.showAlertAnimation.not().drive(headerAlertAnimationContainer.rx.isHidden).disposed(by: bag)
+        viewModel.paymentDescriptionText.drive(paymentDescriptionLabel.rx.attributedText).disposed(by: bag)
+        viewModel.titleFont.drive(paymentDescriptionLabel.rx.font).disposed(by: bag)
         viewModel.resetAlertAnimation.drive(onNext: { [weak self] in self?.resetAnimation() }).disposed(by: bag)
         viewModel.headerText.drive(headerLabel.rx.attributedText).disposed(by: bag)
         viewModel.amountFont.drive(amountLabel.rx.font).disposed(by: bag)

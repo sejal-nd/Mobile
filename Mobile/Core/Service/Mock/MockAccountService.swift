@@ -30,6 +30,7 @@ class MockAccountService: AccountService {
         AccountsStore.shared.accounts = accounts
         AccountsStore.shared.currentAccount = accounts[0]
         AccountsStore.shared.customerIdentifier = "123"
+        RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = nil
         completion(ServiceResult.success(accounts as [Account]))
     }
     
@@ -59,6 +60,12 @@ class MockAccountService: AccountService {
                                               billingInfo: BillingInfo(lastPaymentAmount: 200,
                                                                        lastPaymentDate: now,
                                                                        billDate: yesterday))
+            return completion(ServiceResult.success(accountDetail))
+            
+        case "thankYouForPaymentOTP":
+            RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = PaymentDetails(amount: 234,
+                                                                                             date: Date().addingTimeInterval(-3600))
+            let accountDetail = AccountDetail(accountNumber: "1234")
             return completion(ServiceResult.success(accountDetail))
             
         case "pastDue":
@@ -93,7 +100,16 @@ class MockAccountService: AccountService {
             return completion(ServiceResult.success(accountDetail))
             
         case "paymentPending":
-            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 200, status: .pending)]))
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       dueByDate: Date().addingTimeInterval(864_000),
+                                                                       pendingPayments: [PaymentItem(amount: 200,
+                                                                                                     status: .pending)]))
+            return completion(ServiceResult.success(accountDetail))
+            
+        case "credit":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: -350.34))
             return completion(ServiceResult.success(accountDetail))
             
         default:

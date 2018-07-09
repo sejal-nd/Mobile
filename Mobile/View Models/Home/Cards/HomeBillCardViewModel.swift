@@ -336,6 +336,8 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showBillPaidIcon: Driver<Bool> = self.billState.map { $0 == .billPaid || $0 == .billPaidIntermediate }
     
+    private(set) lazy var showPaymentDescription: Driver<Bool> = self.paymentDescriptionText.isNil().not()
+    
     private(set) lazy var showSlideToPay24DisclaimerLabel: Driver<Bool> = self.billState.map { $0 == .billPaidIntermediate }
     
     private(set) lazy var showAmount: Driver<Bool> = self.billState.map { $0 != .billPaidIntermediate }
@@ -389,23 +391,28 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                                      self.accountDetailDriver)
-        .map { ($0 == .credit || $0 == .billReady) && !$1.isActiveSeverance && !$1.isCashOnly }
+    { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly }
+        .distinctUntilChanged()
     
-    private(set) lazy var showCommercialBgeOtpVisaLabel: Driver<Bool> = Driver.combineLatest(self.enableOneTouchSlider, self.accountDetailDriver, self.walletItemDriver).map {
-        guard let walletItem = $2 else { return false }
-        if !$0 {
-            // These first two if statements copy logic from self.enableOneTouchSlider - to ensure that we ONLY show the label if the
-            // reason that the slider is disabled is because of the BGE Commercial Visa scenario
-            if let minPaymentAmount = $1.billingInfo.minPaymentAmount, $1.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.shared.opco != .bge {
-                return false
-            } else if $1.billingInfo.netDueAmount ?? 0 < 0 && Environment.shared.opco == .bge {
-                return false
-            } else if let cardIssuer = walletItem.cardIssuer, cardIssuer == "Visa" && Environment.shared.opco == .bge && !$1.isResidential && !$1.isActiveSeverance && !$1.isCashOnly {
-                return true
-            }
+    private(set) lazy var showCommercialBgeOtpVisaLabel: Driver<Bool> = Driver.combineLatest(self.enableOneTouchSlider,
+                                                                                             self.showOneTouchPaySlider,
+                                                                                             self.accountDetailDriver,
+                                                                                             self.walletItemDriver)
+    { enableOneTouchSlider, showOneTouchPaySlider, accountDetail, walletItem in
+        guard let walletItem = walletItem else { return false }
+        guard showOneTouchPaySlider && !enableOneTouchSlider else { return false }
+        guard Environment.shared.opco == .bge else { return false }
+        
+        // Min/Max payment amount state takes precedence
+        guard accountDetail.billingInfo.netDueAmount ?? 0 >= accountDetail.minPaymentAmount(bankOrCard: .card) else { return false }
+        guard accountDetail.billingInfo.netDueAmount ?? 0 <= accountDetail.maxPaymentAmount(bankOrCard: .card) else { return false }
+        
+        guard walletItem.cardIssuer == "Visa" else { return false }
+        guard !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly else { return false }
+        
+        return true
         }
-        return false
-    }
+        .distinctUntilChanged()
     
     private(set) lazy var showScheduledImageView: Driver<Bool> = self.billState.map { $0 == .paymentScheduled }
     
@@ -421,53 +428,56 @@ class HomeBillCardViewModel {
     
     
     // MARK: - View States
-    private(set) lazy var titleText: Driver<String?> = Driver.combineLatest(self.billState, self.accountDetailDriver)
+    private(set) lazy var paymentDescriptionText: Driver<NSAttributedString?> = Driver.combineLatest(self.billState, self.accountDetailDriver)
     { (billState, accountDetail) in
         
         switch billState {
-        case .restoreService:
-            return NSLocalizedString("Amount Due to Restore Service", comment: "")
-        case .catchUp:
-            return NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")
-        case .avoidShutoff:
-            switch Environment.shared.opco {
-            case .bge:
-                if AccountsStore.shared.currentAccount.isMultipremise {
-                    return NSLocalizedString("Amount due to avoid shutoff for your multi-premise bill", comment: "")
-                } else {
-                    return NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
-                }
-            case .comEd, .peco:
-                return NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
-            }
-        case .pastDue:
-            return NSLocalizedString("Amount Past Due", comment: "")
-        case .billReady, .billReadyAutoPay, .paymentScheduled:
-            if accountDetail.billingInfo.netDueAmount ?? 0 < 0 {
-                return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
-            } else if Environment.shared.opco == .bge && AccountsStore.shared.currentAccount.isMultipremise {
-                return NSLocalizedString("Your multi-premise bill is ready", comment: "")
-            } else {
-                return NSLocalizedString("Your bill is ready", comment: "")
-            }
+//        case .restoreService:
+//            return NSLocalizedString("Amount Due to Restore Service", comment: "")
+//        case .catchUp:
+//            return NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")
+//        case .avoidShutoff:
+//            switch Environment.shared.opco {
+//            case .bge:
+//                if AccountsStore.shared.currentAccount.isMultipremise {
+//                    return NSLocalizedString("Amount due to avoid shutoff for your multi-premise bill", comment: "")
+//                } else {
+//                    return NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
+//                }
+//            case .comEd, .peco:
+//                return NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
+//            }
+//        case .pastDue:
+//            return NSLocalizedString("Amount Past Due", comment: "")
+//        case .billReady, .billReadyAutoPay, .paymentScheduled:
+//            if accountDetail.billingInfo.netDueAmount ?? 0 < 0 {
+//                return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+//            } else if Environment.shared.opco == .bge && AccountsStore.shared.currentAccount.isMultipremise {
+//                return NSLocalizedString("Your multi-premise bill is ready", comment: "")
+//            } else {
+//                return NSLocalizedString("Your bill is ready", comment: "")
+//            }
         case .billPaid, .billPaidIntermediate:
-            return NSLocalizedString("Thank you for your payment", comment: "")
-        case .credit:
-            return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+            let text = NSLocalizedString("Thank you for your payment", comment: "")
+            return NSAttributedString(string: text, attributes: [.font: OpenSans.semibold.of(textStyle: .title1),
+                                                                 .foregroundColor: UIColor.deepGray])
         case .paymentPending:
+            let text: String
             switch Environment.shared.opco {
             case .bge:
-                return NSLocalizedString("Your payment is processing", comment: "")
+                text = NSLocalizedString("Your payment is processing", comment: "")
             case .comEd, .peco:
-                return NSLocalizedString("Your payment is pending", comment: "")
+                text = NSLocalizedString("Your payment is pending", comment: "")
             }
-        case .billNotReady:
+            return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .title1),
+                                                                 .foregroundColor: UIColor.deepGray])
+        default:
             return nil
         }
     }
     
-    private(set) lazy var titleA11yText: Driver<String?> = self.titleText.map {
-        $0?.replacingOccurrences(of: "shutoff", with: "shut-off")
+    private(set) lazy var titleA11yText: Driver<String?> = self.paymentDescriptionText.map {
+        $0?.string.replacingOccurrences(of: "shutoff", with: "shut-off")
             .replacingOccurrences(of: "Shutoff", with: "shut-off")
     }
     
@@ -573,7 +583,7 @@ class HomeBillCardViewModel {
                                                    .font: OpenSans.semibold.of(textStyle: .subheadline)])
         case .credit:
             return NSAttributedString(string: NSLocalizedString("No amount due", comment: ""),
-                                      attributes: [.foregroundColor: UIColor.errorRed,
+                                      attributes: [.foregroundColor: UIColor.deepGray,
                                                    .font: OpenSans.semibold.of(textStyle: .subheadline)])
         default:
             if let dueByDate = accountDetail.billingInfo.dueByDate {
@@ -720,11 +730,12 @@ class HomeBillCardViewModel {
             if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.shared.opco == .bge {
                 return false
             }
-            if let cardIssuer = walletItem?.cardIssuer, cardIssuer == "Visa", Environment.shared.opco == .bge, !accountDetail.isResidential {
+            if walletItem?.cardIssuer == "Visa", Environment.shared.opco == .bge, !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly {
                 return false
             }
             return true
         }
+        .distinctUntilChanged()
     
     private(set) lazy var titleFont: Driver<UIFont> = self.billState
         .map {
