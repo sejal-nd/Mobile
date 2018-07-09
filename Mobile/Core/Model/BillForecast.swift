@@ -47,6 +47,7 @@ struct BillForecast: Mappable {
     
     private let utilityAccount: NSDictionary
     let meterType: String // "ELEC" or "GAS"
+    var meterUnit: String
     
     init(map: Mapper) throws {
         errorMessage = map.optionalFrom("errorMessage")
@@ -64,6 +65,17 @@ struct BillForecast: Mappable {
         
         try utilityAccount = map.from("utilityAccountDTO")
         meterType = utilityAccount.object(forKey: "meterType") as! String
+        
+        do {
+            try meterUnit = map.from("meterUnit")
+        } catch {
+            meterUnit = ""
+        }
+        if meterUnit == "KWH" {
+            meterUnit = "kWh"
+        } else if meterUnit == "THERM" {
+            meterUnit = "therms"
+        }
     }
 }
 
