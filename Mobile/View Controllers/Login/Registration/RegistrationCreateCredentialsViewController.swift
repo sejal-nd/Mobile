@@ -130,7 +130,7 @@ class RegistrationCreateCredentialsViewController: UIViewController, Alertable {
     
     @objc private func suggestPassword() {
         guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
-        presentAlert(title: "Suggested Password:\n\n\(strongPassword)",
+        presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
             message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
             style: .actionSheet,
             actions:
@@ -139,8 +139,8 @@ class RegistrationCreateCredentialsViewController: UIViewController, Alertable {
                 self?.viewModel.confirmPassword.value = strongPassword
                 self?.createPasswordTextField.textField.text = strongPassword
                 self?.confirmPasswordTextField.textField.text = strongPassword
-                self?.createPasswordTextField.textField.backgroundColor = .yellow
-                self?.confirmPasswordTextField.textField.backgroundColor = .yellow
+                self?.createPasswordTextField.textField.backgroundColor = .autoFillYellow
+                self?.confirmPasswordTextField.textField.backgroundColor = .autoFillYellow
                 self?.createPasswordTextField.textField.resignFirstResponder()
                 },
              UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])

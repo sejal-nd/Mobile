@@ -237,7 +237,7 @@ class ChangePasswordViewController: UIViewController, Alertable {
     
     @objc private func suggestPassword() {
         guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
-        presentAlert(title: "Suggested Password:\n\n\(strongPassword)",
+        presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
                      message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
                      style: .actionSheet,
                      actions:
@@ -246,6 +246,8 @@ class ChangePasswordViewController: UIViewController, Alertable {
                             self?.viewModel.confirmPassword.value = strongPassword
                             self?.newPasswordTextField.textField.text = strongPassword
                             self?.confirmPasswordTextField.textField.text = strongPassword
+                            self?.newPasswordTextField.textField.backgroundColor = .autoFillYellow
+                            self?.confirmPasswordTextField.textField.backgroundColor = .autoFillYellow
                             self?.newPasswordTextField.textField.resignFirstResponder()
                             },
                          UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
@@ -356,6 +358,9 @@ extension ChangePasswordViewController: UITextFieldDelegate {
     
     // Don't allow whitespace entry in the newPasswordTextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        newPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+        confirmPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+        
         if string.count == 0 { // Allow backspace
             return true
         }
