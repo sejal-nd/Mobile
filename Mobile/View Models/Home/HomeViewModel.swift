@@ -143,4 +143,6 @@ class HomeViewModel {
         return true
     }
     
+    private(set) lazy var shouldShowProjectedBillCard: Driver<Bool> = self.projectedBillCardViewModel.cardShouldBeHidden.not().asDriver(onErrorDriveWith: .empty())
+    
 }
