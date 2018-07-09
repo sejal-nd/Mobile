@@ -47,9 +47,8 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var bankCreditNumberButton: ButtonControl!
     @IBOutlet weak var bankCreditCardImageView: UIImageView!
     @IBOutlet weak var bankCreditCardNumberLabel: UILabel!
-    @IBOutlet weak var bankCreditCardExpiredView: UIView!
+    @IBOutlet weak var bankCreditCardExpiredContainer: UIView!
     
-    @IBOutlet weak var saveAPaymentAccountContainer: UIView!
     @IBOutlet weak var saveAPaymentAccountButton: ButtonControl!
     @IBOutlet weak var saveAPaymentAccountLabel: UILabel!
     
@@ -77,8 +76,8 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var oneTouchPayTCButton: ButtonControl!
     @IBOutlet weak var oneTouchPayTCButtonLabel: UILabel!
     
-    @IBOutlet weak var viewBillContainer: UIView!
-    @IBOutlet weak var viewBillButton: UIButton!
+    @IBOutlet weak var viewBillButton: ButtonControl!
+    @IBOutlet weak var viewBillButtonLabel: UILabel!
     
     @IBOutlet weak var billNotReadyStack: UIStackView!
     @IBOutlet weak var billNotReadyLabel: UILabel!
@@ -155,15 +154,19 @@ class HomeBillCardView: UIView {
         
         commericalBgeOtpVisaLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
-        autoPayContainer.layer.cornerRadius = 6
-        autoPayButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
-        autoPayButton.titleLabel?.numberOfLines = 0
+        walletItemInfoContainer.layer.cornerRadius = 6
+        
         scheduledPaymentContainer.layer.cornerRadius = 6
         thankYouForSchedulingButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
         thankYouForSchedulingButton.titleLabel?.numberOfLines = 0
+        
+        autoPayContainer.layer.cornerRadius = 6
+        autoPayButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
+        autoPayButton.titleLabel?.numberOfLines = 0
+        
         oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
-        viewBillButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        viewBillButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
         
         billNotReadyLabel.font = OpenSans.regular.of(textStyle: .title1)
         billNotReadyLabel.setLineHeight(lineHeight: 26)
@@ -249,10 +252,11 @@ class HomeBillCardView: UIView {
         viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).disposed(by: bag)
         dueDateTooltip.isHidden = !viewModel.showDueDateTooltip
         viewModel.showReinstatementFeeText.not().drive(reinstatementFeeLabel.rx.isHidden).disposed(by: bag)
-        viewModel.showBankCreditButton.not().drive(walletItemInfoContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showWalletItemInfo.not().drive(walletItemInfoContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showBankCreditNumberButton.not().drive(bankCreditNumberButton.rx.isHidden).disposed(by: bag)
         viewModel.bankCreditButtonBorderColor.drive(bankCreditNumberButton.rx.borderColor).disposed(by: bag)
-        viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredView.rx.isHidden).disposed(by: bag)
-        viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.asObservable().subscribe(onNext: { [weak self] show in
             let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
             self?.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
@@ -323,7 +327,7 @@ class HomeBillCardView: UIView {
     }
     
     // Actions
-    private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.tap.asDriver()
+    private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
         .do(onNext: {
             Analytics.log(event: .ViewBillBillCard)
         })

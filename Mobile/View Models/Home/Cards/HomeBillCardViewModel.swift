@@ -344,9 +344,12 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.walletItemDriver,
                                                                                   self.showOneTouchPaySlider,
-                                                                                  self.billState,
-                                                                                  self.enableOneTouchSlider)
-        .map { $0 != nil && $1 && $2 != .credit && !$2.isPrecariousBillSituation && $2 != .paymentScheduled && $2 != .billReadyAutoPay && $3 }
+                                                                                  self.billState)
+    {
+        $0?.bankOrCard == .card &&
+            $1 &&
+            $2 != .credit && !$2.isPrecariousBillSituation && $2 != .paymentScheduled && $2 != .billReadyAutoPay
+    }
     
     private(set) lazy var showDueDate: Driver<Bool> = self.billState.map {
         switch ($0) {
@@ -361,15 +364,15 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showReinstatementFeeText: Driver<Bool> = self.reinstatementFeeText.isNil().not()
     
-    private(set) lazy var showBankCreditButton: Driver<Bool> = Driver.combineLatest(self.billState,
-                                                                          self.walletItemDriver,
-                                                                          self.showOneTouchPaySlider,
-                                                                          self.enableOneTouchSlider)
-        { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .billReadyAutoPay && $1 != nil && $2 && ($3 || $1!.isExpired) }
+    private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver.combineLatest(self.showOneTouchPaySlider,
+                                                                                  self.showMinMaxPaymentAllowed)
+    { $0 && !$1 }
+        .distinctUntilChanged()
+    
+    private(set) lazy var showBankCreditNumberButton: Driver<Bool> = self.walletItemDriver.isNil().not()
     
     private(set) lazy var showBankCreditExpiredLabel: Driver<Bool> = self.walletItemDriver.map {
-        guard let walletItem = $0 else { return false }
-        return walletItem.isExpired
+        $0?.isExpired ?? false
     }
     
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.billState,
@@ -388,6 +391,7 @@ class HomeBillCardViewModel {
             showOneTouchPaySlider &&
             minMaxPaymentAllowedText != nil
     }
+        .distinctUntilChanged()
     
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                                      self.accountDetailDriver)
@@ -423,8 +427,10 @@ class HomeBillCardViewModel {
     private(set) lazy var showScheduledPaymentInfoButton: Driver<Bool> = self.billState.map { $0 == .paymentScheduled }
     
     private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(self.showOneTouchPaySlider,
-                                                                             self.enableOneTouchSlider,
-                                                                             self.billState) { $0 && $1 && $2 != .paymentScheduled }
+                                                                                       self.showCommercialBgeOtpVisaLabel,
+                                                                                       self.showMinMaxPaymentAllowed)
+    { $0 && !$1 && !$2 }
+        .distinctUntilChanged()
     
     
     // MARK: - View States

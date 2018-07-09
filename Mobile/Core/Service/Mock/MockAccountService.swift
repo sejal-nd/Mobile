@@ -38,15 +38,29 @@ class MockAccountService: AccountService {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         switch loggedInUsername {
         case "billCardNoDefaultPayment", "billCardWithDefaultPayment":
-            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200))
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       dueByDate: Date().addingTimeInterval(864_000)))
+            return completion(ServiceResult.success(accountDetail))
+            
+        case "billCardWithDefaultCcPayment", "billCardWithExpiredDefaultPayment":
+            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200), isResidential: false)
+            return completion(ServiceResult.success(accountDetail))
+            
+        case "minPaymentAmount":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 0.001,
+                                                                       dueByDate: Date().addingTimeInterval(864_000)))
+            return completion(ServiceResult.success(accountDetail))
+            
+        case "maxPaymentAmount":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 100_000_000,
+                                                                       dueByDate: Date().addingTimeInterval(864_000)))
             return completion(ServiceResult.success(accountDetail))
             
         case "cashOnly":
             let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200, dueByDate: Date().addingTimeInterval(864_000)), isCashOnly: true)
-            return completion(ServiceResult.success(accountDetail))
-            
-        case "billCardWithDefaultCcPayment", "billCardWithExpiredDefaultPayment":
-            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200), isResidential: true)
             return completion(ServiceResult.success(accountDetail))
             
         case "scheduledPayment":
