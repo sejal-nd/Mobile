@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1000" image="ic_day_clear" translatesAutoresizingMaskIntoConstraints="NO" id="SHa-ya-BJD">
-                            <rect key="frame" x="315" y="-2" width="100" height="100"/>
+                            <rect key="frame" x="315" y="-2" width="60" height="100"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUa-ac-9jQ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                             <rect key="frame" x="16" y="66" width="142.5" height="23"/>
@@ -81,6 +81,7 @@
                         <constraint firstItem="OUa-ac-9jQ" firstAttribute="leading" secondItem="BP2-c6-ApN" secondAttribute="leading" constant="16" id="8E3-eM-Zum"/>
                         <constraint firstItem="BMC-No-7F0" firstAttribute="leading" secondItem="BP2-c6-ApN" secondAttribute="leading" constant="16" id="Awc-GE-5kT"/>
                         <constraint firstItem="SHa-ya-BJD" firstAttribute="leading" secondItem="YPp-Uj-Jc0" secondAttribute="trailing" constant="8" id="Q3b-q8-kTM"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SHa-ya-BJD" secondAttribute="trailing" id="Y5l-zQ-oRd"/>
                         <constraint firstItem="YPp-Uj-Jc0" firstAttribute="centerY" secondItem="BP2-c6-ApN" secondAttribute="centerY" constant="-8" id="btx-cV-Hby"/>
                         <constraint firstItem="SHa-ya-BJD" firstAttribute="centerY" secondItem="BP2-c6-ApN" secondAttribute="centerY" constant="-2" id="nL2-Vv-w51"/>
                         <constraint firstItem="BMC-No-7F0" firstAttribute="centerY" secondItem="BP2-c6-ApN" secondAttribute="centerY" constant="-8" id="r39-yc-Y6S"/>
