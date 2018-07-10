@@ -66,10 +66,9 @@ struct BillForecast: Mappable {
         try utilityAccount = map.from("utilityAccountDTO")
         meterType = utilityAccount.object(forKey: "meterType") as! String
         
-        do {
-            try meterUnit = map.from("meterUnit")
-        } catch {
-            meterUnit = ""
+        meterUnit = ""
+        if let unit = utilityAccount.object(forKey: "meterUnit") as? String {
+            meterUnit = unit
         }
         if meterUnit == "KWH" {
             meterUnit = "kWh"
