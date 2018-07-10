@@ -124,7 +124,7 @@
                                 <constraint firstItem="jJs-RE-1he" firstAttribute="centerX" secondItem="rts-AX-LrX" secondAttribute="centerX" id="gSN-xW-DBG"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="NO"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
