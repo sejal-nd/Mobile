@@ -73,6 +73,7 @@ class HomeProjectedBillCardView: UIView {
         viewMoreButton.addTopBorder(color: UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1), width: 1)
         viewMoreButton.roundCorners([.bottomLeft, .bottomRight], radius: 10)
         viewMoreButton.backgroundColorOnPress = .softGray
+        viewMoreButton.accessibilityLabel = NSLocalizedString("View More", comment: "")
     }
     
     private func bindViewModel() {

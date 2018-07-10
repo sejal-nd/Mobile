@@ -60,14 +60,14 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tS3-Jt-yAh">
                                                     <rect key="frame" x="116" y="0.0" width="143" height="111"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqP-4o-FJD">
-                                                            <rect key="frame" x="20" y="31" width="103" height="46.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqP-4o-FJD">
+                                                            <rect key="frame" x="0.0" y="31" width="143" height="46.5"/>
                                                             <fontDescription key="fontDescription" name="OpenSans-SemiboldItalic" family="Open Sans" pointSize="34"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APR 12 - MAY 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbN-nx-82e">
-                                                            <rect key="frame" x="26.5" y="77.5" width="90.5" height="16.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APR 12 - MAY 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbN-nx-82e">
+                                                            <rect key="frame" x="0.0" y="77.5" width="143" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -76,10 +76,14 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="fbN-nx-82e" firstAttribute="top" secondItem="bqP-4o-FJD" secondAttribute="bottom" id="AVi-MV-0au"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bqP-4o-FJD" secondAttribute="trailing" id="Fjs-KS-8od"/>
+                                                        <constraint firstItem="bqP-4o-FJD" firstAttribute="leading" secondItem="tS3-Jt-yAh" secondAttribute="leading" id="I0k-WB-Ewm"/>
                                                         <constraint firstItem="bqP-4o-FJD" firstAttribute="centerX" secondItem="tS3-Jt-yAh" secondAttribute="centerX" id="Ifk-Xi-Bhb"/>
                                                         <constraint firstItem="fbN-nx-82e" firstAttribute="centerX" secondItem="tS3-Jt-yAh" secondAttribute="centerX" id="NWa-Ix-TOG"/>
                                                         <constraint firstItem="bqP-4o-FJD" firstAttribute="top" secondItem="tS3-Jt-yAh" secondAttribute="top" constant="31" id="OkI-Rg-MGf"/>
                                                         <constraint firstAttribute="bottom" secondItem="fbN-nx-82e" secondAttribute="bottom" constant="17" id="XQ6-kK-eVW"/>
+                                                        <constraint firstItem="fbN-nx-82e" firstAttribute="leading" secondItem="tS3-Jt-yAh" secondAttribute="leading" id="ark-se-K5M"/>
+                                                        <constraint firstAttribute="trailing" secondItem="fbN-nx-82e" secondAttribute="trailing" id="kXV-wu-krU"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've spent about $59 so far this bill period." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sh-Ha-qR4">
