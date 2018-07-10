@@ -433,6 +433,13 @@ class HomeViewController: AccountPickerViewController {
                 self?.navigationController?.pushViewController(billAnalysis, animated: true)
             }).disposed(by: projectedBillCardView.disposeBag)
         
+        projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+            let alertVc = UIAlertController(title: NSLocalizedString("Estimated Amount", comment: ""),
+                                            message: NSLocalizedString("This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: ""),
+                                            preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self?.present(alertVc, animated: true, completion: nil)
+        }).disposed(by: projectedBillCardView.disposeBag)
     }
     
     @objc func killRefresh() -> Void {

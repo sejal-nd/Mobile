@@ -58,16 +58,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tS3-Jt-yAh">
-                                                    <rect key="frame" x="116" y="0.0" width="143" height="111"/>
+                                                    <rect key="frame" x="116" y="0.0" width="143" height="113.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqP-4o-FJD">
-                                                            <rect key="frame" x="20" y="31" width="103" height="46.5"/>
-                                                            <fontDescription key="fontDescription" name="OpenSans-SemiboldItalic" family="Open Sans" pointSize="34"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APR 12 - MAY 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbN-nx-82e">
-                                                            <rect key="frame" x="26.5" y="77.5" width="90.5" height="16.5"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="H4x-4C-4sr">
+                                                            <rect key="frame" x="0.0" y="31" width="143" height="51.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="$00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqP-4o-FJD">
+                                                                    <rect key="frame" x="0.0" y="6" width="104" height="40"/>
+                                                                    <fontDescription key="fontDescription" name="OpenSans-SemiboldItalic" family="Open Sans" pointSize="34"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izL-VW-bDo">
+                                                                    <rect key="frame" x="117" y="6" width="26" height="40"/>
+                                                                    <state key="normal" image="ic_question"/>
+                                                                </button>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="izL-VW-bDo" firstAttribute="height" secondItem="bqP-4o-FJD" secondAttribute="height" id="01R-Bd-Wq8"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APR 12 - MAY 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbN-nx-82e">
+                                                            <rect key="frame" x="0.0" y="82.5" width="143" height="14"/>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -75,15 +87,18 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="fbN-nx-82e" firstAttribute="top" secondItem="bqP-4o-FJD" secondAttribute="bottom" id="AVi-MV-0au"/>
-                                                        <constraint firstItem="bqP-4o-FJD" firstAttribute="centerX" secondItem="tS3-Jt-yAh" secondAttribute="centerX" id="Ifk-Xi-Bhb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="H4x-4C-4sr" secondAttribute="trailing" id="0Kd-hs-GXe"/>
                                                         <constraint firstItem="fbN-nx-82e" firstAttribute="centerX" secondItem="tS3-Jt-yAh" secondAttribute="centerX" id="NWa-Ix-TOG"/>
-                                                        <constraint firstItem="bqP-4o-FJD" firstAttribute="top" secondItem="tS3-Jt-yAh" secondAttribute="top" constant="31" id="OkI-Rg-MGf"/>
                                                         <constraint firstAttribute="bottom" secondItem="fbN-nx-82e" secondAttribute="bottom" constant="17" id="XQ6-kK-eVW"/>
+                                                        <constraint firstItem="fbN-nx-82e" firstAttribute="leading" secondItem="tS3-Jt-yAh" secondAttribute="leading" id="ark-se-K5M"/>
+                                                        <constraint firstItem="H4x-4C-4sr" firstAttribute="leading" secondItem="tS3-Jt-yAh" secondAttribute="leading" id="f1J-Xj-fQS"/>
+                                                        <constraint firstAttribute="trailing" secondItem="fbN-nx-82e" secondAttribute="trailing" id="kXV-wu-krU"/>
+                                                        <constraint firstItem="H4x-4C-4sr" firstAttribute="top" secondItem="tS3-Jt-yAh" secondAttribute="top" constant="31" id="t8S-2m-TcB"/>
+                                                        <constraint firstItem="fbN-nx-82e" firstAttribute="top" secondItem="H4x-4C-4sr" secondAttribute="bottom" id="uLl-6y-O4a"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've spent about $59 so far this bill period." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sh-Ha-qR4">
-                                                    <rect key="frame" x="51.5" y="111" width="272.5" height="18"/>
+                                                    <rect key="frame" x="56.5" y="113.5" width="262.5" height="15.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -124,7 +139,7 @@
                                 <constraint firstItem="jJs-RE-1he" firstAttribute="centerX" secondItem="rts-AX-LrX" secondAttribute="centerX" id="gSN-xW-DBG"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="NO"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
@@ -155,9 +170,10 @@
             <connections>
                 <outlet property="clippingView" destination="VJx-Kx-aeE" id="J6a-75-AgH"/>
                 <outlet property="contentView" destination="oxa-oP-USt" id="kLw-ES-5iM"/>
+                <outlet property="infoButton" destination="izL-VW-bDo" id="Gt3-mO-cxH"/>
                 <outlet property="projectionFooterLabel" destination="8sh-Ha-qR4" id="i0S-ms-DgH"/>
                 <outlet property="projectionLabel" destination="bqP-4o-FJD" id="0Z5-FV-WPQ"/>
-                <outlet property="projectionLabelTopSpaceConstraint" destination="OkI-Rg-MGf" id="pQS-z7-iV3"/>
+                <outlet property="projectionLabelTopSpaceConstraint" destination="t8S-2m-TcB" id="JtS-bd-FV0"/>
                 <outlet property="projectionSubLabel" destination="fbN-nx-82e" id="77Z-nA-TBB"/>
                 <outlet property="segmentedControl" destination="t6n-r4-YBB" id="7kx-lY-4UZ"/>
                 <outlet property="segmentedControlContainer" destination="J2y-A3-9xY" id="r0Q-Es-fEm"/>
@@ -169,4 +185,7 @@
             <point key="canvasLocation" x="33.5" y="-52"/>
         </view>
     </objects>
+    <resources>
+        <image name="ic_question" width="17" height="17"/>
+    </resources>
 </document>
