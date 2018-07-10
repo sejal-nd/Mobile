@@ -14,7 +14,6 @@ class HomeBillCardUITests: ExelonUITestCase {
     func testNoDefaultPaymentSetWithBill() {
         doLogin(username: "billCardNoDefaultPayment")
         
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Your bill is ready"].waitForExistence(timeout: 3))
         XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].waitForExistence(timeout: 3))
         
         let setDefaultPaymentAccountButton = app.scrollViews.otherElements.buttons["Set a default payment account"]
@@ -30,7 +29,6 @@ class HomeBillCardUITests: ExelonUITestCase {
     func testDefaultPaymentSetWithBill() {
         doLogin(username: "billCardWithDefaultPayment")
         
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Your bill is ready"].waitForExistence(timeout: 3))
         XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].waitForExistence(timeout: 3))
         XCTAssertFalse(app.scrollViews.otherElements.buttons["Set a default payment account"].exists, "Set payment account button should be hidden when one is already set")
         XCTAssert(app.scrollViews.otherElements.buttons["Bank account, Account ending in 1234"].exists, "Should display the default one touch pay account")
@@ -40,7 +38,7 @@ class HomeBillCardUITests: ExelonUITestCase {
     func testScheduledPayment() {
         doLogin(username: "scheduledPayment")
         
-        let predicate = NSPredicate(format: "label CONTAINS 'Thank you for scheduling your $200.00 payment'")
+        let predicate = NSPredicate(format: "label CONTAINS 'Thank you for scheduling your $82.00 payment'")
         let thankYouButton = app.scrollViews.otherElements.buttons.element(matching: predicate)
         XCTAssert(thankYouButton.waitForExistence(timeout: 3))
         
@@ -58,21 +56,21 @@ class HomeBillCardUITests: ExelonUITestCase {
     func testPastDue() {
         doLogin(username: "pastDue")
         
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Past Due"].waitForExistence(timeout: 3))
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Your bill is past due."].waitForExistence(timeout: 3))
         XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Due Immediately"].exists)
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount due immediately"].exists)
     }
     
     func testAvoidShutoff() {
         doLogin(username: "avoidShutoff")
         
         if appName.contains("BGE") {
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due to Avoid Service Interruption"].waitForExistence(timeout: 3))
+            XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00 is due in 10 days to avoid service interruption."].waitForExistence(timeout: 3))
         } else {
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due to Avoid Shutoff"].waitForExistence(timeout: 3))
+            XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00 is due immediately to avoid shutoff."].waitForExistence(timeout: 3))
         }
-        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Due Immediately"].exists)
+        XCTAssert(app.scrollViews.otherElements.staticTexts["$350.00"].exists)
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount due in 10 days"].exists)
     }
     
     func testPaymentPending() {
