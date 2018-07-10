@@ -705,6 +705,9 @@
 		B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */; };
 		B0030D0D2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */; };
 		B0030D0E2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */; };
+		B011C0BB20F5063A00C900BE /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
+		B011C0BC20F5063B00C900BE /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
+		B011C0BD20F5063C00C900BE /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		B067E0A32045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
 		B067E0A42045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
 		B067E0A52045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
@@ -6810,6 +6813,7 @@
 				E8AD93911EEF2AFB00882444 /* SecurityQuestion.swift in Sources */,
 				E840CB381F82D13A00357780 /* AutoPayViewModelTests.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
+				B011C0BB20F5063A00C900BE /* RecentPaymentsStore.swift in Sources */,
 				9C47AED8203E3142000AECF4 /* BillComparisonInitExtensions.swift in Sources */,
 				B067E0AE2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				E8039FF81EFB041D004DB789 /* BGEAutoPayInfo.swift in Sources */,
@@ -7009,6 +7013,7 @@
 				E8F62B96200924410077B3DA /* SecurityQuestion.swift in Sources */,
 				E8F62B97200924410077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62B98200924410077B3DA /* BillViewModelTests.swift in Sources */,
+				B011C0BC20F5063B00C900BE /* RecentPaymentsStore.swift in Sources */,
 				9C47AED9203E3142000AECF4 /* BillComparisonInitExtensions.swift in Sources */,
 				B067E0AF2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				E8F62B99200924410077B3DA /* BGEAutoPayInfo.swift in Sources */,
@@ -7174,6 +7179,7 @@
 				E8F62C4B200924570077B3DA /* SecurityQuestion.swift in Sources */,
 				E8F62C4C200924570077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62C4D200924570077B3DA /* BillViewModelTests.swift in Sources */,
+				B011C0BD20F5063C00C900BE /* RecentPaymentsStore.swift in Sources */,
 				9C47AEDA203E3143000AECF4 /* BillComparisonInitExtensions.swift in Sources */,
 				B067E0B02045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				E8F62C4E200924570077B3DA /* BGEAutoPayInfo.swift in Sources */,
