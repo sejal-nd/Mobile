@@ -13,6 +13,10 @@ class MockAccountService: AccountService {
     var mockAccounts: [Account] = [
         Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!,
         Account.from(["accountNumber": "9836621902", "address": "E. Fort Ave, Ste. 200"])!,
+        Account(accountNumber: "4234332133",
+                address: "E. Fort Ave, Ste. 201",
+                premises: ["1", "2", "3"].map { Premise(premiseNumber: $0, addressLine: [$0]) },
+                currentPremise: Premise(premiseNumber: "1"))
     ]
     var mockAccountDetails: [AccountDetail] = [
         AccountDetail.from(["accountNumber": "1234567890", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
@@ -36,50 +40,57 @@ class MockAccountService: AccountService {
     
     func fetchAccountDetail(account: Account, completion: @escaping (ServiceResult<AccountDetail>) -> Void) {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
+        let tenDaysFromToday = Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000)
         switch loggedInUsername {
         case "billCardNoDefaultPayment", "billCardWithDefaultPayment":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
-                                                                       dueByDate: Date().addingTimeInterval(864_000)))
+                                                                       dueByDate: tenDaysFromToday))
             return completion(ServiceResult.success(accountDetail))
             
         case "billCardWithDefaultCcPayment", "billCardWithExpiredDefaultPayment":
-            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200), isResidential: false)
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       dueByDate: tenDaysFromToday),
+                                              isResidential: false)
             return completion(ServiceResult.success(accountDetail))
             
         case "minPaymentAmount":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 0.001,
-                                                                       dueByDate: Date().addingTimeInterval(864_000)))
+                                                                       dueByDate: tenDaysFromToday))
             return completion(ServiceResult.success(accountDetail))
             
         case "maxPaymentAmount":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 100_000_000,
-                                                                       dueByDate: Date().addingTimeInterval(864_000)))
+                                                                       dueByDate: tenDaysFromToday))
             return completion(ServiceResult.success(accountDetail))
             
         case "cashOnly":
-            let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 200, dueByDate: Date().addingTimeInterval(864_000)), isCashOnly: true)
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       dueByDate: tenDaysFromToday),
+                                              isCashOnly: true)
             return completion(ServiceResult.success(accountDetail))
             
         case "scheduledPayment":
             let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 82,
-                                                                                              dueByDate: Date().addingTimeInterval(864_000),
+                                                                                              dueByDate: tenDaysFromToday,
                                                                                               scheduledPayment: PaymentItem(amount: 82)))
             return completion(ServiceResult.success(accountDetail))
             
         case "autoPay":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 82,
-                                                                       dueByDate: Date().addingTimeInterval(864_000)),
+                                                                       dueByDate: tenDaysFromToday),
                                               isAutoPay: true)
             return completion(ServiceResult.success(accountDetail))
             
         case "autoPayScheduled":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 82,
-                                                                       dueByDate: Date().addingTimeInterval(864_000),
+                                                                       dueByDate: tenDaysFromToday,
                                                                        scheduledPayment: PaymentItem(amount: 82)),
                                               isAutoPay: true)
             return completion(ServiceResult.success(accountDetail))
@@ -109,14 +120,14 @@ class MockAccountService: AccountService {
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
                                                                        restorationAmount: 200,
-                                                                       dueByDate: Date().addingTimeInterval(864_000)),
+                                                                       dueByDate: tenDaysFromToday),
                                               isCutOutNonPay: true)
             return completion(ServiceResult.success(accountDetail))
             
         case "avoidShutoff":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
-                                                                       dueByDate: Date().addingTimeInterval(864_000),
+                                                                       dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 200,
                                                                        isDisconnectNotice: true))
             return completion(ServiceResult.success(accountDetail))
@@ -125,7 +136,7 @@ class MockAccountService: AccountService {
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
                                                                        amtDpaReinst: 200,
-                                                                       dueByDate: Date().addingTimeInterval(864_000),
+                                                                       dueByDate: tenDaysFromToday,
                                                                        atReinstateFee: 5),
                                               isLowIncome: false)
             return completion(ServiceResult.success(accountDetail))
@@ -133,7 +144,7 @@ class MockAccountService: AccountService {
         case "paymentPending":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
-                                                                       dueByDate: Date().addingTimeInterval(864_000),
+                                                                       dueByDate: tenDaysFromToday,
                                                                        pendingPayments: [PaymentItem(amount: 200,
                                                                                                      status: .pending)]))
             return completion(ServiceResult.success(accountDetail))

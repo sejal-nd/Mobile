@@ -25,6 +25,8 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var headerAlertAnimationContainer: UIView!
     var alertAnimation = LOTAnimationView(name: "alert_icon")
     
+    @IBOutlet weak var topSpacerHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var paymentPendingContainer: UIView!
     @IBOutlet weak var paymentPendingImageView: UIImageView!
     
@@ -38,12 +40,14 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var dueDateTooltip: UIButton!
     
+    @IBOutlet weak var reinstatementFeeContainer: UIView!
     @IBOutlet weak var reinstatementFeeLabel: UILabel!
     
     @IBOutlet weak var slideToPay24DisclaimerContainer: UIView!
     @IBOutlet weak var slideToPay24DisclaimerLabel: UILabel!
     
     @IBOutlet weak var walletItemInfoContainer: UIView!
+    @IBOutlet weak var walletItemInfoBox: UIView!
     @IBOutlet weak var bankCreditNumberButton: ButtonControl!
     @IBOutlet weak var bankCreditCardImageView: UIImageView!
     @IBOutlet weak var bankCreditCardNumberLabel: UILabel!
@@ -66,10 +70,12 @@ class HomeBillCardView: UIView {
     @IBOutlet weak var commericalBgeOtpVisaLabel: UILabel!
     
     @IBOutlet weak var scheduledPaymentContainer: UIView!
+    @IBOutlet weak var scheduledPaymentBox: UIView!
     @IBOutlet weak var scheduledImageView: UIImageView!
     @IBOutlet weak var thankYouForSchedulingButton: UIButton!
     
     @IBOutlet weak var autoPayContainer: UIView!
+    @IBOutlet weak var autoPayBox: UIView!
     @IBOutlet weak var autoPayImageView: UIImageView!
     @IBOutlet weak var autoPayButton: UIButton!
     
@@ -114,9 +120,12 @@ class HomeBillCardView: UIView {
     func resetAnimation() {
         alertAnimation.removeFromSuperview()
         alertAnimation = LOTAnimationView(name: "alert_icon")
+        alertAnimation.translatesAutoresizingMaskIntoConstraints = false
         alertAnimation.frame = headerAlertAnimationContainer.bounds
         alertAnimation.contentMode = .scaleAspectFit
         headerAlertAnimationContainer.addSubview(alertAnimation)
+        alertAnimation.centerXAnchor.constraint(equalTo: headerAlertAnimationContainer.centerXAnchor).isActive = true
+        alertAnimation.centerYAnchor.constraint(equalTo: headerAlertAnimationContainer.centerYAnchor).isActive = true
         alertAnimation.play()
     }
     
@@ -130,13 +139,13 @@ class HomeBillCardView: UIView {
         reinstatementFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
         reinstatementFeeLabel.setLineHeight(lineHeight: 16)
         
-        bankCreditNumberButton.layer.borderWidth = 2
+        bankCreditNumberButton.layer.borderColor = UIColor.errorRed.cgColor
         bankCreditNumberButton.layer.cornerRadius = 3
+        bankCreditNumberButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
-        saveAPaymentAccountButton.layer.borderColor = UIColor.accentGray.cgColor
-        saveAPaymentAccountButton.layer.borderWidth = 2
         saveAPaymentAccountButton.layer.cornerRadius = 3
+        saveAPaymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
         
@@ -150,17 +159,17 @@ class HomeBillCardView: UIView {
         slideToPay24DisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        convenienceFeeLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         commericalBgeOtpVisaLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
-        walletItemInfoContainer.layer.cornerRadius = 6
+        walletItemInfoBox.layer.cornerRadius = 6
         
-        scheduledPaymentContainer.layer.cornerRadius = 6
+        scheduledPaymentBox.layer.cornerRadius = 6
         thankYouForSchedulingButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
         thankYouForSchedulingButton.titleLabel?.numberOfLines = 0
         
-        autoPayContainer.layer.cornerRadius = 6
+        autoPayBox.layer.cornerRadius = 6
         autoPayButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
         autoPayButton.titleLabel?.numberOfLines = 0
         
@@ -187,8 +196,8 @@ class HomeBillCardView: UIView {
         maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
         
         // Accessibility
-//        alertImageView.isAccessibilityElement = true
-//        alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        alertAnimation.isAccessibilityElement = true
+        alertAnimation.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         bankCreditCardImageView.isAccessibilityElement = true
         resetAnimation()
     }
@@ -234,27 +243,22 @@ class HomeBillCardView: UIView {
             .drive(infoStack.rx.isHidden)
             .disposed(by: bag)
         
+        viewModel.showHeaderView.map { CGFloat($0 ? 20 : 30) }.drive(topSpacerHeight.rx.constant).disposed(by: bag)
         viewModel.showHeaderView.not().drive(headerView.rx.isHidden).disposed(by: bag)
         viewModel.showAlertAnimation.not().drive(headerAlertAnimationContainer.rx.isHidden).disposed(by: bag)
-//        viewModel.showAlertIcon.not().drive(alertContainer.rx.isHidden).disposed(by: bag)
+        
         viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).disposed(by: bag)
         viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).disposed(by: bag)
         viewModel.showSlideToPay24DisclaimerLabel.not().drive(slideToPay24DisclaimerContainer.rx.isHidden).disposed(by: bag)
-        
-//        Driver.zip(viewModel.showAlertIcon, viewModel.showPaymentPendingIcon, viewModel.showBillPaidIcon)
-//            .map { $0 || $1 || $2 }
-//            .map { $0 ? 0: 32 }
-//            .drive(titleLabelTopConstraint.rx.constant)
-//            .disposed(by: bag)
         
         viewModel.showPaymentDescription.not().drive(paymentDescriptionLabel.rx.isHidden).disposed(by: bag)
         viewModel.showAmount.not().drive(amountLabel.rx.isHidden).disposed(by: bag)
         viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).disposed(by: bag)
         dueDateTooltip.isHidden = !viewModel.showDueDateTooltip
-        viewModel.showReinstatementFeeText.not().drive(reinstatementFeeLabel.rx.isHidden).disposed(by: bag)
+        viewModel.showReinstatementFeeText.not().drive(reinstatementFeeContainer.rx.isHidden).disposed(by: bag)
         viewModel.showWalletItemInfo.not().drive(walletItemInfoContainer.rx.isHidden).disposed(by: bag)
         viewModel.showBankCreditNumberButton.not().drive(bankCreditNumberButton.rx.isHidden).disposed(by: bag)
-        viewModel.bankCreditButtonBorderColor.drive(bankCreditNumberButton.rx.borderColor).disposed(by: bag)
+        viewModel.bankCreditButtonBorderWidth.drive(bankCreditNumberButton.rx.borderWidth).disposed(by: bag)
         viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredContainer.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.asObservable().subscribe(onNext: { [weak self] show in
@@ -265,10 +269,8 @@ class HomeBillCardView: UIView {
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
         viewModel.showCommercialBgeOtpVisaLabel.not().drive(commercialBgeOtpVisaLabelContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showScheduledImageView.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showAutoPayIcon.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showAutomaticPaymentInfoButton.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showScheduledPaymentInfoButton.not().drive(thankYouForSchedulingButton.rx.isHidden).disposed(by: bag)
+        viewModel.showScheduledPayment.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showAutoPay.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPayTCButton.not().drive(oneTouchPayTCButton.rx.isHidden).disposed(by: bag)
         
         // Subview States
@@ -276,6 +278,7 @@ class HomeBillCardView: UIView {
         viewModel.titleFont.drive(paymentDescriptionLabel.rx.font).disposed(by: bag)
         viewModel.resetAlertAnimation.drive(onNext: { [weak self] in self?.resetAnimation() }).disposed(by: bag)
         viewModel.headerText.drive(headerLabel.rx.attributedText).disposed(by: bag)
+        viewModel.headerA11yText.drive(headerLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.amountFont.drive(amountLabel.rx.font).disposed(by: bag)
         viewModel.amountText.drive(amountLabel.rx.text).disposed(by: bag)
         viewModel.dueDateText.drive(dueDateLabel.rx.attributedText).disposed(by: bag)

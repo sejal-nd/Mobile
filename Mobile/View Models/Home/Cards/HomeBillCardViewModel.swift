@@ -342,14 +342,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showAmount: Driver<Bool> = self.billState.map { $0 != .billPaidIntermediate }
     
-    private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.walletItemDriver,
-                                                                                  self.showOneTouchPaySlider,
-                                                                                  self.billState)
-    {
-        $0?.bankOrCard == .card &&
-            $1 &&
-            $2 != .credit && !$2.isPrecariousBillSituation && $2 != .paymentScheduled && $2 != .billReadyAutoPay
-    }
+    private(set) lazy var showConvenienceFee: Driver<Bool> = self.showSaveAPaymentAccountButton.not()
     
     private(set) lazy var showDueDate: Driver<Bool> = self.billState.map {
         switch ($0) {
@@ -379,6 +372,7 @@ class HomeBillCardViewModel {
                                                                                    self.walletItemDriver,
                                                                                    self.showOneTouchPaySlider)
         { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .paymentScheduled && $1 == nil && $2 }
+        .distinctUntilChanged()
     
     private(set) lazy var showMinMaxPaymentAllowed: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                                self.walletItemDriver,
@@ -418,13 +412,9 @@ class HomeBillCardViewModel {
         }
         .distinctUntilChanged()
     
-    private(set) lazy var showScheduledImageView: Driver<Bool> = self.billState.map { $0 == .paymentScheduled }
+    private(set) lazy var showScheduledPayment: Driver<Bool> = self.billState.map { $0 == .paymentScheduled }
     
-    private(set) lazy var showAutoPayIcon: Driver<Bool> = self.billState.map { $0 == .billReadyAutoPay }
-    
-    private(set) lazy var showAutomaticPaymentInfoButton: Driver<Bool> = self.billState.map { $0 == .billReadyAutoPay }
-    
-    private(set) lazy var showScheduledPaymentInfoButton: Driver<Bool> = self.billState.map { $0 == .paymentScheduled }
+    private(set) lazy var showAutoPay: Driver<Bool> = self.billState.map { $0 == .billReadyAutoPay }
     
     private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(self.showOneTouchPaySlider,
                                                                                        self.showCommercialBgeOtpVisaLabel,
@@ -438,31 +428,6 @@ class HomeBillCardViewModel {
     { (billState, accountDetail) in
         
         switch billState {
-//        case .restoreService:
-//            return NSLocalizedString("Amount Due to Restore Service", comment: "")
-//        case .catchUp:
-//            return NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")
-//        case .avoidShutoff:
-//            switch Environment.shared.opco {
-//            case .bge:
-//                if AccountsStore.shared.currentAccount.isMultipremise {
-//                    return NSLocalizedString("Amount due to avoid shutoff for your multi-premise bill", comment: "")
-//                } else {
-//                    return NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
-//                }
-//            case .comEd, .peco:
-//                return NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
-//            }
-//        case .pastDue:
-//            return NSLocalizedString("Amount Past Due", comment: "")
-//        case .billReady, .billReadyAutoPay, .paymentScheduled:
-//            if accountDetail.billingInfo.netDueAmount ?? 0 < 0 {
-//                return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
-//            } else if Environment.shared.opco == .bge && AccountsStore.shared.currentAccount.isMultipremise {
-//                return NSLocalizedString("Your multi-premise bill is ready", comment: "")
-//            } else {
-//                return NSLocalizedString("Your bill is ready", comment: "")
-//            }
         case .billPaid, .billPaidIntermediate:
             let text = NSLocalizedString("Thank you for your payment", comment: "")
             return NSAttributedString(string: text, attributes: [.font: OpenSans.semibold.of(textStyle: .title1),
@@ -482,11 +447,6 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var titleA11yText: Driver<String?> = self.paymentDescriptionText.map {
-        $0?.string.replacingOccurrences(of: "shutoff", with: "shut-off")
-            .replacingOccurrences(of: "Shutoff", with: "shut-off")
-    }
-    
     private(set) lazy var showAlertAnimation: Driver<Bool> = self.billState.map {
         return $0.isPrecariousBillSituation
     }
@@ -498,15 +458,38 @@ class HomeBillCardViewModel {
     
     private(set) lazy var headerText: Driver<NSAttributedString?> = Driver.combineLatest(self.accountDetailDriver, self.billState)
     { accountDetail, billState in
+        let isMultiPremise = AccountsStore.shared.currentAccount.isMultipremise
+        
+        let style = NSMutableParagraphStyle()
+        style.minimumLineHeight = 16
+        var attributes: [NSAttributedStringKey: Any] = [.font: SystemFont.semibold.of(textStyle: .footnote),
+                                                        .paragraphStyle: style,
+                                                        .foregroundColor: UIColor.errorRed]
+        
         switch billState {
         case .credit:
+            attributes[.foregroundColor] = UIColor.deepGray
             return NSAttributedString(string: NSLocalizedString("Credit Balance", comment: ""),
-                                      attributes: [.font: SystemFont.semibold.of(textStyle: .footnote),
-                                                   .foregroundColor: UIColor.deepGray])
+                                      attributes: attributes)
         case .pastDue:
-            return NSAttributedString(string: NSLocalizedString("Your bill is past due", comment: ""),
-                                      attributes: [.font: SystemFont.semibold.of(textStyle: .footnote),
-                                                   .foregroundColor: UIColor.errorRed])
+            let string: String
+            switch (isMultiPremise,
+                    accountDetail.billingInfo.netDueAmount == accountDetail.billingInfo.pastDueAmount) {
+            case (false, false):
+                guard let amount = accountDetail.billingInfo.netDueAmount?.currencyString else { return nil }
+                let format = "%@ is due immediately."
+                string = String.localizedStringWithFormat(format, amount)
+            case (true, false):
+                guard let amount = accountDetail.billingInfo.netDueAmount?.currencyString else { return nil }
+                let format = "%@ is due immediately for your multi-premise account."
+                string = String.localizedStringWithFormat(format, amount)
+            case (false, true):
+                string = NSLocalizedString("Your bill is past due.", comment: "")
+            case (true, true):
+                string = NSLocalizedString("Your bill is past due for your multi-premise account.", comment: "")
+            }
+            
+            return NSAttributedString(string: string, attributes: attributes)
         case .catchUp:
             guard let amountString = accountDetail.billingInfo.amtDpaReinst?.currencyString,
                 let dueByDate = accountDetail.billingInfo.dueByDate else {
@@ -514,11 +497,10 @@ class HomeBillCardViewModel {
             }
             
             let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
-            let localizedText = NSLocalizedString("%@ is due in %d day%@ to catch up on your DPA agreement.", comment: "")
-            let string = String.localizedStringWithFormat(localizedText, amountString, days, days == 1 ? "": "s")
-            return NSAttributedString(string: string,
-                                      attributes: [.font: SystemFont.semibold.of(textStyle: .footnote),
-                                                   .foregroundColor: UIColor.errorRed])
+            let format = "%@ is due in %d day%@ to catch up on your DPA agreement."
+            let string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            
+            return NSAttributedString(string: string, attributes: attributes)
         case .restoreService:
             guard let amountString = accountDetail.billingInfo.restorationAmount?.currencyString else {
                 return nil
@@ -527,8 +509,7 @@ class HomeBillCardViewModel {
             let localizedText = NSLocalizedString("%@ is due immediately to restore service.", comment: "")
             let string = String.localizedStringWithFormat(localizedText, amountString)
             return NSAttributedString(string: string,
-                                      attributes: [.font: SystemFont.semibold.of(textStyle: .footnote),
-                                                   .foregroundColor: UIColor.errorRed])
+                                      attributes: attributes)
         case .avoidShutoff:
             guard let amountString = accountDetail.billingInfo.disconnectNoticeArrears?.currencyString else {
                 return nil
@@ -541,31 +522,37 @@ class HomeBillCardViewModel {
                     accountDetail.billingInfo.dueByDate else {
                         return nil
                 }
+                
+                let format: String
+                if isMultiPremise {
+                    format = "%@ is due in %d day%@ to avoid service interruption for your multi-premise account."
+                } else {
+                    format = "%@ is due in %d day%@ to avoid service interruption."
+                }
+                
                 let days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
-                let localizedText = NSLocalizedString("%@ is due in %d day%@ to avoid service interruption.", comment: "")
-                let string = String.localizedStringWithFormat(localizedText, amountString, days, days == 1 ? "": "s")
+                let string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
                 return NSAttributedString(string: string,
-                                          attributes: [.font: SystemFont.semibold.of(textStyle: .footnote),
-                                                       .foregroundColor: UIColor.errorRed])
+                                          attributes: attributes)
             case .comEd, .peco:
                 let localizedText = NSLocalizedString("%@ is due immediately to avoid shutoff.", comment: "")
                 let string = String.localizedStringWithFormat(localizedText, amountString)
                 return NSAttributedString(string: string,
-                                          attributes: [.font: SystemFont.semibold.of(textStyle: .footnote),
-                                                       .foregroundColor: UIColor.errorRed])
+                                          attributes: attributes)
             }
-//        case .billPaid:
-//            return accountDetail.billingInfo.lastPaymentAmount?.currencyString
-//        case .paymentPending:
-//            return accountDetail.billingInfo.pendingPayments.last?.amount.currencyString
         default:
             if AccountsStore.shared.currentAccount.isMultipremise {
+                attributes[.foregroundColor] = UIColor.deepGray
                 return NSAttributedString(string: NSLocalizedString("Multi-Premise Bill", comment: ""),
-                                          attributes: [.font: SystemFont.semibold.of(textStyle: .footnote),
-                                                       .foregroundColor: UIColor.deepGray])
+                                          attributes: attributes)
             }
             return nil
         }
+    }
+    
+    private(set) lazy var headerA11yText: Driver<String?> = self.paymentDescriptionText.map {
+        $0?.string.replacingOccurrences(of: "shutoff", with: "shut-off")
+            .replacingOccurrences(of: "Shutoff", with: "shut-off")
     }
     
     private(set) lazy var amountText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.billState)
@@ -803,11 +790,8 @@ class HomeBillCardViewModel {
         $0 ? UIColor.actionBlue: UIColor.blackText
     }
     
-    private(set) lazy var bankCreditButtonBorderColor: Driver<CGColor> = self.walletItemDriver.map {
-        if let walletItem = $0, walletItem.isExpired {
-            return UIColor.errorRed.cgColor
-        }
-        return UIColor.accentGray.cgColor
+    private(set) lazy var bankCreditButtonBorderWidth: Driver<CGFloat> = self.walletItemDriver.map {
+        $0?.isExpired ?? false ? 1 : 0
     }
     
     var paymentTACUrl: URL {
