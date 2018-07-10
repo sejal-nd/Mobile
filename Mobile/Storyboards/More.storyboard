@@ -401,9 +401,11 @@
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="a5A-Ov-dz4" secondAttribute="trailing" id="2M2-mj-lN3"/>
+                                                            <constraint firstItem="FQW-fE-E9q" firstAttribute="leading" secondItem="DvH-Sa-CNn" secondAttribute="leading" id="CB7-Bg-eay"/>
                                                             <constraint firstItem="gzX-8v-pSH" firstAttribute="leading" secondItem="DvH-Sa-CNn" secondAttribute="leading" id="NNO-qO-u1E"/>
                                                             <constraint firstAttribute="trailing" secondItem="gzX-8v-pSH" secondAttribute="trailing" id="cMr-lO-tVi"/>
                                                             <constraint firstItem="a5A-Ov-dz4" firstAttribute="leading" secondItem="DvH-Sa-CNn" secondAttribute="leading" id="flx-RP-ruP"/>
+                                                            <constraint firstAttribute="trailing" secondItem="FQW-fE-E9q" secondAttribute="trailing" id="v7o-3G-kv1"/>
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>

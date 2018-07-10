@@ -862,8 +862,13 @@ class PaymentViewModel {
                                                                                              self.addBankFormViewModel.nickname.asDriver(),
                                                                                              self.inlineCard.asDriver(),
                                                                                              self.addCardFormViewModel.cardNumber.asDriver(),
-                                                                                             self.addCardFormViewModel.nickname.asDriver())
+                                                                                             self.addCardFormViewModel.nickname.asDriver(),
+                                                                                             self.wouldBeSelectedWalletItemIsExpired.asDriver())
     {
+        if $7 {
+            return NSLocalizedString("Select Payment Account", comment: "")
+        }
+        
         var a11yLabel = ""
         
         if $1 {

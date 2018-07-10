@@ -75,9 +75,14 @@ class MiniWalletTableViewCell: UITableViewCell {
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
             accountNumberLabel.text = "**** \(last4Digits)"
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
+            let a11yDigits = last4Digits.map(String.init).joined(separator: " ")
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), a11yDigits)
         } else {
             accountNumberLabel.text = ""
+        }
+        
+        if walletItem.isExpired {
+            a11yLabel += NSLocalizedString(", expired", comment: "")
         }
         
         if isSelectedItem {
