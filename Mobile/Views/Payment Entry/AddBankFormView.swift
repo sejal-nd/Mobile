@@ -90,7 +90,7 @@ class AddBankFormView: UIView {
         byNotSavingLabel.font = OpenSans.regular.of(textStyle: .footnote)
         byNotSavingLabel.text = NSLocalizedString("By not saving this payment account, you will only be eligible to make an instant payment.", comment: "")
         
-        nicknameTextField.textField.placeholder = Environment.sharedInstance.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
+        nicknameTextField.textField.placeholder = Environment.shared.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
         nicknameTextField.textField.autocorrectionType = .no
         
         oneTouchPayDescriptionLabel.textColor = .blackText
@@ -99,7 +99,7 @@ class AddBankFormView: UIView {
         oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
         oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             saveToWalletStackView.isHidden = true // BGE bank payments must be saved
         } else {
             // BGE only fields
@@ -129,7 +129,7 @@ class AddBankFormView: UIView {
     
     func bindViewHiding() {
         viewModel.paymentWorkflow.asDriver().map {
-            if Environment.sharedInstance.opco == .bge { // BGE MUST save bank
+            if Environment.shared.opco == .bge { // BGE MUST save bank
                 return true
             }
             return !$0

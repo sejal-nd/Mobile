@@ -51,8 +51,14 @@ class BillAnalysisSegmentedControl: UIControl {
         rightLabel.textColor = .blackText
         rightLabel.font = OpenSans.semibold.of(textStyle: .headline)
         
+        leftBar.layer.cornerRadius = 2.0
+        rightBar.layer.cornerRadius = 2.0
+        
         leftTriangle.tintColor = .primaryColor
         rightTriangle.tintColor = .primaryColor
+        
+        leftBar.layer.cornerRadius = 3
+        rightBar.layer.cornerRadius = 3
         
         leftSelection.map{ $0 ? .primaryColor : .accentGray }.drive(leftBar.rx.backgroundColor).disposed(by: disposeBag)
         leftSelection.not().map{ $0 ? .primaryColor : .accentGray }.drive(rightBar.rx.backgroundColor).disposed(by: disposeBag)

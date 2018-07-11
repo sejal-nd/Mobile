@@ -15,26 +15,18 @@ import UserNotifications
 
 class HomeViewController: AccountPickerViewController {
     
-    @IBOutlet weak var primaryColorHeaderView: UIView!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var backgroundTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerContentView: UIView!
-    @IBOutlet weak var headerStackView: UIStackView!
-    @IBOutlet weak var topLoadingIndicatorView: UIView!
-    @IBOutlet weak var homeLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
-    @IBOutlet weak var weatherView: UIView!
-    @IBOutlet weak var greetingLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var weatherIconImage: UIImageView!
-    
-    @IBOutlet weak var temperatureTipButton: ButtonControl!
-    @IBOutlet weak var temperatureTipImageView: UIImageView!
-    @IBOutlet weak var temperatureTipLabel: UILabel!
-    
+    @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var cardStackView: UIStackView!
     
     @IBOutlet weak var loadingView: UIView!
     
+    var weatherView: HomeWeatherView!
     var billCardView: HomeBillCardView!
     var usageCardView: HomeUsageCardView!
     
@@ -47,7 +39,10 @@ class HomeViewController: AccountPickerViewController {
                                   weatherService: ServiceFactory.createWeatherService(),
                                   walletService: ServiceFactory.createWalletService(),
                                   paymentService: ServiceFactory.createPaymentService(),
-                                  usageService: ServiceFactory.createUsageService())
+                                  usageService: ServiceFactory.createUsageService(),
+                                  authService: ServiceFactory.createAuthenticationService())
+    
+    var shortcutItem = ShortcutItem.none
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -58,23 +53,35 @@ class HomeViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
+        backgroundView.backgroundColor = .primaryColor
+        scrollView?.rx.contentOffset.asDriver()
+            .map { -min(0, $0.y) }
+            .distinctUntilChanged()
+            .drive(backgroundTopConstraint.rx.constant)
+            .disposed(by: bag)
+        
         accountPickerViewControllerWillAppear
             .withLatestFrom(Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
-                                                     viewModel.accountDetailEvents.elements().map { $0 }.startWith(nil)))
-            .subscribe(onNext: { [weak self] state, accountDetail in
+                                                     viewModel.accountDetailEvents.map { $0 }.startWith(nil)))
+            .subscribe(onNext: { [weak self] state, accountDetailEvent in
                 guard let `self` = self else { return }
                 switch(state) {
                 case .loadingAccounts:
                     self.setRefreshControlEnabled(enabled: false)
                 case .readyToFetchData:
-                    if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchData.onNext(.switchAccount)
-                    } else if accountDetail == nil {
+                    } else if accountDetailEvent?.element == nil {
                         self.viewModel.fetchData.onNext(.switchAccount)
                     }
                 }
             })
             .disposed(by: bag)
+        
+        weatherView = HomeWeatherView.create(withViewModel: viewModel.weatherViewModel)
+        mainStackView.insertArrangedSubview(weatherView, at: 1)
+        weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
+        weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
         
         billCardView = HomeBillCardView.create(withViewModel: viewModel.billCardViewModel)
         billCardView.oneTouchPayFinished
@@ -84,12 +91,17 @@ class HomeViewController: AccountPickerViewController {
         cardStackView.addArrangedSubview(billCardView)
         
         usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
-        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(), usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
-            .withLatestFrom(viewModel.accountDetailEvents.elements()
-            .asDriver(onErrorDriveWith: .empty()))
+        
+        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
+                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver(),
+                     viewModel.shouldShowUsageCard.filter { [weak self] in $0 && self?.shortcutItem == .viewUsageOptions }.map(to: ())) // Shortcut response
+            .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
+                self?.shortcutItem = .none
                 self?.performSegue(withIdentifier: "usageSegue", sender: $0)
-            }).disposed(by: bag)
+            })
+            .disposed(by: bag)
+        
         cardStackView.addArrangedSubview(usageCardView)
         viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: bag)
         
@@ -97,7 +109,7 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
             .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                Analytics().logScreenView(AnalyticsPageView.AllSavingsSmartEnergy.rawValue)
+                Analytics.log(event: .AllSavingsSmartEnergy)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
             }).disposed(by: bag)
         
@@ -120,7 +132,14 @@ class HomeViewController: AccountPickerViewController {
         styleViews()
         bindLoadingStates()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
+        
+        viewModel.shouldShowUsageCard
+            .filter(!)
+            .drive(onNext: { _ in
+                (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: true, showViewUsageOptions: false)
+            })
+            .disposed(by: bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,20 +148,20 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics().logScreenView(AnalyticsPageView.HomeOfferComplete.rawValue)
+        Analytics.log(event: .HomeOfferComplete)
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             if #available(iOS 10.0, *) {
                 UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
-                    if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
-                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted)
+                    if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
+                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
                         if granted {
-                            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushOKInitial.rawValue)
+                            Analytics.log(event: .AlertsiOSPushOKInitial)
                         } else {
-                            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushDontAllowInitial.rawValue)
+                            Analytics.log(event: .AlertsiOSPushDontAllowInitial)
                         }
                     }
                 })
@@ -153,8 +172,8 @@ class HomeViewController: AccountPickerViewController {
             UIApplication.shared.registerForRemoteNotifications()
         }
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.InitialPushNotificationPermissionsWorkflowCompleted) == false {
-            Analytics().logScreenView(AnalyticsPageView.AlertsiOSPushInitial.rawValue)
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
+            Analytics.log(event: .AlertsiOSPushInitial)
         }
     }
     
@@ -163,15 +182,15 @@ class HomeViewController: AccountPickerViewController {
         usageCardView.superviewDidLayoutSubviews()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shortcutItem = .none
+    }
+    
     func styleViews() {
-        view.backgroundColor = .primaryColor
-        primaryColorHeaderView.backgroundColor = .primaryColor
-        loadingView.layer.cornerRadius = 2
+        view.backgroundColor = .primaryColorAccountPicker
+        loadingView.layer.cornerRadius = 10
         loadingView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        greetingLabel.isAccessibilityElement = true
-        temperatureLabel.isAccessibilityElement = true
-        weatherIconImage.isAccessibilityElement = true
-        weatherView.accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage]
     }
     
     @objc func killRefresh() -> Void {
@@ -201,8 +220,6 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func bindLoadingStates() {
-        topLoadingIndicatorView.isHidden = true
-        
         Observable.merge(viewModel.refreshFetchTracker.asObservable(), viewModel.isSwitchingAccounts.asObservable())
             .subscribe(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
             .disposed(by: bag)
@@ -217,31 +234,18 @@ class HomeViewController: AccountPickerViewController {
             self.setRefreshControlEnabled(enabled: refresh)
         }).disposed(by: bag)
         
-        viewModel.isSwitchingAccounts.asDriver().drive(homeLoadingIndicator.rx.isAnimating).disposed(by: bag)
         viewModel.isSwitchingAccounts.asDriver().drive(cardStackView.rx.isHidden).disposed(by: bag)
         viewModel.isSwitchingAccounts.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
-        viewModel.isSwitchingAccounts.asDriver().drive(greetingLabel.rx.isHidden).disposed(by: bag)
         
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
-        viewModel.showNoNetworkConnectionState.drive(scrollView!.rx.isHidden).disposed(by: bag)
+        viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
         
-        viewModel.showWeatherDetails.not().drive(temperatureLabel.rx.isHidden).disposed(by: bag)
-        viewModel.showWeatherDetails.not().drive(weatherIconImage.rx.isHidden).disposed(by: bag)
-        viewModel.showTemperatureTip.not().drive(temperatureTipButton.rx.isHidden).disposed(by: bag)
+        Driver.combineLatest(viewModel.showNoNetworkConnectionState, viewModel.showMaintenanceModeState)
+        { $0 || $1 }
+            .drive(scrollView!.rx.isHidden).disposed(by: bag)
         
-        viewModel.showWeatherDetails.drive(temperatureLabel.rx.isAccessibilityElement).disposed(by: bag)
-        viewModel.showWeatherDetails.drive(weatherIconImage.rx.isAccessibilityElement).disposed(by: bag)
-        
-        viewModel.greeting.drive(greetingLabel.rx.text).disposed(by: bag)
-        viewModel.weatherTemp.drive(temperatureLabel.rx.text).disposed(by: bag)
-        viewModel.weatherIcon.drive(weatherIconImage.rx.image).disposed(by: bag)
-        viewModel.weatherIconA11yLabel.drive(weatherIconImage.rx.accessibilityLabel).disposed(by: bag)
-        
-        viewModel.temperatureTipText.drive(temperatureTipLabel.rx.text).disposed(by: bag)
-        viewModel.temperatureTipImage.drive(temperatureTipImageView.rx.image).disposed(by: bag)
-        
-        noNetworkConnectionView.reload
-            .map { FetchingAccountState.switchAccount }
+        Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
+            .map(to: FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchData)
             .disposed(by: bag)
         
@@ -280,14 +284,20 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        temperatureTipButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.temperatureTipModalData)
+        weatherView.didTapTemperatureTip
             .map(InfoModalViewController.init)
             .drive(onNext: { [weak self] in
                 self?.present($0, animated: true, completion: nil)
             })
             .disposed(by: bag)
         
+        // Clear shortcut handling in the case of an error.
+        Observable.merge(viewModel.usageCardViewModel.accountDetailChanged.errors(),
+                         viewModel.accountDetailEvents.errors())
+            .subscribe(onNext: { [weak self] _ in
+                self?.shortcutItem = .none
+            })
+            .disposed(by: bag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -314,9 +324,9 @@ extension HomeViewController: AutoPayViewControllerDelegate {
             self.view.showToast(message)
         })
         if enrolled {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
+            Analytics.log(event: .AutoPayEnrollComplete)
         } else {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
+            Analytics.log(event: .AutoPayUnenrollComplete)
         }
     }
     

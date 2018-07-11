@@ -54,7 +54,7 @@ class PaymentConfirmationViewController: UIViewController {
         } else {
             confirmationMessage += NSLocalizedString("Thank you for your payment.", comment: "")
         }
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             confirmationMessage += NSLocalizedString(" A confirmation email will be sent to you shortly.", comment: "")
         }
         confirmationLabel.text = confirmationMessage
@@ -83,7 +83,7 @@ class PaymentConfirmationViewController: UIViewController {
         privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
         privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             bgeFooterView.backgroundColor = .softGray
             bgeFooterLabel.textColor = .blackText
             bgeFooterLabel.text = NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: "")
@@ -140,23 +140,23 @@ class PaymentConfirmationViewController: UIViewController {
     }
     
     @IBAction func onEnrollInAutoPayPress() {
-        Analytics().logScreenView(AnalyticsPageView.ConfirmationScreenAutopayEnroll.rawValue)
+        Analytics.log(event: .ConfirmationScreenAutopayEnroll)
         for vc in presentingNavController.viewControllers {
             if let dest = vc as? BillViewController {
                 presentingNavController.popToViewController(dest, animated: false)
                 //dest.viewModel.fetchAccountDetail(isRefresh: false) // Can't do this because currentAccountDetail will be nil in prepareForSegue
                 presentingNavController.dismiss(animated: true, completion: { [weak self] in
-                    NotificationCenter.default.post(name: .DidSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
+                    NotificationCenter.default.post(name: .didSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
                 })
                 break
             } else if let dest = vc as? HomeViewController {
-                Analytics().logScreenView(AnalyticsPageView.ConfirmationScreenAutopayEnroll.rawValue)
+                Analytics.log(event: .ConfirmationScreenAutopayEnroll)
                 presentingNavController.popToViewController(dest, animated: false)
                 let tabController = presentingNavController.tabBarController as! MainTabBarController
                 tabController.selectedIndex = 1
                 presentingNavController.setNavigationBarHidden(true, animated: true)
                 presentingNavController.dismiss(animated: true, completion: { [weak self] in
-                    NotificationCenter.default.post(name: .DidSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
+                    NotificationCenter.default.post(name: .didSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
                 })
                 break
             }

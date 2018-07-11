@@ -13,35 +13,50 @@ class MockOutageService: OutageService {
     private var outageMap = [String: ReportedOutageResult]()
     
     func fetchOutageStatus(account: Account, completion: @escaping (ServiceResult<OutageStatus>) -> Void) {
-        let outageStatus = getOutageStatus(account: account)
-            
-        if (account.accountNumber == "80000000000") {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAccountFinaled.rawValue)))
+        var accountNum = account.accountNumber
+        
+        if accountNum == "80000000000" {
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnAccountFinaled.rawValue)))
         }
-        else if (account.accountNumber == "70000000000") {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAccountNoPay.rawValue)))
+        else if accountNum == "70000000000" {
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnAccountNoPay.rawValue)))
         }
-        else if (account.accountNumber == "60000000000") {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnNonService.rawValue)))
+        else if accountNum == "60000000000" {
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnNonService.rawValue)))
         }
-        else{
-            completion(ServiceResult.Success(outageStatus))
+        else {
+            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
+            if loggedInUsername == "outageTestPowerOn" {
+                accountNum = "1234567890"
+            } else if loggedInUsername == "outageTestPowerOut" {
+                accountNum = "9836621902"
+            } else if loggedInUsername == "outageTestGasOnly" {
+                accountNum = "5591032201"
+            } else if loggedInUsername == "outageTestFinaled" {
+                accountNum = "75395146464"
+            } else if loggedInUsername == "outageTestReport" {
+                accountNum = "7003238921"
+            }
+            let outageStatus = getOutageStatus(accountNumber: accountNum)
+            completion(ServiceResult.success(outageStatus))
         }
         
     }
     
-    private func getOutageStatus(account: Account) -> OutageStatus {
+    private func getOutageStatus(accountNumber: String) -> OutageStatus {
         
         var status: OutageStatus
         
         let reportedMessage = "As of 6:21 AM EST on 8/19/2017 we are working to identify the cause of this outage. We currently estimate your service will be restored by 10:30 AM EST on 8/19/2025."
         
-        switch account.accountNumber {
+        let opCoGMTOffset = abs(Int(TimeZone.opCo.secondsFromGMT() / 3600))
+        
+        switch accountNumber {
         case "1234567890":
             let dict: [AnyHashable: Any] = [
                 "flagGasOnly": false,
                 "contactHomeNumber": "5555555555",
-                "outageReported": reportedMessage,
+                "outageReported": "test power on message",
                 "status": "NOT ACTIVE",
                 "smartMeterStatus": false,
                 "flagFinaled": false,
@@ -58,12 +73,12 @@ class MockOutageService: OutageService {
             let dict: [AnyHashable: Any] = [
                 "flagGasOnly": false,
                 "contactHomeNumber": "5555555555",
-                "outageReported": reportedMessage,
+                "outageReported": "test power out message",
                 "status": "ACTIVE",
                 "smartMeterStatus": false,
                 "flagFinaled": false,
                 "flagNoPay": false,
-                "ETR": "2017-04-10T03:45:00-04:00"
+                "ETR": "2017-04-10T03:45:00-0\(opCoGMTOffset):00"
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         case "7003238921":
@@ -75,19 +90,19 @@ class MockOutageService: OutageService {
                 "smartMeterStatus": false,
                 "flagFinaled": false,
                 "flagNoPay": false,
-                "ETR": "2017-04-10T03:45:00-04:00"
+                "ETR": "2017-04-10T03:45:00-0\(opCoGMTOffset):00"
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         case "5591032201":
             let dict: [AnyHashable: Any] = [
                 "flagGasOnly": true,
                 "contactHomeNumber": "5555555555",
-                "outageReported": reportedMessage,
+                "outageReported": "test gas only message",
                 "status": "NOT ACTIVE",
                 "smartMeterStatus": false,
                 "flagFinaled": false,
                 "flagNoPay": false,
-                "ETR": "2017-04-10T03:45:00-04:00"
+                "ETR": "2017-04-10T03:45:00-0\(opCoGMTOffset):00"
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         case "5591032203":
@@ -144,7 +159,7 @@ class MockOutageService: OutageService {
                 "smartMeterStatus": false,
                 "flagFinaled": false,
                 "flagNoPay": true,
-                ]
+            ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         }
         return status
@@ -152,17 +167,28 @@ class MockOutageService: OutageService {
     
     
     func reportOutage(outageInfo: OutageInfo, completion: @escaping (ServiceResult<Void>) -> Void) {
+        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
+        if loggedInUsername == "outageTestPowerOn" { // UI testing
+            outageMap["outageTestPowerOn"] = ReportedOutageResult.from(NSDictionary())
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+                completion(ServiceResult.success(()))
+            }
+        }
         if outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202" {
             outageMap[outageInfo.accountNumber] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-                completion(ServiceResult.Success(()))
+                completion(ServiceResult.success(()))
             }
         } else {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: "Invalid Account")))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: "Invalid Account")))
         }
     }
     
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult? {
+        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
+        if loggedInUsername == "outageTestPowerOn" { // UI testing
+            return self.outageMap["outageTestPowerOn"]
+        }
         return self.outageMap[accountNumber]
     }
     
@@ -183,10 +209,10 @@ class MockOutageService: OutageService {
             let reportedOutageResult = ReportedOutageResult.from(NSDictionary())!
             outageMap[outageInfo.accountNumber] = reportedOutageResult
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-                completion(ServiceResult.Success(reportedOutageResult))
+                completion(ServiceResult.success(reportedOutageResult))
             }
         } else {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, serviceMessage: "Invalid Account")))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: "Invalid Account")))
         }
     }
 }

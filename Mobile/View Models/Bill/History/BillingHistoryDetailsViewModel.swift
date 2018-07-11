@@ -67,7 +67,7 @@ class BillingHistoryDetailsViewModel {
     }
     
     var isBGE: Bool {
-        return Environment.sharedInstance.opco == .bge
+        return Environment.shared.opco == .bge
     }
     
     var isSpeedpay: Bool {
@@ -99,7 +99,7 @@ class BillingHistoryDetailsViewModel {
     func fetchPaymentDetails(billingHistoryItem: BillingHistoryItem, onCompletion: @escaping () -> Void) {
         if let paymentId = billingHistoryItem.paymentId, billingHistoryItem.encryptedPaymentId != nil {
             fetching.value = true
-            paymentService.fetchPaymentDetails(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, paymentId: paymentId).subscribe(onNext: { [weak self] paymentDetail in
+            paymentService.fetchPaymentDetails(accountNumber: AccountsStore.shared.currentAccount.accountNumber, paymentId: paymentId).subscribe(onNext: { [weak self] paymentDetail in
                 self?.fetching.value = false
                 self?.paymentDetail.value = paymentDetail
                 onCompletion()

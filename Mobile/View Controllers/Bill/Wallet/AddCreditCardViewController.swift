@@ -224,7 +224,7 @@ extension AddCreditCardViewController: CardIOPaymentViewControllerDelegate {
 extension AddCreditCardViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        Analytics().logScreenView(AnalyticsPageView.AddWalletCameraOffer.rawValue)
+        Analytics.log(event: .AddWalletCameraOffer)
         if cameraAuthorizationStatus == .denied || cameraAuthorizationStatus == .restricted {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -240,7 +240,16 @@ extension AddCreditCardViewController: AddCardFormViewDelegate {
     }
     
     func addCardFormViewDidTapCVVTooltip(_ addCardFormView: AddCardFormView) {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""), image: #imageLiteral(resourceName: "cvv_info"), description: NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: ""))
+        let messageText: String
+        switch Environment.shared.opco {
+        case .bge:
+            messageText = NSLocalizedString("Your security code is usually a 3 or 4 digit number found on your card.", comment: "")
+        case .comEd, .peco:
+            messageText = NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: "")
+        }
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""),
+                                                image: #imageLiteral(resourceName: "cvv_info"),
+                                                description: messageText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }

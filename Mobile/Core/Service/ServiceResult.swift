@@ -11,36 +11,36 @@ import Foundation
 // MARK: - ServiceErrorCode
 
 enum ServiceErrorCode : String {
-    case LocalError = "LocalError"
-    case NoNetworkConnection = "ERR-NO-NETWORK-CONNECTION"
-    case InvalidProfileType = "INVALID-PROFILE-TYPE"
-    case Parsing = "Parsing"
-    case FNPwdNoMatch = "FN-PWD-NOMATCH"
-    case FnPwdInvalid = "FN-PWD-INVALID"
-    case FnAcctLockedLogin = "FN-ACCT-LOCKED-LOGIN" // Login - attempted to login with password protected account. We throw this error, not from web services
-    case FnAcctNotActivated = "FN-ACCT-NOT-ACTIVATED" // Login - attempted to login before verifying email from registration. We throw this error, not from web services
-    case TcUnknown = "TC-UNKNOWN"
-    case FnProfBadSecurity = "FN-PROF-BADSECURITY" // Forgot Username - security question answered incorrectly
-    case FnProfNotFound = "FN-PROF-NOTFOUND" // Forgot Username/Password - profile not found
-    case FnAccountNotFound = "FN-ACCT-NOTFOUND" // Forgot Username/Password - account not found
-    case FnNotFound = "FN-NOT-FOUND" // Account lookup tool not found
-    case FnAccountProtected = "FN-ACCT-PROTECTED" // Login - Password protected accounts can't login to app
-    case DupPaymentAccount = "DUPLICATE_PAYMENT_ACCOUNT" // Wallet - user tries to add duplicate payment method
-    case FnAccountMultiple = "FN-ACCT-MULTIPLE" // Registration scenario for BGE with multiple account numbers
-    case FnProfileExists = "FN-PROF-EXISTS"
-    case FnAccountFinaled = "FN-ACCOUNT-FINALED" // Loading outage status for finaled account
-    case FnAccountNoPay = "FN-ACCOUNT-NOPAY" // Loading outage status for no-pay account
-    case FnNonService = "FN-NON-SERVICE" // Loading outage status for BGE non-service agreement account
-    case FnCustomerNotFound = "FN-CUST-NOTFOUND"
-    case FnUserInvalid = "FN-USER-INVALID"
-    case FnUserExists = "FN-USER-EXISTS"
-    case MaintenanceMode = "TC-SYS-MAINTENANCE"
-    case FnMultiAccountFound = "FN-MULTI-ACCT-FOUND" // Forgot Username scenario for BGE with multiple account numbers
-    case ExpiredTempPassword = "EXPIRED-TEMP-PASSWORD" // Temp password older than an hour
-    case FnAccountDisallow = "FN-ACCT-DISALLOW" // BGE only account blocking mechanism
-    case FnOverNotFound = "FN-OVER-NOTFOUND" // BGE PeakRewards overrides not found
-    case FnOverExists = "FN-OVER-EXISTS" // BGE PeakRewards overrides already exists
-    case FnOverOther = "FN-OVER-OTHER" // BGE PeakRewards overrides
+    case localError = "LocalError"
+    case noNetworkConnection = "ERR-NO-NETWORK-CONNECTION"
+    case invalidProfileType = "INVALID-PROFILE-TYPE"
+    case parsing = "Parsing"
+    case fNPwdNoMatch = "FN-PWD-NOMATCH"
+    case fnPwdInvalid = "FN-PWD-INVALID"
+    case fnAcctLockedLogin = "FN-ACCT-LOCKED-LOGIN" // Login - attempted to login with password protected account. We throw this error, not from web services
+    case fnAcctNotActivated = "FN-ACCT-NOT-ACTIVATED" // Login - attempted to login before verifying email from registration. We throw this error, not from web services
+    case tcUnknown = "TC-UNKNOWN"
+    case fnProfBadSecurity = "FN-PROF-BADSECURITY" // Forgot Username - security question answered incorrectly
+    case fnProfNotFound = "FN-PROF-NOTFOUND" // Forgot Username/Password - profile not found
+    case fnAccountNotFound = "FN-ACCT-NOTFOUND" // Forgot Username/Password - account not found
+    case fnNotFound = "FN-NOT-FOUND" // Account lookup tool not found
+    case fnAccountProtected = "FN-ACCT-PROTECTED" // Login - Password protected accounts can't login to app
+    case dupPaymentAccount = "DUPLICATE_PAYMENT_ACCOUNT" // Wallet - user tries to add duplicate payment method
+    case fnAccountMultiple = "FN-ACCT-MULTIPLE" // Registration scenario for BGE with multiple account numbers
+    case fnProfileExists = "FN-PROF-EXISTS"
+    case fnAccountFinaled = "FN-ACCOUNT-FINALED" // Loading outage status for finaled account
+    case fnAccountNoPay = "FN-ACCOUNT-NOPAY" // Loading outage status for no-pay account
+    case fnNonService = "FN-NON-SERVICE" // Loading outage status for BGE non-service agreement account
+    case fnCustomerNotFound = "FN-CUST-NOTFOUND"
+    case fnUserInvalid = "FN-USER-INVALID"
+    case fnUserExists = "FN-USER-EXISTS"
+    case maintenanceMode = "TC-SYS-MAINTENANCE"
+    case fnMultiAccountFound = "FN-MULTI-ACCT-FOUND" // Forgot Username scenario for BGE with multiple account numbers
+    case expiredTempPassword = "EXPIRED-TEMP-PASSWORD" // Temp password older than an hour
+    case fnAccountDisallow = "FN-ACCT-DISALLOW" // BGE only account blocking mechanism
+    case fnOverNotFound = "FN-OVER-NOTFOUND" // BGE PeakRewards overrides not found
+    case fnOverExists = "FN-OVER-EXISTS" // BGE PeakRewards overrides already exists
+    case fnOverOther = "FN-OVER-OTHER" // BGE PeakRewards overrides
 }
 
 // MARK: - ServiceError
@@ -51,7 +51,7 @@ struct ServiceError : Error {
     var serviceMessage: String?
     var cause: Error?
     
-    init(serviceCode: String = ServiceErrorCode.LocalError.rawValue, serviceMessage: String? = nil, cause: Error? = nil) {
+    init(serviceCode: String = ServiceErrorCode.localError.rawValue, serviceMessage: String? = nil, cause: Error? = nil) {
         self.serviceCode = serviceCode
         self.serviceMessage = serviceMessage != nil ? serviceMessage! : nil
         self.cause = cause != nil ? cause! : nil
@@ -89,6 +89,6 @@ extension ServiceError : LocalizedError {
 /// - Failure: Indicates that the request failed. The underlying cause
 ///             of the failure is supplied with a ServiceError.
 enum ServiceResult<T> {
-    case Success(T)
-    case Failure(ServiceError)
+    case success(T)
+    case failure(ServiceError)
 }

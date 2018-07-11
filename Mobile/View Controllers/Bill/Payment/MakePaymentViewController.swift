@@ -32,6 +32,7 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAccountImageView: UIImageView!
     @IBOutlet weak var paymentAccountAccountNumberLabel: UILabel!
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
+    @IBOutlet weak var paymentAccountExpiredSelectLabel: UILabel!
     @IBOutlet weak var fixedPaymentAccountView: UIView!
     @IBOutlet weak var fixedPaymentAccountImageView: UIImageView!
     @IBOutlet weak var fixedPaymentAccountAccountNumberLabel: UILabel!
@@ -158,6 +159,7 @@ class MakePaymentViewController: UIViewController {
         paymentAccountLabel.textColor = .deepGray
         paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
+        paymentAccountButton.layer.cornerRadius = 10
         paymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         paymentAccountButton.backgroundColorOnPress = .softGray
         paymentAccountAccountNumberLabel.textColor = .blackText
@@ -216,8 +218,6 @@ class MakePaymentViewController: UIViewController {
         paymentDateTextLabel.textColor = .deepGray
         paymentDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        paymentDateButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        
         paymentDateFixedDateLabel.textColor = .blackText
         paymentDateFixedDateLabel.font = SystemFont.semibold.of(textStyle: .title1)
         paymentDateFixedDatePastDueLabel.textColor = .blackText
@@ -226,20 +226,22 @@ class MakePaymentViewController: UIViewController {
         addBankAccountFeeLabel.textColor = .blackText
         addBankAccountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         addBankAccountFeeLabel.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
+        addBankAccountButton.layer.cornerRadius = 10
         addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addBankAccountButton.backgroundColorOnPress = .softGray
         addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
         addCreditCardFeeLabel.textColor = .blackText
         addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .comEd, .peco:
-            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill matrix, our payment partner.", comment: ""), accountDetail.billingInfo.convenienceFee!.currencyString!)
+            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: ""), accountDetail.billingInfo.convenienceFee!.currencyString!)
             break
         case .bge:
             addCreditCardFeeLabel.text = String(format: NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.", comment: ""), accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
             break
         }
+        addCreditCardButton.layer.cornerRadius = 10
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addCreditCardButton.backgroundColorOnPress = .softGray
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
@@ -344,6 +346,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
         viewModel.allowEdits.asDriver().not().drive(paymentAccountButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.wouldBeSelectedWalletItemIsExpired.asDriver().not().drive(paymentAccountExpiredSelectLabel.rx.isHidden).disposed(by: disposeBag)
         
         // CVV (BGE credit card only)
         viewModel.shouldShowCvvTextField.map(!).drive(cvvView.rx.isHidden).disposed(by: disposeBag)
@@ -452,7 +455,7 @@ class MakePaymentViewController: UIViewController {
             miniWalletVC.sentFromPayment = true
             miniWalletVC.delegate = self
             if self.billingHistoryItem != nil, let walletItem = self.viewModel.selectedWalletItem.value {
-                if Environment.sharedInstance.opco == .bge {
+                if Environment.shared.opco == .bge {
                     if walletItem.bankOrCard == .bank {
                         miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
                         miniWalletVC.creditCardsDisabled = true
@@ -480,9 +483,16 @@ class MakePaymentViewController: UIViewController {
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).disposed(by: disposeBag)
         
-        addBankAccountButton.rx.touchUpInside.map { _ in true }.bind(to: viewModel.inlineBank).disposed(by: disposeBag)
+        addBankAccountButton.rx.touchUpInside
+            .do(onNext: { Analytics.log(event: .AddBankNewWallet) })
+            .map { _ in true }
+            .bind(to: viewModel.inlineBank).disposed(by: disposeBag)
         
-        addCreditCardButton.rx.touchUpInside.map { _ in true }.bind(to: viewModel.inlineCard).disposed(by: disposeBag)
+        addCreditCardButton.rx.touchUpInside
+            .do(onNext: { Analytics.log(event: .AddCardNewWallet) })
+            .map { _ in true }
+            .bind(to: viewModel.inlineCard)
+            .disposed(by: disposeBag)
         
         deletePaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onDeletePaymentPress()
@@ -565,6 +575,19 @@ class MakePaymentViewController: UIViewController {
     
     @objc func onNextPress() {
         view.endEditing(true)
+        
+        if viewModel.inlineBank.value {
+            Analytics.log(event: .ECheckOffer)
+        } else if viewModel.inlineCard.value {
+            Analytics.log(event: .CardOffer)
+        } else if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard { // Existing wallet item
+            switch bankOrCard {
+            case .bank:
+                Analytics.log(event: .ECheckOffer)
+            case .card:
+                Analytics.log(event: .CardOffer)
+            }
+        }
         
         var shouldShowOneTouchPayWarning = false
         if viewModel.inlineBank.value {
@@ -652,7 +675,16 @@ class MakePaymentViewController: UIViewController {
     }
     
     @IBAction func onCVVTooltipPress() {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""), image: #imageLiteral(resourceName: "cvv_info"), description: NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: ""))
+        let messageText: String
+        switch Environment.shared.opco {
+        case .bge:
+            messageText = NSLocalizedString("Your security code is usually a 3 or 4 digit number found on your card.", comment: "")
+        case .comEd, .peco:
+            messageText = NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: "")
+        }
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""),
+                                                image: #imageLiteral(resourceName: "cvv_info"),
+                                                description: messageText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
@@ -712,7 +744,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
         let today = Calendar.opCo.startOfDay(for: Date())
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let minDate: Date
             if Calendar.opCo.component(.hour, from: Date()) >= 20 {
                 minDate = Calendar.opCo.date(byAdding: .day, value: 1, to: today)!
@@ -741,7 +773,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                if Environment.sharedInstance.opco == .peco {
+                if Environment.shared.opco == .peco {
                     let isInWorkdaysArray = viewModel.workdayArray.contains(opCoTimeDate)
                     return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate && isInWorkdaysArray
                 } else {
@@ -776,7 +808,7 @@ extension MakePaymentViewController: AddBankFormViewDelegate {
 extension MakePaymentViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        Analytics().logScreenView(AnalyticsPageView.AddWalletCameraOffer.rawValue)
+        Analytics.log(event: .AddWalletCameraOffer)
         if cameraAuthorizationStatus == .denied || cameraAuthorizationStatus == .restricted {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -792,7 +824,16 @@ extension MakePaymentViewController: AddCardFormViewDelegate {
     }
     
     func addCardFormViewDidTapCVVTooltip(_ addCardFormView: AddCardFormView) {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""), image: #imageLiteral(resourceName: "cvv_info"), description: NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: ""))
+        let messageText: String
+        switch Environment.shared.opco {
+        case .bge:
+            messageText = NSLocalizedString("Your security code is usually a 3 or 4 digit number found on your card.", comment: "")
+        case .comEd, .peco:
+            messageText = NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: "")
+        }
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""),
+                                                image: #imageLiteral(resourceName: "cvv_info"),
+                                                description: messageText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }

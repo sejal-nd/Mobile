@@ -112,10 +112,10 @@ extension PaymentService {
         return Observable.create { observer in
             self.fetchBGEAutoPayInfo(accountNumber: accountNumber, completion: { (result: ServiceResult<BGEAutoPayInfo>) in
                 switch (result) {
-                case ServiceResult.Success(let autoPayInfo):
+                case ServiceResult.success(let autoPayInfo):
                     observer.onNext(autoPayInfo)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -136,10 +136,10 @@ extension PaymentService {
         return Observable.create { observer in
             self.enrollInAutoPayBGE(accountNumber: accountNumber, walletItemId: walletItemId, amountType: amountType, amountThreshold: amountThreshold, paymentDaysBeforeDue: paymentDatesBeforeDue, effectivePeriod: effectivePeriod, effectiveEndDate: effectiveEndDate, effectiveNumPayments: effectiveNumPayments, isUpdate: isUpdate, completion: { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success(()):
+                case ServiceResult.success(()):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -153,10 +153,10 @@ extension PaymentService {
             self.unenrollFromAutoPayBGE(accountNumber: accountNumber)
             { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -180,10 +180,10 @@ extension PaymentService {
                                  isUpdate: isUpdate)
             { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success(_):
+                case ServiceResult.success(_):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -198,10 +198,10 @@ extension PaymentService {
                                      reason: reason)
             { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success(_):
+                case ServiceResult.success(_):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -213,10 +213,10 @@ extension PaymentService {
         return Observable.create { observer in
             self.fetchWorkdays(completion: { (result: ServiceResult<[Date]>) in
                 switch (result) {
-                case ServiceResult.Success(let workdays):
+                case ServiceResult.success(let workdays):
                     observer.onNext(workdays)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -230,10 +230,10 @@ extension PaymentService {
             self.schedulePayment(payment: payment)
             { (result: ServiceResult<String>) in
                 switch (result) {
-                case ServiceResult.Success(_):
+                case ServiceResult.success(_):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -247,10 +247,10 @@ extension PaymentService {
             self.scheduleBGEOneTimeCardPayment(accountNumber: accountNumber, paymentAmount: paymentAmount, paymentDate: paymentDate, creditCard: creditCard)
             { (result: ServiceResult<String>) in
                 switch (result) {
-                case ServiceResult.Success(_):
+                case ServiceResult.success(_):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -264,10 +264,10 @@ extension PaymentService {
             self.fetchPaymentDetails(accountNumber: accountNumber, paymentId: paymentId)
             { (result: ServiceResult<PaymentDetail>) in
                 switch (result) {
-                case ServiceResult.Success(let paymentDetail):
+                case ServiceResult.success(let paymentDetail):
                     observer.onNext(paymentDetail)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -281,10 +281,10 @@ extension PaymentService {
             self.updatePayment(paymentId: paymentId, payment: payment)
             { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success(_):
+                case ServiceResult.success(_):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }
@@ -298,10 +298,10 @@ extension PaymentService {
             self.cancelPayment(accountNumber: accountNumber, paymentId: paymentId, bankOrCard: bankOrCard, paymentDetail: paymentDetail)
             { (result: ServiceResult<Void>) in
                 switch (result) {
-                case ServiceResult.Success(()):
+                case ServiceResult.success(()):
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             }

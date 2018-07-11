@@ -26,7 +26,8 @@ class UsageWebViewController: UIViewController {
         super.viewDidLoad()
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics().logScreenView(AnalyticsPageView.ViewUsageOfferComplete.rawValue, dimensionIndex: Dimensions.ResidentialAMI, dimensionValue: residentialAMIString)
+        Analytics.log(event: .ViewUsageOfferComplete,
+                             dimensions: [.ResidentialAMI: residentialAMIString])
         
         title = NSLocalizedString("Usage Details", comment: "")
         
@@ -71,9 +72,17 @@ class UsageWebViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
+        }
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            if let navController = navigationController as? MainBaseNavigationController {
+                navController.setWhiteNavBar()
+            }
         }
     }
     

@@ -28,7 +28,7 @@ class BiometricsService {
         var fileUrl = manager.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("FirstLaunchOnNewDevice")
         if !manager.fileExists(atPath: fileUrl.path) {
             disableBiometrics()
-            UserDefaults.standard.set(true, forKey: UserDefaultKeys.ShouldPromptToEnableBiometrics)
+            UserDefaults.standard.set(true, forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
             
             manager.createFile(atPath: fileUrl.path, contents: Data(), attributes: nil)
             
@@ -61,15 +61,15 @@ class BiometricsService {
     }
     
     func isBiometricsEnabled() -> Bool {
-        return deviceBiometryType() != nil && UserDefaults.standard.bool(forKey: UserDefaultKeys.BiometricsEnabled)
+        return deviceBiometryType() != nil && UserDefaults.standard.bool(forKey: UserDefaultKeys.isBiometricsEnabled)
     }
     
     func getStoredUsername() -> String? {
-        return UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
+        return UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
     }
     
     func setStoredUsername(username: String) {
-        UserDefaults.standard.set(username, forKey: UserDefaultKeys.LoggedInUsername)
+        UserDefaults.standard.set(username, forKey: UserDefaultKeys.loggedInUsername)
     }
     
     func getStoredPassword() -> String? {
@@ -82,12 +82,12 @@ class BiometricsService {
     
     func setStoredPassword(password: String) {
         keychain.setString(password, forKey: KEYCHAIN_KEY)
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.BiometricsEnabled)
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.isBiometricsEnabled)
     }
     
     func disableBiometrics() {
         keychain.deleteEntry(forKey: KEYCHAIN_KEY)
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.BiometricsEnabled)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.isBiometricsEnabled)
     }
     
 }

@@ -235,7 +235,7 @@ extension MiniWalletViewController: UITableViewDataSource {
             }
         } else {
             var creditCardFeeString: String {
-                switch Environment.sharedInstance.opco {
+                switch Environment.shared.opco {
                 case .bge:
                     return NSLocalizedString(accountDetail.billingInfo.convenienceFeeString(isComplete: true), comment: "")
                 case .comEd, .peco:
@@ -298,10 +298,10 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.innerContentView.addTarget(self, action: #selector(onCreditCardPress(sender:)), for: .touchUpInside)
                 
                 cell.innerContentView.isEnabled = true
-                if let cardIssuer = cardItem.cardIssuer, cardIssuer == "Visa", sentFromPayment, !accountDetail.isResidential, Environment.sharedInstance.opco == .bge { // BGE Commercial cannot pay with VISA
+                if let cardIssuer = cardItem.cardIssuer, cardIssuer == "Visa", sentFromPayment, !accountDetail.isResidential, Environment.shared.opco == .bge { // BGE Commercial cannot pay with VISA
                     cell.innerContentView.isEnabled = false
                 }
-                if creditCardsDisabled {
+                if creditCardsDisabled || cardItem.isExpired {
                     cell.innerContentView.isEnabled = false
                 }
                 return cell
@@ -331,11 +331,6 @@ extension MiniWalletViewController: AddBankAccountViewControllerDelegate {
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
         fetchWalletItems()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            //TODO: expose otp without having to access the viewmodel
-            let otp = addBankAccountViewController.viewModel.addBankFormViewModel.oneTouchPay.value
-            Analytics().logScreenView(AnalyticsPageView.ECheckAddNewWallet.rawValue,
-                                      dimensionIndex: Dimensions.OTPEnabled, dimensionValue: otp ? "true" : "false")
-            
             self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
         })
     }
@@ -347,11 +342,6 @@ extension MiniWalletViewController: AddCreditCardViewControllerDelegate {
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
         fetchWalletItems()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            //TODO: expose otp without having to access the viewmodel
-            let otp = addCreditCardViewController.viewModel.addCardFormViewModel.oneTouchPay.value
-            Analytics().logScreenView(AnalyticsPageView.CardAddNewWallet.rawValue,
-                                      dimensionIndex: Dimensions.OTPEnabled, dimensionValue: otp ? "true" : "false")
-            
             self.view.showToast(NSLocalizedString("Card added", comment: ""))
         })
     }

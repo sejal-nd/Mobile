@@ -69,7 +69,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         let dateString = item.date.shortMonthDayAndYearString
         
         var a11y = ""
-        if item.type == BillingHistoryProperties.TypeBilling.rawValue {
+        if item.type == BillingHistoryProperties.typeBilling.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_bill")
             titleLabel.text = BILL_ISSUED
             amountLabel.text = item.totalAmountDue?.currencyString
@@ -79,18 +79,18 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 return
             }
             
-            if status == BillingHistoryProperties.StatusCanceled.rawValue || 
-                status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
-                status == BillingHistoryProperties.StatusFailed.rawValue {
-                    iconImageView.image = status == BillingHistoryProperties.StatusFailed.rawValue ? #imageLiteral(resourceName: "ic_activity_failed") : #imageLiteral(resourceName: "ic_activity_canceled")
+            if status == BillingHistoryProperties.statusCanceled.rawValue ||
+                status == BillingHistoryProperties.statusCANCELLED.rawValue ||
+                status == BillingHistoryProperties.statusFailed.rawValue {
+                iconImageView.image = status == BillingHistoryProperties.statusFailed.rawValue ? #imageLiteral(resourceName: "ic_activity_failed") : #imageLiteral(resourceName: "ic_activity_canceled")
                     titleLabel.text = PAYMENT
                     amountLabel.text = amountPaid
-                if status == BillingHistoryProperties.StatusFailed.rawValue {
+                if status == BillingHistoryProperties.statusFailed.rawValue {
                     a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
                 } else {
                     a11y = String(format: NSLocalizedString("Cancelled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
                 }
-            } else if status == BillingHistoryProperties.StatusSCHEDULED.rawValue || status == BillingHistoryProperties.StatusScheduled.rawValue {
+            } else if status == BillingHistoryProperties.statusSCHEDULED.rawValue || status == BillingHistoryProperties.statusScheduled.rawValue {
                 iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
                 titleLabel.text = SCHEDULED_PAYMENT
                 self.amountLabel.text = amountPaid
@@ -113,28 +113,28 @@ class BillingHistoryTableViewCell: UITableViewCell {
         var a11y = ""
         let dateString = item.date.shortMonthDayAndYearString
         
-        if status == BillingHistoryProperties.StatusPending.rawValue {
+        if status == BillingHistoryProperties.statusPending.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PENDING_PAYMENT
             amountLabel.text = amountPaid
             caretImageView.isHidden = true
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PENDING_PAYMENT, dateString, amountPaid)
-        } else if status == BillingHistoryProperties.StatusProcessing.rawValue ||
-            status == BillingHistoryProperties.StatusProcessed.rawValue {
+        } else if status == BillingHistoryProperties.statusProcessing.rawValue ||
+            status == BillingHistoryProperties.statusProcessed.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PAYMENT_PROCESSING
             amountLabel.text = amountPaid
             dateLabel.isHidden = true
             caretImageView.isHidden = false
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT_PROCESSING, dateString, amountPaid)
-        } else if status == BillingHistoryProperties.StatusCanceled.rawValue ||
-            status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
-            status == BillingHistoryProperties.StatusFailed.rawValue {
+        } else if status == BillingHistoryProperties.statusCanceled.rawValue ||
+            status == BillingHistoryProperties.statusCANCELLED.rawValue ||
+            status == BillingHistoryProperties.statusFailed.rawValue {
             iconImageView.image = #imageLiteral(resourceName: "ic_paymentcanceledfailed")
             titleLabel.text = PAYMENT
             amountLabel.text = amountPaid
             caretImageView.isHidden = false
-            if status == BillingHistoryProperties.StatusFailed.rawValue {
+            if status == BillingHistoryProperties.statusFailed.rawValue {
                 a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
             } else {
                 a11y = String(format: NSLocalizedString("Cancelled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)

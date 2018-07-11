@@ -28,7 +28,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234"])
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234"])
         let expect = expectation(description: "async")
         viewModel.fetchData(onSuccess: {
             XCTAssertFalse(self.viewModel.isFetching.value)
@@ -58,7 +58,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
         let expect = expectation(description: "async")
         viewModel.fetchData(onSuccess: {
             XCTAssertFalse(self.viewModel.isFetching.value)
@@ -105,13 +105,13 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testFetchDataBGECommercial() {
-        if Environment.sharedInstance.opco == .bge { // BGE only test
+        if Environment.shared.opco == .bge { // BGE only test
             let accountDetail = AccountDetail(isResidential: false)
             addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
-            AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234"])
+            AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234"])
             let expect1 = expectation(description: "async")
             viewModel.fetchData(onSuccess: {
                 XCTAssertNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should be nil because OTP item is Visa card")
@@ -124,7 +124,7 @@ class PaymentViewModelTests: XCTestCase {
                 XCTAssertNil(err, "timeout")
             }
             
-            AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+            AccountsStore.shared.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
             viewModel.selectedWalletItem.value = nil // Reset
             let expect2 = expectation(description: "async")
             viewModel.fetchData(onSuccess: {
@@ -147,7 +147,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234"])
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234"])
         let expect1 = expectation(description: "async")
         viewModel.fetchData(onSuccess: {
             XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should not be nil because OTP item is credit card")
@@ -161,7 +161,7 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssertNil(err, "timeout")
         }
 
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
         viewModel.selectedWalletItem.value = nil // Reset
         let expect2 = expectation(description: "async")
         viewModel.fetchData(onSuccess: {
@@ -185,7 +185,7 @@ class PaymentViewModelTests: XCTestCase {
         
         viewModel.inlineBank.value = true
         viewModel.addBankFormViewModel.accountNumber.value = "12345678"
-        AccountsStore.sharedInstance.customerIdentifier = "123"
+        AccountsStore.shared.customerIdentifier = "123"
         let expect1 = expectation(description: "async")
         viewModel.schedulePayment(onDuplicate: { (title, message) in
             XCTFail("unexpected onDuplicate response")
@@ -199,7 +199,7 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssertNil(err, "timeout")
         }
         
-        AccountsStore.sharedInstance.customerIdentifier = "13" // simulates duplicate in the mock
+        AccountsStore.shared.customerIdentifier = "13" // simulates duplicate in the mock
         let expect2 = expectation(description: "async")
         viewModel.schedulePayment(onDuplicate: { (title, message) in
             expect2.fulfill()
@@ -222,7 +222,7 @@ class PaymentViewModelTests: XCTestCase {
         
         viewModel.inlineCard.value = true
         addCardFormViewModel.cardNumber.value = "12345678"
-        AccountsStore.sharedInstance.customerIdentifier = "123"
+        AccountsStore.shared.customerIdentifier = "123"
         let expect1 = expectation(description: "async")
         viewModel.schedulePayment(onDuplicate: { (title, message) in
             XCTFail("unexpected onDuplicate response")
@@ -236,7 +236,7 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssertNil(err, "timeout")
         }
         
-        AccountsStore.sharedInstance.customerIdentifier = "13" // simulates duplicate in the mock
+        AccountsStore.shared.customerIdentifier = "13" // simulates duplicate in the mock
         let expect2 = expectation(description: "async")
         viewModel.schedulePayment(onDuplicate: { (title, message) in
             expect2.fulfill()
@@ -257,7 +257,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        AccountsStore.sharedInstance.customerIdentifier = "123"
+        AccountsStore.shared.customerIdentifier = "123"
         viewModel.selectedWalletItem.value = WalletItem()
         let expect = expectation(description: "async")
         viewModel.schedulePayment(onDuplicate: { (title, message) in
@@ -279,7 +279,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        AccountsStore.sharedInstance.customerIdentifier = "123"
+        AccountsStore.shared.customerIdentifier = "123"
         let expect = expectation(description: "async")
         viewModel.enableOneTouchPay(walletItemID: "123", onSuccess: {
             expect.fulfill()
@@ -298,7 +298,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        AccountsStore.sharedInstance.customerIdentifier = "123"
+        AccountsStore.shared.customerIdentifier = "123"
         viewModel.paymentId.value = "123"
         viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: Date())
         let expect = expectation(description: "async")
@@ -319,7 +319,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        AccountsStore.sharedInstance.customerIdentifier = "123"
+        AccountsStore.shared.customerIdentifier = "123"
         viewModel.paymentId.value = "123"
         viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: Date())
         viewModel.selectedWalletItem.value = WalletItem()
@@ -488,7 +488,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             addCardFormViewModel.cardNumber.value = "1234123412341234"
             viewModel.bgeCommercialUserEnteringVisa.asObservable().take(1).subscribe(onNext: { enteringVisa in
                 XCTAssertFalse(enteringVisa, "1234123412341234 is not a Visa number")
@@ -601,7 +601,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             addBankFormViewModel.saveToWallet.value = true
             addBankFormViewModel.accountHolderName.value = "Test"
             addBankFormViewModel.routingNumber.value = "123456789"
@@ -639,7 +639,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             addCardFormViewModel.saveToWallet.value = true
             addCardFormViewModel.nameOnCard.value = "Test"
             addCardFormViewModel.cardNumber.value = "5444009999222205"
@@ -702,7 +702,7 @@ class PaymentViewModelTests: XCTestCase {
         // Inline bank
         viewModel.inlineBank.value = true
         viewModel.paymentAmount.value = "100"
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             addBankFormViewModel.accountHolderName.value = "Test"
             addBankFormViewModel.routingNumber.value = "123456789"
             addBankFormViewModel.accountNumber.value = "12345"
@@ -723,7 +723,7 @@ class PaymentViewModelTests: XCTestCase {
         // Inline card
         viewModel.inlineBank.value = false
         viewModel.inlineCard.value = true
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             addCardFormViewModel.nameOnCard.value = "Test"
             addCardFormViewModel.cardNumber.value = "5444009999222205"
             addCardFormViewModel.expMonth.value = "02"
@@ -748,7 +748,7 @@ class PaymentViewModelTests: XCTestCase {
         // Existing wallet item
         viewModel.inlineBank.value = false
         viewModel.inlineCard.value = false
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             // Card
             viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
             viewModel.cvv.value = "123"
@@ -830,7 +830,7 @@ class PaymentViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         // BGE commercial user test - VISA cards should be ignored
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
             viewModel.walletItems.value = [WalletItem(cardIssuer: "Visa", bankOrCard: .card)]
             viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
@@ -856,7 +856,7 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testShouldShowCvvTextField() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
             addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
@@ -932,7 +932,7 @@ class PaymentViewModelTests: XCTestCase {
     // Test paymentAmountErrorMessage for BGE bank accounts when the min/max values are defined in accountDetail
     // Min/max values are set below/above the hardcoded fallback values to test that those values are not used when being overridden in accountDetail
     func testPaymentAmountErrorMessageBGEBankFromAccountDetail() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "minimumPaymentAmountACH": 0.001, "maximumPaymentAmountACH": 1_500_000],
                                                     "SERInfo": [:]])!
@@ -966,7 +966,7 @@ class PaymentViewModelTests: XCTestCase {
     // Test paymentAmountErrorMessage for ComEd/PECO bank accounts when the min/max values are defined in accountDetail
     // Min/max values are set below/above the hardcoded fallback values to test that those values are not used when being overridden in accountDetail
     func testPaymentAmountErrorMessageComEdPECOBankFromAccountDetail() {
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 20_000, "minimumPaymentAmountACH": 3, "maximumPaymentAmountACH": 10_000],
                                                     "SERInfo": [:]])!
@@ -1007,7 +1007,7 @@ class PaymentViewModelTests: XCTestCase {
     // Test paymentAmountErrorMessage for BGE credit cards when the min/max values are defined in accountDetail
     // Min/max values are set below/above the hardcoded fallback values to test that those values are not used when being overridden in accountDetail
     func testPaymentAmountErrorMessageBGECardFromAccountDetail() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "minimumPaymentAmount": 0.001, "maximumPaymentAmount": 30000],
                                                     "SERInfo": [:]])!
@@ -1041,7 +1041,7 @@ class PaymentViewModelTests: XCTestCase {
     // Test paymentAmountErrorMessage for ComEd/PECO credit cards when the min/max values are defined in accountDetail
     // Min/max values are set below/above the hardcoded fallback values to test that those values are not used when being overridden in accountDetail
     func testPaymentAmountErrorMessageComEdPECOCardFromAccountDetail() {
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 20_000, "minimumPaymentAmount": 3, "maximumPaymentAmount": 6000],
                                                     "SERInfo": [:]])!
@@ -1081,7 +1081,7 @@ class PaymentViewModelTests: XCTestCase {
     
     // Test paymentAmountErrorMessage for BGE bank accounts when using the hardcoded min/max values
     func testPaymentAmountErrorMessageBGEBankHardcoded() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
             addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
@@ -1127,7 +1127,7 @@ class PaymentViewModelTests: XCTestCase {
     
     // Test paymentAmountErrorMessage for ComEd/PECO bank accounts when using the hardcoded min/max values
     func testPaymentAmountErrorMessageComEdPECOBankHardcoded() {
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 100000], "SERInfo": [:]])!
             addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
@@ -1165,7 +1165,7 @@ class PaymentViewModelTests: XCTestCase {
     
     // Test paymentAmountErrorMessage for BGE credit cards when using the hardcoded min/max values
     func testPaymentAmountErrorMessageBGECardHardcoded() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
             addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
@@ -1211,7 +1211,7 @@ class PaymentViewModelTests: XCTestCase {
     
     // Test paymentAmountErrorMessage for ComEd/PECO credit cards when using the hardcoded min/max values
     func testPaymentAmountErrorMessageComEdPECOCardHardcoded() {
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 20_000], "SERInfo": [:]])!
             addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
@@ -1248,7 +1248,7 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testPaymentAmountFeeLabelTextBank() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
                                                     "SERInfo": [:]])!
@@ -1278,7 +1278,7 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testPaymentAmountFeeLabelTextCard() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
                                                     "SERInfo": [:]])!
@@ -1288,7 +1288,7 @@ class PaymentViewModelTests: XCTestCase {
             
             viewModel.inlineCard.value = true
             viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: $2.00. Business accounts: 5%", comment: "")
+                let expectedFeeString = NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: $2.00. Business accounts: 5%.", comment: "")
                 XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText ?? "nil")\"")
             }).disposed(by: disposeBag)
         } else {
@@ -1308,7 +1308,7 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testPaymentAmountFeeFooterLabelTextBank() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
                                                     "SERInfo": [:]])!
@@ -1338,7 +1338,7 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testPaymentAmountFeeFooterLabelTextCardResidential() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
                                                     "SERInfo": [:]])!
@@ -1368,7 +1368,7 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testPaymentAmountFeeFooterLabelTextCardCommercial() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
                                                     "SERInfo": [:]])!
@@ -1497,7 +1497,7 @@ class PaymentViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         // ComEd/PECO specific test because by default they set nickname to last 4 digits, so we ignore those nicknames
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             viewModel.selectedWalletItem.value = WalletItem(nickName: "1234")
             viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
                 XCTAssertNil(nickname, "Expected nil, got \"\(nickname ?? "nil")\"")
@@ -1506,7 +1506,7 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testConvenienceFee() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             // BGE Residential
             var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
@@ -1596,7 +1596,7 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testIsFixedPaymentDate() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
             addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
@@ -1681,7 +1681,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        if Environment.sharedInstance.opco == .bge { // Overpayment is a BGE only concept
+        if Environment.shared.opco == .bge { // Overpayment is a BGE only concept
             viewModel.amountDue.value = 100
             viewModel.paymentAmount.value = "200"
             viewModel.isOverpaying.asObservable().take(1).subscribe(onNext: { overpaying in
@@ -1712,7 +1712,7 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testConvenienceFeeDisplayString() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             // BGE Residential
             var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
@@ -1749,7 +1749,7 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testTotalPaymentDisplayString() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
                                                     "SERInfo": [:]])!
@@ -1801,7 +1801,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
                 XCTAssertNil(text, "Expected nil, got \(text ?? "nil")")
             }).disposed(by: disposeBag)

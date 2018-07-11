@@ -108,9 +108,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         let backButton = UIBarButtonItem(customView: systemBack)
         backButton.isAccessibilityElement = true
         backButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
-        let negativeSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        negativeSpacer.width = -8
-        navigationItem.leftBarButtonItems = [negativeSpacer, backButton]
+        navigationItem.leftBarButtonItems = [backButton]
         
         buildStackViews()
         
@@ -144,9 +142,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if viewModel.initialEnrollmentStatus.value == .enrolled {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsOffer.rawValue)
+            Analytics.log(event: .AutoPayModifySettingOffer)
         } else {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsOfferNew.rawValue)
+            Analytics.log(event: .AutoPayModifySettingOfferNew)
         }
     }
     
@@ -632,7 +630,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
                                     self.viewModel.userDidChangeSettings.value = true
                                     self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"
                                     self.modifyBeforeDueDateDetailsLabel()
-                                    Analytics().logScreenView(AnalyticsPageView.AutoPayModifySettingsSubmit.rawValue)
                                 }
                 },
                             onCancel: nil)

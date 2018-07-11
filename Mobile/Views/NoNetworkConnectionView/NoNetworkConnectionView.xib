@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,8 +21,10 @@
             <connections>
                 <outlet property="containerView" destination="iN0-l3-epB" id="7gd-8d-eZo"/>
                 <outlet property="noNetworkConnectionLabel" destination="nTZ-6C-30J" id="qhq-2O-JDl"/>
+                <outlet property="noNetworkImageView" destination="EXP-9t-MhO" id="bh2-1L-OaP"/>
                 <outlet property="pleaseReloadLabel" destination="Dnl-vj-lNy" id="VLG-op-RKG"/>
                 <outlet property="reloadButton" destination="lD6-Ag-ZAK" id="tO4-MA-fpw"/>
+                <outlet property="reloadImageView" destination="kKZ-SE-VMY" id="2YK-vJ-oOa"/>
                 <outlet property="reloadLabel" destination="1yI-jk-gPL" id="res-YO-hzt"/>
             </connections>
         </placeholder>

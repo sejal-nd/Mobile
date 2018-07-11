@@ -23,6 +23,8 @@ class SegmentedControl: UIControl {
     private var bigBottomBar: UIView?
     private var selectedBar: UIView?
     
+    private var borderLayers = [CALayer]()
+    
     init() {
         super.init(frame: .zero)
         commonInit()
@@ -42,6 +44,7 @@ class SegmentedControl: UIControl {
     
     func commonInit() {
         clipsToBounds = true
+        layer.cornerRadius = 4
         
         for i in 0...2 {
             let view = UIView(frame: .zero)
@@ -84,6 +87,14 @@ class SegmentedControl: UIControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        for layer in borderLayers {
+            layer.removeFromSuperlayer()
+        }
+        
+        borderLayers.removeAll()
+        
+        let edgeWidth: CGFloat = 1.0 / UIScreen.main.scale
+        
         if let items = items {
             let itemWidth = frame.width / CGFloat(items.count)
             for (index, item) in items.enumerated() {
@@ -94,10 +105,13 @@ class SegmentedControl: UIControl {
                 view.backgroundColor = index == selectedIndex.value ?
                     UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1) :
                     UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
-                view.addTopBorder(color: .accentGray, width: 1)
-                view.addLeftBorder(color: .accentGray, width: 1)
+                borderLayers.append(view.addTopBorder(color: .accentGray, width: edgeWidth))
+                borderLayers.append(view.addLeftBorder(color: .accentGray, width: edgeWidth))
                 if index == items.count - 1 {
-                    view.addRightBorder(color: .accentGray, width: 1)
+                    borderLayers.append(view.addRightBorder(color: .accentGray, width: edgeWidth))
+                    borderLayers.append(view.addRoundedTopRightBorder(radius: 4, borderColor: .accentGray, borderWidth: 2 * edgeWidth))
+                } else if index == 0 {
+                    borderLayers.append(view.addRoundedTopLeftBorder(radius: 4, borderColor: .accentGray, borderWidth: 2 * edgeWidth))
                 }
                 
                 let label = labels[index]

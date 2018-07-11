@@ -12,15 +12,14 @@ extension WalletItem {
          walletExternalID: String? = "1234",
          maskedWalletItemAccountNumber: String? = "1234",
          nickName: String? = nil,
-         walletItemStatusType: WalletItemStatusType? = .validated,
-         walletItemStatusTypeBGE: WalletItemStatusTypeBGE? = .active,
+         walletItemStatusType: String? = "active",
          bankAccountNumber: String? = nil,
          bankAccountName: String? = nil,
          isDefault: Bool = false,
          cardIssuer: String? = nil,
          bankOrCard: BankOrCard = .bank) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -30,7 +29,6 @@ extension WalletItem {
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
         map["walletItemStatusType"] = walletItemStatusType
-        map["walletItemStatusTypeBGE"] = walletItemStatusTypeBGE
         map["bankAccountNumber"] = bankAccountNumber
         map["bankAccountName"] = bankAccountName
         map["isDefault"] = isDefault

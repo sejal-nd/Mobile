@@ -44,10 +44,10 @@ class UnauthenticatedOutageViewModel {
                 } else if outageStatusArray.count == 1 {
                     self.selectedOutageStatus = outageStatusArray[0]
                     if self.selectedOutageStatus!.flagGasOnly {
-                        if Environment.sharedInstance.opco == .bge {
+                        if Environment.shared.opco == .bge {
                             onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""))
                             return
-                        } else if Environment.sharedInstance.opco == .peco {
+                        } else if Environment.shared.opco == .peco {
                             onError(NSLocalizedString("Gas Only Account", comment: ""), NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: ""))
                             return
                         }
@@ -62,17 +62,17 @@ class UnauthenticatedOutageViewModel {
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.FnAccountFinaled.rawValue {
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
                     onError(NSLocalizedString("Finaled Account", comment: ""), NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: ""))
-                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNoPay.rawValue {
-                    if Environment.sharedInstance.opco == .bge {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
+                    if Environment.shared.opco == .bge {
                         onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: ""))
                     } else {
                         onError(NSLocalizedString("Cut for non pay", comment: ""), NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: ""))
                     }
-                } else if serviceError.serviceCode == ServiceErrorCode.FnNonService.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
                     onError(NSLocalizedString("Outage status unavailable", comment: ""), NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: ""))
-                } else if serviceError.serviceCode == ServiceErrorCode.FnAccountNotFound.rawValue {
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNotFound.rawValue {
                     onError(NSLocalizedString("Error", comment: ""), self.accountNotFoundMessage)
                 } else {
                     onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
@@ -110,7 +110,7 @@ class UnauthenticatedOutageViewModel {
     
     var outageReportedDateString: String {
         if let reportedOutage = reportedOutage {
-            let timeString = Environment.sharedInstance.opcoDateFormatter.string(from: reportedOutage.reportedTime)
+            let timeString = DateFormatter.outageOpcoDateFormatter.string(from: reportedOutage.reportedTime)
             return String(format: NSLocalizedString("Reported %@", comment: ""), timeString)
         }
         return NSLocalizedString("Reported", comment: "")
@@ -119,16 +119,16 @@ class UnauthenticatedOutageViewModel {
     var estimatedRestorationDateString: String {
         if let reportedOutage = reportedOutage {
             if let reportedETR = reportedOutage.etr {
-                return Environment.sharedInstance.opcoDateFormatter.string(from: reportedETR)
+                return DateFormatter.outageOpcoDateFormatter.string(from: reportedETR)
             }
         } else if let statusETR = selectedOutageStatus!.etr {
-            return Environment.sharedInstance.opcoDateFormatter.string(from: statusETR)
+            return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
         }
         return NSLocalizedString("Assessing Damage", comment: "")
     }
     
     var accountNonPayFinaledMessage: String {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
         } else {
             if selectedOutageStatus!.flagFinaled {
@@ -141,9 +141,9 @@ class UnauthenticatedOutageViewModel {
     }
     
     var accountNotFoundMessage: String {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             return NSLocalizedString("The information entered does not match our records. Please double check that the information entered is correct and try again.\n\nStill not working? Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further assistance.", comment: "")
-        } else if Environment.sharedInstance.opco == .peco {
+        } else if Environment.shared.opco == .peco {
             return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-800-494-4000 for further assistance.", comment: "")
         } else {
             return NSLocalizedString("The information entered does not match our records. Please double check that the information is correct and try again. Still not working? Please call Customer Service at 1-800-334-7661 for further assistance.", comment: "")
@@ -151,7 +151,7 @@ class UnauthenticatedOutageViewModel {
     }
     
     var footerText: String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
         case .comEd:
@@ -165,11 +165,18 @@ class UnauthenticatedOutageViewModel {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
     }
 
-    func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
+    func checkForMaintenance(onAll: @escaping () -> Void, onOutage: @escaping () -> Void, onNeither: @escaping () -> Void) {
         authService.getMaintenanceMode()
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { maintenanceInfo in
-                    onSuccess(maintenanceInfo.allStatus)
-                }).disposed(by: disposeBag)
+                    if maintenanceInfo.allStatus {
+                        onAll()
+                    } else if maintenanceInfo.outageStatus {
+                        onOutage()
+                    } else {
+                        onNeither()
+                    }
+                }, onError: { _ in onNeither() })
+            .disposed(by: disposeBag)
     }
 }

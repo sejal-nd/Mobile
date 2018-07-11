@@ -21,7 +21,7 @@ class MainTabBarController: UITabBarController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.InMainApp)
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.inMainApp)
         
         tabBar.barTintColor = .white
         tabBar.tintColor = .primaryColor
@@ -29,19 +29,52 @@ class MainTabBarController: UITabBarController {
         
         setButtonStates(itemTag: 1)
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.PushNotificationReceived) {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.pushNotificationReceived) {
             // If push notification was tapped and the user logged in within 5 minutes, take them straight to alerts
-            if let timestamp = UserDefaults.standard.object(forKey: UserDefaultKeys.PushNotificationReceivedTimestamp) as? Date, Float(timestamp.timeIntervalSinceNow) >= -300 {
+            if let timestamp = UserDefaults.standard.object(forKey: UserDefaultKeys.pushNotificationReceivedTimestamp) as? Date, Float(timestamp.timeIntervalSinceNow) >= -300 {
                 selectedIndex = 3
             }
-            UserDefaults.standard.set(false, forKey: UserDefaultKeys.PushNotificationReceived)
-            UserDefaults.standard.removeObject(forKey: UserDefaultKeys.PushNotificationReceivedTimestamp)
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.pushNotificationReceived)
+            UserDefaults.standard.removeObject(forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
         }
         
-        NotificationCenter.default.rx.notification(.DidTapOnPushNotification, object: nil)
+        NotificationCenter.default.rx.notification(.didTapOnPushNotification, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.selectedIndex = 3
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.didTapOnShortcutItem, object: nil)
+            .asObservable()
+            .subscribe(onNext: { [weak self] notification in
+                guard let `self` = self else { return }
+                guard let shortcutItem = notification.object as? ShortcutItem else {
+                    return
+                }
+                
+                switch shortcutItem {
+                case .payBill:
+                    self.selectedIndex = 1
+                    if let navVC = self.viewControllers?[1] as? UINavigationController,
+                        let billVC = navVC.viewControllers.first as? BillViewController {
+                        billVC.shortcutItem = .payBill
+                    }
+                case .reportOutage:
+                    self.selectedIndex = 2
+                    if let navVC = self.viewControllers?[2] as? UINavigationController,
+                        let outageVC = navVC.viewControllers.first as? OutageViewController {
+                        outageVC.shortcutItem = .reportOutage
+                    }
+                case .viewUsageOptions:
+                    self.selectedIndex = 0
+                    if let navVC = self.viewControllers?.first as? UINavigationController,
+                        let homeVC = navVC.viewControllers.first as? HomeViewController {
+                        homeVC.shortcutItem = .viewUsageOptions
+                    }
+                case .none:
+                    break
+                }
             })
             .disposed(by: disposeBag)
     }

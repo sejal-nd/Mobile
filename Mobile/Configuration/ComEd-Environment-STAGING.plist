@@ -13,7 +13,7 @@
 	<key>mcsInstanceName</key>
 	<string>Staging</string>
 	<key>fiservUrl</key>
-	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
+	<string>https://billerwebui.clienttestmatrix.com/Mobile</string>
 	<key>speedpayUrl</key>
 	<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 	<key>outageMapUrl</key>
@@ -21,8 +21,10 @@
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_comed_staging</string>
 	<key>gaTrackingId</key>
-	<string>UA-76742208-3</string>
+	<string>UA-76742208-16</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.comed.com</string>
+	<key>appCenterId</key>
+	<string>bf4bfe55-3dfd-423b-acfa-32ef84b3776c</string>
 </dict>
 </plist>

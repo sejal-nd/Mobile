@@ -29,7 +29,8 @@ class SplashViewController: UIViewController{
     @IBOutlet weak var retryButton: ButtonControl!
     
     var performDeepLink = false
-    var keepMeSignedIn: Bool = false
+    var keepMeSignedIn = false
+    var shortcutItem = ShortcutItem.none
     
     var loadingTimer = Timer()
     
@@ -67,19 +68,9 @@ class SplashViewController: UIViewController{
             .disposed(by: bag)
         
         if ServiceFactory.createAuthenticationService().isAuthenticated() {
-            ServiceFactory.createAuthenticationService().refreshAuthorization(completion: { [weak self] (result: ServiceResult<Void>) in
-                guard let `self` = self else { return }
-                switch (result) {
-                case .Success:
-                    self.keepMeSignedIn = true
-                    self.imageView.isHidden = false
-                    self.splashAnimationContainer.isHidden = true
-                case .Failure:
-                    self.keepMeSignedIn = false
-                    self.imageView.isHidden = true
-                    self.splashAnimationContainer.isHidden = false
-                }
-            })
+            self.keepMeSignedIn = true
+            self.imageView.isHidden = false
+            self.splashAnimationContainer.isHidden = true
         } else {
             imageView.isHidden = true
         }
@@ -120,16 +111,41 @@ class SplashViewController: UIViewController{
         bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch/Face ID alert prompt is dismissed
         
         if keepMeSignedIn {
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-            self.present(viewController!, animated: true, completion: nil)
+            guard let viewController = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateInitialViewController() as? MainTabBarController else {
+                return
+            }
+            
+            self.present(viewController, animated: true, completion: { [weak self] in
+                if let shortcutItem = self?.shortcutItem, shortcutItem != .none {
+                    NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
+                }
+            })
         } else {
-            let navigate = {
+            let navigate = { [weak self] in
+                guard let `self` = self else { return }
                 if self.performDeepLink {
                     let storyboard = UIStoryboard(name: "Login", bundle: nil)
                     let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
                     let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
                     self.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
                     self.performDeepLink = false // Reset state
+                } else if self.shortcutItem == .reportOutage {
+                    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+                    let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+                    let unauthenticatedUser = loginStoryboard.instantiateViewController(withIdentifier: "unauthenticatedUserViewController")
+                    guard let unauthenticatedOutageValidate = loginStoryboard
+                        .instantiateViewController(withIdentifier: "unauthenticatedOutageValidateAccountViewController")
+                        as? UnauthenticatedOutageValidateAccountViewController else {
+                            return
+                    }
+                    
+                    let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
+                    
+                    Analytics.log(event: .ReportAnOutageUnAuthOffer)
+                    unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.Report
+                    
+                    self.navigationController?.setViewControllers(vcArray, animated: true)
                 } else {
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
@@ -178,7 +194,7 @@ class SplashViewController: UIViewController{
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         if activity.activityType == NSUserActivityTypeBrowsingWeb { // Universal Link from Reset Password email
-            self.performDeepLink = true
+            performDeepLink = true
         }
     }
     

@@ -160,7 +160,7 @@ class AdjustThermostatViewController: UIViewController {
         permanentHoldSwitch.rx.isOn.distinctUntilChanged()
             .do(onNext: {
                 let pageView: AnalyticsPageView = $0 ? .PermanentHoldOn : .PermanentHoldOff
-                Analytics().logScreenView(pageView.rawValue)
+                Analytics.log(event: pageView)
             })
             .bind(to: viewModel.hold)
             .disposed(by: disposeBag)
@@ -178,7 +178,7 @@ class AdjustThermostatViewController: UIViewController {
                 case .off:
                     pageView = .SystemOff
                 }
-                Analytics().logScreenView(pageView.rawValue)
+                Analytics.log(event: pageView)
             })
             .bind(to: viewModel.mode)
             .disposed(by: disposeBag)
@@ -196,7 +196,7 @@ class AdjustThermostatViewController: UIViewController {
                 case .on:
                     pageView = .FanOn
                 }
-                Analytics().logScreenView(pageView.rawValue)
+                Analytics.log(event: pageView)
             })
             .bind(to: viewModel.fan)
             .disposed(by: disposeBag)

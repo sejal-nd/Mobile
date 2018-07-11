@@ -13,6 +13,9 @@ class AlertsViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
 
+    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    
+    @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet weak var segmentedControl: AlertsSegmentedControl!
     
     @IBOutlet weak var backgroundView: UIView!
@@ -37,13 +40,13 @@ class AlertsViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .primaryColor
+        view.backgroundColor = .primaryColorAccountPicker
         
         segmentedControl.setItems(leftLabel: NSLocalizedString("My Alerts", comment: ""),
                                   rightLabel: NSLocalizedString("Updates", comment: ""),
                                   initialSelectedIndex: 0)
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             accountPicker.isHidden = true
         }
         
@@ -54,7 +57,7 @@ class AlertsViewController: AccountPickerViewController {
         styleViews()
         bindViewModel()
         
-        NotificationCenter.default.rx.notification(.DidChangeBudgetBillingEnrollment, object: nil)
+        NotificationCenter.default.rx.notification(.didChangeBudgetBillingEnrollment, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 // Clear account detail, which would force a refresh (in the .readyToFetchData block below) when the screen appears
@@ -62,7 +65,7 @@ class AlertsViewController: AccountPickerViewController {
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.DidTapOnPushNotification, object: nil)
+        NotificationCenter.default.rx.notification(.didTapOnPushNotification, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.viewModel.fetchAlertsFromDisk()
@@ -80,7 +83,7 @@ class AlertsViewController: AccountPickerViewController {
                 break
             case .readyToFetchData:
                 self.viewModel.fetchAlertsFromDisk()
-                if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                     self.viewModel.fetchData()
                 } else if self.viewModel.currentAccountDetail == nil {
                     self.viewModel.fetchData()
@@ -136,14 +139,21 @@ class AlertsViewController: AccountPickerViewController {
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
             if index == 1 { // User tapped on "Updates"
-                Analytics().logScreenView(AnalyticsPageView.AlertsOpCoUpdate.rawValue)
+                Analytics.log(event: .AlertsOpCoUpdate)
             }
         }).disposed(by: disposeBag)
+        
+        noNetworkConnectionView.reload
+            .subscribe(onNext: { [weak self] in self?.viewModel.fetchData() })
+            .disposed(by: disposeBag)
         
         viewModel.backgroundViewColor.drive(backgroundView.rx.backgroundColor).disposed(by: disposeBag)
         
         viewModel.shouldShowLoadingIndicator.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowNoNetworkConnectionView.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowNoNetworkConnectionView.drive(backgroundView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowNoNetworkConnectionView.drive(topStackView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowAlertsTableView.not().drive(alertsTableView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowAlertsEmptyState.not().drive(alertsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
@@ -166,7 +176,7 @@ class AlertsViewController: AccountPickerViewController {
     }
     
     @IBAction func onPreferencesButtonTap(_ sender: Any) {
-        Analytics().logScreenView(AnalyticsPageView.AlertsMainScreen.rawValue)
+        Analytics.log(event: .AlertsMainScreen)
         performSegue(withIdentifier: "preferencesSegue", sender: self)
     }
     
@@ -266,7 +276,7 @@ extension AlertsViewController: AccountPickerDelegate {
 extension AlertsViewController: AlertPreferencesViewControllerDelegate {
     
     func alertPreferencesViewControllerDidSavePreferences(_ alertPreferencesViewController: AlertPreferencesViewController) {
-        Analytics().logScreenView(AnalyticsPageView.AlertsPrefCenterComplete.rawValue)
+        Analytics.log(event: .AlertsPrefCenterComplete)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Preferences saved", comment: ""))
         })

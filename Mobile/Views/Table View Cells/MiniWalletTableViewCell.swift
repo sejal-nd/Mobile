@@ -15,12 +15,15 @@ class MiniWalletTableViewCell: UITableViewCell {
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var checkmarkImageView: UIImageView!
+    @IBOutlet weak var expiredView: UIView!
+    @IBOutlet weak var expiredLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
         selectionStyle = .none
         
+        innerContentView.layer.cornerRadius = 10
         innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         innerContentView.backgroundColorOnPress = .softGray
         
@@ -32,6 +35,10 @@ class MiniWalletTableViewCell: UITableViewCell {
         nicknameLabel.textColor = .middleGray
         
         checkmarkImageView.isHidden = true
+        
+        expiredView.layer.borderWidth = 2
+        expiredView.layer.borderColor = UIColor.errorRed.cgColor
+        expiredLabel.textColor = .errorRed
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -53,7 +60,7 @@ class MiniWalletTableViewCell: UITableViewCell {
         
         if let nickname = walletItem.nickName {
             let displayNickname: String
-            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
                 let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
                 displayNickname = nickname == String(last4) ? "" : nickname
             } else {
@@ -68,9 +75,14 @@ class MiniWalletTableViewCell: UITableViewCell {
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
             accountNumberLabel.text = "**** \(last4Digits)"
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
+            let a11yDigits = last4Digits.map(String.init).joined(separator: " ")
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), a11yDigits)
         } else {
             accountNumberLabel.text = ""
+        }
+        
+        if walletItem.isExpired {
+            a11yLabel += NSLocalizedString(", expired", comment: "")
         }
         
         if isSelectedItem {
@@ -81,6 +93,9 @@ class MiniWalletTableViewCell: UITableViewCell {
         }
         
         innerContentView.accessibilityLabel = a11yLabel
+        
+        expiredView.isHidden = !walletItem.isExpired
+        expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""
     }
 
 }
@@ -109,6 +124,7 @@ class MiniWalletAddAccountCell: UITableViewCell {
         
         selectionStyle = .none
         
+        innerContentView.layer.cornerRadius = 10
         innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         innerContentView.backgroundColorOnPress = .softGray
         

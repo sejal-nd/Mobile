@@ -43,11 +43,11 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics().logScreenView(AnalyticsPageView.RegisterAccountComplete.rawValue)
+        Analytics.log(event: .RegisterAccountComplete)
     }
     
     private var emailAddress: String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .comEd:
             return "no-reply@comed.com"
         case .peco:
@@ -79,7 +79,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
                 .subscribe(onNext: { [weak self] in
                     LoadingView.hide()
                     self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
-                    Analytics().logScreenView(AnalyticsPageView.RegisterResendEmail.rawValue)
+                    Analytics.log(event: .RegisterResendEmail)
                 }, onError: { [weak self] err in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: err.localizedDescription, preferredStyle: .alert)

@@ -17,11 +17,11 @@ enum AnalyticsPageView: String {
     case AutoPayUnenrollOffer = "AutoPayUnEnrollOffer"
     case AutoPayUnenrollComplete = "AutoPayUnEnrollComplete"
     
-    case AutoPayModifySettingsOffer = "AutoPayModifySettingOffer"
-    case AutoPayModifySettingsOfferNew = "AutoPayModifySettingOfferNew"
-    case AutoPayModifySettingsSubmit = "AutoPayModifySettingSubmit"
-    case AutoPayModifySettingsComplete = "AutoPayModifySettingComplete"
-    case AutoPayModifySettingsCompleteNew = "AutoPayModifySettingCompleteNew"
+    case AutoPayModifySettingOffer = "AutoPayModifySettingOffer"
+    case AutoPayModifySettingOfferNew = "AutoPayModifySettingOfferNew"
+    case AutoPayModifySettingSubmit = "AutoPayModifySettingSubmit"
+    case AutoPayModifySettingComplete = "AutoPayModifySettingComplete"
+    case AutoPayModifySettingCompleteNew = "AutoPayModifySettingCompleteNew"
 
     case AutoPayModifyWallet = "AutoPayModifyWallet"
     case AutoPayModifyBankView = "AutoPayModifyBankView"
@@ -78,11 +78,13 @@ enum AnalyticsPageView: String {
     case ECheckAddNewWallet = "EcheckAddNewWallet"
     case ECheckSubmit = "EcheckSubmit"
     case ECheckComplete = "EcheckComplete"
+    case EcheckError = "EcheckError"
     
     case CardOffer = "CardOffer"
     case CardAddNewWallet = "CardAddNewWallet"
     case CardSubmit = "CardSubmit"
     case CardComplete = "CardComplete"
+    case CardError = "CardError"
     case ConfirmationScreenAutopayEnroll = "ConfirmationScreenAutoPayEnroll"
     
     case AddBankNewWallet = "AddBankNewWallet"
@@ -109,8 +111,10 @@ enum AnalyticsPageView: String {
 
     case OneTouchBankOffer = "OneTouchBankOffer"
     case OneTouchBankComplete = "OneTouchBankComplete"
+    case OneTouchBankError = "OneTouchBankError"
     case OneTouchCardOffer = "OneTouchCardOffer"
     case OneTouchCardComplete = "OneTouchCardComplete"
+    case OneTouchCardError = "OneTouchCardError"
     case OneTouchTermsView = "OneTouchTermsView"
     case OneTouchEnabledBillCard = "OneTouchPayEnableBillCard"
     case ViewBillBillCard = "ViewBillBillCard"
@@ -140,7 +144,10 @@ enum AnalyticsPageView: String {
     
     case ContactUsAuthCall = "ContactUsAuthCall"
     case ContactUsUnAuthCall = "ContactUsUnAuthCall"
+    case ContactUsForm = "ContactUsForm"
+    case UnAuthContactUsForm = "UnAuthContactUsForm"
     
+    case AlertsPrefCenterOffer = "PrefCenterOffer"
     case AlertsPrefCenterSave = "PrefCenterSave"
     case AlertsPrefCenterComplete = "PrefCenterComplete"
     case AlertsPayRemind = "AlertsPayRemind"
@@ -220,7 +227,7 @@ enum AnalyticsOutageSource {
     case Status
 }
 
-enum Dimensions: UInt {
+enum AnalyticsDimension: UInt {
     case KeepMeSignedIn = 3
     case FingerprintUsed = 4
     case ErrorCode = 5
@@ -232,67 +239,31 @@ enum Dimensions: UInt {
     case PeakSmart = 11 // "true" or "false"
 }
 
-func isAnalyticsEnabled() -> Bool {
-    if Environment.sharedInstance.environmentName == "STAGE" || Environment.sharedInstance.environmentName == "PROD" {
-        return true
-    }
-    
-    return false
-}
-
 struct Analytics {
-    func logScreenView(_ screenName: String) {
-        if isAnalyticsEnabled() {
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker?.set(kGAIScreenName, value: screenName)
-            tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .build() as! [AnyHashable: Any])
-        } else {
-            dLog("Analytics: " + screenName)
+    private init() {}
+    
+    static var isAnalyticsEnabled: Bool {
+        switch Environment.shared.environmentName {
+        case .stage, .prod:
+            return true
+        default:
+            return false
         }
     }
     
-    func logScreenView(_ screenName: String, dimensionIndex: Dimensions, dimensionValue: String) {
-        if isAnalyticsEnabled() {
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker?.set(kGAIScreenName, value: screenName)
-            tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .set(dimensionValue, forKey: GAIFields.customDimension(for: dimensionIndex.rawValue))
-                .build() as! [AnyHashable: Any])
-        } else {
-            dLog("Analytics: " + screenName)
-        }
-    }
-    
-    func logScreenView(_ screenName: String, dimensionIndices: [Dimensions], dimensionValues: [String]) {
-        if dimensionIndices.count != dimensionValues.count {
-            fatalError("dimensionIndices and dimensionsValues must have the same number of elements")
+    static func log(event: AnalyticsPageView, dimensions: [AnalyticsDimension: String] = [:]) {
+        dLog("Analytics: " + event.rawValue)
+        
+        guard isAnalyticsEnabled else { return }
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker?.set(kGAIScreenName, value: event.rawValue)
+        
+        let dimensionBuilder = GAIDictionaryBuilder.createScreenView()!
+        dimensions.forEach { dimension, value in
+            dimensionBuilder.set(value, forKey: GAIFields.customDimension(for: dimension.rawValue))
         }
         
-        if isAnalyticsEnabled() {
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker?.set(kGAIScreenName, value: screenName)
-            let dimensionBuilder = GAIDictionaryBuilder.createScreenView()!
-            for i in stride(from: 0, to: dimensionIndices.count, by: 1) {
-                dimensionBuilder.set(dimensionValues[i], forKey: GAIFields.customDimension(for: dimensionIndices[i].rawValue))
-            }
-            tracker?.send(dimensionBuilder.build() as! [AnyHashable: Any])
-        } else {
-            dLog("Analytics: " + screenName)
-        }
+        tracker?.send(dimensionBuilder.build() as! [AnyHashable: Any])
     }
-    
-    func logSignIn(_ screenName: String, keepSignedIn: String, usedFingerprint: String) {
-        if isAnalyticsEnabled() {
-            let tracker = GAI.sharedInstance().defaultTracker
-            tracker?.set(kGAIScreenName, value: screenName)
-            tracker?.send(GAIDictionaryBuilder.createScreenView()
-                .set(keepSignedIn, forKey: GAIFields.customDimension(for: Dimensions.KeepMeSignedIn.rawValue))
-                .set(usedFingerprint, forKey: GAIFields.customDimension(for: Dimensions.FingerprintUsed.rawValue))
-                .build() as! [AnyHashable: Any])
-        } else {
-            dLog("Analytics: " + screenName)
-        }
-    }
-    
 }

@@ -197,7 +197,7 @@ struct AccountDetail: Mappable {
             }
         }
         
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return 0.01
         case .comEd, .peco:
@@ -218,7 +218,7 @@ struct AccountDetail: Mappable {
         }
         
         
-        switch (bankOrCard, Environment.sharedInstance.opco, isResidential) {
+        switch (bankOrCard, Environment.shared.opco, isResidential) {
         case (.bank, .bge, true):
             return 99_999.99
         case (.bank, .bge, false):
@@ -258,7 +258,7 @@ struct SERInfo: Mappable {
     }
 }
 
-struct SERResult: Mappable {
+struct SERResult: Mappable, Equatable {
     let actualKWH: Double
     let baselineKWH: Double
     let eventStart: Date
@@ -293,6 +293,15 @@ struct SERResult: Mappable {
         } else {
             savingKWH = 0
         }
+    }
+
+    static func ==(lhs: SERResult, rhs: SERResult) -> Bool {
+        return lhs.actualKWH == rhs.actualKWH &&
+            lhs.baselineKWH == rhs.baselineKWH &&
+            lhs.eventStart == rhs.eventStart &&
+            lhs.eventEnd == rhs.eventEnd &&
+            lhs.savingDollar == rhs.savingDollar &&
+            lhs.savingKWH == rhs.savingKWH
     }
 }
 
@@ -380,6 +389,7 @@ struct BillingInfo: Mappable {
     let commercialFee: Double? // this
     let turnOffNoticeExtensionStatus: String?
     let turnOffNoticeExtendedDueDate: Date?
+    let turnOffNoticeDueDate: Date?
     let deliveryCharges: Double?
     let supplyCharges: Double?
     let taxesAndFees: Double?
@@ -408,6 +418,7 @@ struct BillingInfo: Mappable {
         commercialFee = map.optionalFrom("feeCommercial")
         turnOffNoticeExtensionStatus = map.optionalFrom("turnOffNoticeExtensionStatus")
         turnOffNoticeExtendedDueDate = map.optionalFrom("turnOffNoticeExtendedDueDate", transformation: extractDate)
+        turnOffNoticeDueDate = map.optionalFrom("turnOffNoticeDueDate", transformation: extractDate)
         deliveryCharges = map.optionalFrom("deliveryCharges")
         supplyCharges = map.optionalFrom("supplyCharges")
         taxesAndFees = map.optionalFrom("taxesAndFees")
@@ -419,7 +430,7 @@ struct BillingInfo: Mappable {
             return array
         }
         
-        let paymentItems = paymentDicts?.flatMap(PaymentItem.from)
+        let paymentItems = paymentDicts?.compactMap(PaymentItem.from)
         
         scheduledPayment = paymentItems?.filter { $0.status == .scheduled }.last
         pendingPayments = paymentItems?
@@ -430,7 +441,7 @@ struct BillingInfo: Mappable {
     func convenienceFeeString(isComplete: Bool) -> String {
         var convenienceFeeStr = ""
         if isComplete {
-            convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@",
+            convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.",
                                       residentialFee!.currencyString!, commercialFee!.percentString!)
         } else {
             convenienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",

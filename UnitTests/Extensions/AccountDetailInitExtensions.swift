@@ -59,7 +59,7 @@ extension AccountDetail {
          peakRewards: String? = nil,
          zipCode: String? = nil) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -71,7 +71,7 @@ extension AccountDetail {
         map["CustomerInfo"] = customerInfo.toJSON()
         map["BillingInfo"] = billingInfo.toJSON()
         map["SERInfo"] = serInfo.toJSON()
-        map["PremiseInfo"] = premiseInfo.map(Premise.toJSON)
+        map["PremiseInfo"] = premiseInfo.map { $0.toJSON() }
         
         map["isPTSAccount"] = isPTSAccount
         
@@ -120,7 +120,7 @@ extension BillingInfo: JSONEncodable {
          disconnectNoticeArrears: Double? = nil,
          isDisconnectNotice: Bool = false,
          billDate: Date? = nil,
-         convenienceFee: Double? = nil,
+         convenienceFee: Double? = 0,
          scheduledPayment: PaymentItem? = nil,
          pendingPayments: [PaymentItem] = [],
          atReinstateFee: Double? = nil,
@@ -129,15 +129,16 @@ extension BillingInfo: JSONEncodable {
          minPaymentAmountACH: Double? = nil,
          maxPaymentAmountACH: Double? = nil,
          currentDueAmount: Double? = nil,
-         residentialFee: Double? = nil,
-         commercialFee: Double? = nil,
+         residentialFee: Double? = 0,
+         commercialFee: Double? = 0,
          turnOffNoticeExtensionStatus: String? = nil,
          turnOffNoticeExtendedDueDate: Date? = nil,
+         turnOffNoticeDueDate: Date? = nil,
          deliveryCharges: Double? = nil,
          supplyCharges: Double? = nil,
          taxesAndFees: Double? = nil) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -166,14 +167,15 @@ extension BillingInfo: JSONEncodable {
             "minPaymentAmountACH": minPaymentAmountACH,
             "maxPaymentAmountACH": maxPaymentAmountACH,
             "currentDueAmount": currentDueAmount,
-            "residentialFee": residentialFee,
-            "commercialFee": commercialFee,
+            "feeResidential": residentialFee,
+            "feeCommercial": commercialFee,
             "turnOffNoticeExtensionStatus": turnOffNoticeExtensionStatus,
-            "turnOffNoticeExtendedDueDate": turnOffNoticeExtendedDueDate,
+            "turnOffNoticeExtendedDueDate": turnOffNoticeExtendedDueDate?.apiString,
+            "turnOffNoticeDueDate": turnOffNoticeDueDate?.apiString,
             "deliveryCharges": deliveryCharges,
             "supplyCharges": supplyCharges,
             "taxesAndFees": taxesAndFees,
-            "payments" : payments.map(PaymentItem.toJSON)
+            "payments": payments.map { $0.toJSON() as NSDictionary }
         ]
         
         self = BillingInfo.from(map as NSDictionary)!
@@ -205,23 +207,24 @@ extension BillingInfo: JSONEncodable {
             "minPaymentAmountACH": minPaymentAmountACH,
             "maxPaymentAmountACH": maxPaymentAmountACH,
             "currentDueAmount": currentDueAmount,
-            "residentialFee": residentialFee,
-            "commercialFee": commercialFee,
+            "feeResidential": residentialFee,
+            "feeCommercial": commercialFee,
             "turnOffNoticeExtensionStatus": turnOffNoticeExtensionStatus,
-            "turnOffNoticeExtendedDueDate": turnOffNoticeExtendedDueDate,
+            "turnOffNoticeExtendedDueDate": turnOffNoticeExtendedDueDate?.apiString,
+            "turnOffNoticeDueDate": turnOffNoticeDueDate?.apiString,
             "deliveryCharges": deliveryCharges,
             "supplyCharges": supplyCharges,
             "taxesAndFees": taxesAndFees,
-            "payments" : payments.map(PaymentItem.toJSON)
+            "payments": payments.map { $0.toJSON() as NSDictionary }
         ]
     }
 }
 
 extension PaymentItem: JSONEncodable {
     
-    init(amount: Double, date: Date? = nil, status: PaymentStatus = .scheduled) {
+    init(amount: Double, date: Date? = Date(), status: PaymentStatus = .scheduled) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -247,7 +250,7 @@ extension CustomerInfo: JSONEncodable {
     
     init(emailAddress: String? = nil, number: String? = nil, firstName: String? = nil, nameCompressed: String? = nil) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -274,9 +277,9 @@ extension CustomerInfo: JSONEncodable {
 
 extension Premise: JSONEncodable {
     
-    init(premiseNumber: String, addressGeneral: String? = nil, zipCode: String? = nil, addressLine: [String]? = nil, smartEnergyRewards: String? = nil) {
+    init(premiseNumber: String = "", addressGeneral: String? = nil, zipCode: String? = nil, addressLine: [String]? = nil, smartEnergyRewards: String? = nil) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -313,54 +316,54 @@ extension Premise: JSONEncodable {
 extension SERInfo: JSONEncodable {
     init(controlGroupFlag: String? = nil, eventResults: [SERResult] = []) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
         var map = [String: Any]()
         map["ControlGroupFlag"] = controlGroupFlag
-        map["eventResults"] = eventResults.map(SERResult.toJSON)
+        map["eventResults"] = eventResults.map { $0.toJSON() }
         self = SERInfo.from(map as NSDictionary)!
     }
     
     func toJSON() -> [String : Any?] {
         return [
             "ControlGroupFlag" : controlGroupFlag,
-            "eventResults" : eventResults.map(SERResult.toJSON)
+            "eventResults" : eventResults.map { $0.toJSON() }
         ]
     }
 }
 
 extension SERResult: JSONEncodable {
-    init(actualKWH: Double,
-         baselineKWH: Double,
-         eventStart: String,
-         eventEnd: String,
-         savingDollar: Double,
-         savingKWH: Double) {
+    init(actualKWH: Double = 0,
+         baselineKWH: Double = 0,
+         eventStart: Date = Date(),
+         eventEnd: Date = Date(),
+         savingDollar: Double = 0,
+         savingKWH: Double = 0) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
-        var map = [String: Any]()
-        map["actualKWH"] = actualKWH
-        map["baselineKWH"] = baselineKWH
-        map["eventStart"] = eventStart
-        map["eventEnd"] = eventEnd
-        map["savingDollar"] = savingDollar
-        map["savingKWH"] = savingKWH
+        var map = [String: Any?]()
+        map["actualKWH"] = String(actualKWH)
+        map["baselineKWH"] = String(baselineKWH)
+        map["eventStart"] = eventStart.apiString
+        map["eventEnd"] = eventEnd.apiString
+        map["savingDollar"] = String(savingDollar)
+        map["savingKWH"] = String(savingKWH)
         self = SERResult.from(map as NSDictionary)!
     }
     
     func toJSON() -> [String : Any?] {
         return [
-            "actualKWH" : actualKWH,
-            "baselineKWH" : baselineKWH,
+            "actualKWH" : String(actualKWH),
+            "baselineKWH" : String(baselineKWH),
             "eventStart" : eventStart.apiString,
             "eventEnd" : eventEnd.apiString,
-            "savingDollar" : savingDollar,
-            "savingKWH" : savingKWH
+            "savingDollar" : String(savingDollar),
+            "savingKWH" : String(savingKWH)
         ]
     }
 }

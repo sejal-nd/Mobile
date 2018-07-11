@@ -69,7 +69,7 @@ class AddBankFormViewModel {
     
     private(set) lazy var nicknameErrorString: Driver<String?> = self.nickname.asDriver().map { [weak self] in
         // If BGE, check if at least 3 characters
-        if Environment.sharedInstance.opco == .bge && !$0.isEmpty && $0.count < 3 {
+        if Environment.shared.opco == .bge && !$0.isEmpty && $0.count < 3 {
             return NSLocalizedString("Must be at least 3 characters", comment: "")
         }
         

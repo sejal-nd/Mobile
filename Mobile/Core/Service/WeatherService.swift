@@ -22,11 +22,11 @@ extension WeatherService {
             self.getWeather(address: address, completion: { (result: ServiceResult<WeatherItem>) in
                 
                 switch(result) {
-                case .Success(let weatherItem):
+                case .success(let weatherItem):
                     observer.onNext(weatherItem)
                     observer.onCompleted()
                     break
-                case .Failure(let error):
+                case .failure(let error):
                     observer.onError(error)
                 }
                 

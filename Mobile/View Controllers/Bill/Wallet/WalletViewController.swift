@@ -201,6 +201,16 @@ class WalletViewController: UIViewController {
         viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).disposed(by: disposeBag)
         viewModel.addBankDisabled.map(!).drive(miniBankButton.rx.isEnabled).disposed(by: disposeBag)
         viewModel.addBankDisabled.map(!).drive(bankButton.rx.isEnabled).disposed(by: disposeBag)
+        
+        viewModel.hasExpiredWalletItem
+            .drive(onNext: { [weak self] in
+                let alert = UIAlertController(title: nil,
+                                              message: NSLocalizedString("Please update your Wallet as one or more of your saved payment accounts have expired.", comment: ""),
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     func setupButtonTaps() {
@@ -330,7 +340,7 @@ extension WalletViewController: AddBankAccountViewControllerDelegate {
     
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
         didChangeAccount(toastMessage: NSLocalizedString("Bank account added", comment: ""))
-        Analytics().logScreenView(AnalyticsPageView.AddWalletComplete.rawValue)
+        Analytics.log(event: .AddWalletComplete)
     }
     
 }
@@ -347,7 +357,7 @@ extension WalletViewController: AddCreditCardViewControllerDelegate {
     
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
         didChangeAccount(toastMessage: NSLocalizedString("Card added", comment: ""))
-        Analytics().logScreenView(AnalyticsPageView.AddWalletComplete.rawValue)
+        Analytics.log(event: .AddWalletComplete)
     }
 }
 

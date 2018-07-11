@@ -26,7 +26,10 @@ class SettingsTableViewCell: UITableViewCell {
         backgroundColor = .clear // iOS 9 support
         contentView.backgroundColor = .clear
         
-        innerContentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        innerContentView.layer.cornerRadius = 10.0
+        innerContentView.layer.masksToBounds = true
+        
+        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3.0)
         
         label.textColor = .blackText
         label.font = SystemFont.medium.of(textStyle: .title1)

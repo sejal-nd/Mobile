@@ -11,18 +11,20 @@ import RxSwift
 
 struct MockAuthenticationService: AuthenticationService {
     
-    let validUsername = "valid@test.com"
-    let validCurrentPassword = "Password1"
+    let invalidUsername = "invalid@test.com"
+    let validPassword = "Password1"
     
     func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (ServiceResult<(ProfileStatus, AccountDetail)>) -> Void) {
         
-        if username == validUsername && password == validCurrentPassword {
+        if username != invalidUsername && password == validPassword {
+            MockData.shared.username = username
+            // The account detail returned here does not influence anything in the rest of the app.
+            // Most account-related things will come from the call to fetchAccounts or fetchAccountDetail in MockAccountService
             let accountDetail = AccountDetail.from(["accountNumber": "123456789", "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
-            completion(ServiceResult.Success((ProfileStatus(), accountDetail)))
+            completion(ServiceResult.success((ProfileStatus(), accountDetail)))
         } else {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
         }
-        
     }
     
     func validateLogin(_ username: String, password: String, completion: @escaping (ServiceResult<Void>) -> Void) {
@@ -30,39 +32,53 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func isAuthenticated() -> Bool {
-        return false;
+        return false
     }
     
     func logout(completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.Success(()))
+        completion(ServiceResult.success(()))
     }
     
     func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        if currentPassword == validCurrentPassword {
-            completion(ServiceResult.Success(()))
+        if currentPassword == validPassword {
+            completion(ServiceResult.success(()))
         } else {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
         }
     }
     
     func changePasswordAnon(_ username: String,currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        if currentPassword == validCurrentPassword {
-            completion(ServiceResult.Success(()))
+        if currentPassword == validPassword {
+            completion(ServiceResult.success(()))
         } else {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
         }
     }
     
     func getMaintenanceMode(completion: @escaping (ServiceResult<Maintenance>) -> Void) {
-        completion(ServiceResult.Success(Maintenance.from([:])!))
+        let result: ServiceResult<Maintenance>
+        switch MockData.shared.username {
+        case "maintAll":
+            result = .success(Maintenance(all: true))
+        case "maintAllTabs":
+            result = .success(Maintenance(home: true, bill: true, outage: true, alert: true))
+        case "maintNotHome":
+            result = .success(Maintenance(home: false, bill: true, outage: true, alert: true))
+        case "maintError":
+            result = .failure(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
+        default:
+            result = .success(Maintenance())
+        }
+        
+        completion(result)
     }
     
     func getMinimumVersion(completion: @escaping (ServiceResult<MinimumVersion>) -> Void) {
-        completion(ServiceResult.Success(MinimumVersion()))
+        completion(ServiceResult.success(MinimumVersion()))
     }
     
     func refreshAuthorization(completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.Success(()))
+        completion(ServiceResult.success(()))
     }
     
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?, completion: @escaping (_ result: ServiceResult<[ForgotUsernameMasked]>) -> Void) {
@@ -91,9 +107,9 @@ struct MockAuthenticationService: AuthenticationService {
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if identifier == "0000" {
-                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnAccountNotFound.rawValue)))
+                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnAccountNotFound.rawValue)))
             } else {
-                completion(ServiceResult.Success(maskedUsernames))
+                completion(ServiceResult.success(maskedUsernames))
             }
         }
     }
@@ -101,9 +117,9 @@ struct MockAuthenticationService: AuthenticationService {
     func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String, completion: @escaping (ServiceResult<String>) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if questionResponse.lowercased() == "exelon" {
-                completion(ServiceResult.Success("username@email.com"))
+                completion(ServiceResult.success("username@email.com"))
             } else {
-                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnProfBadSecurity.rawValue)))
+                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnProfBadSecurity.rawValue)))
             }
         }
 
@@ -116,7 +132,7 @@ struct MockAuthenticationService: AuthenticationService {
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if identifier == "0000" {
-                completion(ServiceResult.Failure(ServiceError(serviceMessage: "No accounts found")))
+                completion(ServiceResult.failure(ServiceError(serviceMessage: "No accounts found")))
                 return
             } else if identifier == "1111" {
                 var accountResults = [AccountLookupResult]()
@@ -127,7 +143,7 @@ struct MockAuthenticationService: AuthenticationService {
                         "ApartmentUnitNumber": "12B"
                     ])
                 )!)
-                completion(ServiceResult.Success(accountResults))
+                completion(ServiceResult.success(accountResults))
             } else {
                 var accountResults = [AccountLookupResult]()
                 let accounts = [
@@ -151,7 +167,7 @@ struct MockAuthenticationService: AuthenticationService {
                         accountResults.append(mockModel)
                     }
                 }
-                completion(ServiceResult.Success(accountResults))
+                completion(ServiceResult.success(accountResults))
             }
         }
     }
@@ -159,9 +175,9 @@ struct MockAuthenticationService: AuthenticationService {
     func recoverPassword(username: String, completion: @escaping (ServiceResult<Void>) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             if username.lowercased() == "error" {
-                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.FnProfNotFound.rawValue)))
+                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnProfNotFound.rawValue)))
             } else {
-                completion(ServiceResult.Success(()))
+                completion(ServiceResult.success(()))
             }
         }
     }

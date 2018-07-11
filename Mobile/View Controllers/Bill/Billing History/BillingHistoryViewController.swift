@@ -63,7 +63,7 @@ class BillingHistoryViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics().logScreenView(AnalyticsPageView.BillingOfferComplete.rawValue)
+        Analytics.log(event: .BillingOfferComplete)
     }
     
     func getBillingHistory() {
@@ -109,7 +109,8 @@ class BillingHistoryViewController: UIViewController {
             vc.billingHistoryItem = billingHistoryItem
         } else if let vc = segue.destination as? ViewBillViewController {
             let billingHistoryItem = selectedIndexPath.section == 0 ? billingHistory.upcoming[selectedIndexPath.row] : billingHistory.past[selectedIndexPath.row]
-            vc.viewModel.billDate = billingHistoryItem.date.apiFormatDate
+            vc.viewModel.billDate = billingHistoryItem.date
+            Analytics.log(event: .BillViewPastOfferComplete)
             AppRating.logRatingEvent()
         } else if let vc = segue.destination as? BGEAutoPayViewController {
             vc.accountDetail = accountDetail
@@ -146,20 +147,20 @@ extension BillingHistoryViewController: UITableViewDelegate {
             
             let status = billingItem.status
             
-            if type == BillingHistoryProperties.TypeBilling.rawValue {
+            if type == BillingHistoryProperties.typeBilling.rawValue {
                 showBillPdf()
-            } else if status == BillingHistoryProperties.StatusProcessing.rawValue ||
-                status == BillingHistoryProperties.StatusProcessed.rawValue ||
-                status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
-                status == BillingHistoryProperties.StatusScheduled.rawValue ||
-                status == BillingHistoryProperties.StatusPending.rawValue {
+            } else if status == BillingHistoryProperties.statusProcessing.rawValue ||
+                status == BillingHistoryProperties.statusProcessed.rawValue ||
+                status == BillingHistoryProperties.statusSCHEDULED.rawValue ||
+                status == BillingHistoryProperties.statusScheduled.rawValue ||
+                status == BillingHistoryProperties.statusPending.rawValue {
                 handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
             } else {
                 performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
             }
         //upcoming billing history
         } else {
-            let opco = Environment.sharedInstance.opco
+            let opco = Environment.shared.opco
             
             if (accountDetail.isBGEasy || accountDetail.isAutoPay) {
                 selectedIndexPath.row = selectedIndexPath.row - 1 //everything is offset by BGEasy cell
@@ -183,15 +184,15 @@ extension BillingHistoryViewController: UITableViewDelegate {
                     guard let status = billingItem.status else { return }
                     
                     //pending payments do not get a tap so we only handle scheduled/cancelled payments
-                    if status == BillingHistoryProperties.StatusProcessing.rawValue ||
-                        status == BillingHistoryProperties.StatusProcessed.rawValue ||
-                        status == BillingHistoryProperties.StatusSCHEDULED.rawValue ||
-                        status == BillingHistoryProperties.StatusScheduled.rawValue ||
-                        status == BillingHistoryProperties.StatusPending.rawValue {
+                    if status == BillingHistoryProperties.statusProcessing.rawValue ||
+                        status == BillingHistoryProperties.statusProcessed.rawValue ||
+                        status == BillingHistoryProperties.statusSCHEDULED.rawValue ||
+                        status == BillingHistoryProperties.statusScheduled.rawValue ||
+                        status == BillingHistoryProperties.statusPending.rawValue {
                         handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
-                    } else if status == BillingHistoryProperties.StatusCanceled.rawValue || 
-                        status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
-                        status == BillingHistoryProperties.StatusFailed.rawValue {
+                    } else if status == BillingHistoryProperties.statusCanceled.rawValue ||
+                        status == BillingHistoryProperties.statusCANCELLED.rawValue ||
+                        status == BillingHistoryProperties.statusFailed.rawValue {
                         performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
                     }
                 }
@@ -203,11 +204,11 @@ extension BillingHistoryViewController: UITableViewDelegate {
         let billingItem = billingHistory.upcoming[indexPath.row]
         guard let status = billingItem.status else { return }
         
-        if status == BillingHistoryProperties.StatusProcessing.rawValue ||
-            status == BillingHistoryProperties.StatusProcessed.rawValue ||
-            status == BillingHistoryProperties.StatusCanceled.rawValue ||
-            status == BillingHistoryProperties.StatusCANCELLED.rawValue ||
-            status == BillingHistoryProperties.StatusFailed.rawValue {
+        if status == BillingHistoryProperties.statusProcessing.rawValue ||
+            status == BillingHistoryProperties.statusProcessed.rawValue ||
+            status == BillingHistoryProperties.statusCanceled.rawValue ||
+            status == BillingHistoryProperties.statusCANCELLED.rawValue ||
+            status == BillingHistoryProperties.statusFailed.rawValue {
             
             performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
             
@@ -217,9 +218,9 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             guard let paymentMethod = billingItem.paymentMethod else { return }
-            if paymentMethod == BillingHistoryProperties.PaymentMethod_S.rawValue { //scheduled
+            if paymentMethod == BillingHistoryProperties.paymentMethod_S.rawValue { //scheduled
                 showModifyScheduledItem(billingItem: billingItem)
             } else {  // recurring/automatic
                 let storyboard = UIStoryboard(name: "Bill", bundle: nil)
@@ -237,7 +238,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func showBillPdf() {
-        if Environment.sharedInstance.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
+        if Environment.shared.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
             let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             present(alertVC, animated: true, completion: nil)

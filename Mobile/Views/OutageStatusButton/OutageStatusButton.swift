@@ -42,7 +42,7 @@ class OutageStatusButton: UIView {
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
         
-        onLottieAnimation.frame = CGRect(x: 0, y: 0, width: animationView.frame.size.width, height: animationView.frame.size.height)
+        onLottieAnimation.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
         onLottieAnimation.loopAnimation = true
         onLottieAnimation.contentMode = .scaleAspectFill
         animationView.addSubview(onLottieAnimation)
@@ -184,7 +184,7 @@ class OutageStatusButton: UIView {
         nonPayFinaledTextView.backgroundColor = .clear
         
         let payBillLabel = UILabel(frame: .zero)
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             if flagFinaled {
                 nonPayFinaledTextView.frame = CGRect(x: 67, y: 121, width: bigButtonWidth - 28, height: 84)
             } else { // accountPaid = false

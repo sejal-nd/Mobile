@@ -13,16 +13,18 @@
 	<key>mcsInstanceName</key>
 	<string>ProdBGE</string>
 	<key>fiservUrl</key>
-	<string>https://billerdirectui.onefiserv.com/BillerDirectUI/Mobile</string>
+	<string>https://billerwebui.fiservapps.com/Mobile</string>
 	<key>speedpayUrl</key>
 	<string>https://tokenservice.speedpay.com/api/token/GetToken</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_bge</string>
+	<string>GoogleService-Info_bge_prodbeta</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-1</string>
 	<key>opcoUpdatesHost</key>
 	<string>www.bge.com</string>
+	<key>appCenterId</key>
+	<string>bddc73d9-4dfb-421f-a59f-71c08c3647e5</string>
 </dict>
 </plist>

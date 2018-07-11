@@ -63,7 +63,7 @@ class BGEAutoPayViewModel {
     func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
         isFetchingAutoPayInfo.value = true
         self.isError.value = false
-        paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber)
+        paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (autoPayInfo: BGEAutoPayInfo) in
                 guard let `self` = self else { return }
@@ -124,7 +124,15 @@ class BGEAutoPayViewModel {
     
     func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let daysBefore = whenToPay.value == .onDueDate ? "0" : numberOfDaysBeforeDueDate.value
-        paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber, walletItemId: selectedWalletItem.value!.walletItemID, amountType: amountToPay.value, amountThreshold: amountNotToExceedDouble(), paymentDatesBeforeDue: daysBefore, effectivePeriod: howLongForAutoPay.value, effectiveEndDate: autoPayUntilDate.value, effectiveNumPayments: numberOfPayments.value, isUpdate: update)
+        paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber,
+                                          walletItemId: selectedWalletItem.value!.walletItemID,
+                                          amountType: amountToPay.value,
+                                          amountThreshold: amountNotToExceedDouble(),
+                                          paymentDatesBeforeDue: daysBefore,
+                                          effectivePeriod: howLongForAutoPay.value,
+                                          effectiveEndDate: autoPayUntilDate.value,
+                                          effectiveNumPayments: numberOfPayments.value,
+                                          isUpdate: update)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()

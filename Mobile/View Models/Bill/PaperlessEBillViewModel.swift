@@ -11,9 +11,9 @@ import RxCocoa
 import RxSwiftExt
 
 enum PaperlessEBillChangedStatus {
-    case Enroll
-    case Unenroll
-    case Mixed
+    case enroll
+    case unenroll
+    case mixed
 }
 
 class PaperlessEBillViewModel {
@@ -37,11 +37,11 @@ class PaperlessEBillViewModel {
         self.billService = billService
         self.initialAccountDetail = Variable(initialAccountDetailValue)
         
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
-            self.accounts = Variable([AccountsStore.sharedInstance.accounts.filter { initialAccountDetailValue.accountNumber == $0.accountNumber }.first!])
+            self.accounts = Variable([AccountsStore.shared.accounts.filter { initialAccountDetailValue.accountNumber == $0.accountNumber }.first!])
         case .comEd, .peco:
-            self.accounts = Variable(AccountsStore.sharedInstance.accounts)
+            self.accounts = Variable(AccountsStore.shared.accounts)
         }
     
         Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
@@ -93,36 +93,27 @@ class PaperlessEBillViewModel {
     }()
     
     func submitChanges(onSuccess: @escaping (PaperlessEBillChangedStatus) -> Void, onError: @escaping (String) -> Void) {
-        var requestObservables = [Observable<Void>]()
-        var enrolled = false //, unenrolled = false
-        for account in accountsToEnroll.value {
-            enrolled = true
-            requestObservables.append(billService.enrollPaperlessBilling(accountNumber: account, email: initialAccountDetail.value.customerInfo.emailAddress))
-            Analytics().logScreenView(AnalyticsPageView.EBillEnrollOffer.rawValue)
-        }
-        for account in accountsToUnenroll.value {
-            //unenrolled = true
-            requestObservables.append(billService.unenrollPaperlessBilling(accountNumber: account))
-            Analytics().logScreenView(AnalyticsPageView.EBillUnEnrollOffer.rawValue)
-        }
+        let enrollObservables = accountsToEnroll.value.map {
+            billService.enrollPaperlessBilling(accountNumber: $0,
+                                               email: initialAccountDetail.value.customerInfo.emailAddress)
+                .do(onNext: {Analytics.log(event: .EBillEnrollComplete)})
+            }
+            .doEach { _ in Analytics.log(event: .EBillEnrollOffer) }
+        
+        let unenrollObservables = accountsToUnenroll.value.map {
+            billService.unenrollPaperlessBilling(accountNumber: $0)
+                .do(onNext: {Analytics.log(event: .EBillUnEnrollComplete)})
+            }
+            .doEach { _ in Analytics.log(event: .EBillUnEnrollOffer) }
         
         var changedStatus: PaperlessEBillChangedStatus
-        if Environment.sharedInstance.opco == .bge {
-            changedStatus = enrolled ? .Enroll : .Unenroll
+        if Environment.shared.opco == .bge {
+            changedStatus = !enrollObservables.isEmpty ? .enroll : .unenroll
         } else { // EM-1780 ComEd/PECO should always show Mixed
-            changedStatus = PaperlessEBillChangedStatus.Mixed
+            changedStatus = .mixed
         }
         
-//        // Pre EM-1780:
-//        if enrolled && unenrolled {
-//            changedStatus = PaperlessEBillChangedStatus.Mixed
-//        } else if enrolled {
-//            changedStatus = PaperlessEBillChangedStatus.Enroll
-//        } else { // User cannot submit without enrolling/unenrolling at least 1 account, so it's safe to make this a generic 'else'
-//            changedStatus = PaperlessEBillChangedStatus.Unenroll
-//        }
-        
-        Observable.from(requestObservables)
+        Observable.from(enrollObservables + unenrollObservables)
             .merge(maxConcurrent: 3)
             .toArray()
             .observeOn(MainScheduler.instance)
@@ -135,7 +126,7 @@ class PaperlessEBillViewModel {
     }
     
     var footerText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return nil
         case .comEd:

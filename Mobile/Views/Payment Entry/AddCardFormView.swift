@@ -112,7 +112,7 @@ class AddCardFormView: UIView {
         byNotSavingLabel.font = OpenSans.regular.of(textStyle: .footnote)
         byNotSavingLabel.text = NSLocalizedString("By not saving this payment account, you will only be eligible to make an instant payment.", comment: "")
         
-        nicknameTextField.textField.placeholder = Environment.sharedInstance.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
+        nicknameTextField.textField.placeholder = Environment.shared.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
         
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -122,14 +122,14 @@ class AddCardFormView: UIView {
         
         footnoteLabel.textColor = .blackText
         footnoteLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             footnoteLabel.text = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
         } else {
             footnoteLabel.text = NSLocalizedString("We accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
         }
         
         // BGE only fields should be removed on ComEd/PECO
-        if Environment.sharedInstance.opco != .bge {
+        if Environment.shared.opco != .bge {
             nameOnCardTextField.isHidden = true
         }
         

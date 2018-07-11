@@ -66,7 +66,7 @@ class MiniWalletViewModel {
     }
 
     lazy var bankAccountLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
-        if Environment.sharedInstance.opco == .bge { return false } // No limit for BGE
+        if Environment.shared.opco == .bge { return false } // No limit for BGE
         
         guard let walletItems = $0 else { return false }
         var bankCount = 0
@@ -91,7 +91,7 @@ class MiniWalletViewModel {
     }
     
     var footerLabelText: String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
         case .comEd, .peco:
@@ -100,7 +100,7 @@ class MiniWalletViewModel {
     }
     
     lazy var creditCardLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
-        if Environment.sharedInstance.opco == .bge { return false } // No limit for BGE
+        if Environment.shared.opco == .bge { return false } // No limit for BGE
         
         guard let walletItems = $0 else { return false }
         var creditCount = 0
