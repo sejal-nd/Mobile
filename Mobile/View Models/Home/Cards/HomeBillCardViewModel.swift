@@ -481,12 +481,12 @@ class HomeBillCardViewModel {
                 string = String.localizedStringWithFormat(format, amount)
             case (true, false):
                 guard let amount = accountDetail.billingInfo.netDueAmount?.currencyString else { return nil }
-                let format = "%@ is due immediately for your multi-premise account."
+                let format = "%@ is due immediately for your multi-premise bill."
                 string = String.localizedStringWithFormat(format, amount)
             case (false, true):
                 string = NSLocalizedString("Your bill is past due.", comment: "")
             case (true, true):
-                string = NSLocalizedString("Your bill is past due for your multi-premise account.", comment: "")
+                string = NSLocalizedString("Your bill is past due for your multi-premise bill.", comment: "")
             }
             
             return NSAttributedString(string: string, attributes: attributes)
@@ -525,7 +525,7 @@ class HomeBillCardViewModel {
                 
                 let format: String
                 if isMultiPremise {
-                    format = "%@ is due in %d day%@ to avoid service interruption for your multi-premise account."
+                    format = "%@ is due in %d day%@ to avoid service interruption for your multi-premise bill."
                 } else {
                     format = "%@ is due in %d day%@ to avoid service interruption."
                 }
