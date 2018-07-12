@@ -84,7 +84,7 @@ class LoginViewModel {
                     onError(nil, error.localizedDescription)
                 }
                 Analytics.log(event: .LoginError,
-                                     dimensions: [.ErrorCode: serviceError.serviceCode])
+                                     dimensions: [.errorCode: serviceError.serviceCode])
             })
             .disposed(by: disposeBag)
     }

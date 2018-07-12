@@ -127,7 +127,7 @@ class BillAnalysisViewController: UIViewController {
 
         let residentialAMIString = String(format: "%@%@", viewModel.accountDetail.isResidential ? "Residential/" : "Commercial/", viewModel.accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
         Analytics.log(event: .BillNeedHelp,
-                             dimensions: [.ResidentialAMI: residentialAMIString])
+                             dimensions: [.residentialAMI: residentialAMIString])
         
         title = NSLocalizedString("Bill Analysis", comment: "")
         

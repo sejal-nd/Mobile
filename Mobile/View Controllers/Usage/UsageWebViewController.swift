@@ -27,7 +27,7 @@ class UsageWebViewController: UIViewController {
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
         Analytics.log(event: .ViewUsageOfferComplete,
-                             dimensions: [.ResidentialAMI: residentialAMIString])
+                             dimensions: [.residentialAMI: residentialAMIString])
         
         title = NSLocalizedString("Usage Details", comment: "")
         

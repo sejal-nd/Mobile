@@ -186,8 +186,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func onLoginPress() {
         Analytics.log(event: .LoginOffer,
-                        dimensions: [.KeepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
-                                     .FingerprintUsed: "disabled"])
+                        dimensions: [.keepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
+                                     .fingerprintUsed: "disabled"])
         
         if forgotUsernamePopulated {
             Analytics.log(event: .ForgotUsernameCompleteAccountValidation)
@@ -339,9 +339,9 @@ class LoginViewController: UIViewController {
                 (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
             
             Analytics.log(event: .LoginComplete,
-                                 dimensions: [.ResidentialAMI: residentialAMIString,
-                                              .BGEControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
-                                              .PeakSmart: isPeakSmart ? "true" : "false"])
+                                 dimensions: [.residentialAMI: residentialAMIString,
+                                              .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
+                                              .peakSmart: isPeakSmart ? "true" : "false"])
         }
 
         guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
@@ -367,8 +367,8 @@ class LoginViewController: UIViewController {
             guard let `self` = self else { return }
             
             Analytics.log(event: .LoginOffer,
-                                 dimensions: [.KeepMeSignedIn: self.keepMeSignedInSwitch.isOn ? "true":"false",
-                                              .FingerprintUsed: "enabled"])
+                                 dimensions: [.keepMeSignedIn: self.keepMeSignedInSwitch.isOn ? "true":"false",
+                                              .fingerprintUsed: "enabled"])
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))

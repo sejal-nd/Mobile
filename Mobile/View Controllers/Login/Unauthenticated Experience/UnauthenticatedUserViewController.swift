@@ -91,11 +91,11 @@ class UnauthenticatedUserViewController: UIViewController {
             switch(segue.identifier) {
             case "reportOutageValidateAccount"?:
                 Analytics.log(event: .ReportAnOutageUnAuthOffer)
-                vc.analyticsSource = AnalyticsOutageSource.Report
+                vc.analyticsSource = AnalyticsOutageSource.report
                 break
             case "checkOutageValidateAccount"?:
                 Analytics.log(event: .OutageStatusUnAuthOffer)
-                vc.analyticsSource = AnalyticsOutageSource.Status
+                vc.analyticsSource = AnalyticsOutageSource.status
                 break
             default:
                 break

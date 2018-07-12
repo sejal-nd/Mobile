@@ -343,7 +343,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
             
             Analytics.log(event: .ReportAnOutageUnAuthOffer)
-            unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.Report
+            unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
             
             // Reset the unauthenticated nav stack
             let newNavController = loginStoryboard.instantiateInitialViewController() as! UINavigationController

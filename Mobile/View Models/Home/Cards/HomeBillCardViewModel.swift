@@ -63,12 +63,12 @@ class HomeBillCardViewModel {
                     Analytics.log(event: .OneTouchBankComplete)
                 case (.bank, let error):
                     Analytics.log(event: .OneTouchBankError,
-                                         dimensions: [.ErrorCode: (error as! ServiceError).serviceCode])
+                                         dimensions: [.errorCode: (error as! ServiceError).serviceCode])
                 case (.card, nil):
                     Analytics.log(event: .OneTouchCardComplete)
                 case (.card, let error):
                     Analytics.log(event: .OneTouchCardError,
-                                         dimensions: [.ErrorCode: (error as! ServiceError).serviceCode])
+                                         dimensions: [.errorCode: (error as! ServiceError).serviceCode])
                 }
             })
             .disposed(by: bag)

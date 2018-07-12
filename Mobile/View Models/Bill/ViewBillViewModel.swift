@@ -40,7 +40,7 @@ class ViewBillViewModel {
                     guard let `self` = self else { return }
                     let screenView: AnalyticsPageView = self.isCurrent ? .BillViewCurrentError : .BillViewPastError
                     let serviceError = errMessage as! ServiceError
-                    Analytics.log(event: screenView, dimensions: [.ErrorCode: serviceError.serviceCode])
+                    Analytics.log(event: screenView, dimensions: [.errorCode: serviceError.serviceCode])
             })
             .disposed(by: disposeBag)
     }

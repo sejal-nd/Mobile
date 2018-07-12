@@ -345,7 +345,7 @@ class ReviewPaymentViewController: UIViewController {
                     }
                     
                     Analytics.log(event: pageView,
-                                         dimensions: [.ErrorCode: error.serviceCode])
+                                         dimensions: [.errorCode: error.serviceCode])
                 }
                 handleError(error.localizedDescription)
             })

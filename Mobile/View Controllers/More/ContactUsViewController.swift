@@ -210,7 +210,7 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
         }
         
         if let value = dimensionValue {
-            Analytics.log(event: screenName, dimensions: [.Link: value])
+            Analytics.log(event: screenName, dimensions: [.link: value])
         }
     }
 }

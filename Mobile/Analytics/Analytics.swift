@@ -223,20 +223,20 @@ enum AnalyticsPageView: String {
 }
 
 enum AnalyticsOutageSource {
-    case Report
-    case Status
+    case report
+    case status
 }
 
 enum AnalyticsDimension: UInt {
-    case KeepMeSignedIn = 3
-    case FingerprintUsed = 4
-    case ErrorCode = 5
-    case OTPEnabled = 6
-    case Link = 7
-    case ResidentialAMI = 8 // "Residential/AMI", "Residential/Non-AMI", "Commercial/AMI", or "Commercial/Non-AMI"
-    case HourlyPricingEnrollment = 9 // "enrolled" or "unenrolled"
-    case BGEControlGroup = 10 // "true" or "false"
-    case PeakSmart = 11 // "true" or "false"
+    case keepMeSignedIn = 3
+    case fingerprintUsed = 4
+    case errorCode = 5
+    case otpEnabled = 6
+    case link = 7
+    case residentialAMI = 8 // "Residential/AMI", "Residential/Non-AMI", "Commercial/AMI", or "Commercial/Non-AMI"
+    case hourlyPricingEnrollment = 9 // "enrolled" or "unenrolled"
+    case bgeControlGroup = 10 // "true" or "false"
+    case peakSmart = 11 // "true" or "false"
 }
 
 struct Analytics {

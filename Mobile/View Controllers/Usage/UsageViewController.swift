@@ -60,8 +60,8 @@ class UsageViewController: UIViewController {
             (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
         
         Analytics.log(event: .ViewUsageLink,
-                             dimensions: [.ResidentialAMI: residentialAMIString,
-                                          .PeakSmart: isPeakSmart ? "true" : "false"])
+                             dimensions: [.residentialAMI: residentialAMIString,
+                                          .peakSmart: isPeakSmart ? "true" : "false"])
         
         if accountDetail.peakRewards == "ACTIVE" {
             let thermbutton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_thermostat"), style: .plain, target: nil, action: nil)
@@ -187,11 +187,11 @@ class UsageViewController: UIViewController {
             guard let accountDetail = self?.accountDetail else { return }
             if accountDetail.isHourlyPricing {
                 Analytics.log(event: .HourlyPricing,
-                                     dimensions: [.HourlyPricingEnrollment: "enrolled"])
+                                     dimensions: [.hourlyPricingEnrollment: "enrolled"])
                 self?.performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
             } else {
                 Analytics.log(event: .HourlyPricing,
-                                     dimensions: [.HourlyPricingEnrollment: "unenrolled"])
+                                     dimensions: [.hourlyPricingEnrollment: "unenrolled"])
                 let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
                 self?.present(safariVc, animated: true, completion: nil)
             }
