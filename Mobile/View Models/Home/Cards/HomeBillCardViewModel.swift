@@ -481,12 +481,12 @@ class HomeBillCardViewModel {
                 string = String.localizedStringWithFormat(format, amount)
             case (true, false):
                 guard let amount = accountDetail.billingInfo.netDueAmount?.currencyString else { return nil }
-                let format = "%@ is due immediately for your multi-premise bill."
+                let format = "%@ is due immediately for your multi-premise account."
                 string = String.localizedStringWithFormat(format, amount)
             case (false, true):
                 string = NSLocalizedString("Your bill is past due.", comment: "")
             case (true, true):
-                string = NSLocalizedString("Your bill is past due for your multi-premise bill.", comment: "")
+                string = NSLocalizedString("Your bill is past due for your multi-premise account.", comment: "")
             }
             
             return NSAttributedString(string: string, attributes: attributes)
@@ -535,13 +535,13 @@ class HomeBillCardViewModel {
                 let string: String
                 switch (days > 0, isMultiPremise) {
                 case (true, true):
-                    let format = "%@ is due in %d day%@ to avoid service interruption for your multi-premise bill."
+                    let format = "%@ is due in %d day%@ to avoid service interruption for your multi-premise account."
                     string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
                 case (true, false):
                     let format = "%@ is due in %d day%@ to avoid service interruption."
                     string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
                 case (false, true):
-                    let format = "%@ is due immediately to avoid service interruption for your multi-premise bill."
+                    let format = "%@ is due immediately to avoid service interruption for your multi-premise account."
                     string = String.localizedStringWithFormat(format, amountString)
                 case (false, false):
                     let format = "%@ is due immediately to avoid service interruption."
@@ -559,7 +559,7 @@ class HomeBillCardViewModel {
         default:
             if AccountsStore.shared.currentAccount.isMultipremise {
                 attributes[.foregroundColor] = UIColor.deepGray
-                return NSAttributedString(string: NSLocalizedString("Multi-Premise Bill", comment: ""),
+                return NSAttributedString(string: NSLocalizedString("Multi-premise Account", comment: ""),
                                           attributes: attributes)
             }
             return nil
