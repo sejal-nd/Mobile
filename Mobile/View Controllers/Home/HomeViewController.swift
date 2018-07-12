@@ -210,7 +210,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .HomeOfferComplete)
+        Analytics.log(event: .homeOfferComplete)
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
@@ -221,9 +221,9 @@ class HomeViewController: AccountPickerViewController {
                     if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
                         UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
                         if granted {
-                            Analytics.log(event: .AlertsiOSPushOKInitial)
+                            Analytics.log(event: .alertsiOSPushOKInitial)
                         } else {
-                            Analytics.log(event: .AlertsiOSPushDontAllowInitial)
+                            Analytics.log(event: .alertsiOSPushDontAllowInitial)
                         }
                     }
                 })
@@ -235,7 +235,7 @@ class HomeViewController: AccountPickerViewController {
         }
         
         if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
-            Analytics.log(event: .AlertsiOSPushInitial)
+            Analytics.log(event: .alertsiOSPushInitial)
         }
     }
     
@@ -400,7 +400,7 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                Analytics.log(event: .AllSavingsSmartEnergy)
+                Analytics.log(event: .allSavingsSmartEnergy)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
             }).disposed(by: usageCardView.disposeBag)
     }
@@ -540,9 +540,9 @@ extension HomeViewController: AutoPayViewControllerDelegate {
             self.view.showToast(message)
         })
         if enrolled {
-            Analytics.log(event: .AutoPayEnrollComplete)
+            Analytics.log(event: .autoPayEnrollComplete)
         } else {
-            Analytics.log(event: .AutoPayUnenrollComplete)
+            Analytics.log(event: .autoPayUnenrollComplete)
         }
     }
     

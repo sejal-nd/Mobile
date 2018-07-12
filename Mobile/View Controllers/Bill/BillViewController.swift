@@ -544,7 +544,7 @@ class BillViewController: AccountPickerViewController {
                     self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)
                 }
                 
-                Analytics.log(event: .BillViewCurrentOfferComplete)
+                Analytics.log(event: .billViewCurrentOfferComplete)
             })
 			.disposed(by: bag)
 
@@ -730,12 +730,12 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
         case .comEd, .peco:
             showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
         }
-        Analytics.log(event: .BudgetBillEnrollComplete)
+        Analytics.log(event: .budgetBillEnrollComplete)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
-        Analytics.log(event: .BudgetBillUnEnrollComplete)
+        Analytics.log(event: .budgetBillUnEnrollComplete)
     }
 }
 
@@ -761,9 +761,9 @@ extension BillViewController: AutoPayViewControllerDelegate {
         showDelayedToast(withMessage: message)
         
         if enrolled {
-            Analytics.log(event: .AutoPayEnrollComplete)
+            Analytics.log(event: .autoPayEnrollComplete)
         } else {
-            Analytics.log(event: .AutoPayUnenrollComplete)
+            Analytics.log(event: .autoPayUnenrollComplete)
         }
     }
 
