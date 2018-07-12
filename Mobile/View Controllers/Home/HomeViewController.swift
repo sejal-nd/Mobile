@@ -280,6 +280,8 @@ class HomeViewController: AccountPickerViewController {
             usageCardView = nil
         case .template:
             templateCardView = nil
+        case .projectedBill:
+            projectedBillCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
