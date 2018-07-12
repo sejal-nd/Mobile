@@ -497,8 +497,15 @@ class HomeBillCardViewModel {
             }
             
             let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
-            let format = "%@ is due in %d day%@ to catch up on your DPA agreement."
-            let string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            
+            let string: String
+            if days > 0 {
+                let format = "%@ is due in %d day%@ to catch up on your DPA agreement."
+                string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            } else {
+                let format = "%@ is due immediately to catch up on your DPA agreement."
+                string = String.localizedStringWithFormat(format, amountString)
+            }
             
             return NSAttributedString(string: string, attributes: attributes)
         case .restoreService:
@@ -523,17 +530,26 @@ class HomeBillCardViewModel {
                         return nil
                 }
                 
-                let format: String
-                if isMultiPremise {
-                    format = "%@ is due in %d day%@ to avoid service interruption for your multi-premise bill."
-                } else {
-                    format = "%@ is due in %d day%@ to avoid service interruption."
+                let days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
+                
+                let string: String
+                switch (days > 0, isMultiPremise) {
+                case (true, true):
+                    let format = "%@ is due in %d day%@ to avoid service interruption for your multi-premise bill."
+                    string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+                case (true, false):
+                    let format = "%@ is due in %d day%@ to avoid service interruption."
+                    string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+                case (false, true):
+                    let format = "%@ is due immediately to avoid service interruption for your multi-premise bill."
+                    string = String.localizedStringWithFormat(format, amountString)
+                case (false, false):
+                    let format = "%@ is due immediately to avoid service interruption."
+                    string = String.localizedStringWithFormat(format, amountString)
                 }
                 
-                let days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
-                let string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
-                return NSAttributedString(string: string,
-                                          attributes: attributes)
+                return NSAttributedString(string: string, attributes: attributes)
+                
             case .comEd, .peco:
                 let localizedText = NSLocalizedString("%@ is due immediately to avoid shutoff.", comment: "")
                 let string = String.localizedStringWithFormat(localizedText, amountString)
