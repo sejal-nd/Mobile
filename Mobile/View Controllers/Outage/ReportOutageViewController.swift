@@ -458,7 +458,7 @@ extension ReportOutageViewController: UITextFieldDelegate {
 extension ReportOutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName: AnalyticsPageView = unauthenticatedExperience ?
+        let screenName: AnalyticsEvent = unauthenticatedExperience ?
             .reportAnOutageUnAuthEmergencyPhone :
             .reportOutageEmergencyCall
         

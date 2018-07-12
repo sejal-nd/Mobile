@@ -159,7 +159,7 @@ class AdjustThermostatViewController: UIViewController {
         // Bind to view model
         permanentHoldSwitch.rx.isOn.distinctUntilChanged()
             .do(onNext: {
-                let pageView: AnalyticsPageView = $0 ? .permanentHoldOn : .permanentHoldOff
+                let pageView: AnalyticsEvent = $0 ? .permanentHoldOn : .permanentHoldOff
                 Analytics.log(event: pageView)
             })
             .bind(to: viewModel.hold)
@@ -169,7 +169,7 @@ class AdjustThermostatViewController: UIViewController {
             .distinctUntilChanged()
             .map { SmartThermostatMode.allValues[$0] }
             .do(onNext: {
-                let pageView: AnalyticsPageView
+                let pageView: AnalyticsEvent
                 switch $0 {
                 case .cool:
                     pageView = .systemCool
@@ -187,7 +187,7 @@ class AdjustThermostatViewController: UIViewController {
             .distinctUntilChanged()
             .map { SmartThermostatFan.allValues[$0] }
             .do(onNext: {
-                let pageView: AnalyticsPageView
+                let pageView: AnalyticsEvent
                 switch $0 {
                 case .auto:
                     pageView = .fanAuto

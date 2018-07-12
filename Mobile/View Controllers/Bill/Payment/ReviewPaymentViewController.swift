@@ -322,7 +322,7 @@ class ReviewPaymentViewController: UIViewController {
                 LoadingView.hide()
                 
                 if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                    let pageView: AnalyticsPageView
+                    let pageView: AnalyticsEvent
                     switch bankOrCard {
                     case .bank:
                         pageView = .eCheckComplete
@@ -336,7 +336,7 @@ class ReviewPaymentViewController: UIViewController {
                 self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
             }, onError: { [weak self] error in
                 if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                    let pageView: AnalyticsPageView
+                    let pageView: AnalyticsEvent
                     switch bankOrCard {
                     case .bank:
                         pageView = .eCheckError

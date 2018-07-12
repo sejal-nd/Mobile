@@ -83,7 +83,7 @@ class SmartThermostatScheduleViewModel {
     private lazy var saveEvents: Observable<Event<Void>> = self.saveAction
         .do(onNext: { [weak self] in
             guard let `self` = self else { return }
-            let pageView: AnalyticsPageView
+            let pageView: AnalyticsEvent
             switch self.period {
             case .wake:
                 pageView = .wakeSave
@@ -112,7 +112,7 @@ class SmartThermostatScheduleViewModel {
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
         .do(onNext: { [weak self] in
             guard let `self` = self else { return }
-            let pageView: AnalyticsPageView
+            let pageView: AnalyticsEvent
             switch self.period {
             case .wake:
                 pageView = .wakeToast

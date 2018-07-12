@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AnalyticsPageView: String {
+enum AnalyticsEvent: String {
     case autoPayEnrollOffer = "AutoPayEnrollOffer"
     case autoPayEnrollSelectBank = "AutoPayEnrollSelectBank"
     case autoPayEnrollSubmit = "AutoPayEnrollSubmit"
@@ -251,7 +251,7 @@ struct Analytics {
         }
     }
     
-    static func log(event: AnalyticsPageView, dimensions: [AnalyticsDimension: String] = [:]) {
+    static func log(event: AnalyticsEvent, dimensions: [AnalyticsDimension: String] = [:]) {
         dLog("Analytics: " + event.rawValue)
         
         guard isAnalyticsEnabled else { return }

@@ -196,7 +196,7 @@ class ContactUsViewController: UIViewController {
 extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName: AnalyticsPageView = unauthenticatedExperience ? .contactUsUnAuthCall : .contactUsAuthCall
+        let screenName: AnalyticsEvent = unauthenticatedExperience ? .contactUsUnAuthCall : .contactUsAuthCall
         var dimensionValue: String?
         
         if textView == emergencyNumberTextView {
