@@ -476,7 +476,7 @@ class HomeBillCardViewModel {
             switch (isMultiPremise,
                     accountDetail.billingInfo.netDueAmount == accountDetail.billingInfo.pastDueAmount) {
             case (false, false):
-                guard let amount = accountDetail.billingInfo.netDueAmount?.currencyString else { return nil }
+                guard let amount = accountDetail.billingInfo.pastDueAmount?.currencyString else { return nil }
                 let format = "%@ is due immediately."
                 string = String.localizedStringWithFormat(format, amount)
             case (true, false):
@@ -497,8 +497,15 @@ class HomeBillCardViewModel {
             }
             
             let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
-            let format = "%@ is due in %d day%@ to catch up on your DPA agreement."
-            let string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            
+            let string: String
+            if days > 0 {
+                let format = "%@ is due in %d day%@ to catch up on your DPA agreement."
+                string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            } else {
+                let format = "%@ is due immediately to catch up on your DPA agreement."
+                string = String.localizedStringWithFormat(format, amountString)
+            }
             
             return NSAttributedString(string: string, attributes: attributes)
         case .restoreService:
@@ -523,17 +530,26 @@ class HomeBillCardViewModel {
                         return nil
                 }
                 
-                let format: String
-                if isMultiPremise {
-                    format = "%@ is due in %d day%@ to avoid service interruption for your multi-premise account."
-                } else {
-                    format = "%@ is due in %d day%@ to avoid service interruption."
+                let days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
+                
+                let string: String
+                switch (days > 0, isMultiPremise) {
+                case (true, true):
+                    let format = "%@ is due in %d day%@ to avoid service interruption for your multi-premise account."
+                    string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+                case (true, false):
+                    let format = "%@ is due in %d day%@ to avoid service interruption."
+                    string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+                case (false, true):
+                    let format = "%@ is due immediately to avoid service interruption for your multi-premise account."
+                    string = String.localizedStringWithFormat(format, amountString)
+                case (false, false):
+                    let format = "%@ is due immediately to avoid service interruption."
+                    string = String.localizedStringWithFormat(format, amountString)
                 }
                 
-                let days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
-                let string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
-                return NSAttributedString(string: string,
-                                          attributes: attributes)
+                return NSAttributedString(string: string, attributes: attributes)
+                
             case .comEd, .peco:
                 let localizedText = NSLocalizedString("%@ is due immediately to avoid shutoff.", comment: "")
                 let string = String.localizedStringWithFormat(localizedText, amountString)
@@ -543,7 +559,7 @@ class HomeBillCardViewModel {
         default:
             if AccountsStore.shared.currentAccount.isMultipremise {
                 attributes[.foregroundColor] = UIColor.deepGray
-                return NSAttributedString(string: NSLocalizedString("Multi-Premise Bill", comment: ""),
+                return NSAttributedString(string: NSLocalizedString("Multi-premise Account", comment: ""),
                                           attributes: attributes)
             }
             return nil
@@ -569,41 +585,45 @@ class HomeBillCardViewModel {
     
     private(set) lazy var dueDateText: Driver<NSAttributedString?> = Driver.combineLatest(self.accountDetailDriver, self.billState)
     { accountDetail, billState in
+        let countdownText: () -> NSAttributedString? = {
+            guard let dueByDate = accountDetail.billingInfo.dueByDate else { return nil }
+            let calendar = Calendar.opCo
+            
+            let date1 = calendar.startOfDay(for: Date())
+            let date2 = calendar.startOfDay(for: dueByDate)
+            
+            guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {
+                return nil
+            }
+            
+            if days > 0 {
+                let localizedText = NSLocalizedString("Amount due in %d day%@", comment: "")
+                return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
+                                          attributes: [.foregroundColor: UIColor.deepGray,
+                                                       .font: OpenSans.regular.of(textStyle: .subheadline)])
+            } else {
+                let localizedText = NSLocalizedString("Amount due on %@", comment: "")
+                return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
+                                          attributes: [.foregroundColor: UIColor.deepGray,
+                                                       .font: OpenSans.regular.of(textStyle: .subheadline)])
+            }
+        }
+        
         switch billState {
         case .pastDue:
-            return NSAttributedString(string: NSLocalizedString("Amount due immediately", comment: ""),
-                                      attributes: [.foregroundColor: UIColor.errorRed,
-                                                   .font: OpenSans.semibold.of(textStyle: .subheadline)])
+            if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
+                return NSAttributedString(string: NSLocalizedString("Amount due immediately", comment: ""),
+                                          attributes: [.foregroundColor: UIColor.errorRed,
+                                                       .font: OpenSans.semibold.of(textStyle: .subheadline)])
+            } else {
+                return countdownText()
+            }
         case .credit:
             return NSAttributedString(string: NSLocalizedString("No amount due", comment: ""),
                                       attributes: [.foregroundColor: UIColor.deepGray,
                                                    .font: OpenSans.semibold.of(textStyle: .subheadline)])
         default:
-            if let dueByDate = accountDetail.billingInfo.dueByDate {
-                let calendar = Calendar.opCo
-                
-                let date1 = calendar.startOfDay(for: Date())
-                let date2 = calendar.startOfDay(for: dueByDate)
-                
-                guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {
-                    return nil
-                }
-                
-                if days > 0 {
-                    let localizedText = NSLocalizedString("Amount due in %d day%@", comment: "")
-                    return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                              attributes: [.foregroundColor: UIColor.deepGray,
-                                                           .font: OpenSans.regular.of(textStyle: .subheadline)])
-                } else {
-                    let localizedText = NSLocalizedString("Amount due on %@", comment: "")
-                    return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
-                                              attributes: [.foregroundColor: UIColor.deepGray,
-                                                           .font: OpenSans.regular.of(textStyle: .subheadline)])
-                }
-                
-            } else {
-                return nil
-            }
+            return countdownText()
         }
     }
     
