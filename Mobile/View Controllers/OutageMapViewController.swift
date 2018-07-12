@@ -58,7 +58,7 @@ class OutageMapViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if(unauthenticatedExperience) {
-            Analytics.log(event: .ViewOutageMapUnAuthOfferComplete)
+            Analytics.log(event: .viewOutageMapUnAuthOfferComplete)
         }
     }
 

@@ -113,9 +113,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
             UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
             if notificationSettings.types.isEmpty {
-                Analytics.log(event: .AlertsiOSPushDontAllowInitial)
+                Analytics.log(event: .alertsiOSPushDontAllowInitial)
             } else {
-                Analytics.log(event: .AlertsiOSPushOKInitial)
+                Analytics.log(event: .alertsiOSPushOKInitial)
             }
         }
     }
@@ -342,7 +342,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
             
-            Analytics.log(event: .ReportAnOutageUnAuthOffer)
+            Analytics.log(event: .reportAnOutageUnAuthOffer)
             unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
             
             // Reset the unauthenticated nav stack

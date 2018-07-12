@@ -247,9 +247,9 @@ class ReportOutageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if unauthenticatedExperience {
-            Analytics.log(event: .ReportAnOutageUnAuthScreenView)
+            Analytics.log(event: .reportAnOutageUnAuthScreenView)
         } else {
-            Analytics.log(event: .ReportOutageAuthOffer)
+            Analytics.log(event: .reportOutageAuthOffer)
         }
         
         
@@ -366,7 +366,7 @@ class ReportOutageViewController: UIViewController {
                 self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: reportedOutage)
                 self.navigationController?.popViewController(animated: true)
             }, onError: errorBlock)
-            Analytics.log(event: .ReportAnOutageUnAuthSubmit)
+            Analytics.log(event: .reportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 LoadingView.hide()
@@ -374,7 +374,7 @@ class ReportOutageViewController: UIViewController {
                 self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: nil)
                 self.navigationController?.popViewController(animated: true)
             }, onError: errorBlock)
-            Analytics.log(event: .ReportOutageAuthSubmit)
+            Analytics.log(event: .reportOutageAuthSubmit)
         }
         
 
@@ -383,9 +383,9 @@ class ReportOutageViewController: UIViewController {
     @IBAction func switchPressed(sender: AnyObject) {
         if(sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn) {
             if unauthenticatedExperience {
-                Analytics.log(event: .ReportAnOutageUnAuthCircuitBreakCheck)
+                Analytics.log(event: .reportAnOutageUnAuthCircuitBreakCheck)
             } else {
-                Analytics.log(event: .ReportOutageAuthCircuitBreak)
+                Analytics.log(event: .reportOutageAuthCircuitBreak)
             }
             
         }
@@ -459,8 +459,8 @@ extension ReportOutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
         let screenName: AnalyticsPageView = unauthenticatedExperience ?
-            .ReportAnOutageUnAuthEmergencyPhone :
-            .ReportOutageEmergencyCall
+            .reportAnOutageUnAuthEmergencyPhone :
+            .reportOutageEmergencyCall
         
         Analytics.log(event: screenName)
     }

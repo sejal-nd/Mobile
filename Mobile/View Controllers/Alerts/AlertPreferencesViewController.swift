@@ -283,13 +283,13 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBAction func onNotificationsDisabledButtonPress(_ sender: Any) {
         if let url = URL(string: UIApplicationOpenSettingsURLString) {
-            Analytics.log(event: .AlertsDevSet)
+            Analytics.log(event: .alertsDevSet)
             UIApplication.shared.openURL(url)
         }
     }
     
     @IBAction func onPaymentDueDaysBeforeButtonPress(_ sender: Any) {
-        Analytics.log(event: .AlertsPayRemind)
+        Analytics.log(event: .alertsPayRemind)
         let upperRange = Environment.shared.opco == .bge ? 14 : 7
         PickerView.showStringPicker(withTitle: NSLocalizedString("Payment Due Reminder", comment: ""),
             data: (1...upperRange).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
@@ -314,23 +314,23 @@ class AlertPreferencesViewController: UIViewController {
                 if !viewModel.accountDetail.isEBillEnrollment {
                     let alertTitle = NSLocalizedString("Go Paperless", comment: "")
                     let alertMessage = NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "")
-                    Analytics.log(event: .AlertseBillEnrollPush)
+                    Analytics.log(event: .alertseBillEnrollPush)
                     
                     let alertVc = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
                     
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self, weak sender] _ in
                         if sender?.isOn ?? false {
-                            Analytics.log(event: .AlertseBillEnrollPushCancel)
+                            Analytics.log(event: .alertseBillEnrollPushCancel)
                         } else {
-                            Analytics.log(event: .AlertseBillUnenrollPushCancel)
+                            Analytics.log(event: .alertseBillUnenrollPushCancel)
                         }
                         self?.viewModel.billReady.value = !(sender?.isOn ?? false) // Need to manually set this because .setOn does not trigger rx binding
                     }))
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self, weak sender] _ in
                         if sender?.isOn ?? false {
-                            Analytics.log(event: .AlertseBillEnrollPushContinue)
+                            Analytics.log(event: .alertseBillEnrollPushContinue)
                         } else {
-                            Analytics.log(event: .AlertseBillUnenrollPushContinue)
+                            Analytics.log(event: .alertseBillUnenrollPushContinue)
                         }
                         self?.makeAnalyticsOffer()
                         self?.viewModel.userChangedPrefs.value = true
@@ -362,9 +362,9 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBAction func onLanguageRadioControlPress(_ sender: RadioSelectControl) {
         if sender == englishRadioControl {
-            Analytics.log(event: .AlertsEnglish)
+            Analytics.log(event: .alertsEnglish)
         } else if sender == spanishRadioControl {
-            Analytics.log(event: .AlertsSpanish)
+            Analytics.log(event: .alertsSpanish)
         }
         
         let newVal = sender == englishRadioControl
@@ -391,7 +391,7 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     @objc func onSavePress() {
-        Analytics.log(event: .AlertsPrefCenterSave)
+        Analytics.log(event: .alertsPrefCenterSave)
         
         LoadingView.show()
         viewModel.saveChanges(onSuccess: { [weak self] in
@@ -411,7 +411,7 @@ class AlertPreferencesViewController: UIViewController {
     private func makeAnalyticsOffer() {
         if !hasMadeAnalyticsOffer {
             hasMadeAnalyticsOffer = true
-            Analytics.log(event: .AlertsPrefCenterOffer)
+            Analytics.log(event: .alertsPrefCenterOffer)
         }
     }
     

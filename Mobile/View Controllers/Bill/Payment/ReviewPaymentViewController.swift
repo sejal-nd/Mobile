@@ -275,9 +275,9 @@ class ReviewPaymentViewController: UIViewController {
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
             switch bankOrCard {
             case .bank:
-                Analytics.log(event: .ECheckSubmit)
+                Analytics.log(event: .eCheckSubmit)
             case .card:
-                Analytics.log(event: .CardSubmit)
+                Analytics.log(event: .cardSubmit)
             }
         }
         
@@ -325,9 +325,9 @@ class ReviewPaymentViewController: UIViewController {
                     let pageView: AnalyticsPageView
                     switch bankOrCard {
                     case .bank:
-                        pageView = .ECheckComplete
+                        pageView = .eCheckComplete
                     case .card:
-                        pageView = .CardComplete
+                        pageView = .cardComplete
                     }
                     
                     Analytics.log(event: pageView)
@@ -339,9 +339,9 @@ class ReviewPaymentViewController: UIViewController {
                     let pageView: AnalyticsPageView
                     switch bankOrCard {
                     case .bank:
-                        pageView = .EcheckError
+                        pageView = .eCheckError
                     case .card:
-                        pageView = .CardError
+                        pageView = .cardError
                     }
                     
                     Analytics.log(event: pageView,

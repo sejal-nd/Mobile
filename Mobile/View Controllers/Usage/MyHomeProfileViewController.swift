@@ -52,7 +52,7 @@ class MyHomeProfileViewController: UIViewController {
         super.viewDidLoad()
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics.log(event: .ViewHomeProfile,
+        Analytics.log(event: .viewHomeProfile,
                              dimensions: [.residentialAMI: residentialAMIString])
         
         navigationItem.rightBarButtonItem = saveButton

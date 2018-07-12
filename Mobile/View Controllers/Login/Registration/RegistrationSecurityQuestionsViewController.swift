@@ -372,7 +372,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         viewModel.registerUser(onSuccess: { [weak self] in
             LoadingView.hide()
-            Analytics.log(event: .RegisterAccountSecurityQuestions)
+            Analytics.log(event: .registerAccountSecurityQuestions)
             self?.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
         }, onError: { [weak self] (title, message) in
             LoadingView.hide()
@@ -390,7 +390,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
         
         if(enrollIneBillSwitch.isOn) {
-            Analytics.log(event: .RegisterEBillEnroll)
+            Analytics.log(event: .registerEBillEnroll)
         }
     }
     

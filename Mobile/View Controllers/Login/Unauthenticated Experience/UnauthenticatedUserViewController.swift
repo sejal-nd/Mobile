@@ -90,11 +90,11 @@ class UnauthenticatedUserViewController: UIViewController {
         if let vc = segue.destination as? UnauthenticatedOutageValidateAccountViewController {
             switch(segue.identifier) {
             case "reportOutageValidateAccount"?:
-                Analytics.log(event: .ReportAnOutageUnAuthOffer)
+                Analytics.log(event: .reportAnOutageUnAuthOffer)
                 vc.analyticsSource = AnalyticsOutageSource.report
                 break
             case "checkOutageValidateAccount"?:
-                Analytics.log(event: .OutageStatusUnAuthOffer)
+                Analytics.log(event: .outageStatusUnAuthOffer)
                 vc.analyticsSource = AnalyticsOutageSource.status
                 break
             default:
@@ -102,7 +102,7 @@ class UnauthenticatedUserViewController: UIViewController {
             }
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.unauthenticatedExperience = true
-            Analytics.log(event: .ViewOutageMapGuestMenu)
+            Analytics.log(event: .viewOutageMapGuestMenu)
         } else if let vc = segue.destination as? ContactUsViewController {
             vc.unauthenticatedExperience = true
         }

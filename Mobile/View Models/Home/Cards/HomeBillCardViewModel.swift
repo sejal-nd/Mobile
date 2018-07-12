@@ -60,14 +60,14 @@ class HomeBillCardViewModel {
             .subscribe(onNext: { walletItem, oneTouchPayEvent in
                 switch (walletItem.bankOrCard, oneTouchPayEvent.error) {
                 case (.bank, nil):
-                    Analytics.log(event: .OneTouchBankComplete)
+                    Analytics.log(event: .oneTouchBankComplete)
                 case (.bank, let error):
-                    Analytics.log(event: .OneTouchBankError,
+                    Analytics.log(event: .oneTouchBankError,
                                          dimensions: [.errorCode: (error as! ServiceError).serviceCode])
                 case (.card, nil):
-                    Analytics.log(event: .OneTouchCardComplete)
+                    Analytics.log(event: .oneTouchCardComplete)
                 case (.card, let error):
-                    Analytics.log(event: .OneTouchCardError,
+                    Analytics.log(event: .oneTouchCardError,
                                          dimensions: [.errorCode: (error as! ServiceError).serviceCode])
                 }
             })
@@ -131,9 +131,9 @@ class HomeBillCardViewModel {
         .do(onNext: { _, walletItem, _, _, _ in
             switch walletItem.bankOrCard {
             case .bank:
-                Analytics.log(event: .OneTouchBankOffer)
+                Analytics.log(event: .oneTouchBankOffer)
             case .card:
-                Analytics.log(event: .OneTouchCardOffer)
+                Analytics.log(event: .oneTouchCardOffer)
             }
         })
         .map { accountDetail, walletItem, cvv2, isWeekendOrHoliday, workDays in

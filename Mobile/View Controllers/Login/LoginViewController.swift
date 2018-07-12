@@ -138,7 +138,7 @@ class LoginViewController: UIViewController {
                 self?.viewModel.validateRegistration(guid: guid, onSuccess: { [weak self] in
                     LoadingView.hide()
                     self?.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
-                    Analytics.log(event: .RegisterAccountVerify)
+                    Analytics.log(event: .registerAccountVerify)
                 }, onError: { [weak self] title, message in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -185,12 +185,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
-        Analytics.log(event: .LoginOffer,
+        Analytics.log(event: .loginOffer,
                         dimensions: [.keepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
                                      .fingerprintUsed: "disabled"])
         
         if forgotUsernamePopulated {
-            Analytics.log(event: .ForgotUsernameCompleteAccountValidation)
+            Analytics.log(event: .forgotUsernameCompleteAccountValidation)
         }
         
         view.endEditing(true)
@@ -239,7 +239,7 @@ class LoginViewController: UIViewController {
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp()
-                                Analytics.log(event: .TouchIDEnable)
+                                Analytics.log(event: .touchIDEnable)
                             }))
                             self.present(biometricsAlert, animated: true, completion: nil)
                             self.viewModel.setShouldPromptToEnableBiometrics(false)
@@ -254,7 +254,7 @@ class LoginViewController: UIViewController {
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp()
-                                Analytics.log(event: .TouchIDEnable)
+                                Analytics.log(event: .touchIDEnable)
                             }))
                             self.present(differentAccountAlert, animated: true, completion: nil)
                         } else {
@@ -293,7 +293,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
-        Analytics.log(event: .ForgotUsernameOffer)
+        Analytics.log(event: .forgotUsernameOffer)
         if Environment.shared.opco == .bge {
             performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
         } else {
@@ -302,7 +302,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotPasswordPress() {
-        Analytics.log(event: .ForgotPasswordOffer)
+        Analytics.log(event: .forgotPasswordOffer)
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
     }
     
@@ -338,7 +338,7 @@ class LoginViewController: UIViewController {
             let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
                 (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
             
-            Analytics.log(event: .LoginComplete,
+            Analytics.log(event: .loginComplete,
                                  dimensions: [.residentialAMI: residentialAMIString,
                                               .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
                                               .peakSmart: isPeakSmart ? "true" : "false"])
@@ -366,7 +366,7 @@ class LoginViewController: UIViewController {
         viewModel.attemptLoginWithBiometrics(onLoad: { [weak self] in // Face/Touch ID was successful
             guard let `self` = self else { return }
             
-            Analytics.log(event: .LoginOffer,
+            Analytics.log(event: .loginOffer,
                                  dimensions: [.keepMeSignedIn: self.keepMeSignedInSwitch.isOn ? "true":"false",
                                               .fingerprintUsed: "enabled"])
             
@@ -483,7 +483,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))
-            Analytics.log(event: .ForgotPasswordComplete)
+            Analytics.log(event: .forgotPasswordComplete)
         })
     }
 }
@@ -492,7 +492,7 @@ extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDeleg
     
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String) {
         viewModel.username.value = username
-        Analytics.log(event: .ForgotUsernameCompleteAutoPopup)
+        Analytics.log(event: .forgotUsernameCompleteAutoPopup)
         forgotUsernamePopulated = true
     }
 }

@@ -63,7 +63,7 @@ class BillingHistoryViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .BillingOfferComplete)
+        Analytics.log(event: .billingOfferComplete)
     }
     
     func getBillingHistory() {
@@ -110,7 +110,7 @@ class BillingHistoryViewController: UIViewController {
         } else if let vc = segue.destination as? ViewBillViewController {
             let billingHistoryItem = selectedIndexPath.section == 0 ? billingHistory.upcoming[selectedIndexPath.row] : billingHistory.past[selectedIndexPath.row]
             vc.viewModel.billDate = billingHistoryItem.date
-            Analytics.log(event: .BillViewPastOfferComplete)
+            Analytics.log(event: .billViewPastOfferComplete)
             AppRating.logRatingEvent()
         } else if let vc = segue.destination as? BGEAutoPayViewController {
             vc.accountDetail = accountDetail

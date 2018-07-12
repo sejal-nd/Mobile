@@ -74,7 +74,7 @@ class TemplateCardView: UIView {
         callToActionButton.rx.tap.asObservable()
             .withLatestFrom(viewModel.ctaUrl.asObservable())
             .subscribe(onNext: {
-                Analytics.log(event: .HomePromoCard, dimensions: [.link: $0.absoluteString])
+                Analytics.log(event: .homePromoCard, dimensions: [.link: $0.absoluteString])
             })
             .disposed(by: bag)
         
@@ -86,10 +86,10 @@ class TemplateCardView: UIView {
                 let appStoreUrl = URL(string:"https://itunes.apple.com/us/app/ecobee/id916985674?mt=8")!
                 
                 if UIApplication.shared.canOpenURL(appLinkUrl) {
-                    Analytics.log(event: .HomePromoCard, dimensions: [.link: appLinkUrl.absoluteString])
+                    Analytics.log(event: .homePromoCard, dimensions: [.link: appLinkUrl.absoluteString])
                     UIApplication.shared.openURL(appLinkUrl)
                 } else if UIApplication.shared.canOpenURL(appStoreUrl) {
-                    Analytics.log(event: .HomePromoCard, dimensions: [.link: appStoreUrl.absoluteString])
+                    Analytics.log(event: .homePromoCard, dimensions: [.link: appStoreUrl.absoluteString])
                     UIApplication.shared.openURL(appStoreUrl)
                 }
             })
@@ -125,7 +125,7 @@ class TemplateCardView: UIView {
             return peakRewardsVC
         }
         .do(onNext: { _ in
-            Analytics.log(event: .HomePromoCard,
+            Analytics.log(event: .homePromoCard,
                                  dimensions: [.link: "https://secure.bge.com/Peakrewards/Pages/default.aspx"])
         })
     

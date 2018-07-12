@@ -140,7 +140,7 @@ class SplashViewController: UIViewController{
                     
                     let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
                     
-                    Analytics.log(event: .ReportAnOutageUnAuthOffer)
+                    Analytics.log(event: .reportAnOutageUnAuthOffer)
                     unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
                     
                     self.navigationController?.setViewControllers(vcArray, animated: true)

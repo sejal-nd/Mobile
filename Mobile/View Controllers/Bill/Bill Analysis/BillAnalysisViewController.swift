@@ -126,7 +126,7 @@ class BillAnalysisViewController: UIViewController {
         super.viewDidLoad()
 
         let residentialAMIString = String(format: "%@%@", viewModel.accountDetail.isResidential ? "Residential/" : "Commercial/", viewModel.accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics.log(event: .BillNeedHelp,
+        Analytics.log(event: .billNeedHelp,
                              dimensions: [.residentialAMI: residentialAMIString])
         
         title = NSLocalizedString("Bill Analysis", comment: "")
@@ -410,18 +410,18 @@ class BillAnalysisViewController: UIViewController {
         electricGasSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
             self?.fetchData()
             if index == 0 {
-                Analytics.log(event: .BillElectricityToggle)
+                Analytics.log(event: .billElectricityToggle)
             } else {
-                Analytics.log(event: .BillGasToggle)
+                Analytics.log(event: .billGasToggle)
             }
         }).disposed(by: disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.lastYearPreviousBillSelectedSegmentIndex).disposed(by: disposeBag)
         billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
             self?.fetchData()
             if index == 0 {
-                Analytics.log(event: .BillLastYearToggle)
+                Analytics.log(event: .billLastYearToggle)
             } else {
-                Analytics.log(event: .BillPreviousToggle)
+                Analytics.log(event: .billPreviousToggle)
             }
         }).disposed(by: disposeBag)
         
@@ -531,11 +531,11 @@ class BillAnalysisViewController: UIViewController {
         }
         
         if sender.tag == 0 {
-            Analytics.log(event: .BillPreviousReason)
+            Analytics.log(event: .billPreviousReason)
         } else if sender.tag == 1 {
-            Analytics.log(event: .BillWeatherReason)
+            Analytics.log(event: .billWeatherReason)
         } else {
-            Analytics.log(event: .BillOtherReason)
+            Analytics.log(event: .billOtherReason)
         }
         
         viewModel.setLikelyReasonSelected(tag: sender.tag)

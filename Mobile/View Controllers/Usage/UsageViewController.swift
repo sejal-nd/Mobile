@@ -59,7 +59,7 @@ class UsageViewController: UIViewController {
         let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
             (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
         
-        Analytics.log(event: .ViewUsageLink,
+        Analytics.log(event: .viewUsageLink,
                              dimensions: [.residentialAMI: residentialAMIString,
                                           .peakSmart: isPeakSmart ? "true" : "false"])
         
@@ -68,7 +68,7 @@ class UsageViewController: UIViewController {
             thermbutton.accessibilityLabel = NSLocalizedString("access peak rewards", comment: "")
             thermbutton.rx.tap.asDriver()
                 .drive(onNext: { [weak self] in
-                    Analytics.log(event: .ViewUsagePeakRewards)
+                    Analytics.log(event: .viewUsagePeakRewards)
                     self?.performSegue(withIdentifier: "peakRewardsSegue", sender: nil)
                 })
                 .disposed(by: disposeBag)
@@ -177,7 +177,7 @@ class UsageViewController: UIViewController {
                      smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().map(to: "totalSavingsSegue"))
             .drive(onNext: { [weak self] in
                 if $0 == "totalSavingsSegue" {
-                    Analytics.log(event: .AllSavingsUsage)
+                    Analytics.log(event: .allSavingsUsage)
                 }
                 self?.performSegue(withIdentifier: $0, sender: nil)
             })
@@ -186,11 +186,11 @@ class UsageViewController: UIViewController {
         hourlyPricingEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             guard let accountDetail = self?.accountDetail else { return }
             if accountDetail.isHourlyPricing {
-                Analytics.log(event: .HourlyPricing,
+                Analytics.log(event: .hourlyPricing,
                                      dimensions: [.hourlyPricingEnrollment: "enrolled"])
                 self?.performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
             } else {
-                Analytics.log(event: .HourlyPricing,
+                Analytics.log(event: .hourlyPricing,
                                      dimensions: [.hourlyPricingEnrollment: "unenrolled"])
                 let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
                 self?.present(safariVc, animated: true, completion: nil)
@@ -198,7 +198,7 @@ class UsageViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         peakTimeSavingsEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            Analytics.log(event: .PeakTimePromo)
+            Analytics.log(event: .peakTimePromo)
             let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "http://comed.com/PTS")!)
             self?.present(safariVc, animated: true, completion: nil)
         }).disposed(by: disposeBag)
@@ -212,7 +212,7 @@ class UsageViewController: UIViewController {
         } else {
             smartEnergyRewardsContentView.isHidden = true
             smartEnergyRewardsEmptyStateView.isHidden = false
-            Analytics.log(event: .EmptyStatePeakSmart)
+            Analytics.log(event: .emptyStatePeakSmart)
         }
         smartEnergyRewardsSeasonLabel.text = viewModel.smartEnergyRewardsSeasonLabelText
         smartEnergyRewardsFooterLabel.text = viewModel.smartEnergyRewardsFooterText
