@@ -30,7 +30,7 @@ class NoNetworkConnectionView: UIView {
                 noNetworkConnectionLabel.textColor = .white
                 pleaseReloadLabel.textColor = .white
             } else {
-                containerView.backgroundColor = .white
+                containerView.backgroundColor = .softGray
                 noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_color")
                 reloadImageView.image = #imageLiteral(resourceName: "ic_reload_blue")
                 reloadLabel.textColor = .actionBlue
