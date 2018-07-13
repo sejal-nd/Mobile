@@ -34,7 +34,7 @@ class UsageToolsCollectionViewCell: UICollectionViewCell {
         addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
         
         // Label
-        titleLabel.textColor = UIColor.actionBlue
+        titleLabel.textColor = .actionBlue
         titleLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
     }
     

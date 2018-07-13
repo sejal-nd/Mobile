@@ -10,6 +10,11 @@ import UIKit
 
 class UsageTabViewController: UIViewController {
     
+    @IBOutlet weak var myUsageToolsLabel: UILabel! {
+        didSet {
+            myUsageToolsLabel.font = OpenSans.semibold.of(size: 18)
+        }
+    }
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.dataSource = self
@@ -24,7 +29,7 @@ class UsageTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Register Collection View XIB
+        // Register Collection View XIB Cells
         collectionView.register(UINib.init(nibName: MyUsageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyUsageCollectionViewCell.identifier)
         collectionView.register(UINib.init(nibName: UsageToolsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UsageToolsCollectionViewCell.identifier)
     }

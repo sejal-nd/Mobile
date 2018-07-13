@@ -70,10 +70,10 @@
                                                                         <rect key="frame" x="0.0" y="238" width="375" height="329.5"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="bottom" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="xgs-sD-SWi">
-                                                                                <rect key="frame" x="29" y="0.0" width="317" height="193.5"/>
+                                                                                <rect key="frame" x="29" y="0.0" width="317" height="183"/>
                                                                                 <subviews>
                                                                                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0y-lN-dUc" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="16.5" width="80" height="177"/>
+                                                                                        <rect key="frame" x="0.0" y="6" width="80" height="177"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2E-Nc-xEh">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="17"/>
@@ -111,7 +111,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKg-Sa-YNh" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                                        <rect key="frame" x="118.5" y="16.5" width="80" height="177"/>
+                                                                                        <rect key="frame" x="118.5" y="6" width="80" height="177"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeX-9Y-WGe">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="17"/>
@@ -150,7 +150,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGz-ff-KfF" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                                        <rect key="frame" x="237" y="16.5" width="80" height="177"/>
+                                                                                        <rect key="frame" x="237" y="6" width="80" height="177"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2H-yA-RLi">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="17"/>
@@ -189,13 +189,13 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnW-KF-mCh">
-                                                                                <rect key="frame" x="29" y="201.5" width="317" height="128.5"/>
+                                                                                <rect key="frame" x="29" y="191" width="317" height="139"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rv2-7O-aHB">
-                                                                                        <rect key="frame" x="0.0" y="22" width="317" height="106.5"/>
+                                                                                        <rect key="frame" x="0.0" y="22" width="317" height="117"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="MMM dd, YYYY - MMM dd, YYYY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gW9-pT-oLp">
-                                                                                                <rect key="frame" x="50.5" y="16" width="216" height="16.5"/>
+                                                                                                <rect key="frame" x="52.5" y="16" width="212.5" height="19.5"/>
                                                                                                 <accessibility key="accessibilityConfiguration">
                                                                                                     <bool key="isElement" value="NO"/>
                                                                                                 </accessibility>
@@ -204,7 +204,7 @@
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your bill was $X. You used an average of Y kWh per day." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ca6-Po-YNM">
-                                                                                                <rect key="frame" x="16" y="62.5" width="285" height="28"/>
+                                                                                                <rect key="frame" x="16" y="68" width="285" height="33"/>
                                                                                                 <accessibility key="accessibilityConfiguration">
                                                                                                     <bool key="isElement" value="NO"/>
                                                                                                 </accessibility>
@@ -213,7 +213,7 @@
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Avg. Temp X" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mST-JC-TNs">
-                                                                                                <rect key="frame" x="125.5" y="35.5" width="67.5" height="14"/>
+                                                                                                <rect key="frame" x="125.5" y="38.5" width="68" height="16.5"/>
                                                                                                 <accessibility key="accessibilityConfiguration">
                                                                                                     <bool key="isElement" value="NO"/>
                                                                                                 </accessibility>
@@ -330,7 +330,7 @@
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-Ui-VQm" customClass="BillImpactDropdownView" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="16" y="16" width="343" height="468"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -347,7 +347,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Usage Tools" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZf-vb-Dqq">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="60"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -403,7 +403,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="N2i-cc-UM6" secondAttribute="bottom" id="IxR-dK-4PH"/>
                                             <constraint firstAttribute="trailing" secondItem="N2i-cc-UM6" secondAttribute="trailing" id="a2u-8G-c7Q"/>
@@ -413,6 +413,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="mE1-SX-hcS" firstAttribute="top" secondItem="auv-xw-MUC" secondAttribute="top" id="DOC-ZU-nqb"/>
                                     <constraint firstAttribute="bottom" secondItem="mE1-SX-hcS" secondAttribute="bottom" id="UNU-DY-pBZ"/>
@@ -422,7 +423,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="auv-xw-MUC" firstAttribute="leading" secondItem="VhB-wJ-R9W" secondAttribute="leading" id="0Lh-pn-Cq0"/>
                             <constraint firstItem="Gvn-Gm-Gbe" firstAttribute="leading" secondItem="VhB-wJ-R9W" secondAttribute="leading" id="1K2-ui-7Ig"/>
@@ -444,6 +445,7 @@
                     <connections>
                         <outlet property="collectionView" destination="b5m-WW-Tg2" id="F63-zn-9pg"/>
                         <outlet property="collectionViewHeight" destination="xAE-WT-D6A" id="n54-eJ-8Iv"/>
+                        <outlet property="myUsageToolsLabel" destination="TZf-vb-Dqq" id="Ek1-6n-IzH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0l-ak-tzz" userLabel="First Responder" sceneMemberID="firstResponder"/>
