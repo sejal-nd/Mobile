@@ -20,8 +20,20 @@ class MyUsageCollectionViewCell: UICollectionViewCell {
     // MARK: - Configure
     
     public func configureCell(title: String?, image: UIImage?) {
+        styleCell()
+        
         titleLabel.text = title
         imageView.image = image
+    }
+    
+    private func styleCell() {
+        // Background
+        roundedBgView.layer.cornerRadius = 10
+        addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+        
+        // Label
+        titleLabel.textColor = UIColor.actionBlue
+        titleLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
     }
     
 }
