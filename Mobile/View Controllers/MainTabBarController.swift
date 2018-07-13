@@ -32,7 +32,7 @@ class MainTabBarController: UITabBarController {
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.pushNotificationReceived) {
             // If push notification was tapped and the user logged in within 5 minutes, take them straight to alerts
             if let timestamp = UserDefaults.standard.object(forKey: UserDefaultKeys.pushNotificationReceivedTimestamp) as? Date, Float(timestamp.timeIntervalSinceNow) >= -300 {
-                selectedIndex = 3
+                navigateToAlerts()
             }
             UserDefaults.standard.set(false, forKey: UserDefaultKeys.pushNotificationReceived)
             UserDefaults.standard.removeObject(forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
@@ -41,7 +41,7 @@ class MainTabBarController: UITabBarController {
         NotificationCenter.default.rx.notification(.didTapOnPushNotification, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
-                self?.selectedIndex = 3
+                self?.navigateToAlerts()
             })
             .disposed(by: disposeBag)
         
@@ -91,6 +91,20 @@ class MainTabBarController: UITabBarController {
         didSet {
             setButtonStates(itemTag: selectedIndex + 1)
         }
+    }
+    
+    func navigateToAlerts() {
+        selectedIndex = 4
+        
+        let moreStoryboard = UIStoryboard(name: "More", bundle: nil)
+        let alertsStoryboard = UIStoryboard(name: "Alerts", bundle: nil)
+        
+        guard let moreNavCtl = viewControllers?[4] as? MainBaseNavigationController,
+            let moreVC = moreStoryboard.instantiateInitialViewController(),
+            let alertsVC = alertsStoryboard.instantiateInitialViewController()
+            else { return }
+        
+        moreNavCtl.viewControllers = [moreVC, alertsVC]
     }
     
     func setButtonStates (itemTag: Int) {

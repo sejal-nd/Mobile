@@ -31,10 +31,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uGQ-Yo-dnh">
-                                <rect key="frame" x="29" y="128" width="317" height="270"/>
+                                <rect key="frame" x="29" y="128" width="317" height="340"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ryq-Ih-8NH" userLabel="Settings Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqt-lr-1zL" userLabel="Alerts and Updates Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="k3k-lY-99H"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Alerts &amp; Updates"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ryq-Ih-8NH" userLabel="Settings Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="70" width="317" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="nX5-Ns-EBF"/>
                                         </constraints>
@@ -43,7 +52,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKK-mO-OzC" userLabel="Contact Us Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="70" width="317" height="60"/>
+                                        <rect key="frame" x="0.0" y="140" width="317" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="wZ2-aM-NAd"/>
                                         </constraints>
@@ -52,7 +61,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJl-6h-Rms" userLabel="Term Policies Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="140" width="317" height="60"/>
+                                        <rect key="frame" x="0.0" y="210" width="317" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="4Uz-yl-xtg"/>
                                         </constraints>
@@ -61,7 +70,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oov-GC-Mrn" userLabel="Sign Out Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="210" width="317" height="60"/>
+                                        <rect key="frame" x="0.0" y="280" width="317" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="Ael-gu-n36"/>
                                         </constraints>
@@ -93,6 +102,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="alertsAndUpdatesButton" destination="Tqt-lr-1zL" id="tWo-4H-Jap"/>
                         <outlet property="contactUsButton" destination="aKK-mO-OzC" id="SvC-zp-T6t"/>
                         <outlet property="settingsButton" destination="Ryq-Ih-8NH" id="x87-mp-1Q5"/>
                         <outlet property="signOutButton" destination="oov-GC-Mrn" id="0Um-jj-jYL"/>
@@ -101,6 +111,7 @@
                         <segue destination="6Py-2X-RBq" kind="show" identifier="termsPoliciesSegue" id="ydh-Rl-VlF"/>
                         <segue destination="TZa-54-G4b" kind="show" identifier="settingsSegue" id="dL8-lh-q4P"/>
                         <segue destination="TYr-cP-fT5" kind="show" identifier="contactUsSegue" id="nKe-SQ-2Cl"/>
+                        <segue destination="1Ud-0F-hFk" kind="show" identifier="aletsAndUpdatesSegue" id="9Gs-Uf-JFh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fO-a1-RXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -936,6 +947,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Le-LR-AKF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4252" y="3211"/>
+        </scene>
+        <!--Alerts-->
+        <scene sceneID="Q7N-uo-lxU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Alerts" id="1Ud-0F-hFk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4WD-2e-WmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2463" y="621"/>
         </scene>
         <!--Terms & Policies-->
         <scene sceneID="Y5c-le-Fkt">

@@ -39,7 +39,7 @@ class AlertsViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .primaryColorAccountPicker
         
         segmentedControl.setItems(leftLabel: NSLocalizedString("My Alerts", comment: ""),
@@ -95,7 +95,11 @@ class AlertsViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        guard let navController = navigationController as? MainBaseNavigationController else {
+            return
+        }
+        
+        navController.setColoredNavBar()
     }
     
     override func viewDidLayoutSubviews() {
