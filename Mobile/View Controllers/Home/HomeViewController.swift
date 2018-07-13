@@ -175,6 +175,7 @@ class HomeViewController: AccountPickerViewController {
         
         [label, caretImageView].forEach(buttonStack.addArrangedSubview)
         
+        topPersonalizeButton.accessibilityLabel = label.text
         topPersonalizeButton.addSubview(buttonStack)
         
         NSLayoutConstraint.activate([
@@ -182,7 +183,7 @@ class HomeViewController: AccountPickerViewController {
             buttonStack.trailingAnchor.constraint(equalTo: topPersonalizeButton.trailingAnchor, constant: -14),
             buttonStack.topAnchor.constraint(equalTo: topPersonalizeButton.topAnchor, constant: 9),
             buttonStack.bottomAnchor.constraint(equalTo: topPersonalizeButton.bottomAnchor, constant: -12)
-            ])
+        ])
         
         contentStackView.insertArrangedSubview(topPersonalizeButton, at: 0)
         
