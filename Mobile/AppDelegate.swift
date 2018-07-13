@@ -61,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: .didMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showIOSVersionWarning), name: .shouldShowIOSVersionWarning, object: nil)
         
         // If app was cold-launched from a push notification
         if let options = launchOptions, let userInfo = options[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
@@ -195,7 +196,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaultKeys.shouldPromptToEnableBiometrics: true,
             UserDefaultKeys.paymentDetailsDictionary: [String: NSDictionary](),
             UserDefaultKeys.usernamesRegisteredForPushNotifications: [String]()
-            ])
+        ])
         
         userDefaults.set(false, forKey: UserDefaultKeys.inMainApp)
         
@@ -267,6 +268,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let maintenanceStoryboard = UIStoryboard(name: "Maintenance", bundle: nil)
                 let vc = maintenanceStoryboard.instantiateInitialViewController()!
                 topmostVC.present(vc, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    @objc func showIOSVersionWarning() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
+            let versionAlert = UIAlertController(title: NSLocalizedString("Warning", comment: ""),
+                                                 message: NSLocalizedString("Support for your current operating system will expire in the near future.", comment: ""),
+                                                 preferredStyle: .alert)
+            versionAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            versionAlert.addAction(UIAlertAction(title: NSLocalizedString("Don't warn me again", comment: ""), style: .cancel, handler: { _ in
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.doNotShowIOS9VersionWarningAgain)
+            }))
+            if let rootVC = self.window?.rootViewController {
+                var topmostVC = rootVC
+                while let presentedVC = topmostVC.presentedViewController {
+                    topmostVC = presentedVC
+                }
+                topmostVC.present(versionAlert, animated: true, completion: nil)
             }
         }
     }
