@@ -45,4 +45,25 @@ extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDe
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch indexPath.row {
+        case 0:
+            return CGSize(width: collectionView.bounds.size.width - 32, height: 110)
+        default:
+            return CGSize(width: (collectionView.bounds.size.width - 40) / 2, height: 110)
+        }
+    }
+    
+}
+
+extension UsageTabViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
 }

@@ -16,6 +16,7 @@ class UsageTabViewController: UIViewController {
             collectionView.delegate = self
         }
     }
+    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     
     
     // MARK: - View Life Cycle
@@ -24,9 +25,20 @@ class UsageTabViewController: UIViewController {
         super.viewDidLoad()
 
         // Register Collection View XIB
-        
         collectionView.register(UINib.init(nibName: MyUsageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyUsageCollectionViewCell.identifier)
         collectionView.register(UINib.init(nibName: UsageToolsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UsageToolsCollectionViewCell.identifier)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        reloadData()
+    }
+    
+    
+    private func reloadData() {
+        collectionView.reloadData()
+        collectionViewHeight.constant = collectionView.contentSize.height + 16
     }
     
 }
