@@ -119,6 +119,7 @@ class SplashViewController: UIViewController{
             if shortcutItem != .none {
                 NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
             }
+            checkIOSVersion()
         } else {
             let navigate = { [weak self] in
                 guard let `self` = self else { return }
@@ -147,6 +148,7 @@ class SplashViewController: UIViewController{
                 } else {
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
+                self.checkIOSVersion()
             }
             
             if self.splashAnimationView == nil || !self.splashAnimationView!.isAnimationPlaying {
@@ -174,6 +176,14 @@ class SplashViewController: UIViewController{
             self?.loadingContainerView.isHidden = true
             self?.errorView.isHidden = false
         })
+    }
+    
+    func checkIOSVersion() {
+        // Warn iOS 9 users that we will soon not support their iOS version
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.doNotShowIOS9VersionWarningAgain) == false &&
+            UIDevice.current.systemVersion.compare("10.0", options: NSString.CompareOptions.numeric) == .orderedAscending {
+            NotificationCenter.default.post(name: .shouldShowIOSVersionWarning, object: nil)
+        }
     }
     
     func handleOutOfDate(){
