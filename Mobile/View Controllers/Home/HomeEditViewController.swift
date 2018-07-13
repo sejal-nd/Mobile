@@ -10,7 +10,8 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
-fileprivate let topSectionHeaderHeight: CGFloat = 39
+fileprivate var topSectionHeaderHeight: CGFloat = 120
+fileprivate let cardsInUseString = NSLocalizedString("Cards in Use", comment: "")
 
 class HomeEditViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -266,10 +267,13 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeEditSectionHeaderView.className, for: indexPath) as! HomeEditSectionHeaderView
             switch indexPath.section {
             case 0:
-                headerView.label.text = NSLocalizedString("Cards in Use", comment: "")
+                headerView.instructionsLabel.isHidden = false
+                headerView.label.text = cardsInUseString
             case 1:
+                headerView.instructionsLabel.isHidden = true
                 headerView.label.text = NSLocalizedString("Additional Cards", comment: "")
             default:
+                headerView.instructionsLabel.isHidden = true
                 headerView.label.text = ""
             }
             return headerView
@@ -284,8 +288,13 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left,
                           height: 67)
         default:
-            return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left,
-                          height: topSectionHeaderHeight)
+
+            let width = collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left
+            let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+            let instructionsLabelHeight = (HomeEditSectionHeaderView.instructionsLabelString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: OpenSans.regular.of(textStyle: .headline)], context: nil).height
+            let cardsInUseLabelHeight = (cardsInUseString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: OpenSans.regular.of(textStyle: .title1)], context: nil).height
+            topSectionHeaderHeight = instructionsLabelHeight + 20 + cardsInUseLabelHeight
+            return CGSize(width: width, height: topSectionHeaderHeight)
         }
     }
     
