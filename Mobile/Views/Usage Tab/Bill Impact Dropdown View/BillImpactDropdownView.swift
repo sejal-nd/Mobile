@@ -21,6 +21,7 @@ class BillImpactDropdownView: UIView {
             roundedBgView.layer.masksToBounds = true
         }
     }
+    @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var billFactorView: UIView!
     @IBOutlet weak var toggleButtonLabel: UILabel! {
         didSet {
@@ -95,13 +96,17 @@ class BillImpactDropdownView: UIView {
     
     private var isExpanded = false {
         didSet {
-            if isExpanded {
-                billFactorView.isHidden = false
-                carrotImageView.image = #imageLiteral(resourceName: "ic_carat_up")
-            } else {
-                billFactorView.isHidden = true
-                carrotImageView.image = #imageLiteral(resourceName: "ic_carat_down")
-            }
+            // Todo: THere is a bug in the animations here, we get clipping with the button
+            UIView.animate(withDuration: 0.3, animations: { [weak self] in
+                if let isExpanded = self?.isExpanded, isExpanded {
+                    self?.billFactorView.isHidden = false
+                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_carat_up")
+                } else {
+                    self?.billFactorView.isHidden = true
+                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_carat_down")
+                }
+                self?.contentStackView.layoutIfNeeded()
+            })
         }
     }
     

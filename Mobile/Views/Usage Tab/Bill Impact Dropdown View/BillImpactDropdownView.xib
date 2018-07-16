@@ -29,6 +29,7 @@
                 <outlet property="bubbleViewDescriptionLabel" destination="klP-CO-Lzc" id="wDm-6H-VDR"/>
                 <outlet property="bubbleViewTitleLabel" destination="I7o-fN-3Jr" id="0m9-KM-49P"/>
                 <outlet property="carrotImageView" destination="5Hx-wJ-OO2" id="TWC-ca-sRr"/>
+                <outlet property="contentStackView" destination="u6J-Ah-wOL" id="XVH-Kz-Utk"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="5oq-Db-8ry"/>
                 <outlet property="contrastRoundedView" destination="CIf-js-ecL" id="EGo-rE-EXc"/>
                 <outlet property="descriptionLabel" destination="s87-fW-M1Q" id="phv-9v-hpr"/>
