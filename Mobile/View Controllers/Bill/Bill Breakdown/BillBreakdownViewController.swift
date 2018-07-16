@@ -28,7 +28,6 @@ class BillBreakdownViewController: UIViewController {
     @IBOutlet private weak var deliveryLegendLabel: UILabel!
     @IBOutlet private weak var deliveryValueLabel: UILabel!
     
-    @IBOutlet private weak var totalChargesLegendBox: UIView!
     @IBOutlet private weak var totalChargesLegendLabel: UILabel!
     @IBOutlet private weak var totalChargesValueLabel: UILabel!
     
