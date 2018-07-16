@@ -2180,8 +2180,8 @@
                                                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="dot_pattern_right" translatesAutoresizingMaskIntoConstraints="NO" id="8EB-mS-4fN">
                                                                                                         <rect key="frame" x="175" y="0.0" width="126" height="90"/>
                                                                                                     </imageView>
-                                                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_home_autopay" translatesAutoresizingMaskIntoConstraints="NO" id="QVN-W8-Nuu">
-                                                                                                        <rect key="frame" x="30" y="28" width="32" height="34"/>
+                                                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_autopayenroll" translatesAutoresizingMaskIntoConstraints="NO" id="QVN-W8-Nuu">
+                                                                                                        <rect key="frame" x="30" y="20.5" width="43" height="49"/>
                                                                                                     </imageView>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="997" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="Would you like to enroll in AutoPay?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7m-1B-WyC">
                                                                                                         <rect key="frame" x="93" y="21" width="208" height="49.5"/>
@@ -4677,6 +4677,7 @@ the year</string>
     <resources>
         <image name="bank_building_mini" width="50" height="40"/>
         <image name="dot_pattern_right" width="126" height="90"/>
+        <image name="ic_autopayenroll" width="43" height="49"/>
         <image name="ic_autopaylearn" width="25" height="25"/>
         <image name="ic_billanalysis" width="21" height="19"/>
         <image name="ic_billingcalc" width="37" height="51"/>
@@ -4684,10 +4685,9 @@ the year</string>
         <image name="ic_calendar" width="56" height="55"/>
         <image name="ic_caret" width="8" height="13"/>
         <image name="ic_check_mini_white" width="14" height="11"/>
-        <image name="ic_close" width="20" height="20"/>
+        <image name="ic_close" width="24" height="24"/>
         <image name="ic_ebilllearn" width="25" height="25"/>
         <image name="ic_email" width="43" height="43"/>
-        <image name="ic_home_autopay" width="32" height="34"/>
         <image name="ic_invoice" width="53" height="62"/>
         <image name="ic_lock_white" width="125" height="126"/>
         <image name="ic_paperlessleaf" width="55" height="52"/>
