@@ -404,7 +404,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
-    // Tests changes in the `shouldShowNeedHelpUnderstanding` value after switching
+    // Tests changes in the `shouldShowBillBreakdownButton` value after switching
     // through different accounts.
     func testShouldShowNeedHelpUnderstanding() {
         

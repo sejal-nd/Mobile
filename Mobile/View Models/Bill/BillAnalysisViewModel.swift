@@ -88,7 +88,7 @@ class BillAnalysisViewModel {
         noPreviousData.value = false
         currentBillComparison.value = nil
 
-        // The premiseNumber force unwrap is safe because it's checked in BillViewModel: shouldShowNeedHelpUnderstanding
+        // The premiseNumber force unwrap is safe because it's checked in BillViewModel: shouldShowBillBreakdownButton
         return usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
                                                 premiseNumber: accountDetail.premiseNumber!,
                                                 yearAgo: lastYearPreviousBillSelectedSegmentIndex.value == 0,
