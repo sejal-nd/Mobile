@@ -536,9 +536,9 @@ class BillViewController: AccountPickerViewController {
             .filter { $0 }
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] in
-                let billAnalysis = BillAnalysisViewController(accountDetail: $0)
-                billAnalysis.hidesBottomBarWhenPushed = true
-                self?.navigationController?.pushViewController(billAnalysis, animated: true)
+                let billBreakdownVC = BillBreakdownViewController(accountDetail: $0)
+                billBreakdownVC.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(billBreakdownVC, animated: true)
             })
             .disposed(by: bag)
 

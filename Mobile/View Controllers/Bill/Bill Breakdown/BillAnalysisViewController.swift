@@ -8,7 +8,7 @@
 
 import Charts
 
-class BillAnalysisViewController: UIViewController {
+class BillBreakdownViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -35,7 +35,7 @@ class BillAnalysisViewController: UIViewController {
     
     init(accountDetail: AccountDetail) {
         viewModel = BillAnalysisViewModel(accountDetail: accountDetail)
-        super.init(nibName: BillAnalysisViewController.className, bundle: nil)
+        super.init(nibName: BillBreakdownViewController.className, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {

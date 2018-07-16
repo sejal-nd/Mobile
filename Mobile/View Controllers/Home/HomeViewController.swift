@@ -429,9 +429,9 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                let billAnalysis = BillAnalysisViewController(accountDetail: $0)
-                billAnalysis.hidesBottomBarWhenPushed = true
-                self?.navigationController?.pushViewController(billAnalysis, animated: true)
+                let billBreakdownVC = BillBreakdownViewController(accountDetail: $0)
+                billBreakdownVC.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(billBreakdownVC, animated: true)
             }).disposed(by: projectedBillCardView.disposeBag)
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in

@@ -22,7 +22,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BillAnalysisViewController" customModule="BGE" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BillBreakdownViewController" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="currentChargesLegendView" destination="XTe-Vl-I5N" id="Gr0-ce-er6"/>
                 <outlet property="currentChargesPieChartView" destination="25q-ge-5Gp" id="xkT-4i-RlJ"/>
