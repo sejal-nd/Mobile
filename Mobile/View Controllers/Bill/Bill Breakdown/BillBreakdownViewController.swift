@@ -10,28 +10,33 @@ import Charts
 
 class BillBreakdownViewController: UIViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    // MARK: - Outlets
     
-    // Current Charges Summary
-    @IBOutlet weak var currentChargesPieChartView: PieChartView!
+    @IBOutlet private weak var currentChargesPieChartView: PieChartView!
     
-    @IBOutlet weak var currentChargesLegendView: UIView!
-    @IBOutlet weak var supplyLegendBox: UIView!
-    @IBOutlet weak var supplyLegendLabel: UILabel!
-    @IBOutlet weak var supplyValueLabel: UILabel!
-    @IBOutlet weak var taxesFeesLegendBox: UIView!
-    @IBOutlet weak var taxesFeesLegendLabel: UILabel!
-    @IBOutlet weak var taxesFeesValueLabel: UILabel!
-    @IBOutlet weak var deliveryLegendBox: UIView!
-    @IBOutlet weak var deliveryLegendLabel: UILabel!
-    @IBOutlet weak var deliveryValueLabel: UILabel!
-    @IBOutlet weak var totalChargesLegendBox: UIView!
-    @IBOutlet weak var totalChargesLegendLabel: UILabel!
-    @IBOutlet weak var totalChargesValueLabel: UILabel!
+    @IBOutlet private weak var currentChargesLegendView: UIView!
     
-    let viewModel: BillBreakdownViewModel
+    @IBOutlet private weak var supplyLegendBox: UIView!
+    @IBOutlet private weak var supplyLegendLabel: UILabel!
+    @IBOutlet private weak var supplyValueLabel: UILabel!
     
-    private let corderRadius: CGFloat = 10.0
+    @IBOutlet private weak var taxesFeesLegendBox: UIView!
+    @IBOutlet private weak var taxesFeesLegendLabel: UILabel!
+    @IBOutlet private weak var taxesFeesValueLabel: UILabel!
+    
+    @IBOutlet private weak var deliveryLegendBox: UIView!
+    @IBOutlet private weak var deliveryLegendLabel: UILabel!
+    @IBOutlet private weak var deliveryValueLabel: UILabel!
+    
+    @IBOutlet private weak var totalChargesLegendBox: UIView!
+    @IBOutlet private weak var totalChargesLegendLabel: UILabel!
+    @IBOutlet private weak var totalChargesValueLabel: UILabel!
+    
+    // MARK: - Properties
+    
+    private let viewModel: BillBreakdownViewModel
+    
+    // MARK: - Init
     
     init(accountDetail: AccountDetail) {
         viewModel = BillBreakdownViewModel(accountDetail: accountDetail)
@@ -41,6 +46,8 @@ class BillBreakdownViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("not implemented")
     }
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,19 +69,16 @@ class BillBreakdownViewController: UIViewController {
         }
     }
     
+    // MARK: - Style Views
+    
     private func styleViews() {
-        scrollView.backgroundColor = .softGray
-        styleCurrentChargesSection()
+        stylePieChart()
+        styleLegend()
     }
     
-    private func styleCurrentChargesSection() {
-        let supplyCharges = viewModel.supplyCharges
-        let taxesAndFees = viewModel.taxesAndFees
-        let deliveryCharges = viewModel.deliveryCharges
-        
-        // Pie Chart
-        currentChargesPieChartView.highlightPerTapEnabled = false
-        currentChargesPieChartView.rotationEnabled = false
+    private func stylePieChart() {
+        currentChargesPieChartView.highlightPerTapEnabled = false // Disable chart interaction
+        currentChargesPieChartView.rotationEnabled = false // Disable chart interaction
         currentChargesPieChartView.legend.enabled = false // Hide the legend because we'll draw our own
         currentChargesPieChartView.chartDescription?.enabled = false // Hides the chart description
         currentChargesPieChartView.holeColor = .clear
@@ -91,19 +95,19 @@ class BillBreakdownViewController: UIViewController {
         
         var pieChartValues = [PieChartDataEntry]()
         var pieChartColors = [UIColor]()
-        if supplyCharges > 0 {
-            pieChartValues.append(PieChartDataEntry(value: supplyCharges))
+        if viewModel.supplyCharges > 0 {
+            pieChartValues.append(PieChartDataEntry(value: viewModel.supplyCharges))
             pieChartColors.append(.primaryColor)
         }
-        if taxesAndFees > 0 {
-            pieChartValues.append(PieChartDataEntry(value: taxesAndFees))
+        if viewModel.taxesAndFees > 0 {
+            pieChartValues.append(PieChartDataEntry(value: viewModel.taxesAndFees))
             pieChartColors.append(.blackText)
         }
-        if deliveryCharges > 0 {
-            pieChartValues.append(PieChartDataEntry(value: deliveryCharges))
+        if viewModel.deliveryCharges > 0 {
+            pieChartValues.append(PieChartDataEntry(value: viewModel.deliveryCharges))
             pieChartColors.append(.accentGray)
         }
-
+        
         let dataSet = PieChartDataSet(values: pieChartValues, label: "Current Charges")
         dataSet.colors = pieChartColors
         dataSet.drawValuesEnabled = false
@@ -111,8 +115,9 @@ class BillBreakdownViewController: UIViewController {
         let data = PieChartData(dataSet: dataSet)
         currentChargesPieChartView.data = data
         currentChargesPieChartView.notifyDataSetChanged()
-        
-        // Legend View
+    }
+    
+    private func styleLegend() {
         currentChargesLegendView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
         
         supplyLegendBox.backgroundColor = .accentGray
@@ -121,7 +126,7 @@ class BillBreakdownViewController: UIViewController {
         supplyLegendLabel.text = NSLocalizedString("Supply", comment: "")
         supplyValueLabel.textColor = .blackText
         supplyValueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        supplyValueLabel.text = supplyCharges.currencyString
+        supplyValueLabel.text = viewModel.supplyCharges.currencyString
         
         taxesFeesLegendBox.backgroundColor = .blackText
         taxesFeesLegendLabel.textColor = .blackText
@@ -129,7 +134,7 @@ class BillBreakdownViewController: UIViewController {
         taxesFeesLegendLabel.text = NSLocalizedString("Taxes & Fees", comment: "")
         taxesFeesValueLabel.textColor = .blackText
         taxesFeesValueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        taxesFeesValueLabel.text = taxesAndFees.currencyString
+        taxesFeesValueLabel.text = viewModel.taxesAndFees.currencyString
         
         deliveryLegendBox.backgroundColor = .primaryColor
         deliveryLegendLabel.textColor = .blackText
@@ -137,7 +142,7 @@ class BillBreakdownViewController: UIViewController {
         deliveryLegendLabel.text = NSLocalizedString("Delivery", comment: "")
         deliveryValueLabel.textColor = .blackText
         deliveryValueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        deliveryValueLabel.text = deliveryCharges.currencyString
+        deliveryValueLabel.text = viewModel.deliveryCharges.currencyString
         
         totalChargesLegendLabel.textColor = .deepGray
         totalChargesLegendLabel.font = OpenSans.bold.of(textStyle: .headline)
@@ -147,4 +152,10 @@ class BillBreakdownViewController: UIViewController {
         totalChargesValueLabel.text = viewModel.totalChargesString
     }
     
+    // MARK: - Actions
+    
+    @IBAction private func viewUsageButtonPressed(_ sender: Any) {
+        navigationController?.tabBarController?.selectedIndex = 3
+        navigationController?.popToRootViewController(animated: false)
+    }
 }
