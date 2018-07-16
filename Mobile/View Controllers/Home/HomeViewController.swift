@@ -429,9 +429,8 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                let billAnalysis = BillAnalysisViewController()
+                let billAnalysis = BillAnalysisViewController(accountDetail: $0)
                 billAnalysis.hidesBottomBarWhenPushed = true
-                billAnalysis.viewModel.accountDetail = $0
                 self?.navigationController?.pushViewController(billAnalysis, animated: true)
             }).disposed(by: projectedBillCardView.disposeBag)
         

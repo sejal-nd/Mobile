@@ -6,13 +6,9 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import RxSwift
-import RxCocoa
 import Charts
 
 class BillAnalysisViewController: UIViewController {
-    
-    let disposeBag = DisposeBag()
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -33,9 +29,18 @@ class BillAnalysisViewController: UIViewController {
     @IBOutlet weak var totalChargesLegendLabel: UILabel!
     @IBOutlet weak var totalChargesValueLabel: UILabel!
     
-    let viewModel = BillAnalysisViewModel()
+    let viewModel: BillAnalysisViewModel
     
     private let corderRadius: CGFloat = 10.0
+    
+    init(accountDetail: AccountDetail) {
+        viewModel = BillAnalysisViewModel(accountDetail: accountDetail)
+        super.init(nibName: BillAnalysisViewController.className, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("not implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,12 +68,13 @@ class BillAnalysisViewController: UIViewController {
     }
     
     private func styleCurrentChargesSection() {
-        let supplyCharges = viewModel.accountDetail.billingInfo.supplyCharges ?? 0
-        let taxesAndFees = viewModel.accountDetail.billingInfo.taxesAndFees ?? 0
-        let deliveryCharges = viewModel.accountDetail.billingInfo.deliveryCharges ?? 0
-        let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
+        let supplyCharges = viewModel.supplyCharges
+        let taxesAndFees = viewModel.taxesAndFees
+        let deliveryCharges = viewModel.deliveryCharges
         
         // Pie Chart
+        currentChargesPieChartView.highlightPerTapEnabled = false
+        currentChargesPieChartView.rotationEnabled = false
         currentChargesPieChartView.legend.enabled = false // Hide the legend because we'll draw our own
         currentChargesPieChartView.chartDescription?.enabled = false // Hides the chart description
         currentChargesPieChartView.holeColor = .clear
@@ -76,12 +82,12 @@ class BillAnalysisViewController: UIViewController {
         currentChargesPieChartView.transparentCircleRadiusPercent = 0.70
         currentChargesPieChartView.transparentCircleColor = .clear
         
-        let centerAttrText = NSMutableAttributedString(string: totalCharges.currencyString ?? "$0.00")
+        let centerAttrText = NSMutableAttributedString(string: viewModel.totalChargesString)
         centerAttrText.addAttribute(.foregroundColor, value: UIColor.deepGray, range: NSRange(location: 0, length: centerAttrText.length))
         centerAttrText.addAttribute(.font, value: OpenSans.semibold.of(size: 24), range: NSRange(location: 0, length: centerAttrText.length))
         currentChargesPieChartView.centerAttributedText = centerAttrText
         
-        currentChargesPieChartView.accessibilityLabel = totalCharges.currencyString ?? "$0.00"
+        currentChargesPieChartView.accessibilityLabel = viewModel.totalChargesString
         
         var pieChartValues = [PieChartDataEntry]()
         var pieChartColors = [UIColor]()
@@ -138,7 +144,7 @@ class BillAnalysisViewController: UIViewController {
         totalChargesLegendLabel.text = NSLocalizedString("TOTAL CHARGES", comment: "")
         totalChargesValueLabel.textColor = .deepGray
         totalChargesValueLabel.font = OpenSans.bold.of(textStyle: .subheadline)
-        totalChargesValueLabel.text = totalCharges.currencyString
+        totalChargesValueLabel.text = viewModel.totalChargesString
     }
     
 }
