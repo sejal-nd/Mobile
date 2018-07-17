@@ -157,7 +157,10 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         if indexPath.section == 1 && indexPath.item == cards.value[1].count {
             return restoreDefaultCell(collectionView: collectionView, indexPath: indexPath)
         } else if indexPath.section == 1 && cards.value[1][0] == .nothing {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditEmptyCell.className, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditEmptyCell.className, for: indexPath)
+            cell.isAccessibilityElement = true
+            cell.accessibilityLabel = NSLocalizedString("All cards have been added", comment: "")
+            return cell
         } else if 0...1 ~= indexPath.section {
             return editCardCell(collectionView: collectionView, indexPath: indexPath)
         } else {
