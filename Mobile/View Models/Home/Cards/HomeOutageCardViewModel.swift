@@ -18,13 +18,12 @@ class HomeOutageCardViewModel {
     private let switchAccountFetchTracker: ActivityTracker
     
     
-    // MARK: - INIT
+    // MARK: - Init
     
     required init(maintenanceModeEvents: Observable<Event<Maintenance>>,
                   fetchDataObservable: Observable<FetchingAccountState>,
                   refreshFetchTracker: ActivityTracker,
                   switchAccountFetchTracker: ActivityTracker) {
-        print("init outage")
         self.maintenanceModeEvents = maintenanceModeEvents
         self.fetchDataObservable = fetchDataObservable
         self.refreshFetchTracker = refreshFetchTracker
@@ -48,7 +47,7 @@ class HomeOutageCardViewModel {
     private(set) lazy var currentOutageStatus: Driver<OutageStatus> = self.outageStatusEvents.elements()
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowContentView: Driver<Bool> = Driver.combineLatest(isOutageErrorStatus, shouldShowMaintenanceModeState, isGasOnly)
+    private(set) lazy var shouldShowContentView: Driver<Bool> = Driver.combineLatest(isOutageErrorStatus, shouldShowMaintenanceModeState, isCustomError)
         { !$0 && !$1 && !$2 }
         .distinctUntilChanged()
     
@@ -70,25 +69,70 @@ class HomeOutageCardViewModel {
         .map { $0.activeOutage ? #imageLiteral(resourceName: "ic_lightbulb_off") : #imageLiteral(resourceName: "ic_outagestatus_on") }
     
     private(set) lazy var powerStatus: Driver<String> = self.currentOutageStatus
-        .map { $0.activeOutage ? "POWER IS OFF" : "POWER IS ON" }
+        .map { $0.activeOutage ? "POWER IS OUT" : "POWER IS ON" }
     
     private(set) lazy var restorationTime: Driver<String> = self.currentOutageStatus
         .map { "Estimated Restoration\n \(DateFormatter.outageOpcoDateFormatter.string(from: ($0.etr) ?? Date()))" }
 
     private(set) lazy var shouldShowRestorationTime: Driver<Bool> = self.currentOutageStatus
-        .map { $0.etr == nil && $0.activeOutage }
+        .map { $0.etr != nil && $0.activeOutage }
         .distinctUntilChanged()
+    
+    private lazy var isCustomError: Driver<Bool> = self.outageStatusEvents
+        .map { event in
+            guard let outageStatus = event.element else { return false }
+            return outageStatus.flagFinaled || outageStatus.flagNoPay ||
+                outageStatus.flagNonService || outageStatus.flagGasOnly
+        }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private lazy var isOutstandingBalance: Driver<Bool> = self.outageStatusEvents
+        .map { event in
+            guard let outageStatus = event.element else { return false }
+            return outageStatus.flagFinaled || outageStatus.flagNoPay || outageStatus.flagNonService
+        }
+        .asDriver(onErrorDriveWith: .empty())
     
     private lazy var isGasOnly: Driver<Bool> = self.outageStatusEvents
         .map { $0.element?.flagGasOnly ?? false }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowGasOnly: Driver<Bool> = Driver.combineLatest(isGasOnly, shouldShowMaintenanceModeState)
-        { $0 && !$1 }
+    private(set) lazy var showCustomErrorView: Driver<Bool> = Driver.combineLatest(isCustomError, shouldShowMaintenanceModeState)
+    { $0 && !$1 }
+        .distinctUntilChanged()
+    
+    private(set) lazy var showOutstandingBalanceWarning: Driver<Bool> = Driver.combineLatest(isOutstandingBalance, shouldShowMaintenanceModeState)
+    { $0 && !$1 }
+        .distinctUntilChanged()
+    
+    private(set) lazy var showGasOnly: Driver<Bool> = Driver.combineLatest(isGasOnly, showOutstandingBalanceWarning)
+    { $0 && !$1 }
         .distinctUntilChanged()
     
     let hasReportedOutage = BehaviorSubject<Bool>(value: false)
     
+    private(set) lazy var accountNonPayFinaledMessage: Driver<NSAttributedString> = currentOutageStatus
+        .map { outageStatus -> String in
+            if Environment.shared.opco == .bge {
+                return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
+            } else if outageStatus.flagFinaled {
+                return NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
+            } else if outageStatus.flagNoPay {
+                return NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
+            }
+            return ""
+        }
+        .map { text -> NSAttributedString in
+            let attributeString = NSMutableAttributedString(string: text)
+            let style = NSMutableParagraphStyle()
+            
+            style.minimumLineHeight = 20
+            attributeString.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, text.count))
+            attributeString.addAttribute(.foregroundColor, value: UIColor.deepGray, range: NSMakeRange(0, text.count))
+            attributeString.addAttribute(.font, value: OpenSans.regular.of(textStyle: .footnote), range: NSMakeRange(0, text.count))
+            
+            return attributeString
+    }
     
     // MARK: - Service
     
