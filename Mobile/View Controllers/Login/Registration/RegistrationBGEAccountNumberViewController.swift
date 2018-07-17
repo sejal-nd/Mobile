@@ -122,7 +122,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
-            Analytics.log(event: .RegisterAccountSetup)
+            Analytics.log(event: .registerAccountSetup)
             self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
             
         }, onMultipleAccounts:  { // should never happen

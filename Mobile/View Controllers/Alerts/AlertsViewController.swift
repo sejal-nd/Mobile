@@ -39,7 +39,7 @@ class AlertsViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .primaryColorAccountPicker
         
         segmentedControl.setItems(leftLabel: NSLocalizedString("My Alerts", comment: ""),
@@ -95,7 +95,11 @@ class AlertsViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        guard let navController = navigationController as? MainBaseNavigationController else {
+            return
+        }
+        
+        navController.setColoredNavBar()
     }
     
     override func viewDidLayoutSubviews() {
@@ -139,7 +143,7 @@ class AlertsViewController: AccountPickerViewController {
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
             if index == 1 { // User tapped on "Updates"
-                Analytics.log(event: .AlertsOpCoUpdate)
+                Analytics.log(event: .alertsOpCoUpdate)
             }
         }).disposed(by: disposeBag)
         
@@ -176,7 +180,7 @@ class AlertsViewController: AccountPickerViewController {
     }
     
     @IBAction func onPreferencesButtonTap(_ sender: Any) {
-        Analytics.log(event: .AlertsMainScreen)
+        Analytics.log(event: .alertsMainScreen)
         performSegue(withIdentifier: "preferencesSegue", sender: self)
     }
     
@@ -276,7 +280,7 @@ extension AlertsViewController: AccountPickerDelegate {
 extension AlertsViewController: AlertPreferencesViewControllerDelegate {
     
     func alertPreferencesViewControllerDidSavePreferences(_ alertPreferencesViewController: AlertPreferencesViewController) {
-        Analytics.log(event: .AlertsPrefCenterComplete)
+        Analytics.log(event: .alertsPrefCenterComplete)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Preferences saved", comment: ""))
         })

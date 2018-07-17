@@ -49,18 +49,18 @@ class HomeViewModel {
         self.authService = authService
     }
     
-    private(set) lazy var weatherViewModel: HomeWeatherViewModel = HomeWeatherViewModel(accountDetailEvents: self.accountDetailEvents,
-                                                                                        weatherService: self.weatherService,
-                                                                                        usageService: self.usageService)
+    private(set) lazy var weatherViewModel = HomeWeatherViewModel(accountDetailEvents: self.accountDetailEvents,
+                                                                  weatherService: self.weatherService,
+                                                                  usageService: self.usageService)
     
-    private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(fetchData: self.fetchDataObservable,
-                                                                                           fetchDataMMEvents: self.fetchDataMMEvents,
-                                                                                           accountDetailEvents: self.accountDetailEvents,
-                                                                                           walletService: self.walletService,
-                                                                                           paymentService: self.paymentService,
-                                                                                           authService: self.authService,
-                                                                                           refreshFetchTracker: self.refreshFetchTracker,
-                                                                                           switchAccountFetchTracker: self.switchAccountFetchTracker)
+    private(set) lazy var billCardViewModel = HomeBillCardViewModel(fetchData: self.fetchDataObservable,
+                                                                    fetchDataMMEvents: self.fetchDataMMEvents,
+                                                                    accountDetailEvents: self.accountDetailEvents,
+                                                                    walletService: self.walletService,
+                                                                    paymentService: self.paymentService,
+                                                                    authService: self.authService,
+                                                                    refreshFetchTracker: self.refreshFetchTracker,
+                                                                    switchAccountFetchTracker: self.switchAccountFetchTracker)
     
     private(set) lazy var usageCardViewModel = HomeUsageCardViewModel(fetchData: self.fetchDataObservable,
                                                                       accountDetailEvents: self.accountDetailEvents,
@@ -69,6 +69,12 @@ class HomeViewModel {
                                                                       switchAccountFetchTracker: self.switchAccountFetchTracker)
     
     private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
+    
+    private(set) lazy var projectedBillCardViewModel = HomeProjectedBillCardViewModel(fetchData: self.fetchDataObservable,
+                                                                                      accountDetailEvents: self.accountDetailEvents,
+                                                                                      usageService: self.usageService,
+                                                                                      refreshFetchTracker: self.refreshFetchTracker,
+                                                                                      switchAccountFetchTracker: self.switchAccountFetchTracker)
     
     private(set) lazy var outageCardViewModel = HomeOutageCardViewModel(maintenanceModeEvents: self.fetchDataMMEvents, fetchDataObservable: self.fetchDataObservable, refreshFetchTracker: self.refreshFetchTracker, switchAccountFetchTracker: self.switchAccountFetchTracker)
     
@@ -90,13 +96,10 @@ class HomeViewModel {
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.maintenanceModeEvents
         .filter { !($0.element?.homeStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
-        .flatMapLatest { [unowned self] in
-            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
-                .trackActivity(self.fetchTracker(forState: $0))
-                .materialize()
-                .filter { !$0.isCompleted }
-        }
-        .share(replay: 1)
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
+                        requestSelector: { [unowned self] _ in
+                            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        })
 
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
@@ -138,5 +141,7 @@ class HomeViewModel {
         
         return true
     }
+    
+    private(set) lazy var shouldShowProjectedBillCard: Driver<Bool> = self.projectedBillCardViewModel.cardShouldBeHidden.not().asDriver(onErrorDriveWith: .empty())
     
 }

@@ -216,7 +216,7 @@ class HomeUsageCardView: UIView {
         viewModel.shouldShowSmartEnergyRewards.not().drive(smartEnergyRewardsView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowSmartEnergyEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in
             if !shouldHide {
-                Analytics.log(event: .EmptyStateSmartEnergyHome)
+                Analytics.log(event: .emptyStateSmartEnergyHome)
             }
         }).drive(smartEnergyRewardsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         
@@ -230,7 +230,7 @@ class HomeUsageCardView: UIView {
         
         viewModel.shouldShowBillComparisonEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in
             if !shouldHide {
-                Analytics.log(event: .EmptyStateUsageOverview)
+                Analytics.log(event: .emptyStateUsageOverview)
             }
         }).drive(billComparisonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowBillComparisonEmptyStateButton.not().drive(viewUsageEmptyStateButton.rx.isHidden).disposed(by: disposeBag)
@@ -246,9 +246,9 @@ class HomeUsageCardView: UIView {
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             if index == 0 {
-                Analytics.log(event: .ViewUsageElectricity)
+                Analytics.log(event: .viewUsageElectricity)
             } else {
-                Analytics.log(event: .ViewUsageGas)
+                Analytics.log(event: .viewUsageGas)
             }
         }).disposed(by: disposeBag)
         

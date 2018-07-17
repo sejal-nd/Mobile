@@ -60,15 +60,15 @@ class HomeBillCardViewModel {
             .subscribe(onNext: { walletItem, oneTouchPayEvent in
                 switch (walletItem.bankOrCard, oneTouchPayEvent.error) {
                 case (.bank, nil):
-                    Analytics.log(event: .OneTouchBankComplete)
+                    Analytics.log(event: .oneTouchBankComplete)
                 case (.bank, let error):
-                    Analytics.log(event: .OneTouchBankError,
-                                         dimensions: [.ErrorCode: (error as! ServiceError).serviceCode])
+                    Analytics.log(event: .oneTouchBankError,
+                                         dimensions: [.errorCode: (error as! ServiceError).serviceCode])
                 case (.card, nil):
-                    Analytics.log(event: .OneTouchCardComplete)
+                    Analytics.log(event: .oneTouchCardComplete)
                 case (.card, let error):
-                    Analytics.log(event: .OneTouchCardError,
-                                         dimensions: [.ErrorCode: (error as! ServiceError).serviceCode])
+                    Analytics.log(event: .oneTouchCardError,
+                                         dimensions: [.errorCode: (error as! ServiceError).serviceCode])
                 }
             })
             .disposed(by: bag)
@@ -87,13 +87,10 @@ class HomeBillCardViewModel {
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.maintenanceModeEvents
         .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
-        .flatMapLatest { [unowned self] in
-            self.walletService.fetchWalletItems()
-                .trackActivity(self.fetchTracker(forState: $0))
-                .map { $0.first(where: { $0.isDefault }) }
-                .materialize()
-        }
-        .share(replay: 1)
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
+                        requestSelector: {[unowned self] _ in
+                            self.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
+        })
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents.errors()
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
@@ -105,9 +102,8 @@ class HomeBillCardViewModel {
     
     private lazy var account: Observable<Account> = self.fetchData.map { _ in AccountsStore.shared.currentAccount }
 
-    private(set) lazy var data: Observable<Event<(Account, AccountDetail, WalletItem?)>> =
-        Observable.combineLatest(self.account,
-                                 self.accountDetailEvents.elements(),
+    private(set) lazy var data: Observable<Event<(AccountDetail, WalletItem?)>> =
+        Observable.combineLatest(self.accountDetailEvents.elements(),
                                  self.walletItem)
             .materialize()
             .share()
@@ -135,9 +131,9 @@ class HomeBillCardViewModel {
         .do(onNext: { _, walletItem, _, _, _ in
             switch walletItem.bankOrCard {
             case .bank:
-                Analytics.log(event: .OneTouchBankOffer)
+                Analytics.log(event: .oneTouchBankOffer)
             case .card:
-                Analytics.log(event: .OneTouchCardOffer)
+                Analytics.log(event: .oneTouchCardOffer)
             }
         })
         .map { accountDetail, walletItem, cvv2, isWeekendOrHoliday, workDays in
@@ -244,13 +240,12 @@ class HomeBillCardViewModel {
     // MARK: - Title States
     
     enum BillState {
-        case restoreService, catchUp, avoidShutoff, pastDueTotal,
-        pastDueNotTotal, billReady, billReadyAutoPay, billPaid, billPaidIntermediate, credit,
+        case restoreService, catchUp, avoidShutoff, pastDue, billReady, billReadyAutoPay, billPaid, billPaidIntermediate, credit,
         paymentPending, billNotReady, paymentScheduled
         
         var isPrecariousBillSituation: Bool {
             switch self {
-            case .restoreService, .catchUp, .avoidShutoff, .pastDueTotal, .pastDueNotTotal:
+            case .restoreService, .catchUp, .avoidShutoff, .pastDue:
                 return true
             default:
                 return false
@@ -269,11 +264,11 @@ class HomeBillCardViewModel {
     
     private lazy var billState: Driver<BillState> =
         self.data.elements()
-            .map { account, accountDetail, walletItem -> BillState in
+            .map { accountDetail, walletItem -> BillState in
                 let billingInfo = accountDetail.billingInfo
                 let opco = Environment.shared.opco
                 
-                if RecentPaymentsStore.shared[account] != nil {
+                if RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] != nil {
                     return .billPaidIntermediate
                 }
                 
@@ -290,15 +285,15 @@ class HomeBillCardViewModel {
                 }
                 
                 if billingInfo.pastDueAmount ?? 0 > 0 {
-                    if billingInfo.netDueAmount == billingInfo.pastDueAmount {
-                        return .pastDueTotal
-                    } else {
-                        return .pastDueNotTotal
-                    }
+                    return .pastDue
                 }
                 
                 if billingInfo.pendingPayments.first?.amount ?? 0 > 0 {
                     return .paymentPending
+                }
+                
+                if billingInfo.netDueAmount ?? 0 > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
+                    return .billReadyAutoPay
                 }
                 
                 if billingInfo.scheduledPayment?.amount ?? 0 > 0 {
@@ -310,11 +305,7 @@ class HomeBillCardViewModel {
                 }
                 
                 if billingInfo.netDueAmount ?? 0 > 0 {
-                    if accountDetail.isAutoPay || accountDetail.isBGEasy {
-                        return .billReadyAutoPay
-                    } else {
-                        return .billReady
-                    }
+                    return .billReady
                 }
                 
                 if let billDate = billingInfo.billDate,
@@ -329,61 +320,59 @@ class HomeBillCardViewModel {
             .asDriver(onErrorDriveWith: .empty())
     
     // MARK: - Show/Hide view logic
+    
+    private(set) lazy var showHeaderView: Driver<Bool> = self.billState.map {
+        switch $0 {
+        case .restoreService, .catchUp, .avoidShutoff, .pastDue, .credit:
+            return true
+        default:
+            return AccountsStore.shared.currentAccount.isMultipremise
+        }
+    }
+    
     private(set) lazy var showAlertIcon: Driver<Bool> = self.billState.map { $0.isPrecariousBillSituation }
     
     private(set) lazy var showPaymentPendingIcon: Driver<Bool> = self.billState.map { $0 == .paymentPending }
     
     private(set) lazy var showBillPaidIcon: Driver<Bool> = self.billState.map { $0 == .billPaid || $0 == .billPaidIntermediate }
     
+    private(set) lazy var showPaymentDescription: Driver<Bool> = self.paymentDescriptionText.isNil().not()
+    
     private(set) lazy var showSlideToPay24DisclaimerLabel: Driver<Bool> = self.billState.map { $0 == .billPaidIntermediate }
     
     private(set) lazy var showAmount: Driver<Bool> = self.billState.map { $0 != .billPaidIntermediate }
     
-    private(set) lazy var showConvenienceFee: Driver<Bool> = Driver.combineLatest(self.walletItemDriver,
-                                                                                  self.showOneTouchPaySlider,
-                                                                                  self.billState,
-                                                                                  self.enableOneTouchSlider)
-        .map { $0 != nil && $1 && $2 != .credit && !$2.isPrecariousBillSituation && $2 != .paymentScheduled && $2 != .billReadyAutoPay && $3 }
+    private(set) lazy var showConvenienceFee: Driver<Bool> = self.showSaveAPaymentAccountButton.not()
     
-    private(set) lazy var showDueDate: Driver<Bool> = Driver.combineLatest(self.billState, self.accountDetailDriver)
-    {
+    private(set) lazy var showDueDate: Driver<Bool> = self.billState.map {
         switch ($0) {
-        case .billPaid, .billPaidIntermediate, .credit, .paymentPending:
+        case .billPaid, .billPaidIntermediate, .paymentPending:
             return false
         default:
-            return $1.billingInfo.netDueAmount ?? 0 >= 0 // don't show for credit balances
-        }
-    }
-    
-    private(set) lazy var showDueAmountAndDate: Driver<Bool> = self.billState.map {
-        switch $0 {
-        case .avoidShutoff, .pastDueNotTotal, .catchUp, .restoreService:
             return true
-        default:
-            return false
         }
     }
     
-    private(set) lazy var showDueDateTooltip: Driver<Bool> = Driver.zip(self.showDueAmountAndDate, self.billState)
-    { !$0 && !$1.isPrecariousBillSituation && Environment.shared.opco == .peco }
+    let showDueDateTooltip = Environment.shared.opco == .peco
     
-    let showDueAmountAndDateTooltip = Environment.shared.opco == .peco
+    private(set) lazy var showReinstatementFeeText: Driver<Bool> = self.reinstatementFeeText.isNil().not()
     
-    private(set) lazy var showBankCreditButton: Driver<Bool> = Driver.combineLatest(self.billState,
-                                                                          self.walletItemDriver,
-                                                                          self.showOneTouchPaySlider,
-                                                                          self.enableOneTouchSlider)
-        { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .billReadyAutoPay && $1 != nil && $2 && ($3 || $1!.isExpired) }
+    private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver.combineLatest(self.showOneTouchPaySlider,
+                                                                                  self.showMinMaxPaymentAllowed)
+    { $0 && !$1 }
+        .distinctUntilChanged()
+    
+    private(set) lazy var showBankCreditNumberButton: Driver<Bool> = self.walletItemDriver.isNil().not()
     
     private(set) lazy var showBankCreditExpiredLabel: Driver<Bool> = self.walletItemDriver.map {
-        guard let walletItem = $0 else { return false }
-        return walletItem.isExpired
+        $0?.isExpired ?? false
     }
     
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                                    self.walletItemDriver,
                                                                                    self.showOneTouchPaySlider)
         { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .paymentScheduled && $1 == nil && $2 }
+        .distinctUntilChanged()
     
     private(set) lazy var showMinMaxPaymentAllowed: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                                self.walletItemDriver,
@@ -396,103 +385,195 @@ class HomeBillCardViewModel {
             showOneTouchPaySlider &&
             minMaxPaymentAllowedText != nil
     }
+        .distinctUntilChanged()
     
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.billState,
                                                                                      self.accountDetailDriver)
-        .map { ($0 == .credit || $0 == .billReady) && !$1.isActiveSeverance && !$1.isCashOnly }
+    { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly }
+        .distinctUntilChanged()
     
-    private(set) lazy var showCommercialBgeOtpVisaLabel: Driver<Bool> = Driver.combineLatest(self.enableOneTouchSlider, self.accountDetailDriver, self.walletItemDriver).map {
-        guard let walletItem = $2 else { return false }
-        if !$0 {
-            // These first two if statements copy logic from self.enableOneTouchSlider - to ensure that we ONLY show the label if the
-            // reason that the slider is disabled is because of the BGE Commercial Visa scenario
-            if let minPaymentAmount = $1.billingInfo.minPaymentAmount, $1.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.shared.opco != .bge {
-                return false
-            } else if $1.billingInfo.netDueAmount ?? 0 < 0 && Environment.shared.opco == .bge {
-                return false
-            } else if let cardIssuer = walletItem.cardIssuer, cardIssuer == "Visa", Environment.shared.opco == .bge, !$1.isResidential {
-                return true
-            }
+    private(set) lazy var showCommercialBgeOtpVisaLabel: Driver<Bool> = Driver.combineLatest(self.enableOneTouchSlider,
+                                                                                             self.showOneTouchPaySlider,
+                                                                                             self.accountDetailDriver,
+                                                                                             self.walletItemDriver)
+    { enableOneTouchSlider, showOneTouchPaySlider, accountDetail, walletItem in
+        guard let walletItem = walletItem else { return false }
+        guard showOneTouchPaySlider && !enableOneTouchSlider else { return false }
+        guard Environment.shared.opco == .bge else { return false }
+        
+        // Min/Max payment amount state takes precedence
+        guard accountDetail.billingInfo.netDueAmount ?? 0 >= accountDetail.minPaymentAmount(bankOrCard: .card) else { return false }
+        guard accountDetail.billingInfo.netDueAmount ?? 0 <= accountDetail.maxPaymentAmount(bankOrCard: .card) else { return false }
+        
+        guard walletItem.cardIssuer == "Visa" else { return false }
+        guard !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly else { return false }
+        
+        return true
         }
-        return false
-    }
+        .distinctUntilChanged()
     
-    private(set) lazy var showScheduledImageView: Driver<Bool> = self.billState.map { $0 == .paymentScheduled }
+    private(set) lazy var showScheduledPayment: Driver<Bool> = self.billState.map { $0 == .paymentScheduled }
     
-    private(set) lazy var showAutoPayIcon: Driver<Bool> = self.billState.map { $0 == .billReadyAutoPay }
-    
-    private(set) lazy var showAutomaticPaymentInfoButton: Driver<Bool> = self.billState.map { $0 == .billReadyAutoPay }
-    
-    private(set) lazy var showScheduledPaymentInfoButton: Driver<Bool> = self.billState.map { $0 == .paymentScheduled }
+    private(set) lazy var showAutoPay: Driver<Bool> = self.billState.map { $0 == .billReadyAutoPay }
     
     private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(self.showOneTouchPaySlider,
-                                                                             self.enableOneTouchSlider,
-                                                                             self.billState) { $0 && $1 && $2 != .paymentScheduled }
+                                                                                       self.showCommercialBgeOtpVisaLabel,
+                                                                                       self.showMinMaxPaymentAllowed)
+    { $0 && !$1 && !$2 }
+        .distinctUntilChanged()
     
     
     // MARK: - View States
-    private(set) lazy var titleText: Driver<String?> = Driver.combineLatest(self.billState, self.data.elements().asDriver(onErrorDriveWith: .empty()))
-    { (billState, data) in
-        let (account, accountDetail, _) = data
+    private(set) lazy var paymentDescriptionText: Driver<NSAttributedString?> = Driver.combineLatest(self.billState, self.accountDetailDriver)
+    { (billState, accountDetail) in
         
         switch billState {
-        case .restoreService:
-            return NSLocalizedString("Amount Due to Restore Service", comment: "")
-        case .catchUp:
-            return NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")
-        case .avoidShutoff:
-            switch Environment.shared.opco {
-            case .bge:
-                if account.isMultipremise {
-                    return NSLocalizedString("Amount due to avoid shutoff for your multi-premise bill", comment: "")
-                } else {
-                    return NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
-                }
-            case .comEd, .peco:
-                return NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
-            }
-        case .pastDueTotal, .pastDueNotTotal:
-            return NSLocalizedString("Amount Past Due", comment: "")
-        case .billReady, .billReadyAutoPay, .paymentScheduled:
-            if accountDetail.billingInfo.netDueAmount ?? 0 < 0 {
-                return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
-            } else if Environment.shared.opco == .bge && account.isMultipremise {
-                return NSLocalizedString("Your multi-premise bill is ready", comment: "")
-            } else {
-                return NSLocalizedString("Your bill is ready", comment: "")
-            }
         case .billPaid, .billPaidIntermediate:
-            return NSLocalizedString("Thank you for your payment", comment: "")
-        case .credit:
-            return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+            let text = NSLocalizedString("Thank you for your payment", comment: "")
+            return NSAttributedString(string: text, attributes: [.font: OpenSans.semibold.of(textStyle: .title1),
+                                                                 .foregroundColor: UIColor.deepGray])
         case .paymentPending:
+            let text: String
             switch Environment.shared.opco {
             case .bge:
-                return NSLocalizedString("Your payment is processing", comment: "")
+                text = NSLocalizedString("Your payment is processing", comment: "")
             case .comEd, .peco:
-                return NSLocalizedString("Your payment is pending", comment: "")
+                text = NSLocalizedString("Your payment is pending", comment: "")
             }
-        case .billNotReady:
+            return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .title1),
+                                                                 .foregroundColor: UIColor.deepGray])
+        default:
             return nil
         }
     }
     
-    private(set) lazy var titleA11yText: Driver<String?> = self.titleText.map {
-        $0?.replacingOccurrences(of: "shutoff", with: "shut-off")
+    private(set) lazy var showAlertAnimation: Driver<Bool> = self.billState.map {
+        return $0.isPrecariousBillSituation
+    }
+    
+    private(set) lazy var resetAlertAnimation: Driver<Void> = Driver.merge(self.refreshFetchTracker.asDriver(),
+                                                                           self.switchAccountFetchTracker.asDriver())
+        .filter(!)
+        .map(to: ())
+    
+    private(set) lazy var headerText: Driver<NSAttributedString?> = Driver.combineLatest(self.accountDetailDriver, self.billState)
+    { accountDetail, billState in
+        let isMultiPremise = AccountsStore.shared.currentAccount.isMultipremise
+        
+        let style = NSMutableParagraphStyle()
+        style.minimumLineHeight = 16
+        var attributes: [NSAttributedStringKey: Any] = [.font: SystemFont.semibold.of(textStyle: .footnote),
+                                                        .paragraphStyle: style,
+                                                        .foregroundColor: UIColor.errorRed]
+        
+        switch billState {
+        case .credit:
+            attributes[.foregroundColor] = UIColor.deepGray
+            return NSAttributedString(string: NSLocalizedString("Credit Balance", comment: ""),
+                                      attributes: attributes)
+        case .pastDue:
+            let string: String
+            switch (isMultiPremise,
+                    accountDetail.billingInfo.netDueAmount == accountDetail.billingInfo.pastDueAmount) {
+            case (false, false):
+                guard let amount = accountDetail.billingInfo.pastDueAmount?.currencyString else { return nil }
+                let format = "%@ is due immediately."
+                string = String.localizedStringWithFormat(format, amount)
+            case (true, false):
+                guard let amount = accountDetail.billingInfo.netDueAmount?.currencyString else { return nil }
+                let format = "%@ is due immediately for your multi-premise account."
+                string = String.localizedStringWithFormat(format, amount)
+            case (false, true):
+                string = NSLocalizedString("Your bill is past due.", comment: "")
+            case (true, true):
+                string = NSLocalizedString("Your bill is past due for your multi-premise account.", comment: "")
+            }
+            
+            return NSAttributedString(string: string, attributes: attributes)
+        case .catchUp:
+            guard let amountString = accountDetail.billingInfo.amtDpaReinst?.currencyString,
+                let dueByDate = accountDetail.billingInfo.dueByDate else {
+                    return nil
+            }
+            
+            let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
+            
+            let string: String
+            if days > 0 {
+                let format = "%@ is due in %d day%@ to catch up on your DPA agreement."
+                string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            } else {
+                let format = "%@ is due immediately to catch up on your DPA agreement."
+                string = String.localizedStringWithFormat(format, amountString)
+            }
+            
+            return NSAttributedString(string: string, attributes: attributes)
+        case .restoreService:
+            guard let amountString = accountDetail.billingInfo.restorationAmount?.currencyString else {
+                return nil
+            }
+            
+            let localizedText = NSLocalizedString("%@ is due immediately to restore service.", comment: "")
+            let string = String.localizedStringWithFormat(localizedText, amountString)
+            return NSAttributedString(string: string,
+                                      attributes: attributes)
+        case .avoidShutoff:
+            guard let amountString = accountDetail.billingInfo.disconnectNoticeArrears?.currencyString else {
+                return nil
+            }
+            
+            switch Environment.shared.opco {
+            case .bge:
+                guard let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
+                    accountDetail.billingInfo.turnOffNoticeDueDate ??
+                    accountDetail.billingInfo.dueByDate else {
+                        return nil
+                }
+                
+                let days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
+                
+                let string: String
+                switch (days > 0, isMultiPremise) {
+                case (true, true):
+                    let format = "%@ is due in %d day%@ to avoid service interruption for your multi-premise account."
+                    string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+                case (true, false):
+                    let format = "%@ is due in %d day%@ to avoid service interruption."
+                    string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+                case (false, true):
+                    let format = "%@ is due immediately to avoid service interruption for your multi-premise account."
+                    string = String.localizedStringWithFormat(format, amountString)
+                case (false, false):
+                    let format = "%@ is due immediately to avoid service interruption."
+                    string = String.localizedStringWithFormat(format, amountString)
+                }
+                
+                return NSAttributedString(string: string, attributes: attributes)
+                
+            case .comEd, .peco:
+                let localizedText = NSLocalizedString("%@ is due immediately to avoid shutoff.", comment: "")
+                let string = String.localizedStringWithFormat(localizedText, amountString)
+                return NSAttributedString(string: string,
+                                          attributes: attributes)
+            }
+        default:
+            if AccountsStore.shared.currentAccount.isMultipremise {
+                attributes[.foregroundColor] = UIColor.deepGray
+                return NSAttributedString(string: NSLocalizedString("Multi-premise Account", comment: ""),
+                                          attributes: attributes)
+            }
+            return nil
+        }
+    }
+    
+    private(set) lazy var headerA11yText: Driver<String?> = self.paymentDescriptionText.map {
+        $0?.string.replacingOccurrences(of: "shutoff", with: "shut-off")
             .replacingOccurrences(of: "Shutoff", with: "shut-off")
     }
     
     private(set) lazy var amountText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.billState)
     {
         switch $1 {
-        case .pastDueNotTotal:
-            return $0.billingInfo.pastDueAmount?.currencyString
-        case .catchUp:
-            return $0.billingInfo.amtDpaReinst?.currencyString
-        case .restoreService:
-            return $0.billingInfo.restorationAmount?.currencyString
-        case .avoidShutoff:
-            return $0.billingInfo.disconnectNoticeArrears?.currencyString
         case .billPaid:
             return $0.billingInfo.lastPaymentAmount?.currencyString
         case .paymentPending:
@@ -504,40 +585,8 @@ class HomeBillCardViewModel {
     
     private(set) lazy var dueDateText: Driver<NSAttributedString?> = Driver.combineLatest(self.accountDetailDriver, self.billState)
     { accountDetail, billState in
-        if billState.isPrecariousBillSituation {
-            if Environment.shared.opco == .bge &&
-                accountDetail.billingInfo.disconnectNoticeArrears ?? 0 > 0 &&
-                accountDetail.billingInfo.isDisconnectNotice,
-                let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
-                    accountDetail.billingInfo.turnOffNoticeDueDate ??
-                    accountDetail.billingInfo.dueByDate {
-                
-                let calendar = Calendar.opCo
-                
-                let date1 = calendar.startOfDay(for: Date())
-                let date2 = calendar.startOfDay(for: date)
-                
-                guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {
-                    return nil
-                }
-                
-                if days > 0 {
-                    let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
-                    return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                              attributes: [.foregroundColor: UIColor.deepGray,
-                                                           .font: SystemFont.regular.of(textStyle: .subheadline)])
-                } else {
-                    let localizedText = NSLocalizedString("Due on %@", comment: "")
-                    return NSAttributedString(string: String(format: localizedText, date.mmDdYyyyString),
-                                              attributes: [.foregroundColor: UIColor.deepGray,
-                                                           .font: SystemFont.regular.of(textStyle: .subheadline)])
-                }
-            } else {
-                return NSAttributedString(string: NSLocalizedString("Due Immediately", comment: ""),
-                                          attributes: [.foregroundColor: UIColor.errorRed,
-                                                       .font: SystemFont.regular.of(textStyle: .subheadline)])
-            }
-        } else if let dueByDate = accountDetail.billingInfo.dueByDate {
+        let countdownText: () -> NSAttributedString? = {
+            guard let dueByDate = accountDetail.billingInfo.dueByDate else { return nil }
             let calendar = Calendar.opCo
             
             let date1 = calendar.startOfDay(for: Date())
@@ -548,55 +597,47 @@ class HomeBillCardViewModel {
             }
             
             if days > 0 {
-                let localizedText = NSLocalizedString("Due in %d day%@", comment: "")
+                let localizedText = NSLocalizedString("Amount due in %d day%@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
                                           attributes: [.foregroundColor: UIColor.deepGray,
-                                                       .font: SystemFont.regular.of(textStyle: .subheadline)])
+                                                       .font: OpenSans.regular.of(textStyle: .subheadline)])
             } else {
-                let localizedText = NSLocalizedString("Due on %@", comment: "")
+                let localizedText = NSLocalizedString("Amount due on %@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
                                           attributes: [.foregroundColor: UIColor.deepGray,
-                                                       .font: SystemFont.regular.of(textStyle: .subheadline)])
+                                                       .font: OpenSans.regular.of(textStyle: .subheadline)])
             }
-            
-        } else {
-            return nil
+        }
+        
+        switch billState {
+        case .pastDue:
+            if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
+                return NSAttributedString(string: NSLocalizedString("Amount due immediately", comment: ""),
+                                          attributes: [.foregroundColor: UIColor.errorRed,
+                                                       .font: OpenSans.semibold.of(textStyle: .subheadline)])
+            } else {
+                return countdownText()
+            }
+        case .credit:
+            return NSAttributedString(string: NSLocalizedString("No amount due", comment: ""),
+                                      attributes: [.foregroundColor: UIColor.deepGray,
+                                                   .font: OpenSans.semibold.of(textStyle: .subheadline)])
+        default:
+            return countdownText()
         }
     }
     
-    private(set) lazy var dueAmountAndDateText: Driver<String?> = self.accountDetailDriver.map {
-        guard let amountDueString = $0.billingInfo.netDueAmount?.currencyString else { return nil }
-        guard let dueDate = $0.billingInfo.dueByDate else { return nil }
-
-        let calendar = Calendar.opCo
-        let date1 = calendar.startOfDay(for: Date())
-        let date2 = calendar.startOfDay(for: dueDate)
-        guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else { return nil }
-
-        var result = ""
-
-        if days > 0 {
-            let localizedText = NSLocalizedString("Your bill total of %@ is due in %d day%@.", comment: "")
-            result.append(String(format: localizedText, amountDueString, days, days == 1 ? "": "s"))
-        } else if $0.billingInfo.pastDueAmount == nil {
-            let localizedText = NSLocalizedString("Your bill total of %@ is due %@.", comment: "")
-            result.append(String(format: localizedText, amountDueString, dueDate.mmDdYyyyString))
-        } else {
-            let localizedText = NSLocalizedString("Your bill total of %@ is due immediately.", comment: "")
-            result.append(String(format: localizedText, amountDueString))
-        }
-        
-        if let reinstateString = $0.billingInfo.atReinstateFee?.currencyString,
+    private(set) lazy var reinstatementFeeText: Driver<String?> = self.accountDetailDriver.map {
+        guard let reinstateString = $0.billingInfo.atReinstateFee?.currencyString,
             Environment.shared.opco == .comEd &&
                 $0.billingInfo.amtDpaReinst ?? 0 > 0 &&
                 $0.billingInfo.atReinstateFee ?? 0 > 0 &&
-                !$0.isLowIncome {
-            let reinstatementText = NSLocalizedString("\n\nYou are entitled to one free reinstatement per plan. " +
-                "Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
-            result.append(String(format: reinstatementText, reinstateString))
+                !$0.isLowIncome else {
+                    return nil
         }
 
-        return result
+        let reinstatementText = NSLocalizedString("You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
+        return String(format: reinstatementText, reinstateString)
     }
     
     private(set) lazy var bankCreditCardNumberText: Driver<String?> = self.walletItemDriver.map {
@@ -702,17 +743,16 @@ class HomeBillCardViewModel {
             if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.shared.opco == .bge {
                 return false
             }
-            if let cardIssuer = walletItem?.cardIssuer, cardIssuer == "Visa", Environment.shared.opco == .bge, !accountDetail.isResidential {
+            if walletItem?.cardIssuer == "Visa", Environment.shared.opco == .bge, !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly {
                 return false
             }
             return true
         }
+        .distinctUntilChanged()
     
     private(set) lazy var titleFont: Driver<UIFont> = self.billState
         .map {
             switch $0 {
-            case .restoreService, .catchUp, .avoidShutoff, .pastDueTotal, .pastDueNotTotal:
-                return OpenSans.regular.of(textStyle: .headline)
             case .billReady, .billReadyAutoPay, .billPaid, .billPaidIntermediate, .credit:
                 return OpenSans.regular.of(textStyle: .title1)
             case .paymentPending:
@@ -725,9 +765,14 @@ class HomeBillCardViewModel {
     private(set) lazy var amountFont: Driver<UIFont> = self.billState
         .map { $0 == .paymentPending ? OpenSans.semiboldItalic.of(size: 28): OpenSans.semibold.of(size: 36) }
     
-    private(set) lazy var automaticPaymentInfoButtonText: Driver<String?> = self.accountDetailDriver
+    private(set) lazy var automaticPaymentInfoButtonText: Driver<String> = self.accountDetailDriver
         .map { accountDetail in
-            if Environment.shared.opco == .bge && accountDetail.isBGEasy {
+            if let paymentAmountText = accountDetail.billingInfo.scheduledPayment?.amount.currencyString,
+                let paymentDateText = accountDetail.billingInfo.scheduledPayment?.date?.mmDdYyyyString {
+                return String.localizedStringWithFormat("You have an automatic payment of %@ for %@.",
+                                                        paymentAmountText,
+                                                        paymentDateText)
+            } else if Environment.shared.opco == .bge && accountDetail.isBGEasy {
                 return NSLocalizedString("You are enrolled in BGEasy", comment: "")
             } else {
                 return NSLocalizedString("You are enrolled in AutoPay." , comment: "")
@@ -765,11 +810,8 @@ class HomeBillCardViewModel {
         $0 ? UIColor.actionBlue: UIColor.blackText
     }
     
-    private(set) lazy var bankCreditButtonBorderColor: Driver<CGColor> = self.walletItemDriver.map {
-        if let walletItem = $0, walletItem.isExpired {
-            return UIColor.errorRed.cgColor
-        }
-        return UIColor.accentGray.cgColor
+    private(set) lazy var bankCreditButtonBorderWidth: Driver<CGFloat> = self.walletItemDriver.map {
+        $0?.isExpired ?? false ? 1 : 0
     }
     
     var paymentTACUrl: URL {

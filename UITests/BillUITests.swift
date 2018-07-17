@@ -8,51 +8,11 @@
 
 import XCTest
 import AppCenterXCUITestExtensions
-class BillUITests: XCTestCase {
-    
-    let app = XCUIApplication()
-    
-    override func setUp() {
-        super.setUp()
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        app.launchArguments = ["UITest"]
-        ACTLaunch.launch(app)
-    }
-    
-    func doLogin(username: String) {
-        let continueButton = app.buttons["Continue"]
-        XCTAssert(continueButton.waitForExistence(timeout: 30))
-        
-        // Assert button is disabled when the switch is not enabled
-        XCTAssert(!continueButton.isEnabled)
-        app.switches.element(boundBy: 0).tap()
-        XCTAssert(continueButton.isEnabled)
-        continueButton.tap()
-        
-        let signInButton = app.buttons["Sign In"]
-        XCTAssert(signInButton.waitForExistence(timeout: 5))
-        signInButton.tap()
-        
-        let elementsQuery = app.scrollViews.otherElements
-        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
-        usernameEmailAddressTextField.clearAndEnterText(username)
-        
-        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.clearAndEnterText("Password1")
-        elementsQuery.buttons["Sign In"].tap()
-        
-        let billTab = app.tabBars.buttons["Bill"]
-        XCTAssert(billTab.waitForExistence(timeout: 10))
-        billTab.tap()
-    }
+class BillUITests: ExelonUITestCase {
     
     func testScheduledPayment() {
         doLogin(username: "scheduledPayment")
+        selectTab(tabName: "Bill")
         
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = .opCo
@@ -64,6 +24,7 @@ class BillUITests: XCTestCase {
     
     func testThankYouForPayment() {
         doLogin(username: "thankYouForPayment")
+        selectTab(tabName: "Bill")
         
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = .opCo
@@ -75,6 +36,7 @@ class BillUITests: XCTestCase {
     
     func testPastDue() {
         doLogin(username: "pastDue")
+        selectTab(tabName: "Bill")
         
         XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Past Due"].waitForExistence(timeout: 3))
         XCTAssert(app.scrollViews.otherElements.staticTexts["Total Amount Due Immediately"].exists)
@@ -84,6 +46,7 @@ class BillUITests: XCTestCase {
     
     func testAvoidShutoff() {
         doLogin(username: "avoidShutoff")
+        selectTab(tabName: "Bill")
         
         if appName.contains("BGE") {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due to Avoid Service Interruption"].waitForExistence(timeout: 3))
@@ -97,6 +60,7 @@ class BillUITests: XCTestCase {
     
     func testPaymentPending() {
         doLogin(username: "paymentPending")
+        selectTab(tabName: "Bill")
         
         if appName.contains("BGE") {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Processing"].waitForExistence(timeout: 3))
@@ -108,10 +72,11 @@ class BillUITests: XCTestCase {
     
     func testMaintModeBill() {
         doLogin(username: "maintNotHome")
+        selectTab(tabName: "Bill")
         
-        XCTAssert(app.buttons["Reload"].exists)
-        XCTAssert(app.staticTexts["Scheduled Maintenance"].exists)
-        XCTAssert(app.staticTexts["Billing is currently unavailable due to\nscheduled maintenance."].exists)
+        XCTAssert(app.buttons["Reload"].waitForExistence(timeout: 5))
+        XCTAssert(app.staticTexts["Scheduled Maintenance"].waitForExistence(timeout: 5))
+        XCTAssert(app.staticTexts["Billing is currently unavailable due to\nscheduled maintenance."].waitForExistence(timeout: 5))
     }
     
     func testExpiredCc() {
@@ -119,6 +84,7 @@ class BillUITests: XCTestCase {
         let elementsQuery = app.scrollViews.otherElements
         var predicate: NSPredicate
         doLogin(username: "billCardWithExpiredDefaultPayment")
+        selectTab(tabName: "Bill")
         
         //Check for expired card warning
         app.buttons["My Wallet"].tap()
@@ -145,6 +111,8 @@ class BillUITests: XCTestCase {
         var predicate: NSPredicate
         let elementsQuery = app.scrollViews.otherElements
         doLogin(username: "billCardWithDefaultCcPayment")
+        selectTab(tabName: "Bill")
+        
         app.buttons["My Wallet"].tap()
         
         if appName.contains("BGE"){

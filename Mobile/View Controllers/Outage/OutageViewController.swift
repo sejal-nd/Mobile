@@ -154,7 +154,7 @@ class OutageViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Analytics.log(event: .OutageStatusOfferComplete)
+        Analytics.log(event: .outageStatusOfferComplete)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -352,7 +352,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     @IBAction func onViewOutageMapPress() {
-        Analytics.log(event: .ViewMapOfferComplete)
+        Analytics.log(event: .viewMapOfferComplete)
         performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
@@ -384,7 +384,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
         updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-            Analytics.log(event: .ReportOutageAuthComplete)
+            Analytics.log(event: .reportOutageAuthComplete)
         })
     }
     
@@ -392,7 +392,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
 
 extension OutageViewController: OutageStatusButtonDelegate {
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
-        Analytics.log(event: .OutageStatusDetails)
+        Analytics.log(event: .outageStatusDetails)
         if viewModel.currentOutageStatus!.flagNoPay && Environment.shared.opco != .bge  {
             tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {
@@ -408,6 +408,6 @@ extension OutageViewController: OutageStatusButtonDelegate {
 extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        Analytics.log(event: .OutageAuthEmergencyCall)
+        Analytics.log(event: .outageAuthEmergencyCall)
     }
 }

@@ -12,7 +12,7 @@ enum HomeCard: Int {
     case bill, usage, template, projectedBill, outageStatus, peakRewards, newBusiness, nothing
     
     static let allCards: [HomeCard] = {
-        return [.bill, .usage, .template, .outageStatus]
+        return [.bill, .usage, .template, .projectedBill, .outageStatus]
 //        switch Environment.shared.opco {
 //        case .bge:
 //            return [.bill, .usage, .template, .projectedBill, .outageStatus, .peakRewards]
