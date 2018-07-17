@@ -1503,7 +1503,7 @@
 		E89E2B5E20333C45004DA072 /* HomeBillCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */; };
 		E89E2B5F20333C45004DA072 /* HomeBillCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */; };
 		E89E2B6020333C45004DA072 /* HomeBillCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */; };
-		E89F493E1F9685120060D084 /* BillAnalysisViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */; };
+		E89F493E1F9685120060D084 /* BillBreakdownViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillBreakdownViewModelTests.swift */; };
 		E8AD93911EEF2AFB00882444 /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
 		E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
 		E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
@@ -1721,7 +1721,7 @@
 		E8F62B4C200924410077B3DA /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
 		E8F62B4D200924410077B3DA /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
 		E8F62B4E200924410077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */; };
-		E8F62B4F200924410077B3DA /* BillAnalysisViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */; };
+		E8F62B4F200924410077B3DA /* BillBreakdownViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillBreakdownViewModelTests.swift */; };
 		E8F62B50200924410077B3DA /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
 		E8F62B51200924410077B3DA /* OMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */; };
 		E8F62B52200924410077B3DA /* OpcoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */; };
@@ -1871,7 +1871,7 @@
 		E8F62C01200924570077B3DA /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
 		E8F62C02200924570077B3DA /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
 		E8F62C03200924570077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */; };
-		E8F62C04200924570077B3DA /* BillAnalysisViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */; };
+		E8F62C04200924570077B3DA /* BillBreakdownViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillBreakdownViewModelTests.swift */; };
 		E8F62C05200924570077B3DA /* AddCreditCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */; };
 		E8F62C06200924570077B3DA /* OMCResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* OMCResponseParser.swift */; };
 		E8F62C07200924570077B3DA /* OpcoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */; };
@@ -2731,7 +2731,7 @@
 		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E89DB4381E5F63E70072E014 /* JVFloatLabeledText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JVFloatLabeledText.framework; path = Carthage/Build/iOS/JVFloatLabeledText.framework; sourceTree = "<group>"; };
 		E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBillCardUITests.swift; sourceTree = "<group>"; };
-		E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillAnalysisViewModelTests.swift; sourceTree = "<group>"; };
+		E89F493D1F9685120060D084 /* BillBreakdownViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillBreakdownViewModelTests.swift; sourceTree = "<group>"; };
 		E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBaseNavigationController.swift; sourceTree = "<group>"; };
 		E8B4F4AE1E5C957A0031D934 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		E8B4F4B21E5C99380031D934 /* Alerts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
@@ -4294,7 +4294,7 @@
 				B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */,
 				E840CB371F82D13A00357780 /* AutoPayViewModelTests.swift */,
 				E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */,
-				E89F493D1F9685120060D084 /* BillAnalysisViewModelTests.swift */,
+				E89F493D1F9685120060D084 /* BillBreakdownViewModelTests.swift */,
 				E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */,
 				82B20A34203C7BBE00F5F2C6 /* BillViewModelContentTests.swift */,
 				82B20A38203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift */,
@@ -6829,7 +6829,7 @@
 				E8FF08661F7EDE330030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				826773441FB2303000A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				82B20A39203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
-				E89F493E1F9685120060D084 /* BillAnalysisViewModelTests.swift in Sources */,
+				E89F493E1F9685120060D084 /* BillBreakdownViewModelTests.swift in Sources */,
 				E81F38161ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				B548468E1E688744008CE1B1 /* OMCResponseParser.swift in Sources */,
 				E83F027D1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
@@ -7037,7 +7037,7 @@
 				E8F62B4D200924410077B3DA /* BillingHistoryViewModel.swift in Sources */,
 				E8F62B4E200924410077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				82B20A3A203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
-				E8F62B4F200924410077B3DA /* BillAnalysisViewModelTests.swift in Sources */,
+				E8F62B4F200924410077B3DA /* BillBreakdownViewModelTests.swift in Sources */,
 				E8F62B50200924410077B3DA /* AddCreditCardViewModel.swift in Sources */,
 				E8F62B51200924410077B3DA /* OMCResponseParser.swift in Sources */,
 				E8F62B52200924410077B3DA /* OpcoUpdate.swift in Sources */,
@@ -7203,7 +7203,7 @@
 				E8F62C02200924570077B3DA /* BillingHistoryViewModel.swift in Sources */,
 				E8F62C03200924570077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				82B20A3B203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
-				E8F62C04200924570077B3DA /* BillAnalysisViewModelTests.swift in Sources */,
+				E8F62C04200924570077B3DA /* BillBreakdownViewModelTests.swift in Sources */,
 				E8F62C05200924570077B3DA /* AddCreditCardViewModel.swift in Sources */,
 				E8F62C06200924570077B3DA /* OMCResponseParser.swift in Sources */,
 				E8F62C07200924570077B3DA /* OpcoUpdate.swift in Sources */,
