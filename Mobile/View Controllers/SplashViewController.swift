@@ -96,6 +96,9 @@ class SplashViewController: UIViewController{
             splashAnimationView!.contentMode = .scaleAspectFit
             splashAnimationContainer.addSubview(splashAnimationView!)
             splashAnimationView!.play()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, Environment.shared.opco.taglineString)
+            }
         }
         
         if loadingAnimationView == nil {

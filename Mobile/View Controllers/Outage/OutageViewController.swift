@@ -108,7 +108,6 @@ class OutageViewController: AccountPickerViewController {
                 self.errorLabel.isHidden = true
                 self.customErrorView.isHidden = true
                 self.loadingView.isHidden = true
-                self.loadingView.accessibilityViewIsModal = false
                 self.noNetworkConnectionView.isHidden = true
                 self.maintenanceModeView.isHidden = true
                 self.setRefreshControlEnabled(enabled: false)
@@ -234,7 +233,6 @@ class OutageViewController: AccountPickerViewController {
         errorLabel.isHidden = true
         customErrorView.isHidden = true
         loadingView.isHidden = false
-        loadingView.accessibilityViewIsModal = true
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
@@ -244,7 +242,6 @@ class OutageViewController: AccountPickerViewController {
             self?.scrollView?.isHidden = false
             self?.noNetworkConnectionView.isHidden = true
             self?.loadingView.isHidden = true
-            self?.loadingView.accessibilityViewIsModal = false
             self?.maintenanceModeView.isHidden = true
             self?.setRefreshControlEnabled(enabled: true)
             self?.updateContent()
@@ -271,7 +268,6 @@ class OutageViewController: AccountPickerViewController {
                     self?.noNetworkConnectionView.isHidden = true
                 }
                 self?.loadingView.isHidden = true
-                self?.loadingView.accessibilityViewIsModal = false
                 self?.setRefreshControlEnabled(enabled: true)
                 
                 if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
@@ -289,7 +285,6 @@ class OutageViewController: AccountPickerViewController {
                 self?.scrollView?.isHidden = true
                 self?.noNetworkConnectionView.isHidden = true
                 self?.loadingView.isHidden = true
-                self?.loadingView.accessibilityViewIsModal = false
                 self?.setRefreshControlEnabled(enabled: true)
                 self?.errorLabel.isHidden = true
                 self?.customErrorView.isHidden = true
