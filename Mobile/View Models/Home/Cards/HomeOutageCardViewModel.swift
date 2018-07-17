@@ -12,6 +12,7 @@ import RxSwiftExt
 
 class HomeOutageCardViewModel {
     
+    private let outageService: OutageService
     private let maintenanceModeEvents: Observable<Event<Maintenance>>
     private let fetchDataObservable: Observable<FetchingAccountState>
     private let refreshFetchTracker: ActivityTracker
@@ -20,10 +21,12 @@ class HomeOutageCardViewModel {
     
     // MARK: - Init
     
-    required init(maintenanceModeEvents: Observable<Event<Maintenance>>,
+    required init(outageService: OutageService,
+                  maintenanceModeEvents: Observable<Event<Maintenance>>,
                   fetchDataObservable: Observable<FetchingAccountState>,
                   refreshFetchTracker: ActivityTracker,
                   switchAccountFetchTracker: ActivityTracker) {
+        self.outageService = outageService
         self.maintenanceModeEvents = maintenanceModeEvents
         self.fetchDataObservable = fetchDataObservable
         self.refreshFetchTracker = refreshFetchTracker
@@ -71,8 +74,17 @@ class HomeOutageCardViewModel {
     private(set) lazy var powerStatus: Driver<String> = self.currentOutageStatus
         .map { $0.activeOutage ? "POWER IS OUT" : "POWER IS ON" }
     
-    private(set) lazy var restorationTime: Driver<String> = self.currentOutageStatus
-        .map { "Estimated Restoration\n \(DateFormatter.outageOpcoDateFormatter.string(from: ($0.etr) ?? Date()))" }
+    private(set) lazy var restorationTime: Driver<String?> = self.currentOutageStatus.map {
+        guard let etr = $0.etr else { return nil }
+        let dateString = DateFormatter.outageOpcoDateFormatter.string(from: (etr))
+        return String.localizedStringWithFormat("Estimated Restoration\n%@", dateString)
+    }
+    
+    private(set) lazy var reportedOutageTime: Driver<String?> = self.currentOutageStatus.map {
+        guard let etr = $0.etr else { return nil }
+        let dateString = DateFormatter.outageOpcoDateFormatter.string(from: (etr))
+        return String.localizedStringWithFormat("Outage reported %@", dateString)
+    }
 
     private(set) lazy var shouldShowRestorationTime: Driver<Bool> = self.currentOutageStatus
         .map { $0.etr != nil && $0.activeOutage }
@@ -146,7 +158,7 @@ class HomeOutageCardViewModel {
     }
     
     private func retrieveOutageStatus() -> Observable<OutageStatus> {
-        return ServiceFactory.createOutageService().fetchOutageStatus(account: AccountsStore.shared.currentAccount)
+        return outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount)
             .catchError { error -> Observable<OutageStatus> in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {

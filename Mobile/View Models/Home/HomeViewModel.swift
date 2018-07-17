@@ -21,6 +21,7 @@ class HomeViewModel {
     private let paymentService: PaymentService
     private let usageService: UsageService
     private let authService: AuthenticationService
+    private let outageService: OutageService
     
     let fetchData = PublishSubject<FetchingAccountState>()
     let fetchDataObservable: Observable<FetchingAccountState>
@@ -39,7 +40,13 @@ class HomeViewModel {
     
     let latestNewCardVersion = HomeCard.latestNewCardVersion
     
-    required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService, usageService: UsageService, authService: AuthenticationService) {
+    required init(accountService: AccountService,
+                  weatherService: WeatherService,
+                  walletService: WalletService,
+                  paymentService: PaymentService,
+                  usageService: UsageService,
+                  authService: AuthenticationService,
+                  outageService: OutageService) {
         self.fetchDataObservable = fetchData.share()
         self.accountService = accountService
         self.weatherService = weatherService
@@ -47,6 +54,7 @@ class HomeViewModel {
         self.paymentService = paymentService
         self.usageService = usageService
         self.authService = authService
+        self.outageService = outageService
     }
     
     private(set) lazy var weatherViewModel = HomeWeatherViewModel(accountDetailEvents: self.accountDetailEvents,
@@ -76,7 +84,11 @@ class HomeViewModel {
                                                                                       refreshFetchTracker: self.refreshFetchTracker,
                                                                                       switchAccountFetchTracker: self.switchAccountFetchTracker)
     
-    private(set) lazy var outageCardViewModel = HomeOutageCardViewModel(maintenanceModeEvents: self.fetchDataMMEvents, fetchDataObservable: self.fetchDataObservable, refreshFetchTracker: self.refreshFetchTracker, switchAccountFetchTracker: self.switchAccountFetchTracker)
+    private(set) lazy var outageCardViewModel = HomeOutageCardViewModel(outageService: self.outageService,
+                                                                        maintenanceModeEvents: self.fetchDataMMEvents,
+                                                                        fetchDataObservable: self.fetchDataObservable,
+                                                                        refreshFetchTracker: self.refreshFetchTracker,
+                                                                        switchAccountFetchTracker: self.switchAccountFetchTracker)
     
     private(set) lazy var isSwitchingAccounts = self.switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.shared.currentAccount == nil }
     

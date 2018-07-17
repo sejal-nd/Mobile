@@ -24,6 +24,8 @@ class HomeOutageCardView: UIView {
     @IBOutlet private weak var powerStatusLabel: UILabel!
     @IBOutlet private weak var restorationView: UIView!
     @IBOutlet private weak var restorationStatusLabel: UILabel!
+    @IBOutlet private weak var outageReportedView: UIView!
+    @IBOutlet private weak var outageReportedLabel: UILabel!
     @IBOutlet private weak var callToActionButton: ButtonControl!
     @IBOutlet private weak var buttonControlLabel: UILabel!
     
@@ -74,6 +76,7 @@ class HomeOutageCardView: UIView {
         powerStatusTitleLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         powerStatusLabel.font = OpenSans.bold.of(size: 22)
         restorationStatusLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        outageReportedLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         buttonControlLabel.font = SystemFont.semibold.of(textStyle: .title1)
         callToActionButton.backgroundColorOnPress = .softGray
         
@@ -101,6 +104,8 @@ class HomeOutageCardView: UIView {
                 self?.restorationStatusLabel.setLineHeight(lineHeight: 20)
             })
             .disposed(by: bag)
+        
+        viewModel.reportedOutageTime.drive(outageReportedLabel.rx.text).disposed(by: bag)
         
         viewModel.accountNonPayFinaledMessage
             .drive(nonPayFinaledTextView.rx.attributedText)

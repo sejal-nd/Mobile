@@ -49,7 +49,8 @@ class HomeViewController: AccountPickerViewController {
                                   walletService: ServiceFactory.createWalletService(),
                                   paymentService: ServiceFactory.createPaymentService(),
                                   usageService: ServiceFactory.createUsageService(),
-                                  authService: ServiceFactory.createAuthenticationService())
+                                  authService: ServiceFactory.createAuthenticationService(),
+                                  outageService: ServiceFactory.createOutageService())
     
     // Should be moved when we add the Usage tab.
     var shortcutItem = ShortcutItem.none
