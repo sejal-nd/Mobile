@@ -391,6 +391,7 @@ class BillViewController: AccountPickerViewController {
         viewModel.switchAccountsTracker.asDriver()
             .filter { $0 }
             .map(to: ())
+            .startWith(())
             .drive(onNext: { [weak self] in self?.showSwitchingAccountState() })
             .disposed(by: bag)
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
