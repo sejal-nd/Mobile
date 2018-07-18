@@ -80,9 +80,6 @@ class MainTabBarController: UITabBarController {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.title != NSLocalizedString("Outage", comment: "") {
-            ServiceFactory.createOutageService().clearReportedOutageStatus(accountNumber: nil) // Passing nil clears all
-        }
         setButtonStates(itemTag: item.tag)
     }
     

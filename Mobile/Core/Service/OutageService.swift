@@ -31,7 +31,7 @@ protocol OutageService {
     
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult?
     
-    func clearReportedOutageStatus(accountNumber: String?)
+    func clearReportedOutageStatus(accountNumber: String)
     
     func fetchOutageStatusAnon(phoneNumber: String?, accountNumber: String?, completion: @escaping (_ result: ServiceResult<[OutageStatus]>) -> Void)
     

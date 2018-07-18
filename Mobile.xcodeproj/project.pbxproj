@@ -792,6 +792,12 @@
 		B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
 		B07D247F20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
 		B07D248020C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
+		B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
+		B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
+		B085C44920FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
+		B085C44A20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
+		B085C44B20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
+		B085C44C20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
 		B092184320A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
 		B092184420A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
 		B092184520A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
@@ -2397,6 +2403,7 @@
 		B07D247220C590AB00BD22EB /* HomeWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
 		B07D247620C590BE00BD22EB /* HomeWeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWeatherView.xib; sourceTree = "<group>"; };
 		B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherViewModel.swift; sourceTree = "<group>"; };
+		B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedOutagesStore.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
 		B092184C20A24CA400695888 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		B09356AB20D8042000DABC73 /* RxGesture.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxGesture.framework; path = Carthage/Build/iOS/RxGesture.framework; sourceTree = "<group>"; };
@@ -4334,6 +4341,7 @@
 				82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */,
 				B59606291F7C1F4A00515B72 /* AppRating.swift */,
 				8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */,
+				B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -5986,6 +5994,7 @@
 				E87926DA1F8558AE00794CA9 /* BillAnalysisViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B092184D20A24CA400695888 /* MockData.swift in Sources */,
+				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				E8EDC5441F324242006DD927 /* FiservErrorMapper.swift in Sources */,
@@ -6310,6 +6319,7 @@
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B092184F20A24CA400695888 /* MockData.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
+				B085C44920FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				E873DA651EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				B0030D0A2097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
@@ -6634,6 +6644,7 @@
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B092184E20A24CA400695888 /* MockData.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
+				B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
@@ -6976,6 +6987,7 @@
 				E87E8AE31FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift in Sources */,
 				E89C162D1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */,
+				B085C44A20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7184,6 +7196,7 @@
 				E8F62BC2200924410077B3DA /* AlertPreferencesViewModelTests.swift in Sources */,
 				E8F62BC3200924410077B3DA /* UsageService.swift in Sources */,
 				E8F62BC4200924410077B3DA /* LoginViewModelTests.swift in Sources */,
+				B085C44B20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7350,6 +7363,7 @@
 				E8F62C77200924570077B3DA /* AlertPreferencesViewModelTests.swift in Sources */,
 				E8F62C78200924570077B3DA /* UsageService.swift in Sources */,
 				E8F62C79200924570077B3DA /* LoginViewModelTests.swift in Sources */,
+				B085C44C20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
