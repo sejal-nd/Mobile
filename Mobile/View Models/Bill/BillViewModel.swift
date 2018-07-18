@@ -55,9 +55,9 @@ class BillViewModel {
         .filter { !($0.element?.billStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [weak self] state -> Observable<Event<AccountDetail>> in
-            guard let `self` = self else { return .empty() }
-            return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
-                .trackActivity(self.tracker(forState: state))
+            guard let this = self, let account = AccountsStore.shared.currentAccount else { return .empty() }
+            return this.accountService.fetchAccountDetail(account: account)
+                .trackActivity(this.tracker(forState: state))
                 .materialize()
                 .filter { !$0.isCompleted }
         }
@@ -184,12 +184,12 @@ class BillViewModel {
         $0.billingInfo.pastDueAmount ?? 0 <= 0 && Environment.shared.opco == .peco
     }
     
-    private(set) lazy var shouldShowNeedHelpUnderstanding: Driver<Bool> = self.currentAccountDetail
+    private(set) lazy var shouldShowBillBreakdownButton: Driver<Bool> = self.currentAccountDetail
         .map { accountDetail in
             guard let serviceType = accountDetail.serviceType else { return false }
             
             // We need premiseNumber to make the usage API calls, so hide the button if we don't have it
-            guard let _ = accountDetail.premiseNumber else { return false }
+            guard let premiseNumber = accountDetail.premiseNumber, !premiseNumber.isEmpty else { return false }
             
             if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
                 return false
@@ -514,6 +514,24 @@ class BillViewModel {
             return .activity
         }
         return .nowhere
+    }
+    
+    //MARK: - Bill Breakdown
+    
+    private(set) lazy var hasBillBreakdownData: Driver<Bool> = self.currentAccountDetail.map {
+        let supplyCharges = $0.billingInfo.supplyCharges ?? 0
+        let taxesAndFees = $0.billingInfo.taxesAndFees ?? 0
+        let deliveryCharges = $0.billingInfo.deliveryCharges ?? 0
+        let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
+        return totalCharges > 0
+    }
+    
+    private(set) lazy var billBreakdownButtonTitle: Driver<String> = self.hasBillBreakdownData.map {
+        if $0 {
+            return NSLocalizedString("Bill Breakdown", comment: "")
+        } else {
+            return NSLocalizedString("View Usage", comment: "")
+        }
     }
     
     //MARK: - Enrollment
