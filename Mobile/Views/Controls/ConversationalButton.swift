@@ -16,6 +16,7 @@ class ConversationalButton: ButtonControl {
         didSet {
             titleLabel.text = titleText
             titleLabel.setLineHeight(lineHeight: 20)
+            accessibilityLabel = titleText
         }
     }
     
