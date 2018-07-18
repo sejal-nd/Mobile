@@ -22,3 +22,16 @@ extension UILabel {
     }
     
 }
+
+extension String {
+    
+    func attributedString(withLineHeight lineHeight: CGFloat) -> NSAttributedString {
+        let style = NSMutableParagraphStyle()
+        style.minimumLineHeight = lineHeight
+        
+        let attributedString = NSMutableAttributedString(string: self)
+        attributedString.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, count))
+        return attributedString
+    }
+    
+}

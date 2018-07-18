@@ -99,10 +99,8 @@ class HomeOutageCardView: UIView {
         viewModel.powerStatus.drive(powerStatusLabel.rx.text).disposed(by: bag)
         
         viewModel.restorationTime
-            .drive(onNext: { [weak self] in
-                self?.restorationStatusLabel.text = $0
-                self?.restorationStatusLabel.setLineHeight(lineHeight: 20)
-            })
+            .map { $0?.attributedString(withLineHeight: 20) }
+            .drive(restorationStatusLabel.rx.attributedText)
             .disposed(by: bag)
         
         viewModel.reportedOutageTime.drive(outageReportedLabel.rx.text).disposed(by: bag)
