@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -65,20 +64,20 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Z0-lA-9F3">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="744"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-bH-cZn">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="744"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-bH-cZn">
+                                                                <rect key="frame" x="0.0" y="16" width="375" height="728"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="467" placeholderIntrinsicHeight="64" translatesAutoresizingMaskIntoConstraints="NO" id="b9o-Te-xzG" customClass="BillAnalysisSegmentedControl" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="19" y="0.0" width="337" height="155.5"/>
+                                                                        <rect key="frame" x="29" y="0.0" width="317" height="107.5"/>
                                                                         <color key="backgroundColor" red="0.23921568630000001" green="0.51764705879999995" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhU-dZ-ioc">
-                                                                        <rect key="frame" x="0.0" y="163.5" width="375" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="123.5" width="375" height="50"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compared to Previous Bill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hio-oA-8Gu">
                                                                                 <rect key="frame" x="90.5" y="16" width="195" height="19.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                                                <nil key="textColor"/>
+                                                                                <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
@@ -90,7 +89,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCJ-BD-iOk">
-                                                                        <rect key="frame" x="0.0" y="221.5" width="375" height="330"/>
+                                                                        <rect key="frame" x="0.0" y="189.5" width="375" height="330"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="bottom" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xgs-sD-SWi">
                                                                                 <rect key="frame" x="29" y="0.0" width="317" height="183"/>
@@ -363,7 +362,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVg-cf-O49">
-                                                                        <rect key="frame" x="10.5" y="559.5" width="354" height="100"/>
+                                                                        <rect key="frame" x="10.5" y="535.5" width="354" height="100"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Dvd-qn-1eF" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                                 <rect key="frame" x="147" y="44" width="60" height="12"/>
@@ -378,7 +377,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hG1-EM-6j4">
-                                                                        <rect key="frame" x="10.5" y="667.5" width="354" height="76.5"/>
+                                                                        <rect key="frame" x="10.5" y="651.5" width="354" height="76.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPE-qr-8cO">
                                                                                 <rect key="frame" x="29.5" y="28" width="295.5" height="20.5"/>
@@ -403,13 +402,13 @@
                                                                 <constraints>
                                                                     <constraint firstItem="IhU-dZ-ioc" firstAttribute="leading" secondItem="SgQ-bH-cZn" secondAttribute="leading" id="1fL-DF-JWD"/>
                                                                     <constraint firstAttribute="trailing" secondItem="MCJ-BD-iOk" secondAttribute="trailing" id="CJH-US-m7J"/>
-                                                                    <constraint firstItem="b9o-Te-xzG" firstAttribute="top" secondItem="SgQ-bH-cZn" secondAttribute="top" id="Dsl-f4-BH7"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="b9o-Te-xzG" secondAttribute="trailing" constant="19" id="Oaq-Ia-7Mb"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="b9o-Te-xzG" secondAttribute="trailing" constant="29" id="Oaq-Ia-7Mb"/>
                                                                     <constraint firstAttribute="trailing" secondItem="MCJ-BD-iOk" secondAttribute="trailing" id="Ozm-gA-rMs"/>
-                                                                    <constraint firstItem="b9o-Te-xzG" firstAttribute="leading" secondItem="SgQ-bH-cZn" secondAttribute="leading" constant="19" id="SoP-C4-CzM"/>
+                                                                    <constraint firstItem="b9o-Te-xzG" firstAttribute="leading" secondItem="SgQ-bH-cZn" secondAttribute="leading" constant="29" id="SoP-C4-CzM"/>
                                                                     <constraint firstItem="MCJ-BD-iOk" firstAttribute="leading" secondItem="SgQ-bH-cZn" secondAttribute="leading" id="W65-yg-glK"/>
-                                                                    <constraint firstItem="MCJ-BD-iOk" firstAttribute="top" secondItem="IhU-dZ-ioc" secondAttribute="bottom" constant="8" id="anJ-1c-bPB"/>
-                                                                    <constraint firstItem="YVg-cf-O49" firstAttribute="top" secondItem="MCJ-BD-iOk" secondAttribute="bottom" constant="8" id="g9f-K4-6AT"/>
+                                                                    <constraint firstItem="MCJ-BD-iOk" firstAttribute="top" secondItem="IhU-dZ-ioc" secondAttribute="bottom" constant="16" id="anJ-1c-bPB"/>
+                                                                    <constraint firstItem="YVg-cf-O49" firstAttribute="top" secondItem="MCJ-BD-iOk" secondAttribute="bottom" constant="16" id="g9f-K4-6AT"/>
+                                                                    <constraint firstItem="IhU-dZ-ioc" firstAttribute="top" secondItem="b9o-Te-xzG" secondAttribute="bottom" constant="16" id="oJf-US-2bN"/>
                                                                     <constraint firstItem="MCJ-BD-iOk" firstAttribute="leading" secondItem="SgQ-bH-cZn" secondAttribute="leading" id="rqz-0x-AhQ"/>
                                                                     <constraint firstAttribute="trailing" secondItem="IhU-dZ-ioc" secondAttribute="trailing" id="z9y-en-hev"/>
                                                                 </constraints>
@@ -419,7 +418,7 @@
                                                         <constraints>
                                                             <constraint firstItem="SgQ-bH-cZn" firstAttribute="leading" secondItem="4Z0-lA-9F3" secondAttribute="leading" id="4qU-C3-leV"/>
                                                             <constraint firstAttribute="trailing" secondItem="SgQ-bH-cZn" secondAttribute="trailing" id="AaQ-mK-qPk"/>
-                                                            <constraint firstItem="SgQ-bH-cZn" firstAttribute="top" secondItem="4Z0-lA-9F3" secondAttribute="top" id="Z1d-i4-vqs"/>
+                                                            <constraint firstItem="SgQ-bH-cZn" firstAttribute="top" secondItem="4Z0-lA-9F3" secondAttribute="top" constant="16" id="Z1d-i4-vqs"/>
                                                             <constraint firstAttribute="bottom" secondItem="SgQ-bH-cZn" secondAttribute="bottom" id="yS6-WS-4fl"/>
                                                         </constraints>
                                                     </view>
@@ -548,8 +547,18 @@
                         <outlet property="accountPicker" destination="VT3-VG-S91" id="RRA-y5-lcr"/>
                         <outlet property="collectionView" destination="b5m-WW-Tg2" id="F63-zn-9pg"/>
                         <outlet property="collectionViewHeight" destination="xAE-WT-D6A" id="n54-eJ-8Iv"/>
+                        <outlet property="compareBillTitlelabel" destination="hio-oA-8Gu" id="353-MA-R5S"/>
+                        <outlet property="currentMonthGraphDateLabel" destination="8e6-Br-2pW" id="gus-KP-KJN"/>
+                        <outlet property="currentMonthGraphValueLabel" destination="FeX-9Y-WGe" id="8hj-Zz-eiP"/>
+                        <outlet property="graphDetailDateLabel" destination="gW9-pT-oLp" id="Bm7-mV-rFL"/>
+                        <outlet property="graphDetailDescriptionLabel" destination="ca6-Po-YNM" id="GTe-jT-RNh"/>
+                        <outlet property="graphDetailTemperatureLabel" destination="mST-JC-TNs" id="We5-TV-a9c"/>
                         <outlet property="leftGraphButtonView" destination="rf3-Tw-0Bc" id="IEf-8z-TQd"/>
                         <outlet property="myUsageToolsLabel" destination="TZf-vb-Dqq" id="Ek1-6n-IzH"/>
+                        <outlet property="nextMonthGraphDateLabel" destination="Qnq-y9-pQd" id="wch-AW-UhN"/>
+                        <outlet property="nextMonthGraphValueLabel" destination="B2H-yA-RLi" id="UgG-sa-ckK"/>
+                        <outlet property="previousMonthGraphDateLabel" destination="PnL-wt-i7Y" id="1ro-6D-UnH"/>
+                        <outlet property="previousMonthGraphValueLabel" destination="Y2E-Nc-xEh" id="hO7-WM-ta0"/>
                         <outlet property="rightGraphButtonView" destination="M0Q-yE-JaH" id="GCF-gK-Mjw"/>
                         <outlet property="scrollView" destination="auv-xw-MUC" id="gZz-P8-Fkb"/>
                     </connections>

@@ -12,6 +12,11 @@ class UsageTabViewController: AccountPickerViewController {
     
     // We may be able to remove this.
     @IBOutlet weak var usageScrollView: UIScrollView!
+    @IBOutlet weak var compareBillTitlelabel: UILabel! {
+        didSet {
+            compareBillTitlelabel.font = OpenSans.semibold.of(textStyle: .headline)
+        }
+    }
     @IBOutlet weak var leftGraphButtonView: UIView! {
         didSet {
             leftGraphButtonView.layer.cornerRadius = 16
@@ -21,7 +26,7 @@ class UsageTabViewController: AccountPickerViewController {
     @IBOutlet weak var rightGraphButtonView: UIView! {
         didSet {
             rightGraphButtonView.layer.cornerRadius = 16
-            leftGraphButtonView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+            rightGraphButtonView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
         }
     }
     @IBOutlet weak var myUsageToolsLabel: UILabel! {
@@ -37,6 +42,62 @@ class UsageTabViewController: AccountPickerViewController {
     }
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
 
+    // Bill Graph
+    @IBOutlet weak var previousMonthGraphValueLabel: UILabel! {
+        didSet {
+            previousMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
+            previousMonthGraphValueLabel.textColor = .deepGray
+        }
+    }
+    @IBOutlet weak var currentMonthGraphValueLabel: UILabel! {
+        didSet {
+            currentMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
+            currentMonthGraphValueLabel.textColor = .deepGray
+        }
+    }
+    @IBOutlet weak var nextMonthGraphValueLabel: UILabel! {
+        didSet {
+            nextMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
+            nextMonthGraphValueLabel.textColor = .deepGray
+        }
+    }
+    
+    @IBOutlet weak var previousMonthGraphDateLabel: UILabel! {
+        didSet {
+            previousMonthGraphDateLabel.font = OpenSans.semibold.of(size: 14)
+            previousMonthGraphDateLabel.textColor = .deepGray
+        }
+    }
+    @IBOutlet weak var currentMonthGraphDateLabel: UILabel! {
+        didSet {
+            currentMonthGraphDateLabel.font = OpenSans.semibold.of(size: 14)
+            currentMonthGraphDateLabel.textColor = .deepGray
+        }
+    }
+    @IBOutlet weak var nextMonthGraphDateLabel: UILabel! {
+        didSet {
+            nextMonthGraphDateLabel.font = OpenSans.semibold.of(size: 14)
+            nextMonthGraphDateLabel.textColor = .deepGray
+        }
+    }
+    @IBOutlet weak var graphDetailDateLabel: UILabel! {
+        didSet {
+            graphDetailDateLabel.font = OpenSans.semibold.of(size: 14)
+            graphDetailDateLabel.textColor = .blackText
+        }
+    }
+    @IBOutlet weak var graphDetailTemperatureLabel: UILabel! {
+        didSet {
+            graphDetailTemperatureLabel.font = OpenSans.regular.of(size: 12)
+            graphDetailTemperatureLabel.textColor = .blackText
+        }
+    }
+    @IBOutlet weak var graphDetailDescriptionLabel: UILabel! {
+        didSet {
+            graphDetailDescriptionLabel.font = OpenSans.regular.of(size: 12)
+            graphDetailDescriptionLabel.textColor = .black
+        }
+    }
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
