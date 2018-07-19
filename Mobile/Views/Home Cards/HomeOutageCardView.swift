@@ -105,7 +105,7 @@ class HomeOutageCardView: UIView {
         viewModel.powerStatusImage.drive(imageView.rx.image).disposed(by: bag)
         viewModel.powerStatus.drive(powerStatusLabel.rx.text).disposed(by: bag)
         
-        viewModel.restorationTime
+        viewModel.etrText
             .map { $0?.attributedString(withLineHeight: 20, textAlignment: .center) }
             .drive(restorationStatusLabel.rx.attributedText)
             .disposed(by: bag)

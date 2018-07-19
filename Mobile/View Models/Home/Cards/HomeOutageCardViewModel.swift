@@ -73,22 +73,49 @@ class HomeOutageCardViewModel {
     private(set) lazy var powerStatus: Driver<String> = self.currentOutageStatus
         .map { $0.activeOutage ? "POWER IS OUT" : "POWER IS ON" }
     
-    private(set) lazy var restorationTime: Driver<String?> = self.currentOutageStatus.map {
-        guard let etr = $0.etr else { return nil }
-        let dateString = DateFormatter.outageOpcoDateFormatter.string(from: etr)
-        return String.localizedStringWithFormat("Estimated Restoration\n%@", dateString)
-    }
-    
-    private(set) lazy var reportedOutageTime: Driver<String?> = Driver.merge(self.outageReported, self.currentOutageStatus.map(to: ())).map {
-        guard AccountsStore.shared.currentAccount != nil else { return nil }
-        let accountNumber = AccountsStore.shared.currentAccount.accountNumber
-        guard let reportedOutage = ReportedOutagesStore.shared[accountNumber] else {
-            return nil
+    private lazy var storedEtr: Observable<Date> = self.outageReported
+        .asObservable()
+        .startWith(())
+        .map {
+            guard AccountsStore.shared.currentAccount != nil else { return nil }
+            let accountNumber = AccountsStore.shared.currentAccount.accountNumber
+            return ReportedOutagesStore.shared[accountNumber]?.etr
         }
-        
-        let dateString = DateFormatter.outageOpcoDateFormatter.string(from: reportedOutage.reportedTime)
-        return String.localizedStringWithFormat("Outage reported %@", dateString)
-    }
+        .unwrap()
+    
+    private lazy var fetchedEtr: Observable<Date> = self.currentOutageStatus
+        .map {
+            
+            if let etr = $0.etr {
+                return etr
+            }
+            
+            guard AccountsStore.shared.currentAccount != nil else { return nil }
+            let accountNumber = AccountsStore.shared.currentAccount.accountNumber
+            return ReportedOutagesStore.shared[accountNumber]?.etr
+        }
+        .asObservable().unwrap()
+    
+    private(set) lazy var etrText: Driver<String?> = Observable.merge(self.storedEtr,
+                                                                              self.fetchedEtr)
+        .map {
+            String.localizedStringWithFormat("Estimated Restoration\n%@",
+                                             DateFormatter.outageOpcoDateFormatter.string(from: $0))
+        }
+        .distinctUntilChanged()
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var reportedOutageTime: Driver<String?> = Driver.merge(self.outageReported.startWith(()),
+                                                                             self.currentOutageStatus.map(to: ()))
+        .map {
+            guard AccountsStore.shared.currentAccount != nil else { return nil }
+            let accountNumber = AccountsStore.shared.currentAccount.accountNumber
+            guard let reportedTime = ReportedOutagesStore.shared[accountNumber]?.reportedTime else {
+                return nil
+            }
+            return String.localizedStringWithFormat("Outage reported %@",
+                                                    DateFormatter.outageOpcoDateFormatter.string(from: reportedTime))
+        }
         .distinctUntilChanged()
     
     private(set) lazy var showReportedOutageTime: Driver<Bool> = Driver.merge(self.outageReported, self.currentOutageStatus.map(to: ())).map {
@@ -103,7 +130,7 @@ class HomeOutageCardViewModel {
     private(set) lazy var shouldShowRestorationTime: Driver<Bool> = Driver.combineLatest(self.outageReported.startWith(()), self.currentOutageStatus)
     { (_, outageStatus) in
         guard AccountsStore.shared.currentAccount != nil else { return false }
-        return ReportedOutagesStore.shared[AccountsStore.shared.currentAccount.accountNumber] != nil || outageStatus.etr != nil
+        return ReportedOutagesStore.shared[AccountsStore.shared.currentAccount.accountNumber]?.etr != nil || outageStatus.etr != nil
         }
         .startWith(false)
         .distinctUntilChanged()
