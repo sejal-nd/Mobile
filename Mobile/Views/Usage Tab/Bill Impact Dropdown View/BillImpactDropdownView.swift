@@ -96,7 +96,6 @@ class BillImpactDropdownView: UIView {
     
     private var isExpanded = false {
         didSet {
-            // Todo: THere is a bug in the animations here, we get clipping with the button
             UIView.animate(withDuration: 0.3, animations: { [weak self] in
                 if let isExpanded = self?.isExpanded, isExpanded {
                     self?.billFactorView.isHidden = false

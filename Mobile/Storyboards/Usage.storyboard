@@ -39,7 +39,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="sectionName" value="Billing"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="auv-xw-MUC">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auv-xw-MUC">
                                 <rect key="frame" x="0.0" y="20" width="375" height="1580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mE1-SX-hcS" userLabel="Content View">
@@ -213,7 +213,7 @@
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Avg. Temp X" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mST-JC-TNs">
-                                                                                                <rect key="frame" x="125.5" y="38.5" width="68" height="16.5"/>
+                                                                                                <rect key="frame" x="124.5" y="38.5" width="68" height="16.5"/>
                                                                                                 <accessibility key="accessibilityConfiguration">
                                                                                                     <bool key="isElement" value="NO"/>
                                                                                                 </accessibility>
@@ -416,6 +416,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="mE1-SX-hcS" firstAttribute="top" secondItem="auv-xw-MUC" secondAttribute="top" id="DOC-ZU-nqb"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Ihx-EK-bGo"/>
                                     <constraint firstAttribute="bottom" secondItem="mE1-SX-hcS" secondAttribute="bottom" id="UNU-DY-pBZ"/>
                                     <constraint firstItem="mE1-SX-hcS" firstAttribute="centerX" secondItem="auv-xw-MUC" secondAttribute="centerX" id="Zvr-bs-7MG"/>
                                     <constraint firstAttribute="trailing" secondItem="mE1-SX-hcS" secondAttribute="trailing" id="gmr-D0-DQ2"/>
@@ -425,7 +426,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="auv-xw-MUC" firstAttribute="leading" secondItem="VhB-wJ-R9W" secondAttribute="leading" id="0Lh-pn-Cq0"/>
+                            <constraint firstItem="auv-xw-MUC" firstAttribute="leading" secondItem="VhB-wJ-R9W" secondAttribute="leading" priority="999" id="0Lh-pn-Cq0"/>
                             <constraint firstItem="Gvn-Gm-Gbe" firstAttribute="leading" secondItem="VhB-wJ-R9W" secondAttribute="leading" id="1K2-ui-7Ig"/>
                             <constraint firstAttribute="trailing" secondItem="Gvn-Gm-Gbe" secondAttribute="trailing" id="CrC-Ca-4qg"/>
                             <constraint firstAttribute="bottom" secondItem="l15-zg-OGE" secondAttribute="bottom" id="F5d-6E-9Eu"/>
@@ -435,7 +436,8 @@
                             <constraint firstItem="l15-zg-OGE" firstAttribute="top" secondItem="VhB-wJ-R9W" secondAttribute="top" constant="20" id="PZV-n6-IDK"/>
                             <constraint firstAttribute="trailing" secondItem="l15-zg-OGE" secondAttribute="trailing" id="Xp5-oS-d9M"/>
                             <constraint firstAttribute="bottom" secondItem="auv-xw-MUC" secondAttribute="bottom" id="Y0Q-Tb-njK"/>
-                            <constraint firstAttribute="trailing" secondItem="auv-xw-MUC" secondAttribute="trailing" id="j3F-qY-JnY"/>
+                            <constraint firstItem="auv-xw-MUC" firstAttribute="centerX" secondItem="VhB-wJ-R9W" secondAttribute="centerX" id="ib6-WT-Xry"/>
+                            <constraint firstAttribute="trailing" secondItem="auv-xw-MUC" secondAttribute="trailing" priority="999" id="j3F-qY-JnY"/>
                             <constraint firstItem="Gvn-Gm-Gbe" firstAttribute="top" secondItem="VhB-wJ-R9W" secondAttribute="top" constant="20" id="rdv-kK-TfB"/>
                             <constraint firstItem="l15-zg-OGE" firstAttribute="leading" secondItem="VhB-wJ-R9W" secondAttribute="leading" id="sNK-Qh-VUl"/>
                         </constraints>

@@ -187,6 +187,7 @@
 		358DE09E20F92439002C544E /* MyUsageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35376C8920F92239007E50F7 /* MyUsageCollectionViewCell.xib */; };
 		358DE09F20F9243B002C544E /* MyUsageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35376C8B20F92244007E50F7 /* MyUsageCollectionViewCell.swift */; };
 		358DE0A020F9243B002C544E /* MyUsageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35376C8B20F92244007E50F7 /* MyUsageCollectionViewCell.swift */; };
+		358DE0A320FE855B002C544E /* PECOAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* PECOAssets.xcassets */; };
 		35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
 		35AFB41A20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
 		35AFB41B20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
@@ -5609,6 +5610,7 @@
 				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA791EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
+				358DE0A320FE855B002C544E /* PECOAssets.xcassets in Resources */,
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				35376C7720F9179F007E50F7 /* UsageToolsCollectionViewCell.xib in Resources */,
