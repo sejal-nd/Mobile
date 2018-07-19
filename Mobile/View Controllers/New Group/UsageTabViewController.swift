@@ -10,6 +10,20 @@ import UIKit
 
 class UsageTabViewController: AccountPickerViewController {
     
+    // We may be able to remove this.
+    @IBOutlet weak var usageScrollView: UIScrollView!
+    @IBOutlet weak var leftGraphButtonView: UIView! {
+        didSet {
+            leftGraphButtonView.layer.cornerRadius = 16
+            leftGraphButtonView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+        }
+    }
+    @IBOutlet weak var rightGraphButtonView: UIView! {
+        didSet {
+            rightGraphButtonView.layer.cornerRadius = 16
+            leftGraphButtonView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+        }
+    }
     @IBOutlet weak var myUsageToolsLabel: UILabel! {
         didSet {
             myUsageToolsLabel.font = OpenSans.semibold.of(size: 18)
@@ -22,6 +36,9 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+
+    
+    override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
     
     // MARK: - View Life Cycle
@@ -30,6 +47,7 @@ class UsageTabViewController: AccountPickerViewController {
         super.viewDidLoad()
         
         // Setup Account Picker
+        navigationController?.navigationBar.isHidden = true
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -45,7 +63,22 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     
-    // MARJK: - Helper
+    // MARK: - Actions
+    
+    @IBAction func previousBillPress(_ sender: Any) {
+    
+    }
+    
+    @IBAction func nextBillPress(_ sender: Any) {
+    
+    }
+    
+    
+    // MARK: - Helper
+    
+    private func styleViews() {
+        view.backgroundColor = .white
+    }
     
     private func reloadData() {
         collectionView.reloadData()
