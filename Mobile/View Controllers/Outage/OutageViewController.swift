@@ -96,7 +96,6 @@ class OutageViewController: AccountPickerViewController {
                 self.errorLabel.isHidden = true
                 self.customErrorView.isHidden = true
                 self.loadingView.isHidden = true
-                self.loadingView.accessibilityViewIsModal = false
                 self.noNetworkConnectionView.isHidden = true
                 self.maintenanceModeView.isHidden = true
                 self.setRefreshControlEnabled(enabled: false)
@@ -136,7 +135,7 @@ class OutageViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Analytics.log(event: .OutageStatusOfferComplete)
+        Analytics.log(event: .outageStatusOfferComplete)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -216,7 +215,6 @@ class OutageViewController: AccountPickerViewController {
         errorLabel.isHidden = true
         customErrorView.isHidden = true
         loadingView.isHidden = false
-        loadingView.accessibilityViewIsModal = true
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
@@ -226,7 +224,6 @@ class OutageViewController: AccountPickerViewController {
             self?.scrollView?.isHidden = false
             self?.noNetworkConnectionView.isHidden = true
             self?.loadingView.isHidden = true
-            self?.loadingView.accessibilityViewIsModal = false
             self?.maintenanceModeView.isHidden = true
             self?.setRefreshControlEnabled(enabled: true)
             self?.updateContent()
@@ -253,7 +250,6 @@ class OutageViewController: AccountPickerViewController {
                     self?.noNetworkConnectionView.isHidden = true
                 }
                 self?.loadingView.isHidden = true
-                self?.loadingView.accessibilityViewIsModal = false
                 self?.setRefreshControlEnabled(enabled: true)
                 
                 if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
@@ -271,7 +267,6 @@ class OutageViewController: AccountPickerViewController {
                 self?.scrollView?.isHidden = true
                 self?.noNetworkConnectionView.isHidden = true
                 self?.loadingView.isHidden = true
-                self?.loadingView.accessibilityViewIsModal = false
                 self?.setRefreshControlEnabled(enabled: true)
                 self?.errorLabel.isHidden = true
                 self?.customErrorView.isHidden = true
@@ -334,7 +329,7 @@ class OutageViewController: AccountPickerViewController {
     }
     
     @IBAction func onViewOutageMapPress() {
-        Analytics.log(event: .ViewMapOfferComplete)
+        Analytics.log(event: .viewMapOfferComplete)
         performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
@@ -366,7 +361,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
         updateContent()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-            Analytics.log(event: .ReportOutageAuthComplete)
+            Analytics.log(event: .reportOutageAuthComplete)
         })
     }
     
@@ -374,7 +369,7 @@ extension OutageViewController: ReportOutageViewControllerDelegate {
 
 extension OutageViewController: OutageStatusButtonDelegate {
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
-        Analytics.log(event: .OutageStatusDetails)
+        Analytics.log(event: .outageStatusDetails)
         if viewModel.currentOutageStatus!.flagNoPay && Environment.shared.opco != .bge  {
             tabBarController?.selectedIndex = 1 // Jump to Bill tab
         } else {
@@ -390,6 +385,6 @@ extension OutageViewController: OutageStatusButtonDelegate {
 extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        Analytics.log(event: .OutageAuthEmergencyCall)
+        Analytics.log(event: .outageAuthEmergencyCall)
     }
 }

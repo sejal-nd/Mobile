@@ -96,6 +96,9 @@ class SplashViewController: UIViewController{
             splashAnimationView!.contentMode = .scaleAspectFit
             splashAnimationContainer.addSubview(splashAnimationView!)
             splashAnimationView!.play()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, Environment.shared.opco.taglineString)
+            }
         }
         
         if loadingAnimationView == nil {
@@ -119,6 +122,7 @@ class SplashViewController: UIViewController{
             if shortcutItem != .none {
                 NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
             }
+            checkIOSVersion()
         } else {
             let navigate = { [weak self] in
                 guard let `self` = self else { return }
@@ -140,13 +144,14 @@ class SplashViewController: UIViewController{
                     
                     let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
                     
-                    Analytics.log(event: .ReportAnOutageUnAuthOffer)
-                    unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.Report
+                    Analytics.log(event: .reportAnOutageUnAuthOffer)
+                    unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
                     
                     self.navigationController?.setViewControllers(vcArray, animated: true)
                 } else {
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
+                self.checkIOSVersion()
             }
             
             if self.splashAnimationView == nil || !self.splashAnimationView!.isAnimationPlaying {
@@ -174,6 +179,14 @@ class SplashViewController: UIViewController{
             self?.loadingContainerView.isHidden = true
             self?.errorView.isHidden = false
         })
+    }
+    
+    func checkIOSVersion() {
+        // Warn iOS 9 users that we will soon not support their iOS version
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.doNotShowIOS9VersionWarningAgain) == false &&
+            UIDevice.current.systemVersion.compare("10.0", options: NSString.CompareOptions.numeric) == .orderedAscending {
+            NotificationCenter.default.post(name: .shouldShowIOSVersionWarning, object: nil)
+        }
     }
     
     func handleOutOfDate(){

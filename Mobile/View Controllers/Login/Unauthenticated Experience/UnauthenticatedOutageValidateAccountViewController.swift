@@ -266,10 +266,10 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         })
         
         switch analyticsSource {
-        case .Report:
-            Analytics.log(event: .ReportAnOutageUnAuthSubmitAcctVal)
-        case .Status:
-            Analytics.log(event: .OutageStatusUnAuthAcctValidate)
+        case .report:
+            Analytics.log(event: .reportAnOutageUnAuthSubmitAcctVal)
+        case .status:
+            Analytics.log(event: .outageStatusUnAuthAcctValidate)
         default:
             break
         }
@@ -366,6 +366,6 @@ extension UnauthenticatedOutageValidateAccountViewController: UITextFieldDelegat
 extension UnauthenticatedOutageValidateAccountViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        Analytics.log(event: .OutageStatusUnAuthAcctValEmergencyPhone)
+        Analytics.log(event: .outageStatusUnAuthAcctValEmergencyPhone)
     }
 }

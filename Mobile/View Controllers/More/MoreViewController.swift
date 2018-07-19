@@ -12,6 +12,7 @@ import StoreKit
 
 class MoreViewController: UIViewController {
     
+    @IBOutlet weak var alertsAndUpdatesButton: DisclosureButton!
     @IBOutlet weak var settingsButton: DisclosureButton!
     @IBOutlet weak var contactUsButton: DisclosureButton!
     @IBOutlet weak var termAndPoliciesButton: DisclosureButton!
@@ -49,6 +50,8 @@ class MoreViewController: UIViewController {
     }
     
     func addAccessibility() {
+        alertsAndUpdatesButton.isAccessibilityElement = true
+        alertsAndUpdatesButton.accessibilityLabel = NSLocalizedString("Alerts and Updates", comment: "")
         settingsButton.isAccessibilityElement = true
         settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "")
         contactUsButton.isAccessibilityElement = true
@@ -65,6 +68,12 @@ class MoreViewController: UIViewController {
     }
     
     func bindViews() {
+        alertsAndUpdatesButton.rx.touchUpInside.asDriver()
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "aletsAndUpdatesSegue", sender: self)
+            })
+            .disposed(by: disposeBag)
+        
         settingsButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
                 self?.performSegue(withIdentifier: "settingsSegue", sender: self)

@@ -293,10 +293,10 @@ class BudgetBillingViewController: UIViewController {
     @objc func onSubmitPress() {
         if viewModel.enrolling.value {
             LoadingView.show()
-            Analytics.log(event: .BudgetBillUnEnrollOffer)
+            Analytics.log(event: .budgetBillUnEnrollOffer)
             viewModel.enroll(onSuccess: { [weak self] in
                 LoadingView.hide()
-                Analytics.log(event: .BudgetBillEnrollOffer)
+                Analytics.log(event: .budgetBillEnrollOffer)
                 
                 guard let `self` = self else { return }
                 self.delegate?.budgetBillingViewControllerDidEnroll(self, averageMonthlyBill: self.viewModel.averageMonthlyBill)
@@ -317,7 +317,7 @@ class BudgetBillingViewController: UIViewController {
             }
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
-                Analytics.log(event: .BudgetBillUnEnrollCancel);}))
+                Analytics.log(event: .budgetBillUnEnrollCancel);}))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
                 LoadingView.show()
                 
@@ -328,7 +328,7 @@ class BudgetBillingViewController: UIViewController {
                     guard let `self` = self else { return }
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)
-                    Analytics.log(event: .BudgetBillUnEnrollOK)
+                    Analytics.log(event: .budgetBillUnEnrollOK)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
                     

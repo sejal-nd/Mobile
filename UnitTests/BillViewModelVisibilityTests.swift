@@ -404,20 +404,20 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
-    // Tests changes in the `shouldShowNeedHelpUnderstanding` value after switching
+    // Tests changes in the `shouldShowBillBreakdownButton` value after switching
     // through different accounts.
-    func testShouldShowNeedHelpUnderstanding() {
+    func testShouldShowBillBreakdownButton() {
         
         let accountDetail: [AccountDetail] = [
             AccountDetail(),
-            AccountDetail(serviceType: ""),
-            AccountDetail(premiseNumber: "", serviceType: ""),
-            AccountDetail(premiseNumber: "", serviceType: "", serInfo: SERInfo(controlGroupFlag: "CONTROL"),  isResidential: true),
-            AccountDetail(premiseNumber: "", serviceType: "", flagFinaled: true, isResidential: true),
-            AccountDetail(premiseNumber: "", serviceType: "fdasfds", isResidential: true),
-            AccountDetail(premiseNumber: "", serviceType: "GAS", isResidential: true),
-            AccountDetail(premiseNumber: "", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(premiseNumber: "", serviceType: "GAS/ELECTRIC", isResidential: true)
+            AccountDetail(serviceType: "123"),
+            AccountDetail(premiseNumber: "123", serviceType: ""),
+            AccountDetail(premiseNumber: "123", serviceType: "", serInfo: SERInfo(controlGroupFlag: "CONTROL"),  isResidential: true),
+            AccountDetail(premiseNumber: "123", serviceType: "", flagFinaled: true, isResidential: true),
+            AccountDetail(premiseNumber: "123", serviceType: "fdasfds", isResidential: true),
+            AccountDetail(premiseNumber: "123", serviceType: "GAS", isResidential: true),
+            AccountDetail(premiseNumber: "123", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(premiseNumber: "123", serviceType: "GAS/ELECTRIC", isResidential: true)
         ]
         
         let switchAccountEventTimes = Array(0..<accountDetail.count)
@@ -429,7 +429,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         let expectedValues = [false, false, false, false, false, false, true, true, true]
         
         let observer = scheduler.createObserver(Bool.self)
-        viewModel.shouldShowNeedHelpUnderstanding.drive(observer).disposed(by: disposeBag)
+        viewModel.shouldShowBillBreakdownButton.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         

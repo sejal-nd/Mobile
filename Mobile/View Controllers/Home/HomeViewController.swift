@@ -36,7 +36,7 @@ class HomeViewController: AccountPickerViewController {
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
     var projectedBillCardView: HomeProjectedBillCardView?
-    var topPersonalizeButton: ButtonControl?
+    var topPersonalizeButton: ConversationalButton?
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
@@ -152,39 +152,11 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func topPersonalizeButtonSetup() {
-        let topPersonalizeButton = ButtonControl().usingAutoLayout()
-        topPersonalizeButton.backgroundColorOnPress = .softGray
-        topPersonalizeButton.normalBackgroundColor = .white
-        topPersonalizeButton.layer.cornerRadius = 10
-        topPersonalizeButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        let label = UILabel()
-        label.text = NSLocalizedString("Did you know you can personalize your home screen?", comment: "")
-        label.font = SystemFont.semibold.of(textStyle: .subheadline)
-        label.textColor = .actionBlue
-        label.numberOfLines = 0
-        label.setLineHeight(lineHeight: 20)
-        let caretImageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
-        caretImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        caretImageView.setContentHuggingPriority(.required, for: .horizontal)
-        let buttonStack = UIStackView().usingAutoLayout()
-        buttonStack.axis = .horizontal
-        buttonStack.spacing = 15
-        buttonStack.distribution = .fill
-        buttonStack.alignment = .center
-        buttonStack.isUserInteractionEnabled = false
-        
-        [label, caretImageView].forEach(buttonStack.addArrangedSubview)
-        
-        topPersonalizeButton.addSubview(buttonStack)
-        
-        NSLayoutConstraint.activate([
-            buttonStack.leadingAnchor.constraint(equalTo: topPersonalizeButton.leadingAnchor, constant: 25),
-            buttonStack.trailingAnchor.constraint(equalTo: topPersonalizeButton.trailingAnchor, constant: -14),
-            buttonStack.topAnchor.constraint(equalTo: topPersonalizeButton.topAnchor, constant: 9),
-            buttonStack.bottomAnchor.constraint(equalTo: topPersonalizeButton.bottomAnchor, constant: -12)
-            ])
+        let topPersonalizeButton = ConversationalButton()
         
         contentStackView.insertArrangedSubview(topPersonalizeButton, at: 0)
+        
+        topPersonalizeButton.titleText = NSLocalizedString("Did you know you can personalize your home screen?", comment: "")
         
         topPersonalizeButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self, weak topPersonalizeButton] in
@@ -210,7 +182,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .HomeOfferComplete)
+        Analytics.log(event: .homeOfferComplete)
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
@@ -221,9 +193,9 @@ class HomeViewController: AccountPickerViewController {
                     if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
                         UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
                         if granted {
-                            Analytics.log(event: .AlertsiOSPushOKInitial)
+                            Analytics.log(event: .alertsiOSPushOKInitial)
                         } else {
-                            Analytics.log(event: .AlertsiOSPushDontAllowInitial)
+                            Analytics.log(event: .alertsiOSPushDontAllowInitial)
                         }
                     }
                 })
@@ -235,7 +207,7 @@ class HomeViewController: AccountPickerViewController {
         }
         
         if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
-            Analytics.log(event: .AlertsiOSPushInitial)
+            Analytics.log(event: .alertsiOSPushInitial)
         }
     }
     
@@ -280,6 +252,8 @@ class HomeViewController: AccountPickerViewController {
             usageCardView = nil
         case .template:
             templateCardView = nil
+        case .projectedBill:
+            projectedBillCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -398,7 +372,7 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                Analytics.log(event: .AllSavingsSmartEnergy)
+                Analytics.log(event: .allSavingsSmartEnergy)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
             }).disposed(by: usageCardView.disposeBag)
     }
@@ -427,10 +401,9 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                let billAnalysis = BillAnalysisViewController()
-                billAnalysis.hidesBottomBarWhenPushed = true
-                billAnalysis.viewModel.accountDetail = $0
-                self?.navigationController?.pushViewController(billAnalysis, animated: true)
+                let billBreakdownVC = BillBreakdownViewController(accountDetail: $0)
+                billBreakdownVC.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(billBreakdownVC, animated: true)
             }).disposed(by: projectedBillCardView.disposeBag)
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
@@ -538,9 +511,9 @@ extension HomeViewController: AutoPayViewControllerDelegate {
             self.view.showToast(message)
         })
         if enrolled {
-            Analytics.log(event: .AutoPayEnrollComplete)
+            Analytics.log(event: .autoPayEnrollComplete)
         } else {
-            Analytics.log(event: .AutoPayUnenrollComplete)
+            Analytics.log(event: .autoPayUnenrollComplete)
         }
     }
     
