@@ -52,10 +52,16 @@ class ReportedOutagesStore {
             }
             
             if let report = newValue {
-                reportDictionary[accountNumber] = [
-                    "reportedTime": report.reportedTime.apiFormatString,
-                    "etr": report.etr?.apiFormatString
-                ]
+                var dict = [String: Any]()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+                dateFormatter.calendar = .opCo
+                dateFormatter.timeZone = .opCo
+                dict["reportedTime"] = dateFormatter.string(from: report.reportedTime)
+                if let etr = report.etr?.apiFormatString {
+                    dict["etr"] = etr
+                }
+                reportDictionary[accountNumber] = dict
                 UserDefaults.standard.set(reportDictionary, forKey: UserDefaultKeys.reportedOutagesDictionary)
             } else {
                 reportDictionary.removeValue(forKey: accountNumber)

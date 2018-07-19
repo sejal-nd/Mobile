@@ -432,10 +432,16 @@ class HomeViewController: AccountPickerViewController {
     
     func bindOutageCard() {
         guard let outageCardView = outageCardView else { return }
-
-        outageCardView.buttonTapped
+        
+        outageCardView.reportOutageTapped
             .drive(onNext: { [weak self] outageStatus in
-                self?.performSegue(withIdentifier: "outageSegue", sender: outageStatus)
+                self?.performSegue(withIdentifier: "reportOutageSegue", sender: outageStatus)
+            })
+            .disposed(by: outageCardView.bag)
+        
+        outageCardView.viewOutageMapTapped
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "outageMapSegue", sender: nil)
             })
             .disposed(by: outageCardView.bag)
     }
@@ -522,7 +528,17 @@ class HomeViewController: AccountPickerViewController {
             if let phone = currentOutageStatus.contactHomeNumber {
                 vc.viewModel.phoneNumber.value = phone
             }
-            vc.delegate = self
+            
+            // Show a toast only after an outage is reported from this workflow
+            RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
+                .drive(onNext: { [weak self] in
+                    guard let this = self else { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                        this.view.showToast(NSLocalizedString("Outage report received", comment: ""))
+                        Analytics.log(event: .reportOutageAuthComplete)
+                    })
+                })
+                .disposed(by: vc.disposeBag)
         }
     }
     
@@ -555,18 +571,6 @@ extension HomeViewController: BGEAutoPayViewControllerDelegate {
     func BGEAutoPayViewController(_ BGEAutoPayViewController: BGEAutoPayViewController, didUpdateWithToastMessage message: String) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(message)
-        })
-    }
-    
-}
-
-extension HomeViewController: ReportOutageViewControllerDelegate {
-    
-    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.viewModel.outageCardViewModel.hasReportedOutage.onNext(true)
-            self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-            Analytics.log(event: .reportOutageAuthComplete)
         })
     }
     

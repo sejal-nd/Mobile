@@ -112,6 +112,10 @@ class OutageViewController: AccountPickerViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
         
+        RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in self?.updateContent() })
+            .disposed(by: disposeBag)
+        
         Observable.merge(noNetworkConnectionView.reload, maintenanceModeView.reload)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.getOutageStatus() })
@@ -183,8 +187,9 @@ class OutageViewController: AccountPickerViewController {
             
             // Update the Report Outage button
             if viewModel.reportedOutage != nil {
+                outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
                 reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
-                reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.outageReportedDateString)
+                reportOutageButton.accessibilityLabel = String.localizedStringWithFormat("Report outage. %@", viewModel.outageReportedDateString)
             } else {
                 reportOutageButton.setDetailLabel(text: "", checkHidden: true)
                 reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
@@ -341,7 +346,17 @@ class OutageViewController: AccountPickerViewController {
             if let phone = viewModel.currentOutageStatus!.contactHomeNumber {
                 vc.viewModel.phoneNumber.value = phone
             }
-            vc.delegate = self
+            
+            // Show a toast only after an outage is reported from this workflow
+            RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
+                .drive(onNext: { [weak self] in
+                    guard let this = self else { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                        this.view.showToast(NSLocalizedString("Outage report received", comment: ""))
+                        Analytics.log(event: .reportOutageAuthComplete)
+                    })
+                })
+                .disposed(by: vc.disposeBag)
         }
     }
     
@@ -351,18 +366,6 @@ extension OutageViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         getOutageStatus()
-    }
-    
-}
-
-extension OutageViewController: ReportOutageViewControllerDelegate {
-    
-    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?) {
-        updateContent()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-            Analytics.log(event: .reportOutageAuthComplete)
-        })
     }
     
 }

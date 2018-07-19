@@ -304,6 +304,14 @@
             </objects>
             <point key="canvasLocation" x="2143" y="-2174"/>
         </scene>
+        <!--OutageMapViewController-->
+        <scene sceneID="5Lv-X1-muK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="9AE-d3-QcS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oie-4h-IwV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2130" y="-2129"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="cod-qW-QjA">
             <objects>
@@ -467,7 +475,8 @@
                         <segue destination="PED-vj-t5U" kind="show" identifier="usageSegue" id="84U-Il-aeI"/>
                         <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="Gdb-8Z-K6i"/>
                         <segue destination="Ywc-8s-IBo" kind="presentation" identifier="editHomeSegue" id="6Qx-eL-PNO"/>
-                        <segue destination="ho2-TI-3tb" kind="show" identifier="outageSegue" id="P2D-Ry-Yj3"/>
+                        <segue destination="ho2-TI-3tb" kind="show" identifier="reportOutageSegue" id="P2D-Ry-Yj3"/>
+                        <segue destination="9AE-d3-QcS" kind="show" identifier="outageMapSegue" id="PBt-yQ-MvG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -494,10 +503,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="1280"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cfs-H1-hlO">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1192.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1194.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RHb-Wi-h1x">
-                                                <rect key="frame" x="29" y="16" width="317" height="1176.5"/>
+                                                <rect key="frame" x="29" y="16" width="317" height="1178.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGL-ZW-C2N" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
@@ -640,7 +649,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEa-qA-uzE">
-                                                        <rect key="frame" x="0.0" y="547" width="317" height="629.5"/>
+                                                        <rect key="frame" x="0.0" y="547" width="317" height="631.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LEH-1u-imr">
                                                                 <rect key="frame" x="0.0" y="20" width="317" height="1"/>
@@ -656,7 +665,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="I2X-rf-j6T">
-                                                                <rect key="frame" x="0.0" y="65.5" width="317" height="497.5"/>
+                                                                <rect key="frame" x="0.0" y="65.5" width="317" height="499.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JzS-6C-F8e">
                                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="327"/>
@@ -689,13 +698,13 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sKW-c6-7ml">
-                                                                        <rect key="frame" x="38.5" y="327" width="240" height="170.5"/>
+                                                                        <rect key="frame" x="38.5" y="327" width="240" height="172.5"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_smartenergyempty" translatesAutoresizingMaskIntoConstraints="NO" id="I2w-aR-AVm">
-                                                                                <rect key="frame" x="65" y="33" width="109" height="103"/>
+                                                                                <rect key="frame" x="60" y="33" width="119" height="105"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty State Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qN8-9h-9gQ">
-                                                                                <rect key="frame" x="38" y="136" width="164" height="20.5"/>
+                                                                                <rect key="frame" x="38" y="138" width="164" height="20.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -714,7 +723,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emh-z5-qNl">
-                                                                <rect key="frame" x="0.0" y="579" width="317" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="581" width="317" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1531,7 +1540,7 @@
         <image name="ic_grip" width="15" height="25"/>
         <image name="ic_savings_caretleft" width="24" height="24"/>
         <image name="ic_savings_caretright" width="24" height="24"/>
-        <image name="ic_smartenergyempty" width="109" height="103"/>
+        <image name="ic_smartenergyempty" width="119" height="105"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Gdb-8Z-K6i"/>

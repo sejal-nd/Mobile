@@ -40,12 +40,11 @@ class HomeOutageCardViewModel {
         .filter { !($0.element?.outageStatus ?? false) && !($0.element?.homeStatus ?? false) }
         .withLatestFrom(self.fetchDataObservable)
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
-                        requestSelector: { [unowned self] _ in
-                            self.retrieveOutageStatus()
-        })
-    
+                        requestSelector: { [unowned self] _ in self.retrieveOutageStatus() })
     
     // MARK: - Variables
+    
+    private let outageReported = RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var currentOutageStatus: Driver<OutageStatus> = self.outageStatusEvents.elements()
         .asDriver(onErrorDriveWith: .empty())
@@ -76,18 +75,37 @@ class HomeOutageCardViewModel {
     
     private(set) lazy var restorationTime: Driver<String?> = self.currentOutageStatus.map {
         guard let etr = $0.etr else { return nil }
-        let dateString = DateFormatter.outageOpcoDateFormatter.string(from: (etr))
+        let dateString = DateFormatter.outageOpcoDateFormatter.string(from: etr)
         return String.localizedStringWithFormat("Estimated Restoration\n%@", dateString)
     }
     
-    private(set) lazy var reportedOutageTime: Driver<String?> = self.currentOutageStatus.map {
-        guard let etr = $0.etr else { return nil }
-        let dateString = DateFormatter.outageOpcoDateFormatter.string(from: (etr))
+    private(set) lazy var reportedOutageTime: Driver<String?> = Driver.merge(self.outageReported, self.currentOutageStatus.map(to: ())).map {
+        guard AccountsStore.shared.currentAccount != nil else { return nil }
+        let accountNumber = AccountsStore.shared.currentAccount.accountNumber
+        guard let reportedOutage = ReportedOutagesStore.shared[accountNumber] else {
+            return nil
+        }
+        
+        let dateString = DateFormatter.outageOpcoDateFormatter.string(from: reportedOutage.reportedTime)
         return String.localizedStringWithFormat("Outage reported %@", dateString)
     }
+        .distinctUntilChanged()
+    
+    private(set) lazy var showReportedOutageTime: Driver<Bool> = Driver.merge(self.outageReported, self.currentOutageStatus.map(to: ())).map {
+        guard AccountsStore.shared.currentAccount != nil else { return false }
+        return ReportedOutagesStore.shared[AccountsStore.shared.currentAccount.accountNumber] != nil
+    }
+        .distinctUntilChanged()
+    
+    private(set) lazy var callToActionButtonText: Driver<String> = self.showReportedOutageTime
+        .map { $0 ? NSLocalizedString("View Outage Map", comment: "") : NSLocalizedString("Report Outage", comment: "")}
 
-    private(set) lazy var shouldShowRestorationTime: Driver<Bool> = self.currentOutageStatus
-        .map { $0.etr != nil && $0.activeOutage }
+    private(set) lazy var shouldShowRestorationTime: Driver<Bool> = Driver.combineLatest(self.outageReported.startWith(()), self.currentOutageStatus)
+    { (_, outageStatus) in
+        guard AccountsStore.shared.currentAccount != nil else { return false }
+        return ReportedOutagesStore.shared[AccountsStore.shared.currentAccount.accountNumber] != nil || outageStatus.etr != nil
+        }
+        .startWith(false)
         .distinctUntilChanged()
     
     private lazy var isCustomError: Driver<Bool> = self.outageStatusEvents
@@ -120,8 +138,6 @@ class HomeOutageCardViewModel {
     private(set) lazy var showGasOnly: Driver<Bool> = Driver.combineLatest(isGasOnly, showOutstandingBalanceWarning)
     { $0 && !$1 }
         .distinctUntilChanged()
-    
-    let hasReportedOutage = BehaviorSubject<Bool>(value: false)
     
     private(set) lazy var accountNonPayFinaledMessage: Driver<NSAttributedString> = currentOutageStatus
         .map { outageStatus -> String in

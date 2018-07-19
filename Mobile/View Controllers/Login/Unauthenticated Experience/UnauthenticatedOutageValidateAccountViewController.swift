@@ -140,8 +140,6 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
             .font: OpenSans.bold.of(size: 18)
         ]
         navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        viewModel.reportedOutage = nil // Clear reported outage when user leaves UnauthenticatedOutageStatusViewController
     }
     
     func bindViewModel() {

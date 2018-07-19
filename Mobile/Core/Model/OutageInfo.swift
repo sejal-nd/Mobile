@@ -77,7 +77,7 @@ struct ReportedOutageResult: Mappable {
         etr = map.optionalFrom("etr", transformation: extractDate)
         
         do {
-            reportedTime = try map.from("etr", transformation: extractDate) ?? Date()
+            reportedTime = try map.from("reportedTime", transformation: extractDate) ?? Date()
         } catch {
             reportedTime = Date()
         }

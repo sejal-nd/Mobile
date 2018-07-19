@@ -48,8 +48,15 @@ class HomeOutageCardView: UIView {
     
     var bag = DisposeBag()
     
-    private(set) lazy var buttonTapped: Driver<OutageStatus> = callToActionButton.rx.touchUpInside.asDriver()
+    private(set) lazy var reportOutageTapped: Driver<OutageStatus> = callToActionButton.rx.touchUpInside.asDriver()
+        .withLatestFrom(viewModel.showReportedOutageTime)
+        .filter(!)
         .withLatestFrom(viewModel.currentOutageStatus)
+    
+    private(set) lazy var viewOutageMapTapped: Driver<Void> = callToActionButton.rx.touchUpInside.asDriver()
+        .withLatestFrom(viewModel.showReportedOutageTime)
+        .filter { $0 }
+        .map(to: ())
     
     private var viewModel: HomeOutageCardViewModel! {
         didSet {
@@ -76,7 +83,7 @@ class HomeOutageCardView: UIView {
         powerStatusTitleLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         powerStatusLabel.font = OpenSans.bold.of(size: 22)
         restorationStatusLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        outageReportedLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        outageReportedLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         buttonControlLabel.font = SystemFont.semibold.of(textStyle: .title1)
         callToActionButton.backgroundColorOnPress = .softGray
         
@@ -99,7 +106,7 @@ class HomeOutageCardView: UIView {
         viewModel.powerStatus.drive(powerStatusLabel.rx.text).disposed(by: bag)
         
         viewModel.restorationTime
-            .map { $0?.attributedString(withLineHeight: 20) }
+            .map { $0?.attributedString(withLineHeight: 20, textAlignment: .center) }
             .drive(restorationStatusLabel.rx.attributedText)
             .disposed(by: bag)
         
@@ -122,6 +129,8 @@ class HomeOutageCardView: UIView {
         viewModel.showCustomErrorView.not().drive(customErrorView.rx.isHidden).disposed(by: bag)
         viewModel.showOutstandingBalanceWarning.not().drive(nonPayFinaledView.rx.isHidden).disposed(by: bag)
         viewModel.showGasOnly.not().drive(gasOnlyView.rx.isHidden).disposed(by: bag)
+        
+        viewModel.callToActionButtonText.drive(buttonControlLabel.rx.text).disposed(by: bag)
     }
     
 }
