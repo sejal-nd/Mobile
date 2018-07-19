@@ -47,7 +47,7 @@ class SplashViewController: UIViewController{
         loadingLabel.text = NSLocalizedString("We’re Working on Loading the App…", comment: "")
         
         errorViewBackground.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
-        errorViewBackground.layer.cornerRadius = 2
+        errorViewBackground.layer.cornerRadius = 10
         
         errorTitleLabel.textColor = .deepGray
         errorTitleLabel.text = viewModel.errorTitleText
@@ -96,6 +96,9 @@ class SplashViewController: UIViewController{
             splashAnimationView!.contentMode = .scaleAspectFit
             splashAnimationContainer.addSubview(splashAnimationView!)
             splashAnimationView!.play()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, Environment.shared.opco.taglineString)
+            }
         }
         
         if loadingAnimationView == nil {

@@ -11,6 +11,7 @@ import RxCocoa
 
 class HomeEditCardCell: UICollectionViewCell {
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var a11yView: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var subLabel: UILabel!
     @IBOutlet private weak var addRemoveButton: UIButton!
@@ -34,6 +35,11 @@ class HomeEditCardCell: UICollectionViewCell {
             .throttle(0.25)
             .drive(onNext: addRemoveTapped)
             .disposed(by: disposeBag)
+        
+        a11yView.accessibilityLabel = card.displayString + (card.isAlwaysAvailable ? "" : NSLocalizedString(". May not be available for all accounts", comment: ""))
+        addRemoveButton.accessibilityLabel = isActive ?
+            String(format: NSLocalizedString("Remove %@", comment: ""), card.displayString) :
+            String(format: NSLocalizedString("Add %@", comment: ""), card.displayString)
     }
     
     override func prepareForReuse() {

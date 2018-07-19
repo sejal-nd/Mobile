@@ -12,7 +12,6 @@ import RxCocoa
 
 class MaintenanceModeView: UIView {
     
-    @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var maintenanceImageView: UIImageView!
     @IBOutlet weak var reloadButton: ButtonControl!
@@ -23,20 +22,19 @@ class MaintenanceModeView: UIView {
     @IBOutlet weak var infoTextContainerView: UIView!
     @IBOutlet weak var infoTextView: DataDetectorTextView!
     
-    var gradientLayer: CAGradientLayer?
-    
     let disposeBag = DisposeBag()
 
     @IBInspectable var isColorBackground: Bool = true {
         didSet {
-            gradientView.isHidden = isColorBackground
             if isColorBackground {
+                containerView.backgroundColor = .primaryColor
                 maintenanceImageView.image = #imageLiteral(resourceName: "ic_maint_mode_white")
                 reloadImageView.image = #imageLiteral(resourceName: "ic_reload")
                 reloadLabel.textColor = .white
                 scheduledMaintenanceLabel.textColor = .white
                 detailLabel.textColor = .white
             } else {
+                containerView.backgroundColor = .softGray
                 maintenanceImageView.image = #imageLiteral(resourceName: "ic_maint_mode")
                 reloadImageView.image = #imageLiteral(resourceName: "ic_reload_blue")
                 reloadLabel.textColor = .actionBlue
@@ -84,22 +82,6 @@ class MaintenanceModeView: UIView {
         super.layoutSubviews()
         styleViews()
         infoTextView.attributedText = infoText
-        
-        if isColorBackground {
-            gradientLayer?.removeFromSuperlayer()
-            gradientLayer = nil
-        } else {
-            let gradientLayer = CAGradientLayer()
-            gradientLayer.frame = bounds
-            gradientLayer.colors = [
-                UIColor.white.cgColor,
-                UIColor(red: 244/255, green: 246/255, blue: 247/255, alpha: 1).cgColor,
-                UIColor(red: 240/255, green: 242/255, blue: 243/255, alpha: 1).cgColor
-            ]
-            gradientLayer.locations = [0.0, 0.5, 1.0]
-            gradientView.layer.addSublayer(gradientLayer)
-            self.gradientLayer = gradientLayer
-        }
     }
     
     func styleViews() {

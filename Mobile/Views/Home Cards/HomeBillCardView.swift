@@ -176,6 +176,7 @@ class HomeBillCardView: UIView {
         oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         viewBillButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        viewBillButton.accessibilityLabel = NSLocalizedString("View Bill Details", comment: "")
         
         billNotReadyLabel.font = OpenSans.regular.of(textStyle: .title1)
         billNotReadyLabel.setLineHeight(lineHeight: 26)

@@ -46,6 +46,13 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Skw-se-oy0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HS2-xG-Njq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <bool key="isElement" value="YES"/>
+                                                    </accessibility>
+                                                </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ana-DM-IHb">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                                     <subviews>
@@ -74,12 +81,18 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn0-Dc-aMU">
                                                                     <rect key="frame" x="0.0" y="0.0" width="38" height="25"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
                                                                     <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May not be available for all accounts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIC-PU-bUz">
                                                                     <rect key="frame" x="0.0" y="25" width="203.5" height="16.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                     <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -109,7 +122,11 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="HS2-xG-Njq" secondAttribute="bottom" id="1t5-hx-V6j"/>
+                                                <constraint firstItem="HS2-xG-Njq" firstAttribute="leading" secondItem="Skw-se-oy0" secondAttribute="leading" id="3Pa-rz-Taq"/>
+                                                <constraint firstItem="HS2-xG-Njq" firstAttribute="top" secondItem="Skw-se-oy0" secondAttribute="top" id="7ab-Xo-rWa"/>
                                                 <constraint firstItem="Ana-DM-IHb" firstAttribute="leading" secondItem="Skw-se-oy0" secondAttribute="leading" id="9k9-ty-LR7"/>
+                                                <constraint firstAttribute="trailing" secondItem="HS2-xG-Njq" secondAttribute="trailing" id="MN8-Ul-dgs"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ana-DM-IHb" secondAttribute="bottom" id="Ses-uW-G10"/>
                                                 <constraint firstAttribute="height" constant="60" id="a7A-8H-WBf"/>
                                                 <constraint firstItem="Ana-DM-IHb" firstAttribute="top" secondItem="Skw-se-oy0" secondAttribute="top" id="dhO-q9-hMS"/>
@@ -125,6 +142,7 @@
                                     <constraint firstItem="Skw-se-oy0" firstAttribute="leading" secondItem="Jjd-so-i6p" secondAttribute="leading" id="YVu-nJ-N2t"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="a11yView" destination="HS2-xG-Njq" id="Ztb-T5-FSC"/>
                                     <outlet property="addRemoveButton" destination="C5x-Bt-1pq" id="ihN-97-uHk"/>
                                     <outlet property="cardView" destination="Skw-se-oy0" id="XVd-SR-toq"/>
                                     <outlet property="gripView" destination="Bdy-cz-8Mr" id="CvA-Ez-xz1"/>
@@ -217,18 +235,30 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tl-q2-3Yp">
                                     <rect key="frame" x="16" y="0.0" width="343" height="50"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sai-UF-P6f">
-                                            <rect key="frame" x="0.0" y="26.5" width="98" height="21.5"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Jka-Ic-qFQ">
+                                            <rect key="frame" x="0.0" y="-14" width="343" height="62"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqG-VW-vev">
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sai-UF-P6f">
+                                                    <rect key="frame" x="0.0" y="40.5" width="343" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="Sai-UF-P6f" firstAttribute="leading" secondItem="5tl-q2-3Yp" secondAttribute="leading" id="A4h-gl-zpC"/>
-                                        <constraint firstAttribute="bottom" secondItem="Sai-UF-P6f" secondAttribute="bottom" constant="2" id="JGv-Pb-nT3"/>
+                                        <constraint firstItem="Jka-Ic-qFQ" firstAttribute="leading" secondItem="5tl-q2-3Yp" secondAttribute="leading" id="Cgy-2w-1Ig"/>
                                         <constraint firstAttribute="width" priority="999" constant="460" id="JTj-4y-eUZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Jka-Ic-qFQ" secondAttribute="bottom" constant="2" id="LzX-af-FQQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="Jka-Ic-qFQ" secondAttribute="trailing" id="Y0m-If-FUR"/>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="qtk-ea-GyN"/>
                                     </constraints>
                                 </view>
@@ -244,6 +274,7 @@
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5tl-q2-3Yp" secondAttribute="trailing" constant="16" id="lNy-Rn-BBj"/>
                             </constraints>
                             <connections>
+                                <outlet property="instructionsLabel" destination="PqG-VW-vev" id="TeE-3G-UPK"/>
                                 <outlet property="label" destination="Sai-UF-P6f" id="tG3-fU-KMR"/>
                             </connections>
                         </collectionReusableView>

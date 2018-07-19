@@ -90,8 +90,10 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var creditLabel: UILabel!
 	@IBOutlet weak var creditAmountLabel: UILabel!
 
-    @IBOutlet weak var needHelpUnderstandingButton: ButtonControl!
-	@IBOutlet weak var viewBillButton: ButtonControl!
+    @IBOutlet weak var billBreakdownButton: ButtonControl!
+    @IBOutlet weak var billBreakdownImageView: UIImageView!
+    @IBOutlet weak var billBreakdownLabel: UILabel!
+    @IBOutlet weak var viewBillButton: ButtonControl!
     @IBOutlet weak var viewBillLabel: UILabel!
 
 	@IBOutlet weak var loadingIndicatorView: UIView!
@@ -228,8 +230,8 @@ class BillViewController: AccountPickerViewController {
         totalAmountView.superview?.bringSubview(toFront: totalAmountView)
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
 
-        needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
-        needHelpUnderstandingButton.layer.cornerRadius = 10
+        billBreakdownButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
+        billBreakdownButton.layer.cornerRadius = 10
         
         billPaidView.layer.cornerRadius = 10
 
@@ -389,6 +391,7 @@ class BillViewController: AccountPickerViewController {
         viewModel.switchAccountsTracker.asDriver()
             .filter { $0 }
             .map(to: ())
+            .startWith(())
             .drive(onNext: { [weak self] in self?.showSwitchingAccountState() })
             .disposed(by: bag)
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
@@ -433,7 +436,7 @@ class BillViewController: AccountPickerViewController {
 		viewModel.shouldShowPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).disposed(by: bag)
 		viewModel.shouldShowCredit.not().drive(creditView.rx.isHidden).disposed(by: bag)
 
-		viewModel.shouldShowNeedHelpUnderstanding.not().drive(needHelpUnderstandingButton.rx.isHidden).disposed(by: bag)
+		viewModel.shouldShowBillBreakdownButton.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
 
 		viewModel.shouldEnableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
 		viewModel.shouldEnableMakeAPaymentButton.drive(billPaidView.rx.isHidden).disposed(by: bag)
@@ -488,6 +491,13 @@ class BillViewController: AccountPickerViewController {
 
         viewModel.paymentStatusText.drive(makeAPaymentStatusLabel.rx.text).disposed(by: bag)
         viewModel.paymentStatusText.drive(makeAPaymentStatusButton.rx.accessibilityLabel).disposed(by: bag)
+        
+        viewModel.billBreakdownButtonTitle.drive(billBreakdownLabel.rx.text).disposed(by: bag)
+        viewModel.billBreakdownButtonTitle.drive(billBreakdownLabel.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.hasBillBreakdownData
+            .map { $0 ? #imageLiteral(resourceName: "ic_billbreakdown") : #imageLiteral(resourceName: "ic_usagemini") }
+            .drive(billBreakdownImageView.rx.image)
+            .disposed(by: bag)
 
 		viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).disposed(by: bag)
 		viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).disposed(by: bag)
@@ -513,14 +523,23 @@ class BillViewController: AccountPickerViewController {
                 self?.present(alertController, animated: true, completion: nil)
             })
             .disposed(by: bag)
+        
+        billBreakdownButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.hasBillBreakdownData)
+            .filter(!)
+            .drive(onNext: { [weak self] _ in
+                self?.tabBarController?.selectedIndex = 3
+            })
+            .disposed(by: bag)
 
-        needHelpUnderstandingButton.rx.touchUpInside.asDriver()
+        billBreakdownButton.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.hasBillBreakdownData)
+            .filter { $0 }
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] in
-                let billAnalysis = BillAnalysisViewController()
-                billAnalysis.hidesBottomBarWhenPushed = true
-                billAnalysis.viewModel.accountDetail = $0
-                self?.navigationController?.pushViewController(billAnalysis, animated: true)
+                let billBreakdownVC = BillBreakdownViewController(accountDetail: $0)
+                billBreakdownVC.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(billBreakdownVC, animated: true)
             })
             .disposed(by: bag)
 
@@ -665,7 +684,6 @@ class BillViewController: AccountPickerViewController {
 
     func configureAccessibility() {
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-        needHelpUnderstandingButton.accessibilityLabel = NSLocalizedString("Need help understanding your bill?", comment: "")
         viewBillButton.accessibilityLabel = NSLocalizedString("PDF, View bill", comment: "")
         activityButton.accessibilityLabel = NSLocalizedString("Activity", comment: "")
         walletButton.accessibilityLabel = NSLocalizedString("My Wallet", comment: "")
