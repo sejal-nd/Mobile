@@ -34,6 +34,9 @@
                 <outlet property="contrastRoundedView" destination="CIf-js-ecL" id="EGo-rE-EXc"/>
                 <outlet property="descriptionLabel" destination="s87-fW-M1Q" id="phv-9v-hpr"/>
                 <outlet property="footerLabel" destination="gHS-Vy-Vmn" id="Opc-8r-KBG"/>
+                <outlet property="likelyReasonsDescriptionTriangleCenterXConstraint" destination="rsQ-BU-IU3" id="C2I-ss-wSS"/>
+                <outlet property="likelyReasonsDescriptionView" destination="1Qb-Kp-5Fs" id="6tR-Az-5t8"/>
+                <outlet property="likelyReasonsStackView" destination="W7u-gM-7zJ" id="G03-wr-mds"/>
                 <outlet property="otherCircleButton" destination="fYU-7N-rkk" id="ol9-vJ-4kF"/>
                 <outlet property="otherTitleLabel" destination="MTc-kj-rFC" id="64H-Ot-21O"/>
                 <outlet property="roundedBgView" destination="CC8-bL-M7o" id="j2b-tz-oCq"/>
@@ -172,6 +175,9 @@
                                                                         <constraint firstItem="6eR-tg-q5i" firstAttribute="top" secondItem="gxK-zj-So2" secondAttribute="top" constant="3" id="wdY-4i-Egu"/>
                                                                         <constraint firstAttribute="width" constant="90" id="whB-ln-wrb"/>
                                                                     </constraints>
+                                                                    <connections>
+                                                                        <action selector="factorImpactPress:" destination="-1" eventType="touchUpInside" id="9mP-du-A9L"/>
+                                                                    </connections>
                                                                 </view>
                                                                 <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRA-p4-6ay" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="109" y="0.0" width="90" height="107.5"/>
@@ -231,6 +237,9 @@
                                                                         <constraint firstAttribute="width" constant="90" id="xZ1-Mn-6KT"/>
                                                                         <constraint firstItem="KdF-iF-GrO" firstAttribute="centerX" secondItem="yRA-p4-6ay" secondAttribute="centerX" id="zeT-Ni-QMz"/>
                                                                     </constraints>
+                                                                    <connections>
+                                                                        <action selector="factorImpactPress:" destination="-1" eventType="touchUpInside" id="us7-nT-mZR"/>
+                                                                    </connections>
                                                                 </view>
                                                                 <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-t2-O65" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="218" y="0.0" width="90" height="107.5"/>
@@ -290,17 +299,20 @@
                                                                         <constraint firstAttribute="trailing" secondItem="fYU-7N-rkk" secondAttribute="trailing" id="trd-Gf-JYz"/>
                                                                         <constraint firstItem="E4t-wm-pPS" firstAttribute="centerX" secondItem="Cf7-t2-O65" secondAttribute="centerX" id="yC1-of-Mvz"/>
                                                                     </constraints>
+                                                                    <connections>
+                                                                        <action selector="factorImpactPress:" destination="-1" eventType="touchUpInside" id="hjT-n9-CyU"/>
+                                                                    </connections>
                                                                 </view>
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Qb-Kp-5Fs">
-                                                            <rect key="frame" x="0.0" y="131.5" width="343" height="129.5"/>
+                                                            <rect key="frame" x="29" y="131.5" width="285" height="129.5"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVY-oL-3lr">
-                                                                    <rect key="frame" x="0.0" y="22" width="343" height="107.5"/>
+                                                                    <rect key="frame" x="0.0" y="22" width="285" height="107.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Bill Period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="I7o-fN-3Jr">
-                                                                            <rect key="frame" x="138" y="21" width="68.5" height="19.5"/>
+                                                                            <rect key="frame" x="110.5" y="21" width="64" height="16.5"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
                                                                             </accessibility>
@@ -309,7 +321,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used more electricity because this bill period was X days longer." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klP-CO-Lzc">
-                                                                            <rect key="frame" x="16" y="52.5" width="311" height="33"/>
+                                                                            <rect key="frame" x="16" y="49.5" width="253" height="36"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
                                                                             </accessibility>
@@ -329,7 +341,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bill_analysis_shadow_triangle" translatesAutoresizingMaskIntoConstraints="NO" id="jVQ-X1-zgL">
-                                                                    <rect key="frame" x="146.5" y="-39" width="50" height="61"/>
+                                                                    <rect key="frame" x="117.5" y="-39" width="50" height="61"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="61" id="ZQT-NS-B3l"/>
                                                                         <constraint firstAttribute="width" constant="50" id="ndX-Wf-bi6"/>
@@ -350,6 +362,11 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="W7u-gM-7zJ" firstAttribute="centerX" secondItem="VWm-aO-rWf" secondAttribute="centerX" id="KTb-NI-5wN"/>
+                                                        <constraint firstItem="1Qb-Kp-5Fs" firstAttribute="leading" secondItem="VWm-aO-rWf" secondAttribute="leading" priority="999" constant="29" id="Tgi-7w-sLV"/>
+                                                        <constraint firstItem="W7u-gM-7zJ" firstAttribute="centerX" secondItem="VWm-aO-rWf" secondAttribute="centerX" id="dRE-Dw-sQr"/>
+                                                        <constraint firstAttribute="trailing" secondItem="1Qb-Kp-5Fs" secondAttribute="trailing" priority="999" constant="29" id="fZ0-oE-U7E"/>
+                                                        <constraint firstItem="W7u-gM-7zJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VWm-aO-rWf" secondAttribute="leading" constant="17" id="jFg-BH-Uln"/>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="W7u-gM-7zJ" secondAttribute="trailing" constant="17" id="wZu-4c-i17"/>
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHS-Vy-Vmn">
@@ -368,10 +385,10 @@
                                                 <constraint firstAttribute="bottom" secondItem="gHS-Vy-Vmn" secondAttribute="bottom" constant="8" id="7YC-Kg-tu6"/>
                                                 <constraint firstAttribute="trailing" secondItem="gHS-Vy-Vmn" secondAttribute="trailing" constant="8" id="Bcx-KN-nKv"/>
                                                 <constraint firstItem="VWm-aO-rWf" firstAttribute="top" secondItem="CIf-js-ecL" secondAttribute="top" constant="8" id="JeV-vW-12i"/>
-                                                <constraint firstItem="VWm-aO-rWf" firstAttribute="leading" secondItem="CIf-js-ecL" secondAttribute="leading" constant="8" id="cPK-JX-Fl9"/>
+                                                <constraint firstItem="VWm-aO-rWf" firstAttribute="leading" secondItem="CIf-js-ecL" secondAttribute="leading" priority="999" constant="8" id="cPK-JX-Fl9"/>
                                                 <constraint firstItem="gHS-Vy-Vmn" firstAttribute="top" secondItem="VWm-aO-rWf" secondAttribute="bottom" constant="8" id="mSW-Ym-CPf"/>
                                                 <constraint firstItem="gHS-Vy-Vmn" firstAttribute="leading" secondItem="CIf-js-ecL" secondAttribute="leading" constant="8" id="ul5-35-SDd"/>
-                                                <constraint firstAttribute="trailing" secondItem="VWm-aO-rWf" secondAttribute="trailing" constant="8" id="z3W-Gg-hQq"/>
+                                                <constraint firstAttribute="trailing" secondItem="VWm-aO-rWf" secondAttribute="trailing" priority="999" constant="8" id="z3W-Gg-hQq"/>
                                             </constraints>
                                         </view>
                                     </subviews>

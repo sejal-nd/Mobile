@@ -9,7 +9,7 @@
 import UIKit
 
 class BillImpactDropdownView: UIView {
-    
+
     @IBOutlet var contentView: UIView! {
         didSet {
             addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
@@ -22,6 +22,9 @@ class BillImpactDropdownView: UIView {
         }
     }
     @IBOutlet weak var contentStackView: UIStackView!
+    @IBOutlet weak var likelyReasonsStackView: UIStackView!
+    @IBOutlet weak var likelyReasonsDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
+    @IBOutlet weak var likelyReasonsDescriptionView: UIView!
     @IBOutlet weak var billFactorView: UIView! {
         didSet {
             billFactorView.isHidden = true
@@ -157,6 +160,28 @@ class BillImpactDropdownView: UIView {
     
     @IBAction func toggleStackView(_ sender: Any) {
         isExpanded = !isExpanded
+    }
+    
+    @IBAction func factorImpactPress(_ sender: ButtonControl) {
+        let centerPoint = sender.center
+        let convertedPoint = likelyReasonsStackView.convert(centerPoint, to: likelyReasonsDescriptionView)
+        
+        let centerXOffset = (likelyReasonsDescriptionView.bounds.width / 2)
+        if convertedPoint.x < centerXOffset {
+            likelyReasonsDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
+        } else if convertedPoint.x > centerXOffset {
+            likelyReasonsDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
+        } else {
+            likelyReasonsDescriptionTriangleCenterXConstraint.constant = 0
+        }
+        
+        if sender.tag == 1 {
+            Analytics.log(event: .BillPreviousReason)
+        } else if sender.tag == 2 {
+            Analytics.log(event: .BillWeatherReason)
+        } else {
+            Analytics.log(event: .BillOtherReason)
+        }
     }
     
 }
