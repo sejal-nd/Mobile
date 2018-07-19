@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UsageTabViewController: UIViewController {
+class UsageTabViewController: AccountPickerViewController {
     
     @IBOutlet weak var myUsageToolsLabel: UILabel! {
         didSet {
@@ -28,7 +28,11 @@ class UsageTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Setup Account Picker
+        accountPicker.delegate = self
+        accountPicker.parentViewController = self
+        
         // Register Collection View XIB Cells
         collectionView.register(UINib.init(nibName: MyUsageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyUsageCollectionViewCell.identifier)
         collectionView.register(UINib.init(nibName: UsageToolsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UsageToolsCollectionViewCell.identifier)
@@ -41,9 +45,20 @@ class UsageTabViewController: UIViewController {
     }
     
     
+    // MARJK: - Helper
+    
     private func reloadData() {
         collectionView.reloadData()
         collectionViewHeight.constant = collectionView.contentSize.height + 16
+    }
+    
+}
+
+extension UsageTabViewController: AccountPickerDelegate {
+    
+    func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        print("Fetch Account Details")
+        //viewModel.fetchAccountDetail(isRefresh: false)
     }
     
 }
