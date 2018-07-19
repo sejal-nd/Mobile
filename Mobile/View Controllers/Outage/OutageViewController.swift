@@ -16,7 +16,6 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var backgroundScrollConstraint: NSLayoutConstraint!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
-    @IBOutlet weak var gradientBackground: UIView!
     @IBOutlet weak var scrollViewContentView: UIView!
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
@@ -26,6 +25,7 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
     @IBOutlet weak var reportOutageButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
+    @IBOutlet weak var gasOnlyTitleLabel: UILabel!
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
@@ -38,8 +38,6 @@ class OutageViewController: AccountPickerViewController {
     // view does not need to scroll on iPhone 7 size), so we use this to toggle active/inactive. Cannot be weak reference
     // because setting isActive = false would set to nil
     @IBOutlet var gasOnlyTextViewBottomSpaceConstraint: NSLayoutConstraint!
-
-    var gradientLayer: CAGradientLayer!
     
     var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")
     var refreshControl: UIRefreshControl?
@@ -52,18 +50,7 @@ class OutageViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = NSLocalizedString("Outage", comment: "")
-
-        gradientLayer = CAGradientLayer()
-        gradientLayer.frame = gradientBackground.bounds
-        gradientLayer.colors = [
-            UIColor.white.cgColor,
-            UIColor(red: 244/255, green: 246/255, blue: 247/255, alpha: 1).cgColor,
-            UIColor(red: 240/255, green: 242/255, blue: 243/255, alpha: 1).cgColor
-        ]
-        gradientLayer.locations = [0.0, 0.5, 1.0]
-        gradientBackground.layer.addSublayer(gradientLayer)
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
@@ -83,7 +70,8 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.text = viewModel.footerTextViewText
         footerTextView.linkTapDelegate = self
         
-        gasOnlyTextView.font = SystemFont.regular.of(textStyle: .body)
+        gasOnlyTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        gasOnlyTextView.font = OpenSans.regular.of(textStyle: .subheadline)
         gasOnlyTextView.textContainerInset = .zero
         gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.text = viewModel.gasOnlyMessage
@@ -143,12 +131,6 @@ class OutageViewController: AccountPickerViewController {
         
         navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        gradientLayer.frame = gradientBackground.frame
     }
     
     override func viewDidAppear(_ animated: Bool) {

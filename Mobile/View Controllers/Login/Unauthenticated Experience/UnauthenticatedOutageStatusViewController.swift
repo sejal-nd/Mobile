@@ -10,14 +10,11 @@ import UIKit
 
 class UnauthenticatedOutageStatusViewController: UIViewController {
 
-    @IBOutlet weak var gradientBackground: UIView!
     @IBOutlet weak var accountInfoBar: AccountInfoBar!
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
     @IBOutlet weak var reportOutageButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
-    
-    var gradientLayer: CAGradientLayer!
     
     var analyticsSource: AnalyticsOutageSource!
     var viewModel: UnauthenticatedOutageViewModel! // Passed from screen that pushes this
@@ -26,16 +23,6 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
         super.viewDidLoad()
 
         title = NSLocalizedString("Outage", comment: "")
-        
-        gradientLayer = CAGradientLayer()
-        gradientLayer.frame = gradientBackground.bounds
-        gradientLayer.colors = [
-            UIColor.white.cgColor,
-            UIColor(red: 244/255, green: 246/255, blue: 247/255, alpha: 1).cgColor,
-            UIColor(red: 240/255, green: 242/255, blue: 243/255, alpha: 1).cgColor
-        ]
-        gradientLayer.locations = [0.0, 0.5, 1.0]
-        gradientBackground.layer.addSublayer(gradientLayer)
         
         accountInfoBar.update(accountNumber: viewModel.selectedOutageStatus!.maskedAccountNumber, address: viewModel.selectedOutageStatus!.maskedAddress)
         
@@ -69,12 +56,6 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
         default:
             break
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        gradientLayer.frame = gradientBackground.frame
     }
     
     @IBAction func onReportOutagePress() {

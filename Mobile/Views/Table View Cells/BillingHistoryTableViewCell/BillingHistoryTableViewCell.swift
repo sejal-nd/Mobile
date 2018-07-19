@@ -130,7 +130,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         } else if status == BillingHistoryProperties.statusCanceled.rawValue ||
             status == BillingHistoryProperties.statusCANCELLED.rawValue ||
             status == BillingHistoryProperties.statusFailed.rawValue {
-            iconImageView.image = #imageLiteral(resourceName: "ic_paymentcanceledfailed")
+            iconImageView.image = status == BillingHistoryProperties.statusFailed.rawValue ? #imageLiteral(resourceName: "ic_activity_failed") : #imageLiteral(resourceName: "ic_activity_canceled")
             titleLabel.text = PAYMENT
             amountLabel.text = amountPaid
             caretImageView.isHidden = false
