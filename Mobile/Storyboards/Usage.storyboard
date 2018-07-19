@@ -56,7 +56,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mE1-SX-hcS" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="90" width="375" height="1704"/>
+                                        <rect key="frame" x="0.0" y="106" width="375" height="1704"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N2i-cc-UM6" userLabel="Main Stack">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1704"/>
@@ -70,6 +70,9 @@
                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="467" placeholderIntrinsicHeight="64" translatesAutoresizingMaskIntoConstraints="NO" id="b9o-Te-xzG" customClass="BillAnalysisSegmentedControl" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="29" y="0.0" width="317" height="107.5"/>
                                                                         <color key="backgroundColor" red="0.23921568630000001" green="0.51764705879999995" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <connections>
+                                                                            <action selector="segmentDidChange:" destination="gRa-nh-wfg" eventType="valueChanged" id="uId-SY-R1U"/>
+                                                                        </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhU-dZ-ioc">
                                                                         <rect key="frame" x="0.0" y="123.5" width="375" height="50"/>
@@ -163,6 +166,9 @@
                                                                                             <constraint firstItem="dKk-5X-by1" firstAttribute="top" secondItem="Y2E-Nc-xEh" secondAttribute="bottom" constant="5" id="haZ-qr-CDx"/>
                                                                                             <constraint firstItem="PnL-wt-i7Y" firstAttribute="top" secondItem="dKk-5X-by1" secondAttribute="bottom" constant="4" id="joi-dI-53T"/>
                                                                                         </constraints>
+                                                                                        <connections>
+                                                                                            <action selector="barGraphPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="QiT-M3-DPZ"/>
+                                                                                        </connections>
                                                                                     </view>
                                                                                     <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKg-Sa-YNh" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                                         <rect key="frame" x="128.5" y="6" width="60" height="177"/>
@@ -202,6 +208,9 @@
                                                                                             <constraint firstItem="P2p-yb-PlW" firstAttribute="leading" secondItem="dKg-Sa-YNh" secondAttribute="leading" id="qZE-py-gRS"/>
                                                                                             <constraint firstItem="FeX-9Y-WGe" firstAttribute="top" secondItem="dKg-Sa-YNh" secondAttribute="top" id="yVY-I5-sIs"/>
                                                                                         </constraints>
+                                                                                        <connections>
+                                                                                            <action selector="barGraphPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="3lO-c5-nRw"/>
+                                                                                        </connections>
                                                                                     </view>
                                                                                     <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGz-ff-KfF" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                                         <rect key="frame" x="207" y="6" width="60" height="177"/>
@@ -239,6 +248,9 @@
                                                                                             <constraint firstAttribute="trailing" secondItem="B2H-yA-RLi" secondAttribute="trailing" id="or6-cr-H8l"/>
                                                                                             <constraint firstItem="Qnq-y9-pQd" firstAttribute="leading" secondItem="fGz-ff-KfF" secondAttribute="leading" id="yCz-TV-Npb"/>
                                                                                         </constraints>
+                                                                                        <connections>
+                                                                                            <action selector="barGraphPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="Qah-2U-FO8"/>
+                                                                                        </connections>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMm-nk-p6E">
                                                                                         <rect key="frame" x="285" y="0.0" width="32" height="183"/>
@@ -515,12 +527,12 @@
                                     <constraint firstAttribute="trailing" secondItem="VT3-VG-S91" secondAttribute="trailing" id="6gK-fP-Wl2"/>
                                     <constraint firstItem="VT3-VG-S91" firstAttribute="leading" secondItem="auv-xw-MUC" secondAttribute="leading" id="C1T-ul-wzy"/>
                                     <constraint firstItem="VT3-VG-S91" firstAttribute="centerX" secondItem="auv-xw-MUC" secondAttribute="centerX" id="PpS-H8-YgM"/>
-                                    <constraint firstAttribute="bottom" secondItem="mE1-SX-hcS" secondAttribute="bottom" id="UNU-DY-pBZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="mE1-SX-hcS" secondAttribute="bottom" constant="16" id="UNU-DY-pBZ"/>
                                     <constraint firstItem="VT3-VG-S91" firstAttribute="top" secondItem="auv-xw-MUC" secondAttribute="top" id="URk-9M-4wj"/>
                                     <constraint firstItem="mE1-SX-hcS" firstAttribute="centerX" secondItem="auv-xw-MUC" secondAttribute="centerX" id="Zvr-bs-7MG"/>
                                     <constraint firstAttribute="trailing" secondItem="mE1-SX-hcS" secondAttribute="trailing" priority="999" id="gmr-D0-DQ2"/>
                                     <constraint firstItem="mE1-SX-hcS" firstAttribute="leading" secondItem="auv-xw-MUC" secondAttribute="leading" priority="999" id="hhS-GZ-OWB"/>
-                                    <constraint firstItem="mE1-SX-hcS" firstAttribute="top" secondItem="VT3-VG-S91" secondAttribute="bottom" id="ryo-Jv-y9D"/>
+                                    <constraint firstItem="mE1-SX-hcS" firstAttribute="top" secondItem="VT3-VG-S91" secondAttribute="bottom" constant="16" id="ryo-Jv-y9D"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -545,9 +557,13 @@
                     <size key="freeformSize" width="375" height="1600"/>
                     <connections>
                         <outlet property="accountPicker" destination="VT3-VG-S91" id="RRA-y5-lcr"/>
+                        <outlet property="barDescriptionTriangleCenterXConstraint" destination="cJd-vq-dwB" id="pg7-h5-GOu"/>
+                        <outlet property="barGraphStackView" destination="xgs-sD-SWi" id="2IG-Vr-Q21"/>
+                        <outlet property="billGraphDetailView" destination="Rv2-7O-aHB" id="93V-Z1-7A7"/>
                         <outlet property="collectionView" destination="b5m-WW-Tg2" id="F63-zn-9pg"/>
                         <outlet property="collectionViewHeight" destination="xAE-WT-D6A" id="n54-eJ-8Iv"/>
                         <outlet property="compareBillTitlelabel" destination="hio-oA-8Gu" id="353-MA-R5S"/>
+                        <outlet property="contentView" destination="mE1-SX-hcS" id="IN4-76-nNh"/>
                         <outlet property="currentMonthGraphDateLabel" destination="8e6-Br-2pW" id="gus-KP-KJN"/>
                         <outlet property="currentMonthGraphValueLabel" destination="FeX-9Y-WGe" id="8hj-Zz-eiP"/>
                         <outlet property="graphDetailDateLabel" destination="gW9-pT-oLp" id="Bm7-mV-rFL"/>
@@ -561,6 +577,7 @@
                         <outlet property="previousMonthGraphValueLabel" destination="Y2E-Nc-xEh" id="hO7-WM-ta0"/>
                         <outlet property="rightGraphButtonView" destination="M0Q-yE-JaH" id="GCF-gK-Mjw"/>
                         <outlet property="scrollView" destination="auv-xw-MUC" id="gZz-P8-Fkb"/>
+                        <outlet property="segmentControl" destination="b9o-Te-xzG" id="Xtq-0L-Itv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0l-ak-tzz" userLabel="First Responder" sceneMemberID="firstResponder"/>

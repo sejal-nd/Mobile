@@ -11,7 +11,18 @@ import UIKit
 class UsageTabViewController: AccountPickerViewController {
     
     // We may be able to remove this.
-    @IBOutlet weak var usageScrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView! {
+        didSet {
+            contentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+            contentView.layer.cornerRadius = 10
+        }
+    }
+    @IBOutlet weak var segmentControl: BillAnalysisSegmentedControl! {
+        didSet {
+            segmentControl.leftLabel.text = "Electric"
+            segmentControl.rightLabel.text = "Gas"
+        }
+    }
     @IBOutlet weak var compareBillTitlelabel: UILabel! {
         didSet {
             compareBillTitlelabel.font = OpenSans.semibold.of(textStyle: .headline)
@@ -43,6 +54,14 @@ class UsageTabViewController: AccountPickerViewController {
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
 
     // Bill Graph
+    @IBOutlet weak var billGraphDetailView: UIView! {
+        didSet {
+            billGraphDetailView.layer.cornerRadius = 10
+            billGraphDetailView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0.0, height: 2.0), radius: 8)
+        }
+    }
+    @IBOutlet weak var barGraphStackView: UIStackView!
+    @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     @IBOutlet weak var previousMonthGraphValueLabel: UILabel! {
         didSet {
             previousMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
@@ -126,12 +145,31 @@ class UsageTabViewController: AccountPickerViewController {
     
     // MARK: - Actions
     
-    @IBAction func previousBillPress(_ sender: Any) {
+    @IBAction func segmentDidChange(_ sender: BillAnalysisSegmentedControl) {
+        print("SEGMENT DID CHANGE: \(sender.selectedIndex.value)")
+    }
     
+    @IBAction func previousBillPress(_ sender: Any) {
+        print("Previous")
     }
     
     @IBAction func nextBillPress(_ sender: Any) {
+        print("Next")
+    }
     
+    @IBAction func barGraphPress(_ sender: ButtonControl) {
+        print("BAR PRESS")
+        let centerPoint = sender.center
+        let convertedPoint = barGraphStackView.convert(centerPoint, to: billGraphDetailView)
+        
+        let centerXOffset = (billGraphDetailView.bounds.width / 2)
+        if convertedPoint.x < centerXOffset {
+            barDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
+        } else if convertedPoint.x > centerXOffset {
+            barDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
+        } else {
+            barDescriptionTriangleCenterXConstraint.constant = 0
+        }
     }
     
     

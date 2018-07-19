@@ -22,7 +22,11 @@ class BillImpactDropdownView: UIView {
         }
     }
     @IBOutlet weak var contentStackView: UIStackView!
-    @IBOutlet weak var billFactorView: UIView!
+    @IBOutlet weak var billFactorView: UIView! {
+        didSet {
+            billFactorView.isHidden = true
+        }
+    }
     @IBOutlet weak var toggleButtonLabel: UILabel! {
         didSet {
             toggleButtonLabel.textColor = .actionBlue
@@ -94,8 +98,11 @@ class BillImpactDropdownView: UIView {
         }
     }
     
+    private var hasLoadedView = false
+    
     private var isExpanded = false {
         didSet {
+            guard hasLoadedView else { return }
             UIView.animate(withDuration: 0.3, animations: { [weak self] in
                 if let isExpanded = self?.isExpanded, isExpanded {
                     self?.billFactorView.isHidden = false
@@ -133,6 +140,8 @@ class BillImpactDropdownView: UIView {
         addSubview(contentView)
         contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        hasLoadedView = true
     }
     
     private func prepareViews() {
