@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,7 +20,11 @@
         <!--Usage Tab View Controller-->
         <scene sceneID="YEr-Ze-XsM">
             <objects>
-                <viewController id="gRa-nh-wfg" customClass="UsageTabViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="gRa-nh-wfg" customClass="UsageTabViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XYL-Pl-2wH"/>
+                        <viewControllerLayoutGuide type="bottom" id="VUO-S4-CVE"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VhB-wJ-R9W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,7 +43,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auv-xw-MUC">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1600"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="1580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="VT3-VG-S91" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
@@ -457,7 +461,7 @@
                             <constraint firstItem="auv-xw-MUC" firstAttribute="bottom" secondItem="VhB-wJ-R9W" secondAttribute="bottom" id="JHV-yk-zmG"/>
                             <constraint firstAttribute="bottom" secondItem="Gvn-Gm-Gbe" secondAttribute="bottom" id="JcX-cg-2H2"/>
                             <constraint firstItem="l15-zg-OGE" firstAttribute="top" secondItem="VhB-wJ-R9W" secondAttribute="top" constant="20" id="PZV-n6-IDK"/>
-                            <constraint firstItem="auv-xw-MUC" firstAttribute="top" secondItem="VhB-wJ-R9W" secondAttribute="top" id="SXj-YH-ZD0"/>
+                            <constraint firstItem="auv-xw-MUC" firstAttribute="top" secondItem="XYL-Pl-2wH" secondAttribute="bottom" id="SXj-YH-ZD0"/>
                             <constraint firstAttribute="trailing" secondItem="l15-zg-OGE" secondAttribute="trailing" id="Xp5-oS-d9M"/>
                             <constraint firstAttribute="bottom" secondItem="auv-xw-MUC" secondAttribute="bottom" id="Y0Q-Tb-njK"/>
                             <constraint firstAttribute="trailing" secondItem="auv-xw-MUC" secondAttribute="trailing" id="j3F-qY-JnY"/>
@@ -465,6 +469,7 @@
                             <constraint firstItem="l15-zg-OGE" firstAttribute="leading" secondItem="VhB-wJ-R9W" secondAttribute="leading" id="sNK-Qh-VUl"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1600"/>
                     <connections>
                         <outlet property="accountPicker" destination="VT3-VG-S91" id="RRA-y5-lcr"/>
