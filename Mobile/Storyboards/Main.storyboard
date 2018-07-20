@@ -110,7 +110,7 @@
         <scene sceneID="70j-Ia-4jH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oCk-0Q-geV" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="4" title="Usage" image="ic_nav_alerts" id="Otb-cD-p9W"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="Usage" image="ic_nav_usage" id="Otb-cD-p9W"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NOb-8y-go0">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -127,10 +127,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_nav_alerts" width="26" height="26"/>
         <image name="ic_nav_bill" width="26" height="26"/>
         <image name="ic_nav_home" width="26" height="26"/>
         <image name="ic_nav_more" width="26" height="26"/>
         <image name="ic_nav_outage" width="26" height="26"/>
+        <image name="ic_nav_usage" width="33" height="33"/>
     </resources>
 </document>

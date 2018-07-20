@@ -19,11 +19,11 @@ class MyUsageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configure
     
-    public func configureCell(title: String?, image: UIImage?) {
+    public func configureCell(myUsageToolCard: MyUsageToolCard) {
         styleCell()
         
-        titleLabel.text = title
-        imageView.image = image
+        titleLabel.text = myUsageToolCard.title
+        imageView.image = myUsageToolCard.image
     }
     
     private func styleCell() {

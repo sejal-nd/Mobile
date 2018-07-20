@@ -20,23 +20,25 @@ class UsageTabViewModel {
     var accountDetail: AccountDetail? {
         didSet {
             guard let accountDetail = accountDetail else { return }
-            // set shouldshowusagestate here
             
-//            switch Environment.shared.opco {
-//            case .bge:
-//                if accountDetail.peakRewards != nil {
-//                    shouldShowUsageStates[1] = true
-//                }
-//                
-//                if accountDetail.smartenergy
-//            case .comEd:
-//                shouldShowUsageStates[1] = false
-//                shouldShowUsageStates[2] = true
-//                
-//                if accountDetail.peakTImeSavings
-//            case .peco:
-//                shouldShowUsageStates[1] = false
-//            }
+            switch Environment.shared.opco {
+            case .bge:
+                if accountDetail.peakRewards == "ACTIVE" {
+                    usageToolCards.insert(MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "PeakRewards"), at: 1)
+                }
+                
+                if accountDetail.isSERAccount {
+                    usageToolCards.append(MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "Smart Energy Rewards"))
+                }
+            case .comEd:
+                usageToolCards.insert(MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "PeakRewards"), at: 1)
+
+                if accountDetail.isPTSAccount {
+                    usageToolCards.append(MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "Peak Time Savings"))
+                }
+            case .peco:
+                break
+            }
         }
     }
     
@@ -66,7 +68,10 @@ class UsageTabViewModel {
      * 5 = Smart ENergy Rewards
      * 6 = Peak Time Savings
      */
-    var shouldShowUsageStates = [true, false, false, true, true, false, false]
+    
+    
+    //var shouldShowUsageStates = [true, false, false, true, true, false, false]
+    var usageToolCards = [MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "View My Usage Data"), MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "Top 5 Energy Tips"), MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "My Home Profile")]
     
 //    var isLoading = false {
 //        didSet {
@@ -87,13 +92,14 @@ class UsageTabViewModel {
 //    }
 
     func fetchData(onSuccess: (() -> Void)?) {
+        guard let currentAccount = AccountsStore.shared.currentAccount else { return }
         isFetchingAccountDetail = true
         //isFetchingUpdates.value = true
         //isAccountDetailError.value = false
         //isUpdatesError.value = false
         //isNoNetworkConnection.value = false
         
-        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        accountService.fetchAccountDetail(account: currentAccount)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
@@ -121,6 +127,7 @@ class UsageTabViewModel {
 //                    }).disposed(by: self.disposeBag)
                 }, onError: { [weak self] err in
                     self?.isFetchingAccountDetail = false
+                    print("Failure")
                     //self?.isFetchingUpdates.value = false
                     //self?.isAccountDetailError.value = true
                     //self?.isUpdatesError.value = true

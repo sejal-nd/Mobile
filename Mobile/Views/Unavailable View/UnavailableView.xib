@@ -43,7 +43,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Usage Unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngc-jp-hQh">
-                            <rect key="frame" x="44.5" y="157" width="160.5" height="25"/>
+                            <rect key="frame" x="45" y="157" width="160.5" height="25"/>
                             <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
                             <color key="textColor" red="0.019607843137254902" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -64,7 +64,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="H0k-Z9-MqQ" firstAttribute="centerX" secondItem="s39-m4-hhw" secondAttribute="centerX" id="ZfS-NH-bHp"/>
                 <constraint firstItem="H0k-Z9-MqQ" firstAttribute="centerY" secondItem="s39-m4-hhw" secondAttribute="centerY" id="uwY-Jq-e7Q"/>

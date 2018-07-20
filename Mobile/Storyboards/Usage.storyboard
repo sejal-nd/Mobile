@@ -61,7 +61,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mE1-SX-hcS" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="106" width="375" height="1704"/>
+                                        <rect key="frame" x="0.0" y="90" width="375" height="1704"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N2i-cc-UM6" userLabel="Main Stack">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1704"/>
@@ -538,17 +538,17 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="VT3-VG-S91" secondAttribute="trailing" id="6gK-fP-Wl2"/>
                                     <constraint firstItem="VT3-VG-S91" firstAttribute="leading" secondItem="auv-xw-MUC" secondAttribute="leading" id="C1T-ul-wzy"/>
                                     <constraint firstItem="VT3-VG-S91" firstAttribute="centerX" secondItem="auv-xw-MUC" secondAttribute="centerX" id="PpS-H8-YgM"/>
-                                    <constraint firstAttribute="bottom" secondItem="mE1-SX-hcS" secondAttribute="bottom" constant="16" id="UNU-DY-pBZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="mE1-SX-hcS" secondAttribute="bottom" id="UNU-DY-pBZ"/>
                                     <constraint firstItem="VT3-VG-S91" firstAttribute="top" secondItem="auv-xw-MUC" secondAttribute="top" id="URk-9M-4wj"/>
                                     <constraint firstItem="mE1-SX-hcS" firstAttribute="centerX" secondItem="auv-xw-MUC" secondAttribute="centerX" id="Zvr-bs-7MG"/>
                                     <constraint firstAttribute="trailing" secondItem="mE1-SX-hcS" secondAttribute="trailing" priority="999" id="gmr-D0-DQ2"/>
                                     <constraint firstItem="mE1-SX-hcS" firstAttribute="leading" secondItem="auv-xw-MUC" secondAttribute="leading" priority="999" id="hhS-GZ-OWB"/>
-                                    <constraint firstItem="mE1-SX-hcS" firstAttribute="top" secondItem="VT3-VG-S91" secondAttribute="bottom" constant="16" id="ryo-Jv-y9D"/>
+                                    <constraint firstItem="mE1-SX-hcS" firstAttribute="top" secondItem="VT3-VG-S91" secondAttribute="bottom" id="ryo-Jv-y9D"/>
                                 </constraints>
                             </scrollView>
                         </subviews>

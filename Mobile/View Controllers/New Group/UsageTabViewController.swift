@@ -13,8 +13,8 @@ class UsageTabViewController: AccountPickerViewController {
     // We may be able to remove this.
     @IBOutlet weak var contentView: UIView! {
         didSet {
-            contentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-            contentView.layer.cornerRadius = 10
+            //contentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+            //contentView.layer.cornerRadius = 10
         }
     }
     @IBOutlet weak var segmentControl: BillAnalysisSegmentedControl! {
@@ -168,6 +168,9 @@ class UsageTabViewController: AccountPickerViewController {
         // Register Collection View XIB Cells
         collectionView.register(UINib.init(nibName: MyUsageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyUsageCollectionViewCell.identifier)
         collectionView.register(UINib.init(nibName: UsageToolsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UsageToolsCollectionViewCell.identifier)
+        
+        // Load Data
+        fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -180,7 +183,13 @@ class UsageTabViewController: AccountPickerViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        reloadData()
+        reloadCollectionView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        reloadCollectionView()
     }
     
     
@@ -220,18 +229,17 @@ class UsageTabViewController: AccountPickerViewController {
         view.backgroundColor = .white
     }
     
-    private func reloadData() {
+    private func reloadCollectionView() {
         collectionView.reloadData()
-        collectionViewHeight.constant = collectionView.contentSize.height + 16
+        collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height + 16
+        self.view.setNeedsLayout()
     }
     
     private func fetchData() {
-        viewModel.fetchData { [weak self] in
+        viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
-            self.reloadData()
-            //guard let accountDetail = self.viewModel.accountDetail else { return }
-            // Determine which collectionView things to show.
-        }
+            self.reloadCollectionView()
+        })
     }
     
 }

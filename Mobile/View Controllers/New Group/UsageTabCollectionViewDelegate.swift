@@ -11,19 +11,20 @@ import UIKit
 extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return viewModel.usageToolCards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let usageToolCard = viewModel.usageToolCards[indexPath.row]
         
         switch indexPath.row {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyUsageCollectionViewCell.identifier, for: indexPath) as? MyUsageCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(title: "Hello World", image: #imageLiteral(resourceName: "ic_commercial_mini_disabled"))
+            cell.configureCell(myUsageToolCard: usageToolCard)
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UsageToolsCollectionViewCell.identifier, for: indexPath) as? UsageToolsCollectionViewCell else { return UICollectionViewCell() }
-            cell.configureCell(title: "Hello World", image: #imageLiteral(resourceName: "ic_commercial_mini_disabled"))
+            cell.configureCell(myUsageToolCard: usageToolCard)
             return cell
         }
     }
@@ -50,14 +51,7 @@ extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDe
         case 0:
             return CGSize(width: collectionView.bounds.size.width - 32, height: 110)
         default:
-            let temp = true
-            if indexPath.row == 1 && temp {
-                print("MINI")
-                return CGSize(width: 0, height: 0)
-            } else {
-                print("LARGO")
-                return CGSize(width: (collectionView.bounds.size.width - 40) / 2, height: 110)
-            }
+            return CGSize(width: (collectionView.bounds.size.width - 40) / 2, height: 110)
         }
     }
     
