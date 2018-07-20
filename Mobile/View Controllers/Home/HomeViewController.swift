@@ -388,6 +388,7 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
                 self?.shortcutItem = .none
+                // todo self?.tabBarController?.selectedIndex = 3
                 self?.performSegue(withIdentifier: "usageSegue", sender: $0)
             })
             .disposed(by: usageCardView.disposeBag)

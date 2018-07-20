@@ -95,13 +95,13 @@
                                                                         <rect key="frame" x="0.0" y="189.5" width="375" height="330"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="bottom" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xgs-sD-SWi">
-                                                                                <rect key="frame" x="29" y="0.0" width="317" height="183"/>
+                                                                                <rect key="frame" x="29" y="0.0" width="317" height="193.5"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOs-KZ-Zz4">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="183"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="193.5"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rf3-Tw-0Bc">
-                                                                                                <rect key="frame" x="0.0" y="76" width="32" height="32"/>
+                                                                                                <rect key="frame" x="0.0" y="81.5" width="32" height="32"/>
                                                                                                 <subviews>
                                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3z-9k-4Uq">
                                                                                                         <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
@@ -130,7 +130,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0y-lN-dUc" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                                        <rect key="frame" x="50.5" y="6" width="60" height="177"/>
+                                                                                        <rect key="frame" x="50.5" y="16.5" width="60" height="177"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2E-Nc-xEh">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
@@ -171,7 +171,7 @@
                                                                                         </connections>
                                                                                     </view>
                                                                                     <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKg-Sa-YNh" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                                        <rect key="frame" x="128.5" y="6" width="60" height="177"/>
+                                                                                        <rect key="frame" x="128.5" y="16.5" width="60" height="177"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeX-9Y-WGe">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
@@ -213,7 +213,7 @@
                                                                                         </connections>
                                                                                     </view>
                                                                                     <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGz-ff-KfF" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                                        <rect key="frame" x="207" y="6" width="60" height="177"/>
+                                                                                        <rect key="frame" x="207" y="16.5" width="60" height="177"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2H-yA-RLi">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
@@ -221,10 +221,17 @@
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
-                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="img_predictedstripes" translatesAutoresizingMaskIntoConstraints="NO" id="QEx-t6-edt">
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESy-W2-Yxa">
                                                                                                 <rect key="frame" x="0.0" y="22" width="60" height="134"/>
+                                                                                                <color key="backgroundColor" red="0.0" green="0.43137254901960786" blue="0.73333333333333328" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                                                                                 <constraints>
-                                                                                                    <constraint firstAttribute="height" constant="134" id="20W-ma-twg"/>
+                                                                                                    <constraint firstAttribute="height" constant="134" id="vuk-rf-o8G"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="img_predictedstripes" translatesAutoresizingMaskIntoConstraints="NO" id="QEx-t6-edt">
+                                                                                                <rect key="frame" x="0.0" y="56" width="60" height="100"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="100" id="20W-ma-twg"/>
                                                                                                 </constraints>
                                                                                             </imageView>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qnq-y9-pQd">
@@ -236,16 +243,20 @@
                                                                                         </subviews>
                                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <constraints>
+                                                                                            <constraint firstAttribute="trailing" secondItem="ESy-W2-Yxa" secondAttribute="trailing" id="0BD-Bo-D8Q"/>
                                                                                             <constraint firstItem="QEx-t6-edt" firstAttribute="leading" secondItem="fGz-ff-KfF" secondAttribute="leading" id="8az-iM-iW7"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="Qnq-y9-pQd" secondAttribute="trailing" id="96Q-OQ-LGd"/>
+                                                                                            <constraint firstItem="ESy-W2-Yxa" firstAttribute="leading" secondItem="fGz-ff-KfF" secondAttribute="leading" id="9sR-aa-yC5"/>
                                                                                             <constraint firstItem="B2H-yA-RLi" firstAttribute="top" secondItem="fGz-ff-KfF" secondAttribute="top" id="9we-X9-mbA"/>
                                                                                             <constraint firstAttribute="width" constant="60" id="ACX-uv-sd9"/>
+                                                                                            <constraint firstItem="QEx-t6-edt" firstAttribute="top" secondItem="B2H-yA-RLi" secondAttribute="bottom" constant="39" id="AFc-7e-CKW"/>
                                                                                             <constraint firstItem="Qnq-y9-pQd" firstAttribute="top" secondItem="QEx-t6-edt" secondAttribute="bottom" constant="4" id="C7J-uu-fcp"/>
-                                                                                            <constraint firstItem="QEx-t6-edt" firstAttribute="top" secondItem="B2H-yA-RLi" secondAttribute="bottom" constant="5" id="KNv-Vg-ALs"/>
                                                                                             <constraint firstItem="B2H-yA-RLi" firstAttribute="leading" secondItem="fGz-ff-KfF" secondAttribute="leading" id="PbI-Aa-O4m"/>
+                                                                                            <constraint firstItem="Qnq-y9-pQd" firstAttribute="top" secondItem="ESy-W2-Yxa" secondAttribute="bottom" constant="4" id="Qgl-P5-Ljh"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="QEx-t6-edt" secondAttribute="trailing" id="hX0-bc-2fZ"/>
                                                                                             <constraint firstAttribute="bottom" secondItem="Qnq-y9-pQd" secondAttribute="bottom" id="mvB-Uc-8Ar"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="B2H-yA-RLi" secondAttribute="trailing" id="or6-cr-H8l"/>
+                                                                                            <constraint firstItem="ESy-W2-Yxa" firstAttribute="top" secondItem="B2H-yA-RLi" secondAttribute="bottom" constant="5" id="v6a-Qk-ayp"/>
                                                                                             <constraint firstItem="Qnq-y9-pQd" firstAttribute="leading" secondItem="fGz-ff-KfF" secondAttribute="leading" id="yCz-TV-Npb"/>
                                                                                         </constraints>
                                                                                         <connections>
@@ -253,10 +264,10 @@
                                                                                         </connections>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMm-nk-p6E">
-                                                                                        <rect key="frame" x="285" y="0.0" width="32" height="183"/>
+                                                                                        <rect key="frame" x="285" y="0.0" width="32" height="193.5"/>
                                                                                         <subviews>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M0Q-yE-JaH">
-                                                                                                <rect key="frame" x="0.0" y="75.5" width="32" height="32"/>
+                                                                                                <rect key="frame" x="0.0" y="81" width="32" height="32"/>
                                                                                                 <subviews>
                                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zd-LH-vJB">
                                                                                                         <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
@@ -295,13 +306,13 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnW-KF-mCh">
-                                                                                <rect key="frame" x="29" y="191" width="317" height="139"/>
+                                                                                <rect key="frame" x="29" y="201.5" width="317" height="128.5"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rv2-7O-aHB">
-                                                                                        <rect key="frame" x="0.0" y="22" width="317" height="117"/>
+                                                                                        <rect key="frame" x="0.0" y="22" width="317" height="106.5"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="MMM dd, YYYY - MMM dd, YYYY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gW9-pT-oLp">
-                                                                                                <rect key="frame" x="53" y="16" width="212.5" height="19.5"/>
+                                                                                                <rect key="frame" x="50.5" y="16" width="216" height="16.5"/>
                                                                                                 <accessibility key="accessibilityConfiguration">
                                                                                                     <bool key="isElement" value="NO"/>
                                                                                                 </accessibility>
@@ -310,7 +321,7 @@
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your bill was $X. You used an average of Y kWh per day." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ca6-Po-YNM">
-                                                                                                <rect key="frame" x="16" y="68" width="285" height="33"/>
+                                                                                                <rect key="frame" x="16" y="62.5" width="285" height="28"/>
                                                                                                 <accessibility key="accessibilityConfiguration">
                                                                                                     <bool key="isElement" value="NO"/>
                                                                                                 </accessibility>
@@ -319,7 +330,7 @@
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Avg. Temp X" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mST-JC-TNs">
-                                                                                                <rect key="frame" x="125" y="38.5" width="68" height="16.5"/>
+                                                                                                <rect key="frame" x="125.5" y="35.5" width="67.5" height="14"/>
                                                                                                 <accessibility key="accessibilityConfiguration">
                                                                                                     <bool key="isElement" value="NO"/>
                                                                                                 </accessibility>
@@ -560,6 +571,7 @@
                         <outlet property="barDescriptionTriangleCenterXConstraint" destination="cJd-vq-dwB" id="pg7-h5-GOu"/>
                         <outlet property="barGraphStackView" destination="xgs-sD-SWi" id="2IG-Vr-Q21"/>
                         <outlet property="billGraphDetailView" destination="Rv2-7O-aHB" id="93V-Z1-7A7"/>
+                        <outlet property="centerGraphView" destination="P2p-yb-PlW" id="HD6-kx-36k"/>
                         <outlet property="collectionView" destination="b5m-WW-Tg2" id="F63-zn-9pg"/>
                         <outlet property="collectionViewHeight" destination="xAE-WT-D6A" id="n54-eJ-8Iv"/>
                         <outlet property="compareBillTitlelabel" destination="hio-oA-8Gu" id="353-MA-R5S"/>
@@ -570,12 +582,15 @@
                         <outlet property="graphDetailDescriptionLabel" destination="ca6-Po-YNM" id="GTe-jT-RNh"/>
                         <outlet property="graphDetailTemperatureLabel" destination="mST-JC-TNs" id="We5-TV-a9c"/>
                         <outlet property="leftGraphButtonView" destination="rf3-Tw-0Bc" id="IEf-8z-TQd"/>
+                        <outlet property="leftGraphView" destination="dKk-5X-by1" id="VTa-j7-e7e"/>
                         <outlet property="myUsageToolsLabel" destination="TZf-vb-Dqq" id="Ek1-6n-IzH"/>
                         <outlet property="nextMonthGraphDateLabel" destination="Qnq-y9-pQd" id="wch-AW-UhN"/>
                         <outlet property="nextMonthGraphValueLabel" destination="B2H-yA-RLi" id="UgG-sa-ckK"/>
                         <outlet property="previousMonthGraphDateLabel" destination="PnL-wt-i7Y" id="1ro-6D-UnH"/>
                         <outlet property="previousMonthGraphValueLabel" destination="Y2E-Nc-xEh" id="hO7-WM-ta0"/>
+                        <outlet property="rightGraphBackgroundView" destination="ESy-W2-Yxa" id="RTO-hZ-J0n"/>
                         <outlet property="rightGraphButtonView" destination="M0Q-yE-JaH" id="GCF-gK-Mjw"/>
+                        <outlet property="rightGraphForegroundImageView" destination="QEx-t6-edt" id="vbe-b3-XIf"/>
                         <outlet property="scrollView" destination="auv-xw-MUC" id="gZz-P8-Fkb"/>
                         <outlet property="segmentControl" destination="b9o-Te-xzG" id="Xtq-0L-Itv"/>
                     </connections>

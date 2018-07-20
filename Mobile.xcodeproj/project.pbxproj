@@ -187,7 +187,9 @@
 		358DE09E20F92439002C544E /* MyUsageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35376C8920F92239007E50F7 /* MyUsageCollectionViewCell.xib */; };
 		358DE09F20F9243B002C544E /* MyUsageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35376C8B20F92244007E50F7 /* MyUsageCollectionViewCell.swift */; };
 		358DE0A020F9243B002C544E /* MyUsageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35376C8B20F92244007E50F7 /* MyUsageCollectionViewCell.swift */; };
-		358DE0A320FE855B002C544E /* PECOAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AC06CD1E521B7B00BBA4ED /* PECOAssets.xcassets */; };
+		358DE0A521021471002C544E /* UsageTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageTabViewModel.swift */; };
+		358DE0A821021B64002C544E /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
+		358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A921021B7A002C544E /* UnavailableView.swift */; };
 		35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
 		35AFB41A20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
 		35AFB41B20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
@@ -2195,6 +2197,9 @@
 		358BD21120F7A9FC00DA2012 /* UsageTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTabViewController.swift; sourceTree = "<group>"; };
 		358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillImpactDropdownView.xib; sourceTree = "<group>"; };
 		358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillImpactDropdownView.swift; sourceTree = "<group>"; };
+		358DE0A421021471002C544E /* UsageTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTabViewModel.swift; sourceTree = "<group>"; };
+		358DE0A721021B64002C544E /* UnavailableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnavailableView.xib; sourceTree = "<group>"; };
+		358DE0A921021B7A002C544E /* UnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableView.swift; sourceTree = "<group>"; };
 		35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRoundCorners.swift; sourceTree = "<group>"; };
 		35AFB42A20C82DA0000312B9 /* MaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
@@ -3218,6 +3223,7 @@
 		358BD21020F7A9CE00DA2012 /* Usage Tab */ = {
 			isa = PBXGroup;
 			children = (
+				358DE0A421021471002C544E /* UsageTabViewModel.swift */,
 				358BD21120F7A9FC00DA2012 /* UsageTabViewController.swift */,
 				35376C8020F91D19007E50F7 /* UsageTabCollectionViewDelegate.swift */,
 			);
@@ -3233,6 +3239,15 @@
 				35376C6B20F914D5007E50F7 /* Bill Impact Dropdown View */,
 			);
 			path = "Usage Tab";
+			sourceTree = "<group>";
+		};
+		358DE0A621021B46002C544E /* Unavailable View */ = {
+			isa = PBXGroup;
+			children = (
+				358DE0A721021B64002C544E /* UnavailableView.xib */,
+				358DE0A921021B7A002C544E /* UnavailableView.swift */,
+			);
+			path = "Unavailable View";
 			sourceTree = "<group>";
 		};
 		385AF2291F2791A5001E3619 /* Unauthenticated OTP Animation Text */ = {
@@ -3877,6 +3892,7 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				358DE0A621021B46002C544E /* Unavailable View */,
 				358BD21520F8FB1500DA2012 /* Usage Tab */,
 				B068DB5420D2E88700930589 /* Home Edit */,
 				B0030D062097BC5500327A3D /* MaintenanceModeView */,
@@ -5353,6 +5369,7 @@
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
 				385AF2231F27915A001E3619 /* img_0.png in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
+				358DE0A821021B64002C544E /* UnavailableView.xib in Resources */,
 				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
 				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
 				35376C8A20F92239007E50F7 /* MyUsageCollectionViewCell.xib in Resources */,
@@ -5610,7 +5627,6 @@
 				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA791EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
-				358DE0A320FE855B002C544E /* PECOAssets.xcassets in Resources */,
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				35376C7720F9179F007E50F7 /* UsageToolsCollectionViewCell.xib in Resources */,
@@ -5934,6 +5950,7 @@
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A1E1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
+				358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */,
 				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				E87C413E1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
@@ -5992,6 +6009,7 @@
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				B5A16F351F0D44110016952C /* SpeedpayApi.swift in Sources */,
 				82A18EE31EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
+				358DE0A521021471002C544E /* UsageTabViewModel.swift in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				387E5C471F1FCC4600D6710D /* Percentage.swift in Sources */,

@@ -51,6 +51,9 @@ class BillImpactDropdownView: UIView {
     @IBOutlet weak var billPeriodCircleButton: UIView! {
         didSet {
             billPeriodCircleButton.layer.cornerRadius = billPeriodCircleButton.frame.height / 2
+            billPeriodCircleButton.layer.borderWidth = 2
+            billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
+            billPeriodCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
     @IBOutlet weak var billPeriodTitleLabel: UILabel! {
@@ -61,6 +64,9 @@ class BillImpactDropdownView: UIView {
     @IBOutlet weak var weatherCircleButton: UIView! {
         didSet {
             weatherCircleButton.layer.cornerRadius = weatherCircleButton.frame.height / 2
+            weatherCircleButton.layer.borderWidth = 2
+            weatherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
+            weatherCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
     @IBOutlet weak var weatherTitleLabel: UILabel! {
@@ -71,6 +77,9 @@ class BillImpactDropdownView: UIView {
     @IBOutlet weak var otherCircleButton: UIView! {
         didSet {
             otherCircleButton.layer.cornerRadius = otherCircleButton.frame.height / 2
+            otherCircleButton.layer.borderWidth = 2
+            otherCircleButton.layer.borderColor = UIColor.clear.cgColor
+            otherCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
     @IBOutlet weak var otherTitleLabel: UILabel! {
@@ -119,6 +128,27 @@ class BillImpactDropdownView: UIView {
         }
     }
     
+    private var selectedPillView: UIView!{
+        didSet {
+            switch selectedPillView.tag {
+            case 1:
+                billPeriodCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
+                weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
+                otherCircleButton.layer.borderColor = UIColor.clear.cgColor
+            case 2:
+                billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
+                weatherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
+                otherCircleButton.layer.borderColor = UIColor.clear.cgColor
+            case 3:
+                billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
+                weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
+                otherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
+            default:
+                break
+            }
+        }
+    }
+    
     
     // MARK: - Init
     
@@ -163,6 +193,7 @@ class BillImpactDropdownView: UIView {
     }
     
     @IBAction func factorImpactPress(_ sender: ButtonControl) {
+        selectedPillView = sender
         let centerPoint = sender.center
         let convertedPoint = likelyReasonsStackView.convert(centerPoint, to: likelyReasonsDescriptionView)
         

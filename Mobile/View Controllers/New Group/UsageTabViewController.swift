@@ -28,6 +28,27 @@ class UsageTabViewController: AccountPickerViewController {
             compareBillTitlelabel.font = OpenSans.semibold.of(textStyle: .headline)
         }
     }
+    @IBOutlet weak var leftGraphView: UIView! {
+        didSet {
+            leftGraphView.layer.cornerRadius = 5
+        }
+    }
+    
+    @IBOutlet weak var centerGraphView: UIView! {
+        didSet {
+            centerGraphView.layer.cornerRadius = 5
+        }
+    }
+    @IBOutlet weak var rightGraphBackgroundView: UIView! {
+        didSet {
+            rightGraphBackgroundView.layer.cornerRadius = 5
+        }
+    }
+    @IBOutlet weak var rightGraphForegroundImageView: UIImageView! {
+        didSet {
+            rightGraphForegroundImageView.layer.cornerRadius = 5
+        }
+    }
     @IBOutlet weak var leftGraphButtonView: UIView! {
         didSet {
             leftGraphButtonView.layer.cornerRadius = 16
@@ -118,8 +139,6 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
-    override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
-    
     
     // MARK: - View Life Cycle
     
@@ -127,13 +146,19 @@ class UsageTabViewController: AccountPickerViewController {
         super.viewDidLoad()
         
         // Setup Account Picker
-        navigationController?.navigationBar.isHidden = true
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
         // Register Collection View XIB Cells
         collectionView.register(UINib.init(nibName: MyUsageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyUsageCollectionViewCell.identifier)
         collectionView.register(UINib.init(nibName: UsageToolsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UsageToolsCollectionViewCell.identifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
