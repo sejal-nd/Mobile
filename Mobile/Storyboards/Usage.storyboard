@@ -226,7 +226,7 @@
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
-                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESy-W2-Yxa">
+                                                                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESy-W2-Yxa">
                                                                                                 <rect key="frame" x="0.0" y="22" width="60" height="134"/>
                                                                                                 <color key="backgroundColor" red="0.0" green="0.43137254901960786" blue="0.73333333333333328" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                                                                                 <constraints>
@@ -274,7 +274,7 @@
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M0Q-yE-JaH">
                                                                                                 <rect key="frame" x="0.0" y="81" width="32" height="32"/>
                                                                                                 <subviews>
-                                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zd-LH-vJB">
+                                                                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zd-LH-vJB">
                                                                                                         <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                                                                                         <state key="normal" image="ic_caret"/>
                                                                                                         <connections>
@@ -591,8 +591,10 @@
                         <outlet property="myUsageToolsLabel" destination="TZf-vb-Dqq" id="Ek1-6n-IzH"/>
                         <outlet property="nextMonthGraphDateLabel" destination="Qnq-y9-pQd" id="wch-AW-UhN"/>
                         <outlet property="nextMonthGraphValueLabel" destination="B2H-yA-RLi" id="UgG-sa-ckK"/>
+                        <outlet property="nextYearButton" destination="1zd-LH-vJB" id="QO7-vh-J64"/>
                         <outlet property="previousMonthGraphDateLabel" destination="PnL-wt-i7Y" id="1ro-6D-UnH"/>
                         <outlet property="previousMonthGraphValueLabel" destination="Y2E-Nc-xEh" id="hO7-WM-ta0"/>
+                        <outlet property="previousYearButton" destination="V3z-9k-4Uq" id="yL2-BX-wTC"/>
                         <outlet property="rightGraphBackgroundView" destination="ESy-W2-Yxa" id="RTO-hZ-J0n"/>
                         <outlet property="rightGraphButtonView" destination="M0Q-yE-JaH" id="GCF-gK-Mjw"/>
                         <outlet property="rightGraphForegroundImageView" destination="QEx-t6-edt" id="vbe-b3-XIf"/>

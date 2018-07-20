@@ -138,6 +138,20 @@ class UsageTabViewController: AccountPickerViewController {
             graphDetailDescriptionLabel.textColor = .black
         }
     }
+    @IBOutlet weak var previousYearButton: UIButton!
+    @IBOutlet weak var nextYearButton: UIButton!
+    
+    private var isViewingCurrentYear = true {
+        didSet {
+            if isViewingCurrentYear {
+                nextYearButton.isEnabled = false
+                previousYearButton.isEnabled = true
+            } else {
+                nextYearButton.isEnabled = true
+                previousYearButton.isEnabled = false
+            }
+        }
+    }
     
     
     // MARK: - View Life Cycle
@@ -175,11 +189,11 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     @IBAction func previousBillPress(_ sender: Any) {
-        print("Previous")
+        isViewingCurrentYear = false
     }
     
     @IBAction func nextBillPress(_ sender: Any) {
-        print("Next")
+        isViewingCurrentYear = true
     }
     
     @IBAction func barGraphPress(_ sender: ButtonControl) {
