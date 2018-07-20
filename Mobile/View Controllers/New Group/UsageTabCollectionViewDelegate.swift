@@ -30,17 +30,23 @@ extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            break
-        case 1:
-            break
-        case 2:
-            break
-        case 3:
-            break
-        case 4:
-            break
+        let usageToolCard = viewModel.usageToolCards[indexPath.row]
+        
+        switch usageToolCard.title {
+        case "View My Usage Data":
+            print("vmud")
+        case "PeakRewards":
+            print("pr")
+        case "Hourly Pricing":
+            print("hp")
+        case "Top 5 Energy Tips":
+            print("t5")
+        case "My Home Profile":
+            print("myhp")
+        case "Smart Energy Rewards":
+            print("ser")
+        case "Peak Time Savings":
+            print("pts")
         default:
             break
         }
