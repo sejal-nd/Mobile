@@ -50,7 +50,14 @@ extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDe
         case 0:
             return CGSize(width: collectionView.bounds.size.width - 32, height: 110)
         default:
-            return CGSize(width: (collectionView.bounds.size.width - 40) / 2, height: 110)
+            let temp = true
+            if indexPath.row == 1 && temp {
+                print("MINI")
+                return CGSize(width: 0, height: 0)
+            } else {
+                print("LARGO")
+                return CGSize(width: (collectionView.bounds.size.width - 40) / 2, height: 110)
+            }
         }
     }
     

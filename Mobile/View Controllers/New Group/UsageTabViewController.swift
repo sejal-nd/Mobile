@@ -153,6 +153,8 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
+    let viewModel = UsageTabViewModel(accountService: ServiceFactory.createAccountService(), usageService: ServiceFactory.createUsageService())
+    
     
     // MARK: - View Life Cycle
     
@@ -221,6 +223,15 @@ class UsageTabViewController: AccountPickerViewController {
     private func reloadData() {
         collectionView.reloadData()
         collectionViewHeight.constant = collectionView.contentSize.height + 16
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { [weak self] in
+            guard let `self` = self else { return }
+            self.reloadData()
+            //guard let accountDetail = self.viewModel.accountDetail else { return }
+            // Determine which collectionView things to show.
+        }
     }
     
 }
