@@ -21,6 +21,7 @@ struct UserDefaultKeys {
     static let customerIdentifier = "kCustomerIdentifier" // Persist Customer Identifer (from login) to disk
     
     static let paymentDetailsDictionary = "kPaymentDetailsDictionary"
+    static let reportedOutagesDictionary = "kReportedOutagesDictionary"
     
     static let temperatureScale = "kPTemperatureScale"
     

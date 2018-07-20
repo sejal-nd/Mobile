@@ -36,6 +36,7 @@ class HomeViewController: AccountPickerViewController {
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
     var projectedBillCardView: HomeProjectedBillCardView?
+    var outageCardView: HomeOutageCardView?
     var topPersonalizeButton: ConversationalButton?
     
     var refreshDisposable: Disposable?
@@ -48,7 +49,8 @@ class HomeViewController: AccountPickerViewController {
                                   walletService: ServiceFactory.createWalletService(),
                                   paymentService: ServiceFactory.createPaymentService(),
                                   usageService: ServiceFactory.createUsageService(),
-                                  authService: ServiceFactory.createAuthenticationService())
+                                  authService: ServiceFactory.createAuthenticationService(),
+                                  outageService: ServiceFactory.createOutageService())
     
     // Should be moved when we add the Usage tab.
     var shortcutItem = ShortcutItem.none
@@ -254,6 +256,8 @@ class HomeViewController: AccountPickerViewController {
             templateCardView = nil
         case .projectedBill:
             projectedBillCardView = nil
+        case .outageStatus:
+            outageCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -304,6 +308,17 @@ class HomeViewController: AccountPickerViewController {
                 bindProjectedBillCard()
             }
             return projectedBillCardView
+        case .outageStatus:
+            let outageCardView: HomeOutageCardView
+            if let outageCard = self.outageCardView {
+                outageCardView = outageCard
+            } else {
+                outageCardView = HomeOutageCardView.create(withViewModel: viewModel.outageCardViewModel)
+                self.outageCardView = outageCardView
+                bindOutageCard()
+            }
+            
+            return outageCardView
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -415,6 +430,22 @@ class HomeViewController: AccountPickerViewController {
         }).disposed(by: projectedBillCardView.disposeBag)
     }
     
+    func bindOutageCard() {
+        guard let outageCardView = outageCardView else { return }
+        
+        outageCardView.reportOutageTapped
+            .drive(onNext: { [weak self] outageStatus in
+                self?.performSegue(withIdentifier: "reportOutageSegue", sender: outageStatus)
+            })
+            .disposed(by: outageCardView.bag)
+        
+        outageCardView.viewOutageMapTapped
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "outageMapSegue", sender: nil)
+            })
+            .disposed(by: outageCardView.bag)
+    }
+    
     @objc func killRefresh() -> Void {
         self.refreshControl?.endRefreshing()
         self.scrollView!.alwaysBounceVertical = true
@@ -492,6 +523,22 @@ class HomeViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         } else if let vc = segue.destination as? TotalSavingsViewController, let accountDetail = sender as? AccountDetail {
             vc.eventResults = accountDetail.serInfo.eventResults
+        } else if let vc = segue.destination as? ReportOutageViewController, let currentOutageStatus = sender as? OutageStatus {
+            vc.viewModel.outageStatus = currentOutageStatus
+            if let phone = currentOutageStatus.contactHomeNumber {
+                vc.viewModel.phoneNumber.value = phone
+            }
+            
+            // Show a toast only after an outage is reported from this workflow
+            RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
+                .drive(onNext: { [weak self] in
+                    guard let this = self else { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                        this.view.showToast(NSLocalizedString("Outage report received", comment: ""))
+                        Analytics.log(event: .reportOutageAuthComplete)
+                    })
+                })
+                .disposed(by: vc.disposeBag)
         }
     }
     
@@ -526,5 +573,5 @@ extension HomeViewController: BGEAutoPayViewControllerDelegate {
             self.view.showToast(message)
         })
     }
+    
 }
-

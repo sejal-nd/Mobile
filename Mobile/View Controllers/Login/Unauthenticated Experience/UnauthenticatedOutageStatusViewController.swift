@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class UnauthenticatedOutageStatusViewController: UIViewController {
 
@@ -15,6 +17,8 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
     @IBOutlet weak var reportOutageButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
+    
+    let disposeBag = DisposeBag()
     
     var analyticsSource: AnalyticsOutageSource!
     var viewModel: UnauthenticatedOutageViewModel! // Passed from screen that pushes this
@@ -35,8 +39,13 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
             outageStatusButton.setPowerOnState()
         }
         
-        reportOutageButton.setDetailLabel(text: "", checkHidden: true)
-        reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
+        if let _ = viewModel.reportedOutage {
+            reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
+            reportOutageButton.accessibilityLabel = String.localizedStringWithFormat("Report outage. %@", viewModel.outageReportedDateString)
+        } else {
+            reportOutageButton.setDetailLabel(text: "", checkHidden: true)
+            reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
+        }
         
         footerTextView.font = SystemFont.regular.of(textStyle: .headline)
         footerTextView.textContainerInset = .zero
@@ -44,6 +53,15 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.text = viewModel.footerText
         footerTextView.linkTapDelegate = self
+        
+        RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in
+                guard let this = self else { return }
+                this.outageStatusButton.setReportedState(estimatedRestorationDateString: this.viewModel.estimatedRestorationDateString)
+                this.reportOutageButton.setDetailLabel(text: this.viewModel.outageReportedDateString, checkHidden: false)
+                this.reportOutageButton.accessibilityLabel = String.localizedStringWithFormat("Report outage. %@", this.viewModel.outageReportedDateString)
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,7 +92,16 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
             if let phone = viewModel.selectedOutageStatus!.contactHomeNumber {
                 vc.viewModel.phoneNumber.value = phone
             }
-            vc.delegate = self
+            
+            RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
+                .drive(onNext: { [weak self] in
+                    guard let this = self else { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                        this.view.showToast(NSLocalizedString("Outage report received", comment: ""))
+                        Analytics.log(event: .reportAnOutageUnAuthComplete)
+                    })
+                })
+                .disposed(by: vc.disposeBag)
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.unauthenticatedExperience = true
         }
@@ -92,21 +119,6 @@ extension UnauthenticatedOutageStatusViewController: OutageStatusButtonDelegate 
             present(alert, animated: true, completion: nil)
         }
     }
-}
-
-extension UnauthenticatedOutageStatusViewController: ReportOutageViewControllerDelegate {
-    
-    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?) {
-        viewModel.reportedOutage = reportedOutage
-        outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-        reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
-        reportOutageButton.accessibilityLabel = String(format: NSLocalizedString("Report outage. %@", comment: ""), viewModel.outageReportedDateString)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-            Analytics.log(event: .reportAnOutageUnAuthComplete)
-        })
-    }
-    
 }
 
 extension UnauthenticatedOutageStatusViewController: DataDetectorTextViewLinkTapDelegate {
