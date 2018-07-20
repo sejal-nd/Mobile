@@ -813,6 +813,12 @@
 		B094A35820D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */; };
 		B094A35920D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */; };
 		B094A35A20D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */; };
+		B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A63C210270820028F90F /* BillBreakdownViewModel.swift */; };
+		B094A63E210270830028F90F /* BillBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A63C210270820028F90F /* BillBreakdownViewModel.swift */; };
+		B094A63F210270830028F90F /* BillBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A63C210270820028F90F /* BillBreakdownViewModel.swift */; };
+		B094A640210270830028F90F /* BillBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A63C210270820028F90F /* BillBreakdownViewModel.swift */; };
+		B094A641210270830028F90F /* BillBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A63C210270820028F90F /* BillBreakdownViewModel.swift */; };
+		B094A642210270830028F90F /* BillBreakdownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A63C210270820028F90F /* BillBreakdownViewModel.swift */; };
 		B0A79B0720E2BD1100E04DD8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B0620E2BD1100E04DD8 /* Version.swift */; };
 		B0A79B0820E2BD1100E04DD8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B0620E2BD1100E04DD8 /* Version.swift */; };
 		B0A79B0920E2BD1100E04DD8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B0620E2BD1100E04DD8 /* Version.swift */; };
@@ -1538,10 +1544,6 @@
 		E8B956E21F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
 		E8B956E31F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
 		E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
-		E8B9BD891F88212A007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
-		E8B9BD8A1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
-		E8B9BD8B1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
-		E8B9BD901F882196007C824C /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
 		E8B9BD921F8826FD007C824C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B9BD911F8826FD007C824C /* Charts.framework */; };
 		E8B9BD931F882732007C824C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B9BD911F8826FD007C824C /* Charts.framework */; };
 		E8B9BD941F882742007C824C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B9BD911F8826FD007C824C /* Charts.framework */; };
@@ -1727,7 +1729,6 @@
 		E8F62B52200924410077B3DA /* OpcoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */; };
 		E8F62B53200924410077B3DA /* AddBankFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */; };
 		E8F62B54200924410077B3DA /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D91ECE236000CAB8A6 /* WalletService.swift */; };
-		E8F62B55200924410077B3DA /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
 		E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
 		E8F62B57200924410077B3DA /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */; };
 		E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A16F341F0D44110016952C /* SpeedpayApi.swift */; };
@@ -1877,7 +1878,6 @@
 		E8F62C07200924570077B3DA /* OpcoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */; };
 		E8F62C08200924570077B3DA /* AddBankFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F6122C1F1E4E1900A4F9DA /* AddBankFormViewModel.swift */; };
 		E8F62C09200924570077B3DA /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D91ECE236000CAB8A6 /* WalletService.swift */; };
-		E8F62C0A200924570077B3DA /* BillAnalysisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */; };
 		E8F62C0B200924570077B3DA /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
 		E8F62C0C200924570077B3DA /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */; };
 		E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A16F341F0D44110016952C /* SpeedpayApi.swift */; };
@@ -2395,6 +2395,7 @@
 		B094A34C20D9442400E81303 /* HomeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCard.swift; sourceTree = "<group>"; };
 		B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditEmptyCell.swift; sourceTree = "<group>"; };
 		B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditRestoreDefaultCell.swift; sourceTree = "<group>"; };
+		B094A63C210270820028F90F /* BillBreakdownViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillBreakdownViewModel.swift; sourceTree = "<group>"; };
 		B0A79B0620E2BD1100E04DD8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUITestUtil.swift; sourceTree = "<group>"; };
 		B0AD7FED205841C80090B40D /* SequenceForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceForEach.swift; sourceTree = "<group>"; };
@@ -2725,7 +2726,6 @@
 		E89518721F0A9ABE005E0E92 /* ReviewPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPaymentViewController.swift; sourceTree = "<group>"; };
 		E89548F41EC646A200730022 /* BGEasyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEasyViewController.swift; sourceTree = "<group>"; };
 		E89983E01F61F4B0001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageValidateAccountResultViewController.swift; sourceTree = "<group>"; };
-		E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillAnalysisViewModel.swift; sourceTree = "<group>"; };
 		E89C16281F87D3950023DC02 /* BillBreakdownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BillBreakdownViewModel.swift; path = "Mobile/View Models/Bill/BillBreakdownViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		E89C16291F87D6AE0023DC02 /* UsageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageService.swift; sourceTree = "<group>"; };
 		E89D07A01E609DC900F87F87 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -3520,8 +3520,8 @@
 				E8C4531D1EF42E8200F5C781 /* AutoPay */,
 				2F86FB771F2661B100F1A55A /* History */,
 				E876A8591ECF372600CA63BF /* Wallet */,
+				B094A63C210270820028F90F /* BillBreakdownViewModel.swift */,
 				82A18E591EB918C900BE9F21 /* BillViewModel.swift */,
-				E89C16231F87D3900023DC02 /* BillAnalysisViewModel.swift */,
 				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
 				82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */,
 				E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */,
@@ -5971,6 +5971,7 @@
 				82E9B6121FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
+				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B092184D20A24CA400695888 /* MockData.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
@@ -6107,7 +6108,6 @@
 				8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
-				E8B9BD891F88212A007C824C /* BillAnalysisViewModel.swift in Sources */,
 				2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */,
 				B0EA71BF2090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399351F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
@@ -6294,6 +6294,7 @@
 				82E9B6141FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				E87926DC1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
+				B094A63F210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B092184F20A24CA400695888 /* MockData.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -6430,7 +6431,6 @@
 				8206D0191FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				01F6122F1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
-				E8B9BD8B1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399371F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
@@ -6617,6 +6617,7 @@
 				82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				E87926DB1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
+				B094A63E210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B092184E20A24CA400695888 /* MockData.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -6753,7 +6754,6 @@
 				8206D0181FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				01F6122E1F1E4E1900A4F9DA /* AddBankFormViewModel.swift in Sources */,
 				E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
-				E8B9BD8A1F88212B007C824C /* BillAnalysisViewModel.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C02090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399361F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
@@ -6835,7 +6835,6 @@
 				E83F027D1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				E8C6F2A51F1FEB7300C4644C /* AddBankFormViewModel.swift in Sources */,
 				54EDD2DD1ECE236000CAB8A6 /* WalletService.swift in Sources */,
-				E8B9BD901F882196007C824C /* BillAnalysisViewModel.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
 				B5A16F381F0D44160016952C /* SpeedpayApi.swift in Sources */,
@@ -6896,6 +6895,7 @@
 				B094A35020D9442400E81303 /* HomeCard.swift in Sources */,
 				E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* MaskedString.swift in Sources */,
+				B094A640210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E8EDC54D1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				E895E9AF1EBB8494003B38A1 /* ForgotUsernameViewModel.swift in Sources */,
@@ -7043,7 +7043,6 @@
 				E8F62B52200924410077B3DA /* OpcoUpdate.swift in Sources */,
 				E8F62B53200924410077B3DA /* AddBankFormViewModel.swift in Sources */,
 				E8F62B54200924410077B3DA /* WalletService.swift in Sources */,
-				E8F62B55200924410077B3DA /* BillAnalysisViewModel.swift in Sources */,
 				E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */,
 				E8F62B57200924410077B3DA /* OutageViewModel.swift in Sources */,
 				E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */,
@@ -7104,6 +7103,7 @@
 				B094A35120D9442400E81303 /* HomeCard.swift in Sources */,
 				E8F62B89200924410077B3DA /* UIViewAddShadow.swift in Sources */,
 				E8F62B8A200924410077B3DA /* MaskedString.swift in Sources */,
+				B094A641210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E8F62B8B200924410077B3DA /* MinimumVersion.swift in Sources */,
 				E8F62B8C200924410077B3DA /* ServiceResult.swift in Sources */,
 				E8F62B8D200924410077B3DA /* ForgotUsernameViewModel.swift in Sources */,
@@ -7209,7 +7209,6 @@
 				E8F62C07200924570077B3DA /* OpcoUpdate.swift in Sources */,
 				E8F62C08200924570077B3DA /* AddBankFormViewModel.swift in Sources */,
 				E8F62C09200924570077B3DA /* WalletService.swift in Sources */,
-				E8F62C0A200924570077B3DA /* BillAnalysisViewModel.swift in Sources */,
 				E8F62C0B200924570077B3DA /* OutageInfo.swift in Sources */,
 				E8F62C0C200924570077B3DA /* OutageViewModel.swift in Sources */,
 				E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */,
@@ -7270,6 +7269,7 @@
 				B094A35220D9442400E81303 /* HomeCard.swift in Sources */,
 				E8F62C3E200924570077B3DA /* UIViewAddShadow.swift in Sources */,
 				E8F62C3F200924570077B3DA /* MaskedString.swift in Sources */,
+				B094A642210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E8F62C40200924570077B3DA /* MinimumVersion.swift in Sources */,
 				E8F62C41200924570077B3DA /* ServiceResult.swift in Sources */,
 				E8F62C42200924570077B3DA /* ForgotUsernameViewModel.swift in Sources */,
