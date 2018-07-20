@@ -101,12 +101,26 @@ class HomeOutageCardView: UIView {
     }
     
     private func bindViewModel() {
+        // Show/Hide States
+        
+        // Different Overall States
+        viewModel.showContentView.not().drive(contentView.rx.isHidden).disposed(by: bag)
+        viewModel.showErrorState.not().drive(errorView.rx.isHidden).disposed(by: bag)
+        viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
+        viewModel.showCustomErrorView.not().drive(customErrorView.rx.isHidden).disposed(by: bag)
+        viewModel.showOutstandingBalanceWarning.not().drive(nonPayFinaledView.rx.isHidden).disposed(by: bag)
+        viewModel.showGasOnly.not().drive(gasOnlyView.rx.isHidden).disposed(by: bag)
+        
+        // Sub-states
+        viewModel.showEtr.not().drive(restorationView.rx.isHidden).disposed(by: bag)
+        viewModel.showReportedOutageTime.not().drive(outageReportedView.rx.isHidden).disposed(by: bag)
+        
         // Bind Model to UI
         viewModel.powerStatusImage.drive(imageView.rx.image).disposed(by: bag)
         viewModel.powerStatus.drive(powerStatusLabel.rx.text).disposed(by: bag)
         
         viewModel.etrText
-            .map { $0?.attributedString(withLineHeight: 20, textAlignment: .center) }
+            .map { $0.attributedString(withLineHeight: 20, textAlignment: .center) }
             .drive(restorationStatusLabel.rx.attributedText)
             .disposed(by: bag)
         
@@ -115,20 +129,6 @@ class HomeOutageCardView: UIView {
         viewModel.accountNonPayFinaledMessage
             .drive(nonPayFinaledTextView.rx.attributedText)
             .disposed(by: bag)
-        
-        // Show/Hide States
-        viewModel.shouldShowContentView.not().drive(contentView.rx.isHidden).disposed(by: bag)
-        viewModel.shouldShowRestorationTime.not().drive(restorationView.rx.isHidden).disposed(by: bag)
-        
-        // show error state if an error is received
-        viewModel.shouldShowErrorState.not().drive(errorView.rx.isHidden).disposed(by: bag)
-        
-        // Maintenance Mode State
-        viewModel.shouldShowMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
-        
-        viewModel.showCustomErrorView.not().drive(customErrorView.rx.isHidden).disposed(by: bag)
-        viewModel.showOutstandingBalanceWarning.not().drive(nonPayFinaledView.rx.isHidden).disposed(by: bag)
-        viewModel.showGasOnly.not().drive(gasOnlyView.rx.isHidden).disposed(by: bag)
         
         viewModel.callToActionButtonText.drive(buttonControlLabel.rx.text).disposed(by: bag)
     }

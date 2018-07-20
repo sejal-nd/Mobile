@@ -84,10 +84,6 @@ class OutageViewModel {
         return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
     }
     
-    func clearReportedOutage() {
-        outageService.clearReportedOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
-    }
-    
     var estimatedRestorationDateString: String {
         if let reportedOutage = reportedOutage {
             if let reportedETR = reportedOutage.etr {

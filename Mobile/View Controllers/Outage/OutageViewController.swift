@@ -108,12 +108,12 @@ class OutageViewController: AccountPickerViewController {
             }
         }).disposed(by: disposeBag)
         
-        updateContent()
+        updateContent(outageJustReported: false)
         
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
         
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] in self?.updateContent() })
+            .drive(onNext: { [weak self] in self?.updateContent(outageJustReported: true) })
             .disposed(by: disposeBag)
         
         Observable.merge(noNetworkConnectionView.reload, maintenanceModeView.reload)
@@ -168,9 +168,9 @@ class OutageViewController: AccountPickerViewController {
         }
     }
     
-    func updateContent() {
+    func updateContent(outageJustReported: Bool) {
         if let currentOutageStatus = viewModel.currentOutageStatus {
-            layoutBigButtonContent()
+            layoutBigButtonContent(outageJustReported: outageJustReported)
             
             errorLabel.isHidden = true
             
@@ -187,7 +187,6 @@ class OutageViewController: AccountPickerViewController {
             
             // Update the Report Outage button
             if viewModel.reportedOutage != nil {
-                outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
                 reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
                 reportOutageButton.accessibilityLabel = String.localizedStringWithFormat("Report outage. %@", viewModel.outageReportedDateString)
             } else {
@@ -199,10 +198,10 @@ class OutageViewController: AccountPickerViewController {
         }
     }
     
-    func layoutBigButtonContent() {
+    func layoutBigButtonContent(outageJustReported: Bool) {
         let currentOutageStatus = viewModel.currentOutageStatus!
 
-        if viewModel.reportedOutage != nil {
+        if outageJustReported && viewModel.reportedOutage != nil {
             outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else if currentOutageStatus.activeOutage {
             outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
@@ -231,7 +230,7 @@ class OutageViewController: AccountPickerViewController {
             self?.loadingView.isHidden = true
             self?.maintenanceModeView.isHidden = true
             self?.setRefreshControlEnabled(enabled: true)
-            self?.updateContent()
+            self?.updateContent(outageJustReported: false)
             
             // If coming from shortcut, check these flags for report outage button availablility
             if let outageStatus = self?.viewModel.currentOutageStatus,
@@ -286,8 +285,7 @@ class OutageViewController: AccountPickerViewController {
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
             self.maintenanceModeView.isHidden = true
-            self.viewModel.clearReportedOutage()
-            self.updateContent()
+            self.updateContent(outageJustReported: false)
         }, onError: { [weak self] serviceError in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()

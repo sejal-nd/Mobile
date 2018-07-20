@@ -40,7 +40,6 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
         }
         
         if let _ = viewModel.reportedOutage {
-            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
             reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
             reportOutageButton.accessibilityLabel = String.localizedStringWithFormat("Report outage. %@", viewModel.outageReportedDateString)
         } else {

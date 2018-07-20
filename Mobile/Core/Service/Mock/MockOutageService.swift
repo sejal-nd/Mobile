@@ -192,10 +192,6 @@ class MockOutageService: OutageService {
         return ReportedOutagesStore.shared[accountNumber]
     }
     
-    func clearReportedOutageStatus(accountNumber: String) {
-        ReportedOutagesStore.shared[accountNumber] = nil
-    }
-    
     func fetchOutageStatusAnon(phoneNumber: String?, accountNumber: String?, completion: @escaping (ServiceResult<[OutageStatus]>) -> Void) {
         // not implemented
     }
