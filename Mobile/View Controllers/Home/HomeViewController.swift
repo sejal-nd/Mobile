@@ -381,15 +381,12 @@ class HomeViewController: AccountPickerViewController {
     
     func bindUsageCard() {
         guard let usageCardView = usageCardView else { return }
-        
+
         Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
-                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver(),
-                     viewModel.shouldShowUsageCard.filter { [weak self] in $0 && self?.shortcutItem == .viewUsageOptions }.map(to: ())) // Shortcut response
-            .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
                 self?.shortcutItem = .none
-                // todo self?.tabBarController?.selectedIndex = 3
-                self?.performSegue(withIdentifier: "usageSegue", sender: $0)
+                self?.tabBarController?.selectedIndex = 3
             })
             .disposed(by: usageCardView.disposeBag)
         

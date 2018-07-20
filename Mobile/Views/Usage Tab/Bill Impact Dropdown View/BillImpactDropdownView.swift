@@ -47,12 +47,13 @@ class BillImpactDropdownView: UIView {
         }
     }
     
-    // Pill Buttons
+    // Buttons
+    @IBOutlet weak var billPeriodButton: ButtonControl!
     @IBOutlet weak var billPeriodCircleButton: UIView! {
         didSet {
             billPeriodCircleButton.layer.cornerRadius = billPeriodCircleButton.frame.height / 2
             billPeriodCircleButton.layer.borderWidth = 2
-            billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
+            billPeriodCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
             billPeriodCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
@@ -61,11 +62,12 @@ class BillImpactDropdownView: UIView {
             billPeriodTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
         }
     }
+    @IBOutlet weak var weatherButton: ButtonControl!
     @IBOutlet weak var weatherCircleButton: UIView! {
         didSet {
             weatherCircleButton.layer.cornerRadius = weatherCircleButton.frame.height / 2
             weatherCircleButton.layer.borderWidth = 2
-            weatherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
+            weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
             weatherCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
@@ -74,6 +76,7 @@ class BillImpactDropdownView: UIView {
             weatherTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
         }
     }
+    @IBOutlet weak var otherButton: ButtonControl!
     @IBOutlet weak var otherCircleButton: UIView! {
         didSet {
             otherCircleButton.layer.cornerRadius = otherCircleButton.frame.height / 2
@@ -178,13 +181,20 @@ class BillImpactDropdownView: UIView {
     }
     
     private func prepareViews() {
+        // Default to collapsed
         isExpanded = false
+        
+        // Default button selected is Bill Period
+        factorImpactPress(billPeriodButton)
     }
     
     
     // MARK: - Configuration
     
-
+    func configureView() {
+        // set data, handle no data states ect...
+    }
+    
     
     // MARK: - Actions
     
