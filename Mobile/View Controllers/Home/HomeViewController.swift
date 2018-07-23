@@ -52,9 +52,6 @@ class HomeViewController: AccountPickerViewController {
                                   authService: ServiceFactory.createAuthenticationService(),
                                   outageService: ServiceFactory.createOutageService())
     
-    // Should be moved when we add the Usage tab.
-    var shortcutItem = ShortcutItem.none
-    
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
     let bag = DisposeBag()
@@ -144,13 +141,6 @@ class HomeViewController: AccountPickerViewController {
         bindLoadingStates()
         
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
-        
-        viewModel.shouldShowUsageCard
-            .filter(!)
-            .drive(onNext: { _ in
-                (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: true, showViewUsageOptions: false)
-            })
-            .disposed(by: bag)
     }
     
     func topPersonalizeButtonSetup() {
@@ -216,11 +206,6 @@ class HomeViewController: AccountPickerViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         usageCardView?.superviewDidLayoutSubviews()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        shortcutItem = .none
     }
     
     func styleViews() {
@@ -372,11 +357,9 @@ class HomeViewController: AccountPickerViewController {
         guard let usageCardView = usageCardView else { return }
         
         Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
-                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver(),
-                     viewModel.shouldShowUsageCard.filter { [weak self] in $0 && self?.shortcutItem == .viewUsageOptions }.map(to: ())) // Shortcut response
+                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
             .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                self?.shortcutItem = .none
                 self?.performSegue(withIdentifier: "usageSegue", sender: $0)
             })
             .disposed(by: usageCardView.disposeBag)
@@ -506,14 +489,6 @@ class HomeViewController: AccountPickerViewController {
             .map(InfoModalViewController.init)
             .drive(onNext: { [weak self] in
                 self?.present($0, animated: true, completion: nil)
-            })
-            .disposed(by: bag)
-        
-        // Clear shortcut handling in the case of an error.
-        Observable.merge(viewModel.usageCardViewModel.accountDetailChanged.errors(),
-                         viewModel.accountDetailEvents.errors())
-            .subscribe(onNext: { [weak self] _ in
-                self?.shortcutItem = .none
             })
             .disposed(by: bag)
     }
