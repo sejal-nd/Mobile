@@ -14,9 +14,11 @@ class UsageTabViewModel {
     
     let disposeBag = DisposeBag()
     
+    
+    // MARK: - Account Details
+    
     let accountService: AccountService
-    
-    
+
     var accountDetail: AccountDetail? {
         didSet {
             guard let accountDetail = accountDetail else { return }
@@ -24,17 +26,17 @@ class UsageTabViewModel {
             switch Environment.shared.opco {
             case .bge:
                 if accountDetail.peakRewards == "ACTIVE" {
-                    usageToolCards.insert(MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "PeakRewards"), at: 1)
+                    usageToolCards.insert(MyUsageToolCard(image: UIImage(named: "ic_thermostat"), title: "PeakRewards"), at: 1) // Todo
                 }
                 
                 if accountDetail.isSERAccount {
-                    usageToolCards.append(MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "Smart Energy Rewards"))
+                    usageToolCards.append(MyUsageToolCard(image: UIImage(named: "ic_smartenergy"), title: "Smart Energy Rewards"))
                 }
             case .comEd:
-                usageToolCards.insert(MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "PeakRewards"), at: 1)
+                usageToolCards.insert(MyUsageToolCard(image: UIImage(named: "ic_thermostat"), title: "PeakRewards"), at: 1) // Todo
 
                 if accountDetail.isPTSAccount {
-                    usageToolCards.append(MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "Peak Time Savings"))
+                    usageToolCards.append(MyUsageToolCard(image:UIImage(named: "ic_smartenergy"), title: "Peak Time Savings"))
                 }
             case .peco:
                 break
@@ -43,6 +45,12 @@ class UsageTabViewModel {
     }
     
     var isFetchingAccountDetail = false
+    
+    var usageToolCards = [MyUsageToolCard(image: UIImage(named: "ic_usagedata"), title: "View My Usage Data"), MyUsageToolCard(image: UIImage(named: "ic_Top5"), title: "Top 5 Energy Tips"), MyUsageToolCard(image: UIImage(named: "ic_residential"), title: "My Home Profile")]
+    
+    
+    
+    
     
     let usageService: UsageService
     
@@ -59,19 +67,10 @@ class UsageTabViewModel {
     
     
     
-    /*
-     * 0 = View My Usage Data
-     * 1 = Peak Rewards
-     * 2 = Hourly Pricing
-     * 3 = Top 5 Energy Tips
-     * 4 = My Home Profile
-     * 5 = Smart ENergy Rewards
-     * 6 = Peak Time Savings
-     */
+
     
     
-    //var shouldShowUsageStates = [true, false, false, true, true, false, false]
-    var usageToolCards = [MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "View My Usage Data"), MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "Top 5 Energy Tips"), MyUsageToolCard(image: #imageLiteral(resourceName: "ic_budgetlearn"), title: "My Home Profile")]
+    var isFetching = false
     
 //    var isLoading = false {
 //        didSet {
@@ -91,8 +90,13 @@ class UsageTabViewModel {
 //        }
 //    }
 
-    func fetchData(onSuccess: (() -> Void)?) {
+    func fetchAccountData(onSuccess: (() -> Void)?) {
+        
+        
+        
         guard let currentAccount = AccountsStore.shared.currentAccount else { return }
+        isFetching = true
+ 
         isFetchingAccountDetail = true
         //isFetchingUpdates.value = true
         //isAccountDetailError.value = false
@@ -108,6 +112,10 @@ class UsageTabViewModel {
                 
                 onSuccess?()
                 print("ACCOUNT DETAIL@@@@@@@: \(accountDetail)")
+                
+                
+                
+                
                 //self.isNoNetworkConnection.value = false
                 //self.a11yScreenChangedEvent.onNext(())
 //                self.alertsService.fetchOpcoUpdates(accountDetail: accountDetail)

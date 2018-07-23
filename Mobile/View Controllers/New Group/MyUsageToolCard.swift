@@ -9,7 +9,7 @@
 import Foundation
 
 struct MyUsageToolCard: Equatable {
-    let image: UIImage
+    let image: UIImage?
     let title: String
     
     static func == (lhs: MyUsageToolCard, rhs: MyUsageToolCard) -> Bool {
