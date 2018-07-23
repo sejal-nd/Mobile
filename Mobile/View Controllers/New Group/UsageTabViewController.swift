@@ -86,6 +86,14 @@ class UsageTabViewController: AccountPickerViewController {
     @IBOutlet weak var barGraphStackView: UIStackView!
     @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var noDataContainerButton: ButtonControl!
+    @IBOutlet weak var noDataDateLabel: UILabel! {
+        didSet {
+            noDataDateLabel.font = OpenSans.semibold.of(size: 14)
+            noDataDateLabel.textColor = .deepGray
+        }
+    }
+    
     @IBOutlet weak var previousContainerButton: ButtonControl!
     @IBOutlet weak var previousBarView: UIView!
     @IBOutlet weak var previousBarHeightConstraint: NSLayoutConstraint!
@@ -102,6 +110,7 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
+    @IBOutlet weak var currentContainerButton: ButtonControl!
     @IBOutlet weak var currentBarView: UIView!
     @IBOutlet weak var currentBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var currentMonthGraphValueLabel: UILabel! {
@@ -117,6 +126,7 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
+    @IBOutlet weak var projectedContainerButton: ButtonControl!
     @IBOutlet weak var projectedBarImageView: UIImageView!
     @IBOutlet weak var projectedBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var nextMonthGraphValueLabel: UILabel! {
@@ -132,11 +142,17 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet weak var noDataContainerButton: ButtonControl!
-    @IBOutlet weak var noDataDateLabel: UILabel! {
+    @IBOutlet weak var projectionNotAvailableContainerButton: ButtonControl!
+    @IBOutlet weak var projectedNotAvailableDateLabel: UILabel! {
         didSet {
-            noDataDateLabel.font = OpenSans.semibold.of(size: 14)
-            noDataDateLabel.textColor = .deepGray
+            projectedNotAvailableDateLabel.font = OpenSans.semibold.of(size: 14)
+            projectedNotAvailableDateLabel.textColor = .deepGray
+        }
+    }
+    @IBOutlet weak var projectedNotAvailableDaysRemainingLabel: UILabel! {
+        didSet {
+            projectedNotAvailableDaysRemainingLabel.font = OpenSans.semibold.of(size: 14)
+            projectedNotAvailableDaysRemainingLabel.textColor = .deepGray
         }
     }
     
@@ -163,12 +179,17 @@ class UsageTabViewController: AccountPickerViewController {
     
     private var isViewingCurrentYear = true {
         didSet {
+            fetchData()
+            
             if isViewingCurrentYear {
+                viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
                 nextYearButton.isEnabled = false
                 previousYearButton.isEnabled = true
                 
                 Analytics.log(event: .BillPreviousToggle)
             } else {
+                viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+                
                 nextYearButton.isEnabled = true
                 previousYearButton.isEnabled = false
                 
@@ -292,8 +313,8 @@ class UsageTabViewController: AccountPickerViewController {
         // Bar show/hide
         viewModel.noPreviousData.asDriver().not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.noPreviousData.asDriver().drive(previousContainerButton.rx.isHidden).disposed(by: disposeBag)
-//        viewModel.shouldShowProjectedBar.not().drive(projectedContainerButton.rx.isHidden).disposed(by: disposeBag)
-//        viewModel.shouldShowProjectionNotAvailableBar.not().drive(projectionNotAvailableContainerButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowProjectedBar.not().drive(projectedContainerButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowProjectionNotAvailableBar.not().drive(projectionNotAvailableContainerButton.rx.isHidden).disposed(by: disposeBag)
         
         // Bar labels
         viewModel.noDataBarDateLabelText.drive(noDataDateLabel.rx.text).disposed(by: disposeBag)
@@ -303,32 +324,32 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.currentBarDateLabelText.drive(currentMonthGraphDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.projectedBarDollarLabelText.drive(nextMonthGraphValueLabel.rx.text).disposed(by: disposeBag)
         viewModel.projectedBarDateLabelText.drive(nextMonthGraphDateLabel.rx.text).disposed(by: disposeBag)
-        //viewModel.projectedBarDateLabelText.drive(projectionNotAvailableDateLabel.rx.text).disposed(by: disposeBag)
-        //viewModel.projectionNotAvailableDaysRemainingText.drive(projectionNotAvailableDaysRemainingLabel.rx.text).disposed(by: disposeBag)
+        viewModel.projectedBarDateLabelText.drive(projectedNotAvailableDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.projectionNotAvailableDaysRemainingText.drive(projectedNotAvailableDaysRemainingLabel.rx.text).disposed(by: disposeBag)
         
         // Bar accessibility
-//        viewModel.noDataBarA11yLabel.drive(noDataContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
-//        viewModel.previousBarA11yLabel.drive(previousContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
-//        viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
-//        viewModel.projectedBarA11yLabel.drive(projectedContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
-//        viewModel.projectionNotAvailableA11yLabel.drive(projectionNotAvailableContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
-//        Observable.combineLatest(viewModel.noPreviousData.asObservable(), viewModel.shouldShowProjectedBar.asObservable(), viewModel.shouldShowProjectionNotAvailableBar.asObservable()).map { [weak self] in
-//            guard let `self` = self else { return }
-//            var a11yElementArray: [ButtonControl] = []
-//            if $0.0 {
-//                a11yElementArray.append(self.noDataContainerButton)
-//            } else {
-//                a11yElementArray.append(self.previousContainerButton)
-//            }
-//            a11yElementArray.append(self.currentContainerButton)
-//            if $0.1 {
-//                a11yElementArray.append(self.projectedContainerButton)
-//            }
-//            if $0.2 {
-//                a11yElementArray.append(self.projectionNotAvailableContainerButton)
-//            }
-//            self.barGraphStackView.accessibilityElements = a11yElementArray
-//            }.subscribe().disposed(by: disposeBag)
+        viewModel.noDataBarA11yLabel.drive(noDataContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.previousBarA11yLabel.drive(previousContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.projectedBarA11yLabel.drive(projectedContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.projectionNotAvailableA11yLabel.drive(projectionNotAvailableContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        Observable.combineLatest(viewModel.noPreviousData.asObservable(), viewModel.shouldShowProjectedBar.asObservable(), viewModel.shouldShowProjectionNotAvailableBar.asObservable()).map { [weak self] in
+            guard let `self` = self else { return }
+            var a11yElementArray: [ButtonControl] = []
+            if $0.0 {
+                a11yElementArray.append(self.noDataContainerButton)
+            } else {
+                a11yElementArray.append(self.previousContainerButton)
+            }
+            a11yElementArray.append(self.currentContainerButton)
+            if $0.1 {
+                a11yElementArray.append(self.projectedContainerButton)
+            }
+            if $0.2 {
+                a11yElementArray.append(self.projectionNotAvailableContainerButton)
+            }
+            self.barGraphStackView.accessibilityElements = a11yElementArray
+            }.subscribe().disposed(by: disposeBag)
         
         // Bar description labels
         viewModel.barDescriptionDateLabelText.drive(graphDetailDateLabel.rx.text).disposed(by: disposeBag)
