@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class UsageTabViewController: AccountPickerViewController {
     
@@ -83,29 +85,29 @@ class UsageTabViewController: AccountPickerViewController {
     }
     @IBOutlet weak var barGraphStackView: UIStackView!
     @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var previousContainerButton: ButtonControl!
+    @IBOutlet weak var previousBarView: UIView!
+    @IBOutlet weak var previousBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var previousMonthGraphValueLabel: UILabel! {
         didSet {
             previousMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
             previousMonthGraphValueLabel.textColor = .deepGray
         }
     }
-    @IBOutlet weak var currentMonthGraphValueLabel: UILabel! {
-        didSet {
-            currentMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
-            currentMonthGraphValueLabel.textColor = .deepGray
-        }
-    }
-    @IBOutlet weak var nextMonthGraphValueLabel: UILabel! {
-        didSet {
-            nextMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
-            nextMonthGraphValueLabel.textColor = .deepGray
-        }
-    }
-    
     @IBOutlet weak var previousMonthGraphDateLabel: UILabel! {
         didSet {
             previousMonthGraphDateLabel.font = OpenSans.semibold.of(size: 14)
             previousMonthGraphDateLabel.textColor = .deepGray
+        }
+    }
+    
+    @IBOutlet weak var currentBarView: UIView!
+    @IBOutlet weak var currentBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var currentMonthGraphValueLabel: UILabel! {
+        didSet {
+            currentMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
+            currentMonthGraphValueLabel.textColor = .deepGray
         }
     }
     @IBOutlet weak var currentMonthGraphDateLabel: UILabel! {
@@ -114,12 +116,30 @@ class UsageTabViewController: AccountPickerViewController {
             currentMonthGraphDateLabel.textColor = .deepGray
         }
     }
+    
+    @IBOutlet weak var projectedBarImageView: UIImageView!
+    @IBOutlet weak var projectedBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var nextMonthGraphValueLabel: UILabel! {
+        didSet {
+            nextMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
+            nextMonthGraphValueLabel.textColor = .deepGray
+        }
+    }
     @IBOutlet weak var nextMonthGraphDateLabel: UILabel! {
         didSet {
             nextMonthGraphDateLabel.font = OpenSans.semibold.of(size: 14)
             nextMonthGraphDateLabel.textColor = .deepGray
         }
     }
+    
+    @IBOutlet weak var noDataContainerButton: ButtonControl!
+    @IBOutlet weak var noDataDateLabel: UILabel! {
+        didSet {
+            noDataDateLabel.font = OpenSans.semibold.of(size: 14)
+            noDataDateLabel.textColor = .deepGray
+        }
+    }
+    
     @IBOutlet weak var graphDetailDateLabel: UILabel! {
         didSet {
             graphDetailDateLabel.font = OpenSans.semibold.of(size: 14)
@@ -146,12 +166,18 @@ class UsageTabViewController: AccountPickerViewController {
             if isViewingCurrentYear {
                 nextYearButton.isEnabled = false
                 previousYearButton.isEnabled = true
+                
+                Analytics.log(event: .BillPreviousToggle)
             } else {
                 nextYearButton.isEnabled = true
                 previousYearButton.isEnabled = false
+                
+                Analytics.log(event: .BillLastYearToggle)
             }
         }
     }
+    
+    let disposeBag = DisposeBag()
     
     let viewModel = UsageTabViewModel(accountService: ServiceFactory.createAccountService(), usageService: ServiceFactory.createUsageService())
     
@@ -169,7 +195,8 @@ class UsageTabViewController: AccountPickerViewController {
         collectionView.register(UINib.init(nibName: MyUsageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyUsageCollectionViewCell.identifier)
         collectionView.register(UINib.init(nibName: UsageToolsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UsageToolsCollectionViewCell.identifier)
         
-        // Load Data
+        bindViewModel()
+        
         fetchData()
     }
     
@@ -229,6 +256,86 @@ class UsageTabViewController: AccountPickerViewController {
         view.backgroundColor = .white
     }
     
+    private func bindViewModel() {
+        // Segmented Control
+        segmentControl.selectedIndex.asObservable().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
+        segmentControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
+            self?.fetchData()
+            if index == 0 {
+                Analytics.log(event: .BillElectricityToggle)
+            } else {
+                Analytics.log(event: .BillGasToggle)
+            }
+        }).disposed(by: disposeBag)
+        
+        // Graph Selection - todo: no longer a segment control.
+//        billComparisonSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.lastYearPreviousBillSelectedSegmentIndex).disposed(by: disposeBag)
+//        billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
+//            self?.fetchData()
+//            if index == 0 {
+//                Analytics.log(event: .BillLastYearToggle)
+//            } else {
+//                Analytics.log(event: .BillPreviousToggle)
+//            }
+//        }).disposed(by: disposeBag)
+        
+        // Bar graph height constraints
+        viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)
+        viewModel.currentBarHeightConstraintValue.drive(currentBarHeightConstraint.rx.constant).disposed(by: disposeBag)
+        viewModel.projectedBarHeightConstraintValue.drive(projectedBarHeightConstraint.rx.constant).disposed(by: disposeBag)
+        
+        // Bar graph corner radius
+        viewModel.previousBarHeightConstraintValue.map { min(10, $0/2) }.drive(previousBarView.rx.cornerRadius).disposed(by: disposeBag)
+        viewModel.currentBarHeightConstraintValue.map { min(10, $0/2) }.drive(currentBarView.rx.cornerRadius).disposed(by: disposeBag)
+        viewModel.projectedBarHeightConstraintValue.map { min(10, $0/2) }.drive(projectedBarImageView.rx.cornerRadius).disposed(by: disposeBag)
+        
+        // Bar show/hide
+        viewModel.noPreviousData.asDriver().not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().drive(previousContainerButton.rx.isHidden).disposed(by: disposeBag)
+//        viewModel.shouldShowProjectedBar.not().drive(projectedContainerButton.rx.isHidden).disposed(by: disposeBag)
+//        viewModel.shouldShowProjectionNotAvailableBar.not().drive(projectionNotAvailableContainerButton.rx.isHidden).disposed(by: disposeBag)
+        
+        // Bar labels
+        viewModel.noDataBarDateLabelText.drive(noDataDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.previousBarDollarLabelText.drive(previousMonthGraphValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.previousBarDateLabelText.drive(previousMonthGraphDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.currentBarDollarLabelText.drive(currentMonthGraphValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.currentBarDateLabelText.drive(currentMonthGraphDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.projectedBarDollarLabelText.drive(nextMonthGraphValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.projectedBarDateLabelText.drive(nextMonthGraphDateLabel.rx.text).disposed(by: disposeBag)
+        //viewModel.projectedBarDateLabelText.drive(projectionNotAvailableDateLabel.rx.text).disposed(by: disposeBag)
+        //viewModel.projectionNotAvailableDaysRemainingText.drive(projectionNotAvailableDaysRemainingLabel.rx.text).disposed(by: disposeBag)
+        
+        // Bar accessibility
+//        viewModel.noDataBarA11yLabel.drive(noDataContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+//        viewModel.previousBarA11yLabel.drive(previousContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+//        viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+//        viewModel.projectedBarA11yLabel.drive(projectedContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+//        viewModel.projectionNotAvailableA11yLabel.drive(projectionNotAvailableContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+//        Observable.combineLatest(viewModel.noPreviousData.asObservable(), viewModel.shouldShowProjectedBar.asObservable(), viewModel.shouldShowProjectionNotAvailableBar.asObservable()).map { [weak self] in
+//            guard let `self` = self else { return }
+//            var a11yElementArray: [ButtonControl] = []
+//            if $0.0 {
+//                a11yElementArray.append(self.noDataContainerButton)
+//            } else {
+//                a11yElementArray.append(self.previousContainerButton)
+//            }
+//            a11yElementArray.append(self.currentContainerButton)
+//            if $0.1 {
+//                a11yElementArray.append(self.projectedContainerButton)
+//            }
+//            if $0.2 {
+//                a11yElementArray.append(self.projectionNotAvailableContainerButton)
+//            }
+//            self.barGraphStackView.accessibilityElements = a11yElementArray
+//            }.subscribe().disposed(by: disposeBag)
+        
+        // Bar description labels
+        viewModel.barDescriptionDateLabelText.drive(graphDetailDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionAvgTempLabelText.drive(graphDetailTemperatureLabel.rx.text).disposed(by: disposeBag)
+        viewModel.barDescriptionDetailLabelText.drive(graphDetailDescriptionLabel.rx.text).disposed(by: disposeBag)
+    }
+    
     private func reloadCollectionView() {
         collectionView.reloadData()
         collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height + 16
@@ -236,9 +343,16 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     private func fetchData() {
-        viewModel.fetchAccountData(onSuccess: { [weak self] in
+//        viewModel.fetchAccountData(onSuccess: { [weak self] in
+//            guard let `self` = self else { return }
+//            self.reloadCollectionView()
+//        })
+//
+        viewModel.fetchData(onSuccess: { [weak self] in
+            
             guard let `self` = self else { return }
-            self.reloadCollectionView()
+            self.reloadCollectionView() // Congfigures bottom cards
+         print("COMPLETE FETCHED DATA")
         })
     }
     

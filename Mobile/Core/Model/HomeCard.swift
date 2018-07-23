@@ -74,7 +74,7 @@ enum HomeCard: Int {
     
     var isOptional: Bool {
         switch self {
-        case .bill, .usage:
+        case .bill:
             return false
         default:
             return true
@@ -121,7 +121,7 @@ final class HomeCardPrefsStore {
         }
     }
     
-    static let defaultList: [HomeCard] = [.bill, .usage, .template]
+    static let defaultList: [HomeCard] = [.bill, .template]
     
     // Private init protects against another instance being accidentally instantiated
     private init() {
