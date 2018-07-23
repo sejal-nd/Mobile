@@ -377,41 +377,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func configureQuickActions(isAuthenticated: Bool, showViewUsageOptions: Bool = false) {
+    func configureQuickActions(isAuthenticated: Bool) {
         let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_outage")
         let reportOutageShortcut = UIApplicationShortcutItem(type: "ReportOutage", localizedTitle: "Report Outage", localizedSubtitle: nil, icon: reportOutageIcon, userInfo: nil)
         
         guard let accounts = AccountsStore.shared.accounts else {
-            // Signed in, but no accounts pulled yet
             if isAuthenticated {
+                // Signed in, but no accounts pulled yet
                 UIApplication.shared.shortcutItems = []
-            }
-            
-            // Not signed in
-            else {
+            } else {
+                // Not signed in
                 UIApplication.shared.shortcutItems = [reportOutageShortcut]
             }
             return
         }
         
-        let payBillIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_bill")
-        let payBillShortcut = UIApplicationShortcutItem(type: "PayBill", localizedTitle: "Pay Bill", localizedSubtitle: nil, icon: payBillIcon, userInfo: nil)
+        if accounts.count != 1 {
+            // Multi-account user
+            UIApplication.shared.shortcutItems = []
+            return
+        }
         
-        switch (accounts.count == 1, UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), showViewUsageOptions) {
-        case (true, false, _):
-            // Single account, no keep me signed in
-            UIApplication.shared.shortcutItems = [reportOutageShortcut]
-        case (true, true, true):
-            // Single account, keep me signed in, show usage
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked) {
+            // Single account, keep me signed in
+            let payBillIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_bill")
+            let payBillShortcut = UIApplicationShortcutItem(type: "PayBill", localizedTitle: "Pay Bill", localizedSubtitle: nil, icon: payBillIcon, userInfo: nil)
             let usageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_usage")
             let usageShortcut = UIApplicationShortcutItem(type: "ViewUsageOptions", localizedTitle: "View Usage", localizedSubtitle: nil, icon: usageIcon, userInfo: nil)
             UIApplication.shared.shortcutItems = [payBillShortcut, reportOutageShortcut, usageShortcut]
-        case (true, true, false):
-            // Single account, keep me signed in, don't show usage
-            UIApplication.shared.shortcutItems = [payBillShortcut, reportOutageShortcut]
-        case (false, _, _):
-            // Multi-account user
-            UIApplication.shared.shortcutItems = []
+        } else {
+            // Single account, no keep me signed in
+            UIApplication.shared.shortcutItems = [reportOutageShortcut]
         }
         
     }

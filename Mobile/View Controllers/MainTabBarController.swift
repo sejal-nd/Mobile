@@ -67,11 +67,7 @@ class MainTabBarController: UITabBarController {
                         outageVC.shortcutItem = .reportOutage
                     }
                 case .viewUsageOptions:
-                    self.selectedIndex = 0
-                    if let navVC = self.viewControllers?.first as? UINavigationController,
-                        let homeVC = navVC.viewControllers.first as? HomeViewController {
-                        homeVC.shortcutItem = .viewUsageOptions
-                    }
+                    self.selectedIndex = 3
                 case .none:
                     break
                 }
