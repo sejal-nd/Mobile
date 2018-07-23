@@ -17,6 +17,7 @@ class AlertsViewController: AccountPickerViewController {
     
     @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet weak var segmentedControl: AlertsSegmentedControl!
+    @IBOutlet weak var segmentedControlTopSpace: NSLayoutConstraint!
     
     @IBOutlet weak var backgroundView: UIView!
     
@@ -40,14 +41,17 @@ class AlertsViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .primaryColorAccountPicker
-        
         segmentedControl.setItems(leftLabel: NSLocalizedString("My Alerts", comment: ""),
                                   rightLabel: NSLocalizedString("Updates", comment: ""),
                                   initialSelectedIndex: 0)
         
         if Environment.shared.opco == .bge {
             accountPicker.isHidden = true
+            view.backgroundColor = .primaryColor
+            segmentedControlTopSpace.constant = 22
+        } else {
+            view.backgroundColor = .primaryColorAccountPicker
+            segmentedControlTopSpace.constant = 0
         }
         
         alertsTableView.separatorColor = .accentGray
@@ -99,7 +103,7 @@ class AlertsViewController: AccountPickerViewController {
             return
         }
         
-        navController.setColoredNavBar()
+        navController.setColoredNavBar(hidesBottomBorder: true)
     }
     
     override func viewDidLayoutSubviews() {
