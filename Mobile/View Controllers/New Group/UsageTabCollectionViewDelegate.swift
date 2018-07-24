@@ -43,17 +43,16 @@ extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDe
             // This icon will not be displayed to PeakRewards WiFi (Ecobee) users. They will access the Ecobee web view via the OpCo Template card.
             dLog("pr")
         case "Hourly Pricing":
-            guard let accountDetail = viewModel.accountDetail else { return }
-            if accountDetail.isHourlyPricing {
-                Analytics.log(event: .HourlyPricing,
-                              dimensions: [.HourlyPricingEnrollment: "enrolled"])
-                performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
-            } else {
-                Analytics.log(event: .HourlyPricing,
-                              dimensions: [.HourlyPricingEnrollment: "unenrolled"])
-                let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
-                present(safariVc, animated: true, completion: nil)
-            }
+//            if accountDetail.isHourlyPricing {
+//                Analytics.log(event: .HourlyPricing,
+//                              dimensions: [.HourlyPricingEnrollment: "enrolled"])
+//                performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
+//            } else {
+//                Analytics.log(event: .HourlyPricing,
+//                              dimensions: [.HourlyPricingEnrollment: "unenrolled"])
+//                let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
+//                present(safariVc, animated: true, completion: nil)
+//            }
             // ?? Hourly Pricing card
             dLog("hp")
         case "Top 5 Energy Tips":

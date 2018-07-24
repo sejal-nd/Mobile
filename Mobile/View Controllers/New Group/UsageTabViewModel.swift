@@ -19,35 +19,34 @@ class UsageTabViewModel {
     
     let accountService: AccountService
 
-    var accountDetail: AccountDetail? {
-        didSet {
-            guard let accountDetail = accountDetail else { return }
-            
-            switch Environment.shared.opco {
-            case .bge:
-                if accountDetail.peakRewards == "ACTIVE" {
-                    usageToolCards.insert(MyUsageToolCard(image: UIImage(named: "ic_thermostat"), title: "PeakRewards"), at: 1) // Todo
-                }
-                
-                if accountDetail.isSERAccount {
-                    usageToolCards.append(MyUsageToolCard(image: UIImage(named: "ic_smartenergy"), title: "Smart Energy Rewards"))
-                }
-            case .comEd:
-                usageToolCards.insert(MyUsageToolCard(image: UIImage(named: "ic_hourlypricing"), title: "Hourly Pricing"), at: 1)
-
-                if accountDetail.isPTSAccount {
-                    usageToolCards.append(MyUsageToolCard(image:UIImage(named: "ic_smartenergy"), title: "Peak Time Savings"))
-                }
-            case .peco:
-                break
-            }
-        }
-    }
+//    var accountDetail: AccountDetail? {
+//        didSet {
+//            guard let accountDetail = accountDetail else { return }
+//
+//            switch Environment.shared.opco {
+//            case .bge:
+//                if accountDetail.peakRewards == "ACTIVE" {
+//                    usageToolCards.insert(MyUsageToolCard(image: UIImage(named: "ic_thermostat"), title: "PeakRewards"), at: 1) // Todo
+//                }
+//
+//                if accountDetail.isSERAccount {
+//                    usageToolCards.append(MyUsageToolCard(image: UIImage(named: "ic_smartenergy"), title: "Smart Energy Rewards"))
+//                }
+//            case .comEd:
+//                usageToolCards.insert(MyUsageToolCard(image: UIImage(named: "ic_hourlypricing"), title: "Hourly Pricing"), at: 1)
+//
+//                if accountDetail.isPTSAccount {
+//                    usageToolCards.append(MyUsageToolCard(image:UIImage(named: "ic_smartenergy"), title: "Peak Time Savings"))
+//                }
+//            case .peco:
+//                break
+//            }
+//        }
+//    }
     
     var usageToolCards = [MyUsageToolCard(image: UIImage(named: "ic_usagedata"), title: "View My Usage Data"), MyUsageToolCard(image: UIImage(named: "ic_Top5"), title: "Top 5 Energy Tips"), MyUsageToolCard(image: UIImage(named: "ic_residential"), title: "My Home Profile")]
     
     let fetchAllDataTrigger = PublishSubject<FetchingAccountState>()
-    let fetchBillDataTrigger = PublishSubject<Void>()
     
     let refreshTracker = ActivityTracker()
     let switchAccountTracker = ActivityTracker()
@@ -79,13 +78,18 @@ class UsageTabViewModel {
         .filter { $0.premiseNumber != nil }
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
-        .combineLatest(self.eligibleAccountDetails, self.lastYearPreviousBillSelectedSegmentIndex.asObservable())
+        .combineLatest(self.eligibleAccountDetails,
+                       self.lastYearPreviousBillSelectedSegmentIndex.asObservable(),
+                       self.electricGasSelectedSegmentIndex.asObservable())
         .toAsyncRequest(activityTracker: billAnalysisTracker,
-                        requestSelector: { [unowned self] (accountDetail, index) in
-                            self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
-                                                                  premiseNumber: accountDetail.premiseNumber!,
-                                                                  yearAgo: index == 0,
-                                                                  gas: self.isGas)
+                        requestSelector: { [unowned self] (accountDetail, yearsIndex, electricGasIndex) -> Observable<BillComparison> in
+                            let isGas = self.isGas(accountDetail: accountDetail,
+                                                   electricGasSelectedIndex: electricGasIndex)
+                            return self.usageService
+                                .fetchBillComparison(accountNumber: accountDetail.accountNumber,
+                                                     premiseNumber: accountDetail.premiseNumber!,
+                                                     yearAgo: yearsIndex == 0,
+                                                     gas: isGas)
         })
     
     private(set) lazy var billForecastEvents: Observable<Event<BillForecastResult?>> = self.eligibleAccountDetails
@@ -96,6 +100,9 @@ class UsageTabViewModel {
                                                                        premiseNumber: accountDetail.premiseNumber!)
                                 .map { $0 }
         })
+    
+    private(set) lazy var accountDetail: Driver<AccountDetail> = self.accountDetailEvents.elements()
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var billComparison: Driver<BillComparison> = self.billComparisonEvents.elements()
         .asDriver(onErrorDriveWith: .empty())
@@ -251,31 +258,29 @@ class UsageTabViewModel {
     // MARK: Projection Bar Drivers
     
     private(set) lazy var projectedCost: Driver<Double?> =
-        Driver.combineLatest(self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] billForecast, segmentIndex in
-                                // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-                                guard let `self` = self else { return nil }
-                                if let gasForecast = billForecast?.gas, self.isGas {
-                                    return gasForecast.projectedCost
-                                }
-                                if let elecForecast = billForecast?.electric, !self.isGas {
-                                    return elecForecast.projectedCost
-                                }
-                                return nil
+        Driver.combineLatest(self.accountDetail,
+                             self.billForecast,
+                             self.electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
+            guard let this = self else { return nil }
+            if this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex) {
+                return billForecast?.gas.projectedCost
+            } else {
+                return billForecast?.electric.projectedCost
+            }
     }
     
     private(set) lazy var projectedUsage: Driver<Double?> =
-        Driver.combineLatest(self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] billForecast, segmentIndex in
-                                // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-                                guard let `self` = self else { return nil }
-                                if let gasForecast = billForecast?.gas, self.isGas {
-                                    return gasForecast.projectedUsage
-                                }
-                                if let elecForecast = billForecast?.electric, !self.isGas {
-                                    return elecForecast.projectedUsage
-                                }
-                                return nil
+        Driver.combineLatest(self.accountDetail,
+                             self.billForecast,
+                             self.electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
+            guard let this = self else { return nil }
+            if this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex) {
+                return billForecast?.gas.projectedUsage
+            } else {
+                return billForecast?.electric.projectedUsage
+            }
     }
     
     private(set) lazy var shouldShowProjectedBar: Driver<Bool> =
@@ -301,53 +306,57 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var projectedBarDollarLabelText: Driver<String?> =
-        Driver.combineLatest(self.projectedCost, self.projectedUsage, self.billComparison) { [weak self] in
-            guard let `self` = self, let accountDetail = self.accountDetail else { return nil }
+        Driver.combineLatest(self.accountDetail,
+                             self.projectedCost,
+                             self.projectedUsage,
+                             self.billComparison)
+        { [weak self] accountDetail, cost, usage, billComparison in
             if accountDetail.isModeledForOpower {
-                guard let cost = $0 else { return nil }
-                return cost.currencyString!
+                return cost?.currencyString
             } else {
-                guard let usage = $1 else { return nil }
-                return String(format: "%d %@", Int(usage), $2.meterUnit)
+                guard let usage = usage else { return nil }
+                return String(format: "%d %@", Int(usage), billComparison.meterUnit)
             }
     }
     
     
     private(set) lazy var projectedBarDateLabelText: Driver<String?> =
-        Driver.combineLatest(self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] billForecast, segmentIndex in
-                                // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-                                guard let `self` = self else { return nil }
-                                if let gasForecast = billForecast?.electric, self.isGas {
-                                    if let endDate = gasForecast.billingEndDate {
-                                        return endDate.shortMonthAndDayString.uppercased()
-                                    }
-                                }
-                                if let elecForecast = billForecast?.electric, !self.isGas {
-                                    if let endDate = elecForecast.billingEndDate {
-                                        return endDate.shortMonthAndDayString.uppercased()
-                                    }
-                                }
-                                return nil
+        Driver.combineLatest(self.accountDetail,
+                             self.billForecast,
+                             self.electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
+            guard let this = self else { return nil }
+            let isGas = this.isGas(accountDetail: accountDetail,
+                                   electricGasSelectedIndex: electricGasSelectedIndex)
+            if isGas {
+                if let endDate = billForecast?.gas.billingEndDate {
+                    return endDate.shortMonthAndDayString.uppercased()
+                }
+            } else if let endDate = billForecast?.electric.billingEndDate {
+                return endDate.shortMonthAndDayString.uppercased()
+            }
+            return nil
     }
     
     // MARK: Projection Not Available Bar Drivers
     private(set) lazy var shouldShowProjectionNotAvailableBar: Driver<Bool> =
-        Driver.combineLatest(self.lastYearPreviousBillSelectedSegmentIndex.asDriver(),
+        Driver.combineLatest(self.accountDetail,
+                             self.lastYearPreviousBillSelectedSegmentIndex.asDriver(),
                              self.billForecast,
                              self.electricGasSelectedSegmentIndex.asDriver())
-        { [weak self] lastYearPrevBillSegmentIndex, billForecast, elecGasSegmentIndex in
-            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-            guard let `self` = self else { return false }
+        { [weak self] accountDetail, lastYearPrevBillSegmentIndex, billForecast, electricGasSelectedIndex in
+            guard let this = self else { return false }
+            let isGas = this.isGas(accountDetail: accountDetail,
+                                   electricGasSelectedIndex: electricGasSelectedIndex)
             if lastYearPrevBillSegmentIndex == 0 { return false } // Projections are only for "Previous Bill" selection
             let today = Calendar.opCo.startOfDay(for: Date())
-            if let gasForecast = billForecast?.gas, self.isGas {
+            if let gasForecast = billForecast?.gas, isGas {
                 if let startDate = gasForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     return daysSinceBillingStart < 7
                 }
             }
-            if let elecForecast = billForecast?.electric, !self.isGas {
+            if let elecForecast = billForecast?.electric, !isGas {
                 if let startDate = elecForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     return daysSinceBillingStart < 7
@@ -357,15 +366,17 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var projectionNotAvailableDaysRemainingText: Driver<String?> =
-        Driver.combineLatest(self.billForecast,
+        Driver.combineLatest(self.accountDetail,
+                             self.billForecast,
                              self.electricGasSelectedSegmentIndex.asDriver())
-        { [weak self] billForecast, segmentIndex in
-            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-            guard let `self` = self else { return nil }
+        { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
+            guard let this = self else { return nil }
+            let isGas = this.isGas(accountDetail: accountDetail,
+                                   electricGasSelectedIndex: electricGasSelectedIndex)
             let today = Calendar.opCo.startOfDay(for: Date())
             
             let localizedString = NSLocalizedString("%@ days", comment: "")
-            if let gasForecast = billForecast?.gas, self.isGas {
+            if let gasForecast = billForecast?.gas, isGas {
                 if let startDate = gasForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     let daysRemaining = 7 - daysSinceBillingStart
@@ -377,7 +388,7 @@ class UsageTabViewModel {
                 }
             }
             
-            if let elecForecast = billForecast?.electric, !self.isGas {
+            if let elecForecast = billForecast?.electric, !isGas {
                 if let startDate = elecForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     let daysRemaining = 7 - daysSinceBillingStart
@@ -449,69 +460,71 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var projectedBarA11yLabel: Driver<String?> =
-        Driver.combineLatest(self.billComparison,
+        Driver.combineLatest(self.accountDetail,
+                             self.billComparison,
                              self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver(),
-                             self.isFetching.asDriver()) { [weak self] billComparison, billForecast, dontUseThis, isFetching in
-                                // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-                                guard let `self` = self else { return nil }
-                                if isFetching { return nil }
-                                
-                                var dateString = ""
-                                if let gasForecast = billForecast?.gas, self.isGas {
-                                    if let startDate = gasForecast.billingStartDate, let endDate = gasForecast.billingEndDate {
-                                        dateString = "\(startDate.shortMonthDayAndYearString) to \(endDate.shortMonthDayAndYearString)"
-                                    }
-                                }
-                                if let elecForecast = billForecast?.electric, !self.isGas {
-                                    if let startDate = elecForecast.billingStartDate, let endDate = elecForecast.billingEndDate {
-                                        dateString = "\(startDate.shortMonthDayAndYearString) to \(endDate.shortMonthDayAndYearString)"
-                                    }
-                                }
-                                
-                                var detailString = ""
-                                if let accountDetail = self.accountDetail, accountDetail.isModeledForOpower {
-                                    let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
-                                        "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-                                    if let gasForecast = billForecast?.gas, self.isGas {
-                                        if let projectedCost = gasForecast.projectedCost, let toDateCost = gasForecast.toDateCost {
-                                            detailString = String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
-                                        }
-                                    }
-                                    if let elecForecast = billForecast?.electric, !self.isGas {
-                                        if let projectedCost = elecForecast.projectedCost, let toDateCost = elecForecast.toDateCost {
-                                            detailString = String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
-                                        }
-                                    }
-                                } else {
-                                    let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. " +
-                                        "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-                                    let meterUnit = billComparison.meterUnit
-                                    if let gasForecast = billForecast?.gas, self.isGas {
-                                        if let projectedUsage = gasForecast.projectedUsage, let toDateUsage = gasForecast.toDateUsage {
-                                            detailString = String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
-                                        }
-                                    }
-                                    if let elecForecast = billForecast?.electric, !self.isGas {
-                                        if let projectedUsage = elecForecast.projectedUsage, let toDateUsage = elecForecast.toDateUsage {
-                                            detailString = String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
-                                        }
-                                    }
-                                }
-                                
-                                return "\(dateString). \(detailString)"
+                             self.electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billComparison, billForecast, electricGasSelectedIndex in
+            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
+            guard let `self` = self else { return nil }
+            guard let billForecast = billForecast else { return nil }
+            let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
+            
+            var dateString = ""
+            if isGas {
+                if let startDate = billForecast.gas.billingStartDate, let endDate = billForecast.gas.billingEndDate {
+                    dateString = "\(startDate.shortMonthDayAndYearString) to \(endDate.shortMonthDayAndYearString)"
+                }
+            } else if let startDate = billForecast.electric.billingStartDate,
+                let endDate = billForecast.electric.billingEndDate {
+                dateString = "\(startDate.shortMonthDayAndYearString) to \(endDate.shortMonthDayAndYearString)"
+            }
+            
+            
+            var detailString = ""
+            if accountDetail.isModeledForOpower {
+                let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
+                    "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
+                if isGas {
+                    if let projectedCost = billForecast.gas.projectedCost,
+                        let toDateCost = billForecast.gas.toDateCost {
+                        detailString = String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                    }
+                } else if let projectedCost = billForecast.electric.projectedCost,
+                    let toDateCost = billForecast.electric.toDateCost {
+                    detailString = String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                }
+            } else {
+                let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. " +
+                    "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
+                let meterUnit = billComparison.meterUnit
+                if isGas {
+                    if let projectedUsage = billForecast.gas.projectedUsage,
+                        let toDateUsage = billForecast.gas.toDateUsage {
+                        detailString = String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
+                    }
+                } else if let projectedUsage = billForecast.electric.projectedUsage,
+                    let toDateUsage = billForecast.electric.toDateUsage {
+                    detailString = String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
+                }
+            }
+            
+            return "\(dateString). \(detailString)"
     }
     
     private(set) lazy var projectionNotAvailableA11yLabel: Driver<String?> =
-        Driver.combineLatest(self.billForecast,
+        Driver.combineLatest(self.accountDetail,
+                             self.billForecast,
                              self.electricGasSelectedSegmentIndex.asDriver())
-        { [weak self] billForecast, segmentIndex in
+        { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
             // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
             guard let `self` = self else { return nil }
+            let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
+            
             let today = Calendar.opCo.startOfDay(for: Date())
             var daysRemainingString = ""
             let localizedDaysRemaining = NSLocalizedString("%@ days until next forecast.", comment: "")
-            if let gasForecast = billForecast?.gas, self.isGas {
+            if let gasForecast = billForecast?.gas, isGas {
                 if let startDate = gasForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     let daysRemaining = 7 - daysSinceBillingStart
@@ -522,7 +535,7 @@ class UsageTabViewModel {
                     }
                 }
             }
-            if let elecForecast = billForecast?.electric, !self.isGas {
+            if let elecForecast = billForecast?.electric, !isGas {
                 if let startDate = elecForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                     let daysRemaining = 7 - daysSinceBillingStart
@@ -541,49 +554,53 @@ class UsageTabViewModel {
     // MARK: Bar Description Box Drivers
     
     private(set) lazy var barDescriptionDateLabelText: Driver<String?> =
-        Driver.combineLatest(self.billComparison,
+        Driver.combineLatest(self.accountDetail,
+                             self.billComparison,
                              self.lastYearPreviousBillSelectedSegmentIndex.asDriver(),
                              self.barGraphSelectionStates.asDriver(),
                              self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] billComparison, segmentIndex, selectionStates, billForecast, dontUseThis in
-                                // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-                                guard let `self` = self else { return nil }
-                                
-                                if selectionStates[0].value { // No data
-                                    if segmentIndex == 0 {
-                                        return NSLocalizedString("Last Year", comment: "")
-                                    } else {
-                                        return NSLocalizedString("Previous Bill", comment: "")
-                                    }
-                                } else if selectionStates[1].value { // Previous
-                                    if let compared = billComparison.compared {
-                                        return "\(compared.startDate.shortMonthDayAndYearString) - \(compared.endDate.shortMonthDayAndYearString)"
-                                    }
-                                } else if selectionStates[2].value { // Current
-                                    if let reference = billComparison.reference {
-                                        return "\(reference.startDate.shortMonthDayAndYearString) - \(reference.endDate.shortMonthDayAndYearString)"
-                                    }
-                                } else if selectionStates[3].value { // Projected
-                                    if let gasForecast = billForecast?.electric, self.isGas {
-                                        if let startDate = gasForecast.billingStartDate, let endDate = gasForecast.billingEndDate {
-                                            return "\(startDate.shortMonthDayAndYearString) - \(endDate.shortMonthDayAndYearString)"
-                                        }
-                                    }
-                                    if let elecForecast = billForecast?.electric, !self.isGas {
-                                        if let startDate = elecForecast.billingStartDate, let endDate = elecForecast.billingEndDate {
-                                            return "\(startDate.shortMonthDayAndYearString) - \(endDate.shortMonthDayAndYearString)"
-                                        }
-                                    }
-                                } else if selectionStates[4].value { // Projection Not Available
-                                    return NSLocalizedString("Projection Not Available", comment: "")
-                                }
-                                return nil
+                             self.electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billComparison, segmentIndex, selectionStates, billForecast, electricGasSelectedIndex in
+            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
+            guard let `self` = self else { return nil }
+            let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
+            
+            if selectionStates[0].value { // No data
+                if segmentIndex == 0 {
+                    return NSLocalizedString("Last Year", comment: "")
+                } else {
+                    return NSLocalizedString("Previous Bill", comment: "")
+                }
+            } else if selectionStates[1].value { // Previous
+                if let compared = billComparison.compared {
+                    return "\(compared.startDate.shortMonthDayAndYearString) - \(compared.endDate.shortMonthDayAndYearString)"
+                }
+            } else if selectionStates[2].value { // Current
+                if let reference = billComparison.reference {
+                    return "\(reference.startDate.shortMonthDayAndYearString) - \(reference.endDate.shortMonthDayAndYearString)"
+                }
+            } else if selectionStates[3].value { // Projected
+                if let gasForecast = billForecast?.electric, isGas {
+                    if let startDate = gasForecast.billingStartDate, let endDate = gasForecast.billingEndDate {
+                        return "\(startDate.shortMonthDayAndYearString) - \(endDate.shortMonthDayAndYearString)"
+                    }
+                }
+                if let elecForecast = billForecast?.electric, !isGas {
+                    if let startDate = elecForecast.billingStartDate, let endDate = elecForecast.billingEndDate {
+                        return "\(startDate.shortMonthDayAndYearString) - \(endDate.shortMonthDayAndYearString)"
+                    }
+                }
+            } else if selectionStates[4].value { // Projection Not Available
+                return NSLocalizedString("Projection Not Available", comment: "")
+            }
+            return nil
     }
     
     private(set) lazy var barDescriptionAvgTempLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparison,
                              self.barGraphSelectionStates.asDriver(),
-                             self.isFetching.asDriver()) { billComparison, selectionStates, isFetching in
+                             self.isFetching.asDriver())
+        { billComparison, selectionStates, isFetching in
                                 if isFetching { return nil }
                                 let localizedString = NSLocalizedString("Avg. Temp %d° F", comment: "")
                                 if selectionStates[1].value { // Previous
@@ -599,71 +616,74 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var barDescriptionDetailLabelText: Driver<String?> =
-        Driver.combineLatest(self.billComparison,
+        Driver.combineLatest(self.accountDetail,
+                             self.billComparison,
                              self.barGraphSelectionStates.asDriver(),
                              self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] billComparison, selectionStates, billForecast, dontUseThis in
-                                // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-                                guard let `self` = self else { return nil }
-                                
-                                let localizedPrevCurrString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
-                                if selectionStates[0].value { // No data
-                                    return NSLocalizedString("Not enough data available.", comment: "")
-                                } else if selectionStates[1].value { // Previous
-                                    if let compared = billComparison.compared {
-                                        let daysInBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
-                                        let avgUsagePerDay = compared.usage / Double(daysInBillPeriod)
-                                        if compared.charges < 0 {
-                                            let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-                                            return String(format: billCreditString, abs(compared.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
-                                        } else {
-                                            return String(format: localizedPrevCurrString, compared.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
-                                        }
-                                    }
-                                } else if selectionStates[2].value { // Current
-                                    if let reference = billComparison.reference {
-                                        let daysInBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
-                                        let avgUsagePerDay = reference.usage / Double(daysInBillPeriod)
-                                        if reference.charges < 0 {
-                                            let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-                                            return String(format: billCreditString, abs(reference.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
-                                        } else {
-                                            return String(format: localizedPrevCurrString, reference.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
-                                        }
-                                    }
-                                } else if selectionStates[3].value { // Projected
-                                    if let accountDetail = self.accountDetail, accountDetail.isModeledForOpower {
-                                        let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
-                                            "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-                                        if let gasForecast = billForecast?.gas, self.isGas {
-                                            if let projectedCost = gasForecast.projectedCost, let toDateCost = gasForecast.toDateCost {
-                                                return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
-                                            }
-                                        }
-                                        if let elecForecast = billForecast?.electric, !self.isGas {
-                                            if let projectedCost = elecForecast.projectedCost, let toDateCost = elecForecast.toDateCost {
-                                                return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
-                                            }
-                                        }
-                                    } else {
-                                        let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. " +
-                                            "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-                                        let meterUnit = billComparison.meterUnit
-                                        if let gasForecast = billForecast?.gas, self.isGas {
-                                            if let projectedUsage = gasForecast.projectedUsage, let toDateUsage = gasForecast.toDateUsage {
-                                                return String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
-                                            }
-                                        }
-                                        if let elecForecast = billForecast?.electric, !self.isGas {
-                                            if let projectedUsage = elecForecast.projectedUsage, let toDateUsage = elecForecast.toDateUsage {
-                                                return String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
-                                            }
-                                        }
-                                    }
-                                } else if selectionStates[4].value { // Projection Not Available
-                                    return NSLocalizedString("Data becomes available once you are more than 7 days into the billing cycle.", comment: "")
-                                }
-                                return nil
+                             self.electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billComparison, selectionStates, billForecast, electricGasSelectedIndex in
+            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
+            guard let `self` = self else { return nil }
+            let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
+            
+            let localizedPrevCurrString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
+            if selectionStates[0].value { // No data
+                return NSLocalizedString("Not enough data available.", comment: "")
+            } else if selectionStates[1].value { // Previous
+                if let compared = billComparison.compared {
+                    let daysInBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
+                    let avgUsagePerDay = compared.usage / Double(daysInBillPeriod)
+                    if compared.charges < 0 {
+                        let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
+                        return String(format: billCreditString, abs(compared.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                    } else {
+                        return String(format: localizedPrevCurrString, compared.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                    }
+                }
+            } else if selectionStates[2].value { // Current
+                if let reference = billComparison.reference {
+                    let daysInBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
+                    let avgUsagePerDay = reference.usage / Double(daysInBillPeriod)
+                    if reference.charges < 0 {
+                        let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
+                        return String(format: billCreditString, abs(reference.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                    } else {
+                        return String(format: localizedPrevCurrString, reference.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                    }
+                }
+            } else if selectionStates[3].value { // Projected
+                if accountDetail.isModeledForOpower {
+                    let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
+                        "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
+                    if let gasForecast = billForecast?.gas, isGas {
+                        if let projectedCost = gasForecast.projectedCost, let toDateCost = gasForecast.toDateCost {
+                            return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                        }
+                    }
+                    if let elecForecast = billForecast?.electric, isGas {
+                        if let projectedCost = elecForecast.projectedCost, let toDateCost = elecForecast.toDateCost {
+                            return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                        }
+                    }
+                } else {
+                    let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. " +
+                        "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
+                    let meterUnit = billComparison.meterUnit
+                    if let gasForecast = billForecast?.gas, isGas {
+                        if let projectedUsage = gasForecast.projectedUsage, let toDateUsage = gasForecast.toDateUsage {
+                            return String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
+                        }
+                    }
+                    if let elecForecast = billForecast?.electric, !isGas {
+                        if let projectedUsage = elecForecast.projectedUsage, let toDateUsage = elecForecast.toDateUsage {
+                            return String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
+                        }
+                    }
+                }
+            } else if selectionStates[4].value { // Projection Not Available
+                return NSLocalizedString("Data becomes available once you are more than 7 days into the billing cycle.", comment: "")
+            }
+            return nil
     }
     
     // MARK: Up/Down Arrow Image Drivers
@@ -700,10 +720,18 @@ class UsageTabViewModel {
     
     // MARK: Likely Reasons Button Accessibility Drivers
     
-    private(set) lazy var billPeriodA11yLabel: Driver<String?> = self.billComparison.map { billComparison in
+    private(set) lazy var billPeriodA11yLabel: Driver<String?> = Driver.combineLatest(self.accountDetail,
+                                                                                      self.billComparison,
+                                                                                      self.electricGasSelectedSegmentIndex.asDriver())
+    { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
         if billComparison.compared == nil {
             return NSLocalizedString("Bill period. No data.", comment: "")
         }
+        
+        guard let this = self else { return nil }
+        let isGas = this.isGas(accountDetail: accountDetail,
+                               electricGasSelectedIndex: electricGasSelectedIndex)
+        let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
         
         guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
         let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
@@ -718,14 +746,21 @@ class UsageTabViewModel {
         } else {
             return NSLocalizedString("Bill period. You spent about the same based on the number of days in your billing period.", comment: "")
         }
-        return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString!, self.gasOrElectricityString, billPeriodDiff)
+        return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString!, gasOrElectricityString, billPeriodDiff)
     }
     
-    private(set) lazy var weatherA11yLabel: Driver<String?> = self.billComparison
-        .map { billComparison in
+    private(set) lazy var weatherA11yLabel: Driver<String?> = Driver.combineLatest(self.accountDetail,
+                                                                                   self.billComparison,
+                                                                                   self.electricGasSelectedSegmentIndex.asDriver())
+    { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
         if billComparison.compared == nil {
             return NSLocalizedString("Weather. No data.", comment: "")
         }
+        
+        guard let this = self else { return nil }
+        let isGas = this.isGas(accountDetail: accountDetail,
+                               electricGasSelectedIndex: electricGasSelectedIndex)
+        let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
         
         guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
         
@@ -737,14 +772,21 @@ class UsageTabViewModel {
         } else {
             return NSLocalizedString("Weather. You spent about the same based on weather conditions.", comment: "")
         }
-        return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString!, self.gasOrElectricityString)
+        return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString!, gasOrElectricityString)
     }
     
-    private(set) lazy var otherA11yLabel: Driver<String?> = self.billComparison
-        .map { billComparison in
+    private(set) lazy var otherA11yLabel: Driver<String?> = Driver.combineLatest(self.accountDetail,
+                                                                                 self.billComparison,
+                                                                                 self.electricGasSelectedSegmentIndex.asDriver())
+    { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
         if billComparison.compared == nil {
             return NSLocalizedString("Other. No data.", comment: "")
         }
+        
+        guard let this = self else { return nil }
+        let isGas = this.isGas(accountDetail: accountDetail,
+                               electricGasSelectedIndex: electricGasSelectedIndex)
+        let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
         
         guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
         
@@ -761,45 +803,53 @@ class UsageTabViewModel {
             return NSLocalizedString("Other. You spent about the same based on a variety reasons, including:\n• Number of people and amount of time spent in your home\n" +
                 "• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
         }
-        return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString!, self.gasOrElectricityString)
+        return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString!, gasOrElectricityString)
     }
     
     // MARK: Likely Reasons Drivers
     
     private(set) lazy var likelyReasonsLabelText: Driver<String?> =
-        Driver.combineLatest(self.billComparison, self.lastYearPreviousBillSelectedSegmentIndex.asDriver()) { [weak self] currentBillComparison, segmentIndex in
+        Driver.combineLatest(self.accountDetail,
+                             self.billComparison,
+                             self.lastYearPreviousBillSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, currentBillComparison, electricGasSelectedIndex in
             guard let `self` = self else { return nil }
+            let isGas = self.isGas(accountDetail: accountDetail,
+                                   electricGasSelectedIndex: electricGasSelectedIndex)
+            let gasOrElectricString = isGas ? NSLocalizedString("gas", comment: "") :
+                NSLocalizedString("electric", comment: "")
+            
             guard let reference = currentBillComparison.reference, let compared = currentBillComparison.compared else {
-                return String(format: NSLocalizedString("Data not available to explain likely reasons for changes in your %@ charges.", comment: ""), self.gasOrElectricString)
+                return String(format: NSLocalizedString("Data not available to explain likely reasons for changes in your %@ charges.", comment: ""), gasOrElectricString)
             }
             
             let currentCharges = reference.charges
             let prevCharges = compared.charges
             let difference = abs(currentCharges - prevCharges)
             if difference < 1 { // About the same
-                if segmentIndex == 0 { // Last Year
+                if electricGasSelectedIndex == 0 { // Last Year
                     let localizedString = NSLocalizedString("Likely reasons your %@ charges are about the same as last year.", comment: "")
-                    return String(format: localizedString, self.gasOrElectricString)
+                    return String(format: localizedString, gasOrElectricString)
                 } else { // Previous Bill
                     let localizedString = NSLocalizedString("Likely reasons your %@ charges are about the same as your previous bill.", comment: "")
-                    return String(format: localizedString, self.gasOrElectricString)
+                    return String(format: localizedString, gasOrElectricString)
                 }
             } else {
                 if currentCharges > prevCharges {
-                    if segmentIndex == 0 { // Last Year
+                    if electricGasSelectedIndex == 0 { // Last Year
                         let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ more than last year.", comment: "")
-                        return String(format: localizedString, self.gasOrElectricString, difference.currencyString!)
+                        return String(format: localizedString, gasOrElectricString, difference.currencyString!)
                     } else { // Previous Bill
                         let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ more than your previous bill.", comment: "")
-                        return String(format: localizedString, self.gasOrElectricString, difference.currencyString!)
+                        return String(format: localizedString, gasOrElectricString, difference.currencyString!)
                     }
                 } else {
-                    if segmentIndex == 0 { // Last Year
+                    if electricGasSelectedIndex == 0 { // Last Year
                         let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ less than last year.", comment: "")
-                        return String(format: localizedString, self.gasOrElectricString, difference.currencyString!)
+                        return String(format: localizedString, gasOrElectricString, difference.currencyString!)
                     } else { // Previous Bill
                         let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ less than your previous bill.", comment: "")
-                        return String(format: localizedString, self.gasOrElectricString, difference.currencyString!)
+                        return String(format: localizedString, gasOrElectricString, difference.currencyString!)
                     }
                 }
             }
@@ -817,8 +867,15 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var likelyReasonsDescriptionDetailText: Driver<String?> =
-        Driver.combineLatest(self.billComparison, self.likelyReasonsSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
+        Driver.combineLatest(self.accountDetail,
+                             self.billComparison,
+                             self.likelyReasonsSelectionStates.asDriver(),
+                             self.electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billComparison, selectionStates, electricGasSelectedIndex in
             guard let `self` = self else { return nil }
+            let isGas = self.isGas(accountDetail: accountDetail,
+                                   electricGasSelectedIndex: electricGasSelectedIndex)
+            let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
             guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
             if selectionStates[0].value { // Bill Period
                 let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
@@ -833,7 +890,7 @@ class UsageTabViewModel {
                 } else {
                     return NSLocalizedString("You spent about the same based on the number of days in your billing period.", comment: "")
                 }
-                return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString!, self.gasOrElectricityString, billPeriodDiff)
+                return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString!, gasOrElectricityString, billPeriodDiff)
             } else if selectionStates[1].value { // Weather
                 var localizedString: String!
                 if billComparison.weatherCostDifference >= 1 {
@@ -843,7 +900,7 @@ class UsageTabViewModel {
                 } else {
                     return NSLocalizedString("You spent about the same based on weather conditions.", comment: "")
                 }
-                return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString!, self.gasOrElectricityString)
+                return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString!, gasOrElectricityString)
             } else if selectionStates[2].value { // Other
                 var localizedString: String!
                 if billComparison.otherCostDifference >= 1 {
@@ -858,7 +915,7 @@ class UsageTabViewModel {
                     return NSLocalizedString("You spent about the same based on a variety reasons, including:\n• Number of people and amount of time spent in your home\n" +
                         "• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
                 }
-                return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString!, self.gasOrElectricityString)
+                return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString!, gasOrElectricityString)
             }
             return nil
     }
@@ -883,33 +940,27 @@ class UsageTabViewModel {
     
     // MARK: Random helpers
     
-    var shouldShowElectricGasToggle: Bool {
-        if Environment.shared.opco != .comEd {
-            guard let accountDetail = self.accountDetail else { return false }
-            // We can force unwrap here because this view is unreachable if it's null
-            return accountDetail.serviceType!.uppercased() == "GAS/ELECTRIC"
+    // If a gas only account, return true, if an electric only account, returns false, if both gas/electric, returns selected segemented control
+    private lazy var isGasDriver: Driver<Bool> = Driver.combineLatest(self.accountDetail,
+                                                                      self.electricGasSelectedSegmentIndex.asDriver())
+    { accountDetail, electricGasSelectedIndex in
+        if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
+            return true
+        } else if Environment.shared.opco != .comEd && accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" {
+            return electricGasSelectedIndex == 1
         }
+        // Default to electric
         return false
     }
     
-    // If a gas only account, return true, if an electric only account, returns false, if both gas/electric, returns selected segemented control
-    private var isGas: Bool {
-        guard let accountDetail = self.accountDetail else { return false }
-        
-        var gas = false // Default to electric
-        if accountDetail.serviceType!.uppercased() == "GAS" { // If account is gas only
-            gas = true
-        } else if shouldShowElectricGasToggle { // Use value of segmented control
-            gas = electricGasSelectedSegmentIndex.value == 1
+    private func isGas(accountDetail: AccountDetail, electricGasSelectedIndex: Int) -> Bool {
+        if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
+            return true
+        } else if Environment.shared.opco != .comEd && accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" {
+            return electricGasSelectedIndex == 1
         }
-        return gas
-    }
-    
-    private var gasOrElectricString: String {
-        return isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
-    }
-    
-    private var gasOrElectricityString: String {
-        return isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
+        // Default to electric
+        return false
     }
 }
+

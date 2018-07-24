@@ -66,9 +66,6 @@
                                                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" placeholderIntrinsicWidth="467" placeholderIntrinsicHeight="64" translatesAutoresizingMaskIntoConstraints="NO" id="b9o-Te-xzG" customClass="BillAnalysisSegmentedControl" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="19" y="0.0" width="305" height="64"/>
                                                                 <color key="backgroundColor" red="0.23921568630000001" green="0.51764705879999995" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <connections>
-                                                                    <action selector="segmentDidChange:" destination="gRa-nh-wfg" eventType="valueChanged" id="uId-SY-R1U"/>
-                                                                </connections>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhU-dZ-ioc">
                                                                 <rect key="frame" x="74" y="80" width="195" height="35.5"/>
@@ -113,9 +110,6 @@
                                                                                     <constraint firstAttribute="width" constant="32" id="dZ0-bC-Gnv"/>
                                                                                 </constraints>
                                                                                 <state key="normal" image="ic_caret_left"/>
-                                                                                <connections>
-                                                                                    <action selector="previousBillPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="cS4-QF-BIt"/>
-                                                                                </connections>
                                                                             </button>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PTZ-6z-yiy">
                                                                                 <rect key="frame" x="-23" y="0.0" width="340" height="183"/>
@@ -359,9 +353,6 @@
                                                                                     <constraint firstAttribute="height" constant="32" id="ii2-pe-qxz"/>
                                                                                 </constraints>
                                                                                 <state key="normal" image="ic_caret"/>
-                                                                                <connections>
-                                                                                    <action selector="nextBillPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="Cmv-Lb-m5o"/>
-                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -625,7 +616,6 @@
                         <outlet property="graphDetailDescriptionLabel" destination="ca6-Po-YNM" id="GTe-jT-RNh"/>
                         <outlet property="graphDetailTemperatureLabel" destination="mST-JC-TNs" id="We5-TV-a9c"/>
                         <outlet property="graphErrorLabel" destination="cyK-N7-CES" id="maE-I0-ZaX"/>
-                        <outlet property="leftGraphButton" destination="V3z-9k-4Uq" id="NkV-6S-ti1"/>
                         <outlet property="leftGraphView" destination="dKk-5X-by1" id="VTa-j7-e7e"/>
                         <outlet property="mainErrorLabel" destination="mo5-kv-hgY" id="fOv-gw-LSY"/>
                         <outlet property="mainErrorView" destination="B6w-3l-gs6" id="Ab4-sF-fRx"/>
@@ -648,7 +638,6 @@
                         <outlet property="projectedNotAvailableDateLabel" destination="neq-7Z-Y83" id="wGw-DP-Fyu"/>
                         <outlet property="projectedNotAvailableDaysRemainingLabel" destination="lgL-82-goE" id="o1I-5f-Lxc"/>
                         <outlet property="projectionNotAvailableContainerButton" destination="csG-p7-Bmt" id="ljE-Sv-CwQ"/>
-                        <outlet property="rightGraphButton" destination="1zd-LH-vJB" id="j1A-Xm-KOZ"/>
                         <outlet property="rightGraphForegroundImageView" destination="QEx-t6-edt" id="vbe-b3-XIf"/>
                         <outlet property="scrollView" destination="auv-xw-MUC" id="gZz-P8-Fkb"/>
                         <outlet property="segmentControl" destination="b9o-Te-xzG" id="Xtq-0L-Itv"/>

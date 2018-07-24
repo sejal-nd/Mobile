@@ -62,20 +62,6 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet weak var leftGraphButton: UIButton! {
-        didSet {
-            leftGraphButton.layer.cornerRadius = 16
-            leftGraphButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-        }
-    }
-    
-    @IBOutlet weak var rightGraphButton: UIButton! {
-        didSet {
-            rightGraphButton.layer.cornerRadius = 16
-            rightGraphButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-        }
-    }
-    
     @IBOutlet weak var myUsageToolsLabel: UILabel! {
         didSet {
             myUsageToolsLabel.font = OpenSans.semibold.of(size: 18)
@@ -196,35 +182,26 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet weak var previousYearButton: UIButton!
-    @IBOutlet weak var nextYearButton: UIButton!
+    @IBOutlet weak var previousYearButton: UIButton! {
+        didSet {
+            previousYearButton.layer.cornerRadius = 16
+            previousYearButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        }
+    }
+    
+    @IBOutlet weak var nextYearButton: UIButton! {
+        didSet {
+            nextYearButton.layer.cornerRadius = 16
+            nextYearButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        }
+    }
+    
     @IBOutlet weak var dropdownView: BillImpactDropdownView!
     
     @IBOutlet weak var graphErrorLabel: UILabel! {
         didSet {
             graphErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
             graphErrorLabel.textColor = .blackText
-        }
-    }
-    
-    private var isViewingCurrentYear = true {
-        didSet {
-//            fetchData()
-            
-            if isViewingCurrentYear {
-                viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
-                nextYearButton.isEnabled = false
-                previousYearButton.isEnabled = true
-                
-                Analytics.log(event: .BillPreviousToggle)
-            } else {
-                viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
-                
-                nextYearButton.isEnabled = true
-                previousYearButton.isEnabled = false
-                
-                Analytics.log(event: .BillLastYearToggle)
-            }
         }
     }
     
@@ -237,6 +214,17 @@ class UsageTabViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Driver.merge(previousYearButton.rx.tap.asDriver().map(to: 0),
+                     nextYearButton.rx.tap.asDriver().map(to: 1))
+            .drive(onNext: { [weak self] index in
+                guard let this = self else { return }
+                this.nextYearButton.isEnabled = index == 0
+                this.previousYearButton.isEnabled = index == 1
+                this.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = index
+                Analytics.log(event: index == 0 ? .BillLastYearToggle : .BillPreviousToggle)
+            })
+            .disposed(by: disposeBag)
         
         // Setup Account Picker
         accountPicker.delegate = self
@@ -296,18 +284,6 @@ class UsageTabViewController: AccountPickerViewController {
     
     
     // MARK: - Actions
-    
-    @IBAction func segmentDidChange(_ sender: BillAnalysisSegmentedControl) {
-        dLog("SEGMENT DID CHANGE: \(sender.selectedIndex.value)")
-    }
-    
-    @IBAction func previousBillPress(_ sender: Any) {
-        isViewingCurrentYear = false
-    }
-    
-    @IBAction func nextBillPress(_ sender: Any) {
-        isViewingCurrentYear = true
-    }
     
     @IBAction func barGraphPress(_ sender: ButtonControl) {
         dLog("BAR PRESS")
@@ -435,32 +411,30 @@ class UsageTabViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let accountDetail = viewModel.accountDetail else { return }
-        
-        switch segue.destination {
-        case let vc as UsageViewController:
-            vc.accountDetail = accountDetail
-        case let vc as UsageWebViewController:
-            vc.accountDetail = accountDetail
-        case let vc as Top5EnergyTipsViewController:
-            vc.accountDetail = accountDetail
-        case let vc as MyHomeProfileViewController:
-            vc.accountDetail = accountDetail
-            vc.didSaveHomeProfile
-                .delay(0.5)
-                .drive(onNext: { [weak self] in
-                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
-                })
-                .disposed(by: disposeBag)
-        case let vc as HourlyPricingViewController:
-            vc.accountDetail = accountDetail
-        case let vc as TotalSavingsViewController:
-            vc.eventResults = accountDetail.serInfo.eventResults
-        case let vc as PeakRewardsViewController:
-            vc.accountDetail = accountDetail
-        default:
-            break
-        }
+//        switch segue.destination {
+//        case let vc as UsageViewController:
+//            vc.accountDetail = accountDetail
+//        case let vc as UsageWebViewController:
+//            vc.accountDetail = accountDetail
+//        case let vc as Top5EnergyTipsViewController:
+//            vc.accountDetail = accountDetail
+//        case let vc as MyHomeProfileViewController:
+//            vc.accountDetail = accountDetail
+//            vc.didSaveHomeProfile
+//                .delay(0.5)
+//                .drive(onNext: { [weak self] in
+//                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
+//                })
+//                .disposed(by: disposeBag)
+//        case let vc as HourlyPricingViewController:
+//            vc.accountDetail = accountDetail
+//        case let vc as TotalSavingsViewController:
+//            vc.eventResults = accountDetail.serInfo.eventResults
+//        case let vc as PeakRewardsViewController:
+//            vc.accountDetail = accountDetail
+//        default:
+//            break
+//        }
     }
     
 }
