@@ -14,6 +14,17 @@ class UsageTabViewController: AccountPickerViewController {
     
     @IBOutlet weak var backgroundScrollConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var contentStack: UIStackView!
+    @IBOutlet weak var unavailableView: UnavailableView!
+    @IBOutlet weak var mainErrorView: UIView!
+    @IBOutlet weak var mainErrorLabel: UILabel! {
+        didSet {
+            mainErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
+            mainErrorLabel.textColor = .blackText
+        }
+    }
+    
     @IBOutlet weak var segmentControl: BillAnalysisSegmentedControl! {
         didSet {
             segmentControl.leftLabel.text = "Electric"
@@ -188,6 +199,13 @@ class UsageTabViewController: AccountPickerViewController {
     @IBOutlet weak var previousYearButton: UIButton!
     @IBOutlet weak var nextYearButton: UIButton!
     @IBOutlet weak var dropdownView: BillImpactDropdownView!
+    
+    @IBOutlet weak var graphErrorLabel: UILabel! {
+        didSet {
+            graphErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
+            graphErrorLabel.textColor = .blackText
+        }
+    }
     
     private var isViewingCurrentYear = true {
         didSet {

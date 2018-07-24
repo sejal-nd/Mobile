@@ -120,8 +120,8 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VWm-aO-rWf">
                                                     <rect key="frame" x="0.0" y="14" width="351" height="294.5"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" distribution="equalSpacing" alignment="bottom" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-gM-7zJ">
-                                                            <rect key="frame" x="21.5" y="0.0" width="308" height="107.5"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" distribution="fillEqually" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-gM-7zJ">
+                                                            <rect key="frame" x="30.5" y="0.0" width="290" height="107.5"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gxK-zj-So2" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="107.5"/>
@@ -171,6 +171,7 @@
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstItem="TfU-WQ-kDt" firstAttribute="leading" secondItem="gxK-zj-So2" secondAttribute="leading" id="4XC-nG-0HY"/>
+                                                                        <constraint firstAttribute="width" priority="500" constant="90" id="8b5-00-FiX"/>
                                                                         <constraint firstItem="6eR-tg-q5i" firstAttribute="centerX" secondItem="gxK-zj-So2" secondAttribute="centerX" id="8hK-uC-wPh"/>
                                                                         <constraint firstItem="TfU-WQ-kDt" firstAttribute="top" secondItem="gxK-zj-So2" secondAttribute="top" constant="40" id="CPG-QA-kEY"/>
                                                                         <constraint firstItem="47R-7x-Hn2" firstAttribute="top" secondItem="TfU-WQ-kDt" secondAttribute="bottom" constant="16" id="MJJ-KR-jX8"/>
@@ -179,14 +180,13 @@
                                                                         <constraint firstItem="47R-7x-Hn2" firstAttribute="leading" secondItem="gxK-zj-So2" secondAttribute="leading" id="VTg-6O-CAU"/>
                                                                         <constraint firstAttribute="trailing" secondItem="47R-7x-Hn2" secondAttribute="trailing" id="ssG-Sz-uEh"/>
                                                                         <constraint firstItem="6eR-tg-q5i" firstAttribute="top" secondItem="gxK-zj-So2" secondAttribute="top" constant="3" id="wdY-4i-Egu"/>
-                                                                        <constraint firstAttribute="width" constant="90" id="whB-ln-wrb"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <action selector="factorImpactPress:" destination="-1" eventType="touchUpInside" id="9mP-du-A9L"/>
                                                                     </connections>
                                                                 </view>
                                                                 <view tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="yRA-p4-6ay" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                    <rect key="frame" x="109" y="0.0" width="90" height="107.5"/>
+                                                                    <rect key="frame" x="100" y="0.0" width="90" height="107.5"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="ic_billanalysis_weather" translatesAutoresizingMaskIntoConstraints="NO" id="KdF-iF-GrO">
                                                                             <rect key="frame" x="19.5" y="-0.5" width="50" height="36"/>
@@ -240,7 +240,6 @@
                                                                         <constraint firstItem="y3v-W1-A56" firstAttribute="leading" secondItem="yRA-p4-6ay" secondAttribute="leading" id="e3e-0u-F2G"/>
                                                                         <constraint firstItem="51d-Yd-aYf" firstAttribute="top" secondItem="y3v-W1-A56" secondAttribute="bottom" constant="16" id="gNL-Xp-FJn"/>
                                                                         <constraint firstAttribute="trailing" secondItem="y3v-W1-A56" secondAttribute="trailing" id="mtb-Si-C5e"/>
-                                                                        <constraint firstAttribute="width" constant="90" id="xZ1-Mn-6KT"/>
                                                                         <constraint firstItem="KdF-iF-GrO" firstAttribute="centerX" secondItem="yRA-p4-6ay" secondAttribute="centerX" id="zeT-Ni-QMz"/>
                                                                     </constraints>
                                                                     <connections>
@@ -248,7 +247,7 @@
                                                                     </connections>
                                                                 </view>
                                                                 <view tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-t2-O65" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                    <rect key="frame" x="218" y="0.0" width="90" height="107.5"/>
+                                                                    <rect key="frame" x="200" y="0.0" width="90" height="107.5"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="ic_billanalysis_other" translatesAutoresizingMaskIntoConstraints="NO" id="E4t-wm-pPS">
                                                                             <rect key="frame" x="28" y="3" width="33" height="33"/>
@@ -301,7 +300,6 @@
                                                                         <constraint firstItem="fYU-7N-rkk" firstAttribute="leading" secondItem="Cf7-t2-O65" secondAttribute="leading" id="GKg-wu-BE8"/>
                                                                         <constraint firstAttribute="trailing" secondItem="MTc-kj-rFC" secondAttribute="trailing" id="MHL-Hd-h6m"/>
                                                                         <constraint firstItem="MTc-kj-rFC" firstAttribute="leading" secondItem="Cf7-t2-O65" secondAttribute="leading" id="Rsc-E4-tB0"/>
-                                                                        <constraint firstAttribute="width" constant="90" id="g96-Rn-Nyz"/>
                                                                         <constraint firstAttribute="trailing" secondItem="fYU-7N-rkk" secondAttribute="trailing" id="trd-Gf-JYz"/>
                                                                         <constraint firstItem="E4t-wm-pPS" firstAttribute="centerX" secondItem="Cf7-t2-O65" secondAttribute="centerX" id="yC1-of-Mvz"/>
                                                                     </constraints>
