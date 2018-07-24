@@ -165,6 +165,10 @@
 		35277AFD210266BF00411297 /* MyUsageToolCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* MyUsageToolCard.swift */; };
 		35277AFE2102686100411297 /* MyUsageToolCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* MyUsageToolCard.swift */; };
 		35277AFF2102686100411297 /* MyUsageToolCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* MyUsageToolCard.swift */; };
+		35277B00210794B000411297 /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
+		35277B01210794B100411297 /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
+		35277B02210794B400411297 /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A921021B7A002C544E /* UnavailableView.swift */; };
+		35277B03210794B400411297 /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A921021B7A002C544E /* UnavailableView.swift */; };
 		35376C6720F8FFC8007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		35376C6820F8FFC9007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		35376C6920F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
@@ -5486,6 +5490,7 @@
 				E8FE30B61E787632009D28B7 /* outage.json in Resources */,
 				B55736401E6740C9003B9369 /* SyncStore.mom in Resources */,
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
+				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
 				B55736341E6740A8003B9369 /* INFO.txt in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				358DE09D20F92438002C544E /* MyUsageCollectionViewCell.xib in Resources */,
@@ -5595,6 +5600,7 @@
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
+				35277B00210794B000411297 /* UnavailableView.xib in Resources */,
 				E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */,
 				E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */,
 				358DE09E20F92439002C544E /* MyUsageCollectionViewCell.xib in Resources */,
@@ -6469,6 +6475,7 @@
 				0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */,
 				B067E0AD2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				54C1DF081F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
+				35277B03210794B400411297 /* UnavailableView.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -6798,6 +6805,7 @@
 				0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */,
 				B067E0AC2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				54C1DF071F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
+				35277B02210794B400411297 /* UnavailableView.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* OMCRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,

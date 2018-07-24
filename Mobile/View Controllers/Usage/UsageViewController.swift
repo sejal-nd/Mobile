@@ -6,7 +6,6 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import SafariServices
 import RxSwift
 import RxCocoa
 import RxSwiftExt
@@ -19,9 +18,6 @@ class UsageViewController: UIViewController {
     @IBOutlet weak var gradientView: UIView!
 
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var usageGraphPlaceholderButton: DisclosureButton!
-    @IBOutlet weak var top5EnergyTipsButton: DisclosureButton!
-    @IBOutlet weak var updateYourHomeProfileButton: DisclosureButton!
     
     @IBOutlet weak var hourlyPricingCard: UIView!
     @IBOutlet weak var hourlyPricingTitleLabel: UILabel!
@@ -34,7 +30,6 @@ class UsageViewController: UIViewController {
     @IBOutlet weak var peakTimeSavingsEnrollButton: UIButton!
     
     @IBOutlet weak var smartEnergyRewardsContainerView: UIView!
-    @IBOutlet weak var smartEnergyRewardsTitleLabel: UILabel!
     @IBOutlet weak var smartEnergyRewardsFooterLabel: UILabel!
     
     @IBOutlet weak var smartEnergyRewardsContentView: UIView!
@@ -148,9 +143,7 @@ class UsageViewController: UIViewController {
             peakTimeSavingsCard.isHidden = true
         }
 
-        smartEnergyRewardsTitleLabel.textColor = .blackText
-        smartEnergyRewardsTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
-        smartEnergyRewardsTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+        title = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsSeasonLabel.textColor = .deepGray
@@ -171,18 +164,6 @@ class UsageViewController: UIViewController {
     }
     
     private func buttonTapSetup() {
-        Driver.merge(usageGraphPlaceholderButton.rx.tap.asDriver().map(to: "usageWebViewSegue"),
-                     top5EnergyTipsButton.rx.tap.asDriver().map(to: "top5EnergyTipsSegue"),
-                     updateYourHomeProfileButton.rx.tap.asDriver().map(to: "updateYourHomeProfileSegue"),
-                     smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver().map(to: "totalSavingsSegue"))
-            .drive(onNext: { [weak self] in
-                if $0 == "totalSavingsSegue" {
-                    Analytics.log(event: .AllSavingsUsage)
-                }
-                self?.performSegue(withIdentifier: $0, sender: nil)
-            })
-            .disposed(by: disposeBag)
-        
         hourlyPricingEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] in
             guard let accountDetail = self?.accountDetail else { return }
             if accountDetail.isHourlyPricing {
@@ -216,30 +197,6 @@ class UsageViewController: UIViewController {
         }
         smartEnergyRewardsSeasonLabel.text = viewModel.smartEnergyRewardsSeasonLabelText
         smartEnergyRewardsFooterLabel.text = viewModel.smartEnergyRewardsFooterText
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.destination {
-        case let vc as UsageWebViewController:
-            vc.accountDetail = accountDetail
-        case let vc as Top5EnergyTipsViewController:
-            vc.accountDetail = accountDetail
-        case let vc as MyHomeProfileViewController:
-            vc.accountDetail = accountDetail
-            vc.didSaveHomeProfile
-                .delay(0.5)
-                .drive(onNext: { [weak self] in
-                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
-                })
-                .disposed(by: disposeBag)
-        case let vc as HourlyPricingViewController:
-            vc.accountDetail = accountDetail
-        case let vc as TotalSavingsViewController:
-            vc.eventResults = accountDetail.serInfo.eventResults
-        case let vc as PeakRewardsViewController:
-            vc.accountDetail = accountDetail
-        default: break
-        }
     }
 
 }

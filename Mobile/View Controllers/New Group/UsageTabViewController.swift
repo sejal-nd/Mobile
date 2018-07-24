@@ -438,6 +438,8 @@ class UsageTabViewController: AccountPickerViewController {
         guard let accountDetail = viewModel.accountDetail else { return }
         
         switch segue.destination {
+        case let vc as UsageViewController:
+            vc.accountDetail = accountDetail
         case let vc as UsageWebViewController:
             vc.accountDetail = accountDetail
         case let vc as Top5EnergyTipsViewController:
