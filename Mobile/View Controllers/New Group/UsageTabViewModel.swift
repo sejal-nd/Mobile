@@ -33,7 +33,7 @@ class UsageTabViewModel {
                     usageToolCards.append(MyUsageToolCard(image: UIImage(named: "ic_smartenergy"), title: "Smart Energy Rewards"))
                 }
             case .comEd:
-                usageToolCards.insert(MyUsageToolCard(image: UIImage(named: "ic_thermostat"), title: "PeakRewards"), at: 1) // Todo
+                usageToolCards.insert(MyUsageToolCard(image: UIImage(named: "ic_hourlypricing"), title: "Hourly Pricing"), at: 1)
 
                 if accountDetail.isPTSAccount {
                     usageToolCards.append(MyUsageToolCard(image:UIImage(named: "ic_smartenergy"), title: "Peak Time Savings"))

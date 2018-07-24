@@ -396,6 +396,37 @@ class UsageTabViewController: AccountPickerViewController {
         })
     }
     
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let accountDetail = viewModel.accountDetail else { return }
+        
+        switch segue.destination {
+        case let vc as UsageWebViewController:
+            vc.accountDetail = accountDetail
+        case let vc as Top5EnergyTipsViewController:
+            vc.accountDetail = accountDetail
+        case let vc as MyHomeProfileViewController:
+            vc.accountDetail = accountDetail
+            vc.didSaveHomeProfile
+                .delay(0.5)
+                .drive(onNext: { [weak self] in
+                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
+                })
+                .disposed(by: disposeBag)
+        case let vc as HourlyPricingViewController:
+            vc.accountDetail = accountDetail
+        case let vc as TotalSavingsViewController:
+            vc.eventResults = accountDetail.serInfo.eventResults
+        case let vc as PeakRewardsViewController:
+            vc.accountDetail = accountDetail
+        default:
+            break
+        }
+    }
+    
 }
 
 extension UsageTabViewController: AccountPickerDelegate {

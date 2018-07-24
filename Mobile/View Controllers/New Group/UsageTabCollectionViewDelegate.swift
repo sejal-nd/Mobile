@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -34,18 +35,42 @@ extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDe
         
         switch usageToolCard.title {
         case "View My Usage Data":
+            performSegue(withIdentifier: "usageWebViewSegue", sender: nil)
+            // open the Usage web view in a new screen
             dLog("vmud")
         case "PeakRewards":
+            // Legacy PeakRewards users will be directed to the "PeakRewards" screen
+            // This icon will not be displayed to PeakRewards WiFi (Ecobee) users. They will access the Ecobee web view via the OpCo Template card.
             dLog("pr")
         case "Hourly Pricing":
+            guard let accountDetail = viewModel.accountDetail else { return }
+            if accountDetail.isHourlyPricing {
+                Analytics.log(event: .HourlyPricing,
+                              dimensions: [.HourlyPricingEnrollment: "enrolled"])
+                performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
+            } else {
+                Analytics.log(event: .HourlyPricing,
+                              dimensions: [.HourlyPricingEnrollment: "unenrolled"])
+                let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
+                present(safariVc, animated: true, completion: nil)
+            }
+            // ?? Hourly Pricing card
             dLog("hp")
         case "Top 5 Energy Tips":
+            performSegue(withIdentifier: "top5EnergyTipsSegue", sender: nil)
+            // Tapping on the "Tips" button will display a full-screen modal with the top 5 OpCo-specific, personalized tips from oPower
             dLog("t5")
         case "My Home Profile":
+            performSegue(withIdentifier: "updateYourHomeProfileSegue", sender: nil)
+            // Tapping on this button will display a form where users can enter more details about their home to receive better neighbor comparison data
             dLog("myhp")
         case "Smart Energy Rewards":
+            performSegue(withIdentifier: "totalSavingsSegue", sender: nil)
+            // Peak Time Savings/Smart Energy Rewards card
             dLog("ser")
         case "Peak Time Savings":
+            performSegue(withIdentifier: "totalSavingsSegue", sender: nil)
+            // Peak Time Savings/Smart Energy Rewards card
             dLog("pts")
         default:
             break
