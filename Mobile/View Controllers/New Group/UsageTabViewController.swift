@@ -12,24 +12,19 @@ import RxCocoa
 
 class UsageTabViewController: AccountPickerViewController {
     
-    // We may be able to remove this.
-    @IBOutlet weak var contentView: UIView! {
-        didSet {
-            //contentView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-            //contentView.layer.cornerRadius = 10
-        }
-    }
     @IBOutlet weak var segmentControl: BillAnalysisSegmentedControl! {
         didSet {
             segmentControl.leftLabel.text = "Electric"
             segmentControl.rightLabel.text = "Gas"
         }
     }
+    
     @IBOutlet weak var compareBillTitlelabel: UILabel! {
         didSet {
             compareBillTitlelabel.font = OpenSans.semibold.of(textStyle: .headline)
         }
     }
+    
     @IBOutlet weak var leftGraphView: UIView! {
         didSet {
             leftGraphView.layer.cornerRadius = 5
@@ -41,39 +36,46 @@ class UsageTabViewController: AccountPickerViewController {
             centerGraphView.layer.cornerRadius = 5
         }
     }
+    
     @IBOutlet weak var rightGraphBackgroundView: UIView! {
         didSet {
             rightGraphBackgroundView.layer.cornerRadius = 5
         }
     }
+    
     @IBOutlet weak var rightGraphForegroundImageView: UIImageView! {
         didSet {
             rightGraphForegroundImageView.layer.cornerRadius = 5
         }
     }
-    @IBOutlet weak var leftGraphButtonView: UIView! {
+    
+    @IBOutlet weak var leftGraphButton: UIButton! {
         didSet {
-            leftGraphButtonView.layer.cornerRadius = 16
-            leftGraphButtonView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+            leftGraphButton.layer.cornerRadius = 16
+            leftGraphButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
-    @IBOutlet weak var rightGraphButtonView: UIView! {
+    
+    @IBOutlet weak var rightGraphButton: UIButton! {
         didSet {
-            rightGraphButtonView.layer.cornerRadius = 16
-            rightGraphButtonView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+            rightGraphButton.layer.cornerRadius = 16
+            rightGraphButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
+    
     @IBOutlet weak var myUsageToolsLabel: UILabel! {
         didSet {
             myUsageToolsLabel.font = OpenSans.semibold.of(size: 18)
         }
     }
+    
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.dataSource = self
             collectionView.delegate = self
         }
     }
+    
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
 
     // Bill Graph
@@ -83,6 +85,7 @@ class UsageTabViewController: AccountPickerViewController {
             billGraphDetailView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0.0, height: 2.0), radius: 8)
         }
     }
+    
     @IBOutlet weak var barGraphStackView: UIStackView!
     @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
@@ -103,6 +106,7 @@ class UsageTabViewController: AccountPickerViewController {
             previousMonthGraphValueLabel.textColor = .deepGray
         }
     }
+    
     @IBOutlet weak var previousMonthGraphDateLabel: UILabel! {
         didSet {
             previousMonthGraphDateLabel.font = OpenSans.semibold.of(size: 14)
@@ -119,6 +123,7 @@ class UsageTabViewController: AccountPickerViewController {
             currentMonthGraphValueLabel.textColor = .deepGray
         }
     }
+    
     @IBOutlet weak var currentMonthGraphDateLabel: UILabel! {
         didSet {
             currentMonthGraphDateLabel.font = OpenSans.semibold.of(size: 14)
@@ -149,6 +154,7 @@ class UsageTabViewController: AccountPickerViewController {
             projectedNotAvailableDateLabel.textColor = .deepGray
         }
     }
+    
     @IBOutlet weak var projectedNotAvailableDaysRemainingLabel: UILabel! {
         didSet {
             projectedNotAvailableDaysRemainingLabel.font = OpenSans.semibold.of(size: 14)
@@ -162,18 +168,21 @@ class UsageTabViewController: AccountPickerViewController {
             graphDetailDateLabel.textColor = .blackText
         }
     }
+    
     @IBOutlet weak var graphDetailTemperatureLabel: UILabel! {
         didSet {
             graphDetailTemperatureLabel.font = OpenSans.regular.of(size: 12)
             graphDetailTemperatureLabel.textColor = .blackText
         }
     }
+    
     @IBOutlet weak var graphDetailDescriptionLabel: UILabel! {
         didSet {
             graphDetailDescriptionLabel.font = OpenSans.regular.of(size: 12)
             graphDetailDescriptionLabel.textColor = .black
         }
     }
+    
     @IBOutlet weak var previousYearButton: UIButton!
     @IBOutlet weak var nextYearButton: UIButton!
     
@@ -244,7 +253,7 @@ class UsageTabViewController: AccountPickerViewController {
     // MARK: - Actions
     
     @IBAction func segmentDidChange(_ sender: BillAnalysisSegmentedControl) {
-        print("SEGMENT DID CHANGE: \(sender.selectedIndex.value)")
+        dLog("SEGMENT DID CHANGE: \(sender.selectedIndex.value)")
     }
     
     @IBAction func previousBillPress(_ sender: Any) {
@@ -256,7 +265,7 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     @IBAction func barGraphPress(_ sender: ButtonControl) {
-        print("BAR PRESS")
+        dLog("BAR PRESS")
         let centerPoint = sender.center
         let convertedPoint = barGraphStackView.convert(centerPoint, to: billGraphDetailView)
         
@@ -373,7 +382,7 @@ class UsageTabViewController: AccountPickerViewController {
             
             guard let `self` = self else { return }
             self.reloadCollectionView() // Congfigures bottom cards
-         print("COMPLETE FETCHED DATA")
+         dLog("COMPLETE FETCHED DATA")
         })
     }
     
@@ -382,7 +391,7 @@ class UsageTabViewController: AccountPickerViewController {
 extension UsageTabViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        print("Fetch Account Details")
+        dLog("Fetch Account Details")
         //viewModel.fetchAccountDetail(isRefresh: false)
     }
     

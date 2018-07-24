@@ -74,7 +74,7 @@ class UsageTabViewModel {
                 self.isFetchingAccountDetail = false
                 
                 onSuccess?()
-                print("ACCOUNT DETAIL@@@@@@@: \(accountDetail)")
+                dLog("ACCOUNT DETAIL@@@@@@@: \(accountDetail)")
                 
                 
                 
@@ -98,7 +98,7 @@ class UsageTabViewModel {
 //                    }).disposed(by: self.disposeBag)
                 }, onError: { [weak self] err in
                     self?.isFetchingAccountDetail = false
-                    print("Failure")
+                    dLog("Failure")
                     //self?.isFetchingUpdates.value = false
                     //self?.isAccountDetailError.value = true
                     //self?.isUpdatesError.value = true
@@ -640,11 +640,10 @@ class UsageTabViewModel {
                              self.barGraphSelectionStates.asDriver(),
                              self.electricForecast.asDriver(),
                              self.gasForecast.asDriver(),
-                             self.electricGasSelectedSegmentIndex.asDriver(),
-                             self.isFetching.asDriver()) { [weak self] currentBillComparison, segmentIndex, selectionStates, elecForecast, gasForecast, dontUseThis, isFetching in
+                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] currentBillComparison, segmentIndex, selectionStates, elecForecast, gasForecast, dontUseThis in
                                 // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
                                 guard let `self` = self else { return nil }
-                                if isFetching { return nil }
+                                
                                 guard let billComparison = currentBillComparison else { return nil }
                                 if selectionStates[0].value { // No data
                                     if segmentIndex == 0 {
@@ -701,11 +700,10 @@ class UsageTabViewModel {
                              self.barGraphSelectionStates.asDriver(),
                              self.electricForecast.asDriver(),
                              self.gasForecast.asDriver(),
-                             self.electricGasSelectedSegmentIndex.asDriver(),
-                             self.isFetching.asDriver()) { [weak self] currentBillComparison, selectionStates, elecForecast, gasForecast, dontUseThis, isFetching in
+                             self.electricGasSelectedSegmentIndex.asDriver()) { [weak self] currentBillComparison, selectionStates, elecForecast, gasForecast, dontUseThis in
                                 // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
                                 guard let `self` = self else { return nil }
-                                if isFetching { return nil }
+                                
                                 guard let billComparison = currentBillComparison else { return nil }
                                 let localizedPrevCurrString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
                                 if selectionStates[0].value { // No data

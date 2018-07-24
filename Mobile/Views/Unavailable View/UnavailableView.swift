@@ -26,9 +26,9 @@ class UnavailableView: UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed(UnavailableView.className, owner: self, options: nil)
-        containerView.frame = bounds
-        containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        containerView.translatesAutoresizingMaskIntoConstraints = true
+        contentView.frame = bounds
+        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        contentView.translatesAutoresizingMaskIntoConstraints = true
         addSubview(contentView)
     }
     
