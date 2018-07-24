@@ -563,6 +563,7 @@
                         <outlet property="currentContainerButton" destination="dKg-Sa-YNh" id="q24-Es-j7B"/>
                         <outlet property="currentMonthGraphDateLabel" destination="8e6-Br-2pW" id="gus-KP-KJN"/>
                         <outlet property="currentMonthGraphValueLabel" destination="FeX-9Y-WGe" id="8hj-Zz-eiP"/>
+                        <outlet property="dropdownView" destination="pC8-Ui-VQm" id="Mnp-Vb-fwu"/>
                         <outlet property="graphDetailDateLabel" destination="gW9-pT-oLp" id="Bm7-mV-rFL"/>
                         <outlet property="graphDetailDescriptionLabel" destination="ca6-Po-YNM" id="GTe-jT-RNh"/>
                         <outlet property="graphDetailTemperatureLabel" destination="mST-JC-TNs" id="We5-TV-a9c"/>

@@ -187,6 +187,7 @@ class UsageTabViewController: AccountPickerViewController {
     
     @IBOutlet weak var previousYearButton: UIButton!
     @IBOutlet weak var nextYearButton: UIButton!
+    @IBOutlet weak var dropdownView: BillImpactDropdownView!
     
     private var isViewingCurrentYear = true {
         didSet {
@@ -234,6 +235,7 @@ class UsageTabViewController: AccountPickerViewController {
         collectionView.register(UINib.init(nibName: UsageToolsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UsageToolsCollectionViewCell.identifier)
         
         bindViewModel()
+        dropdownView.configureWithViewModel(viewModel)
         
         fetchData()
     }

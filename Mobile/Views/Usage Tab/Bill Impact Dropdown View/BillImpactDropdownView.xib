@@ -26,6 +26,7 @@
                 <outlet property="billPeriodButton" destination="gxK-zj-So2" id="bGP-ne-DbI"/>
                 <outlet property="billPeriodCircleButton" destination="47R-7x-Hn2" id="MB7-hv-Olm"/>
                 <outlet property="billPeriodTitleLabel" destination="TfU-WQ-kDt" id="g4p-he-ZOL"/>
+                <outlet property="billPeriodUpDownImageView" destination="Xkd-wj-dJp" id="h22-N7-5I5"/>
                 <outlet property="bubbleView" destination="eVY-oL-3lr" id="hjf-bG-sdy"/>
                 <outlet property="bubbleViewDescriptionLabel" destination="klP-CO-Lzc" id="wDm-6H-VDR"/>
                 <outlet property="bubbleViewTitleLabel" destination="I7o-fN-3Jr" id="0m9-KM-49P"/>
@@ -41,11 +42,16 @@
                 <outlet property="otherButton" destination="Cf7-t2-O65" id="pab-f6-mZd"/>
                 <outlet property="otherCircleButton" destination="fYU-7N-rkk" id="ol9-vJ-4kF"/>
                 <outlet property="otherTitleLabel" destination="MTc-kj-rFC" id="64H-Ot-21O"/>
+                <outlet property="otherUpDownImageView" destination="zUD-Nn-Cb9" id="Gde-HB-Ruo"/>
                 <outlet property="roundedBgView" destination="CC8-bL-M7o" id="j2b-tz-oCq"/>
                 <outlet property="toggleButtonLabel" destination="IcE-qs-tt3" id="mnQ-lQ-yPz"/>
                 <outlet property="weatherButton" destination="yRA-p4-6ay" id="giB-GI-PPV"/>
                 <outlet property="weatherCircleButton" destination="51d-Yd-aYf" id="SyE-Xz-1GY"/>
                 <outlet property="weatherTitleLabel" destination="y3v-W1-A56" id="LoX-c7-Cdq"/>
+                <outlet property="weatherUpDownImageView" destination="3VE-TT-r3i" id="EwA-Kh-9mP"/>
+                <outletCollection property="likelyReasonsNoDataLabels" destination="J4T-r0-Br0" collectionClass="NSMutableArray" id="5y6-Zp-8Yo"/>
+                <outletCollection property="likelyReasonsNoDataLabels" destination="bZf-do-kLZ" collectionClass="NSMutableArray" id="81X-wt-7FK"/>
+                <outletCollection property="likelyReasonsNoDataLabels" destination="oXc-o0-Msk" collectionClass="NSMutableArray" id="ZoT-QZ-ljZ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -117,7 +123,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" distribution="equalSpacing" alignment="bottom" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-gM-7zJ">
                                                             <rect key="frame" x="21.5" y="0.0" width="308" height="107.5"/>
                                                             <subviews>
-                                                                <view tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gxK-zj-So2" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                                <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gxK-zj-So2" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="107.5"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="ic_billanalysis_days" translatesAutoresizingMaskIntoConstraints="NO" id="6eR-tg-q5i">
@@ -179,7 +185,7 @@
                                                                         <action selector="factorImpactPress:" destination="-1" eventType="touchUpInside" id="9mP-du-A9L"/>
                                                                     </connections>
                                                                 </view>
-                                                                <view tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="yRA-p4-6ay" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                                <view tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="yRA-p4-6ay" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="109" y="0.0" width="90" height="107.5"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="ic_billanalysis_weather" translatesAutoresizingMaskIntoConstraints="NO" id="KdF-iF-GrO">
@@ -241,7 +247,7 @@
                                                                         <action selector="factorImpactPress:" destination="-1" eventType="touchUpInside" id="us7-nT-mZR"/>
                                                                     </connections>
                                                                 </view>
-                                                                <view tag="3" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-t2-O65" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                                <view tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-t2-O65" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="218" y="0.0" width="90" height="107.5"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="ic_billanalysis_other" translatesAutoresizingMaskIntoConstraints="NO" id="E4t-wm-pPS">

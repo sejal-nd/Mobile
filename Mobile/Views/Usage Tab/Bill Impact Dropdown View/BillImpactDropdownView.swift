@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class BillImpactDropdownView: UIView {
 
@@ -110,8 +112,17 @@ class BillImpactDropdownView: UIView {
     @IBOutlet weak var footerLabel: UILabel! {
         didSet {
             footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+            footerLabel.textColor = .blackText
+            footerLabel.text = NSLocalizedString("The amounts shown are usage-related charges and may not include credits and other adjustments. " +
+                "Amounts for Budget Billing customers are based on actual usage in the period, not on your monthly budget payment.", comment: "")
         }
     }
+    @IBOutlet weak var billPeriodUpDownImageView: UIImageView!
+    @IBOutlet var likelyReasonsNoDataLabels: [UILabel]!
+    @IBOutlet weak var weatherUpDownImageView: UIImageView!
+    @IBOutlet weak var otherUpDownImageView: UIImageView!
+    
+    private let disposeBag = DisposeBag()
     
     private var hasLoadedView = false
     
@@ -134,15 +145,15 @@ class BillImpactDropdownView: UIView {
     private var selectedPillView: UIView!{
         didSet {
             switch selectedPillView.tag {
-            case 1:
+            case 0:
                 billPeriodCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
                 weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
                 otherCircleButton.layer.borderColor = UIColor.clear.cgColor
-            case 2:
+            case 1:
                 billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
                 weatherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
                 otherCircleButton.layer.borderColor = UIColor.clear.cgColor
-            case 3:
+            case 2:
                 billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
                 weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
                 otherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
@@ -151,6 +162,8 @@ class BillImpactDropdownView: UIView {
             }
         }
     }
+    
+    private var viewModel: UsageTabViewModel?
     
     
     // MARK: - Init
@@ -189,13 +202,6 @@ class BillImpactDropdownView: UIView {
     }
     
     
-    // MARK: - Configuration
-    
-    func configureView() {
-        // set data, handle no data states ect...
-    }
-    
-    
     // MARK: - Actions
     
     @IBAction func toggleStackView(_ sender: Any) {
@@ -216,13 +222,65 @@ class BillImpactDropdownView: UIView {
             likelyReasonsDescriptionTriangleCenterXConstraint.constant = 0
         }
         
-        if sender.tag == 1 {
+        // guard statement will block analytics from occuring on view setup.
+        guard let viewModel = viewModel else { return }
+        
+        if sender.tag == 0 {
             Analytics.log(event: .BillPreviousReason)
-        } else if sender.tag == 2 {
+        } else if sender.tag == 1 {
             Analytics.log(event: .BillWeatherReason)
         } else {
             Analytics.log(event: .BillOtherReason)
         }
+        
+        viewModel.setLikelyReasonSelected(tag: sender.tag)
+    }
+    
+    
+    // MARK: - Configuration
+    
+    func configureWithViewModel(_ viewModel: UsageTabViewModel) {
+        self.viewModel = viewModel
+        
+        bindViewModel(viewModel)
+    }
+    
+    func bindViewModel(_ viewModel: UsageTabViewModel) {
+        
+        // Likely reasons
+        viewModel.billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
+        viewModel.billPeriodA11yLabel.drive(billPeriodButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.weatherArrowImage.drive(weatherUpDownImageView.rx.image).disposed(by: disposeBag)
+        viewModel.weatherA11yLabel.drive(weatherButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.otherArrowImage.drive(otherUpDownImageView.rx.image).disposed(by: disposeBag)
+        viewModel.otherA11yLabel.drive(otherButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        
+        viewModel.likelyReasonsLabelText.drive(descriptionLabel.rx.text).disposed(by: disposeBag)
+        viewModel.likelyReasonsDescriptionTitleText.drive(bubbleViewTitleLabel.rx.text).disposed(by: disposeBag)
+        viewModel.likelyReasonsDescriptionDetailText.drive(bubbleViewDescriptionLabel.rx.text).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().drive(bubbleView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().drive(billPeriodUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().drive(weatherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.asDriver().drive(otherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+        for label in likelyReasonsNoDataLabels {
+            viewModel.noPreviousData.asDriver().not().drive(label.rx.isHidden).disposed(by: disposeBag)
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
 }
