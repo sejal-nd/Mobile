@@ -30,7 +30,6 @@ class UsageViewController: UIViewController {
     @IBOutlet weak var peakTimeSavingsEnrollButton: UIButton!
     
     @IBOutlet weak var smartEnergyRewardsContainerView: UIView!
-    @IBOutlet weak var smartEnergyRewardsTitleLabel: UILabel!
     @IBOutlet weak var smartEnergyRewardsFooterLabel: UILabel!
     
     @IBOutlet weak var smartEnergyRewardsContentView: UIView!
@@ -144,9 +143,7 @@ class UsageViewController: UIViewController {
             peakTimeSavingsCard.isHidden = true
         }
 
-        smartEnergyRewardsTitleLabel.textColor = .blackText
-        smartEnergyRewardsTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
-        smartEnergyRewardsTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+        title = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsSeasonLabel.textColor = .deepGray

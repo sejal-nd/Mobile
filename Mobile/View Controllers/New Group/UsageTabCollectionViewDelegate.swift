@@ -65,11 +65,11 @@ extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDe
             // Tapping on this button will display a form where users can enter more details about their home to receive better neighbor comparison data
             dLog("myhp")
         case "Smart Energy Rewards":
-            performSegue(withIdentifier: "totalSavingsSegue", sender: nil)
+            performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: nil)
             // Peak Time Savings/Smart Energy Rewards card
             dLog("ser")
         case "Peak Time Savings":
-            performSegue(withIdentifier: "totalSavingsSegue", sender: nil)
+            performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: nil)
             // Peak Time Savings/Smart Energy Rewards card
             dLog("pts")
         default:
