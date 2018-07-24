@@ -209,7 +209,7 @@ class UsageTabViewController: AccountPickerViewController {
     
     private var isViewingCurrentYear = true {
         didSet {
-            fetchData()
+//            fetchData()
             
             if isViewingCurrentYear {
                 viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
@@ -255,7 +255,24 @@ class UsageTabViewController: AccountPickerViewController {
         bindViewModel()
         dropdownView.configureWithViewModel(viewModel)
         
-        fetchData()
+        Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
+                                 viewModel.accountDetailEvents.asObservable().map { $0 }.startWith(nil))
+            .sample(accountPickerViewControllerWillAppear)
+            .subscribe(onNext: { [weak self] state, accountDetail in
+                guard let this = self else { return }
+                switch(state) {
+                case .loadingAccounts:
+                    break
+                case .readyToFetchData:
+                    if AccountsStore.shared.currentAccount != this.accountPicker.currentAccount {
+                        this.viewModel.fetchAllDataTrigger.onNext(.switchAccount)
+                    } else if accountDetail?.element == nil {
+                        this.viewModel.fetchAllDataTrigger.onNext(.switchAccount)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -317,8 +334,7 @@ class UsageTabViewController: AccountPickerViewController {
     private func bindViewModel() {
         // Segmented Control
         segmentControl.selectedIndex.asObservable().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
-        segmentControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
-            self?.fetchData()
+        segmentControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { index in
             if index == 0 {
                 Analytics.log(event: .BillElectricityToggle)
             } else {
@@ -348,8 +364,8 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.projectedBarHeightConstraintValue.map { min(10, $0/2) }.drive(projectedBarImageView.rx.cornerRadius).disposed(by: disposeBag)
         
         // Bar show/hide
-        viewModel.noPreviousData.asDriver().not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)
-        viewModel.noPreviousData.asDriver().drive(previousContainerButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.drive(previousContainerButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowProjectedBar.not().drive(projectedContainerButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowProjectionNotAvailableBar.not().drive(projectionNotAvailableContainerButton.rx.isHidden).disposed(by: disposeBag)
         
@@ -400,19 +416,19 @@ class UsageTabViewController: AccountPickerViewController {
         self.view.setNeedsLayout()
     }
     
-    private func fetchData() {
-//        viewModel.fetchAccountData(onSuccess: { [weak self] in
+//    private func fetchData() {
+////        viewModel.fetchAccountData(onSuccess: { [weak self] in
+////            guard let `self` = self else { return }
+////            self.reloadCollectionView()
+////        })
+////
+//        viewModel.fetchData(onSuccess: { [weak self] in
+//            
 //            guard let `self` = self else { return }
-//            self.reloadCollectionView()
+//            self.reloadCollectionView() // Congfigures bottom cards
+//         dLog("COMPLETE FETCHED DATA")
 //        })
-//
-        viewModel.fetchData(onSuccess: { [weak self] in
-            
-            guard let `self` = self else { return }
-            self.reloadCollectionView() // Congfigures bottom cards
-         dLog("COMPLETE FETCHED DATA")
-        })
-    }
+//    }
     
     
     // MARK: - Navigation

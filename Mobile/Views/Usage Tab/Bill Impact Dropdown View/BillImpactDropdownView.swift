@@ -258,12 +258,12 @@ class BillImpactDropdownView: UIView {
         viewModel.likelyReasonsLabelText.drive(descriptionLabel.rx.text).disposed(by: disposeBag)
         viewModel.likelyReasonsDescriptionTitleText.drive(bubbleViewTitleLabel.rx.text).disposed(by: disposeBag)
         viewModel.likelyReasonsDescriptionDetailText.drive(bubbleViewDescriptionLabel.rx.text).disposed(by: disposeBag)
-        viewModel.noPreviousData.asDriver().drive(bubbleView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.noPreviousData.asDriver().drive(billPeriodUpDownImageView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.noPreviousData.asDriver().drive(weatherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.noPreviousData.asDriver().drive(otherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.drive(bubbleView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.drive(billPeriodUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.drive(weatherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.drive(otherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
         for label in likelyReasonsNoDataLabels {
-            viewModel.noPreviousData.asDriver().not().drive(label.rx.isHidden).disposed(by: disposeBag)
+            viewModel.noPreviousData.not().drive(label.rx.isHidden).disposed(by: disposeBag)
         }
         
         

@@ -102,12 +102,12 @@ class BillAnalysisViewModel {
 
     func fetchBillForecast() -> Observable<Void> {
         return usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!).map { [weak self] forecastResults in
-            if let elecResult = forecastResults[0] {
-                self?.electricForecast.value = elecResult
-            }
-            if let gasResult = forecastResults[1] {
-                self?.gasForecast.value = gasResult
-            }
+//            if let elecResult = forecastResults[0] {
+//                self?.electricForecast.value = elecResult
+//            }
+//            if let gasResult = forecastResults[1] {
+//                self?.gasForecast.value = gasResult
+//            }
         }
     }
 
