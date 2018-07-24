@@ -34,19 +34,19 @@ extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDe
         
         switch usageToolCard.title {
         case "View My Usage Data":
-            print("vmud")
+            dLog("vmud")
         case "PeakRewards":
-            print("pr")
+            dLog("pr")
         case "Hourly Pricing":
-            print("hp")
+            dLog("hp")
         case "Top 5 Energy Tips":
-            print("t5")
+            dLog("t5")
         case "My Home Profile":
-            print("myhp")
+            dLog("myhp")
         case "Smart Energy Rewards":
-            print("ser")
+            dLog("ser")
         case "Peak Time Savings":
-            print("pts")
+            dLog("pts")
         default:
             break
         }
@@ -55,9 +55,9 @@ extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.row {
         case 0:
-            return CGSize(width: collectionView.bounds.size.width - 32, height: 110)
+            return CGSize(width: collectionView.bounds.width, height: 110)
         default:
-            return CGSize(width: (collectionView.bounds.size.width - 40) / 2, height: 110)
+            return CGSize(width: (collectionView.bounds.width - 10) / 2, height: 110)
         }
     }
     
@@ -66,11 +66,11 @@ extension UsageTabViewController: UICollectionViewDataSource, UICollectionViewDe
 extension UsageTabViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return 10
     }
     
 }

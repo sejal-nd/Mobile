@@ -50,14 +50,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="460"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="436"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CC8-bL-M7o">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="460"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="436"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="u6J-Ah-wOL">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="460"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="436"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3G-Zj-4Wo">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -99,38 +99,35 @@
                                         <constraint firstItem="gRX-Rv-OeM" firstAttribute="centerY" secondItem="N3G-Zj-4Wo" secondAttribute="centerY" id="sF7-2H-vaz"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBH-AK-VMI">
-                                    <rect key="frame" x="0.0" y="60" width="375" height="400"/>
+                                <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="dBH-AK-VMI">
+                                    <rect key="frame" x="0.0" y="60" width="375" height="376"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likely reasons your electric charges for your MMM dd bill are about $X more than your MMM dd bill." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s87-fW-M1Q">
-                                            <rect key="frame" x="8" y="8" width="359" height="33.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="TKM-es-ZaD"/>
-                                            </constraints>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Likely reasons your electric charges for your MMM dd bill are about $X more than your MMM dd bill." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s87-fW-M1Q">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="33.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CIf-js-ecL">
-                                            <rect key="frame" x="8" y="49.5" width="359" height="342.5"/>
+                                            <rect key="frame" x="12" y="45.5" width="351" height="322.5"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VWm-aO-rWf">
-                                                    <rect key="frame" x="8" y="8" width="343" height="261"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VWm-aO-rWf">
+                                                    <rect key="frame" x="0.0" y="14" width="351" height="294.5"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="bottom" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-gM-7zJ">
-                                                            <rect key="frame" x="17.5" y="0.0" width="308" height="107.5"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" distribution="equalSpacing" alignment="bottom" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="W7u-gM-7zJ">
+                                                            <rect key="frame" x="21.5" y="0.0" width="308" height="107.5"/>
                                                             <subviews>
-                                                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxK-zj-So2" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                                <view tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="gxK-zj-So2" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="107.5"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_billanalysis_days" translatesAutoresizingMaskIntoConstraints="NO" id="6eR-tg-q5i">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="ic_billanalysis_days" translatesAutoresizingMaskIntoConstraints="NO" id="6eR-tg-q5i">
                                                                             <rect key="frame" x="28" y="3" width="33" height="36"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="36" id="Bo7-4m-7sG"/>
                                                                                 <constraint firstAttribute="width" constant="33" id="m7R-Gr-NwG"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Period" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfU-WQ-kDt">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Bill Period" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfU-WQ-kDt">
                                                                             <rect key="frame" x="0.0" y="40" width="90" height="16.5"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
@@ -182,17 +179,17 @@
                                                                         <action selector="factorImpactPress:" destination="-1" eventType="touchUpInside" id="9mP-du-A9L"/>
                                                                     </connections>
                                                                 </view>
-                                                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRA-p4-6ay" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                                <view tag="2" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="yRA-p4-6ay" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="109" y="0.0" width="90" height="107.5"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_billanalysis_weather" translatesAutoresizingMaskIntoConstraints="NO" id="KdF-iF-GrO">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="ic_billanalysis_weather" translatesAutoresizingMaskIntoConstraints="NO" id="KdF-iF-GrO">
                                                                             <rect key="frame" x="19.5" y="-0.5" width="50" height="36"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="50" id="JWH-32-q0y"/>
                                                                                 <constraint firstAttribute="height" constant="36" id="RHY-gc-Mzh"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3v-W1-A56">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3v-W1-A56">
                                                                             <rect key="frame" x="0.0" y="40" width="90" height="16.5"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
@@ -244,17 +241,17 @@
                                                                         <action selector="factorImpactPress:" destination="-1" eventType="touchUpInside" id="us7-nT-mZR"/>
                                                                     </connections>
                                                                 </view>
-                                                                <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-t2-O65" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                                <view tag="3" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Cf7-t2-O65" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="218" y="0.0" width="90" height="107.5"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_billanalysis_other" translatesAutoresizingMaskIntoConstraints="NO" id="E4t-wm-pPS">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="ic_billanalysis_other" translatesAutoresizingMaskIntoConstraints="NO" id="E4t-wm-pPS">
                                                                             <rect key="frame" x="28" y="3" width="33" height="33"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="33" id="Q0e-1q-Gu8"/>
                                                                                 <constraint firstAttribute="height" constant="33" id="WaH-V6-Ngp"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTc-kj-rFC">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Other" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTc-kj-rFC">
                                                                             <rect key="frame" x="0.0" y="40" width="90" height="16.5"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
@@ -309,13 +306,13 @@
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Qb-Kp-5Fs">
-                                                            <rect key="frame" x="29" y="131.5" width="285" height="129.5"/>
+                                                            <rect key="frame" x="10" y="117.5" width="331" height="109.5"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVY-oL-3lr">
-                                                                    <rect key="frame" x="0.0" y="22" width="285" height="107.5"/>
+                                                                <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="eVY-oL-3lr">
+                                                                    <rect key="frame" x="0.0" y="22" width="331" height="87.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Bill Period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="I7o-fN-3Jr">
-                                                                            <rect key="frame" x="108.5" y="21" width="68.5" height="19.5"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Bill Period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="I7o-fN-3Jr">
+                                                                            <rect key="frame" x="131.5" y="13" width="68.5" height="19.5"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
                                                                             </accessibility>
@@ -323,8 +320,8 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used more electricity because this bill period was X days longer." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klP-CO-Lzc">
-                                                                            <rect key="frame" x="16" y="52.5" width="253" height="33"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="You used more electricity because this bill period was X days longer." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klP-CO-Lzc">
+                                                                            <rect key="frame" x="17" y="38.5" width="276" height="33"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
                                                                             </accessibility>
@@ -336,77 +333,66 @@
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstItem="I7o-fN-3Jr" firstAttribute="centerX" secondItem="eVY-oL-3lr" secondAttribute="centerX" id="3US-u1-V1H"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="klP-CO-Lzc" secondAttribute="trailing" constant="16" id="CW7-aM-ObI"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="klP-CO-Lzc" secondAttribute="bottom" constant="22" id="Hbe-Jb-oEr"/>
-                                                                        <constraint firstItem="I7o-fN-3Jr" firstAttribute="top" secondItem="eVY-oL-3lr" secondAttribute="top" constant="21" id="X4S-NX-5s7"/>
-                                                                        <constraint firstItem="klP-CO-Lzc" firstAttribute="leading" secondItem="eVY-oL-3lr" secondAttribute="leading" constant="16" id="ZuR-sO-bcB"/>
-                                                                        <constraint firstItem="klP-CO-Lzc" firstAttribute="top" secondItem="I7o-fN-3Jr" secondAttribute="bottom" constant="12" id="ddd-WO-NTX"/>
+                                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="klP-CO-Lzc" secondAttribute="trailing" constant="17" id="CW7-aM-ObI"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="klP-CO-Lzc" secondAttribute="bottom" constant="16" id="Hbe-Jb-oEr"/>
+                                                                        <constraint firstItem="I7o-fN-3Jr" firstAttribute="top" secondItem="eVY-oL-3lr" secondAttribute="top" constant="13" id="X4S-NX-5s7"/>
+                                                                        <constraint firstItem="klP-CO-Lzc" firstAttribute="leading" secondItem="eVY-oL-3lr" secondAttribute="leading" constant="17" id="ZuR-sO-bcB"/>
+                                                                        <constraint firstItem="klP-CO-Lzc" firstAttribute="top" secondItem="I7o-fN-3Jr" secondAttribute="bottom" constant="6" id="ddd-WO-NTX"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bill_analysis_shadow_triangle" translatesAutoresizingMaskIntoConstraints="NO" id="jVQ-X1-zgL">
-                                                                    <rect key="frame" x="117.5" y="-39" width="50" height="61"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="61" id="ZQT-NS-B3l"/>
-                                                                        <constraint firstAttribute="width" constant="50" id="ndX-Wf-bi6"/>
-                                                                    </constraints>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="bill_analysis_shadow_triangle" translatesAutoresizingMaskIntoConstraints="NO" id="jVQ-X1-zgL">
+                                                                    <rect key="frame" x="140.5" y="-39" width="50" height="61"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="eVY-oL-3lr" firstAttribute="top" secondItem="jVQ-X1-zgL" secondAttribute="bottom" id="5mY-AG-lgR"/>
                                                                 <constraint firstAttribute="trailing" secondItem="eVY-oL-3lr" secondAttribute="trailing" id="S13-5T-M7o"/>
-                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="b2z-Od-xYM"/>
                                                                 <constraint firstItem="jVQ-X1-zgL" firstAttribute="top" secondItem="1Qb-Kp-5Fs" secondAttribute="top" constant="-39" id="iot-UI-ZOD"/>
                                                                 <constraint firstItem="jVQ-X1-zgL" firstAttribute="centerX" secondItem="eVY-oL-3lr" secondAttribute="centerX" id="rsQ-BU-IU3"/>
                                                                 <constraint firstItem="eVY-oL-3lr" firstAttribute="leading" secondItem="1Qb-Kp-5Fs" secondAttribute="leading" id="wLt-Kq-3ap"/>
                                                                 <constraint firstAttribute="bottom" secondItem="eVY-oL-3lr" secondAttribute="bottom" id="z7B-j8-9iS"/>
                                                             </constraints>
                                                         </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHS-Vy-Vmn">
+                                                            <rect key="frame" x="10" y="237" width="331" height="57.5"/>
+                                                            <string key="text">The amounts shown are usage-related charges and may not include credits and other adjustments. Amounts for Budget Billing customers are based on actual usage in the period, not on your monthly budget payment.</string>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="gHS-Vy-Vmn" firstAttribute="leading" secondItem="VWm-aO-rWf" secondAttribute="leading" constant="10" id="I3f-2G-hGD"/>
                                                         <constraint firstItem="W7u-gM-7zJ" firstAttribute="centerX" secondItem="VWm-aO-rWf" secondAttribute="centerX" id="KTb-NI-5wN"/>
-                                                        <constraint firstItem="1Qb-Kp-5Fs" firstAttribute="leading" secondItem="VWm-aO-rWf" secondAttribute="leading" priority="999" constant="29" id="Tgi-7w-sLV"/>
+                                                        <constraint firstItem="1Qb-Kp-5Fs" firstAttribute="leading" secondItem="VWm-aO-rWf" secondAttribute="leading" constant="10" id="Tgi-7w-sLV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="gHS-Vy-Vmn" secondAttribute="trailing" constant="10" id="XTh-Qb-Qag"/>
                                                         <constraint firstItem="W7u-gM-7zJ" firstAttribute="centerX" secondItem="VWm-aO-rWf" secondAttribute="centerX" id="dRE-Dw-sQr"/>
-                                                        <constraint firstAttribute="trailing" secondItem="1Qb-Kp-5Fs" secondAttribute="trailing" priority="999" constant="29" id="fZ0-oE-U7E"/>
-                                                        <constraint firstItem="W7u-gM-7zJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VWm-aO-rWf" secondAttribute="leading" constant="17" id="jFg-BH-Uln"/>
-                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="W7u-gM-7zJ" secondAttribute="trailing" constant="17" id="wZu-4c-i17"/>
+                                                        <constraint firstAttribute="trailing" secondItem="1Qb-Kp-5Fs" secondAttribute="trailing" constant="10" id="fZ0-oE-U7E"/>
+                                                        <constraint firstItem="W7u-gM-7zJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VWm-aO-rWf" secondAttribute="leading" constant="16" id="jFg-BH-Uln"/>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="W7u-gM-7zJ" secondAttribute="trailing" constant="16" id="wZu-4c-i17"/>
                                                     </constraints>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHS-Vy-Vmn">
-                                                    <rect key="frame" x="8" y="277" width="343" height="57.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="kEP-6m-2Hd"/>
-                                                    </constraints>
-                                                    <string key="text">The amounts shown are usage-related charges and may not include credits and other adjustments. Amounts for Budget Billing customers are based on actual usage in the period, not on your monthly budget payment.</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="gHS-Vy-Vmn" secondAttribute="bottom" constant="8" id="7YC-Kg-tu6"/>
-                                                <constraint firstAttribute="trailing" secondItem="gHS-Vy-Vmn" secondAttribute="trailing" constant="8" id="Bcx-KN-nKv"/>
-                                                <constraint firstItem="VWm-aO-rWf" firstAttribute="top" secondItem="CIf-js-ecL" secondAttribute="top" constant="8" id="JeV-vW-12i"/>
-                                                <constraint firstItem="VWm-aO-rWf" firstAttribute="leading" secondItem="CIf-js-ecL" secondAttribute="leading" priority="999" constant="8" id="cPK-JX-Fl9"/>
-                                                <constraint firstItem="gHS-Vy-Vmn" firstAttribute="top" secondItem="VWm-aO-rWf" secondAttribute="bottom" constant="8" id="mSW-Ym-CPf"/>
-                                                <constraint firstItem="gHS-Vy-Vmn" firstAttribute="leading" secondItem="CIf-js-ecL" secondAttribute="leading" constant="8" id="ul5-35-SDd"/>
-                                                <constraint firstAttribute="trailing" secondItem="VWm-aO-rWf" secondAttribute="trailing" priority="999" constant="8" id="z3W-Gg-hQq"/>
+                                                <constraint firstItem="VWm-aO-rWf" firstAttribute="top" secondItem="CIf-js-ecL" secondAttribute="top" constant="14" id="JeV-vW-12i"/>
+                                                <constraint firstItem="VWm-aO-rWf" firstAttribute="leading" secondItem="CIf-js-ecL" secondAttribute="leading" id="cPK-JX-Fl9"/>
+                                                <constraint firstAttribute="bottom" secondItem="VWm-aO-rWf" secondAttribute="bottom" constant="14" id="jKR-z1-Sg9"/>
+                                                <constraint firstAttribute="trailing" secondItem="VWm-aO-rWf" secondAttribute="trailing" id="z3W-Gg-hQq"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="s87-fW-M1Q" secondAttribute="trailing" priority="999" constant="29" id="3OK-0D-DcI"/>
-                                        <constraint firstItem="CIf-js-ecL" firstAttribute="top" secondItem="s87-fW-M1Q" secondAttribute="bottom" constant="8" id="8bG-Hc-EOb"/>
-                                        <constraint firstItem="s87-fW-M1Q" firstAttribute="top" secondItem="dBH-AK-VMI" secondAttribute="top" constant="8" id="KfP-da-oeJ"/>
-                                        <constraint firstItem="s87-fW-M1Q" firstAttribute="leading" secondItem="dBH-AK-VMI" secondAttribute="leading" constant="8" id="aYL-S9-UZc"/>
-                                        <constraint firstAttribute="trailing" secondItem="CIf-js-ecL" secondAttribute="trailing" constant="8" id="ahf-sE-Jsn"/>
+                                        <constraint firstItem="CIf-js-ecL" firstAttribute="top" secondItem="s87-fW-M1Q" secondAttribute="bottom" constant="12" id="8bG-Hc-EOb"/>
+                                        <constraint firstItem="s87-fW-M1Q" firstAttribute="top" secondItem="dBH-AK-VMI" secondAttribute="top" id="KfP-da-oeJ"/>
+                                        <constraint firstItem="s87-fW-M1Q" firstAttribute="leading" secondItem="dBH-AK-VMI" secondAttribute="leading" constant="16" id="aYL-S9-UZc"/>
+                                        <constraint firstAttribute="trailing" secondItem="CIf-js-ecL" secondAttribute="trailing" constant="12" id="ahf-sE-Jsn"/>
                                         <constraint firstAttribute="bottom" secondItem="CIf-js-ecL" secondAttribute="bottom" constant="8" id="alD-UY-cjC"/>
-                                        <constraint firstAttribute="trailing" secondItem="s87-fW-M1Q" secondAttribute="trailing" constant="8" id="mcj-re-e8V"/>
-                                        <constraint firstItem="s87-fW-M1Q" firstAttribute="leading" secondItem="dBH-AK-VMI" secondAttribute="leading" priority="999" constant="29" id="o4Q-3U-MoC"/>
+                                        <constraint firstAttribute="trailing" secondItem="s87-fW-M1Q" secondAttribute="trailing" constant="16" id="mcj-re-e8V"/>
                                         <constraint firstItem="s87-fW-M1Q" firstAttribute="centerX" secondItem="dBH-AK-VMI" secondAttribute="centerX" id="uAS-h9-ped"/>
-                                        <constraint firstItem="CIf-js-ecL" firstAttribute="leading" secondItem="dBH-AK-VMI" secondAttribute="leading" constant="8" id="z33-kW-Cvo"/>
+                                        <constraint firstItem="CIf-js-ecL" firstAttribute="leading" secondItem="dBH-AK-VMI" secondAttribute="leading" constant="12" id="z33-kW-Cvo"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -429,7 +415,7 @@
                 <constraint firstItem="CC8-bL-M7o" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="qE5-0F-ffu"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-113.5" y="2391"/>
+            <point key="canvasLocation" x="-113.5" y="2385"/>
         </view>
     </objects>
     <resources>

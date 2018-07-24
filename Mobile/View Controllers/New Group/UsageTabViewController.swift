@@ -12,6 +12,8 @@ import RxCocoa
 
 class UsageTabViewController: AccountPickerViewController {
     
+    @IBOutlet weak var backgroundScrollConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var segmentControl: BillAnalysisSegmentedControl! {
         didSet {
             segmentControl.leftLabel.text = "Electric"
@@ -82,7 +84,7 @@ class UsageTabViewController: AccountPickerViewController {
     @IBOutlet weak var billGraphDetailView: UIView! {
         didSet {
             billGraphDetailView.layer.cornerRadius = 10
-            billGraphDetailView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0.0, height: 2.0), radius: 8)
+            billGraphDetailView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0.0, height: 2.0), radius: 4)
         }
     }
     
@@ -220,6 +222,12 @@ class UsageTabViewController: AccountPickerViewController {
         // Setup Account Picker
         accountPicker.delegate = self
         accountPicker.parentViewController = self
+        
+        scrollView?.rx.contentOffset.asDriver()
+            .map { min(0, $0.y) }
+            .distinctUntilChanged()
+            .drive(backgroundScrollConstraint.rx.constant)
+            .disposed(by: disposeBag)
         
         // Register Collection View XIB Cells
         collectionView.register(UINib.init(nibName: MyUsageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyUsageCollectionViewCell.identifier)
@@ -368,7 +376,7 @@ class UsageTabViewController: AccountPickerViewController {
     
     private func reloadCollectionView() {
         collectionView.reloadData()
-        collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height + 16
+        collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height + 30
         self.view.setNeedsLayout()
     }
     

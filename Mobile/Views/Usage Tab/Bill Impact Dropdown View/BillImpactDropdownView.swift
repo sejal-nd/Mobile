@@ -12,7 +12,7 @@ class BillImpactDropdownView: UIView {
 
     @IBOutlet var contentView: UIView! {
         didSet {
-            addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+            addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
     @IBOutlet weak var roundedBgView: UIView! {
@@ -93,7 +93,7 @@ class BillImpactDropdownView: UIView {
     @IBOutlet weak var bubbleView: UIView! {
         didSet {
             bubbleView.layer.cornerRadius = 10
-            bubbleView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 8)
+            bubbleView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
     @IBOutlet weak var bubbleViewTitleLabel: UILabel! {

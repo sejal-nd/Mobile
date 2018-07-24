@@ -29,7 +29,7 @@ class MyUsageCollectionViewCell: UICollectionViewCell {
     private func styleCell() {
         // Background
         roundedBgView.layer.cornerRadius = 10
-        addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+        addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         
         // Label
         titleLabel.textColor = .actionBlue
