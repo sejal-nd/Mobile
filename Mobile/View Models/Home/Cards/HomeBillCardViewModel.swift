@@ -430,7 +430,7 @@ class HomeBillCardViewModel {
         switch billState {
         case .billPaid, .billPaidIntermediate:
             let text = NSLocalizedString("Thank you for your payment", comment: "")
-            return NSAttributedString(string: text, attributes: [.font: OpenSans.semibold.of(textStyle: .title1),
+            return NSAttributedString(string: text, attributes: [.font: OpenSans.regular.of(textStyle: .title1),
                                                                  .foregroundColor: UIColor.deepGray])
         case .paymentPending:
             let text: String
