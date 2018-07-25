@@ -822,6 +822,9 @@
 		B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
 		B07D247F20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
 		B07D248020C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
+		B0882C9A2108FD9600EB756B /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C992108FD9600EB756B /* UsageViewModelTests.swift */; };
+		B0882C9B2108FD9600EB756B /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C992108FD9600EB756B /* UsageViewModelTests.swift */; };
+		B0882C9C2108FD9600EB756B /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C992108FD9600EB756B /* UsageViewModelTests.swift */; };
 		B092184320A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
 		B092184420A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
 		B092184520A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
@@ -2437,6 +2440,7 @@
 		B07D247220C590AB00BD22EB /* HomeWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
 		B07D247620C590BE00BD22EB /* HomeWeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWeatherView.xib; sourceTree = "<group>"; };
 		B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherViewModel.swift; sourceTree = "<group>"; };
+		B0882C992108FD9600EB756B /* UsageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModelTests.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
 		B092184C20A24CA400695888 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		B09356AB20D8042000DABC73 /* RxGesture.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxGesture.framework; path = Carthage/Build/iOS/RxGesture.framework; sourceTree = "<group>"; };
@@ -4418,6 +4422,7 @@
 				E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */,
 				B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */,
 				E8EC0F8D2028FA3C00956ABD /* WalletViewModelTests.swift */,
+				B0882C992108FD9600EB756B /* UsageViewModelTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -7082,6 +7087,7 @@
 				E8C6F29F1F1F996A00C4644C /* WeatherAPI.swift in Sources */,
 				82DE61081FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				82E9B6151FA257ED00556C94 /* HomeProfile.swift in Sources */,
+				B0882C9A2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
 				B067E0A32045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
@@ -7290,6 +7296,7 @@
 				E8F62BAF200924410077B3DA /* WeatherAPI.swift in Sources */,
 				E8F62BB0200924410077B3DA /* OverrideViewModel.swift in Sources */,
 				E8F62BB1200924410077B3DA /* HomeProfile.swift in Sources */,
+				B0882C9B2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
 				B067E0A42045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8F62BB2200924410077B3DA /* OutageViewModelTests.swift in Sources */,
 				E8F62BB3200924410077B3DA /* Date.swift in Sources */,
@@ -7456,6 +7463,7 @@
 				E8F62C64200924570077B3DA /* WeatherAPI.swift in Sources */,
 				E8F62C65200924570077B3DA /* OverrideViewModel.swift in Sources */,
 				E8F62C66200924570077B3DA /* HomeProfile.swift in Sources */,
+				B0882C9C2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
 				B067E0A52045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8F62C67200924570077B3DA /* OutageViewModelTests.swift in Sources */,
 				E8F62C68200924570077B3DA /* Date.swift in Sources */,
