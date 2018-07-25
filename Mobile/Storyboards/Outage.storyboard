@@ -338,7 +338,7 @@
                                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                     </textView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="nUe-Ah-Ffw" secondAttribute="trailing" constant="46" id="0Vm-rJ-njV"/>
                                                     <constraint firstItem="nUe-Ah-Ffw" firstAttribute="top" secondItem="ZQw-Ul-DsT" secondAttribute="bottom" constant="23" id="3dR-rr-ZNS"/>
