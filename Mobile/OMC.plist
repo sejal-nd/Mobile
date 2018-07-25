@@ -117,7 +117,7 @@
 				</dict>
 			</dict>
 		</dict>
-		<key>ProdBGE</key>
+		<key>Prod-bgeMBE</key>
 		<dict>
 			<key>networkConnectionTimeout</key>
 			<string>120</string>
@@ -154,7 +154,7 @@
 				</dict>
 			</dict>
 		</dict>
-		<key>ProdComEd</key>
+		<key>Prod-comedMBE</key>
 		<dict>
 			<key>networkConnectionTimeout</key>
 			<string>120</string>
@@ -191,7 +191,7 @@
 				</dict>
 			</dict>
 		</dict>
-		<key>ProdPECO</key>
+		<key>Prod-pecoMBE</key>
 		<dict>
 			<key>networkConnectionTimeout</key>
 			<string>120</string>
