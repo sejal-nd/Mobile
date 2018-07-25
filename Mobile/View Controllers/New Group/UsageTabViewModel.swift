@@ -48,9 +48,9 @@ class UsageTabViewModel {
     
     let fetchAllDataTrigger = PublishSubject<FetchingAccountState>()
     
-    let refreshTracker = ActivityTracker()
-    let switchAccountTracker = ActivityTracker()
-    let billAnalysisTracker = ActivityTracker()
+    private let refreshTracker = ActivityTracker()
+    private let switchAccountTracker = ActivityTracker()
+    private let billComparisonTracker = ActivityTracker()
     
     private func activityTracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {
@@ -75,13 +75,13 @@ class UsageTabViewModel {
         })
     
     private lazy var eligibleAccountDetails: Observable<AccountDetail> = self.accountDetailEvents.elements()
-        .filter { $0.premiseNumber != nil }
+        .filter { $0.hasUsageData }
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
         .combineLatest(self.eligibleAccountDetails,
                        self.lastYearPreviousBillSelectedSegmentIndex.asObservable(),
                        self.electricGasSelectedSegmentIndex.asObservable())
-        .toAsyncRequest(activityTracker: billAnalysisTracker,
+        .toAsyncRequest(activityTracker: billComparisonTracker,
                         requestSelector: { [unowned self] (accountDetail, yearsIndex, electricGasIndex) -> Observable<BillComparison> in
                             let isGas = self.isGas(accountDetail: accountDetail,
                                                    electricGasSelectedIndex: electricGasIndex)
@@ -93,7 +93,7 @@ class UsageTabViewModel {
         })
     
     private(set) lazy var billForecastEvents: Observable<Event<BillForecastResult?>> = self.eligibleAccountDetails
-        .toAsyncRequest(activityTracker: billAnalysisTracker,
+        .toAsyncRequest(activityTracker: billComparisonTracker,
                         requestSelector: { [unowned self] accountDetail in
                             guard !accountDetail.isAMIAccount else { return Observable.just(nil) }
                             return self.usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber,
@@ -136,26 +136,60 @@ class UsageTabViewModel {
     let likelyReasonsSelectionStates = Variable([Variable(true), Variable(false), Variable(false)])
     
     private var currentFetchDisposable: Disposable?
-    let isFetching = Variable(false)
-    let isError = Variable(false)
     
     let electricGasSelectedSegmentIndex = Variable(0)
     let lastYearPreviousBillSelectedSegmentIndex = Variable(1)
     var fetchedForecast = false // Used so that we only fetch it the first load
     
-    private(set) lazy var shouldShowBillComparisonContentView: Driver<Bool> =
-        Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver(), self.shouldShowBillComparisonEmptyState).map {
-            !$0 && !$1 && !$2
-    }
+    private(set) lazy var isLoadingBillComparison: Driver<Bool> = self.billComparisonTracker.asDriver()
+    private lazy var isSwitchingAccounts: Driver<Bool> = self.switchAccountTracker.asDriver()
+        .distinctUntilChanged()
     
-    private(set) lazy var shouldShowBillComparisonEmptyState: Driver<Bool> =
-        Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver(), self.billComparison).map {
-            if $0 || $1 {
-                return false
-            }
-            
-            return $2.reference == nil
-    }
+    private(set) lazy var showSwitchingAccountsState: Driver<Bool> = isSwitchingAccounts
+    
+    private(set) lazy var showMainErrorState: Driver<Bool> = Driver
+        .combineLatest(self.showSwitchingAccountsState,
+                       self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()))
+        { !$0 && $1.error != nil }
+        .startWith(false)
+        .distinctUntilChanged()
+    
+    private(set) lazy var showNoUsageDataState: Driver<Bool> = Driver
+        .combineLatest(self.showSwitchingAccountsState,
+                       self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()))
+        { !$0 && !($1.element?.hasUsageData ?? true) }
+        .startWith(false)
+        .distinctUntilChanged()
+    
+    private(set) lazy var showMainContents: Driver<Bool> = Driver
+        .combineLatest(self.showSwitchingAccountsState,
+                       self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()))
+        { !$0 && ($1.element?.hasUsageData ?? false) }
+        .startWith(false)
+        .distinctUntilChanged()
+    
+    private(set) lazy var showBillComparisonContents: Driver<Bool> =
+        Driver.combineLatest(self.isLoadingBillComparison,
+                             self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()),
+                             self.billForecastEvents.asDriver(onErrorDriveWith: .empty()))
+        { !$0 && $1.element?.reference != nil && $2.element != nil }
+            .startWith(false)
+            .distinctUntilChanged()
+    
+    private(set) lazy var showBillComparisonEmptyState: Driver<Bool> =
+        Driver.combineLatest(self.isLoadingBillComparison,
+                             self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()))
+        { !$0 && $1.error == nil && $1.element?.reference == nil }
+            .startWith(false)
+            .distinctUntilChanged()
+    
+    private(set) lazy var showBillComparisonErrorState: Driver<Bool> =
+        Driver.combineLatest(self.isLoadingBillComparison,
+                             self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()),
+                             self.billForecastEvents.asDriver(onErrorDriveWith: .empty()))
+        { !$0 && ($1.error != nil || $2.error != nil) }
+            .startWith(false)
+            .distinctUntilChanged()
     
     // MARK: No Data Bar Drivers
     
@@ -598,21 +632,19 @@ class UsageTabViewModel {
     
     private(set) lazy var barDescriptionAvgTempLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparison,
-                             self.barGraphSelectionStates.asDriver(),
-                             self.isFetching.asDriver())
-        { billComparison, selectionStates, isFetching in
-                                if isFetching { return nil }
-                                let localizedString = NSLocalizedString("Avg. Temp %d° F", comment: "")
-                                if selectionStates[1].value { // Previous
-                                    if let compared = billComparison.compared, let temp = compared.averageTemperature {
-                                        return String(format: localizedString, Int(temp.rounded()))
-                                    }
-                                } else if selectionStates[2].value { // Current
-                                    if let reference = billComparison.reference, let temp = reference.averageTemperature {
-                                        return String(format: localizedString, Int(temp.rounded()))
-                                    }
-                                }
-                                return nil
+                             self.barGraphSelectionStates.asDriver())
+        { billComparison, selectionStates in
+            let localizedString = NSLocalizedString("Avg. Temp %d° F", comment: "")
+            if selectionStates[1].value { // Previous
+                if let compared = billComparison.compared, let temp = compared.averageTemperature {
+                    return String(format: localizedString, Int(temp.rounded()))
+                }
+            } else if selectionStates[2].value { // Current
+                if let reference = billComparison.reference, let temp = reference.averageTemperature {
+                    return String(format: localizedString, Int(temp.rounded()))
+                }
+            }
+            return nil
     }
     
     private(set) lazy var barDescriptionDetailLabelText: Driver<String?> =
@@ -941,18 +973,6 @@ class UsageTabViewModel {
     // MARK: Random helpers
     
     // If a gas only account, return true, if an electric only account, returns false, if both gas/electric, returns selected segemented control
-    private lazy var isGasDriver: Driver<Bool> = Driver.combineLatest(self.accountDetail,
-                                                                      self.electricGasSelectedSegmentIndex.asDriver())
-    { accountDetail, electricGasSelectedIndex in
-        if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
-            return true
-        } else if Environment.shared.opco != .comEd && accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" {
-            return electricGasSelectedIndex == 1
-        }
-        // Default to electric
-        return false
-    }
-    
     private func isGas(accountDetail: AccountDetail, electricGasSelectedIndex: Int) -> Bool {
         if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
             return true
@@ -961,6 +981,12 @@ class UsageTabViewModel {
         }
         // Default to electric
         return false
+    }
+}
+
+fileprivate extension AccountDetail {
+    var hasUsageData: Bool {
+        return premiseNumber != nil
     }
 }
 

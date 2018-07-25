@@ -14,6 +14,7 @@ class UsageTabViewController: AccountPickerViewController {
     
     @IBOutlet weak var backgroundScrollConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var switchAccountsLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var contentStack: UIStackView!
     @IBOutlet weak var unavailableView: UnavailableView!
@@ -78,6 +79,7 @@ class UsageTabViewController: AccountPickerViewController {
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
 
     // Bill Graph
+    @IBOutlet weak var billGraphDetailContainer: UIView!
     @IBOutlet weak var billGraphDetailView: UIView! {
         didSet {
             billGraphDetailView.layer.cornerRadius = 10
@@ -198,6 +200,7 @@ class UsageTabViewController: AccountPickerViewController {
     
     @IBOutlet weak var dropdownView: BillImpactDropdownView!
     
+    @IBOutlet weak var billComparisonLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var graphErrorLabel: UILabel! {
         didSet {
             graphErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -308,6 +311,17 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     private func bindViewModel() {
+        viewModel.showSwitchingAccountsState.not().drive(switchAccountsLoadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showMainContents.not().drive(contentStack.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showNoUsageDataState.not().drive(unavailableView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showMainErrorState.not().drive(mainErrorView.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.showBillComparisonContents.not().drive(barGraphStackView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showBillComparisonContents.not().drive(billGraphDetailContainer.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showBillComparisonContents.not().drive(dropdownView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showBillComparisonErrorState.not().drive(graphErrorLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isLoadingBillComparison.not().drive(billComparisonLoadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        
         // Segmented Control
         segmentControl.selectedIndex.asObservable().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         segmentControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { index in
@@ -442,8 +456,7 @@ class UsageTabViewController: AccountPickerViewController {
 extension UsageTabViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        dLog("Fetch Account Details")
-        //viewModel.fetchAccountDetail(isRefresh: false)
+        viewModel.fetchAllDataTrigger.onNext(.switchAccount)
     }
     
 }
