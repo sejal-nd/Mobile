@@ -179,12 +179,10 @@ class OutageViewController: AccountPickerViewController {
                 gasOnlyTextViewBottomSpaceConstraint.isActive = true
                 gasOnlyView.isHidden = false
                 accountContentView.isHidden = true
-                view.backgroundColor = .softGray
             } else {
                 gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 gasOnlyView.isHidden = true
                 accountContentView.isHidden = false
-                view.backgroundColor = .white
             }
             
             // Update the Report Outage button
@@ -224,7 +222,6 @@ class OutageViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
-        view.backgroundColor = .white
         setRefreshControlEnabled(enabled: false)
         viewModel.fetchData(onSuccess: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
