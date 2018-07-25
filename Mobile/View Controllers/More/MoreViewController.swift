@@ -25,7 +25,11 @@ class MoreViewController: UIViewController {
         super.viewDidLoad()
         
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
+            if !Environment.shared.mcsInstanceName.contains("Prod") {
+                versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
+            } else {
+                versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
+            }
         } else {
             versionLabel.text = nil
         }
