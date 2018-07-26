@@ -45,25 +45,14 @@ class AlertsViewController: AccountPickerViewController {
                                   rightLabel: NSLocalizedString("Updates", comment: ""),
                                   initialSelectedIndex: 0)
 
-        accountPickerViewControllerWillAppear
-            .withLatestFrom(accountPickerViewControllerWillAppear.asObservable())
-            .subscribe(onNext: { [weak self] state in
-                guard let `self` = self else { return }
-                switch(state) {
-                case .loadingAccounts:
-                        break
-                case .readyToFetchData:
-                    if Environment.shared.opco == .bge || AccountsStore.shared.accounts.count == 1 {
-                        self.accountPicker.isHidden = true
-                        self.view.backgroundColor = .primaryColor
-                        self.segmentedControlTopSpace.constant = 22
-                    } else {
-                        self.view.backgroundColor = .primaryColorAccountPicker
-                        self.segmentedControlTopSpace.constant = 0
-                    }
-                }
-            })
-            .disposed(by: disposeBag)
+        if Environment.shared.opco == .bge {
+            self.accountPicker.isHidden = true
+            self.view.backgroundColor = .primaryColor
+            self.segmentedControlTopSpace.constant = 22
+        } else {
+            self.view.backgroundColor = .primaryColorAccountPicker
+            self.segmentedControlTopSpace.constant = 0
+        }
 
         alertsTableView.separatorColor = .accentGray
         updatesTableView.backgroundColor = .softGray
@@ -98,6 +87,16 @@ class AlertsViewController: AccountPickerViewController {
                 break
             case .readyToFetchData:
                 self.viewModel.fetchAlertsFromDisk()
+                
+                if Environment.shared.opco == .bge || AccountsStore.shared.accounts.count == 1 {
+                    self.accountPicker.isHidden = true
+                    self.view.backgroundColor = .primaryColor
+                    self.segmentedControlTopSpace.constant = 22
+                } else {
+                    self.view.backgroundColor = .primaryColorAccountPicker
+                    self.segmentedControlTopSpace.constant = 0
+                }
+                
                 if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                     self.viewModel.fetchData()
                 } else if self.viewModel.currentAccountDetail == nil {
