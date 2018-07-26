@@ -39,27 +39,9 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet weak var leftGraphView: UIView! {
-        didSet {
-            leftGraphView.layer.cornerRadius = 5
-        }
-    }
-    
-    @IBOutlet weak var centerGraphView: UIView! {
-        didSet {
-            centerGraphView.layer.cornerRadius = 5
-        }
-    }
-    
     @IBOutlet weak var rightGraphBackgroundView: UIView! {
         didSet {
             rightGraphBackgroundView.layer.cornerRadius = 5
-        }
-    }
-    
-    @IBOutlet weak var rightGraphForegroundImageView: UIImageView! {
-        didSet {
-            rightGraphForegroundImageView.layer.cornerRadius = 5
         }
     }
     
@@ -99,7 +81,12 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     @IBOutlet weak var previousContainerButton: ButtonControl!
-    @IBOutlet weak var previousBarView: UIView!
+    @IBOutlet weak var previousBarView: UIView! {
+        didSet {
+            previousBarView.backgroundColor = .primaryColor
+            previousBarView.layer.cornerRadius = 5
+        }
+    }
     @IBOutlet weak var previousBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var previousMonthGraphValueLabel: UILabel! {
         didSet {
@@ -116,7 +103,12 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     @IBOutlet weak var currentContainerButton: ButtonControl!
-    @IBOutlet weak var currentBarView: UIView!
+    @IBOutlet weak var currentBarView: UIView! {
+        didSet {
+            currentBarView.backgroundColor = .primaryColor
+            currentBarView.layer.cornerRadius = 5
+        }
+    }
     @IBOutlet weak var currentBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var currentMonthGraphValueLabel: UILabel! {
         didSet {
@@ -133,7 +125,12 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     @IBOutlet weak var projectedContainerButton: ButtonControl!
-    @IBOutlet weak var projectedBarImageView: UIImageView!
+    @IBOutlet weak var projectedBarImageView: UIImageView! {
+        didSet {
+            projectedBarImageView.layer.cornerRadius = 5
+        }
+    }
+    
     @IBOutlet weak var projectedBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var nextMonthGraphValueLabel: UILabel! {
         didSet {
@@ -371,13 +368,18 @@ class UsageTabViewController: AccountPickerViewController {
             .do(onNext: { [weak self] _ in self?.showBillAnalysisLoadingState() })
             .drive(viewModel.electricGasSelectedSegmentIndex)
             .disposed(by: disposeBag)
-        segmentControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { index in
-            if index == 0 {
-                Analytics.log(event: .BillElectricityToggle)
-            } else {
-                Analytics.log(event: .BillGasToggle)
-            }
-        }).disposed(by: disposeBag)
+        
+        viewModel.electricGasSelectedSegmentIndex.asObservable()
+            .skip(1)
+            .distinctUntilChanged()
+            .subscribe(onNext: { index in
+                if index == 0 {
+                    Analytics.log(event: .BillElectricityToggle)
+                } else {
+                    Analytics.log(event: .BillGasToggle)
+                }
+            })
+            .disposed(by: disposeBag)
         
         viewModel.compareBillTitle.drive(compareBillTitlelabel.rx.text).disposed(by: disposeBag)
         
