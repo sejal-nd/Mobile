@@ -549,6 +549,7 @@ extension UsageTabViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         viewModel.fetchAllData()
+        setRefreshControlEnabled(enabled: false)
         showSwitchAccountsLoadingState()
     }
     
