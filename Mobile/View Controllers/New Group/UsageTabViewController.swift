@@ -379,6 +379,8 @@ class UsageTabViewController: AccountPickerViewController {
             }
         }).disposed(by: disposeBag)
         
+        viewModel.compareBillTitle.drive(compareBillTitlelabel.rx.text).disposed(by: disposeBag)
+        
         // Bar graph height constraints
         viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)
         viewModel.currentBarHeightConstraintValue.drive(currentBarHeightConstraint.rx.constant).disposed(by: disposeBag)

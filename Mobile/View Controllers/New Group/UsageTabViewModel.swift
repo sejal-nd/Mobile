@@ -128,14 +128,6 @@ class UsageTabViewModel {
     let electricGasSelectedSegmentIndex = Variable(0)
     let lastYearPreviousBillSelectedSegmentIndex = Variable(1)
     
-    private(set) lazy var hideSwitchingAccountsState: Driver<Void> = accountDetailEvents
-        .map(to: ())
-        .asDriver(onErrorDriveWith: .empty())
-    
-    private(set) lazy var hideLoadingBillAnalysisState: Driver<Void> = billAnalysisEvents
-        .map(to: ())
-        .asDriver(onErrorDriveWith: .empty())
-    
     private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showBillComparisonContents,
                                                                      showBillComparisonEmptyState,
                                                                      showBillComparisonErrorState,
@@ -170,7 +162,18 @@ class UsageTabViewModel {
         .filter { $0.error != nil }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
+
     
+    // MARK: - Compare Bill Title
+    
+    private(set) lazy var compareBillTitle: Driver<String> = lastYearPreviousBillSelectedSegmentIndex.asDriver()
+        .map {
+            if $0 == 0 {
+                return NSLocalizedString("Compared to Last Year", comment: "")
+            } else {
+                return NSLocalizedString("Compared to Previous Bill", comment: "")
+            }
+    }
     
     // MARK: - No Data Bar Drivers
     
