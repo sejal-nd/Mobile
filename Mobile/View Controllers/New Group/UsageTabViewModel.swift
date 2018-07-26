@@ -74,11 +74,8 @@ class UsageTabViewModel {
                             self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
         })
     
-    private lazy var eligibleAccountDetails: Observable<AccountDetail> = self.accountDetailEvents.elements()
-        .filter { $0.hasUsageData }
-    
-    private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
-        .combineLatest(self.eligibleAccountDetails,
+    private lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
+        .combineLatest(self.accountDetailEvents.elements().filter { $0.hasUsageData },
                        self.lastYearPreviousBillSelectedSegmentIndex.asObservable(),
                        self.electricGasSelectedSegmentIndex.asObservable())
         .toAsyncRequest(activityTracker: billComparisonTracker,
@@ -92,7 +89,8 @@ class UsageTabViewModel {
                                                      gas: isGas)
         })
     
-    private(set) lazy var billForecastEvents: Observable<Event<BillForecastResult?>> = self.eligibleAccountDetails
+    private lazy var billForecastEvents: Observable<Event<BillForecastResult?>> = self.accountDetailEvents.elements()
+        .filter { $0.hasUsageData }
         .toAsyncRequest(activityTracker: billComparisonTracker,
                         requestSelector: { [unowned self] accountDetail in
                             guard !accountDetail.isAMIAccount else { return Observable.just(nil) }
@@ -190,6 +188,8 @@ class UsageTabViewModel {
         { !$0 && ($1.error != nil || $2.error != nil) }
             .startWith(false)
             .distinctUntilChanged()
+    
+    private(set) lazy var didFinishRefreshing = self.refreshTracker.asDriver().filter(!).map(to: ())
     
     // MARK: No Data Bar Drivers
     

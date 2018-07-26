@@ -208,6 +208,8 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
+    var refreshControl: UIRefreshControl?
+    
     let disposeBag = DisposeBag()
     
     let viewModel = UsageTabViewModel(accountService: ServiceFactory.createAccountService(), usageService: ServiceFactory.createUsageService())
@@ -253,7 +255,7 @@ class UsageTabViewController: AccountPickerViewController {
                 guard let this = self else { return }
                 switch(state) {
                 case .loadingAccounts:
-                    break
+                    this.setRefreshControlEnabled(enabled: false)
                 case .readyToFetchData:
                     if AccountsStore.shared.currentAccount != this.accountPicker.currentAccount {
                         this.viewModel.fetchAllDataTrigger.onNext(.switchAccount)
@@ -264,6 +266,13 @@ class UsageTabViewController: AccountPickerViewController {
             })
             .disposed(by: disposeBag)
         
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl?.endRefreshing()
+                self?.scrollView!.alwaysBounceVertical = true
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -287,6 +296,26 @@ class UsageTabViewController: AccountPickerViewController {
     
     
     // MARK: - Actions
+    
+    @objc func setRefreshControlEnabled(enabled: Bool) {
+        if enabled {
+            let refreshControl = UIRefreshControl()
+            
+            refreshControl.rx.controlEvent(.valueChanged)
+                .debug("FETCHALLDATA")
+                .subscribe(onNext: { [weak self] in self?.viewModel.fetchAllDataTrigger.onNext(.refresh) })
+                .disposed(by: disposeBag)
+            
+            scrollView?.insertSubview(refreshControl, at: 0)
+            scrollView?.alwaysBounceVertical = true
+            self.refreshControl = refreshControl
+        } else {
+            refreshControl?.endRefreshing()
+            refreshControl?.removeFromSuperview()
+            refreshControl = nil
+            scrollView?.alwaysBounceVertical = false
+        }
+    }
     
     @IBAction func barGraphPress(_ sender: ButtonControl) {
         dLog("BAR PRESS")
@@ -322,6 +351,14 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.showBillComparisonErrorState.not().drive(graphErrorLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.isLoadingBillComparison.not().drive(billComparisonLoadingIndicator.rx.isHidden).disposed(by: disposeBag)
         
+        viewModel.didFinishRefreshing
+            .drive(onNext: { [weak self] in self?.refreshControl?.endRefreshing() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showSwitchingAccountsState
+            .drive(onNext: { [weak self] in self?.setRefreshControlEnabled(enabled: !$0) })
+            .disposed(by: disposeBag)
+        
         // Segmented Control
         segmentControl.selectedIndex.asObservable().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         segmentControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { index in
@@ -331,17 +368,6 @@ class UsageTabViewController: AccountPickerViewController {
                 Analytics.log(event: .BillGasToggle)
             }
         }).disposed(by: disposeBag)
-        
-        // Graph Selection - todo: no longer a segment control.
-//        billComparisonSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.lastYearPreviousBillSelectedSegmentIndex).disposed(by: disposeBag)
-//        billComparisonSegmentedControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { [weak self] index in
-//            self?.fetchData()
-//            if index == 0 {
-//                Analytics.log(event: .BillLastYearToggle)
-//            } else {
-//                Analytics.log(event: .BillPreviousToggle)
-//            }
-//        }).disposed(by: disposeBag)
         
         // Bar graph height constraints
         viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)
