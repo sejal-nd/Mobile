@@ -224,6 +224,7 @@ class UsageTabViewController: AccountPickerViewController {
                      nextYearButton.rx.tap.asDriver().map(to: 1))
             .drive(onNext: { [weak self] index in
                 guard let this = self else { return }
+                this.showBillAnalysisLoadingState()
                 this.nextYearButton.isEnabled = index == 0
                 this.previousYearButton.isEnabled = index == 1
                 this.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = index
@@ -258,9 +259,9 @@ class UsageTabViewController: AccountPickerViewController {
                     this.setRefreshControlEnabled(enabled: false)
                 case .readyToFetchData:
                     if AccountsStore.shared.currentAccount != this.accountPicker.currentAccount {
-                        this.viewModel.fetchAllDataTrigger.onNext(.switchAccount)
+                        this.viewModel.fetchAllData()
                     } else if accountDetail?.element == nil {
-                        this.viewModel.fetchAllDataTrigger.onNext(.switchAccount)
+                        this.viewModel.fetchAllData()
                     }
                 }
             })
@@ -273,6 +274,8 @@ class UsageTabViewController: AccountPickerViewController {
                 self?.scrollView!.alwaysBounceVertical = true
             })
             .disposed(by: disposeBag)
+        
+        showSwitchAccountsLoadingState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -299,16 +302,17 @@ class UsageTabViewController: AccountPickerViewController {
     
     @objc func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
-            let refreshControl = UIRefreshControl()
+            guard refreshControl == nil else { return }
             
-            refreshControl.rx.controlEvent(.valueChanged)
-                .debug("FETCHALLDATA")
-                .subscribe(onNext: { [weak self] in self?.viewModel.fetchAllDataTrigger.onNext(.refresh) })
+            let rc = UIRefreshControl()
+            
+            rc.rx.controlEvent(.valueChanged)
+                .subscribe(onNext: { [weak self] in self?.viewModel.fetchAllData() })
                 .disposed(by: disposeBag)
             
-            scrollView?.insertSubview(refreshControl, at: 0)
+            scrollView?.insertSubview(rc, at: 0)
             scrollView?.alwaysBounceVertical = true
-            self.refreshControl = refreshControl
+            refreshControl = rc
         } else {
             refreshControl?.endRefreshing()
             refreshControl?.removeFromSuperview()
@@ -318,7 +322,6 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     @IBAction func barGraphPress(_ sender: ButtonControl) {
-        dLog("BAR PRESS")
         let centerPoint = sender.center
         let convertedPoint = barGraphStackView.convert(centerPoint, to: billGraphDetailView)
         
@@ -340,27 +343,34 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     private func bindViewModel() {
-        viewModel.showSwitchingAccountsState.not().drive(switchAccountsLoadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showMainContents.not().drive(contentStack.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showNoUsageDataState.not().drive(unavailableView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showMainErrorState.not().drive(mainErrorView.rx.isHidden).disposed(by: disposeBag)
-        
-        viewModel.showBillComparisonContents.not().drive(barGraphStackView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showBillComparisonContents.not().drive(billGraphDetailContainer.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showBillComparisonContents.not().drive(dropdownView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showBillComparisonErrorState.not().drive(graphErrorLabel.rx.isHidden).disposed(by: disposeBag)
-        viewModel.isLoadingBillComparison.not().drive(billComparisonLoadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        
-        viewModel.didFinishRefreshing
-            .drive(onNext: { [weak self] in self?.refreshControl?.endRefreshing() })
+        viewModel.endRefreshIng
+            .drive(onNext: { [weak self] in
+                self?.refreshControl?.endRefreshing()
+                self?.setRefreshControlEnabled(enabled: true)
+            })
             .disposed(by: disposeBag)
         
-        viewModel.showSwitchingAccountsState
-            .drive(onNext: { [weak self] in self?.setRefreshControlEnabled(enabled: !$0) })
+        viewModel.showMainContents
+            .drive(onNext: { [weak self] in self?.showMainContents() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showNoUsageDataState
+            .drive(onNext: { [weak self] in self?.showNoUsageDataState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showMainErrorState
+            .drive(onNext: { [weak self] in self?.showMainErrorState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showBillComparisonContents
+            .drive(onNext: { [weak self] in self?.showBillAnalysisContents()})
             .disposed(by: disposeBag)
         
         // Segmented Control
-        segmentControl.selectedIndex.asObservable().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
+        segmentControl.selectedIndex.asDriver()
+            .do(onNext: { [weak self] _ in self?.showBillAnalysisLoadingState() })
+            .drive(viewModel.electricGasSelectedSegmentIndex)
+            .disposed(by: disposeBag)
         segmentControl.selectedIndex.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { index in
             if index == 0 {
                 Analytics.log(event: .BillElectricityToggle)
@@ -426,6 +436,61 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.barDescriptionDetailLabelText.drive(graphDetailDescriptionLabel.rx.text).disposed(by: disposeBag)
     }
     
+    //MARK: - Loading States
+    
+    private func showSwitchAccountsLoadingState() {
+        switchAccountsLoadingIndicator.isHidden = false
+        unavailableView.isHidden = true
+        contentStack.isHidden = true
+        mainErrorView.isHidden = true
+        showBillAnalysisLoadingState()
+    }
+    
+    private func showMainContents() {
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        contentStack.isHidden = false
+        mainErrorView.isHidden = true
+    }
+    
+    private func showNoUsageDataState() {
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = false
+        contentStack.isHidden = true
+        mainErrorView.isHidden = true
+    }
+    
+    private func showMainErrorState() {
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        contentStack.isHidden = true
+        mainErrorView.isHidden = false
+    }
+    
+    private func showBillAnalysisLoadingState() {
+        billComparisonLoadingIndicator.isHidden = false
+        barGraphStackView.isHidden = true
+        billGraphDetailContainer.isHidden = true
+        dropdownView.isHidden = true
+        graphErrorLabel.isHidden = true
+    }
+    
+    private func showBillAnalysisContents() {
+        billComparisonLoadingIndicator.isHidden = true
+        barGraphStackView.isHidden = false
+        billGraphDetailContainer.isHidden = false
+        dropdownView.isHidden = false
+        graphErrorLabel.isHidden = true
+    }
+    
+    private func showBillAnalysisErrorState() {
+        billComparisonLoadingIndicator.isHidden = true
+        barGraphStackView.isHidden = true
+        billGraphDetailContainer.isHidden = true
+        dropdownView.isHidden = true
+        graphErrorLabel.isHidden = false
+    }
+    
     private func reloadCollectionView() {
         collectionView.reloadData()
         collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height + 30
@@ -450,31 +515,32 @@ class UsageTabViewController: AccountPickerViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let accountDetail = sender as? AccountDetail else { return }
         
-//        switch segue.destination {
-//        case let vc as UsageViewController:
-//            vc.accountDetail = accountDetail
-//        case let vc as UsageWebViewController:
-//            vc.accountDetail = accountDetail
-//        case let vc as Top5EnergyTipsViewController:
-//            vc.accountDetail = accountDetail
-//        case let vc as MyHomeProfileViewController:
-//            vc.accountDetail = accountDetail
-//            vc.didSaveHomeProfile
-//                .delay(0.5)
-//                .drive(onNext: { [weak self] in
-//                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
-//                })
-//                .disposed(by: disposeBag)
-//        case let vc as HourlyPricingViewController:
-//            vc.accountDetail = accountDetail
-//        case let vc as TotalSavingsViewController:
-//            vc.eventResults = accountDetail.serInfo.eventResults
-//        case let vc as PeakRewardsViewController:
-//            vc.accountDetail = accountDetail
-//        default:
-//            break
-//        }
+        switch segue.destination {
+        case let vc as UsageViewController:
+            vc.accountDetail = accountDetail
+        case let vc as UsageWebViewController:
+            vc.accountDetail = accountDetail
+        case let vc as Top5EnergyTipsViewController:
+            vc.accountDetail = accountDetail
+        case let vc as MyHomeProfileViewController:
+            vc.accountDetail = accountDetail
+            vc.didSaveHomeProfile
+                .delay(0.5)
+                .drive(onNext: { [weak self] in
+                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
+                })
+                .disposed(by: vc.disposeBag)
+        case let vc as HourlyPricingViewController:
+            vc.accountDetail = accountDetail
+        case let vc as TotalSavingsViewController:
+            vc.eventResults = accountDetail.serInfo.eventResults
+        case let vc as PeakRewardsViewController:
+            vc.accountDetail = accountDetail
+        default:
+            break
+        }
     }
     
 }
@@ -482,7 +548,8 @@ class UsageTabViewController: AccountPickerViewController {
 extension UsageTabViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        viewModel.fetchAllDataTrigger.onNext(.switchAccount)
+        viewModel.fetchAllData()
+        showSwitchAccountsLoadingState()
     }
     
 }

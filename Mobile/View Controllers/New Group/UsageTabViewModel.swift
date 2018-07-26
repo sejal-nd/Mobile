@@ -46,21 +46,12 @@ class UsageTabViewModel {
     
     var usageToolCards = [MyUsageToolCard(image: UIImage(named: "ic_usagedata"), title: "View My Usage Data"), MyUsageToolCard(image: UIImage(named: "ic_Top5"), title: "Top 5 Energy Tips"), MyUsageToolCard(image: UIImage(named: "ic_residential"), title: "My Home Profile")]
     
-    let fetchAllDataTrigger = PublishSubject<FetchingAccountState>()
-    
-    private let refreshTracker = ActivityTracker()
-    private let switchAccountTracker = ActivityTracker()
-    private let billComparisonTracker = ActivityTracker()
-    
-    private func activityTracker(forState state: FetchingAccountState) -> ActivityTracker {
-        switch state {
-        case .refresh:
-            return refreshTracker
-        case .switchAccount:
-            return switchAccountTracker
-        }
-    }
+    private let fetchAllDataTrigger = PublishSubject<Void>()
 
+    func fetchAllData() {
+        fetchAllDataTrigger.onNext(())
+    }
+    
     //MARK: - Init
     
     required init(accountService: AccountService, usageService: UsageService) {
@@ -69,43 +60,44 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.fetchAllDataTrigger
-        .toAsyncRequest(activityTracker: { [weak self] in self?.activityTracker(forState: $0) },
-                        requestSelector: { [unowned self] _ in
-                            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
-        })
+        .toAsyncRequest { [unowned self] in
+            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+    }
     
-    private lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
+    private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
         .combineLatest(self.accountDetailEvents.elements().filter { $0.hasUsageData },
                        self.lastYearPreviousBillSelectedSegmentIndex.asObservable(),
                        self.electricGasSelectedSegmentIndex.asObservable())
-        .toAsyncRequest(activityTracker: billComparisonTracker,
-                        requestSelector: { [unowned self] (accountDetail, yearsIndex, electricGasIndex) -> Observable<BillComparison> in
-                            let isGas = self.isGas(accountDetail: accountDetail,
-                                                   electricGasSelectedIndex: electricGasIndex)
-                            return self.usageService
-                                .fetchBillComparison(accountNumber: accountDetail.accountNumber,
-                                                     premiseNumber: accountDetail.premiseNumber!,
-                                                     yearAgo: yearsIndex == 0,
-                                                     gas: isGas)
-        })
+        .toAsyncRequest { [unowned self] (accountDetail, yearsIndex, electricGasIndex) in
+            let isGas = self.isGas(accountDetail: accountDetail,
+                                   electricGasSelectedIndex: electricGasIndex)
+            let billComparison = self.usageService
+                .fetchBillComparison(accountNumber: accountDetail.accountNumber,
+                                     premiseNumber: accountDetail.premiseNumber!,
+                                     yearAgo: yearsIndex == 0,
+                                     gas: isGas)
+            
+            let billForecast: Observable<BillForecastResult?>
+            if accountDetail.isAMIAccount {
+                billForecast = .just(nil)
+            } else {
+                billForecast = self.usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber,
+                                                                   premiseNumber: accountDetail.premiseNumber!)
+                    .map { $0 }
+            }
+            
+            return Observable.zip(billComparison, billForecast)
+    }
     
-    private lazy var billForecastEvents: Observable<Event<BillForecastResult?>> = self.accountDetailEvents.elements()
-        .filter { $0.hasUsageData }
-        .toAsyncRequest(activityTracker: billComparisonTracker,
-                        requestSelector: { [unowned self] accountDetail in
-                            guard !accountDetail.isAMIAccount else { return Observable.just(nil) }
-                            return self.usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber,
-                                                                       premiseNumber: accountDetail.premiseNumber!)
-                                .map { $0 }
-        })
-    
-    private(set) lazy var accountDetail: Driver<AccountDetail> = self.accountDetailEvents.elements()
+    private(set) lazy var accountDetail: Driver<AccountDetail> = accountDetailEvents.elements()
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var billComparison: Driver<BillComparison> = self.billComparisonEvents.elements()
+    private(set) lazy var billComparison: Driver<BillComparison> = billAnalysisEvents.elements()
+        .map { $0.0 }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var billForecast: Driver<BillForecastResult?> = self.billForecastEvents.elements()
+    private(set) lazy var billForecast: Driver<BillForecastResult?> = billAnalysisEvents.elements()
+        .map { $1 }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var noPreviousData: Driver<Bool> = self.billComparison.map { $0.compared == nil }
@@ -133,65 +125,54 @@ class UsageTabViewModel {
      */
     let likelyReasonsSelectionStates = Variable([Variable(true), Variable(false), Variable(false)])
     
-    private var currentFetchDisposable: Disposable?
-    
     let electricGasSelectedSegmentIndex = Variable(0)
     let lastYearPreviousBillSelectedSegmentIndex = Variable(1)
-    var fetchedForecast = false // Used so that we only fetch it the first load
     
-    private(set) lazy var isLoadingBillComparison: Driver<Bool> = self.billComparisonTracker.asDriver()
-    private lazy var isSwitchingAccounts: Driver<Bool> = self.switchAccountTracker.asDriver()
-        .distinctUntilChanged()
+    private(set) lazy var hideSwitchingAccountsState: Driver<Void> = accountDetailEvents
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showSwitchingAccountsState: Driver<Bool> = isSwitchingAccounts
+    private(set) lazy var hideLoadingBillAnalysisState: Driver<Void> = billAnalysisEvents
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showMainErrorState: Driver<Bool> = Driver
-        .combineLatest(self.showSwitchingAccountsState,
-                       self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()))
-        { !$0 && $1.error != nil }
-        .startWith(false)
-        .distinctUntilChanged()
+    private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showBillComparisonContents,
+                                                                     showBillComparisonEmptyState,
+                                                                     showBillComparisonErrorState,
+                                                                     showNoUsageDataState)
     
-    private(set) lazy var showNoUsageDataState: Driver<Bool> = Driver
-        .combineLatest(self.showSwitchingAccountsState,
-                       self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()))
-        { !$0 && !($1.element?.hasUsageData ?? true) }
-        .startWith(false)
-        .distinctUntilChanged()
+    private(set) lazy var showMainErrorState: Driver<Void> = accountDetailEvents
+        .filter { $0.error != nil }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showMainContents: Driver<Bool> = Driver
-        .combineLatest(self.showSwitchingAccountsState,
-                       self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()))
-        { !$0 && ($1.element?.hasUsageData ?? false) }
-        .startWith(false)
-        .distinctUntilChanged()
+    private(set) lazy var showNoUsageDataState: Driver<Void> = accountDetailEvents
+        .filter { !($0.element?.hasUsageData ?? true) }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showBillComparisonContents: Driver<Bool> =
-        Driver.combineLatest(self.isLoadingBillComparison,
-                             self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()),
-                             self.billForecastEvents.asDriver(onErrorDriveWith: .empty()))
-        { !$0 && $1.element?.reference != nil && $2.element != nil }
-            .startWith(false)
-            .distinctUntilChanged()
+    private(set) lazy var showMainContents: Driver<Void> = accountDetailEvents
+        .filter { $0.element?.hasUsageData ?? false }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showBillComparisonEmptyState: Driver<Bool> =
-        Driver.combineLatest(self.isLoadingBillComparison,
-                             self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()))
-        { !$0 && $1.error == nil && $1.element?.reference == nil }
-            .startWith(false)
-            .distinctUntilChanged()
+    private(set) lazy var showBillComparisonContents: Driver<Void> = billAnalysisEvents
+        .filter { $0.element?.0.reference != nil }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showBillComparisonErrorState: Driver<Bool> =
-        Driver.combineLatest(self.isLoadingBillComparison,
-                             self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()),
-                             self.billForecastEvents.asDriver(onErrorDriveWith: .empty()))
-        { !$0 && ($1.error != nil || $2.error != nil) }
-            .startWith(false)
-            .distinctUntilChanged()
+    private(set) lazy var showBillComparisonEmptyState: Driver<Void> = billAnalysisEvents
+        .filter { $0.error == nil && $0.element?.0.reference == nil }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var didFinishRefreshing = self.refreshTracker.asDriver().filter(!).map(to: ())
+    private(set) lazy var showBillComparisonErrorState: Driver<Void> = billAnalysisEvents
+        .filter { $0.error != nil }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    // MARK: No Data Bar Drivers
+    
+    // MARK: - No Data Bar Drivers
     
     private(set) lazy var noDataBarDateLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparison, self.lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
