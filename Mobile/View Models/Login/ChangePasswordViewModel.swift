@@ -21,6 +21,9 @@ class ChangePasswordViewModel {
     private var authService: AuthenticationService
     private var biometricsService: BiometricsService
     
+    // Keeps track of strong password for Analytics
+    var hasStrongPassword = false
+    
     required init(userDefaults: UserDefaults, authService: AuthenticationService, biometricsService: BiometricsService) {
         self.userDefaults = userDefaults
         self.authService = authService

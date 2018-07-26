@@ -220,6 +220,9 @@ enum AnalyticsPageView: String {
     case OverrideToast = "OverrideToast"
     case CancelOverride = "CancelOverride"
     case CancelOverrideToast = "CancelOverrideToast"
+    
+    case strongPasswordOffer = "StrongPasswordOffer"
+    case strongPasswordComplete = "StrongPasswordComplete"
 }
 
 enum AnalyticsOutageSource {

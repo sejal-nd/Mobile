@@ -213,6 +213,11 @@ class ChangePasswordViewController: UIViewController, Alertable {
             self.viewModel.saveSharedWebCredentials()
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             self.navigationController?.popViewController(animated: true)
+            
+            if self.viewModel.hasStrongPassword {
+                Analytics.log(event: .strongPasswordComplete)
+            }
+            
             Analytics.log(event: .ChangePasswordDone)
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
@@ -230,11 +235,15 @@ class ChangePasswordViewController: UIViewController, Alertable {
     
     @objc private func suggestPassword() {
         guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
+        
+        Analytics.log(event: .strongPasswordOffer)
+        
         presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
                      message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
                      style: .actionSheet,
                      actions:
                         [UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
+                            self?.viewModel.hasStrongPassword = true
                             self?.viewModel.newPassword.value = strongPassword
                             self?.viewModel.confirmPassword.value = strongPassword
                             self?.newPasswordTextField.textField.text = strongPassword
@@ -370,6 +379,8 @@ extension ChangePasswordViewController: UITextFieldDelegate {
     
     // Don't allow whitespace entry in the newPasswordTextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        viewModel.hasStrongPassword = false
         newPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
         confirmPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
         

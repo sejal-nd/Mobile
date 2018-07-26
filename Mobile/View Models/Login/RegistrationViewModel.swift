@@ -54,6 +54,8 @@ class RegistrationViewModel {
     var registrationService: RegistrationService
     var authenticationService: AuthenticationService
     
+    // Keeps track of strong password for Analytics
+    var hasStrongPassword = false
     
     required init(registrationService: RegistrationService, authenticationService: AuthenticationService) {
         self.registrationService = registrationService
