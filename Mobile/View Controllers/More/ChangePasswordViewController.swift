@@ -55,7 +55,7 @@ class ChangePasswordViewController: UIViewController, Alertable {
         let items = [suggestPasswordButton, space]
         toolbar.setItems(items, animated: false)
         toolbar.sizeToFit()
-        toolbar.tintColor = UIColor.primaryColor
+        toolbar.tintColor = .actionBlue
         return toolbar
     }()
     

@@ -54,7 +54,7 @@ class RegistrationCreateCredentialsViewController: UIViewController, Alertable {
         let items = [suggestPasswordButton, space]
         toolbar.setItems(items, animated: false)
         toolbar.sizeToFit()
-        toolbar.tintColor = UIColor.primaryColor
+        toolbar.tintColor = .actionBlue
         return toolbar
     }()
     
@@ -112,6 +112,7 @@ class RegistrationCreateCredentialsViewController: UIViewController, Alertable {
     
     @objc private func suggestPassword() {
         guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
+
         presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
             message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
             style: .actionSheet,
