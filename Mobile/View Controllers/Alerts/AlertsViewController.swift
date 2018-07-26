@@ -44,16 +44,27 @@ class AlertsViewController: AccountPickerViewController {
         segmentedControl.setItems(leftLabel: NSLocalizedString("My Alerts", comment: ""),
                                   rightLabel: NSLocalizedString("Updates", comment: ""),
                                   initialSelectedIndex: 0)
-        
-        if Environment.shared.opco == .bge {
-            accountPicker.isHidden = true
-            view.backgroundColor = .primaryColor
-            segmentedControlTopSpace.constant = 22
-        } else {
-            view.backgroundColor = .primaryColorAccountPicker
-            segmentedControlTopSpace.constant = 0
-        }
-        
+
+        accountPickerViewControllerWillAppear
+            .withLatestFrom(accountPickerViewControllerWillAppear.asObservable())
+            .subscribe(onNext: { [weak self] state in
+                guard let `self` = self else { return }
+                switch(state) {
+                case .loadingAccounts:
+                        break
+                case .readyToFetchData:
+                    if Environment.shared.opco == .bge || AccountsStore.shared.accounts.count == 1 {
+                        self.accountPicker.isHidden = true
+                        self.view.backgroundColor = .primaryColor
+                        self.segmentedControlTopSpace.constant = 22
+                    } else {
+                        self.view.backgroundColor = .primaryColorAccountPicker
+                        self.segmentedControlTopSpace.constant = 0
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+
         alertsTableView.separatorColor = .accentGray
         updatesTableView.backgroundColor = .softGray
         updatesTableView.contentInset = UIEdgeInsetsMake(22, 0, 22, 0)
