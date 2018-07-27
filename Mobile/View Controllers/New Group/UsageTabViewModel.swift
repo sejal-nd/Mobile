@@ -12,51 +12,22 @@ import RxCocoa
 
 class UsageTabViewModel {
     
-    let disposeBag = DisposeBag()
-    
-    
-    // MARK: - Account Details
-    
     let accountService: AccountService
-
-//    var accountDetail: AccountDetail? {
-//        didSet {
-//            guard let accountDetail = accountDetail else { return }
-//
-//            switch Environment.shared.opco {
-//            case .bge:
-//                if accountDetail.peakRewards == "ACTIVE" {
-//                    usageToolCards.insert(MyUsageToolCard(image: UIImage(named: "ic_thermostat"), title: "PeakRewards"), at: 1) // Todo
-//                }
-//
-//                if accountDetail.isSERAccount {
-//                    usageToolCards.append(MyUsageToolCard(image: UIImage(named: "ic_smartenergy"), title: "Smart Energy Rewards"))
-//                }
-//            case .comEd:
-//                usageToolCards.insert(MyUsageToolCard(image: UIImage(named: "ic_hourlypricing"), title: "Hourly Pricing"), at: 1)
-//
-//                if accountDetail.isPTSAccount {
-//                    usageToolCards.append(MyUsageToolCard(image:UIImage(named: "ic_smartenergy"), title: "Peak Time Savings"))
-//                }
-//            case .peco:
-//                break
-//            }
-//        }
-//    }
-    
-    var usageToolCards = [MyUsageToolCard(image: UIImage(named: "ic_usagedata"), title: "View My Usage Data"), MyUsageToolCard(image: UIImage(named: "ic_Top5"), title: "Top 5 Energy Tips"), MyUsageToolCard(image: UIImage(named: "ic_residential"), title: "My Home Profile")]
-    
-    private let fetchAllDataTrigger = PublishSubject<Void>()
-
-    func fetchAllData() {
-        fetchAllDataTrigger.onNext(())
-    }
+    let usageService: UsageService
     
     //MARK: - Init
     
     required init(accountService: AccountService, usageService: UsageService) {
         self.accountService = accountService
         self.usageService = usageService
+    }
+    
+    //MARK: - Data Fetching
+    
+    private let fetchAllDataTrigger = PublishSubject<Void>()
+    
+    func fetchAllData() {
+        fetchAllDataTrigger.onNext(())
     }
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.fetchAllDataTrigger
@@ -89,14 +60,16 @@ class UsageTabViewModel {
             return Observable.zip(billComparison, billForecast)
     }
     
-    private(set) lazy var accountDetail: Driver<AccountDetail> = accountDetailEvents.elements()
+    //MARK: - Convenience Properties
+    
+    private lazy var accountDetail: Driver<AccountDetail> = accountDetailEvents.elements()
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var billComparison: Driver<BillComparison> = billAnalysisEvents.elements()
+    private lazy var billComparison: Driver<BillComparison> = billAnalysisEvents.elements()
         .map { $0.0 }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var billForecast: Driver<BillForecastResult?> = billAnalysisEvents.elements()
+    private lazy var billForecast: Driver<BillForecastResult?> = billAnalysisEvents.elements()
         .map { $1 }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -105,8 +78,6 @@ class UsageTabViewModel {
     
     // RX CODE C / P Bill ANalysis
     
-    
-    let usageService: UsageService
     
     
     /*
@@ -128,6 +99,8 @@ class UsageTabViewModel {
     let electricGasSelectedSegmentIndex = Variable(0)
     let lastYearPreviousBillSelectedSegmentIndex = Variable(1)
     
+    //MARK: - Main States
+    
     private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showBillComparisonContents,
                                                                      showBillComparisonEmptyState,
                                                                      showBillComparisonErrorState,
@@ -147,6 +120,8 @@ class UsageTabViewModel {
         .filter { $0.element?.hasUsageData ?? false }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
+    
+    //MARK: - Bill Analysis States
     
     private(set) lazy var showBillComparisonContents: Driver<Void> = billAnalysisEvents
         .filter { $0.element?.0.reference != nil }
@@ -175,7 +150,7 @@ class UsageTabViewModel {
         .asDriver(onErrorDriveWith: .empty())
 
     
-    // MARK: - Compare Bill Title
+    // MARK: - Bill Analysis Content
     
     private(set) lazy var compareBillTitle: Driver<String> = lastYearPreviousBillSelectedSegmentIndex.asDriver()
         .map {
@@ -186,7 +161,7 @@ class UsageTabViewModel {
             }
     }
     
-    // MARK: - No Data Bar Drivers
+    // MARK: No Data Bar Drivers
     
     private(set) lazy var noDataBarDateLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparison, self.lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
@@ -965,7 +940,35 @@ class UsageTabViewModel {
         likelyReasonsSelectionStates.value = likelyReasonsSelectionStates.value // Trigger Variable onNext
     }
     
-    // MARK: Random helpers
+    // MARK: - Usage Tools
+    
+    private(set) lazy var usageTools: Driver<[UsageTool]> = accountDetail.map { accountDetail in
+        var usageTools: [UsageTool] = [.usageData, .energyTips, .homeProfile]
+        
+        switch Environment.shared.opco {
+        case .bge:
+            if accountDetail.peakRewards == "ACTIVE" {
+                usageTools.insert(.peakRewards, at: 1)
+            }
+            
+            if accountDetail.isSERAccount {
+                usageTools.append(.smartEnergyRewards)
+            }
+        case .comEd:
+            usageTools.insert(.hourlyPricing, at: 1)
+            
+            if accountDetail.isPTSAccount {
+                usageTools.append(.peakTimeSavings)
+            }
+        case .peco:
+            break
+        }
+        
+        return usageTools
+        }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    // MARK: - Random Helpers
     
     // If a gas only account, return true, if an electric only account, returns false, if both gas/electric, returns selected segemented control
     private func isGas(accountDetail: AccountDetail, electricGasSelectedIndex: Int) -> Bool {
