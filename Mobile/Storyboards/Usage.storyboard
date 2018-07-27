@@ -52,7 +52,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="1080"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBl-yS-qiq">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1086"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1088"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="VT3-VG-S91" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
@@ -62,7 +62,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N2i-cc-UM6" userLabel="Main Stack">
-                                                <rect key="frame" x="16" y="118" width="343" height="640"/>
+                                                <rect key="frame" x="16" y="118" width="343" height="642"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-bH-cZn">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="464.5"/>
@@ -384,7 +384,7 @@
                                                                                 <rect key="frame" x="0.0" y="22" width="343" height="120"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="MMM dd, YYYY - MMM dd, YYYY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gW9-pT-oLp">
-                                                                                        <rect key="frame" x="66" y="16" width="212.5" height="19.5"/>
+                                                                                        <rect key="frame" x="65.5" y="16" width="212.5" height="19.5"/>
                                                                                         <accessibility key="accessibilityConfiguration">
                                                                                             <bool key="isElement" value="NO"/>
                                                                                         </accessibility>
@@ -402,7 +402,7 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="1000" text="Avg. Temp X" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mST-JC-TNs">
-                                                                                        <rect key="frame" x="138" y="38.5" width="68" height="16.5"/>
+                                                                                        <rect key="frame" x="137.5" y="38.5" width="68" height="16.5"/>
                                                                                         <accessibility key="accessibilityConfiguration">
                                                                                             <bool key="isElement" value="NO"/>
                                                                                         </accessibility>
@@ -473,7 +473,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SeL-Jz-iLZ">
-                                                        <rect key="frame" x="0.0" y="550.5" width="343" height="39.5"/>
+                                                        <rect key="frame" x="0.0" y="550.5" width="343" height="41.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="My Usage Tools" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZf-vb-Dqq">
                                                                 <rect key="frame" x="0.0" y="8" width="133.5" height="21.5"/>
@@ -486,38 +486,30 @@
                                                         <constraints>
                                                             <constraint firstItem="TZf-vb-Dqq" firstAttribute="top" secondItem="SeL-Jz-iLZ" secondAttribute="top" constant="8" id="5GC-3o-gf9"/>
                                                             <constraint firstItem="TZf-vb-Dqq" firstAttribute="leading" secondItem="SeL-Jz-iLZ" secondAttribute="leading" id="7Z5-a8-WQu"/>
-                                                            <constraint firstAttribute="bottom" secondItem="TZf-vb-Dqq" secondAttribute="bottom" constant="10" id="7ah-es-J3P"/>
+                                                            <constraint firstAttribute="bottom" secondItem="TZf-vb-Dqq" secondAttribute="bottom" constant="12" id="7ah-es-J3P"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TZf-vb-Dqq" secondAttribute="trailing" id="b4B-Um-vmQ"/>
                                                         </constraints>
                                                     </view>
-                                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b5m-WW-Tg2">
-                                                        <rect key="frame" x="0.0" y="590" width="343" height="50"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8yI-lw-JsT">
+                                                        <rect key="frame" x="0.0" y="592" width="343" height="50"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" priority="999" constant="50" id="xAE-WT-D6A"/>
+                                                            <constraint firstAttribute="height" priority="1" id="eGj-Tv-hEl"/>
                                                         </constraints>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="6zt-lu-Q7o">
-                                                            <size key="itemSize" width="50" height="50"/>
-                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        </collectionViewFlowLayout>
-                                                        <cells/>
-                                                    </collectionView>
+                                                    </stackView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="Vfo-US-jem" secondAttribute="trailing" id="Bor-x9-ETa"/>
-                                                    <constraint firstAttribute="trailing" secondItem="b5m-WW-Tg2" secondAttribute="trailing" id="Slf-B4-98T"/>
-                                                    <constraint firstItem="b5m-WW-Tg2" firstAttribute="leading" secondItem="N2i-cc-UM6" secondAttribute="leading" id="cmv-3M-dz7"/>
+                                                    <constraint firstAttribute="trailing" secondItem="8yI-lw-JsT" secondAttribute="trailing" id="UGQ-AC-mzk"/>
                                                     <constraint firstItem="Vfo-US-jem" firstAttribute="leading" secondItem="N2i-cc-UM6" secondAttribute="leading" id="hXG-aj-Y9S"/>
                                                     <constraint firstItem="SeL-Jz-iLZ" firstAttribute="leading" secondItem="N2i-cc-UM6" secondAttribute="leading" id="k9f-7M-vPW"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="kp2-dj-BnL"/>
                                                     <constraint firstAttribute="trailing" secondItem="SeL-Jz-iLZ" secondAttribute="trailing" id="ss7-EK-2K9"/>
                                                     <constraint firstAttribute="width" priority="999" constant="460" id="tDn-3b-jl8"/>
+                                                    <constraint firstItem="8yI-lw-JsT" firstAttribute="leading" secondItem="N2i-cc-UM6" secondAttribute="leading" id="uDo-2C-IzS"/>
                                                 </constraints>
                                             </stackView>
                                             <view hidden="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="l15-zg-OGE" customClass="UnavailableView" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="772" width="317" height="50"/>
+                                                <rect key="frame" x="29" y="774" width="317" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="JSN-Jt-Sjy"/>
@@ -525,7 +517,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B6w-3l-gs6">
-                                                <rect key="frame" x="29" y="786" width="317" height="300"/>
+                                                <rect key="frame" x="29" y="788" width="317" height="300"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo5-kv-hgY">
                                                         <rect key="frame" x="0.0" y="129.5" width="317" height="41"/>
@@ -574,7 +566,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="LBl-yS-qiq" secondAttribute="trailing" id="4CF-fE-cBN"/>
                                     <constraint firstItem="LBl-yS-qiq" firstAttribute="leading" secondItem="auv-xw-MUC" secondAttribute="leading" id="69X-OG-kSs"/>
-                                    <constraint firstAttribute="bottom" secondItem="LBl-yS-qiq" secondAttribute="bottom" id="LXY-Dp-ViF"/>
+                                    <constraint firstAttribute="bottom" secondItem="LBl-yS-qiq" secondAttribute="bottom" constant="30" id="LXY-Dp-ViF"/>
                                     <constraint firstItem="LBl-yS-qiq" firstAttribute="top" secondItem="auv-xw-MUC" secondAttribute="top" id="Uzs-7L-dvg"/>
                                     <constraint firstItem="LBl-yS-qiq" firstAttribute="centerX" secondItem="auv-xw-MUC" secondAttribute="centerX" id="fXA-Q3-hGX"/>
                                 </constraints>
@@ -609,8 +601,6 @@
                         <outlet property="billComparisonLoadingIndicator" destination="Dvd-qn-1eF" id="ycO-Li-oba"/>
                         <outlet property="billGraphDetailContainer" destination="bnW-KF-mCh" id="bhF-Bx-iey"/>
                         <outlet property="billGraphDetailView" destination="Rv2-7O-aHB" id="93V-Z1-7A7"/>
-                        <outlet property="collectionView" destination="b5m-WW-Tg2" id="F63-zn-9pg"/>
-                        <outlet property="collectionViewHeight" destination="xAE-WT-D6A" id="n54-eJ-8Iv"/>
                         <outlet property="compareBillTitlelabel" destination="hio-oA-8Gu" id="353-MA-R5S"/>
                         <outlet property="contentStack" destination="N2i-cc-UM6" id="lmN-Hh-vJW"/>
                         <outlet property="currentBarHeightConstraint" destination="JtD-Ud-hGH" id="MeY-Mg-35S"/>
@@ -648,6 +638,7 @@
                         <outlet property="segmentControl" destination="b9o-Te-xzG" id="Xtq-0L-Itv"/>
                         <outlet property="switchAccountsLoadingIndicator" destination="DYi-RL-qXC" id="GAn-dI-hSF"/>
                         <outlet property="unavailableView" destination="l15-zg-OGE" id="ARk-PF-06B"/>
+                        <outlet property="usageToolsStack" destination="8yI-lw-JsT" id="zNE-F7-JDI"/>
                         <segue destination="op1-EN-FL3" kind="show" identifier="peakRewardsSegue" id="tct-Iq-NQi"/>
                         <segue destination="bLA-dG-dNI" kind="show" identifier="usageWebViewSegue" id="jRN-M0-4zX"/>
                         <segue destination="4fv-o4-vaR" kind="presentation" identifier="top5EnergyTipsSegue" modalPresentationStyle="formSheet" id="q96-80-G2n"/>

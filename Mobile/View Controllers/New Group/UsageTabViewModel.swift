@@ -62,7 +62,7 @@ class UsageTabViewModel {
     
     //MARK: - Convenience Properties
     
-    private lazy var accountDetail: Driver<AccountDetail> = accountDetailEvents.elements()
+    private(set) lazy var accountDetail: Driver<AccountDetail> = accountDetailEvents.elements()
         .asDriver(onErrorDriveWith: .empty())
     
     private lazy var billComparison: Driver<BillComparison> = billAnalysisEvents.elements()
@@ -942,29 +942,31 @@ class UsageTabViewModel {
     
     // MARK: - Usage Tools
     
-    private(set) lazy var usageTools: Driver<[UsageTool]> = accountDetail.map { accountDetail in
-        var usageTools: [UsageTool] = [.usageData, .energyTips, .homeProfile]
-        
-        switch Environment.shared.opco {
-        case .bge:
-            if accountDetail.peakRewards == "ACTIVE" {
-                usageTools.insert(.peakRewards, at: 1)
+    private(set) lazy var usageTools: Driver<[UsageTool]> = accountDetail
+        .filter { $0.hasUsageData }
+        .map { accountDetail in
+            var usageTools: [UsageTool] = [.usageData, .energyTips, .homeProfile]
+            
+            switch Environment.shared.opco {
+            case .bge:
+                if accountDetail.peakRewards == "ACTIVE" {
+                    usageTools.insert(.peakRewards, at: 1)
+                }
+                
+                if accountDetail.isSERAccount {
+                    usageTools.append(.smartEnergyRewards)
+                }
+            case .comEd:
+                usageTools.insert(.hourlyPricing, at: 1)
+                
+                if accountDetail.isPTSAccount {
+                    usageTools.append(.peakTimeSavings)
+                }
+            case .peco:
+                break
             }
             
-            if accountDetail.isSERAccount {
-                usageTools.append(.smartEnergyRewards)
-            }
-        case .comEd:
-            usageTools.insert(.hourlyPricing, at: 1)
-            
-            if accountDetail.isPTSAccount {
-                usageTools.append(.peakTimeSavings)
-            }
-        case .peco:
-            break
-        }
-        
-        return usageTools
+            return usageTools
         }
         .asDriver(onErrorDriveWith: .empty())
     

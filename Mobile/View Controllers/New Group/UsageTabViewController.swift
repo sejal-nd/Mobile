@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SafariServices
 
 class UsageTabViewController: AccountPickerViewController {
     
@@ -39,27 +40,14 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet weak var rightGraphBackgroundView: UIView! {
-        didSet {
-            rightGraphBackgroundView.layer.cornerRadius = 5
-        }
-    }
-    
     @IBOutlet weak var myUsageToolsLabel: UILabel! {
         didSet {
             myUsageToolsLabel.font = OpenSans.semibold.of(size: 18)
         }
     }
     
-    @IBOutlet weak var collectionView: UICollectionView! {
-        didSet {
-            collectionView.dataSource = self
-            collectionView.delegate = self
-        }
-    }
+    @IBOutlet weak var usageToolsStack: UIStackView!
     
-    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
-
     // Bill Graph
     @IBOutlet weak var billGraphDetailContainer: UIView!
     @IBOutlet weak var billGraphDetailView: UIView! {
@@ -239,10 +227,6 @@ class UsageTabViewController: AccountPickerViewController {
             .drive(backgroundScrollConstraint.rx.constant)
             .disposed(by: disposeBag)
         
-        // Register Collection View XIB Cells
-        collectionView.register(UINib.init(nibName: MyUsageCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MyUsageCollectionViewCell.identifier)
-        collectionView.register(UINib.init(nibName: UsageToolsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UsageToolsCollectionViewCell.identifier)
-        
         bindViewModel()
         dropdownView.configureWithViewModel(viewModel)
         
@@ -281,19 +265,6 @@ class UsageTabViewController: AccountPickerViewController {
         navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        reloadCollectionView()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        reloadCollectionView()
-    }
-    
     
     // MARK: - Actions
     
@@ -458,6 +429,10 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.barDescriptionDateLabelText.drive(graphDetailDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionAvgTempLabelText.drive(graphDetailTemperatureLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionDetailLabelText.drive(graphDetailDescriptionLabel.rx.text).disposed(by: disposeBag)
+        
+        viewModel.usageTools.debug("FJDKLSJF")
+            .drive(onNext: { [weak self] in self?.updateUsageToolCards($0) })
+            .disposed(by: disposeBag)
     }
     
     //MARK: - Loading States
@@ -515,25 +490,94 @@ class UsageTabViewController: AccountPickerViewController {
         graphErrorLabel.isHidden = false
     }
     
-    private func reloadCollectionView() {
-        collectionView.reloadData()
-        collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height + 30
-        self.view.setNeedsLayout()
+    // MARK: - Usage Tool Cards
+    
+    func updateUsageToolCards(_ usageTools: [UsageTool]) {
+        // Remove Existing Views
+        usageToolsStack.arrangedSubviews
+            .forEach {
+                usageToolsStack.removeArrangedSubview($0)
+                $0.removeFromSuperview()
+        }
+        
+        // create the top card and add it to the grid
+        guard let firstTool = usageTools.first else { return }
+        let firstCard = UsageToolTopCardView().usingAutoLayout()
+        firstCard.configureView(withUsageTool: firstTool)
+        firstCard.heightAnchor.constraint(equalToConstant: 110).isActive = true
+        firstCard.rx.touchUpInside.asDriver()
+            .withLatestFrom(viewModel.accountDetail)
+            .drive(onNext: { [weak self] in
+                self?.usageToolCardTapped(firstTool, accountDetail: $0)
+            })
+            .disposed(by: firstCard.bag)
+        
+        usageToolsStack.addArrangedSubview(firstCard)
+        
+        let rowCount = 2
+        
+        // create rest of the cards
+        var gridCardViews: [UIView] = usageTools.suffix(usageTools.count - 1)
+            .map { usageTool in
+                let cardView = UsageToolCardView().usingAutoLayout()
+                cardView.configureView(withUsageTool: usageTool)
+                cardView.rx.touchUpInside.asDriver()
+                    .withLatestFrom(viewModel.accountDetail)
+                    .drive(onNext: { [weak self] in
+                        self?.usageToolCardTapped(usageTool, accountDetail: $0)
+                    })
+                    .disposed(by: cardView.bag)
+                
+                return cardView
+        }
+        
+        // add spacer views if necessary to fill the last row
+        while gridCardViews.count % rowCount != 0 {
+            gridCardViews.append(UIView())
+        }
+        
+        // create card rows and add them to the grid
+        stride(from: 0, to: usageTools.count - 1, by: rowCount)
+            .map { Array(gridCardViews[$0..<min($0 + rowCount, gridCardViews.count)]) }
+            .map(UIStackView.init)
+            .forEach {
+                $0.axis = .horizontal
+                $0.alignment = .fill
+                $0.distribution = .fillEqually
+                $0.spacing = 10
+                usageToolsStack.addArrangedSubview($0)
+        }
     }
     
-//    private func fetchData() {
-////        viewModel.fetchAccountData(onSuccess: { [weak self] in
-////            guard let `self` = self else { return }
-////            self.reloadCollectionView()
-////        })
-////
-//        viewModel.fetchData(onSuccess: { [weak self] in
-//            
-//            guard let `self` = self else { return }
-//            self.reloadCollectionView() // Congfigures bottom cards
-//         dLog("COMPLETE FETCHED DATA")
-//        })
-//    }
+    func usageToolCardTapped(_ usageTool: UsageTool, accountDetail: AccountDetail) {
+        switch usageTool {
+        case .usageData:
+            performSegue(withIdentifier: "usageWebViewSegue", sender: accountDetail)
+        case .energyTips:
+            performSegue(withIdentifier: "top5EnergyTipsSegue", sender: accountDetail)
+        case .homeProfile:
+            performSegue(withIdentifier: "updateYourHomeProfileSegue", sender: accountDetail)
+        case .peakRewards:
+            Analytics.log(event: .ViewUsagePeakRewards)
+            performSegue(withIdentifier: "peakRewardsSegue", sender: accountDetail)
+        case .smartEnergyRewards:
+            performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
+        case .hourlyPricing:
+            if accountDetail.isHourlyPricing {
+                Analytics.log(event: .HourlyPricing,
+                              dimensions: [.HourlyPricingEnrollment: "enrolled"])
+                performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
+            } else {
+                Analytics.log(event: .HourlyPricing,
+                              dimensions: [.HourlyPricingEnrollment: "unenrolled"])
+                let safariVc = SFSafariViewController
+                    .createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
+                present(safariVc, animated: true, completion: nil)
+            }
+        case .peakTimeSavings:
+            performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
+        }
+    }
     
     
     // MARK: - Navigation
