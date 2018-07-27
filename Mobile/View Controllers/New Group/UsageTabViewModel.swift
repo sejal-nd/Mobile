@@ -162,6 +162,17 @@ class UsageTabViewModel {
         .filter { $0.error != nil }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showElectricGasSegmentedControl: Driver<Bool> = accountDetailEvents.elements()
+        .map { accountDetail in
+            switch Environment.shared.opco {
+            case .comEd:
+                return false
+            case .bge, .peco:
+                return accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC"
+            }
+        }
+        .asDriver(onErrorDriveWith: .empty())
 
     
     // MARK: - Compare Bill Title
@@ -970,7 +981,12 @@ class UsageTabViewModel {
 
 fileprivate extension AccountDetail {
     var hasUsageData: Bool {
-        return premiseNumber != nil
+        switch serviceType {
+        case "GAS", "ELECTRIC", "GAS/ELECTRIC":
+            return premiseNumber != nil && isResidential && !isBGEControlGroup && !isFinaled
+        default:
+            return false
+        }
     }
 }
 

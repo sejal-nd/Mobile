@@ -381,17 +381,37 @@ class UsageTabViewController: AccountPickerViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.showElectricGasSegmentedControl.not().drive(segmentControl.rx.isHidden).disposed(by: disposeBag)
         viewModel.compareBillTitle.drive(compareBillTitlelabel.rx.text).disposed(by: disposeBag)
         
         // Bar graph height constraints
-        viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)
-        viewModel.currentBarHeightConstraintValue.drive(currentBarHeightConstraint.rx.constant).disposed(by: disposeBag)
-        viewModel.projectedBarHeightConstraintValue.drive(projectedBarHeightConstraint.rx.constant).disposed(by: disposeBag)
+        viewModel.previousBarHeightConstraintValue
+            .drive(previousBarHeightConstraint.rx.constant)
+            .disposed(by: disposeBag)
+        
+        viewModel.currentBarHeightConstraintValue
+            .drive(currentBarHeightConstraint.rx.constant)
+            .disposed(by: disposeBag)
+        
+        viewModel.projectedBarHeightConstraintValue
+            .drive(projectedBarHeightConstraint.rx.constant)
+            .disposed(by: disposeBag)
         
         // Bar graph corner radius
-        viewModel.previousBarHeightConstraintValue.map { min(10, $0/2) }.drive(previousBarView.rx.cornerRadius).disposed(by: disposeBag)
-        viewModel.currentBarHeightConstraintValue.map { min(10, $0/2) }.drive(currentBarView.rx.cornerRadius).disposed(by: disposeBag)
-        viewModel.projectedBarHeightConstraintValue.map { min(10, $0/2) }.drive(projectedBarImageView.rx.cornerRadius).disposed(by: disposeBag)
+        viewModel.previousBarHeightConstraintValue
+            .map { min(10, $0/2) }
+            .drive(previousBarView.rx.cornerRadius)
+            .disposed(by: disposeBag)
+        
+        viewModel.currentBarHeightConstraintValue
+            .map { min(10, $0/2) }
+            .drive(currentBarView.rx.cornerRadius)
+            .disposed(by: disposeBag)
+        
+        viewModel.projectedBarHeightConstraintValue
+            .map { min(10, $0/2) }
+            .drive(projectedBarImageView.rx.cornerRadius)
+            .disposed(by: disposeBag)
         
         // Bar show/hide
         viewModel.noPreviousData.not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)
