@@ -169,17 +169,17 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet weak var previousYearButton: UIButton! {
+    @IBOutlet weak var lastYearButton: UIButton! {
         didSet {
-            previousYearButton.layer.cornerRadius = 16
-            previousYearButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            lastYearButton.layer.cornerRadius = 16
+            lastYearButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
     
-    @IBOutlet weak var nextYearButton: UIButton! {
+    @IBOutlet weak var previousBillButton: UIButton! {
         didSet {
-            nextYearButton.layer.cornerRadius = 16
-            nextYearButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            previousBillButton.layer.cornerRadius = 16
+            previousBillButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
     
@@ -205,13 +205,13 @@ class UsageTabViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Driver.merge(previousYearButton.rx.tap.asDriver().map(to: 0),
-                     nextYearButton.rx.tap.asDriver().map(to: 1))
+        Driver.merge(lastYearButton.rx.tap.asDriver().map(to: 0),
+                     previousBillButton.rx.tap.asDriver().map(to: 1))
             .drive(onNext: { [weak self] index in
                 guard let this = self else { return }
                 this.showBillAnalysisLoadingState()
-                this.nextYearButton.isEnabled = index == 0
-                this.previousYearButton.isEnabled = index == 1
+                this.previousBillButton.isEnabled = index == 0
+                this.lastYearButton.isEnabled = index == 1
                 this.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = index
                 Analytics.log(event: index == 0 ? .BillLastYearToggle : .BillPreviousToggle)
             })
@@ -301,6 +301,8 @@ class UsageTabViewController: AccountPickerViewController {
         } else {
             barDescriptionTriangleCenterXConstraint.constant = 0
         }
+        
+        viewModel.setBarSelected(tag: sender.tag)
     }
     
     

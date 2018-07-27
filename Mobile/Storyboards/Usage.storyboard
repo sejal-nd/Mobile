@@ -613,21 +613,21 @@
                         <outlet property="graphDetailDescriptionLabel" destination="ca6-Po-YNM" id="GTe-jT-RNh"/>
                         <outlet property="graphDetailTemperatureLabel" destination="mST-JC-TNs" id="We5-TV-a9c"/>
                         <outlet property="graphErrorLabel" destination="cyK-N7-CES" id="maE-I0-ZaX"/>
+                        <outlet property="lastYearButton" destination="V3z-9k-4Uq" id="yL2-BX-wTC"/>
                         <outlet property="mainErrorLabel" destination="mo5-kv-hgY" id="fOv-gw-LSY"/>
                         <outlet property="mainErrorView" destination="B6w-3l-gs6" id="Ab4-sF-fRx"/>
                         <outlet property="myUsageToolsLabel" destination="TZf-vb-Dqq" id="Ek1-6n-IzH"/>
                         <outlet property="nextMonthGraphDateLabel" destination="Qnq-y9-pQd" id="wch-AW-UhN"/>
                         <outlet property="nextMonthGraphValueLabel" destination="B2H-yA-RLi" id="UgG-sa-ckK"/>
-                        <outlet property="nextYearButton" destination="1zd-LH-vJB" id="QO7-vh-J64"/>
                         <outlet property="noDataContainerButton" destination="ZXe-zM-5Tn" id="U6D-eV-fu8"/>
                         <outlet property="noDataDateLabel" destination="VEE-ID-33l" id="h1C-ET-nk5"/>
                         <outlet property="noNetworkConnectionView" destination="iyt-BW-05Y" id="pAx-xB-JGw"/>
                         <outlet property="previousBarHeightConstraint" destination="bjl-u6-7QU" id="lAQ-xI-Ecl"/>
                         <outlet property="previousBarView" destination="dKk-5X-by1" id="rdU-4S-ymd"/>
+                        <outlet property="previousBillButton" destination="1zd-LH-vJB" id="QO7-vh-J64"/>
                         <outlet property="previousContainerButton" destination="s0y-lN-dUc" id="BFu-1u-Pc6"/>
                         <outlet property="previousMonthGraphDateLabel" destination="PnL-wt-i7Y" id="1ro-6D-UnH"/>
                         <outlet property="previousMonthGraphValueLabel" destination="Y2E-Nc-xEh" id="hO7-WM-ta0"/>
-                        <outlet property="previousYearButton" destination="V3z-9k-4Uq" id="yL2-BX-wTC"/>
                         <outlet property="projectedBarHeightConstraint" destination="20W-ma-twg" id="ONH-Iq-qMn"/>
                         <outlet property="projectedBarImageView" destination="QEx-t6-edt" id="iZE-ps-w5U"/>
                         <outlet property="projectedContainerButton" destination="fGz-ff-KfF" id="C4W-d3-wAD"/>
