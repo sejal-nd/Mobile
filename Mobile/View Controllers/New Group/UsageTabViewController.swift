@@ -494,17 +494,19 @@ class UsageTabViewController: AccountPickerViewController {
     
     func updateUsageToolCards(_ usageTools: [UsageTool]) {
         // Remove Existing Views
-        usageToolsStack.arrangedSubviews
-            .forEach {
-                usageToolsStack.removeArrangedSubview($0)
-                $0.removeFromSuperview()
+        usageToolsStack.arrangedSubviews.forEach {
+            usageToolsStack.removeArrangedSubview($0)
+            $0.removeFromSuperview()
         }
         
         // create the top card and add it to the grid
         guard let firstTool = usageTools.first else { return }
         let firstCard = UsageToolTopCardView().usingAutoLayout()
         firstCard.configureView(withUsageTool: firstTool)
+        
+        // sets the height for *every* row. the stack view distribution is set to .fillEqually
         firstCard.heightAnchor.constraint(equalToConstant: 110).isActive = true
+        
         firstCard.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.accountDetail)
             .drive(onNext: { [weak self] in
@@ -540,12 +542,12 @@ class UsageTabViewController: AccountPickerViewController {
         stride(from: 0, to: usageTools.count - 1, by: rowCount)
             .map { Array(gridCardViews[$0..<min($0 + rowCount, gridCardViews.count)]) }
             .map(UIStackView.init)
-            .forEach {
-                $0.axis = .horizontal
-                $0.alignment = .fill
-                $0.distribution = .fillEqually
-                $0.spacing = 10
-                usageToolsStack.addArrangedSubview($0)
+            .forEach { rowStack in
+                rowStack.axis = .horizontal
+                rowStack.alignment = .fill
+                rowStack.distribution = .fillEqually
+                rowStack.spacing = 10
+                usageToolsStack.addArrangedSubview(rowStack)
         }
     }
     
