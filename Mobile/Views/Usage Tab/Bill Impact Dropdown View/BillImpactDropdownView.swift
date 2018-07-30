@@ -17,12 +17,14 @@ class BillImpactDropdownView: UIView {
             addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
+    
     @IBOutlet weak var roundedBgView: UIView! {
         didSet {
             roundedBgView.layer.cornerRadius = 10
             roundedBgView.layer.masksToBounds = true
         }
     }
+    
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var likelyReasonsStackView: UIStackView!
     @IBOutlet weak var likelyReasonsDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
@@ -32,17 +34,20 @@ class BillImpactDropdownView: UIView {
             billFactorView.isHidden = true
         }
     }
+    
     @IBOutlet weak var toggleButtonLabel: UILabel! {
         didSet {
             toggleButtonLabel.textColor = .actionBlue
         }
     }
+    
     @IBOutlet weak var carrotImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel! {
         didSet {
             descriptionLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         }
     }
+    
     @IBOutlet weak var contrastRoundedView: UIView! {
         didSet {
             contrastRoundedView.layer.cornerRadius = 10
@@ -59,11 +64,13 @@ class BillImpactDropdownView: UIView {
             billPeriodCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
+    
     @IBOutlet weak var billPeriodTitleLabel: UILabel! {
         didSet {
             billPeriodTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
         }
     }
+    
     @IBOutlet weak var weatherButton: ButtonControl!
     @IBOutlet weak var weatherCircleButton: UIView! {
         didSet {
@@ -73,11 +80,13 @@ class BillImpactDropdownView: UIView {
             weatherCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
+    
     @IBOutlet weak var weatherTitleLabel: UILabel! {
         didSet {
             weatherTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
         }
     }
+    
     @IBOutlet weak var otherButton: ButtonControl!
     @IBOutlet weak var otherCircleButton: UIView! {
         didSet {
@@ -87,22 +96,26 @@ class BillImpactDropdownView: UIView {
             otherCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
+    
     @IBOutlet weak var otherTitleLabel: UILabel! {
         didSet {
             otherTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
         }
     }
+    
     @IBOutlet weak var bubbleView: UIView! {
         didSet {
             bubbleView.layer.cornerRadius = 10
             bubbleView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
+    
     @IBOutlet weak var bubbleViewTitleLabel: UILabel! {
         didSet {
             bubbleViewTitleLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         }
     }
+    
     @IBOutlet weak var bubbleViewDescriptionLabel: UILabel! {
         didSet {
             bubbleViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -241,12 +254,10 @@ class BillImpactDropdownView: UIView {
     
     func configureWithViewModel(_ viewModel: UsageTabViewModel) {
         self.viewModel = viewModel
-        
         bindViewModel(viewModel)
     }
     
     func bindViewModel(_ viewModel: UsageTabViewModel) {
-        
         // Likely reasons
         viewModel.billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
         viewModel.billPeriodA11yLabel.drive(billPeriodButton.rx.accessibilityLabel).disposed(by: disposeBag)
@@ -265,22 +276,6 @@ class BillImpactDropdownView: UIView {
         for label in likelyReasonsNoDataLabels {
             viewModel.noPreviousData.not().drive(label.rx.isHidden).disposed(by: disposeBag)
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
     
 }
