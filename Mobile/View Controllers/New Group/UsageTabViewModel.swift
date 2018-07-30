@@ -63,11 +63,11 @@ class UsageTabViewModel {
             
             let billForecast: Observable<BillForecastResult?>
             if accountDetail.isAMIAccount {
-                billForecast = .just(nil)
-            } else {
                 billForecast = self.usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber,
                                                                    premiseNumber: accountDetail.premiseNumber!)
                     .map { $0 }
+            } else {
+                billForecast = .just(nil)
             }
             
             return Observable.zip(billComparison, billForecast)
@@ -163,6 +163,7 @@ class UsageTabViewModel {
     
     private(set) lazy var showBillComparisonErrorState: Driver<Void> = billAnalysisEvents
         .filter { $0.error != nil }
+        .debug("iewfodisjf")
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     

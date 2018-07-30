@@ -38,13 +38,13 @@ struct BillForecastResult {
         let billForecasts = dictionaries.compactMap { BillForecast.from($0 as NSDictionary) }
         
         guard let electric = billForecasts.first(where: {
-            $0.errorMessage != nil && $0.meterType == "ELEC"
+            $0.errorMessage == nil && $0.meterType == "ELEC"
         }) else {
             throw MapperError.convertibleError(value: billForecasts, type: BillForecast.self)
         }
         
         guard let gas = billForecasts.first(where: {
-            $0.errorMessage != nil && $0.meterType != "ELEC"
+            $0.errorMessage == nil && $0.meterType != "ELEC"
         }) else {
             throw MapperError.convertibleError(value: billForecasts, type: BillForecast.self)
         }

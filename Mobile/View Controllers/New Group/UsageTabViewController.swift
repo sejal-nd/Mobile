@@ -176,6 +176,7 @@ class UsageTabViewController: AccountPickerViewController {
             .drive(backgroundScrollConstraint.rx.constant)
             .disposed(by: disposeBag)
         
+        styleBarGraph()
         bindViewModel()
         dropdownView.configure(withViewModel: viewModel)
         
@@ -242,6 +243,54 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.setBarSelected(tag: sender.tag)
     }
     
+    // MARK: - Style Views
+    
+    private func styleBarGraph() {
+        switch Environment.shared.opco {
+        case .bge:
+            projectedBarImageView.tintColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 1)
+        case .comEd:
+            projectedBarImageView.tintColor = UIColor(red: 0, green: 145/255, blue: 182/255, alpha: 1)
+        case .peco:
+            projectedBarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
+        }
+        
+        // Bar Graph Text Colors
+        noDataLabel.textColor = .deepGray
+        noDataDateLabel.textColor = .deepGray
+        previousDollarLabel.textColor = .deepGray
+        previousDateLabel.textColor = .deepGray
+        currentDollarLabel.textColor = .deepGray
+        currentDateLabel.textColor = .deepGray
+        projectedDollarLabel.textColor = .deepGray
+        projectedDateLabel.textColor = .deepGray
+        projectedNotAvailableDaysRemainingLabel.textColor = .actionBlue
+        projectionNotAvailableUntilNextForecastLabel.textColor = .deepGray
+        projectedNotAvailableDateLabel.textColor = .deepGray
+        
+        // Bar Graph Text Fonts
+        noDataLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        viewModel.noDataLabelFont.drive(noDataDateLabel.rx.font).disposed(by: disposeBag)
+        viewModel.previousLabelFont.drive(previousDollarLabel.rx.font).disposed(by: disposeBag)
+        viewModel.previousLabelFont.drive(previousDateLabel.rx.font).disposed(by: disposeBag)
+        viewModel.previousDollarLabelTextColor.drive(previousDollarLabel.rx.textColor).disposed(by: disposeBag)
+        viewModel.currentLabelFont.drive(currentDollarLabel.rx.font).disposed(by: disposeBag)
+        viewModel.currentLabelFont.drive(currentDateLabel.rx.font).disposed(by: disposeBag)
+        viewModel.currentDollarLabelTextColor.drive(currentDollarLabel.rx.textColor).disposed(by: disposeBag)
+        viewModel.projectedLabelFont.drive(projectedDollarLabel.rx.font).disposed(by: disposeBag)
+        viewModel.projectedLabelFont.drive(projectedDateLabel.rx.font).disposed(by: disposeBag)
+        
+        projectedNotAvailableDaysRemainingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        projectionNotAvailableUntilNextForecastLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        viewModel.projectionNotAvailableLabelFont.drive(projectedNotAvailableDateLabel.rx.font).disposed(by: disposeBag)
+        
+//        billComparisonEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
+//        billComparisonEmptyStateLabel.setLineHeight(lineHeight: 26)
+//        billComparisonEmptyStateLabel.textAlignment = .center
+//        billComparisonEmptyStateLabel.textColor = .middleGray
+//        billComparisonEmptyStateLabel.text = NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
+    }
+    
     
     // MARK: - Bind View Model
     
@@ -302,6 +351,14 @@ class UsageTabViewController: AccountPickerViewController {
         
         viewModel.showBillComparisonContents
             .drive(onNext: { [weak self] in self?.showBillAnalysisContents()})
+            .disposed(by: disposeBag)
+        
+//        viewModel.showBillComparisonEmptyState
+//            .drive(onNext: { [weak self] in self?.showbill() })
+//            .disposed(by: disposeBag)
+        
+        viewModel.showBillComparisonErrorState
+            .drive(onNext: { [weak self] in self?.showBillAnalysisErrorState() })
             .disposed(by: disposeBag)
         
         noNetworkConnectionView.reload.asDriver(onErrorDriveWith: .empty())
@@ -428,31 +485,6 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.barDescriptionDateLabelText.drive(graphDetailDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionAvgTempLabelText.drive(graphDetailTemperatureLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionDetailLabelText.drive(graphDetailDescriptionLabel.rx.text).disposed(by: disposeBag)
-        
-        // Bar Graph Text Colors
-        noDataLabel.textColor = .deepGray
-        noDataDateLabel.textColor = .deepGray
-        previousDollarLabel.textColor = .deepGray
-        previousDateLabel.textColor = .deepGray
-        currentDollarLabel.textColor = .deepGray
-        currentDateLabel.textColor = .deepGray
-        projectedDollarLabel.textColor = .deepGray
-        projectedDateLabel.textColor = .deepGray
-        projectedNotAvailableDaysRemainingLabel.textColor = .actionBlue
-        projectionNotAvailableUntilNextForecastLabel.textColor = .deepGray
-        projectedNotAvailableDateLabel.textColor = .deepGray
-        
-        // Bar Graph Text Fonts
-        noDataLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        viewModel.noDataLabelFont.drive(noDataDateLabel.rx.font).disposed(by: disposeBag)
-        viewModel.previousLabelFont.drive(previousDollarLabel.rx.font).disposed(by: disposeBag)
-        viewModel.previousLabelFont.drive(previousDateLabel.rx.font).disposed(by: disposeBag)
-        viewModel.previousDollarLabelTextColor.drive(previousDollarLabel.rx.textColor).disposed(by: disposeBag)
-        viewModel.currentLabelFont.drive(currentDollarLabel.rx.font).disposed(by: disposeBag)
-        viewModel.currentLabelFont.drive(currentDateLabel.rx.font).disposed(by: disposeBag)
-        viewModel.currentDollarLabelTextColor.drive(currentDollarLabel.rx.textColor).disposed(by: disposeBag)
-        viewModel.projectedLabelFont.drive(projectedDollarLabel.rx.font).disposed(by: disposeBag)
-        viewModel.projectedLabelFont.drive(projectedDateLabel.rx.font).disposed(by: disposeBag)
     }
     
     //MARK: - Screen States
