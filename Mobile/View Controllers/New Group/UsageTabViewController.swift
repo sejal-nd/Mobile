@@ -290,8 +290,19 @@ class UsageTabViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.showMainErrorState() })
             .disposed(by: disposeBag)
         
+        viewModel.showNoNetworkState
+            .drive(onNext: { [weak self] in self?.showNoNetworkState() })
+            .disposed(by: disposeBag)
+        
         viewModel.showBillComparisonContents
             .drive(onNext: { [weak self] in self?.showBillAnalysisContents()})
+            .disposed(by: disposeBag)
+        
+        noNetworkConnectionView.reload.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in
+                self?.showSwitchAccountsLoadingState()
+                self?.viewModel.fetchAllData()
+            })
             .disposed(by: disposeBag)
         
         // Segmented Control
@@ -435,32 +446,49 @@ class UsageTabViewController: AccountPickerViewController {
     //MARK: - Loading States
     
     private func showSwitchAccountsLoadingState() {
+        scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = false
         unavailableView.isHidden = true
         contentStack.isHidden = true
         mainErrorView.isHidden = true
+        noNetworkConnectionView.isHidden = true
         showBillAnalysisLoadingState()
     }
     
     private func showMainContents() {
+        scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         contentStack.isHidden = false
         mainErrorView.isHidden = true
+        noNetworkConnectionView.isHidden = true
     }
     
     private func showNoUsageDataState() {
+        scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = false
         contentStack.isHidden = true
         mainErrorView.isHidden = true
+        noNetworkConnectionView.isHidden = true
     }
     
     private func showMainErrorState() {
+        scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         contentStack.isHidden = true
         mainErrorView.isHidden = false
+        noNetworkConnectionView.isHidden = true
+    }
+    
+    private func showNoNetworkState() {
+        scrollView?.isHidden = true
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        contentStack.isHidden = true
+        mainErrorView.isHidden = true
+        noNetworkConnectionView.isHidden = false
     }
     
     private func showBillAnalysisLoadingState() {
@@ -615,9 +643,9 @@ class UsageTabViewController: AccountPickerViewController {
 extension UsageTabViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        showSwitchAccountsLoadingState()
         viewModel.fetchAllData()
         setRefreshControlEnabled(enabled: false)
-        showSwitchAccountsLoadingState()
     }
     
 }

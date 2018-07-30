@@ -15,9 +15,9 @@ class UsageTabViewModel {
     let accountService: AccountService
     let usageService: UsageService
     
-    var billAnalysisCache = BillAnalysisCache()
+    private var billAnalysisCache = BillAnalysisCache()
     
-    struct BillAnalysisCache {
+    private struct BillAnalysisCache {
         private var cache = [String: [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]]()
         
         mutating func clear() {
@@ -148,13 +148,22 @@ class UsageTabViewModel {
     
     //MARK: - Main States
     
-    private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showBillComparisonContents,
+    private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showMainErrorState,
+                                                                     showNoNetworkState,
+                                                                     showBillComparisonContents,
                                                                      showBillComparisonEmptyState,
                                                                      showBillComparisonErrorState,
                                                                      showNoUsageDataState)
     
     private(set) lazy var showMainErrorState: Driver<Void> = accountDetailEvents
         .filter { $0.error != nil }
+        .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showNoNetworkState: Driver<Void> = Observable
+        .merge(accountDetailEvents.errors(), billAnalysisEvents.errors())
+        .filter { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -861,14 +870,14 @@ class UsageTabViewModel {
         Driver.combineLatest(self.accountDetail,
                              self.billComparison,
                              self.lastYearPreviousBillSelectedSegmentIndex.asDriver())
-        { [weak self] accountDetail, currentBillComparison, electricGasSelectedIndex in
+        { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
             guard let `self` = self else { return nil }
             let isGas = self.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             let gasOrElectricString = isGas ? NSLocalizedString("gas", comment: "") :
                 NSLocalizedString("electric", comment: "")
             
-            guard let reference = currentBillComparison.reference, let compared = currentBillComparison.compared else {
+            guard let reference = billComparison.reference, let compared = billComparison.compared else {
                 return String(format: NSLocalizedString("Data not available to explain likely reasons for changes in your %@ charges.", comment: ""), gasOrElectricString)
             }
             
