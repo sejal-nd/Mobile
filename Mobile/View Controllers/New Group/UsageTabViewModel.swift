@@ -15,6 +15,36 @@ class UsageTabViewModel {
     let accountService: AccountService
     let usageService: UsageService
     
+    var billAnalysisCache = BillAnalysisCache()
+    
+    struct BillAnalysisCache {
+        private var cache = [String: [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]]()
+        
+        mutating func clear() {
+            cache.removeAll()
+        }
+        
+        subscript(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> (BillComparison, BillForecastResult?)? {
+            get {
+                return cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas]
+            } set {
+                if cache[accountNumber] == nil {
+                    cache[accountNumber] = [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]()
+                }
+                
+                if cache[accountNumber]?[premiseNumber] == nil {
+                    cache[accountNumber]?[premiseNumber] = [Bool: [Bool: (BillComparison, BillForecastResult?)]]()
+                }
+                
+                if cache[accountNumber]?[premiseNumber]?[yearAgo] == nil {
+                    cache[accountNumber]?[premiseNumber]?[yearAgo] = [Bool: (BillComparison, BillForecastResult?)]()
+                }
+                
+                cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas] = newValue
+            }
+        }
+    }
+    
     //MARK: - Init
     
     required init(accountService: AccountService, usageService: UsageService) {
@@ -31,6 +61,8 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.fetchAllDataTrigger
+        // Clear cache on refresh or account switch
+        .do(onNext: { [weak self] in self?.billAnalysisCache.clear() })
         .toAsyncRequest { [unowned self] in
             self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
     }
@@ -42,6 +74,15 @@ class UsageTabViewModel {
         .toAsyncRequest { [unowned self] (accountDetail, yearsIndex, electricGasIndex) in
             let isGas = self.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasIndex)
+            
+            // Pull from cache if possible
+            if let cachedData = self.billAnalysisCache[accountDetail.accountNumber,
+                                                       accountDetail.premiseNumber!,
+                                                       yearsIndex == 0,
+                                                       isGas] {
+                return Observable.just(cachedData)
+            }
+            
             let billComparison = self.usageService
                 .fetchBillComparison(accountNumber: accountDetail.accountNumber,
                                      premiseNumber: accountDetail.premiseNumber!,
@@ -58,6 +99,12 @@ class UsageTabViewModel {
             }
             
             return Observable.zip(billComparison, billForecast)
+                .do(onNext: { [weak self] in
+                    self?.billAnalysisCache[accountDetail.accountNumber,
+                                            accountDetail.premiseNumber!,
+                                            yearsIndex == 0,
+                                            isGas] = $0
+                })
     }
     
     //MARK: - Convenience Properties
