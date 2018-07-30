@@ -13,141 +13,141 @@ import SafariServices
 
 class UsageTabViewController: AccountPickerViewController {
     
-    @IBOutlet weak var backgroundScrollConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var backgroundScrollConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var switchAccountsLoadingIndicator: LoadingIndicator!
-    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
-    @IBOutlet weak var contentStack: UIStackView!
-    @IBOutlet weak var unavailableView: UnavailableView!
-    @IBOutlet weak var mainErrorView: UIView!
-    @IBOutlet weak var mainErrorLabel: UILabel! {
+    @IBOutlet private weak var switchAccountsLoadingIndicator: LoadingIndicator!
+    @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet private weak var contentStack: UIStackView!
+    @IBOutlet private weak var unavailableView: UnavailableView!
+    @IBOutlet private weak var mainErrorView: UIView!
+    @IBOutlet private weak var mainErrorLabel: UILabel! {
         didSet {
             mainErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
             mainErrorLabel.textColor = .blackText
         }
     }
     
-    @IBOutlet weak var segmentControl: BillAnalysisSegmentedControl! {
+    @IBOutlet private weak var segmentControl: BillAnalysisSegmentedControl! {
         didSet {
             segmentControl.leftLabel.text = "Electric"
             segmentControl.rightLabel.text = "Gas"
         }
     }
     
-    @IBOutlet weak var compareBillTitlelabel: UILabel! {
+    @IBOutlet private weak var compareBillTitlelabel: UILabel! {
         didSet {
             compareBillTitlelabel.font = OpenSans.semibold.of(textStyle: .headline)
         }
     }
     
-    @IBOutlet weak var myUsageToolsLabel: UILabel! {
+    @IBOutlet private weak var myUsageToolsLabel: UILabel! {
         didSet {
             myUsageToolsLabel.font = OpenSans.semibold.of(textStyle: .headline)
         }
     }
     
-    @IBOutlet weak var usageToolsStack: UIStackView!
+    @IBOutlet private weak var usageToolsStack: UIStackView!
     
     // Bill Graph
-    @IBOutlet weak var billGraphDetailContainer: UIView!
-    @IBOutlet weak var billGraphDetailView: UIView! {
+    @IBOutlet private weak var billGraphDetailContainer: UIView!
+    @IBOutlet private weak var billGraphDetailView: UIView! {
         didSet {
             billGraphDetailView.layer.cornerRadius = 10
             billGraphDetailView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0.0, height: 2.0), radius: 4)
         }
     }
     
-    @IBOutlet weak var barGraphStackView: UIStackView!
-    @IBOutlet weak var barDescriptionTriangleImageView: UIImageView!
-    @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var barGraphStackView: UIStackView!
+    @IBOutlet private weak var barDescriptionTriangleImageView: UIImageView!
+    @IBOutlet private weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var noDataContainerButton: ButtonControl!
-    @IBOutlet weak var noDataBarView: UIView!
-    @IBOutlet weak var noDataLabel: UILabel!
-    @IBOutlet weak var noDataDateLabel: UILabel!
+    @IBOutlet private weak var noDataContainerButton: ButtonControl!
+    @IBOutlet private weak var noDataBarView: UIView!
+    @IBOutlet private weak var noDataLabel: UILabel!
+    @IBOutlet private weak var noDataDateLabel: UILabel!
     
     
-    @IBOutlet weak var previousContainerButton: ButtonControl!
-    @IBOutlet weak var previousBarView: UIView! {
+    @IBOutlet private weak var previousContainerButton: ButtonControl!
+    @IBOutlet private weak var previousBarView: UIView! {
         didSet {
             previousBarView.backgroundColor = .primaryColor
             previousBarView.layer.cornerRadius = 5
         }
     }
     
-    @IBOutlet weak var previousBarHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var previousDollarLabel: UILabel!
+    @IBOutlet private weak var previousBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var previousDollarLabel: UILabel!
     
-    @IBOutlet weak var previousDateLabel: UILabel!
+    @IBOutlet private weak var previousDateLabel: UILabel!
     
-    @IBOutlet weak var currentContainerButton: ButtonControl!
-    @IBOutlet weak var currentBarView: UIView! {
+    @IBOutlet private weak var currentContainerButton: ButtonControl!
+    @IBOutlet private weak var currentBarView: UIView! {
         didSet {
             currentBarView.backgroundColor = .primaryColor
             currentBarView.layer.cornerRadius = 5
         }
     }
     
-    @IBOutlet weak var currentBarHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var currentDollarLabel: UILabel!
-    @IBOutlet weak var currentDateLabel: UILabel!
+    @IBOutlet private weak var currentBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var currentDollarLabel: UILabel!
+    @IBOutlet private weak var currentDateLabel: UILabel!
     
-    @IBOutlet weak var projectedContainerButton: ButtonControl!
-    @IBOutlet weak var projectedBarImageView: UIImageView! {
+    @IBOutlet private weak var projectedContainerButton: ButtonControl!
+    @IBOutlet private weak var projectedBarImageView: UIImageView! {
         didSet {
             projectedBarImageView.layer.cornerRadius = 5
         }
     }
     
-    @IBOutlet weak var projectedBarHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var projectedDollarLabel: UILabel!
-    @IBOutlet weak var projectedDateLabel: UILabel!
+    @IBOutlet private weak var projectedBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var projectedDollarLabel: UILabel!
+    @IBOutlet private weak var projectedDateLabel: UILabel!
     
-    @IBOutlet weak var projectionNotAvailableContainerButton: ButtonControl!
-    @IBOutlet weak var projectionNotAvailableBarView: UIView!
-    @IBOutlet weak var projectionNotAvailableUntilNextForecastLabel: UILabel!
-    @IBOutlet weak var projectedNotAvailableDateLabel: UILabel!
-    @IBOutlet weak var projectedNotAvailableDaysRemainingLabel: UILabel!
+    @IBOutlet private weak var projectionNotAvailableContainerButton: ButtonControl!
+    @IBOutlet private weak var projectionNotAvailableBarView: UIView!
+    @IBOutlet private weak var projectionNotAvailableUntilNextForecastLabel: UILabel!
+    @IBOutlet private weak var projectedNotAvailableDateLabel: UILabel!
+    @IBOutlet private weak var projectedNotAvailableDaysRemainingLabel: UILabel!
     
-    @IBOutlet weak var graphDetailDateLabel: UILabel! {
+    @IBOutlet private weak var graphDetailDateLabel: UILabel! {
         didSet {
             graphDetailDateLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
             graphDetailDateLabel.textColor = .blackText
         }
     }
     
-    @IBOutlet weak var graphDetailTemperatureLabel: UILabel! {
+    @IBOutlet private weak var graphDetailTemperatureLabel: UILabel! {
         didSet {
             graphDetailTemperatureLabel.font = OpenSans.regular.of(textStyle: .footnote)
             graphDetailTemperatureLabel.textColor = .blackText
         }
     }
     
-    @IBOutlet weak var graphDetailDescriptionLabel: UILabel! {
+    @IBOutlet private weak var graphDetailDescriptionLabel: UILabel! {
         didSet {
             graphDetailDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
             graphDetailDescriptionLabel.textColor = .black
         }
     }
     
-    @IBOutlet weak var lastYearButton: UIButton! {
+    @IBOutlet private weak var lastYearButton: UIButton! {
         didSet {
             lastYearButton.layer.cornerRadius = 16
             lastYearButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
     
-    @IBOutlet weak var previousBillButton: UIButton! {
+    @IBOutlet private weak var previousBillButton: UIButton! {
         didSet {
             previousBillButton.layer.cornerRadius = 16
             previousBillButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
     
-    @IBOutlet weak var dropdownView: BillImpactDropdownView!
+    @IBOutlet private weak var dropdownView: BillImpactDropdownView!
     
-    @IBOutlet weak var billComparisonLoadingIndicator: LoadingIndicator!
-    @IBOutlet weak var graphErrorLabel: UILabel! {
+    @IBOutlet private weak var billComparisonLoadingIndicator: LoadingIndicator!
+    @IBOutlet private weak var graphErrorLabel: UILabel! {
         didSet {
             graphErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
             graphErrorLabel.textColor = .blackText
@@ -166,18 +166,6 @@ class UsageTabViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Driver.merge(lastYearButton.rx.tap.asDriver().map(to: 0),
-                     previousBillButton.rx.tap.asDriver().map(to: 1))
-            .drive(onNext: { [weak self] index in
-                guard let this = self else { return }
-                this.showBillAnalysisLoadingState()
-                this.previousBillButton.isEnabled = index == 0
-                this.lastYearButton.isEnabled = index == 1
-                this.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = index
-                Analytics.log(event: index == 0 ? .BillLastYearToggle : .BillPreviousToggle)
-            })
-            .disposed(by: disposeBag)
-        
         // Setup Account Picker
         accountPicker.delegate = self
         accountPicker.parentViewController = self
@@ -189,7 +177,7 @@ class UsageTabViewController: AccountPickerViewController {
             .disposed(by: disposeBag)
         
         bindViewModel()
-        dropdownView.configureWithViewModel(viewModel)
+        dropdownView.configure(withViewModel: viewModel)
         
         accountPickerViewControllerWillAppear
             .subscribe(onNext: { [weak self] state in
@@ -205,28 +193,11 @@ class UsageTabViewController: AccountPickerViewController {
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                self?.refreshControl?.endRefreshing()
-                self?.scrollView!.alwaysBounceVertical = true
-            })
-            .disposed(by: disposeBag)
-        
         showSwitchAccountsLoadingState()
-        
-        RxNotifications.shared.accountDetailUpdated
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] in
-                self?.showSwitchAccountsLoadingState()
-                self?.viewModel.fetchAllData()
-            })
-            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -241,7 +212,7 @@ class UsageTabViewController: AccountPickerViewController {
     
     // MARK: - Actions
     
-    @objc func setRefreshControlEnabled(enabled: Bool) {
+    @objc private func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             guard refreshControl == nil else { return }
             
@@ -262,7 +233,7 @@ class UsageTabViewController: AccountPickerViewController {
         }
     }
     
-    @IBAction func barGraphPress(_ sender: ButtonControl) {
+    @IBAction private func barGraphPress(_ sender: ButtonControl) {
         barDescriptionTriangleCenterXConstraint.isActive = false
         barDescriptionTriangleCenterXConstraint = barDescriptionTriangleImageView.centerXAnchor
             .constraint(equalTo: sender.centerXAnchor)
@@ -272,9 +243,40 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     
-    // MARK: - Helper
+    // MARK: - Bind View Model
     
     private func bindViewModel() {
+        bindDataFetching()
+        bindViewStates()
+        bindBillAnalysisData()
+        viewModel.usageTools
+            .drive(onNext: { [weak self] in self?.updateUsageToolCards($0) })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindDataFetching() {
+        Driver.merge(lastYearButton.rx.tap.asDriver().map(to: 0),
+                     previousBillButton.rx.tap.asDriver().map(to: 1))
+            .drive(onNext: { [weak self] index in
+                guard let this = self else { return }
+                this.showBillAnalysisLoadingState()
+                this.previousBillButton.isEnabled = index == 0
+                this.lastYearButton.isEnabled = index == 1
+                this.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = index
+                Analytics.log(event: index == 0 ? .BillLastYearToggle : .BillPreviousToggle)
+            })
+            .disposed(by: disposeBag)
+        
+        RxNotifications.shared.accountDetailUpdated
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in
+                self?.showSwitchAccountsLoadingState()
+                self?.viewModel.fetchAllData()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindViewStates() {
         viewModel.endRefreshIng
             .drive(onNext: { [weak self] in
                 self?.refreshControl?.endRefreshing()
@@ -309,6 +311,16 @@ class UsageTabViewController: AccountPickerViewController {
             })
             .disposed(by: disposeBag)
         
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl?.endRefreshing()
+                self?.scrollView!.alwaysBounceVertical = true
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindBillAnalysisData() {
         // Segmented Control
         segmentControl.selectedIndex.asDriver()
             .do(onNext: { [weak self] _ in self?.showBillAnalysisLoadingState() })
@@ -417,10 +429,6 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.barDescriptionAvgTempLabelText.drive(graphDetailTemperatureLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionDetailLabelText.drive(graphDetailDescriptionLabel.rx.text).disposed(by: disposeBag)
         
-        viewModel.usageTools
-            .drive(onNext: { [weak self] in self?.updateUsageToolCards($0) })
-            .disposed(by: disposeBag)
-        
         // Bar Graph Text Colors
         noDataLabel.textColor = .deepGray
         noDataDateLabel.textColor = .deepGray
@@ -447,7 +455,7 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.projectedLabelFont.drive(projectedDateLabel.rx.font).disposed(by: disposeBag)
     }
     
-    //MARK: - Loading States
+    //MARK: - Screen States
     
     private func showSwitchAccountsLoadingState() {
         scrollView?.isHidden = false

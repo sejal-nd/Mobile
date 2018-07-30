@@ -12,51 +12,51 @@ import RxCocoa
 
 class BillImpactDropdownView: UIView {
 
-    @IBOutlet var contentView: UIView! {
+    @IBOutlet private weak var contentView: UIView! {
         didSet {
             addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
     
-    @IBOutlet weak var roundedBgView: UIView! {
+    @IBOutlet private weak var roundedBgView: UIView! {
         didSet {
             roundedBgView.layer.cornerRadius = 10
             roundedBgView.layer.masksToBounds = true
         }
     }
     
-    @IBOutlet weak var contentStackView: UIStackView!
-    @IBOutlet weak var likelyReasonsStackView: UIStackView!
-    @IBOutlet weak var likelyReasonsDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
-    @IBOutlet weak var likelyReasonsDescriptionView: UIView!
-    @IBOutlet weak var billFactorView: UIView! {
+    @IBOutlet private weak var contentStackView: UIStackView!
+    @IBOutlet private weak var likelyReasonsStackView: UIStackView!
+    @IBOutlet private weak var likelyReasonsDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var likelyReasonsDescriptionView: UIView!
+    @IBOutlet private weak var billFactorView: UIView! {
         didSet {
             billFactorView.isHidden = true
         }
     }
     
-    @IBOutlet weak var toggleButtonLabel: UILabel! {
+    @IBOutlet private weak var toggleButtonLabel: UILabel! {
         didSet {
             toggleButtonLabel.textColor = .actionBlue
         }
     }
     
-    @IBOutlet weak var carrotImageView: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel! {
+    @IBOutlet private weak var carrotImageView: UIImageView!
+    @IBOutlet private weak var descriptionLabel: UILabel! {
         didSet {
             descriptionLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         }
     }
     
-    @IBOutlet weak var contrastRoundedView: UIView! {
+    @IBOutlet private weak var contrastRoundedView: UIView! {
         didSet {
             contrastRoundedView.layer.cornerRadius = 10
         }
     }
     
     // Buttons
-    @IBOutlet weak var billPeriodButton: ButtonControl!
-    @IBOutlet weak var billPeriodCircleButton: UIView! {
+    @IBOutlet private weak var billPeriodButton: ButtonControl!
+    @IBOutlet private weak var billPeriodCircleButton: UIView! {
         didSet {
             billPeriodCircleButton.layer.cornerRadius = billPeriodCircleButton.frame.height / 2
             billPeriodCircleButton.layer.borderWidth = 2
@@ -65,14 +65,14 @@ class BillImpactDropdownView: UIView {
         }
     }
     
-    @IBOutlet weak var billPeriodTitleLabel: UILabel! {
+    @IBOutlet private weak var billPeriodTitleLabel: UILabel! {
         didSet {
             billPeriodTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
         }
     }
     
-    @IBOutlet weak var weatherButton: ButtonControl!
-    @IBOutlet weak var weatherCircleButton: UIView! {
+    @IBOutlet private weak var weatherButton: ButtonControl!
+    @IBOutlet private weak var weatherCircleButton: UIView! {
         didSet {
             weatherCircleButton.layer.cornerRadius = weatherCircleButton.frame.height / 2
             weatherCircleButton.layer.borderWidth = 2
@@ -81,14 +81,14 @@ class BillImpactDropdownView: UIView {
         }
     }
     
-    @IBOutlet weak var weatherTitleLabel: UILabel! {
+    @IBOutlet private weak var weatherTitleLabel: UILabel! {
         didSet {
             weatherTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
         }
     }
     
-    @IBOutlet weak var otherButton: ButtonControl!
-    @IBOutlet weak var otherCircleButton: UIView! {
+    @IBOutlet private weak var otherButton: ButtonControl!
+    @IBOutlet private weak var otherCircleButton: UIView! {
         didSet {
             otherCircleButton.layer.cornerRadius = otherCircleButton.frame.height / 2
             otherCircleButton.layer.borderWidth = 2
@@ -97,32 +97,32 @@ class BillImpactDropdownView: UIView {
         }
     }
     
-    @IBOutlet weak var otherTitleLabel: UILabel! {
+    @IBOutlet private weak var otherTitleLabel: UILabel! {
         didSet {
             otherTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
         }
     }
     
-    @IBOutlet weak var bubbleView: UIView! {
+    @IBOutlet private weak var bubbleView: UIView! {
         didSet {
             bubbleView.layer.cornerRadius = 10
             bubbleView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 4)
         }
     }
     
-    @IBOutlet weak var bubbleViewTitleLabel: UILabel! {
+    @IBOutlet private weak var bubbleViewTitleLabel: UILabel! {
         didSet {
             bubbleViewTitleLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         }
     }
     
-    @IBOutlet weak var bubbleViewDescriptionLabel: UILabel! {
+    @IBOutlet private weak var bubbleViewDescriptionLabel: UILabel! {
         didSet {
             bubbleViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         }
     }
     
-    @IBOutlet weak var footerLabel: UILabel! {
+    @IBOutlet private weak var footerLabel: UILabel! {
         didSet {
             footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
             footerLabel.textColor = .blackText
@@ -130,10 +130,11 @@ class BillImpactDropdownView: UIView {
                 "Amounts for Budget Billing customers are based on actual usage in the period, not on your monthly budget payment.", comment: "")
         }
     }
-    @IBOutlet weak var billPeriodUpDownImageView: UIImageView!
-    @IBOutlet var likelyReasonsNoDataLabels: [UILabel]!
-    @IBOutlet weak var weatherUpDownImageView: UIImageView!
-    @IBOutlet weak var otherUpDownImageView: UIImageView!
+    
+    @IBOutlet private weak var billPeriodUpDownImageView: UIImageView!
+    @IBOutlet private var likelyReasonsNoDataLabels: [UILabel]!
+    @IBOutlet private weak var weatherUpDownImageView: UIImageView!
+    @IBOutlet private weak var otherUpDownImageView: UIImageView!
     
     private let disposeBag = DisposeBag()
     
@@ -217,11 +218,11 @@ class BillImpactDropdownView: UIView {
     
     // MARK: - Actions
     
-    @IBAction func toggleStackView(_ sender: Any) {
+    @IBAction private func toggleStackView(_ sender: Any) {
         isExpanded = !isExpanded
     }
     
-    @IBAction func factorImpactPress(_ sender: ButtonControl) {
+    @IBAction private func factorImpactPress(_ sender: ButtonControl) {
         selectedPillView = sender
         let centerPoint = sender.center
         let convertedPoint = likelyReasonsStackView.convert(centerPoint, to: likelyReasonsDescriptionView)
@@ -252,7 +253,7 @@ class BillImpactDropdownView: UIView {
     
     // MARK: - Configuration
     
-    func configureWithViewModel(_ viewModel: UsageTabViewModel) {
+    func configure(withViewModel viewModel: UsageTabViewModel) {
         self.viewModel = viewModel
         bindViewModel(viewModel)
     }

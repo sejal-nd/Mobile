@@ -17,34 +17,6 @@ class UsageTabViewModel {
     
     private var billAnalysisCache = BillAnalysisCache()
     
-    private struct BillAnalysisCache {
-        private var cache = [String: [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]]()
-        
-        mutating func clear() {
-            cache.removeAll()
-        }
-        
-        subscript(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> (BillComparison, BillForecastResult?)? {
-            get {
-                return cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas]
-            } set {
-                if cache[accountNumber] == nil {
-                    cache[accountNumber] = [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]()
-                }
-                
-                if cache[accountNumber]?[premiseNumber] == nil {
-                    cache[accountNumber]?[premiseNumber] = [Bool: [Bool: (BillComparison, BillForecastResult?)]]()
-                }
-                
-                if cache[accountNumber]?[premiseNumber]?[yearAgo] == nil {
-                    cache[accountNumber]?[premiseNumber]?[yearAgo] = [Bool: (BillComparison, BillForecastResult?)]()
-                }
-                
-                cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas] = newValue
-            }
-        }
-    }
-    
     //MARK: - Init
     
     required init(accountService: AccountService, usageService: UsageService) {
@@ -1074,7 +1046,7 @@ class UsageTabViewModel {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    // MARK: - Random Helpers
+    // MARK: - Helpers
     
     // If a gas only account, return true, if an electric only account, returns false, if both gas/electric, returns selected segemented control
     private func isGas(accountDetail: AccountDetail, electricGasSelectedIndex: Int) -> Bool {
@@ -1085,6 +1057,34 @@ class UsageTabViewModel {
         }
         // Default to electric
         return false
+    }
+    
+    private struct BillAnalysisCache {
+        private var cache = [String: [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]]()
+        
+        mutating func clear() {
+            cache.removeAll()
+        }
+        
+        subscript(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> (BillComparison, BillForecastResult?)? {
+            get {
+                return cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas]
+            } set {
+                if cache[accountNumber] == nil {
+                    cache[accountNumber] = [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]()
+                }
+                
+                if cache[accountNumber]?[premiseNumber] == nil {
+                    cache[accountNumber]?[premiseNumber] = [Bool: [Bool: (BillComparison, BillForecastResult?)]]()
+                }
+                
+                if cache[accountNumber]?[premiseNumber]?[yearAgo] == nil {
+                    cache[accountNumber]?[premiseNumber]?[yearAgo] = [Bool: (BillComparison, BillForecastResult?)]()
+                }
+                
+                cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas] = newValue
+            }
+        }
     }
 }
 
