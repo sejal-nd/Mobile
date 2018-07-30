@@ -106,7 +106,10 @@ class UsageTabViewModel {
      * 3 = Projected
      * 4 = Projection Not Available
      */
-    let barGraphSelectionStates = Variable([Variable(false), Variable(false), Variable(false), Variable(false), Variable(false)])
+    enum BarGraphSelection: Int {
+        case noData, previous, current, projected, projectionNotAvailable
+    }
+    let barGraphSelection = Variable(BarGraphSelection.current)
     
     /*
      * 0 = Bill Period
@@ -316,7 +319,7 @@ class UsageTabViewModel {
             }
     }
     
-    private(set) lazy var shouldShowProjectedBar: Driver<Bool> =
+    private(set) lazy var showProjectedBar: Driver<Bool> =
         Driver.combineLatest(self.lastYearPreviousBillSelectedSegmentIndex.asDriver(), self.projectedCost, self.shouldShowProjectionNotAvailableBar) {
             // Projections are only for "Previous Bill" selection
             $0 == 1 && $1 != nil && !$2
@@ -590,29 +593,30 @@ class UsageTabViewModel {
         Driver.combineLatest(self.accountDetail,
                              self.billComparison,
                              self.lastYearPreviousBillSelectedSegmentIndex.asDriver(),
-                             self.barGraphSelectionStates.asDriver(),
+                             self.barGraphSelection.asDriver(),
                              self.billForecast,
                              self.electricGasSelectedSegmentIndex.asDriver())
-        { [weak self] accountDetail, billComparison, segmentIndex, selectionStates, billForecast, electricGasSelectedIndex in
+        { [weak self] accountDetail, billComparison, segmentIndex, barGraphSelection, billForecast, electricGasSelectedIndex in
             // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
             guard let `self` = self else { return nil }
             let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
             
-            if selectionStates[0].value { // No data
+            switch barGraphSelection {
+            case .noData:
                 if segmentIndex == 0 {
                     return NSLocalizedString("Last Year", comment: "")
                 } else {
                     return NSLocalizedString("Previous Bill", comment: "")
                 }
-            } else if selectionStates[1].value { // Previous
+            case .previous:
                 if let compared = billComparison.compared {
                     return "\(compared.startDate.shortMonthDayAndYearString) - \(compared.endDate.shortMonthDayAndYearString)"
                 }
-            } else if selectionStates[2].value { // Current
+            case .current:
                 if let reference = billComparison.reference {
                     return "\(reference.startDate.shortMonthDayAndYearString) - \(reference.endDate.shortMonthDayAndYearString)"
                 }
-            } else if selectionStates[3].value { // Projected
+            case .projected:
                 if let gasForecast = billForecast?.electric, isGas {
                     if let startDate = gasForecast.billingStartDate, let endDate = gasForecast.billingEndDate {
                         return "\(startDate.shortMonthDayAndYearString) - \(endDate.shortMonthDayAndYearString)"
@@ -623,44 +627,50 @@ class UsageTabViewModel {
                         return "\(startDate.shortMonthDayAndYearString) - \(endDate.shortMonthDayAndYearString)"
                     }
                 }
-            } else if selectionStates[4].value { // Projection Not Available
+            case .projectionNotAvailable:
                 return NSLocalizedString("Projection Not Available", comment: "")
             }
+            
             return nil
     }
     
     private(set) lazy var barDescriptionAvgTempLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparison,
-                             self.barGraphSelectionStates.asDriver())
-        { billComparison, selectionStates in
+                             self.barGraphSelection.asDriver())
+        { billComparison, barGraphSelection in
             let localizedString = NSLocalizedString("Avg. Temp %d° F", comment: "")
-            if selectionStates[1].value { // Previous
+            switch barGraphSelection {
+            case .previous:
                 if let compared = billComparison.compared, let temp = compared.averageTemperature {
                     return String(format: localizedString, Int(temp.rounded()))
                 }
-            } else if selectionStates[2].value { // Current
+            case .current:
                 if let reference = billComparison.reference, let temp = reference.averageTemperature {
                     return String(format: localizedString, Int(temp.rounded()))
                 }
+            case .noData, .projected, .projectionNotAvailable:
+                return nil
             }
+            
             return nil
     }
     
     private(set) lazy var barDescriptionDetailLabelText: Driver<String?> =
         Driver.combineLatest(self.accountDetail,
                              self.billComparison,
-                             self.barGraphSelectionStates.asDriver(),
+                             self.barGraphSelection.asDriver(),
                              self.billForecast,
                              self.electricGasSelectedSegmentIndex.asDriver())
-        { [weak self] accountDetail, billComparison, selectionStates, billForecast, electricGasSelectedIndex in
+        { [weak self] accountDetail, billComparison, barGraphSelection, billForecast, electricGasSelectedIndex in
             // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
             guard let `self` = self else { return nil }
             let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
             
             let localizedPrevCurrString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
-            if selectionStates[0].value { // No data
+            switch barGraphSelection {
+            case .noData:
                 return NSLocalizedString("Not enough data available.", comment: "")
-            } else if selectionStates[1].value { // Previous
+            case .previous:
                 if let compared = billComparison.compared {
                     let daysInBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
                     let avgUsagePerDay = compared.usage / Double(daysInBillPeriod)
@@ -671,7 +681,7 @@ class UsageTabViewModel {
                         return String(format: localizedPrevCurrString, compared.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
                     }
                 }
-            } else if selectionStates[2].value { // Current
+            case .current:
                 if let reference = billComparison.reference {
                     let daysInBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
                     let avgUsagePerDay = reference.usage / Double(daysInBillPeriod)
@@ -682,7 +692,7 @@ class UsageTabViewModel {
                         return String(format: localizedPrevCurrString, reference.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
                     }
                 }
-            } else if selectionStates[3].value { // Projected
+            case .projected:
                 if accountDetail.isModeledForOpower {
                     let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
                         "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
@@ -711,9 +721,10 @@ class UsageTabViewModel {
                         }
                     }
                 }
-            } else if selectionStates[4].value { // Projection Not Available
+            case .projectionNotAvailable:
                 return NSLocalizedString("Data becomes available once you are more than 7 days into the billing cycle.", comment: "")
             }
+            
             return nil
     }
     
@@ -954,11 +965,7 @@ class UsageTabViewModel {
     // MARK: Selection States
     
     func setBarSelected(tag: Int) {
-        for i in stride(from: 0, to: barGraphSelectionStates.value.count, by: 1) {
-            let boolVar = barGraphSelectionStates.value[i]
-            boolVar.value = i == tag
-        }
-        barGraphSelectionStates.value = barGraphSelectionStates.value // Trigger Variable onNext
+        barGraphSelection.value = BarGraphSelection(rawValue: tag) ?? .current
     }
     
     func setLikelyReasonSelected(tag: Int) {
@@ -971,35 +978,35 @@ class UsageTabViewModel {
     
     // MARK: - Text Styling
     
-    private(set) lazy var noDataLabelFont: Driver<UIFont> = barGraphSelectionStates.value[0].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
-    }
+    private(set) lazy var noDataLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
+        .map { $0 == .noData }
+        .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
-    private(set) lazy var previousLabelFont: Driver<UIFont> = barGraphSelectionStates.value[1].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
-    }
+    private(set) lazy var previousLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
+        .map { $0 == .previous }
+        .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
     private(set) lazy var previousDollarLabelTextColor: Driver<UIColor> = billComparison.map {
         guard let compared = $0.compared else { return .deepGray }
         return compared.charges < 0 ? .successGreenText : .deepGray
     }
     
-    private(set) lazy var currentLabelFont: Driver<UIFont> = barGraphSelectionStates.value[2].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
-    }
+    private(set) lazy var currentLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
+        .map { $0 == .current }
+        .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
     private(set) lazy var currentDollarLabelTextColor: Driver<UIColor> = billComparison.map {
         guard let reference = $0.reference else { return .deepGray }
         return reference.charges < 0 ? .successGreenText : .deepGray
     }
     
-    private(set) lazy var projectedLabelFont: Driver<UIFont> = barGraphSelectionStates.value[3].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
-    }
+    private(set) lazy var projectedLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
+        .map { $0 == .projected }
+        .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
-    private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = barGraphSelectionStates.value[4].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
-    }
+    private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
+        .map { $0 == .projected }
+        .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
     // MARK: Likely Reasons Border Color Drivers
     private(set) lazy var billPeriodBorderColor: Driver<CGColor> =

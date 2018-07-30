@@ -230,7 +230,7 @@ class BillAnalysisViewModelTests: XCTestCase {
     func testShouldShowProjectedBar() {
         // Just testing the basic case for coverage. Quality testing will be performed on the functions that this driver combines
         viewModel.shouldShowProjectedBar.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssertFalse(shouldShow, "shouldShowProjectedBar should be false initially")
+            XCTAssertFalse(shouldShow, "showProjectedBar should be false initially")
         }).disposed(by: disposeBag)
     }
     

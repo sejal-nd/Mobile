@@ -399,10 +399,8 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.showElectricGasSegmentedControl.not().drive(segmentControl.rx.isHidden).disposed(by: disposeBag)
         viewModel.compareBillTitle.drive(compareBillTitlelabel.rx.text).disposed(by: disposeBag)
         
-        viewModel.shouldShowProjectedBar.asObservable()
-            .observeOn(MainScheduler.instance)
-            .take(1)
-            .subscribe(onNext: { [weak self] shouldShow in
+        viewModel.showProjectedBar
+            .drive(onNext: { [weak self] shouldShow in
                 guard let this = self else { return }
                 if shouldShow {
                     this.barGraphPress(this.projectedContainerButton)
@@ -443,7 +441,7 @@ class UsageTabViewController: AccountPickerViewController {
         // Bar show/hide
         viewModel.noPreviousData.not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.noPreviousData.drive(previousContainerButton.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowProjectedBar.not().drive(projectedContainerButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showProjectedBar.not().drive(projectedContainerButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowProjectionNotAvailableBar.not().drive(projectionNotAvailableContainerButton.rx.isHidden).disposed(by: disposeBag)
         
         // Bar labels
@@ -463,7 +461,7 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.projectedBarA11yLabel.drive(projectedContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.projectionNotAvailableA11yLabel.drive(projectionNotAvailableContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
-        Observable.combineLatest(viewModel.noPreviousData.asObservable(), viewModel.shouldShowProjectedBar.asObservable(), viewModel.shouldShowProjectionNotAvailableBar.asObservable()).map { [weak self] in
+        Observable.combineLatest(viewModel.noPreviousData.asObservable(), viewModel.showProjectedBar.asObservable(), viewModel.shouldShowProjectionNotAvailableBar.asObservable()).map { [weak self] in
             guard let `self` = self else { return }
             var a11yElementArray: [ButtonControl] = []
             if $0.0 {
