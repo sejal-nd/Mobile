@@ -53,7 +53,7 @@ class ReportedOutagesStore {
             
             if let report = newValue {
                 var dict = [String: Any]()
-                dict["reportedTime"] = DateFormatter.yyyMMddTHHmmssZZZZZFormatter.string(from: report.reportedTime)
+                dict["reportedTime"] = DateFormatter.yyyyMMddTHHmmssZZZZZFormatter.string(from: report.reportedTime)
                 if let etr = report.etr?.apiFormatString {
                     dict["etr"] = etr
                 }

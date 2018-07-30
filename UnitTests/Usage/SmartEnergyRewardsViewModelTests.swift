@@ -19,6 +19,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     var accountDetailSubject = PublishSubject<AccountDetail>()
     
     lazy var dateFormatter: DateFormatter = {
+        
         return dateFormatter.mmDdYyyyFormatter
     }()
     

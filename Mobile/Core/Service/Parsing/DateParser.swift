@@ -15,11 +15,11 @@ struct DateParser {
             throw MapperError.convertibleError(value: object, type: Date.self)
         }
         
-        if let date = DateFormatter.yyyMMddTHHmmssFormatter.date(from: dateString) {
+        if let date = DateFormatter.yyyyMMddTHHmmssFormatter.date(from: dateString) {
             return date
         }
         
-        if let date = DateFormatter.yyyMMddTHHmmssZZZZZFormatter.date(from: dateString) {
+        if let date = DateFormatter.yyyyMMddTHHmmssZZZZZFormatter.date(from: dateString) {
             return date
         }
         
@@ -27,7 +27,7 @@ struct DateParser {
             return date
         }
         
-        if let date = DateFormatter.yyyMMddFormatter.date(from: dateString) {
+        if let date = DateFormatter.yyyyMMddFormatter.date(from: dateString) {
             return date
         }
 

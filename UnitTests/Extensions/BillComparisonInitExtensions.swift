@@ -61,8 +61,8 @@ extension UsageBillPeriod: JSONEncodable {
         return [
             "charges": charges,
             "usage": usage,
-            "startDate": DateFormatter.yyyMMddFormatter.string(from: startDate),
-            "endDate": DateFormatter.yyyMMddFormatter.string(from: endDate),
+            "startDate": DateFormatter.yyyyMMddFormatter.string(from: startDate),
+            "endDate": DateFormatter.yyyyMMddFormatter.string(from: endDate),
             "averageTemperature": averageTemperature,
         ]
     }

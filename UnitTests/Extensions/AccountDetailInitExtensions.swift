@@ -14,7 +14,7 @@ protocol JSONEncodable {
 
 private extension Date {
     var apiString: String {
-        return DateFormatter.yyyMMddTHHmmssZZZZZFormatter.string(from: self)
+        return DateFormatter.yyyyMMddTHHmmssZZZZZFormatter.string(from: self)
     }
 }
 
