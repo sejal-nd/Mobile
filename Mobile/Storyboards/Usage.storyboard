@@ -597,6 +597,7 @@
                         <outlet property="accountPicker" destination="VT3-VG-S91" id="RRA-y5-lcr"/>
                         <outlet property="backgroundScrollConstraint" destination="hx3-IM-er5" id="arX-cu-dNe"/>
                         <outlet property="barDescriptionTriangleCenterXConstraint" destination="cJd-vq-dwB" id="pg7-h5-GOu"/>
+                        <outlet property="barDescriptionTriangleImageView" destination="x69-zZ-CQF" id="6W2-fI-JFw"/>
                         <outlet property="barGraphStackView" destination="PTZ-6z-yiy" id="xHx-1n-j2C"/>
                         <outlet property="billComparisonLoadingIndicator" destination="Dvd-qn-1eF" id="ycO-Li-oba"/>
                         <outlet property="billGraphDetailContainer" destination="bnW-KF-mCh" id="bhF-Bx-iey"/>
@@ -606,8 +607,8 @@
                         <outlet property="currentBarHeightConstraint" destination="JtD-Ud-hGH" id="MeY-Mg-35S"/>
                         <outlet property="currentBarView" destination="P2p-yb-PlW" id="k6c-Bs-4Ob"/>
                         <outlet property="currentContainerButton" destination="dKg-Sa-YNh" id="q24-Es-j7B"/>
-                        <outlet property="currentMonthGraphDateLabel" destination="8e6-Br-2pW" id="gus-KP-KJN"/>
-                        <outlet property="currentMonthGraphValueLabel" destination="FeX-9Y-WGe" id="8hj-Zz-eiP"/>
+                        <outlet property="currentDateLabel" destination="8e6-Br-2pW" id="gus-KP-KJN"/>
+                        <outlet property="currentDollarLabel" destination="FeX-9Y-WGe" id="8hj-Zz-eiP"/>
                         <outlet property="dropdownView" destination="pC8-Ui-VQm" id="Mnp-Vb-fwu"/>
                         <outlet property="graphDetailDateLabel" destination="gW9-pT-oLp" id="Bm7-mV-rFL"/>
                         <outlet property="graphDetailDescriptionLabel" destination="ca6-Po-YNM" id="GTe-jT-RNh"/>
@@ -617,23 +618,27 @@
                         <outlet property="mainErrorLabel" destination="mo5-kv-hgY" id="fOv-gw-LSY"/>
                         <outlet property="mainErrorView" destination="B6w-3l-gs6" id="Ab4-sF-fRx"/>
                         <outlet property="myUsageToolsLabel" destination="TZf-vb-Dqq" id="Ek1-6n-IzH"/>
-                        <outlet property="nextMonthGraphDateLabel" destination="Qnq-y9-pQd" id="wch-AW-UhN"/>
-                        <outlet property="nextMonthGraphValueLabel" destination="B2H-yA-RLi" id="UgG-sa-ckK"/>
+                        <outlet property="noDataBarView" destination="zIn-mk-W8P" id="IgG-V8-jyD"/>
                         <outlet property="noDataContainerButton" destination="ZXe-zM-5Tn" id="U6D-eV-fu8"/>
                         <outlet property="noDataDateLabel" destination="VEE-ID-33l" id="h1C-ET-nk5"/>
+                        <outlet property="noDataLabel" destination="CGS-fb-MRF" id="xuu-Jc-0OI"/>
                         <outlet property="noNetworkConnectionView" destination="iyt-BW-05Y" id="pAx-xB-JGw"/>
                         <outlet property="previousBarHeightConstraint" destination="bjl-u6-7QU" id="lAQ-xI-Ecl"/>
                         <outlet property="previousBarView" destination="dKk-5X-by1" id="rdU-4S-ymd"/>
                         <outlet property="previousBillButton" destination="1zd-LH-vJB" id="QO7-vh-J64"/>
                         <outlet property="previousContainerButton" destination="s0y-lN-dUc" id="BFu-1u-Pc6"/>
-                        <outlet property="previousMonthGraphDateLabel" destination="PnL-wt-i7Y" id="1ro-6D-UnH"/>
-                        <outlet property="previousMonthGraphValueLabel" destination="Y2E-Nc-xEh" id="hO7-WM-ta0"/>
+                        <outlet property="previousDateLabel" destination="PnL-wt-i7Y" id="1ro-6D-UnH"/>
+                        <outlet property="previousDollarLabel" destination="Y2E-Nc-xEh" id="hO7-WM-ta0"/>
                         <outlet property="projectedBarHeightConstraint" destination="20W-ma-twg" id="ONH-Iq-qMn"/>
                         <outlet property="projectedBarImageView" destination="QEx-t6-edt" id="iZE-ps-w5U"/>
                         <outlet property="projectedContainerButton" destination="fGz-ff-KfF" id="C4W-d3-wAD"/>
+                        <outlet property="projectedDateLabel" destination="Qnq-y9-pQd" id="wch-AW-UhN"/>
+                        <outlet property="projectedDollarLabel" destination="B2H-yA-RLi" id="UgG-sa-ckK"/>
                         <outlet property="projectedNotAvailableDateLabel" destination="neq-7Z-Y83" id="wGw-DP-Fyu"/>
                         <outlet property="projectedNotAvailableDaysRemainingLabel" destination="lgL-82-goE" id="o1I-5f-Lxc"/>
+                        <outlet property="projectionNotAvailableBarView" destination="0xg-ZK-uU0" id="1Cc-3S-IYe"/>
                         <outlet property="projectionNotAvailableContainerButton" destination="csG-p7-Bmt" id="ljE-Sv-CwQ"/>
+                        <outlet property="projectionNotAvailableUntilNextForecastLabel" destination="FfM-6j-hNX" id="Dlq-xq-Xsa"/>
                         <outlet property="scrollView" destination="auv-xw-MUC" id="gZz-P8-Fkb"/>
                         <outlet property="segmentControl" destination="b9o-Te-xzG" id="Xtq-0L-Itv"/>
                         <outlet property="switchAccountsLoadingIndicator" destination="DYi-RL-qXC" id="GAn-dI-hSF"/>

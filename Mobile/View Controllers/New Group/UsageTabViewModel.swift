@@ -940,6 +940,54 @@ class UsageTabViewModel {
         likelyReasonsSelectionStates.value = likelyReasonsSelectionStates.value // Trigger Variable onNext
     }
     
+    // MARK: - Text Styling
+    
+    private(set) lazy var noDataLabelFont: Driver<UIFont> = barGraphSelectionStates.value[0].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
+    
+    private(set) lazy var previousLabelFont: Driver<UIFont> = barGraphSelectionStates.value[1].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
+    
+    private(set) lazy var previousDollarLabelTextColor: Driver<UIColor> = billComparison.map {
+        guard let compared = $0.compared else { return .deepGray }
+        return compared.charges < 0 ? .successGreenText : .deepGray
+    }
+    
+    private(set) lazy var currentLabelFont: Driver<UIFont> = barGraphSelectionStates.value[2].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
+    
+    private(set) lazy var currentDollarLabelTextColor: Driver<UIColor> = billComparison.map {
+        guard let reference = $0.reference else { return .deepGray }
+        return reference.charges < 0 ? .successGreenText : .deepGray
+    }
+    
+    private(set) lazy var projectedLabelFont: Driver<UIFont> = barGraphSelectionStates.value[3].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
+    
+    private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = barGraphSelectionStates.value[4].asDriver().map {
+        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+    }
+    
+    // MARK: Likely Reasons Border Color Drivers
+    private(set) lazy var billPeriodBorderColor: Driver<CGColor> =
+        Driver.combineLatest(likelyReasonsSelectionStates.value[0].asDriver(), noPreviousData) {
+            $0 && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+    }
+    
+    private(set) lazy var weatherBorderColor: Driver<CGColor> =
+        Driver.combineLatest(likelyReasonsSelectionStates.value[1].asDriver(), noPreviousData) {
+            $0 && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+    }
+    
+    private(set) lazy var otherBorderColor: Driver<CGColor> =
+        Driver.combineLatest(likelyReasonsSelectionStates.value[2].asDriver(), noPreviousData) {
+            $0 && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+    }
+    
     // MARK: - Usage Tools
     
     private(set) lazy var usageTools: Driver<[UsageTool]> = accountDetail

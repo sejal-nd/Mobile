@@ -42,7 +42,7 @@ class UsageTabViewController: AccountPickerViewController {
     
     @IBOutlet weak var myUsageToolsLabel: UILabel! {
         didSet {
-            myUsageToolsLabel.font = OpenSans.semibold.of(size: 18)
+            myUsageToolsLabel.font = OpenSans.semibold.of(textStyle: .headline)
         }
     }
     
@@ -58,15 +58,14 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     @IBOutlet weak var barGraphStackView: UIStackView!
+    @IBOutlet weak var barDescriptionTriangleImageView: UIImageView!
     @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var noDataContainerButton: ButtonControl!
-    @IBOutlet weak var noDataDateLabel: UILabel! {
-        didSet {
-            noDataDateLabel.font = OpenSans.semibold.of(size: 14)
-            noDataDateLabel.textColor = .deepGray
-        }
-    }
+    @IBOutlet weak var noDataBarView: UIView!
+    @IBOutlet weak var noDataLabel: UILabel!
+    @IBOutlet weak var noDataDateLabel: UILabel!
+    
     
     @IBOutlet weak var previousContainerButton: ButtonControl!
     @IBOutlet weak var previousBarView: UIView! {
@@ -75,20 +74,11 @@ class UsageTabViewController: AccountPickerViewController {
             previousBarView.layer.cornerRadius = 5
         }
     }
-    @IBOutlet weak var previousBarHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var previousMonthGraphValueLabel: UILabel! {
-        didSet {
-            previousMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
-            previousMonthGraphValueLabel.textColor = .deepGray
-        }
-    }
     
-    @IBOutlet weak var previousMonthGraphDateLabel: UILabel! {
-        didSet {
-            previousMonthGraphDateLabel.font = OpenSans.semibold.of(size: 14)
-            previousMonthGraphDateLabel.textColor = .deepGray
-        }
-    }
+    @IBOutlet weak var previousBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var previousDollarLabel: UILabel!
+    
+    @IBOutlet weak var previousDateLabel: UILabel!
     
     @IBOutlet weak var currentContainerButton: ButtonControl!
     @IBOutlet weak var currentBarView: UIView! {
@@ -97,20 +87,10 @@ class UsageTabViewController: AccountPickerViewController {
             currentBarView.layer.cornerRadius = 5
         }
     }
-    @IBOutlet weak var currentBarHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var currentMonthGraphValueLabel: UILabel! {
-        didSet {
-            currentMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
-            currentMonthGraphValueLabel.textColor = .deepGray
-        }
-    }
     
-    @IBOutlet weak var currentMonthGraphDateLabel: UILabel! {
-        didSet {
-            currentMonthGraphDateLabel.font = OpenSans.semibold.of(size: 14)
-            currentMonthGraphDateLabel.textColor = .deepGray
-        }
-    }
+    @IBOutlet weak var currentBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var currentDollarLabel: UILabel!
+    @IBOutlet weak var currentDateLabel: UILabel!
     
     @IBOutlet weak var projectedContainerButton: ButtonControl!
     @IBOutlet weak var projectedBarImageView: UIImageView! {
@@ -120,51 +100,32 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     @IBOutlet weak var projectedBarHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var nextMonthGraphValueLabel: UILabel! {
-        didSet {
-            nextMonthGraphValueLabel.font = OpenSans.semibold.of(size: 14)
-            nextMonthGraphValueLabel.textColor = .deepGray
-        }
-    }
-    @IBOutlet weak var nextMonthGraphDateLabel: UILabel! {
-        didSet {
-            nextMonthGraphDateLabel.font = OpenSans.semibold.of(size: 14)
-            nextMonthGraphDateLabel.textColor = .deepGray
-        }
-    }
+    @IBOutlet weak var projectedDollarLabel: UILabel!
+    @IBOutlet weak var projectedDateLabel: UILabel!
     
     @IBOutlet weak var projectionNotAvailableContainerButton: ButtonControl!
-    @IBOutlet weak var projectedNotAvailableDateLabel: UILabel! {
-        didSet {
-            projectedNotAvailableDateLabel.font = OpenSans.semibold.of(size: 14)
-            projectedNotAvailableDateLabel.textColor = .deepGray
-        }
-    }
-    
-    @IBOutlet weak var projectedNotAvailableDaysRemainingLabel: UILabel! {
-        didSet {
-            projectedNotAvailableDaysRemainingLabel.font = OpenSans.semibold.of(size: 14)
-            projectedNotAvailableDaysRemainingLabel.textColor = .deepGray
-        }
-    }
+    @IBOutlet weak var projectionNotAvailableBarView: UIView!
+    @IBOutlet weak var projectionNotAvailableUntilNextForecastLabel: UILabel!
+    @IBOutlet weak var projectedNotAvailableDateLabel: UILabel!
+    @IBOutlet weak var projectedNotAvailableDaysRemainingLabel: UILabel!
     
     @IBOutlet weak var graphDetailDateLabel: UILabel! {
         didSet {
-            graphDetailDateLabel.font = OpenSans.semibold.of(size: 14)
+            graphDetailDateLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
             graphDetailDateLabel.textColor = .blackText
         }
     }
     
     @IBOutlet weak var graphDetailTemperatureLabel: UILabel! {
         didSet {
-            graphDetailTemperatureLabel.font = OpenSans.regular.of(size: 12)
+            graphDetailTemperatureLabel.font = OpenSans.regular.of(textStyle: .footnote)
             graphDetailTemperatureLabel.textColor = .blackText
         }
     }
     
     @IBOutlet weak var graphDetailDescriptionLabel: UILabel! {
         didSet {
-            graphDetailDescriptionLabel.font = OpenSans.regular.of(size: 12)
+            graphDetailDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
             graphDetailDescriptionLabel.textColor = .black
         }
     }
@@ -266,6 +227,14 @@ class UsageTabViewController: AccountPickerViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let dashedBorderColor = UIColor(red: 0, green: 80/255, blue: 125/255, alpha: 0.24)
+        noDataBarView.addDashedBorder(color: dashedBorderColor)
+        projectionNotAvailableBarView.addDashedBorder(color: dashedBorderColor)
+        projectionNotAvailableBarView.layer.cornerRadius = 10
+    }
+    
     // MARK: - Actions
     
     @objc func setRefreshControlEnabled(enabled: Bool) {
@@ -290,27 +259,16 @@ class UsageTabViewController: AccountPickerViewController {
     }
     
     @IBAction func barGraphPress(_ sender: ButtonControl) {
-        let centerPoint = sender.center
-        let convertedPoint = barGraphStackView.convert(centerPoint, to: billGraphDetailView)
-        
-        let centerXOffset = (billGraphDetailView.bounds.width / 2)
-        if convertedPoint.x < centerXOffset {
-            barDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
-        } else if convertedPoint.x > centerXOffset {
-            barDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
-        } else {
-            barDescriptionTriangleCenterXConstraint.constant = 0
-        }
+        barDescriptionTriangleCenterXConstraint.isActive = false
+        barDescriptionTriangleCenterXConstraint = barDescriptionTriangleImageView.centerXAnchor
+            .constraint(equalTo: sender.centerXAnchor)
+        barDescriptionTriangleCenterXConstraint.isActive = true
         
         viewModel.setBarSelected(tag: sender.tag)
     }
     
     
     // MARK: - Helper
-    
-    private func styleViews() {
-        view.backgroundColor = .white
-    }
     
     private func bindViewModel() {
         viewModel.endRefreshIng
@@ -357,6 +315,18 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.showElectricGasSegmentedControl.not().drive(segmentControl.rx.isHidden).disposed(by: disposeBag)
         viewModel.compareBillTitle.drive(compareBillTitlelabel.rx.text).disposed(by: disposeBag)
         
+        viewModel.shouldShowProjectedBar.asObservable()
+            .observeOn(MainScheduler.instance)
+            .take(1)
+            .subscribe(onNext: { [weak self] shouldShow in
+                guard let this = self else { return }
+                if shouldShow {
+                    this.barGraphPress(this.projectedContainerButton)
+                } else {
+                    this.barGraphPress(this.currentContainerButton)
+                }
+            }).disposed(by: self.disposeBag)
+        
         // Bar graph height constraints
         viewModel.previousBarHeightConstraintValue
             .drive(previousBarHeightConstraint.rx.constant)
@@ -394,12 +364,12 @@ class UsageTabViewController: AccountPickerViewController {
         
         // Bar labels
         viewModel.noDataBarDateLabelText.drive(noDataDateLabel.rx.text).disposed(by: disposeBag)
-        viewModel.previousBarDollarLabelText.drive(previousMonthGraphValueLabel.rx.text).disposed(by: disposeBag)
-        viewModel.previousBarDateLabelText.drive(previousMonthGraphDateLabel.rx.text).disposed(by: disposeBag)
-        viewModel.currentBarDollarLabelText.drive(currentMonthGraphValueLabel.rx.text).disposed(by: disposeBag)
-        viewModel.currentBarDateLabelText.drive(currentMonthGraphDateLabel.rx.text).disposed(by: disposeBag)
-        viewModel.projectedBarDollarLabelText.drive(nextMonthGraphValueLabel.rx.text).disposed(by: disposeBag)
-        viewModel.projectedBarDateLabelText.drive(nextMonthGraphDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.previousBarDollarLabelText.drive(previousDollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.previousBarDateLabelText.drive(previousDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.currentBarDollarLabelText.drive(currentDollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.currentBarDateLabelText.drive(currentDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.projectedBarDollarLabelText.drive(projectedDollarLabel.rx.text).disposed(by: disposeBag)
+        viewModel.projectedBarDateLabelText.drive(projectedDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.projectedBarDateLabelText.drive(projectedNotAvailableDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.projectionNotAvailableDaysRemainingText.drive(projectedNotAvailableDaysRemainingLabel.rx.text).disposed(by: disposeBag)
         
@@ -432,9 +402,34 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.barDescriptionAvgTempLabelText.drive(graphDetailTemperatureLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionDetailLabelText.drive(graphDetailDescriptionLabel.rx.text).disposed(by: disposeBag)
         
-        viewModel.usageTools.debug("FJDKLSJF")
+        viewModel.usageTools
             .drive(onNext: { [weak self] in self?.updateUsageToolCards($0) })
             .disposed(by: disposeBag)
+        
+        // Bar Graph Text Colors
+        noDataLabel.textColor = .deepGray
+        noDataDateLabel.textColor = .deepGray
+        previousDollarLabel.textColor = .deepGray
+        previousDateLabel.textColor = .deepGray
+        currentDollarLabel.textColor = .deepGray
+        currentDateLabel.textColor = .deepGray
+        projectedDollarLabel.textColor = .deepGray
+        projectedDateLabel.textColor = .deepGray
+        projectedNotAvailableDaysRemainingLabel.textColor = .actionBlue
+        projectionNotAvailableUntilNextForecastLabel.textColor = .deepGray
+        projectedNotAvailableDateLabel.textColor = .deepGray
+        
+        // Bar Graph Text Fonts
+        noDataLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        viewModel.noDataLabelFont.drive(noDataDateLabel.rx.font).disposed(by: disposeBag)
+        viewModel.previousLabelFont.drive(previousDollarLabel.rx.font).disposed(by: disposeBag)
+        viewModel.previousLabelFont.drive(previousDateLabel.rx.font).disposed(by: disposeBag)
+        viewModel.previousDollarLabelTextColor.drive(previousDollarLabel.rx.textColor).disposed(by: disposeBag)
+        viewModel.currentLabelFont.drive(currentDollarLabel.rx.font).disposed(by: disposeBag)
+        viewModel.currentLabelFont.drive(currentDateLabel.rx.font).disposed(by: disposeBag)
+        viewModel.currentDollarLabelTextColor.drive(currentDollarLabel.rx.textColor).disposed(by: disposeBag)
+        viewModel.projectedLabelFont.drive(projectedDollarLabel.rx.font).disposed(by: disposeBag)
+        viewModel.projectedLabelFont.drive(projectedDateLabel.rx.font).disposed(by: disposeBag)
     }
     
     //MARK: - Loading States
