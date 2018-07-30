@@ -58,16 +58,11 @@ extension UsageBillPeriod: JSONEncodable {
     }
     
     func toJSON() -> [String : Any?] {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
         return [
             "charges": charges,
             "usage": usage,
-            "startDate": dateFormatter.string(from: startDate),
-            "endDate": dateFormatter.string(from: endDate),
+            "startDate": DateFormatter.yyyMMddFormatter.string(from: startDate),
+            "endDate": DateFormatter.yyyMMddFormatter.string(from: endDate),
             "averageTemperature": averageTemperature,
         ]
     }

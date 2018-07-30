@@ -19,19 +19,11 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     var accountDetailSubject = PublishSubject<AccountDetail>()
     
     lazy var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        return dateFormatter
+        return dateFormatter.mmDdYyyyFormatter
     }()
     
     lazy var hourDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
-        return dateFormatter
+        return dateFormatter.MMddyyyyHHmmFormatter
     }()
     
     override func setUp() {

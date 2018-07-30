@@ -8,18 +8,6 @@
 
 import Mapper
 
-private func extractDate(object: Any?) throws -> Date? {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-    dateFormatter.calendar = .opCo
-    dateFormatter.timeZone = .opCo
-    return dateFormatter.date(from: dateString)
-}
-
 private func extractOutageStatus(object: Any?) throws -> Bool {
     guard let status = object as? String else {
         throw MapperError.convertibleError(value: object, type: String.self)
@@ -63,7 +51,7 @@ struct OutageStatus: Mappable {
         flagNoPay = map.optionalFrom("flagNoPay") ?? false
         flagNonService = map.optionalFrom("flagNonService") ?? false
         meterPingInfo = map.optionalFrom("meterInfo")
-        etr = map.optionalFrom("ETR", transformation: extractDate)
+        etr = map.optionalFrom("ETR", transformation: DateParser().extractDate)
         locationId = map.optionalFrom("locationId")
         
         accountNumber = map.optionalFrom("accountNumber")

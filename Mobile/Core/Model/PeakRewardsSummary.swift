@@ -77,12 +77,7 @@ struct PeakRewardsProgram: Mappable {
                 throw MapperError.convertibleError(value: object, type: String.self)
             }
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.calendar = .opCo
-            dateFormatter.timeZone = .opCo
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            
-            guard let date = dateFormatter.date(from: string) else {
+            guard let date = DateFormatter.yyyyMMddTHHmmssZFormatter.date(from: string) else {
                 throw MapperError.convertibleError(value: string, type: Date.self)
             }
             
@@ -122,13 +117,8 @@ struct PeakRewardsOverride: Mappable, Equatable {
             guard let string = object as? String else {
                 throw MapperError.convertibleError(value: object, type: String.self)
             }
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.calendar = .opCo
-            dateFormatter.timeZone = .opCo
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            
-            guard let date = dateFormatter.date(from: string) else {
+
+            guard let date = DateFormatter.yyyyMMddTHHmmssZFormatter.date(from: string) else {
                 throw MapperError.convertibleError(value: string, type: Date.self)
             }
             
@@ -308,11 +298,7 @@ struct SmartThermostatPeriodInfo: Mappable {
     let startTime: Date
     
     var startTimeDisplayString: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "h:mm a"
-        return dateFormatter.string(from: startTime)
+        return DateFormatter.hmmaFormatter.string(from: startTime)
     }
     
     init(map: Mapper) throws {
@@ -324,11 +310,7 @@ struct SmartThermostatPeriodInfo: Mappable {
                 throw MapperError.convertibleError(value: $0, type: String.self)
             }
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.calendar = .opCo
-            dateFormatter.timeZone = .opCo
-            dateFormatter.dateFormat = "HH:mm"
-            guard let date = dateFormatter.date(from: string) else {
+            guard let date = DateFormatter.HHmmFormatter.date(from: string) else {
                 throw MapperError.convertibleError(value: string, type: Date.self)
             }
             
@@ -345,12 +327,7 @@ struct SmartThermostatPeriodInfo: Mappable {
     }
     
     func toDictionary() -> [String: Any] {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "HH:mm"
-        
-        return ["coolTemp": coolTemp.fahrenheit, "heatTemp": heatTemp.fahrenheit, "startTime": dateFormatter.string(from: startTime)]
+        return ["coolTemp": coolTemp.fahrenheit, "heatTemp": heatTemp.fahrenheit, "startTime": DateFormatter.HHmmFormatter.string(from: startTime)]
     }
 }
 

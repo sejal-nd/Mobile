@@ -54,10 +54,8 @@ class EditCreditCardViewModel {
         }
     
     private(set) lazy var expYearIsNotInPast: Driver<Bool> = self.expYear.asDriver().map {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy"
-        let enteredYear = formatter.date(from: $0)
-        let todayYear = formatter.date(from: formatter.string(from: Date()))
+        let enteredYear = DateFormatter.yyyyFormatter.date(from: $0)
+        let todayYear = DateFormatter.yyyyFormatter.date(from: DateFormatter.yyyyFormatter.string(from: Date()))
         
         if let enteredYear = enteredYear, let todayYear = todayYear {
             return enteredYear >= todayYear
