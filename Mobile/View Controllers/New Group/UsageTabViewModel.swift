@@ -60,7 +60,7 @@ class UsageTabViewModel {
         fetchAllDataTrigger.onNext(())
     }
     
-    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.fetchAllDataTrigger
+    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = fetchAllDataTrigger
         // Clear cache on refresh or account switch
         .do(onNext: { [weak self] in self?.billAnalysisCache.clear() })
         .toAsyncRequest { [unowned self] in

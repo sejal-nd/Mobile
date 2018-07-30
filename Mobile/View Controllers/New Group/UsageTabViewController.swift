@@ -191,18 +191,14 @@ class UsageTabViewController: AccountPickerViewController {
         bindViewModel()
         dropdownView.configureWithViewModel(viewModel)
         
-        Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
-                                 viewModel.accountDetailEvents.asObservable().map { $0 }.startWith(nil))
-            .sample(accountPickerViewControllerWillAppear)
-            .subscribe(onNext: { [weak self] state, accountDetail in
+        accountPickerViewControllerWillAppear
+            .subscribe(onNext: { [weak self] state in
                 guard let this = self else { return }
                 switch(state) {
                 case .loadingAccounts:
                     this.setRefreshControlEnabled(enabled: false)
                 case .readyToFetchData:
                     if AccountsStore.shared.currentAccount != this.accountPicker.currentAccount {
-                        this.viewModel.fetchAllData()
-                    } else if accountDetail?.element == nil {
                         this.viewModel.fetchAllData()
                     }
                 }
@@ -218,6 +214,14 @@ class UsageTabViewController: AccountPickerViewController {
             .disposed(by: disposeBag)
         
         showSwitchAccountsLoadingState()
+        
+        RxNotifications.shared.accountDetailUpdated
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in
+                self?.showSwitchAccountsLoadingState()
+                self?.viewModel.fetchAllData()
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
