@@ -15,19 +15,7 @@ class UsageViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    @IBOutlet weak var gradientView: UIView!
-
     @IBOutlet weak var contentView: UIView!
-    
-    @IBOutlet weak var hourlyPricingCard: UIView!
-    @IBOutlet weak var hourlyPricingTitleLabel: UILabel!
-    @IBOutlet weak var hourlyPricingBodyLabel: UILabel!
-    @IBOutlet weak var hourlyPricingEnrollButton: UIButton!
-    
-    @IBOutlet weak var peakTimeSavingsCard: UIView!
-    @IBOutlet weak var peakTimeSavingsTitleLabel: UILabel!
-    @IBOutlet weak var peakTimeSavingsBodyLabel: UILabel!
-    @IBOutlet weak var peakTimeSavingsEnrollButton: UIButton!
     
     @IBOutlet weak var smartEnergyRewardsContainerView: UIView!
     @IBOutlet weak var smartEnergyRewardsFooterLabel: UILabel!
@@ -42,8 +30,6 @@ class UsageViewController: UIViewController {
     
     var accountDetail: AccountDetail! // Passed from HomeViewController
     
-    let gradientLayer = CAGradientLayer()
-    
     var viewModel: UsageViewModel!
         
     override func viewDidLoad() {
@@ -57,26 +43,6 @@ class UsageViewController: UIViewController {
         Analytics.log(event: .ViewUsageLink,
                              dimensions: [.ResidentialAMI: residentialAMIString,
                                           .PeakSmart: isPeakSmart ? "true" : "false"])
-        
-        if accountDetail.peakRewards == "ACTIVE" {
-            let thermbutton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_thermostat"), style: .plain, target: nil, action: nil)
-            thermbutton.accessibilityLabel = NSLocalizedString("access peak rewards", comment: "")
-            thermbutton.rx.tap.asDriver()
-                .drive(onNext: { [weak self] in
-                    Analytics.log(event: .ViewUsagePeakRewards)
-                    self?.performSegue(withIdentifier: "peakRewardsSegue", sender: nil)
-                })
-                .disposed(by: disposeBag)
-            navigationItem.rightBarButtonItem = thermbutton
-        }
-
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [
-            UIColor.white.cgColor,
-            UIColor(red: 244/255, green: 245/255, blue: 246/255, alpha: 1).cgColor,
-            UIColor(red: 239/255, green: 241/255, blue: 243/255, alpha: 1).cgColor
-        ]
-        gradientView.layer.addSublayer(gradientLayer)
         
         styleViews()
         buttonTapSetup()
@@ -97,52 +63,11 @@ class UsageViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        gradientLayer.frame = gradientView.frame
-        
         smartEnergyRewardsView.layoutIfNeeded()
         smartEnergyRewardsView.superviewDidLayoutSubviews()
     }
     
     private func styleViews() {
-        hourlyPricingCard.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        hourlyPricingCard.layer.cornerRadius = 10
-        hourlyPricingTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
-        hourlyPricingTitleLabel.textColor = .blackText
-        hourlyPricingBodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        hourlyPricingBodyLabel.textColor = .deepGray
-        hourlyPricingEnrollButton.setTitleColor(.actionBlue, for: .normal)
-        hourlyPricingEnrollButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
-        
-        peakTimeSavingsCard.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        peakTimeSavingsCard.layer.cornerRadius = 10
-        peakTimeSavingsTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
-        peakTimeSavingsTitleLabel.textColor = .blackText
-        peakTimeSavingsTitleLabel.text = NSLocalizedString("Peak Time Savings", comment: "")
-        peakTimeSavingsBodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        peakTimeSavingsBodyLabel.textColor = .deepGray
-        peakTimeSavingsBodyLabel.text = NSLocalizedString("Earn a credit on your bill when you participate in this program that pays you back for using less energy when it is most in demand.", comment: "")
-        peakTimeSavingsEnrollButton.setTitleColor(.actionBlue, for: .normal)
-        peakTimeSavingsEnrollButton.titleLabel?.font = SystemFont.medium.of(textStyle: .headline)
-        peakTimeSavingsEnrollButton.setTitle(NSLocalizedString("Enroll Now", comment: ""), for: .normal)
-        
-        if Environment.shared.opco == .comEd && accountDetail.isResidential {
-            if !accountDetail.isAMIAccount || accountDetail.isPTSAccount {
-                peakTimeSavingsCard.isHidden = true
-            }
-            if accountDetail.isHourlyPricing {
-                hourlyPricingTitleLabel.text = NSLocalizedString("Hourly Pricing", comment: "")
-                hourlyPricingBodyLabel.text = NSLocalizedString("See how your savings stack up, view your usage, check real-time prices, and more.", comment: "")
-                hourlyPricingEnrollButton.setTitle(NSLocalizedString("Take Me to Savings!", comment: ""), for: .normal)
-            } else {
-                hourlyPricingTitleLabel.text = NSLocalizedString("Consider ComEd’s Other Rate – Hourly Pricing", comment: "")
-                hourlyPricingBodyLabel.text = NSLocalizedString("Save on ComEd’s Hourly Pricing program. It’s simple: shift your usage to times when the price of energy is lower to reduce your bill.", comment: "")
-                hourlyPricingEnrollButton.setTitle(NSLocalizedString("Enroll Me Now", comment: ""), for: .normal)
-            }
-        } else {
-            hourlyPricingCard.isHidden = true
-            peakTimeSavingsCard.isHidden = true
-        }
-
         title = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
@@ -164,25 +89,12 @@ class UsageViewController: UIViewController {
     }
     
     private func buttonTapSetup() {
-        hourlyPricingEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] in
-            guard let accountDetail = self?.accountDetail else { return }
-            if accountDetail.isHourlyPricing {
-                Analytics.log(event: .HourlyPricing,
-                                     dimensions: [.HourlyPricingEnrollment: "enrolled"])
-                self?.performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
-            } else {
-                Analytics.log(event: .HourlyPricing,
-                                     dimensions: [.HourlyPricingEnrollment: "unenrolled"])
-                let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
-                self?.present(safariVc, animated: true, completion: nil)
-            }
-        }).disposed(by: disposeBag)
-        
-        peakTimeSavingsEnrollButton.rx.tap.asDriver().drive(onNext: { [weak self] _ in
-            Analytics.log(event: .PeakTimePromo)
-            let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "http://comed.com/PTS")!)
-            self?.present(safariVc, animated: true, completion: nil)
-        }).disposed(by: disposeBag)
+        smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                Analytics.log(event: .AllSavingsUsage)
+                self?.performSegue(withIdentifier: "totalSavingsSegue", sender: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindViewModel() {
@@ -197,6 +109,30 @@ class UsageViewController: UIViewController {
         }
         smartEnergyRewardsSeasonLabel.text = viewModel.smartEnergyRewardsSeasonLabelText
         smartEnergyRewardsFooterLabel.text = viewModel.smartEnergyRewardsFooterText
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
+        case let vc as UsageWebViewController:
+            vc.accountDetail = accountDetail
+        case let vc as Top5EnergyTipsViewController:
+            vc.accountDetail = accountDetail
+        case let vc as MyHomeProfileViewController:
+            vc.accountDetail = accountDetail
+            vc.didSaveHomeProfile
+                .delay(0.5)
+                .drive(onNext: { [weak self] in
+                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
+                })
+                .disposed(by: disposeBag)
+        case let vc as HourlyPricingViewController:
+            vc.accountDetail = accountDetail
+        case let vc as TotalSavingsViewController:
+            vc.eventResults = accountDetail.serInfo.eventResults
+        case let vc as PeakRewardsViewController:
+            vc.accountDetail = accountDetail
+        default: break
+        }
     }
 
 }
