@@ -30,6 +30,10 @@ struct DateParser {
         if let date = DateFormatter.yyyyMMddFormatter.date(from: dateString) {
             return date
         }
+        
+        if let date = DateFormatter.yyyyMMddTHHmmssSSSFormatter.date(from: dateString) {
+            return date
+        }
 
         throw MapperError.convertibleError(value: object, type: Date.self)
     }

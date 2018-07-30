@@ -8,14 +8,6 @@
 
 import Mapper
 
-private func extractCalculationDate(object: Any?) throws -> Date {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
-    
-    return DateFormatter.yyyyMMddTHHmmssSSSFormatter.date(from: dateString)!
-}
-
 struct BillForecast: Mappable {
     let errorMessage: String?
     
@@ -40,7 +32,7 @@ struct BillForecast: Mappable {
         
         billingStartDate = map.optionalFrom("billingStartDate", transformation: DateParser().extractDate)
         billingEndDate = map.optionalFrom("billingEndDate", transformation: DateParser().extractDate)
-        calculationDate = map.optionalFrom("calculationDate", transformation: extractCalculationDate)
+        calculationDate = map.optionalFrom("calculationDate", transformation: DateParser().extractDate)
         toDateUsage = map.optionalFrom("toDateUsage")
         toDateCost = map.optionalFrom("toDateCost")
         projectedUsage = map.optionalFrom("projectedUsage")
