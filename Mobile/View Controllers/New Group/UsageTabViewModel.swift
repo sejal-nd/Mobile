@@ -131,7 +131,6 @@ class UsageTabViewModel {
     private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showMainErrorState,
                                                                      showNoNetworkState,
                                                                      showBillComparisonContents,
-                                                                     showBillComparisonEmptyState,
                                                                      showBillComparisonErrorState,
                                                                      showNoUsageDataState)
     
@@ -165,14 +164,8 @@ class UsageTabViewModel {
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showBillComparisonEmptyState: Driver<Void> = billAnalysisEvents
-        .filter { $0.error == nil && $0.element?.0.reference == nil }
-        .map(to: ())
-        .asDriver(onErrorDriveWith: .empty())
-    
     private(set) lazy var showBillComparisonErrorState: Driver<Void> = billAnalysisEvents
-        .filter { $0.error != nil }
-        .debug("iewfodisjf")
+        .filter { $0.error != nil || $0.element?.0.reference == nil }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     

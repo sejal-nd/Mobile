@@ -353,10 +353,6 @@ class UsageTabViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.showBillAnalysisContents()})
             .disposed(by: disposeBag)
         
-//        viewModel.showBillComparisonEmptyState
-//            .drive(onNext: { [weak self] in self?.showbill() })
-//            .disposed(by: disposeBag)
-        
         viewModel.showBillComparisonErrorState
             .drive(onNext: { [weak self] in self?.showBillAnalysisErrorState() })
             .disposed(by: disposeBag)
