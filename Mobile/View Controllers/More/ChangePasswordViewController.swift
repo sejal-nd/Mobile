@@ -182,7 +182,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .ChangePasswordOffer)
+        Analytics.log(event: .changePasswordOffer)
     }
     
     @objc func onCancelPress() {
@@ -203,7 +203,7 @@ class ChangePasswordViewController: UIViewController {
             guard let `self` = self else { return }
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             self.navigationController?.popViewController(animated: true)
-            Analytics.log(event: .ChangePasswordDone)
+            Analytics.log(event: .changePasswordDone)
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
             guard let `self` = self else { return }

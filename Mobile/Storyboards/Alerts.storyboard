@@ -12,7 +12,7 @@
         <!--Alerts-->
         <scene sceneID="XZ0-ku-5Ll">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="NbY-Og-sPR" customClass="AlertsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="NbY-Og-sPR" customClass="AlertsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4ee-u9-hAb"/>
                         <viewControllerLayoutGuide type="bottom" id="CeP-yu-Zbw"/>
@@ -43,7 +43,7 @@
                                         <rect key="frame" x="0.0" y="90" width="375" height="128"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="54" translatesAutoresizingMaskIntoConstraints="NO" id="7zY-iZ-Y8Z" customClass="AlertsSegmentedControl" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="27" y="28" width="321" height="100"/>
+                                                <rect key="frame" x="27" y="0.0" width="321" height="128"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -51,7 +51,7 @@
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="7zY-iZ-Y8Z" secondAttribute="bottom" id="FdE-Tf-NVB"/>
                                             <constraint firstItem="7zY-iZ-Y8Z" firstAttribute="leading" secondItem="eHI-Mv-BJQ" secondAttribute="leading" constant="27" id="Hzd-6w-RQg"/>
-                                            <constraint firstItem="7zY-iZ-Y8Z" firstAttribute="top" secondItem="eHI-Mv-BJQ" secondAttribute="top" constant="28" id="a5k-6F-99c"/>
+                                            <constraint firstItem="7zY-iZ-Y8Z" firstAttribute="top" secondItem="eHI-Mv-BJQ" secondAttribute="top" id="a5k-6F-99c"/>
                                             <constraint firstAttribute="trailing" secondItem="7zY-iZ-Y8Z" secondAttribute="trailing" constant="27" id="zD2-Vg-Aiy"/>
                                         </constraints>
                                     </view>
@@ -273,10 +273,10 @@ this time.</string>
                             <constraint firstAttribute="trailing" secondItem="9Ks-fh-caA" secondAttribute="trailing" id="6ZY-ku-LUv"/>
                             <constraint firstAttribute="trailing" secondItem="Fcn-Wj-y0Q" secondAttribute="trailing" priority="999" id="877-Ad-LBn"/>
                             <constraint firstItem="Vbq-sV-lLn" firstAttribute="centerX" secondItem="9Ks-fh-caA" secondAttribute="centerX" id="Awh-wF-Cef"/>
-                            <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="Fcn-Wj-y0Q" secondAttribute="bottom" id="Cog-iU-2ro"/>
-                            <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="a1S-W0-fgM" secondAttribute="bottom" id="EV4-UW-ciS"/>
+                            <constraint firstAttribute="bottom" secondItem="Fcn-Wj-y0Q" secondAttribute="bottom" id="Cog-iU-2ro"/>
+                            <constraint firstAttribute="bottom" secondItem="a1S-W0-fgM" secondAttribute="bottom" id="EV4-UW-ciS"/>
                             <constraint firstItem="MC6-cd-MhW" firstAttribute="centerY" secondItem="Fcn-Wj-y0Q" secondAttribute="centerY" id="Eo6-4H-Lnz"/>
-                            <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="gTf-VA-0un" secondAttribute="bottom" id="Ggx-Td-Bye"/>
+                            <constraint firstAttribute="bottom" secondItem="gTf-VA-0un" secondAttribute="bottom" id="Ggx-Td-Bye"/>
                             <constraint firstAttribute="trailing" secondItem="gTf-VA-0un" secondAttribute="trailing" id="HA9-4Q-LfT"/>
                             <constraint firstItem="Vbq-sV-lLn" firstAttribute="centerY" secondItem="9Ks-fh-caA" secondAttribute="centerY" id="KJO-AZ-qQI"/>
                             <constraint firstItem="IKg-bb-ob0" firstAttribute="centerY" secondItem="9Ks-fh-caA" secondAttribute="centerY" id="NeD-Az-CWh"/>
@@ -292,7 +292,7 @@ this time.</string>
                             <constraint firstItem="a1S-W0-fgM" firstAttribute="top" secondItem="SQH-FY-2sQ" secondAttribute="top" id="jh3-Yd-LOo"/>
                             <constraint firstItem="MC6-cd-MhW" firstAttribute="centerX" secondItem="Fcn-Wj-y0Q" secondAttribute="centerX" id="kuI-01-vhw"/>
                             <constraint firstItem="IKg-bb-ob0" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" priority="999" constant="29" id="l8W-dC-CcK"/>
-                            <constraint firstItem="CeP-yu-Zbw" firstAttribute="top" secondItem="9Ks-fh-caA" secondAttribute="bottom" id="lyc-Ir-L4v"/>
+                            <constraint firstAttribute="bottom" secondItem="9Ks-fh-caA" secondAttribute="bottom" id="lyc-Ir-L4v"/>
                             <constraint firstItem="cZW-SD-mnJ" firstAttribute="centerX" secondItem="9Ks-fh-caA" secondAttribute="centerX" id="mDQ-de-RZm"/>
                             <constraint firstItem="cZW-SD-mnJ" firstAttribute="centerY" secondItem="9Ks-fh-caA" secondAttribute="centerY" id="neI-yg-8rd"/>
                             <constraint firstItem="a1S-W0-fgM" firstAttribute="leading" secondItem="SQH-FY-2sQ" secondAttribute="leading" id="oNs-g4-6ix"/>
@@ -316,6 +316,7 @@ this time.</string>
                         <outlet property="preferencesButton" destination="fyw-HH-wzm" id="arJ-vo-3tk"/>
                         <outlet property="preferencesButtonLabel" destination="UfZ-yO-Fmf" id="xWF-Og-ifW"/>
                         <outlet property="segmentedControl" destination="7zY-iZ-Y8Z" id="Z8I-XJ-gTe"/>
+                        <outlet property="segmentedControlTopSpace" destination="a5k-6F-99c" id="zvM-ez-nxH"/>
                         <outlet property="topStackView" destination="i1F-C3-Con" id="hat-xF-BGq"/>
                         <outlet property="updatesEmptyStateLabel" destination="X2c-CW-LbN" id="BIh-dv-wRs"/>
                         <outlet property="updatesEmptyStateView" destination="Vbq-sV-lLn" id="Gr0-Za-47V"/>

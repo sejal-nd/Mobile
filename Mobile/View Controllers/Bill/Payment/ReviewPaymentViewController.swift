@@ -275,9 +275,9 @@ class ReviewPaymentViewController: UIViewController {
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
             switch bankOrCard {
             case .bank:
-                Analytics.log(event: .ECheckSubmit)
+                Analytics.log(event: .eCheckSubmit)
             case .card:
-                Analytics.log(event: .CardSubmit)
+                Analytics.log(event: .cardSubmit)
             }
         }
         
@@ -322,12 +322,12 @@ class ReviewPaymentViewController: UIViewController {
                 LoadingView.hide()
                 
                 if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                    let pageView: AnalyticsPageView
+                    let pageView: AnalyticsEvent
                     switch bankOrCard {
                     case .bank:
-                        pageView = .ECheckComplete
+                        pageView = .eCheckComplete
                     case .card:
-                        pageView = .CardComplete
+                        pageView = .cardComplete
                     }
                     
                     Analytics.log(event: pageView)
@@ -336,16 +336,16 @@ class ReviewPaymentViewController: UIViewController {
                 self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
             }, onError: { [weak self] error in
                 if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                    let pageView: AnalyticsPageView
+                    let pageView: AnalyticsEvent
                     switch bankOrCard {
                     case .bank:
-                        pageView = .EcheckError
+                        pageView = .eCheckError
                     case .card:
-                        pageView = .CardError
+                        pageView = .cardError
                     }
                     
                     Analytics.log(event: pageView,
-                                         dimensions: [.ErrorCode: error.serviceCode])
+                                         dimensions: [.errorCode: error.serviceCode])
                 }
                 handleError(error.localizedDescription)
             })

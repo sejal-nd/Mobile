@@ -306,7 +306,7 @@ class UsageViewController: AccountPickerViewController {
                 this.previousBillButton.isEnabled = index == 0
                 this.lastYearButton.isEnabled = index == 1
                 this.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = index
-                Analytics.log(event: index == 0 ? .BillLastYearToggle : .BillPreviousToggle)
+                Analytics.log(event: index == 0 ? .billLastYearToggle : .billPreviousToggle)
             })
             .disposed(by: disposeBag)
         
@@ -379,9 +379,9 @@ class UsageViewController: AccountPickerViewController {
             .distinctUntilChanged()
             .subscribe(onNext: { index in
                 if index == 0 {
-                    Analytics.log(event: .BillElectricityToggle)
+                    Analytics.log(event: .billElectricityToggle)
                 } else {
-                    Analytics.log(event: .BillGasToggle)
+                    Analytics.log(event: .billGasToggle)
                 }
             })
             .disposed(by: disposeBag)
@@ -648,18 +648,18 @@ class UsageViewController: AccountPickerViewController {
         case .homeProfile:
             performSegue(withIdentifier: "updateYourHomeProfileSegue", sender: accountDetail)
         case .peakRewards:
-            Analytics.log(event: .ViewUsagePeakRewards)
+            Analytics.log(event: .viewUsagePeakRewards)
             performSegue(withIdentifier: "peakRewardsSegue", sender: accountDetail)
         case .smartEnergyRewards:
             performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {
-                Analytics.log(event: .HourlyPricing,
-                              dimensions: [.HourlyPricingEnrollment: "enrolled"])
+                Analytics.log(event: .hourlyPricing,
+                              dimensions: [.hourlyPricingEnrollment: "enrolled"])
                 performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
             } else {
-                Analytics.log(event: .HourlyPricing,
-                              dimensions: [.HourlyPricingEnrollment: "unenrolled"])
+                Analytics.log(event: .hourlyPricing,
+                              dimensions: [.hourlyPricingEnrollment: "unenrolled"])
                 let safariVc = SFSafariViewController
                     .createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
                 present(safariVc, animated: true, completion: nil)

@@ -224,7 +224,7 @@ extension AddCreditCardViewController: CardIOPaymentViewControllerDelegate {
 extension AddCreditCardViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        Analytics.log(event: .AddWalletCameraOffer)
+        Analytics.log(event: .addWalletCameraOffer)
         if cameraAuthorizationStatus == .denied || cameraAuthorizationStatus == .restricted {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))

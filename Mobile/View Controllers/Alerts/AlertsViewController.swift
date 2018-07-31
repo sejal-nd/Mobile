@@ -17,6 +17,7 @@ class AlertsViewController: AccountPickerViewController {
     
     @IBOutlet weak var topStackView: UIStackView!
     @IBOutlet weak var segmentedControl: AlertsSegmentedControl!
+    @IBOutlet weak var segmentedControlTopSpace: NSLayoutConstraint!
     
     @IBOutlet weak var backgroundView: UIView!
     
@@ -39,17 +40,20 @@ class AlertsViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .primaryColorAccountPicker
         
         segmentedControl.setItems(leftLabel: NSLocalizedString("My Alerts", comment: ""),
                                   rightLabel: NSLocalizedString("Updates", comment: ""),
                                   initialSelectedIndex: 0)
-        
+
         if Environment.shared.opco == .bge {
-            accountPicker.isHidden = true
+            self.accountPicker.isHidden = true
+            self.view.backgroundColor = .primaryColor
+            self.segmentedControlTopSpace.constant = 22
+        } else {
+            self.view.backgroundColor = .primaryColorAccountPicker
+            self.segmentedControlTopSpace.constant = 0
         }
-        
+
         alertsTableView.separatorColor = .accentGray
         updatesTableView.backgroundColor = .softGray
         updatesTableView.contentInset = UIEdgeInsetsMake(22, 0, 22, 0)
@@ -83,6 +87,16 @@ class AlertsViewController: AccountPickerViewController {
                 break
             case .readyToFetchData:
                 self.viewModel.fetchAlertsFromDisk()
+                
+                if Environment.shared.opco == .bge || AccountsStore.shared.accounts.count == 1 {
+                    self.accountPicker.isHidden = true
+                    self.view.backgroundColor = .primaryColor
+                    self.segmentedControlTopSpace.constant = 22
+                } else {
+                    self.view.backgroundColor = .primaryColorAccountPicker
+                    self.segmentedControlTopSpace.constant = 0
+                }
+                
                 if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                     self.viewModel.fetchData()
                 } else if self.viewModel.currentAccountDetail == nil {
@@ -95,7 +109,11 @@ class AlertsViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        guard let navController = navigationController as? MainBaseNavigationController else {
+            return
+        }
+        
+        navController.setColoredNavBar(hidesBottomBorder: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -139,7 +157,7 @@ class AlertsViewController: AccountPickerViewController {
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
             if index == 1 { // User tapped on "Updates"
-                Analytics.log(event: .AlertsOpCoUpdate)
+                Analytics.log(event: .alertsOpCoUpdate)
             }
         }).disposed(by: disposeBag)
         
@@ -176,7 +194,7 @@ class AlertsViewController: AccountPickerViewController {
     }
     
     @IBAction func onPreferencesButtonTap(_ sender: Any) {
-        Analytics.log(event: .AlertsMainScreen)
+        Analytics.log(event: .alertsMainScreen)
         performSegue(withIdentifier: "preferencesSegue", sender: self)
     }
     
@@ -276,7 +294,7 @@ extension AlertsViewController: AccountPickerDelegate {
 extension AlertsViewController: AlertPreferencesViewControllerDelegate {
     
     func alertPreferencesViewControllerDidSavePreferences(_ alertPreferencesViewController: AlertPreferencesViewController) {
-        Analytics.log(event: .AlertsPrefCenterComplete)
+        Analytics.log(event: .alertsPrefCenterComplete)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Preferences saved", comment: ""))
         })

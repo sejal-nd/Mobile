@@ -675,6 +675,62 @@ class BillViewModelContentTests: BillViewModelTests {
         XCTAssert(observedEqualsExpected)
     }
     
+    // Tests changes in the `hasBillBreakdownData` value after switching
+    // through different accounts.
+    func testHasBillBreakdownData() {
+        
+        let values: [(Double?, Double?, Double?)] = [(1, 2, 3), (0, 54, nil), (nil, nil, nil), (0, 0, 0)]
+        let accountDetail: [AccountDetail] = values.map {
+            AccountDetail(billingInfo: BillingInfo(deliveryCharges: $0.0,
+                                                   supplyCharges: $0.1,
+                                                   taxesAndFees: $0.2))
+        }
+        
+        let switchAccountEventTimes = Array(0..<accountDetail.count)
+        
+        accountService.mockAccountDetails = accountDetail
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let expectedValues = [true, true, false, false]
+        
+        let observer = scheduler.createObserver(Bool.self)
+        viewModel.hasBillBreakdownData.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        XCTAssertEqual(observer.events, expectedEvents)
+    }
+    
+    // Tests changes in the `billBreakdownButtonTitle` value after switching
+    // through different accounts.
+    func testBillBreakdownButtonTitle() {
+        
+        let values: [(Double?, Double?, Double?)] = [(1, 2, 3), (0, 54, nil), (nil, nil, nil), (0, 0, 0)]
+        let accountDetail: [AccountDetail] = values.map {
+            AccountDetail(billingInfo: BillingInfo(deliveryCharges: $0.0,
+                                                   supplyCharges: $0.1,
+                                                   taxesAndFees: $0.2))
+        }
+        
+        let switchAccountEventTimes = Array(0..<accountDetail.count)
+        
+        accountService.mockAccountDetails = accountDetail
+        
+        simulateAccountSwitches(at: switchAccountEventTimes)
+        
+        let expectedValues = ["Bill Breakdown", "Bill Breakdown", "View Usage", "View Usage"]
+        
+        let observer = scheduler.createObserver(String.self)
+        viewModel.billBreakdownButtonTitle.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
+        XCTAssertEqual(observer.events, expectedEvents)
+    }
+    
     // Tests changes in the `creditAmountText` value after switching
     // through different accounts.
     func testCreditAmountText() {

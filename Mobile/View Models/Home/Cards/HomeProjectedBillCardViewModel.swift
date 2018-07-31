@@ -93,9 +93,9 @@ class HomeProjectedBillCardViewModel {
     
     private(set) lazy var isGas: Driver<Bool> = Driver.combineLatest(self.accountDetailDriver, self.electricGasSelectedSegmentIndex.asDriver())
         .map { accountDetail, segmentIndex in
-            if accountDetail.serviceType!.uppercased() == "GAS" { // If account is gas only
+            if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
                 return true
-            } else if accountDetail.serviceType!.uppercased() == "GAS/ELECTRIC" { // Use value of segmented control
+            } else if accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" { // Use value of segmented control
                 return segmentIndex == 1
             }
             return false

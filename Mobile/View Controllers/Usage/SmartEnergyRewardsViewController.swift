@@ -40,9 +40,9 @@ class SmartEnergyRewardsViewController: UIViewController {
         let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
             (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
         
-        Analytics.log(event: .ViewUsageLink,
-                             dimensions: [.ResidentialAMI: residentialAMIString,
-                                          .PeakSmart: isPeakSmart ? "true" : "false"])
+        Analytics.log(event: .viewUsageLink,
+                             dimensions: [.residentialAMI: residentialAMIString,
+                                          .peakSmart: isPeakSmart ? "true" : "false"])
         
         styleViews()
         buttonTapSetup()
@@ -91,7 +91,7 @@ class SmartEnergyRewardsViewController: UIViewController {
     private func buttonTapSetup() {
         smartEnergyRewardsViewAllSavingsButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
-                Analytics.log(event: .AllSavingsUsage)
+                Analytics.log(event: .allSavingsUsage)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: nil)
             })
             .disposed(by: disposeBag)
@@ -105,7 +105,7 @@ class SmartEnergyRewardsViewController: UIViewController {
         } else {
             smartEnergyRewardsContentView.isHidden = true
             smartEnergyRewardsEmptyStateView.isHidden = false
-            Analytics.log(event: .EmptyStatePeakSmart)
+            Analytics.log(event: .emptyStatePeakSmart)
         }
         smartEnergyRewardsSeasonLabel.text = viewModel.smartEnergyRewardsSeasonLabelText
         smartEnergyRewardsFooterLabel.text = viewModel.smartEnergyRewardsFooterText

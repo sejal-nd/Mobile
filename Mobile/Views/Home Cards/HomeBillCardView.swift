@@ -176,6 +176,7 @@ class HomeBillCardView: UIView {
         oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         viewBillButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        viewBillButton.accessibilityLabel = NSLocalizedString("View Bill Details", comment: "")
         
         billNotReadyLabel.font = OpenSans.regular.of(textStyle: .title1)
         billNotReadyLabel.setLineHeight(lineHeight: 26)
@@ -221,7 +222,7 @@ class HomeBillCardView: UIView {
         
         viewModel.showErrorState
             .filter { $0 }
-            .drive(onNext: { _ in Analytics.log(event: .CheckBalanceError) })
+            .drive(onNext: { _ in Analytics.log(event: .checkBalanceError) })
             .disposed(by: bag)
         
         Driver.combineLatest(viewModel.showErrorState, viewModel.showCustomErrorState)
@@ -332,7 +333,7 @@ class HomeBillCardView: UIView {
     // Actions
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
         .do(onNext: {
-            Analytics.log(event: .ViewBillBillCard)
+            Analytics.log(event: .viewBillBillCard)
         })
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
         .do(onNext: { [weak self] _ in
@@ -343,7 +344,7 @@ class HomeBillCardView: UIView {
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
         .do(onNext: {
-            Analytics.log(event: .OneTouchTermsView)
+            Analytics.log(event: .oneTouchTermsView)
         })
         .map { [weak self] in self?.viewModel.paymentTACUrl }
         .unwrap()
@@ -505,7 +506,7 @@ class HomeBillCardView: UIView {
             vc.viewModel.accountDetail = accountDetail
             vc.shouldPopToRootOnSave = true
             vc.shouldSetOneTouchPayByDefault = true
-            Analytics.log(event: .OneTouchEnabledBillCard)
+            Analytics.log(event: .oneTouchEnabledBillCard)
             return vc
         }
         .asDriver(onErrorDriveWith: .empty())

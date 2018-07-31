@@ -36,7 +36,8 @@ class HomeViewController: AccountPickerViewController {
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
     var projectedBillCardView: HomeProjectedBillCardView?
-    var topPersonalizeButton: ButtonControl?
+    var outageCardView: HomeOutageCardView?
+    var topPersonalizeButton: ConversationalButton?
     
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
@@ -48,10 +49,8 @@ class HomeViewController: AccountPickerViewController {
                                   walletService: ServiceFactory.createWalletService(),
                                   paymentService: ServiceFactory.createPaymentService(),
                                   usageService: ServiceFactory.createUsageService(),
-                                  authService: ServiceFactory.createAuthenticationService())
-    
-    // Should be moved when we add the Usage tab.
-    var shortcutItem = ShortcutItem.none
+                                  authService: ServiceFactory.createAuthenticationService(),
+                                  outageService: ServiceFactory.createOutageService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -142,49 +141,14 @@ class HomeViewController: AccountPickerViewController {
         bindLoadingStates()
         
         NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
-        
-        viewModel.shouldShowUsageCard
-            .filter(!)
-            .drive(onNext: { _ in
-                (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: true, showViewUsageOptions: false)
-            })
-            .disposed(by: bag)
     }
     
     func topPersonalizeButtonSetup() {
-        let topPersonalizeButton = ButtonControl().usingAutoLayout()
-        topPersonalizeButton.backgroundColorOnPress = .softGray
-        topPersonalizeButton.normalBackgroundColor = .white
-        topPersonalizeButton.layer.cornerRadius = 10
-        topPersonalizeButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        let label = UILabel()
-        label.text = NSLocalizedString("Did you know you can personalize your home screen?", comment: "")
-        label.font = SystemFont.semibold.of(textStyle: .subheadline)
-        label.textColor = .actionBlue
-        label.numberOfLines = 0
-        label.setLineHeight(lineHeight: 20)
-        let caretImageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
-        caretImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        caretImageView.setContentHuggingPriority(.required, for: .horizontal)
-        let buttonStack = UIStackView().usingAutoLayout()
-        buttonStack.axis = .horizontal
-        buttonStack.spacing = 15
-        buttonStack.distribution = .fill
-        buttonStack.alignment = .center
-        buttonStack.isUserInteractionEnabled = false
-        
-        [label, caretImageView].forEach(buttonStack.addArrangedSubview)
-        
-        topPersonalizeButton.addSubview(buttonStack)
-        
-        NSLayoutConstraint.activate([
-            buttonStack.leadingAnchor.constraint(equalTo: topPersonalizeButton.leadingAnchor, constant: 25),
-            buttonStack.trailingAnchor.constraint(equalTo: topPersonalizeButton.trailingAnchor, constant: -14),
-            buttonStack.topAnchor.constraint(equalTo: topPersonalizeButton.topAnchor, constant: 9),
-            buttonStack.bottomAnchor.constraint(equalTo: topPersonalizeButton.bottomAnchor, constant: -12)
-            ])
+        let topPersonalizeButton = ConversationalButton()
         
         contentStackView.insertArrangedSubview(topPersonalizeButton, at: 0)
+        
+        topPersonalizeButton.titleText = NSLocalizedString("Did you know you can personalize your home screen?", comment: "")
         
         topPersonalizeButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self, weak topPersonalizeButton] in
@@ -210,7 +174,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .HomeOfferComplete)
+        Analytics.log(event: .homeOfferComplete)
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
@@ -221,9 +185,9 @@ class HomeViewController: AccountPickerViewController {
                     if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
                         UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
                         if granted {
-                            Analytics.log(event: .AlertsiOSPushOKInitial)
+                            Analytics.log(event: .alertsiOSPushOKInitial)
                         } else {
-                            Analytics.log(event: .AlertsiOSPushDontAllowInitial)
+                            Analytics.log(event: .alertsiOSPushDontAllowInitial)
                         }
                     }
                 })
@@ -235,18 +199,13 @@ class HomeViewController: AccountPickerViewController {
         }
         
         if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
-            Analytics.log(event: .AlertsiOSPushInitial)
+            Analytics.log(event: .alertsiOSPushInitial)
         }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         usageCardView?.superviewDidLayoutSubviews()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        shortcutItem = .none
     }
     
     func styleViews() {
@@ -280,6 +239,10 @@ class HomeViewController: AccountPickerViewController {
             usageCardView = nil
         case .template:
             templateCardView = nil
+        case .projectedBill:
+            projectedBillCardView = nil
+        case .outageStatus:
+            outageCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -330,6 +293,17 @@ class HomeViewController: AccountPickerViewController {
                 bindProjectedBillCard()
             }
             return projectedBillCardView
+        case .outageStatus:
+            let outageCardView: HomeOutageCardView
+            if let outageCard = self.outageCardView {
+                outageCardView = outageCard
+            } else {
+                outageCardView = HomeOutageCardView.create(withViewModel: viewModel.outageCardViewModel)
+                self.outageCardView = outageCardView
+                bindOutageCard()
+            }
+            
+            return outageCardView
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -385,7 +359,6 @@ class HomeViewController: AccountPickerViewController {
         Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
                      usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
-                self?.shortcutItem = .none
                 self?.tabBarController?.selectedIndex = 3
             })
             .disposed(by: usageCardView.disposeBag)
@@ -396,7 +369,7 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                Analytics.log(event: .AllSavingsSmartEnergy)
+                Analytics.log(event: .allSavingsSmartEnergy)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
             }).disposed(by: usageCardView.disposeBag)
     }
@@ -425,10 +398,9 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                let billAnalysis = BillAnalysisViewController()
-                billAnalysis.hidesBottomBarWhenPushed = true
-                billAnalysis.viewModel.accountDetail = $0
-                self?.navigationController?.pushViewController(billAnalysis, animated: true)
+                let billBreakdownVC = BillBreakdownViewController(accountDetail: $0)
+                billBreakdownVC.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(billBreakdownVC, animated: true)
             }).disposed(by: projectedBillCardView.disposeBag)
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
@@ -438,6 +410,22 @@ class HomeViewController: AccountPickerViewController {
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self?.present(alertVc, animated: true, completion: nil)
         }).disposed(by: projectedBillCardView.disposeBag)
+    }
+    
+    func bindOutageCard() {
+        guard let outageCardView = outageCardView else { return }
+        
+        outageCardView.reportOutageTapped
+            .drive(onNext: { [weak self] outageStatus in
+                self?.performSegue(withIdentifier: "reportOutageSegue", sender: outageStatus)
+            })
+            .disposed(by: outageCardView.bag)
+        
+        outageCardView.viewOutageMapTapped
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "outageMapSegue", sender: nil)
+            })
+            .disposed(by: outageCardView.bag)
     }
     
     @objc func killRefresh() -> Void {
@@ -502,14 +490,6 @@ class HomeViewController: AccountPickerViewController {
                 self?.present($0, animated: true, completion: nil)
             })
             .disposed(by: bag)
-        
-        // Clear shortcut handling in the case of an error.
-        Observable.merge(viewModel.usageCardViewModel.accountDetailChanged.errors(),
-                         viewModel.accountDetailEvents.errors())
-            .subscribe(onNext: { [weak self] _ in
-                self?.shortcutItem = .none
-            })
-            .disposed(by: bag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -517,6 +497,22 @@ class HomeViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         } else if let vc = segue.destination as? TotalSavingsViewController, let accountDetail = sender as? AccountDetail {
             vc.eventResults = accountDetail.serInfo.eventResults
+        } else if let vc = segue.destination as? ReportOutageViewController, let currentOutageStatus = sender as? OutageStatus {
+            vc.viewModel.outageStatus = currentOutageStatus
+            if let phone = currentOutageStatus.contactHomeNumber {
+                vc.viewModel.phoneNumber.value = phone
+            }
+            
+            // Show a toast only after an outage is reported from this workflow
+            RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
+                .drive(onNext: { [weak self] in
+                    guard let this = self else { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                        this.view.showToast(NSLocalizedString("Outage report received", comment: ""))
+                        Analytics.log(event: .reportOutageAuthComplete)
+                    })
+                })
+                .disposed(by: vc.disposeBag)
         }
     }
     
@@ -536,9 +532,9 @@ extension HomeViewController: AutoPayViewControllerDelegate {
             self.view.showToast(message)
         })
         if enrolled {
-            Analytics.log(event: .AutoPayEnrollComplete)
+            Analytics.log(event: .autoPayEnrollComplete)
         } else {
-            Analytics.log(event: .AutoPayUnenrollComplete)
+            Analytics.log(event: .autoPayUnenrollComplete)
         }
     }
     
@@ -551,5 +547,5 @@ extension HomeViewController: BGEAutoPayViewControllerDelegate {
             self.view.showToast(message)
         })
     }
+    
 }
-
