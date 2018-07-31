@@ -176,6 +176,8 @@ class UsageTabViewController: AccountPickerViewController {
             .drive(backgroundScrollConstraint.rx.constant)
             .disposed(by: disposeBag)
         
+        showSwitchAccountsLoadingState()
+        barGraphPress(currentContainerButton)
         styleBarGraph()
         bindViewModel()
         dropdownView.configure(withViewModel: viewModel)
@@ -193,8 +195,6 @@ class UsageTabViewController: AccountPickerViewController {
                 }
             })
             .disposed(by: disposeBag)
-        
-        showSwitchAccountsLoadingState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -516,7 +516,7 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.barDescriptionDetailLabelText.drive(graphDetailDescriptionLabel.rx.text).disposed(by: disposeBag)
     }
     
-    //MARK: - Screen States
+    // MARK: - Screen States
     
     private func showSwitchAccountsLoadingState() {
         scrollView?.isHidden = false

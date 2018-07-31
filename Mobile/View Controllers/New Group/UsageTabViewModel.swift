@@ -17,14 +17,14 @@ class UsageTabViewModel {
     
     private var billAnalysisCache = BillAnalysisCache()
     
-    //MARK: - Init
+    // MARK: - Init
     
     required init(accountService: AccountService, usageService: UsageService) {
         self.accountService = accountService
         self.usageService = usageService
     }
     
-    //MARK: - Data Fetching
+    // MARK: - Data Fetching
     
     private let fetchAllDataTrigger = PublishSubject<Void>()
     
@@ -79,7 +79,7 @@ class UsageTabViewModel {
                 })
     }
     
-    //MARK: - Convenience Properties
+    // MARK: - Convenience Properties
     
     private(set) lazy var accountDetail: Driver<AccountDetail> = accountDetailEvents.elements()
         .asDriver(onErrorDriveWith: .empty())
@@ -109,6 +109,7 @@ class UsageTabViewModel {
     enum BarGraphSelection: Int {
         case noData, previous, current, projected, projectionNotAvailable
     }
+    
     let barGraphSelection = Variable(BarGraphSelection.current)
     
     /*
@@ -116,12 +117,16 @@ class UsageTabViewModel {
      * 1 = Weather
      * 2 = Other
      */
-    let likelyReasonsSelectionStates = Variable([Variable(true), Variable(false), Variable(false)])
+    enum LikelyReasonsSelection: Int {
+        case billPeriod, weather, other
+    }
+    
+    let likelyReasonsSelection = Variable(LikelyReasonsSelection.billPeriod)
     
     let electricGasSelectedSegmentIndex = Variable(0)
     let lastYearPreviousBillSelectedSegmentIndex = Variable(1)
     
-    //MARK: - Main States
+    // MARK: - Main States
     
     private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showMainErrorState,
                                                                      showNoNetworkState,
@@ -152,7 +157,8 @@ class UsageTabViewModel {
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
-    //MARK: - Bill Analysis States
+    
+    // MARK: - Bill Analysis States
     
     private(set) lazy var showBillComparisonContents: Driver<Void> = billAnalysisEvents
         .filter { $0.element?.0.reference != nil }
@@ -893,29 +899,31 @@ class UsageTabViewModel {
             }
     }
     
-    private(set) lazy var likelyReasonsDescriptionTitleText: Driver<String?> = likelyReasonsSelectionStates.asDriver().map {
-        if $0[0].value {
+    private(set) lazy var likelyReasonsDescriptionTitleText: Driver<String> = likelyReasonsSelection.asDriver().map {
+        switch $0 {
+        case .billPeriod:
             return NSLocalizedString("Bill Period", comment: "")
-        } else if $0[1].value {
+        case .weather:
             return NSLocalizedString("Weather", comment: "")
-        } else if $0[2].value {
+        case .other:
             return NSLocalizedString("Other", comment: "")
         }
-        return nil
     }
     
     private(set) lazy var likelyReasonsDescriptionDetailText: Driver<String?> =
         Driver.combineLatest(accountDetail,
                              billComparison,
-                             likelyReasonsSelectionStates.asDriver(),
+                             likelyReasonsSelection.asDriver(),
                              electricGasSelectedSegmentIndex.asDriver())
-        { [weak self] accountDetail, billComparison, selectionStates, electricGasSelectedIndex in
+        { [weak self] accountDetail, billComparison, likelyReasonsSelection, electricGasSelectedIndex in
             guard let this = self else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
             guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
-            if selectionStates[0].value { // Bill Period
+            
+            switch likelyReasonsSelection {
+            case .billPeriod:
                 let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
                 let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
                 let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
@@ -929,7 +937,7 @@ class UsageTabViewModel {
                     return NSLocalizedString("You spent about the same based on the number of days in your billing period.", comment: "")
                 }
                 return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString!, gasOrElectricityString, billPeriodDiff)
-            } else if selectionStates[1].value { // Weather
+            case .weather:
                 var localizedString: String!
                 if billComparison.weatherCostDifference >= 1 {
                     localizedString = NSLocalizedString("Your bill was about %@ more. You used more %@ due to changes in weather.", comment: "")
@@ -939,7 +947,7 @@ class UsageTabViewModel {
                     return NSLocalizedString("You spent about the same based on weather conditions.", comment: "")
                 }
                 return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString!, gasOrElectricityString)
-            } else if selectionStates[2].value { // Other
+            case .other:
                 var localizedString: String!
                 if billComparison.otherCostDifference >= 1 {
                     localizedString = NSLocalizedString("Your bill was about %@ more. Your charges increased based on how you used energy. Your bill may be different for " +
@@ -955,7 +963,6 @@ class UsageTabViewModel {
                 }
                 return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString!, gasOrElectricityString)
             }
-            return nil
     }
     
     // MARK: Selection States
@@ -965,11 +972,7 @@ class UsageTabViewModel {
     }
     
     func setLikelyReasonSelected(tag: Int) {
-        for i in stride(from: 0, to: likelyReasonsSelectionStates.value.count, by: 1) {
-            let boolVar = likelyReasonsSelectionStates.value[i]
-            boolVar.value = i == tag
-        }
-        likelyReasonsSelectionStates.value = likelyReasonsSelectionStates.value // Trigger Variable onNext
+        likelyReasonsSelection.value = LikelyReasonsSelection(rawValue: tag) ?? .billPeriod
     }
     
     // MARK: - Text Styling
@@ -1011,18 +1014,18 @@ class UsageTabViewModel {
     
     // MARK: Likely Reasons Border Color Drivers
     private(set) lazy var billPeriodBorderColor: Driver<CGColor> =
-        Driver.combineLatest(likelyReasonsSelectionStates.value[0].asDriver(), noPreviousData) {
-            $0 && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+        Driver.combineLatest(likelyReasonsSelection.asDriver(), noPreviousData) {
+            $0 == .billPeriod && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
     }
     
     private(set) lazy var weatherBorderColor: Driver<CGColor> =
-        Driver.combineLatest(likelyReasonsSelectionStates.value[1].asDriver(), noPreviousData) {
-            $0 && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+        Driver.combineLatest(likelyReasonsSelection.asDriver(), noPreviousData) {
+            $0 == .weather && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
     }
     
     private(set) lazy var otherBorderColor: Driver<CGColor> =
-        Driver.combineLatest(likelyReasonsSelectionStates.value[2].asDriver(), noPreviousData) {
-            $0 && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
+        Driver.combineLatest(likelyReasonsSelection.asDriver(), noPreviousData) {
+            $0 == .other && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
     }
     
     // MARK: - Usage Tools
