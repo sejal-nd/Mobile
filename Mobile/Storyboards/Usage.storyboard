@@ -158,6 +158,9 @@
                                                                                             <constraint firstItem="zIn-mk-W8P" firstAttribute="top" secondItem="ZXe-zM-5Tn" secondAttribute="top" id="f6e-XA-OJM"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="zIn-mk-W8P" secondAttribute="trailing" id="nGp-dT-gvD"/>
                                                                                         </constraints>
+                                                                                        <connections>
+                                                                                            <action selector="barGraphPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="08b-Kf-mk2"/>
+                                                                                        </connections>
                                                                                     </view>
                                                                                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0y-lN-dUc" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                                         <rect key="frame" x="70" y="6" width="60" height="177"/>
@@ -343,6 +346,9 @@
                                                                                             <constraint firstItem="0xg-ZK-uU0" firstAttribute="leading" secondItem="csG-p7-Bmt" secondAttribute="leading" id="tQ8-52-VyN"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="0xg-ZK-uU0" secondAttribute="trailing" id="ym5-G1-IN1"/>
                                                                                         </constraints>
+                                                                                        <connections>
+                                                                                            <action selector="barGraphPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="VAm-0W-cM9"/>
+                                                                                        </connections>
                                                                                     </view>
                                                                                 </subviews>
                                                                                 <constraints>

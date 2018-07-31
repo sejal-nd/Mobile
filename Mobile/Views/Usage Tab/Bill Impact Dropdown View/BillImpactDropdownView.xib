@@ -37,6 +37,7 @@
                 <outlet property="descriptionLabel" destination="s87-fW-M1Q" id="phv-9v-hpr"/>
                 <outlet property="footerLabel" destination="gHS-Vy-Vmn" id="Opc-8r-KBG"/>
                 <outlet property="likelyReasonsDescriptionTriangleCenterXConstraint" destination="rsQ-BU-IU3" id="C2I-ss-wSS"/>
+                <outlet property="likelyReasonsDescriptionTriangleView" destination="jVQ-X1-zgL" id="wNE-xw-dRL"/>
                 <outlet property="likelyReasonsDescriptionView" destination="1Qb-Kp-5Fs" id="6tR-Az-5t8"/>
                 <outlet property="likelyReasonsStackView" destination="W7u-gM-7zJ" id="G03-wr-mds"/>
                 <outlet property="otherButton" destination="Cf7-t2-O65" id="pab-f6-mZd"/>

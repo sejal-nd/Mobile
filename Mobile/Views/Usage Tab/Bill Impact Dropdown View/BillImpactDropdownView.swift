@@ -27,6 +27,7 @@ class BillImpactDropdownView: UIView {
     
     @IBOutlet private weak var contentStackView: UIStackView!
     @IBOutlet private weak var likelyReasonsStackView: UIStackView!
+    @IBOutlet private weak var likelyReasonsDescriptionTriangleView: UIImageView!
     @IBOutlet private weak var likelyReasonsDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     @IBOutlet private weak var likelyReasonsDescriptionView: UIView!
     @IBOutlet private weak var billFactorView: UIView! {
@@ -156,27 +157,6 @@ class BillImpactDropdownView: UIView {
         }
     }
     
-    private var selectedPillView: UIView!{
-        didSet {
-            switch selectedPillView.tag {
-            case 0:
-                billPeriodCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
-                weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
-                otherCircleButton.layer.borderColor = UIColor.clear.cgColor
-            case 1:
-                billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
-                weatherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
-                otherCircleButton.layer.borderColor = UIColor.clear.cgColor
-            case 2:
-                billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
-                weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
-                otherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
-            default:
-                break
-            }
-        }
-    }
-    
     private var viewModel: UsageTabViewModel?
     
     
@@ -184,17 +164,13 @@ class BillImpactDropdownView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         commonInit()
-        
         prepareViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         commonInit()
-        
         prepareViews()
     }
     
@@ -223,19 +199,6 @@ class BillImpactDropdownView: UIView {
     }
     
     @IBAction private func factorImpactPress(_ sender: ButtonControl) {
-        selectedPillView = sender
-        let centerPoint = sender.center
-        let convertedPoint = likelyReasonsStackView.convert(centerPoint, to: likelyReasonsDescriptionView)
-        
-        let centerXOffset = (likelyReasonsDescriptionView.bounds.width / 2)
-        if convertedPoint.x < centerXOffset {
-            likelyReasonsDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
-        } else if convertedPoint.x > centerXOffset {
-            likelyReasonsDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
-        } else {
-            likelyReasonsDescriptionTriangleCenterXConstraint.constant = 0
-        }
-        
         // guard statement will block analytics from occuring on view setup.
         guard let viewModel = viewModel else { return }
         
@@ -270,13 +233,57 @@ class BillImpactDropdownView: UIView {
         viewModel.likelyReasonsLabelText.drive(descriptionLabel.rx.text).disposed(by: disposeBag)
         viewModel.likelyReasonsDescriptionTitleText.drive(bubbleViewTitleLabel.rx.text).disposed(by: disposeBag)
         viewModel.likelyReasonsDescriptionDetailText.drive(bubbleViewDescriptionLabel.rx.text).disposed(by: disposeBag)
-        viewModel.noPreviousData.drive(bubbleView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.noPreviousData.drive(likelyReasonsDescriptionView.rx.isHidden).disposed(by: disposeBag)
         viewModel.noPreviousData.drive(billPeriodUpDownImageView.rx.isHidden).disposed(by: disposeBag)
         viewModel.noPreviousData.drive(weatherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
         viewModel.noPreviousData.drive(otherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
         for label in likelyReasonsNoDataLabels {
             viewModel.noPreviousData.not().drive(label.rx.isHidden).disposed(by: disposeBag)
         }
+        
+        Driver.combineLatest(viewModel.likelyReasonsSelection.asDriver().distinctUntilChanged(),
+                             viewModel.noPreviousData.distinctUntilChanged())
+            .drive(onNext: { [weak self] likelyReasonsSelection, noPreviousData in
+                self?.updateLikelyReasonsSelection(noPreviousData ? nil : likelyReasonsSelection)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.noPreviousData.drive(billPeriodCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+        viewModel.noPreviousData.drive(weatherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+        viewModel.noPreviousData.drive(otherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+    }
+    
+    private func updateLikelyReasonsSelection(_ selection: UsageTabViewModel.LikelyReasonsSelection?) {
+        var selectedCircleButton: UIView?
+        switch selection {
+        case .billPeriod?:
+            selectedCircleButton = billPeriodCircleButton
+            billPeriodCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
+            weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
+            otherCircleButton.layer.borderColor = UIColor.clear.cgColor
+        case .weather?:
+            selectedCircleButton = weatherCircleButton
+            billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
+            weatherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
+            otherCircleButton.layer.borderColor = UIColor.clear.cgColor
+        case .other?:
+            selectedCircleButton = otherCircleButton
+            billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
+            weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
+            otherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
+        case .none:
+            selectedCircleButton = nil
+            billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
+            weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
+            otherCircleButton.layer.borderColor = UIColor.clear.cgColor
+        }
+        
+        guard let button = selectedCircleButton else { return }
+        
+        likelyReasonsDescriptionTriangleCenterXConstraint.isActive = false
+        likelyReasonsDescriptionTriangleCenterXConstraint = likelyReasonsDescriptionTriangleView.centerXAnchor
+            .constraint(equalTo: button.centerXAnchor)
+        likelyReasonsDescriptionTriangleCenterXConstraint.isActive = true
     }
     
 }
