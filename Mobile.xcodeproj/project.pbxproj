@@ -466,9 +466,9 @@
 		8286F1A3204468B600EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
 		8286F1A4204468B700EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
 		8286F1A6204468B800EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
-		828FDAF32040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */; };
-		828FDAF42040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */; };
-		828FDAF52040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */; };
+		828FDAF32040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */; };
+		828FDAF42040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */; };
+		828FDAF52040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */; };
 		828FDAF62040B9F5009B7EE4 /* SmartEnergyRewardsVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */; };
 		828FDAF72040B9F5009B7EE4 /* SmartEnergyRewardsVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */; };
 		828FDAF82040B9F6009B7EE4 /* SmartEnergyRewardsVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */; };
@@ -780,6 +780,9 @@
 		B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
+		B0472B252110FCC30048C1A7 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
+		B0472B262110FCC40048C1A7 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
+		B0472B272110FCC40048C1A7 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
 		B067E0A32045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
 		B067E0A42045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
 		B067E0A52045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
@@ -819,33 +822,6 @@
 		B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
 		B07D247F20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
 		B07D248020C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
-		B0882C9A2108FD9600EB756B /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C992108FD9600EB756B /* UsageViewModelTests.swift */; };
-		B0882C9B2108FD9600EB756B /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C992108FD9600EB756B /* UsageViewModelTests.swift */; };
-		B0882C9C2108FD9600EB756B /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C992108FD9600EB756B /* UsageViewModelTests.swift */; };
-		B0882C9F210B925000EB756B /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
-		B0882CA0210B925000EB756B /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
-		B0882CA1210B925000EB756B /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
-		B0882CA2210B925000EB756B /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
-		B0882CA3210B925000EB756B /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
-		B0882CA4210B925000EB756B /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
-		B0882CA6210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
-		B0882CA7210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
-		B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
-		B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
-		B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
-		B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
-		B0882CAD210B938700EB756B /* UsageToolTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */; };
-		B0882CAE210B938700EB756B /* UsageToolTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */; };
-		B0882CAF210B938700EB756B /* UsageToolTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */; };
-		B0882CB0210B938700EB756B /* UsageToolTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */; };
-		B0882CB1210B938700EB756B /* UsageToolTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */; };
-		B0882CB2210B938700EB756B /* UsageToolTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */; };
-		B0882CB4210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
-		B0882CB5210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
-		B0882CB6210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
-		B0882CB7210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
-		B0882CB8210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
-		B0882CB9210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
 		B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
 		B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
 		B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
@@ -855,6 +831,27 @@
 		B085C44A20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
 		B085C44B20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
 		B085C44C20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
+		B0882C9A2108FD9600EB756B /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C992108FD9600EB756B /* UsageViewModelTests.swift */; };
+		B0882C9B2108FD9600EB756B /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C992108FD9600EB756B /* UsageViewModelTests.swift */; };
+		B0882C9C2108FD9600EB756B /* UsageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C992108FD9600EB756B /* UsageViewModelTests.swift */; };
+		B0882C9F210B925000EB756B /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
+		B0882CA0210B925000EB756B /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
+		B0882CA1210B925000EB756B /* UsageToolCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882C9E210B925000EB756B /* UsageToolCardView.swift */; };
+		B0882CA6210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
+		B0882CA7210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
+		B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
+		B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
+		B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
+		B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CA5210B926B00EB756B /* UsageToolCardView.xib */; };
+		B0882CAD210B938700EB756B /* UsageToolTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */; };
+		B0882CAE210B938700EB756B /* UsageToolTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */; };
+		B0882CAF210B938700EB756B /* UsageToolTopCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */; };
+		B0882CB4210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
+		B0882CB5210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
+		B0882CB6210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
+		B0882CB7210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
+		B0882CB8210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
+		B0882CB9210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
 		B092184320A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
 		B092184420A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
 		B092184520A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
@@ -2358,7 +2355,7 @@
 		826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedAccountPickerTableViewCell.xib; sourceTree = "<group>"; };
 		82837D131F20677700C31E1C /* RecentPaymentsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPaymentsStore.swift; sourceTree = "<group>"; };
 		8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsViewModelTests.swift; sourceTree = "<group>"; };
-		828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModelTests.swift; sourceTree = "<group>"; };
+		828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsVCViewModelTests.swift; sourceTree = "<group>"; };
 		8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableExtensions.swift; sourceTree = "<group>"; };
 		829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInitExtensions.swift; sourceTree = "<group>"; };
 		829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5EnergyTipsTests.swift; sourceTree = "<group>"; };
@@ -2468,13 +2465,13 @@
 		B07D247220C590AB00BD22EB /* HomeWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
 		B07D247620C590BE00BD22EB /* HomeWeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWeatherView.xib; sourceTree = "<group>"; };
 		B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherViewModel.swift; sourceTree = "<group>"; };
+		B085C44220FD2C5500CE0893 /* ConversationalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationalButton.swift; sourceTree = "<group>"; };
+		B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedOutagesStore.swift; sourceTree = "<group>"; };
 		B0882C992108FD9600EB756B /* UsageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModelTests.swift; sourceTree = "<group>"; };
 		B0882C9E210B925000EB756B /* UsageToolCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageToolCardView.swift; sourceTree = "<group>"; };
 		B0882CA5210B926B00EB756B /* UsageToolCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsageToolCardView.xib; sourceTree = "<group>"; };
 		B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageToolTopCardView.swift; sourceTree = "<group>"; };
 		B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsageToolTopCardView.xib; sourceTree = "<group>"; };
-		B085C44220FD2C5500CE0893 /* ConversationalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationalButton.swift; sourceTree = "<group>"; };
-		B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedOutagesStore.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
 		B092184C20A24CA400695888 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		B09356AB20D8042000DABC73 /* RxGesture.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxGesture.framework; path = Carthage/Build/iOS/RxGesture.framework; sourceTree = "<group>"; };
@@ -3625,7 +3622,7 @@
 				82119FE2203F4BE500A56FEE /* MyHomeProfileTests.swift */,
 				8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */,
 				829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */,
-				828FDAF22040B91A009B7EE4 /* UsageViewModelTests.swift */,
+				828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */,
 			);
 			path = Usage;
 			sourceTree = "<group>";
@@ -7012,7 +7009,6 @@
 				8286F1A3204468B600EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E8F51EE31EC9F7F90080AB3E /* BudgetBillingViewModel.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
-				B0882CB0210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				B574BAF41E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				E89399401F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
@@ -7108,7 +7104,6 @@
 				82AC2A261FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
 				82AC2A281FAB76F500EACB3B /* PeakRewardsSummary.swift in Sources */,
 				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
-				B0882CA2210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				B52CA0B21F311524002B5674 /* Analytics.swift in Sources */,
 				B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */,
 				829D396F203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
@@ -7119,7 +7114,7 @@
 				82E22B6A1F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8EDC5521F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */,
-				828FDAF32040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */,
+				828FDAF32040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */,
 				E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
 				B56DD49B1ED84E6000F0198B /* FiservApi.swift in Sources */,
@@ -7150,6 +7145,7 @@
 				E89496391EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */,
 				E8400E651FE05EFD0064E242 /* MockPaymentService.swift in Sources */,
+				B0472B252110FCC30048C1A7 /* UsageTool.swift in Sources */,
 				E87E8AE31FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift in Sources */,
 				E89C162D1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */,
@@ -7225,7 +7221,6 @@
 				8286F1A4204468B700EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E8F62B48200924410077B3DA /* BudgetBillingViewModel.swift in Sources */,
 				E8F62B49200924410077B3DA /* AuthenticationService.swift in Sources */,
-				B0882CB1210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				E8F62B4A200924410077B3DA /* OutageStatus.swift in Sources */,
 				E8F62B4B200924410077B3DA /* UIViewDashedBorders.swift in Sources */,
 				E8F62B4C200924410077B3DA /* Control.swift in Sources */,
@@ -7321,7 +7316,6 @@
 				E8F62B9B200924410077B3DA /* PeakRewardsViewModel.swift in Sources */,
 				E8F62B9C200924410077B3DA /* PeakRewardsSummary.swift in Sources */,
 				E8F62B9F200924410077B3DA /* ActivityTracker.swift in Sources */,
-				B0882CA3210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				E8F62BA0200924410077B3DA /* Analytics.swift in Sources */,
 				B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */,
 				829D3970203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
@@ -7332,7 +7326,7 @@
 				E8F62BA6200924410077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8F62BA7200924410077B3DA /* SplashViewModel.swift in Sources */,
 				E8F62BA8200924410077B3DA /* FiservErrorMapper.swift in Sources */,
-				828FDAF42040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */,
+				828FDAF42040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */,
 				E8F62BA9200924410077B3DA /* WeatherService.swift in Sources */,
 				E8F62BAA200924410077B3DA /* Macros.swift in Sources */,
 				E8F62BAB200924410077B3DA /* FiservApi.swift in Sources */,
@@ -7363,6 +7357,7 @@
 				E8F62BBF200924410077B3DA /* NotificationNames.swift in Sources */,
 				E8F62BC0200924410077B3DA /* ReportOutageViewModel.swift in Sources */,
 				E8F62BC1200924410077B3DA /* MockPaymentService.swift in Sources */,
+				B0472B262110FCC40048C1A7 /* UsageTool.swift in Sources */,
 				E8F62BC2200924410077B3DA /* AlertPreferencesViewModelTests.swift in Sources */,
 				E8F62BC3200924410077B3DA /* UsageService.swift in Sources */,
 				E8F62BC4200924410077B3DA /* LoginViewModelTests.swift in Sources */,
@@ -7396,7 +7391,6 @@
 				8286F1A6204468B800EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E8F62BFD200924570077B3DA /* BudgetBillingViewModel.swift in Sources */,
 				E8F62BFE200924570077B3DA /* AuthenticationService.swift in Sources */,
-				B0882CB2210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				E8F62BFF200924570077B3DA /* OutageStatus.swift in Sources */,
 				E8F62C00200924570077B3DA /* UIViewDashedBorders.swift in Sources */,
 				E8F62C01200924570077B3DA /* Control.swift in Sources */,
@@ -7492,7 +7486,6 @@
 				E8F62C50200924570077B3DA /* PeakRewardsViewModel.swift in Sources */,
 				E8F62C51200924570077B3DA /* PeakRewardsSummary.swift in Sources */,
 				E8F62C54200924570077B3DA /* ActivityTracker.swift in Sources */,
-				B0882CA4210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				E8F62C55200924570077B3DA /* Analytics.swift in Sources */,
 				B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */,
 				829D3971203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
@@ -7503,7 +7496,7 @@
 				E8F62C5B200924570077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8F62C5C200924570077B3DA /* SplashViewModel.swift in Sources */,
 				E8F62C5D200924570077B3DA /* FiservErrorMapper.swift in Sources */,
-				828FDAF52040B91A009B7EE4 /* UsageViewModelTests.swift in Sources */,
+				828FDAF52040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */,
 				E8F62C5E200924570077B3DA /* WeatherService.swift in Sources */,
 				E8F62C5F200924570077B3DA /* Macros.swift in Sources */,
 				E8F62C60200924570077B3DA /* FiservApi.swift in Sources */,
@@ -7534,6 +7527,7 @@
 				E8F62C74200924570077B3DA /* NotificationNames.swift in Sources */,
 				E8F62C75200924570077B3DA /* ReportOutageViewModel.swift in Sources */,
 				E8F62C76200924570077B3DA /* MockPaymentService.swift in Sources */,
+				B0472B272110FCC40048C1A7 /* UsageTool.swift in Sources */,
 				E8F62C77200924570077B3DA /* AlertPreferencesViewModelTests.swift in Sources */,
 				E8F62C78200924570077B3DA /* UsageService.swift in Sources */,
 				E8F62C79200924570077B3DA /* LoginViewModelTests.swift in Sources */,

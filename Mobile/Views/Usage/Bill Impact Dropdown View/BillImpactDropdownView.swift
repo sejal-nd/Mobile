@@ -285,5 +285,4 @@ class BillImpactDropdownView: UIView {
             .constraint(equalTo: button.centerXAnchor)
         likelyReasonsDescriptionTriangleCenterXConstraint.isActive = true
     }
-    
 }

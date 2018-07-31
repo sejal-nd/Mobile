@@ -1005,22 +1005,6 @@ class UsageViewModel {
         .distinctUntilChanged()
         .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
-    // MARK: Likely Reasons Border Color Drivers
-    private(set) lazy var billPeriodBorderColor: Driver<CGColor> =
-        Driver.combineLatest(likelyReasonsSelection.asDriver(), noPreviousData) {
-            $0 == .billPeriod && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
-    }
-    
-    private(set) lazy var weatherBorderColor: Driver<CGColor> =
-        Driver.combineLatest(likelyReasonsSelection.asDriver(), noPreviousData) {
-            $0 == .weather && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
-    }
-    
-    private(set) lazy var otherBorderColor: Driver<CGColor> =
-        Driver.combineLatest(likelyReasonsSelection.asDriver(), noPreviousData) {
-            $0 == .other && !$1 ? UIColor.primaryColor.cgColor : UIColor.clear.cgColor
-    }
-    
     // MARK: - Usage Tools
     
     private(set) lazy var usageTools: Driver<[UsageTool]> = accountDetail

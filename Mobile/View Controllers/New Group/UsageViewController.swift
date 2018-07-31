@@ -701,7 +701,6 @@ class UsageViewController: AccountPickerViewController {
             break
         }
     }
-    
 }
 
 extension UsageViewController: AccountPickerDelegate {
