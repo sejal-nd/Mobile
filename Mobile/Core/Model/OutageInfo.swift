@@ -65,7 +65,7 @@ struct ReportedOutageResult: Mappable {
         etr = map.optionalFrom("etr", transformation: DateParser().extractDate)
         
         do {
-            reportedTime = try map.from("reportedTime", transformation: DateParser().extractDate) ?? Date()
+            reportedTime = try map.from("reportedTime", transformation: DateParser().extractDate)
         } catch {
             reportedTime = Date()
         }

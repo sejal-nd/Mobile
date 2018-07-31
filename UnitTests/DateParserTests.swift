@@ -25,32 +25,72 @@ class DateParserTests: XCTestCase {
     }
     
     func testyyyyMMddFormatter() {
-        var yyyyMMddFormatterDate = try? DateParser().extractDate(object: "2012/02/22")
+        var formatterDate = try? DateParser().extractDate(object: "2012/02/22")
 
         var dateComponents = DateComponents()
         dateComponents.year = 2012
         dateComponents.month = 02
         dateComponents.day = 22
-        let yyyyMMddFormatterDesiredDate = Calendar.current.date(from: dateComponents)
+        let desiredDate = Calendar.current.date(from: dateComponents)
 
-        XCTAssertEqual(yyyyMMddFormatterDate, yyyyMMddFormatterDesiredDate)
+        XCTAssertEqual(formatterDate, desiredDate)
     }
     
-//    func testyyyyMMddTHHmmssFormatter() {
-//        // This is an example of a functional test case.
-//        // Use XCTAssert and related functions to verify your tests produce the correct results.
-//    }
-//
-//    func testyyyyMMddTHHmmssZZZZZFormatter() {
-//
-//    }
-//
-//    func testapiFormatDate() {
-//
-//    }
-//
-//    func testyyyyMMddTHHmmssSSSFormatter() {
-//
-//    }
+    func testyyyyMMddTHHmmssFormatter() {
+        var formatterDate = try? DateParser().extractDate(object: "2012-02-22T01:02:00.000")
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2012
+        dateComponents.month = 02
+        dateComponents.day = 22
+        dateComponents.hour = 01
+        dateComponents.minute = 02
+        let desiredDate = Calendar.current.date(from: dateComponents)
+        
+        XCTAssertEqual(formatterDate, desiredDate)
+    }
+
+    func testyyyyMMddTHHmmssZZZZZFormatter() {
+        var formatterDate = try? DateParser().extractDate(object: "2012-02-22T01:02:00Z")
+        
+        var dateComponents = DateComponents()
+        dateComponents.timeZone = .gmt
+        dateComponents.year = 2012
+        dateComponents.month = 02
+        dateComponents.day = 22
+        dateComponents.hour = 01
+        dateComponents.minute = 02
+        let desiredDate = Calendar.current.date(from: dateComponents)
+
+        XCTAssertEqual(formatterDate, desiredDate)
+    }
+
+    func testapiFormatDate() {
+        var formatterDate = try? DateParser().extractDate(object: "2012-02-22T01:02:00")
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2012
+        dateComponents.month = 02
+        dateComponents.day = 22
+        dateComponents.hour = 01
+        dateComponents.minute = 02
+        let desiredDate = Calendar.current.date(from: dateComponents)
+
+        XCTAssertEqual(formatterDate, desiredDate)
+    }
+
+    func testyyyyMMddTHHmmssSSSFormatter() {
+        var formatterDate = try? DateParser().extractDate(object: "2012-02-22T01:02:00.000")
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2012
+        dateComponents.month = 02
+        dateComponents.day = 22
+        dateComponents.hour = 01
+        dateComponents.minute = 02
+        let desiredDate = Calendar.current.date(from: dateComponents)
+
+        XCTAssertEqual(formatterDate, desiredDate)
+    }
     
 }
