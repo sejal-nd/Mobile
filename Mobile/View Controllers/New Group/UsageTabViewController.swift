@@ -283,12 +283,6 @@ class UsageTabViewController: AccountPickerViewController {
         projectedNotAvailableDaysRemainingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         projectionNotAvailableUntilNextForecastLabel.font = SystemFont.regular.of(textStyle: .footnote)
         viewModel.projectionNotAvailableLabelFont.drive(projectedNotAvailableDateLabel.rx.font).disposed(by: disposeBag)
-        
-//        billComparisonEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
-//        billComparisonEmptyStateLabel.setLineHeight(lineHeight: 26)
-//        billComparisonEmptyStateLabel.textAlignment = .center
-//        billComparisonEmptyStateLabel.textColor = .middleGray
-//        billComparisonEmptyStateLabel.text = NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
     }
     
     
@@ -297,7 +291,7 @@ class UsageTabViewController: AccountPickerViewController {
     private func bindViewModel() {
         bindDataFetching()
         bindViewStates()
-        bindBillAnalysisData()
+        bindBillComparisonData()
         viewModel.usageTools
             .drive(onNext: { [weak self] in self?.updateUsageToolCards($0) })
             .disposed(by: disposeBag)
@@ -308,7 +302,7 @@ class UsageTabViewController: AccountPickerViewController {
                      previousBillButton.rx.tap.asDriver().map(to: 1))
             .drive(onNext: { [weak self] index in
                 guard let this = self else { return }
-                this.showBillAnalysisLoadingState()
+                this.showBillComparisonLoadingState()
                 this.previousBillButton.isEnabled = index == 0
                 this.lastYearButton.isEnabled = index == 1
                 this.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = index
@@ -350,11 +344,11 @@ class UsageTabViewController: AccountPickerViewController {
             .disposed(by: disposeBag)
         
         viewModel.showBillComparisonContents
-            .drive(onNext: { [weak self] in self?.showBillAnalysisContents()})
+            .drive(onNext: { [weak self] in self?.showBillComparisonContents()})
             .disposed(by: disposeBag)
         
         viewModel.showBillComparisonErrorState
-            .drive(onNext: { [weak self] in self?.showBillAnalysisErrorState() })
+            .drive(onNext: { [weak self] in self?.showBillComparisonErrorState() })
             .disposed(by: disposeBag)
         
         noNetworkConnectionView.reload.asDriver(onErrorDriveWith: .empty())
@@ -373,10 +367,10 @@ class UsageTabViewController: AccountPickerViewController {
             .disposed(by: disposeBag)
     }
     
-    private func bindBillAnalysisData() {
+    private func bindBillComparisonData() {
         // Segmented Control
         segmentControl.selectedIndex.asDriver()
-            .do(onNext: { [weak self] _ in self?.showBillAnalysisLoadingState() })
+            .do(onNext: { [weak self] _ in self?.showBillComparisonLoadingState() })
             .drive(viewModel.electricGasSelectedSegmentIndex)
             .disposed(by: disposeBag)
         
@@ -521,7 +515,7 @@ class UsageTabViewController: AccountPickerViewController {
         contentStack.isHidden = true
         mainErrorView.isHidden = true
         noNetworkConnectionView.isHidden = true
-        showBillAnalysisLoadingState()
+        showBillComparisonLoadingState()
     }
     
     private func showMainContents() {
@@ -560,7 +554,7 @@ class UsageTabViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = false
     }
     
-    private func showBillAnalysisLoadingState() {
+    private func showBillComparisonLoadingState() {
         billComparisonLoadingIndicator.isHidden = false
         barGraphStackView.isHidden = true
         billGraphDetailContainer.isHidden = true
@@ -568,7 +562,7 @@ class UsageTabViewController: AccountPickerViewController {
         graphErrorLabel.isHidden = true
     }
     
-    private func showBillAnalysisContents() {
+    private func showBillComparisonContents() {
         billComparisonLoadingIndicator.isHidden = true
         barGraphStackView.isHidden = false
         billGraphDetailContainer.isHidden = false
@@ -576,7 +570,7 @@ class UsageTabViewController: AccountPickerViewController {
         graphErrorLabel.isHidden = true
     }
     
-    private func showBillAnalysisErrorState() {
+    private func showBillComparisonErrorState() {
         billComparisonLoadingIndicator.isHidden = true
         barGraphStackView.isHidden = true
         billGraphDetailContainer.isHidden = true
