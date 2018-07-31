@@ -1,5 +1,5 @@
 //
-//  UsageTabViewController.swift
+//  UsageViewController.swift
 //  BGE
 //
 //  Created by Joseph Erlandson on 7/12/18.
@@ -158,7 +158,7 @@ class UsageViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = UsageTabViewModel(accountService: ServiceFactory.createAccountService(), usageService: ServiceFactory.createUsageService())
+    let viewModel = UsageViewModel(accountService: ServiceFactory.createAccountService(), usageService: ServiceFactory.createUsageService())
     
     
     // MARK: - View Life Cycle

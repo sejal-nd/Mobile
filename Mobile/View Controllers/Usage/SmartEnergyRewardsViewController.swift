@@ -30,7 +30,7 @@ class SmartEnergyRewardsViewController: UIViewController {
     
     var accountDetail: AccountDetail! // Passed from HomeViewController
     
-    var viewModel: UsageViewModel!
+    var viewModel: SmartEnergyRewardsVCViewModel!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ class SmartEnergyRewardsViewController: UIViewController {
         styleViews()
         buttonTapSetup()
         
-        viewModel = UsageViewModel(accountDetail: accountDetail)
+        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: accountDetail)
         smartEnergyRewardsView.viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: Driver.just(accountDetail))
         bindViewModel()
     }

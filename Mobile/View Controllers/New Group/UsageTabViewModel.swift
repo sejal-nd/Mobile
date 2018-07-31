@@ -1,5 +1,5 @@
 //
-//  UsageTabViewModel.swift
+//  UsageViewModel.swift
 //  BGE
 //
 //  Created by Joseph Erlandson on 7/20/18.
@@ -10,10 +10,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class UsageTabViewModel {
+class UsageViewModel {
     
-    let accountService: AccountService
-    let usageService: UsageService
+    private let accountService: AccountService
+    private let usageService: UsageService
     
     private var billAnalysisCache = BillAnalysisCache()
     

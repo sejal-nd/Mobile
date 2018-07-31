@@ -513,7 +513,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? UsageViewController, let accountDetail = sender as? AccountDetail {
+        if let vc = segue.destination as? SmartEnergyRewardsViewController, let accountDetail = sender as? AccountDetail {
             vc.accountDetail = accountDetail
         } else if let vc = segue.destination as? TotalSavingsViewController, let accountDetail = sender as? AccountDetail {
             vc.eventResults = accountDetail.serInfo.eventResults

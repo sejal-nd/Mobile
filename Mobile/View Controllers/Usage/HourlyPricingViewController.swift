@@ -18,7 +18,7 @@ class HourlyPricingViewController: UIViewController {
     
     let accountService = ServiceFactory.createAccountService()
     
-    var accountDetail: AccountDetail! // Passed from UsageViewController
+    var accountDetail: AccountDetail! // Passed from SmartEnergyRewardsViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()

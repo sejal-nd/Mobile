@@ -157,7 +157,7 @@ class BillImpactDropdownView: UIView {
         }
     }
     
-    private var viewModel: UsageTabViewModel?
+    private var viewModel: UsageViewModel?
     
     
     // MARK: - Init
@@ -216,12 +216,12 @@ class BillImpactDropdownView: UIView {
     
     // MARK: - Configuration
     
-    func configure(withViewModel viewModel: UsageTabViewModel) {
+    func configure(withViewModel viewModel: UsageViewModel) {
         self.viewModel = viewModel
         bindViewModel(viewModel)
     }
     
-    func bindViewModel(_ viewModel: UsageTabViewModel) {
+    func bindViewModel(_ viewModel: UsageViewModel) {
         // Likely reasons
         viewModel.billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
         viewModel.billPeriodA11yLabel.drive(billPeriodButton.rx.accessibilityLabel).disposed(by: disposeBag)
@@ -253,7 +253,7 @@ class BillImpactDropdownView: UIView {
         viewModel.noPreviousData.drive(otherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
     }
     
-    private func updateLikelyReasonsSelection(_ selection: UsageTabViewModel.LikelyReasonsSelection?) {
+    private func updateLikelyReasonsSelection(_ selection: UsageViewModel.LikelyReasonsSelection?) {
         var selectedCircleButton: UIView?
         switch selection {
         case .billPeriod?:
