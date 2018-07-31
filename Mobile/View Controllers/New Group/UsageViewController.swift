@@ -476,6 +476,7 @@ class UsageViewController: AccountPickerViewController {
         viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.projectedBarA11yLabel.drive(projectedContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.projectionNotAvailableA11yLabel.drive(projectionNotAvailableContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        
         Driver.combineLatest(viewModel.noPreviousData.asDriver(),
                              viewModel.showProjectedBar.asDriver(),
                              viewModel.showProjectionNotAvailableBar.asDriver())
