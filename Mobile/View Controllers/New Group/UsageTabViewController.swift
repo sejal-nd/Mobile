@@ -399,15 +399,40 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.showElectricGasSegmentedControl.not().drive(segmentControl.rx.isHidden).disposed(by: disposeBag)
         viewModel.compareBillTitle.drive(compareBillTitlelabel.rx.text).disposed(by: disposeBag)
         
-        viewModel.showProjectedBar
-            .drive(onNext: { [weak self] shouldShow in
+        // Update bar graph selection when the current selection is no longer available.
+        Driver.combineLatest(viewModel.barGraphSelection.asDriver().distinctUntilChanged(),
+                             viewModel.showProjectedBar.distinctUntilChanged(),
+                             viewModel.noPreviousData.distinctUntilChanged(),
+                             viewModel.showProjectionNotAvailableBar.distinctUntilChanged())
+            .drive(onNext: { [weak self] barGraphSelection, showProjected, noPreviousData, showProjectionNotAvailableBar in
                 guard let this = self else { return }
-                if shouldShow {
-                    this.barGraphPress(this.projectedContainerButton)
-                } else {
-                    this.barGraphPress(this.currentContainerButton)
+                
+                switch barGraphSelection {
+                case .noData:
+                    if !noPreviousData {
+                        this.barGraphPress(this.previousContainerButton)
+                    }
+                case .previous:
+                    if noPreviousData {
+                        this.barGraphPress(this.noDataContainerButton)
+                    }
+                case .current:
+                    return // Current should always be available
+                case .projected:
+                    if !showProjected {
+                        this.barGraphPress(this.currentContainerButton)
+                    }
+                case .projectionNotAvailable:
+                    if !showProjectionNotAvailableBar {
+                        if showProjected {
+                            this.barGraphPress(this.projectedContainerButton)
+                        } else {
+                            this.barGraphPress(this.currentContainerButton)
+                        }
+                    }
                 }
-            }).disposed(by: self.disposeBag)
+            })
+            .disposed(by: disposeBag)
         
         // Bar graph height constraints
         viewModel.previousBarHeightConstraintValue
@@ -442,7 +467,7 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.noPreviousData.not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.noPreviousData.drive(previousContainerButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.showProjectedBar.not().drive(projectedContainerButton.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowProjectionNotAvailableBar.not().drive(projectionNotAvailableContainerButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showProjectionNotAvailableBar.not().drive(projectionNotAvailableContainerButton.rx.isHidden).disposed(by: disposeBag)
         
         // Bar labels
         viewModel.noDataBarDateLabelText.drive(noDataDateLabel.rx.text).disposed(by: disposeBag)
@@ -461,23 +486,29 @@ class UsageTabViewController: AccountPickerViewController {
         viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.projectedBarA11yLabel.drive(projectedContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.projectionNotAvailableA11yLabel.drive(projectionNotAvailableContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
-        Observable.combineLatest(viewModel.noPreviousData.asObservable(), viewModel.showProjectedBar.asObservable(), viewModel.shouldShowProjectionNotAvailableBar.asObservable()).map { [weak self] in
-            guard let `self` = self else { return }
-            var a11yElementArray: [ButtonControl] = []
-            if $0.0 {
-                a11yElementArray.append(self.noDataContainerButton)
-            } else {
-                a11yElementArray.append(self.previousContainerButton)
-            }
-            a11yElementArray.append(self.currentContainerButton)
-            if $0.1 {
-                a11yElementArray.append(self.projectedContainerButton)
-            }
-            if $0.2 {
-                a11yElementArray.append(self.projectionNotAvailableContainerButton)
-            }
-            self.barGraphStackView.accessibilityElements = a11yElementArray
-            }.subscribe().disposed(by: disposeBag)
+        Driver.combineLatest(viewModel.noPreviousData.asDriver(),
+                             viewModel.showProjectedBar.asDriver(),
+                             viewModel.showProjectionNotAvailableBar.asDriver())
+            .drive(onNext: { [weak self] noPreviousData, showProjectedBar, showProjectionNotAvailableBar in
+                guard let this = self else { return }
+                
+                var a11yElementArray: [ButtonControl] = []
+                if noPreviousData {
+                    a11yElementArray.append(this.noDataContainerButton)
+                } else {
+                    a11yElementArray.append(this.previousContainerButton)
+                }
+                a11yElementArray.append(this.currentContainerButton)
+                if showProjectedBar {
+                    a11yElementArray.append(this.projectedContainerButton)
+                }
+                if showProjectionNotAvailableBar {
+                    a11yElementArray.append(this.projectionNotAvailableContainerButton)
+                }
+                
+                this.barGraphStackView.accessibilityElements = a11yElementArray
+            })
+            .disposed(by: disposeBag)
         
         // Bar description labels
         viewModel.barDescriptionDateLabelText.drive(graphDetailDateLabel.rx.text).disposed(by: disposeBag)

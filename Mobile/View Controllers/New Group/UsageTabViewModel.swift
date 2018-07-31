@@ -40,9 +40,9 @@ class UsageTabViewModel {
     }
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
-        .combineLatest(self.accountDetailEvents.elements().filter { $0.hasUsageData },
-                       self.lastYearPreviousBillSelectedSegmentIndex.asObservable(),
-                       self.electricGasSelectedSegmentIndex.asObservable())
+        .combineLatest(accountDetailEvents.elements().filter { $0.hasUsageData },
+                       lastYearPreviousBillSelectedSegmentIndex.asObservable(),
+                       electricGasSelectedSegmentIndex.asObservable())
         .toAsyncRequest { [unowned self] (accountDetail, yearsIndex, electricGasIndex) in
             let isGas = self.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasIndex)
@@ -92,7 +92,7 @@ class UsageTabViewModel {
         .map { $1 }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var noPreviousData: Driver<Bool> = self.billComparison.map { $0.compared == nil }
+    private(set) lazy var noPreviousData: Driver<Bool> = billComparison.map { $0.compared == nil }
 
     
     // RX CODE C / P Bill ANalysis
@@ -196,7 +196,7 @@ class UsageTabViewModel {
     // MARK: No Data Bar Drivers
     
     private(set) lazy var noDataBarDateLabelText: Driver<String?> =
-        Driver.combineLatest(self.billComparison, self.lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
+        Driver.combineLatest(billComparison, lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
             guard let reference = $0.reference else { return nil }
             if $1 == 0 { // Last Year
                 let lastYearDate = Calendar.opCo.date(byAdding: .year, value: -1, to: reference.endDate)!
@@ -210,7 +210,7 @@ class UsageTabViewModel {
     // MARK: Previous Bar Drivers
     
     private(set) lazy var previousBarHeightConstraintValue: Driver<CGFloat> =
-        Driver.combineLatest(self.billComparison, self.projectedCost) { billComparison, projectedCost in
+        Driver.combineLatest(billComparison, projectedCost) { billComparison, projectedCost in
             guard let reference = billComparison.reference else { return 134 }
             guard let compared = billComparison.compared else { return 0 }
             if compared.charges < 0 {
@@ -235,11 +235,11 @@ class UsageTabViewModel {
             }
     }
     
-    private(set) lazy var previousBarDollarLabelText: Driver<String?> = self.billComparison
+    private(set) lazy var previousBarDollarLabelText: Driver<String?> = billComparison
         .map { $0.compared?.charges.currencyString }
     
     private(set) lazy var previousBarDateLabelText: Driver<String?> =
-        Driver.combineLatest(self.billComparison, self.lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
+        Driver.combineLatest(billComparison, lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
             guard let compared = $0.compared else { return nil }
             if $1 == 0 { // Last Year
                 return "\(Calendar.opCo.component(.year, from: compared.endDate))"
@@ -251,7 +251,7 @@ class UsageTabViewModel {
     // MARK: Current Bar Drivers
     
     private(set) lazy var currentBarHeightConstraintValue: Driver<CGFloat> =
-        Driver.combineLatest(self.billComparison, self.projectedCost) { billComparison, projectedCost in
+        Driver.combineLatest(billComparison, projectedCost) { billComparison, projectedCost in
             guard let reference = billComparison.reference else { return 0 }
             guard let compared = billComparison.compared else { return 134 }
             if reference.charges < 0 {
@@ -276,13 +276,13 @@ class UsageTabViewModel {
             }
     }
     
-    private(set) lazy var currentBarDollarLabelText: Driver<String?> = self.billComparison.map {
+    private(set) lazy var currentBarDollarLabelText: Driver<String?> = billComparison.map {
         guard let reference = $0.reference else { return nil }
         return reference.charges.currencyString
     }
     
     private(set) lazy var currentBarDateLabelText: Driver<String?> =
-        Driver.combineLatest(self.billComparison, self.lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
+        Driver.combineLatest(billComparison, lastYearPreviousBillSelectedSegmentIndex.asDriver()) {
             guard let reference = $0.reference else { return nil }
             if $1 == 0 { // Last Year
                 return "\(Calendar.opCo.component(.year, from: reference.endDate))"
@@ -294,9 +294,9 @@ class UsageTabViewModel {
     // MARK: Projection Bar Drivers
     
     private(set) lazy var projectedCost: Driver<Double?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver())
+        Driver.combineLatest(accountDetail,
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
             guard let this = self else { return nil }
             if this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex) {
@@ -307,9 +307,9 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var projectedUsage: Driver<Double?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver())
+        Driver.combineLatest(accountDetail,
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
             guard let this = self else { return nil }
             if this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex) {
@@ -320,13 +320,13 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var showProjectedBar: Driver<Bool> =
-        Driver.combineLatest(self.lastYearPreviousBillSelectedSegmentIndex.asDriver(), self.projectedCost, self.shouldShowProjectionNotAvailableBar) {
+        Driver.combineLatest(lastYearPreviousBillSelectedSegmentIndex.asDriver(), projectedCost, showProjectionNotAvailableBar) {
             // Projections are only for "Previous Bill" selection
             $0 == 1 && $1 != nil && !$2
     }
     
     private(set) lazy var projectedBarHeightConstraintValue: Driver<CGFloat> =
-        Driver.combineLatest(self.billComparison, self.projectedCost) { billComparison, projectedCost in
+        Driver.combineLatest(billComparison, projectedCost) { billComparison, projectedCost in
             guard let projectedCost = projectedCost else { return 0 }
             let reference = billComparison.reference?.charges ?? 0
             let compared = billComparison.compared?.charges ?? 0
@@ -342,10 +342,10 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var projectedBarDollarLabelText: Driver<String?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.projectedCost,
-                             self.projectedUsage,
-                             self.billComparison)
+        Driver.combineLatest(accountDetail,
+                             projectedCost,
+                             projectedUsage,
+                             billComparison)
         { [weak self] accountDetail, cost, usage, billComparison in
             if accountDetail.isModeledForOpower {
                 return cost?.currencyString
@@ -357,9 +357,9 @@ class UsageTabViewModel {
     
     
     private(set) lazy var projectedBarDateLabelText: Driver<String?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver())
+        Driver.combineLatest(accountDetail,
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
             guard let this = self else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail,
@@ -375,11 +375,11 @@ class UsageTabViewModel {
     }
     
     // MARK: Projection Not Available Bar Drivers
-    private(set) lazy var shouldShowProjectionNotAvailableBar: Driver<Bool> =
-        Driver.combineLatest(self.accountDetail,
-                             self.lastYearPreviousBillSelectedSegmentIndex.asDriver(),
-                             self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver())
+    private(set) lazy var showProjectionNotAvailableBar: Driver<Bool> =
+        Driver.combineLatest(accountDetail,
+                             lastYearPreviousBillSelectedSegmentIndex.asDriver(),
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, lastYearPrevBillSegmentIndex, billForecast, electricGasSelectedIndex in
             guard let this = self else { return false }
             let isGas = this.isGas(accountDetail: accountDetail,
@@ -402,9 +402,9 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var projectionNotAvailableDaysRemainingText: Driver<String?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver())
+        Driver.combineLatest(accountDetail,
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
             guard let this = self else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail,
@@ -440,14 +440,14 @@ class UsageTabViewModel {
     
     // MARK: Bar Graph Button Accessibility Drivers
     
-    private(set) lazy var noDataBarA11yLabel: Driver<String?> = self.lastYearPreviousBillSelectedSegmentIndex.asDriver().map {
+    private(set) lazy var noDataBarA11yLabel: Driver<String?> = lastYearPreviousBillSelectedSegmentIndex.asDriver().map {
         if $0 == 0 {
             return NSLocalizedString("Last year. Not enough data available.", comment: "")
         }
         return NSLocalizedString("Previous bill. Not enough data available.", comment: "")
     }
     
-    private(set) lazy var previousBarA11yLabel: Driver<String?> = self.billComparison.map {
+    private(set) lazy var previousBarA11yLabel: Driver<String?> = billComparison.map {
         guard let compared = $0.compared else { return nil }
         
         let dateString = "\(compared.startDate.shortMonthDayAndYearString) to \(compared.endDate.shortMonthDayAndYearString)"
@@ -471,7 +471,7 @@ class UsageTabViewModel {
         return "\(dateString). \(tempString). \(detailString)"
     }
     
-    private(set) lazy var currentBarA11yLabel: Driver<String?> = self.billComparison.map {
+    private(set) lazy var currentBarA11yLabel: Driver<String?> = billComparison.map {
         guard let reference = $0.reference else { return nil }
         
         let dateString = "\(reference.startDate.shortMonthDayAndYearString) to \(reference.endDate.shortMonthDayAndYearString)"
@@ -496,15 +496,14 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var projectedBarA11yLabel: Driver<String?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.billComparison,
-                             self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver())
+        Driver.combineLatest(accountDetail,
+                             billComparison,
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billComparison, billForecast, electricGasSelectedIndex in
-            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-            guard let `self` = self else { return nil }
+            guard let this = self else { return nil }
             guard let billForecast = billForecast else { return nil }
-            let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
+            let isGas = this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
             
             var dateString = ""
             if isGas {
@@ -549,13 +548,12 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var projectionNotAvailableA11yLabel: Driver<String?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver())
+        Driver.combineLatest(accountDetail,
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
-            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-            guard let `self` = self else { return nil }
-            let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
+            guard let this = self else { return nil }
+            let isGas = this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
             
             let today = Calendar.opCo.startOfDay(for: Date())
             var daysRemainingString = ""
@@ -590,16 +588,15 @@ class UsageTabViewModel {
     // MARK: Bar Description Box Drivers
     
     private(set) lazy var barDescriptionDateLabelText: Driver<String?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.billComparison,
-                             self.lastYearPreviousBillSelectedSegmentIndex.asDriver(),
-                             self.barGraphSelection.asDriver(),
-                             self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver())
+        Driver.combineLatest(accountDetail,
+                             billComparison,
+                             lastYearPreviousBillSelectedSegmentIndex.asDriver(),
+                             barGraphSelection.asDriver(),
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billComparison, segmentIndex, barGraphSelection, billForecast, electricGasSelectedIndex in
-            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-            guard let `self` = self else { return nil }
-            let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
+            guard let this = self else { return nil }
+            let isGas = this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
             
             switch barGraphSelection {
             case .noData:
@@ -635,8 +632,8 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var barDescriptionAvgTempLabelText: Driver<String?> =
-        Driver.combineLatest(self.billComparison,
-                             self.barGraphSelection.asDriver())
+        Driver.combineLatest(billComparison,
+                             barGraphSelection.asDriver())
         { billComparison, barGraphSelection in
             let localizedString = NSLocalizedString("Avg. Temp %d° F", comment: "")
             switch barGraphSelection {
@@ -656,15 +653,14 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var barDescriptionDetailLabelText: Driver<String?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.billComparison,
-                             self.barGraphSelection.asDriver(),
-                             self.billForecast,
-                             self.electricGasSelectedSegmentIndex.asDriver())
+        Driver.combineLatest(accountDetail,
+                             billComparison,
+                             barGraphSelection.asDriver(),
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billComparison, barGraphSelection, billForecast, electricGasSelectedIndex in
-            // We only combine electricGasSelectedSegmentIndex here to trigger a driver update, then we use self.isGas to determine
-            guard let `self` = self else { return nil }
-            let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
+            guard let this = self else { return nil }
+            let isGas = this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
             
             let localizedPrevCurrString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
             switch barGraphSelection {
@@ -730,7 +726,7 @@ class UsageTabViewModel {
     
     // MARK: Up/Down Arrow Image Drivers
     
-    private(set) lazy var billPeriodArrowImage: Driver<UIImage?> = self.billComparison.map {
+    private(set) lazy var billPeriodArrowImage: Driver<UIImage?> = billComparison.map {
         if $0.billPeriodCostDifference >= 1 {
             return #imageLiteral(resourceName: "ic_billanalysis_positive")
         } else if $0.billPeriodCostDifference <= -1 {
@@ -740,7 +736,7 @@ class UsageTabViewModel {
         }
     }
     
-    private(set) lazy var weatherArrowImage: Driver<UIImage?> = self.billComparison.map {
+    private(set) lazy var weatherArrowImage: Driver<UIImage?> = billComparison.map {
         if $0.weatherCostDifference >= 1 {
             return #imageLiteral(resourceName: "ic_billanalysis_positive")
         } else if $0.weatherCostDifference <= -1 {
@@ -750,7 +746,7 @@ class UsageTabViewModel {
         }
     }
     
-    private(set) lazy var otherArrowImage: Driver<UIImage?> = self.billComparison.map {
+    private(set) lazy var otherArrowImage: Driver<UIImage?> = billComparison.map {
         if $0.otherCostDifference >= 1 {
             return #imageLiteral(resourceName: "ic_billanalysis_positive")
         } else if $0.otherCostDifference <= -1 {
@@ -762,9 +758,9 @@ class UsageTabViewModel {
     
     // MARK: Likely Reasons Button Accessibility Drivers
     
-    private(set) lazy var billPeriodA11yLabel: Driver<String?> = Driver.combineLatest(self.accountDetail,
-                                                                                      self.billComparison,
-                                                                                      self.electricGasSelectedSegmentIndex.asDriver())
+    private(set) lazy var billPeriodA11yLabel: Driver<String?> = Driver.combineLatest(accountDetail,
+                                                                                      billComparison,
+                                                                                      electricGasSelectedSegmentIndex.asDriver())
     { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
         if billComparison.compared == nil {
             return NSLocalizedString("Bill period. No data.", comment: "")
@@ -791,9 +787,9 @@ class UsageTabViewModel {
         return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString!, gasOrElectricityString, billPeriodDiff)
     }
     
-    private(set) lazy var weatherA11yLabel: Driver<String?> = Driver.combineLatest(self.accountDetail,
-                                                                                   self.billComparison,
-                                                                                   self.electricGasSelectedSegmentIndex.asDriver())
+    private(set) lazy var weatherA11yLabel: Driver<String?> = Driver.combineLatest(accountDetail,
+                                                                                   billComparison,
+                                                                                   electricGasSelectedSegmentIndex.asDriver())
     { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
         if billComparison.compared == nil {
             return NSLocalizedString("Weather. No data.", comment: "")
@@ -817,9 +813,9 @@ class UsageTabViewModel {
         return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString!, gasOrElectricityString)
     }
     
-    private(set) lazy var otherA11yLabel: Driver<String?> = Driver.combineLatest(self.accountDetail,
-                                                                                 self.billComparison,
-                                                                                 self.electricGasSelectedSegmentIndex.asDriver())
+    private(set) lazy var otherA11yLabel: Driver<String?> = Driver.combineLatest(accountDetail,
+                                                                                 billComparison,
+                                                                                 electricGasSelectedSegmentIndex.asDriver())
     { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
         if billComparison.compared == nil {
             return NSLocalizedString("Other. No data.", comment: "")
@@ -851,12 +847,12 @@ class UsageTabViewModel {
     // MARK: Likely Reasons Drivers
     
     private(set) lazy var likelyReasonsLabelText: Driver<String?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.billComparison,
-                             self.lastYearPreviousBillSelectedSegmentIndex.asDriver())
+        Driver.combineLatest(accountDetail,
+                             billComparison,
+                             lastYearPreviousBillSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
-            guard let `self` = self else { return nil }
-            let isGas = self.isGas(accountDetail: accountDetail,
+            guard let this = self else { return nil }
+            let isGas = this.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             let gasOrElectricString = isGas ? NSLocalizedString("gas", comment: "") :
                 NSLocalizedString("electric", comment: "")
@@ -897,7 +893,7 @@ class UsageTabViewModel {
             }
     }
     
-    private(set) lazy var likelyReasonsDescriptionTitleText: Driver<String?> = self.likelyReasonsSelectionStates.asDriver().map {
+    private(set) lazy var likelyReasonsDescriptionTitleText: Driver<String?> = likelyReasonsSelectionStates.asDriver().map {
         if $0[0].value {
             return NSLocalizedString("Bill Period", comment: "")
         } else if $0[1].value {
@@ -909,13 +905,13 @@ class UsageTabViewModel {
     }
     
     private(set) lazy var likelyReasonsDescriptionDetailText: Driver<String?> =
-        Driver.combineLatest(self.accountDetail,
-                             self.billComparison,
-                             self.likelyReasonsSelectionStates.asDriver(),
-                             self.electricGasSelectedSegmentIndex.asDriver())
+        Driver.combineLatest(accountDetail,
+                             billComparison,
+                             likelyReasonsSelectionStates.asDriver(),
+                             electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billComparison, selectionStates, electricGasSelectedIndex in
-            guard let `self` = self else { return nil }
-            let isGas = self.isGas(accountDetail: accountDetail,
+            guard let this = self else { return nil }
+            let isGas = this.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
             guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
@@ -980,10 +976,12 @@ class UsageTabViewModel {
     
     private(set) lazy var noDataLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .noData }
+        .distinctUntilChanged()
         .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
     private(set) lazy var previousLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .previous }
+        .distinctUntilChanged()
         .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
     private(set) lazy var previousDollarLabelTextColor: Driver<UIColor> = billComparison.map {
@@ -993,6 +991,7 @@ class UsageTabViewModel {
     
     private(set) lazy var currentLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .current }
+        .distinctUntilChanged()
         .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
     private(set) lazy var currentDollarLabelTextColor: Driver<UIColor> = billComparison.map {
@@ -1002,10 +1001,12 @@ class UsageTabViewModel {
     
     private(set) lazy var projectedLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
         .map { $0 == .projected }
+        .distinctUntilChanged()
         .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
     private(set) lazy var projectionNotAvailableLabelFont: Driver<UIFont> = barGraphSelection.asDriver()
-        .map { $0 == .projected }
+        .map { $0 == .projectionNotAvailable }
+        .distinctUntilChanged()
         .map { $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline) }
     
     // MARK: Likely Reasons Border Color Drivers
