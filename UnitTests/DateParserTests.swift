@@ -31,7 +31,7 @@ class DateParserTests: XCTestCase {
         dateComponents.year = 2012
         dateComponents.month = 02
         dateComponents.day = 22
-        let desiredDate = Calendar.current.date(from: dateComponents)
+        let desiredDate = Calendar.opCo.date(from: dateComponents)
 
         XCTAssertEqual(formatterDate, desiredDate)
     }
@@ -45,7 +45,7 @@ class DateParserTests: XCTestCase {
         dateComponents.day = 22
         dateComponents.hour = 01
         dateComponents.minute = 02
-        let desiredDate = Calendar.current.date(from: dateComponents)
+        let desiredDate = Calendar.opCo.date(from: dateComponents)
         
         XCTAssertEqual(formatterDate, desiredDate)
     }
@@ -74,7 +74,7 @@ class DateParserTests: XCTestCase {
         dateComponents.day = 22
         dateComponents.hour = 01
         dateComponents.minute = 02
-        let desiredDate = Calendar.current.date(from: dateComponents)
+        let desiredDate = Calendar.opCo.date(from: dateComponents)
 
         XCTAssertEqual(formatterDate, desiredDate)
     }
@@ -88,7 +88,7 @@ class DateParserTests: XCTestCase {
         dateComponents.day = 22
         dateComponents.hour = 01
         dateComponents.minute = 02
-        let desiredDate = Calendar.current.date(from: dateComponents)
+        let desiredDate = Calendar.opCo.date(from: dateComponents)
 
         XCTAssertEqual(formatterDate, desiredDate)
     }
