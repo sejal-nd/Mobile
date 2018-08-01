@@ -71,7 +71,6 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var previousBarView: UIView! {
         didSet {
             previousBarView.backgroundColor = .primaryColor
-            previousBarView.layer.cornerRadius = 5
         }
     }
     
@@ -84,7 +83,6 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var currentBarView: UIView! {
         didSet {
             currentBarView.backgroundColor = .primaryColor
-            currentBarView.layer.cornerRadius = 5
         }
     }
     
@@ -93,13 +91,19 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var currentDateLabel: UILabel!
     
     @IBOutlet private weak var projectedContainerButton: ButtonControl!
-    @IBOutlet private weak var projectedBarImageView: UIImageView! {
+    @IBOutlet private weak var projectedBarView: UIView! {
         didSet {
-            projectedBarImageView.layer.cornerRadius = 5
+            projectedBarView.layer.borderWidth = 1
         }
     }
-    
     @IBOutlet private weak var projectedBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var projectedBarSoFarImageView: UIImageView! {
+        didSet {
+            projectedBarSoFarImageView.roundCorners([.bottomLeft, .bottomRight], radius: 10)
+            projectedBarSoFarImageView.clipsToBounds = true
+        }
+    }
+    @IBOutlet private weak var projectedBarSoFarHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var projectedDollarLabel: UILabel!
     @IBOutlet private weak var projectedDateLabel: UILabel!
     
@@ -248,11 +252,17 @@ class UsageViewController: AccountPickerViewController {
     private func styleBarGraph() {
         switch Environment.shared.opco {
         case .bge:
-            projectedBarImageView.tintColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 1)
+            projectedBarView.backgroundColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 0.2)
+            projectedBarView.layer.borderColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 0.4).cgColor
+            projectedBarSoFarImageView.tintColor = UIColor(red: 0, green: 110/255, blue: 187/255, alpha: 1)
         case .comEd:
-            projectedBarImageView.tintColor = UIColor(red: 0, green: 145/255, blue: 182/255, alpha: 1)
+            projectedBarView.backgroundColor = UIColor(red: 0, green: 159/255, blue: 194/255, alpha: 0.2)
+            projectedBarView.layer.borderColor = UIColor(red: 0, green: 159/255, blue: 194/255, alpha: 0.4).cgColor
+            projectedBarSoFarImageView.tintColor = UIColor(red: 0, green: 159/255, blue: 194/255, alpha: 1)
         case .peco:
-            projectedBarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
+            projectedBarView.backgroundColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.2)
+            projectedBarView.layer.borderColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 0.4).cgColor
+            projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
         }
         
         // Bar Graph Text Colors
@@ -450,7 +460,7 @@ class UsageViewController: AccountPickerViewController {
         
         viewModel.projectedBarHeightConstraintValue
             .map { min(10, $0/2) }
-            .drive(projectedBarImageView.rx.cornerRadius)
+            .drive(projectedBarView.rx.cornerRadius)
             .disposed(by: disposeBag)
         
         // Bar show/hide

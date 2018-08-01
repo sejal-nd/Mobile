@@ -340,6 +340,22 @@ class UsageViewModel {
             }
     }
     
+    private(set) lazy var projectedBarSoFarHeightConstraintValue: Driver<CGFloat> =
+        Driver.combineLatest(billComparison, projectedCost) { billComparison, projectedCost in
+            guard let projectedCost = projectedCost else { return 0 }
+            let reference = billComparison.reference?.charges ?? 0
+            let compared = billComparison.compared?.charges ?? 0
+            if max(projectedCost, reference, compared) == projectedCost {
+                return 134
+            } else if max(reference, compared) == reference {
+                let fraction = CGFloat(134.0 * (projectedCost / reference))
+                return fraction > 3 ? fraction : 3
+            } else {
+                let fraction = CGFloat(134.0 * (projectedCost / compared))
+                return fraction > 3 ? fraction : 3
+            }
+    }
+    
     private(set) lazy var projectedBarDollarLabelText: Driver<String?> =
         Driver.combineLatest(accountDetail,
                              projectedCost,

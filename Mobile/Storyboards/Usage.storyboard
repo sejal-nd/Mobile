@@ -249,15 +249,22 @@
                                                                                         <rect key="frame" x="210" y="6" width="60" height="177"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2H-yA-RLi">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="22"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
-                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="img_predictedstripes" translatesAutoresizingMaskIntoConstraints="NO" id="QEx-t6-edt">
+                                                                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Q2-QX-EK7">
                                                                                                 <rect key="frame" x="0.0" y="22" width="60" height="134"/>
+                                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <constraints>
-                                                                                                    <constraint firstAttribute="height" constant="134" id="20W-ma-twg"/>
+                                                                                                    <constraint firstAttribute="height" constant="134" id="hQY-4p-XQq"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="img_predictedstripes" translatesAutoresizingMaskIntoConstraints="NO" id="QEx-t6-edt">
+                                                                                                <rect key="frame" x="0.0" y="106" width="60" height="50"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="50" id="20W-ma-twg"/>
                                                                                                 </constraints>
                                                                                             </imageView>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qnq-y9-pQd">
@@ -273,13 +280,16 @@
                                                                                             <constraint firstAttribute="trailing" secondItem="Qnq-y9-pQd" secondAttribute="trailing" id="96Q-OQ-LGd"/>
                                                                                             <constraint firstItem="B2H-yA-RLi" firstAttribute="top" secondItem="fGz-ff-KfF" secondAttribute="top" id="9we-X9-mbA"/>
                                                                                             <constraint firstAttribute="width" constant="60" id="ACX-uv-sd9"/>
-                                                                                            <constraint firstItem="QEx-t6-edt" firstAttribute="top" secondItem="B2H-yA-RLi" secondAttribute="bottom" id="AFc-7e-CKW"/>
                                                                                             <constraint firstItem="Qnq-y9-pQd" firstAttribute="top" secondItem="QEx-t6-edt" secondAttribute="bottom" constant="4" id="C7J-uu-fcp"/>
+                                                                                            <constraint firstItem="1Q2-QX-EK7" firstAttribute="top" secondItem="B2H-yA-RLi" secondAttribute="bottom" constant="5" id="Dkb-jW-3Ax"/>
+                                                                                            <constraint firstItem="Qnq-y9-pQd" firstAttribute="top" secondItem="1Q2-QX-EK7" secondAttribute="bottom" constant="4" id="Lwa-Bg-shr"/>
                                                                                             <constraint firstItem="B2H-yA-RLi" firstAttribute="leading" secondItem="fGz-ff-KfF" secondAttribute="leading" id="PbI-Aa-O4m"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="QEx-t6-edt" secondAttribute="trailing" id="hX0-bc-2fZ"/>
                                                                                             <constraint firstAttribute="bottom" secondItem="Qnq-y9-pQd" secondAttribute="bottom" id="mvB-Uc-8Ar"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="B2H-yA-RLi" secondAttribute="trailing" id="or6-cr-H8l"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="1Q2-QX-EK7" secondAttribute="trailing" id="qdA-uy-aSS"/>
                                                                                             <constraint firstItem="Qnq-y9-pQd" firstAttribute="leading" secondItem="fGz-ff-KfF" secondAttribute="leading" id="yCz-TV-Npb"/>
+                                                                                            <constraint firstItem="1Q2-QX-EK7" firstAttribute="leading" secondItem="fGz-ff-KfF" secondAttribute="leading" id="yV6-Aa-EH9"/>
                                                                                         </constraints>
                                                                                         <connections>
                                                                                             <action selector="barGraphPress:" destination="gRa-nh-wfg" eventType="touchUpInside" id="Qah-2U-FO8"/>
@@ -635,8 +645,10 @@
                         <outlet property="previousContainerButton" destination="s0y-lN-dUc" id="BFu-1u-Pc6"/>
                         <outlet property="previousDateLabel" destination="PnL-wt-i7Y" id="1ro-6D-UnH"/>
                         <outlet property="previousDollarLabel" destination="Y2E-Nc-xEh" id="hO7-WM-ta0"/>
-                        <outlet property="projectedBarHeightConstraint" destination="20W-ma-twg" id="ONH-Iq-qMn"/>
-                        <outlet property="projectedBarImageView" destination="QEx-t6-edt" id="iZE-ps-w5U"/>
+                        <outlet property="projectedBarHeightConstraint" destination="hQY-4p-XQq" id="YIn-UE-lmy"/>
+                        <outlet property="projectedBarSoFarHeightConstraint" destination="20W-ma-twg" id="fog-tz-wTJ"/>
+                        <outlet property="projectedBarSoFarImageView" destination="QEx-t6-edt" id="Qm8-Jb-cxR"/>
+                        <outlet property="projectedBarView" destination="1Q2-QX-EK7" id="NWo-Wc-d1M"/>
                         <outlet property="projectedContainerButton" destination="fGz-ff-KfF" id="C4W-d3-wAD"/>
                         <outlet property="projectedDateLabel" destination="Qnq-y9-pQd" id="wch-AW-UhN"/>
                         <outlet property="projectedDollarLabel" destination="B2H-yA-RLi" id="UgG-sa-ckK"/>
