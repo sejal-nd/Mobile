@@ -66,7 +66,7 @@ enum HomeCard: Int {
     
     var isOptional: Bool {
         switch self {
-        case .bill, .usage, .template:
+        case .bill, .template:
             return false
         default:
             return true
