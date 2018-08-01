@@ -25,6 +25,6 @@
 	<key>opcoUpdatesHost</key>
 	<string>azstg.peco.com</string>
 	<key>associatedDomain</key>
-	<string>applinks:stgd15-secure.peco.com</string>
+	<string>azstg-secure.peco.com</string>
 </dict>
 </plist>

@@ -27,6 +27,6 @@
 	<key>appCenterId</key>
 	<string>0a416441-1ad6-4be2-b009-79f8b15f8b58</string>
 	<key>associatedDomain</key>
-	<string>applinks:secure.peco.com</string>
+	<string>secure.peco.com</string>
 </dict>
 </plist>

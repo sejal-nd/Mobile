@@ -27,6 +27,6 @@
 	<key>appCenterId</key>
 	<string>bddc73d9-4dfb-421f-a59f-71c08c3647e5</string>
 	<key>associatedDomain</key>
-	<string>applinks:secure.bge.com</string>
+	<string>secure.bge.com</string>
 </dict>
 </plist>

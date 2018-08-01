@@ -27,6 +27,6 @@
 	<key>appCenterId</key>
 	<string>9f56e08c-6fa5-4209-93a2-d773601a1e45</string>
 	<key>associatedDomain</key>
-	<string>applinks:secure.comed.com</string>
+	<string>secure.comed.com</string>
 </dict>
 </plist>
