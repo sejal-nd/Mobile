@@ -76,7 +76,9 @@ class HomeViewModel {
                                                                       refreshFetchTracker: self.refreshFetchTracker,
                                                                       switchAccountFetchTracker: self.switchAccountFetchTracker)
     
-    private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
+    private(set) lazy var templateCardViewModel: TemplateCardViewModel =
+        TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents,
+                              isSwitchingAccounts: self.isSwitchingAccounts)
     
     private(set) lazy var projectedBillCardViewModel = HomeProjectedBillCardViewModel(fetchData: self.fetchDataObservable,
                                                                                       accountDetailEvents: self.accountDetailEvents,

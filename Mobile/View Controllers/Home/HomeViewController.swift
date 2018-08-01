@@ -27,8 +27,6 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var cardStackView: UIStackView!
     
-    @IBOutlet weak var loadingView: UIView!
-    
     @IBOutlet weak var personalizeButton: UIButton!
     
     var weatherView: HomeWeatherView!
@@ -77,6 +75,7 @@ class HomeViewController: AccountPickerViewController {
                 case .loadingAccounts:
                     self.setRefreshControlEnabled(enabled: false)
                 case .readyToFetchData:
+                    self.setRefreshControlEnabled(enabled: true)
                     if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchData.onNext(.switchAccount)
                     } else if accountDetailEvent?.element == nil {
@@ -107,8 +106,6 @@ class HomeViewController: AccountPickerViewController {
                 }
             })
             .disposed(by: bag)
-        
-        contentStackView.isHidden = true
         
         let versionString = UserDefaults.standard.string(forKey: UserDefaultKeys.homeCardCustomizeTappedVersion) ?? "0.0.0"
         let tappedVersion = Version(string: versionString) ?? Version(major: 0, minor: 0, patch: 0)
@@ -210,8 +207,6 @@ class HomeViewController: AccountPickerViewController {
     
     func styleViews() {
         view.backgroundColor = .primaryColorAccountPicker
-        loadingView.layer.cornerRadius = 10
-        loadingView.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
     }
     
     func setCards(oldCards: [HomeCard], newCards: [HomeCard]) {
@@ -435,11 +430,14 @@ class HomeViewController: AccountPickerViewController {
     
     @objc func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
+            scrollView!.alwaysBounceVertical = true
+            
+            guard refreshControl == nil else { return }
+            
             refreshControl = UIRefreshControl()
             refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
             refreshControl?.tintColor = .white
             scrollView!.insertSubview(refreshControl!, at: 0)
-            scrollView!.alwaysBounceVertical = true
         } else {
             if let rc = refreshControl {
                 rc.endRefreshing()
@@ -463,15 +461,6 @@ class HomeViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] _ in
                 self?.refreshControl?.endRefreshing()
             }).disposed(by: bag)
-        
-        viewModel.isSwitchingAccounts.asDriver().not().drive(onNext: { [weak self] refresh in
-            guard let `self` = self else { return }
-            self.setRefreshControlEnabled(enabled: refresh)
-        }).disposed(by: bag)
-        
-        viewModel.isSwitchingAccounts.asDriver().drive(contentStackView.rx.isHidden).disposed(by: bag)
-        viewModel.isSwitchingAccounts.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
-        
         viewModel.showNoNetworkConnectionState.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: bag)
         viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
         
