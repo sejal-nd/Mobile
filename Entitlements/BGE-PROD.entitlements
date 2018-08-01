@@ -6,6 +6,9 @@
 	<string>production</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
+		<string>applinks:bge.com</string>
+		<string>webcredentials:bge.com</string>
+		<string>webcredentials:secure.bge.com</string>
 		<string>applinks:secure.bge.com</string>
 	</array>
 </dict>

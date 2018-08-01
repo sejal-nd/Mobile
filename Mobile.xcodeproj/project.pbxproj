@@ -2156,6 +2156,15 @@
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
 		35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRoundCorners.swift; sourceTree = "<group>"; };
 		35AFB42A20C82DA0000312B9 /* MaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
+		35CE69D421122F50007EB844 /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
+		35CE69D521122F50007EB844 /* PECO-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-TEST.entitlements"; sourceTree = "<group>"; };
+		35CE69D621122F50007EB844 /* ComEd-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-TEST.entitlements"; sourceTree = "<group>"; };
+		35CE69D721122F50007EB844 /* ComEd-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-PROD.entitlements"; sourceTree = "<group>"; };
+		35CE69D821122F50007EB844 /* PECO-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-STAGE.entitlements"; sourceTree = "<group>"; };
+		35CE69D921122F50007EB844 /* BGE-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-TEST.entitlements"; sourceTree = "<group>"; };
+		35CE69DA21122F50007EB844 /* BGE-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-STAGE.entitlements"; sourceTree = "<group>"; };
+		35CE69DB21122F50007EB844 /* ComEd-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-STAGE.entitlements"; sourceTree = "<group>"; };
+		35CE69DC21122F51007EB844 /* PECO-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-PROD.entitlements"; sourceTree = "<group>"; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		385AF21B1F278EFD001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
 		385AF21D1F278F06001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
@@ -2600,14 +2609,8 @@
 		E80D2E321E7301B8002626C9 /* OutageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageViewController.swift; sourceTree = "<group>"; };
 		E8127B211EBB959E0083DDE9 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
-		E81CFFEC1EC230E9004FDA7E /* PECO-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-STAGE.entitlements"; sourceTree = "<group>"; };
-		E81CFFED1EC230E9004FDA7E /* ComEd-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-STAGE.entitlements"; sourceTree = "<group>"; };
-		E81CFFEE1EC230E9004FDA7E /* BGE-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-STAGE.entitlements"; sourceTree = "<group>"; };
 		E81CFFEF1EC24978004FDA7E /* ViewBillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBillViewController.swift; sourceTree = "<group>"; };
 		E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBillViewModel.swift; sourceTree = "<group>"; };
-		E81CFFF81EC3681D004FDA7E /* PECO-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-PROD.entitlements"; sourceTree = "<group>"; };
-		E81CFFF91EC3681D004FDA7E /* ComEd-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-PROD.entitlements"; sourceTree = "<group>"; };
-		E81CFFFA1EC3681D004FDA7E /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
 		E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCreditCardViewModel.swift; sourceTree = "<group>"; };
 		E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModelTests.swift; sourceTree = "<group>"; };
 		E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletItemInitExtensions.swift; sourceTree = "<group>"; };
@@ -2658,9 +2661,6 @@
 		E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		E867A8FE1F054BC6007F4FD9 /* MakePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakePaymentViewController.swift; sourceTree = "<group>"; };
 		E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
-		E871C02D1FB3A8B80067EFD9 /* PECO-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-TEST.entitlements"; sourceTree = "<group>"; };
-		E871C02E1FB3A8B80067EFD9 /* ComEd-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-TEST.entitlements"; sourceTree = "<group>"; };
-		E871C02F1FB3A8B90067EFD9 /* BGE-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-TEST.entitlements"; sourceTree = "<group>"; };
 		E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PECOReleaseOfInfoViewController.swift; sourceTree = "<group>"; };
 		E873DA731EE8699600020D1B /* RadioSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		E873DA741EE8699600020D1B /* RadioSelectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioSelectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -4454,15 +4454,15 @@
 		E81CFFE81EC230B5004FDA7E /* Entitlements */ = {
 			isa = PBXGroup;
 			children = (
-				E871C02F1FB3A8B90067EFD9 /* BGE-TEST.entitlements */,
-				E81CFFEE1EC230E9004FDA7E /* BGE-STAGE.entitlements */,
-				E81CFFFA1EC3681D004FDA7E /* BGE-PROD.entitlements */,
-				E871C02E1FB3A8B80067EFD9 /* ComEd-TEST.entitlements */,
-				E81CFFED1EC230E9004FDA7E /* ComEd-STAGE.entitlements */,
-				E81CFFF91EC3681D004FDA7E /* ComEd-PROD.entitlements */,
-				E871C02D1FB3A8B80067EFD9 /* PECO-TEST.entitlements */,
-				E81CFFEC1EC230E9004FDA7E /* PECO-STAGE.entitlements */,
-				E81CFFF81EC3681D004FDA7E /* PECO-PROD.entitlements */,
+				35CE69D421122F50007EB844 /* BGE-PROD.entitlements */,
+				35CE69DA21122F50007EB844 /* BGE-STAGE.entitlements */,
+				35CE69D921122F50007EB844 /* BGE-TEST.entitlements */,
+				35CE69D721122F50007EB844 /* ComEd-PROD.entitlements */,
+				35CE69DB21122F50007EB844 /* ComEd-STAGE.entitlements */,
+				35CE69D621122F50007EB844 /* ComEd-TEST.entitlements */,
+				35CE69DC21122F51007EB844 /* PECO-PROD.entitlements */,
+				35CE69D821122F50007EB844 /* PECO-STAGE.entitlements */,
+				35CE69D521122F50007EB844 /* PECO-TEST.entitlements */,
 			);
 			path = Entitlements;
 			sourceTree = "<group>";
@@ -5090,7 +5090,7 @@
 						TestTargetID = B58B5AC01E4E28740051FD5F;
 					};
 					B58B5AC01E4E28740051FD5F = {
-						DevelopmentTeam = YU7Y757VB5;
+						DevelopmentTeam = 38R4RRBYR8;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -5098,7 +5098,7 @@
 								enabled = 0;
 							};
 							com.apple.SafariKeychain = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -8447,6 +8447,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",

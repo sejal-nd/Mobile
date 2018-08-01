@@ -6,6 +6,9 @@
 	<string>production</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
+		<string>webcredentials:peco.com</string>
+		<string>applinks:peco.com</string>
+		<string>webcredentials:secure.peco.com</string>
 		<string>applinks:secure.peco.com</string>
 	</array>
 </dict>
