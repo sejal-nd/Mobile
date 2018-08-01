@@ -447,6 +447,10 @@ class UsageViewController: AccountPickerViewController {
             .drive(projectedBarHeightConstraint.rx.constant)
             .disposed(by: disposeBag)
         
+        viewModel.projectedBarSoFarHeightConstraintValue
+            .drive(projectedBarSoFarHeightConstraint.rx.constant)
+            .disposed(by: disposeBag)
+        
         // Bar graph corner radius
         viewModel.previousBarHeightConstraintValue
             .map { min(10, $0/2) }
