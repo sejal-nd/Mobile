@@ -355,12 +355,11 @@ class HomeViewController: AccountPickerViewController {
     
     func bindUsageCard() {
         guard let usageCardView = usageCardView else { return }
-        
+
         Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
                      usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
-            .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "usageSegue", sender: $0)
+                self?.tabBarController?.selectedIndex = 3
             })
             .disposed(by: usageCardView.disposeBag)
         
@@ -494,7 +493,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? UsageViewController, let accountDetail = sender as? AccountDetail {
+        if let vc = segue.destination as? SmartEnergyRewardsViewController, let accountDetail = sender as? AccountDetail {
             vc.accountDetail = accountDetail
         } else if let vc = segue.destination as? TotalSavingsViewController, let accountDetail = sender as? AccountDetail {
             vc.eventResults = accountDetail.serInfo.eventResults

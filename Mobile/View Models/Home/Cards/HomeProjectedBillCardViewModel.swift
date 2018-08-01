@@ -45,24 +45,16 @@ class HomeProjectedBillCardViewModel {
         self.switchAccountFetchTracker = switchAccountFetchTracker
     }
     
-    private(set) lazy var billForecastEvents: Observable<Event<[BillForecast?]>> = self.accountDetailChanged.share(replay: 1)
+    private(set) lazy var billForecastEvents: Observable<Event<BillForecastResult>> = self.accountDetailChanged.share(replay: 1)
     
     // Used by HomeViewModel
     private(set) lazy var cardShouldBeHidden: Observable<Bool> = self.billForecastEvents.map { billForecastEvent in
-        if billForecastEvent.error != nil {
-            return true
-        }
-        if billForecastEvent.element != nil {
-            let elecForecast = billForecastEvent.element![0]
-            let gasForecast = billForecastEvent.element![1]
-            return elecForecast == nil && gasForecast == nil
-        }
-        return true
+        billForecastEvent.element == nil
     }
     
     private(set) lazy var accountDetailChanged = self.accountDetailEvents
         .withLatestFrom(Observable.combineLatest(self.fetchData, self.accountDetailEvents))
-        .flatMapLatest { [unowned self] fetchState, accountDetailEvent -> Observable<Event<[BillForecast?]>> in
+        .flatMapLatest { [unowned self] fetchState, accountDetailEvent -> Observable<Event<BillForecastResult>> in
             guard let accountDetail = accountDetailEvent.element else {
                 if let error = accountDetailEvent.error {
                     return Observable.error(error).materialize()
@@ -92,7 +84,7 @@ class HomeProjectedBillCardViewModel {
     
     private(set) lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var billForecastDriver: Driver<[BillForecast?]> = self.billForecastEvents.elements().asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var billForecastDriver: Driver<BillForecastResult> = self.billForecastEvents.elements().asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var shouldShowElectricGasSegmentedControl: Driver<Bool> = self.accountDetailEvents.map {
         $0.element?.serviceType?.uppercased() == "GAS/ELECTRIC"
@@ -113,10 +105,10 @@ class HomeProjectedBillCardViewModel {
                                                                                       self.isGas)
         .map { billForecast, isGas in
             let today = Calendar.opCo.startOfDay(for: Date())
-            if !isGas, let elecForecast = billForecast[0], let startDate = elecForecast.billingStartDate {
+            if !isGas, let startDate = billForecast.electric.billingStartDate {
                 let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                 return daysSinceBillingStart < 7
-            } else if isGas, let gasForecast = billForecast[1], let startDate = gasForecast.billingStartDate  {
+            } else if isGas, let startDate = billForecast.gas.billingStartDate  {
                 let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                 return daysSinceBillingStart < 7
             }
@@ -129,7 +121,7 @@ class HomeProjectedBillCardViewModel {
         .map { billForecast, isGas, accountDetail in
             let today = Calendar.opCo.startOfDay(for: Date())
             let localizedString = NSLocalizedString("%@ days", comment: "")
-            if !isGas, let elecForecast = billForecast[0], let elecCost = elecForecast.projectedCost, let startDate = elecForecast.billingStartDate {
+            if !isGas, let elecCost = billForecast.electric.projectedCost, let startDate = billForecast.electric.billingStartDate {
                 let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                 if daysSinceBillingStart < 7 {
                     let daysRemaining = 7 - daysSinceBillingStart
@@ -139,11 +131,11 @@ class HomeProjectedBillCardViewModel {
                         return String(format: localizedString, "\(daysRemaining)")
                     }
                 }
-                if !accountDetail.isModeledForOpower, let elecUsage = elecForecast.projectedUsage {
-                    return String(format: "%d %@", Int(elecUsage), elecForecast.meterUnit)
+                if !accountDetail.isModeledForOpower, let elecUsage = billForecast.electric.projectedUsage {
+                    return String(format: "%d %@", Int(elecUsage), billForecast.electric.meterUnit)
                 }
                 return elecCost.currencyString
-            } else if isGas, let gasForecast = billForecast[1], let gasCost = gasForecast.projectedCost, let startDate = gasForecast.billingStartDate {
+            } else if isGas, let gasCost = billForecast.gas.projectedCost, let startDate = billForecast.gas.billingStartDate {
                 let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                 if daysSinceBillingStart < 7 {
                     let daysRemaining = 7 - daysSinceBillingStart
@@ -153,8 +145,8 @@ class HomeProjectedBillCardViewModel {
                         return String(format: localizedString, "\(daysRemaining)")
                     }
                 }
-                if !accountDetail.isModeledForOpower, let gasUsage = gasForecast.projectedUsage {
-                    return String(format: "%d %@", Int(gasUsage), gasForecast.meterUnit)
+                if !accountDetail.isModeledForOpower, let gasUsage = billForecast.gas.projectedUsage {
+                    return String(format: "%d %@", Int(gasUsage), billForecast.gas.meterUnit)
                 }
                 return gasCost.currencyString
             }
@@ -165,13 +157,13 @@ class HomeProjectedBillCardViewModel {
                                                                                            self.isGas)
         .map { billForecast, isGas in
             let today = Calendar.opCo.startOfDay(for: Date())
-            if !isGas, let elecForecast = billForecast[0], let startDate = elecForecast.billingStartDate, let endDate = elecForecast.billingEndDate {
+            if !isGas, let startDate = billForecast.electric.billingStartDate, let endDate = billForecast.electric.billingEndDate {
                 let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                 if daysSinceBillingStart < 7 {
                     return NSLocalizedString("until next forecast", comment: "")
                 }
                 return "\(startDate.shortMonthAndDayString) - \(endDate.shortMonthAndDayString)".uppercased()
-            } else if isGas, let gasForecast = billForecast[1], let startDate = gasForecast.billingStartDate, let endDate = gasForecast.billingEndDate {
+            } else if isGas, let startDate = billForecast.gas.billingStartDate, let endDate = billForecast.gas.billingEndDate {
                 let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                 if daysSinceBillingStart < 7 {
                     return NSLocalizedString("until next forecast", comment: "")
@@ -187,19 +179,19 @@ class HomeProjectedBillCardViewModel {
         .map { billForecast, isGas, accountDetail in
             if !accountDetail.isModeledForOpower {
                 var toDateString: String? = nil
-                if !isGas, let elecForecast = billForecast[0], let toDateUsage = elecForecast.toDateUsage {
-                    toDateString = String(format: "%d %@", Int(toDateUsage), elecForecast.meterUnit)
-                } else if isGas, let gasForecast = billForecast[1], let toDateUsage = gasForecast.toDateUsage {
-                    toDateString = String(format: "%d %@", Int(toDateUsage), gasForecast.meterUnit)
+                if !isGas, let toDateUsage = billForecast.electric.toDateUsage {
+                    toDateString = String(format: "%d %@", Int(toDateUsage), billForecast.electric.meterUnit)
+                } else if isGas, let toDateUsage = billForecast.gas.toDateUsage {
+                    toDateString = String(format: "%d %@", Int(toDateUsage), billForecast.gas.meterUnit)
                 }
                 if let str = toDateString {
                     return String(format: NSLocalizedString("You've used about %@ so far this bill period.", comment: ""), str)
                 }
             } else {
                 var toDateString: String? = nil
-                if !isGas, let elecForecast = billForecast[0], let toDateCost = elecForecast.toDateCost {
+                if !isGas, let toDateCost = billForecast.electric.toDateCost {
                     toDateString = toDateCost.currencyString
-                } else if isGas, let gasForecast = billForecast[1], let toDateCost = gasForecast.toDateCost {
+                } else if isGas, let toDateCost = billForecast.gas.toDateCost {
                     toDateString = toDateCost.currencyString
                 }
                 if let str = toDateString {
