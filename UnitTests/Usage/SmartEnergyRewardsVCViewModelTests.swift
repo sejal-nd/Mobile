@@ -40,9 +40,9 @@ class SmartEnergyRewardsVCViewModelTests: XCTestCase {
     func testSmartEnergyRewardsSeasonLabelText() {
         var viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail())
         XCTAssertNil(viewModel.smartEnergyRewardsSeasonLabelText)
-
-        viewModel = UsageViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult(eventStart: DateFormatter.mmDdYyyyFormatter.date(from: "05/23/2018")!)])))
-
+        
+        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult(eventStart: DateFormatter.mmDdYyyyFormatter.date(from: "05/23/2018")!)])))
+                
         XCTAssertEqual(viewModel.smartEnergyRewardsSeasonLabelText, "Summer 2018")
     }
     
