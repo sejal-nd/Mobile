@@ -14,18 +14,14 @@ import RxSwiftExt
 class TemplateCardViewModel {
     
     let accountDetailEvents: Observable<Event<AccountDetail>>
-    private let isSwitchingAccounts: Driver<Bool>
+    let showLoadingState: Driver<Void>
     
-    required init(accountDetailEvents: Observable<Event<AccountDetail>>, isSwitchingAccounts: Driver<Bool>) {
+    required init(accountDetailEvents: Observable<Event<AccountDetail>>, showLoadingState: Driver<Void>) {
         self.accountDetailEvents = accountDetailEvents
-        self.isSwitchingAccounts = isSwitchingAccounts
+        self.showLoadingState = showLoadingState
     }
     
     // MARK: - View States
-    
-    private(set) lazy var showLoadingState: Driver<Void> = isSwitchingAccounts
-        .filter { $0 }
-        .map(to: ())
     
     private(set) lazy var showContentState: Driver<Void> = accountDetailEvents
         .filter { $0.element != nil }

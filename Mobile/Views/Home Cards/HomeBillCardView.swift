@@ -16,88 +16,89 @@ class HomeBillCardView: UIView {
     
     var bag = DisposeBag()
     
-    @IBOutlet weak var clippingView: UIView!
+    @IBOutlet private weak var clippingView: UIView!
     
-    @IBOutlet weak var infoStack: UIStackView!
+    @IBOutlet private weak var infoStack: UIStackView!
     
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var headerAlertAnimationContainer: UIView!
-    var alertAnimation = LOTAnimationView(name: "alert_icon")
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var headerAlertAnimationContainer: UIView!
+    private var alertAnimation = LOTAnimationView(name: "alert_icon")
     
-    @IBOutlet weak var topSpacerHeight: NSLayoutConstraint!
+    @IBOutlet private weak var topSpacerHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var paymentPendingContainer: UIView!
-    @IBOutlet weak var paymentPendingImageView: UIImageView!
+    @IBOutlet private weak var paymentPendingContainer: UIView!
+    @IBOutlet private weak var paymentPendingImageView: UIImageView!
     
-    @IBOutlet weak var paymentConfirmationContainer: UIView!
-    @IBOutlet weak var paymentConfirmationImageView: UIImageView!
+    @IBOutlet private weak var paymentConfirmationContainer: UIView!
+    @IBOutlet private weak var paymentConfirmationImageView: UIImageView!
     
-    @IBOutlet weak var paymentDescriptionLabel: UILabel!
-    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet private weak var paymentDescriptionLabel: UILabel!
+    @IBOutlet private weak var amountLabel: UILabel!
     
-    @IBOutlet weak var dueDateStack: UIStackView!
-    @IBOutlet weak var dueDateLabel: UILabel!
-    @IBOutlet weak var dueDateTooltip: UIButton!
+    @IBOutlet private weak var dueDateStack: UIStackView!
+    @IBOutlet private weak var dueDateLabel: UILabel!
+    @IBOutlet private weak var dueDateTooltip: UIButton!
     
-    @IBOutlet weak var reinstatementFeeContainer: UIView!
-    @IBOutlet weak var reinstatementFeeLabel: UILabel!
+    @IBOutlet private weak var reinstatementFeeContainer: UIView!
+    @IBOutlet private weak var reinstatementFeeLabel: UILabel!
     
-    @IBOutlet weak var slideToPay24DisclaimerContainer: UIView!
-    @IBOutlet weak var slideToPay24DisclaimerLabel: UILabel!
+    @IBOutlet private weak var slideToPay24DisclaimerContainer: UIView!
+    @IBOutlet private weak var slideToPay24DisclaimerLabel: UILabel!
     
-    @IBOutlet weak var walletItemInfoContainer: UIView!
-    @IBOutlet weak var walletItemInfoBox: UIView!
-    @IBOutlet weak var bankCreditNumberButton: ButtonControl!
-    @IBOutlet weak var bankCreditCardImageView: UIImageView!
-    @IBOutlet weak var bankCreditCardNumberLabel: UILabel!
-    @IBOutlet weak var bankCreditCardExpiredContainer: UIView!
+    @IBOutlet private weak var walletItemInfoContainer: UIView!
+    @IBOutlet private weak var walletItemInfoBox: UIView!
+    @IBOutlet private weak var bankCreditNumberButton: ButtonControl!
+    @IBOutlet private weak var bankCreditCardImageView: UIImageView!
+    @IBOutlet private weak var bankCreditCardNumberLabel: UILabel!
+    @IBOutlet private weak var bankCreditCardExpiredContainer: UIView!
     
-    @IBOutlet weak var saveAPaymentAccountButton: ButtonControl!
-    @IBOutlet weak var saveAPaymentAccountLabel: UILabel!
+    @IBOutlet private weak var saveAPaymentAccountButton: ButtonControl!
+    @IBOutlet private weak var saveAPaymentAccountLabel: UILabel!
     
-    @IBOutlet weak var minimumPaymentContainer: UIView!
-    @IBOutlet weak var minimumPaymentLabel: UILabel!
+    @IBOutlet private weak var minimumPaymentContainer: UIView!
+    @IBOutlet private weak var minimumPaymentLabel: UILabel!
     
-    @IBOutlet weak var convenienceFeeLabel: UILabel!
+    @IBOutlet private weak var convenienceFeeLabel: UILabel!
     
-    @IBOutlet weak var a11yTutorialButtonContainer: UIView!
-    @IBOutlet weak var a11yTutorialButton: UIButton!
+    @IBOutlet private weak var a11yTutorialButtonContainer: UIView!
+    @IBOutlet private weak var a11yTutorialButton: UIButton!
     
-    @IBOutlet weak var oneTouchSliderContainer: UIView!
-    @IBOutlet weak var oneTouchSlider: OneTouchSlider!
-    @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
-    @IBOutlet weak var commericalBgeOtpVisaLabel: UILabel!
+    @IBOutlet private weak var oneTouchSliderContainer: UIView!
+    @IBOutlet private weak var oneTouchSlider: OneTouchSlider!
+    @IBOutlet private weak var commercialBgeOtpVisaLabelContainer: UIView!
+    @IBOutlet private weak var commericalBgeOtpVisaLabel: UILabel!
     
-    @IBOutlet weak var scheduledPaymentContainer: UIView!
-    @IBOutlet weak var scheduledPaymentBox: UIView!
-    @IBOutlet weak var scheduledImageView: UIImageView!
-    @IBOutlet weak var thankYouForSchedulingButton: UIButton!
+    @IBOutlet private weak var scheduledPaymentContainer: UIView!
+    @IBOutlet private weak var scheduledPaymentBox: UIView!
+    @IBOutlet private weak var scheduledImageView: UIImageView!
+    @IBOutlet private weak var thankYouForSchedulingButton: UIButton!
     
-    @IBOutlet weak var autoPayContainer: UIView!
-    @IBOutlet weak var autoPayBox: UIView!
-    @IBOutlet weak var autoPayImageView: UIImageView!
-    @IBOutlet weak var autoPayButton: UIButton!
+    @IBOutlet private weak var autoPayContainer: UIView!
+    @IBOutlet private weak var autoPayBox: UIView!
+    @IBOutlet private weak var autoPayImageView: UIImageView!
+    @IBOutlet private weak var autoPayButton: UIButton!
     
-    @IBOutlet weak var oneTouchPayTCButton: ButtonControl!
-    @IBOutlet weak var oneTouchPayTCButtonLabel: UILabel!
+    @IBOutlet private weak var oneTouchPayTCButton: ButtonControl!
+    @IBOutlet private weak var oneTouchPayTCButtonLabel: UILabel!
     
-    @IBOutlet weak var viewBillButton: ButtonControl!
-    @IBOutlet weak var viewBillButtonLabel: UILabel!
+    @IBOutlet private weak var viewBillButton: ButtonControl!
+    @IBOutlet private weak var viewBillButtonLabel: UILabel!
     
-    @IBOutlet weak var billNotReadyStack: UIStackView!
-    @IBOutlet weak var billNotReadyLabel: UILabel!
-    @IBOutlet weak var errorStack: UIStackView!
-    @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var customErrorView: UIView!
-    @IBOutlet weak var customErrorDetailLabel: UILabel!
-    @IBOutlet weak var maintenanceModeView: UIView!
-    @IBOutlet weak var maintenanceModeLabel: UILabel!
+    @IBOutlet private weak var billNotReadyStack: UIStackView!
+    @IBOutlet private weak var billNotReadyLabel: UILabel!
+    @IBOutlet private weak var errorStack: UIStackView!
+    @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet private weak var customErrorView: UIView!
+    @IBOutlet private weak var customErrorDetailLabel: UILabel!
+    @IBOutlet private weak var maintenanceModeView: UIView!
+    @IBOutlet private weak var maintenanceModeLabel: UILabel!
+    @IBOutlet private weak var loadingView: UIView!
     
-    let tutorialTap = UITapGestureRecognizer()
-    let tutorialSwipe = UISwipeGestureRecognizer()
+    private let tutorialTap = UITapGestureRecognizer()
+    private let tutorialSwipe = UISwipeGestureRecognizer()
     
-    fileprivate var viewModel: HomeBillCardViewModel! {
+    private var viewModel: HomeBillCardViewModel! {
         didSet {
             bag = DisposeBag() // Clear all pre-existing bindings
             bindViewModel()
