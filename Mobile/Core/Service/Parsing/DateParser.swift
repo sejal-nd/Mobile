@@ -10,7 +10,7 @@ import Mapper
 
 struct DateParser {
     
-    internal func extractDate(object: Any?) throws -> Date {
+    func extractDate(object: Any?) throws -> Date {
         guard let dateString = object as? String else {
             throw MapperError.convertibleError(value: object, type: Date.self)
         }

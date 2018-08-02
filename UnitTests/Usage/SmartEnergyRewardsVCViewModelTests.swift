@@ -1,5 +1,5 @@
 //
-//  UsageViewModelTests.swift
+//  SmartEnergyRewardsVCViewModelTests.swift
 //  Mobile
 //
 //  Created by Sam Francis on 2/23/18.
@@ -8,21 +8,21 @@
 
 import XCTest
 
-class UsageViewModelTests: XCTestCase {
+class SmartEnergyRewardsVCViewModelTests: XCTestCase {
     
     func testShouldShowSmartEnergyRewards() {
-        var viewModel = UsageViewModel(accountDetail: AccountDetail())
+        var viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail())
         XCTAssert(!viewModel.shouldShowSmartEnergyRewards)
         
-        viewModel = UsageViewModel(accountDetail: AccountDetail(isPTSAccount: true))
+        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(isPTSAccount: true))
         XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards,
                        Environment.shared.opco != .peco)
         
-        viewModel = UsageViewModel(accountDetail: AccountDetail(premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")]))
+        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")]))
         XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards,
                        Environment.shared.opco != .peco)
         
-        viewModel = UsageViewModel(accountDetail: AccountDetail(isPTSAccount: true,
+        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(isPTSAccount: true,
                                                                 premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")]))
         XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards,
                        Environment.shared.opco != .peco)
@@ -30,26 +30,27 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testShouldShowSmartEnergyRewardsContent() {
-        var viewModel = UsageViewModel(accountDetail: AccountDetail())
+        var viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail())
         XCTAssert(!viewModel.shouldShowSmartEnergyRewardsContent)
         
-        viewModel = UsageViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult()])))
+        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult()])))
         XCTAssert(viewModel.shouldShowSmartEnergyRewardsContent)
     }
     
     func testSmartEnergyRewardsSeasonLabelText() {
-        var viewModel = UsageViewModel(accountDetail: AccountDetail())
+        var viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail())
         XCTAssertNil(viewModel.smartEnergyRewardsSeasonLabelText)
 
         viewModel = UsageViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult(eventStart: DateFormatter.mmDdYyyyFormatter.date(from: "05/23/2018")!)])))
+
         XCTAssertEqual(viewModel.smartEnergyRewardsSeasonLabelText, "Summer 2018")
     }
     
     func testSmartEnergyRewardsFooterText() {
-        var viewModel = UsageViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult()])))
+        var viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult()])))
         XCTAssertEqual(viewModel.smartEnergyRewardsFooterText, "You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.")
         
-        viewModel = UsageViewModel(accountDetail: AccountDetail())
+        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail())
         switch Environment.shared.opco {
         case .comEd:
             XCTAssertEqual(viewModel.smartEnergyRewardsFooterText, "As a Peak Time Savings customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent Peak Time Savings season will display here once available.")
