@@ -257,17 +257,22 @@
                                                                                             </label>
                                                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Q2-QX-EK7">
                                                                                                 <rect key="frame" x="0.0" y="22" width="60" height="134"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="img_predictedstripes" translatesAutoresizingMaskIntoConstraints="NO" id="QEx-t6-edt">
+                                                                                                        <rect key="frame" x="-0.5" y="84" width="60" height="50"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="height" constant="50" id="20W-ma-twg"/>
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                </subviews>
                                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <constraints>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="QEx-t6-edt" secondAttribute="trailing" id="4UP-PZ-Alq"/>
+                                                                                                    <constraint firstItem="QEx-t6-edt" firstAttribute="leading" secondItem="1Q2-QX-EK7" secondAttribute="leading" id="ffx-lW-LQ8"/>
                                                                                                     <constraint firstAttribute="height" constant="134" id="hQY-4p-XQq"/>
+                                                                                                    <constraint firstAttribute="bottom" secondItem="QEx-t6-edt" secondAttribute="bottom" id="z5e-pf-0xP"/>
                                                                                                 </constraints>
                                                                                             </view>
-                                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="img_predictedstripes" translatesAutoresizingMaskIntoConstraints="NO" id="QEx-t6-edt">
-                                                                                                <rect key="frame" x="0.0" y="106" width="60" height="50"/>
-                                                                                                <constraints>
-                                                                                                    <constraint firstAttribute="height" constant="50" id="20W-ma-twg"/>
-                                                                                                </constraints>
-                                                                                            </imageView>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qnq-y9-pQd">
                                                                                                 <rect key="frame" x="0.0" y="160" width="60" height="17"/>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -277,15 +282,12 @@
                                                                                         </subviews>
                                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <constraints>
-                                                                                            <constraint firstItem="QEx-t6-edt" firstAttribute="leading" secondItem="fGz-ff-KfF" secondAttribute="leading" id="8az-iM-iW7"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="Qnq-y9-pQd" secondAttribute="trailing" id="96Q-OQ-LGd"/>
                                                                                             <constraint firstItem="B2H-yA-RLi" firstAttribute="top" secondItem="fGz-ff-KfF" secondAttribute="top" id="9we-X9-mbA"/>
                                                                                             <constraint firstAttribute="width" constant="60" id="ACX-uv-sd9"/>
-                                                                                            <constraint firstItem="Qnq-y9-pQd" firstAttribute="top" secondItem="QEx-t6-edt" secondAttribute="bottom" constant="4" id="C7J-uu-fcp"/>
                                                                                             <constraint firstItem="1Q2-QX-EK7" firstAttribute="top" secondItem="B2H-yA-RLi" secondAttribute="bottom" constant="5" id="Dkb-jW-3Ax"/>
                                                                                             <constraint firstItem="Qnq-y9-pQd" firstAttribute="top" secondItem="1Q2-QX-EK7" secondAttribute="bottom" constant="4" id="Lwa-Bg-shr"/>
                                                                                             <constraint firstItem="B2H-yA-RLi" firstAttribute="leading" secondItem="fGz-ff-KfF" secondAttribute="leading" id="PbI-Aa-O4m"/>
-                                                                                            <constraint firstAttribute="trailing" secondItem="QEx-t6-edt" secondAttribute="trailing" id="hX0-bc-2fZ"/>
                                                                                             <constraint firstAttribute="bottom" secondItem="Qnq-y9-pQd" secondAttribute="bottom" id="mvB-Uc-8Ar"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="B2H-yA-RLi" secondAttribute="trailing" id="or6-cr-H8l"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="1Q2-QX-EK7" secondAttribute="trailing" id="qdA-uy-aSS"/>

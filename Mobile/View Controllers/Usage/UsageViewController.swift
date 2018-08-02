@@ -94,15 +94,11 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var projectedBarView: UIView! {
         didSet {
             projectedBarView.layer.borderWidth = 1
+            projectedBarView.clipsToBounds = true
         }
     }
     @IBOutlet private weak var projectedBarHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var projectedBarSoFarImageView: UIImageView! {
-        didSet {
-            projectedBarSoFarImageView.roundCorners([.bottomLeft, .bottomRight], radius: 10)
-            projectedBarSoFarImageView.clipsToBounds = true
-        }
-    }
+    @IBOutlet private weak var projectedBarSoFarImageView: UIImageView!
     @IBOutlet private weak var projectedBarSoFarHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var projectedDollarLabel: UILabel!
     @IBOutlet private weak var projectedDateLabel: UILabel!
@@ -209,6 +205,7 @@ class UsageViewController: AccountPickerViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         let dashedBorderColor = UIColor(red: 0, green: 80/255, blue: 125/255, alpha: 0.24)
         noDataBarView.addDashedBorder(color: dashedBorderColor)
         projectionNotAvailableBarView.addDashedBorder(color: dashedBorderColor)
