@@ -30,6 +30,7 @@ class DateParserTests: XCTestCase {
         let formatterDate = try? DateParser().extractDate(object: "2012/02/22")
 
         var dateComponents = DateComponents()
+        dateComponents.timeZone = .opCo
         dateComponents.year = 2012
         dateComponents.month = 02
         dateComponents.day = 22
@@ -42,6 +43,7 @@ class DateParserTests: XCTestCase {
         let formatterDate = try? DateParser().extractDate(object: "2012-02-22T06:02:00Z")
         
         var dateComponents = DateComponents()
+        dateComponents.timeZone = .opCo
         dateComponents.year = 2012
         dateComponents.month = 02
         dateComponents.day = 22
@@ -56,6 +58,7 @@ class DateParserTests: XCTestCase {
         let formatterDate = try? DateParser().extractDate(object: "2012-02-22T01:02:00")
         
         var dateComponents = DateComponents()
+        dateComponents.timeZone = .opCo
         dateComponents.year = 2012
         dateComponents.month = 02
         dateComponents.day = 22
@@ -70,6 +73,7 @@ class DateParserTests: XCTestCase {
         let formatterDate = try? DateParser().extractDate(object: "2012-02-22T01:02:00.000")
         
         var dateComponents = DateComponents()
+        dateComponents.timeZone = .opCo
         dateComponents.year = 2012
         dateComponents.month = 02
         dateComponents.day = 22
@@ -84,6 +88,7 @@ class DateParserTests: XCTestCase {
         let formatterDate = try? DateParser().extractDate(object: "01:02")
         
         var dateComponents = DateComponents()
+        dateComponents.timeZone = .opCo
         dateComponents.year = 2000
         dateComponents.month = 01
         dateComponents.day = 01
@@ -98,6 +103,7 @@ class DateParserTests: XCTestCase {
         let formatterDate = try? DateParser().extractDate(object: "2012-02-02T06:01:00Z")
 
         var dateComponents = DateComponents()
+        dateComponents.timeZone = .opCo
         dateComponents.year = 2012
         dateComponents.month = 02
         dateComponents.day = 02
