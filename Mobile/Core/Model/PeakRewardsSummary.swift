@@ -71,21 +71,9 @@ struct PeakRewardsProgram: Mappable {
             return status
         }
         gearName = try map.from("gearName")
-        
-        let extractDate = { (object: Any) throws -> Date in
-            guard let string = object as? String else {
-                throw MapperError.convertibleError(value: object, type: String.self)
-            }
-            
-            guard let date = DateFormatter.yyyyMMddTHHmmssZFormatter.date(from: string) else {
-                throw MapperError.convertibleError(value: string, type: Date.self)
-            }
-            
-            return date
-        }
-        
-        startDate = map.optionalFrom("startDate", transformation: extractDate)
-        stopDate = map.optionalFrom("stopDate", transformation: extractDate)
+
+        startDate = map.optionalFrom("startDate", transformation: DateParser().extractDate)
+        stopDate = map.optionalFrom("stopDate", transformation: DateParser().extractDate)
     }
 }
 
@@ -113,20 +101,8 @@ struct PeakRewardsOverride: Mappable, Equatable {
             return status
         }
         
-        let extractDate = { (object: Any) throws -> Date in
-            guard let string = object as? String else {
-                throw MapperError.convertibleError(value: object, type: String.self)
-            }
-
-            guard let date = DateFormatter.yyyyMMddTHHmmssZFormatter.date(from: string) else {
-                throw MapperError.convertibleError(value: string, type: Date.self)
-            }
-            
-            return date
-        }
-        
-        start = map.optionalFrom("start", transformation: extractDate)
-        stop = map.optionalFrom("stop", transformation: extractDate)
+        start = map.optionalFrom("start", transformation: DateParser().extractDate)
+        stop = map.optionalFrom("stop", transformation: DateParser().extractDate)
         
         serialNumber = try map.from("device.serialNumber")
     }
@@ -304,18 +280,7 @@ struct SmartThermostatPeriodInfo: Mappable {
     init(map: Mapper) throws {
         coolTemp = try map.from("coolTemp", transformation: tempMapper)
         heatTemp = try map.from("heatTemp", transformation: tempMapper)
-        
-        startTime = try map.from("startTime") {
-            guard let string = $0 as? String else {
-                throw MapperError.convertibleError(value: $0, type: String.self)
-            }
-            
-            guard let date = DateFormatter.HHmmFormatter.date(from: string) else {
-                throw MapperError.convertibleError(value: string, type: Date.self)
-            }
-            
-            return date
-        }
+        startTime = try map.from("startTime", transformation: DateParser().extractDate)
     }
     
     init(startTime: Date,

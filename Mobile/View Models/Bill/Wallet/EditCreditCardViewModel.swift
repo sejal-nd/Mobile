@@ -54,13 +54,11 @@ class EditCreditCardViewModel {
         }
     
     private(set) lazy var expYearIsNotInPast: Driver<Bool> = self.expYear.asDriver().map {
-        let enteredYear = DateFormatter.yyyyFormatter.date(from: $0)
-        let todayYear = DateFormatter.yyyyFormatter.date(from: DateFormatter.yyyyFormatter.string(from: Date()))
+        guard let enteredDate = DateFormatter.yyyyFormatter.date(from: $0) else { return false }
+        let enteredYear = Calendar.opCo.component(.year, from: enteredDate)
+        let todayYear = Calendar.opCo.component(.year, from: Date())
         
-        if let enteredYear = enteredYear, let todayYear = todayYear {
-            return enteredYear >= todayYear
-        }
-        return false
+        return enteredYear >= todayYear
     }
     
     private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.count == 3 || $0.count == 4 }

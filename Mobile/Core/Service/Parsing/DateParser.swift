@@ -10,13 +10,9 @@ import Mapper
 
 struct DateParser {
     
-    public func extractDate(object: Any?) throws -> Date {
+    internal func extractDate(object: Any?) throws -> Date {
         guard let dateString = object as? String else {
             throw MapperError.convertibleError(value: object, type: Date.self)
-        }
-        
-        if let date = DateFormatter.yyyyMMddTHHmmssFormatter.date(from: dateString) {
-            return date
         }
         
         if let date = DateFormatter.yyyyMMddTHHmmssZZZZZFormatter.date(from: dateString) {
@@ -32,6 +28,10 @@ struct DateParser {
         }
         
         if let date = DateFormatter.yyyyMMddTHHmmssSSSFormatter.date(from: dateString) {
+            return date
+        }
+        
+        if let date = DateFormatter.HHmmFormatter.date(from: dateString) {
             return date
         }
 
