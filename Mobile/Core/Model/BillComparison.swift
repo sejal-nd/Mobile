@@ -8,17 +8,6 @@
 
 import Mapper
 
-private func extractDate(object: Any?) throws -> Date {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
-    let dateFormatter = DateFormatter()
-    dateFormatter.calendar = .opCo
-    dateFormatter.timeZone = .opCo
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    return dateFormatter.date(from: dateString)!
-}
-
 struct BillComparison: Mappable {
     var meterUnit: String
     let currencySymbol: String
@@ -85,8 +74,8 @@ struct UsageBillPeriod: Mappable {
     init(map: Mapper) throws {
         try charges = map.from("charges")
         try usage = map.from("usage")
-        try startDate = map.from("startDate", transformation: extractDate)
-        try endDate = map.from("endDate", transformation: extractDate)
+        try startDate = map.from("startDate", transformation: DateParser().extractDate)
+        try endDate = map.from("endDate", transformation: DateParser().extractDate)
         averageTemperature = map.optionalFrom("averageTemperature")
         ratePlan = map.optionalFrom("ratePlan")
     }
