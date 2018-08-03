@@ -47,6 +47,20 @@ class ChangePasswordViewController: UIViewController {
     lazy var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
     lazy var submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
 
+    lazy var toolbar: UIToolbar = {
+        let toolbar = UIToolbar()
+        let suggestPasswordButton = UIBarButtonItem(title: "Suggest Password", style: .plain, target: self, action: #selector(suggestPassword))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        let items = [suggestPasswordButton, space]
+        toolbar.setItems(items, animated: false)
+        toolbar.sizeToFit()
+        toolbar.tintColor = .actionBlue
+        return toolbar
+    }()
+    
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,17 +80,21 @@ class ChangePasswordViewController: UIViewController {
         
         passwordStrengthView.isHidden = true
         passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        confirmPasswordTextField.setEnabled(false)
         
         currentPasswordTextField.textField.placeholder = sentFromLogin ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
         currentPasswordTextField.textField.returnKeyType = .next
         currentPasswordTextField.textField.isShowingAccessory = true
         
+        if #available(iOS 11.0, *) {
+            currentPasswordTextField.textField.textContentType = .password
+        }
+        
         newPasswordTextField.textField.placeholder = NSLocalizedString("New Password", comment: "")
         newPasswordTextField.textField.isSecureTextEntry = true
         newPasswordTextField.textField.returnKeyType = .next
         newPasswordTextField.textField.delegate = self
+        newPasswordTextField.textField.inputAccessoryView = toolbar
         
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
         
@@ -85,6 +103,7 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.setEnabled(false)
+        confirmPasswordTextField.textField.inputAccessoryView = toolbar
         
         mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .headline)
         for label in passwordRequirementLabels {
@@ -146,23 +165,6 @@ class ChangePasswordViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    private func accessibilityErrorLabel() {
-        var message = ""
-        message += currentPasswordTextField.getError()
-        message += newPasswordTextField.getError()
-        message += confirmPasswordTextField.getError()
-        
-        if message.isEmpty {
-            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
-        } else {
-            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -185,6 +187,13 @@ class ChangePasswordViewController: UIViewController {
         Analytics.log(event: .changePasswordOffer)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    // MARK: - Actions
+    
     @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
@@ -203,7 +212,13 @@ class ChangePasswordViewController: UIViewController {
             guard let `self` = self else { return }
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             self.navigationController?.popViewController(animated: true)
+
+            if self.viewModel.hasStrongPassword {
+                Analytics.log(event: .strongPasswordComplete)
+            }
+            
             Analytics.log(event: .changePasswordDone)
+
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
             guard let `self` = self else { return }
@@ -216,6 +231,28 @@ class ChangePasswordViewController: UIViewController {
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
             self?.present(alert, animated: true)
         })
+    }
+    
+    @objc private func suggestPassword() {
+        guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
+        
+        Analytics.log(event: .strongPasswordOffer)
+        
+        presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
+                     message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
+                     style: .actionSheet,
+                     actions:
+                        [UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
+                            self?.viewModel.hasStrongPassword = true
+                            self?.viewModel.newPassword.value = strongPassword
+                            self?.viewModel.confirmPassword.value = strongPassword
+                            self?.newPasswordTextField.textField.text = strongPassword
+                            self?.confirmPasswordTextField.textField.text = strongPassword
+                            self?.newPasswordTextField.textField.backgroundColor = .autoFillYellow
+                            self?.confirmPasswordTextField.textField.backgroundColor = .autoFillYellow
+                            self?.newPasswordTextField.textField.resignFirstResponder()
+                            },
+                         UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {
@@ -231,6 +268,22 @@ class ChangePasswordViewController: UIViewController {
             currentPasswordTextField.textField.isSecureTextEntry = true
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball_disabled"), for: .normal)
             eyeballButton.accessibilityLabel = NSLocalizedString("Hide password activated", comment: "")
+        }
+    }
+    
+    
+    // MARK: - Helper
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        message += currentPasswordTextField.getError()
+        message += newPasswordTextField.getError()
+        message += confirmPasswordTextField.getError()
+        
+        if message.isEmpty {
+            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+        } else {
+            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
         }
     }
     
@@ -319,10 +372,18 @@ class ChangePasswordViewController: UIViewController {
     
 }
 
+
+// MARK: - TextField Delegate
+
 extension ChangePasswordViewController: UITextFieldDelegate {
     
     // Don't allow whitespace entry in the newPasswordTextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        viewModel.hasStrongPassword = false
+        newPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+        confirmPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+        
         if string.count == 0 { // Allow backspace
             return true
         }

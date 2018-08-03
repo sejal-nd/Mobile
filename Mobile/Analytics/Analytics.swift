@@ -197,7 +197,7 @@ enum AnalyticsEvent: String {
     case homeProfileConfirmation = "HomeProfileConfirmation"
     
     case viewTopTips = "ViewTopTips"
-    
+
     case wakeSave = "WakeSave"
     case wakeToast = "WakeToast"
     case leaveSave = "LeaveSave"
@@ -220,6 +220,10 @@ enum AnalyticsEvent: String {
     case overrideToast = "OverrideToast"
     case cancelOverride = "CancelOverride"
     case cancelOverrideToast = "CancelOverrideToast"
+    
+    case strongPasswordOffer = "StrongPasswordOffer"
+    case strongPasswordComplete = "StrongPasswordComplete"
+    
 }
 
 enum AnalyticsOutageSource {

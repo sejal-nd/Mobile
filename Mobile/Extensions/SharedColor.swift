@@ -66,6 +66,10 @@ extension UIColor {
         return UIColor(red: 238/255, green: 127/255, blue: 75/255, alpha: 1)
     }
     
+    @nonobjc static var autoFillYellow: UIColor {
+        return UIColor(red: 234/255, green: 230/255, blue: 188/255, alpha: 1)
+    }
+    
 //    convenience init(hex: String, alpha: CGFloat = 1) {
 //        assert(hex[hex.startIndex] == "#", "Expected hex string of format #RRGGBB")
 //        

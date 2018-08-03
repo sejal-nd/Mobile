@@ -6,6 +6,8 @@
 	<string>production</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
+		<string>webcredentials:comed.com</string>
+		<string>webcredentials:secure.comed.com</string>
 		<string>applinks:secure.comed.com</string>
 	</array>
 </dict>

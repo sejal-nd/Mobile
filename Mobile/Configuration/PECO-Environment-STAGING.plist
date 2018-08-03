@@ -26,5 +26,7 @@
 	<string>azstg.peco.com</string>
 	<key>appCenterId</key>
 	<string>432a1a21-ccbb-4ee9-b3e3-2480090618f5</string>
+	<key>associatedDomain</key>
+	<string>azstg-secure.peco.com</string>
 </dict>
 </plist>
