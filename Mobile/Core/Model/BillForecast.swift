@@ -9,26 +9,19 @@
 import Mapper
 
 struct BillForecastResult {
-    let electric: BillForecast
-    let gas: BillForecast
+    let electric: BillForecast?
+    let gas: BillForecast?
     
     init(dictionaries: [[String: Any]]) throws {
         let billForecasts = dictionaries.compactMap { BillForecast.from($0 as NSDictionary) }
         
-        guard let electric = billForecasts.first(where: {
+        electric = billForecasts.first(where: {
             $0.errorMessage == nil && $0.meterType == "ELEC"
-        }) else {
-            throw MapperError.convertibleError(value: billForecasts, type: BillForecast.self)
-        }
+        })
         
-        guard let gas = billForecasts.first(where: {
+        gas = billForecasts.first(where: {
             $0.errorMessage == nil && $0.meterType != "ELEC"
-        }) else {
-            throw MapperError.convertibleError(value: billForecasts, type: BillForecast.self)
-        }
-        
-        self.electric = electric
-        self.gas = gas
+        })
     }
 }
 
