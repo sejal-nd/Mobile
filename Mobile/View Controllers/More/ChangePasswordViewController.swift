@@ -14,7 +14,7 @@ protocol ChangePasswordViewControllerDelegate: class {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController)
 }
 
-class ChangePasswordViewController: UIViewController, Alertable {
+class ChangePasswordViewController: UIViewController {
     
     weak var delegate: ChangePasswordViewControllerDelegate?
     

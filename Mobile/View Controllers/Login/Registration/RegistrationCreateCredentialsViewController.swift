@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import ToastSwiftFramework
 
-class RegistrationCreateCredentialsViewController: UIViewController, Alertable {
+class RegistrationCreateCredentialsViewController: UIViewController {
 
     let disposeBag = DisposeBag()
 

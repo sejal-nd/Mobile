@@ -112,10 +112,6 @@ class ChangePasswordViewModel {
                     
                     if self.biometricsService.isBiometricsEnabled() {
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
-                    } else {
-                        // Save to keychain
-                        let KEYCHAIN_KEY = "kExelon_PW"
-                        A0SimpleKeychain().setString(self.newPassword.value, forKey: KEYCHAIN_KEY)
                     }
                     
                     // Save to SWC

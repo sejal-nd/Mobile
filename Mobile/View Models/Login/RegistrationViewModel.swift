@@ -125,8 +125,6 @@ class RegistrationViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 SharedWebCredentials.save(credential: (self.username.value, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
-                let KEYCHAIN_KEY = "kExelon_PW"
-                A0SimpleKeychain().setString(self.newPassword.value, forKey: KEYCHAIN_KEY)
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
