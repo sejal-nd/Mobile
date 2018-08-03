@@ -108,7 +108,7 @@ class TemplateCardView: UIView {
         .filter { $0 }
         .withLatestFrom(self.viewModel.accountDetailElements.asDriver(onErrorDriveWith: .empty()))
         .map {
-            let hourlyPricingVC = UIStoryboard(name: "Home", bundle: nil)
+            let hourlyPricingVC = UIStoryboard(name: "Usage", bundle: nil)
                 .instantiateViewController(withIdentifier: "hourlyPricingViewController") as! HourlyPricingViewController
             hourlyPricingVC.accountDetail = $0
             return hourlyPricingVC
