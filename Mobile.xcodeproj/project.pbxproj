@@ -197,6 +197,9 @@
 		357757552114D32B00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
 		357757562114D32B00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
 		357757572114D32B00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
+		357757582114D65B00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
+		357757592114D65C00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
+		3577575A2114D65C00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
 		358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
@@ -7132,6 +7135,7 @@
 				E80D2E1A1E721668002626C9 /* MaskedString.swift in Sources */,
 				B094A640210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E8EDC54D1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
+				357757582114D65B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				B5389EA91E53E20D0028AF89 /* ServiceResult.swift in Sources */,
 				E895E9AF1EBB8494003B38A1 /* ForgotUsernameViewModel.swift in Sources */,
 				E8BCB9BD1EFAE79A00779588 /* BGEAutoPayViewModel.swift in Sources */,
@@ -7353,6 +7357,7 @@
 				E8F62B8A200924410077B3DA /* MaskedString.swift in Sources */,
 				B094A641210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E8F62B8B200924410077B3DA /* MinimumVersion.swift in Sources */,
+				357757592114D65C00E73542 /* SharedWebCredentialService.swift in Sources */,
 				E8F62B8C200924410077B3DA /* ServiceResult.swift in Sources */,
 				E8F62B8D200924410077B3DA /* ForgotUsernameViewModel.swift in Sources */,
 				E8F62B8E200924410077B3DA /* BGEAutoPayViewModel.swift in Sources */,
@@ -7526,6 +7531,7 @@
 				E8F62C3F200924570077B3DA /* MaskedString.swift in Sources */,
 				B094A642210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E8F62C40200924570077B3DA /* MinimumVersion.swift in Sources */,
+				3577575A2114D65C00E73542 /* SharedWebCredentialService.swift in Sources */,
 				E8F62C41200924570077B3DA /* ServiceResult.swift in Sources */,
 				E8F62C42200924570077B3DA /* ForgotUsernameViewModel.swift in Sources */,
 				E8F62C43200924570077B3DA /* BGEAutoPayViewModel.swift in Sources */,
