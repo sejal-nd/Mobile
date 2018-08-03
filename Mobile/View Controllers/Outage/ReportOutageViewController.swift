@@ -11,13 +11,7 @@ import RxSwift
 import RxCocoa
 import Lottie
 
-protocol ReportOutageViewControllerDelegate: class {
-    func reportOutageViewControllerDidReportOutage(_ reportOutageViewController: ReportOutageViewController, reportedOutage: ReportedOutageResult?)
-}
-
 class ReportOutageViewController: UIViewController {
-    
-    weak var delegate: ReportOutageViewControllerDelegate?
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -247,9 +241,9 @@ class ReportOutageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if unauthenticatedExperience {
-            Analytics.log(event: .ReportAnOutageUnAuthScreenView)
+            Analytics.log(event: .reportAnOutageUnAuthScreenView)
         } else {
-            Analytics.log(event: .ReportOutageAuthOffer)
+            Analytics.log(event: .reportOutageAuthOffer)
         }
         
         
@@ -363,18 +357,18 @@ class ReportOutageViewController: UIViewController {
             viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
                 LoadingView.hide()
                 guard let `self` = self else { return }
-                self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: reportedOutage)
+                RxNotifications.shared.outageReported.onNext(())
                 self.navigationController?.popViewController(animated: true)
             }, onError: errorBlock)
-            Analytics.log(event: .ReportAnOutageUnAuthSubmit)
+            Analytics.log(event: .reportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 LoadingView.hide()
                 guard let `self` = self else { return }
-                self.delegate?.reportOutageViewControllerDidReportOutage(self, reportedOutage: nil)
+                RxNotifications.shared.outageReported.onNext(())
                 self.navigationController?.popViewController(animated: true)
             }, onError: errorBlock)
-            Analytics.log(event: .ReportOutageAuthSubmit)
+            Analytics.log(event: .reportOutageAuthSubmit)
         }
         
 
@@ -383,9 +377,9 @@ class ReportOutageViewController: UIViewController {
     @IBAction func switchPressed(sender: AnyObject) {
         if(sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn) {
             if unauthenticatedExperience {
-                Analytics.log(event: .ReportAnOutageUnAuthCircuitBreakCheck)
+                Analytics.log(event: .reportAnOutageUnAuthCircuitBreakCheck)
             } else {
-                Analytics.log(event: .ReportOutageAuthCircuitBreak)
+                Analytics.log(event: .reportOutageAuthCircuitBreak)
             }
             
         }
@@ -458,9 +452,9 @@ extension ReportOutageViewController: UITextFieldDelegate {
 extension ReportOutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName: AnalyticsPageView = unauthenticatedExperience ?
-            .ReportAnOutageUnAuthEmergencyPhone :
-            .ReportOutageEmergencyCall
+        let screenName: AnalyticsEvent = unauthenticatedExperience ?
+            .reportAnOutageUnAuthEmergencyPhone :
+            .reportOutageEmergencyCall
         
         Analytics.log(event: screenName)
     }

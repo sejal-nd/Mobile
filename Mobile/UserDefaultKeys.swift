@@ -21,6 +21,7 @@ struct UserDefaultKeys {
     static let customerIdentifier = "kCustomerIdentifier" // Persist Customer Identifer (from login) to disk
     
     static let paymentDetailsDictionary = "kPaymentDetailsDictionary"
+    static let reportedOutagesDictionary = "kReportedOutagesDictionary"
     
     static let temperatureScale = "kPTemperatureScale"
     
@@ -41,4 +42,6 @@ struct UserDefaultKeys {
     static let accountVerificationDeepLinkGuid = "kAccountVerificationDeepLinkGuid"
     
     static let isKeepMeSignedInChecked = "kIsKeepMeSignedInChecked"
+    
+    static let doNotShowIOS9VersionWarningAgain = "kdoNotShowIOS9VersionWarningAgain" // True if iOS 9 user selects "Don't warn me again" on alert
 }

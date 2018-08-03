@@ -11,7 +11,7 @@
 	<key>oauthEndpoint</key>
 	<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>ProdPECO</string>
+	<string>Prod-pecoMBE</string>
 	<key>fiservUrl</key>
 	<string>https://billerwebui.fiservapps.com/Mobile</string>
 	<key>speedpayUrl</key>

@@ -94,17 +94,11 @@ class AddCardFormViewModel {
     private(set) lazy var expYearIs4Digits: Driver<Bool> = self.expYear.asDriver().map { $0.count == 4 }
     
     private(set) lazy var expYearIsNotInPast: Driver<Bool> = self.expYear.asDriver().map {
-        let formatter = DateFormatter()
-        formatter.calendar = .opCo
-        formatter.timeZone = .opCo
-        formatter.dateFormat = "yyyy"
-        let enteredYear = formatter.date(from: $0)
-        let todayYear = formatter.date(from: formatter.string(from: Date()))
+        guard let enteredDate = DateFormatter.yyyyFormatter.date(from: $0) else { return false }
+        let enteredYear = Calendar.opCo.component(.year, from: enteredDate)
+        let todayYear = Calendar.opCo.component(.year, from: Date())
         
-        if let enteredYear = enteredYear, let todayYear = todayYear {
-            return enteredYear >= todayYear
-        }
-        return false
+        return enteredYear >= todayYear
     }
 
     private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.count == 3 || $0.count == 4 }

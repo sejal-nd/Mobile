@@ -184,7 +184,7 @@ class ChangePasswordViewController: UIViewController, Alertable {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .ChangePasswordOffer)
+        Analytics.log(event: .changePasswordOffer)
     }
     
     deinit {
@@ -212,12 +212,13 @@ class ChangePasswordViewController: UIViewController, Alertable {
             guard let `self` = self else { return }
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             self.navigationController?.popViewController(animated: true)
-            
+
             if self.viewModel.hasStrongPassword {
                 Analytics.log(event: .strongPasswordComplete)
             }
             
-            Analytics.log(event: .ChangePasswordDone)
+            Analytics.log(event: .changePasswordDone)
+
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
             guard let `self` = self else { return }

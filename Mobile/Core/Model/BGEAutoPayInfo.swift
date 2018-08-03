@@ -26,12 +26,6 @@ private func extractLast4(object: Any?) throws -> String? {
     return string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
 }
 
-private func extractDate(object: Any?) throws -> Date? {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
-    return dateString.apiFormatDate
-}
 
 struct BGEAutoPayInfo: Mappable {
     
@@ -54,7 +48,7 @@ struct BGEAutoPayInfo: Mappable {
         amountThreshold = map.optionalFrom("amount_threshold")
         paymentDaysBeforeDue = map.optionalFrom("payment_days_before_due")
         effectivePeriod = map.optionalFrom("effective_period")
-        effectiveEndDate = map.optionalFrom("effective_end_date", transformation: extractDate)
+        effectiveEndDate = map.optionalFrom("effective_end_date", transformation: DateParser().extractDate)
         effectiveNumPayments = map.optionalFrom("effective_number_of_payments")
         numberOfPaymentsScheduled = map.optionalFrom("no_of_payments_scheduled")
     }

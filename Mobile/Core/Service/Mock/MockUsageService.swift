@@ -14,7 +14,7 @@ struct MockUsageService: UsageService {
         
     }
     
-    func fetchBillForecast(accountNumber: String, premiseNumber: String, completion: @escaping (ServiceResult<[BillForecast?]>) -> Void) {
+    func fetchBillForecast(accountNumber: String, premiseNumber: String, completion: @escaping (ServiceResult<BillForecastResult>) -> Void) {
         
     }
     

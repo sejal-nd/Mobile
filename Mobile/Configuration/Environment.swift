@@ -16,6 +16,20 @@ enum OpCo: String {
     var displayString: String {
         return rawValue
     }
+    
+    // Used for reading the splash screen animation to VoiceOver users
+    var taglineString: String {
+        var tagline: String
+        switch self {
+        case .bge:
+            tagline = "That's smart energy"
+        case .comEd:
+            tagline = "Powering lives"
+        case .peco:
+            tagline = "The future is on"
+        }
+        return tagline
+    }
 }
 
 enum EnvironmentName: String {

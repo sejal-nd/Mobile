@@ -12,16 +12,8 @@ enum HomeCard: Int {
     case bill, usage, template, projectedBill, outageStatus, peakRewards, newBusiness, nothing
     
     static let allCards: [HomeCard] = {
-        return [.bill, .usage, .template]
-//        switch Environment.shared.opco {
-//        case .bge:
-//            return [.bill, .usage, .template, .projectedBill, .outageStatus, .peakRewards]
-//        case .comEd:
-//            return [.bill, .usage, .template, .projectedBill, .outageStatus, .newBusiness]
-//        case .peco:
-//            return [.bill, .usage, .template, .projectedBill, .outageStatus]
-//        }
-        }()
+        return [.bill, .usage, .template, .outageStatus, .projectedBill]
+    }()
     
     init?(id: String) {
         guard let homeCard = HomeCard.allCards.first(where: { $0.id == id }) else {
@@ -74,7 +66,7 @@ enum HomeCard: Int {
     
     var isOptional: Bool {
         switch self {
-        case .bill, .usage:
+        case .bill, .template:
             return false
         default:
             return true
@@ -83,7 +75,7 @@ enum HomeCard: Int {
     
     var isAlwaysAvailable: Bool {
         switch self {
-        case .usage, .projectedBill, .peakRewards:
+        case .usage, .projectedBill:
             return false
         default:
             return true

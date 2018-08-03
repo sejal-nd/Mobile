@@ -10,8 +10,6 @@ import Foundation
 
 class MockOutageService: OutageService {
     
-    private var outageMap = [String: ReportedOutageResult]()
-    
     func fetchOutageStatus(account: Account, completion: @escaping (ServiceResult<OutageStatus>) -> Void) {
         var accountNum = account.accountNumber
         
@@ -34,6 +32,8 @@ class MockOutageService: OutageService {
                 accountNum = "5591032201"
             } else if loggedInUsername == "outageTestFinaled" {
                 accountNum = "75395146464"
+            } else if loggedInUsername == "outageTestNoPay" {
+                accountNum = "5591032203"
             } else if loggedInUsername == "outageTestReport" {
                 accountNum = "7003238921"
             }
@@ -169,13 +169,13 @@ class MockOutageService: OutageService {
     func reportOutage(outageInfo: OutageInfo, completion: @escaping (ServiceResult<Void>) -> Void) {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         if loggedInUsername == "outageTestPowerOn" { // UI testing
-            outageMap["outageTestPowerOn"] = ReportedOutageResult.from(NSDictionary())
+            ReportedOutagesStore.shared["outageTestPowerOn"] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                 completion(ServiceResult.success(()))
             }
         }
         if outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202" {
-            outageMap[outageInfo.accountNumber] = ReportedOutageResult.from(NSDictionary())
+            ReportedOutagesStore.shared[outageInfo.accountNumber] = ReportedOutageResult.from(NSDictionary())
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                 completion(ServiceResult.success(()))
             }
@@ -187,17 +187,9 @@ class MockOutageService: OutageService {
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult? {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         if loggedInUsername == "outageTestPowerOn" { // UI testing
-            return self.outageMap["outageTestPowerOn"]
+            return ReportedOutagesStore.shared["outageTestPowerOn"]
         }
-        return self.outageMap[accountNumber]
-    }
-    
-    func clearReportedOutageStatus(accountNumber: String?) {
-        if let accountNumber = accountNumber {
-            self.outageMap[accountNumber] = nil
-        } else {
-            self.outageMap.removeAll()
-        }
+        return ReportedOutagesStore.shared[accountNumber]
     }
     
     func fetchOutageStatusAnon(phoneNumber: String?, accountNumber: String?, completion: @escaping (ServiceResult<[OutageStatus]>) -> Void) {
@@ -207,7 +199,7 @@ class MockOutageService: OutageService {
     func reportOutageAnon(outageInfo: OutageInfo, completion: @escaping (ServiceResult<ReportedOutageResult>) -> Void) {
         if outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202" {
             let reportedOutageResult = ReportedOutageResult.from(NSDictionary())!
-            outageMap[outageInfo.accountNumber] = reportedOutageResult
+            ReportedOutagesStore.shared[outageInfo.accountNumber] = reportedOutageResult
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
                 completion(ServiceResult.success(reportedOutageResult))
             }

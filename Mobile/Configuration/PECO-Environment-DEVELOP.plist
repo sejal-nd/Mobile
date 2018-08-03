@@ -11,7 +11,7 @@
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>Develop</string>
+	<string>mobileAppDev</string>
 	<key>fiservUrl</key>
 	<string>https://billerwebui.clienttestmatrix.com/Mobile</string>
 	<key>speedpayUrl</key>

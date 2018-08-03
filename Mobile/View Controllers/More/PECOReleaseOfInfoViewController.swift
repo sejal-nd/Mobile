@@ -64,7 +64,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .ReleaseInfoOffer)
+        Analytics.log(event: .releaseInfoOffer)
     }
     
     @objc func onCancelPress() {
@@ -80,7 +80,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
         }
         
         LoadingView.show()
-        Analytics.log(event: .ReleaseInfoSubmit)
+        Analytics.log(event: .releaseInfoSubmit)
         accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.shared.currentAccount!, selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in

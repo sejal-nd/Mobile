@@ -28,8 +28,8 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
         super.viewDidLoad()
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics.log(event: .ViewTopTips,
-                             dimensions: [.ResidentialAMI: residentialAMIString])
+        Analytics.log(event: .viewTopTips,
+                             dimensions: [.residentialAMI: residentialAMIString])
         
         tableView.backgroundColor = .primaryColor
         titleLabel.textColor = .blackText
