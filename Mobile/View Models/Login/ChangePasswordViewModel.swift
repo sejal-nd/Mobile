@@ -109,16 +109,20 @@ class ChangePasswordViewModel {
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in
                     guard let `self` = self else { return }
+                    
                     if self.biometricsService.isBiometricsEnabled() {
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
+                    } else {
+                        // Save to keychain
+                        let KEYCHAIN_KEY = "kExelon_PW"
+                        A0SimpleKeychain().setString(self.newPassword.value, forKey: KEYCHAIN_KEY)
                     }
+                    
                     // Save to SWC
                     if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername) {
                         SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                     }
-                    // Save to keychain
-                    let KEYCHAIN_KEY = "kExelon_PW"
-                    A0SimpleKeychain().setString(self.newPassword.value, forKey: KEYCHAIN_KEY)
+
                     onSuccess()
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
