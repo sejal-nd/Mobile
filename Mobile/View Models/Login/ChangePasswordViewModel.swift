@@ -152,20 +152,5 @@ class ChangePasswordViewModel {
                 .disposed(by: disposeBag)
         }
     }
-    
-    func saveSharedWebCredentials() {
-        guard let storedUsername = biometricsService.getStoredUsername() else { return }
-        // Todo: grab domain out of env struct.
-        SharedWebCredentials.save(credential: (account: storedUsername, password: newPassword.value), domain: Environment.shared.associatedDomain) { (error) in
-            if let error = error {
-                print("ERROR: \(error.localizedDescription)")
-            } else {
-                // DO NOTHING? REmove completion handler?  We dont need to know what it has completed
-                
-                print("COMPLETED: \(storedUsername) \(self.newPassword.value)  ")
-            }
-        }
-    }
 
-    
 }

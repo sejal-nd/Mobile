@@ -210,7 +210,6 @@ class ChangePasswordViewController: UIViewController, Alertable {
         viewModel.changePassword(sentFromLogin: sentFromLogin, onSuccess: { [weak self] in
             LoadingView.hide()
             guard let `self` = self else { return }
-            self.viewModel.saveSharedWebCredentials()
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             self.navigationController?.popViewController(animated: true)
             

@@ -56,7 +56,7 @@ class LoginViewModel {
     func performLogin(onSuccess: @escaping (Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
         if username.value.isEmpty || password.value.isEmpty {
             onError(nil, "Please enter your username and password")
-            return;
+            return
         }
         
         isLoggingIn = true
@@ -72,6 +72,8 @@ class LoginViewModel {
                     self.authService.logout().subscribe(onError: { (error) in
                         dLog("Logout Error: \(error)")
                     }).disposed(by: self.disposeBag)
+                } else {
+                    SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                 }
             }, onError: { [weak self] error in
                 self?.isLoggingIn = false
@@ -117,19 +119,6 @@ class LoginViewModel {
     func disableBiometrics() {
         biometricsService.disableBiometrics()
         biometricsEnabled.value = false
-    }
-    
-    func saveSharedWebCredentials() {
-        // Todo: grab domain out of env struct.
-        SharedWebCredentials.save(credential: (account: username.value, password: password.value), domain: Environment.shared.associatedDomain) { (error) in
-            if let error = error {
-                print("ERROR: \(error.localizedDescription)")
-            } else {
-                // DO NOTHING? REmove completion handler?  We dont need to know what it has completed
-                
-                print("COMPLETED: \(self.username.value) \(self.password.value)  ")
-            }
-        }
     }
     
     func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {

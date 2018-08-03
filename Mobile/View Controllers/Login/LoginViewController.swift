@@ -190,17 +190,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
-        
-//        SharedWebCredentials.save(credential: (account: "hello world", password: "password"), domain: "applinks:stgd15-secure.comed.com") { (error) in
-//            if let error = error {
-//                print("ERROR: \(error.localizedDescription)")
-//            } else {
-//                print("COMPLETED: \(self.viewModel.username.value) \(self.viewModel.password.value)  ")
-//            }
-//        }
-//        
-//        print("POST SAVE: \(Environment.shared.associatedDomain)")
-
         Analytics.log(event: .LoginOffer,
                         dimensions: [.KeepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
                                      .FingerprintUsed: "disabled"])
@@ -235,7 +224,6 @@ class LoginViewController: UIViewController {
                 // Get the last username that logged in first, and then store the one currently logging in
                 let lastLoggedInUsername: String? = self.viewModel.getStoredUsername()
                 self.viewModel.storeUsername()
-                self.viewModel.saveSharedWebCredentials()
 
                 if loggedInWithTempPassword {
                     let storyboard = UIStoryboard(name: "More", bundle: nil)
