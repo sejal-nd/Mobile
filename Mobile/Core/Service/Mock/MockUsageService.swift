@@ -11,7 +11,9 @@ import Foundation
 struct MockUsageService: UsageService {
     
     func fetchBillComparison(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool, completion: @escaping (ServiceResult<BillComparison>) -> Void) {
-        
+        if accountNumber == "usageTest1" {
+            completion(.success(BillComparison(reference: UsageBillPeriod(endDate: "2017-08-01"))))
+        }
     }
     
     func fetchBillForecast(accountNumber: String, premiseNumber: String, completion: @escaping (ServiceResult<BillForecastResult>) -> Void) {

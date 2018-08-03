@@ -5,35 +5,66 @@
 //  Created by Marc Shilling on 10/17/17.
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
-/*
+
 import XCTest
 import RxSwift
+import RxTest
 
 class UsageViewModelTests: XCTestCase {
     
-    var viewModel: BillAnalysisViewModel!
+    var viewModel: UsageViewModel!
+    var scheduler: TestScheduler!
+    var accountService: MockAccountService!
     
     let disposeBag = DisposeBag()
     
     override func setUp() {
-        viewModel = BillAnalysisViewModel(usageService: MockUsageService())
+        accountService = MockAccountService()
+        viewModel = UsageViewModel(accountService: accountService, usageService: MockUsageService())
+        scheduler = TestScheduler(initialClock: 0)
+    }
+    
+    private func removeIntermediateEvents<T>(_ events: [Recorded<Event<T>>]) -> [Recorded<Event<T>>] {
+        var trimmedArray: [Recorded<Event<T>>] = []
+        let numEvents = events.count
+        for i in 0..<numEvents {
+            let event = events[i]
+            let eventTime = event.time
+            if i + 1 < numEvents {
+                if events[i + 1].time == eventTime {
+                    continue
+                }
+            }
+            trimmedArray.append(event)
+        }
+        return trimmedArray
     }
     
     // MARK: No Data Bar Drivers
-    
+
     func testNoDataBarDateLabelText() {
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(endDate: "2017-08-01"))
+        AccountsStore.shared.currentAccount = Account(accountNumber: "usageTest1")
+        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
+        accountService.mockAccountDetails = [AccountDetail(accountNumber: "usageTest1", premiseNumber: "1", isResidential: true)]
         
-        // Default is Previous Bill
-        viewModel.noDataBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "JUL 01")
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(String?.self)
         
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0 // Last Year
-        viewModel.noDataBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "2016")
+        viewModel.noDataBarDateLabelText.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+            if $0 == 0 {
+                self.viewModel.fetchAllData()
+            }
+            if $0 == 1 {
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+            }
         }).disposed(by: disposeBag)
+        scheduler.start()
+        
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [next(0, "JUL 01"), next(1, "2016")]);
     }
+/*
     
     // MARK: Previous Bar Drivers
     
@@ -844,6 +875,5 @@ class UsageViewModelTests: XCTestCase {
             XCTFail("Current charges should be displayed if deliveryCharges, supplyCharges, and taxesAndFees total more than 0")
         }
     }
-    
-}
 */
+}
