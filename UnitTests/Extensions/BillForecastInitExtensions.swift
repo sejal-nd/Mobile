@@ -6,6 +6,29 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
+extension BillForecastResult {
+    init() {
+        self.gas = BillForecast()
+        self.electric = BillForecast()
+    }
+    
+    init(gas: BillForecast? = nil,
+         electric: BillForecast? = nil) {
+        if Environment.shared.environmentName != .aut {
+            fatalError("init only available for tests")
+        }
+        
+        var forecast = BillForecastResult()
+        if let gas = gas {
+            forecast.gas = gas
+        }
+        if let electric = electric {
+            forecast.electric = electric
+        }
+        self = forecast
+    }
+}
+
 extension BillForecast {
 
     init(errorMessage: String? = nil,

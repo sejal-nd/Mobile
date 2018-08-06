@@ -43,9 +43,9 @@ class UsageViewModelTests: XCTestCase {
     // MARK: No Data Bar Drivers
 
     func testNoDataBarDateLabelText() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "usageTest1")
+        AccountsStore.shared.currentAccount = Account(accountNumber: "referenceEndDate")
         accountService.mockAccounts = [AccountsStore.shared.currentAccount]
-        accountService.mockAccountDetails = [AccountDetail(accountNumber: "usageTest1", premiseNumber: "1", isResidential: true)]
+        accountService.mockAccountDetails = [AccountDetail(accountNumber: "referenceEndDate", premiseNumber: "1", isResidential: true)]
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -64,147 +64,173 @@ class UsageViewModelTests: XCTestCase {
         let trimmedEvents = removeIntermediateEvents(observer.events)
         XCTAssertEqual(trimmedEvents, [next(0, "JUL 01"), next(1, "2016")]);
     }
-/*
     
-    // MARK: Previous Bar Drivers
+    // MARK: Previous Bar Drivers... PREVIOUS = COMPARED
     
     func testPreviousBarHeightConstraintValue() {
-        viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC")
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(), compared: UsageBillPeriod(charges: -10))
+        let testAccounts = [
+            Account(accountNumber: "testComparedMinHeight"),
+            Account(accountNumber: "test-hasForecast-comparedHighest"),
+            Account(accountNumber: "test-hasForecast-referenceHighest"),
+            Account(accountNumber: "test-hasForecast-forecastHighest"),
+            Account(accountNumber: "test-noForecast-comparedHighest"),
+            Account(accountNumber: "test-noForecast-referenceHighest"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "testComparedMinHeight", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-hasForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-hasForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-hasForecast-forecastHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-noForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-noForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+        ]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
         
-        viewModel.previousBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            XCTAssertEqual(val, 3)
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(CGFloat.self)
         
-        // If we have a projection:
-        // Test case: Compared charges are the highest
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 180), compared: UsageBillPeriod(charges: 200))
-        viewModel.electricForecast.value = BillForecast(projectedCost: 150)
-        viewModel.previousBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            XCTAssertEqual(val, 134)
-        }).disposed(by: disposeBag)
+        viewModel.previousBarHeightConstraintValue.drive(observer).disposed(by: disposeBag)
         
-        // Test case: Projected charges are the highest
-        viewModel.electricForecast.value = BillForecast(projectedCost: 210)
-        viewModel.previousBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            let expectedVal = CGFloat(134.0 * (200 / 210))
-            XCTAssertEqual(val, expectedVal)
+        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5)]).subscribe(onNext: {
+            AccountsStore.shared.currentAccount = testAccounts[$0]
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
         
-        // Test case: Reference charges are the highest
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 220), compared: UsageBillPeriod(charges: 200))
-        viewModel.previousBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            let expectedVal = CGFloat(134.0 * (200 / 220))
-            XCTAssertEqual(val, expectedVal)
-        }).disposed(by: disposeBag)
-        
-        // No projections
-        // Test case: Reference charges are greater than compared charges
-        viewModel.electricForecast.value = nil
-        viewModel.previousBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            let expectedVal = CGFloat(134.0 * (200 / 220))
-            XCTAssertEqual(val, expectedVal)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Compared charges are greater than reference charges
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 200), compared: UsageBillPeriod(charges: 220))
-        viewModel.previousBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            XCTAssertEqual(val, 134)
-        }).disposed(by: disposeBag)
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, 3.0),
+            next(1, 134.0),
+            next(2, CGFloat(134.0 * (200 / 220))),
+            next(3, CGFloat(134.0 * (200 / 230))),
+            next(4, 134.0),
+            next(5, CGFloat(134.0 * (200 / 220))),
+        ]);
     }
     
     func testPreviousBarDollarLabelText() {
-        viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC")
+        AccountsStore.shared.currentAccount = Account(accountNumber: "test-noForecast-comparedHighest")
+        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
+        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-noForecast-comparedHighest", premiseNumber: "1", isResidential: true)]
         
-        viewModel.currentBillComparison.value = BillComparison(compared: UsageBillPeriod(charges: 220))
-        viewModel.previousBarDollarLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "$220.00")
+        let observer = scheduler.createObserver(String?.self)
+        
+        viewModel.previousBarDollarLabelText.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0)]).subscribe(onNext: { _ in
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events, [next(0, "$220.00")]);
     }
     
     func testPreviousBarDateLabelText() {
-        viewModel.currentBillComparison.value = BillComparison(compared: UsageBillPeriod(endDate: "2017-08-01"))
+        AccountsStore.shared.currentAccount = Account(accountNumber: "comparedEndDate")
+        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
+        accountService.mockAccountDetails = [AccountDetail(accountNumber: "comparedEndDate", premiseNumber: "1", isResidential: true)]
         
-        // Default is Previous Bill
-        viewModel.previousBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "AUG 01")
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(String?.self)
         
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0 // Last Year
-        viewModel.previousBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "2017")
+        viewModel.previousBarDateLabelText.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+            if $0 == 0 {
+                self.viewModel.fetchAllData()
+            }
+            if $0 == 1 {
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+            }
         }).disposed(by: disposeBag)
+        scheduler.start()
+        
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [next(0, "AUG 01"), next(1, "2017")]);
     }
     
-    // MARK: Current Bar Drivers
+    // MARK: Current Bar Drivers...CURRENT = REFERENCE
     
     func testCurrentBarHeightConstraintValue() {
-        viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC")
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: -10), compared: UsageBillPeriod())
+        let testAccounts = [
+            Account(accountNumber: "testReferenceMinHeight"),
+            Account(accountNumber: "test-hasForecast-comparedHighest"),
+            Account(accountNumber: "test-hasForecast-referenceHighest"),
+            Account(accountNumber: "test-hasForecast-forecastHighest"),
+            Account(accountNumber: "test-noForecast-comparedHighest"),
+            Account(accountNumber: "test-noForecast-referenceHighest"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "testReferenceMinHeight", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-hasForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-hasForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-hasForecast-forecastHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-noForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-noForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+        ]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
         
-        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            XCTAssertEqual(val, 3)
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(CGFloat.self)
         
-        // If we have a projection:
-        // Test case: Reference charges are the highest
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 200), compared: UsageBillPeriod(charges: 180))
-        viewModel.electricForecast.value = BillForecast(projectedCost: 150)
-        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            XCTAssertEqual(val, 134)
-        }).disposed(by: disposeBag)
+        viewModel.currentBarHeightConstraintValue.drive(observer).disposed(by: disposeBag)
         
-        // Test case: Projected charges are the highest
-        viewModel.electricForecast.value = BillForecast(projectedCost: 210)
-        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            let expectedVal = CGFloat(134.0 * (200 / 210))
-            XCTAssertEqual(val, expectedVal)
+        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5)]).subscribe(onNext: {
+            AccountsStore.shared.currentAccount = testAccounts[$0]
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
         
-        // Test case: Compared charges are the highest
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 200), compared: UsageBillPeriod(charges: 220))
-        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            let expectedVal = CGFloat(134.0 * (200 / 220))
-            XCTAssertEqual(val, expectedVal)
-        }).disposed(by: disposeBag)
-        
-        // No projections
-        // Test case: Compared charges are greater than compared charges
-        viewModel.electricForecast.value = nil
-        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            let expectedVal = CGFloat(134.0 * (200 / 220))
-            XCTAssertEqual(val, expectedVal)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Reference charges are greater than reference charges
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 220), compared: UsageBillPeriod(charges: 200))
-        viewModel.currentBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            XCTAssertEqual(val, 134)
-        }).disposed(by: disposeBag)
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, 3.0),
+            next(1, CGFloat(134.0 * (200 / 220))),
+            next(2, 134.0),
+            next(3, CGFloat(134.0 * (220 / 230))),
+            next(4, CGFloat(134.0 * (200 / 220))),
+            next(5, 134.0),
+        ]);
     }
     
     func testCurrentBarDollarLabelText() {
-        viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC")
+        AccountsStore.shared.currentAccount = Account(accountNumber: "test-noForecast-referenceHighest")
+        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
+        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-noForecast-referenceHighest", premiseNumber: "1", isResidential: true)]
         
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 220))
-        viewModel.currentBarDollarLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "$220.00")
+        let observer = scheduler.createObserver(String?.self)
+        
+        viewModel.currentBarDollarLabelText.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0)]).subscribe(onNext: { _ in
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
+        
+        XCTAssertEqual(observer.events, [next(0, "$220.00")]);
     }
     
     func testCurrentBarDateLabelText() {
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(endDate: "2017-08-01"))
+        AccountsStore.shared.currentAccount = Account(accountNumber: "referenceEndDate")
+        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
+        accountService.mockAccountDetails = [AccountDetail(accountNumber: "referenceEndDate", premiseNumber: "1", isResidential: true)]
         
-        // Default is Previous Bill
-        viewModel.currentBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "AUG 01")
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(String?.self)
         
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0 // Last Year
-        viewModel.currentBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "2017")
+        viewModel.currentBarDateLabelText.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+            if $0 == 0 {
+                self.viewModel.fetchAllData()
+            }
+            if $0 == 1 {
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+            }
         }).disposed(by: disposeBag)
+        scheduler.start()
+        
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [next(0, "AUG 01"), next(1, "2017")]);
     }
+/*
     
     // MARK: Projection Bar Drivers
     
