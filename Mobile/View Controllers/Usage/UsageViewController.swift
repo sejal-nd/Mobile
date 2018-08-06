@@ -663,6 +663,7 @@ class UsageViewController: AccountPickerViewController {
             Analytics.log(event: .viewUsagePeakRewards)
             performSegue(withIdentifier: "peakRewardsSegue", sender: accountDetail)
         case .smartEnergyRewards:
+            Analytics.log(event: .viewSmartEnergyRewards)
             performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {
@@ -677,6 +678,12 @@ class UsageViewController: AccountPickerViewController {
                 present(safariVc, animated: true, completion: nil)
             }
         case .peakTimeSavings:
+            Analytics.log(event: .viewPeakTimeSavings)
+            
+            if accountDetail.isAMIAccount && !accountDetail.isPTSAccount {
+                Analytics.log(event: .peakTimePromo)
+            }
+            
             performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
         }
     }
