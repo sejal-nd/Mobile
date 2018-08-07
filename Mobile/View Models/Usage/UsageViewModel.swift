@@ -1045,7 +1045,7 @@ class UsageViewModel {
             case .comEd:
                 usageTools.insert(.hourlyPricing, at: 1)
                 
-                if accountDetail.isPTSAccount {
+                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
                     usageTools.append(.peakTimeSavings)
                 }
             case .peco:

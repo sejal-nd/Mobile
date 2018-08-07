@@ -678,10 +678,12 @@ class UsageViewController: AccountPickerViewController {
                 present(safariVc, animated: true, completion: nil)
             }
         case .peakTimeSavings:
-            Analytics.log(event: .viewPeakTimeSavings)
-            
             if accountDetail.isAMIAccount && !accountDetail.isPTSAccount {
                 Analytics.log(event: .peakTimePromo)
+                let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "http://comed.com/PTS")!)
+                present(safariVc, animated: true, completion: nil)
+            } else {
+                Analytics.log(event: .viewPeakTimeSavings)
             }
             
             performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
