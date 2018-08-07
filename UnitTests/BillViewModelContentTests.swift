@@ -68,25 +68,20 @@ class BillViewModelContentTests: BillViewModelTests {
         
         let disconnectNoticeArrears: [Double?] = [nil, nil, 4, 6, nil]
         let isDisconnectNotice = [false, false, true, true, false]
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
+
         let dueByDate: [Date?] = [nil, nil, "02/12/2018", "02/12/2018", nil]
             .map {
                 guard let string = $0 else { return nil }
-                return dateFormatter.date(from: string)
+                return DateFormatter.mmDdYyyyFormatter.date(from: string)
         }
         let turnOffNoticeExtendedDueDate: [Date?] = ["02/12/2018", "02/12/2018", "02/12/2018", nil, "02/12/2018"]
             .map {
                 guard let string = $0 else { return nil }
-                return dateFormatter.date(from: string)
+                return DateFormatter.mmDdYyyyFormatter.date(from: string)
         }
         
         let turnOffNoticeDueDate: [Date?] = ["02/12/2018", "02/12/2018", "02/12/2018", "02/10/2018", "02/12/2018"]
-            .map { dateFormatter.date(from: $0) }
+            .map { DateFormatter.mmDdYyyyFormatter.date(from: $0) }
         
         let comEdPecoAvoidShutoffText1 = "Payment due to avoid shutoff is $4.00 due immediately."
         let comEdPecoAvoidShutoffText2 = "Payment due to avoid shutoff is $6.00 due immediately."
@@ -164,16 +159,11 @@ class BillViewModelContentTests: BillViewModelTests {
 
         let totalAmounts: [Double?] = [4, -5000, 435.323, 68.04, nil]
         let pastDueAmounts: [Double?] = [4, 26.32, nil, 0, nil]
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
+
         let dueByDates: [Date?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
             .map {
                 guard let string = $0 else { return nil }
-                return dateFormatter.date(from: string)
+                return DateFormatter.mmDdYyyyFormatter.date(from: string)
         }
         
         let expectedValues: [String] = [
@@ -253,16 +243,11 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests changes in the `catchUpDateText` value after switching
     // through different accounts.
     func testCatchUpDateText() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
         let dateStrings: [String?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
         let dueByDates: [Date?] = dateStrings
             .map {
                 guard let string = $0 else { return nil }
-                return dateFormatter.date(from: string)
+                return DateFormatter.mmDdYyyyFormatter.date(from: string)
         }
         
         let expectedValues: [String] = ["Due by 02/12/2018",
@@ -370,16 +355,11 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests changes in the `avoidShutoffDueDateText` value after switching
     // through different accounts.
     func testAvoidShutoffDueDateText() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
         let dateStrings: [String?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
         let dueByDates: [Date?] = dateStrings
             .map {
                 guard let string = $0 else { return nil }
-                return dateFormatter.date(from: string)
+                return DateFormatter.mmDdYyyyFormatter.date(from: string)
         }
         
         let expectedValues: [String]
@@ -525,16 +505,11 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests changes in the `remainingBalanceDueDateText` value after switching
     // through different accounts.
     func testRemainingBalanceDueDateText() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
         let dateStrings: [String?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
         let dueByDates: [Date?] = dateStrings
             .map {
                 guard let string = $0 else { return nil }
-                return dateFormatter.date(from: string)
+                return DateFormatter.mmDdYyyyFormatter.date(from: string)
         }
         
         let expectedValues = ["Due by 02/12/2018",
@@ -635,16 +610,11 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests changes in the `paymentReceivedDateText` value after switching
     // through different accounts.
     func testPaymentReceivedDateText() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
         let dateStrings: [String?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
         let lastPaymentDates: [Date?] = dateStrings
             .map {
                 guard let string = $0 else { return nil }
-                return dateFormatter.date(from: string)
+                return DateFormatter.mmDdYyyyFormatter.date(from: string)
         }
         
         let expectedValues = ["Payment Date 02/12/2018",
@@ -758,13 +728,8 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests changes in the `paymentStatusText` value after switching
     // through different accounts.
     func testPaymentStatusText() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
-        let earlyDate = dateFormatter.date(from: "02/12/2015")!
-        let lateDate = dateFormatter.date(from: "02/12/2017")!
+        let earlyDate = DateFormatter.mmDdYyyyFormatter.date(from: "02/12/2015")!
+        let lateDate = DateFormatter.mmDdYyyyFormatter.date(from: "02/12/2017")!
         
         let isBGEasy = [true, false, false, false, false, false, false, false, false]
         let isAutoPay = [true, true, false, false, false, false, false, false, false]
@@ -862,12 +827,7 @@ You currently have automatic payments set up. To avoid a duplicate payment, plea
 You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate payment, please review your payment activity before proceeding. Would you like to continue making an additional payment?
 """
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
-        let scheduledPaymentDate = dateFormatter.date(from: "08/23/2018")!
+        let scheduledPaymentDate = DateFormatter.mmDdYyyyFormatter.date(from: "08/23/2018")!
         
         let isBGEasy = [true, false, false, false, false]
         let isAutoPay = [true, true, false, false, false]

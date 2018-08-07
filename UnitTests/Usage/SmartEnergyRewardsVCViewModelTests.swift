@@ -41,12 +41,8 @@ class SmartEnergyRewardsVCViewModelTests: XCTestCase {
         var viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail())
         XCTAssertNil(viewModel.smartEnergyRewardsSeasonLabelText)
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
-        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult(eventStart: dateFormatter.date(from: "05/23/2018")!)])))
+        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult(eventStart: DateFormatter.mmDdYyyyFormatter.date(from: "05/23/2018")!)])))
+                
         XCTAssertEqual(viewModel.smartEnergyRewardsSeasonLabelText, "Summer 2018")
     }
     

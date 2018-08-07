@@ -24,5 +24,7 @@
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.comed.com</string>
+	<key>associatedDomain</key>
+	<string>azstg-secure.comed.com</string>
 </dict>
 </plist>

@@ -299,9 +299,22 @@ class UsageViewModel {
         { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
             guard let this = self else { return nil }
             if this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex) {
-                return billForecast?.gas.projectedCost
+                return billForecast?.gas?.projectedCost
             } else {
-                return billForecast?.electric.projectedCost
+                return billForecast?.electric?.projectedCost
+            }
+    }
+    
+    private(set) lazy var projectedCostSoFar: Driver<Double?> =
+        Driver.combineLatest(accountDetail,
+                             billForecast,
+                             electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
+            guard let this = self else { return nil }
+            if this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex) {
+                return billForecast?.gas?.toDateCost
+            } else {
+                return billForecast?.electric?.toDateCost
             }
     }
     
@@ -312,9 +325,9 @@ class UsageViewModel {
         { [weak self] accountDetail, billForecast, electricGasSelectedIndex in
             guard let this = self else { return nil }
             if this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex) {
-                return billForecast?.gas.projectedUsage
+                return billForecast?.gas?.projectedUsage
             } else {
-                return billForecast?.electric.projectedUsage
+                return billForecast?.electric?.projectedUsage
             }
     }
     
@@ -338,6 +351,13 @@ class UsageViewModel {
                 let fraction = CGFloat(134.0 * (projectedCost / compared))
                 return fraction > 3 ? fraction : 3
             }
+    }
+    
+    private(set) lazy var projectedBarSoFarHeightConstraintValue: Driver<CGFloat> =
+        Driver.combineLatest(projectedBarHeightConstraintValue, projectedCost, projectedCostSoFar) { heightConstraint, projectedCost, projectedCostSoFar in
+            guard let projectedCost = projectedCost, let projectedCostSoFar = projectedCostSoFar else { return 0 }
+            let fraction = heightConstraint * CGFloat(projectedCostSoFar / projectedCost)
+            return fraction > 3 ? fraction : 0
     }
     
     private(set) lazy var projectedBarDollarLabelText: Driver<String?> =
@@ -364,10 +384,10 @@ class UsageViewModel {
             let isGas = this.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             if isGas {
-                if let endDate = billForecast?.gas.billingEndDate {
+                if let endDate = billForecast?.gas?.billingEndDate {
                     return endDate.shortMonthAndDayString.uppercased()
                 }
-            } else if let endDate = billForecast?.electric.billingEndDate {
+            } else if let endDate = billForecast?.electric?.billingEndDate {
                 return endDate.shortMonthAndDayString.uppercased()
             }
             return nil
@@ -506,11 +526,12 @@ class UsageViewModel {
             
             var dateString = ""
             if isGas {
-                if let startDate = billForecast.gas.billingStartDate, let endDate = billForecast.gas.billingEndDate {
+                if let startDate = billForecast.gas?.billingStartDate,
+                    let endDate = billForecast.gas?.billingEndDate {
                     dateString = "\(startDate.shortMonthDayAndYearString) to \(endDate.shortMonthDayAndYearString)"
                 }
-            } else if let startDate = billForecast.electric.billingStartDate,
-                let endDate = billForecast.electric.billingEndDate {
+            } else if let startDate = billForecast.electric?.billingStartDate,
+                let endDate = billForecast.electric?.billingEndDate {
                 dateString = "\(startDate.shortMonthDayAndYearString) to \(endDate.shortMonthDayAndYearString)"
             }
             
@@ -520,12 +541,12 @@ class UsageViewModel {
                 let localizedString = NSLocalizedString("Your bill is projected to be around %@. You've spent about %@ so far this bill period. " +
                     "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                 if isGas {
-                    if let projectedCost = billForecast.gas.projectedCost,
-                        let toDateCost = billForecast.gas.toDateCost {
+                    if let projectedCost = billForecast.gas?.projectedCost,
+                        let toDateCost = billForecast.gas?.toDateCost {
                         detailString = String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
                     }
-                } else if let projectedCost = billForecast.electric.projectedCost,
-                    let toDateCost = billForecast.electric.toDateCost {
+                } else if let projectedCost = billForecast.electric?.projectedCost,
+                    let toDateCost = billForecast.electric?.toDateCost {
                     detailString = String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
                 }
             } else {
@@ -533,12 +554,12 @@ class UsageViewModel {
                     "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                 let meterUnit = billComparison.meterUnit
                 if isGas {
-                    if let projectedUsage = billForecast.gas.projectedUsage,
-                        let toDateUsage = billForecast.gas.toDateUsage {
+                    if let projectedUsage = billForecast.gas?.projectedUsage,
+                        let toDateUsage = billForecast.gas?.toDateUsage {
                         detailString = String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
                     }
-                } else if let projectedUsage = billForecast.electric.projectedUsage,
-                    let toDateUsage = billForecast.electric.toDateUsage {
+                } else if let projectedUsage = billForecast.electric?.projectedUsage,
+                    let toDateUsage = billForecast.electric?.toDateUsage {
                     detailString = String(format: localizedString, Int(projectedUsage), meterUnit, Int(toDateUsage), meterUnit)
                 }
             }
@@ -613,7 +634,7 @@ class UsageViewModel {
                     return "\(reference.startDate.shortMonthDayAndYearString) - \(reference.endDate.shortMonthDayAndYearString)"
                 }
             case .projected:
-                if let gasForecast = billForecast?.electric, isGas {
+                if let gasForecast = billForecast?.gas, isGas {
                     if let startDate = gasForecast.billingStartDate, let endDate = gasForecast.billingEndDate {
                         return "\(startDate.shortMonthDayAndYearString) - \(endDate.shortMonthDayAndYearString)"
                     }
@@ -696,7 +717,7 @@ class UsageViewModel {
                             return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
                         }
                     }
-                    if let elecForecast = billForecast?.electric, isGas {
+                    if let elecForecast = billForecast?.electric, !isGas {
                         if let projectedCost = elecForecast.projectedCost, let toDateCost = elecForecast.toDateCost {
                             return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
                         }
@@ -1024,7 +1045,7 @@ class UsageViewModel {
             case .comEd:
                 usageTools.insert(.hourlyPricing, at: 1)
                 
-                if accountDetail.isPTSAccount {
+                if accountDetail.isPTSAccount || accountDetail.isAMIAccount {
                     usageTools.append(.peakTimeSavings)
                 }
             case .peco:

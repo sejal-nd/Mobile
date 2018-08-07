@@ -24,13 +24,6 @@ private func dollarAmount(fromValue value: Any?) throws -> Double {
     }
 }
 
-private func extractDate(object: Any?) throws -> Date {
-    guard let dateString = object as? String, let date = dateString.apiFormatDate else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
-    return date
-}
-
 private func calculateIsFuture(dateToCompare: Date) -> Bool {
     let calendar = Calendar.current
     let yesterday = calendar.date(byAdding: .day, value: -1, to: Date())
@@ -59,7 +52,7 @@ struct BillingHistoryItem: Mappable {
         amountPaid = map.optionalFrom("amount_paid", transformation: dollarAmount)
         chargeAmount = map.optionalFrom("charge_amount", transformation: dollarAmount)
         totalAmountDue = map.optionalFrom("total_amount_due", transformation: dollarAmount)
-        try date = map.from("date", transformation: extractDate)
+        try date = map.from("date", transformation: DateParser().extractDate)
         description = map.optionalFrom("description")
         status = map.optionalFrom("status")
         confirmationNumber = map.optionalFrom("confirmation_number")
@@ -83,14 +76,6 @@ struct BillingHistoryItem: Mappable {
             // EM-2638: Bills should always be in the past
             isFuture = false
         }
-    }
-    
-    func dateString() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "MM-dd-yyyy"
-        return dateFormatter.string(from: date)
     }
 }
 

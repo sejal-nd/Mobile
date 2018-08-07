@@ -41,28 +41,6 @@ private func extractLast4(object: Any?) throws -> String? {
     return string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
 }
 
-private func extractDate(object: Any?) throws -> Date {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.calendar = .opCo
-    dateFormatter.timeZone = .opCo
-    
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    if let date = dateFormatter.date(from: dateString) {
-        return date
-    }
-    
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-    if let date = dateFormatter.date(from: dateString) {
-        return date
-    }
-    
-    throw MapperError.convertibleError(value: object, type: Date.self)
-}
-
 struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemID: String?
     let walletExternalID: String?
@@ -104,7 +82,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         bankAccountName = map.optionalFrom("bankAccountName")
         isDefault = map.optionalFrom("isDefault") ?? false
         cardIssuer = map.optionalFrom("cardIssuer")
-        dateCreated = map.optionalFrom("dateCreated", transformation: extractDate)
+        dateCreated = map.optionalFrom("dateCreated", transformation: DateParser().extractDate)
         
         walletItemStatusType = map.optionalFrom("walletItemStatusType")
         

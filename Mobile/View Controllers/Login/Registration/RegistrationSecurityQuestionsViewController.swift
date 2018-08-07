@@ -53,7 +53,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     @IBOutlet weak var accountDataStackView: UIStackView!
     
-    var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
+    var viewModel: RegistrationViewModel!
     
     var loadAccountsError = false
     
@@ -371,9 +371,16 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         LoadingView.show()
         
         viewModel.registerUser(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
             LoadingView.hide()
+
+            if self.viewModel.hasStrongPassword {
+                Analytics.log(event: .strongPasswordComplete)
+            }
+            
             Analytics.log(event: .registerAccountSecurityQuestions)
-            self?.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
+            self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
+
         }, onError: { [weak self] (title, message) in
             LoadingView.hide()
             
