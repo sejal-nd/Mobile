@@ -104,7 +104,7 @@ class HomeViewModel {
                                 maintenanceModeEvents: fetchDataMMEvents,
                                 fetchDataObservable: fetchDataObservable,
                                 refreshFetchTracker: refreshFetchTracker,
-                                showLoadingState: isSwitchingAccounts.filter { $0 }.map(to: ()))
+                                showLoadingState: outageTracker.asDriver().filter { $0 }.map(to: ()))
     
     private(set) lazy var isSwitchingAccounts = switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.shared.currentAccount == nil }
     
