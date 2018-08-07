@@ -13,7 +13,7 @@ fileprivate let appName: String = {
 }()
 
 extension TimeZone {
-    static let opCoFromAppName: TimeZone = {
+    static let opCo: TimeZone = {
         if appName.contains("BGE") || appName.contains("PECO") {
             return TimeZone(identifier: "America/New_York")!
         } else if appName.contains("ComEd") {
@@ -21,5 +21,13 @@ extension TimeZone {
         } else {
             fatalError("Unsupported OpCo: \(appName)")
         }
+    }()
+}
+
+extension Calendar {
+    static let opCo: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = .opCo
+        return calendar
     }()
 }
