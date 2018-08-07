@@ -18,6 +18,9 @@ class HomeBillCardView: UIView {
     
     @IBOutlet private weak var clippingView: UIView!
     
+    @IBOutlet private weak var contentStack: UIStackView!
+    @IBOutlet private weak var loadingView: UIView!
+    
     @IBOutlet private weak var infoStack: UIStackView!
     
     @IBOutlet private weak var headerView: UIView!
@@ -93,7 +96,6 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var customErrorDetailLabel: UILabel!
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
-    @IBOutlet private weak var loadingView: UIView!
     
     private let tutorialTap = UITapGestureRecognizer()
     private let tutorialSwipe = UISwipeGestureRecognizer()
@@ -215,6 +217,9 @@ class HomeBillCardView: UIView {
             .disposed(by: bag)
         
         // Show/Hide Subviews
+        viewModel.showLoadingState.drive(contentStack.rx.isHidden).disposed(by: bag)
+        viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: bag)
+        
         Driver.combineLatest(viewModel.billNotReady.startWith(false), viewModel.showErrorState)
             .map { $0 && !$1 }
             .not()
@@ -333,9 +338,8 @@ class HomeBillCardView: UIView {
     
     // Actions
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
-        .do(onNext: {
-            Analytics.log(event: .viewBillBillCard)
-        })
+        .do(onNext: { Analytics.log(event: .viewBillBillCard) })
+    
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)

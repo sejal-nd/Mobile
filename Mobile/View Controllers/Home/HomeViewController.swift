@@ -453,7 +453,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func bindLoadingStates() {
-        Observable.merge(viewModel.refreshFetchTracker.asObservable(), viewModel.isSwitchingAccounts.asObservable())
+        viewModel.refreshFetchTracker.asObservable()
             .subscribe(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
             .disposed(by: bag)
         

@@ -54,9 +54,9 @@ class HomeBillCardViewModel {
         self.authService = authService
         self.refreshFetchTracker = refreshFetchTracker
         self.switchAccountFetchTracker = switchAccountFetchTracker
-                
-        self.oneTouchPayResult
-            .withLatestFrom(Observable.combineLatest(self.walletItem.unwrap(), self.oneTouchPayResult))
+        
+        oneTouchPayResult
+            .withLatestFrom(Observable.combineLatest(walletItem.unwrap(), oneTouchPayResult))
             .subscribe(onNext: { walletItem, oneTouchPayEvent in
                 switch (walletItem.bankOrCard, oneTouchPayEvent.error) {
                 case (.bank, nil):
@@ -75,59 +75,53 @@ class HomeBillCardViewModel {
     }
     
     private lazy var fetchTrigger = Observable
-        .merge(self.fetchData, RxNotifications.shared.defaultWalletItemUpdated.map(to: FetchingAccountState.switchAccount))
+        .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated.map(to: FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
     private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated
         .toAsyncRequest(activityTracker: { [weak self] _ in self?.fetchTracker(forState: .switchAccount) },
                         requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable.merge(self.fetchDataMMEvents, self.defaultWalletItemUpdatedMMEvents)
+    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable.merge(fetchDataMMEvents, defaultWalletItemUpdatedMMEvents)
     
-    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = self.maintenanceModeEvents
+    private lazy var walletItemEvents: Observable<Event<WalletItem?>> = maintenanceModeEvents
         .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
-        .withLatestFrom(self.fetchTrigger)
+        .withLatestFrom(fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
-                        requestSelector: {[unowned self] _ in
-                            self.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
+                        requestSelector: { [weak self] _ in
+                            guard let this = self else { return .empty() }
+                            return this.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
         })
     
-    private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = self.walletItemEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
-    
-    private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = self.workDayEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
-    
-    private lazy var walletItem: Observable<WalletItem?> = self.walletItemEvents.elements()
-    
-    private lazy var account: Observable<Account> = self.fetchData.map { _ in AccountsStore.shared.currentAccount }
-
-    private(set) lazy var data: Observable<Event<(AccountDetail, WalletItem?)>> =
-        Observable.combineLatest(self.accountDetailEvents.elements(),
-                                 self.walletItem)
-            .materialize()
-            .share()
-    
-    private lazy var workDayEvents: Observable<Event<[Date]>> = self.maintenanceModeEvents
+    private lazy var workDayEvents: Observable<Event<[Date]>> = maintenanceModeEvents
         .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
-        .withLatestFrom(self.fetchTrigger)
-        .flatMapLatest { [unowned self] state -> Observable<Event<[Date]>> in
-            if Environment.shared.opco == .peco {
-                return self.paymentService.fetchWorkdays()
-                    .trackActivity(self.fetchTracker(forState: state))
-                    .materialize()
-            } else {
-                return Observable<[Date]>.just([]).materialize()
-            }
-        }
-        .share(replay: 1)
+        .withLatestFrom(fetchTrigger)
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
+                        requestSelector: { [weak self] _ in
+                            guard let this = self else { return .empty() }
+                            if Environment.shared.opco == .peco {
+                                return this.paymentService.fetchWorkdays()
+                            } else {
+                                return Observable<[Date]>.just([])
+                            }
+        })
     
-    private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = self.submitOneTouchPay.asObservable()
-        .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(),
-                                                 self.walletItem.unwrap(),
-                                                 self.cvv2.asObservable(),
-                                                 self.shouldShowWeekendWarning.asObservable(),
-                                                 self.workDayEvents.elements()))
+    private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
+        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+    
+    private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = workDayEvents.errors()
+        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+    
+    private lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
+    
+    private lazy var account: Observable<Account> = fetchData.map { _ in AccountsStore.shared.currentAccount }
+    
+    private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = submitOneTouchPay.asObservable()
+        .withLatestFrom(Observable.combineLatest(accountDetailEvents.elements(),
+                                                 walletItem.unwrap(),
+                                                 cvv2.asObservable(),
+                                                 shouldShowWeekendWarning.asObservable(),
+                                                 workDayEvents.elements()))
         .do(onNext: { _, walletItem, _, _, _ in
             switch walletItem.bankOrCard {
             case .bank:
@@ -148,6 +142,7 @@ class HomeBillCardViewModel {
             } else {
                 paymentDate = Date()
             }
+            
             return Payment(accountNumber: accountDetail.accountNumber,
                            existingAccount: true,
                            saveAccount: true,
@@ -159,22 +154,18 @@ class HomeBillCardViewModel {
                            walletItemId: walletItem.walletItemID!,
                            cvv: cvv2)
         }
-        .flatMapLatest { [unowned self] payment in
-            self.paymentService.schedulePayment(payment: payment)
-                .do(onNext: {
-                    let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
-                    RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = paymentDetails
-                })
-                .map(to: ())
-                .trackActivity(self.paymentTracker)
-                .materialize()
-                .filter { !$0.isCompleted }
-        }
-        .share()
+        .toAsyncRequest(activityTracker: paymentTracker,
+                        requestSelector: { [unowned self] payment in
+                            self.paymentService.schedulePayment(payment: payment)
+                                .do(onNext: {
+                                    let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
+                                    RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = paymentDetails
+                                })
+        })
     
     private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
         if Environment.shared.opco == .peco {
-            return self.workDayEvents.elements()
+            return workDayEvents.elements()
                 .map { $0.filter(Calendar.opCo.isDateInToday).isEmpty }
                 .asDriver(onErrorDriveWith: .empty())
         } else {
@@ -186,7 +177,7 @@ class HomeBillCardViewModel {
         if Environment.shared.opco != .bge {
             return Driver.just(false)
         } else {
-            return self.walletItemDriver.map {
+            return walletItemDriver.map {
                 guard let walletItem = $0 else { return false }
                 switch walletItem.bankOrCard {
                 case .bank:
@@ -198,43 +189,55 @@ class HomeBillCardViewModel {
         }
     }()
     
-    private(set) lazy var cvvIsValid: Driver<Bool> = self.cvv2.asDriver()
+    private(set) lazy var cvvIsValid: Driver<Bool> = cvv2.asDriver()
         .map { 3...4 ~= ($0?.count ?? 0) }
     
     //MARK: - Loaded States
     
-    private lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
-    private lazy var walletItemDriver: Driver<WalletItem?> = self.walletItem.asDriver(onErrorDriveWith: .empty())
+    private lazy var accountDetailDriver: Driver<AccountDetail> = accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
+    private lazy var walletItemDriver: Driver<WalletItem?> = walletItem.asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var billNotReady: Driver<Bool> = self.billState.map { $0 == .billNotReady }
-        .asDriver(onErrorJustReturn: false)
+    private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
+        .startWith(true)
+        .distinctUntilChanged()
+    
+    private(set) lazy var billNotReady: Driver<Bool> = billState.map { $0 == .billNotReady }
     
     private(set) lazy var showErrorState: Driver<Bool> = {
         if Environment.shared.opco == .peco {
-            return Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents, self.workDayEvents, self.showMaintenanceModeState.asObservable())
-                .map { ($0.0.error != nil || $0.1.error != nil || $0.2.error != nil) && !$0.3 }
+            return Observable.combineLatest(accountDetailEvents,
+                                            walletItemEvents,
+                                            workDayEvents,
+                                            showMaintenanceModeState.asObservable())
+            { ($0.error != nil || $1.error != nil || $2.error != nil) && !$3 }
                 .startWith(false)
+                .distinctUntilChanged()
                 .asDriver(onErrorDriveWith: .empty())
         } else {
-            return Observable.combineLatest(self.accountDetailEvents, self.walletItemEvents, self.showMaintenanceModeState.asObservable())
+            return Observable.combineLatest(accountDetailEvents, walletItemEvents, showMaintenanceModeState.asObservable())
                 .map { ($0.0.error != nil || $0.1.error != nil) && !$0.2 }
                 .startWith(false)
+                .distinctUntilChanged()
                 .asDriver(onErrorDriveWith: .empty())
         }
         
     }()
     
-    private(set) lazy var showCustomErrorState: Driver<Bool> = self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()).map {
-        if let serviceError = $0.error as? ServiceError {
-            return serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue
+    private(set) lazy var showCustomErrorState: Driver<Bool> = accountDetailEvents
+        .map {
+            if let serviceError = $0.error as? ServiceError {
+                return serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue
+            }
+            return false
         }
-        return false
-    }
         .startWith(false)
+        .distinctUntilChanged()
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showMaintenanceModeState: Driver<Bool> = self.maintenanceModeEvents
+    private(set) lazy var showMaintenanceModeState: Driver<Bool> = maintenanceModeEvents
         .map { $0.element?.billStatus ?? false }
         .startWith(false)
+        .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
     
     // MARK: - Title States
@@ -262,66 +265,66 @@ class HomeBillCardViewModel {
         }
     }
     
-    private lazy var billState: Driver<BillState> =
-        self.data.elements()
-            .map { accountDetail, walletItem -> BillState in
-                let billingInfo = accountDetail.billingInfo
-                let opco = Environment.shared.opco
-                
-                if RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] != nil {
-                    return .billPaidIntermediate
-                }
-                
-                if opco != .bge && (billingInfo.restorationAmount ?? 0) > 0 && accountDetail.isCutOutNonPay {
-                    return .restoreService
-                }
-                
-                if (billingInfo.disconnectNoticeArrears ?? 0) > 0 && billingInfo.isDisconnectNotice {
-                    return .avoidShutoff
-                }
-                
-                if opco != .bge && (billingInfo.amtDpaReinst ?? 0 > 0) {
-                    return .catchUp
-                }
-                
-                if billingInfo.pastDueAmount ?? 0 > 0 {
-                    return .pastDue
-                }
-                
-                if billingInfo.pendingPayments.first?.amount ?? 0 > 0 {
-                    return .paymentPending
-                }
-                
-                if billingInfo.netDueAmount ?? 0 > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
-                    return .billReadyAutoPay
-                }
-                
-                if billingInfo.scheduledPayment?.amount ?? 0 > 0 {
-                    return .paymentScheduled
-                }
-                
-                if opco == .bge && (billingInfo.netDueAmount ?? 0) < 0 {
-                    return .credit
-                }
-                
-                if billingInfo.netDueAmount ?? 0 > 0 {
-                    return .billReady
-                }
-                
-                if let billDate = billingInfo.billDate,
-                    let lastPaymentDate = billingInfo.lastPaymentDate,
-                    billingInfo.lastPaymentAmount ?? 0 > 0,
-                    billDate < lastPaymentDate {
-                    return .billPaid
-                }
-                
-                return .billNotReady
+    private lazy var billState: Driver<BillState> = Observable
+        .combineLatest(accountDetailEvents.elements(), walletItem)
+        .map { accountDetail, walletItem -> BillState in
+            let billingInfo = accountDetail.billingInfo
+            let opco = Environment.shared.opco
+            
+            if RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] != nil {
+                return .billPaidIntermediate
             }
-            .asDriver(onErrorDriveWith: .empty())
+            
+            if opco != .bge && (billingInfo.restorationAmount ?? 0) > 0 && accountDetail.isCutOutNonPay {
+                return .restoreService
+            }
+            
+            if (billingInfo.disconnectNoticeArrears ?? 0) > 0 && billingInfo.isDisconnectNotice {
+                return .avoidShutoff
+            }
+            
+            if opco != .bge && (billingInfo.amtDpaReinst ?? 0 > 0) {
+                return .catchUp
+            }
+            
+            if billingInfo.pastDueAmount ?? 0 > 0 {
+                return .pastDue
+            }
+            
+            if billingInfo.pendingPayments.first?.amount ?? 0 > 0 {
+                return .paymentPending
+            }
+            
+            if billingInfo.netDueAmount ?? 0 > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
+                return .billReadyAutoPay
+            }
+            
+            if billingInfo.scheduledPayment?.amount ?? 0 > 0 {
+                return .paymentScheduled
+            }
+            
+            if opco == .bge && (billingInfo.netDueAmount ?? 0) < 0 {
+                return .credit
+            }
+            
+            if billingInfo.netDueAmount ?? 0 > 0 {
+                return .billReady
+            }
+            
+            if let billDate = billingInfo.billDate,
+                let lastPaymentDate = billingInfo.lastPaymentDate,
+                billingInfo.lastPaymentAmount ?? 0 > 0,
+                billDate < lastPaymentDate {
+                return .billPaid
+            }
+            
+            return .billNotReady
+        }
+        .asDriver(onErrorDriveWith: .empty())
     
     // MARK: - Show/Hide view logic
     
-    private(set) lazy var showHeaderView: Driver<Bool> = self.billState.map {
+    private(set) lazy var showHeaderView: Driver<Bool> = billState.map {
         switch $0 {
         case .restoreService, .catchUp, .avoidShutoff, .pastDue, .credit:
             return true
@@ -330,21 +333,21 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var showAlertIcon: Driver<Bool> = self.billState.map { $0.isPrecariousBillSituation }
+    private(set) lazy var showAlertIcon: Driver<Bool> = billState.map { $0.isPrecariousBillSituation }
     
-    private(set) lazy var showPaymentPendingIcon: Driver<Bool> = self.billState.map { $0 == .paymentPending }
+    private(set) lazy var showPaymentPendingIcon: Driver<Bool> = billState.map { $0 == .paymentPending }
     
-    private(set) lazy var showBillPaidIcon: Driver<Bool> = self.billState.map { $0 == .billPaid || $0 == .billPaidIntermediate }
+    private(set) lazy var showBillPaidIcon: Driver<Bool> = billState.map { $0 == .billPaid || $0 == .billPaidIntermediate }
     
-    private(set) lazy var showPaymentDescription: Driver<Bool> = self.paymentDescriptionText.isNil().not()
+    private(set) lazy var showPaymentDescription: Driver<Bool> = paymentDescriptionText.isNil().not()
     
-    private(set) lazy var showSlideToPay24DisclaimerLabel: Driver<Bool> = self.billState.map { $0 == .billPaidIntermediate }
+    private(set) lazy var showSlideToPay24DisclaimerLabel: Driver<Bool> = billState.map { $0 == .billPaidIntermediate }
     
-    private(set) lazy var showAmount: Driver<Bool> = self.billState.map { $0 != .billPaidIntermediate }
+    private(set) lazy var showAmount: Driver<Bool> = billState.map { $0 != .billPaidIntermediate }
     
-    private(set) lazy var showConvenienceFee: Driver<Bool> = self.showSaveAPaymentAccountButton.not()
+    private(set) lazy var showConvenienceFee: Driver<Bool> = showSaveAPaymentAccountButton.not()
     
-    private(set) lazy var showDueDate: Driver<Bool> = self.billState.map {
+    private(set) lazy var showDueDate: Driver<Bool> = billState.map {
         switch ($0) {
         case .billPaid, .billPaidIntermediate, .paymentPending:
             return false
@@ -355,30 +358,30 @@ class HomeBillCardViewModel {
     
     let showDueDateTooltip = Environment.shared.opco == .peco
     
-    private(set) lazy var showReinstatementFeeText: Driver<Bool> = self.reinstatementFeeText.isNil().not()
+    private(set) lazy var showReinstatementFeeText: Driver<Bool> = reinstatementFeeText.isNil().not()
     
-    private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver.combineLatest(self.showOneTouchPaySlider,
-                                                                                  self.showMinMaxPaymentAllowed)
+    private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver.combineLatest(showOneTouchPaySlider,
+                                                                                  showMinMaxPaymentAllowed)
     { $0 && !$1 }
         .distinctUntilChanged()
     
-    private(set) lazy var showBankCreditNumberButton: Driver<Bool> = self.walletItemDriver.isNil().not()
+    private(set) lazy var showBankCreditNumberButton: Driver<Bool> = walletItemDriver.isNil().not()
     
-    private(set) lazy var showBankCreditExpiredLabel: Driver<Bool> = self.walletItemDriver.map {
+    private(set) lazy var showBankCreditExpiredLabel: Driver<Bool> = walletItemDriver.map {
         $0?.isExpired ?? false
     }
     
-    private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(self.billState,
-                                                                                   self.walletItemDriver,
-                                                                                   self.showOneTouchPaySlider)
+    private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(billState,
+                                                                                   walletItemDriver,
+                                                                                   showOneTouchPaySlider)
         { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .paymentScheduled && $1 == nil && $2 }
         .distinctUntilChanged()
     
-    private(set) lazy var showMinMaxPaymentAllowed: Driver<Bool> = Driver.combineLatest(self.billState,
-                                                                               self.walletItemDriver,
-                                                                               self.accountDetailDriver,
-                                                                               self.showOneTouchPaySlider,
-                                                                               self.minMaxPaymentAllowedText)
+    private(set) lazy var showMinMaxPaymentAllowed: Driver<Bool> = Driver.combineLatest(billState,
+                                                                               walletItemDriver,
+                                                                               accountDetailDriver,
+                                                                               showOneTouchPaySlider,
+                                                                               minMaxPaymentAllowedText)
     { billState, walletItem, accountDetail, showOneTouchPaySlider, minMaxPaymentAllowedText in
         return billState == .billReady &&
             walletItem != nil &&
@@ -387,15 +390,15 @@ class HomeBillCardViewModel {
     }
         .distinctUntilChanged()
     
-    private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(self.billState,
-                                                                                     self.accountDetailDriver)
+    private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(billState,
+                                                                                     accountDetailDriver)
     { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly }
         .distinctUntilChanged()
     
-    private(set) lazy var showCommercialBgeOtpVisaLabel: Driver<Bool> = Driver.combineLatest(self.enableOneTouchSlider,
-                                                                                             self.showOneTouchPaySlider,
-                                                                                             self.accountDetailDriver,
-                                                                                             self.walletItemDriver)
+    private(set) lazy var showCommercialBgeOtpVisaLabel: Driver<Bool> = Driver.combineLatest(enableOneTouchSlider,
+                                                                                             showOneTouchPaySlider,
+                                                                                             accountDetailDriver,
+                                                                                             walletItemDriver)
     { enableOneTouchSlider, showOneTouchPaySlider, accountDetail, walletItem in
         guard let walletItem = walletItem else { return false }
         guard showOneTouchPaySlider && !enableOneTouchSlider else { return false }
@@ -412,19 +415,19 @@ class HomeBillCardViewModel {
         }
         .distinctUntilChanged()
     
-    private(set) lazy var showScheduledPayment: Driver<Bool> = self.billState.map { $0 == .paymentScheduled }
+    private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
-    private(set) lazy var showAutoPay: Driver<Bool> = self.billState.map { $0 == .billReadyAutoPay }
+    private(set) lazy var showAutoPay: Driver<Bool> = billState.map { $0 == .billReadyAutoPay }
     
-    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(self.showOneTouchPaySlider,
-                                                                                       self.showCommercialBgeOtpVisaLabel,
-                                                                                       self.showMinMaxPaymentAllowed)
+    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(showOneTouchPaySlider,
+                                                                                       showCommercialBgeOtpVisaLabel,
+                                                                                       showMinMaxPaymentAllowed)
     { $0 && !$1 && !$2 }
         .distinctUntilChanged()
     
     
     // MARK: - View States
-    private(set) lazy var paymentDescriptionText: Driver<NSAttributedString?> = Driver.combineLatest(self.billState, self.accountDetailDriver)
+    private(set) lazy var paymentDescriptionText: Driver<NSAttributedString?> = Driver.combineLatest(billState, accountDetailDriver)
     { (billState, accountDetail) in
         
         switch billState {
@@ -447,16 +450,16 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var showAlertAnimation: Driver<Bool> = self.billState.map {
+    private(set) lazy var showAlertAnimation: Driver<Bool> = billState.map {
         return $0.isPrecariousBillSituation
     }
     
-    private(set) lazy var resetAlertAnimation: Driver<Void> = Driver.merge(self.refreshFetchTracker.asDriver(),
-                                                                           self.switchAccountFetchTracker.asDriver())
+    private(set) lazy var resetAlertAnimation: Driver<Void> = Driver.merge(refreshFetchTracker.asDriver(),
+                                                                           switchAccountFetchTracker.asDriver())
         .filter(!)
         .map(to: ())
     
-    private(set) lazy var headerText: Driver<NSAttributedString?> = Driver.combineLatest(self.accountDetailDriver, self.billState)
+    private(set) lazy var headerText: Driver<NSAttributedString?> = Driver.combineLatest(accountDetailDriver, billState)
     { accountDetail, billState in
         let isMultiPremise = AccountsStore.shared.currentAccount.isMultipremise
         
@@ -566,12 +569,12 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var headerA11yText: Driver<String?> = self.paymentDescriptionText.map {
+    private(set) lazy var headerA11yText: Driver<String?> = paymentDescriptionText.map {
         $0?.string.replacingOccurrences(of: "shutoff", with: "shut-off")
             .replacingOccurrences(of: "Shutoff", with: "shut-off")
     }
     
-    private(set) lazy var amountText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.billState)
+    private(set) lazy var amountText: Driver<String?> = Driver.combineLatest(accountDetailDriver, billState)
     {
         switch $1 {
         case .billPaid:
@@ -583,7 +586,7 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var dueDateText: Driver<NSAttributedString?> = Driver.combineLatest(self.accountDetailDriver, self.billState)
+    private(set) lazy var dueDateText: Driver<NSAttributedString?> = Driver.combineLatest(accountDetailDriver, billState)
     { accountDetail, billState in
         let countdownText: () -> NSAttributedString? = {
             guard let dueByDate = accountDetail.billingInfo.dueByDate else { return nil }
@@ -627,7 +630,7 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var reinstatementFeeText: Driver<String?> = self.accountDetailDriver.map {
+    private(set) lazy var reinstatementFeeText: Driver<String?> = accountDetailDriver.map {
         guard let reinstateString = $0.billingInfo.atReinstateFee?.currencyString,
             Environment.shared.opco == .comEd &&
                 $0.billingInfo.amtDpaReinst ?? 0 > 0 &&
@@ -640,12 +643,12 @@ class HomeBillCardViewModel {
         return String(format: reinstatementText, reinstateString)
     }
     
-    private(set) lazy var bankCreditCardNumberText: Driver<String?> = self.walletItemDriver.map {
+    private(set) lazy var bankCreditCardNumberText: Driver<String?> = walletItemDriver.map {
         guard let maskedNumber = $0?.maskedWalletItemAccountNumber else { return nil }
         return "**** " + maskedNumber
     }
     
-    private(set) lazy var bankCreditCardImage: Driver<UIImage?> = self.walletItemDriver.map {
+    private(set) lazy var bankCreditCardImage: Driver<UIImage?> = walletItemDriver.map {
         guard let walletItem = $0 else { return nil }
         switch walletItem.bankOrCard {
         case .bank:
@@ -655,7 +658,7 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var bankCreditCardButtonAccessibilityLabel: Driver<String?> = self.walletItemDriver.map {
+    private(set) lazy var bankCreditCardButtonAccessibilityLabel: Driver<String?> = walletItemDriver.map {
         guard let walletItem = $0,
             let maskedNumber = walletItem.maskedWalletItemAccountNumber else { return nil }
         
@@ -670,7 +673,7 @@ class HomeBillCardViewModel {
         return imageLabel + ", " + String(format:NSLocalizedString("Account ending in %@", comment: ""), maskedNumber)
     }
     
-    private(set) lazy var minMaxPaymentAllowedText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver)
+    private(set) lazy var minMaxPaymentAllowedText: Driver<String?> = Driver.combineLatest(accountDetailDriver, walletItemDriver)
     { accountDetail, walletItemOptional in
         guard let walletItem = walletItemOptional else { return nil }
         guard let paymentAmount = accountDetail.billingInfo.netDueAmount else { return nil }
@@ -697,7 +700,7 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var convenienceFeeText: Driver<String?> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver)
+    private(set) lazy var convenienceFeeText: Driver<String?> = Driver.combineLatest(accountDetailDriver, walletItemDriver)
         { accountDetail, walletItem in
             guard let walletItem = walletItem else { return nil }
             
@@ -725,7 +728,7 @@ class HomeBillCardViewModel {
             
     }
     
-    private(set) lazy var enableOneTouchSlider: Driver<Bool> = Driver.combineLatest(self.accountDetailDriver, self.walletItemDriver, self.showMinMaxPaymentAllowed)
+    private(set) lazy var enableOneTouchSlider: Driver<Bool> = Driver.combineLatest(accountDetailDriver, walletItemDriver, showMinMaxPaymentAllowed)
         { accountDetail, walletItem, showMinMaxPaymentAllowed in
             if showMinMaxPaymentAllowed {
                 return false
@@ -750,7 +753,7 @@ class HomeBillCardViewModel {
         }
         .distinctUntilChanged()
     
-    private(set) lazy var titleFont: Driver<UIFont> = self.billState
+    private(set) lazy var titleFont: Driver<UIFont> = billState
         .map {
             switch $0 {
             case .billReady, .billReadyAutoPay, .billPaid, .billPaidIntermediate, .credit:
@@ -762,10 +765,10 @@ class HomeBillCardViewModel {
             }
     }
     
-    private(set) lazy var amountFont: Driver<UIFont> = self.billState
+    private(set) lazy var amountFont: Driver<UIFont> = billState
         .map { $0 == .paymentPending ? OpenSans.semiboldItalic.of(size: 28): OpenSans.semibold.of(size: 36) }
     
-    private(set) lazy var automaticPaymentInfoButtonText: Driver<String> = self.accountDetailDriver
+    private(set) lazy var automaticPaymentInfoButtonText: Driver<String> = accountDetailDriver
         .map { accountDetail in
             if let paymentAmountText = accountDetail.billingInfo.scheduledPayment?.amount.currencyString,
                 let paymentDateText = accountDetail.billingInfo.scheduledPayment?.date?.mmDdYyyyString {
@@ -779,14 +782,14 @@ class HomeBillCardViewModel {
             }
     }
     
-    private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = self.accountDetailDriver.map {
+    private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = accountDetailDriver.map {
         guard let paymentAmountText = $0.billingInfo.scheduledPayment?.amount.currencyString else { return nil }
         guard let paymentDateText = $0.billingInfo.scheduledPayment?.date?.mmDdYyyyString else { return nil }
         let localizedText = NSLocalizedString("Thank you for scheduling your %@ payment for %@." , comment: "")
         return String(format: localizedText, paymentAmountText, paymentDateText)
     }
     
-    private(set) lazy var oneTouchPayTCButtonText: Driver<String?> = self.walletItemDriver.map {
+    private(set) lazy var oneTouchPayTCButtonText: Driver<String?> = walletItemDriver.map {
         guard let walletItem = $0 else { return nil }
         switch (Environment.shared.opco, walletItem.bankOrCard) {
         case (.bge, .bank):
@@ -796,7 +799,7 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var enableOneTouchPayTCButton: Driver<Bool> = self.walletItemDriver.map {
+    private(set) lazy var enableOneTouchPayTCButton: Driver<Bool> = walletItemDriver.map {
         guard let walletItem = $0 else { return false }
         switch (Environment.shared.opco, walletItem.bankOrCard) {
         case (.bge, .bank):
@@ -806,11 +809,11 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = self.enableOneTouchPayTCButton.map {
+    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = enableOneTouchPayTCButton.map {
         $0 ? UIColor.actionBlue: UIColor.blackText
     }
     
-    private(set) lazy var bankCreditButtonBorderWidth: Driver<CGFloat> = self.walletItemDriver.map {
+    private(set) lazy var bankCreditButtonBorderWidth: Driver<CGFloat> = walletItemDriver.map {
         $0?.isExpired ?? false ? 1 : 0
     }
     
