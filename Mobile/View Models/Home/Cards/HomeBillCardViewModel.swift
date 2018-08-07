@@ -198,6 +198,7 @@ class HomeBillCardViewModel {
     private lazy var walletItemDriver: Driver<WalletItem?> = walletItem.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
+        .skip(1)
         .startWith(true)
         .distinctUntilChanged()
     

@@ -13,71 +13,73 @@ class HomeUsageCardView: UIView {
     
     var disposeBag = DisposeBag()
     
-    @IBOutlet weak var clippingView: UIView!
+    @IBOutlet private weak var clippingView: UIView!
+    @IBOutlet private weak var contentStack: UIStackView!
+    @IBOutlet private weak var loadingView: UIView!
     
     // Bill Comparison
-    @IBOutlet weak var billComparisonView: UIView!
-    @IBOutlet weak var usageOverviewLabel: UILabel!
-    @IBOutlet weak var billComparisonStackView: UIStackView!
-    @IBOutlet weak var segmentedControl: BillAnalysisSegmentedControl!
+    @IBOutlet private weak var billComparisonView: UIView!
+    @IBOutlet private weak var usageOverviewLabel: UILabel!
+    @IBOutlet private weak var billComparisonStackView: UIStackView!
+    @IBOutlet private weak var segmentedControl: BillAnalysisSegmentedControl!
     
-    @IBOutlet weak var billComparisonContentView: UIView!
+    @IBOutlet private weak var billComparisonContentView: UIView!
 
     // Bill Comparison - Bar Graph
-    @IBOutlet weak var barGraphStackView: UIStackView!
+    @IBOutlet private weak var barGraphStackView: UIStackView!
     
-    @IBOutlet weak var noDataContainerButton: ButtonControl!
-    @IBOutlet weak var noDataBarView: UIView!
-    @IBOutlet weak var noDataLabel: UILabel!
-    @IBOutlet weak var noDataDateLabel: UILabel!
+    @IBOutlet private weak var noDataContainerButton: ButtonControl!
+    @IBOutlet private weak var noDataBarView: UIView!
+    @IBOutlet private weak var noDataLabel: UILabel!
+    @IBOutlet private weak var noDataDateLabel: UILabel!
     
-    @IBOutlet weak var previousContainerButton: ButtonControl!
-    @IBOutlet weak var previousDollarLabel: UILabel!
-    @IBOutlet weak var previousBarView: UIView!
-    @IBOutlet weak var previousDateLabel: UILabel!
-    @IBOutlet weak var previousBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var previousContainerButton: ButtonControl!
+    @IBOutlet private weak var previousDollarLabel: UILabel!
+    @IBOutlet private weak var previousBarView: UIView!
+    @IBOutlet private weak var previousDateLabel: UILabel!
+    @IBOutlet private weak var previousBarHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var currentContainerButton: ButtonControl!
-    @IBOutlet weak var currentDollarLabel: UILabel!
-    @IBOutlet weak var currentBarView: UIView!
-    @IBOutlet weak var currentDateLabel: UILabel!
-    @IBOutlet weak var currentBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var currentContainerButton: ButtonControl!
+    @IBOutlet private weak var currentDollarLabel: UILabel!
+    @IBOutlet private weak var currentBarView: UIView!
+    @IBOutlet private weak var currentDateLabel: UILabel!
+    @IBOutlet private weak var currentBarHeightConstraint: NSLayoutConstraint!
     
     // Bill Comparison - Bar Graph Description View
-    @IBOutlet weak var barDescriptionView: UIView!
-    @IBOutlet weak var barDescriptionDateLabel: UILabel!
-    @IBOutlet weak var barDescriptionTotalBillTitleLabel: UILabel!
-    @IBOutlet weak var barDescriptionTotalBillValueLabel: UILabel!
-    @IBOutlet weak var barDescriptionUsageTitleLabel: UILabel!
-    @IBOutlet weak var barDescriptionUsageValueLabel: UILabel!
-    @IBOutlet weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var barDescriptionView: UIView!
+    @IBOutlet private weak var barDescriptionDateLabel: UILabel!
+    @IBOutlet private weak var barDescriptionTotalBillTitleLabel: UILabel!
+    @IBOutlet private weak var barDescriptionTotalBillValueLabel: UILabel!
+    @IBOutlet private weak var barDescriptionUsageTitleLabel: UILabel!
+    @IBOutlet private weak var barDescriptionUsageValueLabel: UILabel!
+    @IBOutlet private weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var viewUsageButton: UIButton!
     @IBOutlet weak var viewUsageEmptyStateButton: UIButton!
     
-    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet private weak var comparisonLoadingView: UIView!
     
     // Not currently using errorView -- we'll show billComparisonEmptyStateView if any errors occur
-    @IBOutlet weak var errorView: UIView!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet private weak var errorView: UIView!
+    @IBOutlet private weak var errorLabel: UILabel!
     
-    @IBOutlet weak var billComparisonEmptyStateView: UIView!
-    @IBOutlet weak var billComparisonEmptyStateLabel: UILabel!
+    @IBOutlet private weak var billComparisonEmptyStateView: UIView!
+    @IBOutlet private weak var billComparisonEmptyStateLabel: UILabel!
     
-    @IBOutlet weak var smartEnergyRewardsView: UIView!
-    @IBOutlet weak var smartEnergyRewardsTitleLabel: UILabel!
-    @IBOutlet weak var smartEnergyRewardsSeasonLabel: UILabel!
+    @IBOutlet private weak var smartEnergyRewardsView: UIView!
+    @IBOutlet private weak var smartEnergyRewardsTitleLabel: UILabel!
+    @IBOutlet private weak var smartEnergyRewardsSeasonLabel: UILabel!
     
-    @IBOutlet weak var smartEnergyRewardsGrayBackgroundView: UIView!
-    @IBOutlet weak var smartEnergyRewardsGraphView: SmartEnergyRewardsView!
+    @IBOutlet private weak var smartEnergyRewardsGrayBackgroundView: UIView!
+    @IBOutlet private weak var smartEnergyRewardsGraphView: SmartEnergyRewardsView!
     
-    @IBOutlet weak var smartEnergyRewardsFooterLabel: UILabel!
+    @IBOutlet private weak var smartEnergyRewardsFooterLabel: UILabel!
     
     @IBOutlet weak var viewAllSavingsButton: UIButton!
     
-    @IBOutlet weak var smartEnergyRewardsEmptyStateView: UIView!
-    @IBOutlet weak var smartEnergyRewardsEmptyStateTitleLabel: UILabel!
-    @IBOutlet weak var smartEnergyRewardsEmptyStateDetailLabel: UILabel!
+    @IBOutlet private weak var smartEnergyRewardsEmptyStateView: UIView!
+    @IBOutlet private weak var smartEnergyRewardsEmptyStateTitleLabel: UILabel!
+    @IBOutlet private weak var smartEnergyRewardsEmptyStateDetailLabel: UILabel!
     
     var userTappedBarGraph = false
     
@@ -211,6 +213,9 @@ class HomeUsageCardView: UIView {
     }
     
     private func bindViewModel() {
+        viewModel.showLoadingState.drive(contentStack.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
+        
         // Bill Comparison vs. SER Show/Hide
         viewModel.shouldShowBillComparison.not().drive(billComparisonView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowSmartEnergyRewards.not().drive(smartEnergyRewardsView.rx.isHidden).disposed(by: disposeBag)
@@ -225,7 +230,7 @@ class HomeUsageCardView: UIView {
         // Loading/Error/Content States
         viewModel.shouldShowBillComparisonContentView.not().drive(billComparisonContentView.rx.isHidden).disposed(by: disposeBag)
         
-        viewModel.loadingTracker.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.loadingTracker.asDriver().not().drive(comparisonLoadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorView.not().drive(errorView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowBillComparisonEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in

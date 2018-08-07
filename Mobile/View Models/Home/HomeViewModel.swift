@@ -87,7 +87,10 @@ class HomeViewModel {
     
     private(set) lazy var templateCardViewModel: TemplateCardViewModel =
         TemplateCardViewModel(accountDetailEvents: accountDetailEvents,
-                              showLoadingState: accountDetailTracker.asDriver().filter { $0 }.map(to: ()))
+                              showLoadingState: accountDetailTracker.asDriver()
+                                .filter { $0 }
+                                .map(to: ())
+                                .startWith(()))
     
     private(set) lazy var projectedBillCardViewModel =
         HomeProjectedBillCardViewModel(fetchData: fetchDataObservable,
