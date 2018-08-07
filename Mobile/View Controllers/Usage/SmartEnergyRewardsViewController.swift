@@ -34,16 +34,7 @@ class SmartEnergyRewardsViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        
-        let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
-            (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
-        
-        Analytics.log(event: .viewUsageLink,
-                             dimensions: [.residentialAMI: residentialAMIString,
-                                          .peakSmart: isPeakSmart ? "true" : "false"])
-        
+ 
         styleViews()
         buttonTapSetup()
         
