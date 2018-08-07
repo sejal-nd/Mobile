@@ -171,6 +171,8 @@ enum AnalyticsEvent: String {
     case viewUsageElectricity = "ViewUsageElectricity"
     case viewUsageGas = "ViewUsageGas"
     case viewUsageLink = "ViewUsageLink"
+    case viewSmartEnergyRewards = "ViewSmartEnergyRewards"
+    case viewPeakTimeSavings = "ViewPeakTimeSavings"
     
     case peakTimePromo = "PeakTimePromo"
     case hourlyPricing = "HourlyPricing"

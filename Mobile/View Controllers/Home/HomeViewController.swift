@@ -175,7 +175,7 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         Analytics.log(event: .homeOfferComplete)
-        if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
+        if #available(iOS 10.3, *), AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
         
@@ -358,7 +358,17 @@ class HomeViewController: AccountPickerViewController {
 
         Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
                      usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
+            .withLatestFrom(viewModel.accountDetailEvents.elements()
+                .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
+                let residentialAMIString = String(format: "%@%@", $0.isResidential ? "Residential/" : "Commercial/", $0.isAMIAccount ? "AMI" : "Non-AMI")
+                
+                let isPeakSmart = (Environment.shared.opco == .bge && $0.isSERAccount) ||
+                    (Environment.shared.opco != .bge && $0.isPTSAccount)
+                
+                Analytics.log(event: .viewUsageLink,
+                              dimensions: [.residentialAMI: residentialAMIString,
+                                           .peakSmart: isPeakSmart ? "true" : "false"])
                 self?.tabBarController?.selectedIndex = 3
             })
             .disposed(by: usageCardView.disposeBag)
