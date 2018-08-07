@@ -663,6 +663,7 @@ class UsageViewController: AccountPickerViewController {
             Analytics.log(event: .viewUsagePeakRewards)
             performSegue(withIdentifier: "peakRewardsSegue", sender: accountDetail)
         case .smartEnergyRewards:
+            Analytics.log(event: .viewSmartEnergyRewards)
             performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {
@@ -677,6 +678,14 @@ class UsageViewController: AccountPickerViewController {
                 present(safariVc, animated: true, completion: nil)
             }
         case .peakTimeSavings:
+            if accountDetail.isAMIAccount && !accountDetail.isPTSAccount {
+                Analytics.log(event: .peakTimePromo)
+                let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "http://comed.com/PTS")!)
+                present(safariVc, animated: true, completion: nil)
+            } else {
+                Analytics.log(event: .viewPeakTimeSavings)
+            }
+            
             performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
         }
     }

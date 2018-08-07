@@ -46,6 +46,9 @@ class HomeOutageCardView: UIView {
     @IBOutlet private weak var errorView: UIStackView!
     @IBOutlet private weak var errorLabel: UILabel!
     
+    // Loading View
+    @IBOutlet private weak var loadingView: UIView!
+    
     var bag = DisposeBag()
     
     private(set) lazy var reportOutageTapped: Driver<OutageStatus> = callToActionButton.rx.touchUpInside.asDriver()
@@ -68,6 +71,7 @@ class HomeOutageCardView: UIView {
     static func create(withViewModel viewModel: HomeOutageCardViewModel) -> HomeOutageCardView {
         let view = Bundle.main.loadViewFromNib() as HomeOutageCardView
         view.styleViews()
+        view.showLoadingState()
         view.viewModel = viewModel
         return view
     }
@@ -100,16 +104,97 @@ class HomeOutageCardView: UIView {
         errorLabel.font = OpenSans.regular.of(textStyle: .title1)
     }
     
+    private func showLoadingState() {
+        loadingView.isHidden = false
+        maintenanceModeView.isHidden = true
+        contentView.isHidden = true
+        customErrorView.isHidden = true
+        errorView.isHidden = true
+    }
+    
+    private func showMaintenanceModeState() {
+        loadingView.isHidden = true
+        maintenanceModeView.isHidden = false
+        contentView.isHidden = true
+        customErrorView.isHidden = true
+        errorView.isHidden = true
+    }
+    
+    private func showContentState() {
+        loadingView.isHidden = true
+        maintenanceModeView.isHidden = true
+        contentView.isHidden = false
+        customErrorView.isHidden = true
+        errorView.isHidden = true
+    }
+    
+    private func showCustomErrorState() {
+        loadingView.isHidden = true
+        maintenanceModeView.isHidden = true
+        contentView.isHidden = true
+        customErrorView.isHidden = false
+        errorView.isHidden = true
+    }
+    
+    private func showErrorState() {
+        loadingView.isHidden = true
+        maintenanceModeView.isHidden = true
+        contentView.isHidden = true
+        customErrorView.isHidden = true
+        errorView.isHidden = false
+    }
+    
+    private func showOutstandingBalanceWarning() {
+        nonPayFinaledView.isHidden = false
+        gasOnlyView.isHidden = true
+    }
+    
+    private func showGasOnlyWarning() {
+        nonPayFinaledView.isHidden = true
+        gasOnlyView.isHidden = false
+    }
+    
     private func bindViewModel() {
+        Driver.merge(
+            viewModel.showLoadingState,
+            viewModel.showMaintenanceModeState,
+            viewModel.showContentView,
+            viewModel.showCustomErrorView,
+            viewModel.showErrorState
+        )
+            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .disposed(by: bag)
+        
         // Show/Hide States
         
         // Different Overall States
-        viewModel.showContentView.not().drive(contentView.rx.isHidden).disposed(by: bag)
-        viewModel.showErrorState.not().drive(errorView.rx.isHidden).disposed(by: bag)
-        viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
-        viewModel.showCustomErrorView.not().drive(customErrorView.rx.isHidden).disposed(by: bag)
-        viewModel.showOutstandingBalanceWarning.not().drive(nonPayFinaledView.rx.isHidden).disposed(by: bag)
-        viewModel.showGasOnly.not().drive(gasOnlyView.rx.isHidden).disposed(by: bag)
+        viewModel.showLoadingState
+            .drive(onNext: { [weak self] in self?.showLoadingState() })
+            .disposed(by: bag)
+        
+        viewModel.showMaintenanceModeState
+            .drive(onNext: { [weak self] in self?.showMaintenanceModeState() })
+            .disposed(by: bag)
+        
+        viewModel.showContentView
+            .drive(onNext: { [weak self] in self?.showContentState() })
+            .disposed(by: bag)
+        
+        viewModel.showCustomErrorView
+            .drive(onNext: { [weak self] in self?.showCustomErrorState() })
+            .disposed(by: bag)
+        
+        viewModel.showErrorState
+            .drive(onNext: { [weak self] in self?.showErrorState() })
+            .disposed(by: bag)
+        
+        viewModel.showOutstandingBalanceWarning
+            .drive(onNext: { [weak self] in self?.showOutstandingBalanceWarning() })
+            .disposed(by: bag)
+        
+        viewModel.showGasOnly
+            .drive(onNext: { [weak self] in self?.showGasOnlyWarning() })
+            .disposed(by: bag)
         
         // Sub-states
         viewModel.showEtr.not().drive(restorationView.rx.isHidden).disposed(by: bag)

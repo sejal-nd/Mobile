@@ -83,6 +83,11 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.returnKeyType = .done
         passwordTextField.textField.isShowingAccessory = true
         
+        if #available(iOS 11.0, *) {
+            usernameTextField.textField.textContentType = .username
+            passwordTextField.textField.textContentType = .password
+        }
+
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
     
         // Two-way data binding for the username/password fields
@@ -188,38 +193,38 @@ class LoginViewController: UIViewController {
         Analytics.log(event: .loginOffer,
                         dimensions: [.keepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
                                      .fingerprintUsed: "disabled"])
-        
+
         if forgotUsernamePopulated {
             Analytics.log(event: .forgotUsernameCompleteAccountValidation)
         }
-        
+
         view.endEditing(true)
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
-        
+
         signInButton.setLoading()
         signInButton.accessibilityLabel = "Loading";
         signInButton.accessibilityViewIsModal = true;
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
         })
-        
+
         // Hide password while loading
         if !passwordTextField.textField.isSecureTextEntry {
             onEyeballPress(eyeballButton)
         }
-        
+
         viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
             guard let `self` = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
                 guard let `self` = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = true
-                
+
                 // Get the last username that logged in first, and then store the one currently logging in
                 let lastLoggedInUsername: String? = self.viewModel.getStoredUsername()
                 self.viewModel.storeUsername()
-                
+
                 if loggedInWithTempPassword {
                     let storyboard = UIStoryboard(name: "More", bundle: nil)
                     let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
@@ -245,7 +250,7 @@ class LoginViewController: UIViewController {
                             self.viewModel.setShouldPromptToEnableBiometrics(false)
                         } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
                             let message = String(format: NSLocalizedString("%@ settings for %@ will be disabled upon signing in as %@. Would you like to enable %@ for %@ at this time?", comment: ""), biometricsString, lastLoggedInUsername!, self.viewModel.username.value, biometricsString, self.viewModel.username.value)
-                            
+
                             let differentAccountAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString), message: message, preferredStyle: .alert)
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.disableBiometrics()
@@ -271,7 +276,7 @@ class LoginViewController: UIViewController {
             self.signInButton.reset()
             self.signInButton.accessibilityLabel = "Sign In";
             self.signInButton.accessibilityViewIsModal = false;
-            
+
             let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Resend", comment: ""), style: .default, handler: { [weak self] (action) in

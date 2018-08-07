@@ -13,24 +13,26 @@ class HomeProjectedBillCardView: UIView {
     
     var disposeBag = DisposeBag()
     
-    @IBOutlet weak var clippingView: UIView!
+    @IBOutlet private weak var clippingView: UIView!
+    @IBOutlet private weak var contentStack: UIStackView!
+    @IBOutlet private weak var loadingView: UIView!
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
     
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var segmentedControlContainer: UIView!
-    @IBOutlet weak var segmentedControl: BillAnalysisSegmentedControl!
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var projectionLabelTopSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak var projectionLabel: UILabel!
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var segmentedControlContainer: UIView!
+    @IBOutlet private weak var segmentedControl: BillAnalysisSegmentedControl!
+    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var projectionLabelTopSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var projectionLabel: UILabel!
     @IBOutlet weak var infoButton: UIButton!
-    @IBOutlet weak var projectionSubLabel: UILabel!
-    @IBOutlet weak var projectionFooterLabel: UILabel!
+    @IBOutlet private weak var projectionSubLabel: UILabel!
+    @IBOutlet private weak var projectionFooterLabel: UILabel!
     
     @IBOutlet weak var viewMoreButton: ButtonControl!
-    @IBOutlet weak var viewMoreButtonLabel: UILabel!
+    @IBOutlet private weak var viewMoreButtonLabel: UILabel!
     
-    fileprivate var viewModel: HomeProjectedBillCardViewModel! {
+    private var viewModel: HomeProjectedBillCardViewModel! {
         didSet {
             disposeBag = DisposeBag() // Clear all pre-existing bindings
             bindViewModel()
@@ -80,6 +82,13 @@ class HomeProjectedBillCardView: UIView {
     }
     
     private func bindViewModel() {
+        viewModel.showLoadingState.drive(contentStack.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.showLoadingState
+            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .disposed(by: disposeBag)
+        
         viewModel.shouldShowElectricGasSegmentedControl.drive(onNext: { [weak self] shouldShow in
             self?.contentView.backgroundColor = shouldShow ? UIColor.softGray : UIColor.white
             self?.projectionLabelTopSpaceConstraint.constant = shouldShow ? 31 : 16
