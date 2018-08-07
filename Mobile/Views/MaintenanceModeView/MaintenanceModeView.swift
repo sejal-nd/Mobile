@@ -95,7 +95,8 @@ class MaintenanceModeView: UIView {
         reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
         scheduledMaintenanceLabel.font = OpenSans.semibold.of(textStyle: .title1)
         detailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        infoTextContainerView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 8)
+        infoTextContainerView.layer.cornerRadius = 8.0
+        infoTextContainerView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
     }
     
     let infoText: NSAttributedString = {
