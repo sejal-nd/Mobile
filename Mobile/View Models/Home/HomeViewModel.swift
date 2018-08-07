@@ -95,7 +95,7 @@ class HomeViewModel {
                                 maintenanceModeEvents: fetchDataMMEvents,
                                 fetchDataObservable: fetchDataObservable,
                                 refreshFetchTracker: refreshFetchTracker,
-                                showLoadingState: outageTracker.asDriver().filter { $0 }.map(to: ()))
+                                switchAccountFetchTracker: outageTracker)
     
     private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
     
