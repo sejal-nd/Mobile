@@ -18,7 +18,6 @@ class HomeOutageCardViewModel {
     private let refreshFetchTracker: ActivityTracker
     private let switchAccountFetchTracker: ActivityTracker
     
-    
     // MARK: - Init
     
     required init(outageService: OutageService,
@@ -33,13 +32,12 @@ class HomeOutageCardViewModel {
         self.switchAccountFetchTracker = switchAccountFetchTracker
     }
     
-    
     // MARK: - Retrieve Outage Status
     
     private lazy var outageStatusEvents: Observable<Event<OutageStatus>> = self.maintenanceModeEvents
         .filter { !($0.element?.outageStatus ?? false) && !($0.element?.homeStatus ?? false) }
         .withLatestFrom(self.fetchDataObservable)
-        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
+        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0 )},
                         requestSelector: { [unowned self] _ in self.retrieveOutageStatus() })
     
     // MARK: - Variables
@@ -83,34 +81,39 @@ class HomeOutageCardViewModel {
     
     private lazy var fetchedEtr: Driver<Date?> = self.currentOutageStatus.map { $0.etr }
     
+    
     // MARK: - Show/Hide Views
     
-    private(set) lazy var showMaintenanceModeState: Driver<Bool> = self.maintenanceModeEvents
-        .map { $0.element?.outageStatus ?? false }
-        .startWith(false)
+    private(set) lazy var showLoadingState: Driver<Void> = switchAccountFetchTracker
+        .asDriver().filter { $0 }.map(to: ())
+    
+    private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents
+        .filter { $0.element?.outageStatus ?? false }
+        .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showContentView: Driver<Bool> = Driver.combineLatest(isOutageErrorStatus, showMaintenanceModeState, isCustomError)
-        { !$0 && !$1 && !$2 }
-        .distinctUntilChanged()
+    private(set) lazy var showContentView: Driver<Void> = currentOutageStatus
+        .filter { !$0.isCustomError }
+        .map(to: ())
     
-    private(set) lazy var showCustomErrorView: Driver<Bool> = Driver.combineLatest(isCustomError, showMaintenanceModeState)
-    { $0 && !$1 }
-        .distinctUntilChanged()
+    private(set) lazy var showCustomErrorView: Driver<Void> = currentOutageStatus
+        .filter { $0.isCustomError }
+        .map(to: ())
     
-    private(set) lazy var showOutstandingBalanceWarning: Driver<Bool> = Driver.combineLatest(isOutstandingBalance, showMaintenanceModeState)
-    { $0 && !$1 }
-        .distinctUntilChanged()
+    private(set) lazy var showOutstandingBalanceWarning: Driver<Void> = currentOutageStatus
+        .filter { $0.isOutstandingBalance }
+        .map(to: ())
     
-    private(set) lazy var showGasOnly: Driver<Bool> = Driver.combineLatest(isGasOnly, showOutstandingBalanceWarning)
-    { $0 && !$1 }
-        .distinctUntilChanged()
-
-    private(set) lazy var showErrorState: Driver<Bool> = Driver.combineLatest(isOutageErrorStatus, showMaintenanceModeState)
-        { $0 && !$1 }
-        .distinctUntilChanged()
+    private(set) lazy var showGasOnly: Driver<Void> = currentOutageStatus
+        .filter { !$0.isOutstandingBalance && $0.flagGasOnly }
+        .map(to: ())
     
-    private(set) lazy var showReportedOutageTime: Driver<Bool> = Driver.merge(self.outageReported, self.currentOutageStatus.map(to: ()))
+    private(set) lazy var showErrorState: Driver<Void> =  outageStatusEvents.errors()
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showReportedOutageTime: Driver<Bool> = Driver
+        .merge(self.outageReported, self.currentOutageStatus.map(to: ()))
         .map { [weak self] in
             guard let this = self else { return false }
             guard AccountsStore.shared.currentAccount != nil else { return false }
@@ -184,15 +187,6 @@ class HomeOutageCardViewModel {
     
     // MARK: - Service
     
-    private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
-        switch state {
-        case .refresh:
-            return refreshFetchTracker
-        case .switchAccount:
-            return switchAccountFetchTracker
-        }
-    }
-    
     private func retrieveOutageStatus() -> Observable<OutageStatus> {
         return outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount)
             .catchError { error -> Observable<OutageStatus> in
@@ -209,4 +203,23 @@ class HomeOutageCardViewModel {
         }
     }
     
+    private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
+        switch state {
+        case .refresh:
+            return refreshFetchTracker
+        case .switchAccount:
+            return switchAccountFetchTracker
+        }
+    }
+    
+}
+
+fileprivate extension OutageStatus {
+    var isCustomError: Bool {
+        return flagFinaled || flagNoPay || flagNonService || flagGasOnly
+    }
+    
+    var isOutstandingBalance: Bool {
+        return flagFinaled || flagNoPay || flagNonService
+    }
 }
