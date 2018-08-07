@@ -230,57 +230,60 @@ class UsageViewModelTests: XCTestCase {
         let trimmedEvents = removeIntermediateEvents(observer.events)
         XCTAssertEqual(trimmedEvents, [next(0, "AUG 01"), next(1, "2017")]);
     }
-/*
     
     // MARK: Projection Bar Drivers
     
     func testProjectedCost() {
-        viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
-        viewModel.electricForecast.value = BillForecast(projectedCost: 210)
-        viewModel.gasForecast.value = BillForecast(projectedCost: 182)
+        AccountsStore.shared.currentAccount = Account(accountNumber: "test-projectedCost")
+        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
+        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-projectedCost", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true)]
         
-        viewModel.projectedCost.asObservable().take(1).subscribe(onNext: { cost in
-            if let expectedVal = cost {
-                XCTAssertEqual(expectedVal, 210)
-            } else {
-                XCTFail("Unexpected nil")
+        let observer = scheduler.createObserver(Double?.self)
+        
+        viewModel.projectedCost.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+            if $0 == 0 {
+                self.viewModel.fetchAllData()
+            }
+            if $0 == 1 {
+                self.viewModel.electricGasSelectedSegmentIndex.value = 1
             }
         }).disposed(by: disposeBag)
+        scheduler.start()
         
+        let trimmedEvents = removeIntermediateEvents(observer.events)
         if Environment.shared.opco != .comEd { // ComEd is electric only
-            viewModel.electricGasSelectedSegmentIndex.value = 1
-            viewModel.projectedCost.asObservable().take(1).subscribe(onNext: { cost in
-                if let expectedVal = cost {
-                    XCTAssertEqual(expectedVal, 182)
-                } else {
-                    XCTFail("Unexpected nil")
-                }
-            }).disposed(by: disposeBag)
+            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 182)]);
+        } else {
+            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 230)]);
         }
     }
     
     func testProjectedUsage() {
-        viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
-        viewModel.electricForecast.value = BillForecast(projectedUsage: 210)
-        viewModel.gasForecast.value = BillForecast(projectedUsage: 182)
+        AccountsStore.shared.currentAccount = Account(accountNumber: "test-projectedUsage")
+        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
+        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-projectedUsage", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true)]
         
-        viewModel.projectedUsage.asObservable().take(1).subscribe(onNext: { cost in
-            if let expectedVal = cost {
-                XCTAssertEqual(expectedVal, 210)
-            } else {
-                XCTFail("Unexpected nil")
+        let observer = scheduler.createObserver(Double?.self)
+        
+        viewModel.projectedUsage.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+            if $0 == 0 {
+                self.viewModel.fetchAllData()
+            }
+            if $0 == 1 {
+                self.viewModel.electricGasSelectedSegmentIndex.value = 1
             }
         }).disposed(by: disposeBag)
+        scheduler.start()
         
+        let trimmedEvents = removeIntermediateEvents(observer.events)
         if Environment.shared.opco != .comEd { // ComEd is electric only
-            viewModel.electricGasSelectedSegmentIndex.value = 1
-            viewModel.projectedUsage.asObservable().take(1).subscribe(onNext: { cost in
-                if let expectedVal = cost {
-                    XCTAssertEqual(expectedVal, 182)
-                } else {
-                    XCTFail("Unexpected nil")
-                }
-            }).disposed(by: disposeBag)
+            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 182)]);
+        } else {
+            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 230)]);
         }
     }
     
@@ -292,440 +295,403 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testProjectedBarHeightConstraintValue() {
-        viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC")
+        let testAccounts = [
+            Account(accountNumber: "test-noForecast-comparedHighest"),
+            Account(accountNumber: "test-hasForecast-forecastHighest"),
+            Account(accountNumber: "test-hasForecast-referenceHighest"),
+            Account(accountNumber: "test-hasForecast-comparedHighest"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "test-noForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-hasForecast-forecastHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-hasForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-hasForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
+        ]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
         
-        // Test case: No projection
-        viewModel.projectedBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            XCTAssertEqual(val, 0)
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(CGFloat.self)
         
-        // Test case: Projected cost is highest
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 200), compared: UsageBillPeriod(charges: 182))
-        viewModel.electricForecast.value = BillForecast(projectedCost: 220)
-        viewModel.projectedBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            XCTAssertEqual(val, 134)
-        }).disposed(by: disposeBag)
+        viewModel.projectedBarHeightConstraintValue.drive(observer).disposed(by: disposeBag)
         
-        // Test case: Reference cost is highest
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 230), compared: UsageBillPeriod(charges: 182))
-        viewModel.electricForecast.value = BillForecast(projectedCost: 220)
-        viewModel.projectedBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            let expectedVal = CGFloat(134.0 * (220 / 230))
-            XCTAssertEqual(val, expectedVal)
+        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3)]).subscribe(onNext: {
+            AccountsStore.shared.currentAccount = testAccounts[$0]
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
         
-        // Test case: Compared cost is highest
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 230), compared: UsageBillPeriod(charges: 240))
-        viewModel.electricForecast.value = BillForecast(projectedCost: 220)
-        viewModel.projectedBarHeightConstraintValue.asObservable().take(1).subscribe(onNext: { val in
-            let expectedVal = CGFloat(134.0 * (220 / 240))
-            XCTAssertEqual(val, expectedVal)
-        }).disposed(by: disposeBag)
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, 0.0),
+            next(1, 134.0),
+            next(2, CGFloat(134.0 * (150 / 220))),
+            next(3, CGFloat(134.0 * (150 / 220))),
+        ]);
     }
     
     func testProjectedBarDollarLabelText() {
-        viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC")
-        viewModel.currentBillComparison.value = BillComparison()
-        viewModel.electricForecast.value = BillForecast(projectedUsage: 500, projectedCost: 220)
+        let testAccounts = [
+            Account(accountNumber: "test-projectedCostAndUsage"),
+            Account(accountNumber: "test-projectedCostAndUsageOpower"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "test-projectedCostAndUsage", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-projectedCostAndUsageOpower", premiseNumber: "1", serviceType: "ELECTRIC", isModeledForOpower: true, isAMIAccount: true, isResidential: true),
+        ]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
         
-        // Test case: Account not modeled for OPower - show usage
-        viewModel.projectedBarDollarLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "500 kWh")
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(String?.self)
         
-        // Test case: Account IS modeled for OPower, show cost
-        viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC", isModeledForOpower: true)
-        viewModel.projectedBarDollarLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "$220.00")
+        viewModel.projectedBarDollarLabelText.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+            AccountsStore.shared.currentAccount = testAccounts[$0]
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
+        
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, "500 kWh"),
+            next(1, "$220.00"),
+        ]);
     }
     
     func testProjectedBarDateLabelText() {
-        viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
-        viewModel.electricForecast.value = BillForecast(billingEndDate: "2019-08-13")
-        viewModel.gasForecast.value = BillForecast(billingEndDate: "2019-07-03")
+        AccountsStore.shared.currentAccount = Account(accountNumber: "test-projectedDate")
+        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
+        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-projectedDate", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true)]
         
-        // Test case: Electric
-        viewModel.projectedBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "AUG 13")
+        let observer = scheduler.createObserver(String?.self)
+        
+        viewModel.projectedBarDateLabelText.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+            if $0 == 0 {
+                self.viewModel.fetchAllData()
+            }
+            if $0 == 1 {
+                self.viewModel.electricGasSelectedSegmentIndex.value = 1
+            }
         }).disposed(by: disposeBag)
+        scheduler.start()
         
+        let trimmedEvents = removeIntermediateEvents(observer.events)
         if Environment.shared.opco != .comEd { // ComEd is electric only
-            // Test case: Gas
-            viewModel.electricGasSelectedSegmentIndex.value = 1
-            viewModel.projectedBarDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-                XCTAssertEqual(text, "JUL 03")
-            }).disposed(by: disposeBag)
+            XCTAssertEqual(trimmedEvents, [next(0, "AUG 13"), next(1, "JUL 03")]);
+        } else {
+            XCTAssertEqual(trimmedEvents, [next(0, "AUG 13"), next(1, "AUG 13")]);
         }
     }
     
     // MARK: Projection Not Available Bar Drivers
     
-    func testShouldShowProjectionNotAvailableBar() {
-        viewModel.shouldShowProjectionNotAvailableBar.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssertFalse(shouldShow, "shouldShowProjectionNotAvailableBar should be false when projectedCost is nil")
+    func testShowProjectionNotAvailableBar() {
+        let testAccounts = [
+            Account(accountNumber: "test-projection-lessThan7"),
+            Account(accountNumber: "test-projection-moreThan7"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "test-projection-lessThan7", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-projection-moreThan7", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
+        ]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
+        
+        let observer = scheduler.createObserver(Bool.self)
+        
+        viewModel.showProjectionNotAvailableBar.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3)]).subscribe(onNext: {
+            if $0 % 2 != 0 {
+                self.viewModel.electricGasSelectedSegmentIndex.value = 1
+            }
+            AccountsStore.shared.currentAccount = testAccounts[$0 % 2]
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
         
-        viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let today = Date()
-        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
-        let twoWeeksOut = Calendar.current.date(byAdding: .weekOfMonth, value: 2, to: today)!
-        
-        // Test case: Electric forecast with less than 7 days since start
-        viewModel.electricForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: tomorrow))
-        viewModel.shouldShowProjectionNotAvailableBar.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssert(shouldShow, "shouldShowProjectionNotAvailableBar should be true when less than 7 days from billingStartDate")
-        }).disposed(by: disposeBag)
-        
-        // Test case: Electric forecast with greater than 7 days since start
-        viewModel.electricForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: twoWeeksOut))
-        viewModel.shouldShowProjectionNotAvailableBar.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssertFalse(shouldShow, "shouldShowProjectionNotAvailableBar should be false when more than 7 days from billingStartDate")
-        }).disposed(by: disposeBag)
-        
-        if Environment.shared.opco != .comEd { // ComEd is electric only
-            // Test case: Gas forecast with less than 7 days since start
-            viewModel.electricGasSelectedSegmentIndex.value = 1
-            viewModel.gasForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: tomorrow))
-            viewModel.shouldShowProjectionNotAvailableBar.asObservable().take(1).subscribe(onNext: { shouldShow in
-                XCTAssert(shouldShow, "shouldShowProjectionNotAvailableBar should be true when less than 7 days from billingStartDate")
-            }).disposed(by: disposeBag)
-            
-            // Test case: Gas forecast with greater than 7 days since start
-            viewModel.gasForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: twoWeeksOut))
-            viewModel.shouldShowProjectionNotAvailableBar.asObservable().take(1).subscribe(onNext: { shouldShow in
-                XCTAssertFalse(shouldShow, "shouldShowProjectionNotAvailableBar should be false when more than 7 days from billingStartDate")
-            }).disposed(by: disposeBag)
-        }
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, true),
+            next(1, false),
+            next(2, true),
+            next(3, false),
+        ]);
     }
     
     func testProjectionNotAvailableDaysRemainingText() {
-        viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
+        let testAccounts = [
+            Account(accountNumber: "test-projection-sixDaysOut"),
+            Account(accountNumber: "test-projection-threeDaysOut"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "test-projection-sixDaysOut", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "test-projection-threeDaysOut", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
+        ]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let observer = scheduler.createObserver(String?.self)
         
-        let today = Date()
-        let sixDaysOut = Calendar.opCo.date(byAdding: .day, value: 6, to: today)!
-        let threeDaysOut = Calendar.opCo.date(byAdding: .day, value: 3, to: today)!
+        viewModel.projectionNotAvailableDaysRemainingText.drive(observer).disposed(by: disposeBag)
         
-        // Test case: Electric forecast with less than 7 days since start
-        viewModel.electricForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: sixDaysOut))
-        viewModel.projectionNotAvailableDaysRemainingText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "1 day")
+        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3)]).subscribe(onNext: {
+            if $0 % 2 != 0 {
+                self.viewModel.electricGasSelectedSegmentIndex.value = 1
+            }
+            AccountsStore.shared.currentAccount = testAccounts[$0 % 2]
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
         
-        // Test case: Electric forecast with greater than 7 days since start
-        viewModel.electricForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: threeDaysOut))
-        viewModel.projectionNotAvailableDaysRemainingText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, "4 days")
-        }).disposed(by: disposeBag)
-        
-        if Environment.shared.opco != .comEd { // ComEd is electric only
-            // Test case: Gas forecast with less than 7 days since start
-            viewModel.electricGasSelectedSegmentIndex.value = 1
-            viewModel.gasForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: sixDaysOut))
-            viewModel.projectionNotAvailableDaysRemainingText.asObservable().take(1).subscribe(onNext: { text in
-                XCTAssertEqual(text, "1 day")
-            }).disposed(by: disposeBag)
-            
-            // Test case: Gas forecast with greater than 7 days since start
-            viewModel.gasForecast.value = BillForecast(billingStartDate: dateFormatter.string(from: threeDaysOut))
-            viewModel.projectionNotAvailableDaysRemainingText.asObservable().take(1).subscribe(onNext: { text in
-                XCTAssertEqual(text, "4 days")
-            }).disposed(by: disposeBag)
-        }
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, "1 day"),
+            next(1, "4 days"),
+            next(2, "1 day"),
+            next(3, "4 days"),
+        ]);
     }
     
     // MARK: Bar Description Box Drivers
     
     func testBarDescriptionDateLabelText() {
-        viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
+        let testAccounts = [
+            Account(accountNumber: "comparedReferenceStartEndDate"),
+            Account(accountNumber: "forecastStartEndDate"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "comparedReferenceStartEndDate", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
+            AccountDetail(accountNumber: "forecastStartEndDate", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
+        ]
+        AccountsStore.shared.currentAccount = testAccounts[0]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
         
-        // Test case: No Data bar selected, Previous Bill selected
-        viewModel.setBarSelected(tag: 0)
-        viewModel.currentBillComparison.value = BillComparison()
-        viewModel.barDescriptionDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, NSLocalizedString("Previous Bill", comment: ""))
+        let observer = scheduler.createObserver(String?.self)
+        
+        viewModel.barDescriptionDateLabelText.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5), next(6, 6)]).subscribe(onNext: {
+            if $0 <= 3 {
+                AccountsStore.shared.currentAccount = testAccounts[0]
+            } else {
+                AccountsStore.shared.currentAccount = testAccounts[1]
+            }
+            if $0 == 0 || $0 == 1 {
+                self.viewModel.setBarSelected(tag: 0)
+                if $0 == 1 {
+                    self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+                }
+            } else if $0 == 2 {
+                self.viewModel.setBarSelected(tag: 1)
+            } else if $0 == 3 {
+                self.viewModel.setBarSelected(tag: 2)
+            } else if $0 == 4 || $0 == 5 {
+                self.viewModel.setBarSelected(tag: 3)
+                if $0 == 5 {
+                    self.viewModel.electricGasSelectedSegmentIndex.value = 1
+                }
+            } else if $0 == 6 {
+                self.viewModel.setBarSelected(tag: 4)
+            }
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
         
-        // Test case: No Data bar selected, Last Year selected
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
-        viewModel.barDescriptionDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Last Year", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Previous bar selected
-        viewModel.setBarSelected(tag: 1)
-        viewModel.currentBillComparison.value = BillComparison(compared: UsageBillPeriod(startDate: "2018-08-01", endDate: "2018-08-31"))
-        viewModel.barDescriptionDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = "Aug 01, 2018 - Aug 31, 2018"
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Current bar selected
-        viewModel.setBarSelected(tag: 2)
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(startDate: "2018-09-02", endDate: "2018-10-01"))
-        viewModel.barDescriptionDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = "Sep 02, 2018 - Oct 01, 2018"
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Projected bar selected (electric)
-        viewModel.setBarSelected(tag: 3)
-        viewModel.electricForecast.value = BillForecast(billingStartDate: "2018-05-23", billingEndDate: "2018-06-24")
-        viewModel.barDescriptionDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = "May 23, 2018 - Jun 24, 2018"
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        if Environment.shared.opco != .comEd { // ComEd is electric only
-            // Test case: Projected bar selected (gas)
-            viewModel.gasForecast.value = BillForecast(billingStartDate: "2018-05-23", billingEndDate: "2018-06-24")
-            viewModel.electricGasSelectedSegmentIndex.value = 1
-            viewModel.barDescriptionDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-                let expectedText = "May 23, 2018 - Jun 24, 2018"
-                XCTAssertEqual(text, expectedText)
-            }).disposed(by: disposeBag)
-        }
-        
-        // Test case: Projection not available selected
-        viewModel.setBarSelected(tag: 4)
-        viewModel.barDescriptionDateLabelText.asObservable().take(1).subscribe(onNext: { text in
-            XCTAssertEqual(text, NSLocalizedString("Projection Not Available", comment: ""))
-        }).disposed(by: disposeBag)
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, "Previous Bill"), // Test case: No Data bar selected, Previous Bill selected
+            next(1, "Last Year"), // Test case: No Data bar selected, Last Year selected
+            next(2, "Aug 01, 2018 - Aug 31, 2018"), // Test case: Previous bar selected
+            next(3, "Sep 02, 2018 - Oct 01, 2018"), // Test case: Current bar selected
+            next(4, "May 23, 2018 - Jun 24, 2018"),  // Test case: Projected bar selected (electric)
+            next(5, "May 23, 2018 - Jun 24, 2018"),  // Test case: Projected bar selected (gas)
+            next(6, "Projection Not Available") // Test case: Projection not available selected
+        ]);
     }
     
     func testBarDescriptionAvgTempLabelText() {
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(averageTemperature: 62), compared: UsageBillPeriod(averageTemperature: 89))
+        AccountsStore.shared.currentAccount = Account(accountNumber: "test-avgTemp")
+        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
+        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-avgTemp", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isResidential: true)]
         
-        // Test case: Previous bar selected
-        viewModel.setBarSelected(tag: 1)
-        viewModel.barDescriptionAvgTempLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Avg. Temp 89° F", comment: "")
-            XCTAssertEqual(text, expectedText)
+        let observer = scheduler.createObserver(String?.self)
+        
+        viewModel.barDescriptionAvgTempLabelText.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
+            if $0 == 0 {
+                self.viewModel.setBarSelected(tag: 1)
+                self.viewModel.fetchAllData()
+            }
+            if $0 == 1 {
+                self.viewModel.setBarSelected(tag: 2)
+            }
         }).disposed(by: disposeBag)
+        scheduler.start()
         
-        viewModel.setBarSelected(tag: 2)
-        viewModel.barDescriptionAvgTempLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Avg. Temp 62° F", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-    }
-    
-    func testBarDescriptionDetailLabelText() {
-        viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
-        
-        // Test case: No Data bar selected, Previous Bill selected
-        viewModel.setBarSelected(tag: 0)
-        viewModel.currentBillComparison.value = BillComparison()
-        viewModel.barDescriptionDetailLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Not enough data available.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Previous bar selected
-        viewModel.setBarSelected(tag: 1)
-        viewModel.currentBillComparison.value = BillComparison(compared: UsageBillPeriod(charges: 200, usage: 1800, startDate: "2018-08-01", endDate: "2018-08-31"))
-        viewModel.barDescriptionDetailLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Your bill was $200.00. You used an average of 60.00 kWh per day.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Previous bar selected - bill credit scenario
-        viewModel.currentBillComparison.value = BillComparison(compared: UsageBillPeriod(charges: -20, usage: 1800, startDate: "2018-08-01", endDate: "2018-08-31"))
-        viewModel.barDescriptionDetailLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("You had a bill credit of $20.00. You used an average of 60.00 kWh per day.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Current bar selected
-        viewModel.setBarSelected(tag: 2)
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 182, usage: 1060, startDate: "2018-08-01", endDate: "2018-08-27"))
-        viewModel.barDescriptionDetailLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Your bill was $182.00. You used an average of 40.77 kWh per day.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Current bar selected - bill credit scenario
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: -34.21, usage: 1060, startDate: "2018-08-01", endDate: "2018-08-27"))
-        viewModel.barDescriptionDetailLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("You had a bill credit of $34.21. You used an average of 40.77 kWh per day.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Projected bar selected, modeled for OPower, electric
-        viewModel.setBarSelected(tag: 3)
-        viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC", isModeledForOpower: true)
-        viewModel.electricGasSelectedSegmentIndex.value = 0
-        viewModel.electricForecast.value = BillForecast(toDateCost: 7.29, projectedCost: 182)
-        viewModel.barDescriptionDetailLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Your bill is projected to be around $182.00. You've spent about $7.29 so far this bill period. This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Projected bar selected, not modeled for OPower, electric
-        viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC", isModeledForOpower: false)
-        viewModel.electricGasSelectedSegmentIndex.value = 0
-        viewModel.electricForecast.value = BillForecast(toDateUsage: 13.72, projectedUsage: 172.2)
-        viewModel.barDescriptionDetailLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("You are projected to use around 172 kWh. You've used about 13 kWh so far this bill period. This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        if Environment.shared.opco != .comEd { // ComEd is electric only
-            // Test case: Projected bar selected, modeled for OPower, gas
-            viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC", isModeledForOpower: true)
-            viewModel.electricGasSelectedSegmentIndex.value = 1
-            viewModel.gasForecast.value = BillForecast(toDateCost: 160, projectedCost: 210)
-            viewModel.barDescriptionDetailLabelText.asObservable().take(1).subscribe(onNext: { text in
-                let expectedText = NSLocalizedString("Your bill is projected to be around $210.00. You've spent about $160.00 so far this bill period. This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-                XCTAssertEqual(text, expectedText)
-            }).disposed(by: disposeBag)
-            
-            // Test case: Projected bar selected, not modeled for OPower, gas
-            viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC", isModeledForOpower: false)
-            viewModel.electricGasSelectedSegmentIndex.value = 1
-            viewModel.gasForecast.value = BillForecast(toDateUsage: 160, projectedUsage: 210)
-            viewModel.barDescriptionDetailLabelText.asObservable().take(1).subscribe(onNext: { text in
-                let expectedText = NSLocalizedString("You are projected to use around 210 kWh. You've used about 160 kWh so far this bill period. This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
-                XCTAssertEqual(text, expectedText)
-            }).disposed(by: disposeBag)
-        }
-        
-        // Test case: Projection not available selected
-        viewModel.setBarSelected(tag: 4)
-        viewModel.barDescriptionDetailLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Data becomes available once you are more than 7 days into the billing cycle.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [next(0, "Avg. Temp 89° F"), next(1, "Avg. Temp 62° F")]);
     }
     
     // MARK: Up/Down Arrow Image Drivers
     
     func testBillPeriodArrowImage() {
-        // Test case: Difference = 0
-        viewModel.currentBillComparison.value = BillComparison()
-        viewModel.billPeriodArrowImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssertEqual(image, #imageLiteral(resourceName: "no_change_icon"))
-        }).disposed(by: disposeBag)
+        let testAccounts = [
+            Account(accountNumber: "test-billPeriod-zeroCostDifference"),
+            Account(accountNumber: "test-billPeriod-positiveCostDifference"),
+            Account(accountNumber: "test-billPeriod-negativeCostDifference"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "test-billPeriod-zeroCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-billPeriod-positiveCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-billPeriod-negativeCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+        ]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
         
-        // Test case: Difference >= 1
-        viewModel.currentBillComparison.value = BillComparison(billPeriodCostDifference: 100)
-        viewModel.billPeriodArrowImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssertEqual(image, #imageLiteral(resourceName: "ic_billanalysis_positive"))
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(UIImage?.self)
         
-        // Test case: Difference <= 1
-        viewModel.currentBillComparison.value = BillComparison(billPeriodCostDifference: -100)
-        viewModel.billPeriodArrowImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssertEqual(image, #imageLiteral(resourceName: "ic_billanalysis_negative"))
+        viewModel.billPeriodArrowImage.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2)]).subscribe(onNext: {
+            AccountsStore.shared.currentAccount = testAccounts[$0]
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
+        
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, #imageLiteral(resourceName: "no_change_icon")),
+            next(1, #imageLiteral(resourceName: "ic_billanalysis_positive")),
+            next(2, #imageLiteral(resourceName: "ic_billanalysis_negative")),
+        ]);
     }
     
     func testWeatherArrowImage() {
-        // Test case: Difference = 0
-        viewModel.currentBillComparison.value = BillComparison()
-        viewModel.weatherArrowImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssertEqual(image, #imageLiteral(resourceName: "no_change_icon"))
-        }).disposed(by: disposeBag)
+        let testAccounts = [
+            Account(accountNumber: "test-weather-zeroCostDifference"),
+            Account(accountNumber: "test-weather-positiveCostDifference"),
+            Account(accountNumber: "test-weather-negativeCostDifference"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "test-weather-zeroCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-weather-positiveCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-weather-negativeCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+        ]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
         
-        // Test case: Difference >= 1
-        viewModel.currentBillComparison.value = BillComparison(weatherCostDifference: 100)
-        viewModel.weatherArrowImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssertEqual(image, #imageLiteral(resourceName: "ic_billanalysis_positive"))
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(UIImage?.self)
         
-        // Test case: Difference <= 1
-        viewModel.currentBillComparison.value = BillComparison(weatherCostDifference: -100)
-        viewModel.weatherArrowImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssertEqual(image, #imageLiteral(resourceName: "ic_billanalysis_negative"))
+        viewModel.weatherArrowImage.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2)]).subscribe(onNext: {
+            AccountsStore.shared.currentAccount = testAccounts[$0]
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
+        
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, #imageLiteral(resourceName: "no_change_icon")),
+            next(1, #imageLiteral(resourceName: "ic_billanalysis_positive")),
+            next(2, #imageLiteral(resourceName: "ic_billanalysis_negative")),
+        ]);
     }
     
     func testOtherArrowImage() {
-        // Test case: Difference = 0
-        viewModel.currentBillComparison.value = BillComparison()
-        viewModel.otherArrowImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssertEqual(image, #imageLiteral(resourceName: "no_change_icon"))
-        }).disposed(by: disposeBag)
+        let testAccounts = [
+            Account(accountNumber: "test-other-zeroCostDifference"),
+            Account(accountNumber: "test-other-positiveCostDifference"),
+            Account(accountNumber: "test-other-negativeCostDifference"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "test-other-zeroCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-other-positiveCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-other-negativeCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+        ]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
         
-        // Test case: Difference >= 1
-        viewModel.currentBillComparison.value = BillComparison(otherCostDifference: 100)
-        viewModel.otherArrowImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssertEqual(image, #imageLiteral(resourceName: "ic_billanalysis_positive"))
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(UIImage?.self)
         
-        // Test case: Difference <= 1
-        viewModel.currentBillComparison.value = BillComparison(otherCostDifference: -100)
-        viewModel.otherArrowImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssertEqual(image, #imageLiteral(resourceName: "ic_billanalysis_negative"))
+        viewModel.otherArrowImage.drive(observer).disposed(by: disposeBag)
+        
+        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2)]).subscribe(onNext: {
+            AccountsStore.shared.currentAccount = testAccounts[$0]
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
+        
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, #imageLiteral(resourceName: "no_change_icon")),
+            next(1, #imageLiteral(resourceName: "ic_billanalysis_positive")),
+            next(2, #imageLiteral(resourceName: "ic_billanalysis_negative")),
+        ]);
     }
     
     // MARK: Likely Reasons Drivers
     
     func testLikelyReasonsLabelText() {
-        viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC")
+        let testAccounts = [
+            Account(accountNumber: "test-likelyReasons-noData"),
+            Account(accountNumber: "test-likelyReasons-aboutSame"),
+            Account(accountNumber: "test-likelyReasons-greater"),
+            Account(accountNumber: "test-likelyReasons-less"),
+        ]
+        let testAccountDetails = [
+            AccountDetail(accountNumber: "test-likelyReasons-noData", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-likelyReasons-aboutSame", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-likelyReasons-greater", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
+            AccountDetail(accountNumber: "test-likelyReasons-less", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true)
+        ]
+        accountService.mockAccounts = testAccounts
+        accountService.mockAccountDetails = testAccountDetails
         
-        // Test case: Data not available
-        viewModel.likelyReasonsLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Data not available to explain likely reasons for changes in your electric charges.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
+        let observer = scheduler.createObserver(String?.self)
         
-        // Test case: About the same / Previous Bill
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 300), compared: UsageBillPeriod(charges: 300))
-        viewModel.likelyReasonsLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Likely reasons your electric charges are about the same as your previous bill.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
+        viewModel.likelyReasonsLabelText.drive(observer).disposed(by: disposeBag)
         
-        // Test case: About the same / Last Year
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
-        viewModel.likelyReasonsLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Likely reasons your electric charges are about the same as last year.", comment: "")
-            XCTAssertEqual(text, expectedText)
+        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5), next(6, 6)]).subscribe(onNext: {
+            if $0 == 0 {
+                AccountsStore.shared.currentAccount = testAccounts[0]
+            } else if $0 == 1 {
+                AccountsStore.shared.currentAccount = testAccounts[1]
+            } else if $0 == 2 {
+                AccountsStore.shared.currentAccount = testAccounts[1]
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+            } else if $0 == 3 {
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
+                AccountsStore.shared.currentAccount = testAccounts[2]
+            } else if $0 == 4 {
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+                AccountsStore.shared.currentAccount = testAccounts[2]
+            } else if $0 == 5 {
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
+                AccountsStore.shared.currentAccount = testAccounts[3]
+            } else if $0 == 6 {
+                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
+                AccountsStore.shared.currentAccount = testAccounts[3]
+            }
+            self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
+        scheduler.start()
         
-        // Test case: Charges greater / Previous Bill
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 300), compared: UsageBillPeriod(charges: 200))
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
-        viewModel.likelyReasonsLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Likely reasons your electric charges are about $100.00 more than your previous bill.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Charges greater / Last Year
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
-        viewModel.likelyReasonsLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Likely reasons your electric charges are about $100.00 more than last year.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Charges less / Previous Bill
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(charges: 200), compared: UsageBillPeriod(charges: 300))
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
-        viewModel.likelyReasonsLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Likely reasons your electric charges are about $100.00 less than your previous bill.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Charges less / Last Year
-        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
-        viewModel.likelyReasonsLabelText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Likely reasons your electric charges are about $100.00 less than last year.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
+        let trimmedEvents = removeIntermediateEvents(observer.events)
+        XCTAssertEqual(trimmedEvents, [
+            next(0, "Data not available to explain likely reasons for changes in your electric charges."),
+            next(1, "Likely reasons your electric charges are about the same as your previous bill."),
+            next(2, "Likely reasons your electric charges are about the same as last year."),
+            next(3, "Likely reasons your electric charges are about $100.00 more than your previous bill."),
+            next(4, "Likely reasons your electric charges are about $100.00 more than last year."),
+            next(5, "Likely reasons your electric charges are about $100.00 less than your previous bill."),
+            next(6, "Likely reasons your electric charges are about $100.00 less than last year."),
+        ]);
     }
     
     func testLikelyReasonsDescriptionTitleText() {
@@ -748,158 +714,24 @@ class UsageViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
     }
     
-    func testLikelyReasonsDescriptionDetailText() {
-        viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC")
-        
-        // Test case: Bill period, about the same
-        viewModel.setLikelyReasonSelected(tag: 0)
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(), compared: UsageBillPeriod(), billPeriodCostDifference: 0)
-        viewModel.likelyReasonsDescriptionDetailText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("You spent about the same based on the number of days in your billing period.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Bill period, greater
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(startDate: "2018-08-01", endDate: "2018-09-01"), compared: UsageBillPeriod(startDate: "2018-07-01", endDate: "2018-07-25"), billPeriodCostDifference: 100)
-        viewModel.likelyReasonsDescriptionDetailText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Your bill was about $100.00 more. You used more electricity because this bill period was 7 days longer.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Bill period, less
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(startDate: "2018-08-01", endDate: "2018-08-23"), compared: UsageBillPeriod(startDate: "2018-07-01", endDate: "2018-07-25"), billPeriodCostDifference: -100)
-        viewModel.likelyReasonsDescriptionDetailText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Your bill was about $100.00 less. You used less electricity because this bill period was 2 days shorter.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Weather, about the same
-        viewModel.setLikelyReasonSelected(tag: 1)
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(), compared: UsageBillPeriod(), weatherCostDifference: 0)
-        viewModel.likelyReasonsDescriptionDetailText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("You spent about the same based on weather conditions.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Weather, greater
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(), compared: UsageBillPeriod(), weatherCostDifference: 100)
-        viewModel.likelyReasonsDescriptionDetailText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Your bill was about $100.00 more. You used more electricity due to changes in weather.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Weather, less
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(), compared: UsageBillPeriod(), weatherCostDifference: -100)
-        viewModel.likelyReasonsDescriptionDetailText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Your bill was about $100.00 less. You used less electricity due to changes in weather.", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Other, about the same
-        viewModel.setLikelyReasonSelected(tag: 2)
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(), compared: UsageBillPeriod(), otherCostDifference: 0)
-        viewModel.likelyReasonsDescriptionDetailText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("You spent about the same based on a variety reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Other, greater
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(), compared: UsageBillPeriod(), otherCostDifference: 100)
-        viewModel.likelyReasonsDescriptionDetailText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Your bill was about $100.00 more. Your charges increased based on how you used energy. Your bill may be different for a variety of reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        // Test case: Other, less
-        viewModel.currentBillComparison.value = BillComparison(reference: UsageBillPeriod(), compared: UsageBillPeriod(), otherCostDifference: -100)
-        viewModel.likelyReasonsDescriptionDetailText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Your bill was about $100.00 less. Your charges decreased based on how you used energy. Your bill may be different for a variety of reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-    }
-    
     func testSetBarSelected() {
-        for i in stride(from: 0, to: 5, by: 1) {
-            if viewModel.barGraphSelectionStates.value[i].value {
-                XCTFail("All variables should be false initially")
-            }
-        }
+        XCTAssert(viewModel.barGraphSelection.value.rawValue == 2, "Index 2 should be selected initially")
         
-        viewModel.setBarSelected(tag: 2)
-        XCTAssert(viewModel.barGraphSelectionStates.value[2].value, "Index 2's value should be true")
-        for i in stride(from: 0, to: 5, by: 1) {
-            if viewModel.barGraphSelectionStates.value[i].value && i != 2 {
-                XCTFail("All variables should be false except index 2")
-            }
-        }
-        
+        viewModel.setBarSelected(tag: 3)
+        XCTAssert(viewModel.barGraphSelection.value.rawValue == 3, "Index 3 should be selected")
+
         viewModel.setBarSelected(tag: 4)
-        XCTAssert(viewModel.barGraphSelectionStates.value[4].value, "Index 4's value should be true")
-        for i in stride(from: 0, to: 5, by: 1) {
-            if viewModel.barGraphSelectionStates.value[i].value && i != 4 {
-                XCTFail("All variables should be false except index 4")
-            }
-        }
+        XCTAssert(viewModel.barGraphSelection.value.rawValue == 4, "Index 4 should be selected")
     }
     
     func testSetLikelyReasonSelected() {
-        for i in stride(from: 0, to: 3, by: 1) {
-            if viewModel.likelyReasonsSelectionStates.value[i].value && i != 0 {
-                XCTFail("All variables should be false initially except index 0")
-            }
-        }
+        XCTAssert(viewModel.likelyReasonsSelection.value.rawValue == 0, "Index 0 should be selected initially")
         
         viewModel.setLikelyReasonSelected(tag: 1)
-        XCTAssert(viewModel.likelyReasonsSelectionStates.value[1].value, "Index 1's value should be true")
-        for i in stride(from: 0, to: 3, by: 1) {
-            if viewModel.likelyReasonsSelectionStates.value[i].value && i != 1 {
-                XCTFail("All variables should be false except index 1")
-            }
-        }
+        XCTAssert(viewModel.likelyReasonsSelection.value.rawValue == 1, "Index 1 should be selected")
         
         viewModel.setLikelyReasonSelected(tag: 2)
-        XCTAssert(viewModel.likelyReasonsSelectionStates.value[2].value, "Index 2's value should be true")
-        for i in stride(from: 0, to: 3, by: 1) {
-            if viewModel.likelyReasonsSelectionStates.value[i].value && i != 2 {
-                XCTFail("All variables should be false except index 2")
-            }
-        }
+        XCTAssert(viewModel.likelyReasonsSelection.value.rawValue == 2, "Index 2 should be selected")
     }
     
-    func testShouldShowElectricGasToggle() {
-        if Environment.shared.opco == .comEd {
-            if viewModel.shouldShowElectricGasToggle {
-                XCTFail("Electric/Gas toggle should not be displayed for ComEd")
-            }
-        } else {
-            viewModel.accountDetail = AccountDetail(serviceType: "GAS")
-            if viewModel.shouldShowElectricGasToggle {
-                XCTFail("Electric/Gas toggle should not be displayed for serviceType = GAS")
-            }
-            
-            viewModel.accountDetail = AccountDetail(serviceType: "ELECTRIC")
-            if viewModel.shouldShowElectricGasToggle {
-                XCTFail("Electric/Gas toggle should not be displayed for serviceType = ELECTRIC")
-            }
-            
-            viewModel.accountDetail = AccountDetail(serviceType: "GAS/ELECTRIC")
-            if !viewModel.shouldShowElectricGasToggle {
-                XCTFail("Electric/Gas toggle should be displayed for serviceType = GAS/ELECTRIC")
-            }
-        }
-        
-    }
-    
-    func testShouldShowCurrentChargesSection() {
-        viewModel.accountDetail = AccountDetail()
-        if viewModel.shouldShowCurrentChargesSection {
-            XCTFail("Current charges should not be displayed if deliveryCharges, supplyCharges, and taxesAndFees are not provided or total 0")
-        }
-        
-        viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(deliveryCharges: 1))
-        if !viewModel.shouldShowCurrentChargesSection {
-            XCTFail("Current charges should be displayed if deliveryCharges, supplyCharges, and taxesAndFees total more than 0")
-        }
-    }
-*/
 }
