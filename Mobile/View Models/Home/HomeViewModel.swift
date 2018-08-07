@@ -27,22 +27,13 @@ class HomeViewModel {
     let fetchDataObservable: Observable<FetchingAccountState>
 
     let refreshFetchTracker = ActivityTracker()
-    private let switchAccountFetchTracker = ActivityTracker()
     
+    // A tracker for each card that loads data
     private let billTracker = ActivityTracker()
     private let usageTracker = ActivityTracker()
     private let accountDetailTracker = ActivityTracker()
     private let outageTracker = ActivityTracker()
     private let projectedBillTracker = ActivityTracker()
-    
-    private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
-        switch state {
-        case .refresh:
-            return refreshFetchTracker
-        case .switchAccount:
-            return switchAccountFetchTracker
-        }
-    }
     
     let latestNewCardVersion = HomeCard.latestNewCardVersion
     
@@ -106,8 +97,6 @@ class HomeViewModel {
                                 refreshFetchTracker: refreshFetchTracker,
                                 showLoadingState: outageTracker.asDriver().filter { $0 }.map(to: ()))
     
-    private(set) lazy var isSwitchingAccounts = switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.shared.currentAccount == nil }
-    
     private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
@@ -150,21 +139,18 @@ class HomeViewModel {
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
-    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = {
-        let noNetworkConnection = Observable.merge(accountDetailNoNetworkConnection,
-                                                   billCardViewModel.walletItemNoNetworkConnection,
-                                                   billCardViewModel.workDaysNoNetworkConnection)
-            .asDriver(onErrorDriveWith: .empty())
-        
-        return Driver.combineLatest(noNetworkConnection,
-                                    showMaintenanceModeState,
-                                    switchAccountFetchTracker.asDriver()) { $0 && !$1 && !$2 }
-            .startWith(false)
-    }()
+    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> =  Driver
+        .combineLatest(accountDetailNoNetworkConnection.asDriver(onErrorDriveWith: .empty()),
+                       showMaintenanceModeState,
+                       accountDetailTracker.asDriver())
+        { $0 && !$1 && !$2 }
+        .startWith(false)
+        .distinctUntilChanged()
     
     private(set) lazy var showMaintenanceModeState: Driver<Bool> = Observable
         .combineLatest(maintenanceModeEvents.map { $0.element?.homeStatus ?? false },
-                       switchAccountFetchTracker.asObservable()) { $0 && !$1 }
+                       accountDetailTracker.asObservable())
+        { $0 && !$1 }
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     

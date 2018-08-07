@@ -45,6 +45,11 @@ class HomeProjectedBillCardViewModel {
         self.switchAccountFetchTracker = switchAccountFetchTracker
     }
     
+    private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
+        .skip(1)
+        .startWith(true)
+        .distinctUntilChanged()
+    
     private(set) lazy var billForecastEvents: Observable<Event<BillForecastResult>> = self.accountDetailChanged.share(replay: 1)
     
     // Used by HomeViewModel
