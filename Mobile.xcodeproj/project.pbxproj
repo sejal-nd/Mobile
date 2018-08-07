@@ -185,9 +185,6 @@
 		3577573A2113582700E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		3577573B2113582700E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		3577573C2113582800E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
-		3577573D2113582A00E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
-		3577573E2113582A00E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
-		3577573F2113582A00E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		357757402113582C00E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		357757412113582D00E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		357757422113582D00E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
@@ -223,9 +220,6 @@
 		35AFB42B20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
 		35AFB42C20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
 		35AFB42D20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
-		35FB0840210F508600DA47B4 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
-		35FB0841210F511A00DA47B4 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
-		35FB0842210F511A00DA47B4 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
@@ -6006,10 +6000,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF60FBA20EE78F7006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
-				35FB0840210F508600DA47B4 /* Date.swift in Sources */,
 				0EF60FC020EE78F7006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */,
-				3577573F2113582A00E73542 /* DateParser.swift in Sources */,
 				B0A79B1120E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				0E863D8720DD4992004D77EC /* TestHelper.swift in Sources */,
 				E8F353A6200D014000883CEA /* MoreUITests.swift in Sources */,
@@ -7212,10 +7204,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF60FBB20EE78F7006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
-				35FB0841210F511A00DA47B4 /* Date.swift in Sources */,
 				0EF60FC120EE78F7006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */,
-				3577573E2113582A00E73542 /* DateParser.swift in Sources */,
 				B0A79B1220E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				0E863D8820DD4992004D77EC /* TestHelper.swift in Sources */,
 				E8F353A7200D014000883CEA /* MoreUITests.swift in Sources */,
@@ -7236,10 +7226,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF60FBC20EE78F7006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
-				35FB0842210F511A00DA47B4 /* Date.swift in Sources */,
 				0EF60FC220EE78F7006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */,
-				3577573D2113582A00E73542 /* DateParser.swift in Sources */,
 				B0A79B1320E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				0E863D8920DD4992004D77EC /* TestHelper.swift in Sources */,
 				E8F353A8200D014000883CEA /* MoreUITests.swift in Sources */,

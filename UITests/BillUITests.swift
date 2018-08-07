@@ -14,15 +14,23 @@ class BillUITests: ExelonUITestCase {
         doLogin(username: "scheduledPayment")
         selectTab(tabName: "Bill")
         
-        let dateString = DateFormatter.mmDdYyyyFormatter.string(from: Date())
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.calendar = .opCo
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        let dateString = dateFormatter.string(from: Date())
         XCTAssert(app.scrollViews.otherElements.buttons["Thank you for scheduling your $200.00 payment for \(dateString)"].waitForExistence(timeout: 3))
     }
     
     func testThankYouForPayment() {
         doLogin(username: "thankYouForPayment")
         selectTab(tabName: "Bill")
-
-        let dateString = DateFormatter.mmDdYyyyFormatter.string(from: Date())
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.calendar = .opCo
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        let dateString = dateFormatter.string(from: Date())
         XCTAssert(app.scrollViews.otherElements.buttons["Thank you for $200.00 payment on \(dateString)"].waitForExistence(timeout: 3))
     }
     
