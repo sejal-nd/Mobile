@@ -85,6 +85,10 @@ class HomeProjectedBillCardView: UIView {
         viewModel.showLoadingState.drive(contentStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
         
+        viewModel.showLoadingState
+            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .disposed(by: disposeBag)
+        
         viewModel.shouldShowElectricGasSegmentedControl.drive(onNext: { [weak self] shouldShow in
             self?.contentView.backgroundColor = shouldShow ? UIColor.softGray : UIColor.white
             self?.projectionLabelTopSpaceConstraint.constant = shouldShow ? 31 : 16

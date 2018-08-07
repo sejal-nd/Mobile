@@ -62,6 +62,14 @@ class TemplateCardView: UIView {
         viewModel.showContentState.drive(onNext: { [weak self] in self?.showContentState()}).disposed(by: bag)
         viewModel.showErrorState.drive(onNext: { [weak self] in self?.showErrorState()}).disposed(by: bag)
         
+        Driver.merge(
+            viewModel.showLoadingState,
+            viewModel.showContentState,
+            viewModel.showErrorState
+        )
+            .drive(onNext: { UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .disposed(by: bag)
+        
         //grab all the content
         viewModel.templateImage.drive(imageView.rx.image).disposed(by: bag)
         viewModel.titleString.drive(titleLabel.rx.text).disposed(by: bag)

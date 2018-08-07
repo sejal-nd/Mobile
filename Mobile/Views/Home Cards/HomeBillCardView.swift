@@ -216,6 +216,10 @@ class HomeBillCardView: UIView {
             })
             .disposed(by: bag)
         
+        viewModel.showLoadingState
+            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .disposed(by: bag)
+        
         // Show/Hide Subviews
         viewModel.showLoadingState.drive(contentStack.rx.isHidden).disposed(by: bag)
         viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: bag)

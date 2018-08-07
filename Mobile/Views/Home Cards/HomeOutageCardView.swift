@@ -155,6 +155,16 @@ class HomeOutageCardView: UIView {
     }
     
     private func bindViewModel() {
+        Driver.merge(
+            viewModel.showLoadingState,
+            viewModel.showMaintenanceModeState,
+            viewModel.showContentView,
+            viewModel.showCustomErrorView,
+            viewModel.showErrorState
+        )
+            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .disposed(by: bag)
+        
         // Show/Hide States
         
         // Different Overall States

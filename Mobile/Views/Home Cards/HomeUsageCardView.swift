@@ -216,6 +216,10 @@ class HomeUsageCardView: UIView {
         viewModel.showLoadingState.drive(contentStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
         
+        viewModel.showLoadingState
+            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .disposed(by: disposeBag)
+        
         // Bill Comparison vs. SER Show/Hide
         viewModel.shouldShowBillComparison.not().drive(billComparisonView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowSmartEnergyRewards.not().drive(smartEnergyRewardsView.rx.isHidden).disposed(by: disposeBag)
