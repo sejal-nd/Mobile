@@ -30,6 +30,7 @@
                 <outlet property="reloadImageView" destination="NZp-az-8hx" id="R9G-gD-zhU"/>
                 <outlet property="reloadLabel" destination="nLX-Ho-Ouc" id="2UF-vQ-lXf"/>
                 <outlet property="scheduledMaintenanceLabel" destination="Rgx-50-2me" id="I96-DS-aKo"/>
+                <outlet property="textViewSeperationConstraint" destination="xV2-Cl-5C8" id="cks-hc-KuO"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

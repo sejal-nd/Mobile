@@ -21,6 +21,7 @@ class MaintenanceModeView: UIView {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var infoTextContainerView: UIView!
     @IBOutlet weak var infoTextView: DataDetectorTextView!
+    @IBOutlet weak var textViewSeperationConstraint: NSLayoutConstraint!
     
     let disposeBag = DisposeBag()
 
@@ -46,6 +47,12 @@ class MaintenanceModeView: UIView {
     
     @IBInspectable var showInfoText: Bool = false {
         didSet {
+            if showInfoText {
+                textViewSeperationConstraint.isActive = true
+            } else {
+                textViewSeperationConstraint.isActive = false
+            }
+
             infoTextContainerView.isHidden = !showInfoText
         }
     }
@@ -88,6 +95,7 @@ class MaintenanceModeView: UIView {
         reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
         scheduledMaintenanceLabel.font = OpenSans.semibold.of(textStyle: .title1)
         detailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        infoTextContainerView.layer.cornerRadius = 8.0
         infoTextContainerView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
     }
     
