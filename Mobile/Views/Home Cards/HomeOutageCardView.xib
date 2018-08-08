@@ -33,8 +33,8 @@
                                 <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="Fpv-XZ-FAa">
                                     <rect key="frame" x="0.0" y="0.0" width="439" height="253.5"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maint_mode" translatesAutoresizingMaskIntoConstraints="NO" id="KaK-en-DcV">
-                                            <rect key="frame" x="157.5" y="29" width="125" height="126"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maintenancemode_overall" translatesAutoresizingMaskIntoConstraints="NO" id="KaK-en-DcV">
+                                            <rect key="frame" x="180" y="29" width="80" height="81"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Outage is currently unavailable due to scheduled maintenance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxT-PB-Te8">
                                             <rect key="frame" x="26" y="175" width="387" height="49.5"/>
@@ -368,7 +368,7 @@
         <image name="ic_gasonly_home" width="80" height="81"/>
         <image name="ic_home_error_opcocard" width="31" height="31"/>
         <image name="ic_lightbulb_on" width="37" height="45"/>
-        <image name="ic_maint_mode" width="125" height="126"/>
+        <image name="ic_maintenancemode_overall" width="80" height="81"/>
         <image name="icon_check" width="20" height="20"/>
     </resources>
 </document>
