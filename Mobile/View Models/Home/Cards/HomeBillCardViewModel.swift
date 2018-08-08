@@ -342,7 +342,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showPaymentDescription: Driver<Bool> = paymentDescriptionText.isNil().not()
     
-    private(set) lazy var showSlideToPay24DisclaimerLabel: Driver<Bool> = billState.map { $0 == .billPaidIntermediate }
+    private(set) lazy var showSlideToPay24DisclaimerLabel: Driver<Bool> = billState.map { $0 == .billPaidIntermediate && Environment.shared.opco == .bge }
     
     private(set) lazy var showAmount: Driver<Bool> = billState.map { $0 != .billPaidIntermediate }
     
