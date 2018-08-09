@@ -11,7 +11,7 @@ import Mapper
 struct BillForecastResult {
     let electric: BillForecast?
     let gas: BillForecast?
-    
+
     init(dictionaries: [[String: Any]]) throws {
         let billForecasts = dictionaries.compactMap { BillForecast.from($0 as NSDictionary) }
         
