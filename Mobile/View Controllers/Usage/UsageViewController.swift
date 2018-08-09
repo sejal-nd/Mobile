@@ -144,13 +144,19 @@ class UsageViewController: AccountPickerViewController {
         }
     }
     
+    @IBOutlet private weak var billComparisonStack: UIStackView!
+    @IBOutlet private weak var dropdownContainer: UIView!
     @IBOutlet private weak var dropdownView: BillImpactDropdownView!
     
     @IBOutlet private weak var billComparisonLoadingIndicator: LoadingIndicator!
-    @IBOutlet private weak var graphErrorLabel: UILabel! {
+    @IBOutlet private weak var billComparisonErrorView: UIView!
+    @IBOutlet private weak var billComparisonErrorLabel: UILabel! {
         didSet {
-            graphErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
-            graphErrorLabel.textColor = .blackText
+            billComparisonErrorLabel.font = OpenSans.regular.of(textStyle: .title1)
+            billComparisonErrorLabel.textAlignment = .center
+            billComparisonErrorLabel.textColor = .middleGray
+            billComparisonErrorLabel.attributedText = NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
+                .attributedString(withLineHeight: 26, textAlignment: .center)
         }
     }
     
@@ -567,27 +573,32 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func showBillComparisonLoadingState() {
+        billComparisonStack.isHidden = false
         billComparisonLoadingIndicator.isHidden = false
         barGraphStackView.isHidden = true
         billGraphDetailContainer.isHidden = true
         dropdownView.isHidden = true
-        graphErrorLabel.isHidden = true
+        billComparisonErrorView.isHidden = true
     }
     
     private func showBillComparisonContents() {
+        billComparisonStack.isHidden = false
         billComparisonLoadingIndicator.isHidden = true
         barGraphStackView.isHidden = false
         billGraphDetailContainer.isHidden = false
+        dropdownContainer.isHidden = false
         dropdownView.isHidden = false
-        graphErrorLabel.isHidden = true
+        billComparisonErrorView.isHidden = true
     }
     
     private func showBillComparisonErrorState() {
+        billComparisonStack.isHidden = true
         billComparisonLoadingIndicator.isHidden = true
         barGraphStackView.isHidden = true
         billGraphDetailContainer.isHidden = true
+        dropdownContainer.isHidden = true
         dropdownView.isHidden = true
-        graphErrorLabel.isHidden = false
+        billComparisonErrorView.isHidden = false
     }
     
     // MARK: - Usage Tool Cards

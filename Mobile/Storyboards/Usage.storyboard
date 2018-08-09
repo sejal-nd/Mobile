@@ -52,7 +52,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="1080"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBl-yS-qiq">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1088"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1270"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="VT3-VG-S91" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
@@ -62,7 +62,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N2i-cc-UM6" userLabel="Main Stack">
-                                                <rect key="frame" x="16" y="118" width="343" height="642"/>
+                                                <rect key="frame" x="16" y="118" width="343" height="824"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-bH-cZn">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="464.5"/>
@@ -96,12 +96,6 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yM8-73-CvV">
                                                                         <rect key="frame" x="24.5" y="0.0" width="295" height="183"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyK-N7-CES">
-                                                                                <rect key="frame" x="47.5" y="61" width="200.5" height="61"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
                                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Dvd-qn-1eF" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                                 <rect key="frame" x="117.5" y="86" width="60" height="12"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -383,18 +377,14 @@
                                                                         <constraints>
                                                                             <constraint firstItem="V3z-9k-4Uq" firstAttribute="leading" secondItem="yM8-73-CvV" secondAttribute="leading" id="9RL-cu-1Aj"/>
                                                                             <constraint firstItem="PTZ-6z-yiy" firstAttribute="top" secondItem="yM8-73-CvV" secondAttribute="top" id="BmJ-sg-SX1"/>
-                                                                            <constraint firstItem="1zd-LH-vJB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cyK-N7-CES" secondAttribute="trailing" constant="12" id="D8w-eh-eNg"/>
                                                                             <constraint firstAttribute="width" constant="295" id="FRC-zE-TbK"/>
                                                                             <constraint firstItem="Dvd-qn-1eF" firstAttribute="centerX" secondItem="yM8-73-CvV" secondAttribute="centerX" id="NNo-dF-ymW"/>
                                                                             <constraint firstAttribute="bottom" secondItem="PTZ-6z-yiy" secondAttribute="bottom" id="NgH-ig-7uf"/>
                                                                             <constraint firstItem="PTZ-6z-yiy" firstAttribute="centerX" secondItem="yM8-73-CvV" secondAttribute="centerX" id="P8T-wo-pSI"/>
                                                                             <constraint firstItem="Dvd-qn-1eF" firstAttribute="centerY" secondItem="yM8-73-CvV" secondAttribute="centerY" id="Yna-zl-24F"/>
                                                                             <constraint firstItem="V3z-9k-4Uq" firstAttribute="centerY" secondItem="yM8-73-CvV" secondAttribute="centerY" id="aaa-uR-a0i"/>
-                                                                            <constraint firstItem="cyK-N7-CES" firstAttribute="centerX" secondItem="yM8-73-CvV" secondAttribute="centerX" id="fnB-Pp-13K"/>
                                                                             <constraint firstAttribute="trailing" secondItem="1zd-LH-vJB" secondAttribute="trailing" id="l1d-65-qa1"/>
-                                                                            <constraint firstItem="cyK-N7-CES" firstAttribute="centerY" secondItem="yM8-73-CvV" secondAttribute="centerY" id="l4R-ne-5ab"/>
                                                                             <constraint firstItem="1zd-LH-vJB" firstAttribute="centerY" secondItem="yM8-73-CvV" secondAttribute="centerY" id="yHR-cZ-fHX"/>
-                                                                            <constraint firstItem="cyK-N7-CES" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="V3z-9k-4Uq" secondAttribute="trailing" constant="12" id="zzX-xB-TLV"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnW-KF-mCh">
@@ -492,8 +482,34 @@
                                                             <constraint firstAttribute="trailing" secondItem="pC8-Ui-VQm" secondAttribute="trailing" id="xJU-py-X20"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-Pa-jgJ">
+                                                        <rect key="frame" x="0.0" y="550.5" width="343" height="182"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7QT-Lp-dVj">
+                                                                <rect key="frame" x="0.0" y="16" width="343" height="126"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_nousage_small" translatesAutoresizingMaskIntoConstraints="NO" id="H2H-Ug-LVE">
+                                                                        <rect key="frame" x="82" y="0.0" width="179" height="65"/>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Your usage overview will be available here once we have two full months of data." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyK-N7-CES">
+                                                                        <rect key="frame" x="9.5" y="85" width="324" height="41"/>
+                                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="7QT-Lp-dVj" secondAttribute="bottom" constant="40" id="0XA-nh-Pe2"/>
+                                                            <constraint firstItem="7QT-Lp-dVj" firstAttribute="top" secondItem="7fe-Pa-jgJ" secondAttribute="top" constant="16" id="4cm-fP-BN0"/>
+                                                            <constraint firstAttribute="trailing" secondItem="7QT-Lp-dVj" secondAttribute="trailing" id="YXh-0F-osx"/>
+                                                            <constraint firstItem="7QT-Lp-dVj" firstAttribute="leading" secondItem="7fe-Pa-jgJ" secondAttribute="leading" id="olE-q1-9fZ"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SeL-Jz-iLZ">
-                                                        <rect key="frame" x="0.0" y="550.5" width="343" height="41.5"/>
+                                                        <rect key="frame" x="0.0" y="732.5" width="343" height="41.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="My Usage Tools" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZf-vb-Dqq">
                                                                 <rect key="frame" x="0.0" y="8" width="133.5" height="21.5"/>
@@ -511,7 +527,7 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8yI-lw-JsT">
-                                                        <rect key="frame" x="0.0" y="592" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="774" width="343" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="1" id="eGj-Tv-hEl"/>
                                                         </constraints>
@@ -529,7 +545,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view hidden="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="l15-zg-OGE" customClass="UnavailableView" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="774" width="317" height="50"/>
+                                                <rect key="frame" x="29" y="956" width="317" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="JSN-Jt-Sjy"/>
@@ -537,7 +553,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B6w-3l-gs6">
-                                                <rect key="frame" x="29" y="788" width="317" height="300"/>
+                                                <rect key="frame" x="29" y="970" width="317" height="300"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo5-kv-hgY">
                                                         <rect key="frame" x="0.0" y="129.5" width="317" height="41"/>
@@ -619,7 +635,10 @@
                         <outlet property="barDescriptionTriangleCenterXConstraint" destination="cJd-vq-dwB" id="pg7-h5-GOu"/>
                         <outlet property="barDescriptionTriangleImageView" destination="x69-zZ-CQF" id="6W2-fI-JFw"/>
                         <outlet property="barGraphStackView" destination="PTZ-6z-yiy" id="xHx-1n-j2C"/>
+                        <outlet property="billComparisonErrorLabel" destination="cyK-N7-CES" id="maE-I0-ZaX"/>
+                        <outlet property="billComparisonErrorView" destination="7fe-Pa-jgJ" id="WJH-ve-xAb"/>
                         <outlet property="billComparisonLoadingIndicator" destination="Dvd-qn-1eF" id="ycO-Li-oba"/>
+                        <outlet property="billComparisonStack" destination="SgQ-bH-cZn" id="mVU-0H-5Gb"/>
                         <outlet property="billGraphDetailContainer" destination="bnW-KF-mCh" id="bhF-Bx-iey"/>
                         <outlet property="billGraphDetailView" destination="Rv2-7O-aHB" id="93V-Z1-7A7"/>
                         <outlet property="compareBillTitlelabel" destination="hio-oA-8Gu" id="353-MA-R5S"/>
@@ -629,11 +648,11 @@
                         <outlet property="currentContainerButton" destination="dKg-Sa-YNh" id="q24-Es-j7B"/>
                         <outlet property="currentDateLabel" destination="8e6-Br-2pW" id="gus-KP-KJN"/>
                         <outlet property="currentDollarLabel" destination="FeX-9Y-WGe" id="8hj-Zz-eiP"/>
+                        <outlet property="dropdownContainer" destination="Vfo-US-jem" id="1hz-IE-8bo"/>
                         <outlet property="dropdownView" destination="pC8-Ui-VQm" id="Mnp-Vb-fwu"/>
                         <outlet property="graphDetailDateLabel" destination="gW9-pT-oLp" id="Bm7-mV-rFL"/>
                         <outlet property="graphDetailDescriptionLabel" destination="ca6-Po-YNM" id="GTe-jT-RNh"/>
                         <outlet property="graphDetailTemperatureLabel" destination="mST-JC-TNs" id="We5-TV-a9c"/>
-                        <outlet property="graphErrorLabel" destination="cyK-N7-CES" id="maE-I0-ZaX"/>
                         <outlet property="lastYearButton" destination="V3z-9k-4Uq" id="yL2-BX-wTC"/>
                         <outlet property="mainErrorLabel" destination="mo5-kv-hgY" id="fOv-gw-LSY"/>
                         <outlet property="mainErrorView" destination="B6w-3l-gs6" id="Ab4-sF-fRx"/>
@@ -1826,6 +1845,7 @@
         <image name="ic_caret" width="8" height="13"/>
         <image name="ic_caret_left" width="8" height="13"/>
         <image name="ic_close" width="24" height="24"/>
+        <image name="ic_nousage_small" width="179" height="65"/>
         <image name="ic_savings_caretleft" width="24" height="24"/>
         <image name="ic_savings_caretright" width="24" height="24"/>
         <image name="ic_smartenergyempty" width="119" height="105"/>
