@@ -56,6 +56,12 @@ extension Reactive where Base: UIView {
         }
     }
     
+    public var borderWidth: Binder<CGFloat> {
+        return Binder(base) { view, width in
+            view.layer.borderWidth = width
+        }
+    }
+    
     public var cornerRadius: Binder<CGFloat> {
         return Binder(base) { view, radius in
             view.layer.cornerRadius = radius

@@ -142,9 +142,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if viewModel.initialEnrollmentStatus.value == .enrolled {
-            Analytics.log(event: .AutoPayModifySettingOffer)
+            Analytics.log(event: .autoPayModifySettingOffer)
         } else {
-            Analytics.log(event: .AutoPayModifySettingOfferNew)
+            Analytics.log(event: .autoPayModifySettingOfferNew)
         }
     }
     
@@ -643,6 +643,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         let calendarVC = PDTSimpleCalendarViewController()
         
+        calendarVC.calendar = .opCo
         calendarVC.delegate = self
         calendarVC.title = NSLocalizedString("Select Date", comment: "")
         calendarVC.firstDate = now

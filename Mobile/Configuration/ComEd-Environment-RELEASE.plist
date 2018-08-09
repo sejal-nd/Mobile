@@ -11,7 +11,7 @@
 	<key>oauthEndpoint</key>
 	<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>ProdComEd</string>
+	<string>Prod-comedMBE</string>
 	<key>fiservUrl</key>
 	<string>https://billerwebui.fiservapps.com/Mobile</string>
 	<key>speedpayUrl</key>
@@ -26,5 +26,7 @@
 	<string>www.comed.com</string>
 	<key>appCenterId</key>
 	<string>9f56e08c-6fa5-4209-93a2-d773601a1e45</string>
+	<key>associatedDomain</key>
+	<string>secure.comed.com</string>
 </dict>
 </plist>

@@ -10,10 +10,6 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
-fileprivate let coldTips = ["tip080_set_thermostat_wisely_winter","tip033_clear_around_vents","tip046_let_in_sun_for_warmth"]
-
-fileprivate let hotTips = ["tip021_let_ac_breathe","tip020_keep_out_solar_heat","tip084_use_fans_for_cooling"]
-
 class HomeViewModel {
     let defaultZip : String? = Environment.shared.opco == .bge ? "20201" : nil
 
@@ -25,23 +21,29 @@ class HomeViewModel {
     private let paymentService: PaymentService
     private let usageService: UsageService
     private let authService: AuthenticationService
+    private let outageService: OutageService
     
     let fetchData = PublishSubject<FetchingAccountState>()
     let fetchDataObservable: Observable<FetchingAccountState>
 
     let refreshFetchTracker = ActivityTracker()
-    private let switchAccountFetchTracker = ActivityTracker()
     
-    private func fetchTracker(forState state: FetchingAccountState) -> ActivityTracker {
-        switch state {
-        case .refresh:
-            return refreshFetchTracker
-        case .switchAccount:
-            return switchAccountFetchTracker
-        }
-    }
+    // A tracker for each card that loads data
+    private let billTracker = ActivityTracker()
+    private let usageTracker = ActivityTracker()
+    private let accountDetailTracker = ActivityTracker()
+    private let outageTracker = ActivityTracker()
+    private let projectedBillTracker = ActivityTracker()
     
-    required init(accountService: AccountService, weatherService: WeatherService, walletService: WalletService, paymentService: PaymentService, usageService: UsageService, authService: AuthenticationService) {
+    let latestNewCardVersion = HomeCard.latestNewCardVersion
+    
+    required init(accountService: AccountService,
+                  weatherService: WeatherService,
+                  walletService: WalletService,
+                  paymentService: PaymentService,
+                  usageService: UsageService,
+                  authService: AuthenticationService,
+                  outageService: OutageService) {
         self.fetchDataObservable = fetchData.share()
         self.accountService = accountService
         self.weatherService = weatherService
@@ -49,77 +51,110 @@ class HomeViewModel {
         self.paymentService = paymentService
         self.usageService = usageService
         self.authService = authService
+        self.outageService = outageService
     }
     
-    private(set) lazy var weatherViewModel: HomeWeatherViewModel = HomeWeatherViewModel(accountDetailEvents: self.accountDetailEvents,
-                                                                                        weatherService: self.weatherService,
-                                                                                        usageService: self.usageService)
+    private(set) lazy var weatherViewModel =
+        HomeWeatherViewModel(accountDetailEvents: accountDetailEvents,
+                             weatherService: weatherService,
+                             usageService: usageService)
     
-    private(set) lazy var billCardViewModel: HomeBillCardViewModel = HomeBillCardViewModel(fetchData: self.fetchDataObservable,
-                                                                                           fetchDataMMEvents: self.fetchDataMMEvents,
-                                                                                           accountDetailEvents: self.accountDetailEvents,
-                                                                                           walletService: self.walletService,
-                                                                                           paymentService: self.paymentService,
-                                                                                           authService: self.authService,
-                                                                                           refreshFetchTracker: self.refreshFetchTracker,
-                                                                                           switchAccountFetchTracker: self.switchAccountFetchTracker)
+    private(set) lazy var billCardViewModel =
+        HomeBillCardViewModel(fetchData: fetchDataObservable,
+                              fetchDataMMEvents: fetchDataMMEvents,
+                              accountDetailEvents: accountDetailEvents,
+                              walletService: walletService,
+                              paymentService: paymentService,
+                              authService: authService,
+                              refreshFetchTracker: refreshFetchTracker,
+                              switchAccountFetchTracker: billTracker)
     
-    private(set) lazy var usageCardViewModel = HomeUsageCardViewModel(fetchData: self.fetchDataObservable,
-                                                                      accountDetailEvents: self.accountDetailEvents,
-                                                                      usageService: self.usageService,
-                                                                      refreshFetchTracker: self.refreshFetchTracker,
-                                                                      switchAccountFetchTracker: self.switchAccountFetchTracker)
+    private(set) lazy var usageCardViewModel =
+        HomeUsageCardViewModel(fetchData: fetchDataObservable,
+                               accountDetailEvents: accountDetailEvents,
+                               usageService: usageService,
+                               refreshFetchTracker: refreshFetchTracker,
+                               switchAccountFetchTracker: usageTracker)
     
-    private(set) lazy var templateCardViewModel: TemplateCardViewModel = TemplateCardViewModel(accountDetailEvents: self.accountDetailEvents)
+    private(set) lazy var templateCardViewModel: TemplateCardViewModel =
+        TemplateCardViewModel(accountDetailEvents: accountDetailEvents,
+                              showLoadingState: accountDetailTracker.asDriver()
+                                .filter { $0 }
+                                .map(to: ())
+                                .startWith(()))
     
-    private(set) lazy var isSwitchingAccounts = self.switchAccountFetchTracker.asDriver().map { $0 || AccountsStore.shared.currentAccount == nil }
+    private(set) lazy var projectedBillCardViewModel =
+        HomeProjectedBillCardViewModel(fetchData: fetchDataObservable,
+                                       accountDetailEvents: accountDetailEvents,
+                                       usageService: usageService,
+                                       refreshFetchTracker: refreshFetchTracker,
+                                       switchAccountFetchTracker: projectedBillTracker)
     
-    private lazy var fetchTrigger = Observable.merge(self.fetchDataObservable, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
+    private(set) lazy var outageCardViewModel =
+        HomeOutageCardViewModel(outageService: outageService,
+                                maintenanceModeEvents: fetchDataMMEvents,
+                                fetchDataObservable: fetchDataObservable,
+                                refreshFetchTracker: refreshFetchTracker,
+                                switchAccountFetchTracker: outageTracker)
+    
+    private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
-    private lazy var fetchDataMMEvents: Observable<Event<Maintenance>> = self.fetchData
-        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
-                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+    private lazy var fetchDataMMEvents: Observable<Event<Maintenance>> = fetchData
+        .toAsyncRequest(activityTrackers: { [weak self] state in
+            guard let this = self else { return nil }
+            switch state {
+            case .refresh:
+                return [this.refreshFetchTracker]
+            case .switchAccount:
+                return [this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
+            }
+            }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
     private lazy var accountDetailUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.accountDetailUpdated
-        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: .switchAccount) },
-                        requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+        .toAsyncRequest(activityTrackers: { [weak self] in
+            guard let this = self else { return nil }
+            return [this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
+            }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable.merge(self.fetchDataMMEvents, self.accountDetailUpdatedMMEvents)
+    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable
+        .merge(fetchDataMMEvents, accountDetailUpdatedMMEvents)
     
-    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.maintenanceModeEvents
+    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
         .filter { !($0.element?.homeStatus ?? false) }
-        .withLatestFrom(self.fetchTrigger)
-        .flatMapLatest { [unowned self] in
-            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
-                .trackActivity(self.fetchTracker(forState: $0))
-                .materialize()
-                .filter { !$0.isCompleted }
-        }
-        .share(replay: 1)
+        .withLatestFrom(fetchTrigger)
+        .toAsyncRequest(activityTrackers: { [weak self] state in
+            guard let this = self else { return nil }
+            switch state {
+            case .refresh:
+                return [this.refreshFetchTracker]
+            case .switchAccount:
+                return [this.billTracker, this.usageTracker, this.accountDetailTracker, this.projectedBillTracker]
+            }
+            }, requestSelector: { [weak self] _ in
+                guard let this = self else { return .empty() }
+                return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        })
 
-    private lazy var accountDetailNoNetworkConnection: Observable<Bool> = self.accountDetailEvents
+    private lazy var accountDetailNoNetworkConnection: Observable<Bool> = accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
-    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = {
-        let noNetworkConnection = Observable.merge(self.accountDetailNoNetworkConnection,
-                                                   self.billCardViewModel.walletItemNoNetworkConnection,
-                                                   self.billCardViewModel.workDaysNoNetworkConnection)
-            .asDriver(onErrorDriveWith: .empty())
-        
-        return Driver.combineLatest(noNetworkConnection,
-                                    self.showMaintenanceModeState,
-                                    self.switchAccountFetchTracker.asDriver()) { $0 && !$1 && !$2 }
-            .startWith(false)
-    }()
+    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> =  Driver
+        .combineLatest(accountDetailNoNetworkConnection.asDriver(onErrorDriveWith: .empty()),
+                       showMaintenanceModeState,
+                       accountDetailTracker.asDriver())
+        { $0 && !$1 && !$2 }
+        .startWith(false)
+        .distinctUntilChanged()
     
     private(set) lazy var showMaintenanceModeState: Driver<Bool> = Observable
-        .combineLatest(self.maintenanceModeEvents.map { $0.element?.homeStatus ?? false },
-                       self.switchAccountFetchTracker.asObservable()) { $0 && !$1 }
+        .combineLatest(maintenanceModeEvents.map { $0.element?.homeStatus ?? false },
+                       accountDetailTracker.asObservable())
+        { $0 && !$1 }
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowUsageCard: Driver<Bool> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()).map { accountDetail in
+    private(set) lazy var shouldShowUsageCard: Driver<Bool> = accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()).map { accountDetail in
         guard let serviceType = accountDetail.serviceType else { return false }
         guard let _ = accountDetail.premiseNumber else { return false }
         
@@ -138,5 +173,7 @@ class HomeViewModel {
         
         return true
     }
+    
+    private(set) lazy var shouldShowProjectedBillCard: Driver<Bool> = projectedBillCardViewModel.cardShouldBeHidden.not().asDriver(onErrorDriveWith: .empty())
     
 }

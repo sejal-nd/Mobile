@@ -60,10 +60,10 @@ class SettingsViewController: UIViewController {
     func switchObserver(cell: SettingsTableViewCell, isOn: Bool) {
         if isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage())
-            Analytics.log(event: .TouchIDEnable)
+            Analytics.log(event: .touchIDEnable)
         } else {
             viewModel.disableBiometrics()
-            Analytics.log(event: .TouchIDDisable)
+            Analytics.log(event: .touchIDDisable)
         }
     }
     
@@ -206,7 +206,7 @@ extension SettingsViewController: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
-            Analytics.log(event: .ChangePasswordComplete)
+            Analytics.log(event: .changePasswordComplete)
         })
     }
     
@@ -217,7 +217,7 @@ extension SettingsViewController: PECOReleaseOfInfoViewControllerDelegate {
     func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Release of information updated", comment: ""))
-            Analytics.log(event: .ReleaseInfoComplete)
+            Analytics.log(event: .releaseInfoComplete)
         })
     }
     

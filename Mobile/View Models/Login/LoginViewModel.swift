@@ -56,7 +56,7 @@ class LoginViewModel {
     func performLogin(onSuccess: @escaping (Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
         if username.value.isEmpty || password.value.isEmpty {
             onError(nil, "Please enter your username and password")
-            return;
+            return
         }
         
         isLoggingIn = true
@@ -72,6 +72,8 @@ class LoginViewModel {
                     self.authService.logout().subscribe(onError: { (error) in
                         dLog("Logout Error: \(error)")
                     }).disposed(by: self.disposeBag)
+                } else {
+                    SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                 }
             }, onError: { [weak self] error in
                 self?.isLoggingIn = false
@@ -83,8 +85,8 @@ class LoginViewModel {
                 } else {
                     onError(nil, error.localizedDescription)
                 }
-                Analytics.log(event: .LoginError,
-                                     dimensions: [.ErrorCode: serviceError.serviceCode])
+                Analytics.log(event: .loginError,
+                                     dimensions: [.errorCode: serviceError.serviceCode])
             })
             .disposed(by: disposeBag)
     }

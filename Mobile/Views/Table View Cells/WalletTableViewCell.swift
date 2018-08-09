@@ -158,7 +158,8 @@ class WalletTableViewCell: UITableViewCell {
                     accountNumberLabel.text = "**** \(last4Digits)"
                 }
             }
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
+            let a11yDigits = last4Digits.map(String.init).joined(separator: " ")
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), a11yDigits)
         } else {
             accountNumberLabel.text = ""
         }
@@ -166,6 +167,10 @@ class WalletTableViewCell: UITableViewCell {
         oneTouchPayView.isHidden = true // Calculated in cellForRowAtIndexPath
         if walletItem.isDefault {
             a11yLabel += NSLocalizedString(", Default payment account", comment: "")
+        }
+        
+        if walletItem.isExpired {
+            a11yLabel += NSLocalizedString(", expired", comment: "")
         }
         
         innerContentView.accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"

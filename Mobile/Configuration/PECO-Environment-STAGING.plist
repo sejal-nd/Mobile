@@ -11,7 +11,7 @@
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>Staging</string>
+	<string>mobileAppUAT</string>
 	<key>fiservUrl</key>
 	<string>https://billerwebui.clienttestmatrix.com/Mobile</string>
 	<key>speedpayUrl</key>
@@ -26,5 +26,7 @@
 	<string>azstg.peco.com</string>
 	<key>appCenterId</key>
 	<string>432a1a21-ccbb-4ee9-b3e3-2480090618f5</string>
+	<key>associatedDomain</key>
+	<string>azstg-secure.peco.com</string>
 </dict>
 </plist>

@@ -210,7 +210,7 @@ class AutoPayViewController: UIViewController {
         tacLabel.setLineHeight(lineHeight: 25)
         tacSwitch.accessibilityLabel = "I agree to ComEd’s AutoPay Terms and Conditions"
         tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
-        Analytics.log(event: .AutoPayEnrollOffer)
+        Analytics.log(event: .autoPayEnrollOffer)
     }
     
     private func styleEnrolled() {
@@ -221,7 +221,7 @@ class AutoPayViewController: UIViewController {
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         reasonForStoppingLabel.sizeToFit()
-        Analytics.log(event: .AutoPayUnenrollOffer)
+        Analytics.log(event: .autoPayUnenrollOffer)
     }
     
     private func textFieldSetup() {
@@ -510,7 +510,7 @@ extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
 	func changedBank() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
 			self.view.showToast(NSLocalizedString("AutoPay bank account updated", comment: ""))
-            Analytics.log(event: .AutoPayModifyBankComplete)
+            Analytics.log(event: .autoPayModifyBankComplete)
 		})
 	}
 }

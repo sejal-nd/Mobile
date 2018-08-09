@@ -9,27 +9,6 @@
 
 import Mapper
 
-private func extractDate(object: Any?) throws -> Date {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.timeZone = .opCo
-    
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    if let date = dateFormatter.date(from: dateString) {
-        return date
-    }
-    
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-    if let date = dateFormatter.date(from: dateString) {
-        return date
-    }
-    
-    throw MapperError.convertibleError(value: object, type: Date.self)
-}
-
 struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
@@ -267,8 +246,8 @@ struct SERResult: Mappable, Equatable {
     let savingKWH: Double
     
     init(map: Mapper) throws {
-        try eventStart = map.from("eventStart", transformation: extractDate)
-        try eventEnd = map.from("eventEnd", transformation: extractDate)
+        try eventStart = map.from("eventStart", transformation: DateParser().extractDate)
+        try eventEnd = map.from("eventEnd", transformation: DateParser().extractDate)
         
         if let actualString: String = map.optionalFrom("actualKWH"), let doubleVal = Double(actualString) {
             actualKWH = doubleVal
@@ -353,7 +332,7 @@ struct PaymentItem: Mappable {
             return status
         }
         
-        date = map.optionalFrom("paymentDate", transformation: extractDate)
+        date = map.optionalFrom("paymentDate", transformation: DateParser().extractDate)
         
         // Scheduled payments require dates
         guard status != .scheduled || date != nil else {
@@ -399,14 +378,14 @@ struct BillingInfo: Mappable {
 		pastDueAmount = map.optionalFrom("pastDueAmount")
 		pastDueRemaining = map.optionalFrom("pastDueRemaining")
 		lastPaymentAmount = map.optionalFrom("lastPaymentAmount")
-		lastPaymentDate = map.optionalFrom("lastPaymentDate", transformation: extractDate)
+		lastPaymentDate = map.optionalFrom("lastPaymentDate", transformation: DateParser().extractDate)
         remainingBalanceDue = map.optionalFrom("remainingBalanceDue")
         restorationAmount = map.optionalFrom("restorationAmount")
         amtDpaReinst = map.optionalFrom("amtDpaReinst")
-        dueByDate = map.optionalFrom("dueByDate", transformation: extractDate)
+        dueByDate = map.optionalFrom("dueByDate", transformation: DateParser().extractDate)
         disconnectNoticeArrears = map.optionalFrom("disconnectNoticeArrears")
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
-        billDate = map.optionalFrom("billDate", transformation: extractDate)
+        billDate = map.optionalFrom("billDate", transformation: DateParser().extractDate)
         atReinstateFee = map.optionalFrom("atReinstateFee")
         minPaymentAmount = map.optionalFrom("minimumPaymentAmount")
         maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
@@ -417,8 +396,8 @@ struct BillingInfo: Mappable {
         residentialFee = map.optionalFrom("feeResidential")
         commercialFee = map.optionalFrom("feeCommercial")
         turnOffNoticeExtensionStatus = map.optionalFrom("turnOffNoticeExtensionStatus")
-        turnOffNoticeExtendedDueDate = map.optionalFrom("turnOffNoticeExtendedDueDate", transformation: extractDate)
-        turnOffNoticeDueDate = map.optionalFrom("turnOffNoticeDueDate", transformation: extractDate)
+        turnOffNoticeExtendedDueDate = map.optionalFrom("turnOffNoticeExtendedDueDate", transformation: DateParser().extractDate)
+        turnOffNoticeDueDate = map.optionalFrom("turnOffNoticeDueDate", transformation: DateParser().extractDate)
         deliveryCharges = map.optionalFrom("deliveryCharges")
         supplyCharges = map.optionalFrom("supplyCharges")
         taxesAndFees = map.optionalFrom("taxesAndFees")

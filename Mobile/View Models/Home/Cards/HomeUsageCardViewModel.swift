@@ -29,7 +29,7 @@ class HomeUsageCardViewModel {
         }
     }
     
-    let electricGasSelectedSegmentIndex = Variable(0)
+    let electricGasSelectedSegmentIndex = PublishSubject<Int>()
     
     /*
      * 0 = No Data
@@ -49,6 +49,11 @@ class HomeUsageCardViewModel {
         self.refreshFetchTracker = refreshFetchTracker
         self.switchAccountFetchTracker = switchAccountFetchTracker
     }
+    
+    private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
+        .skip(1)
+        .startWith(true)
+        .distinctUntilChanged()
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable.merge(self.accountDetailChanged, self.segmentedControlChanged).share(replay: 1)
     

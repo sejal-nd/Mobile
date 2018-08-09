@@ -8,57 +8,14 @@
 
 import XCTest
 import AppCenterXCUITestExtensions
-class PaymentUITests: XCTestCase {
-    
-    let app = XCUIApplication()
-    
-    override func setUp() {
-        super.setUp()
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        app.launchArguments = ["UITest"]
-        ACTLaunch.launch(app)
-    }
-    
-    func doLogin(username: String) {
-        let continueButton = app.buttons["Continue"]
-        XCTAssert(continueButton.waitForExistence(timeout: 30))
-        
-        // Assert button is disabled when the switch is not enabled
-        XCTAssert(!continueButton.isEnabled)
-        app.switches.element(boundBy: 0).tap()
-        XCTAssert(continueButton.isEnabled)
-        continueButton.tap()
-        
-        let signInButton = app.buttons["Sign In"]
-        XCTAssert(signInButton.waitForExistence(timeout: 5))
-        signInButton.tap()
-        
-        let elementsQuery = app.scrollViews.otherElements
-        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
-        usernameEmailAddressTextField.clearAndEnterText(username)
-        
-        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.clearAndEnterText("Password1")
-        elementsQuery.buttons["Sign In"].tap()
-        
-        let billTab = app.tabBars.buttons["Bill"]
-        XCTAssert(billTab.waitForExistence(timeout: 10))
-        billTab.tap()
-        
-        let makePaymentButton = app.scrollViews.otherElements.buttons["Make a Payment"]
-        XCTAssert(makePaymentButton.waitForExistence(timeout: 3))
-        makePaymentButton.tap()
-    }
-    
+class PaymentUITests: ExelonUITestCase {
+   
     // MARK: MakePaymentViewController Layout Tests
     
     func testLayoutNoPaymentMethods() {
         doLogin(username: "billCardNoDefaultPayment")
+        selectTab(tabName: "Bill")
+        tapButton(buttonText: "Make a Payment")
         
         XCTAssert(app.navigationBars["Make a Payment"].waitForExistence(timeout: 3))
         XCTAssertFalse(app.navigationBars.buttons["Next"].isEnabled, "Next button should be disabed initially")
@@ -75,16 +32,20 @@ class PaymentUITests: XCTestCase {
         
         if appName.contains("BGE") {
             XCTAssert(app.scrollViews.otherElements.staticTexts["A convenience fee will be applied to this payment. Residential accounts: $0.00. Business accounts: 0%."].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts[NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")].exists)
+            let pred = NSPredicate(format: "label like %@", "We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.")
+            XCTAssert(app.scrollViews.otherElements.staticTexts.element(matching: pred).exists)
         } else {
             XCTAssert(app.scrollViews.otherElements.staticTexts["A $0.00 convenience fee will be applied by Bill Matrix, our payment partner."].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts[NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")].exists)
+            let pred = NSPredicate(format: "label like %@", "Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.")
+            XCTAssert(app.scrollViews.otherElements.staticTexts.element(matching: pred).exists)
         }
         XCTAssert(app.scrollViews.otherElements.buttons["Add credit/debit card"].exists)
     }
     
     func testLayoutExistingWalletItems() {
         doLogin(username: "billCardWithDefaultPayment")
+        selectTab(tabName: "Bill")
+        tapButton(buttonText: "Make a Payment")
         
         let nextButton = app.navigationBars.buttons["Next"]
         XCTAssert(nextButton.waitForExistence(timeout: 2))
@@ -113,8 +74,10 @@ class PaymentUITests: XCTestCase {
         XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
         
         XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
-        
+
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.calendar = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let dateString = dateFormatter.string(from: Date())
         let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
@@ -136,6 +99,8 @@ class PaymentUITests: XCTestCase {
     func testInlineBankLayoutBGE() {
         if appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addBankButton = app.scrollViews.otherElements.buttons["Add bank account"]
             XCTAssert(addBankButton.waitForExistence(timeout: 3))
@@ -194,10 +159,12 @@ class PaymentUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
             
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
-            
+
             let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .opCo
+            dateFormatter.calendar = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
-                        let dateString = dateFormatter.string(from: Date())
+            let dateString = dateFormatter.string(from: Date())
             let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
             XCTAssert(paymentDateButton.exists)
             paymentDateButton.tap()
@@ -208,6 +175,8 @@ class PaymentUITests: XCTestCase {
     func testInlineBankLayoutComEdPECO() {
         if !appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addBankButton = app.scrollViews.otherElements.buttons["Add bank account"]
             XCTAssert(addBankButton.waitForExistence(timeout: 3))
@@ -272,8 +241,10 @@ class PaymentUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
             
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
-            
+
             let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .opCo
+            dateFormatter.calendar = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
             let dateString = dateFormatter.string(from: Date())
             let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
@@ -294,6 +265,8 @@ class PaymentUITests: XCTestCase {
     func testInlineCardLayoutBGE() {
         if appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
             XCTAssert(addCardButton.waitForExistence(timeout: 3))
@@ -305,9 +278,9 @@ class PaymentUITests: XCTestCase {
             // Card IO test
             let cardIOButton = app.scrollViews.otherElements.buttons["Take a photo to scan credit card number"]
             XCTAssert(cardIOButton.exists)
-            cardIOButton.tap()
-            XCTAssert(app.navigationBars["Card"].waitForExistence(timeout: 2))
-            app.navigationBars.buttons["Cancel"].tap()
+//            cardIOButton.tap()
+//            XCTAssert(app.navigationBars["Card"].waitForExistence(timeout: 2))
+//            app.navigationBars.buttons["Cancel"].tap()
             
             XCTAssert(app.scrollViews.otherElements.staticTexts["Expiration Date"].waitForExistence(timeout: 2))
             XCTAssert(app.scrollViews.otherElements.textFields["Month, two digits"].exists)
@@ -358,8 +331,10 @@ class PaymentUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
             
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
-            
+
             let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .opCo
+            dateFormatter.calendar = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
             let dateString = dateFormatter.string(from: Date())
             let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
@@ -372,6 +347,8 @@ class PaymentUITests: XCTestCase {
     func testInlineCardLayoutComEdPECO() {
         if !appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
             XCTAssert(addCardButton.waitForExistence(timeout: 3))
@@ -382,9 +359,9 @@ class PaymentUITests: XCTestCase {
             // Card IO test
             let cardIOButton = app.scrollViews.otherElements.buttons["Take a photo to scan credit card number"]
             XCTAssert(cardIOButton.exists)
-            cardIOButton.tap()
-            XCTAssert(app.navigationBars["Card"].waitForExistence(timeout: 2))
-            app.navigationBars.buttons["Cancel"].tap()
+//            cardIOButton.tap()
+//            XCTAssert(app.navigationBars["Card"].waitForExistence(timeout: 2))
+//            app.navigationBars.buttons["Cancel"].tap()
             
             XCTAssert(app.scrollViews.otherElements.staticTexts["Expiration Date"].waitForExistence(timeout: 2))
             XCTAssert(app.scrollViews.otherElements.textFields["Month, two digits"].exists)
@@ -435,8 +412,10 @@ class PaymentUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
             
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
-            
+
             let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .opCo
+            dateFormatter.calendar = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
             let dateString = dateFormatter.string(from: Date())
             XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)
@@ -455,6 +434,8 @@ class PaymentUITests: XCTestCase {
     
     func testMakePaymentExistingWalletItem() {
         doLogin(username: "billCardWithDefaultPayment")
+        selectTab(tabName: "Bill")
+        tapButton(buttonText: "Make a Payment")
         
         let nextButton = app.navigationBars.buttons["Next"]
         XCTAssert(nextButton.waitForExistence(timeout: 2))
@@ -470,7 +451,10 @@ class PaymentUITests: XCTestCase {
         XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
         XCTAssert(app.scrollViews.otherElements.staticTexts["--"].exists)
         XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
+
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.calendar = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let dateString = dateFormatter.string(from: Date())
         XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)
@@ -526,6 +510,8 @@ class PaymentUITests: XCTestCase {
     func testMakePaymentBGEOverpaying() {
         if appName.contains("BGE") {
             doLogin(username: "billCardWithDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let paymentAmountTextField = app.scrollViews.otherElements.textFields["Payment Amount, required"]
             XCTAssert(paymentAmountTextField.waitForExistence(timeout: 2))
@@ -543,7 +529,10 @@ class PaymentUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Overpaying"].exists)
             XCTAssert(app.scrollViews.otherElements.staticTexts["$100.00"].exists)
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
+
             let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = .opCo
+            dateFormatter.calendar = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
             let dateString = dateFormatter.string(from: Date())
             XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)
@@ -571,6 +560,8 @@ class PaymentUITests: XCTestCase {
     func testBGEInlineBankPayment() {
         if appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addBankButton = app.scrollViews.otherElements.buttons["Add bank account"]
             XCTAssert(addBankButton.waitForExistence(timeout: 3))
@@ -595,6 +586,8 @@ class PaymentUITests: XCTestCase {
     func testBGEInlineCardPayment() {
         if appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
             XCTAssert(addCardButton.waitForExistence(timeout: 3))
@@ -616,8 +609,10 @@ class PaymentUITests: XCTestCase {
             
             XCTAssert(app.navigationBars["Review Payment"].waitForExistence(timeout: 2))
             
-            let bgeCardSwitch = app.scrollViews.otherElements.switches["I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records."]
+            let pred = NSPredicate(format: "label like %@", "I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records.")
+            let bgeCardSwitch = app.scrollViews.otherElements.switches.element(matching: pred)
             XCTAssert(bgeCardSwitch.exists)
+            
             if let switchValueStr = bgeCardSwitch.value as? String {
                 XCTAssert(switchValueStr == "0", "Switch should be OFF by default")
             } else {
@@ -638,6 +633,8 @@ class PaymentUITests: XCTestCase {
     func testComEdPECOInlineBankPayment() {
         if !appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addBankButton = app.scrollViews.otherElements.buttons["Add bank account"]
             XCTAssert(addBankButton.waitForExistence(timeout: 3))
@@ -660,6 +657,8 @@ class PaymentUITests: XCTestCase {
     func testComEdPECOInlineCardPayment() {
         if !appName.contains("BGE") {
             doLogin(username: "billCardNoDefaultPayment")
+            selectTab(tabName: "Bill")
+            tapButton(buttonText: "Make a Payment")
             
             let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
             XCTAssert(addCardButton.waitForExistence(timeout: 3))

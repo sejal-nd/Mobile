@@ -21,6 +21,9 @@ class ChangePasswordViewModel {
     private var authService: AuthenticationService
     private var biometricsService: BiometricsService
     
+    // Keeps track of strong password for Analytics
+    var hasStrongPassword = false
+    
     required init(userDefaults: UserDefaults, authService: AuthenticationService, biometricsService: BiometricsService) {
         self.userDefaults = userDefaults
         self.authService = authService
@@ -106,9 +109,16 @@ class ChangePasswordViewModel {
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in
                     guard let `self` = self else { return }
+                    
                     if self.biometricsService.isBiometricsEnabled() {
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }
+                    
+                    // Save to SWC
+                    if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername) {
+                        SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                    }
+
                     onSuccess()
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
@@ -143,5 +153,4 @@ class ChangePasswordViewModel {
         }
     }
 
-    
 }

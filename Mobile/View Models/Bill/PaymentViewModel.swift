@@ -263,7 +263,7 @@ class PaymentViewModel {
                 let otp = self.addBankFormViewModel.oneTouchPay.value
                 
                 if self.addBankFormViewModel.saveToWallet.value {
-                    Analytics.log(event: .ECheckAddNewWallet, dimensions: [.OTPEnabled: otp ? "enabled" : "disabled"])
+                    Analytics.log(event: .eCheckAddNewWallet, dimensions: [.otpEnabled: otp ? "enabled" : "disabled"])
                 }
                 
                 if otp {
@@ -334,7 +334,7 @@ class PaymentViewModel {
                     guard let `self` = self else { return }
                     
                     let otp = self.addCardFormViewModel.oneTouchPay.value
-                    Analytics.log(event: .CardAddNewWallet, dimensions: [.OTPEnabled: otp ? "enabled" : "disabled"])
+                    Analytics.log(event: .cardAddNewWallet, dimensions: [.otpEnabled: otp ? "enabled" : "disabled"])
                     
                     if otp {
                         self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
@@ -862,8 +862,13 @@ class PaymentViewModel {
                                                                                              self.addBankFormViewModel.nickname.asDriver(),
                                                                                              self.inlineCard.asDriver(),
                                                                                              self.addCardFormViewModel.cardNumber.asDriver(),
-                                                                                             self.addCardFormViewModel.nickname.asDriver())
+                                                                                             self.addCardFormViewModel.nickname.asDriver(),
+                                                                                             self.wouldBeSelectedWalletItemIsExpired.asDriver())
     {
+        if $7 {
+            return NSLocalizedString("Select Payment Account", comment: "")
+        }
+        
         var a11yLabel = ""
         
         if $1 {

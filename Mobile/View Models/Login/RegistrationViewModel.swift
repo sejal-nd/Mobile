@@ -54,6 +54,9 @@ class RegistrationViewModel {
     var registrationService: RegistrationService
     var authenticationService: AuthenticationService
     
+    // Keeps track of strong password for Analytics
+    var hasStrongPassword = false
+    
     required init(registrationService: RegistrationService, authenticationService: AuthenticationService) {
         self.registrationService = registrationService
         self.authenticationService = authenticationService
@@ -119,7 +122,9 @@ class RegistrationViewModel {
                                              isPrimary: primaryProfile.value ? "true" : "false",
                                              isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                SharedWebCredentials.save(credential: (self.username.value, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError

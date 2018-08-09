@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewController: DismissableFormSheetViewController {
     
     @IBOutlet weak var navBarView: UIView!
     @IBOutlet weak var xButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var webContainerView: UIView!
     
     private var navTitle: String
     private var url: URL
@@ -45,18 +46,37 @@ class WebViewController: DismissableFormSheetViewController {
         titleLabel.textColor = .blackText
         titleLabel.text = navTitle
         
-        webView.delegate = self
-        webView.loadRequest(URLRequest(url: url))
+        setupWKWebView(with: url)
     }
     
     @IBAction func xAction(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
+    
+    // MARK: - Helper
+    
+    private func setupWKWebView(with url: URL) {
+        loadingIndicator.isHidden = false
+        
+        // Programtically Configure WKWebView due to a bug with using IB WKWebView before iOS 11
+        let webConfiguration = WKWebViewConfiguration()
+        let webView = WKWebView(frame: .zero , configuration: webConfiguration)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webContainerView.addSubview(webView)
+        webView.topAnchor.constraint(equalTo: webContainerView.topAnchor).isActive = true
+        webView.rightAnchor.constraint(equalTo: webContainerView.rightAnchor).isActive = true
+        webView.leftAnchor.constraint(equalTo: webContainerView.leftAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: webContainerView.bottomAnchor).isActive = true
+        
+        let request = URLRequest(url: url)
+        webView.load(request)
+    }
 }
 
-extension WebViewController: UIWebViewDelegate {
+extension WebViewController: WKNavigationDelegate {
     
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         loadingIndicator.isHidden = true
     }
     

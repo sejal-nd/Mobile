@@ -16,6 +16,20 @@ enum OpCo: String {
     var displayString: String {
         return rawValue
     }
+    
+    // Used for reading the splash screen animation to VoiceOver users
+    var taglineString: String {
+        var tagline: String
+        switch self {
+        case .bge:
+            tagline = "That's smart energy"
+        case .comEd:
+            tagline = "Powering lives"
+        case .peco:
+            tagline = "The future is on"
+        }
+        return tagline
+    }
 }
 
 enum EnvironmentName: String {
@@ -42,6 +56,7 @@ struct Environment  {
     let firebaseConfigFile: String
     let opcoUpdatesHost: String
     let appCenterId: String?
+    let associatedDomain: String
     
     private init() {
         let path = Bundle.main.path(forResource: "environment", ofType: "plist")
@@ -59,5 +74,6 @@ struct Environment  {
         firebaseConfigFile = dict?["firebaseConfigFile"] as! String
         opcoUpdatesHost = dict?["opcoUpdatesHost"] as! String
         appCenterId = dict?["appCenterId"] as? String
+        associatedDomain = dict?["associatedDomain"] as! String
     }
 }

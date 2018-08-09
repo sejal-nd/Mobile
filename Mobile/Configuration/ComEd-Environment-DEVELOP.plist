@@ -11,7 +11,7 @@
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>Develop</string>
+	<string>mobileAppDev</string>
 	<key>fiservUrl</key>
 	<string>https://billerwebui.clienttestmatrix.com/Mobile</string>
 	<key>speedpayUrl</key>
@@ -24,5 +24,7 @@
 	<string>UA-76742208-16</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.comed.com</string>
+	<key>associatedDomain</key>
+	<string>azstg-secure.comed.com</string>
 </dict>
 </plist>

@@ -476,6 +476,7 @@ class MakePaymentViewController: UIViewController {
             self.view.endEditing(true)
             
             let calendarVC = PDTSimpleCalendarViewController()
+            calendarVC.calendar = .opCo
             calendarVC.delegate = self
             calendarVC.title = NSLocalizedString("Select Payment Date", comment: "")
             calendarVC.selectedDate = self.viewModel.paymentDate.value
@@ -484,12 +485,12 @@ class MakePaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         addBankAccountButton.rx.touchUpInside
-            .do(onNext: { Analytics.log(event: .AddBankNewWallet) })
+            .do(onNext: { Analytics.log(event: .addBankNewWallet) })
             .map { _ in true }
             .bind(to: viewModel.inlineBank).disposed(by: disposeBag)
         
         addCreditCardButton.rx.touchUpInside
-            .do(onNext: { Analytics.log(event: .AddCardNewWallet) })
+            .do(onNext: { Analytics.log(event: .addCardNewWallet) })
             .map { _ in true }
             .bind(to: viewModel.inlineCard)
             .disposed(by: disposeBag)
@@ -577,15 +578,15 @@ class MakePaymentViewController: UIViewController {
         view.endEditing(true)
         
         if viewModel.inlineBank.value {
-            Analytics.log(event: .ECheckOffer)
+            Analytics.log(event: .eCheckOffer)
         } else if viewModel.inlineCard.value {
-            Analytics.log(event: .CardOffer)
+            Analytics.log(event: .cardOffer)
         } else if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard { // Existing wallet item
             switch bankOrCard {
             case .bank:
-                Analytics.log(event: .ECheckOffer)
+                Analytics.log(event: .eCheckOffer)
             case .card:
-                Analytics.log(event: .CardOffer)
+                Analytics.log(event: .cardOffer)
             }
         }
         
@@ -740,7 +741,7 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
         let today = Calendar.opCo.startOfDay(for: Date())
@@ -787,9 +788,9 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
-        viewModel.paymentDate.value = Calendar.current.isDateInToday(opCoTimeDate) ? Date() : opCoTimeDate
+        viewModel.paymentDate.value = Calendar.opCo.isDateInToday(opCoTimeDate) ? Date() : opCoTimeDate
     }
 }
 
@@ -808,7 +809,7 @@ extension MakePaymentViewController: AddBankFormViewDelegate {
 extension MakePaymentViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        Analytics.log(event: .AddWalletCameraOffer)
+        Analytics.log(event: .addWalletCameraOffer)
         if cameraAuthorizationStatus == .denied || cameraAuthorizationStatus == .restricted {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))

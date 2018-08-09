@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import WebKit
 
 class TermsPoliciesViewController: UIViewController {
     
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var webContainerView: UIView!
     
-    let viewModel = TermsPoliciesViewModel()
-    var viewAppeared = false
+    private let viewModel = TermsPoliciesViewModel()
+    private var viewAppeared = false
+    
+    // MARk: - View Life Cycle
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,9 +28,7 @@ class TermsPoliciesViewController: UIViewController {
         super.viewDidLoad()
 
         let url = viewModel.termPoliciesURL
-        webView.delegate = self
-        webView.backgroundColor = .white
-        webView.loadRequest(URLRequest(url: url))
+        setupWKWebView(with: url)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,21 +49,27 @@ class TermsPoliciesViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - Helper
+    
+    private func setupWKWebView(with url: URL) {
+        // Programtically Configure WKWebView due to a bug with using IB WKWebView before iOS 11
+        let webConfiguration = WKWebViewConfiguration()
+        let webView = WKWebView(frame: .zero , configuration: webConfiguration)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webContainerView.addSubview(webView)
+        webView.topAnchor.constraint(equalTo: webContainerView.topAnchor).isActive = true
+        webView.rightAnchor.constraint(equalTo: webContainerView.rightAnchor).isActive = true
+        webView.leftAnchor.constraint(equalTo: webContainerView.leftAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: webContainerView.bottomAnchor).isActive = true
+        
+        let request = URLRequest(url: url)
+        webView.load(request)
+    }
+    
     // Prevents status bar color flash when pushed from MoreViewController
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-}
-
-extension TermsPoliciesViewController: UIWebViewDelegate {
-    
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.linkClicked {
-            UIApplication.shared.openURL(request.url!)
-            return false
-        }
-        return true
     }
     
 }

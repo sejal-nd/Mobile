@@ -11,7 +11,7 @@
 	<key>oauthEndpoint</key>
 	<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>ProdPECO</string>
+	<string>Prod-pecoMBE</string>
 	<key>fiservUrl</key>
 	<string>https://billerwebui.fiservapps.com/Mobile</string>
 	<key>speedpayUrl</key>
@@ -26,5 +26,7 @@
 	<string>www.peco.com</string>
 	<key>appCenterId</key>
 	<string>0a416441-1ad6-4be2-b009-79f8b15f8b58</string>
+	<key>associatedDomain</key>
+	<string>secure.peco.com</string>
 </dict>
 </plist>

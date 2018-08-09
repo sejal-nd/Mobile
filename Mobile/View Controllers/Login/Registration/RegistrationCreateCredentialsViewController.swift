@@ -46,6 +46,21 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     
     var nextButton = UIBarButtonItem()
     
+    lazy var toolbar: UIToolbar = {
+        let toolbar = UIToolbar()
+        let suggestPasswordButton = UIBarButtonItem(title: "Suggest Password", style: .plain, target: self, action: #selector(suggestPassword))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        let items = [suggestPasswordButton, space]
+        toolbar.setItems(items, animated: false)
+        toolbar.sizeToFit()
+        toolbar.tintColor = .actionBlue
+        return toolbar
+    }()
+    
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,34 +77,13 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         prepareTextFieldsForInput()
         
     }
-
-    /// Helpers
-    func setupNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    func setupNavigationButtons() {
-        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        navigationItem.rightBarButtonItem = nextButton
-    }
-    
-    func populateHelperLabels() {
-        instructionLabel.textColor = .blackText
-        instructionLabel.text = NSLocalizedString("Please create your sign in credentials", comment: "")
-        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        
-        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        
-        for label in passwordRequirementLabels {
-            label.font = SystemFont.regular.of(textStyle: .subheadline)
-        }
-    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+
+    
+    // MARK: - Actions
     
     @IBAction func primaryProfileSwitchToggled(_ sender: Any) {
         viewModel.primaryProfile.value = !viewModel.primaryProfile.value
@@ -101,7 +95,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         LoadingView.show()
         viewModel.verifyUniqueUsername(onSuccess: { [weak self] in
             LoadingView.hide()
-            Analytics.log(event: .RegisterAccountSetup)
+            Analytics.log(event: .registerAccountSetup)
             self?.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
             }, onEmailAlreadyExists: { [weak self] in
                 LoadingView.hide()
@@ -115,85 +109,38 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 self?.present(alertController, animated: true, completion: nil)
         })
     }
-
-    func setupValidation() {
-        let checkImageOrNil: (Bool) -> UIImage? = { $0 ? #imageLiteral(resourceName: "ic_check"): nil }
+    
+    @objc private func suggestPassword() {
+        guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
         
-        viewModel.characterCountValid.map(checkImageOrNil).drive(characterCountCheck.rx.image).disposed(by: disposeBag)
-        viewModel.characterCountValid.drive(onNext: { [weak self] valid in
-            self?.characterCountCheck.isAccessibilityElement = valid
-            self?.characterCountCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
-        }).disposed(by: disposeBag)
-        viewModel.containsUppercaseLetter.map(checkImageOrNil).drive(uppercaseCheck.rx.image).disposed(by: disposeBag)
-        viewModel.containsUppercaseLetter.drive(onNext: { [weak self] valid in
-            self?.uppercaseCheck.isAccessibilityElement = valid
-            self?.uppercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
-        }).disposed(by: disposeBag)
-        viewModel.containsLowercaseLetter.map(checkImageOrNil).drive(lowercaseCheck.rx.image).disposed(by: disposeBag)
-        viewModel.containsLowercaseLetter.drive(onNext: { [weak self] valid in
-            self?.lowercaseCheck.isAccessibilityElement = valid
-            self?.lowercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
-        }).disposed(by: disposeBag)
-        viewModel.containsNumber.map(checkImageOrNil).drive(numberCheck.rx.image).disposed(by: disposeBag)
-        viewModel.containsNumber.drive(onNext: { [weak self] valid in
-            self?.numberCheck.isAccessibilityElement = valid
-            self?.numberCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
-        }).disposed(by: disposeBag)
-        viewModel.containsSpecialCharacter.map(checkImageOrNil).drive(specialCharacterCheck.rx.image).disposed(by: disposeBag)
-        viewModel.containsSpecialCharacter.drive(onNext: { [weak self] valid in
-            self?.specialCharacterCheck.isAccessibilityElement = valid
-            self?.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
-        }).disposed(by: disposeBag)
+        Analytics.log(event: .strongPasswordOffer)
         
-        viewModel.newUsernameIsValidBool
-            .drive(onNext: { [weak self] valid in
-                self?.confirmUsernameTextField.setEnabled(valid)
-            }).disposed(by: disposeBag)
-        
-        viewModel.everythingValid
-            .drive(onNext: { [weak self] valid in
-                self?.confirmPasswordTextField.setEnabled(valid)
-            }).disposed(by: disposeBag)
-        
-        
-        // Password cannot match email
-        viewModel.passwordMatchesUsername
-			.drive(onNext: { [weak self] matches in
-                if matches {
-                    self?.createPasswordTextField.setError(NSLocalizedString("Password cannot match email", comment: ""))
-                } else {
-                    self?.createPasswordTextField.setError(nil)
-                }
-                self?.accessibilityErrorLabel()
-                
-            }).disposed(by: disposeBag)
-        
-        viewModel.confirmPasswordMatches.drive(onNext: { [weak self] matches in
-            guard let `self` = self else { return }
-            if self.confirmPasswordTextField.textField.hasText {
-                if matches {
-                    self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
-                    self.confirmPasswordTextField.setError(nil)
-                    self.accessibilityErrorLabel()
-                } else {
-                    self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
-                    self.accessibilityErrorLabel()
-                    
-                }
-            } else {
-                self.confirmPasswordTextField.setValidated(false)
-                self.confirmPasswordTextField.setError(nil)
-            }
-        }).disposed(by: disposeBag)
-        
-        viewModel.doneButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
+        presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
+            message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
+            style: .actionSheet,
+            actions:
+            [UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
+                self?.viewModel.hasStrongPassword = true
+                self?.viewModel.newPassword.value = strongPassword
+                self?.viewModel.confirmPassword.value = strongPassword
+                self?.createPasswordTextField.textField.text = strongPassword
+                self?.confirmPasswordTextField.textField.text = strongPassword
+                self?.createPasswordTextField.textField.backgroundColor = .autoFillYellow
+                self?.confirmPasswordTextField.textField.backgroundColor = .autoFillYellow
+                self?.createPasswordTextField.textField.resignFirstResponder()
+                },
+             UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
     }
+    
+    
+    // MARK: - Helper
 
     func prepareTextFieldsForInput() {
-        //
+
         passwordStrengthView.isHidden = true
         
         createUsernameTextField.textField.placeholder = NSLocalizedString("Email Address*", comment: "")
+        createUsernameTextField.setKeyboardType(.emailAddress)
         createUsernameTextField.textField.returnKeyType = .next
         createUsernameTextField.textField.delegate = self
         createUsernameTextField.textField.isShowingAccessory = true
@@ -217,6 +164,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         confirmUsernameTextField.textField.placeholder = NSLocalizedString("Confirm Email Address*", comment: "")
+        confirmUsernameTextField.setKeyboardType(.emailAddress)
         confirmUsernameTextField.textField.returnKeyType = .next
         confirmUsernameTextField.textField.delegate = self
         confirmUsernameTextField.setEnabled(false)
@@ -248,12 +196,14 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         createPasswordTextField.textField.returnKeyType = .next
         createPasswordTextField.textField.delegate = self
         createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        createPasswordTextField.textField.inputAccessoryView = toolbar
         
         confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        confirmPasswordTextField.textField.inputAccessoryView = toolbar
         
         // Bind to the view model
         createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
@@ -330,6 +280,102 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
     }
     
+    func setupNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func setupNavigationButtons() {
+        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
+        navigationItem.rightBarButtonItem = nextButton
+    }
+    
+    func setupValidation() {
+        let checkImageOrNil: (Bool) -> UIImage? = { $0 ? #imageLiteral(resourceName: "ic_check"): nil }
+        
+        viewModel.characterCountValid.map(checkImageOrNil).drive(characterCountCheck.rx.image).disposed(by: disposeBag)
+        viewModel.characterCountValid.drive(onNext: { [weak self] valid in
+            self?.characterCountCheck.isAccessibilityElement = valid
+            self?.characterCountCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).disposed(by: disposeBag)
+        viewModel.containsUppercaseLetter.map(checkImageOrNil).drive(uppercaseCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsUppercaseLetter.drive(onNext: { [weak self] valid in
+            self?.uppercaseCheck.isAccessibilityElement = valid
+            self?.uppercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).disposed(by: disposeBag)
+        viewModel.containsLowercaseLetter.map(checkImageOrNil).drive(lowercaseCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsLowercaseLetter.drive(onNext: { [weak self] valid in
+            self?.lowercaseCheck.isAccessibilityElement = valid
+            self?.lowercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).disposed(by: disposeBag)
+        viewModel.containsNumber.map(checkImageOrNil).drive(numberCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsNumber.drive(onNext: { [weak self] valid in
+            self?.numberCheck.isAccessibilityElement = valid
+            self?.numberCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).disposed(by: disposeBag)
+        viewModel.containsSpecialCharacter.map(checkImageOrNil).drive(specialCharacterCheck.rx.image).disposed(by: disposeBag)
+        viewModel.containsSpecialCharacter.drive(onNext: { [weak self] valid in
+            self?.specialCharacterCheck.isAccessibilityElement = valid
+            self?.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+        }).disposed(by: disposeBag)
+        
+        viewModel.newUsernameIsValidBool
+            .drive(onNext: { [weak self] valid in
+                self?.confirmUsernameTextField.setEnabled(valid)
+            }).disposed(by: disposeBag)
+        
+        viewModel.everythingValid
+            .drive(onNext: { [weak self] valid in
+                self?.confirmPasswordTextField.setEnabled(valid)
+            }).disposed(by: disposeBag)
+        
+        
+        // Password cannot match email
+        viewModel.passwordMatchesUsername
+            .drive(onNext: { [weak self] matches in
+                if matches {
+                    self?.createPasswordTextField.setError(NSLocalizedString("Password cannot match email", comment: ""))
+                } else {
+                    self?.createPasswordTextField.setError(nil)
+                }
+                self?.accessibilityErrorLabel()
+                
+            }).disposed(by: disposeBag)
+        
+        viewModel.confirmPasswordMatches.drive(onNext: { [weak self] matches in
+            guard let `self` = self else { return }
+            if self.confirmPasswordTextField.textField.hasText {
+                if matches {
+                    self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
+                    self.confirmPasswordTextField.setError(nil)
+                    self.accessibilityErrorLabel()
+                } else {
+                    self.confirmPasswordTextField.setError(NSLocalizedString("Passwords do not match", comment: ""))
+                    self.accessibilityErrorLabel()
+                    
+                }
+            } else {
+                self.confirmPasswordTextField.setValidated(false)
+                self.confirmPasswordTextField.setError(nil)
+            }
+        }).disposed(by: disposeBag)
+        
+        viewModel.doneButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
+    }
+    
+    func populateHelperLabels() {
+        instructionLabel.textColor = .blackText
+        instructionLabel.text = NSLocalizedString("Please create your sign in credentials", comment: "")
+        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        
+        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
+        for label in passwordRequirementLabels {
+            label.font = SystemFont.regular.of(textStyle: .subheadline)
+        }
+    }
+    
     private func accessibilityErrorLabel() {
         var message = ""
         message += createUsernameTextField.getError()
@@ -344,9 +390,9 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         }
     }
     
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? RegistrationSecurityQuestionsViewController {
             vc.viewModel = viewModel
@@ -372,13 +418,19 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
+    
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: - TextField Delegate
+
 extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        createPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+        confirmPasswordTextField.textField.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+        self.viewModel.hasStrongPassword = false
+        
         if string.count == 0 { // Allow backspace
             return true
         }
@@ -424,6 +476,5 @@ extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
 		
         return false
     }
+    
 }
-
-
