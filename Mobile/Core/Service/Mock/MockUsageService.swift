@@ -100,31 +100,39 @@ struct MockUsageService: UsageService {
         case "test-hasForecast-comparedHighest":
             fallthrough
         case "test-hasForecast-referenceHighest":
-            completion(.success(BillForecastResult(electric: BillForecast(projectedCost: 150))))
+            completion(.success(BillForecastResult(electric: BillForecast(projectedCost: 150, meterType: "ELEC"))))
         case "test-hasForecast-forecastHighest":
-            completion(.success(BillForecastResult(electric: BillForecast(projectedCost: 230))))
+            completion(.success(BillForecastResult(electric: BillForecast(projectedCost: 230, meterType: "ELEC"))))
         case "test-projectedCost":
-            completion(.success(BillForecastResult(gas: BillForecast(projectedCost: 182), electric: BillForecast(projectedCost: 230))))
+            completion(.success(BillForecastResult(gas: BillForecast(projectedCost: 182, meterType: "GAS"),
+                                                   electric: BillForecast(projectedCost: 230, meterType: "ELEC"))))
         case "test-projectedUsage":
-            completion(.success(BillForecastResult(gas: BillForecast(projectedUsage: 182), electric: BillForecast(projectedUsage: 230))))
+            completion(.success(BillForecastResult(gas: BillForecast(projectedUsage: 182, meterType: "GAS"),
+                                                   electric: BillForecast(projectedUsage: 230, meterType: "ELEC"))))
         case "test-projectedDate":
-            completion(.success(BillForecastResult(gas: BillForecast(billingEndDate: "2019-07-03"), electric: BillForecast(billingEndDate: "2019-08-13"))))
+            completion(.success(BillForecastResult(gas: BillForecast(billingEndDate: "2019-07-03", meterType: "GAS"),
+                                                   electric: BillForecast(billingEndDate: "2019-08-13", meterType: "ELEC"))))
         case "test-projectedCostAndUsage":
             fallthrough
         case "test-projectedCostAndUsageOpower":
-            completion(.success(BillForecastResult(electric: BillForecast(projectedUsage: 500, projectedCost: 220))))
+            completion(.success(BillForecastResult(electric: BillForecast(projectedUsage: 500, projectedCost: 220, meterType: "ELEC"))))
         case "test-projection-lessThan7":
-            completion(.success(BillForecastResult(gas: BillForecast(billingStartDate: dateFormatter.string(from: tomorrow)), electric: BillForecast(billingStartDate: dateFormatter.string(from: tomorrow)))))
+            completion(.success(BillForecastResult(gas: BillForecast(billingStartDate: dateFormatter.string(from: tomorrow), meterType: "GAS"),
+                                                   electric: BillForecast(billingStartDate: dateFormatter.string(from: tomorrow), meterType: "ELEC"))))
         case "test-projection-moreThan7":
-            completion(.success(BillForecastResult(gas: BillForecast(billingStartDate: dateFormatter.string(from: twoWeeksOut)), electric: BillForecast(billingStartDate: dateFormatter.string(from: twoWeeksOut)))))
+            completion(.success(BillForecastResult(gas: BillForecast(billingStartDate: dateFormatter.string(from: twoWeeksOut), meterType: "GAS"),
+                                                   electric: BillForecast(billingStartDate: dateFormatter.string(from: twoWeeksOut), meterType: "ELEC"))))
         case "test-projection-sixDaysOut":
-            completion(.success(BillForecastResult(gas: BillForecast(billingStartDate: dateFormatter.string(from: sixDaysOut)), electric: BillForecast(billingStartDate: dateFormatter.string(from: sixDaysOut)))))
+            completion(.success(BillForecastResult(gas: BillForecast(billingStartDate: dateFormatter.string(from: sixDaysOut), meterType: "GAS"),
+                                                   electric: BillForecast(billingStartDate: dateFormatter.string(from: sixDaysOut), meterType: "ELEC"))))
         case "test-projection-threeDaysOut":
-            completion(.success(BillForecastResult(gas: BillForecast(billingStartDate: dateFormatter.string(from: threeDaysOut)), electric: BillForecast(billingStartDate: dateFormatter.string(from: threeDaysOut)))))
+            completion(.success(BillForecastResult(gas: BillForecast(billingStartDate: dateFormatter.string(from: threeDaysOut), meterType: "GAS"),
+                                                   electric: BillForecast(billingStartDate: dateFormatter.string(from: threeDaysOut), meterType: "ELEC"))))
         case "comparedReferenceStartEndDate":
             fallthrough
         case "forecastStartEndDate":
-            completion(.success(BillForecastResult(gas: BillForecast(billingStartDate: "2018-05-23", billingEndDate: "2018-06-24"), electric: BillForecast(billingStartDate: "2018-05-23", billingEndDate: "2018-06-24"))))
+            completion(.success(BillForecastResult(gas: BillForecast(billingStartDate: "2018-05-23", billingEndDate: "2018-06-24", meterType: "GAS"),
+                                                   electric: BillForecast(billingStartDate: "2018-05-23", billingEndDate: "2018-06-24", meterType: "ELEC"))))
         default:
             completion(.failure(ServiceError(serviceMessage: "account number not found")))
         }
