@@ -310,9 +310,9 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="tableView" destination="q1B-ah-ptQ" id="sPm-cc-7Ij"/>
                         <segue destination="Rlt-YR-2LD" kind="show" identifier="reportOutageValidateAccount" id="BfY-Mv-qAg"/>
                         <segue destination="Rlt-YR-2LD" kind="show" identifier="checkOutageValidateAccount" id="cyl-oL-1Pd"/>
-                        <segue destination="xij-rH-l9D" kind="show" identifier="TermPoliciesSegue" id="A4P-nZ-ker"/>
-                        <segue destination="d4b-V4-IbC" kind="show" identifier="ContactUsSegue" id="TrG-VK-aRd"/>
-                        <segue destination="dCN-WB-aNm" kind="show" identifier="OutageMapSegue" id="YeF-3B-Hbb"/>
+                        <segue destination="xij-rH-l9D" kind="show" identifier="termPoliciesSegue" id="A4P-nZ-ker"/>
+                        <segue destination="d4b-V4-IbC" kind="show" identifier="contactUsSegue" id="TrG-VK-aRd"/>
+                        <segue destination="dCN-WB-aNm" kind="show" identifier="outageMapSegue" id="YeF-3B-Hbb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA6-zT-aIl" userLabel="First Responder" sceneMemberID="firstResponder"/>

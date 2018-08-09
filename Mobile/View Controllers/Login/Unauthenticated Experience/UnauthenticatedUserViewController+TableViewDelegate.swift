@@ -57,7 +57,34 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: "reportOutageValidateAccount", sender: nil)
+            case 1:
+                performSegue(withIdentifier: "checkOutageValidateAccount", sender: nil)
+            case 2:
+                performSegue(withIdentifier: "outageMapSegue", sender: nil)
+            default:
+                break
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                break //performSegue(withIdentifier: "outageMapSegue", sender: nil)
+            case 1:
+                performSegue(withIdentifier: "contactUsSegue", sender: nil)
+            case 2:
+                performSegue(withIdentifier: "termPoliciesSegue", sender: nil)
+            default:
+                break
+            }
+        default:
+            break
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

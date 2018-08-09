@@ -21,6 +21,9 @@ class UnauthenticatedUserViewController: UIViewController {
         didSet {
             headerView.layer.cornerRadius = 10.0
             headerView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(loginRegisterPress(_:)))
+            headerView.addGestureRecognizer(tap)
         }
     }
     @IBOutlet weak var headerViewTitleLabel: UILabel! {
@@ -111,7 +114,7 @@ class UnauthenticatedUserViewController: UIViewController {
 //        policiesTermsButton.accessibilityLabel = NSLocalizedString("Policies and terms", comment: "")
     }
 
-    @IBAction func onLoginRegisterPress(_ sender: UIButton) {
+    @objc private func loginRegisterPress(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
 
