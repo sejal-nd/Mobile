@@ -7,43 +7,76 @@
 //
 
 import Foundation
-import Lottie
 
 class UnauthenticatedUserViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.dataSource = self
+            tableView.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var headerView: UIView! {
+        didSet {
+            headerView.layer.cornerRadius = 10.0
+            headerView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+        }
+    }
+    @IBOutlet weak var headerViewTitleLabel: UILabel! {
+        didSet {
+            headerViewTitleLabel.font = OpenSans.semibold.of(size: 16)
+            headerViewTitleLabel.textColor = .primaryColor
+        }
+    }
+    @IBOutlet weak var headerViewDescriptionLabel: UILabel! {
+        didSet {
+            headerViewDescriptionLabel.font = OpenSans.regular.of(size: 12)
+            headerViewDescriptionLabel.textColor = .blackText
+        }
+    }
+    
+    
 
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var lottieView: UIView!
-    @IBOutlet weak var textLabel: UILabel!
-
-    @IBOutlet weak var loginRegisterButton: UIButton!
-
-    @IBOutlet weak var reportAnOutageButton: DisclosureButton!
-    @IBOutlet weak var checkMyOutageStatusButton: DisclosureButton!
-    @IBOutlet weak var viewOutageMapButton: DisclosureButton!
-    @IBOutlet weak var contactUsButton: DisclosureButton!
-    @IBOutlet weak var policiesTermsButton: DisclosureButton!
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // NEW
+        tableView.register(UINib(nibName: "TitleTableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TitleTableViewHeaderView")
+        tableView.register(UINib(nibName: "HairlineFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: "HairlineFooterView")
+        tableView.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
+
+        
+        
+        
+        
+        
+        
+        
+        // OLD
+        
+        
         view.backgroundColor = .primaryColor
 
-        scrollView.indicatorStyle = .white
-        loginRegisterButton.titleLabel!.font =  OpenSans.bold.of(textStyle: .title1)
-        textLabel.font =  OpenSans.regular.of(textStyle: .subheadline)
+//        scrollView.indicatorStyle = .white
+//        loginRegisterButton.titleLabel!.font =  OpenSans.bold.of(textStyle: .title1)
+//        textLabel.font =  OpenSans.regular.of(textStyle: .subheadline)
 
-        let animationView = LOTAnimationView(name: "uu_otp")
-        animationView.frame = CGRect(x: 0, y: 0, width: 230, height: 180)
-        animationView.contentMode = .scaleAspectFill
-        animationView.loopAnimation = true
+//        let animationView = LOTAnimationView(name: "uu_otp")
+//        animationView.frame = CGRect(x: 0, y: 0, width: 230, height: 180)
+//        animationView.contentMode = .scaleAspectFill
+//        animationView.loopAnimation = true
 
-        lottieView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
-        lottieView.addSubview(animationView)
+//        lottieView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//
+//        lottieView.addSubview(animationView)
         
-        animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        animationView.play()
+//        animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//
+//        animationView.play()
 
         accessibilitySetup()
     }
@@ -66,16 +99,16 @@ class UnauthenticatedUserViewController: UIViewController {
     }
 
     private func accessibilitySetup() {
-        lottieView.isAccessibilityElement = true
-        lottieView.accessibilityLabel = NSLocalizedString("Animation showing home screen payment", comment: "")
-
-        textLabel.accessibilityLabel = textLabel.text
-        
-        reportAnOutageButton.accessibilityLabel = NSLocalizedString("Report an outage", comment: "")
-        checkMyOutageStatusButton.accessibilityLabel = NSLocalizedString("Check my outage status", comment: "")
-        viewOutageMapButton.accessibilityLabel = NSLocalizedString("View outage map", comment: "")
-        contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
-        policiesTermsButton.accessibilityLabel = NSLocalizedString("Policies and terms", comment: "")
+//        lottieView.isAccessibilityElement = true
+//        lottieView.accessibilityLabel = NSLocalizedString("Animation showing home screen payment", comment: "")
+//
+//        textLabel.accessibilityLabel = textLabel.text
+//
+//        reportAnOutageButton.accessibilityLabel = NSLocalizedString("Report an outage", comment: "")
+//        checkMyOutageStatusButton.accessibilityLabel = NSLocalizedString("Check my outage status", comment: "")
+//        viewOutageMapButton.accessibilityLabel = NSLocalizedString("View outage map", comment: "")
+//        contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
+//        policiesTermsButton.accessibilityLabel = NSLocalizedString("Policies and terms", comment: "")
     }
 
     @IBAction func onLoginRegisterPress(_ sender: UIButton) {
