@@ -313,6 +313,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <segue destination="xij-rH-l9D" kind="show" identifier="termPoliciesSegue" id="A4P-nZ-ker"/>
                         <segue destination="d4b-V4-IbC" kind="show" identifier="contactUsSegue" id="TrG-VK-aRd"/>
                         <segue destination="dCN-WB-aNm" kind="show" identifier="outageMapSegue" id="YeF-3B-Hbb"/>
+                        <segue destination="8Sl-6A-V8w" kind="show" identifier="alertsSegue" id="dsf-cm-hCx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA6-zT-aIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -846,7 +847,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 <viewControllerPlaceholder storyboardName="More" referencedIdentifier="ContactUsViewController" id="d4b-V4-IbC" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L9E-3Q-kmg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1456" y="-894"/>
+            <point key="canvasLocation" x="1280" y="-894"/>
         </scene>
         <!--OutageMapViewController-->
         <scene sceneID="Vft-om-bvs">
@@ -854,7 +855,15 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="dCN-WB-aNm" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="33U-yH-A2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1646" y="-819"/>
+            <point key="canvasLocation" x="1499" y="-818"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="zth-Q1-8qA">
+            <objects>
+                <viewControllerPlaceholder id="8Sl-6A-V8w" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DAD-Ha-2eY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1775" y="-818"/>
         </scene>
         <!--TermsPoliciesViewController-->
         <scene sceneID="TYh-Mm-8ts">
@@ -862,7 +871,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 <viewControllerPlaceholder storyboardName="More" referencedIdentifier="TermsPoliciesViewController" id="xij-rH-l9D" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBK-MN-6oF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1856" y="-894"/>
+            <point key="canvasLocation" x="2056" y="-894"/>
         </scene>
         <!--Landing View Controller-->
         <scene sceneID="LmY-Jb-a4W">
