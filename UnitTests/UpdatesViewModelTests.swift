@@ -73,7 +73,7 @@ class UpdatesViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         viewModel.selectedSegmentIndex.value = 1
-        //        viewModel.isFetchingUpdates.value = true
+        viewModel.isFetchingUpdates.value = true
         viewModel.shouldShowLoadingIndicator.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Loading indicator should show when Updates tab is selected while fetching updates")
@@ -90,7 +90,7 @@ class UpdatesViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
         
         viewModel.selectedSegmentIndex.value = 1
-        //        viewModel.isUpdatesError.value = true
+        viewModel.isUpdatesError.value = true
         viewModel.shouldShowErrorLabel.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Error label should show when Updates tab is selected and fetching updates failed")
