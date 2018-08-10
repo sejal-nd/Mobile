@@ -74,7 +74,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         case 1:
             switch indexPath.row {
             case 0:
-                performSegue(withIdentifier: "alertsSegue", sender: nil)
+                performSegue(withIdentifier: "updatesSegue", sender: nil)
             case 1:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 2:

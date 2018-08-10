@@ -313,7 +313,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <segue destination="xij-rH-l9D" kind="show" identifier="termPoliciesSegue" id="A4P-nZ-ker"/>
                         <segue destination="d4b-V4-IbC" kind="show" identifier="contactUsSegue" id="TrG-VK-aRd"/>
                         <segue destination="dCN-WB-aNm" kind="show" identifier="outageMapSegue" id="YeF-3B-Hbb"/>
-                        <segue destination="8Sl-6A-V8w" kind="show" identifier="alertsSegue" id="dsf-cm-hCx"/>
+                        <segue destination="8Sl-6A-V8w" kind="show" identifier="updatesSegue" id="dsf-cm-hCx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA6-zT-aIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -857,10 +857,10 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             </objects>
             <point key="canvasLocation" x="1499" y="-818"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--Updates-->
         <scene sceneID="zth-Q1-8qA">
             <objects>
-                <viewControllerPlaceholder id="8Sl-6A-V8w" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Updates" id="8Sl-6A-V8w" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DAD-Ha-2eY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1775" y="-818"/>
