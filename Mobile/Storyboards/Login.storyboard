@@ -304,7 +304,8 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
-                        <outlet property="headerView" destination="nya-tL-X6j" id="v5P-nJ-OwU"/>
+                        <outlet property="headerContentView" destination="nya-tL-X6j" id="v5P-nJ-OwU"/>
+                        <outlet property="headerView" destination="GyY-zW-kSD" id="Lca-4n-mv8"/>
                         <outlet property="headerViewDescriptionLabel" destination="LkM-Zs-GNb" id="eet-nN-G7o"/>
                         <outlet property="headerViewTitleLabel" destination="XA5-JW-VHJ" id="Ngb-q3-4YL"/>
                         <outlet property="tableView" destination="q1B-ah-ptQ" id="sPm-cc-7Ij"/>

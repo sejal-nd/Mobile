@@ -153,11 +153,7 @@ class AlertsViewController: AccountPickerViewController {
         Analytics.log(event: .alertsMainScreen)
         performSegue(withIdentifier: "preferencesSegue", sender: self)
     }
-    
-    @objc func onUpdateCellTap(sender: ButtonControl) {
-        performSegue(withIdentifier: "opcoUpdateDetailSegue", sender: sender)
-    }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AlertPreferencesViewController {
             vc.delegate = self

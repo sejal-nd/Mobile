@@ -19,11 +19,16 @@ class UnauthenticatedUserViewController: UIViewController {
     
     @IBOutlet weak var headerView: UIView! {
         didSet {
-            headerView.layer.cornerRadius = 10.0
-            headerView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+            headerView.backgroundColor = .primaryColor
+        }
+    }
+    @IBOutlet weak var headerContentView: UIView! {
+        didSet {
+            headerContentView.layer.cornerRadius = 10.0
+            headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
             
             let tap = UITapGestureRecognizer(target: self, action: #selector(loginRegisterPress(_:)))
-            headerView.addGestureRecognizer(tap)
+            headerContentView.addGestureRecognizer(tap)
         }
     }
     @IBOutlet weak var headerViewTitleLabel: UILabel! {
@@ -39,8 +44,6 @@ class UnauthenticatedUserViewController: UIViewController {
         }
     }
     
-    
-
     
     // MARK: - View Life Cycle
     
