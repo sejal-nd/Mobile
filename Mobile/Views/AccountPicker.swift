@@ -131,12 +131,16 @@ class AccountPicker: UIView {
         leftButton.isEnabled = false
         addSubview(leftButton)
         leftButton.isHidden = true
+        leftButton.isAccessibilityElement = true
+        leftButton.accessibilityLabel = NSLocalizedString("Previous account", comment: "")
         
         rightButton.shouldFadeSubviewsOnPress = true
         rightButton.addSubview(rightCaretImageView)
         rightButton.isEnabled = false
         addSubview(rightButton)
         rightButton.isHidden = true
+        rightButton.isAccessibilityElement = true
+        rightButton.accessibilityLabel = NSLocalizedString("Next account", comment: "")
         
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
@@ -208,7 +212,7 @@ class AccountPicker: UIView {
         }
         
         if shouldScroll {
-            accessibilityElements = [scrollView, pageControl]
+            accessibilityElements = [scrollView, pageControl, leftButton, rightButton]
             leftButton.isHidden = false
             rightButton.isHidden = false
         } else {

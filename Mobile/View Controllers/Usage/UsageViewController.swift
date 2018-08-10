@@ -684,9 +684,8 @@ class UsageViewController: AccountPickerViewController {
                 present(safariVc, animated: true, completion: nil)
             } else {
                 Analytics.log(event: .viewPeakTimeSavings)
+                performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
             }
-            
-            performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
         }
     }
     

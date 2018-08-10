@@ -11,8 +11,8 @@ extension BillComparison {
     init(meterUnit: String = "KWH",
          currencySymbol: String = "$",
          temperatureUnit: String = "FAHRENHEIT",
-         reference: UsageBillPeriod = UsageBillPeriod(),
-         compared: UsageBillPeriod = UsageBillPeriod(),
+         reference: UsageBillPeriod? = UsageBillPeriod(),
+         compared: UsageBillPeriod? = UsageBillPeriod(),
          billPeriodCostDifference: Double = 0,
          weatherCostDifference: Double = 0,
          otherCostDifference: Double = 0) {
@@ -25,9 +25,12 @@ extension BillComparison {
         map["meterUnit"] = meterUnit
         map["currencySymbol"] = currencySymbol
         map["temperatureUnit"] = temperatureUnit
-        map["reference"] = reference.toJSON()
-        map["compared"] = compared.toJSON()
-        
+        if let reference = reference {
+            map["reference"] = reference.toJSON()
+        }
+        if let compared = compared {
+            map["compared"] = compared.toJSON()
+        }
         self = BillComparison.from(map as NSDictionary)!
         self.billPeriodCostDifference = billPeriodCostDifference
         self.weatherCostDifference = weatherCostDifference
