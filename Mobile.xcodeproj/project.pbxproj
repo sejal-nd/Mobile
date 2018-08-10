@@ -245,6 +245,8 @@
 		35A6C6EF211DEB5600C2A58F /* UpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6DA211CC09C00C2A58F /* UpdatesViewModel.swift */; };
 		35A6C6F0211DEC4000C2A58F /* UpdatesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6EB211DEB3300C2A58F /* UpdatesViewModelTests.swift */; };
 		35A6C6F1211DEC4000C2A58F /* UpdatesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6EB211DEB3300C2A58F /* UpdatesViewModelTests.swift */; };
+		35A6C6F2211E07B800C2A58F /* UIColorDarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */; };
+		35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */; };
 		35ACCB4320EA590D0022907F /* HomeOutageCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */; };
 		35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACCB4420EA5ECE0022907F /* HomeOutageCardView.swift */; };
 		35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */; };
@@ -6519,6 +6521,7 @@
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				54618B281EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
+				35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				9C4C95CE203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
@@ -6862,6 +6865,7 @@
 				54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				54618B271EE0606800119FFD /* EditBankAccountViewController.swift in Sources */,
 				389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
+				35A6C6F2211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				9C4C95CD203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
