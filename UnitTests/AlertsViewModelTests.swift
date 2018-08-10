@@ -14,9 +14,14 @@ class AlertsViewModelTests: XCTestCase {
     var viewModel: AlertsViewModel!
     let disposeBag = DisposeBag()
     
-    func testFetchDataSuccess() {
+    override func setUp() {
+        super.setUp()
+        
         AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!
         viewModel = AlertsViewModel(accountService: MockAccountService())
+    }
+    
+    func testFetchDataSuccess() {
         viewModel.fetchData()
         
         let expect = expectation(description: "wait for callbacks")
@@ -48,65 +53,27 @@ class AlertsViewModelTests: XCTestCase {
         waitForExpectations(timeout: 2) { error in
             XCTAssertNil(error, "timeout")
         }
-
-        // Opco updates failure
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "9836621902","address": "573 Test Street"])!
-        viewModel = AlertsViewModel(accountService: MockAccountService())
-        viewModel.fetchData()
-        
-        let expect2 = expectation(description: "wait for callbacks")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            XCTAssertNotNil(self.viewModel.currentAccountDetail, "currentAccountDetail should be nil")
-            XCTAssertFalse(self.viewModel.isFetchingAccountDetail.value, "isFetchingAccountDetail should be false")
-            XCTAssertFalse(self.viewModel.isAccountDetailError.value, "isAccountDetailError should be false")
-            expect2.fulfill()
-        }
-        
-        waitForExpectations(timeout: 2) { error in
-            XCTAssertNil(error, "timeout")
-        }
-        
     }
     
     func testShouldShowLoadingIndicator() {
-        viewModel = AlertsViewModel(accountService: MockAccountService())
-        viewModel.selectedSegmentIndex.value = 0
         viewModel.isFetchingAccountDetail.value = true
         viewModel.shouldShowLoadingIndicator.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Loading indicator should show when Alerts tab is selected while fetching account detail")
             }
         }).disposed(by: disposeBag)
-        
-        viewModel.selectedSegmentIndex.value = 1
-        viewModel.shouldShowLoadingIndicator.asObservable().take(1).subscribe(onNext: { show in
-            if !show {
-                XCTFail("Loading indicator should show when Updates tab is selected while fetching updates")
-            }
-        }).disposed(by: disposeBag)
     }
     
     func testShouldShowErrorLabel() {
-        viewModel = AlertsViewModel(accountService: MockAccountService())
-        viewModel.selectedSegmentIndex.value = 0
         viewModel.isAccountDetailError.value = true
         viewModel.shouldShowErrorLabel.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Error label should show when Alerts tab is selected and fetching account detail failed")
             }
         }).disposed(by: disposeBag)
-
-        viewModel.selectedSegmentIndex.value = 1
-        viewModel.shouldShowErrorLabel.asObservable().take(1).subscribe(onNext: { show in
-            if !show {
-                XCTFail("Error label should show when Updates tab is selected and fetching updates failed")
-            }
-        }).disposed(by: disposeBag)
     }
     
     func testShouldShowAlertsTableView() {
-        viewModel = AlertsViewModel(accountService: MockAccountService())
-        viewModel.selectedSegmentIndex.value = 0
         viewModel.isFetchingAccountDetail.value = false
         viewModel.isAccountDetailError.value = false
         viewModel.shouldShowAlertsTableView.asObservable().take(1).subscribe(onNext: { show in
@@ -117,8 +84,6 @@ class AlertsViewModelTests: XCTestCase {
     }
     
     func testShouldShowAlertsEmptyState() {
-        viewModel = AlertsViewModel(accountService: MockAccountService())
-        viewModel.selectedSegmentIndex.value = 0
         viewModel.isFetchingAccountDetail.value = false
         viewModel.isAccountDetailError.value = false
         viewModel.shouldShowAlertsEmptyState.asObservable().take(1).subscribe(onNext: { show in
