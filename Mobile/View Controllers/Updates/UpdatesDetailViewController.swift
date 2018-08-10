@@ -10,6 +10,7 @@ import UIKit
 
 class UpdatesDetailViewController: UIViewController {
     
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var label: UILabel!
     
     var opcoUpdate: OpcoUpdate! // Passed from AlertsViewController
@@ -27,8 +28,15 @@ class UpdatesDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        view.backgroundColor = .primaryColor
+        
+        backgroundView.backgroundColor = .softGray
+        
         if let navController = navigationController as? MainBaseNavigationController {
-            navController.setWhiteNavBar()
+            print("NAV CONTROLLER FOUND!")
+            navController.setColoredNavBar()
+        } else {
+            print("NO NA FOUND")
         }
     }
 

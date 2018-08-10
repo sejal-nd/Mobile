@@ -168,7 +168,7 @@ this time.</string>
                         <outlet property="tableView" destination="j6f-Fr-HTs" id="l1p-K4-Qlw"/>
                         <outlet property="updatesEmptyStateLabel" destination="QF1-4c-nJU" id="wfo-8g-JYe"/>
                         <outlet property="updatesEmptyStateView" destination="n03-O6-o1d" id="yQX-uE-wzS"/>
-                        <segue destination="dNE-Ye-q3O" kind="show" identifier="opcoUpdateDetailSegue" id="dZx-l7-ndf"/>
+                        <segue destination="dNE-Ye-q3O" kind="show" identifier="UpdatesDetailSegue" id="dZx-l7-ndf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="30H-iW-Vk0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,6 +187,10 @@ this time.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QWv-Dy-Ywt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5G2-NY-94Q">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
@@ -211,21 +215,26 @@ this time.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="QWv-Dy-Ywt" firstAttribute="trailing" secondItem="jLv-zb-s7e" secondAttribute="trailing" id="4aM-DJ-GLh"/>
                             <constraint firstAttribute="bottom" secondItem="5G2-NY-94Q" secondAttribute="bottom" id="FYr-OW-Alk"/>
+                            <constraint firstItem="3MU-Na-WKv" firstAttribute="top" secondItem="QWv-Dy-Ywt" secondAttribute="bottom" id="Pet-JN-gtX"/>
                             <constraint firstItem="5G2-NY-94Q" firstAttribute="top" secondItem="DDo-83-Wok" secondAttribute="bottom" id="QdH-Pi-je0"/>
                             <constraint firstItem="5G2-NY-94Q" firstAttribute="leading" secondItem="jLv-zb-s7e" secondAttribute="leading" id="Qsi-EV-VNx"/>
+                            <constraint firstItem="QWv-Dy-Ywt" firstAttribute="leading" secondItem="jLv-zb-s7e" secondAttribute="leading" id="TEy-Uh-BsN"/>
                             <constraint firstAttribute="trailing" secondItem="5G2-NY-94Q" secondAttribute="trailing" id="bXS-fZ-xeS"/>
+                            <constraint firstItem="QWv-Dy-Ywt" firstAttribute="top" secondItem="DDo-83-Wok" secondAttribute="bottom" id="rM0-si-NS3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WOY-i5-WHB"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="backgroundView" destination="QWv-Dy-Ywt" id="RYN-Yy-IAd"/>
                         <outlet property="label" destination="NuC-ay-LSk" id="ZxW-as-fZ6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wHL-kX-S29" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1441" y="1424"/>
+            <point key="canvasLocation" x="1440.8" y="1423.5382308845578"/>
         </scene>
     </scenes>
     <resources>

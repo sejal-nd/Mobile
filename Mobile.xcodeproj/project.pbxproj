@@ -4002,7 +4002,6 @@
 		8FD5AE7C1E54EA04003F640D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				35A6C6DC211CC0A300C2A58F /* Updates */,
 				E8067C901EC3C257004C2724 /* SplashViewController.swift */,
 				0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */,
 				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
@@ -4011,6 +4010,7 @@
 				E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */,
 				9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */,
 				E87C412E1FAA520A00448F86 /* Alerts */,
+				35A6C6DC211CC0A300C2A58F /* Updates */,
 				2FA5D8621F17D85A00A8B16B /* Home */,
 				E82FF1E41F97CB6B00C50F8F /* Usage */,
 				82AC2A141FAB5BFD00EACB3B /* Smart Thermostat Peak Rewards */,
@@ -5085,8 +5085,8 @@
 		E8EEF70B1E565BE7006804D4 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				35A6C6D9211CC08B00C2A58F /* Updates */,
 				E87C413C1FAA6BF800448F86 /* Alerts */,
+				35A6C6D9211CC08B00C2A58F /* Updates */,
 				82A18E581EB9186000BE9F21 /* Bill */,
 				2FA5D8671F17DB5400A8B16B /* Home */,
 				82EAB3321F97E052008B55B1 /* Usage */,

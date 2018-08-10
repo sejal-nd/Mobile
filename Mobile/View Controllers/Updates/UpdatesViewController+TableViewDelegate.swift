@@ -25,10 +25,9 @@ extension UpdatesViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    // This is not getting called
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "opcoUpdateDetailSegue", sender: indexPath)
+        performSegue(withIdentifier: "UpdatesDetailSegue", sender: indexPath)
     }
     
 }
