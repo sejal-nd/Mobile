@@ -14,8 +14,13 @@ class UpdatesViewModelTests: XCTestCase {
     var viewModel: UpdatesViewModel!
     let disposeBag = DisposeBag()
     
-    func testFetchDataSuccess() {
+    override func setUp() {
+        super.setUp()
+        
         viewModel = UpdatesViewModel(alertsService: MockAlertsService())
+    }
+    
+    func testFetchDataSuccess() {
         viewModel.fetchData()
         
         let expect = expectation(description: "wait for callbacks")
@@ -31,7 +36,6 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testFetchDataErrors() {
-        viewModel = UpdatesViewModel(alertsService: MockAlertsService())
         viewModel.fetchData()
         
         let expect1 = expectation(description: "wait for callbacks")
@@ -45,34 +49,10 @@ class UpdatesViewModelTests: XCTestCase {
         waitForExpectations(timeout: 2) { error in
             XCTAssertNil(error, "timeout")
         }
-        
-        // Opco updates failure
-        viewModel = UpdatesViewModel(alertsService: MockAlertsService())
-        viewModel.fetchData()
-        
-        let expect2 = expectation(description: "wait for callbacks")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            XCTAssertNil(self.viewModel.currentOpcoUpdates.value, "currentOpcoUpdates should be nil")
-            XCTAssertFalse(self.viewModel.isFetchingUpdates.value, "isFetchingUpdates should be false")
-            XCTAssert(self.viewModel.isUpdatesError.value, "isUpdatesError should be true")
-            expect2.fulfill()
-        }
-        
-        waitForExpectations(timeout: 2) { error in
-            XCTAssertNil(error, "timeout")
-        }
-        
+
     }
     
     func testShouldShowLoadingIndicator() {
-        viewModel = UpdatesViewModel(alertsService: MockAlertsService())
-        viewModel.shouldShowLoadingIndicator.asObservable().take(1).subscribe(onNext: { show in
-            if !show {
-                XCTFail("Loading indicator should show when Alerts tab is selected while fetching account detail")
-            }
-        }).disposed(by: disposeBag)
-        
-        viewModel.selectedSegmentIndex.value = 1
         viewModel.isFetchingUpdates.value = true
         viewModel.shouldShowLoadingIndicator.asObservable().take(1).subscribe(onNext: { show in
             if !show {
@@ -82,14 +62,6 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testShouldShowErrorLabel() {
-        viewModel = UpdatesViewModel(alertsService: MockAlertsService())
-        viewModel.shouldShowErrorLabel.asObservable().take(1).subscribe(onNext: { show in
-            if !show {
-                XCTFail("Error label should show when Alerts tab is selected and fetching account detail failed")
-            }
-        }).disposed(by: disposeBag)
-        
-        viewModel.selectedSegmentIndex.value = 1
         viewModel.isUpdatesError.value = true
         viewModel.shouldShowErrorLabel.asObservable().take(1).subscribe(onNext: { show in
             if !show {
@@ -99,7 +71,6 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testShouldShowUpdatesTableView() {
-        viewModel = UpdatesViewModel(alertsService: MockAlertsService())
         viewModel.isFetchingUpdates.value = false
         viewModel.isUpdatesError.value = false
         viewModel.shouldShowTableView.asObservable().take(1).subscribe(onNext: { show in
@@ -110,7 +81,6 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testShouldShowUpdatesEmptyState() {
-        viewModel = UpdatesViewModel(alertsService: MockAlertsService())
         viewModel.isFetchingUpdates.value = false
         viewModel.isUpdatesError.value = false
         viewModel.currentOpcoUpdates.value = [OpcoUpdate]()
