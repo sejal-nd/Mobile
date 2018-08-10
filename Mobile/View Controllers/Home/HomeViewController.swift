@@ -368,8 +368,6 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: usageCardView.disposeBag)
         
-        viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: usageCardView.disposeBag)
-        
         usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))

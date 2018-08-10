@@ -40,7 +40,7 @@ class UsageViewModel {
     }
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
-        .combineLatest(accountDetailEvents.elements().filter { $0.hasUsageData },
+        .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
                        lastYearPreviousBillSelectedSegmentIndex.asObservable(),
                        electricGasSelectedSegmentIndex.asObservable())
         .toAsyncRequest { [unowned self] (accountDetail, yearsIndex, electricGasIndex) in
@@ -147,12 +147,12 @@ class UsageViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showNoUsageDataState: Driver<Void> = accountDetailEvents
-        .filter { !($0.element?.hasUsageData ?? true) }
+        .filter { !($0.element?.isEligibleForUsageData ?? true) }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMainContents: Driver<Void> = accountDetailEvents
-        .filter { $0.element?.hasUsageData ?? false }
+        .filter { $0.element?.isEligibleForUsageData ?? false }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -1029,7 +1029,7 @@ class UsageViewModel {
     // MARK: - Usage Tools
     
     private(set) lazy var usageTools: Driver<[UsageTool]> = accountDetail
-        .filter { $0.hasUsageData }
+        .filter { $0.isEligibleForUsageData }
         .map { accountDetail in
             var usageTools: [UsageTool] = [.usageData, .energyTips, .homeProfile]
             
@@ -1094,17 +1094,6 @@ class UsageViewModel {
                 
                 cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas] = newValue
             }
-        }
-    }
-}
-
-fileprivate extension AccountDetail {
-    var hasUsageData: Bool {
-        switch serviceType {
-        case "GAS", "ELECTRIC", "GAS/ELECTRIC":
-            return premiseNumber != nil && isResidential && !isBGEControlGroup && !isFinaled
-        default:
-            return false
         }
     }
 }

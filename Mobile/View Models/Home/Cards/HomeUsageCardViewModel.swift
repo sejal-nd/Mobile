@@ -131,6 +131,16 @@ class HomeUsageCardViewModel {
         return !$0 && !$1 && !$2
     }
     
+    private(set) lazy var showEmptyState: Driver<Bool> = accountDetailEvents.elements()
+        .map { accountDetail in
+            if accountDetail.isBGEControlGroup {
+                return accountDetail.isSERAccount // BGE Control Group + SER enrollment get the SER graph on usage card
+            }
+            
+            return !accountDetail.isEligibleForUsageData
+        }
+        .asDriver(onErrorDriveWith: .empty())
+    
     private(set) lazy var shouldShowBillComparisonEmptyState: Driver<Bool> = Driver.combineLatest(self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()),
                                                                                                   self.shouldShowSmartEnergyRewards,
                                                                                                   self.shouldShowSmartEnergyEmptyState) {

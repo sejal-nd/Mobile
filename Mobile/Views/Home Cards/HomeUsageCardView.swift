@@ -59,6 +59,8 @@ class HomeUsageCardView: UIView {
     
     @IBOutlet private weak var comparisonLoadingView: UIView!
     
+    @IBOutlet private weak var unavailableView: UIStackView!
+    
     // Not currently using errorView -- we'll show billComparisonEmptyStateView if any errors occur
     @IBOutlet private weak var errorView: UIView!
     @IBOutlet private weak var errorLabel: UILabel!
