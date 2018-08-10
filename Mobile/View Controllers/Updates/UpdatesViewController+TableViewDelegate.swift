@@ -15,12 +15,9 @@ extension UpdatesViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UpdatesTableViewCell", for: indexPath) as? UpdatesTableViewCell else { return UITableViewCell() }
-        
-        cell.titleLabel.text = viewModel.currentOpcoUpdates.value![indexPath.section].title
-        cell.detailLabel.text = viewModel.currentOpcoUpdates.value![indexPath.section].message
-        
-        cell.innerContentView.accessibilityLabel = "\(cell.titleLabel.text ?? ""): \(cell.detailLabel.text ?? "")"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UpdatesTableViewCell", for: indexPath) as? UpdatesTableViewCell, let opcoUpdates = viewModel.currentOpcoUpdates.value else { return UITableViewCell() }
+
+        cell.configure(title: opcoUpdates[indexPath.row].title, detail: opcoUpdates[indexPath.row].message)
         
         return cell
     }

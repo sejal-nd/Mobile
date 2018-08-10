@@ -47,39 +47,11 @@ class UnauthenticatedUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // NEW
         tableView.register(UINib(nibName: "TitleTableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TitleTableViewHeaderView")
         tableView.register(UINib(nibName: "HairlineFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: "HairlineFooterView")
         tableView.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
 
-        
-        
-        
-        
-        
-        
-        
-        // OLD
-        
-        
         view.backgroundColor = .primaryColor
-
-//        scrollView.indicatorStyle = .white
-//        loginRegisterButton.titleLabel!.font =  OpenSans.bold.of(textStyle: .title1)
-//        textLabel.font =  OpenSans.regular.of(textStyle: .subheadline)
-
-//        let animationView = LOTAnimationView(name: "uu_otp")
-//        animationView.frame = CGRect(x: 0, y: 0, width: 230, height: 180)
-//        animationView.contentMode = .scaleAspectFill
-//        animationView.loopAnimation = true
-
-//        lottieView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//
-//        lottieView.addSubview(animationView)
-        
-//        animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//
-//        animationView.play()
 
         accessibilitySetup()
     }
@@ -102,16 +74,8 @@ class UnauthenticatedUserViewController: UIViewController {
     }
 
     private func accessibilitySetup() {
-//        lottieView.isAccessibilityElement = true
-//        lottieView.accessibilityLabel = NSLocalizedString("Animation showing home screen payment", comment: "")
-//
-//        textLabel.accessibilityLabel = textLabel.text
-//
-//        reportAnOutageButton.accessibilityLabel = NSLocalizedString("Report an outage", comment: "")
-//        checkMyOutageStatusButton.accessibilityLabel = NSLocalizedString("Check my outage status", comment: "")
-//        viewOutageMapButton.accessibilityLabel = NSLocalizedString("View outage map", comment: "")
-//        contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
-//        policiesTermsButton.accessibilityLabel = NSLocalizedString("Policies and terms", comment: "")
+        headerViewTitleLabel.accessibilityLabel = headerViewTitleLabel.text
+        headerViewDescriptionLabel.accessibilityLabel = headerViewDescriptionLabel.text
     }
 
     @objc private func loginRegisterPress(_ sender: UIButton) {

@@ -55,4 +55,14 @@ class UpdatesTableViewCell: UITableViewCell {
         }
     }
     
+    
+    // MARK: - Configure
+    
+    public func configure(title: String?, detail: String?) {
+        titleLabel.text = title
+        detailLabel.text = detail
+        
+        innerContentView.accessibilityLabel = "\(titleLabel.text ?? ""): \(detailLabel.text ?? "")"
+    }
+    
 }

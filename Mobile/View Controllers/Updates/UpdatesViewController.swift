@@ -42,10 +42,9 @@ class UpdatesViewController: UIViewController {
         super.viewWillAppear(animated)
 
         guard let navController = navigationController as? MainBaseNavigationController else {
-            print("NO NAV FOUND")
             return
         }
-        print("NAV FOUND")
+
         navController.setColoredNavBar()
     }
 

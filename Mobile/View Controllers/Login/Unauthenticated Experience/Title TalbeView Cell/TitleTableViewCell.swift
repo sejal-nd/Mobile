@@ -57,6 +57,9 @@ class TitleTableViewCell: UITableViewCell {
         // Set
         iconImageView.image = image
         titleLabel.text = text
+        
+        // Accessibility
+        titleLabel.accessibilityLabel = titleLabel.text
     }
     
 }
