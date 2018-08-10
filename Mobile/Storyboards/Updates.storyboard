@@ -22,6 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AcC-US-RSo">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoQ-mT-X4P" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -134,7 +138,10 @@ this time.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="n03-O6-o1d" firstAttribute="centerX" secondItem="j6f-Fr-HTs" secondAttribute="centerX" id="21M-8W-eLz"/>
+                            <constraint firstItem="AcC-US-RSo" firstAttribute="top" secondItem="nQ6-wK-YXr" secondAttribute="bottom" id="2ny-t7-uP5"/>
                             <constraint firstItem="aUr-aO-Ksm" firstAttribute="centerY" secondItem="j6f-Fr-HTs" secondAttribute="centerY" id="3Sr-Sv-1Z1"/>
+                            <constraint firstItem="AcC-US-RSo" firstAttribute="leading" secondItem="qw1-hg-sqK" secondAttribute="leading" id="41S-c9-rqY"/>
+                            <constraint firstItem="0E1-n3-k0e" firstAttribute="top" secondItem="AcC-US-RSo" secondAttribute="bottom" id="BnO-IJ-FEq"/>
                             <constraint firstItem="UoQ-mT-X4P" firstAttribute="top" secondItem="kl7-Em-rmR" secondAttribute="top" id="ErW-Hc-ANi"/>
                             <constraint firstAttribute="trailing" secondItem="UoQ-mT-X4P" secondAttribute="trailing" id="MKf-ye-cQE"/>
                             <constraint firstItem="UoQ-mT-X4P" firstAttribute="leading" secondItem="kl7-Em-rmR" secondAttribute="leading" id="N86-Ga-f7y"/>
@@ -148,6 +155,7 @@ this time.</string>
                             <constraint firstItem="RVE-ew-9bC" firstAttribute="centerX" secondItem="j6f-Fr-HTs" secondAttribute="centerX" id="tPG-Vi-SOL"/>
                             <constraint firstItem="j6f-Fr-HTs" firstAttribute="top" secondItem="nQ6-wK-YXr" secondAttribute="bottom" id="toe-jx-4dp"/>
                             <constraint firstAttribute="trailing" secondItem="RVE-ew-9bC" secondAttribute="trailing" priority="999" constant="29" id="ufD-h2-BVh"/>
+                            <constraint firstItem="AcC-US-RSo" firstAttribute="trailing" secondItem="qw1-hg-sqK" secondAttribute="trailing" id="xy8-93-tzJ"/>
                             <constraint firstAttribute="trailing" secondItem="j6f-Fr-HTs" secondAttribute="trailing" id="yFX-t9-A6M"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qw1-hg-sqK"/>
@@ -156,6 +164,7 @@ this time.</string>
                         <barButtonItem key="backBarButtonItem" title="Back" id="0jV-Xa-4Xd"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="backgroundView" destination="AcC-US-RSo" id="uFs-BI-Otj"/>
                         <outlet property="errorLabel" destination="RVE-ew-9bC" id="uhM-8x-cGB"/>
                         <outlet property="loadingIndicator" destination="aUr-aO-Ksm" id="dE9-iu-J3T"/>
                         <outlet property="noNetworkConnectionView" destination="UoQ-mT-X4P" id="xo9-dF-FPj"/>

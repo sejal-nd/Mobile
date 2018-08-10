@@ -13,6 +13,7 @@ class UpdatesViewController: UIViewController {
 
     let disposeBag = DisposeBag()
 
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
 
     @IBOutlet weak var updatesTableView: UITableView!
@@ -24,18 +25,16 @@ class UpdatesViewController: UIViewController {
 
     //override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
 
-    let viewModel = UpdatesViewModel(accountService: ServiceFactory.createAccountService(), alertsService: ServiceFactory.createAlertsService())
+    let viewModel = UpdatesViewModel(alertsService: ServiceFactory.createAlertsService())
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .softGray
-        
-        //updatesTableView.backgroundColor = .softGray
-        //updatesTableView.contentInset = UIEdgeInsetsMake(22, 0, 22, 0)
-
         styleViews()
+        
         bindViewModel()
+        
+        viewModel.fetchData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +48,12 @@ class UpdatesViewController: UIViewController {
     }
 
     private func styleViews() {
+        view.backgroundColor = .primaryColor
+        
+        backgroundView.backgroundColor = .softGray
+        
+        updatesTableView.contentInset = UIEdgeInsetsMake(22, 0, 22, 0)
+        
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
@@ -78,13 +83,11 @@ class UpdatesViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
 
-    @objc func onUpdateCellTap(sender: ButtonControl) {
-        performSegue(withIdentifier: "opcoUpdateDetailSegue", sender: sender) // this should be moved into did select row
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? OpcoUpdateDetailViewController, let button = sender as? ButtonControl {
-            vc.opcoUpdate = viewModel.currentOpcoUpdates.value![button.tag]
+        if let vc = segue.destination as? OpcoUpdateDetailViewController,
+            let opcoUpdates = viewModel.currentOpcoUpdates.value,
+            let indexPath = sender as? IndexPath {
+            vc.opcoUpdate = opcoUpdates[indexPath.row]
         }
     }
 
@@ -120,14 +123,17 @@ extension UpdatesViewController: UITableViewDataSource, UITableViewDelegate {
             cell.titleLabel.text = viewModel.currentOpcoUpdates.value![indexPath.section].title
             cell.detailLabel.text = viewModel.currentOpcoUpdates.value![indexPath.section].message
 
-            cell.innerContentView.tag = indexPath.section
-            cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
-            cell.innerContentView.addTarget(self, action: #selector(onUpdateCellTap(sender:)), for: .touchUpInside)
-
             cell.innerContentView.accessibilityLabel = "\(cell.titleLabel.text ?? ""): \(cell.detailLabel.text ?? "")"
 
             return cell
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("did select row")
+        
+        performSegue(withIdentifier: "opcoUpdateDetailSegue", sender: indexPath)
+    }
+    
 }
