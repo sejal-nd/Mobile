@@ -105,13 +105,5 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         
         return headerView
     }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "HairlineFooterView")
-    }
-    
+        
 }

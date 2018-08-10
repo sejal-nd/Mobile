@@ -25,22 +25,12 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5hB-AG-eMJ">
-                            <rect key="frame" x="48" y="59.5" width="327" height="0.5"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="0.5" id="e8p-oL-BsK"/>
-                            </constraints>
-                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="CSu-oY-TAT" firstAttribute="bottom" secondItem="aiE-BC-TeO" secondAttribute="bottom" constant="15" id="Cp3-wF-Vgb"/>
                         <constraint firstItem="CSu-oY-TAT" firstAttribute="trailing" secondItem="aiE-BC-TeO" secondAttribute="trailing" constant="16" id="Eaw-jq-PgQ"/>
                         <constraint firstItem="aiE-BC-TeO" firstAttribute="top" secondItem="CSu-oY-TAT" secondAttribute="top" constant="15" id="LPZ-hm-i5z"/>
-                        <constraint firstAttribute="trailing" secondItem="5hB-AG-eMJ" secondAttribute="trailing" id="NSJ-hv-Zov"/>
-                        <constraint firstItem="CSu-oY-TAT" firstAttribute="bottom" secondItem="5hB-AG-eMJ" secondAttribute="bottom" id="XOg-8J-QQD"/>
-                        <constraint firstItem="5hB-AG-eMJ" firstAttribute="leading" secondItem="CSu-oY-TAT" secondAttribute="leading" constant="48" id="c5f-Nh-zW8"/>
                         <constraint firstItem="aiE-BC-TeO" firstAttribute="leading" secondItem="CSu-oY-TAT" secondAttribute="leading" constant="16" id="oYu-E0-hBg"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="CSu-oY-TAT"/>
