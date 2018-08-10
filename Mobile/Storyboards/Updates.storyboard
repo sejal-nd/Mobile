@@ -33,28 +33,28 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="90" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="j6f-Fr-HTs">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="103" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j6f-Fr-HTs">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpdatesCell" rowHeight="87" id="A3J-ak-h8f" customClass="UpdatesTableViewCell" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="87"/>
+                                    <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpdatesTableViewCell" rowHeight="103" id="A3J-ak-h8f" customClass="UpdatesTableViewCell" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A3J-ak-h8f" id="LwI-Qi-ZXZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A3J-ak-h8f" id="LwI-Qi-ZXZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvy-qI-yZp" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="23" y="0.0" width="329" height="86.5"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvy-qI-yZp">
+                                                    <rect key="frame" x="16" y="8" width="343" height="87"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgL-1G-sUI">
-                                                            <rect key="frame" x="17" y="14" width="295" height="21"/>
+                                                            <rect key="frame" x="17" y="14" width="309" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sF-eG-yAm">
-                                                            <rect key="frame" x="17" y="47" width="295" height="21"/>
+                                                            <rect key="frame" x="17" y="47" width="309" height="21.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -71,17 +71,14 @@
                                                         <constraint firstItem="3sF-eG-yAm" firstAttribute="top" secondItem="IgL-1G-sUI" secondAttribute="bottom" constant="12" id="gY5-5Z-01M"/>
                                                         <constraint firstItem="3sF-eG-yAm" firstAttribute="leading" secondItem="mvy-qI-yZp" secondAttribute="leading" constant="17" id="qKe-My-GRJ"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="NO"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="mvy-qI-yZp" secondAttribute="trailing" priority="999" constant="23" id="0DH-eu-3kS"/>
-                                                <constraint firstItem="mvy-qI-yZp" firstAttribute="top" secondItem="LwI-Qi-ZXZ" secondAttribute="top" id="QBv-TH-F3j"/>
+                                                <constraint firstAttribute="trailing" secondItem="mvy-qI-yZp" secondAttribute="trailing" priority="999" constant="16" id="0DH-eu-3kS"/>
+                                                <constraint firstItem="mvy-qI-yZp" firstAttribute="top" secondItem="LwI-Qi-ZXZ" secondAttribute="top" constant="8" id="QBv-TH-F3j"/>
                                                 <constraint firstItem="mvy-qI-yZp" firstAttribute="centerX" secondItem="LwI-Qi-ZXZ" secondAttribute="centerX" id="clh-yi-bFG"/>
-                                                <constraint firstAttribute="bottom" secondItem="mvy-qI-yZp" secondAttribute="bottom" id="fXW-vt-lal"/>
-                                                <constraint firstItem="mvy-qI-yZp" firstAttribute="leading" secondItem="LwI-Qi-ZXZ" secondAttribute="leading" priority="999" constant="23" id="kVq-Lq-ZT1"/>
+                                                <constraint firstAttribute="bottom" secondItem="mvy-qI-yZp" secondAttribute="bottom" constant="8" id="fXW-vt-lal"/>
+                                                <constraint firstItem="mvy-qI-yZp" firstAttribute="leading" secondItem="LwI-Qi-ZXZ" secondAttribute="leading" priority="999" constant="16" id="kVq-Lq-ZT1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -92,8 +89,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="EcT-cO-uQ4" id="WVr-NY-Phb"/>
-                                    <outlet property="delegate" destination="EcT-cO-uQ4" id="BMg-hg-OUe"/>
+                                    <outlet property="dataSource" destination="EcT-cO-uQ4" id="Owo-ey-lbs"/>
+                                    <outlet property="delegate" destination="EcT-cO-uQ4" id="YvH-UG-Lms"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="aUr-aO-Ksm" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
@@ -168,9 +165,9 @@ this time.</string>
                         <outlet property="errorLabel" destination="RVE-ew-9bC" id="uhM-8x-cGB"/>
                         <outlet property="loadingIndicator" destination="aUr-aO-Ksm" id="dE9-iu-J3T"/>
                         <outlet property="noNetworkConnectionView" destination="UoQ-mT-X4P" id="xo9-dF-FPj"/>
+                        <outlet property="tableView" destination="j6f-Fr-HTs" id="l1p-K4-Qlw"/>
                         <outlet property="updatesEmptyStateLabel" destination="QF1-4c-nJU" id="wfo-8g-JYe"/>
                         <outlet property="updatesEmptyStateView" destination="n03-O6-o1d" id="yQX-uE-wzS"/>
-                        <outlet property="updatesTableView" destination="j6f-Fr-HTs" id="bWy-DO-Nrd"/>
                         <segue destination="dNE-Ye-q3O" kind="show" identifier="opcoUpdateDetailSegue" id="dZx-l7-ndf"/>
                     </connections>
                 </viewController>

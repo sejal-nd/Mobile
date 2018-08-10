@@ -234,6 +234,7 @@
 		35A6C6E2211CC16C00C2A58F /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6DD211CC0C900C2A58F /* UpdatesViewController.swift */; };
 		35A6C6E3211CC17100C2A58F /* Updates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6DF211CC11E00C2A58F /* Updates.storyboard */; };
 		35A6C6E4211CC17100C2A58F /* Updates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6DF211CC11E00C2A58F /* Updates.storyboard */; };
+		35A6C6E6211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6E5211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift */; };
 		35ACCB4320EA590D0022907F /* HomeOutageCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */; };
 		35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACCB4420EA5ECE0022907F /* HomeOutageCardView.swift */; };
 		35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */; };
@@ -2301,6 +2302,7 @@
 		35A6C6DA211CC09C00C2A58F /* UpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesViewModel.swift; sourceTree = "<group>"; };
 		35A6C6DD211CC0C900C2A58F /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
 		35A6C6DF211CC11E00C2A58F /* Updates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Updates.storyboard; sourceTree = "<group>"; };
+		35A6C6E5211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdatesViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeOutageCardView.xib; sourceTree = "<group>"; };
 		35ACCB4420EA5ECE0022907F /* HomeOutageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutageCardView.swift; sourceTree = "<group>"; };
 		35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutageCardViewModel.swift; sourceTree = "<group>"; };
@@ -3372,6 +3374,7 @@
 			isa = PBXGroup;
 			children = (
 				35A6C6DD211CC0C900C2A58F /* UpdatesViewController.swift */,
+				35A6C6E5211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift */,
 				E83F027E1FB247B30062A348 /* OpcoUpdateDetailViewController.swift */,
 			);
 			path = Updates;
@@ -6447,6 +6450,7 @@
 				E8C453271EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				E8039FF31EFB040E004DB789 /* OMCPaymentService.swift in Sources */,
+				35A6C6E6211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */,
 				B0882CAD210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				E87C41431FAB6D0400448F86 /* AlertPreferencesViewController.swift in Sources */,
 				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
