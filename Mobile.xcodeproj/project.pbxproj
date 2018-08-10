@@ -1370,9 +1370,9 @@
 		E83F027B1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */; };
 		E83F027C1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */; };
 		E83F027D1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */; };
-		E83F027F1FB247B30062A348 /* OpcoUpdateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F027E1FB247B30062A348 /* OpcoUpdateDetailViewController.swift */; };
-		E83F02801FB247B30062A348 /* OpcoUpdateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F027E1FB247B30062A348 /* OpcoUpdateDetailViewController.swift */; };
-		E83F02811FB247B30062A348 /* OpcoUpdateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F027E1FB247B30062A348 /* OpcoUpdateDetailViewController.swift */; };
+		E83F027F1FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F027E1FB247B30062A348 /* UpdatesDetailViewController.swift */; };
+		E83F02801FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F027E1FB247B30062A348 /* UpdatesDetailViewController.swift */; };
+		E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F027E1FB247B30062A348 /* UpdatesDetailViewController.swift */; };
 		E83F02831FB380700062A348 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83F02821FB380700062A348 /* UserNotifications.framework */; };
 		E83F02841FB380770062A348 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83F02821FB380700062A348 /* UserNotifications.framework */; };
 		E83F02851FB3807D0062A348 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83F02821FB380700062A348 /* UserNotifications.framework */; };
@@ -2795,7 +2795,7 @@
 		E83F026F1FB0B9E10062A348 /* AlertPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferences.swift; sourceTree = "<group>"; };
 		E83F02741FB0BFD20062A348 /* OMCAlertsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMCAlertsService.swift; sourceTree = "<group>"; };
 		E83F02791FB21B7B0062A348 /* OpcoUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoUpdate.swift; sourceTree = "<group>"; };
-		E83F027E1FB247B30062A348 /* OpcoUpdateDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpcoUpdateDetailViewController.swift; sourceTree = "<group>"; };
+		E83F027E1FB247B30062A348 /* UpdatesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesDetailViewController.swift; sourceTree = "<group>"; };
 		E83F02821FB380700062A348 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		E8400E611FE05E8B0064E242 /* AddBankFormViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBankFormViewModelTests.swift; sourceTree = "<group>"; };
 		E8400E631FE05ED70064E242 /* MockWalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWalletService.swift; sourceTree = "<group>"; };
@@ -3375,7 +3375,7 @@
 			children = (
 				35A6C6DD211CC0C900C2A58F /* UpdatesViewController.swift */,
 				35A6C6E5211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift */,
-				E83F027E1FB247B30062A348 /* OpcoUpdateDetailViewController.swift */,
+				E83F027E1FB247B30062A348 /* UpdatesDetailViewController.swift */,
 			);
 			path = Updates;
 			sourceTree = "<group>";
@@ -6372,7 +6372,7 @@
 				8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */,
 				82BE057F1ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
-				E83F027F1FB247B30062A348 /* OpcoUpdateDetailViewController.swift in Sources */,
+				E83F027F1FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
 				B0AD7FEE205841C80090B40D /* SequenceForEach.swift in Sources */,
 				E803A0001EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
@@ -6710,7 +6710,7 @@
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
-				E83F02811FB247B30062A348 /* OpcoUpdateDetailViewController.swift in Sources */,
+				E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
 				B0AD7FF0205841C80090B40D /* SequenceForEach.swift in Sources */,
 				E887C9F41ED5D367002433A3 /* CardIO.m in Sources */,
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
@@ -7051,7 +7051,7 @@
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				8FD5AE871E54EA49003F640D /* LandingViewController.swift in Sources */,
-				E83F02801FB247B30062A348 /* OpcoUpdateDetailViewController.swift in Sources */,
+				E83F02801FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
 				B0AD7FEF205841C80090B40D /* SequenceForEach.swift in Sources */,
 				E887C9F31ED5D367002433A3 /* CardIO.m in Sources */,
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,

@@ -91,7 +91,7 @@ class UpdatesViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? OpcoUpdateDetailViewController,
+        if let vc = segue.destination as? UpdatesDetailViewController,
             let opcoUpdates = viewModel.currentOpcoUpdates.value,
             let indexPath = sender as? IndexPath {
             vc.opcoUpdate = opcoUpdates[indexPath.row]

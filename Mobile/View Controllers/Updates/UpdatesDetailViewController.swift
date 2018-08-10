@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OpcoUpdateDetailViewController: UIViewController {
+class UpdatesDetailViewController: UIViewController {
     
     @IBOutlet weak var label: UILabel!
     

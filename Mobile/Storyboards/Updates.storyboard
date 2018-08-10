@@ -175,10 +175,10 @@ this time.</string>
             </objects>
             <point key="canvasLocation" x="1440.8" y="694.90254872563719"/>
         </scene>
-        <!--Opco Update Detail View Controller-->
+        <!--Updates Detail View Controller-->
         <scene sceneID="ACn-Jg-CfR">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="dNE-Ye-q3O" customClass="OpcoUpdateDetailViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="dNE-Ye-q3O" customClass="UpdatesDetailViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DDo-83-Wok"/>
                         <viewControllerLayoutGuide type="bottom" id="3MU-Na-WKv"/>
