@@ -51,7 +51,6 @@ class UnauthenticatedUserViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: "TitleTableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TitleTableViewHeaderView")
-        tableView.register(UINib(nibName: "HairlineFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: "HairlineFooterView")
         tableView.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
 
         view.backgroundColor = .primaryColor
