@@ -36,7 +36,7 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testFetchDataErrors() {
-        viewModel.fetchData()
+        viewModel.fetchData(shouldSucceed: false)
         
         let expect1 = expectation(description: "wait for callbacks")
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {

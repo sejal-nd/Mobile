@@ -65,7 +65,7 @@ protocol AlertsService {
     /// - Parameters:
     ///   - accountDetail: The account detail object - used for filtering the updates for specific program enrollments
     ///   - completion: the completion block to execute upon completion.
-    func fetchOpcoUpdates(completion: @escaping (_ result: ServiceResult<[OpcoUpdate]>) -> Void)
+    func fetchOpcoUpdates(shouldSucceed: Bool, completion: @escaping (_ result: ServiceResult<[OpcoUpdate]>) -> Void)
 }
 
 // MARK: - Reactive Extension to AlertsService
@@ -160,9 +160,9 @@ extension AlertsService {
         }
     }
     
-    func fetchOpcoUpdates() -> Observable<[OpcoUpdate]> {
+    func fetchOpcoUpdates(shouldSucceed: Bool = true) -> Observable<[OpcoUpdate]> {
         return Observable.create { observer in
-            self.fetchOpcoUpdates(completion: { (result: ServiceResult<[OpcoUpdate]>) in
+            self.fetchOpcoUpdates(shouldSucceed: shouldSucceed, completion: { (result: ServiceResult<[OpcoUpdate]>) in
                 switch result {
                 case ServiceResult.success(let opcoUpdates):
                     observer.onNext(opcoUpdates)
