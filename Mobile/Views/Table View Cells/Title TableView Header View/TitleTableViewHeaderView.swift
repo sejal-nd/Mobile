@@ -18,8 +18,6 @@ class TitleTableViewHeaderView: UITableViewHeaderFooterView {
         }
     }
     
-    public var identifier = "TitleTableViewHeaderView" // currently unused
-
     
     // MARK: - Configuration
     

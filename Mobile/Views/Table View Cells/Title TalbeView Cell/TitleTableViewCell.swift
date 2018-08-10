@@ -16,42 +16,37 @@ class TitleTableViewCell: UITableViewCell {
             titleLabel.textColor = .white
         }
     }
+
     
-    public var identifier = "TitleTableViewCell" // currently unused
+    // MARK: - Cell Selection
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        let selectedColorView = UIView()
-        selectedColorView.backgroundColor = .red
-        
-        selectedBackgroundView = selectedColorView
-        print("Set selected")
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
+        if selected {
+            backgroundColor = UIColor.primaryColor.darker(by: 10)
+        } else {
+            backgroundColor = .primaryColor
+        }
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
+        
+        if highlighted {
+            backgroundColor = UIColor.primaryColor.darker(by: 10)
+        } else {
+            backgroundColor = .primaryColor
+        }
     }
+    
     
     // MARK: - Configure
     
     public func configure(image: UIImage?, text: String?) {
         // Style
         backgroundColor = .primaryColor
-        
-        let selectedColorView = UIView()
-        selectedColorView.backgroundColor = UIColor.primaryColor.darker(by: 10)
-        selectedBackgroundView = selectedColorView
-        
+
         accessoryView = UIImageView(image: UIImage(named: "ic_chevron"))
         
         // Set
