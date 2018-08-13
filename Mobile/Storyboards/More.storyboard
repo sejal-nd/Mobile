@@ -81,7 +81,6 @@
                         <outlet property="signOutButton" destination="82T-ES-k9e" id="Y2A-5I-mpO"/>
                         <outlet property="tableView" destination="XBu-Wr-l1z" id="r0Z-Nf-NoC"/>
                         <segue destination="6Py-2X-RBq" kind="show" identifier="termsPoliciesSegue" id="ydh-Rl-VlF"/>
-                        <segue destination="TZa-54-G4b" kind="show" identifier="settingsSegue" id="dL8-lh-q4P"/>
                         <segue destination="TYr-cP-fT5" kind="show" identifier="contactUsSegue" id="nKe-SQ-2Cl"/>
                         <segue destination="1Ud-0F-hFk" kind="show" identifier="alertsSegue" id="9Gs-Uf-JFh"/>
                         <segue destination="PMX-l8-y1R" kind="show" identifier="updatesSegue" id="eC9-NY-6lK"/>
@@ -469,50 +468,6 @@
             </objects>
             <point key="canvasLocation" x="3298" y="1406"/>
         </scene>
-        <!--Settings-->
-        <scene sceneID="2mB-1R-Nng">
-            <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="TZa-54-G4b" customClass="SettingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="k8c-4H-vZr"/>
-                        <viewControllerLayoutGuide type="bottom" id="AK0-u0-4ij"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hPW-e7-Nyg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kgs-F0-aTT">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="518" id="fzo-KB-I07"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="TZa-54-G4b" id="0Ze-iK-V8P"/>
-                                    <outlet property="delegate" destination="TZa-54-G4b" id="y2f-5B-ORt"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Kgs-F0-aTT" firstAttribute="centerX" secondItem="hPW-e7-Nyg" secondAttribute="centerX" id="0bu-O2-lSC"/>
-                            <constraint firstAttribute="topMargin" secondItem="Kgs-F0-aTT" secondAttribute="top" id="G95-7k-KWW"/>
-                            <constraint firstAttribute="trailing" secondItem="Kgs-F0-aTT" secondAttribute="trailing" priority="999" id="Gf9-Ne-rIG"/>
-                            <constraint firstItem="Kgs-F0-aTT" firstAttribute="leading" secondItem="hPW-e7-Nyg" secondAttribute="leading" priority="999" id="IKt-PT-eYu"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Kgs-F0-aTT" secondAttribute="bottom" id="w6d-dv-wH4"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" id="pd7-sU-KdH">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="eDV-TV-iCm"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="tableView" destination="Kgs-F0-aTT" id="WFr-EB-9gY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f0D-tb-eiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3156" y="2167"/>
-        </scene>
         <!--Release of Information-->
         <scene sceneID="JEW-uc-1tU">
             <objects>
@@ -582,7 +537,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XLF-n9-Uls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4252" y="1807"/>
+            <point key="canvasLocation" x="3297" y="3593"/>
         </scene>
         <!--Change Password-->
         <scene sceneID="9e3-Th-Q4n">
@@ -883,7 +838,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2A-zE-RJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4252" y="2503"/>
+            <point key="canvasLocation" x="3297" y="2139"/>
         </scene>
         <!--Default Account-->
         <scene sceneID="27j-Xl-aTB">
@@ -921,7 +876,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Le-LR-AKF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4252" y="3211"/>
+            <point key="canvasLocation" x="3297" y="2854"/>
         </scene>
         <!--Alerts-->
         <scene sceneID="Q7N-uo-lxU">
@@ -929,7 +884,7 @@
                 <viewControllerPlaceholder storyboardName="Alerts" id="1Ud-0F-hFk" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4WD-2e-WmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2463" y="621"/>
+            <point key="canvasLocation" x="3297" y="-96"/>
         </scene>
         <!--Updates-->
         <scene sceneID="G4z-h0-eeA">
@@ -937,7 +892,7 @@
                 <viewControllerPlaceholder storyboardName="Updates" id="PMX-l8-y1R" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZJZ-la-ENk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2657" y="781"/>
+            <point key="canvasLocation" x="3297" y="60"/>
         </scene>
         <!--Terms & Policies-->
         <scene sceneID="Y5c-le-Fkt">
@@ -972,7 +927,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFB-5r-VF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3156" y="645.42728635682158"/>
+            <point key="canvasLocation" x="3297" y="645"/>
         </scene>
     </scenes>
     <resources>
