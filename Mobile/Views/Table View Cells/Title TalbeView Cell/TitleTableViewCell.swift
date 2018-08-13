@@ -14,9 +14,16 @@ class TitleTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .white
+            titleLabel.font = SystemFont.medium.of(textStyle: .headline)
         }
     }
-
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        separatorInset = UIEdgeInsets(top: 0, left: 55, bottom: 0, right: 0)
+        accessoryView = UIImageView(image: #imageLiteral(resourceName: "ic_chevron"))
+        backgroundColor = .primaryColor
+    }
     
     // MARK: - Cell Selection
     
@@ -43,18 +50,9 @@ class TitleTableViewCell: UITableViewCell {
     
     // MARK: - Configure
     
-    public func configure(image: UIImage?, text: String?) {
-        // Style
-        backgroundColor = .primaryColor
-
-        accessoryView = UIImageView(image: UIImage(named: "ic_chevron"))
-        
-        // Set
+    public func configure(image: UIImage, text: String) {
         iconImageView.image = image
         titleLabel.text = text
-        
-        // Accessibility
-        titleLabel.accessibilityLabel = titleLabel.text
     }
     
 }

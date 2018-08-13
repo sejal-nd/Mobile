@@ -16,24 +16,24 @@ class UnauthenticatedUserViewController: UIViewController {
             headerView.backgroundColor = .primaryColor
         }
     }
-    @IBOutlet weak var headerContentView: UIView! {
+    
+    @IBOutlet weak var headerContentView: ButtonControl! {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
-            headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
-            
-            let tap = UITapGestureRecognizer(target: self, action: #selector(loginRegisterPress(_:)))
-            headerContentView.addGestureRecognizer(tap)
+            headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
+    
     @IBOutlet weak var headerViewTitleLabel: UILabel! {
         didSet {
-            headerViewTitleLabel.font = OpenSans.semibold.of(size: 16)
+            headerViewTitleLabel.font = OpenSans.semibold.of(textStyle: .headline)
             headerViewTitleLabel.textColor = .primaryColor
         }
     }
+    
     @IBOutlet weak var headerViewDescriptionLabel: UILabel! {
         didSet {
-            headerViewDescriptionLabel.font = OpenSans.regular.of(size: 12)
+            headerViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
             headerViewDescriptionLabel.textColor = .blackText
         }
     }
@@ -44,15 +44,20 @@ class UnauthenticatedUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: "TitleTableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TitleTableViewHeaderView")
-        tableView.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
+        tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
+        tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
 
         view.backgroundColor = .primaryColor
 
         accessibilitySetup()
+        
     }
 
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        headerView.frame.size = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        tableView.tableHeaderView = headerView
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -74,7 +79,7 @@ class UnauthenticatedUserViewController: UIViewController {
         headerViewDescriptionLabel.accessibilityLabel = headerViewDescriptionLabel.text
     }
 
-    @objc private func loginRegisterPress(_ sender: UIButton) {
+    @IBAction private func loginRegisterPress(_ sender: ButtonControl) {
         navigationController?.popViewController(animated: true)
     }
 
@@ -87,11 +92,11 @@ class UnauthenticatedUserViewController: UIViewController {
             switch(segue.identifier) {
             case "reportOutageValidateAccount"?:
                 Analytics.log(event: .reportAnOutageUnAuthOffer)
-                vc.analyticsSource = AnalyticsOutageSource.report
+                vc.analyticsSource = .report
                 break
             case "checkOutageValidateAccount"?:
                 Analytics.log(event: .outageStatusUnAuthOffer)
-                vc.analyticsSource = AnalyticsOutageSource.status
+                vc.analyticsSource = .status
                 break
             default:
                 break

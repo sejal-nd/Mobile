@@ -13,14 +13,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="TitleTableViewHeaderView" id="iN0-l3-epB" customClass="TitleTableViewHeaderView" customModule="BGE" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fA-V3-R0X">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aiE-BC-TeO">
-                            <rect key="frame" x="16" y="15" width="343" height="30"/>
+                            <rect key="frame" x="16" y="31.5" width="42" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -28,9 +28,8 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="CSu-oY-TAT" firstAttribute="bottom" secondItem="aiE-BC-TeO" secondAttribute="bottom" constant="15" id="Cp3-wF-Vgb"/>
-                        <constraint firstItem="CSu-oY-TAT" firstAttribute="trailing" secondItem="aiE-BC-TeO" secondAttribute="trailing" constant="16" id="Eaw-jq-PgQ"/>
-                        <constraint firstItem="aiE-BC-TeO" firstAttribute="top" secondItem="CSu-oY-TAT" secondAttribute="top" constant="15" id="LPZ-hm-i5z"/>
+                        <constraint firstItem="CSu-oY-TAT" firstAttribute="bottom" secondItem="aiE-BC-TeO" secondAttribute="bottom" constant="10" id="Cp3-wF-Vgb"/>
+                        <constraint firstItem="CSu-oY-TAT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aiE-BC-TeO" secondAttribute="trailing" constant="16" id="Eaw-jq-PgQ"/>
                         <constraint firstItem="aiE-BC-TeO" firstAttribute="leading" secondItem="CSu-oY-TAT" secondAttribute="leading" constant="16" id="oYu-E0-hBg"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="CSu-oY-TAT"/>
