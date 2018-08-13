@@ -52,6 +52,8 @@ class UpdatesViewController: UIViewController {
     // MARK: - Helper
     
     private func styleViews() {
+        title = NSLocalizedString("Updates", comment: "")
+        
         view.backgroundColor = .primaryColor
         
         backgroundView.backgroundColor = .softGray

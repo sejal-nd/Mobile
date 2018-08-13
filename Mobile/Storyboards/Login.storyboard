@@ -290,6 +290,10 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                         <constraint firstItem="nya-tL-X6j" firstAttribute="leading" secondItem="GyY-zW-kSD" secondAttribute="leading" constant="16" id="acM-9m-8ZD"/>
                                     </constraints>
                                 </view>
+                                <connections>
+                                    <outlet property="dataSource" destination="Bzu-HN-7Zr" id="frB-C2-Snc"/>
+                                    <outlet property="delegate" destination="Bzu-HN-7Zr" id="ebd-A9-RWm"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.43137254901960786" green="0.72156862745098038" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2416,7 +2420,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-i6-eET">
-                                                                            <rect key="frame" x="0.0" y="15.5" width="291" height="22"/>
+                                                                            <rect key="frame" x="0.0" y="17" width="291" height="19"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
