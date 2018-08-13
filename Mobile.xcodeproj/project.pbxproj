@@ -3851,6 +3851,7 @@
 			isa = PBXGroup;
 			children = (
 				35A6C6BF211C7AB600C2A58F /* Title TalbeView Cell */,
+				35A6C6F82121D62D00C2A58F /* Toggle TableView Cell */,
 				35A6C6BC211C6FD100C2A58F /* Title TableView Header View */,
 				82E22B5B1F9FC798001F1A1B /* EnergyTipTableViewCell */,
 				826DCCF01F0E84EA0063D47E /* AdvancedAccountPickerTableViewCell */,
@@ -5125,7 +5126,6 @@
 		E8EEF7271E577781006804D4 /* More */ = {
 			isa = PBXGroup;
 			children = (
-				35A6C6F82121D62D00C2A58F /* Toggle TableView Cell */,
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
 				35A6C6F42121B58200C2A58F /* MoreViewController+TableViewDelegate.swift */,
 				22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */,
