@@ -46,7 +46,11 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 1:
                 return viewModel.isDeviceBiometricCompatible() ? 60 : 0
             case 2:
-                return (Environment.shared.opco == .bge && AccountsStore.shared.accounts.count > 1) ? 60 : 0
+                if AccountsStore.shared.accounts != nil {
+                    return (Environment.shared.opco == .bge && AccountsStore.shared.accounts.count > 1) ? 60 : 0
+                } else {
+                    return 0
+                }
             case 3:
                 return Environment.shared.opco == .peco ? 60 : 0
             default:
@@ -87,7 +91,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.configure(image: UIImage(named: "ic_morepassword"), text: "Change Password")
                 
-                if !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd && AccountsStore.shared.accounts.count == 1 {
+                if AccountsStore.shared.accounts != nil, !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd && AccountsStore.shared.accounts.count == 1 {
                     cell.separatorInset = UIEdgeInsets.zero
                     cell.preservesSuperviewLayoutMargins = false
                 }
@@ -96,7 +100,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 toggleCell.configure(viewController: self, viewModel: viewModel)
                 
-                if Environment.shared.opco == .bge && AccountsStore.shared.accounts.count == 1 || Environment.shared.opco == .comEd {
+                if AccountsStore.shared.accounts != nil, Environment.shared.opco == .bge && AccountsStore.shared.accounts.count == 1 || Environment.shared.opco == .comEd {
                     toggleCell.separatorInset = UIEdgeInsets.zero
                     toggleCell.preservesSuperviewLayoutMargins = false
                 }
@@ -105,7 +109,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 2:
                 cell.configure(image: UIImage(named: "ic_moredefault"), text: "Set Default Account")
                 
-                if AccountsStore.shared.accounts.count > 1 {
+                if AccountsStore.shared.accounts != nil, AccountsStore.shared.accounts.count > 1 {
                     cell.separatorInset = UIEdgeInsets.zero
                     cell.preservesSuperviewLayoutMargins = false
                 }
