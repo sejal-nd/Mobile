@@ -14,7 +14,6 @@ import ToastSwiftFramework
 class MoreViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var signOutButton: UIButton! {
         didSet {
             signOutButton.setTitleColor(.white, for: .normal)
@@ -110,6 +109,8 @@ class MoreViewController: UIViewController {
     
 }
 
+// MARK: - Change Password
+
 extension MoreViewController: ChangePasswordViewControllerDelegate {
     
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
@@ -120,6 +121,9 @@ extension MoreViewController: ChangePasswordViewControllerDelegate {
     }
     
 }
+
+
+// MARK: - Change PECO Release
 
 extension MoreViewController: PECOReleaseOfInfoViewControllerDelegate {
     

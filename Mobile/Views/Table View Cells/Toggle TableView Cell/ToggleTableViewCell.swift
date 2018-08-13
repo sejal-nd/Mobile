@@ -46,7 +46,7 @@ class ToggleTableViewCell: UITableViewCell {
         // Style
         backgroundColor = .primaryColor
         
-        // Set
+        // Set Data
         if viewModel.biometricsString() == "Face ID" {
             iconImageView.image = UIImage(named: "ic_morefaceid")
             titleLabel.text = "Face ID"
