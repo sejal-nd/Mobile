@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Alerts-->
+        <!--Updates-->
         <scene sceneID="hes-WX-eiU">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="EcT-cO-uQ4" customClass="UpdatesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Updates" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="EcT-cO-uQ4" customClass="UpdatesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nQ6-wK-YXr"/>
                         <viewControllerLayoutGuide type="bottom" id="0E1-n3-k0e"/>
@@ -138,7 +138,7 @@ this time.</string>
                             <constraint firstItem="AcC-US-RSo" firstAttribute="top" secondItem="nQ6-wK-YXr" secondAttribute="bottom" id="2ny-t7-uP5"/>
                             <constraint firstItem="aUr-aO-Ksm" firstAttribute="centerY" secondItem="j6f-Fr-HTs" secondAttribute="centerY" id="3Sr-Sv-1Z1"/>
                             <constraint firstItem="AcC-US-RSo" firstAttribute="leading" secondItem="qw1-hg-sqK" secondAttribute="leading" id="41S-c9-rqY"/>
-                            <constraint firstItem="0E1-n3-k0e" firstAttribute="top" secondItem="AcC-US-RSo" secondAttribute="bottom" id="BnO-IJ-FEq"/>
+                            <constraint firstAttribute="bottom" secondItem="AcC-US-RSo" secondAttribute="bottom" id="BnO-IJ-FEq"/>
                             <constraint firstItem="UoQ-mT-X4P" firstAttribute="top" secondItem="kl7-Em-rmR" secondAttribute="top" id="ErW-Hc-ANi"/>
                             <constraint firstAttribute="trailing" secondItem="UoQ-mT-X4P" secondAttribute="trailing" id="MKf-ye-cQE"/>
                             <constraint firstItem="UoQ-mT-X4P" firstAttribute="leading" secondItem="kl7-Em-rmR" secondAttribute="leading" id="N86-Ga-f7y"/>
