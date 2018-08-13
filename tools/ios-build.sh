@@ -187,7 +187,7 @@ elif [ "$CONFIGURATION" == "Release" ]; then
 	fi
 	target_app_name="$OPCO"
 	target_icon_asset="tools/$OPCO/release"
-	target_scheme="$OPCO-PROD"
+	target_scheme="$OPCO-RELEASE"
 	target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
 else
 	echo "Invalid argument: configuration"
