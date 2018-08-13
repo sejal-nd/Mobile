@@ -91,6 +91,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.configure(image: UIImage(named: "ic_morepassword"), text: "Change Password")
                 
+                // Modifies seperator insets if its the last cell in section
                 if AccountsStore.shared.accounts != nil, !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd && AccountsStore.shared.accounts.count == 1 {
                     cell.separatorInset = UIEdgeInsets.zero
                     cell.preservesSuperviewLayoutMargins = false
@@ -153,12 +154,10 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 performSegue(withIdentifier: "changePasswordSegue", sender: nil)
-            case 1:
-                break
             case 2:
-                performSegue(withIdentifier: "defaultAccountSegue", sender: nil) // unknown
+                performSegue(withIdentifier: "defaultAccountSegue", sender: nil)
             case 3:
-                performSegue(withIdentifier: "releaseOfInfoSegue", sender: nil) // unknown
+                performSegue(withIdentifier: "releaseOfInfoSegue", sender: nil)
             default:
                 break
             }
