@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToggleTableViewCell" rowHeight="60" id="mkP-aG-hE2" customClass="ToggleTableViewCell" customModule="BGE" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ToggleTableViewCell" rowHeight="60" id="mkP-aG-hE2" customClass="ToggleTableViewCell" customModule="BGE" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mkP-aG-hE2" id="bNz-gH-X2d">
@@ -27,6 +27,9 @@
                     </imageView>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8z-2X-PvY">
                         <rect key="frame" x="310" y="14" width="51" height="31"/>
+                        <connections>
+                            <action selector="togglePress:" destination="mkP-aG-hE2" eventType="valueChanged" id="ibS-dE-K53"/>
+                        </connections>
                     </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvM-s2-8hR">
                         <rect key="frame" x="48" y="19" width="254" height="20"/>
@@ -45,7 +48,10 @@
                     <constraint firstAttribute="trailing" secondItem="j8z-2X-PvY" secondAttribute="trailing" constant="16" id="iUu-mM-Ap4"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="52" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="iconImageView" destination="cHe-M1-3DF" id="2q8-dD-iKY"/>
+                <outlet property="titleLabel" destination="PvM-s2-8hR" id="X9T-20-NtE"/>
                 <outlet property="toggle" destination="j8z-2X-PvY" id="lv5-AX-6jd"/>
             </connections>
             <point key="canvasLocation" x="18.5" y="-102"/>

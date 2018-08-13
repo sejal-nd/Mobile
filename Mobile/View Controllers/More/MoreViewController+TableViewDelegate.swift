@@ -44,9 +44,9 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 return 60
             case 1:
-                return viewModel.isBiometryEnabled() ? 60 : 0
+                return viewModel.isDeviceBiometricCompatible() ? 60 : 0
             case 2:
-                return Environment.shared.opco == .bge ? 60 : 0
+                return (Environment.shared.opco == .bge && AccountsStore.shared.accounts.count > 1) ? 60 : 0
             case 3:
                 return Environment.shared.opco == .peco ? 60 : 0
             default:
@@ -70,7 +70,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleTableViewCell", for: indexPath) as? TitleTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleTableViewCell") as? TitleTableViewCell else { return UITableViewCell() }
         
         switch indexPath.section {
         case 0:
@@ -87,14 +87,28 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.configure(image: UIImage(named: "ic_morepassword"), text: "Change Password")
                 
-                if !viewModel.isBiometryEnabled() && Environment.shared.opco == .comEd { // we may also need to handle bge with only 1 account
+                if !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd && AccountsStore.shared.accounts.count == 1 {
                     cell.separatorInset = UIEdgeInsets.zero
                     cell.preservesSuperviewLayoutMargins = false
                 }
             case 1:
-                cell.configure(image: UIImage(named: "ic_morecontact"), text: "Contact Us") // TODO NEW CELL
+                guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: "ToggleTableViewCell") as? ToggleTableViewCell else { return UITableViewCell() }
+                
+                toggleCell.configure(viewController: self, viewModel: viewModel)
+                
+                if Environment.shared.opco == .bge && AccountsStore.shared.accounts.count == 1 || Environment.shared.opco == .comEd {
+                    toggleCell.separatorInset = UIEdgeInsets.zero
+                    toggleCell.preservesSuperviewLayoutMargins = false
+                }
+                
+                return toggleCell
             case 2:
                 cell.configure(image: UIImage(named: "ic_moredefault"), text: "Set Default Account")
+                
+                if AccountsStore.shared.accounts.count > 1 {
+                    cell.separatorInset = UIEdgeInsets.zero
+                    cell.preservesSuperviewLayoutMargins = false
+                }
             case 3:
                 cell.configure(image: UIImage(named: "ic_morerelease"), text: "Release of Info")
             default:

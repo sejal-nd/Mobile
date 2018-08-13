@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import StoreKit
+import ToastSwiftFramework
 
 class MoreViewController: UIViewController {
     
@@ -19,14 +20,8 @@ class MoreViewController: UIViewController {
             signOutButton.setTitleColor(.white, for: .normal)
         }
     }
-    //    @IBOutlet weak var alertsAndUpdatesButton: DisclosureButton!
-//    @IBOutlet weak var settingsButton: DisclosureButton!
-//    @IBOutlet weak var contactUsButton: DisclosureButton!
-//    @IBOutlet weak var termAndPoliciesButton: DisclosureButton!
-//    @IBOutlet weak var signOutButton: DisclosureButton!
-//    @IBOutlet weak var versionLabel: UILabel!
 
-    let viewModel = SettingsViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
+    let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
     
     let disposeBag = DisposeBag()
     
@@ -38,23 +33,9 @@ class MoreViewController: UIViewController {
         
         tableView.register(UINib(nibName: "TitleTableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TitleTableViewHeaderView")
         tableView.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleTableViewCell")
+        tableView.register(UINib(nibName: "ToggleTableViewCell", bundle: nil), forCellReuseIdentifier: "ToggleTableViewCell")
         
         view.backgroundColor = .primaryColor
-        
-//
-//        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-//            if !Environment.shared.mcsInstanceName.contains("Prod") {
-//                versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
-//            } else {
-//                versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
-//            }
-//        } else {
-//            versionLabel.text = nil
-//        }
-//
-//        versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        
-        addAccessibility()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,51 +56,6 @@ class MoreViewController: UIViewController {
         }
     }
     
-    func addAccessibility() {
-//        alertsAndUpdatesButton.isAccessibilityElement = true
-//        alertsAndUpdatesButton.accessibilityLabel = NSLocalizedString("Alerts and Updates", comment: "")
-//        settingsButton.isAccessibilityElement = true
-//        settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "")
-//        contactUsButton.isAccessibilityElement = true
-//        contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
-//        termAndPoliciesButton.isAccessibilityElement = true
-//        termAndPoliciesButton.accessibilityLabel = NSLocalizedString("Policies and Terms", comment: "")
-//        signOutButton.isAccessibilityElement = true
-//        signOutButton.accessibilityLabel = NSLocalizedString("Sign out", comment: "")
-    }
-    
-//    func bindViews() {
-//        alertsAndUpdatesButton.rx.touchUpInside.asDriver()
-//            .drive(onNext: { [weak self] in
-//                self?.performSegue(withIdentifier: "aletsAndUpdatesSegue", sender: self)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        settingsButton.rx.touchUpInside.asDriver()
-//            .drive(onNext: { [weak self] in
-//                self?.performSegue(withIdentifier: "settingsSegue", sender: self)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        contactUsButton.rx.touchUpInside.asDriver()
-//            .drive(onNext: { [weak self] in
-//                self?.performSegue(withIdentifier: "contactUsSegue", sender: self)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        termAndPoliciesButton.rx.touchUpInside.asDriver()
-//            .drive(onNext: { [weak self] in
-//                self?.performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        signOutButton.rx.touchUpInside.asDriver()
-//            .drive(onNext: { [weak self] in
-//                self?.onSignOutPress()
-//            })
-//            .disposed(by: disposeBag)
-//    }
-    
     
     // MARK: - Actions
     
@@ -129,18 +65,6 @@ class MoreViewController: UIViewController {
                      style: .alert,
                      actions: [UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil),
                                UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: logout)])
-    }
-
-    private func logout(action: UIAlertAction) {
-        let authService = ServiceFactory.createAuthenticationService()
-        authService.logout().subscribe(onNext: { (success) in
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-            appDelegate.configureQuickActions(isAuthenticated: false)
-            appDelegate.resetNavigation()
-        }, onError: { (error) in
-            dLog("Logout Error: \(error)")
-        }).disposed(by: disposeBag)
     }
     
     
@@ -152,6 +76,18 @@ class MoreViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
             }).disposed(by: disposeBag)
+    }
+    
+    private func logout(action: UIAlertAction) {
+        let authService = ServiceFactory.createAuthenticationService()
+        authService.logout().subscribe(onNext: { (success) in
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
+            appDelegate.configureQuickActions(isAuthenticated: false)
+            appDelegate.resetNavigation()
+        }, onError: { (error) in
+            dLog("Logout Error: \(error)")
+        }).disposed(by: disposeBag)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
