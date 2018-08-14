@@ -10,22 +10,22 @@ import UIKit
 
 class TitleTableViewHeaderView: UITableViewHeaderFooterView {
     
-    @IBOutlet weak var colorView: UIView!
-    @IBOutlet weak var titleLabel: UILabel! {
+    @IBOutlet weak var colorView: UIView! {
         didSet {
-            titleLabel.textColor = .white
-            titleLabel.font = OpenSans.semibold.of(size: 18)
+            colorView.backgroundColor = .primaryColor
         }
     }
     
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.textColor = .white
+            titleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        }
+    }
     
     // MARK: - Configuration
     
     public func configure(text: String?) {
-        // Style
-        colorView.backgroundColor = .primaryColor
-        
-        // Set Value
         titleLabel.text = text
     }
     

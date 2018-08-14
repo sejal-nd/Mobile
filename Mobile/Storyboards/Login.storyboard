@@ -244,18 +244,16 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="q1B-ah-ptQ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="80" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="q1B-ah-ptQ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="736"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="21i-JL-1h1"/>
-                                </constraints>
+                                <inset key="separatorInset" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="GyY-zW-kSD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="158"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nya-tL-X6j">
-                                            <rect key="frame" x="16" y="24" width="343" height="110"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nya-tL-X6j" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="24" width="343" height="106"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In / Register to Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XA5-JW-VHJ">
                                                     <rect key="frame" x="20" y="15" width="303" height="21"/>
@@ -264,7 +262,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Includes features like the ability to effortlessly pay your bill from the home screen, AutoPay, and Payment Activity" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LkM-Zs-GNb">
-                                                    <rect key="frame" x="20" y="44" width="303" height="51"/>
+                                                    <rect key="frame" x="20" y="44" width="303" height="47"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -280,6 +278,18 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                 <constraint firstAttribute="bottom" secondItem="LkM-Zs-GNb" secondAttribute="bottom" constant="15" id="VTR-KK-JTT"/>
                                                 <constraint firstItem="LkM-Zs-GNb" firstAttribute="leading" secondItem="nya-tL-X6j" secondAttribute="leading" constant="20" id="nsT-lT-033"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="normalBackgroundColor">
+                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorOnPress">
+                                                    <color key="value" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="loginRegisterPress:" destination="Bzu-HN-7Zr" eventType="touchUpInside" id="meL-2a-obE"/>
+                                            </connections>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" red="0.2784313725" green="0.52156862749999999" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -300,7 +310,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <constraints>
                             <constraint firstItem="q1B-ah-ptQ" firstAttribute="leading" secondItem="nOo-uk-Fx2" secondAttribute="leading" id="83U-Ze-BB6"/>
                             <constraint firstItem="q1B-ah-ptQ" firstAttribute="top" secondItem="PwO-ox-psG" secondAttribute="bottom" id="GiQ-l2-7eq"/>
-                            <constraint firstItem="Gxv-Sz-QtJ" firstAttribute="top" secondItem="q1B-ah-ptQ" secondAttribute="bottom" id="QjC-Ad-bbk"/>
+                            <constraint firstAttribute="bottom" secondItem="q1B-ah-ptQ" secondAttribute="bottom" id="QjC-Ad-bbk"/>
                             <constraint firstAttribute="trailing" secondItem="q1B-ah-ptQ" secondAttribute="trailing" id="rxK-VI-7gZ"/>
                         </constraints>
                     </view>
@@ -2420,7 +2430,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Me-i6-eET">
-                                                                            <rect key="frame" x="0.0" y="17" width="291" height="19"/>
+                                                                            <rect key="frame" x="0.0" y="15.5" width="291" height="22"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>

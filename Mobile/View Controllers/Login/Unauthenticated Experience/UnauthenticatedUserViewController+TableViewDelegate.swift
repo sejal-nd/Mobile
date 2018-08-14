@@ -24,28 +24,28 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleTableViewCell", for: indexPath) as? TitleTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className, for: indexPath) as? TitleTableViewCell else { return UITableViewCell() }
         
         switch indexPath.section {
         case 0:
             switch indexPath.row {
             case 0:
-                cell.configure(image: UIImage(named: "ic_reportoutage"), text: "Report Outage")
+                cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""))
             case 1:
-                cell.configure(image: UIImage(named: "ic_checkoutage"), text: "Check My Outage Status")
+                cell.configure(image: #imageLiteral(resourceName: "ic_checkoutage"), text: NSLocalizedString("Check My Outage Status", comment: ""))
             case 2:
-                cell.configure(image: UIImage(named: "ic_mapoutage"), text: "View Outage Map")
+                cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""))
             default:
                 return UITableViewCell()
             }
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: UIImage(named: "ic_moreupdates"), text: "News and Updates")
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             case 1:
-                cell.configure(image: UIImage(named: "ic_morecontact"), text: "Contact Us")
+                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
             case 2:
-                cell.configure(image: UIImage(named: "ic_moretos"), text: "Policies and Terms")
+                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -88,17 +88,25 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        if section == 0 {
+            return 56
+        } else {
+            return 80
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TitleTableViewHeaderView") as? TitleTableViewHeaderView else { return nil }
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleTableViewHeaderView.className) as? TitleTableViewHeaderView else { return nil }
 
         switch section {
         case 0:
-            headerView.configure(text: "Outage")
+            headerView.configure(text: NSLocalizedString("Outage", comment: ""))
         case 1:
-            headerView.configure(text: "Help & Support")
+            headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
         default:
             break
         }
