@@ -49,10 +49,10 @@
                                                             <rect key="frame" x="0.0" y="64" width="505" height="375.5"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="bottom" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="UJ5-gS-ygZ">
-                                                                    <rect key="frame" x="104.5" y="44" width="296" height="180"/>
+                                                                    <rect key="frame" x="104.5" y="44" width="296" height="177"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XgB-5d-WQI" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="61" width="80" height="119"/>
+                                                                            <rect key="frame" x="0.0" y="58" width="80" height="119"/>
                                                                             <subviews>
                                                                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyt-T9-ZZv">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="98"/>
@@ -96,7 +96,7 @@
                                                                             </connections>
                                                                         </view>
                                                                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdD-dY-oPl" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="108" y="3" width="80" height="177"/>
+                                                                            <rect key="frame" x="108" y="0.0" width="80" height="177"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hw1-Az-igH">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="17"/>
@@ -137,7 +137,7 @@
                                                                             </connections>
                                                                         </view>
                                                                         <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEB-lb-OVj" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="216" y="3" width="80" height="177"/>
+                                                                            <rect key="frame" x="216" y="0.0" width="80" height="177"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESH-wW-gIi">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="17"/>
@@ -181,13 +181,13 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n08-7D-H4N">
-                                                                    <rect key="frame" x="128" y="232" width="249" height="123.5"/>
+                                                                    <rect key="frame" x="128" y="229" width="249" height="126.5"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebs-dO-SYI">
-                                                                            <rect key="frame" x="0.0" y="22" width="249" height="101.5"/>
+                                                                            <rect key="frame" x="0.0" y="22" width="249" height="104.5"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="MMM dd, YYYY - MMM dd, YYYY" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Bc5-JL-8mW">
-                                                                                    <rect key="frame" x="8" y="16" width="233" height="16.5"/>
+                                                                                    <rect key="frame" x="8" y="16" width="233" height="19.5"/>
                                                                                     <accessibility key="accessibilityConfiguration">
                                                                                         <bool key="isElement" value="NO"/>
                                                                                     </accessibility>
@@ -196,7 +196,7 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Bill" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dxw-YV-YCg">
-                                                                                    <rect key="frame" x="30" y="42.5" width="64" height="20.5"/>
+                                                                                    <rect key="frame" x="30" y="45.5" width="64" height="20.5"/>
                                                                                     <accessibility key="accessibilityConfiguration">
                                                                                         <bool key="isElement" value="NO"/>
                                                                                     </accessibility>
@@ -205,7 +205,7 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdl-Uk-Y1M">
-                                                                                    <rect key="frame" x="163.5" y="43" width="55.5" height="20.5"/>
+                                                                                    <rect key="frame" x="163.5" y="46" width="55.5" height="20.5"/>
                                                                                     <accessibility key="accessibilityConfiguration">
                                                                                         <bool key="isElement" value="NO"/>
                                                                                     </accessibility>
@@ -214,7 +214,7 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meB-kJ-mI7">
-                                                                                    <rect key="frame" x="30" y="65" width="49.5" height="20.5"/>
+                                                                                    <rect key="frame" x="30" y="68" width="49.5" height="20.5"/>
                                                                                     <accessibility key="accessibilityConfiguration">
                                                                                         <bool key="isElement" value="NO"/>
                                                                                     </accessibility>
@@ -223,7 +223,7 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Usage" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tT8-R4-gak">
-                                                                                    <rect key="frame" x="169.5" y="65.5" width="49.5" height="20.5"/>
+                                                                                    <rect key="frame" x="169.5" y="68.5" width="49.5" height="20.5"/>
                                                                                     <accessibility key="accessibilityConfiguration">
                                                                                         <bool key="isElement" value="NO"/>
                                                                                     </accessibility>
