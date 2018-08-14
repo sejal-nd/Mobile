@@ -69,7 +69,7 @@ class MoreViewController: UIViewController {
     
     // MARK: - Helper
     
-    func fetchAccounts() {
+    private func fetchAccounts() {
         viewModel.fetchAccounts()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
