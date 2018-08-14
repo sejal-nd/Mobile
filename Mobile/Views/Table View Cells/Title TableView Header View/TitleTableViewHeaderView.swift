@@ -23,6 +23,7 @@ class TitleTableViewHeaderView: UITableViewHeaderFooterView {
         }
     }
     
+    
     // MARK: - Configuration
     
     public func configure(text: String?) {

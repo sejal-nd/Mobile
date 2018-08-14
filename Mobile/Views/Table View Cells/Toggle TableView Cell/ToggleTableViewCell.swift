@@ -15,6 +15,7 @@ class ToggleTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .white
+            titleLabel.font = SystemFont.medium.of(textStyle: .headline)
         }
     }
     @IBOutlet weak var toggle: UISwitch! {
@@ -48,11 +49,11 @@ class ToggleTableViewCell: UITableViewCell {
         
         // Set Data
         if viewModel.biometricsString() == "Face ID" {
-            iconImageView.image = UIImage(named: "ic_morefaceid")
-            titleLabel.text = "Face ID"
+            iconImageView.image = #imageLiteral(resourceName: "ic_morefaceid")
+            titleLabel.text = NSLocalizedString("Face ID", comment: "")
         } else {
-            iconImageView.image = UIImage(named: "ic_moretouchid")
-            titleLabel.text = "Touch ID"
+            iconImageView.image = #imageLiteral(resourceName: "ic_moretouchid")
+            titleLabel.text = NSLocalizedString("Touch ID", comment: "")
         }
         toggle.isOn = viewModel.isBiometryEnabled()
         

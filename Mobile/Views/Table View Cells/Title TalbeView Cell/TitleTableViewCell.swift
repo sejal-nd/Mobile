@@ -18,12 +18,16 @@ class TitleTableViewCell: UITableViewCell {
         }
     }
     
+    
+    // MARK: - View Life Cycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorInset = UIEdgeInsets(top: 0, left: 55, bottom: 0, right: 0)
+        
         accessoryView = UIImageView(image: #imageLiteral(resourceName: "ic_chevron"))
         backgroundColor = .primaryColor
     }
+    
     
     // MARK: - Cell Selection
     

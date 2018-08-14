@@ -73,22 +73,22 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TitleTableViewCell") as? TitleTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className) as? TitleTableViewCell else { return UITableViewCell() }
         
         switch indexPath.section {
         case 0:
             switch indexPath.row {
             case 0:
-                cell.configure(image: UIImage(named: "ic_morealerts"), text: "My Alerts")
+                cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""))
             case 1:
-                cell.configure(image: UIImage(named: "ic_moreupdates"), text: "Updates")
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("Updates", comment: ""))
             default:
                 return UITableViewCell()
             }
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: UIImage(named: "ic_morepassword"), text: "Change Password")
+                cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""))
                 
                 // Modifies seperator insets if its the last cell in section
                 if AccountsStore.shared.accounts != nil, !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd && AccountsStore.shared.accounts.count == 1 {
@@ -96,7 +96,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                     cell.preservesSuperviewLayoutMargins = false
                 }
             case 1:
-                guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: "ToggleTableViewCell") as? ToggleTableViewCell else { return UITableViewCell() }
+                guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.className) as? ToggleTableViewCell else { return UITableViewCell() }
                 
                 toggleCell.configure(viewController: self, viewModel: viewModel)
                 
@@ -107,25 +107,25 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 return toggleCell
             case 2:
-                cell.configure(image: UIImage(named: "ic_moredefault"), text: "Set Default Account")
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("Set Default Account", comment: ""))
                 
                 if AccountsStore.shared.accounts != nil, AccountsStore.shared.accounts.count > 1 {
                     cell.separatorInset = UIEdgeInsets.zero
                     cell.preservesSuperviewLayoutMargins = false
                 }
             case 3:
-                cell.configure(image: UIImage(named: "ic_morerelease"), text: "Release of Info")
+                cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""))
             default:
                 return UITableViewCell()
             }
         case 2:
             switch indexPath.row {
             case 0:
-                cell.configure(image: UIImage(named: "ic_morecontact"), text: "Contact Us")
+                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
             case 1:
-                cell.configure(image: UIImage(named: "ic_morevideo"), text: "Billing Tutorial Videos")
+                cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Tutorial Videos", comment: ""))
             case 2:
-                cell.configure(image: UIImage(named: "ic_moretos"), text: "Policies and Terms")
+                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -181,15 +181,15 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TitleTableViewHeaderView") as? TitleTableViewHeaderView else { return nil }
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleTableViewHeaderView.className) as? TitleTableViewHeaderView else { return nil }
         
         switch section {
         case 0:
-            headerView.configure(text: "Notifications")
+            headerView.configure(text: NSLocalizedString("Notifications", comment: ""))
         case 1:
-            headerView.configure(text: "Settings")
+            headerView.configure(text: NSLocalizedString("Settings", comment: ""))
         case 2:
-            headerView.configure(text: "Help & Support")
+            headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
         default:
             break
         }

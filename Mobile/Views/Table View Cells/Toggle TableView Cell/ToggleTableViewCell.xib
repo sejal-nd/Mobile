@@ -32,7 +32,7 @@
                         </connections>
                     </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvM-s2-8hR">
-                        <rect key="frame" x="48" y="19" width="254" height="20"/>
+                        <rect key="frame" x="48" y="19" width="40.5" height="20"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                     <constraint firstItem="PvM-s2-8hR" firstAttribute="leading" secondItem="cHe-M1-3DF" secondAttribute="trailing" constant="8" id="EIC-Ql-sZq"/>
                     <constraint firstItem="cHe-M1-3DF" firstAttribute="centerY" secondItem="bNz-gH-X2d" secondAttribute="centerY" id="F22-pd-gk9"/>
                     <constraint firstItem="cHe-M1-3DF" firstAttribute="leading" secondItem="bNz-gH-X2d" secondAttribute="leading" constant="16" id="HA1-O5-7pD"/>
-                    <constraint firstItem="j8z-2X-PvY" firstAttribute="leading" secondItem="PvM-s2-8hR" secondAttribute="trailing" constant="8" id="aPK-1c-Oig"/>
+                    <constraint firstItem="j8z-2X-PvY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PvM-s2-8hR" secondAttribute="trailing" constant="8" id="aPK-1c-Oig"/>
                     <constraint firstItem="PvM-s2-8hR" firstAttribute="centerY" secondItem="bNz-gH-X2d" secondAttribute="centerY" id="f7o-2l-mP2"/>
                     <constraint firstAttribute="trailing" secondItem="j8z-2X-PvY" secondAttribute="trailing" constant="16" id="iUu-mM-Ap4"/>
                 </constraints>
