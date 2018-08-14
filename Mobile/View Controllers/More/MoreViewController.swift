@@ -22,7 +22,7 @@ class MoreViewController: UIViewController {
 
     let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     
     // MARK: - View Life Cycle

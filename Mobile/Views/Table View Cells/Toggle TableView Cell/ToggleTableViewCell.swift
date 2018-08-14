@@ -36,7 +36,7 @@ class ToggleTableViewCell: UITableViewCell {
     private var biometricsPasswordRetryCount = 0
     
     private let disposeBag = DisposeBag()
-
+    
     
     // MARK: - Configure
     
