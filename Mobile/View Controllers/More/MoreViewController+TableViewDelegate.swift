@@ -88,7 +88,10 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""))
                 
                 // Modifies seperator insets if its the last cell in section
-                if AccountsStore.shared.accounts != nil, !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd && AccountsStore.shared.accounts.count == 1 {
+                // Double check this doesnt crash if there are no account details
+                if !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd || AccountsStore.shared.accounts != nil && Environment.shared.opco == .bge && AccountsStore.shared.accounts.count == 1 {
+                
+                //if AccountsStore.shared.accounts != nil, !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd && AccountsStore.shared.accounts.count == 1 {
                     cell.separatorInset = UIEdgeInsets.zero
                     cell.preservesSuperviewLayoutMargins = false
                 }
@@ -104,7 +107,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 return toggleCell
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("Set Default Account", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""))
                 
                 if AccountsStore.shared.accounts != nil, AccountsStore.shared.accounts.count > 1 {
                     cell.separatorInset = UIEdgeInsets.zero
@@ -195,7 +198,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 28
+        return 21
     }
     
 }

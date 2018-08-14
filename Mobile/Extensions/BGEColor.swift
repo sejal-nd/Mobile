@@ -29,4 +29,8 @@ extension UIColor {
         return UIColor(red: 54/255, green: 121/255, blue: 42/255, alpha: 1)
     }
     
+    @nonobjc static var switchBackgroundColor: UIColor {
+        return UIColor(red: 24/255, green: 51/255, blue: 18/255, alpha: 1)
+    }
+    
 }

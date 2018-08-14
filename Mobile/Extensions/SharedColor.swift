@@ -70,10 +70,6 @@ extension UIColor {
         return UIColor(red: 234/255, green: 230/255, blue: 188/255, alpha: 1)
     }
     
-    @nonobjc static var switchBackgroundColor: UIColor {
-        return UIColor(red: 34/255, green: 31/255, blue: 31/255, alpha: 0.8)
-    }
-    
 //    convenience init(hex: String, alpha: CGFloat = 1) {
 //        assert(hex[hex.startIndex] == "#", "Expected hex string of format #RRGGBB")
 //        
