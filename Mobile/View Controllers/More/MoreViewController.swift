@@ -16,6 +16,7 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var signOutButton: UIButton! {
         didSet {
+            signOutButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
             signOutButton.setTitleColor(.white, for: .normal)
         }
     }
@@ -39,6 +40,9 @@ class MoreViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // User could change settings in Settings.App and navigate between tabs
+        tableView.reloadData()
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         
