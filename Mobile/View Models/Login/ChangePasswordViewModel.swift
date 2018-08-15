@@ -139,6 +139,12 @@ class ChangePasswordViewModel {
                     if self.biometricsService.isBiometricsEnabled() { // Store the new password in the keychain
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }
+                    
+                    // Save to SWC
+                    if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername) {
+                        SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                    }
+                    
                     onSuccess()
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
