@@ -37,12 +37,12 @@
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="hmk-y9-C89"/>
                                 </constraints>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="YE9-A9-YtG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="MUk-3W-gZH">
-                                    <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                    <rect key="frame" x="0.0" y="21" width="375" height="72"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82T-ES-k9e">
