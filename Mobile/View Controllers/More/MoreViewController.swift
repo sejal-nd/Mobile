@@ -41,9 +41,6 @@ class MoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // User could change settings in Settings.App and navigate between tabs
-        tableView.reloadData()
-        
         navigationController?.setNavigationBarHidden(true, animated: true)
         
         if AccountsStore.shared.accounts == nil {
