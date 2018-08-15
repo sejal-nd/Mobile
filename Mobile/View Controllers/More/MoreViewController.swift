@@ -23,6 +23,8 @@ class MoreViewController: UIViewController {
 
     let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
     
+    private var biometricsPasswordRetryCount = 0
+    
     private let disposeBag = DisposeBag()
     
     
@@ -59,6 +61,16 @@ class MoreViewController: UIViewController {
     
     // MARK: - Actions
     
+    @objc func toggleBiometrics(_ sender: UISwitch) {
+        if sender.isOn {
+            presentPasswordAlert(message: viewModel.getConfirmPasswordMessage(), toggle: sender)
+            Analytics.log(event: .touchIDEnable)
+        } else {
+            viewModel.disableBiometrics()
+            Analytics.log(event: .touchIDDisable)
+        }
+    }
+    
     @IBAction func signOutPress(_ sender: Any) {
         presentAlert(title: NSLocalizedString("Sign Out", comment: ""),
                      message: NSLocalizedString("Are you sure you want to sign out?", comment: ""),
@@ -76,6 +88,38 @@ class MoreViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
             }).disposed(by: disposeBag)
+    }
+    
+    private func presentPasswordAlert(message: String, toggle: UISwitch) {
+        let pwAlert = UIAlertController(title: NSLocalizedString("Confirm Password", comment: ""), message: message, preferredStyle: .alert)
+        pwAlert.addTextField(configurationHandler: { [weak self] (textField) in
+            guard let `self` = self else { return }
+            textField.placeholder = NSLocalizedString("Password", comment: "")
+            textField.isSecureTextEntry = true
+            textField.rx.text.orEmpty.bind(to: self.viewModel.password).disposed(by: self.disposeBag)
+        })
+        pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) -> Void in
+            toggle.setOn(false, animated: true)
+        }))
+        pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) -> Void in
+            LoadingView.show()
+            self?.viewModel.validateCredentials(onSuccess: { [weak self] in
+                guard let `self` = self else { return }
+                LoadingView.hide()
+                self.view.showToast(String(format: NSLocalizedString("%@ Enabled", comment: ""), self.viewModel.biometricsString()!))
+                }, onError: { [weak self] (error) in
+                    LoadingView.hide()
+                    guard let `self` = self else { return }
+                    self.biometricsPasswordRetryCount += 1
+                    if self.biometricsPasswordRetryCount < 3 {
+                        self.presentPasswordAlert(message: NSLocalizedString("Error", comment: "") + ": \(error)", toggle: toggle)
+                    } else {
+                        self.biometricsPasswordRetryCount = 0
+                        toggle.setOn(false, animated: true)
+                    }
+            })
+        }))
+        present(pwAlert, animated: true, completion: nil)
     }
     
     private func logout(action: UIAlertAction) {

@@ -95,7 +95,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 1:
                 guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.className) as? ToggleTableViewCell else { return UITableViewCell() }
                 
-                toggleCell.configure(viewController: self, viewModel: viewModel)
+                toggleCell.configure(viewModel: viewModel)
+                toggleCell.toggle.addTarget(self, action: #selector(toggleBiometrics), for: .valueChanged)
                 
                 if AccountsStore.shared.accounts != nil, Environment.shared.opco == .bge && AccountsStore.shared.accounts.count == 1 || Environment.shared.opco == .comEd {
                     toggleCell.separatorInset = UIEdgeInsets.zero
