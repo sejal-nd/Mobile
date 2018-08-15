@@ -9,109 +9,76 @@
 import UIKit
 import RxSwift
 import StoreKit
+import ToastSwiftFramework
 
 class MoreViewController: UIViewController {
     
-    @IBOutlet weak var alertsAndUpdatesButton: DisclosureButton!
-    @IBOutlet weak var settingsButton: DisclosureButton!
-    @IBOutlet weak var contactUsButton: DisclosureButton!
-    @IBOutlet weak var termAndPoliciesButton: DisclosureButton!
-    @IBOutlet weak var signOutButton: DisclosureButton!
-    @IBOutlet weak var versionLabel: UILabel!
-    
-    let disposeBag = DisposeBag()
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var signOutButton: UIButton! {
+        didSet {
+            signOutButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
+            signOutButton.setTitleColor(.white, for: .normal)
+        }
+    }
 
+    let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
+    
+    private let disposeBag = DisposeBag()
+    
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            if !Environment.shared.mcsInstanceName.contains("Prod") {
-                versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
-            } else {
-                versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
-            }
-        } else {
-            versionLabel.text = nil
-        }
+        tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
+        tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
+        tableView.register(UINib(nibName: ToggleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ToggleTableViewCell.className)
         
-        versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        
-        addAccessibility()
-        styleViews()
-        bindViews()
+        view.backgroundColor = .primaryColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        if AccountsStore.shared.accounts == nil {
+            fetchAccounts()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
     }
     
-    func addAccessibility() {
-        alertsAndUpdatesButton.isAccessibilityElement = true
-        alertsAndUpdatesButton.accessibilityLabel = NSLocalizedString("Alerts and Updates", comment: "")
-        settingsButton.isAccessibilityElement = true
-        settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "")
-        contactUsButton.isAccessibilityElement = true
-        contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
-        termAndPoliciesButton.isAccessibilityElement = true
-        termAndPoliciesButton.accessibilityLabel = NSLocalizedString("Policies and Terms", comment: "")
-        signOutButton.isAccessibilityElement = true
-        signOutButton.accessibilityLabel = NSLocalizedString("Sign out", comment: "")
-    }
     
-    func styleViews() {
-        view.backgroundColor = .primaryColor
-        signOutButton.setHideCaret(caretHidden: true)
-    }
+    // MARK: - Actions
     
-    func bindViews() {
-        alertsAndUpdatesButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "aletsAndUpdatesSegue", sender: self)
-            })
-            .disposed(by: disposeBag)
-        
-        settingsButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "settingsSegue", sender: self)
-            })
-            .disposed(by: disposeBag)
-        
-        contactUsButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "contactUsSegue", sender: self)
-            })
-            .disposed(by: disposeBag)
-        
-        termAndPoliciesButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
-            })
-            .disposed(by: disposeBag)
-        
-        signOutButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.onSignOutPress()
-            })
-            .disposed(by: disposeBag)
+    @IBAction func signOutPress(_ sender: Any) {
+        presentAlert(title: NSLocalizedString("Sign Out", comment: ""),
+                     message: NSLocalizedString("Are you sure you want to sign out?", comment: ""),
+                     style: .alert,
+                     actions: [UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil),
+                               UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: logout)])
     }
     
     
-    func onSignOutPress() {
-        let confirmAlert = UIAlertController(title: NSLocalizedString("Sign Out", comment: ""), message: NSLocalizedString("Are you sure you want to sign out?", comment: ""), preferredStyle: .alert)
-        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
-        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: logout))
-        present(confirmAlert, animated: true, completion: nil)
+    // MARK: - Helper
+    
+    private func fetchAccounts() {
+        viewModel.fetchAccounts()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
+            }).disposed(by: disposeBag)
     }
     
-    func logout(action: UIAlertAction) {
+    private func logout(action: UIAlertAction) {
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout().subscribe(onNext: { (success) in
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -125,6 +92,47 @@ class MoreViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
+        case let vc as ChangePasswordViewController:
+            vc.delegate = self
+        case let vc as PECOReleaseOfInfoViewController:
+            vc.delegate = self
+        default:
+            break
+        }
+    }
+    
+}
+
+// MARK: - Change Password
+
+extension MoreViewController: ChangePasswordViewControllerDelegate {
+    
+    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Password changed", comment: ""))
+            Analytics.log(event: .changePasswordComplete)
+        })
+    }
+    
+}
+
+
+// MARK: - Change PECO Release
+
+extension MoreViewController: PECOReleaseOfInfoViewControllerDelegate {
+    
+    func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Release of information updated", comment: ""))
+            Analytics.log(event: .releaseInfoComplete)
+        })
     }
     
 }
