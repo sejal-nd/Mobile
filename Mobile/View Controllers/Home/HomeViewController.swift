@@ -395,8 +395,6 @@ class HomeViewController: AccountPickerViewController {
     func bindProjectedBillCard() {
         guard let projectedBillCardView = projectedBillCardView else { return }
         
-        viewModel.shouldShowProjectedBillCard.not().drive(projectedBillCardView.rx.isHidden).disposed(by: projectedBillCardView.disposeBag)
-        
         projectedBillCardView.viewMoreButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
