@@ -103,6 +103,27 @@ class ChangePasswordViewModel {
     
     func changePassword(sentFromLogin: Bool, onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
         
+        // If Strong Password: force save to SWC prior to changing users passwords, on failure abort.
+        if hasStrongPassword {
+            if let loggedInUsername = biometricsService.getStoredUsername() {
+                SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain) { [weak self] error in
+                    if error != nil {
+                        // Error Saving SWC
+                        onError("Please make sure AutoFill is on for Names and Passwords in Safari Settings when using Strong Passwords.")
+                    } else {
+                        self?.changePasswordNetworkRequest(sentFromLogin: sentFromLogin, shouldSaveToWebCredentials: false, onSuccess: onSuccess, onPasswordNoMatch: onPasswordNoMatch, onError: onError)
+                    }
+                }
+            } else {
+                // Error retrieving loggedInUsername
+                onError("There was an error retrieving the logged in user.")
+            }
+        } else {
+            changePasswordNetworkRequest(sentFromLogin: sentFromLogin, shouldSaveToWebCredentials: true, onSuccess: onSuccess, onPasswordNoMatch: onPasswordNoMatch, onError: onError)
+        }
+    }
+    
+    private func changePasswordNetworkRequest(sentFromLogin: Bool, shouldSaveToWebCredentials: Bool, onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
         if sentFromLogin {
             authService.changePasswordAnon(biometricsService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
                 .observeOn(MainScheduler.instance)
@@ -115,19 +136,19 @@ class ChangePasswordViewModel {
                     }
                     
                     // Save to SWC
-                    if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername) {
+                    if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
                         SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                     }
-
-                    onSuccess()
-                }, onError: { (error: Error) in
-                    let serviceError = error as! ServiceError
                     
-                    if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
-                        onPasswordNoMatch()
-                    } else {
-                        onError(error.localizedDescription)
-                    }
+                    onSuccess()
+                    }, onError: { (error: Error) in
+                        let serviceError = error as! ServiceError
+                        
+                        if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
+                            onPasswordNoMatch()
+                        } else {
+                            onError(error.localizedDescription)
+                        }
                 })
                 .disposed(by: disposeBag)
         } else {
@@ -141,19 +162,19 @@ class ChangePasswordViewModel {
                     }
                     
                     // Save to SWC
-                    if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername) {
+                    if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
                         SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                     }
                     
                     onSuccess()
-                }, onError: { (error: Error) in
-                    let serviceError = error as! ServiceError
-                    
-                    if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
-                        onPasswordNoMatch()
-                    } else {
-                        onError(error.localizedDescription)
-                    }
+                    }, onError: { (error: Error) in
+                        let serviceError = error as! ServiceError
+                        
+                        if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
+                            onPasswordNoMatch()
+                        } else {
+                            onError(error.localizedDescription)
+                        }
                 })
                 .disposed(by: disposeBag)
         }
