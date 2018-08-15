@@ -88,10 +88,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""))
                 
                 // Modifies seperator insets if its the last cell in section
-                // Double check this doesnt crash if there are no account details
-                if !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd || AccountsStore.shared.accounts != nil && Environment.shared.opco == .bge && AccountsStore.shared.accounts.count == 1 {
-                
-                //if AccountsStore.shared.accounts != nil, !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd && AccountsStore.shared.accounts.count == 1 {
+                if !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd || !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .bge && AccountsStore.shared.accounts != nil && AccountsStore.shared.accounts.count == 1 {
                     cell.separatorInset = UIEdgeInsets.zero
                     cell.preservesSuperviewLayoutMargins = false
                 }
