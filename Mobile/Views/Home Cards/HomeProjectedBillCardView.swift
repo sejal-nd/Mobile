@@ -71,7 +71,7 @@ class HomeProjectedBillCardView: UIView {
         emptyStateTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         emptyStateDescriptionLabel.textColor = .middleGray
         emptyStateDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
-        emptyStateDescriptionLabel.attributedText = NSLocalizedString("Your usage overview will be available here once we have more data.", comment: "")
+        emptyStateDescriptionLabel.attributedText = NSLocalizedString("Projected bill is not available for this account.", comment: "")
             .attributedString(withLineHeight: 26, textAlignment: .center)
         
         errorTitleLabel.textColor = .blackText
