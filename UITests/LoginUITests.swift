@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import AppCenterXCUITestExtensions
 
 class LoginUITests: XCTestCase {
     let app = XCUIApplication()
@@ -19,7 +20,8 @@ class LoginUITests: XCTestCase {
         
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchArguments = ["UITest"]
-        app.launch()
+    
+        ACTLaunch.launch(app)
         
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
         handleTermsFirstLaunch()
@@ -31,6 +33,7 @@ class LoginUITests: XCTestCase {
     }
     
     func handleTermsFirstLaunch() {
+        
         let continueButton = app.buttons["Continue"]
         XCTAssert(continueButton.waitForExistence(timeout: 30))
 
@@ -61,6 +64,7 @@ class LoginUITests: XCTestCase {
         XCTAssert(app.scrollViews.otherElements.switches["Keep me signed in"].exists)
         XCTAssert(elementsQuery.buttons[" username "].exists)
         XCTAssert(elementsQuery.buttons[" password"].exists)
+        ACTLabel.labelStep("App center test -- test sign in page layout")
     }
     
     func testSignIn(){
@@ -78,6 +82,7 @@ class LoginUITests: XCTestCase {
         
         // Assert that the Home page loaded after a valid login
         XCTAssert(app.tabBars.buttons["Home"].exists, "User was not logged in after 15 seconds or login failed.")
+        ACTLabel.labelStep("App center test -- test sign in")
     }
     
     func testNoPassword() {
@@ -92,6 +97,7 @@ class LoginUITests: XCTestCase {
         elementsQuery.buttons["Sign In"].tap()
         
         XCTAssert(errorAlert.waitForExistence(timeout: 5))
+        ACTLabel.labelStep("App center test -- test no pass")
     }
     
     func testNoUsername() {
@@ -106,6 +112,7 @@ class LoginUITests: XCTestCase {
         elementsQuery.buttons["Sign In"].tap()
         
         XCTAssert(errorAlert.waitForExistence(timeout: 5))
+        ACTLabel.labelStep("App center test -- test no username")
     }
     
     func testInvalidUsername(){
@@ -116,11 +123,14 @@ class LoginUITests: XCTestCase {
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
         XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
         usernameEmailAddressTextField.clearAndEnterText("invalid@test.com")
+        ACTLabel.labelStep("App center test -- invalid username -- just typed in username")
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         passwordSecureTextField.clearAndEnterText("Password1")
+        ACTLabel.labelStep("App center test -- invalid username -- just typed in pass")
         elementsQuery.buttons["Sign In"].tap()
         
         XCTAssert(errorAlert.waitForExistence(timeout: 5))
+        ACTLabel.labelStep("App center test -- invalid username")
     }
     
     func testInvalidPassword(){
@@ -136,6 +146,93 @@ class LoginUITests: XCTestCase {
         elementsQuery.buttons["Sign In"].tap()
         
         XCTAssert(errorAlert.waitForExistence(timeout: 5))
+        
+        ACTLabel.labelStep("App center test -- invalid password")
     }
-
+    
+    func testMaintModeAll() {
+        let signInButton = app.buttons["Sign In"]
+        XCTAssert(signInButton.waitForExistence(timeout: 5))
+        signInButton.tap()
+        
+        let elementsQuery = app.scrollViews.otherElements
+        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
+        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
+        usernameEmailAddressTextField.clearAndEnterText("maintAll")
+        
+        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
+        passwordSecureTextField.clearAndEnterText("Password1")
+        elementsQuery.buttons["Sign In"].tap()
+        
+        let moreButton = app.tabBars.buttons["More"]
+        XCTAssert(moreButton.waitForExistence(timeout: 10))
+        moreButton.tap()
+        
+        app.buttons["Sign out"].tap()
+        app.alerts["Sign Out"].buttons["Yes"].tap()
+        signInButton.tap()
+        
+        var mmStaticText: XCUIElement
+        XCTAssert(elementsQuery.buttons["Reload"].exists)
+        if appName.contains("BGE") {
+            XCTAssert(elementsQuery.staticTexts["The BGE App is currently unavailable due to scheduled maintenance."].exists)
+            
+            //Parial string match needed to work around staticText 128 char query limit
+            mmStaticText = app.staticTexts["If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123\n\nIf your powe"]
+            XCTAssertEqual(mmStaticText.value as? String, "If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123\n\nIf your power is out, call 1-877-778-2222")
+        }
+        else if appName.contains("ComEd") {
+            XCTAssert(elementsQuery.staticTexts["The ComEd App is currently unavailable due to scheduled maintenance."].exists)
+            
+            mmStaticText = app.staticTexts["If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661 Representatives are available 24"]
+            XCTAssertEqual(mmStaticText.value as? String, "If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661 Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n1-800-334-7661 M-F 7AM to 7PM\n\n")
+        } else {
+            XCTAssert(elementsQuery.staticTexts["The PECO App is currently unavailable due to scheduled maintenance."].exists)
+            mmStaticText = app.staticTexts["If you smell natural gas or see downed power lines, leave the area immediately and then call PECO at 1-800-841-4141 Representati"]
+            XCTAssertEqual(mmStaticText.value as? String, "If you smell natural gas or see downed power lines, leave the area immediately and then call PECO at 1-800-841-4141 Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n1-800-494-4000 M-F 7AM to 7PM\n\n")
+        }
+    }
+    
+    func testUnauthOutageMaintMode() {
+        let signInButton = app.buttons["Sign In"]
+        XCTAssert(signInButton.waitForExistence(timeout: 5))
+        signInButton.tap()
+        let elementsQuery = app.scrollViews.otherElements
+        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
+        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
+        usernameEmailAddressTextField.clearAndEnterText("maintAllTabs")
+        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
+        passwordSecureTextField.clearAndEnterText("Password1")
+        elementsQuery.buttons["Sign In"].tap()
+        
+        let moreButton = app.tabBars.buttons["More"]
+        XCTAssert(moreButton.waitForExistence(timeout: 10))
+        moreButton.tap()
+        
+        app.buttons["Sign out"].tap()
+        app.alerts["Sign Out"].buttons["Yes"].tap()
+        app.buttons["CONTINUE AS GUEST"].tap()
+        app.scrollViews.otherElements.buttons["Report an outage"].tap()
+        
+        var outageMmStaticText: XCUIElement
+        if appName.contains("BGE") {
+            //Parial string match needed to work around staticText 128 char query limit
+            outageMmStaticText = app.staticTexts["If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123\n\nIf your powe"]
+            XCTAssertEqual(outageMmStaticText.value as? String, "If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123\n\nIf your power is out, call 1-877-778-2222")
+        }
+        else if appName.contains("ComEd") {
+            outageMmStaticText = app.staticTexts["If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661 Representatives are available 24"]
+            XCTAssertEqual(outageMmStaticText.value as? String, "If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661 Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n1-800-334-7661 M-F 7AM to 7PM")
+        }
+        else {
+            outageMmStaticText = app.staticTexts["If you smell natural gas or see downed power lines, leave the area immediately and then call PECO at 1-800-841-4141 Representati"]
+            XCTAssertEqual(outageMmStaticText.value as? String, "If you smell natural gas or see downed power lines, leave the area immediately and then call PECO at 1-800-841-4141 Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n1-800-494-4000 M-F 7AM to 7PM")
+        }
+        
+    }
+    private var appName: String {
+        return Bundle.main.infoDictionary?["CFBundleName"] as! String
+    }
 }
+
+

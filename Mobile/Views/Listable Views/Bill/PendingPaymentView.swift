@@ -24,7 +24,7 @@ class PendingPaymentView: UIView {
     }
     
     private func bind(withAmount amount: Double) {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             textLabel.text = NSLocalizedString("Payment Processing", comment: "")
         case .comEd, .peco:

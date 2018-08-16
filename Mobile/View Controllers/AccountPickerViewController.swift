@@ -100,7 +100,7 @@ class AccountPickerViewController: UIViewController {
                 .distinctUntilChanged()
                 .drive(onNext: { [weak self] pickerVisible in
                     guard let `self` = self else { return }
-                    if let currentAccount = AccountsStore.sharedInstance.currentAccount { // Don't show if accounts not loaded
+                    if let currentAccount = AccountsStore.shared.currentAccount { // Don't show if accounts not loaded
                         self.iconView.image = currentAccount.isResidential ? #imageLiteral(resourceName: "ic_residential_mini") : #imageLiteral(resourceName: "ic_commercial_mini")
                         self.iconView.accessibilityLabel = currentAccount.isResidential ? NSLocalizedString("Residential account", comment: "") : NSLocalizedString("Commercial account", comment: "")
                         if currentAccount.address?.isEmpty ?? true {
@@ -129,7 +129,7 @@ class AccountPickerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let currentAccount = AccountsStore.sharedInstance.currentAccount
+        let currentAccount = AccountsStore.shared.currentAccount
         if currentAccount == nil {
             accountPickerViewControllerWillAppear.onNext(.loadingAccounts)
             fetchAccounts()

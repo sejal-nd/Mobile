@@ -12,12 +12,33 @@ import RxCocoa
 
 class NoNetworkConnectionView: UIView {
     
-    @IBOutlet var containerView: UIView!
-    @IBOutlet var reloadButton: ButtonControl!
-    @IBOutlet var reloadLabel: UILabel!
-    @IBOutlet var noNetworkConnectionLabel: UILabel!
-    @IBOutlet var pleaseReloadLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var noNetworkImageView: UIImageView!
+    @IBOutlet weak var reloadButton: ButtonControl!
+    @IBOutlet weak var reloadImageView: UIImageView!
+    @IBOutlet weak var reloadLabel: UILabel!
+    @IBOutlet weak var noNetworkConnectionLabel: UILabel!
+    @IBOutlet weak var pleaseReloadLabel: UILabel!
     
+    @IBInspectable var isColorBackground: Bool = true {
+        didSet {
+            if isColorBackground {
+                containerView.backgroundColor = .primaryColor
+                noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork")
+                reloadImageView.image = #imageLiteral(resourceName: "ic_reload")
+                reloadLabel.textColor = .white
+                noNetworkConnectionLabel.textColor = .white
+                pleaseReloadLabel.textColor = .white
+            } else {
+                containerView.backgroundColor = .white
+                noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_color")
+                reloadImageView.image = #imageLiteral(resourceName: "ic_reload_blue")
+                reloadLabel.textColor = .actionBlue
+                noNetworkConnectionLabel.textColor = .blackText
+                pleaseReloadLabel.textColor = .blackText
+            }
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -40,7 +40,7 @@ class SplashViewModel{
     }
     
     var appStoreLink: URL? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return URL(string: "https://itunes.apple.com/us/app/bge-an-exelon-company/id1274170174?ls=1&mt=8")
         case .comEd:
@@ -51,7 +51,7 @@ class SplashViewModel{
     }
     
     var errorTitleText: String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("We’re unable to load the app at this time. Please try again later or visit us at BGE.com.", comment: "")
         case .comEd:
@@ -64,7 +64,7 @@ class SplashViewModel{
     var errorLabelText: NSAttributedString? {
         var localizedString: String
         
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             localizedString = NSLocalizedString("If you smell natural gas or see downed power lines, leave the area immediately, and then call BGE at 1-800-685-0123.\n\n" +
                 "If your power is out, please call 1-877-778-2222 to report your outage.", comment: "")

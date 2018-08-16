@@ -23,7 +23,7 @@ class TemplateCardViewModel {
     
     //Set main image for the template
     private(set) lazy var templateImage: Driver<UIImage?> = self.accountDetailElements.map { accountDetail -> UIImage? in
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .peco:
             if accountDetail.isResidential {
                 return #imageLiteral(resourceName: "Residential")
@@ -54,7 +54,7 @@ class TemplateCardViewModel {
     
     //Set title string
     private(set) lazy var titleString: Driver<String?> = self.accountDetailElements.map { accountDetail -> String? in
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .peco:
             if accountDetail.isResidential {
                 return NSLocalizedString("PECO Has Ways to Save", comment: "")
@@ -87,7 +87,7 @@ class TemplateCardViewModel {
     
     //Set body content string
     private(set) lazy var bodyString: Driver<String?> = self.accountDetailElements.map { accountDetail -> String? in
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .peco:
             if accountDetail.isResidential {
                 return NSLocalizedString("Get cash back with PECO rebates on high-efficiency appliances & HVAC equipment.", comment: "")
@@ -128,7 +128,7 @@ class TemplateCardViewModel {
     
     //Set call to action string
     private(set) lazy var ctaString: Driver<String?> = self.accountDetailElements.map { accountDetail -> String? in
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .peco:
             return NSLocalizedString("Get started today", comment: "")
         case .bge:
@@ -157,7 +157,7 @@ class TemplateCardViewModel {
     
     //Set call to action URL to navigate to
     private(set) lazy var ctaUrl: Driver<URL> = self.accountDetailElements.map { accountDetail -> String? in
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .peco:
             return NSLocalizedString("http://www.peco.com/smartideas", comment: "")
         case .bge:
@@ -178,7 +178,7 @@ class TemplateCardViewModel {
                 return accountDetail.isHourlyPricing ?
                     String(format: NSLocalizedString("http://rrtp.comed.com/rrtpmobile/servlet?type=home&account=%@", comment: ""),
                            accountDetail.accountNumber) :
-                    NSLocalizedString("https://www.comedmarketplace.com/", comment: "")
+                    NSLocalizedString("https://www.comedmarketplace.com/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app", comment: "")
             } else {
                 return NSLocalizedString("http://comed.com/BusinessSavings", comment: "")
             }
@@ -189,14 +189,14 @@ class TemplateCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var linkToEcobee: Driver<Bool> = self.accountDetailElements.map {
-        Environment.sharedInstance.opco == .bge
+        Environment.shared.opco == .bge
             && $0.isResidential
             && $0.peakRewards == "ECOBEE WIFI"
         }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var linkToPeakRewards: Driver<Bool> = self.accountDetailElements.map {
-        Environment.sharedInstance.opco == .bge
+        Environment.shared.opco == .bge
             && $0.isResidential
             && $0.peakRewards == "ACTIVE"
         }
@@ -207,7 +207,7 @@ class TemplateCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var errorLabelText: Driver<String?> = self.accountDetailErrors.asDriver(onErrorJustReturn: ServiceError(serviceCode: "")).map {
-        if let serviceError = $0 as? ServiceError, serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+        if let serviceError = $0 as? ServiceError, serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
             return NSLocalizedString("This profile type does not have access to the mobile app. Access your account on our responsive website.", comment: "")
         }
         return NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")

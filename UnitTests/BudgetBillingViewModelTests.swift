@@ -19,7 +19,7 @@ class BudgetBillingViewModelTests: XCTestCase {
         viewModel = BudgetBillingViewModel(accountDetail: accountDetail!, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.currentEnrollment.value = false
         viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 if !enabled {
                     XCTFail("BGE - Submit button should be enabled when toggling switch off")
                 }
@@ -37,7 +37,7 @@ class BudgetBillingViewModelTests: XCTestCase {
         viewModel.currentEnrollment.value = false
         viewModel.selectedUnenrollmentReason.value = 1
         viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 if !enabled {
                     XCTFail("BGE - Submit button should be enabled when toggling switch off")
                 }

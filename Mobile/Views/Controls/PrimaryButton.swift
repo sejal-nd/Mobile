@@ -34,15 +34,7 @@ class PrimaryButton: UIButton {
         setTitleColor(.white, for: .normal)
         setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)
         setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .disabled)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        // If button is not full width, add rounded corners
-        if frame.size.width != UIScreen.main.bounds.size.width {
-            layer.cornerRadius = 2
-        }
+        layer.cornerRadius = 10.0
     }
     
     override var isHighlighted: Bool {

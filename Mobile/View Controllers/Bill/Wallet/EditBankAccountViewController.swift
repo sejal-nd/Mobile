@@ -142,11 +142,11 @@ class EditBankAccountViewController: UIViewController {
         let walletItem = viewModel.walletItem!
 
         // Nickname
-        let opco = Environment.sharedInstance.opco
+        let opco = Environment.shared.opco
         
         if let nickname = walletItem.nickName {
             let displayNickname: String
-            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
                 let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
                 displayNickname = nickname == String(last4) ? "" : nickname
             } else {
@@ -287,7 +287,7 @@ class EditBankAccountViewController: UIViewController {
     func deleteBankAccount() {
         var messageString = NSLocalizedString("Are you sure you want to delete this Bank Account? Note: If you proceed, all payments scheduled for today's date will still be processed. Pending payments for future dates using this account will be cancelled and you will need to reschedule your payment with another bank account.", comment: "")
         
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             messageString = NSLocalizedString("Deleting this payment account will also delete all the pending payments associated with this payment account. Please click 'Delete' to delete this payment account.", comment: "")
         }
         

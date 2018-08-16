@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import AppCenterXCUITestExtensions
 
 class MoreUITests: XCTestCase {
         
@@ -20,7 +21,7 @@ class MoreUITests: XCTestCase {
         
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchArguments = ["UITest"]
-        app.launch()
+        ACTLaunch.launch(app)
         
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
         doLoginAndNavigateToMoreTab()
@@ -59,6 +60,7 @@ class MoreUITests: XCTestCase {
     }
     
     func testMoreTabLayout() {
+        
         // Ensure all buttons exist
         XCTAssert(app.buttons["Settings"].exists)
         XCTAssert(app.buttons["Contact us"].exists)

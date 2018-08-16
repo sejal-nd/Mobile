@@ -52,7 +52,8 @@ class MyHomeProfileViewController: UIViewController {
         super.viewDidLoad()
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics().logScreenView(AnalyticsPageView.ViewHomeProfile.rawValue, dimensionIndex: Dimensions.ResidentialAMI, dimensionValue: residentialAMIString)
+        Analytics.log(event: .ViewHomeProfile,
+                             dimensions: [.ResidentialAMI: residentialAMIString])
         
         navigationItem.rightBarButtonItem = saveButton
         
@@ -68,6 +69,15 @@ class MyHomeProfileViewController: UIViewController {
         
         if let navController = navigationController as? MainBaseNavigationController {
             navController.setColoredNavBar()
+        }
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            if let navController = navigationController as? MainBaseNavigationController {
+                navController.setWhiteNavBar()
+            }
         }
     }
     

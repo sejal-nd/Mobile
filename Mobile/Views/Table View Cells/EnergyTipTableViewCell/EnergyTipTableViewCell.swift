@@ -12,6 +12,7 @@ class EnergyTipTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var bodyLabel: UILabel!
+    @IBOutlet weak var roundedView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +24,9 @@ class EnergyTipTableViewCell: UITableViewCell {
         bodyLabel.textColor = .deepGray
         bodyLabel.font = OpenSans.regular.of(textStyle: .body)
         bodyLabel.numberOfLines = 0
+        
+        roundedView.layer.cornerRadius = 10
+        roundedView.layer.masksToBounds = true
     }
     
     func configure(with energyTip: EnergyTip) {

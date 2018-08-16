@@ -41,7 +41,7 @@ class SettingsViewController: UIViewController {
             navController.setWhiteNavBar()
         }
         
-        if AccountsStore.sharedInstance.accounts == nil {
+        if AccountsStore.shared.accounts == nil {
             fetchAccounts()
         }
         
@@ -60,10 +60,10 @@ class SettingsViewController: UIViewController {
     func switchObserver(cell: SettingsTableViewCell, isOn: Bool) {
         if isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage())
-            Analytics().logScreenView(AnalyticsPageView.TouchIDEnable.rawValue)
+            Analytics.log(event: .TouchIDEnable)
         } else {
             viewModel.disableBiometrics()
-            Analytics().logScreenView(AnalyticsPageView.TouchIDDisable.rawValue)
+            Analytics.log(event: .TouchIDDisable)
         }
     }
     
@@ -128,9 +128,9 @@ extension SettingsViewController: UITableViewDelegate {
     }
     
     func handleOpcoCellPress() {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             performSegue(withIdentifier: "defaultAccountSegue", sender: self)
-        } else if Environment.sharedInstance.opco == .peco {
+        } else if Environment.shared.opco == .peco {
             performSegue(withIdentifier: "releaseOfInfoSegue", sender: self)
         }
     }
@@ -144,10 +144,10 @@ extension SettingsViewController: UITableViewDataSource {
         if viewModel.isDeviceBiometricCompatible() {
             numSections += 1
         }
-        if Environment.sharedInstance.opco == .bge && AccountsStore.sharedInstance.accounts != nil && AccountsStore.sharedInstance.accounts.count > 1 {
+        if Environment.shared.opco == .bge && AccountsStore.shared.accounts != nil && AccountsStore.shared.accounts.count > 1 {
             numSections += 1
         }
-        if Environment.sharedInstance.opco == .peco {
+        if Environment.shared.opco == .peco {
             numSections += 1
         }
         
@@ -192,9 +192,9 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     func configureOpcoCell(_ cell: SettingsTableViewCell) {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             cell.configureWith(label: NSLocalizedString("Default Account", comment: ""), carat: true)
-        } else if Environment.sharedInstance.opco == .peco {
+        } else if Environment.shared.opco == .peco {
             cell.configureWith(label: NSLocalizedString("Release of Info", comment: ""), carat: true)
         }
     }
@@ -206,7 +206,7 @@ extension SettingsViewController: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
-            Analytics().logScreenView(AnalyticsPageView.ChangePasswordComplete.rawValue)
+            Analytics.log(event: .ChangePasswordComplete)
         })
     }
     
@@ -217,7 +217,7 @@ extension SettingsViewController: PECOReleaseOfInfoViewControllerDelegate {
     func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Release of information updated", comment: ""))
-            Analytics().logScreenView(AnalyticsPageView.ReleaseInfoComplete.rawValue)
+            Analytics.log(event: .ReleaseInfoComplete)
         })
     }
     

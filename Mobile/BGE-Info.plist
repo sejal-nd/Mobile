@@ -19,9 +19,10 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2.5</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>20180206</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fb</string>
 		<string>ecobee</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>

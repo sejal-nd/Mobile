@@ -14,7 +14,7 @@ class DefaultAccountViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let viewModel = DefaultAccountViewModel(withAccounts: AccountsStore.sharedInstance.accounts, accountService: ServiceFactory.createAccountService())
+    let viewModel = DefaultAccountViewModel(withAccounts: AccountsStore.shared.accounts, accountService: ServiceFactory.createAccountService())
     
     let bag = DisposeBag()
 
@@ -46,7 +46,7 @@ class DefaultAccountViewController: UIViewController {
                                               preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
-                    Analytics().logScreenView(AnalyticsPageView.SetDefaultAccountChange.rawValue)
+                    Analytics.log(event: .SetDefaultAccountChange)
                 })
                 
                 self?.present(alert, animated: true, completion: nil)
@@ -127,12 +127,12 @@ extension DefaultAccountViewController: UITableViewDelegate {
                                           preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
-                Analytics().logScreenView(AnalyticsPageView.SetDefaultAccountCancel.rawValue)
+                Analytics.log(event: .SetDefaultAccountCancel)
                 observer.onCompleted()
             })
             
             alert.addAction(UIAlertAction(title: NSLocalizedString("Change", comment: ""), style: .default) { [weak self] _ in
-                Analytics().logScreenView(AnalyticsPageView.SetDefaultAccountChange.rawValue)
+                Analytics.log(event: .SetDefaultAccountChange)
                 if let `self` = self {
                     observer.onNext(self.viewModel.accounts.value[indexPath.row])
                 }

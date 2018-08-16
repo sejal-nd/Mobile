@@ -7,7 +7,7 @@
 //
 
 import XCTest
-
+import AppCenterXCUITestExtensions
 class BillUITests: XCTestCase {
     
     let app = XCUIApplication()
@@ -20,7 +20,7 @@ class BillUITests: XCTestCase {
         
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchArguments = ["UITest"]
-        app.launch()
+        ACTLaunch.launch(app)
     }
     
     func doLogin(username: String) {
@@ -100,6 +100,62 @@ class BillUITests: XCTestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Pending Payment"].waitForExistence(timeout: 3))
         }
         XCTAssert(app.scrollViews.otherElements.staticTexts["-$200.00"].exists)
+    }
+    
+    func testMaintModeBill() {
+        doLogin(username: "maintNotHome")
+        
+        XCTAssert(app.buttons["Reload"].exists)
+        XCTAssert(app.staticTexts["Scheduled Maintenance"].exists)
+        XCTAssert(app.staticTexts["Billing is currently unavailable due to\nscheduled maintenance."].exists)
+    }
+    
+    func testExpiredCc() {
+        let alertsQuery = app.alerts
+        let elementsQuery = app.scrollViews.otherElements
+        var predicate: NSPredicate
+        doLogin(username: "billCardWithExpiredDefaultPayment")
+        
+        //Check for expired card warning
+        app.buttons["My Wallet"].tap()
+        let alert = alertsQuery.staticTexts["Please update your Wallet as one or more of your saved payment accounts have expired."]
+        XCTAssert(alert.waitForExistence(timeout: 2))
+        let okButton = alertsQuery.buttons["OK"]
+        okButton.tap()
+        
+        //Check for "Expired" label on the button
+        if appName.contains("BGE"){
+            predicate = NSPredicate(format: "label CONTAINS 'Saved credit card button, EXPIRED CARD, Account number ending in, 1234, Default payment account, Fees: $0.00 Residential | 0% Business'")
+        } else {
+            predicate = NSPredicate(format: "label CONTAINS 'Saved credit card button, EXPIRED CARD, Account number ending in, 1234, Default payment account, $0.00 Convenience Fee'")
+        }
+        let expiredCardButton = app.tables.cells.buttons.element(matching: predicate)
+        
+        expiredCardButton.tap()
+        XCTAssert(elementsQuery.staticTexts["Expired"].exists)
+        let cancelButton = app.navigationBars["Edit Card"].buttons["Cancel"]
+        cancelButton.tap()
+    }
+    
+    func testCvvText() {
+        var predicate: NSPredicate
+        let elementsQuery = app.scrollViews.otherElements
+        doLogin(username: "billCardWithDefaultCcPayment")
+        app.buttons["My Wallet"].tap()
+        
+        if appName.contains("BGE"){
+            predicate = NSPredicate(format: "label CONTAINS 'Saved credit card button, TEST NICKNAME, Account number ending in, 1234, Default payment account, Fees: $0.00 Residential | 0% Business'")
+            let expiredCardButton = app.tables.cells.buttons.element(matching: predicate)
+            expiredCardButton.tap()
+            elementsQuery.buttons["Tool tip"].tap()
+            XCTAssert(elementsQuery.staticTexts["Your security code is usually a 3 or 4 digit number found on your card."].exists)
+        } else {
+            predicate = NSPredicate(format: "label CONTAINS 'Saved credit card button, TEST NICKNAME, Account number ending in, 1234, Default payment account, $0.00 Convenience Fee'")
+            let expiredCardButton = app.tables.cells.buttons.element(matching: predicate)
+            expiredCardButton.tap()
+            elementsQuery.buttons["Tool tip"].tap()
+            XCTAssert(elementsQuery.staticTexts["Your security code is usually a 3 digit number found on the back of your card."].exists)
+        }
     }
     
     private var appName: String {

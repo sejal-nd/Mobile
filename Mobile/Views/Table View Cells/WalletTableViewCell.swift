@@ -20,6 +20,8 @@ class WalletTableViewCell: UITableViewCell {
     @IBOutlet private weak var bottomBarShadowView: UIView!
     @IBOutlet private weak var bottomBarView: UIView!
     @IBOutlet weak var bottomBarLabel: UILabel!
+    @IBOutlet weak var expiredView: UIView!
+    @IBOutlet weak var expiredLabel: UILabel!
     
     var gradientLayer = CAGradientLayer()
 
@@ -55,6 +57,10 @@ class WalletTableViewCell: UITableViewCell {
         
         bottomBarLabel.textColor = .blackText
         bottomBarLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
+        expiredView.layer.borderWidth = 2
+        expiredView.layer.borderColor = UIColor.errorRed.cgColor
+        expiredLabel.textColor = .errorRed
     }
         
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
@@ -86,7 +92,7 @@ class WalletTableViewCell: UITableViewCell {
         var a11yLabel = ""
         
         bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .comEd, .peco:
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
@@ -112,7 +118,7 @@ class WalletTableViewCell: UITableViewCell {
         // Nickname
         if let nickname = walletItem.nickName {
             let displayNickname: String
-            if Environment.sharedInstance.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
+            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
                 let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
                 displayNickname = nickname == last4 ? "" : nickname
             } else {
@@ -120,7 +126,7 @@ class WalletTableViewCell: UITableViewCell {
             }
             
             nicknameLabel.text = displayNickname.uppercased()
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 if walletItem.bankOrCard == .bank {
                     if let bankAccountType = walletItem.bankAccountType {
                         if bankAccountType.rawValue.uppercased() == "SAVING"{
@@ -133,7 +139,7 @@ class WalletTableViewCell: UITableViewCell {
             }
         } else {
             nicknameLabel.text = ""
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 if let bankAccountType = walletItem.bankAccountType {
                     nicknameLabel.text = bankAccountType.rawValue.uppercased()
                 }
@@ -144,10 +150,16 @@ class WalletTableViewCell: UITableViewCell {
             a11yLabel += ", \(nicknameText)"
         }
         
-        
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            accountNumberLabel.text = "**** \(last4Digits)"
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
+            if let ad = UIApplication.shared.delegate as? AppDelegate, let window = ad.window {
+                if window.bounds.width < 375 { // If smaller than iPhone 6 width
+                    accountNumberLabel.text = "...\(last4Digits)"
+                } else {
+                    accountNumberLabel.text = "**** \(last4Digits)"
+                }
+            }
+            let a11yDigits = last4Digits.map(String.init).joined(separator: " ")
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), a11yDigits)
         } else {
             accountNumberLabel.text = ""
         }
@@ -157,7 +169,14 @@ class WalletTableViewCell: UITableViewCell {
             a11yLabel += NSLocalizedString(", Default payment account", comment: "")
         }
         
+        if walletItem.isExpired {
+            a11yLabel += NSLocalizedString(", expired", comment: "")
+        }
+        
         innerContentView.accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"
+        
+        expiredView.isHidden = !walletItem.isExpired
+        expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""
     }
     
 }

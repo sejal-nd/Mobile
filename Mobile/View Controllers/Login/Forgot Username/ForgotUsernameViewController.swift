@@ -187,7 +187,7 @@ class ForgotUsernameViewController: UIViewController {
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
             self?.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
-            Analytics().logScreenView(AnalyticsPageView.ForgotUsernameCompleteAccountValidation.rawValue)
+            Analytics.log(event: .ForgotUsernameCompleteAccountValidation)
         }, onNeedAccountNumber: { [weak self] in
             LoadingView.hide()
             self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
@@ -201,7 +201,7 @@ class ForgotUsernameViewController: UIViewController {
     
     @IBAction func onAccountNumberTooltipPress() {
         let description: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             description = NSLocalizedString("Your Customer Account Number may be found in the top right portion on your bill in the bill summary section. Please enter 10-digits including leading zeros.", comment: "")
         case .comEd:

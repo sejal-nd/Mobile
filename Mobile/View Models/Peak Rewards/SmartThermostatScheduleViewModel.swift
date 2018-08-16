@@ -29,7 +29,7 @@ class SmartThermostatScheduleViewModel {
     let saveTracker = ActivityTracker()
     
     var premiseNumber: String {
-        return AccountsStore.sharedInstance.currentAccount.currentPremise?.premiseNumber ??
+        return AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ??
             accountDetail.premiseNumber!
     }
     
@@ -94,7 +94,7 @@ class SmartThermostatScheduleViewModel {
             case .sleep:
                 pageView = .SleepSave
             }
-            Analytics().logScreenView(pageView.rawValue)
+            Analytics.log(event: pageView)
         })
         .withLatestFrom(self.updatedPeriodInfo)
         .flatMapLatest { [weak self] periodInfo -> Observable<Event<Void>> in
@@ -123,7 +123,7 @@ class SmartThermostatScheduleViewModel {
             case .sleep:
                 pageView = .SleepToast
             }
-            Analytics().logScreenView(pageView.rawValue)
+            Analytics.log(event: pageView)
         })
     private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
         .map { ($0 as? ServiceError)?.errorDescription ?? "" }

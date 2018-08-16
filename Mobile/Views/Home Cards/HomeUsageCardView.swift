@@ -13,6 +13,8 @@ class HomeUsageCardView: UIView {
     
     var disposeBag = DisposeBag()
     
+    @IBOutlet weak var clippingView: UIView!
+    
     // Bill Comparison
     @IBOutlet weak var billComparisonView: UIView!
     @IBOutlet weak var usageOverviewLabel: UILabel!
@@ -101,7 +103,8 @@ class HomeUsageCardView: UIView {
                                   initialSelectedIndex: 0)
         
         billComparisonStackView.bringSubview(toFront: segmentedControl)
-    
+        
+        clippingView.layer.cornerRadius = 10
         styleBillComparison()
         styleSmartEnergyRewards()
     }
@@ -118,7 +121,7 @@ class HomeUsageCardView: UIView {
     
     private func styleBillComparison() {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        layer.cornerRadius = 2
+        layer.cornerRadius = 10
         
         usageOverviewLabel.textColor = .blackText
         usageOverviewLabel.font = OpenSans.semibold.of(size: 18)
@@ -154,6 +157,7 @@ class HomeUsageCardView: UIView {
         noDataLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         
         barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
+        barDescriptionView.layer.cornerRadius = 10
         barDescriptionDateLabel.textColor = .blackText
         barDescriptionDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         barDescriptionTotalBillTitleLabel.textColor = .blackText
@@ -177,7 +181,7 @@ class HomeUsageCardView: UIView {
     private func styleSmartEnergyRewards() {
         smartEnergyRewardsTitleLabel.textColor = .blackText
         smartEnergyRewardsTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        smartEnergyRewardsTitleLabel.text = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+        smartEnergyRewardsTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsSeasonLabel.textColor = .deepGray
@@ -196,7 +200,7 @@ class HomeUsageCardView: UIView {
         
         smartEnergyRewardsEmptyStateTitleLabel.textColor = .blackText
         smartEnergyRewardsEmptyStateTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        smartEnergyRewardsEmptyStateTitleLabel.text = Environment.sharedInstance.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
+        smartEnergyRewardsEmptyStateTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsEmptyStateDetailLabel.textColor = .middleGray
@@ -212,7 +216,7 @@ class HomeUsageCardView: UIView {
         viewModel.shouldShowSmartEnergyRewards.not().drive(smartEnergyRewardsView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowSmartEnergyEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in
             if !shouldHide {
-                Analytics().logScreenView(AnalyticsPageView.EmptyStateSmartEnergyHome.rawValue)
+                Analytics.log(event: .EmptyStateSmartEnergyHome)
             }
         }).drive(smartEnergyRewardsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         
@@ -226,19 +230,25 @@ class HomeUsageCardView: UIView {
         
         viewModel.shouldShowBillComparisonEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in
             if !shouldHide {
-                Analytics().logScreenView(AnalyticsPageView.EmptyStateUsageOverview.rawValue)
+                Analytics.log(event: .EmptyStateUsageOverview)
             }
         }).drive(billComparisonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowBillComparisonEmptyStateButton.not().drive(viewUsageEmptyStateButton.rx.isHidden).disposed(by: disposeBag)
+        
+        Driver.combineLatest(viewModel.shouldShowBillComparison, viewModel.shouldShowBillComparisonEmptyStateButton)
+            .drive(onNext: {
+                (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: true, showViewUsageOptions: $0 || $1)
+            })
+            .disposed(by: disposeBag)
         
         // Segmented Controls
         viewModel.shouldShowElectricGasSegmentedControl.not().drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             if index == 0 {
-                Analytics().logScreenView(AnalyticsPageView.ViewUsageElectricity.rawValue)
+                Analytics.log(event: .ViewUsageElectricity)
             } else {
-                Analytics().logScreenView(AnalyticsPageView.ViewUsageGas.rawValue)
+                Analytics.log(event: .ViewUsageGas)
             }
         }).disposed(by: disposeBag)
         
@@ -251,6 +261,10 @@ class HomeUsageCardView: UIView {
         // Bar graph height constraints
         viewModel.previousBarHeightConstraintValue.drive(previousBarHeightConstraint.rx.constant).disposed(by: disposeBag)
         viewModel.currentBarHeightConstraintValue.drive(currentBarHeightConstraint.rx.constant).disposed(by: disposeBag)
+        
+        // Bar graph corner radius
+        viewModel.previousBarHeightConstraintValue.map { min(10, $0/2) }.drive(previousBarView.rx.cornerRadius).disposed(by: disposeBag)
+        viewModel.currentBarHeightConstraintValue.map { min(10, $0/2) }.drive(currentBarView.rx.cornerRadius).disposed(by: disposeBag)
 
         // Bar show/hide
         viewModel.noPreviousData.asDriver().not().drive(noDataContainerButton.rx.isHidden).disposed(by: disposeBag)

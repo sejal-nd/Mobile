@@ -45,10 +45,10 @@ extension OutageService {
         return Observable.create { observer in
             self.fetchOutageStatus(account: account, completion: { (result: ServiceResult<OutageStatus>) in
                 switch result {
-                case ServiceResult.Success(let outageStatus):
+                case ServiceResult.success(let outageStatus):
                     observer.onNext(outageStatus)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
 
@@ -61,10 +61,10 @@ extension OutageService {
         return Observable.create { observer in
             self.reportOutage(outageInfo: outageInfo, completion: { (result: ServiceResult<Void>) in
                 switch result {
-                case ServiceResult.Success:
+                case ServiceResult.success:
                     observer.onNext(())
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })
@@ -76,10 +76,10 @@ extension OutageService {
         return Observable.create { observer in
             self.fetchOutageStatusAnon(phoneNumber: phoneNumber, accountNumber: accountNumber, completion: { (result: ServiceResult<[OutageStatus]>) in
                 switch result {
-                case ServiceResult.Success(let outageStatusArray):
+                case ServiceResult.success(let outageStatusArray):
                     observer.onNext(outageStatusArray)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
                 
@@ -92,10 +92,10 @@ extension OutageService {
         return Observable.create { observer in
             self.reportOutageAnon(outageInfo: outageInfo, completion: { (result: ServiceResult<ReportedOutageResult>) in
                 switch result {
-                case ServiceResult.Success(let reportedOutageResult):
+                case ServiceResult.success(let reportedOutageResult):
                     observer.onNext(reportedOutageResult)
                     observer.onCompleted()
-                case ServiceResult.Failure(let err):
+                case ServiceResult.failure(let err):
                     observer.onError(err)
                 }
             })

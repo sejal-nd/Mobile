@@ -13,6 +13,8 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
@@ -59,6 +61,9 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.linkTapDelegate = self
+        
+        maintenanceModeView.isHidden = true
         
         NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
@@ -76,22 +81,55 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         
         bindViewModel()
         bindValidation()
-
-        viewModel.checkForMaintenance(onSuccess: { [weak self] isMaintenance in
-            if isMaintenance {
+        
+        checkForMaintenance()
+        
+        maintenanceModeView.reload
+            .subscribe(onNext: { [weak self] in
+                self?.checkForMaintenance()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func checkForMaintenance() {
+        loadingIndicator.isHidden = false
+        maintenanceModeView.isHidden = true
+        scrollView.isHidden = true
+        footerView.isHidden = true
+        navigationItem.rightBarButtonItem = nil
+        
+        viewModel.checkForMaintenance(
+            onAll: { [weak self] in
                 self?.navigationController?.view.isUserInteractionEnabled = true
                 let ad = UIApplication.shared.delegate as! AppDelegate
                 ad.showMaintenanceMode()
-            }
-        }, onError: { [weak self] errorMessage in
-            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self?.present(alertController, animated: true, completion: nil)
+            }, onOutage: { [weak self] in
+                self?.loadingIndicator.isHidden = true
+                self?.maintenanceModeView.isHidden = false
+                self?.scrollView.isHidden = true
+                self?.footerView.isHidden = true
+                self?.navigationItem.rightBarButtonItem = nil
+            }, onNeither: { [weak self] in
+                self?.loadingIndicator.isHidden = true
+                self?.maintenanceModeView.isHidden = true
+                self?.scrollView.isHidden = false
+                self?.footerView.isHidden = false
+                self?.navigationItem.rightBarButtonItem = self?.submitButton
         })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = true
+        
+        setNeedsStatusBarAppearanceUpdate()
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
         
         navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
         navigationController?.navigationBar.barTintColor = .primaryColor
@@ -229,9 +267,9 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         
         switch analyticsSource {
         case .Report:
-            Analytics().logScreenView(AnalyticsPageView.ReportAnOutageUnAuthSubmitAcctVal.rawValue)
+            Analytics.log(event: .ReportAnOutageUnAuthSubmitAcctVal)
         case .Status:
-            Analytics().logScreenView(AnalyticsPageView.OutageStatusUnAuthAcctValidate.rawValue)
+            Analytics.log(event: .OutageStatusUnAuthAcctValidate)
         default:
             break
         }
@@ -239,7 +277,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     
     @IBAction func onAccountNumberTooltipPress() {
         let description: String
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             description = NSLocalizedString("Your Customer Account Number can be found in the lower right portion of your bill. Please enter 10-digits including leading zeros.", comment: "")
         case .comEd:
@@ -323,4 +361,11 @@ extension UnauthenticatedOutageValidateAccountViewController: UITextFieldDelegat
         return true
     }
     
+}
+
+extension UnauthenticatedOutageValidateAccountViewController: DataDetectorTextViewLinkTapDelegate {
+    
+    func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
+        Analytics.log(event: .OutageStatusUnAuthAcctValEmergencyPhone)
+    }
 }

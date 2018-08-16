@@ -59,7 +59,7 @@ extension AccountDetail {
          peakRewards: String? = nil,
          zipCode: String? = nil) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -133,11 +133,12 @@ extension BillingInfo: JSONEncodable {
          commercialFee: Double? = 0,
          turnOffNoticeExtensionStatus: String? = nil,
          turnOffNoticeExtendedDueDate: Date? = nil,
+         turnOffNoticeDueDate: Date? = nil,
          deliveryCharges: Double? = nil,
          supplyCharges: Double? = nil,
          taxesAndFees: Double? = nil) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -170,6 +171,7 @@ extension BillingInfo: JSONEncodable {
             "feeCommercial": commercialFee,
             "turnOffNoticeExtensionStatus": turnOffNoticeExtensionStatus,
             "turnOffNoticeExtendedDueDate": turnOffNoticeExtendedDueDate?.apiString,
+            "turnOffNoticeDueDate": turnOffNoticeDueDate?.apiString,
             "deliveryCharges": deliveryCharges,
             "supplyCharges": supplyCharges,
             "taxesAndFees": taxesAndFees,
@@ -209,6 +211,7 @@ extension BillingInfo: JSONEncodable {
             "feeCommercial": commercialFee,
             "turnOffNoticeExtensionStatus": turnOffNoticeExtensionStatus,
             "turnOffNoticeExtendedDueDate": turnOffNoticeExtendedDueDate?.apiString,
+            "turnOffNoticeDueDate": turnOffNoticeDueDate?.apiString,
             "deliveryCharges": deliveryCharges,
             "supplyCharges": supplyCharges,
             "taxesAndFees": taxesAndFees,
@@ -221,7 +224,7 @@ extension PaymentItem: JSONEncodable {
     
     init(amount: Double, date: Date? = Date(), status: PaymentStatus = .scheduled) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -247,7 +250,7 @@ extension CustomerInfo: JSONEncodable {
     
     init(emailAddress: String? = nil, number: String? = nil, firstName: String? = nil, nameCompressed: String? = nil) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -276,7 +279,7 @@ extension Premise: JSONEncodable {
     
     init(premiseNumber: String = "", addressGeneral: String? = nil, zipCode: String? = nil, addressLine: [String]? = nil, smartEnergyRewards: String? = nil) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -313,7 +316,7 @@ extension Premise: JSONEncodable {
 extension SERInfo: JSONEncodable {
     init(controlGroupFlag: String? = nil, eventResults: [SERResult] = []) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         
@@ -339,7 +342,7 @@ extension SERResult: JSONEncodable {
          savingDollar: Double = 0,
          savingKWH: Double = 0) {
         
-        if Environment.sharedInstance.environmentName != "AUT" {
+        if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
         

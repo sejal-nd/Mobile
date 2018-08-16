@@ -18,12 +18,19 @@ enum OpCo: String {
     }
 }
 
+enum EnvironmentName: String {
+    case aut = "AUT"
+    case dev = "DEV"
+    case stage = "STAGE"
+    case prod = "PROD"
+}
+
 /// Convenience singleton that wraps environment variables.
 struct Environment  {
     
-    static let sharedInstance = Environment()
+    static let shared = Environment()
     
-    let environmentName: String
+    let environmentName: EnvironmentName
     let appName: String
     let opco: OpCo
     let oAuthEndpoint: String
@@ -34,12 +41,13 @@ struct Environment  {
     let gaTrackingId: String
     let firebaseConfigFile: String
     let opcoUpdatesHost: String
+    let appCenterId: String?
     
     private init() {
         let path = Bundle.main.path(forResource: "environment", ofType: "plist")
         let dict = NSDictionary(contentsOfFile: path!)
     
-        environmentName = dict?["environment"] as! String
+        environmentName = EnvironmentName(rawValue: dict?["environment"] as! String)!
         appName = dict?["appName"] as! String
         opco = OpCo(rawValue: dict?["opco"] as! String)!
         oAuthEndpoint = dict?["oauthEndpoint"] as! String
@@ -50,18 +58,6 @@ struct Environment  {
         gaTrackingId = dict?["gaTrackingId"] as! String
         firebaseConfigFile = dict?["firebaseConfigFile"] as! String
         opcoUpdatesHost = dict?["opcoUpdatesHost"] as! String
-    }
-    
-    var opcoDateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        switch opco {
-        case .bge:
-            formatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        case .comEd:
-            formatter.dateFormat = "hh:mm a 'on' M/dd/yyyy"
-        case .peco:
-            formatter.dateFormat = "h:mm a zz 'on' M/dd/yyyy"
-        }
-        return formatter
+        appCenterId = dict?["appCenterId"] as? String
     }
 }

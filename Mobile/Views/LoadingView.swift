@@ -11,12 +11,7 @@ import Lottie
 
 class LoadingView: UIView {
     
-    public class var sharedInstance: LoadingView {
-        struct Singleton {
-            static let instance = LoadingView(frame: CGRect.zero)
-        }
-        return Singleton.instance
-    }
+    static let shared = LoadingView(frame: .zero)
     
     private var loadingAnimationView = LOTAnimationView(name: "full_screen_loading")
     
@@ -40,7 +35,7 @@ class LoadingView: UIView {
     }
     
     public class func show(animated: Bool = true) {
-        let loadingView = LoadingView.sharedInstance
+        let loadingView = LoadingView.shared
         
         loadingView.frame = loadingView.containerView.bounds
         loadingView.isAccessibilityElement = true
@@ -68,7 +63,7 @@ class LoadingView: UIView {
     
     public class func hide(animated: Bool = false, _ completion: (() -> Void)? = nil) {
         
-        let loadingView = LoadingView.sharedInstance
+        let loadingView = LoadingView.shared
         loadingView.accessibilityViewIsModal = false
         loadingView.isAccessibilityElement = false
         DispatchQueue.main.async(execute: {

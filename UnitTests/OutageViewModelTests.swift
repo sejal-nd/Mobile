@@ -12,13 +12,13 @@ class OutageViewModelTests: XCTestCase {
     var viewModel: OutageViewModel!
     
     override func setUp() {
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: MockOutageService())
+        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: MockOutageService(), authService: MockAuthenticationService())
     }
         
     func testGetOutageStatusSuccess() {
         let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
         
-        AccountsStore.sharedInstance.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
+        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
         
         viewModel.getOutageStatus(onSuccess: {
             asyncExpectation.fulfill()
@@ -34,7 +34,7 @@ class OutageViewModelTests: XCTestCase {
     func testGetOutageStatusFailureFinaled() {
         let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
         
-        AccountsStore.sharedInstance.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "80000000000", "address": "573 Elm Street"]))
+        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "80000000000", "address": "573 Elm Street"]))
 
         viewModel.getOutageStatus(onSuccess: {
             XCTAssert(self.viewModel.currentOutageStatus!.flagFinaled, "Account was not filed.")
@@ -51,7 +51,7 @@ class OutageViewModelTests: XCTestCase {
     func testGetOutageStatusFailureNoPay() {
         let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
         
-        AccountsStore.sharedInstance.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "70000000000", "address": "573 Elm Street"]))
+        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "70000000000", "address": "573 Elm Street"]))
         
         viewModel.getOutageStatus(onSuccess: {
             XCTAssert(self.viewModel.currentOutageStatus!.flagNoPay)
@@ -68,7 +68,7 @@ class OutageViewModelTests: XCTestCase {
     func testGetOutageStatusFailureNoService() {
         let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
         
-        AccountsStore.sharedInstance.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "60000000000", "address": "573 Elm Street"]))
+        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "60000000000", "address": "573 Elm Street"]))
         
         viewModel.getOutageStatus(onSuccess: {
             XCTAssert(self.viewModel.currentOutageStatus!.flagNonService)
@@ -84,14 +84,14 @@ class OutageViewModelTests: XCTestCase {
     
     
     func testEstimatedRestorationDateStringReportedOutage() {
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
         
         let mockOutageService = MockOutageService()
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService)
+        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
         let testEtr = Date()
-        let testEtrString = Environment.sharedInstance.opcoDateFormatter.string(from: testEtr)
+        let testEtrString = DateFormatter.outageOpcoDateFormatter.string(from: testEtr)
         
         let expect = expectation(description: "Test report outage expectation")
         reportViewModel.reportOutage(onSuccess: {
@@ -107,11 +107,11 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testReportedOutage() {
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
         
         let expect = expectation(description: "Test report outage expectation")
         let mockOutageService = MockOutageService()
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService)
+        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
         reportViewModel.reportOutage(onSuccess: {
@@ -129,13 +129,12 @@ class OutageViewModelTests: XCTestCase {
     func testClearReportedOutage() {
         // Clear the user defaults first (UI testing may interfere with this test)
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        UserDefaults.standard.synchronize()
         
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
         
         let expect = expectation(description: "Test report outage expectation")
         let mockOutageService = MockOutageService()
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService)
+        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
         reportViewModel.reportOutage(onSuccess: {
@@ -153,7 +152,7 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testEstimatedRestorationDateStringCurrentOutage() {
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "9836621902", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "9836621902", "address": "573 Elm Street"])!
         
         let testEtrStringBge = "04/10/2017 03:45 AM"
         let testEtrStringComed = "03:45 AM on 4/10/2017"
@@ -161,14 +160,14 @@ class OutageViewModelTests: XCTestCase {
         
         let expect = expectation(description: "Test Outage status expectation")
         viewModel.getOutageStatus(onSuccess: {
-            if (Environment.sharedInstance.opco == .bge){
+            if (Environment.shared.opco == .bge){
             XCTAssert(self.viewModel.estimatedRestorationDateString == testEtrStringBge, "Expected \(testEtrStringBge), received \(self.viewModel.estimatedRestorationDateString)")
                 expect.fulfill()}
-            else if (Environment.sharedInstance.opco == .comEd){
+            else if (Environment.shared.opco == .comEd){
                 XCTAssert(self.viewModel.estimatedRestorationDateString == testEtrStringComed, "Expected \(testEtrStringComed), received \(self.viewModel.estimatedRestorationDateString)")
                 expect.fulfill()
             }
-            else if (Environment.sharedInstance.opco == .peco){
+            else if (Environment.shared.opco == .peco){
                 XCTAssert(self.viewModel.estimatedRestorationDateString == testEtrStringPeco, "Expected \(testEtrStringPeco), received \(self.viewModel.estimatedRestorationDateString)")
                 expect.fulfill()
             }
@@ -181,20 +180,20 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testOutageReportedDateStringNotReported() {
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
         
         XCTAssert(self.viewModel.outageReportedDateString == "Reported", "Received \(self.viewModel.outageReportedDateString) instead of \"Reported\"")
     }
     
     func testOutageReportedDateStringReported() {
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
         
         let mockOutageService = MockOutageService()
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService)
+        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
         let testDate = Date()
-        let testDateString = Environment.sharedInstance.opcoDateFormatter.string(from: testDate)
+        let testDateString = DateFormatter.outageOpcoDateFormatter.string(from: testDate)
         
         let expect = expectation(description: "Test report outage expectation")
         
@@ -211,9 +210,9 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testFooterTextViewText() {
-            AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
+            AccountsStore.shared.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
             
-            switch Environment.sharedInstance.opco {
+            switch Environment.shared.opco {
             case .bge:
                 return XCTAssert(self.viewModel.footerTextViewText == "To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", "BGE footer text was not returned. Recieved \(self.viewModel.footerTextViewText)")
             case .comEd:
@@ -223,9 +222,9 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testGasOnlyMessage() {
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
         
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return XCTAssert(self.viewModel.gasOnlyMessage == "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", "BGE Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")
         case .peco:
@@ -235,11 +234,11 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testAccountFinaled() {
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "75395146464", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "75395146464", "address": "573 Elm Street"])!
         
         viewModel.getOutageStatus(onSuccess: {
             let expectedString: String
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 expectedString = NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
             } else {
                 expectedString = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
@@ -251,11 +250,11 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testAccountNonPay() {
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "3216544560", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "3216544560", "address": "573 Elm Street"])!
         
         viewModel.getOutageStatus(onSuccess: {
             let expectedString: String
-            if Environment.sharedInstance.opco == .bge {
+            if Environment.shared.opco == .bge {
                 expectedString = NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
             } else {
                 expectedString =  NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")

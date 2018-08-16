@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>environment</key>
+	<string>PROD</string>
+	<key>appName</key>
+	<string>PECO</string>
+	<key>opco</key>
+	<string>PECO</string>
+	<key>oauthEndpoint</key>
+	<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+	<key>mcsInstanceName</key>
+	<string>ProdPECO</string>
+	<key>fiservUrl</key>
+	<string>https://billerwebui.fiservapps.com/Mobile</string>
+	<key>speedpayUrl</key>
+	<string>https://tokenservice.speedpay.com/api/token/GetToken</string>
+	<key>outageMapUrl</key>
+	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_peco_prodbeta</string>
+	<key>gaTrackingId</key>
+	<string>UA-76742208-2</string>
+	<key>opcoUpdatesHost</key>
+	<string>www.peco.com</string>
+	<key>appCenterId</key>
+	<string>fbc9f960-869c-47c4-a765-a650369ffca1</string>
+</dict>
+</plist>

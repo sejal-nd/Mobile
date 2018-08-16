@@ -109,6 +109,7 @@ class ReviewPaymentViewController: UIViewController {
         paymentAccountMaskedAccountNumberLabel.textColor = .blackText
         paymentAccountNicknameLabel.textColor = .middleGray
         
+        receiptView.layer.cornerRadius = 10
         receiptView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         amountDueTextLabel.textColor = .deepGray
@@ -159,7 +160,7 @@ class ReviewPaymentViewController: UIViewController {
         
         termsConditionsSwitchLabel.textColor = .deepGray
         termsConditionsSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             termsConditionsSwitchLabel.text = NSLocalizedString("I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records.", comment: "")
         } else {
             termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
@@ -274,9 +275,9 @@ class ReviewPaymentViewController: UIViewController {
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
             switch bankOrCard {
             case .bank:
-                Analytics().logScreenView(AnalyticsPageView.ECheckSubmit.rawValue)
+                Analytics.log(event: .ECheckSubmit)
             case .card:
-                Analytics().logScreenView(AnalyticsPageView.CardSubmit.rawValue)
+                Analytics.log(event: .CardSubmit)
             }
         }
         
@@ -321,24 +322,39 @@ class ReviewPaymentViewController: UIViewController {
                 LoadingView.hide()
                 
                 if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
+                    let pageView: AnalyticsPageView
                     switch bankOrCard {
                     case .bank:
-                        Analytics().logScreenView(AnalyticsPageView.ECheckComplete.rawValue)
+                        pageView = .ECheckComplete
                     case .card:
-                        Analytics().logScreenView(AnalyticsPageView.CardComplete.rawValue)
+                        pageView = .CardComplete
                     }
+                    
+                    Analytics.log(event: pageView)
                 }
                 
                 self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-            }, onError: { errMessage in
-                handleError(errMessage)
+            }, onError: { [weak self] error in
+                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
+                    let pageView: AnalyticsPageView
+                    switch bankOrCard {
+                    case .bank:
+                        pageView = .EcheckError
+                    case .card:
+                        pageView = .CardError
+                    }
+                    
+                    Analytics.log(event: pageView,
+                                         dimensions: [.ErrorCode: error.serviceCode])
+                }
+                handleError(error.localizedDescription)
             })
         }
 
     }
     
     func onTermsConditionsPress() {
-        let url = Environment.sharedInstance.opco == .bge ? URL(string: "https://www.speedpay.com/terms/")! :
+        let url = Environment.shared.opco == .bge ? URL(string: "https://www.speedpay.com/terms/")! :
             URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
         navigationController?.present(tacModal, animated: true, completion: nil)

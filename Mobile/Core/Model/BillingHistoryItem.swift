@@ -25,10 +25,10 @@ private func dollarAmount(fromValue value: Any?) throws -> Double {
 }
 
 private func extractDate(object: Any?) throws -> Date {
-    guard let dateString = object as? String else {
+    guard let dateString = object as? String, let date = dateString.apiFormatDate else {
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
-    return dateString.apiFormatDate
+    return date
 }
 
 private func calculateIsFuture(dateToCompare: Date) -> Bool {
@@ -72,14 +72,14 @@ struct BillingHistoryItem: Mappable {
         flagAllowEdits = map.optionalFrom("flag_allow_edits") ?? true
         encryptedPaymentId = map.optionalFrom("encrypted_payment_id")
         isFuture = calculateIsFuture(dateToCompare: date)
-        if status == BillingHistoryProperties.StatusPending.rawValue ||
-            status == BillingHistoryProperties.StatusProcessing.rawValue ||
-            status == BillingHistoryProperties.StatusProcessed.rawValue {
+        if status == BillingHistoryProperties.statusPending.rawValue ||
+            status == BillingHistoryProperties.statusProcessing.rawValue ||
+            status == BillingHistoryProperties.statusProcessed.rawValue {
             isFuture = true
-        } else if status == BillingHistoryProperties.StatusCanceled.rawValue || status == BillingHistoryProperties.StatusCANCELLED.rawValue {
+        } else if status == BillingHistoryProperties.statusCanceled.rawValue || status == BillingHistoryProperties.statusCANCELLED.rawValue {
             // EM-2638: Cancelled payments should always be in the past
             isFuture = false
-        } else if type == BillingHistoryProperties.TypeBilling.rawValue {
+        } else if type == BillingHistoryProperties.typeBilling.rawValue {
             // EM-2638: Bills should always be in the past
             isFuture = false
         }
@@ -94,19 +94,19 @@ struct BillingHistoryItem: Mappable {
 }
 
 enum BillingHistoryProperties: String {
-    case TypeBilling = "billing"
-    case TypePayment = "payment"
-    case StatusCanceled = "canceled"
-    case StatusCANCELLED = "CANCELLED" //PECO
-    case StatusPosted = "Posted"
-    case StatusFailed = "failed"
-    case StatusPending = "Pending" //TODO: need to confirm case
-    case StatusProcessing = "processing"
-    case StatusProcessed = "processed"
-    case StatusScheduled = "scheduled"
-    case StatusSCHEDULED = "SCHEDULED" //PECO
-    case PaymentMethod_S = "S"
-    case PaymentMethod_R = "R"
-    case PaymentTypeSpeedpay = "SPEEDPAY"
-    case PaymentTypeCSS = "CSS"
+    case typeBilling = "billing"
+    case typePayment = "payment"
+    case statusCanceled = "canceled"
+    case statusCANCELLED = "CANCELLED" //PECO
+    case statusPosted = "Posted"
+    case statusFailed = "failed"
+    case statusPending = "Pending" //TODO: need to confirm case
+    case statusProcessing = "processing"
+    case statusProcessed = "processed"
+    case statusScheduled = "scheduled"
+    case statusSCHEDULED = "SCHEDULED" //PECO
+    case paymentMethod_S = "S"
+    case paymentMethod_R = "R"
+    case paymentTypeSpeedpay = "SPEEDPAY"
+    case paymentTypeCSS = "CSS"
 }

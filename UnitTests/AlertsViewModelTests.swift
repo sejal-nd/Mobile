@@ -15,7 +15,7 @@ class AlertsViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     
     func testFetchDataSuccess() {
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!
         viewModel = AlertsViewModel(accountService: MockAccountService(), alertsService: MockAlertsService())
         viewModel.fetchData()
         
@@ -35,7 +35,7 @@ class AlertsViewModelTests: XCTestCase {
     
     func testFetchDataErrors() {
         // Account detail failure
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "WRONG", "address": "573 Elm Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "WRONG", "address": "573 Elm Street"])!
         viewModel = AlertsViewModel(accountService: MockAccountService(), alertsService: MockAlertsService())
         viewModel.fetchData()
         
@@ -55,7 +55,7 @@ class AlertsViewModelTests: XCTestCase {
         }
 
         // Opco updates failure
-        AccountsStore.sharedInstance.currentAccount = Account.from(["accountNumber": "9836621902","address": "573 Test Street"])!
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "9836621902","address": "573 Test Street"])!
         viewModel = AlertsViewModel(accountService: MockAccountService(), alertsService: MockAlertsService())
         viewModel.fetchData()
         

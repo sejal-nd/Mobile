@@ -37,11 +37,6 @@ extension Date {
         return DateFormatter.apiFormatter.string(from: self)
     }
     
-    @nonobjc var apiFormatDate: Date {
-        let dateString = DateFormatter.apiFormatter.string(from: self)
-        return dateString.apiFormatDate
-    }
-    
     @nonobjc var localizedGreeting: String {
         let components = Calendar.current.dateComponents([.hour], from: self)
         guard let hour = components.hour else { return "Greetings" }
@@ -135,17 +130,26 @@ extension DateFormatter {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'12:00:00"
         return dateFormatter
     }()
+    
+    @nonobjc static let outageOpcoDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = .opCo
+        switch Environment.shared.opco {
+        case .bge:
+            formatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        case .comEd:
+            formatter.dateFormat = "hh:mm a 'on' M/dd/yyyy"
+        case .peco:
+            formatter.dateFormat = "h:mm a zz 'on' M/dd/yyyy"
+        }
+        return formatter
+    }()
 }
 
 extension String {
-    @nonobjc var mmDdYyyyDate: Date {
-        return DateFormatter.mmDdYyyyFormatter.date(from: self)!
+    @nonobjc var apiFormatDate: Date? {
+        return DateFormatter.apiFormatter.date(from: self)
     }
-    
-    @nonobjc var apiFormatDate: Date {
-        return DateFormatter.apiFormatter.date(from: self)!
-    }
-
 }
 
 extension Calendar {
@@ -166,7 +170,7 @@ extension Calendar {
 
 extension TimeZone {
     static let opCo: TimeZone = {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge, .peco :
             return TimeZone(identifier: "America/New_York")!
         case .comEd:

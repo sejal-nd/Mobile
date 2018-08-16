@@ -24,7 +24,7 @@ class ReportOutageViewModel {
     
     required init(outageService: OutageService) {
         self.outageService = outageService
-        if Environment.sharedInstance.opco == .comEd {
+        if Environment.shared.opco == .comEd {
             reportFormHidden.value = true
         }
     }
@@ -38,7 +38,7 @@ class ReportOutageViewModel {
     }
     
     var footerTextViewText: String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
         case .comEd:
@@ -49,14 +49,14 @@ class ReportOutageViewModel {
     }
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        var outageIssue = OutageIssue.AllOut
+        var outageIssue = OutageIssue.allOut
         if selectedSegmentIndex.value == 1 {
-            outageIssue = OutageIssue.PartOut
+            outageIssue = OutageIssue.partOut
         } else if selectedSegmentIndex.value == 2 {
-            outageIssue = OutageIssue.Flickering
+            outageIssue = OutageIssue.flickering
         }
 
-        var outageInfo = OutageInfo(accountNumber: AccountsStore.sharedInstance.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
+        var outageInfo = OutageInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
         if phoneExtension.value.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
@@ -76,11 +76,11 @@ class ReportOutageViewModel {
     }
     
     func reportOutageAnon(onSuccess: @escaping (ReportedOutageResult) -> Void, onError: @escaping (String) -> Void) {
-        var outageIssue = OutageIssue.AllOut
+        var outageIssue = OutageIssue.allOut
         if selectedSegmentIndex.value == 1 {
-            outageIssue = OutageIssue.PartOut
+            outageIssue = OutageIssue.partOut
         } else if selectedSegmentIndex.value == 2 {
-            outageIssue = OutageIssue.Flickering
+            outageIssue = OutageIssue.flickering
         }
         
         var outageInfo = OutageInfo(accountNumber: outageStatus!.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)

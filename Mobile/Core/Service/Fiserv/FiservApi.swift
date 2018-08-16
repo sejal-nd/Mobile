@@ -9,53 +9,53 @@
 import Foundation
 
 private enum ResponseKey : String {
-    case ResponseCode = "ResponseCode"
-    case StatusMessage = "StatusMessage"
-    case WalletItemId = "WalletItemID"
-    case GUID = "GUID"
-    case Hash = "Hash"
+    case responseCode = "ResponseCode"
+    case statusMessage = "StatusMessage"
+    case walletItemId = "WalletItemID"
+    case guid = "GUID"
+    case hash = "Hash"
 }
 
 private enum MessageId : String {
-    case InsertCheck = "insertWalletCheck"
-    case InsertCredit = "insertWalletCard"
+    case insertCheck = "insertWalletCheck"
+    case insertCredit = "insertWalletCard"
     case updateCredit = "updateWalletCard"
 }
 
 private enum Action : String {
-    case Insert = "OD_InsertWalletItem"
-    case Update = "OD_UpdateWalletItem"
+    case insert = "OD_InsertWalletItem"
+    case update = "OD_UpdateWalletItem"
 }
 
 private enum Parameter : String {
-    case MessageId = "MessageId"
-    case WalletItemId = "WalletItemID"
-    case RequestTimestamp = "RequestTimestamp"
-    case AppId = "AppId"
-    case ProcessingRegionCode = "ProcessingRegionCode"
-    case BillerId = "BillerId"
-    case ConsumerId = "ConsumerId"
-    case SessionToken = "AuthSessToken"
-    case DeviceProfile = "DeviceProfile"
-    case UserAgentString = "UserAgentString"
-    case WalletExternalId = "WalletExternalID"
-    case OneTimeUse = "OneTimeUse"
-    case IsDefaultFunding = "IsDefaultFundingSource"
-    case NickName = "NickName"
+    case messageId = "MessageId"
+    case walletItemId = "WalletItemID"
+    case requestTimestamp = "RequestTimestamp"
+    case appId = "AppId"
+    case processingRegionCode = "ProcessingRegionCode"
+    case billerId = "BillerId"
+    case consumerId = "ConsumerId"
+    case sessionToken = "AuthSessToken"
+    case deviceProfile = "DeviceProfile"
+    case userAgentString = "UserAgentString"
+    case walletExternalId = "WalletExternalID"
+    case oneTimeUse = "OneTimeUse"
+    case isDefaultFunding = "IsDefaultFundingSource"
+    case nickName = "NickName"
     
-    case CheckingDetail = "CheckingDetail"
-    case CardDetail = "CardDetail"
+    case checkingDetail = "CheckingDetail"
+    case cardDetail = "CardDetail"
 
-    case CardNumber = "CardNumber"
-    case ExpirationDate = "ExpirationDate"
-    case SecurityCode = "SecurityCode"
-    case PostalCode = "ZipCode"
+    case cardNumber = "CardNumber"
+    case expirationDate = "ExpirationDate"
+    case securityCode = "SecurityCode"
+    case postalCode = "ZipCode"
     
-    case RoutingNumber = "RoutingNumber"
-    case CheckAccountNumber = "CheckAccountNumber"
-    case FirstName = "FirstName"
-    case LastName = "LastName"
-    case CheckType = "CheckType"
+    case routingNumber = "RoutingNumber"
+    case checkAccountNumber = "CheckAccountNumber"
+    case firstName = "FirstName"
+    case lastName = "LastName"
+    case checkType = "CheckType"
 }
 
 struct WalletItemResult {
@@ -78,21 +78,21 @@ struct FiservApi {
         
         var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: oneTimeUse)
         
-        params[Parameter.MessageId.rawValue] = MessageId.InsertCheck.rawValue
-        params[Parameter.CheckingDetail.rawValue] = createBankAccountDetailDictionary(accountNumber: bankAccountNumber,
+        params[Parameter.messageId.rawValue] = MessageId.insertCheck.rawValue
+        params[Parameter.checkingDetail.rawValue] = createBankAccountDetailDictionary(accountNumber: bankAccountNumber,
                                                                      routingNumber: routingNumber,
                                                                      firstName: firstName,
                                                                      lastName: lastName)
         
         getTokens(onSuccess: { (unique, guid, hashResult) in
             do {
-                let encodedBody = try self.encodePayload(params, action: Action.Insert.rawValue, unique: unique, guid: guid, hashResult: hashResult)
+                let encodedBody = try self.encodePayload(params, action: Action.insert.rawValue, unique: unique, guid: guid, hashResult: hashResult)
                 self.post(body: encodedBody, completion: completion)
             } catch let err as NSError {
-                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: err)))
             }
         }, onError: {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue)))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue)))
         })
     
     }
@@ -110,8 +110,8 @@ struct FiservApi {
         
         
         var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: oneTimeUse)
-        params[Parameter.MessageId.rawValue] = MessageId.InsertCredit.rawValue
-        params[Parameter.CardDetail.rawValue] = createCardDetailDictionary(cardNumber: cardNumber,
+        params[Parameter.messageId.rawValue] = MessageId.insertCredit.rawValue
+        params[Parameter.cardDetail.rawValue] = createCardDetailDictionary(cardNumber: cardNumber,
                                                           expirationMonth: expirationMonth,
                                                           expirationYear: expirationYear,
                                                           securityCode: securityCode,
@@ -119,13 +119,13 @@ struct FiservApi {
         
         getTokens(onSuccess: { (unique, guid, hashResult) in
             do {
-                let encodedBody = try self.encodePayload(params, action: Action.Insert.rawValue, unique: unique, guid: guid, hashResult: hashResult)
+                let encodedBody = try self.encodePayload(params, action: Action.insert.rawValue, unique: unique, guid: guid, hashResult: hashResult)
                 self.post(body: encodedBody, completion: completion)
             } catch let err as NSError {
-                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: err)))
             }
         }, onError: {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue)))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue)))
         })
     }
     
@@ -142,23 +142,23 @@ struct FiservApi {
         var cardDetail = [String: String]()
 
         let expiration = "" + expirationMonth + expirationYear[expirationYear.index(expirationYear.startIndex, offsetBy: 2)...]
-        cardDetail[Parameter.ExpirationDate.rawValue] = expiration
-        cardDetail[Parameter.SecurityCode.rawValue] = securityCode
-        cardDetail[Parameter.PostalCode.rawValue] = postalCode
+        cardDetail[Parameter.expirationDate.rawValue] = expiration
+        cardDetail[Parameter.securityCode.rawValue] = securityCode
+        cardDetail[Parameter.postalCode.rawValue] = postalCode
 
-        params[Parameter.MessageId.rawValue] = MessageId.updateCredit.rawValue
-        params[Parameter.CardDetail.rawValue] = cardDetail
-        params[Parameter.WalletItemId.rawValue] = walletItemID
+        params[Parameter.messageId.rawValue] = MessageId.updateCredit.rawValue
+        params[Parameter.cardDetail.rawValue] = cardDetail
+        params[Parameter.walletItemId.rawValue] = walletItemID
         
         getTokens(onSuccess: { (unique, guid, hashResult) in
             do {
-                let encodedBody = try self.encodePayload(params, action: Action.Update.rawValue, unique: unique, guid: guid, hashResult: hashResult)
+                let encodedBody = try self.encodePayload(params, action: Action.update.rawValue, unique: unique, guid: guid, hashResult: hashResult)
                 self.post(body: encodedBody, completion: completion)
             } catch let err as NSError {
-                completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: err)))
+                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: err)))
             }
         }, onError: {
-            completion(ServiceResult.Failure(ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue)))
+            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue)))
         })
     }
     
@@ -176,7 +176,7 @@ struct FiservApi {
                 do {
                     let resultDictionary = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
                     
-                    if let GUID = resultDictionary?[ResponseKey.GUID.rawValue] as? String, let Hash = resultDictionary?[ResponseKey.Hash.rawValue] as? String {
+                    if let GUID = resultDictionary?[ResponseKey.guid.rawValue] as? String, let Hash = resultDictionary?[ResponseKey.hash.rawValue] as? String {
                         onSuccess(guidString, GUID, Hash)
                     } else {
                         onError()
@@ -195,16 +195,16 @@ struct FiservApi {
                                             securityCode: String?,
                                             postalCode: String?) -> [String:Any] {
         let expiration = expirationMonth + expirationYear[expirationYear.index(expirationYear.startIndex, offsetBy: 2)...]
-        var details = [Parameter.ExpirationDate.rawValue : expiration] as [String: Any]
+        var details = [Parameter.expirationDate.rawValue : expiration] as [String: Any]
         
         if(!(cardNumber ?? "").isEmpty) {
-            details[Parameter.CardNumber.rawValue] = cardNumber
+            details[Parameter.cardNumber.rawValue] = cardNumber
         }
         if(!(securityCode ?? "").isEmpty) {
-            details[Parameter.SecurityCode.rawValue] = securityCode
+            details[Parameter.securityCode.rawValue] = securityCode
         }
         if(!(postalCode ?? "").isEmpty) {
-            details[Parameter.PostalCode.rawValue] = postalCode
+            details[Parameter.postalCode.rawValue] = postalCode
         }
         
         return details
@@ -214,15 +214,15 @@ struct FiservApi {
                                                    routingNumber : String,
                                                    firstName : String?,
                                                    lastName : String?) -> [String:Any] {
-        var details = [Parameter.RoutingNumber.rawValue : routingNumber,
-                       Parameter.CheckAccountNumber.rawValue : accountNumber,
-                       Parameter.CheckType.rawValue : 1] as [String : Any]
+        var details = [Parameter.routingNumber.rawValue : routingNumber,
+                       Parameter.checkAccountNumber.rawValue : accountNumber,
+                       Parameter.checkType.rawValue : 1] as [String : Any]
         
         if(!(firstName ?? "").isEmpty) {
-            details[Parameter.FirstName.rawValue] = firstName
+            details[Parameter.firstName.rawValue] = firstName
         }
         if(!(lastName ?? "").isEmpty) {
-            details[Parameter.LastName.rawValue] = lastName
+            details[Parameter.lastName.rawValue] = lastName
         }
         
         return details
@@ -242,23 +242,23 @@ struct FiservApi {
     
     private func createBaseParameters(token: String, customerNumber: String, nickname: String?, oneTimeUse: Bool) -> [String:Any] {
         
-        let opCo = Environment.sharedInstance.opco
+        let opCo = Environment.shared.opco
         let time = Int(NSDate().timeIntervalSince1970)
         let billerId = "\(opCo.rawValue)Registered"
         
-        var params = [Parameter.RequestTimestamp.rawValue: "/Date(" + String(time) + ")/",
-                      Parameter.AppId.rawValue: "FiservProxy",
-                      Parameter.ProcessingRegionCode.rawValue: Environment.sharedInstance.environmentName == "PROD" ? 5 : 2,
-                      Parameter.BillerId.rawValue: billerId,
-                      Parameter.ConsumerId.rawValue: customerNumber,
-                      Parameter.SessionToken.rawValue: token,
-                      Parameter.DeviceProfile.rawValue:[Parameter.UserAgentString.rawValue: "MobileApp"],
-                      Parameter.WalletExternalId.rawValue: customerNumber,
-                      Parameter.OneTimeUse.rawValue: oneTimeUse,
-                      Parameter.IsDefaultFunding.rawValue: false] as [String : Any]
+        var params = [Parameter.requestTimestamp.rawValue: "/Date(" + String(time) + ")/",
+                      Parameter.appId.rawValue: "FiservProxy",
+                      Parameter.processingRegionCode.rawValue: Environment.shared.environmentName == .prod ? 5 : 2,
+                      Parameter.billerId.rawValue: billerId,
+                      Parameter.consumerId.rawValue: customerNumber,
+                      Parameter.sessionToken.rawValue: token,
+                      Parameter.deviceProfile.rawValue:[Parameter.userAgentString.rawValue: "MobileApp"],
+                      Parameter.walletExternalId.rawValue: customerNumber,
+                      Parameter.oneTimeUse.rawValue: oneTimeUse,
+                      Parameter.isDefaultFunding.rawValue: false] as [String : Any]
         
         if let nick = nickname, !nick.isEmpty {
-            params[Parameter.NickName.rawValue] = nick
+            params[Parameter.nickName.rawValue] = nick
         }
         
         return params
@@ -272,8 +272,8 @@ struct FiservApi {
     private func execute(request: URLRequest, completion: @escaping (_ result: ServiceResult<WalletItemResult>) -> Swift.Void) {
         URLSession.shared.dataTask(with:request, completionHandler: { (data:Data?, resp: URLResponse?, err: Error?) in
             if let error = err {
-                let serviceError = ServiceError(serviceCode: ServiceErrorCode.LocalError.rawValue, cause: error)
-                completion(ServiceResult.Failure(serviceError))
+                let serviceError = ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)
+                completion(ServiceResult.failure(serviceError))
                 
             } else {
                 let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
@@ -284,15 +284,15 @@ struct FiservApi {
                     let responseValue = self.parseResponse(with: resultDictionary!)
                     
                     if(responseValue.responseCode == 0) {
-                        completion(ServiceResult.Success(responseValue))
+                        completion(ServiceResult.success(responseValue))
                     } else {
                         let serviceError = ServiceError(serviceCode: "Fiserv", serviceMessage:responseValue.statusMessage)
-                        completion(ServiceResult.Failure(serviceError))
+                        completion(ServiceResult.failure(serviceError))
                     }
                 }
                 catch let error as NSError {
-                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.Parsing.rawValue, cause: error)
-                    completion(ServiceResult.Failure(serviceError))
+                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
+                    completion(ServiceResult.failure(serviceError))
                 }
             }
         }).resume()
@@ -300,7 +300,7 @@ struct FiservApi {
     
     private func createFiservRequest(with body: Data?, method: String, guid: String? = nil) -> URLRequest {
         let endpoint = guid != nil ? "FiservJsonMessenger?v=\(guid!)" : "Process"
-        var urlRequest = URLRequest(url: URL(string: "\(Environment.sharedInstance.fiservUrl)/\(endpoint)")!)
+        var urlRequest = URLRequest(url: URL(string: "\(Environment.shared.fiservUrl)/\(endpoint)")!)
         urlRequest.httpMethod = method
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         if let body = body {
@@ -310,11 +310,11 @@ struct FiservApi {
     }
     
     private func parseResponse(with value: [String:Any]) -> WalletItemResult {
-        let code = value[ResponseKey.ResponseCode.rawValue] as? Int
-        let statusMessage = value[ResponseKey.StatusMessage.rawValue] as? String
+        let code = value[ResponseKey.responseCode.rawValue] as? Int
+        let statusMessage = value[ResponseKey.statusMessage.rawValue] as? String
 
         var walletItemIdString = ""
-        if let walletItemId = value[ResponseKey.WalletItemId.rawValue] as? Int {
+        if let walletItemId = value[ResponseKey.walletItemId.rawValue] as? Int {
             walletItemIdString = String(walletItemId)
         }
         return WalletItemResult(responseCode: code ?? -1, statusMessage: statusMessage ?? "", walletItemId: walletItemIdString)

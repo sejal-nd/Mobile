@@ -13,15 +13,16 @@ import Lottie
 import StoreKit
 
 class BillViewController: AccountPickerViewController {
+    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
+    
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var topLoadingIndicatorView: UIView!
-    @IBOutlet weak var topLoadingIndicator: LoadingIndicator!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
 	@IBOutlet weak var bottomStackContainerView: UIView!
 
     @IBOutlet weak var alertBannerView: BillAlertBannerView!
-
+    
     @IBOutlet weak var totalAmountView: UIView!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
@@ -72,7 +73,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var remainingBalancePastDueAmountLabel: UILabel!
     @IBOutlet weak var remainingBalancePastDueDateLabel: UILabel!
 
-	// Bill Issued
+    // Bill Issued
     @IBOutlet weak var billIssuedView: UIView!
     @IBOutlet weak var billIssuedLabel: UILabel!
     @IBOutlet weak var billIssuedAmountLabel: UILabel!
@@ -118,12 +119,17 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var customErrorView: UIView!
     @IBOutlet weak var customErrorTitleLabel: UILabel!
     @IBOutlet weak var customErrorDetailLabel: UILabel!
-    var refreshDisposable: Disposable?
+    
+    private let cornerRadius: CGFloat = 4.0
+    
     var refreshControl: UIRefreshControl?
     
-    let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService())
+    let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService(),
+                                  authService: ServiceFactory.createAuthenticationService())
 
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
+    var shortcutItem = ShortcutItem.none
 
     let bag = DisposeBag()
 
@@ -133,18 +139,17 @@ class BillViewController: AccountPickerViewController {
         accountPicker.parentViewController = self
         
         Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
-                                 viewModel.currentAccountDetail.asObservable().map { $0 }.startWith(nil))
+                                 viewModel.accountDetailEvents.asObservable().map { $0 }.startWith(nil))
             .sample(accountPickerViewControllerWillAppear)
             .subscribe(onNext: { [weak self] state, accountDetail in
                 guard let `self` = self else { return }
                 switch(state) {
                 case .loadingAccounts:
-                    // Sam, do your custom loading here
                     break
                 case .readyToFetchData:
-                    if AccountsStore.sharedInstance.currentAccount != self.accountPicker.currentAccount {
+                    if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                         self.viewModel.fetchAccountDetail(isRefresh: false)
-                    } else if accountDetail == nil {
+                    } else if accountDetail?.element == nil {
                         self.viewModel.fetchAccountDetail(isRefresh: false)
                     }
                 }
@@ -156,9 +161,9 @@ class BillViewController: AccountPickerViewController {
         bindButtonTaps()
         configureAccessibility()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: NSNotification.Name.DidMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
 
-        NotificationCenter.default.rx.notification(.DidSelectEnrollInAutoPay, object: nil)
+        NotificationCenter.default.rx.notification(.didSelectEnrollInAutoPay, object: nil)
         .subscribe(onNext: { [weak self] notification in
             guard let `self` = self else { return }
             if let accountDetail = notification.object as? AccountDetail {
@@ -187,6 +192,11 @@ class BillViewController: AccountPickerViewController {
         // -------------------------------------------------------------------------------------------------------
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shortcutItem = .none
+    }
+    
     func enableRefresh() -> Void {
         guard self.refreshControl == nil else { return }
         let refreshControl = UIRefreshControl()
@@ -207,18 +217,21 @@ class BillViewController: AccountPickerViewController {
     }
     
     func styleViews() {
-        view.backgroundColor = .primaryColor
-        contentView.backgroundColor = .primaryColor
+        view.backgroundColor = .primaryColorAccountPicker
+        contentView.backgroundColor = .primaryColorAccountPicker
 
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
         
+        alertBannerView.layer.cornerRadius = 10
+
         totalAmountView.superview?.bringSubview(toFront: totalAmountView)
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
 
         needHelpUnderstandingButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
-
-        billPaidView.layer.cornerRadius = 2
+        needHelpUnderstandingButton.layer.cornerRadius = 10
+        
+        billPaidView.layer.cornerRadius = 10
 
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = 2
@@ -284,7 +297,7 @@ class BillViewController: AccountPickerViewController {
         customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to the mobile app. " +
             "Access your account on our responsive website.", comment: "")
     }
-
+    
     func bindViews() {
 		bindLoadingStates()
 		bindViewHiding()
@@ -298,10 +311,21 @@ class BillViewController: AccountPickerViewController {
         bottomView.isHidden = false
         errorView.isHidden = true
         bottomStackContainerView.isHidden = false
+        scrollView?.isHidden = false
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
         enableRefresh()
     }
     
     func showErrorState(error: ServiceError?) {
+        if error?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+            scrollView?.isHidden = true
+            noNetworkConnectionView.isHidden = false
+        } else {
+            scrollView?.isHidden = false
+            noNetworkConnectionView.isHidden = true
+        }
+        
         billLoadingIndicator.isHidden = true
         loadingIndicatorView.isHidden = true
         topView.isHidden = true
@@ -309,17 +333,39 @@ class BillViewController: AccountPickerViewController {
         errorView.isHidden = false
         bottomStackContainerView.isHidden = true
         
-        if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.FnAccountDisallow.rawValue {
+        if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
             genericErrorView.isHidden = true
             customErrorView.isHidden = false
         } else {
             genericErrorView.isHidden = false
             customErrorView.isHidden = true
         }
+        maintenanceModeView.isHidden = true
+        
+        enableRefresh()
+    }
+    
+    func showMaintenanceModeState() {
+        maintenanceModeView.isHidden = false
+        
+        scrollView?.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        
+        billLoadingIndicator.isHidden = true
+        loadingIndicatorView.isHidden = true
+        topView.isHidden = true
+        bottomView.isHidden = true
+        errorView.isHidden = true
+        bottomStackContainerView.isHidden = true
+        
+        genericErrorView.isHidden = true
+        customErrorView.isHidden = true
         enableRefresh()
     }
     
     func showSwitchingAccountState() {
+        scrollView?.isHidden = false
+        noNetworkConnectionView.isHidden = true
         billLoadingIndicator.isHidden = false
         loadingIndicatorView.isHidden = false
         topView.isHidden = false
@@ -331,10 +377,11 @@ class BillViewController: AccountPickerViewController {
         refreshControl?.removeFromSuperview()
         refreshControl = nil
         scrollView!.alwaysBounceVertical = false
+        
+        maintenanceModeView.isHidden = true
     }
 
 	func bindLoadingStates() {
-        topLoadingIndicatorView.isHidden = true
         viewModel.refreshTracker.asDriver().filter(!).drive(onNext: { [weak self] refresh in
             self?.refreshControl?.endRefreshing()
         }).disposed(by: bag)
@@ -346,6 +393,14 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
         viewModel.accountDetailError.drive(onNext: { [weak self] in self?.showErrorState(error: $0) }).disposed(by: bag)
+        viewModel.showMaintenanceMode.drive(onNext: { [weak self] in self?.showMaintenanceModeState() }).disposed(by: bag)
+        
+        // Clear shortcut handling in the case of an error.
+        viewModel.accountDetailError.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.shortcutItem = .none
+            })
+            .disposed(by: bag)
 	}
 
 	func bindViewHiding() {
@@ -440,6 +495,16 @@ class BillViewController: AccountPickerViewController {
 	}
 
     func bindButtonTaps() {
+        maintenanceModeView.reload
+            .map(to: FetchingAccountState.switchAccount)
+            .bind(to: viewModel.fetchAccountDetail)
+            .disposed(by: maintenanceModeView.disposeBag)
+        
+        noNetworkConnectionView.reload
+            .map(to: FetchingAccountState.switchAccount)
+            .bind(to: viewModel.fetchAccountDetail)
+            .disposed(by: bag)
+        
         questionMarkButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 let alertController = UIAlertController(title: NSLocalizedString("Your Due Date", comment: ""),
@@ -463,7 +528,7 @@ class BillViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
-                if Environment.sharedInstance.opco == .comEd &&
+                if Environment.shared.opco == .comEd &&
                     accountDetail.hasElectricSupplier &&
                     accountDetail.isSingleBillOption {
                     let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
@@ -479,7 +544,7 @@ class BillViewController: AccountPickerViewController {
                     self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)
                 }
                 
-                Analytics().logScreenView(AnalyticsPageView.BillViewCurrentOfferComplete.rawValue)
+                Analytics.log(event: .BillViewCurrentOfferComplete)
             })
 			.disposed(by: bag)
 
@@ -511,7 +576,7 @@ class BillViewController: AccountPickerViewController {
 			.withLatestFrom(viewModel.currentAccountDetail)
 			.drive(onNext: { [weak self] accountDetail in
                 guard let `self` = self else { return }
-                if !accountDetail.isResidential && Environment.sharedInstance.opco != .bge {
+                if !accountDetail.isResidential && Environment.shared.opco != .bge {
 					self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: accountDetail)
 				} else {
 					self.performSegue(withIdentifier: "paperlessEBillSegue", sender: accountDetail)
@@ -539,13 +604,20 @@ class BillViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        makeAPaymentButton.rx.touchUpInside.asObservable()
-            .withLatestFrom(Observable.combineLatest(viewModel.makePaymentScheduledPaymentAlertInfo,
-                                                     viewModel.currentAccountDetail.asObservable()))
+        let shortcutReady = Observable.zip(viewModel.makePaymentScheduledPaymentAlertInfo,
+                                           viewModel.shouldEnableMakeAPaymentButton.asObservable())
+            .filter { [weak self] in $1 && self?.shortcutItem == .payBill }
+            .map { $0.0 }
+        
+        let makeAPaymentButtonTapped = makeAPaymentButton.rx.touchUpInside.asObservable()
+            .withLatestFrom(viewModel.makePaymentScheduledPaymentAlertInfo)
+        
+        Observable.merge(makeAPaymentButtonTapped, shortcutReady)
             .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] alertInfo, accountDetail in
+            .drive(onNext: { [weak self] alertInfo in
                 guard let `self` = self else { return }
-                let (titleOpt, messageOpt) = alertInfo
+                self.shortcutItem = .none
+                let (titleOpt, messageOpt, accountDetail) = alertInfo
                 let goToMakePayment = { [weak self] in
                     guard let `self` = self else { return }
                     let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
@@ -580,7 +652,7 @@ class BillViewController: AccountPickerViewController {
     }
     
     func navigateToAutoPay(accountDetail: AccountDetail) {
-        if Environment.sharedInstance.opco == .bge {
+        if Environment.shared.opco == .bge {
             if accountDetail.isBGEasy {
                 self.performSegue(withIdentifier: "viewBGEasySegue", sender: accountDetail)
             } else {
@@ -650,14 +722,20 @@ extension BillViewController: AccountPickerDelegate {
 
 extension BillViewController: BudgetBillingViewControllerDelegate {
 
-    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController) {
-        showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
-        Analytics().logScreenView(AnalyticsPageView.BudgetBillEnrollComplete.rawValue)
+    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController, averageMonthlyBill: String?) {
+        switch Environment.shared.opco {
+        case .bge:
+            let textFormat = NSLocalizedString("Enrolled in Budget Billing - your monthly rate is %@", comment: "")
+            showDelayedToast(withMessage: String(format: textFormat, averageMonthlyBill ?? "--"))
+        case .comEd, .peco:
+            showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
+        }
+        Analytics.log(event: .BudgetBillEnrollComplete)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
-        Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollComplete.rawValue)
+        Analytics.log(event: .BudgetBillUnEnrollComplete)
     }
 }
 
@@ -665,11 +743,11 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
         var toastMessage: String
         switch didChangeStatus {
-        case .Enroll:
+        case .enroll:
             toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
-        case .Unenroll:
+        case .unenroll:
             toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
-        case .Mixed:
+        case .mixed:
             toastMessage = NSLocalizedString("Paperless eBill changes saved", comment: "")
         }
         showDelayedToast(withMessage: toastMessage)
@@ -683,9 +761,9 @@ extension BillViewController: AutoPayViewControllerDelegate {
         showDelayedToast(withMessage: message)
         
         if enrolled {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayEnrollComplete.rawValue)
+            Analytics.log(event: .AutoPayEnrollComplete)
         } else {
-            Analytics().logScreenView(AnalyticsPageView.AutoPayUnenrollComplete.rawValue)
+            Analytics.log(event: .AutoPayUnenrollComplete)
         }
     }
 

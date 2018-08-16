@@ -16,6 +16,7 @@ class TemplateCardView: UIView {
     
     var bag = DisposeBag()
     @IBOutlet weak var clippingView: UIView!
+    @IBOutlet weak var contentView: UIStackView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
@@ -39,10 +40,11 @@ class TemplateCardView: UIView {
     }
     
     private func styleViews() {
-        layer.cornerRadius = 2
+        layer.cornerRadius = 10
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        clippingView.layer.cornerRadius = 2
+        clippingView.layer.cornerRadius = 10
         titleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        titleLabel.setLineHeight(lineHeight: 30)
         bodyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         bodyLabel.setLineHeight(lineHeight: 18)
         callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
@@ -61,20 +63,18 @@ class TemplateCardView: UIView {
         viewModel.ctaString.drive(callToActionButton.rx.title()).disposed(by: bag)
         
         //show error state if an error is received
-        viewModel.shouldShowErrorState.drive(clippingView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowErrorState.drive(contentView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
         viewModel.errorLabelText.drive(onNext: { [weak self] errorText in
             self?.errorLabel.text = errorText
             let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
-            self?.errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.sharedInstance.opco.displayString, errorText ?? "")
+            self?.errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.shared.opco.displayString, errorText ?? "")
         }).disposed(by: bag)
         
         callToActionButton.rx.tap.asObservable()
             .withLatestFrom(viewModel.ctaUrl.asObservable())
             .subscribe(onNext: {
-                Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
-                                          dimensionIndex: Dimensions.Link,
-                                          dimensionValue: $0.absoluteString)
+                Analytics.log(event: .HomePromoCard, dimensions: [.Link: $0.absoluteString])
             })
             .disposed(by: bag)
         
@@ -86,14 +86,10 @@ class TemplateCardView: UIView {
                 let appStoreUrl = URL(string:"https://itunes.apple.com/us/app/ecobee/id916985674?mt=8")!
                 
                 if UIApplication.shared.canOpenURL(appLinkUrl) {
-                    Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
-                                              dimensionIndex: Dimensions.Link,
-                                              dimensionValue: appLinkUrl.absoluteString)
+                    Analytics.log(event: .HomePromoCard, dimensions: [.Link: appLinkUrl.absoluteString])
                     UIApplication.shared.openURL(appLinkUrl)
                 } else if UIApplication.shared.canOpenURL(appStoreUrl) {
-                    Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
-                                              dimensionIndex: Dimensions.Link,
-                                              dimensionValue: appStoreUrl.absoluteString)
+                    Analytics.log(event: .HomePromoCard, dimensions: [.Link: appStoreUrl.absoluteString])
                     UIApplication.shared.openURL(appStoreUrl)
                 }
             })
@@ -129,9 +125,8 @@ class TemplateCardView: UIView {
             return peakRewardsVC
         }
         .do(onNext: { _ in
-            Analytics().logScreenView(AnalyticsPageView.HomePromoCard.rawValue,
-                                      dimensionIndex: Dimensions.Link,
-                                      dimensionValue: "https://secure.bge.com/Peakrewards/Pages/default.aspx")
+            Analytics.log(event: .HomePromoCard,
+                                 dimensions: [.Link: "https://secure.bge.com/Peakrewards/Pages/default.aspx"])
         })
     
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.hourlyPricingViewController,

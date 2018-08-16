@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>environment</key>
+	<string>PROD</string>
+	<key>appName</key>
+	<string>ComEd</string>
+	<key>opco</key>
+	<string>ComEd</string>
+	<key>oauthEndpoint</key>
+	<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+	<key>mcsInstanceName</key>
+	<string>ProdComEd</string>
+	<key>fiservUrl</key>
+	<string>https://billerwebui.fiservapps.com/Mobile</string>
+	<key>speedpayUrl</key>
+	<string>https://tokenservice.speedpay.com/api/token/GetToken</string>
+	<key>outageMapUrl</key>
+	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_comed</string>
+	<key>gaTrackingId</key>
+	<string>UA-76742208-3</string>
+	<key>opcoUpdatesHost</key>
+	<string>www.comed.com</string>
+	<key>appCenterId</key>
+	<string>9f56e08c-6fa5-4209-93a2-d773601a1e45</string>
+</dict>
+</plist>

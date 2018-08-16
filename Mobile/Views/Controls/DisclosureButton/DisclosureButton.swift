@@ -39,15 +39,15 @@ class DisclosureButton: UIButton {
         view.translatesAutoresizingMaskIntoConstraints = true
         view.isUserInteractionEnabled = false
         addSubview(view)
-        
-        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        layer.masksToBounds = false
-        
+
         label.font = SystemFont.medium.of(textStyle: .title1)
         label.textColor = .blackText
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         detailLabel.textColor = .middleGray
         setDetailLabel(text: "", checkHidden: true)
+        
+        view.layer.cornerRadius = 10
+        view.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
     }
     
     func setDetailLabel(text: String?, checkHidden: Bool) {

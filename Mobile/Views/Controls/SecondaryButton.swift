@@ -32,15 +32,8 @@ class SecondaryButton: UIButton {
         setTitleColor(.actionBlue, for: .normal)
         setTitleColor(.actionBlue, for: .highlighted)
         setTitleColor(.middleGray, for: .disabled)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         
-        // If button is not full width, add rounded corners
-        if frame.size.width != UIScreen.main.bounds.size.width {
-            layer.cornerRadius = 2
-        }
+        layer.cornerRadius = 10.0
     }
     
     override var isHighlighted: Bool {

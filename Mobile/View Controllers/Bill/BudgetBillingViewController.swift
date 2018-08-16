@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol BudgetBillingViewControllerDelegate: class {
-    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController)
+    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController, averageMonthlyBill: String?)
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController)
 }
 
@@ -132,7 +132,7 @@ class BudgetBillingViewController: UIViewController {
         reasonForStoppingTableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReasonForStoppingCell")
         reasonForStoppingTableView.estimatedRowHeight = 51
         reasonForStoppingContainer.isHidden = true
-        if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
+        if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
             viewModel.unenrolling.asDriver().drive(onNext: { [weak self] unenrolling in
                 UIView.animate(withDuration: 0.3, animations: {
                     self?.reasonForStoppingContainer.isHidden = !unenrolling
@@ -141,9 +141,9 @@ class BudgetBillingViewController: UIViewController {
         }
 
         // BGE Footer View when user is enrolled
-        if Environment.sharedInstance.opco == .bge && accountDetail.isBudgetBillEnrollment {
+        if Environment.shared.opco == .bge && accountDetail.isBudgetBillEnrollment {
             for view in bgeFooterCardViews {
-                view.layer.cornerRadius = 2
+                view.layer.cornerRadius = 10
                 view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
             }
             
@@ -214,7 +214,7 @@ class BudgetBillingViewController: UIViewController {
             self.loadingIndicator.isHidden = true
             self.gradientView.isHidden = false
             
-            if Environment.sharedInstance.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
+            if Environment.shared.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
                 self.monthlyAmountLabel.text = budgetBillingInfo.averageMonthlyBill
                 self.lastPaymentDateLabel.text = self.accountDetail.billingInfo.lastPaymentDate?.mmDdYyyyString
                 self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff
@@ -293,13 +293,13 @@ class BudgetBillingViewController: UIViewController {
     @objc func onSubmitPress() {
         if viewModel.enrolling.value {
             LoadingView.show()
-            Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOffer.rawValue)
+            Analytics.log(event: .BudgetBillUnEnrollOffer)
             viewModel.enroll(onSuccess: { [weak self] in
                 LoadingView.hide()
-                Analytics().logScreenView(AnalyticsPageView.BudgetBillEnrollOffer.rawValue)
+                Analytics.log(event: .BudgetBillEnrollOffer)
                 
                 guard let `self` = self else { return }
-                self.delegate?.budgetBillingViewControllerDidEnroll(self)
+                self.delegate?.budgetBillingViewControllerDidEnroll(self, averageMonthlyBill: self.viewModel.averageMonthlyBill)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { [weak self] errMessage in
                 LoadingView.hide()
@@ -310,14 +310,14 @@ class BudgetBillingViewController: UIViewController {
 
         } else if viewModel.unenrolling.value {
             var message = ""
-            if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
+            if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
                 message = NSLocalizedString("You will see your regular bill amount on your next billing cycle. Any credit balance remaining in your account will be applied to your bill until used, and any negative account balance will become due with your next bill.", comment: "")
             } else { // BGE
                 message = bgeDynamicUnenrollMessage ?? ""
             }
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
-                Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollCancel.rawValue);}))
+                Analytics.log(event: .BudgetBillUnEnrollCancel);}))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
                 LoadingView.show()
                 
@@ -328,7 +328,7 @@ class BudgetBillingViewController: UIViewController {
                     guard let `self` = self else { return }
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)
-                    Analytics().logScreenView(AnalyticsPageView.BudgetBillUnEnrollOK.rawValue)
+                    Analytics.log(event: .BudgetBillUnEnrollOK)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
                     

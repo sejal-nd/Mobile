@@ -21,7 +21,8 @@ class BillViewModelVisibilityTests: BillViewModelTests {
                           isCutOutNonPay: true),
             AccountDetail(billingInfo: BillingInfo(restorationAmount: 32, amtDpaReinst: 42)),
             AccountDetail(billingInfo: BillingInfo(restorationAmount: 32, amtDpaReinst: 42),
-                          isLowIncome: true)
+                          isLowIncome: true),
+            AccountDetail(billingInfo: BillingInfo(pastDueAmount: 32, pastDueRemaining: 20))
         ]
     
     // Tests changes in the `showLoadedState` value after switching
@@ -62,10 +63,11 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedAlertBannerEvents = [next(0, false), next(0, false), next(0, Environment.sharedInstance.opco != .bge),
-                                         next(1, false), next(1, false), next(1, false), next(1, false), next(1, true),
-                                         next(2, false), next(2, false), next(2, false), next(2, false), next(2, false),
-                                         next(3, false), next(3, false), next(3, false), next(3, false), next(3, false)]
+        let expectedAlertBannerEvents = [next(0, false), next(0, false), next(0, Environment.shared.opco != .bge),
+                                         next(1, false), next(1, false), next(1, true),
+                                         next(2, false), next(2, false), next(2, false),
+                                         next(3, false), next(3, false), next(3, false),
+                                         next(4, false), next(4, false), next(4, false)]
         XCTAssertEqual(observer.events, expectedAlertBannerEvents)
     }
     
@@ -84,7 +86,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedRestoreServiceValues = [Environment.sharedInstance.opco != .bge, false, false, false]
+        let expectedRestoreServiceValues = [Environment.shared.opco != .bge, false, false, false, false]
         let expectedRestoreServiceEvents = zip(switchAccountEventTimes, expectedRestoreServiceValues).map(next)
         XCTAssertEqual(observer.events, expectedRestoreServiceEvents)
     }
@@ -104,7 +106,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedAvoidShutoffValues = [false, true, false, false]
+        let expectedAvoidShutoffValues = [false, true, false, false, false]
         let expectedAvoidShutoffEvents = zip(switchAccountEventTimes, expectedAvoidShutoffValues).map(next)
         XCTAssertEqual(observer.events, expectedAvoidShutoffEvents)
     }
@@ -124,7 +126,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedCatchUpAmountValues = [false, false, true, true]
+        let expectedCatchUpAmountValues = [false, false, true, true, false]
         let expectedCatchupAmountEvents = zip(switchAccountEventTimes, expectedCatchUpAmountValues).map(next)
         XCTAssertEqual(observer.events, expectedCatchupAmountEvents)
     }
@@ -144,7 +146,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedCatchUpDisclaimerValues = [false, false, Environment.sharedInstance.opco == .comEd, false]
+        let expectedCatchUpDisclaimerValues = [false, false, Environment.shared.opco == .comEd, false, false]
         let expectedCatchUpDisclaimerEvents = zip(switchAccountEventTimes, expectedCatchUpDisclaimerValues).map(next)
         XCTAssertEqual(observer.events, expectedCatchUpDisclaimerEvents)
     }
@@ -164,7 +166,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedPastDueValues = [false, true, false, false]
+        let expectedPastDueValues = [false, false, false, false, true]
         let expectedPastDueEvents = zip(switchAccountEventTimes, expectedPastDueValues).map(next)
         XCTAssertEqual(observer.events, expectedPastDueEvents)
     }
@@ -265,7 +267,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [Environment.sharedInstance.opco != .bge, false, false, false]
+        let expectedValues = [Environment.shared.opco != .bge, false, false, false]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.shouldShowRemainingBalanceDue.drive(observer).disposed(by: disposeBag)
@@ -286,7 +288,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [false, Environment.sharedInstance.opco != .bge, false, false]
+        let expectedValues = [false, false, false, false, Environment.shared.opco != .bge]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.shouldShowRemainingBalancePastDue.drive(observer).disposed(by: disposeBag)
@@ -365,7 +367,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [Environment.sharedInstance.opco == .bge, false]
+        let expectedValues = [Environment.shared.opco == .bge, false]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.shouldShowCredit.drive(observer).disposed(by: disposeBag)
@@ -391,7 +393,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [Environment.sharedInstance.opco == .peco, false]
+        let expectedValues = [Environment.shared.opco == .peco, false]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.shouldShowAmountDueTooltip.drive(observer).disposed(by: disposeBag)
@@ -479,7 +481,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [true, Environment.sharedInstance.opco == .bge]
+        let expectedValues = [true, Environment.shared.opco == .bge]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.shouldEnableMakeAPaymentButton.drive(observer).disposed(by: disposeBag)
@@ -499,7 +501,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         let isEBillEnrollment = [false, true, false, false, false]
         let status = [nil, nil, nil, "finaled", nil]
         let expectedValues = [
-            Environment.sharedInstance.opco != .bge,
+            Environment.shared.opco != .bge,
             true,
             true,
             false,
@@ -543,7 +545,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [true, true, true, Environment.sharedInstance.opco == .bge]
+        let expectedValues = [true, true, true, Environment.shared.opco == .bge]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.shouldShowBudget.drive(observer).disposed(by: disposeBag)

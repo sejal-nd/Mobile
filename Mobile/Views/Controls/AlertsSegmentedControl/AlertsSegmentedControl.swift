@@ -20,7 +20,7 @@ class AlertsSegmentedControl: UIControl {
     @IBOutlet weak var leftButton: ButtonControl!
     @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var leftBar: UIView!
-
+    
     @IBOutlet weak var rightButton: ButtonControl!
     @IBOutlet weak var rightLabel: UILabel!
     @IBOutlet weak var rightBar: UIView!
@@ -47,6 +47,7 @@ class AlertsSegmentedControl: UIControl {
         leftLabel.textColor = .white
         rightLabel.textColor = .white
         
+        
         leftSelection.map{ $0 ? OpenSans.bold.of(textStyle: .title1) : OpenSans.regular.of(textStyle: .title1) }.drive(leftLabel.rx.font).disposed(by: disposeBag)
         leftSelection.map{ $0 ? .white : UIColor.white.withAlphaComponent(0.4) }.drive(leftBar.rx.backgroundColor).disposed(by: disposeBag)
         leftSelection.not().map{ $0 ? OpenSans.bold.of(textStyle: .title1) : OpenSans.regular.of(textStyle: .title1) }.drive(rightLabel.rx.font).disposed(by: disposeBag)
@@ -61,6 +62,18 @@ class AlertsSegmentedControl: UIControl {
         
         leftButton.accessibilityTraits = UIAccessibilityTraitNone
         rightButton.accessibilityTraits = UIAccessibilityTraitNone
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        leftBar.roundCorners([.topLeft, .topRight], radius: 2.0)
+        rightBar.roundCorners([.topLeft, .topRight], radius: 2.0)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        leftBar.roundCorners([.topLeft, .topRight], radius: 2.0)
+        rightBar.roundCorners([.topLeft, .topRight], radius: 2.0)
     }
     
     func setItems(leftLabel: String, rightLabel: String, initialSelectedIndex: Int) {

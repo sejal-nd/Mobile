@@ -11,9 +11,9 @@
 	<key>oauthEndpoint</key>
 	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>Testing</string>
+	<string>Staging</string>
 	<key>fiservUrl</key>
-	<string>https://av-billerdirectui-uat.onefiserv.com/BillerDirectUI/Mobile</string>
+	<string>https://billerwebui.clienttestmatrix.com/Mobile</string>
 	<key>speedpayUrl</key>
 	<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 	<key>outageMapUrl</key>
@@ -21,7 +21,7 @@
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_peco_testing</string>
 	<key>gaTrackingId</key>
-	<string>N/A</string>
+	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.peco.com</string>
 </dict>

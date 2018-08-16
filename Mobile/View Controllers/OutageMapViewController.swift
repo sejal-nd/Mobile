@@ -13,7 +13,7 @@ class OutageMapViewController: UIViewController {
 
     let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
-    let opco = Environment.sharedInstance.opco
+    let opco = Environment.shared.opco
     
     var unauthenticatedExperience = false
     
@@ -31,7 +31,7 @@ class OutageMapViewController: UIViewController {
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         webView.isHidden = true
 
-        let url = URL(string: Environment.sharedInstance.outageMapUrl)!
+        let url = URL(string: Environment.shared.outageMapUrl)!
         webView.load(URLRequest(url: url))
         webView.isAccessibilityElement = false
         webView.accessibilityLabel = NSLocalizedString("This is an outage map showing the areas that are currently experiencing an outage. You can check your outage status on the main Outage section of the app.", comment: "")
@@ -58,7 +58,7 @@ class OutageMapViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if(unauthenticatedExperience) {
-            Analytics().logScreenView(AnalyticsPageView.ViewOutageMapUnAuthOfferComplete.rawValue)
+            Analytics.log(event: .ViewOutageMapUnAuthOfferComplete)
         }
     }
 

@@ -17,6 +17,8 @@ class BudgetBillingViewModel {
 
     let accountDetail: AccountDetail!
     let currentEnrollment: Variable<Bool>!
+    var averageMonthlyBill: String?
+    
     let enrolling = Variable(false)
     let unenrolling = Variable(false)
     let selectedUnenrollmentReason = Variable(-1)
@@ -43,7 +45,8 @@ class BudgetBillingViewModel {
     func getBudgetBillingInfo(onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
         billService.fetchBudgetBillingInfo(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { billingInfo in
+            .subscribe(onNext: { [weak self] billingInfo in
+                self?.averageMonthlyBill = billingInfo.averageMonthlyBill
                 onSuccess(billingInfo)
             }, onError: { error in
                 onError(error.localizedDescription)
@@ -56,8 +59,8 @@ class BudgetBillingViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                NotificationCenter.default.post(name: .DidChangeBudgetBillingEnrollment, object: self)
-                if Environment.sharedInstance.opco != .bge {
+                NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
+                if Environment.shared.opco != .bge {
                     self.alertsService.enrollBudgetBillingNotification(accountNumber: self.accountDetail.accountNumber)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { _ in
@@ -80,7 +83,7 @@ class BudgetBillingViewModel {
         billService.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: getReasonString(forIndex: selectedUnenrollmentReason.value))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
-                NotificationCenter.default.post(name: .DidChangeBudgetBillingEnrollment, object: self)
+                NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
                 onSuccess()
             }, onError: { error in
                 onError(error.localizedDescription)
@@ -91,7 +94,7 @@ class BudgetBillingViewModel {
     func submitButtonEnabled() -> Observable<Bool> {
         return Observable.combineLatest(enrolling.asObservable(), unenrolling.asObservable(), selectedUnenrollmentReason.asObservable()) {
             if $0 { return true }
-            if Environment.sharedInstance.opco == .comEd || Environment.sharedInstance.opco == .peco {
+            if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
                 if $1 && $2 != -1 { return true }
             } else { // BGE
                 if $1 { return true }
@@ -101,7 +104,7 @@ class BudgetBillingViewModel {
     }
     
     func getAmountDescriptionText() -> String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.", comment: "")
         case .comEd:
@@ -112,7 +115,7 @@ class BudgetBillingViewModel {
     }
     
     func getFooterText() -> String? {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Budget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
         case .comEd:
@@ -122,7 +125,7 @@ class BudgetBillingViewModel {
         case .peco:
             if accountDetail.isSupplier && accountDetail.isDualBillOption {
                 return NSLocalizedString("Budget billing option only includes PECO charges. Energy Supply charges are billed by your chosen generation provider.", comment: "")
-            } else if let budgetBillMessage = accountDetail.budgetBillMessage, budgetBillMessage.contains("PECO bases the monthly") {
+            } else {
                 return NSLocalizedString("PECO bases the monthly Budget Billing amount on your average bill over the past 12 months. If your account has not yet been open for a year, your monthly Budget Billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your Budget Billing amount.", comment: "")
             }
         }
@@ -131,7 +134,7 @@ class BudgetBillingViewModel {
     
     func getReasonString(forIndex index: Int) -> String {
         if index == 0 {
-            return String(format: NSLocalizedString("Closing %@ Account", comment: ""), Environment.sharedInstance.opco.displayString)
+            return String(format: NSLocalizedString("Closing %@ Account", comment: ""), Environment.shared.opco.displayString)
         } else if index == 1 {
             return NSLocalizedString("Changing Bank Account", comment: "")
         } else if index == 2 {

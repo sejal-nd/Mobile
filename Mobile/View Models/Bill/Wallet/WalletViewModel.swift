@@ -40,6 +40,11 @@ class WalletViewModel {
             .materialize()
     }.share()
     
+    private(set) lazy var hasExpiredWalletItem = self.walletItemEvents.elements()
+        .filter { $0.contains { $0.isExpired } }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
+    
     lazy var isError: Driver<Bool> = self.walletItemEvents.asDriver(onErrorDriveWith: .empty()).map {
         return  $0.error != nil
     }.startWith(false)
@@ -65,7 +70,7 @@ class WalletViewModel {
     }()
     
     lazy var creditCardLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
-        if Environment.sharedInstance.opco == .bge { return false } // No limit for BGE
+        if Environment.shared.opco == .bge { return false } // No limit for BGE
         
         guard let walletItems = $0 else { return false }
         var creditCount = 0
@@ -79,7 +84,7 @@ class WalletViewModel {
     }
     
     lazy var bankAccountLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
-        if Environment.sharedInstance.opco == .bge { return false } // No limit for BGE
+        if Environment.shared.opco == .bge { return false } // No limit for BGE
         
         guard let walletItems = $0 else { return false }
         var bankCount = 0
@@ -100,7 +105,7 @@ class WalletViewModel {
     }
     
     var emptyStateCreditFeeLabelText: String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             let feeStr = String(format: "A convenience fee will be applied to your payments. Residential accounts: %@. Business accounts: %@.",
                                 accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
@@ -112,7 +117,7 @@ class WalletViewModel {
     }
     
     var footerLabelText: String {
-        switch Environment.sharedInstance.opco {
+        switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
         case .comEd, .peco:

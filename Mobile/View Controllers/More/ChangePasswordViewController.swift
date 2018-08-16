@@ -182,7 +182,7 @@ class ChangePasswordViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics().logScreenView(AnalyticsPageView.ChangePasswordOffer.rawValue)
+        Analytics.log(event: .ChangePasswordOffer)
     }
     
     @objc func onCancelPress() {
@@ -192,13 +192,18 @@ class ChangePasswordViewController: UIViewController {
     @objc func onSubmitPress() {
         view.endEditing(true)
         
+        // Hide password while loading
+        if !currentPasswordTextField.textField.isSecureTextEntry {
+            onEyeballPress(eyeballButton)
+        }
+        
         LoadingView.show()
         viewModel.changePassword(sentFromLogin: sentFromLogin, onSuccess: { [weak self] in
             LoadingView.hide()
             guard let `self` = self else { return }
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             self.navigationController?.popViewController(animated: true)
-            Analytics().logScreenView(AnalyticsPageView.ChangePasswordDone.rawValue)
+            Analytics.log(event: .ChangePasswordDone)
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
             guard let `self` = self else { return }

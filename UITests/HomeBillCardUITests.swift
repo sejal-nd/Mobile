@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import AppCenterXCUITestExtensions
 
 class HomeBillCardUITests: XCTestCase {
     
@@ -20,7 +21,7 @@ class HomeBillCardUITests: XCTestCase {
         
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchArguments = ["UITest"]
-        app.launch()
+        ACTLaunch.launch(app)
     }
     
     func doLogin(username: String) {
@@ -124,9 +125,29 @@ class HomeBillCardUITests: XCTestCase {
         XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
     }
     
+    func testMaintModeHomeBillCard() {
+        doLogin(username: "maintNotHome")
+        XCTAssert(app.scrollViews.otherElements.staticTexts["Billing is currently unavailable due to scheduled maintenance."].exists)
+    }
+    
+    func testMaintModeHome() {
+        doLogin(username: "maintAllTabs")
+        
+        XCTAssert(app.buttons["Reload"].exists)
+        XCTAssert(app.staticTexts["Scheduled Maintenance"].exists)
+        XCTAssert(app.staticTexts["Home is currently unavailable due to\nscheduled maintenance."].exists)
+    }
+    
+    func testExpiredSlideToPay(){
+        doLogin(username: "billCardWithExpiredDefaultPayment")
+        
+        //Assert slider is disabled since card is expired
+        let slideToPayControl = app.scrollViews.otherElements["Slide to pay today"]
+        XCTAssert(slideToPayControl.waitForExistence(timeout: 5))
+        XCTAssertFalse(slideToPayControl.isEnabled, "Slider should be disabled when card is expired")
+    }
+    
     private var appName: String {
         return Bundle.main.infoDictionary?["CFBundleName"] as! String
     }
-    
-    
 }

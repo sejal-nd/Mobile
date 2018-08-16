@@ -9,7 +9,7 @@
 import Foundation
 
 class ContactUsViewModel {
-    let opco = Environment.sharedInstance.opco
+    let opco = Environment.shared.opco
     
     var emergencyAttrString: NSAttributedString {
         let emergencyAttrString: NSMutableAttributedString
@@ -31,6 +31,20 @@ class ContactUsViewModel {
             emergencyAttrString.addAttribute(.font, value: OpenSans.boldItalic.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         }
         return emergencyAttrString
+    }
+    
+    var onlineFormUrl: URL {
+        let urlString: String
+        switch Environment.shared.opco {
+        case .bge:
+            urlString = "https://bge.custhelp.com/app/ContactUs"
+        case .comEd:
+            urlString = "https://secure.comed.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
+        case .peco:
+            urlString = "https://secure.peco.com/MyAccount/CustomerSupport/Pages/ContactUsForms.aspx"
+        }
+        
+        return URL(string: urlString)!
     }
     
     var label1: String {
@@ -89,15 +103,30 @@ class ContactUsViewModel {
         }
     }
     
-    var facebookURL: String? {
+    var facebookURL: String {
+        let appLink: String
+        let webLink: String
+        
         switch opco {
-        case .bge: return "https://www.facebook.com/myBGE"
-        case .peco: return "https://www.facebook.com/pecoconnect"
-        case .comEd: return "https://www.facebook.com/ComEd"
+        case .bge:
+            appLink = "fb://profile/114351251909317"
+            webLink = "https://www.facebook.com/myBGE"
+        case .peco:
+            appLink = "fb://profile/57553362273"
+            webLink = "https://www.facebook.com/pecoconnect"
+        case .comEd:
+            appLink = "fb://profile/114368811967421"
+            webLink = "https://www.facebook.com/ComEd"
+        }
+        
+        if let url = URL(string: appLink), UIApplication.shared.canOpenURL(url) {
+            return appLink
+        } else {
+            return webLink
         }
     }
     
-    var twitterURL: String? {
+    var twitterURL: String {
         switch opco {
         case .bge: return "https://twitter.com/mybge"
         case .peco: return "https://twitter.com/pecoconnect"
@@ -105,7 +134,7 @@ class ContactUsViewModel {
         }
     }
     
-    var youtubeURL: String? {
+    var youtubeURL: String {
         switch opco {
         case .bge: return "https://www.youtube.com/user/BaltimoreGasElectric"
         case .peco: return "https://www.youtube.com/pecoconnect"
@@ -113,7 +142,7 @@ class ContactUsViewModel {
         }
     }
     
-    var linkedinURL: String? {
+    var linkedinURL: String {
         switch opco {
         case .bge: return "https://www.linkedin.com/company/5115"
         case .peco: return "https://www.linkedin.com/company-beta/4678"
@@ -137,7 +166,7 @@ class ContactUsViewModel {
         }
     }
     
-    var flickrURL: String? {
+    var flickrURL: String {
         switch opco {
         case .bge: return "https://www.flickr.com/photos/mybge"
         case .peco: return "https://www.flickr.com/pecoconnect"

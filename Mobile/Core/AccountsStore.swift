@@ -7,7 +7,7 @@
 //
 
 final class AccountsStore {
-    static let sharedInstance = AccountsStore()
+    static let shared = AccountsStore()
     
     var accounts: [Account]!
     var currentAccount: Account!
@@ -16,7 +16,7 @@ final class AccountsStore {
     // Private init protects against another instance being accidentally instantiated
     private init() {
         // Load from disk
-        if let customerId = UserDefaults.standard.string(forKey: UserDefaultKeys.CustomerIdentifier) {
+        if let customerId = UserDefaults.standard.string(forKey: UserDefaultKeys.customerIdentifier) {
             customerIdentifier = customerId
         }
     }
