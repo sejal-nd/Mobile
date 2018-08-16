@@ -9,11 +9,11 @@
 import Foundation
 
 func dLog(_ message: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
-    #if DEBUG
+    if Environment.shared.environmentName != .prod {
         if let message = message {
             NSLog("[%@: %d] %@ - %@", (filename as NSString).lastPathComponent, line, function, message)
         } else {
             NSLog("[%@: %d] %@", (filename as NSString).lastPathComponent, line, function)
         }
-    #endif
+    }
 }

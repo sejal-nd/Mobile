@@ -23,7 +23,6 @@ protocol AuthenticationService {
     ///     ProfileStatus and AccountDetail on success, or the error on failure.
     func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (_ result: ServiceResult<(ProfileStatus, AccountDetail)>) -> Void)
     
-    
     /// Validate login credentials
     ///
     /// - Parameters:
@@ -34,25 +33,14 @@ protocol AuthenticationService {
     ///     or the error on failure.
     func validateLogin(_ username: String, password: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
-    
-    /// Check if the application is authenticated
+    /// Check if the user is authenticated
     func isAuthenticated() -> Bool
-    
-    
-    /// Attempt to refresh the authorization token.
-    ///
-    /// - Parameter completion: the completion block to execute upon completion.
-    func refreshAuthorization(completion: @escaping (_ result: ServiceResult<Void>) -> Void)
     
     /// Log out the currently logged in user
     ///
     /// Note that this operation can and should have the side effect of removing
     /// any cached information related to the user, either in memory or on disk.
-    ///
-    /// - Parameter completion: the completion block to execute upon completion.
-    ///     The ServiceResult that is provided will econtain the user id on success,
-    ///     or the error on failure.
-    func logout(completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func logout()
     
     /// Change the currently logged in users password.
     ///
@@ -74,7 +62,6 @@ protocol AuthenticationService {
     ///     ServiceResult that is provided will contain the user id on success,
     ///     or the error on failure.
     func changePasswordAnon(_ username: String, currentPassword: String, newPassword: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
-    
     
     func getMaintenanceMode(completion: @escaping(_ result: ServiceResult<Maintenance>) -> Void)
     
@@ -163,29 +150,7 @@ extension AuthenticationService {
             return Disposables.create()
         }
     }
-    
-    /// Log out the currently logged in user
-    ///
-    /// Note that this operation can and should have the side effect of removing
-    /// any cached information related to the user, either in memory or on disk.
-    ///
-    /// - Returns: An observable to subscribe to.
-    func logout() -> Observable<Void> {
-        return Observable.create { observer in
-            self.logout(completion: { (result: ServiceResult<Void>) in
-                switch (result) {
-                case ServiceResult.success:
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            }) 
-            
-            return Disposables.create()
-        }
-    }
-    
+        
     /// Change the currently logged in users password.
     ///
     /// - Parameters:

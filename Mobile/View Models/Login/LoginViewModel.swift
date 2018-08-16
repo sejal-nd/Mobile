@@ -69,9 +69,7 @@ class LoginViewModel {
                 self.accountDetail = responseTuple.1
                 onSuccess(responseTuple.0.tempPassword)
                 if responseTuple.0.tempPassword {
-                    self.authService.logout().subscribe(onError: { (error) in
-                        dLog("Logout Error: \(error)")
-                    }).disposed(by: self.disposeBag)
+                    self.authService.logout()
                 } else {
                     SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                 }

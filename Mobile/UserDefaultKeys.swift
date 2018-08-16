@@ -8,6 +8,8 @@
 
 struct UserDefaultKeys {
     
+    static let accessToken = "kAccessToken"
+    
     static let hasRunBefore = "kHasRunBefore"
     
     // Terms & Policies
