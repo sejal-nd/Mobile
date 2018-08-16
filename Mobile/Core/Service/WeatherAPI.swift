@@ -141,8 +141,8 @@ struct WeatherAPI: WeatherService {
                         completion(ServiceResult.failure(serviceError))
                         
                     } else {
-                        let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
-                        dLog(responseString)
+//                        let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
+//                        dLog(responseString)
                         
                         do {
                             let results = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
@@ -152,7 +152,6 @@ struct WeatherAPI: WeatherService {
                                     completion(ServiceResult.failure(serviceError))
                                     return
                             }
-                            
                             completion(ServiceResult.success(weatherItem))
                             
                         }
