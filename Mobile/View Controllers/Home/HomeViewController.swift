@@ -29,6 +29,7 @@ class HomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var personalizeButton: UIButton!
     
+    var importantUpdateView: HomeUpdateView!
     var weatherView: HomeWeatherView!
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
@@ -89,6 +90,16 @@ class HomeViewController: AccountPickerViewController {
         mainStackView.insertArrangedSubview(weatherView, at: 1)
         weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
         weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
+        
+        let update = OpcoUpdate.from(["Title": "Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum", "Message": "This is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test message"] as NSDictionary)!
+        importantUpdateView = HomeUpdateView.create(withUpdate: update)
+        mainStackView.insertArrangedSubview(importantUpdateView, at: 1)
+        importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
+        importantUpdateView.button.rx.touchUpInside.asDriver()
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "UpdatesDetailSegue", sender: update)
+            })
+            .disposed(by: bag)
         
         HomeCardPrefsStore.shared.listObservable
             .scan(([HomeCard](), [HomeCard]())) { oldCards, newCards in (oldCards.1, newCards) }
@@ -512,6 +523,9 @@ class HomeViewController: AccountPickerViewController {
                     })
                 })
                 .disposed(by: vc.disposeBag)
+        } else if let vc = segue.destination as? UpdatesDetailViewController,
+            let update = sender as? OpcoUpdate {
+            vc.opcoUpdate = update
         }
     }
     
