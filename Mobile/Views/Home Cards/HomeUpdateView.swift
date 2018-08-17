@@ -6,9 +6,12 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
+import RxSwift
 import UIKit
 
 class HomeUpdateView: UIView {
+    
+    let disposeBag = DisposeBag()
 
     @IBOutlet weak var button: ButtonControl! {
         didSet {

@@ -49,7 +49,8 @@ class HomeViewController: AccountPickerViewController {
                                   paymentService: ServiceFactory.createPaymentService(),
                                   usageService: ServiceFactory.createUsageService(),
                                   authService: ServiceFactory.createAuthenticationService(),
-                                  outageService: ServiceFactory.createOutageService())
+                                  outageService: ServiceFactory.createOutageService(),
+                                  alertsService: ServiceFactory.createAlertsService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -86,20 +87,44 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        weatherView = HomeWeatherView.create(withViewModel: viewModel.weatherViewModel)
-        mainStackView.insertArrangedSubview(weatherView, at: 1)
-        weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
-        weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
-        
-        let update = OpcoUpdate.from(["Title": "Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum", "Message": "This is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test messageThis is a test message This is a test message"] as NSDictionary)!
-        importantUpdateView = HomeUpdateView.create(withUpdate: update)
-        mainStackView.insertArrangedSubview(importantUpdateView, at: 1)
-        importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
-        importantUpdateView.button.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "UpdatesDetailSegue", sender: update)
+        viewModel.importantUpdate
+            .drive(onNext: { [weak self] update in
+                guard let this = self, let update = update else { return }
+                this.importantUpdateView = HomeUpdateView.create(withUpdate: update)
+                this.mainStackView.insertArrangedSubview(this.importantUpdateView, at: 1)
+                this.importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
+                this.importantUpdateView.button.rx.touchUpInside.asDriver()
+                    .drive(onNext: { [weak self] in
+                        self?.performSegue(withIdentifier: "UpdatesDetailSegue", sender: update)
+                    })
+                    .disposed(by: this.importantUpdateView.disposeBag)
             })
             .disposed(by: bag)
+        
+        weatherView = HomeWeatherView.create(withViewModel: viewModel.weatherViewModel)
+        viewModel.importantUpdate
+            .drive(onNext: { [weak self] update in
+                guard let this = self, update == nil else { return }
+                this.mainStackView.insertArrangedSubview(this.weatherView, at: 1)
+                this.weatherView.leadingAnchor.constraint(equalTo: this.mainStackView.leadingAnchor).isActive = true
+                this.weatherView.trailingAnchor.constraint(equalTo: this.mainStackView.trailingAnchor).isActive = true
+                
+                this.weatherView.didTapTemperatureTip
+                    .map(InfoModalViewController.init)
+                    .drive(onNext: { [weak self] in
+                        self?.present($0, animated: true, completion: nil)
+                    })
+                    .disposed(by: this.weatherView.bag)
+                
+                let versionString = UserDefaults.standard.string(forKey: UserDefaultKeys.homeCardCustomizeTappedVersion) ?? "0.0.0"
+                let tappedVersion = Version(string: versionString) ?? Version(major: 0, minor: 0, patch: 0)
+                if tappedVersion < this.viewModel.latestNewCardVersion {
+                    this.topPersonalizeButtonSetup()
+                }
+            })
+            .disposed(by: bag)
+        
+        viewModel.updateFetchTrigger.onNext(())
         
         HomeCardPrefsStore.shared.listObservable
             .scan(([HomeCard](), [HomeCard]())) { oldCards, newCards in (oldCards.1, newCards) }
@@ -117,12 +142,6 @@ class HomeViewController: AccountPickerViewController {
                 }
             })
             .disposed(by: bag)
-        
-        let versionString = UserDefaults.standard.string(forKey: UserDefaultKeys.homeCardCustomizeTappedVersion) ?? "0.0.0"
-        let tappedVersion = Version(string: versionString) ?? Version(major: 0, minor: 0, patch: 0)
-        if tappedVersion < viewModel.latestNewCardVersion {
-            topPersonalizeButtonSetup()
-        }
         
         personalizeButton.setTitleColor(.white, for: .normal)
         personalizeButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
@@ -492,13 +511,6 @@ class HomeViewController: AccountPickerViewController {
         Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
             .map(to: FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchData)
-            .disposed(by: bag)
-        
-        weatherView.didTapTemperatureTip
-            .map(InfoModalViewController.init)
-            .drive(onNext: { [weak self] in
-                self?.present($0, animated: true, completion: nil)
-            })
             .disposed(by: bag)
     }
     

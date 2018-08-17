@@ -22,9 +22,12 @@ class HomeViewModel {
     private let usageService: UsageService
     private let authService: AuthenticationService
     private let outageService: OutageService
+    private let alertsService: AlertsService
     
     let fetchData = PublishSubject<FetchingAccountState>()
     let fetchDataObservable: Observable<FetchingAccountState>
+    
+    let updateFetchTrigger = PublishSubject<Void>()
 
     let refreshFetchTracker = ActivityTracker()
     
@@ -43,7 +46,8 @@ class HomeViewModel {
                   paymentService: PaymentService,
                   usageService: UsageService,
                   authService: AuthenticationService,
-                  outageService: OutageService) {
+                  outageService: OutageService,
+                  alertsService: AlertsService) {
         self.fetchDataObservable = fetchData.share()
         self.accountService = accountService
         self.weatherService = weatherService
@@ -52,6 +56,7 @@ class HomeViewModel {
         self.usageService = usageService
         self.authService = authService
         self.outageService = outageService
+        self.alertsService = alertsService
     }
     
     private(set) lazy var weatherViewModel =
@@ -176,4 +181,14 @@ class HomeViewModel {
     
     private(set) lazy var shouldShowProjectedBillCard: Driver<Bool> = projectedBillCardViewModel.cardShouldBeHidden.not().asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = updateFetchTrigger
+        .toAsyncRequest { [weak self] in
+            guard let this = self else { return .empty() }
+            return this.alertsService.fetchOpcoUpdates()
+                .delay(10, scheduler: MainScheduler.instance)
+                .map { _ in nil }
+                .catchError { _ in .just(nil) }
+        }
+        .elements()
+        .asDriver(onErrorDriveWith: .empty())
 }
