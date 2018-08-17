@@ -119,7 +119,7 @@ class HomeUsageCardView: UIView {
         unavailableDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
         
         unavailableDescriptionLabel.textColor = .middleGray
-        unavailableDescriptionLabel.attributedText = NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
+        unavailableDescriptionLabel.attributedText = NSLocalizedString("Usage is not available for this account.", comment: "")
             .attributedString(withLineHeight: 26, textAlignment: .center)
     }
     
