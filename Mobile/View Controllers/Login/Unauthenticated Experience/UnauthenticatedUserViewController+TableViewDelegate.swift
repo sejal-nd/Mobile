@@ -91,10 +91,6 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         return 60
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 21
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleTableViewHeaderView.className) as? TitleTableViewHeaderView else { return nil }
 
@@ -108,6 +104,14 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         }
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 21
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: SeparatorTableViewFooterView.className)
     }
         
 }
