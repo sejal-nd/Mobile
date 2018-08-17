@@ -4,17 +4,17 @@
 # Reads in the mobile cloud config file directly, filtering out prod instances
 # Have to convert to json first
 
-plutil -convert json -e json Mobile/OMC.plist
+plutil -convert json -e json Mobile/MCSConfig.plist
 
 string_of_mbes="$(perl -MJSON::PP -e "my \$data = decode_json(<STDIN>); \
 	foreach my \$key ( keys \$data -> {mobileBackends} ){ \
 		if (index(\$key, \"Prod\") == -1){ \
 			print \$key , \" \"; \
-	}}" < Mobile/OMC.json)"
+	}}" < Mobile/MCSConfig.json)"
 
 stagingMBEs=($string_of_mbes)
 
-rm Mobile/OMC.json
+rm Mobile/MCSConfig.json
 
 echo "
 Exelon Utilities Mobile Build Script for iOS
