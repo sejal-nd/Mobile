@@ -222,7 +222,7 @@ elif [ "$CONFIGURATION" == "Release" ]; then
 	fi
 	target_app_name="$OPCO"
 	target_icon_asset="tools/$OPCO/release"
-	target_scheme="$OPCO-PROD"
+	target_scheme="$OPCO-RELEASE"
 	target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
 else
 	echo "Invalid argument: configuration"
@@ -360,43 +360,50 @@ if [[ $target_phases = *"build"* ]]; then
 		fi
 	fi
 
-	if [[ $target_phases = *"appCenterSymbols"* ]]; then
-		echo "--------------------------------- Uploading symbols  -------------------------------"
-		# Push to App Center Distribute
-		if [ -n "$APP_CENTER_API_TOKEN" ]; then
+	if [ "$CONFIGURATION" == "Release" ]; then
+		echo "Skipping App Center symbol uploading as you will need to upload to Apple first and download dSYMs from them"
+	else
+
+		if [[ $target_phases = *"appCenterSymbols"* ]]; then
+			echo "--------------------------------- Uploading symbols  -------------------------------"
+			# Push to App Center Distribute
+			if [ -n "$APP_CENTER_API_TOKEN" ]; then
 
 
-			# disable error propagation. we do not want to force the whole build script to fail if the rm fails
-			set +e
+				# disable error propagation. we do not want to force the whole build script to fail if the rm fails
+				set +e
 
-			rm -r build/appcentersymbols
+				rm -r build/appcentersymbols
 
-			set -e
+				set -e
 
-			mkdir build/appcentersymbols
+				mkdir build/appcentersymbols
 
-			cp -a build/archive/$target_scheme.xcarchive/dSYMs/. build/appcentersymbols
-			pushd ./build/appcentersymbols
-			zip -r ../$OPCO-appcentersymbols-$target_version_number.zip .
-			popd
+				cp -a build/archive/$target_scheme.xcarchive/dSYMs/. build/appcentersymbols
+				pushd ./build/appcentersymbols
+				zip -r ../$OPCO-appcentersymbols-$target_version_number.zip .
+				popd
 
-			appcenter crashes upload-symbols -s \
-				./build/$OPCO-appcentersymbols-$target_version_number.zip \
-				--app $target_app_center_app \
-				--token $APP_CENTER_API_TOKEN
+				appcenter crashes upload-symbols -s \
+					./build/$OPCO-appcentersymbols-$target_version_number.zip \
+					--app $target_app_center_app \
+					--token $APP_CENTER_API_TOKEN
 
 			check_errs $? "App center crash uploading exited with a non-zero status"
 
-			rm -r build/appcentersymbols
+				rm -r build/appcentersymbols
 			
-		echo "--------------------------------- Completed symbols  -------------------------------"
+			echo "--------------------------------- Completed symbols  -------------------------------"
 
-		else
-			echo "Skipping App Center symbol uploading due to missing variables - \"app-center-api-token\""
+			else
+				echo "Skipping App Center symbol uploading due to missing variables - \"app-center-api-token\""
+			fi
 		fi
-
 	fi
 
+	if [ "$CONFIGURATION" == "Release" ]; then
+		echo "Skipping App Center distribution script as this is not applicable for prod release"
+	else
 	if [[ $target_phases = *"writeDistributionScript"* ]]; then
 	  echo "#!/usr/bin/env bash
 
@@ -421,6 +428,7 @@ appcenter distribute release \\
 " > ./tools/app_center_push.sh
 	fi 
 
+fi
 fi
 
 if [[ $target_phases = *"veracodePrep"* ]]; then
