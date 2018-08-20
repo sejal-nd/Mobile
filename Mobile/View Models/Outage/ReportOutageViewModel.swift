@@ -102,6 +102,17 @@ class ReportOutageViewModel {
             .disposed(by: disposeBag)
     }
     
+    func meterPingGetStatus(onComplete: @escaping (MeterPingInfo) -> Void, onError: @escaping () -> Void) {
+        outageService.pingMeter(account: AccountsStore.shared.currentAccount) { (result: ServiceResult<MeterPingInfo>) in
+            switch result {
+            case ServiceResult.success(let meterPingInfo):
+                onComplete(meterPingInfo)
+            case ServiceResult.failure( _): // let err
+                onError()
+            }
+        }
+    }
+    
     func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
             if self.outageStatus!.meterPingInfo!.pingResult {
