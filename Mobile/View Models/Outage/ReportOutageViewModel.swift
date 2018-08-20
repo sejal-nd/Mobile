@@ -113,33 +113,33 @@ class ReportOutageViewModel {
         }
     }
     
-    func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
-            if self.outageStatus!.meterPingInfo!.pingResult {
-                if self.outageStatus!.meterPingInfo!.voltageResult {
-                    onPowerVerified(true)
-                } else {
-                    onPowerVerified(false)
-                }
-            } else {
-                onError()
-            }
-        }
-    }
-    
-    func meterPingGetVoltageStatus(onVoltageVerified: @escaping () -> Void, onError: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
-            if let voltageReads = self.outageStatus!.meterPingInfo!.voltageReads {
-                if voltageReads.lowercased().contains("improper") {
-                    onError()
-                } else if voltageReads.lowercased().contains("proper") {
-                    onVoltageVerified()
-                }
-            } else {
-                onError()
-            }
-        }
-    }
+//    func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
+//            if self.outageStatus!.meterPingInfo!.pingResult {
+//                if self.outageStatus!.meterPingInfo!.voltageResult {
+//                    onPowerVerified(true)
+//                } else {
+//                    onPowerVerified(false)
+//                }
+//            } else {
+//                onError()
+//            }
+//        }
+//    }
+//
+//    func meterPingGetVoltageStatus(onVoltageVerified: @escaping () -> Void, onError: @escaping () -> Void) {
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
+//            if let voltageReads = self.outageStatus!.meterPingInfo!.voltageReads {
+//                if voltageReads.lowercased().contains("improper") {
+//                    onError()
+//                } else if voltageReads.lowercased().contains("proper") {
+//                    onVoltageVerified()
+//                }
+//            } else {
+//                onError()
+//            }
+//        }
+//    }
     
     private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver()
         .map { [weak self] text -> Bool in
