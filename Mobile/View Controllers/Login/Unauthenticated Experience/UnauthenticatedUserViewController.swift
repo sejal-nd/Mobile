@@ -10,7 +10,11 @@ import Foundation
 
 class UnauthenticatedUserViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.separatorColor = .primaryColor
+        }
+    }
     @IBOutlet weak var headerView: UIView! {
         didSet {
             headerView.backgroundColor = .primaryColor
