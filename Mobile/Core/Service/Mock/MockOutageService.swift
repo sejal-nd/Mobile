@@ -165,6 +165,10 @@ class MockOutageService: OutageService {
         return status
     }
     
+    func pingMeter(account: Account, completion: @escaping (ServiceResult<MeterPingInfo>) -> Void) {
+        print("Todo")
+    }
+    
     
     func reportOutage(outageInfo: OutageInfo, completion: @escaping (ServiceResult<Void>) -> Void) {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
