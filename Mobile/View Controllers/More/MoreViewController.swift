@@ -13,11 +13,7 @@ import ToastSwiftFramework
 
 class MoreViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView! {
-        didSet {
-            tableView.separatorColor = .primaryColor
-        }
-    }
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var signOutButton: UIButton! {
         didSet {
             signOutButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
