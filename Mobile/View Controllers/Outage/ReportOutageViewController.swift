@@ -91,7 +91,7 @@ class ReportOutageViewController: UIViewController {
         }
         
         // METER PING
-        if Environment.shared.opco == .comEd, let outageStatus = viewModel.outageStatus, !outageStatus.activeOutage {
+        if Environment.shared.opco == .comEd {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             bg.backgroundColor = .softGray
@@ -103,6 +103,8 @@ class ReportOutageViewController: UIViewController {
             meterPingStackView.isHidden = false
 
             footerContainerView.isHidden = true
+            
+            meterPingVoltageStatusView.isHidden = false
             
             meterPingFuseBoxSwitch.rx.isOn.asDriver().map(!).drive(viewModel.reportFormHidden).disposed(by: disposeBag)
             viewModel.reportFormHidden.asDriver().drive(reportFormStackView.rx.isHidden).disposed(by: disposeBag)
@@ -260,7 +262,13 @@ class ReportOutageViewController: UIViewController {
             })
             
             viewModel.meterPingGetStatus(onComplete: { meterPingInfo in
+                self.meterPingCurrentStatusLoadingView.isHidden = true // unsure about this
+                self.meterPingCurrentStatusCheckImageView.isHidden = false // unsure about this
+                
                 // Hide loading state
+                self.meterPingCurrentStatusLoadingView.isHidden = true
+                self.meterPingCurrentStatusCheckImageView.isHidden = false
+                
                 self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                 
@@ -273,10 +281,16 @@ class ReportOutageViewController: UIViewController {
                 self.meterPingVoltageStatusLabel.textColor = .blackText
                 
                 self.meterPingFuseBoxView.isHidden = false
+                self.footerContainerView.isHidden = false
                 
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Check Complete", comment: ""))
             }, onError: {
+                self.meterPingCurrentStatusLoadingView.isHidden = true
+                self.meterPingCurrentStatusCheckImageView.isHidden = false
+                
+                self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
+                
                 self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
                 self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
                 self.meterPingPowerStatusLabel.textColor = .blackText
@@ -284,6 +298,13 @@ class ReportOutageViewController: UIViewController {
                 self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
                 self.meterPingVoltageStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
                 self.meterPingVoltageStatusLabel.textColor = .blackText
+                
+                self.meterPingResultLabel.isHidden = false
+                self.meterPingResultLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
+                
+                self.areYourLightsOutView.isHidden = true
+                self.viewModel.reportFormHidden.value = false
+                self.footerContainerView.isHidden = false
                 
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Check Complete", comment: ""))
