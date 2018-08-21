@@ -34,7 +34,6 @@ class MoreViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
-        tableView.register(UINib(nibName: SeparatorTableViewFooterView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: SeparatorTableViewFooterView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
         tableView.register(UINib(nibName: ToggleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ToggleTableViewCell.className)
         
