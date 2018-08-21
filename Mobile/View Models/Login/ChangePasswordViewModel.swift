@@ -109,9 +109,13 @@ class ChangePasswordViewModel {
                 SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain) { [weak self] error in
                     if error != nil {
                         // Error Saving SWC
-                        onError(NSLocalizedString("Please make sure AutoFill is on in Safari Settings for Names and Passwords when using Strong Passwords.", comment: ""))
+                        DispatchQueue.main.async {
+                            onError(NSLocalizedString("Please make sure AutoFill is on in Safari Settings for Names and Passwords when using Strong Passwords.", comment: ""))
+                        }
                     } else {
-                        self?.changePasswordNetworkRequest(sentFromLogin: sentFromLogin, shouldSaveToWebCredentials: false, onSuccess: onSuccess, onPasswordNoMatch: onPasswordNoMatch, onError: onError)
+                        DispatchQueue.main.async {
+                            self?.changePasswordNetworkRequest(sentFromLogin: sentFromLogin, shouldSaveToWebCredentials: false, onSuccess: onSuccess, onPasswordNoMatch: onPasswordNoMatch, onError: onError)
+                        }
                     }
                 }
             } else {

@@ -97,9 +97,13 @@ class RegistrationViewModel {
                 guard let this = self else { return }
                 SharedWebCredentials.save(credential: (this.username.value, this.newPassword.value), domain: Environment.shared.associatedDomain) { [weak this] error in
                     if error != nil, this?.hasStrongPassword ?? false {
-                        onError(NSLocalizedString("Failed to Save Password", comment: ""), NSLocalizedString("Please make sure AutoFill is on in Safari Settings for Names and Passwords when using Strong Passwords.", comment: ""))
+                        DispatchQueue.main.async {
+                            onError(NSLocalizedString("Failed to Save Password", comment: ""), NSLocalizedString("Please make sure AutoFill is on in Safari Settings for Names and Passwords when using Strong Passwords.", comment: ""))
+                        }
                     } else {
-                        onSuccess()
+                        DispatchQueue.main.async {
+                            onSuccess()
+                        }
                     }
                 }
             }, onError: { error in
