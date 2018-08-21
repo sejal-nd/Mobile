@@ -32,7 +32,7 @@ extension Date {
     @nonobjc var hourAmPmString: String {
         var date = self
         let minutes = Calendar.current.component(.minute, from: date)
-        if minutes >= 59, let adjustedDate = Calendar.current.date(byAdding: .hour, value: 1, to: date) {
+        if minutes >= 30, let adjustedDate = Calendar.current.date(byAdding: .hour, value: 1, to: date) {
             date = adjustedDate
         }
         return DateFormatter.hourAmPmFormatter.string(from: date)
