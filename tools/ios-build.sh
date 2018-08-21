@@ -391,8 +391,12 @@ if [[ $target_phases = *"veracodePrep"* ]]; then
 		mkdir build/veracode
 		mkdir build/veracode/Payload
 
-		cp -a build/$CONFIGURATION/$OPCO.app.dSYM/. build/veracode/Payload/$OPCO.app.dSYM/
-		cp -a build/$CONFIGURATION/$OPCO.swiftmodule/. build/veracode/Payload/$OPCO.swiftmodule/
+		# xcode logs include a statement to output the location of the build directory
+		$(grep "export BUILT_PRODUCTS_DIR" build/logs/xcodebuild_archive.log| head -n1)
+		echo "Set environment variable BUILT_PRODUCTS_DIR to $BUILT_PRODUCTS_DIR"
+
+		cp -a $BUILT_PRODUCTS_DIR/$OPCO.app.dSYM/. build/veracode/Payload/$OPCO.app.dSYM/
+		cp -a $BUILT_PRODUCTS_DIR/$OPCO.swiftmodule/. build/veracode/Payload/$OPCO.swiftmodule/
 		cp -a build/archive/$target_scheme.xcarchive/Products/Applications/$OPCO.app/. build/veracode/Payload/$OPCO.app/
 		pushd ./build/veracode
 		zip -r $OPCO-Veracode-$target_version_number.zip ./Payload
@@ -430,16 +434,19 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 			VALID_ARCHS="armv7 armv7s arm64" \
 			build-for-testing | tee build/logs/xcodebuild_build_for_testing.log | xcpretty
 
-		find .
-
 		echo "--------------------------------- Uploading to appcenter -------------------------------"
+
+		# xcode logs include a statement to output the location of the build directory
+		$(grep "export BUILT_PRODUCTS_DIR" build/logs/xcodebuild_build_for_testing.log| head -n1)
+		echo "Set environment variable BUILT_PRODUCTS_DIR to $BUILT_PRODUCTS_DIR"
+
 		# Upload your test to App Center
 		appcenter test run xcuitest \
 			--app $target_app_center_app \
 			--devices $APP_CENTER_TEST_DEVICES \
 			--test-series "$APP_CENTER_TEST_SERIES"  \
 			--locale "en_US" \
-			--build-dir Build/Automation \
+			--build-dir $BUILT_PRODUCTS_DIR \
 			--token $APP_CENTER_API_TOKEN \
 			--async
 
