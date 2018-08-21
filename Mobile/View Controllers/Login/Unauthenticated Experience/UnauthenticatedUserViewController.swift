@@ -27,7 +27,7 @@ class UnauthenticatedUserViewController: UIViewController {
     @IBOutlet weak var headerViewTitleLabel: UILabel! {
         didSet {
             headerViewTitleLabel.font = OpenSans.semibold.of(textStyle: .headline)
-            headerViewTitleLabel.textColor = .primaryColor
+            headerViewTitleLabel.textColor = .actionBlue
         }
     }
     

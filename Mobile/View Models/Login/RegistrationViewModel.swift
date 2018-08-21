@@ -93,8 +93,15 @@ class RegistrationViewModel {
     func verifyUniqueUsername(onSuccess: @escaping () -> Void, onEmailAlreadyExists: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         registrationService.checkForDuplicateAccount(username.value)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                onSuccess()
+            .subscribe(onNext: { [weak self] _ in
+                guard let this = self else { return }
+                SharedWebCredentials.save(credential: (this.username.value, this.newPassword.value), domain: Environment.shared.associatedDomain) { [weak this] error in
+                    if error != nil, this?.hasStrongPassword ?? false {
+                        onError(NSLocalizedString("Failed to Save Password", comment: ""), NSLocalizedString("Please make sure AutoFill is on in Safari Settings for Names and Passwords when using Strong Passwords.", comment: ""))
+                    } else {
+                        onSuccess()
+                    }
+                }
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 
@@ -122,9 +129,7 @@ class RegistrationViewModel {
                                              isPrimary: primaryProfile.value ? "true" : "false",
                                              isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
-                SharedWebCredentials.save(credential: (self.username.value, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+            .subscribe(onNext: {
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError

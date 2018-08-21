@@ -125,42 +125,63 @@ class HomeUsageCardViewModel {
     
     // MARK: Bill Comparison
     
-    private(set) lazy var shouldShowBillComparison: Driver<Bool> = Driver.combineLatest(self.shouldShowBillComparisonEmptyState,
-                                                                                        self.shouldShowSmartEnergyRewards,
-                                                                                        self.shouldShowSmartEnergyEmptyState) {
-        return !$0 && !$1 && !$2
-    }
-    
-    private(set) lazy var shouldShowBillComparisonEmptyState: Driver<Bool> = Driver.combineLatest(self.billComparisonEvents.asDriver(onErrorDriveWith: .empty()),
-                                                                                                  self.shouldShowSmartEnergyRewards,
-                                                                                                  self.shouldShowSmartEnergyEmptyState) {
-        if $1 || $2 {
-            return false
+    private(set) lazy var showBillComparison: Driver<Void> = billComparisonEvents
+        .filter {
+            return $0.element?.reference != nil
         }
-        return $0.element?.reference == nil
-    }
-    
-    private(set) lazy var shouldShowBillComparisonEmptyStateButton: Driver<Bool> = self.accountDetailEvents.map { $0.error == nil }
+        .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
-    // Not currently using -- we'll show billComparisonEmptyStateView if any errors occur
-    private(set) lazy var shouldShowErrorView: Driver<Bool> =
-        Observable.combineLatest(self.loadingTracker.asObservable(), self.billComparisonEvents) { _, _ in
-            return false //!$0 && $1.error != nil
-        }.asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents.elements()
+        .filter { accountDetail in
+            if accountDetail.isBGEControlGroup {
+                return accountDetail.isSERAccount // BGE Control Group + SER enrollment get the SER graph on usage card
+            }
+            
+            return !accountDetail.isEligibleForUsageData
+        }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var showBillComparisonEmptyState: Driver<Void> = billComparisonEvents
+        .filter {
+            return $0.element?.reference == nil
+        }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowBillComparisonContentView: Driver<Bool> =
-        Observable.combineLatest(self.loadingTracker.asObservable(), self.billComparisonEvents) {
-            !$0 && $1.error == nil
-        }.asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var showSmartEnergyRewards: Driver<Void> = self.accountDetailEvents
+        .filter {
+            guard let accountDetail = $0.element else { return false }
+            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
+                return accountDetail.serInfo.eventResults.count > 0
+            }
+            return false
+        }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowElectricGasSegmentedControl: Driver<Bool> = self.accountDetailEvents.map {
+    private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = self.accountDetailEvents
+        .filter {
+            guard let accountDetail = $0.element else { return false }
+            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
+                return accountDetail.serInfo.eventResults.count == 0
+            }
+            return false
+        }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showBillComparisonEmptyStateButton: Driver<Bool> = accountDetailEvents
+        .map { $0.error == nil }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showElectricGasSegmentedControl: Driver<Bool> = accountDetailEvents.map {
         $0.element?.serviceType?.uppercased() == "GAS/ELECTRIC"
     }
     .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var noPreviousData: Driver<Bool> = self.billComparisonDriver.map {
+    private(set) lazy var noPreviousData: Driver<Bool> = billComparisonDriver.map {
         return $0.compared == nil
     }
     
@@ -326,22 +347,6 @@ class HomeUsageCardViewModel {
     }
     
     // MARK: Smart Energy Rewards
-    
-    private(set) lazy var shouldShowSmartEnergyRewards: Driver<Bool> = self.accountDetailEvents.map {
-        guard let accountDetail = $0.element else { return false }
-        if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
-            return accountDetail.serInfo.eventResults.count > 0
-        }
-        return false
-    }.asDriver(onErrorDriveWith: .empty())
-    
-    private(set) lazy var shouldShowSmartEnergyEmptyState: Driver<Bool> = self.accountDetailEvents.map {
-        guard let accountDetail = $0.element else { return false }
-        if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
-            return accountDetail.serInfo.eventResults.count == 0
-        }
-        return false
-    }.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = self.accountDetailDriver.map {
         let events = $0.serInfo.eventResults

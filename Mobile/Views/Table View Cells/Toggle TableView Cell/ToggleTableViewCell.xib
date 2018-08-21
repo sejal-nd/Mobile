@@ -29,19 +29,29 @@
                         <rect key="frame" x="310" y="14" width="51" height="31"/>
                     </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvM-s2-8hR">
-                        <rect key="frame" x="48" y="19" width="40.5" height="20"/>
+                        <rect key="frame" x="51" y="19" width="40.5" height="20"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j35-mm-AEU">
+                        <rect key="frame" x="52" y="59.5" width="323" height="0.5"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="sN7-gA-nnF"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="j8z-2X-PvY" firstAttribute="centerY" secondItem="bNz-gH-X2d" secondAttribute="centerY" id="1mW-wd-LVD"/>
-                    <constraint firstItem="PvM-s2-8hR" firstAttribute="leading" secondItem="cHe-M1-3DF" secondAttribute="trailing" constant="8" id="EIC-Ql-sZq"/>
+                    <constraint firstItem="PvM-s2-8hR" firstAttribute="leading" secondItem="cHe-M1-3DF" secondAttribute="trailing" constant="11" id="EIC-Ql-sZq"/>
                     <constraint firstItem="cHe-M1-3DF" firstAttribute="centerY" secondItem="bNz-gH-X2d" secondAttribute="centerY" id="F22-pd-gk9"/>
                     <constraint firstItem="cHe-M1-3DF" firstAttribute="leading" secondItem="bNz-gH-X2d" secondAttribute="leading" constant="16" id="HA1-O5-7pD"/>
+                    <constraint firstAttribute="bottom" secondItem="j35-mm-AEU" secondAttribute="bottom" id="Lg9-gU-4qU"/>
                     <constraint firstItem="j8z-2X-PvY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PvM-s2-8hR" secondAttribute="trailing" constant="8" id="aPK-1c-Oig"/>
                     <constraint firstItem="PvM-s2-8hR" firstAttribute="centerY" secondItem="bNz-gH-X2d" secondAttribute="centerY" id="f7o-2l-mP2"/>
+                    <constraint firstAttribute="trailing" secondItem="j35-mm-AEU" secondAttribute="trailing" id="g17-MI-79L"/>
+                    <constraint firstItem="j35-mm-AEU" firstAttribute="leading" secondItem="bNz-gH-X2d" secondAttribute="leading" constant="52" id="huG-mE-wEW"/>
                     <constraint firstAttribute="trailing" secondItem="j8z-2X-PvY" secondAttribute="trailing" constant="16" id="iUu-mM-Ap4"/>
                 </constraints>
             </tableViewCellContentView>

@@ -24,7 +24,6 @@ class TitleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        accessoryView = UIImageView(image: #imageLiteral(resourceName: "ic_chevron"))
         backgroundColor = .primaryColor
     }
     

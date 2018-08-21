@@ -78,7 +78,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("Updates", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -86,31 +86,14 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""))
-                
-                // Modifies seperator insets if its the last cell in section
-                if !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .comEd || !viewModel.isDeviceBiometricCompatible() && Environment.shared.opco == .bge && AccountsStore.shared.accounts != nil && AccountsStore.shared.accounts.count == 1 {
-                    cell.separatorInset = UIEdgeInsets.zero
-                    cell.preservesSuperviewLayoutMargins = false
-                }
             case 1:
                 guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.className) as? ToggleTableViewCell else { return UITableViewCell() }
                 
                 toggleCell.configure(viewModel: viewModel)
                 toggleCell.toggle.addTarget(self, action: #selector(toggleBiometrics), for: .valueChanged)
-                
-                if AccountsStore.shared.accounts != nil, Environment.shared.opco == .bge && AccountsStore.shared.accounts.count == 1 || Environment.shared.opco == .comEd {
-                    toggleCell.separatorInset = UIEdgeInsets.zero
-                    toggleCell.preservesSuperviewLayoutMargins = false
-                }
-                
                 return toggleCell
             case 2:
                 cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""))
-                
-                if AccountsStore.shared.accounts != nil, AccountsStore.shared.accounts.count > 1 {
-                    cell.separatorInset = UIEdgeInsets.zero
-                    cell.preservesSuperviewLayoutMargins = false
-                }
             case 3:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""))
             default:

@@ -30,12 +30,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="XBu-Wr-l1z">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="XBu-Wr-l1z">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="hmk-y9-C89"/>
                                 </constraints>
+                                <color key="separatorColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="YE9-A9-YtG">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -46,7 +47,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82T-ES-k9e">
-                                            <rect key="frame" x="32" y="5" width="311" height="34"/>
+                                            <rect key="frame" x="150" y="5" width="75" height="34"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <state key="normal" title="Sign Out"/>
                                             <connections>
@@ -58,8 +59,6 @@
                                     <constraints>
                                         <constraint firstItem="82T-ES-k9e" firstAttribute="centerY" secondItem="MUk-3W-gZH" secondAttribute="centerY" constant="-14" id="2c1-E0-f94"/>
                                         <constraint firstItem="82T-ES-k9e" firstAttribute="centerX" secondItem="MUk-3W-gZH" secondAttribute="centerX" id="FAS-hB-NZx"/>
-                                        <constraint firstAttribute="trailing" secondItem="82T-ES-k9e" secondAttribute="trailing" constant="32" id="PWw-2G-BXM"/>
-                                        <constraint firstItem="82T-ES-k9e" firstAttribute="leading" secondItem="MUk-3W-gZH" secondAttribute="leading" constant="32" id="b9K-SU-qjl"/>
                                     </constraints>
                                 </view>
                                 <connections>
