@@ -91,6 +91,9 @@ class MoreViewController: UIViewController {
     }
     
     private func presentPasswordAlert(message: String, toggle: UISwitch) {
+        let indexPath = IndexPath(row: toggle.tag, section: 1)
+        guard let cell = tableView.cellForRow(at: indexPath) as? ToggleTableViewCell else { print("FAILURED TO GET CFRA@");return }
+        
         let pwAlert = UIAlertController(title: NSLocalizedString("Confirm Password", comment: ""), message: message, preferredStyle: .alert)
         pwAlert.addTextField(configurationHandler: { [weak self] (textField) in
             guard let `self` = self else { return }
@@ -100,6 +103,7 @@ class MoreViewController: UIViewController {
         })
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) -> Void in
             toggle.setOn(false, animated: true)
+            cell.toggleCheckImageView.isHidden = true
         }))
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) -> Void in
             LoadingView.show()
@@ -116,6 +120,7 @@ class MoreViewController: UIViewController {
                     } else {
                         self.biometricsPasswordRetryCount = 0
                         toggle.setOn(false, animated: true)
+                        cell.toggleCheckImageView.isHidden = true
                     }
             })
         }))
