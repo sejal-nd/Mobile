@@ -15,7 +15,7 @@ class ReportOutageViewModel {
     
     private var outageService: OutageService
     
-    var outageStatus: OutageStatus?
+    var outageStatus: OutageStatus! // Passed from OutageViewController/UnauthenticatedOutageStatusViewController
     var selectedSegmentIndex = Variable(0)
     var phoneNumber = Variable("")
     var phoneExtension = Variable("")
@@ -24,9 +24,6 @@ class ReportOutageViewModel {
     
     required init(outageService: OutageService) {
         self.outageService = outageService
-        if Environment.shared.opco == .comEd {
-            reportFormHidden.value = true
-        }
     }
     
     private(set) lazy var submitEnabled: Driver<Bool> = Driver.combineLatest(self.reportFormHidden.asDriver(),
@@ -47,6 +44,12 @@ class ReportOutageViewModel {
             return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
         }
     }
+    
+    lazy var shouldPingMeter: Bool = {
+        return Environment.shared.opco == .comEd &&
+            outageStatus.activeOutage == false &&
+            outageStatus.smartMeterStatus == true
+    }()
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var outageIssue = OutageIssue.allOut
@@ -103,43 +106,17 @@ class ReportOutageViewModel {
     }
     
     func meterPingGetStatus(onComplete: @escaping (MeterPingInfo) -> Void, onError: @escaping () -> Void) {
-        outageService.pingMeter(account: AccountsStore.shared.currentAccount) { (result: ServiceResult<MeterPingInfo>) in
-            switch result {
-            case ServiceResult.success(let meterPingInfo):
+        outageService.pingMeter(account: AccountsStore.shared.currentAccount)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { meterPingInfo in
                 onComplete(meterPingInfo)
-            case ServiceResult.failure( _): // let err
+            }, onError: { _ in
+//                let customMeterInfo = MeterPingInfo(preCheckSuccess: true, pingResult: false, voltageResult: false, voltageReads: "improper")
+//                onComplete(customMeterInfo)
                 onError()
-            }
-        }
+            }).disposed(by: disposeBag)
     }
-    
-//    func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
-//            if self.outageStatus!.meterPingInfo!.pingResult {
-//                if self.outageStatus!.meterPingInfo!.voltageResult {
-//                    onPowerVerified(true)
-//                } else {
-//                    onPowerVerified(false)
-//                }
-//            } else {
-//                onError()
-//            }
-//        }
-//    }
-//
-//    func meterPingGetVoltageStatus(onVoltageVerified: @escaping () -> Void, onError: @escaping () -> Void) {
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
-//            if let voltageReads = self.outageStatus!.meterPingInfo!.voltageReads {
-//                if voltageReads.lowercased().contains("improper") {
-//                    onError()
-//                } else if voltageReads.lowercased().contains("proper") {
-//                    onVoltageVerified()
-//                }
-//            } else {
-//                onError()
-//            }
-//        }
-//    }
     
     private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver()
         .map { [weak self] text -> Bool in
