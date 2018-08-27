@@ -31,12 +31,12 @@ class UpdatesViewModel {
     }
     
     /// Should Succeed allows us to unit test a failure
-    func fetchData(shouldSucceed: Bool = true) {
+    func fetchData() {
         isFetchingUpdates.value = true
         isUpdatesError.value = false
         isNoNetworkConnection.value = false
         
-        alertsService.fetchOpcoUpdates(shouldSucceed: shouldSucceed)
+        alertsService.fetchOpcoUpdates()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] opcoUpdates in
                 self?.currentOpcoUpdates.value = opcoUpdates

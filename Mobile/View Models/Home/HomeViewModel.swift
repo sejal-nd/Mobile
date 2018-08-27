@@ -162,9 +162,9 @@ class HomeViewModel {
     private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = updateFetchTrigger
         .toAsyncRequest { [weak self] in
             guard let this = self else { return .empty() }
-            return this.alertsService.fetchOpcoUpdates()
-                .delay(10, scheduler: MainScheduler.instance)
-                .map { _ in nil }
+            return this.alertsService.fetchOpcoUpdates(bannerOnly: true)
+//                .delay(10, scheduler: MainScheduler.instance)
+                .map { $0.first }
                 .catchError { _ in .just(nil) }
         }
         .elements()
