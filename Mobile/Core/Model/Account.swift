@@ -225,6 +225,15 @@ struct AccountDetail: Mappable {
             return .canEnroll
         }
     }
+    
+    var isEligibleForUsageData: Bool {
+        switch serviceType {
+        case "GAS", "ELECTRIC", "GAS/ELECTRIC":
+            return premiseNumber != nil && isResidential && !isBGEControlGroup && !isFinaled
+        default:
+            return false
+        }
+    }
 }
 
 struct SERInfo: Mappable {

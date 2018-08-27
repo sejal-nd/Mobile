@@ -50,42 +50,35 @@ class HomeProjectedBillCardViewModel {
         .startWith(true)
         .distinctUntilChanged()
     
-    private(set) lazy var billForecastEvents: Observable<Event<BillForecastResult>> = self.accountDetailChanged.share(replay: 1)
+    private(set) lazy var showEmptyState: Driver<Void> = accountDetailEvents
+        .filter { !($0.element?.isEligibleForUsageData ?? true) }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
     
-    // Used by HomeViewModel
-    private(set) lazy var cardShouldBeHidden: Observable<Bool> = self.billForecastEvents.map { billForecastEvent in
-        billForecastEvent.element == nil
-    }
+    private(set) lazy var showError: Driver<Void> = Observable
+        .merge(accountDetailEvents.filter { $0.error != nil }.map(to: ()),
+               billForecastEvents.filter {
+                $0.error != nil ||
+                $0.element?.gas?.errorMessage != nil ||
+                $0.element?.electric?.errorMessage != nil
+                }.map(to: ()))
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var accountDetailChanged = self.accountDetailEvents
-        .withLatestFrom(Observable.combineLatest(self.fetchData, self.accountDetailEvents))
-        .flatMapLatest { [unowned self] fetchState, accountDetailEvent -> Observable<Event<BillForecastResult>> in
-            guard let accountDetail = accountDetailEvent.element else {
-                if let error = accountDetailEvent.error {
-                    return Observable.error(error).materialize()
-                }
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
-            }
-            
-            guard let premiseNumber = accountDetail.premiseNumber, let serviceType = accountDetail.serviceType else {
-                //return .empty()
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
-            }
-            
-            // Throw these Observable.errors to trigger a billComparisonDriver event even when we don't make the API call
-            if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
-            }
-            if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
-            }
-            
-            return self.usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber)
-                .trackActivity(self.fetchTracker(forState: fetchState))
-                .materialize()
-                .filter { !$0.isCompleted }
-        }
-        .share()
+    private(set) lazy var showContent: Driver<Void> = billForecastEvents
+        .filter { $0.element != nil && $0.element?.gas?.errorMessage == nil && $0.element?.electric?.errorMessage == nil }
+        .map(to: ())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var billForecastEvents = self.accountDetailEvents.elements()
+        .filter { $0.isEligibleForUsageData }
+        .withLatestFrom(Observable.combineLatest(self.fetchData, self.accountDetailEvents.elements()))
+        .toAsyncRequest(activityTracker: { [weak self] pair -> ActivityTracker? in
+            return self?.fetchTracker(forState: pair.0) },
+                        requestSelector: { [weak self] pair -> Observable<BillForecastResult> in
+                            guard let this = self else { return .empty() }
+                            return this.usageService.fetchBillForecast(accountNumber: pair.1.accountNumber,
+                                                                       premiseNumber: pair.1.premiseNumber!)
+        })
     
     private(set) lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
     

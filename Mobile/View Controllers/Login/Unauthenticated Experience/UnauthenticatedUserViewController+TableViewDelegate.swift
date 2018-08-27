@@ -109,9 +109,5 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 21
     }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: SeparatorTableViewFooterView.className)
-    }
         
 }

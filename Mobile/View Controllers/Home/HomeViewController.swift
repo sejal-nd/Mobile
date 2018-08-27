@@ -398,8 +398,6 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: usageCardView.disposeBag)
         
-        viewModel.shouldShowUsageCard.not().drive(usageCardView.rx.isHidden).disposed(by: usageCardView.disposeBag)
-        
         usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
@@ -427,15 +425,11 @@ class HomeViewController: AccountPickerViewController {
     func bindProjectedBillCard() {
         guard let projectedBillCardView = projectedBillCardView else { return }
         
-        viewModel.shouldShowProjectedBillCard.not().drive(projectedBillCardView.rx.isHidden).disposed(by: projectedBillCardView.disposeBag)
-        
         projectedBillCardView.viewMoreButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
-            .drive(onNext: { [weak self] in
-                let billBreakdownVC = BillBreakdownViewController(accountDetail: $0)
-                billBreakdownVC.hidesBottomBarWhenPushed = true
-                self?.navigationController?.pushViewController(billBreakdownVC, animated: true)
+            .drive(onNext: { [weak self] _ in
+                self?.tabBarController?.selectedIndex = 3
             }).disposed(by: projectedBillCardView.disposeBag)
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
