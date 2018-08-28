@@ -87,6 +87,7 @@ class OneTouchSlider: UIControl {
         //Apply the custom slider styling
         layer.masksToBounds = true
         backgroundColor = .primaryColor
+        widthAnchor.constraint(lessThanOrEqualToConstant: 300).isActive = true
         
         //Add the slider label and set the constraints that will keep it centered
         sliderLabel.translatesAutoresizingMaskIntoConstraints = false
