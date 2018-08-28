@@ -92,7 +92,7 @@ class MoreViewController: UIViewController {
     
     private func presentPasswordAlert(message: String, toggle: UISwitch) {
         let indexPath = IndexPath(row: toggle.tag, section: 1)
-        guard let cell = tableView.cellForRow(at: indexPath) as? ToggleTableViewCell else { print("FAILURED TO GET CFRA@");return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? ToggleTableViewCell else { return }
         
         let pwAlert = UIAlertController(title: NSLocalizedString("Confirm Password", comment: ""), message: message, preferredStyle: .alert)
         pwAlert.addTextField(configurationHandler: { [weak self] (textField) in
