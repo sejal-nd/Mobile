@@ -89,7 +89,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 1:
                 guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.className) as? ToggleTableViewCell else { return UITableViewCell() }
                 
-                toggleCell.configure(viewModel: viewModel)
+                toggleCell.configure(viewModel: viewModel, tag: indexPath.row)
                 toggleCell.toggle.addTarget(self, action: #selector(toggleBiometrics), for: .valueChanged)
                 return toggleCell
             case 2:
