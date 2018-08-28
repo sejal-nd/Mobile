@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7nx-bF-5mO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Storm Mode Home View Controller-->
+        <scene sceneID="I5V-uI-54z">
+            <objects>
+                <viewController id="7nx-bF-5mO" customClass="StormModeHomeViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y2F-qh-7Mk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Uc-F6-7LW">
+                                <rect key="frame" x="172" y="318" width="30" height="30"/>
+                                <state key="normal" title="Exit"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌪 Storm Mode ⛈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlk-4E-eZ4">
+                                <rect key="frame" x="112" y="140" width="150" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9Uc-F6-7LW" firstAttribute="centerX" secondItem="y2F-qh-7Mk" secondAttribute="centerX" id="2dP-io-dHg"/>
+                            <constraint firstItem="jlk-4E-eZ4" firstAttribute="top" secondItem="NPq-OC-mEq" secondAttribute="top" constant="120" id="D01-kA-YXI"/>
+                            <constraint firstItem="jlk-4E-eZ4" firstAttribute="centerX" secondItem="y2F-qh-7Mk" secondAttribute="centerX" id="Ktj-4L-BRH"/>
+                            <constraint firstItem="9Uc-F6-7LW" firstAttribute="centerY" secondItem="y2F-qh-7Mk" secondAttribute="centerY" id="hC1-UZ-kvm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NPq-OC-mEq"/>
+                    </view>
+                    <connections>
+                        <outlet property="exitButton" destination="9Uc-F6-7LW" id="fA5-w7-l0B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5YT-28-unr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="74" y="84"/>
+        </scene>
+    </scenes>
+</document>
