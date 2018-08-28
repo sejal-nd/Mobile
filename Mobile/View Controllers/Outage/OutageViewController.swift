@@ -24,6 +24,7 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
     @IBOutlet weak var reportOutageButton: DisclosureButton!
+    @IBOutlet weak var reportStreetlightOutageButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     @IBOutlet weak var gasOnlyTitleLabel: UILabel!
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
@@ -128,11 +129,17 @@ class OutageViewController: AccountPickerViewController {
             .drive(backgroundScrollConstraint.rx.constant)
             .disposed(by: disposeBag)
         
+        if Environment.shared.opco == .comEd {
+            reportStreetlightOutageButton.isHidden = false
+        } else {
+            reportStreetlightOutageButton.isHidden = true
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -331,7 +338,14 @@ class OutageViewController: AccountPickerViewController {
         performSegue(withIdentifier: "reportOutageSegue", sender: self)
     }
     
+    @IBAction func onViewStreetlightOutageMapPress() {
+        viewModel.hasPressedStreetlightOutageMapButton = true
+        Analytics.log(event: .viewStreetlightMapOfferComplete)
+        performSegue(withIdentifier: "outageMapSegue", sender: self)
+    }
+    
     @IBAction func onViewOutageMapPress() {
+        viewModel.hasPressedStreetlightOutageMapButton = false
         Analytics.log(event: .viewMapOfferComplete)
         performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
@@ -355,6 +369,8 @@ class OutageViewController: AccountPickerViewController {
                     })
                 })
                 .disposed(by: vc.disposeBag)
+        } else if let vc = segue.destination as? OutageMapViewController {
+            vc.hasPressedStreetlightOutageMapButton = viewModel.hasPressedStreetlightOutageMapButton
         }
     }
     
