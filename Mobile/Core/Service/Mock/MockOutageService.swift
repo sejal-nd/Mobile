@@ -166,7 +166,7 @@ class MockOutageService: OutageService {
     }
     
     func pingMeter(account: Account, completion: @escaping (ServiceResult<MeterPingInfo>) -> Void) {
-        print("Todo")
+        // not implemented
     }
     
     
