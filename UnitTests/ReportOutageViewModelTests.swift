@@ -116,129 +116,44 @@ class ReportOutageViewModelTests: XCTestCase {
         }
     }
     
-    func testMeterPingGetPowerStatus() {
-        let error = [
-            "meterInfo": [
-                "pingResult": false,
-            ]
-        ]
-        let successWithVoltageCheck = [
-            "meterInfo": [
-                "preCheckSuccess": true,
-                "pingResult": true,
-                "voltageResult": true,
-                "voltageReads": "proper"
-            ]
-        ]
-        let successNoVoltageCheck = [
-            "meterInfo": [
-                "preCheckSuccess": true,
-                "pingResult": true,
-                "voltageResult": false,
-                "voltageReads": "proper"
-            ]
-        ]
-        
-        viewModel.outageStatus = OutageStatus.from(error as NSDictionary)
-        let expect1 = expectation(description: "async")
-        viewModel.meterPingGetPowerStatus(onPowerVerified: { voltageCheck in
-            XCTFail("Unexpected onPowerVerified response")
-        }, onError: {
-            expect1.fulfill()
-        })
-        
-        waitForExpectations(timeout: 3) { error in
-            XCTAssertNil(error, "timeout")
-        }
-        
-        viewModel.outageStatus = OutageStatus.from(successWithVoltageCheck as NSDictionary)
-        let expect2 = expectation(description: "async")
-        viewModel.meterPingGetPowerStatus(onPowerVerified: { voltageCheck in
-            XCTAssert(voltageCheck, "Expected onPowerVerified(true)")
-            expect2.fulfill()
-        }, onError: {
-            XCTFail("Unexpected onError response")
-        })
-        
-        waitForExpectations(timeout: 3) { error in
-            XCTAssertNil(error, "timeout")
-        }
-        
-        viewModel.outageStatus = OutageStatus.from(successNoVoltageCheck as NSDictionary)
-        let expect3 = expectation(description: "async")
-        viewModel.meterPingGetPowerStatus(onPowerVerified: { voltageCheck in
-            XCTAssertFalse(voltageCheck, "Expected onPowerVerified(false)")
-            expect3.fulfill()
-        }, onError: {
-            XCTFail("Unexpected onError response")
-        })
-        
-        waitForExpectations(timeout: 3) { error in
-            XCTAssertNil(error, "timeout")
+    func testShouldPingMeterActiveOutage() {
+        if Environment.shared.opco != .comEd {
+            XCTAssertFalse(viewModel.shouldPingMeter)
+        } else {
+            viewModel.outageStatus = OutageStatus.from(["accountNumber": "1234567890", "status": "ACTIVE", "smartMeterStatus": true])!
+            XCTAssertFalse(viewModel.shouldPingMeter)
         }
     }
     
-    func testMeterPingGetVoltageStatus() {
-        let errorNoVoltageReads = [
-            "meterInfo": [
-                "pingResult": true,
-                "voltageResult": true,
-            ]
-        ]
-        let errorImproper = [
-            "meterInfo": [
-                "preCheckSuccess": true,
-                "pingResult": true,
-                "voltageResult": true,
-                "voltageReads": "improper"
-            ]
-        ]
-        let success = [
-            "meterInfo": [
-                "preCheckSuccess": true,
-                "pingResult": true,
-                "voltageResult": true,
-                "voltageReads": "proper"
-            ]
-        ]
-        
-        viewModel.outageStatus = OutageStatus.from(errorNoVoltageReads as NSDictionary)
-        let expect1 = expectation(description: "async")
-        viewModel.meterPingGetVoltageStatus(onVoltageVerified: {
-            XCTFail("Unexpected onVoltageVerified response")
-        }, onError: {
-            expect1.fulfill()
-        })
-        
-        waitForExpectations(timeout: 3) { error in
-            XCTAssertNil(error, "timeout")
-        }
-        
-        viewModel.outageStatus = OutageStatus.from(errorImproper as NSDictionary)
-        let expect2 = expectation(description: "async")
-        viewModel.meterPingGetVoltageStatus(onVoltageVerified: {
-            XCTFail("Unexpected onVoltageVerified response")
-        }, onError: {
-            expect2.fulfill()
-        })
-        
-        waitForExpectations(timeout: 3) { error in
-            XCTAssertNil(error, "timeout")
-        }
-        
-        viewModel.outageStatus = OutageStatus.from(success as NSDictionary)
-        let expect3 = expectation(description: "async")
-        viewModel.meterPingGetVoltageStatus(onVoltageVerified: {
-            expect3.fulfill()
-        }, onError: {
-            XCTFail("Unexpected onError response")
-        })
-        
-        waitForExpectations(timeout: 3) { error in
-            XCTAssertNil(error, "timeout")
+    func testShouldPingMeterNoSmartMeter() {
+        if Environment.shared.opco != .comEd {
+            XCTAssertFalse(viewModel.shouldPingMeter)
+        } else {
+            viewModel.outageStatus = OutageStatus.from(["accountNumber": "1234567890", "status": "NOT ACTIVE", "smartMeterStatus": false])!
+            XCTAssertFalse(viewModel.shouldPingMeter)
         }
     }
     
+    func testShouldPingMeterTrue() {
+        if Environment.shared.opco != .comEd {
+            XCTAssertFalse(viewModel.shouldPingMeter)
+        } else {
+            viewModel.outageStatus = OutageStatus.from(["accountNumber": "1234567890", "status": "NOT ACTIVE", "smartMeterStatus": true])!
+            XCTAssertTrue(viewModel.shouldPingMeter)
+        }
+    }
+    
+    func testMeterPingSuccess() {
+        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
+        viewModel.meterPingGetStatus(onComplete: { meterPingInfo in
+            XCTAssertTrue(meterPingInfo.pingResult)
+            XCTAssertTrue(meterPingInfo.voltageResult)
+            XCTAssertNotNil(meterPingInfo.voltageReads)
+        }, onError: {
+            XCTFail("unexpected error")
+        })
+    }
+
     func testPhoneNumberHasTenDigits() {
         viewModel.phoneNumberHasTenDigits.asObservable().take(1).subscribe(onNext: { has10 in
             XCTAssertFalse(has10, "phoneNumberHasTenDigits should be false initially")

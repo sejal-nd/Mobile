@@ -112,8 +112,6 @@ class ReportOutageViewModel {
             .subscribe(onNext: { meterPingInfo in
                 onComplete(meterPingInfo)
             }, onError: { _ in
-//                let customMeterInfo = MeterPingInfo(preCheckSuccess: true, pingResult: false, voltageResult: false, voltageReads: "improper")
-//                onComplete(customMeterInfo)
                 onError()
             }).disposed(by: disposeBag)
     }
