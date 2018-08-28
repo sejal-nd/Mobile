@@ -404,10 +404,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3N-2i-LNu">
-                                                    <rect key="frame" x="70" y="901.5" width="240" height="50"/>
+                                                    <rect key="frame" x="16" y="901.5" width="348" height="50"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-nz-bzd" customClass="OneTouchSlider" customModule="BGE" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="348" height="50"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
                                                     </subviews>
@@ -415,8 +415,8 @@
                                                     <constraints>
                                                         <constraint firstItem="Myo-nz-bzd" firstAttribute="top" secondItem="T3N-2i-LNu" secondAttribute="top" priority="999" id="I23-Fw-HJ7"/>
                                                         <constraint firstAttribute="bottom" secondItem="Myo-nz-bzd" secondAttribute="bottom" priority="999" id="Lkr-gA-uhh"/>
-                                                        <constraint firstItem="Myo-nz-bzd" firstAttribute="leading" secondItem="T3N-2i-LNu" secondAttribute="leading" priority="999" id="NYP-m0-4zo"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Myo-nz-bzd" secondAttribute="trailing" priority="999" id="Ucx-gN-1Nl"/>
+                                                        <constraint firstItem="Myo-nz-bzd" firstAttribute="leading" secondItem="T3N-2i-LNu" secondAttribute="leading" id="NYP-m0-4zo"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Myo-nz-bzd" secondAttribute="trailing" id="Ucx-gN-1Nl"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-ep-YjG">
@@ -507,6 +507,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="B0Z-Cn-oGM" secondAttribute="trailing" id="2FL-8c-aGj"/>
                                                 <constraint firstItem="jvQ-3M-MrA" firstAttribute="leading" secondItem="VyQ-uF-pu2" secondAttribute="leading" id="2r8-Wg-aXh"/>
                                                 <constraint firstItem="qEU-Px-oC1" firstAttribute="leading" secondItem="VyQ-uF-pu2" secondAttribute="leading" id="7Qa-Iv-TVW"/>
+                                                <constraint firstItem="reR-f0-WTz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VyQ-uF-pu2" secondAttribute="leading" constant="16" id="AV4-sT-5Um"/>
                                                 <constraint firstAttribute="trailing" secondItem="qEU-Px-oC1" secondAttribute="trailing" id="B73-Eh-bck"/>
                                                 <constraint firstAttribute="trailing" secondItem="Bze-LB-krX" secondAttribute="trailing" id="BK8-1a-z05"/>
                                                 <constraint firstItem="bvi-ep-YjG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VyQ-uF-pu2" secondAttribute="leading" constant="21" id="DMr-Hs-Aj7"/>
@@ -514,7 +515,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="h66-Bh-Kjm" secondAttribute="trailing" constant="30" id="OTf-Yz-W4H"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bvi-ep-YjG" secondAttribute="trailing" constant="21" id="Oz2-H2-x3t"/>
                                                 <constraint firstItem="k9h-HI-p4C" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VyQ-uF-pu2" secondAttribute="leading" constant="21" id="UNw-LU-ZTM"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T3N-2i-LNu" secondAttribute="trailing" constant="14" id="XUF-qr-ilD"/>
+                                                <constraint firstItem="T3N-2i-LNu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VyQ-uF-pu2" secondAttribute="leading" constant="14" id="Xa5-kI-45t"/>
                                                 <constraint firstItem="h66-Bh-Kjm" firstAttribute="leading" secondItem="VyQ-uF-pu2" secondAttribute="leading" constant="30" id="Zut-mq-ow3"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="reR-f0-WTz" secondAttribute="trailing" constant="16" id="bHe-mr-JaG"/>
                                                 <constraint firstItem="Bze-LB-krX" firstAttribute="leading" secondItem="VyQ-uF-pu2" secondAttribute="leading" id="cNG-aD-akD"/>
                                                 <constraint firstAttribute="trailing" secondItem="6tn-BX-f7p" secondAttribute="trailing" id="fmh-fp-nG6"/>
                                                 <constraint firstItem="B0Z-Cn-oGM" firstAttribute="leading" secondItem="VyQ-uF-pu2" secondAttribute="leading" id="hKq-dk-bGM"/>
