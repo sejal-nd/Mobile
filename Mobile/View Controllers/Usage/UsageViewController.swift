@@ -680,7 +680,7 @@ class UsageViewController: AccountPickerViewController {
             if accountDetail.isHourlyPricing {
                 Analytics.log(event: .hourlyPricing,
                               dimensions: [.hourlyPricingEnrollment: "enrolled"])
-                performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
+                performSegue(withIdentifier: "hourlyPricingSegue", sender: accountDetail)
             } else {
                 Analytics.log(event: .hourlyPricing,
                               dimensions: [.hourlyPricingEnrollment: "unenrolled"])
@@ -705,7 +705,6 @@ class UsageViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let accountDetail = sender as? AccountDetail else { return }
-        
         switch segue.destination {
         case let vc as SmartEnergyRewardsViewController:
             vc.accountDetail = accountDetail
