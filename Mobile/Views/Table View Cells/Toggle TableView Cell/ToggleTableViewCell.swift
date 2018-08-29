@@ -18,8 +18,10 @@ class ToggleTableViewCell: UITableViewCell {
             titleLabel.font = SystemFont.medium.of(textStyle: .headline)
         }
     }
+    @IBOutlet weak var toggleCheckImageView: UIImageView!
     @IBOutlet weak var toggle: UISwitch! {
         didSet {
+            
             toggle.layer.cornerRadius = 16.0
             toggle.layer.masksToBounds = true
             
@@ -30,12 +32,10 @@ class ToggleTableViewCell: UITableViewCell {
         }
     }
 
-    private let disposeBag = DisposeBag()
     
-
     // MARK: - Configure
 
-    public func configure(viewModel: MoreViewModel) {        
+    public func configure(viewModel: MoreViewModel, tag: Int) {
         // Style
         backgroundColor = .primaryColor
         
@@ -47,11 +47,21 @@ class ToggleTableViewCell: UITableViewCell {
             iconImageView.image = #imageLiteral(resourceName: "ic_moretouchid")
             titleLabel.text = NSLocalizedString("Touch ID", comment: "")
         }
+        toggle.tag = tag
         toggle.isOn = viewModel.isBiometryEnabled()
+        toggleCheckImageView.isHidden = !toggle.isOn
         
         // Accessibility
         titleLabel.accessibilityLabel = titleLabel.text
         toggle.isAccessibilityElement = true
     }
+    
+    
+    // MARK:  Actions
 
+    // Note: This only gets triggered when the user causes a change, does not trigger for programtic calls.
+    @IBAction func toggleValueChanged(_ sender: UISwitch) {
+        toggleCheckImageView.isHidden = !sender.isOn
+    }
+    
 }
