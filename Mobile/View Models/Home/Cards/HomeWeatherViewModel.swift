@@ -75,9 +75,13 @@ class HomeWeatherViewModel {
         .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showTemperatureTip: Driver<Bool> = temperatureTipEvents
-        .map { $0.error == nil }
+    private(set) lazy var showTemperatureTip: Driver<Bool> = Observable
+        .merge(
+            accountDetailTracker.asObservable().filter { $0 }.map(to: false),
+            temperatureTipEvents.map { $0.error == nil }
+        )
         .startWith(false)
+        .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
     
     
