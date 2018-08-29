@@ -22,7 +22,10 @@ struct Maintenance: Mappable {
         billStatus = map.optionalFrom("bill") ?? false
         outageStatus = map.optionalFrom("outage") ?? false
         alertStatus = map.optionalFrom("alerts") ?? false
-        stormModeStatus = map.optionalFrom("storm") ?? false
+        
+        // Storm mode is not in the October release, so keep it always false for now.
+        // Uncomment other code while testing.
+        stormModeStatus = false//map.optionalFrom("storm") ?? false
 //        stormModeStatus = arc4random_uniform(5) != 0
     }
     
