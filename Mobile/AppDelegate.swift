@@ -282,9 +282,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     topmostVC = presentedVC
                 }
                 
-                let stormStoryboard = UIStoryboard(name: "Storm", bundle: nil)
-                let vc = stormStoryboard.instantiateInitialViewController()!
-                topmostVC.present(vc, animated: true, completion: nil)
+                guard let stormModeVC = UIStoryboard(name: "Storm", bundle: nil).instantiateInitialViewController(),
+                    let window = self?.window else {
+                        return
+                }
+                
+                window.rootViewController = stormModeVC
             }
         }
     }

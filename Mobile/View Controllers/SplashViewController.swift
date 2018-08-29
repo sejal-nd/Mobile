@@ -61,9 +61,9 @@ class SplashViewController: UIViewController{
             .skip(1) // Ignore the initial notification that fires, causing a double call to checkAppVersion
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                self?.checkAppVersion(callback: {
+                self?.checkAppVersion { [weak self] in
                     self?.doLoginLogic()
-                })
+                }
             })
             .disposed(by: bag)
         
@@ -81,9 +81,9 @@ class SplashViewController: UIViewController{
         super.viewDidAppear(animated)
         
         loadingTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(loadingTimerExpired), userInfo: nil, repeats: false)
-        checkAppVersion(callback: {
-            self.doLoginLogic()
-        })
+        checkAppVersion { [weak self] in
+            self?.doLoginLogic()
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -114,16 +114,29 @@ class SplashViewController: UIViewController{
         bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch/Face ID alert prompt is dismissed
         
         if keepMeSignedIn {
-            guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
-                let navController = self.navigationController else {
-                return
+            viewModel.checkStormMode { [weak self] isStormMode in
+                guard let this = self else { return }
+                this.loadingTimer.invalidate()
+                
+                if isStormMode {
+                    (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
+                } else {
+                    guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+                        let navController = this.navigationController else {
+                            return
+                    }
+                    
+                    navController.setViewControllers([viewController], animated: false)
+                    if this.shortcutItem != .none {
+                        NotificationCenter.default.post(name: .didTapOnShortcutItem, object: this.shortcutItem)
+                    }
+                }
+                
+                this.checkIOSVersion()
             }
-            navController.setViewControllers([viewController], animated: false)
-            if shortcutItem != .none {
-                NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
-            }
-            checkIOSVersion()
         } else {
+            loadingTimer.invalidate()
+            
             let navigate = { [weak self] in
                 guard let `self` = self else { return }
                 if self.performDeepLink {
@@ -166,7 +179,6 @@ class SplashViewController: UIViewController{
     
     func checkAppVersion(callback: @escaping() -> Void) {
         viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
-            self?.loadingTimer.invalidate()
             if isOutOfDate {
                 self?.handleOutOfDate()
             } else {
@@ -224,9 +236,9 @@ class SplashViewController: UIViewController{
     @IBAction func onRetryPress(_ sender: Any) {
         errorView.isHidden = true
         loadingContainerView.isHidden = false
-        checkAppVersion(callback: {
-            self.doLoginLogic()
-        })
+        checkAppVersion { [weak self] in
+            self?.doLoginLogic()
+        }
     }
     
 }

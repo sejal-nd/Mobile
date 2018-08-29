@@ -11,7 +11,7 @@ import RxCocoa
 
 class StormModeHomeViewModel {
     
-    let stormModePollInterval = 5.0
+    let stormModePollInterval = 30.0
     
     let authService: AuthenticationService
     
@@ -24,8 +24,10 @@ class StormModeHomeViewModel {
         .toAsyncRequest { [weak self] _ in
             self?.authService.getMaintenanceMode() ?? .empty()
         }
+        // Ignore errors and positive storm mode responses
         .elements()
         .filter { !$0.stormModeStatus }
+        // Stop polling after storm mode ends
         .take(1)
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())

@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 
 class StormModeHomeViewController: UIViewController {
-    @IBOutlet weak var exitButton: UIButton!
     
+    @IBOutlet private weak var exitButton: UIButton!
     
-    let viewModel = StormModeHomeViewModel(authService: ServiceFactory.createAuthenticationService())
+    private let viewModel = StormModeHomeViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
     
@@ -22,47 +22,34 @@ class StormModeHomeViewController: UIViewController {
         
         exitButton.isHidden = true
         
-        // Show the exit button when storm mode ends
         viewModel.stormModeEnded
-            .drive(onNext: { [weak self] in
-                self?.stormModeEnded()
-            })
+            .drive(onNext: { [weak self] in self?.stormModeEnded() })
             .disposed(by: disposeBag)
         
         exitButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.presentingViewController?.dismiss(animated: true, completion: nil)
-            })
+            .drive(onNext: { [weak self] in self?.returnToMainApp() })
             .disposed(by: disposeBag)
     }
     
     private func stormModeEnded() {
-        let noAction = UIAlertAction(title: NSLocalizedString("No", comment: ""),
-                                     style: .cancel,
-                                     handler: { [weak self] _ in
-                                        self?.exitButton.isHidden = false
-        })
+        let noAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel)
+        { [weak self] _ in self?.exitButton.isHidden = false }
         
-        let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""),
-                                      style: .default,
-                                      handler: { [weak self] _ in
-                                        self?.presentingViewController?.dismiss(animated: true, completion: nil)
-        })
+        let yesAction = UIAlertAction(title: NSLocalizedString("Return", comment: ""), style: .default)
+        { [weak self] _ in
+            self?.returnToMainApp()
+        }
         
-        presentAlert(title: NSLocalizedString("Storm Mode Ended", comment: ""),
-                     message: NSLocalizedString("Storm Mode has ended. Would you like to return to the main app?", comment: ""),
+        presentAlert(title: NSLocalizedString("Storm Mode Has Ended", comment: ""),
+                     message: NSLocalizedString("Would you like to return to the main app?", comment: ""),
                      style: .alert,
                      actions: [noAction, yesAction])
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    private func returnToMainApp() {
+        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else { return }
+        window.rootViewController = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateInitialViewController()
     }
-    */
-
+    
 }
