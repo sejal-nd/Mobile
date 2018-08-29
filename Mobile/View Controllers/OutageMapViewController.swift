@@ -17,12 +17,12 @@ class OutageMapViewController: UIViewController {
     
     var unauthenticatedExperience = false
     
-    var url: URL!
-    
     var hasPressedStreetlightOutageMapButton: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let url: URL!
         
         if hasPressedStreetlightOutageMapButton {
             title = NSLocalizedString("Streetlight Map", comment: "")
