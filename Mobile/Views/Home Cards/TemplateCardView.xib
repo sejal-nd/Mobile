@@ -113,8 +113,8 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="Wao-CL-Vja" secondAttribute="trailing" id="4n8-hB-g0v"/>
                                         <constraint firstAttribute="trailing" secondItem="NHJ-XG-xSz" secondAttribute="trailing" id="PYJ-w7-mHg"/>
-                                        <constraint firstAttribute="trailing" secondItem="Oy3-8x-Exf" secondAttribute="trailing" constant="21" id="XuB-QL-sic"/>
-                                        <constraint firstItem="Oy3-8x-Exf" firstAttribute="leading" secondItem="gEK-2F-6Zv" secondAttribute="leading" constant="21" id="c2H-Ae-xgw"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Oy3-8x-Exf" secondAttribute="trailing" constant="21" id="XuB-QL-sic"/>
+                                        <constraint firstItem="Oy3-8x-Exf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gEK-2F-6Zv" secondAttribute="leading" constant="21" id="c2H-Ae-xgw"/>
                                         <constraint firstAttribute="trailing" secondItem="Hhm-qC-Elk" secondAttribute="trailing" constant="21" id="fwR-5i-0Hf"/>
                                         <constraint firstItem="NHJ-XG-xSz" firstAttribute="leading" secondItem="gEK-2F-6Zv" secondAttribute="leading" id="nYO-Bp-ckQ"/>
                                         <constraint firstItem="Hhm-qC-Elk" firstAttribute="leading" secondItem="gEK-2F-6Zv" secondAttribute="leading" constant="21" id="qJG-QC-po8"/>

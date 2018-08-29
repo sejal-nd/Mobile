@@ -26,8 +26,6 @@ class HomeViewModel {
     
     let fetchData = PublishSubject<FetchingAccountState>()
     let fetchDataObservable: Observable<FetchingAccountState>
-    
-    let updateFetchTrigger = PublishSubject<Void>()
 
     let refreshFetchTracker = ActivityTracker()
     
@@ -160,12 +158,11 @@ class HomeViewModel {
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = updateFetchTrigger
-        .toAsyncRequest { [weak self] in
+    private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = fetchDataObservable
+        .toAsyncRequest { [weak self] _ in
             guard let this = self else { return .empty() }
             return this.alertsService.fetchOpcoUpdates(bannerOnly: true)
-//                .delay(10, scheduler: MainScheduler.instance)
-                .map { _ in nil }
+                .map { $0.first }
                 .catchError { _ in .just(nil) }
         }
         .elements()

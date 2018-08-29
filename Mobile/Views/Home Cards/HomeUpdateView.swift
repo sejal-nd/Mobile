@@ -36,9 +36,12 @@ class HomeUpdateView: UIView {
     
     static func create(withUpdate update: OpcoUpdate) -> HomeUpdateView {
         let view = Bundle.main.loadViewFromNib() as HomeUpdateView
-        view.titleLabel.text = update.title
-        view.descriptionLabel.text = update.message
+        view.configure(withUpdate: update)
         return view
     }
     
+    func configure(withUpdate update: OpcoUpdate) {
+        titleLabel.text = update.title
+        descriptionLabel.text = update.message
+    }
 }
