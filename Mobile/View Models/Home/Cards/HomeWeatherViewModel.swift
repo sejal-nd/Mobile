@@ -20,12 +20,16 @@ class HomeWeatherViewModel {
     let weatherService: WeatherService
     let usageService: UsageService
     
+    let accountDetailTracker: ActivityTracker
+    
     init(accountDetailEvents: Observable<Event<AccountDetail>>,
          weatherService: WeatherService,
-         usageService: UsageService) {
+         usageService: UsageService,
+         accountDetailTracker: ActivityTracker) {
         self.accountDetailEvents = accountDetailEvents
         self.weatherService = weatherService
         self.usageService = usageService
+        self.accountDetailTracker = accountDetailTracker
     }
     
     //MARK: - Weather
@@ -34,7 +38,9 @@ class HomeWeatherViewModel {
             AccountsStore.shared.currentAccount?.currentPremise?.zipCode ?? $0.zipCode ?? self?.defaultZip
         }
         .unwrap()
-        .toAsyncRequest { [weak self] in self?.weatherService.fetchWeather(address: $0) ?? .empty() }
+        .toAsyncRequest { [weak self] in
+            self?.weatherService.fetchWeather(address: $0) ?? .empty()
+        }
     
     private(set) lazy var greeting: Driver<String?> = Observable<Int>
         .interval(60, scheduler: MainScheduler.instance)
@@ -60,9 +66,13 @@ class HomeWeatherViewModel {
         .startWith(nil)
         .asDriver(onErrorJustReturn: nil)
     
-    private(set) lazy var showWeatherDetails: Driver<Bool> = Observable.combineLatest(accountDetailEvents,
-                                                                                      weatherEvents)
-    { $0.error == nil && $1.error == nil }
+    private(set) lazy var showWeatherDetails: Driver<Bool> = Observable
+        .merge(
+            accountDetailTracker.asObservable().filter { $0 }.map(to: false),
+            weatherEvents.elements().map(to: true)
+        )
+        .startWith(false)
+        .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showTemperatureTip: Driver<Bool> = temperatureTipEvents

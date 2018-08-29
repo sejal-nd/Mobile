@@ -62,7 +62,8 @@ class HomeViewModel {
     private(set) lazy var weatherViewModel =
         HomeWeatherViewModel(accountDetailEvents: accountDetailEvents,
                              weatherService: weatherService,
-                             usageService: usageService)
+                             usageService: usageService,
+                             accountDetailTracker: accountDetailTracker)
     
     private(set) lazy var billCardViewModel =
         HomeBillCardViewModel(fetchData: fetchDataObservable,
@@ -164,7 +165,7 @@ class HomeViewModel {
             guard let this = self else { return .empty() }
             return this.alertsService.fetchOpcoUpdates(bannerOnly: true)
 //                .delay(10, scheduler: MainScheduler.instance)
-                .map { $0.first }
+                .map { _ in nil }
                 .catchError { _ in .just(nil) }
         }
         .elements()

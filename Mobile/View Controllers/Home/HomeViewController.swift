@@ -29,8 +29,8 @@ class HomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var personalizeButton: UIButton!
     
-    var importantUpdateView: HomeUpdateView!
     var weatherView: HomeWeatherView!
+    var importantUpdateView: HomeUpdateView?
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
@@ -90,14 +90,16 @@ class HomeViewController: AccountPickerViewController {
         viewModel.importantUpdate
             .drive(onNext: { [weak self] update in
                 guard let this = self, let update = update else { return }
-                this.importantUpdateView = HomeUpdateView.create(withUpdate: update)
-                this.mainStackView.insertArrangedSubview(this.importantUpdateView, at: 1)
-                this.importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
-                this.importantUpdateView.button.rx.touchUpInside.asDriver()
+                let importantUpdateView = HomeUpdateView.create(withUpdate: update)
+                this.mainStackView.insertArrangedSubview(importantUpdateView, at: 1)
+                importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
+                importantUpdateView.button.rx.touchUpInside.asDriver()
                     .drive(onNext: { [weak self] in
                         self?.performSegue(withIdentifier: "UpdatesDetailSegue", sender: update)
                     })
-                    .disposed(by: this.importantUpdateView.disposeBag)
+                    .disposed(by: importantUpdateView.disposeBag)
+                
+                this.importantUpdateView = importantUpdateView
             })
             .disposed(by: bag)
         
