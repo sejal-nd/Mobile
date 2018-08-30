@@ -73,7 +73,10 @@ class LoginViewModel {
                         dLog("Logout Error: \(error)")
                     }).disposed(by: self.disposeBag)
                 } else {
-                    SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                    if #available(iOS 11.0, *) {
+                        SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                    }
+                    
                     self.checkStormMode { isStormMode in
                         onSuccess(tempPassword, isStormMode)
                     }
