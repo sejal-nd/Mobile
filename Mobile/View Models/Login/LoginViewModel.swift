@@ -75,9 +75,10 @@ class LoginViewModel {
                 } else {
                     if #available(iOS 11.0, *) {
                         SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
-                        self.checkStormMode { isStormMode in
-                            onSuccess(tempPassword, isStormMode)
-                        }
+                    }
+                    
+                    self.checkStormMode { isStormMode in
+                        onSuccess(tempPassword, isStormMode)
                     }
                 }
             }, onError: { [weak self] error in
