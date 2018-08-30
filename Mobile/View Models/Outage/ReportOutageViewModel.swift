@@ -58,7 +58,7 @@ class ReportOutageViewModel {
         } else if selectedSegmentIndex.value == 2 {
             outageIssue = OutageIssue.flickering
         }
-
+        
         var outageInfo = OutageInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
         if phoneExtension.value.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
@@ -86,7 +86,7 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.flickering
         }
         
-        var outageInfo = OutageInfo(accountNumber: outageStatus!.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
+        var outageInfo = OutageInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
         if phoneExtension.value.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
