@@ -214,7 +214,7 @@ class LoginViewController: UIViewController {
             onEyeballPress(eyeballButton)
         }
 
-        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in
+        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
             guard let `self` = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
@@ -239,11 +239,11 @@ class LoginViewController: UIViewController {
                                                                     message: String(format: NSLocalizedString("Would you like to use %@ to sign in from now on?", comment: ""), biometricsString),
                                                                     preferredStyle: .alert)
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
-                                self?.launchMainApp()
+                                self?.launchMainApp(isStormMode: isStormMode)
                             }))
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
-                                self?.launchMainApp()
+                                self?.launchMainApp(isStormMode: isStormMode)
                                 Analytics.log(event: .touchIDEnable)
                             }))
                             self.present(biometricsAlert, animated: true, completion: nil)
@@ -254,19 +254,19 @@ class LoginViewController: UIViewController {
                             let differentAccountAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString), message: message, preferredStyle: .alert)
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.disableBiometrics()
-                                self?.launchMainApp()
+                                self?.launchMainApp(isStormMode: isStormMode)
                             }))
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
-                                self?.launchMainApp()
+                                self?.launchMainApp(isStormMode: isStormMode)
                                 Analytics.log(event: .touchIDEnable)
                             }))
                             self.present(differentAccountAlert, animated: true, completion: nil)
                         } else {
-                            self.launchMainApp()
+                            self.launchMainApp(isStormMode: isStormMode)
                         }
                     } else {
-                        self.launchMainApp()
+                        self.launchMainApp(isStormMode: isStormMode)
                     }
                 }
             })
@@ -336,7 +336,7 @@ class LoginViewController: UIViewController {
         })
     }
     
-    func launchMainApp() {
+    func launchMainApp(isStormMode: Bool) {
         if let accountDetail = viewModel.accountDetail {
             let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
             
@@ -349,12 +349,16 @@ class LoginViewController: UIViewController {
                                               .peakSmart: isPeakSmart ? "true" : "false"])
         }
 
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
-            let navController = self.navigationController else {
-            return
+        if isStormMode {
+            (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
+        } else {
+            guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+                let navController = self.navigationController else {
+                    return
+            }
+            navController.setNavigationBarHidden(true, animated: false)
+            navController.setViewControllers([viewController], animated: false)
         }
-        navController.setNavigationBarHidden(true, animated: false)
-        navController.setViewControllers([viewController], animated: false)
     }
     
     func showErrorAlertWith(title: String?, message: String) {
@@ -392,12 +396,12 @@ class LoginViewController: UIViewController {
         }, onDidNotLoad:  { [weak self] in
             self?.biometricButton.isEnabled = true
             self?.navigationController?.view.isUserInteractionEnabled = true
-        }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in // Face/Touch ID and subsequent login successful
+            }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in // Face/Touch ID and subsequent login successful
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
             guard let `self` = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
                 self?.navigationController?.view.isUserInteractionEnabled = true
-                self?.launchMainApp()
+                self?.launchMainApp(isStormMode: isStormMode)
             })
         }, onError: { [weak self] (title, message) in // Face/Touch ID successful but login failed
             guard let `self` = self else { return }
@@ -435,14 +439,12 @@ class LoginViewController: UIViewController {
     }
     
     func checkForMaintenanceMode(onCompletion: @escaping () -> Void) {
-        viewModel.checkForMaintenance(onSuccess: { [weak self] isMaintenance in
-            if isMaintenance {
-                self?.navigationController?.view.isUserInteractionEnabled = true
-                let ad = UIApplication.shared.delegate as! AppDelegate
-                ad.showMaintenanceMode()
-            } else {
-                onCompletion()
-            }
+        viewModel.checkForMaintenance(onSuccess: {
+            onCompletion()
+        }, onMaintenanceMode: { [weak self] in
+            self?.navigationController?.view.isUserInteractionEnabled = true
+            let ad = UIApplication.shared.delegate as! AppDelegate
+            ad.showMaintenanceMode()
         }, onError: { errorMessage in
             onCompletion()
         })

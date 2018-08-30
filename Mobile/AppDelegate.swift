@@ -272,6 +272,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func showStormMode(){
+        DispatchQueue.main.async { [weak self] in
+            LoadingView.hide()
+            
+            if let rootVC = self?.window?.rootViewController {
+                var topmostVC = rootVC
+                while let presentedVC = topmostVC.presentedViewController {
+                    topmostVC = presentedVC
+                }
+                
+                guard let stormModeVC = UIStoryboard(name: "Storm", bundle: nil).instantiateInitialViewController(),
+                    let window = self?.window else {
+                        return
+                }
+                
+                window.rootViewController = stormModeVC
+            }
+        }
+    }
+    
     @objc func showIOSVersionWarning() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
             let versionAlert = UIAlertController(title: NSLocalizedString("Warning", comment: ""),
