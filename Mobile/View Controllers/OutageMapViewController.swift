@@ -26,7 +26,7 @@ class OutageMapViewController: UIViewController {
         
         if hasPressedStreetlightOutageMapButton {
             title = NSLocalizedString("Streetlight Map", comment: "")
-            url = URL(string: "comedOnlyHellowWorld")!
+            url = URL(string: "https://comed-quat.streetlightoutages.com/public/default.html")!
         } else {
             title = NSLocalizedString("Outage Map", comment: "")
             url = URL(string: Environment.shared.outageMapUrl)!
