@@ -139,9 +139,11 @@ class ChangePasswordViewModel {
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }
                     
-                    // Save to SWC
-                    if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
-                        SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                    // Save to SWC if iOS 11 or greater
+                    if #available(iOS 11.0, *) {
+                        if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
+                            SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                        }
                     }
                     
                     onSuccess()
@@ -165,9 +167,11 @@ class ChangePasswordViewModel {
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }
                     
-                    // Save to SWC
-                    if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
-                        SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                    // Save to SWC if iOS 11 or greater
+                    if #available(iOS 11.0, *) {
+                        if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
+                            SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                        }
                     }
                     
                     onSuccess()

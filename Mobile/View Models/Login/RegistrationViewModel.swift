@@ -133,8 +133,19 @@ class RegistrationViewModel {
                                              isPrimary: primaryProfile.value ? "true" : "false",
                                              isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {
-                onSuccess()
+            .subscribe(onNext: { [weak self] _ in
+                if #available(iOS 11.0, *) {
+                    guard let `self` = self else { return }
+                    SharedWebCredentials.save(credential: (self.username.value, self.newPassword.value), domain: Environment.shared.associatedDomain) { [weak self] error in
+                        if error != nil, let `self` = self, self.hasStrongPassword {
+                            onError(NSLocalizedString("Failed to Save Password", comment: ""), NSLocalizedString("Please make sure AutoFill is on in Safari Settings for Names and Passwords when using Strong Passwords.", comment: ""))
+                        } else {
+                            onSuccess()
+                        }
+                    }
+                } else {
+                    onSuccess()
+                }
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 

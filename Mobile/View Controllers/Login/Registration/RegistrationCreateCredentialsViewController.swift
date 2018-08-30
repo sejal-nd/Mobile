@@ -196,15 +196,19 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         createPasswordTextField.textField.returnKeyType = .next
         createPasswordTextField.textField.delegate = self
         createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        createPasswordTextField.textField.inputAccessoryView = toolbar
+        
+        if #available(iOS 11.0, *) {
+            createPasswordTextField.textField.inputAccessoryView = toolbar
+            confirmPasswordTextField.textField.inputAccessoryView = toolbar
+        }
         
         confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        confirmPasswordTextField.textField.inputAccessoryView = toolbar
         
+                
         // Bind to the view model
         createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
         confirmUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmUsername).disposed(by: disposeBag)
