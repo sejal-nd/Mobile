@@ -69,8 +69,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         accountPickerViewControllerWillAppear
-            .withLatestFrom(Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
-                                                     viewModel.accountDetailEvents.map { $0 }.startWith(nil)))
+            .withLatestFrom(viewModel.accountDetailEvents.map { $0 }.startWith(nil)) { ($0, $1) }
             .subscribe(onNext: { [weak self] state, accountDetailEvent in
                 guard let `self` = self else { return }
                 switch(state) {

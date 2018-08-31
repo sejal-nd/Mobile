@@ -59,7 +59,8 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var accountDetailChanged = accountDetailEvents.elements()
         .filter { $0.isEligibleForUsageData }
-        .withLatestFrom(Observable.combineLatest(fetchData, electricGasSelectedSegmentIndex.asObservable()))
+        .withLatestFrom(Observable.combineLatest(fetchData,
+                                                 electricGasSelectedSegmentIndex.asObservable()))
         { ($0, $1.0, $1.1) }
         .toAsyncRequest { [unowned self] data -> Observable<BillComparison> in
             let (accountDetail, fetchState, segmentIndex) = data
