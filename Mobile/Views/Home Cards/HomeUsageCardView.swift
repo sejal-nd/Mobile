@@ -384,22 +384,10 @@ class HomeUsageCardView: UIView {
     }
     
     private func moveTriangleTo(barView: UIView) {
-        
         barDescriptionTriangleCenterXConstraint.isActive = false
         barDescriptionTriangleCenterXConstraint = barDescriptionTriangleImageView.centerXAnchor
             .constraint(equalTo: barView.centerXAnchor)
         barDescriptionTriangleCenterXConstraint.isActive = true
-        
-//        let convertedPoint = barGraphStackView.convert(centerPoint, to: barDescriptionView)
-//
-//        let centerXOffset = (barDescriptionView.bounds.width / 2)
-//        if convertedPoint.x < centerXOffset {
-//            barDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
-//        } else if convertedPoint.x > centerXOffset {
-//            barDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
-//        } else {
-//            barDescriptionTriangleCenterXConstraint.constant = 0
-//        }
     }
     
     // MARK: Bill Comparison Bar Graph Drivers
