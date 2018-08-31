@@ -406,8 +406,7 @@ class HomeViewController: AccountPickerViewController {
     func bindUsageCard() {
         guard let usageCardView = usageCardView else { return }
 
-        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
-                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
+        usageCardView.viewUsageButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in

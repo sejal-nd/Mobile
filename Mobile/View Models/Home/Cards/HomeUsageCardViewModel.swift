@@ -144,10 +144,6 @@ class HomeUsageCardViewModel {
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showBillComparisonEmptyStateButton: Driver<Bool> = accountDetailEvents
-        .map { $0.error == nil }
-        .asDriver(onErrorDriveWith: .empty())
-    
     private(set) lazy var showElectricGasSegmentedControl: Driver<Bool> = accountDetailEvents.map {
         $0.element?.serviceType?.uppercased() == "GAS/ELECTRIC"
     }
@@ -329,4 +325,10 @@ class HomeUsageCardViewModel {
         return nil
     }
 
+    // MARK: Bill Comparison Empty State
+    
+    private(set) lazy var billComparisonEmptyStateText: Driver<String> = electricGasSelectedSegmentIndex
+        .asDriver()
+        .map { NSLocalizedString($0 == 0 ? "electric" : "gas", comment: "")}
+        .map { String.localizedStringWithFormat("Your %@ usage overview will be available here once we have two full months of data.", $0) }
 }

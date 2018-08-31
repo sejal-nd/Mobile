@@ -57,8 +57,6 @@ class HomeUsageCardView: UIView {
     
     @IBOutlet weak var viewUsageButton: ButtonControl!
     @IBOutlet private weak var viewUsageButtonLabel: UILabel!
-    @IBOutlet weak var viewUsageEmptyStateButton: ButtonControl!
-    @IBOutlet private weak var viewUsageEmptyStateButtonLabel: UILabel!
     
     @IBOutlet private weak var comparisonLoadingView: UIView!
     
@@ -142,10 +140,7 @@ class HomeUsageCardView: UIView {
         usageOverviewLabel.font = OpenSans.semibold.of(size: 18)
         
         billComparisonEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
-       
         billComparisonEmptyStateLabel.textColor = .middleGray
-        billComparisonEmptyStateLabel.attributedText = NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
-            .attributedString(withLineHeight: 26, textAlignment: .center)
         
         billComparisonContentView.backgroundColor = .softGray
         
@@ -181,10 +176,6 @@ class HomeUsageCardView: UIView {
         viewUsageButtonLabel.textColor = .actionBlue
         viewUsageButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
         viewUsageButtonLabel.text = NSLocalizedString("View Usage", comment: "")
-        
-        viewUsageEmptyStateButtonLabel.textColor = .actionBlue
-        viewUsageEmptyStateButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
-        viewUsageEmptyStateButtonLabel.text = NSLocalizedString("View Usage", comment: "")
     }
     
     private func styleSmartEnergyRewards() {
@@ -221,6 +212,7 @@ class HomeUsageCardView: UIView {
     
     private func showContent() {
         billComparisonView.isHidden = false
+        billComparisonContentView.isHidden = false
         smartEnergyRewardsView.isHidden = true
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
@@ -244,7 +236,8 @@ class HomeUsageCardView: UIView {
     }
     
     private func showBillComparisonEmptyState() {
-        billComparisonView.isHidden = true
+        billComparisonView.isHidden = false
+        billComparisonContentView.isHidden = true
         smartEnergyRewardsView.isHidden = true
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = false
@@ -298,11 +291,11 @@ class HomeUsageCardView: UIView {
             .disposed(by: disposeBag)
         
         viewModel.loadingTracker.asDriver()
-            .drive(billComparisonContentView.rx.isHidden)
-            .disposed(by: disposeBag)
-        
-        viewModel.showBillComparisonEmptyStateButton.not()
-            .drive(viewUsageEmptyStateButton.rx.isHidden)
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in
+                self?.billComparisonContentView.isHidden = true
+                self?.billComparisonEmptyStateView.isHidden = true
+            })
             .disposed(by: disposeBag)
         
         // Segmented Controls
@@ -375,6 +368,12 @@ class HomeUsageCardView: UIView {
         
         // Smart Energy Rewards
         viewModel.smartEnergyRewardsSeasonLabelText.drive(smartEnergyRewardsSeasonLabel.rx.text).disposed(by: disposeBag)
+        
+        // Bill Comparison Empty State
+        viewModel.billComparisonEmptyStateText
+            .map { $0.attributedString(withLineHeight: 26, textAlignment: .center) }
+            .drive(billComparisonEmptyStateLabel.rx.attributedText)
+            .disposed(by: disposeBag)
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {
