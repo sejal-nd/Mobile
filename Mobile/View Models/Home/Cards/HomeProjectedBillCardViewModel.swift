@@ -71,13 +71,14 @@ class HomeProjectedBillCardViewModel {
     
     private(set) lazy var billForecastEvents = self.accountDetailEvents.elements()
         .filter { $0.isEligibleForUsageData }
-        .withLatestFrom(Observable.combineLatest(self.fetchData, self.accountDetailEvents.elements()))
+        .withLatestFrom(fetchData)
+        { ($0, $1) }
         .toAsyncRequest(activityTracker: { [weak self] pair -> ActivityTracker? in
-            return self?.fetchTracker(forState: pair.0) },
+            return self?.fetchTracker(forState: pair.1) },
                         requestSelector: { [weak self] pair -> Observable<BillForecastResult> in
                             guard let this = self else { return .empty() }
-                            return this.usageService.fetchBillForecast(accountNumber: pair.1.accountNumber,
-                                                                       premiseNumber: pair.1.premiseNumber!)
+                            return this.usageService.fetchBillForecast(accountNumber: pair.0.accountNumber,
+                                                                       premiseNumber: pair.0.premiseNumber!)
         })
     
     private(set) lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
