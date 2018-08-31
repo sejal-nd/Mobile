@@ -52,6 +52,7 @@ class HomeUsageCardView: UIView {
     @IBOutlet private weak var barDescriptionTotalBillValueLabel: UILabel!
     @IBOutlet private weak var barDescriptionUsageTitleLabel: UILabel!
     @IBOutlet private weak var barDescriptionUsageValueLabel: UILabel!
+    @IBOutlet private weak var barDescriptionTriangleImageView: UIImageView!
     @IBOutlet private weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var viewUsageButton: ButtonControl!
@@ -128,7 +129,7 @@ class HomeUsageCardView: UIView {
         // receiving layout events after the user manually tapped a button, otherwise the
         // initial selection bar would never be able to be deselected
         if !userTappedBarGraph {
-            moveTriangleTo(centerPoint: currentContainerButton.center)
+            moveTriangleTo(barView: currentContainerButton)
         }
         smartEnergyRewardsGraphView.superviewDidLayoutSubviews()
     }
@@ -292,8 +293,13 @@ class HomeUsageCardView: UIView {
         // --- Bill Comparison ---
         
         // Loading/Error/Content States
+        viewModel.loadingTracker.asDriver().not()
+            .drive(comparisonLoadingView.rx.isHidden)
+            .disposed(by: disposeBag)
         
-        viewModel.loadingTracker.asDriver().not().drive(comparisonLoadingView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.loadingTracker.asDriver()
+            .drive(billComparisonContentView.rx.isHidden)
+            .disposed(by: disposeBag)
         
         viewModel.showBillComparisonEmptyStateButton.not()
             .drive(viewUsageEmptyStateButton.rx.isHidden)
@@ -302,7 +308,7 @@ class HomeUsageCardView: UIView {
         // Segmented Controls
         viewModel.showElectricGasSegmentedControl.not()
             .drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
-        segmentedControl.selectedIndex.asObservable().distinctUntilChanged().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
+        segmentedControl.selectedIndex.asDriver().skip(1).distinctUntilChanged().drive(viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             if index == 0 {
                 Analytics.log(event: .viewUsageElectricity)
@@ -313,7 +319,8 @@ class HomeUsageCardView: UIView {
         
         viewModel.billComparisonEvents.subscribe({ [weak self] _ in
             guard let `self` = self else { return }
-            self.moveTriangleTo(centerPoint: self.currentContainerButton.center)
+            self.moveTriangleTo(barView: self.currentContainerButton)
+            
             self.viewModel.setBarSelected(tag: 2)
         }).disposed(by: disposeBag)
         
@@ -371,23 +378,28 @@ class HomeUsageCardView: UIView {
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {
-        let centerPoint = sender.center
-        moveTriangleTo(centerPoint: centerPoint)
+        moveTriangleTo(barView: sender)
         viewModel.setBarSelected(tag: sender.tag)
         userTappedBarGraph = true
     }
     
-    private func moveTriangleTo(centerPoint: CGPoint) {
-        let convertedPoint = barGraphStackView.convert(centerPoint, to: barDescriptionView)
+    private func moveTriangleTo(barView: UIView) {
         
-        let centerXOffset = (barDescriptionView.bounds.width / 2)
-        if convertedPoint.x < centerXOffset {
-            barDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
-        } else if convertedPoint.x > centerXOffset {
-            barDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
-        } else {
-            barDescriptionTriangleCenterXConstraint.constant = 0
-        }
+        barDescriptionTriangleCenterXConstraint.isActive = false
+        barDescriptionTriangleCenterXConstraint = barDescriptionTriangleImageView.centerXAnchor
+            .constraint(equalTo: barView.centerXAnchor)
+        barDescriptionTriangleCenterXConstraint.isActive = true
+        
+//        let convertedPoint = barGraphStackView.convert(centerPoint, to: barDescriptionView)
+//
+//        let centerXOffset = (barDescriptionView.bounds.width / 2)
+//        if convertedPoint.x < centerXOffset {
+//            barDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
+//        } else if convertedPoint.x > centerXOffset {
+//            barDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
+//        } else {
+//            barDescriptionTriangleCenterXConstraint.constant = 0
+//        }
     }
     
     // MARK: Bill Comparison Bar Graph Drivers

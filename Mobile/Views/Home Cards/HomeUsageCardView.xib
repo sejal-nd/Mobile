@@ -672,6 +672,7 @@
                 <outlet property="barDescriptionTotalBillTitleLabel" destination="Dxw-YV-YCg" id="WtO-9w-ef5"/>
                 <outlet property="barDescriptionTotalBillValueLabel" destination="sdl-Uk-Y1M" id="Lsl-62-a4z"/>
                 <outlet property="barDescriptionTriangleCenterXConstraint" destination="xmj-UE-1RX" id="CG8-jw-2qC"/>
+                <outlet property="barDescriptionTriangleImageView" destination="3aN-vt-GrN" id="0ii-1G-Mfk"/>
                 <outlet property="barDescriptionUsageTitleLabel" destination="meB-kJ-mI7" id="UgL-6g-RVd"/>
                 <outlet property="barDescriptionUsageValueLabel" destination="tT8-R4-gak" id="Ylq-l2-Z66"/>
                 <outlet property="barDescriptionView" destination="Ebs-dO-SYI" id="MQu-Ae-gXb"/>
