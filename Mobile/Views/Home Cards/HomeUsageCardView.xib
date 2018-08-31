@@ -44,12 +44,12 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eBF-3o-fVS">
                                                     <rect key="frame" x="0.0" y="68.5" width="505" height="724"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="467" placeholderIntrinsicHeight="64" translatesAutoresizingMaskIntoConstraints="NO" id="pPs-xb-KOa" customClass="BillAnalysisSegmentedControl" customModule="BGE" customModuleProvider="target">
-                                                            <rect key="frame" x="19" y="0.0" width="467" height="87"/>
+                                                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="64" translatesAutoresizingMaskIntoConstraints="NO" id="pPs-xb-KOa" customClass="BillAnalysisSegmentedControl" customModule="BGE" customModuleProvider="target">
+                                                            <rect key="frame" x="19" y="0.0" width="467" height="83"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPo-rA-9qq">
-                                                            <rect key="frame" x="0.0" y="87" width="505" height="375.5"/>
+                                                            <rect key="frame" x="0.0" y="83" width="505" height="375.5"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="bottom" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="UJ5-gS-ygZ">
                                                                     <rect key="frame" x="104.5" y="44" width="296" height="177"/>
@@ -284,7 +284,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7G-aF-Kbc">
-                                                            <rect key="frame" x="75.5" y="462.5" width="354" height="100"/>
+                                                            <rect key="frame" x="75.5" y="458.5" width="354" height="100"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="KQj-CG-yIm" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="147" y="44" width="60" height="12"/>
@@ -299,7 +299,7 @@
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XNI-Bd-kpf">
-                                                            <rect key="frame" x="12" y="562.5" width="481.5" height="161.5"/>
+                                                            <rect key="frame" x="12" y="558.5" width="481.5" height="165.5"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyL-hc-98n" userLabel="Spacer">
                                                                     <rect key="frame" x="240.5" y="0.0" width="0.0" height="28"/>
@@ -327,10 +327,10 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXf-MG-lJi" userLabel="Spacer">
-                                                                    <rect key="frame" x="240.5" y="141.5" width="0.0" height="20"/>
+                                                                    <rect key="frame" x="240.5" y="141.5" width="0.0" height="24"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="20" id="HgS-ua-YJO"/>
+                                                                        <constraint firstAttribute="height" constant="24" id="HgS-ua-YJO"/>
                                                                         <constraint firstAttribute="width" id="tTQ-wl-8oA"/>
                                                                     </constraints>
                                                                 </view>
@@ -627,6 +627,7 @@
                 <outlet property="barGraphStackView" destination="UJ5-gS-ygZ" id="4pO-3K-Gj6"/>
                 <outlet property="billComparisonContentView" destination="xPo-rA-9qq" id="YRP-TH-rjR"/>
                 <outlet property="billComparisonEmptyStateLabel" destination="4DR-oD-DJZ" id="E5U-ef-nVc"/>
+                <outlet property="billComparisonEmptyStateTopSpace" destination="tyL-hc-98n" id="ekk-78-EHU"/>
                 <outlet property="billComparisonEmptyStateView" destination="XNI-Bd-kpf" id="IbS-91-Zfq"/>
                 <outlet property="billComparisonStackView" destination="eBF-3o-fVS" id="cxd-cF-SNL"/>
                 <outlet property="billComparisonView" destination="ttD-cO-8Ry" id="Cfv-Nx-xrR"/>

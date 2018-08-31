@@ -65,8 +65,8 @@ class HomeUsageCardView: UIView {
     @IBOutlet private weak var unavailableDescriptionLabel: UILabel!
     
     @IBOutlet private weak var billComparisonEmptyStateView: UIView!
-    @IBOutlet private weak var billComparisonEmptyStateTitleLabel: UILabel!
     @IBOutlet private weak var billComparisonEmptyStateLabel: UILabel!
+    @IBOutlet private weak var billComparisonEmptyStateTopSpace: UIView!
     
     @IBOutlet private weak var smartEnergyRewardsView: UIView!
     @IBOutlet private weak var smartEnergyRewardsTitleLabel: UILabel!
@@ -300,7 +300,12 @@ class HomeUsageCardView: UIView {
         
         // Segmented Controls
         viewModel.showElectricGasSegmentedControl.not()
-            .drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
+            .drive(segmentedControl.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        viewModel.showElectricGasSegmentedControl.not()
+            .drive(billComparisonEmptyStateTopSpace.rx.isHidden)
+            .disposed(by: disposeBag)
         segmentedControl.selectedIndex.asDriver().skip(1).distinctUntilChanged().drive(viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             if index == 0 {

@@ -327,8 +327,15 @@ class HomeUsageCardViewModel {
 
     // MARK: Bill Comparison Empty State
     
-    private(set) lazy var billComparisonEmptyStateText: Driver<String> = electricGasSelectedSegmentIndex
-        .asDriver()
-        .map { NSLocalizedString($0 == 0 ? "electric" : "gas", comment: "")}
-        .map { String.localizedStringWithFormat("Your %@ usage overview will be available here once we have two full months of data.", $0) }
+    private(set) lazy var billComparisonEmptyStateText: Driver<String> = Driver
+        .combineLatest(electricGasSelectedSegmentIndex.asDriver(),
+                       showElectricGasSegmentedControl)
+        .map { segmentIndex, showSegmentedControl in
+            if showSegmentedControl {
+                let gasElectricString = NSLocalizedString(segmentIndex == 0 ? "electric" : "gas", comment: "")
+                return String.localizedStringWithFormat("Your %@ usage overview will be available here once we have two full months of data.", gasElectricString)
+            } else {
+                return NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
+            }
+        }
 }

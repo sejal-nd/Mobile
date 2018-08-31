@@ -49,6 +49,8 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var usageToolsStack: UIStackView!
     
     // Bill Graph
+    @IBOutlet private weak var billComparisonTitleContainer: UIView!
+    @IBOutlet private weak var billComparisonDataContainer: UIView!
     @IBOutlet private weak var billGraphDetailContainer: UIView!
     @IBOutlet private weak var billGraphDetailView: UIView! {
         didSet {
@@ -144,7 +146,6 @@ class UsageViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet private weak var billComparisonStack: UIStackView!
     @IBOutlet private weak var dropdownContainer: UIView!
     @IBOutlet private weak var dropdownView: BillImpactDropdownView!
     
@@ -155,8 +156,6 @@ class UsageViewController: AccountPickerViewController {
             billComparisonErrorLabel.font = OpenSans.regular.of(textStyle: .title1)
             billComparisonErrorLabel.textAlignment = .center
             billComparisonErrorLabel.textColor = .middleGray
-            billComparisonErrorLabel.attributedText = NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
-                .attributedString(withLineHeight: 26, textAlignment: .center)
         }
     }
     
@@ -522,6 +521,12 @@ class UsageViewController: AccountPickerViewController {
         viewModel.barDescriptionDateLabelText.drive(graphDetailDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionAvgTempLabelText.drive(graphDetailTemperatureLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionDetailLabelText.drive(graphDetailDescriptionLabel.rx.text).disposed(by: disposeBag)
+        
+        // Empty State
+        viewModel.billComparisonEmptyStateText
+            .map { $0.attributedString(withLineHeight: 26, textAlignment: .center) }
+            .drive(billComparisonErrorLabel.rx.attributedText)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Screen States
@@ -573,32 +578,35 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func showBillComparisonLoadingState() {
-        billComparisonStack.isHidden = false
         billComparisonLoadingIndicator.isHidden = false
         barGraphStackView.isHidden = true
         billGraphDetailContainer.isHidden = true
         dropdownView.isHidden = true
         billComparisonErrorView.isHidden = true
+        billComparisonDataContainer.isHidden = false
+        billComparisonTitleContainer.isHidden = false
     }
     
     private func showBillComparisonContents() {
-        billComparisonStack.isHidden = false
         billComparisonLoadingIndicator.isHidden = true
         barGraphStackView.isHidden = false
         billGraphDetailContainer.isHidden = false
         dropdownContainer.isHidden = false
         dropdownView.isHidden = false
         billComparisonErrorView.isHidden = true
+        billComparisonDataContainer.isHidden = false
+        billComparisonTitleContainer.isHidden = false
     }
     
     private func showBillComparisonErrorState() {
-        billComparisonStack.isHidden = true
         billComparisonLoadingIndicator.isHidden = true
         barGraphStackView.isHidden = true
         billGraphDetailContainer.isHidden = true
         dropdownContainer.isHidden = true
         dropdownView.isHidden = true
         billComparisonErrorView.isHidden = false
+        billComparisonDataContainer.isHidden = true
+        billComparisonTitleContainer.isHidden = true
     }
     
     // MARK: - Usage Tool Cards
