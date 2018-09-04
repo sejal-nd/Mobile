@@ -8,52 +8,54 @@
 
 import XCTest
 import AppCenterXCUITestExtensions
+import LocalAuthentication
 
 class MoreUITests: ExelonUITestCase {
     
     override func setUp() {
         super.setUp()
-        doLogin(username: "valid@test.com")
+        doLogin(username: "User_8339951047@test.com")
         selectTab(tabName: "More")
         
+        continueAfterFailure = false
     }
     
     func testMoreTabLayout() {
+
+        // Ensure all Cells & Buttons exist
+        XCTAssert(app.cells.staticTexts["My Alerts"].exists)
+        XCTAssert(app.cells.staticTexts["News and Updates"].exists)
+        XCTAssert(app.cells.staticTexts["Change Password"].exists)
+        XCTAssert(app.cells.staticTexts["Release of Info"].exists)
+
+        XCTAssert(app.cells.staticTexts["Contact Us"].exists)
+        XCTAssert(app.cells.staticTexts["Set Default Account"].exists)
+        XCTAssert(app.cells.staticTexts["Policies and Terms"].exists)
         
-        // Ensure all buttons exist
-        XCTAssert(app.buttons["Settings"].exists)
-        XCTAssert(app.buttons["Contact us"].exists)
-        XCTAssert(app.buttons["Policies and Terms"].exists)
-        XCTAssert(app.buttons["Sign out"].exists)
+        XCTAssert(app.tables.buttons["Sign Out"].isHittable)
         
-        // Ensure version label exists
-        let predicate = NSPredicate(format: "label BEGINSWITH 'Version'")
-        XCTAssert(app.staticTexts.element(matching: predicate).exists)
-    }
-    
-    func testSettingsButtonAndLayout() {
-        app.buttons["Settings"].tap()
-        XCTAssert(app.navigationBars.buttons["Back"].exists)
-        XCTAssert(app.navigationBars["Settings"].exists)
-                        
-        let tableCells = app.tables.element(boundBy: 0).cells
-        XCTAssert(tableCells.element(boundBy: 0).staticTexts["Change Password"].exists)
         
         // Face ID/Touch ID buttons should not be shown because they are never enabled during UI testing
-        XCTAssert(!tableCells.element(boundBy: 1).staticTexts["Face ID"].exists)
-        XCTAssert(!tableCells.element(boundBy: 1).staticTexts["Touch ID"].exists)
+        if #available(iOS 11.0, *) {
+            if LAContext().biometryType == .faceID {
+                XCTAssert(!app.cells.staticTexts["Face ID"].isHittable)
+            } else if LAContext().biometryType == .touchID {
+                XCTAssert(!app.cells.staticTexts["Touch ID"].isHittable)
+            }
+        }
         
         if appName.contains("BGE") {
-            XCTAssert(tableCells.element(boundBy: 1).staticTexts["Default Account"].exists)
+            XCTAssert(app.cells.staticTexts["Default Account"].isHittable)
         } else if appName.contains("PECO") {
-            XCTAssert(tableCells.element(boundBy: 1).staticTexts["Release of Info"].exists)
+            XCTAssert(app.cells.staticTexts["Release of Info"].isHittable)
         }
     }
-    
+
     func testContactUsButtonAndLayout() {
+
         let elementsQuery = app.scrollViews.otherElements
         
-        app.buttons["Contact us"].tap()
+        app.tables/*@START_MENU_TOKEN@*/.cells.staticTexts["Contact Us"]/*[[".cells.staticTexts[\"Contact Us\"]",".staticTexts[\"Contact Us\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
         XCTAssert(app.navigationBars.buttons["Back"].exists)
         XCTAssert(app.navigationBars["Contact Us"].exists)
         XCTAssert(elementsQuery.staticTexts["Emergency"].exists)
@@ -98,7 +100,7 @@ class MoreUITests: ExelonUITestCase {
     }
     
     func testPoliciesAndTermsButtonAndLayout() {
-        app.buttons["Policies and Terms"].tap()
+        app.cells.staticTexts["Policies and Terms"].tap()
         XCTAssert(app.navigationBars.buttons["Back"].exists)
         XCTAssert(app.navigationBars["Policies and Terms"].exists)
         
@@ -107,64 +109,59 @@ class MoreUITests: ExelonUITestCase {
         XCTAssert(app.webViews.staticTexts.element(matching: privacyPred).waitForExistence(timeout: 5))
         XCTAssert(app.webViews.staticTexts.element(matching: termsPred).waitForExistence(timeout: 5))
     }
-    
-    func navigateToChangePassword() {
-        app.buttons["Settings"].tap()
-        app.tables.element(boundBy: 0).cells.element(boundBy: 0).tap()
-    }
-    
+
     func testChangePasswordButtonAndLayout() {
-        navigateToChangePassword()
+        app.cells.staticTexts["Change Password"].tap()
         
         XCTAssert(app.navigationBars.buttons["Cancel"].exists)
         XCTAssert(app.navigationBars.buttons["Submit"].exists)
         XCTAssert(app.navigationBars["Change Password"].exists)
-        
+
         let elementsQuery = app.scrollViews.otherElements
         XCTAssert(elementsQuery.secureTextFields["Current Password"].exists)
         XCTAssert(elementsQuery.secureTextFields["New Password"].exists)
         XCTAssert(elementsQuery.secureTextFields["Confirm Password"].exists)
     }
-    
+
     func testChangePasswordSubmit() {
-        navigateToChangePassword()
-        
+        app.cells.staticTexts["Change Password"].tap()
+
         let submitButton = app.navigationBars.buttons["Submit"]
-        
+
         let elementsQuery = app.scrollViews.otherElements
-        
+
         // Password strength view isn't shown yet
         XCTAssert(!elementsQuery.images["ic_check"].exists)
         elementsQuery.secureTextFields["New Password"].clearAndEnterText("pass")
-        
+
         // Password strength view shown, criteria not yet met
         XCTAssert(elementsQuery.staticTexts["Password strength weak"].exists)
         XCTAssert(elementsQuery.images["ic_check"].exists)
         XCTAssert(!elementsQuery.images["Minimum password criteria met"].exists)
         elementsQuery.secureTextFields["New Password"].typeText("word1A")
-        
+
         // Password strength view shown, criteria met
         XCTAssert(elementsQuery.staticTexts["Password strength weak"].exists)
         XCTAssert(elementsQuery.images["Minimum password criteria met"].exists)
-        
+
         elementsQuery.secureTextFields["Confirm Password"].clearAndEnterText("password1A")
-        
+
         // Submit still disabled
         XCTAssert(!submitButton.isEnabled)
-        
+
         elementsQuery.secureTextFields["Current Password"].clearAndEnterText("Password1")
-        
+
         // Fields all entered, submit now enabled
         XCTAssert(submitButton.isEnabled)
-        
+
         submitButton.tap()
-        
+
         // "Password changed" toast shown
         XCTAssert(app.staticTexts["Password changed"].waitForExistence(timeout: 5))
     }
     
     func testSignOut() {
-        let signOutButton = app.buttons["Sign out"]
+        let signOutButton = app.tables.buttons["Sign Out"]
         let alert = app.alerts["Sign Out"]
         
         signOutButton.tap()
