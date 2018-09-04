@@ -14,7 +14,7 @@ class MoreUITests: ExelonUITestCase {
     
     override func setUp() {
         super.setUp()
-        doLogin(username: "User_8339951047@test.com")
+        doLogin(username: "valid@test.com")
         selectTab(tabName: "More")
         
         continueAfterFailure = false
