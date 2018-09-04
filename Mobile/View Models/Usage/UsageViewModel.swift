@@ -193,6 +193,18 @@ class UsageViewModel {
             }
     }
     
+    private(set) lazy var billComparisonEmptyStateText: Driver<String> = Driver
+        .combineLatest(electricGasSelectedSegmentIndex.asDriver(),
+                       showElectricGasSegmentedControl)
+        .map { segmentIndex, showSegmentedControl in
+            if showSegmentedControl {
+                let gasElectricString = NSLocalizedString(segmentIndex == 0 ? "electric" : "gas", comment: "")
+                return String.localizedStringWithFormat("Your %@ usage overview will be available here once we have two full months of data.", gasElectricString)
+            } else {
+                return NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
+            }
+    }
+    
     // MARK: No Data Bar Drivers
     
     private(set) lazy var noDataBarDateLabelText: Driver<String?> =

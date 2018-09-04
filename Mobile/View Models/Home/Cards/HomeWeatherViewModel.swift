@@ -117,10 +117,10 @@ class HomeWeatherViewModel {
         .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var temperatureTipEvents: Observable<Event<String>> = weatherEvents
-        .withLatestFrom(Observable.combineLatest(accountDetailEvents.elements(), weatherEvents.elements()))
-        .filter { ($1.isHighTemperature || $1.isLowTemperature) && $0.isEligibleForUsageData }
-        .toAsyncRequest { [weak self] accountDetail, weatherItem -> Observable<String> in
+    private lazy var temperatureTipEvents: Observable<Event<String>> = weatherEvents.elements()
+        .withLatestFrom(accountDetailEvents.elements()) { ($0, $1) }
+        .filter { ($0.isHighTemperature || $0.isLowTemperature) && $1.isEligibleForUsageData }
+        .toAsyncRequest { [weak self] weatherItem, accountDetail -> Observable<String> in
             guard let this = self else { return .empty() }
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             
