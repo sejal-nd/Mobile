@@ -171,9 +171,7 @@ class ChangePasswordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setWhiteNavBar()
-        }
+        navigationController?.setWhiteNavBar()
         
         if sentFromLogin {
             navigationController?.view.backgroundColor = .primaryColor
