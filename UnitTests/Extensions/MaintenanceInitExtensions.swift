@@ -11,7 +11,8 @@ extension Maintenance {
          home: Bool = false,
          bill: Bool = false,
          outage: Bool = false,
-         alert: Bool = false) {
+         alert: Bool = false,
+         storm: Bool = false) {
         
         assert(Environment.shared.environmentName == .aut,
                "init only available for tests")
@@ -21,5 +22,6 @@ extension Maintenance {
         billStatus = bill
         outageStatus = outage
         alertStatus = alert
+        stormModeStatus = storm
     }
 }

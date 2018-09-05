@@ -22,9 +22,9 @@ class MockAlertsService: AlertsService {
     
     func enrollBudgetBillingNotification(accountNumber: String, completion: @escaping (ServiceResult<Void>) -> Void) {
         if accountNumber == "0000" {
-            completion(ServiceResult.failure(ServiceError(serviceMessage: "Mock Error")))
+            completion(.failure(ServiceError(serviceMessage: "Mock Error")))
         } else {
-            completion(ServiceResult.success(()))
+            completion(.success(()))
         }
     }
     
@@ -36,12 +36,12 @@ class MockAlertsService: AlertsService {
         completion(.success(()))
     }
     
-    func fetchOpcoUpdates(accountDetail: AccountDetail, completion: @escaping (ServiceResult<[OpcoUpdate]>) -> Void) {
-        if accountDetail.accountNumber == "1234567890" {
+    func fetchOpcoUpdates(bannerOnly: Bool = false, completion: @escaping (ServiceResult<[OpcoUpdate]>) -> Void) {
+        if bannerOnly {
             let opcoUpdates = [OpcoUpdate.from(["Title": "Test Title", "Message": "Test Message"])!]
-            completion(ServiceResult.success(opcoUpdates))
+            completion(.success(opcoUpdates))
         } else {
-            completion(ServiceResult.failure(ServiceError(serviceMessage: "Mock Error")))
+            completion(.failure(ServiceError(serviceMessage: "Mock Error")))
         }
     }
 }

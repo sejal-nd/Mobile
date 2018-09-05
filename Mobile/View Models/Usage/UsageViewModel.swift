@@ -40,7 +40,7 @@ class UsageViewModel {
     }
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
-        .combineLatest(accountDetailEvents.elements().filter { $0.hasUsageData },
+        .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
                        lastYearPreviousBillSelectedSegmentIndex.asObservable(),
                        electricGasSelectedSegmentIndex.asObservable())
         .toAsyncRequest { [unowned self] (accountDetail, yearsIndex, electricGasIndex) in
@@ -66,6 +66,7 @@ class UsageViewModel {
                 billForecast = self.usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber,
                                                                    premiseNumber: accountDetail.premiseNumber!)
                     .map { $0 }
+                    .catchError { _ in .just(nil) }
             } else {
                 billForecast = .just(nil)
             }
@@ -147,12 +148,12 @@ class UsageViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showNoUsageDataState: Driver<Void> = accountDetailEvents
-        .filter { !($0.element?.hasUsageData ?? true) }
+        .filter { !($0.element?.isEligibleForUsageData ?? true) }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMainContents: Driver<Void> = accountDetailEvents
-        .filter { $0.element?.hasUsageData ?? false }
+        .filter { $0.element?.isEligibleForUsageData ?? false }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -189,6 +190,18 @@ class UsageViewModel {
                 return NSLocalizedString("Compared to Last Year", comment: "")
             } else {
                 return NSLocalizedString("Compared to Previous Bill", comment: "")
+            }
+    }
+    
+    private(set) lazy var billComparisonEmptyStateText: Driver<String> = Driver
+        .combineLatest(electricGasSelectedSegmentIndex.asDriver(),
+                       showElectricGasSegmentedControl)
+        .map { segmentIndex, showSegmentedControl in
+            if showSegmentedControl {
+                let gasElectricString = NSLocalizedString(segmentIndex == 0 ? "electric" : "gas", comment: "")
+                return String.localizedStringWithFormat("Your %@ usage overview will be available here once we have two full months of data.", gasElectricString)
+            } else {
+                return NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
             }
     }
     
@@ -1029,7 +1042,7 @@ class UsageViewModel {
     // MARK: - Usage Tools
     
     private(set) lazy var usageTools: Driver<[UsageTool]> = accountDetail
-        .filter { $0.hasUsageData }
+        .filter { $0.isEligibleForUsageData }
         .map { accountDetail in
             var usageTools: [UsageTool] = [.usageData, .energyTips, .homeProfile]
             
@@ -1094,17 +1107,6 @@ class UsageViewModel {
                 
                 cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas] = newValue
             }
-        }
-    }
-}
-
-fileprivate extension AccountDetail {
-    var hasUsageData: Bool {
-        switch serviceType {
-        case "GAS", "ELECTRIC", "GAS/ELECTRIC":
-            return premiseNumber != nil && isResidential && !isBGEControlGroup && !isFinaled
-        default:
-            return false
         }
     }
 }

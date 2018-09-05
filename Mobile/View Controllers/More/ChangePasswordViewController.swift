@@ -94,7 +94,11 @@ class ChangePasswordViewController: UIViewController {
         newPasswordTextField.textField.isSecureTextEntry = true
         newPasswordTextField.textField.returnKeyType = .next
         newPasswordTextField.textField.delegate = self
-        newPasswordTextField.textField.inputAccessoryView = toolbar
+        
+        if #available(iOS 11.0, *) {
+            newPasswordTextField.textField.inputAccessoryView = toolbar
+            confirmPasswordTextField.textField.inputAccessoryView = toolbar
+        }
         
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
         
@@ -103,7 +107,6 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.setEnabled(false)
-        confirmPasswordTextField.textField.inputAccessoryView = toolbar
         
         mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .headline)
         for label in passwordRequirementLabels {
@@ -167,6 +170,10 @@ class ChangePasswordViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setWhiteNavBar()
+        }
         
         if sentFromLogin {
             navigationController?.view.backgroundColor = .primaryColor

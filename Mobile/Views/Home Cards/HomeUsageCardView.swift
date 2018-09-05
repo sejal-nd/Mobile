@@ -52,19 +52,21 @@ class HomeUsageCardView: UIView {
     @IBOutlet private weak var barDescriptionTotalBillValueLabel: UILabel!
     @IBOutlet private weak var barDescriptionUsageTitleLabel: UILabel!
     @IBOutlet private weak var barDescriptionUsageValueLabel: UILabel!
+    @IBOutlet private weak var barDescriptionTriangleImageView: UIImageView!
     @IBOutlet private weak var barDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var viewUsageButton: UIButton!
-    @IBOutlet weak var viewUsageEmptyStateButton: UIButton!
+    @IBOutlet weak var viewUsageButton: ButtonControl!
+    @IBOutlet private weak var viewUsageButtonLabel: UILabel!
     
     @IBOutlet private weak var comparisonLoadingView: UIView!
     
-    // Not currently using errorView -- we'll show billComparisonEmptyStateView if any errors occur
-    @IBOutlet private weak var errorView: UIView!
-    @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet private weak var unavailableView: UIStackView!
+    @IBOutlet private weak var unavailableTitleLabel: UILabel!
+    @IBOutlet private weak var unavailableDescriptionLabel: UILabel!
     
     @IBOutlet private weak var billComparisonEmptyStateView: UIView!
     @IBOutlet private weak var billComparisonEmptyStateLabel: UILabel!
+    @IBOutlet private weak var billComparisonEmptyStateTopSpace: UIView!
     
     @IBOutlet private weak var smartEnergyRewardsView: UIView!
     @IBOutlet private weak var smartEnergyRewardsTitleLabel: UILabel!
@@ -75,7 +77,8 @@ class HomeUsageCardView: UIView {
     
     @IBOutlet private weak var smartEnergyRewardsFooterLabel: UILabel!
     
-    @IBOutlet weak var viewAllSavingsButton: UIButton!
+    @IBOutlet weak var viewAllSavingsButton: ButtonControl!
+    @IBOutlet weak var viewAllSavingsButtonLabel: UILabel!
     
     @IBOutlet private weak var smartEnergyRewardsEmptyStateView: UIView!
     @IBOutlet private weak var smartEnergyRewardsEmptyStateTitleLabel: UILabel!
@@ -109,6 +112,14 @@ class HomeUsageCardView: UIView {
         clippingView.layer.cornerRadius = 10
         styleBillComparison()
         styleSmartEnergyRewards()
+        unavailableTitleLabel.textColor = .blackText
+        unavailableTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        
+        unavailableDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
+        
+        unavailableDescriptionLabel.textColor = .middleGray
+        unavailableDescriptionLabel.attributedText = NSLocalizedString("Usage is not available for this account.", comment: "")
+            .attributedString(withLineHeight: 26, textAlignment: .center)
     }
     
     func superviewDidLayoutSubviews() {
@@ -116,7 +127,7 @@ class HomeUsageCardView: UIView {
         // receiving layout events after the user manually tapped a button, otherwise the
         // initial selection bar would never be able to be deselected
         if !userTappedBarGraph {
-            moveTriangleTo(centerPoint: currentContainerButton.center)
+            moveTriangleTo(barView: currentContainerButton)
         }
         smartEnergyRewardsGraphView.superviewDidLayoutSubviews()
     }
@@ -128,17 +139,8 @@ class HomeUsageCardView: UIView {
         usageOverviewLabel.textColor = .blackText
         usageOverviewLabel.font = OpenSans.semibold.of(size: 18)
         
-//        errorLabel.font = OpenSans.regular.of(textStyle: .title1)
-//        errorLabel.setLineHeight(lineHeight: 26)
-//        errorLabel.textAlignment = .center
-//        errorLabel.textColor = .middleGray
-//        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        
         billComparisonEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
-        billComparisonEmptyStateLabel.setLineHeight(lineHeight: 26)
-        billComparisonEmptyStateLabel.textAlignment = .center
         billComparisonEmptyStateLabel.textColor = .middleGray
-        billComparisonEmptyStateLabel.text = NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
         
         billComparisonContentView.backgroundColor = .softGray
         
@@ -171,13 +173,9 @@ class HomeUsageCardView: UIView {
         barDescriptionUsageValueLabel.textColor = .blackText
         barDescriptionUsageValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
 
-        viewUsageButton.setTitleColor(.actionBlue, for: .normal)
-        viewUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
-        viewUsageButton.titleLabel?.text = NSLocalizedString("View Usage", comment: "")
-        
-        viewUsageEmptyStateButton.setTitleColor(.actionBlue, for: .normal)
-        viewUsageEmptyStateButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
-        viewUsageEmptyStateButton.titleLabel?.text = NSLocalizedString("View Usage", comment: "")
+        viewUsageButtonLabel.textColor = .actionBlue
+        viewUsageButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        viewUsageButtonLabel.text = NSLocalizedString("View Usage", comment: "")
     }
     
     private func styleSmartEnergyRewards() {
@@ -196,9 +194,9 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsFooterLabel.text = NSLocalizedString("You earn bill credits for every kWh you save. " +
             "We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
         
-        viewAllSavingsButton.setTitleColor(.actionBlue, for: .normal)
-        viewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
-        viewAllSavingsButton.titleLabel?.text = NSLocalizedString("View All Savings", comment: "")
+        viewAllSavingsButtonLabel.textColor = .actionBlue
+        viewAllSavingsButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        viewAllSavingsButtonLabel.text = NSLocalizedString("View All Savings", comment: "")
         
         smartEnergyRewardsEmptyStateTitleLabel.textColor = .blackText
         smartEnergyRewardsEmptyStateTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
@@ -212,6 +210,48 @@ class HomeUsageCardView: UIView {
             "\(smartEnergyRewardsEmptyStateTitleLabel.text!) season will display here once available.", comment: "")
     }
     
+    private func showContent() {
+        billComparisonView.isHidden = false
+        billComparisonContentView.isHidden = false
+        smartEnergyRewardsView.isHidden = true
+        smartEnergyRewardsEmptyStateView.isHidden = true
+        billComparisonEmptyStateView.isHidden = true
+        unavailableView.isHidden = true
+    }
+    
+    private func showSmartEnergyRewards() {
+        billComparisonView.isHidden = true
+        smartEnergyRewardsView.isHidden = false
+        smartEnergyRewardsEmptyStateView.isHidden = true
+        billComparisonEmptyStateView.isHidden = true
+        unavailableView.isHidden = true
+    }
+    
+    private func showSmartEnergyRewardsEmptyState() {
+        billComparisonView.isHidden = true
+        smartEnergyRewardsView.isHidden = true
+        smartEnergyRewardsEmptyStateView.isHidden = false
+        billComparisonEmptyStateView.isHidden = true
+        unavailableView.isHidden = true
+    }
+    
+    private func showBillComparisonEmptyState() {
+        billComparisonView.isHidden = false
+        billComparisonContentView.isHidden = true
+        smartEnergyRewardsView.isHidden = true
+        smartEnergyRewardsEmptyStateView.isHidden = true
+        billComparisonEmptyStateView.isHidden = false
+        unavailableView.isHidden = true
+    }
+    
+    private func showUnavailableState() {
+        billComparisonView.isHidden = true
+        smartEnergyRewardsView.isHidden = true
+        smartEnergyRewardsEmptyStateView.isHidden = true
+        billComparisonEmptyStateView.isHidden = true
+        unavailableView.isHidden = false
+    }
+    
     private func bindViewModel() {
         viewModel.showLoadingState.drive(contentStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
@@ -221,32 +261,52 @@ class HomeUsageCardView: UIView {
             .disposed(by: disposeBag)
         
         // Bill Comparison vs. SER Show/Hide
-        viewModel.shouldShowBillComparison.not().drive(billComparisonView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowSmartEnergyRewards.not().drive(smartEnergyRewardsView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowSmartEnergyEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in
-            if !shouldHide {
-                Analytics.log(event: .emptyStateSmartEnergyHome)
-            }
-        }).drive(smartEnergyRewardsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showBillComparison
+            .drive(onNext: { [weak self] in self?.showContent() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showSmartEnergyRewards
+            .drive(onNext: { [weak self] in self?.showSmartEnergyRewards() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showSmartEnergyEmptyState
+            .do(onNext: { Analytics.log(event: .emptyStateSmartEnergyHome) })
+            .drive(onNext: { [weak self] in self?.showSmartEnergyRewardsEmptyState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showBillComparisonEmptyState
+            .do(onNext: { Analytics.log(event: .emptyStateUsageOverview) })
+            .drive(onNext: { [weak self] in self?.showBillComparisonEmptyState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showUnavailableState
+            .drive(onNext: { [weak self] in self?.showUnavailableState() })
+            .disposed(by: disposeBag)
         
         // --- Bill Comparison ---
         
         // Loading/Error/Content States
-        viewModel.shouldShowBillComparisonContentView.not().drive(billComparisonContentView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.loadingTracker.asDriver().not()
+            .drive(comparisonLoadingView.rx.isHidden)
+            .disposed(by: disposeBag)
         
-        viewModel.loadingTracker.asDriver().not().drive(comparisonLoadingView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowErrorView.not().drive(errorView.rx.isHidden).disposed(by: disposeBag)
-        
-        viewModel.shouldShowBillComparisonEmptyState.not().distinctUntilChanged().do(onNext: { shouldHide in
-            if !shouldHide {
-                Analytics.log(event: .emptyStateUsageOverview)
-            }
-        }).drive(billComparisonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowBillComparisonEmptyStateButton.not().drive(viewUsageEmptyStateButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.loadingTracker.asDriver()
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in
+                self?.billComparisonContentView.isHidden = true
+                self?.billComparisonEmptyStateView.isHidden = true
+            })
+            .disposed(by: disposeBag)
         
         // Segmented Controls
-        viewModel.shouldShowElectricGasSegmentedControl.not().drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
-        segmentedControl.selectedIndex.asObservable().distinctUntilChanged().bind(to: viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
+        viewModel.showElectricGasSegmentedControl.not()
+            .drive(segmentedControl.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        viewModel.showElectricGasSegmentedControl.not()
+            .drive(billComparisonEmptyStateTopSpace.rx.isHidden)
+            .disposed(by: disposeBag)
+        segmentedControl.selectedIndex.asDriver().skip(1).distinctUntilChanged().drive(viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             if index == 0 {
                 Analytics.log(event: .viewUsageElectricity)
@@ -257,7 +317,8 @@ class HomeUsageCardView: UIView {
         
         viewModel.billComparisonEvents.subscribe({ [weak self] _ in
             guard let `self` = self else { return }
-            self.moveTriangleTo(centerPoint: self.currentContainerButton.center)
+            self.moveTriangleTo(barView: self.currentContainerButton)
+            
             self.viewModel.setBarSelected(tag: 2)
         }).disposed(by: disposeBag)
         
@@ -312,26 +373,25 @@ class HomeUsageCardView: UIView {
         
         // Smart Energy Rewards
         viewModel.smartEnergyRewardsSeasonLabelText.drive(smartEnergyRewardsSeasonLabel.rx.text).disposed(by: disposeBag)
+        
+        // Bill Comparison Empty State
+        viewModel.billComparisonEmptyStateText
+            .map { $0.attributedString(withLineHeight: 26, textAlignment: .center) }
+            .drive(billComparisonEmptyStateLabel.rx.attributedText)
+            .disposed(by: disposeBag)
     }
     
     @IBAction func onBarPress(sender: ButtonControl) {
-        let centerPoint = sender.center
-        moveTriangleTo(centerPoint: centerPoint)
+        moveTriangleTo(barView: sender)
         viewModel.setBarSelected(tag: sender.tag)
         userTappedBarGraph = true
     }
     
-    private func moveTriangleTo(centerPoint: CGPoint) {
-        let convertedPoint = barGraphStackView.convert(centerPoint, to: barDescriptionView)
-        
-        let centerXOffset = (barDescriptionView.bounds.width / 2)
-        if convertedPoint.x < centerXOffset {
-            barDescriptionTriangleCenterXConstraint.constant = -1 * (centerXOffset - convertedPoint.x)
-        } else if convertedPoint.x > centerXOffset {
-            barDescriptionTriangleCenterXConstraint.constant = convertedPoint.x - centerXOffset
-        } else {
-            barDescriptionTriangleCenterXConstraint.constant = 0
-        }
+    private func moveTriangleTo(barView: UIView) {
+        barDescriptionTriangleCenterXConstraint.isActive = false
+        barDescriptionTriangleCenterXConstraint = barDescriptionTriangleImageView.centerXAnchor
+            .constraint(equalTo: barView.centerXAnchor)
+        barDescriptionTriangleCenterXConstraint.isActive = true
     }
     
     // MARK: Bill Comparison Bar Graph Drivers

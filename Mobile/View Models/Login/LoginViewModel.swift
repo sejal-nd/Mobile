@@ -53,7 +53,7 @@ class LoginViewModel {
         UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
     }
     
-    func performLogin(onSuccess: @escaping (Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
+    func performLogin(onSuccess: @escaping (Bool, Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
         if username.value.isEmpty || password.value.isEmpty {
             onError(nil, "Please enter your username and password")
             return
@@ -62,18 +62,24 @@ class LoginViewModel {
         isLoggingIn = true
         authService.login(username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
-            .asObservable()
             .subscribe(onNext: { [weak self] (responseTuple: (ProfileStatus, AccountDetail)) in
                 guard let `self` = self else { return }
                 self.isLoggingIn = false
                 self.accountDetail = responseTuple.1
-                onSuccess(responseTuple.0.tempPassword)
-                if responseTuple.0.tempPassword {
+                let tempPassword = responseTuple.0.tempPassword
+                if tempPassword {
+                    onSuccess(tempPassword, false)
                     self.authService.logout().subscribe(onError: { (error) in
                         dLog("Logout Error: \(error)")
                     }).disposed(by: self.disposeBag)
                 } else {
-                    SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                    if #available(iOS 11.0, *) {
+                        SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
+                    }
+                    
+                    self.checkStormMode { isStormMode in
+                        onSuccess(tempPassword, isStormMode)
+                    }
                 }
             }, onError: { [weak self] error in
                 self?.isLoggingIn = false
@@ -91,6 +97,17 @@ class LoginViewModel {
             .disposed(by: disposeBag)
     }
     
+    func checkStormMode(completion: @escaping (Bool) -> ()) {
+        authService.getMaintenanceMode()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { maintenance in
+                completion(maintenance.stormModeStatus)
+            }, onError: { _ in
+                completion(false)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func getStoredUsername() -> String? {
         return biometricsService.getStoredUsername()
     }
@@ -103,7 +120,7 @@ class LoginViewModel {
         biometricsService.setStoredPassword(password: password.value)
     }
     
-    func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool) -> Void, onError: @escaping (String?, String) -> Void) {
+    func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool, Bool) -> Void, onError: @escaping (String?, String) -> Void) {
         if let username = biometricsService.getStoredUsername(), let password = biometricsService.getStoredPassword() {
             self.username.value = username
             biometricsAutofilledPassword = password
@@ -121,11 +138,17 @@ class LoginViewModel {
         biometricsEnabled.value = false
     }
     
-    func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
+    func checkForMaintenance(onSuccess: @escaping () -> Void,
+                             onMaintenanceMode: @escaping () -> Void,
+                             onError: @escaping (String) -> Void) {
         authService.getMaintenanceMode()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { maintenanceInfo in
-                onSuccess(maintenanceInfo.allStatus)
+                if maintenanceInfo.allStatus {
+                    onMaintenanceMode()
+                } else {
+                    onSuccess()
+                }
             }, onError: { error in
                 onError(error.localizedDescription)
             }).disposed(by: disposeBag)

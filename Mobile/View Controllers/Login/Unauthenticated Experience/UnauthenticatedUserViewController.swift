@@ -7,48 +7,57 @@
 //
 
 import Foundation
-import Lottie
 
 class UnauthenticatedUserViewController: UIViewController {
-
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var lottieView: UIView!
-    @IBOutlet weak var textLabel: UILabel!
-
-    @IBOutlet weak var loginRegisterButton: UIButton!
-
-    @IBOutlet weak var reportAnOutageButton: DisclosureButton!
-    @IBOutlet weak var checkMyOutageStatusButton: DisclosureButton!
-    @IBOutlet weak var viewOutageMapButton: DisclosureButton!
-    @IBOutlet weak var contactUsButton: DisclosureButton!
-    @IBOutlet weak var policiesTermsButton: DisclosureButton!
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var headerView: UIView! {
+        didSet {
+            headerView.backgroundColor = .primaryColor
+        }
+    }
+    
+    @IBOutlet weak var headerContentView: ButtonControl! {
+        didSet {
+            headerContentView.layer.cornerRadius = 10.0
+            headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        }
+    }
+    
+    @IBOutlet weak var headerViewTitleLabel: UILabel! {
+        didSet {
+            headerViewTitleLabel.font = OpenSans.semibold.of(textStyle: .headline)
+            headerViewTitleLabel.textColor = .actionBlue
+        }
+    }
+    
+    @IBOutlet weak var headerViewDescriptionLabel: UILabel! {
+        didSet {
+            headerViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+            headerViewDescriptionLabel.textColor = .blackText
+        }
+    }
+    
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
+        tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
+
         view.backgroundColor = .primaryColor
 
-        scrollView.indicatorStyle = .white
-        loginRegisterButton.titleLabel!.font =  OpenSans.bold.of(textStyle: .title1)
-        textLabel.font =  OpenSans.regular.of(textStyle: .subheadline)
-
-        let animationView = LOTAnimationView(name: "uu_otp")
-        animationView.frame = CGRect(x: 0, y: 0, width: 230, height: 180)
-        animationView.contentMode = .scaleAspectFill
-        animationView.loopAnimation = true
-
-        lottieView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
-        lottieView.addSubview(animationView)
-        
-        animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        animationView.play()
-
         accessibilitySetup()
+        
     }
 
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        headerView.frame.size = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        tableView.tableHeaderView = headerView
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -66,19 +75,11 @@ class UnauthenticatedUserViewController: UIViewController {
     }
 
     private func accessibilitySetup() {
-        lottieView.isAccessibilityElement = true
-        lottieView.accessibilityLabel = NSLocalizedString("Animation showing home screen payment", comment: "")
-
-        textLabel.accessibilityLabel = textLabel.text
-        
-        reportAnOutageButton.accessibilityLabel = NSLocalizedString("Report an outage", comment: "")
-        checkMyOutageStatusButton.accessibilityLabel = NSLocalizedString("Check my outage status", comment: "")
-        viewOutageMapButton.accessibilityLabel = NSLocalizedString("View outage map", comment: "")
-        contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
-        policiesTermsButton.accessibilityLabel = NSLocalizedString("Policies and terms", comment: "")
+        headerViewTitleLabel.accessibilityLabel = headerViewTitleLabel.text
+        headerViewDescriptionLabel.accessibilityLabel = headerViewDescriptionLabel.text
     }
 
-    @IBAction func onLoginRegisterPress(_ sender: UIButton) {
+    @IBAction private func loginRegisterPress(_ sender: ButtonControl) {
         navigationController?.popViewController(animated: true)
     }
 
@@ -91,11 +92,11 @@ class UnauthenticatedUserViewController: UIViewController {
             switch(segue.identifier) {
             case "reportOutageValidateAccount"?:
                 Analytics.log(event: .reportAnOutageUnAuthOffer)
-                vc.analyticsSource = AnalyticsOutageSource.report
+                vc.analyticsSource = .report
                 break
             case "checkOutageValidateAccount"?:
                 Analytics.log(event: .outageStatusUnAuthOffer)
-                vc.analyticsSource = AnalyticsOutageSource.status
+                vc.analyticsSource = .status
                 break
             default:
                 break

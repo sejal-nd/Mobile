@@ -49,6 +49,8 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var usageToolsStack: UIStackView!
     
     // Bill Graph
+    @IBOutlet private weak var billComparisonTitleContainer: UIView!
+    @IBOutlet private weak var billComparisonDataContainer: UIView!
     @IBOutlet private weak var billGraphDetailContainer: UIView!
     @IBOutlet private weak var billGraphDetailView: UIView! {
         didSet {
@@ -144,13 +146,16 @@ class UsageViewController: AccountPickerViewController {
         }
     }
     
+    @IBOutlet private weak var dropdownContainer: UIView!
     @IBOutlet private weak var dropdownView: BillImpactDropdownView!
     
     @IBOutlet private weak var billComparisonLoadingIndicator: LoadingIndicator!
-    @IBOutlet private weak var graphErrorLabel: UILabel! {
+    @IBOutlet private weak var billComparisonErrorView: UIView!
+    @IBOutlet private weak var billComparisonErrorLabel: UILabel! {
         didSet {
-            graphErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
-            graphErrorLabel.textColor = .blackText
+            billComparisonErrorLabel.font = OpenSans.regular.of(textStyle: .title1)
+            billComparisonErrorLabel.textAlignment = .center
+            billComparisonErrorLabel.textColor = .middleGray
         }
     }
     
@@ -516,6 +521,12 @@ class UsageViewController: AccountPickerViewController {
         viewModel.barDescriptionDateLabelText.drive(graphDetailDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionAvgTempLabelText.drive(graphDetailTemperatureLabel.rx.text).disposed(by: disposeBag)
         viewModel.barDescriptionDetailLabelText.drive(graphDetailDescriptionLabel.rx.text).disposed(by: disposeBag)
+        
+        // Empty State
+        viewModel.billComparisonEmptyStateText
+            .map { $0.attributedString(withLineHeight: 26, textAlignment: .center) }
+            .drive(billComparisonErrorLabel.rx.attributedText)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Screen States
@@ -571,23 +582,31 @@ class UsageViewController: AccountPickerViewController {
         barGraphStackView.isHidden = true
         billGraphDetailContainer.isHidden = true
         dropdownView.isHidden = true
-        graphErrorLabel.isHidden = true
+        billComparisonErrorView.isHidden = true
+        billComparisonDataContainer.isHidden = false
+        billComparisonTitleContainer.isHidden = false
     }
     
     private func showBillComparisonContents() {
         billComparisonLoadingIndicator.isHidden = true
         barGraphStackView.isHidden = false
         billGraphDetailContainer.isHidden = false
+        dropdownContainer.isHidden = false
         dropdownView.isHidden = false
-        graphErrorLabel.isHidden = true
+        billComparisonErrorView.isHidden = true
+        billComparisonDataContainer.isHidden = false
+        billComparisonTitleContainer.isHidden = false
     }
     
     private func showBillComparisonErrorState() {
         billComparisonLoadingIndicator.isHidden = true
         barGraphStackView.isHidden = true
         billGraphDetailContainer.isHidden = true
+        dropdownContainer.isHidden = true
         dropdownView.isHidden = true
-        graphErrorLabel.isHidden = false
+        billComparisonErrorView.isHidden = false
+        billComparisonDataContainer.isHidden = true
+        billComparisonTitleContainer.isHidden = true
     }
     
     // MARK: - Usage Tool Cards
@@ -669,7 +688,7 @@ class UsageViewController: AccountPickerViewController {
             if accountDetail.isHourlyPricing {
                 Analytics.log(event: .hourlyPricing,
                               dimensions: [.hourlyPricingEnrollment: "enrolled"])
-                performSegue(withIdentifier: "hourlyPricingSegue", sender: nil)
+                performSegue(withIdentifier: "hourlyPricingSegue", sender: accountDetail)
             } else {
                 Analytics.log(event: .hourlyPricing,
                               dimensions: [.hourlyPricingEnrollment: "unenrolled"])
@@ -684,9 +703,8 @@ class UsageViewController: AccountPickerViewController {
                 present(safariVc, animated: true, completion: nil)
             } else {
                 Analytics.log(event: .viewPeakTimeSavings)
+                performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
             }
-            
-            performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
         }
     }
     
@@ -695,7 +713,6 @@ class UsageViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let accountDetail = sender as? AccountDetail else { return }
-        
         switch segue.destination {
         case let vc as SmartEnergyRewardsViewController:
             vc.accountDetail = accountDetail

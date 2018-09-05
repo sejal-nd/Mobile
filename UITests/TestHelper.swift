@@ -71,15 +71,14 @@ class ExelonUITestCase: XCTestCase{
         ACTLabel.labelStep("Signing in...")
         elementsQuery.buttons["Sign In"].tap()
     
-        XCTAssert(app.tabBars.buttons["Home"].waitForExistence(timeout: 10))
+        XCTAssert(app.tabBars.buttons["Home"].waitForExistence(timeout: 20))
         ACTLabel.labelStep("Signed in")
-    
     }
 
     func selectTab(tabName: String){
         ACTLabel.labelStep("Pre-select tab \(tabName)")
         let tab = app.tabBars.buttons[tabName]
-        XCTAssert(tab.waitForExistence(timeout: 10))
+        XCTAssert(tab.waitForExistence(timeout: 20))
         tab.tap()
         sleep(1)
         ACTLabel.labelStep("Post-select tab \(tabName)")

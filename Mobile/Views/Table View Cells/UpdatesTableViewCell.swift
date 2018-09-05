@@ -10,7 +10,7 @@ import UIKit
 
 class UpdatesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var innerContentView: ButtonControl!
+    @IBOutlet weak var innerContentView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     
@@ -22,7 +22,6 @@ class UpdatesTableViewCell: UITableViewCell {
         
         innerContentView.layer.cornerRadius = 10.0
         innerContentView.layer.masksToBounds = true
-        innerContentView.backgroundColorOnPress = .softGray
         
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 2.0)
         
@@ -32,5 +31,38 @@ class UpdatesTableViewCell: UITableViewCell {
         detailLabel.textColor = .deepGray
         detailLabel.font = SystemFont.regular.of(textStyle: .subheadline)
     }
-
+    
+    
+    // MARK: - Cell Selection
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        
+        if highlighted {
+            innerContentView.backgroundColor = .softGray
+        } else {
+            innerContentView.backgroundColor = .white
+        }
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        if selected {
+            innerContentView.backgroundColor = .softGray
+        } else {
+            innerContentView.backgroundColor = .white
+        }
+    }
+    
+    
+    // MARK: - Configure
+    
+    public func configure(title: String, detail: String) {
+        titleLabel.text = title
+        detailLabel.text = detail
+        
+        innerContentView.accessibilityLabel = "\(title): \(detail)"
+    }
+    
 }

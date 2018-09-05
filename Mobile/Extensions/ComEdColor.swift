@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIColor {
+    
     @nonobjc static var primaryColor: UIColor {
         return UIColor(red: 206/255, green: 17/255, blue: 65/255, alpha: 1)
     }
@@ -26,4 +27,9 @@ extension UIColor {
     @nonobjc static var primaryColorAccountPicker: UIColor {
         return UIColor(red: 187/255, green: 21/255, blue: 65/255, alpha: 1)
     }
+    
+    @nonobjc static var switchBackgroundColor: UIColor {
+        return UIColor(red: 61/255, green: 3/255, blue: 17/255, alpha: 1)
+    }
+    
 }

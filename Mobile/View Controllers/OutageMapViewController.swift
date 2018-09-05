@@ -17,11 +17,21 @@ class OutageMapViewController: UIViewController {
     
     var unauthenticatedExperience = false
     
+    var hasPressedStreetlightOutageMapButton: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Outage Map", comment: "")
-
+        let url: URL!
+        
+        if hasPressedStreetlightOutageMapButton {
+            title = NSLocalizedString("Streetlight Map", comment: "")
+            url = URL(string: "https://comed-quat.streetlightoutages.com/public/default.html")!
+        } else {
+            title = NSLocalizedString("Outage Map", comment: "")
+            url = URL(string: Environment.shared.outageMapUrl)!
+        }
+            
         webView.navigationDelegate = self
         view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -30,8 +40,7 @@ class OutageMapViewController: UIViewController {
         webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         webView.isHidden = true
-
-        let url = URL(string: Environment.shared.outageMapUrl)!
+        
         webView.load(URLRequest(url: url))
         webView.isAccessibilityElement = false
         webView.accessibilityLabel = NSLocalizedString("This is an outage map showing the areas that are currently experiencing an outage. You can check your outage status on the main Outage section of the app.", comment: "")

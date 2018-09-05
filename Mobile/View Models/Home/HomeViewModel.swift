@@ -22,6 +22,7 @@ class HomeViewModel {
     private let usageService: UsageService
     private let authService: AuthenticationService
     private let outageService: OutageService
+    private let alertsService: AlertsService
     
     let fetchData = PublishSubject<FetchingAccountState>()
     let fetchDataObservable: Observable<FetchingAccountState>
@@ -43,7 +44,8 @@ class HomeViewModel {
                   paymentService: PaymentService,
                   usageService: UsageService,
                   authService: AuthenticationService,
-                  outageService: OutageService) {
+                  outageService: OutageService,
+                  alertsService: AlertsService) {
         self.fetchDataObservable = fetchData.share()
         self.accountService = accountService
         self.weatherService = weatherService
@@ -52,12 +54,14 @@ class HomeViewModel {
         self.usageService = usageService
         self.authService = authService
         self.outageService = outageService
+        self.alertsService = alertsService
     }
     
     private(set) lazy var weatherViewModel =
         HomeWeatherViewModel(accountDetailEvents: accountDetailEvents,
                              weatherService: weatherService,
-                             usageService: usageService)
+                             usageService: usageService,
+                             accountDetailTracker: accountDetailTracker)
     
     private(set) lazy var billCardViewModel =
         HomeBillCardViewModel(fetchData: fetchDataObservable,
@@ -154,26 +158,13 @@ class HomeViewModel {
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowUsageCard: Driver<Bool> = accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()).map { accountDetail in
-        guard let serviceType = accountDetail.serviceType else { return false }
-        guard let _ = accountDetail.premiseNumber else { return false }
-        
-        if accountDetail.isBGEControlGroup {
-            return accountDetail.isSERAccount // BGE Control Group + SER enrollment get the SER graph on usage card
+    private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = fetchDataObservable
+        .toAsyncRequest { [weak self] _ in
+            guard let this = self else { return .empty() }
+            return this.alertsService.fetchOpcoUpdates(bannerOnly: true)
+                .map { $0.first }
+                .catchError { _ in .just(nil) }
         }
-        
-        if !accountDetail.isResidential || accountDetail.isFinaled {
-            return false
-        }
-        
-        // Must have valid serviceType
-        if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-            return false
-        }
-        
-        return true
-    }
-    
-    private(set) lazy var shouldShowProjectedBillCard: Driver<Bool> = projectedBillCardViewModel.cardShouldBeHidden.not().asDriver(onErrorDriveWith: .empty())
-    
+        .elements()
+        .asDriver(onErrorDriveWith: .empty())
 }
