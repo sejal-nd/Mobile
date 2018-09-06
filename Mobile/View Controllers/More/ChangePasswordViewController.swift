@@ -171,20 +171,10 @@ class ChangePasswordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setWhiteNavBar()
-        
         if sentFromLogin {
-            navigationController?.view.backgroundColor = .primaryColor
-            navigationController?.navigationBar.barTintColor = .primaryColor
-            navigationController?.navigationBar.isTranslucent = false
-            
-            let titleDict: [NSAttributedStringKey: Any] = [
-                .foregroundColor: UIColor.white,
-                .font: OpenSans.bold.of(size: 18)
-            ]
-            navigationController?.navigationBar.titleTextAttributes = titleDict
-            
-            navigationController?.setNavigationBarHidden(false, animated: true)
+            navigationController?.setColoredNavBar()
+        } else {
+            navigationController?.setWhiteNavBar()
         }
     }
     

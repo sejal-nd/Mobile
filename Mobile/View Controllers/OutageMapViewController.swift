@@ -17,13 +17,12 @@ class OutageMapViewController: UIViewController {
     
     var unauthenticatedExperience = false
     
-    var hasPressedStreetlightOutageMapButton: Bool!
+    var hasPressedStreetlightOutageMapButton = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url: URL!
-        
+        let url: URL
         if hasPressedStreetlightOutageMapButton {
             title = NSLocalizedString("Streetlight Map", comment: "")
             url = URL(string: "https://comed-quat.streetlightoutages.com/public/default.html")!
@@ -48,20 +47,7 @@ class OutageMapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar(hidesBottomBorder: true)
-        } else { // Sent from unauthenticated user experience
-            navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-            navigationController?.navigationBar.barTintColor = .primaryColor
-            navigationController?.navigationBar.isTranslucent = false
-            
-            let titleDict: [NSAttributedStringKey: Any] = [
-                .foregroundColor: UIColor.white,
-                .font: OpenSans.bold.of(size: 18)
-            ]
-            navigationController?.navigationBar.titleTextAttributes = titleDict
-        }
+        navigationController?.setColoredNavBar(hidesBottomBorder: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
