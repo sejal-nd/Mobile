@@ -156,16 +156,7 @@ class ForgotUsernameViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.isTranslucent = false
-
-        let titleDict: [NSAttributedStringKey: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setColoredNavBar()
     }
     
     @objc func onCancelPress() {

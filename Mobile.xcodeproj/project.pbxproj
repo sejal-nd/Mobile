@@ -178,6 +178,7 @@
 		35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B062109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B072109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
+		352CB2072140448C00DAF045 /* UINavigationController+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CB2062140448C00DAF045 /* UINavigationController+Style.swift */; };
 		35376C6720F8FFC8007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		35376C6820F8FFC9007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		35376C6920F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
@@ -2316,6 +2317,7 @@
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
+		352CB2062140448C00DAF045 /* UINavigationController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Style.swift"; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
@@ -4171,6 +4173,7 @@
 				35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */,
 				35277B042109FC1000411297 /* ViewControllerAlertable.swift */,
 				35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */,
+				352CB2062140448C00DAF045 /* UINavigationController+Style.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6237,6 +6240,7 @@
 				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				9C4C95CC203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
+				352CB2072140448C00DAF045 /* UINavigationController+Style.swift in Sources */,
 				E8400E691FE05F0C0064E242 /* MockWalletService.swift in Sources */,
 				B01748972135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				82AC2A161FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
