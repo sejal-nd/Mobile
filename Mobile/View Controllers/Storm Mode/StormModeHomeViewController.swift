@@ -39,9 +39,12 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var footerTextView: DataDetectorTextView! {
         didSet {
             footerTextView.text = "To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123\n\nFor downed or sparking power lines or dim/flickering lights, please call 1-877-778-2222"
-            footerTextView.font = OpenSans.regular.of(textStyle: .footnote)
+            
+            footerTextView.textContainerInset = .zero
             footerTextView.textColor = .softGray
-            footerTextView.tintColor = .white
+            footerTextView.tintColor = .white // For phone numbers
+            //footerTextView.text = viewModel.footerTextViewText
+            footerTextView.linkTapDelegate = self
         }
     }
     
@@ -167,6 +170,14 @@ extension StormModeHomeViewController: OutageStatusButtonDelegate {
 //                present(alert, animated: true, completion: nil)
 //            }
 //        }
+    }
+    
+}
+
+extension StormModeHomeViewController: DataDetectorTextViewLinkTapDelegate {
+    
+    func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
+        //Analytics.log(event: .outageAuthEmergencyCall)
     }
     
 }
