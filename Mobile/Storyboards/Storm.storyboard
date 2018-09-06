@@ -273,6 +273,7 @@
                         <outlet property="loadingAnimationView" destination="4mv-Ce-wvt" id="nDj-OL-Odf"/>
                         <outlet property="loadingView" destination="z9t-CL-fDL" id="flB-AU-INU"/>
                         <outlet property="outageStatusButton" destination="gMu-am-j3r" id="NdO-h4-f9X"/>
+                        <outlet property="scrollView" destination="Ec7-2S-gPb" id="kM5-jg-CBh"/>
                         <outlet property="tableView" destination="Ec7-2S-gPb" id="3cj-rJ-Avr"/>
                     </connections>
                 </viewController>
