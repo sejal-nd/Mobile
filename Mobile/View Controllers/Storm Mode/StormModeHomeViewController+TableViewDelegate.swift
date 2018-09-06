@@ -25,18 +25,18 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
         case 0:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .black)
+                cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .black)
+                cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
             default:
                 return UITableViewCell()
             }
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_nav_bill_white"), text: NSLocalizedString("Bill", comment: ""), backgroundColor: .black)
+                cell.configure(image: #imageLiteral(resourceName: "ic_nav_bill_white"), text: NSLocalizedString("Bill", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_nav_more_white"), text: NSLocalizedString("More", comment: ""), backgroundColor: .black)
+                cell.configure(image: #imageLiteral(resourceName: "ic_nav_more_white"), text: NSLocalizedString("More", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
             default:
                 return UITableViewCell()
             }
@@ -84,7 +84,7 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
         
         guard section == 1 else { return nil }
         
-        headerView.configure(text: NSLocalizedString("More Options", comment: ""), backgroundColor: .black)
+        headerView.configure(text: NSLocalizedString("More Options", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
         
         return headerView
     }

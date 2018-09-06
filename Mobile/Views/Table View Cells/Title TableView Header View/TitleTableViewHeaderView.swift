@@ -15,21 +15,23 @@ class TitleTableViewHeaderView: UITableViewHeaderFooterView {
             colorView.backgroundColor = .primaryColor
         }
     }
-    
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .white
             titleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         }
     }
+    @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
     
     
     // MARK: - Configuration
     
-    public func configure(text: String?, backgroundColor: UIColor = .primaryColor) {
+    public func configure(text: String?, backgroundColor: UIColor = .primaryColor, shouldConstrainWidth: Bool = false) {
         titleLabel.text = text
         
         colorView.backgroundColor = backgroundColor
+        
+        contentViewWidthConstraint.isActive = shouldConstrainWidth
     }
     
 }

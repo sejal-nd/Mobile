@@ -10,6 +10,7 @@ import UIKit
 
 class TitleTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var contentContainerView: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
@@ -17,6 +18,13 @@ class TitleTableViewCell: UITableViewCell {
             titleLabel.font = SystemFont.medium.of(textStyle: .headline)
         }
     }
+    @IBOutlet weak var detailLabel: UILabel! {
+        didSet {
+            detailLabel.textColor = .white
+            detailLabel.font = SystemFont.medium.of(textStyle: .headline)
+        }
+    }
+    @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
     
     private var bgColor = UIColor.primaryColor
     
@@ -26,7 +34,10 @@ class TitleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        backgroundColor = bgColor
+        contentContainerView.backgroundColor = bgColor
+        
+        detailLabel.isHidden = true
+        
     }
     
     
@@ -36,9 +47,9 @@ class TitleTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         if selected {
-            backgroundColor = bgColor.darker(by: 10)
+            contentContainerView.backgroundColor = bgColor.darker(by: 10)
         } else {
-            backgroundColor = bgColor
+            contentContainerView.backgroundColor = bgColor
         }
     }
     
@@ -46,19 +57,25 @@ class TitleTableViewCell: UITableViewCell {
         super.setHighlighted(highlighted, animated: animated)
         
         if highlighted {
-            backgroundColor = bgColor.darker(by: 10)
+            contentContainerView.backgroundColor = bgColor.darker(by: 10)
         } else {
-            backgroundColor = bgColor
+            contentContainerView.backgroundColor = bgColor
         }
     }
     
     
     // MARK: - Configure
     
-    public func configure(image: UIImage, text: String, backgroundColor: UIColor) {
+    public func configure(image: UIImage, text: String, detailText: String? = nil, backgroundColor: UIColor, shouldConstrainWidth: Bool = false) {
         iconImageView.image = image
         titleLabel.text = text
-        self.backgroundColor = backgroundColor
+        detailLabel.text = detailText
+        
+        detailLabel.isHidden = detailText != nil ? false : true
+        
+        contentViewWidthConstraint.isActive = shouldConstrainWidth
+
+        contentContainerView.backgroundColor = backgroundColor
         
         bgColor = backgroundColor
     }
