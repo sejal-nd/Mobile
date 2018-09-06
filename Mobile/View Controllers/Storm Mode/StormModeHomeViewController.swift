@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import Lottie
 
 class StormModeHomeViewController: AccountPickerViewController {
     
@@ -19,7 +20,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
             headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-            headerContentView.backgroundColor = .darkGray
+            headerContentView.backgroundColor = .lightGray
         }
     }
     
@@ -44,7 +45,13 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingAnimationView: UIView!
+    @IBOutlet weak var outageStatusButton: OutageStatusButton!
+    
     private let viewModel = StormModeHomeViewModel(authService: ServiceFactory.createAuthenticationService())
+    
+    private var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")
     
     let disposeBag = DisposeBag()
     
@@ -66,6 +73,17 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
+        
+        outageStatusButton.delegate = self
+        
+        loadingLottieAnimation.frame = CGRect(x: 0, y: 0, width: loadingAnimationView.frame.size.width, height: loadingAnimationView.frame.size.height)
+        loadingLottieAnimation.loopAnimation = true
+        loadingLottieAnimation.contentMode = .scaleAspectFill
+        loadingAnimationView.addSubview(loadingLottieAnimation)
+        loadingLottieAnimation.play()
+        
+        loadingView.isHidden = true
+        
         
 //        accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
 //            guard let `self` = self else { return }
@@ -130,6 +148,25 @@ extension StormModeHomeViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         //getOutageStatus()
+    }
+    
+}
+
+extension StormModeHomeViewController: OutageStatusButtonDelegate {
+    
+    func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
+        print("Outage Tapped")
+//        Analytics.log(event: .outageStatusDetails)
+        
+//        if viewModel.currentOutageStatus!.flagNoPay && Environment.shared.opco != .bge  {
+//            tabBarController?.selectedIndex = 1 // Jump to Bill tab
+//        } else {
+//            if let message = viewModel.currentOutageStatus!.outageDescription {
+//                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+//                present(alert, animated: true, completion: nil)
+//            }
+//        }
     }
     
 }
