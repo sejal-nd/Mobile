@@ -33,6 +33,7 @@ class DisclosureButton: UIButton {
     }
     
     func commonInit() {
+        backgroundColor = .clear
         Bundle.main.loadNibNamed(DisclosureButton.className, owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
