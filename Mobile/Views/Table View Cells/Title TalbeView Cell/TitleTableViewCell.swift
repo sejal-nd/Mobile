@@ -36,7 +36,7 @@ class TitleTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         if selected {
-            backgroundColor = UIColor.primaryColor.darker(by: 10)
+            backgroundColor = bgColor.darker(by: 10)
         } else {
             backgroundColor = bgColor
         }
@@ -46,7 +46,7 @@ class TitleTableViewCell: UITableViewCell {
         super.setHighlighted(highlighted, animated: animated)
         
         if highlighted {
-            backgroundColor = UIColor.primaryColor.darker(by: 10)
+            backgroundColor = bgColor.darker(by: 10)
         } else {
             backgroundColor = bgColor
         }
