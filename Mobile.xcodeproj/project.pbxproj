@@ -205,6 +205,7 @@
 		358DE0A521021471002C544E /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		358DE0A821021B64002C544E /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
 		358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A921021B7A002C544E /* UnavailableView.swift */; };
+		359BB26321405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6BE211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BD211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift */; };
@@ -2324,6 +2325,7 @@
 		358DE0A421021471002C544E /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
 		358DE0A721021B64002C544E /* UnavailableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnavailableView.xib; sourceTree = "<group>"; };
 		358DE0A921021B7A002C544E /* UnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableView.swift; sourceTree = "<group>"; };
+		359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StormModeHomeViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
 		35A6C6BD211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnauthenticatedUserViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -4196,6 +4198,7 @@
 			isa = PBXGroup;
 			children = (
 				B01748912135D2C50039D0C6 /* StormModeHomeViewController.swift */,
+				359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */,
 			);
 			path = "Storm Mode";
 			sourceTree = "<group>";
@@ -6353,6 +6356,7 @@
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B092184D20A24CA400695888 /* MockData.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
+				359BB26321405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
 				9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,

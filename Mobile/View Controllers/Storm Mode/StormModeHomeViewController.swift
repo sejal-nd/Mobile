@@ -9,9 +9,40 @@
 import RxSwift
 import RxCocoa
 
-class StormModeHomeViewController: UIViewController {
+class StormModeHomeViewController: AccountPickerViewController {
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet private weak var exitButton: UIButton!
+    
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerContentView: ButtonControl! {
+        didSet {
+            headerContentView.layer.cornerRadius = 10.0
+            headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            headerContentView.backgroundColor = .darkGray
+        }
+    }
+    
+    @IBOutlet weak var headerViewTitleLabel: UILabel! {
+        didSet {
+            headerViewTitleLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        }
+    }
+    
+    @IBOutlet weak var headerViewDescriptionLabel: UILabel! {
+        didSet {
+            headerViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        }
+    }
+    
+    @IBOutlet weak var footerTextView: DataDetectorTextView! {
+        didSet {
+            footerTextView.text = "To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123\n\nFor downed or sparking power lines or dim/flickering lights, please call 1-877-778-2222"
+            footerTextView.font = OpenSans.regular.of(textStyle: .footnote)
+            footerTextView.textColor = .softGray
+            footerTextView.tintColor = .white
+        }
+    }
     
     private let viewModel = StormModeHomeViewModel(authService: ServiceFactory.createAuthenticationService())
     
@@ -19,6 +50,9 @@ class StormModeHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
+        tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
         
         exitButton.isHidden = true
         
@@ -29,6 +63,44 @@ class StormModeHomeViewController: UIViewController {
         exitButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in self?.returnToMainApp() })
             .disposed(by: disposeBag)
+        
+        accountPicker.delegate = self
+        accountPicker.parentViewController = self
+        
+//        accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
+//            guard let `self` = self else { return }
+//            switch(state) {
+//            case .loadingAccounts:
+//                self.accountContentView.isHidden = true
+//                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+//                self.gasOnlyView.isHidden = true
+//                self.errorLabel.isHidden = true
+//                self.customErrorView.isHidden = true
+//                self.loadingView.isHidden = true
+//                self.noNetworkConnectionView.isHidden = true
+//                self.maintenanceModeView.isHidden = true
+//                self.setRefreshControlEnabled(enabled: false)
+//            case .readyToFetchData:
+//                if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
+//                    self.getOutageStatus()
+//                } else if self.viewModel.currentOutageStatus == nil {
+//                    self.getOutageStatus()
+//                }
+//            }
+//        }).disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        headerView.frame.size = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        tableView.tableHeaderView = headerView
     }
     
     private func stormModeEnded() {
@@ -50,6 +122,14 @@ class StormModeHomeViewController: UIViewController {
         guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else { return }
         window.rootViewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateInitialViewController()
+    }
+    
+}
+
+extension StormModeHomeViewController: AccountPickerDelegate {
+    
+    func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        //getOutageStatus()
     }
     
 }

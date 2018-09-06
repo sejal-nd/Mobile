@@ -26,8 +26,10 @@ class TitleTableViewHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Configuration
     
-    public func configure(text: String?) {
+    public func configure(text: String?, backgroundColor: UIColor = .primaryColor) {
         titleLabel.text = text
+        
+        self.backgroundColor = backgroundColor
     }
     
 }

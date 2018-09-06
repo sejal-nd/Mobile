@@ -18,13 +18,15 @@ class TitleTableViewCell: UITableViewCell {
         }
     }
     
+    private var bgColor = UIColor.primaryColor
+    
     
     // MARK: - View Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        backgroundColor = .primaryColor
+        backgroundColor = bgColor
     }
     
     
@@ -36,7 +38,7 @@ class TitleTableViewCell: UITableViewCell {
         if selected {
             backgroundColor = UIColor.primaryColor.darker(by: 10)
         } else {
-            backgroundColor = .primaryColor
+            backgroundColor = bgColor
         }
     }
     
@@ -46,16 +48,19 @@ class TitleTableViewCell: UITableViewCell {
         if highlighted {
             backgroundColor = UIColor.primaryColor.darker(by: 10)
         } else {
-            backgroundColor = .primaryColor
+            backgroundColor = bgColor
         }
     }
     
     
     // MARK: - Configure
     
-    public func configure(image: UIImage, text: String) {
+    public func configure(image: UIImage, text: String, backgroundColor: UIColor) {
         iconImageView.image = image
         titleLabel.text = text
+        self.backgroundColor = backgroundColor
+        
+        bgColor = backgroundColor
     }
     
 }
