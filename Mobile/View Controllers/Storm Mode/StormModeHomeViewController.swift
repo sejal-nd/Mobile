@@ -13,14 +13,26 @@ import Lottie
 class StormModeHomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet private weak var exitButton: UIButton!
     
+    @IBOutlet weak var exitView: UIView! {
+        didSet {
+            exitView.isHidden = true
+        }
+    }
     @IBOutlet weak var headerView: UIView!
+
+    @IBOutlet weak var exitTextLabel: UILabel!
+    @IBOutlet weak var exitButton: ButtonControl! {
+        didSet {
+            exitButton.layer.cornerRadius = 10.0
+            exitButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+        }
+    }
+    
     @IBOutlet weak var headerContentView: ButtonControl! {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
-            headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-            headerContentView.backgroundColor = .lightGray
+            headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
         }
     }
     
@@ -58,21 +70,23 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
+
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
         
-        exitButton.isHidden = true
-        
         viewModel.stormModeEnded
             .drive(onNext: { [weak self] in self?.stormModeEnded() })
             .disposed(by: disposeBag)
         
-        exitButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in self?.returnToMainApp() })
-            .disposed(by: disposeBag)
+        // re implement
+//        exitButton.rx.tap.asDriver()
+//            .drive(onNext: { [weak self] in self?.returnToMainApp() })
+//            .disposed(by: disposeBag)
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
@@ -124,9 +138,23 @@ class StormModeHomeViewController: AccountPickerViewController {
         tableView.tableHeaderView = headerView
     }
     
+    
+    // MARK: - Actions
+    
+
+    @IBAction func exitStormMode(_ sender: Any) {
+        returnToMainApp()
+    }
+    
+    
+    // MARK: - Helper
+    
     private func stormModeEnded() {
         let noAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel)
-        { [weak self] _ in self?.exitButton.isHidden = false }
+        { [weak self] _ in
+            self?.exitView.isHidden = false
+            self?.headerContentView.isHidden = true
+        }
         
         let yesAction = UIAlertAction(title: NSLocalizedString("Return", comment: ""), style: .default)
         { [weak self] _ in
@@ -159,6 +187,7 @@ extension StormModeHomeViewController: OutageStatusButtonDelegate {
     
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
         print("Outage Tapped")
+        stormModeEnded() // temp
 //        Analytics.log(event: .outageStatusDetails)
         
 //        if viewModel.currentOutageStatus!.flagNoPay && Environment.shared.opco != .bge  {
@@ -177,6 +206,7 @@ extension StormModeHomeViewController: OutageStatusButtonDelegate {
 extension StormModeHomeViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
+        print("INTERACTION")
         //Analytics.log(event: .outageAuthEmergencyCall)
     }
     

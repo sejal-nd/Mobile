@@ -206,6 +206,8 @@
 		358DE0A821021B64002C544E /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
 		358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A921021B7A002C544E /* UnavailableView.swift */; };
 		359BB26321405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */; };
+		359BB2642141AD6C00FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */; };
+		359BB2652141AD6C00FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6BE211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BD211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift */; };
@@ -6705,6 +6707,7 @@
 				B094A63F210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B092184F20A24CA400695888 /* MockData.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
+				359BB2652141AD6C00FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */,
 				B085C44920FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757422113582D00E73542 /* DateParser.swift in Sources */,
@@ -7053,6 +7056,7 @@
 				B094A63E210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B092184E20A24CA400695888 /* MockData.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
+				359BB2642141AD6C00FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */,
 				B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
