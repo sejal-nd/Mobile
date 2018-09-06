@@ -16,4 +16,9 @@ struct OpcoUpdate: Mappable {
         try title = map.from("Title")
         try message = map.from("Message")
     }
+    
+    init(title: String, message: String) {
+        self.title = title
+        self.message = message
+    }
 }

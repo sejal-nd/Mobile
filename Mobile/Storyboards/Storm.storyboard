@@ -112,7 +112,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="D22-9R-29w">
                                                                     <rect key="frame" x="16" y="16" width="311" height="66"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_storm" translatesAutoresizingMaskIntoConstraints="NO" id="12w-0O-Cje">
+                                                                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_storm" translatesAutoresizingMaskIntoConstraints="NO" id="12w-0O-Cje">
                                                                             <rect key="frame" x="0.0" y="0.0" width="58" height="66"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="58" id="7JU-pR-lB7"/>
@@ -121,13 +121,13 @@
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CAE-c1-zpK">
                                                                             <rect key="frame" x="66" y="0.0" width="229" height="66"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Storm Mode is in effect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4G-79-UPu">
+                                                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Storm Mode is in effect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4G-79-UPu">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="229" height="20.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Due to severe weather, limited features are available to allow us to better serve you." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFG-l4-4FT">
+                                                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" text="Due to severe weather, limited features are available to allow us to better serve you." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFG-l4-4FT">
                                                                                     <rect key="frame" x="0.0" y="20.5" width="229" height="45.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -135,7 +135,7 @@
                                                                                 </label>
                                                                             </subviews>
                                                                         </stackView>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret_white" translatesAutoresizingMaskIntoConstraints="NO" id="k0c-e3-K9c">
+                                                                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret_white" translatesAutoresizingMaskIntoConstraints="NO" id="k0c-e3-K9c">
                                                                             <rect key="frame" x="303" y="0.0" width="8" height="66"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="8" id="EUT-z2-sLj"/>
@@ -160,6 +160,10 @@
                                                                     <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="exitStormMode:" destination="7nx-bF-5mO" eventType="valueChanged" id="nEF-Wg-csO"/>
+                                                                <action selector="showStormModeDetails:" destination="7nx-bF-5mO" eventType="touchUpInside" id="jhe-OZ-oj1"/>
+                                                            </connections>
                                                         </view>
                                                     </subviews>
                                                 </stackView>
@@ -266,7 +270,7 @@
                         <outlet property="exitTextLabel" destination="4fK-Yv-I4G" id="BEe-Xk-VeA"/>
                         <outlet property="exitView" destination="GsK-4K-Hee" id="uke-rr-O1Z"/>
                         <outlet property="footerTextView" destination="s8A-H1-Rf9" id="CUo-C8-qla"/>
-                        <outlet property="headerContentView" destination="kAd-jD-Fyb" id="5G8-bc-ohp"/>
+                        <outlet property="headerContentView" destination="kAd-jD-Fyb" id="NRW-Cf-k4g"/>
                         <outlet property="headerView" destination="DTT-Yy-7Ip" id="byk-vs-0on"/>
                         <outlet property="headerViewDescriptionLabel" destination="KFG-l4-4FT" id="wad-D4-Z6E"/>
                         <outlet property="headerViewTitleLabel" destination="f4G-79-UPu" id="hJj-0Z-IUn"/>
@@ -275,6 +279,7 @@
                         <outlet property="outageStatusButton" destination="gMu-am-j3r" id="NdO-h4-f9X"/>
                         <outlet property="scrollView" destination="Ec7-2S-gPb" id="kM5-jg-CBh"/>
                         <outlet property="tableView" destination="Ec7-2S-gPb" id="3cj-rJ-Avr"/>
+                        <segue destination="sPB-eX-Wol" kind="show" identifier="UpdatesDetailSegue" id="dl6-MB-aP3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YT-28-unr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -297,6 +302,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYc-V2-m2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1012" y="83.208395802098963"/>
+        </scene>
+        <!--UpdatesDetailViewController-->
+        <scene sceneID="Wi8-W2-eRL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Updates" referencedIdentifier="UpdatesDetailViewController" id="sPB-eX-Wol" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eMN-WW-UKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2817" y="-263"/>
         </scene>
     </scenes>
     <resources>

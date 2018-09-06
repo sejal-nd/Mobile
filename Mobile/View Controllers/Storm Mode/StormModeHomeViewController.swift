@@ -32,6 +32,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var headerContentView: ButtonControl! {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
+            
             headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
         }
     }
@@ -139,8 +140,12 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     
+
     // MARK: - Actions
     
+    @IBAction func showStormModeDetails(_ sender: Any) {
+        performSegue(withIdentifier: "UpdatesDetailSegue", sender: nil)
+    }
 
     @IBAction func exitStormMode(_ sender: Any) {
         returnToMainApp()
@@ -171,6 +176,15 @@ class StormModeHomeViewController: AccountPickerViewController {
         guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else { return }
         window.rootViewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateInitialViewController()
+    }
+    
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? UpdatesDetailViewController {
+            vc.opcoUpdate = OpcoUpdate(title: "Hello", message: "World")
+        }
     }
     
 }
