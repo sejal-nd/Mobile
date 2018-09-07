@@ -60,15 +60,17 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
+    @IBOutlet weak var gasOnlyView: UIView!
+    
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var loadingAnimationView: UIView!
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
     
+    private var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")
+    private var refreshControl: UIRefreshControl?
+    
     let viewModel = StormModeHomeViewModel(authService: ServiceFactory.createAuthenticationService(),
                                                    outageService: ServiceFactory.createOutageService())
-    
-    private var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")
-    var refreshControl: UIRefreshControl?
     
     let disposeBag = DisposeBag()
     
@@ -109,7 +111,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             case .loadingAccounts:
                 //self.accountContentView.isHidden = true
                 //self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
-                //self.gasOnlyView.isHidden = true
+                self.gasOnlyView.isHidden = true
                 //self.errorLabel.isHidden = true
                 //self.customErrorView.isHidden = true
                 self.loadingView.isHidden = true
@@ -180,7 +182,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 // Hide everything else
 //                self.accountContentView.isHidden = true
 //                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
-//                self.gasOnlyView.isHidden = true
+                self.gasOnlyView.isHidden = true
 //                self.maintenanceModeView.isHidden = true
             })
     }
@@ -209,7 +211,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     func getOutageStatus() {
         //accountContentView.isHidden = true
         //gasOnlyTextViewBottomSpaceConstraint.isActive = false
-        //gasOnlyView.isHidden = true
+        gasOnlyView.isHidden = true
         //errorLabel.isHidden = true
         //customErrorView.isHidden = true
         loadingView.isHidden = false
@@ -269,7 +271,21 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     func updateContent(outageJustReported: Bool) {
+        guard let currentOutageStatus = viewModel.currentOutageStatus  else { return }
+        
+        // Update after just reporting outage
         tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        
+        // Show/hide the top level container views
+        if currentOutageStatus.flagGasOnly {
+            //gasOnlyTextViewBottomSpaceConstraint.isActive = true
+            gasOnlyView.isHidden = false
+            //accountContentView.isHidden = true
+        } else {
+            //gasOnlyTextViewBottomSpaceConstraint.isActive = false
+            gasOnlyView.isHidden = true
+            //accountContentView.isHidden = false
+        }
     }
     
     @objc private func killRefresh() -> Void {

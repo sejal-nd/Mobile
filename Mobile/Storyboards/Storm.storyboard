@@ -214,20 +214,59 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                 </textView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAz-Ed-8Hy">
+                                                    <rect key="frame" x="0.0" y="258" width="343" height="369"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="qfu-kV-Gsd">
+                                                            <rect key="frame" x="109" y="70" width="125" height="126"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This account receives gas service only" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-Xw-UzD">
+                                                            <rect key="frame" x="46" y="216" width="251" height="57.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-Gn-JzO" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                            <rect key="frame" x="46" y="296.5" width="251" height="43.5"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                                        </textView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="qfu-kV-Gsd" firstAttribute="top" secondItem="kAz-Ed-8Hy" secondAttribute="top" constant="70" id="25w-aA-py0"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Zga-Xw-UzD" secondAttribute="trailing" constant="46" id="EkX-Vv-ncq"/>
+                                                        <constraint firstItem="eiY-Gn-JzO" firstAttribute="leading" secondItem="kAz-Ed-8Hy" secondAttribute="leading" constant="46" id="UyT-Vj-n6H"/>
+                                                        <constraint firstItem="qfu-kV-Gsd" firstAttribute="centerX" secondItem="kAz-Ed-8Hy" secondAttribute="centerX" id="ZAW-FQ-IwH"/>
+                                                        <constraint firstItem="eiY-Gn-JzO" firstAttribute="centerX" secondItem="kAz-Ed-8Hy" secondAttribute="centerX" id="ekp-9P-ghL"/>
+                                                        <constraint firstAttribute="bottom" secondItem="eiY-Gn-JzO" secondAttribute="bottom" constant="29" id="kso-oZ-hsn"/>
+                                                        <constraint firstItem="eiY-Gn-JzO" firstAttribute="top" secondItem="Zga-Xw-UzD" secondAttribute="bottom" constant="23" id="ldU-bC-2hj"/>
+                                                        <constraint firstAttribute="trailing" secondItem="eiY-Gn-JzO" secondAttribute="trailing" constant="46" id="sUb-gy-fCE"/>
+                                                        <constraint firstItem="Zga-Xw-UzD" firstAttribute="leading" secondItem="kAz-Ed-8Hy" secondAttribute="leading" constant="46" id="u29-HZ-cUC"/>
+                                                        <constraint firstItem="Zga-Xw-UzD" firstAttribute="top" secondItem="qfu-kV-Gsd" secondAttribute="bottom" constant="20" id="x3V-sn-bHm"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="V0G-ut-vCb" firstAttribute="leading" secondItem="FHb-UX-xqs" secondAttribute="leading" id="4BY-hO-d0y"/>
                                                 <constraint firstItem="z9t-CL-fDL" firstAttribute="centerX" secondItem="FHb-UX-xqs" secondAttribute="centerX" id="6WE-TS-RMR"/>
                                                 <constraint firstAttribute="bottom" secondItem="s8A-H1-Rf9" secondAttribute="bottom" constant="24" id="F0R-cm-zac"/>
+                                                <constraint firstAttribute="trailing" secondItem="kAz-Ed-8Hy" secondAttribute="trailing" id="Gyn-zJ-zLz"/>
                                                 <constraint firstItem="s8A-H1-Rf9" firstAttribute="leading" secondItem="FHb-UX-xqs" secondAttribute="leading" id="I6P-wf-ntW"/>
                                                 <constraint firstItem="gMu-am-j3r" firstAttribute="top" secondItem="V0G-ut-vCb" secondAttribute="bottom" constant="24" id="IbZ-dc-dTp"/>
                                                 <constraint firstAttribute="trailing" secondItem="TTk-MN-eFm" secondAttribute="trailing" id="MBM-qb-JL3"/>
                                                 <constraint firstItem="V0G-ut-vCb" firstAttribute="top" secondItem="FHb-UX-xqs" secondAttribute="top" id="NTB-1W-yNk"/>
                                                 <constraint firstItem="TTk-MN-eFm" firstAttribute="leading" secondItem="FHb-UX-xqs" secondAttribute="leading" constant="16" id="Pgs-Tp-sef"/>
                                                 <constraint firstAttribute="trailing" secondItem="s8A-H1-Rf9" secondAttribute="trailing" id="Ppy-aZ-1mL"/>
+                                                <constraint firstAttribute="bottom" secondItem="kAz-Ed-8Hy" secondAttribute="bottom" constant="24" id="U3N-K5-Weq"/>
+                                                <constraint firstItem="kAz-Ed-8Hy" firstAttribute="top" secondItem="V0G-ut-vCb" secondAttribute="bottom" constant="24" id="UCl-TA-tUD"/>
                                                 <constraint firstAttribute="bottom" secondItem="TTk-MN-eFm" secondAttribute="bottom" id="ZCC-mH-v9e"/>
                                                 <constraint firstItem="s8A-H1-Rf9" firstAttribute="top" secondItem="gMu-am-j3r" secondAttribute="bottom" constant="24" id="bbr-Ey-Y80"/>
+                                                <constraint firstItem="kAz-Ed-8Hy" firstAttribute="leading" secondItem="FHb-UX-xqs" secondAttribute="leading" id="bvH-AT-mnB"/>
                                                 <constraint firstItem="z9t-CL-fDL" firstAttribute="top" secondItem="V0G-ut-vCb" secondAttribute="bottom" constant="24" id="fcS-mb-5G0"/>
                                                 <constraint firstAttribute="trailing" secondItem="V0G-ut-vCb" secondAttribute="trailing" id="gqQ-3m-411"/>
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="lN9-eZ-oSC"/>
@@ -270,6 +309,7 @@
                         <outlet property="exitTextLabel" destination="4fK-Yv-I4G" id="BEe-Xk-VeA"/>
                         <outlet property="exitView" destination="GsK-4K-Hee" id="uke-rr-O1Z"/>
                         <outlet property="footerTextView" destination="s8A-H1-Rf9" id="CUo-C8-qla"/>
+                        <outlet property="gasOnlyView" destination="kAz-Ed-8Hy" id="ARt-BU-gKk"/>
                         <outlet property="headerContentView" destination="kAd-jD-Fyb" id="NRW-Cf-k4g"/>
                         <outlet property="headerView" destination="DTT-Yy-7Ip" id="byk-vs-0on"/>
                         <outlet property="headerViewDescriptionLabel" destination="KFG-l4-4FT" id="wad-D4-Z6E"/>
@@ -350,6 +390,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gasonly_graphic" width="125" height="126"/>
         <image name="ic_caret_white" width="8" height="13"/>
         <image name="ic_storm" width="60" height="66"/>
         <image name="img_outagebutton" width="300" height="300"/>
