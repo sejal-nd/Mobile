@@ -87,6 +87,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
+    var shouldShowReportOutageButton = false
 
     // MARK: - View Life Cycle
     
@@ -233,16 +234,18 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     func updateContent(outageJustReported: Bool) {
         guard let currentOutageStatus = viewModel.currentOutageStatus  else { return }
-        
-        // Update after just reporting outage
-        tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-        
+
         // Show/hide the top level container views
         if currentOutageStatus.flagGasOnly {
             gasOnlyView.isHidden = false
+            shouldShowReportOutageButton = false
         } else {
             gasOnlyView.isHidden = true
+            shouldShowReportOutageButton = true
         }
+        
+        // Update after just reporting outage
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
     }
     
     @objc private func killRefresh() -> Void {
@@ -281,9 +284,11 @@ class StormModeHomeViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? OutageMapViewController {
             navigationController?.setNavigationBarHidden(false, animated: true)
             vc.hasPressedStreetlightOutageMapButton = false
-        } else if segue.destination is BillViewController {
+        } else if let vc = segue.destination as? BillViewController {
+            vc.shouldHideNavigationBar = false
             navigationController?.setNavigationBarHidden(false, animated: true)
-        } else if segue.destination is MoreViewController {
+        } else if let vc = segue.destination as? MoreViewController {
+            vc.shouldHideNavigationBar = false
             navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
