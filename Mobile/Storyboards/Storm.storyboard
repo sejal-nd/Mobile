@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ec7-2S-gPb">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="DTT-Yy-7Ip">
@@ -280,6 +280,10 @@
                         <outlet property="scrollView" destination="Ec7-2S-gPb" id="kM5-jg-CBh"/>
                         <outlet property="tableView" destination="Ec7-2S-gPb" id="3cj-rJ-Avr"/>
                         <segue destination="sPB-eX-Wol" kind="show" identifier="UpdatesDetailSegue" id="dl6-MB-aP3"/>
+                        <segue destination="lad-rp-6Hu" kind="show" identifier="ReportOutageSegue" id="FfH-4L-PLT"/>
+                        <segue destination="TNc-26-PRH" kind="show" identifier="OutageMapSegue" id="vLv-HQ-qvU"/>
+                        <segue destination="GsU-eb-LDr" kind="show" identifier="BillSegue" id="SJm-1T-cf3"/>
+                        <segue destination="Fwc-du-AbA" kind="show" identifier="MoreSegue" id="NBA-cC-9mx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YT-28-unr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,10 +293,12 @@
         <!--Navigation Controller-->
         <scene sceneID="utQ-bC-M6s">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="14D-ll-3q4" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="14D-ll-3q4" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fq9-dj-9aT">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -310,6 +316,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMN-WW-UKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2817" y="-263"/>
+        </scene>
+        <!--ReportOutageViewController-->
+        <scene sceneID="iZD-FQ-ilH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="ReportOutageViewController" id="lad-rp-6Hu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D7A-sj-S9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2815" y="-77"/>
+        </scene>
+        <!--OutageMapViewController-->
+        <scene sceneID="9QP-Ue-dGx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="TNc-26-PRH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RSc-Ij-dVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2803" y="83"/>
+        </scene>
+        <!--Bill-->
+        <scene sceneID="Syy-A2-LNx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Bill" id="GsU-eb-LDr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Le4-FL-bS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2690" y="217"/>
+        </scene>
+        <!--More-->
+        <scene sceneID="SlC-N4-J9k">
+            <objects>
+                <viewControllerPlaceholder storyboardName="More" id="Fwc-du-AbA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mKR-Rf-ykc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2702" y="371"/>
         </scene>
     </scenes>
     <resources>
