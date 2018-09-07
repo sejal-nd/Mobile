@@ -68,6 +68,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                                                    outageService: ServiceFactory.createOutageService())
     
     private var loadingLottieAnimation = LOTAnimationView(name: "outage_loading")
+    var refreshControl: UIRefreshControl?
     
     let disposeBag = DisposeBag()
     
@@ -114,7 +115,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.loadingView.isHidden = true
                 //self.noNetworkConnectionView.isHidden = true
                 //self.maintenanceModeView.isHidden = true
-                //self.setRefreshControlEnabled(enabled: false)
+                self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
                 if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
                     self.getOutageStatus()
@@ -150,6 +151,40 @@ class StormModeHomeViewController: AccountPickerViewController {
         returnToMainApp()
     }
     
+    @objc private func onPullToRefresh() {
+        viewModel.fetchData(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
+            self.refreshControl?.endRefreshing()
+//            self.maintenanceModeView.isHidden = true
+            self.updateContent(outageJustReported: false)
+            }, onError: { [weak self] serviceError in
+                guard let `self` = self else { return }
+                self.refreshControl?.endRefreshing()
+                
+                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                    self.scrollView?.isHidden = true
+//                    self.noNetworkConnectionView.isHidden = false
+                } else {
+                    self.scrollView?.isHidden = false
+//                    self.noNetworkConnectionView.isHidden = true
+                }
+                
+//                if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+//                    self.errorLabel.isHidden = true
+//                    self.customErrorView.isHidden = false
+//                } else {
+//                    self.errorLabel.isHidden = false
+//                    self.customErrorView.isHidden = true
+//                }
+                
+                // Hide everything else
+//                self.accountContentView.isHidden = true
+//                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+//                self.gasOnlyView.isHidden = true
+//                self.maintenanceModeView.isHidden = true
+            })
+    }
+    
     
     // MARK: - Helper
     
@@ -181,7 +216,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         //noNetworkConnectionView.isHidden = true
         //maintenanceModeView.isHidden = true
-        //setRefreshControlEnabled(enabled: false)
+        setRefreshControlEnabled(enabled: false)
         
         viewModel.fetchData(onSuccess: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
@@ -189,7 +224,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             //self?.noNetworkConnectionView.isHidden = true
             self?.loadingView.isHidden = true
             //self?.maintenanceModeView.isHidden = true
-            //self?.setRefreshControlEnabled(enabled: true)
+            self?.setRefreshControlEnabled(enabled: true)
             self?.updateContent(outageJustReported: false)
             
             // If coming from shortcut, check these flags for report outage button availablility
@@ -214,7 +249,7 @@ class StormModeHomeViewController: AccountPickerViewController {
 //                    self?.noNetworkConnectionView.isHidden = true
                 }
                 self?.loadingView.isHidden = true
-//                self?.setRefreshControlEnabled(enabled: true)
+                self?.setRefreshControlEnabled(enabled: true)
                 
                 if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
 //                    self?.errorLabel.isHidden = true
@@ -237,6 +272,27 @@ class StormModeHomeViewController: AccountPickerViewController {
         tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
     }
     
+    @objc private func killRefresh() -> Void {
+        refreshControl?.endRefreshing()
+        scrollView!.alwaysBounceVertical = false
+    }
+    
+    private func setRefreshControlEnabled(enabled: Bool) {
+        if enabled {
+            refreshControl = UIRefreshControl()
+            refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
+            scrollView!.insertSubview(refreshControl!, at: 0)
+            scrollView!.alwaysBounceVertical = true
+        } else {
+            if let rc = refreshControl {
+                rc.endRefreshing()
+                rc.removeFromSuperview()
+                refreshControl = nil
+            }
+            scrollView!.alwaysBounceVertical = false
+        }
+    }
+    
     
     // MARK: - Navigation
     
@@ -246,9 +302,9 @@ class StormModeHomeViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? ReportOutageViewController {
             navigationController?.setNavigationBarHidden(false, animated: true) // may be able to refactor this out into the root of prep for segue
             vc.viewModel.outageStatus = viewModel.currentOutageStatus!
-            if let phone = viewModel.currentOutageStatus!.contactHomeNumber {
-                vc.viewModel.phoneNumber.value = phone
-            }
+            
+            guard let phone = viewModel.currentOutageStatus!.contactHomeNumber else { return }
+            vc.viewModel.phoneNumber.value = phone
         } else if let vc = segue.destination as? OutageMapViewController {
             navigationController?.setNavigationBarHidden(false, animated: true)
             vc.hasPressedStreetlightOutageMapButton = false
