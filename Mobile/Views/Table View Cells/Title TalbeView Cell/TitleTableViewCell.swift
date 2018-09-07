@@ -21,7 +21,7 @@ class TitleTableViewCell: UITableViewCell {
     @IBOutlet weak var detailLabel: UILabel! {
         didSet {
             detailLabel.textColor = .white
-            detailLabel.font = SystemFont.medium.of(textStyle: .headline)
+            detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         }
     }
     @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
