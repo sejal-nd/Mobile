@@ -10,15 +10,19 @@ import UIKit
 
 extension UINavigationController {
     
-    func setWhiteNavBar() {
+    func setWhiteNavBar(hidesBottomBorder: Bool = false) {
         navigationBar.barStyle = .default
         navigationBar.barTintColor = .white
         navigationBar.tintColor = .actionBlue
         navigationBar.isTranslucent = false
         
-        // Re-add the bottom border line (in case it was removed on another screen)
-        navigationBar.setBackgroundImage(nil, for: .default)
-        navigationBar.shadowImage = nil
+        if hidesBottomBorder {
+            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationBar.shadowImage = UIImage()
+        } else {
+            navigationBar.setBackgroundImage(nil, for: .default)
+            navigationBar.shadowImage = nil
+        }
         
         let titleDict: [NSAttributedStringKey: Any] = [
             .foregroundColor: UIColor.blackText,
