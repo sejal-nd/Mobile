@@ -25,12 +25,12 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
         case 0:
             switch indexPath.row {
             case 0:
-//                if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
-//                    cell.configure(image: #imageLiteral(resourceName: "ic_check_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .black, shouldConstrainWidth: true)
-//                } else {
-//                    cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
-//                }
-                cell.configure(image: #imageLiteral(resourceName: "ic_check_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: "Hello World", backgroundColor: .black, shouldConstrainWidth: true)
+                // this is where we are getting the crash due to AccountStore.shared.currentAccount
+                if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
+                    cell.configure(image: #imageLiteral(resourceName: "ic_check_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .black, shouldConstrainWidth: true)
+                } else {
+                    cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
+                }
             case 1:
                 cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
             default:

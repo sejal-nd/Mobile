@@ -79,16 +79,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
-        
-        viewModel.stormModeEnded
-            .drive(onNext: { [weak self] in self?.stormModeEnded() })
-            .disposed(by: disposeBag)
-        
-        // re implement
-//        exitButton.rx.tap.asDriver()
-//            .drive(onNext: { [weak self] in self?.returnToMainApp() })
-//            .disposed(by: disposeBag)
-        
+
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -100,7 +91,12 @@ class StormModeHomeViewController: AccountPickerViewController {
         loadingAnimationView.addSubview(loadingLottieAnimation)
         loadingLottieAnimation.play()
         
-        loadingView.isHidden = true
+        
+        // MARK: - Events
+        
+        viewModel.stormModeEnded
+            .drive(onNext: { [weak self] in self?.stormModeEnded() })
+            .disposed(by: disposeBag)
         
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.updateContent(outageJustReported: true) })
@@ -138,6 +134,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         headerView.frame.size = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
         tableView.tableHeaderView = headerView
     }
@@ -245,7 +242,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UpdatesDetailViewController {
-            vc.opcoUpdate = OpcoUpdate(title: "Hello", message: "World")
+            vc.opcoUpdate = OpcoUpdate(title: NSLocalizedString("Storm Mode is in effect", comment: ""), message: NSLocalizedString("Due to severe weather, limited features are available to allow us to better serve you.", comment: ""))
         } else if let vc = segue.destination as? ReportOutageViewController {
             navigationController?.setNavigationBarHidden(false, animated: true) // may be able to refactor this out into the root of prep for segue
             vc.viewModel.outageStatus = viewModel.currentOutageStatus!
@@ -267,7 +264,7 @@ class StormModeHomeViewController: AccountPickerViewController {
 extension StormModeHomeViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        //getOutageStatus()
+        getOutageStatus()
     }
     
 }
@@ -289,8 +286,7 @@ extension StormModeHomeViewController: OutageStatusButtonDelegate {
 extension StormModeHomeViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        print("INTERACTION")
-        //Analytics.log(event: .outageAuthEmergencyCall)
+        Analytics.log(event: .outageAuthEmergencyCall)
     }
     
 }
