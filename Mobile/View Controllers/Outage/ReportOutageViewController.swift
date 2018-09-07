@@ -123,7 +123,7 @@ class ReportOutageViewController: UIViewController {
 
             meterPingCurrentStatusLabel.font = SystemFont.medium.of(textStyle: .headline)
             meterPingCurrentStatusLabel.textColor = .blackText
-            meterPingCurrentStatusLabel.text = NSLocalizedString("Verifying meter has power...", comment: "")
+            meterPingCurrentStatusLabel.text = NSLocalizedString("Checking meter status...", comment: "")
             
             meterPingPowerStatusImageView.isAccessibilityElement = true
             meterPingPowerStatusLabel.font = SystemFont.medium.of(textStyle: .title1)
@@ -150,6 +150,7 @@ class ReportOutageViewController: UIViewController {
             lottieAnimation.play()
         } else {
             meterPingStackView.isHidden = true
+            meterPingFuseBoxView.isHidden = true
             viewModel.reportFormHidden.value = false
         }
 
@@ -258,7 +259,7 @@ class ReportOutageViewController: UIViewController {
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Verifying meter has power", comment: ""))
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Checking meter status", comment: ""))
             })
             
             viewModel.meterPingGetStatus(onComplete: { meterPingInfo in
@@ -277,9 +278,13 @@ class ReportOutageViewController: UIViewController {
                     self.meterPingPowerStatusView.isHidden = false
                     self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
                     self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
+                    self.meterPingVoltageStatusView.isHidden = true
                 }
+                
                 if meterPingInfo.voltageResult {
-                    self.meterPingVoltageStatusView.isHidden = false
+                    if meterPingInfo.pingResult {
+                        self.meterPingVoltageStatusView.isHidden = false
+                    }
                     if let voltageReads = meterPingInfo.voltageReads,
                         !voltageReads.lowercased().contains("improper"),
                         voltageReads.lowercased().contains("proper") {
