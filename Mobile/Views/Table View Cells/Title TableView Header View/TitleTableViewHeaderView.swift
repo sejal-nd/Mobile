@@ -31,7 +31,10 @@ class TitleTableViewHeaderView: UITableViewHeaderFooterView {
         
         colorView.backgroundColor = backgroundColor
         
-        contentViewWidthConstraint.isActive = shouldConstrainWidth
+        // Needed due to scrolling / dequeuing
+        if contentViewWidthConstraint != nil {
+            contentViewWidthConstraint.isActive = shouldConstrainWidth
+        }
     }
     
 }

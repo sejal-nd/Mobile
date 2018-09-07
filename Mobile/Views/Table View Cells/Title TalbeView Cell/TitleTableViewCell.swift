@@ -73,8 +73,11 @@ class TitleTableViewCell: UITableViewCell {
         
         detailLabel.isHidden = detailText != nil ? false : true
         
-        contentViewWidthConstraint.isActive = shouldConstrainWidth
-
+        // Needed due to scrolling / dequeuing
+        if contentViewWidthConstraint != nil {
+            contentViewWidthConstraint.isActive = shouldConstrainWidth
+        }
+        
         contentContainerView.backgroundColor = backgroundColor
         
         bgColor = backgroundColor
