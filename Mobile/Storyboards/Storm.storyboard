@@ -309,6 +309,8 @@
                         <outlet property="exitTextLabel" destination="4fK-Yv-I4G" id="BEe-Xk-VeA"/>
                         <outlet property="exitView" destination="GsK-4K-Hee" id="uke-rr-O1Z"/>
                         <outlet property="footerTextView" destination="s8A-H1-Rf9" id="CUo-C8-qla"/>
+                        <outlet property="gasOnlyTextView" destination="eiY-Gn-JzO" id="BTd-fp-whe"/>
+                        <outlet property="gasOnlyTitleLabel" destination="Zga-Xw-UzD" id="qYY-Nm-gdu"/>
                         <outlet property="gasOnlyView" destination="kAz-Ed-8Hy" id="ARt-BU-gKk"/>
                         <outlet property="headerContentView" destination="kAd-jD-Fyb" id="NRW-Cf-k4g"/>
                         <outlet property="headerView" destination="DTT-Yy-7Ip" id="byk-vs-0on"/>

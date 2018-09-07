@@ -61,6 +61,19 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     @IBOutlet weak var gasOnlyView: UIView!
+    @IBOutlet weak var gasOnlyTitleLabel: UILabel! {
+        didSet {
+            gasOnlyTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        }
+    }
+    @IBOutlet weak var gasOnlyTextView: DataDetectorTextView! {
+        didSet {
+            gasOnlyTextView.font = OpenSans.regular.of(textStyle: .subheadline)
+            gasOnlyTextView.textContainerInset = .zero
+            gasOnlyTextView.tintColor = .white
+            gasOnlyTextView.text = viewModel.gasOnlyMessage
+        }
+    }
     
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var loadingAnimationView: UIView!
@@ -79,7 +92,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
 
@@ -109,14 +122,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             guard let `self` = self else { return }
             switch(state) {
             case .loadingAccounts:
-                //self.accountContentView.isHidden = true
-                //self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 self.gasOnlyView.isHidden = true
-                //self.errorLabel.isHidden = true
-                //self.customErrorView.isHidden = true
                 self.loadingView.isHidden = true
-                //self.noNetworkConnectionView.isHidden = true
-                //self.maintenanceModeView.isHidden = true
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
                 if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
@@ -157,7 +164,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
-//            self.maintenanceModeView.isHidden = true
             self.updateContent(outageJustReported: false)
             }, onError: { [weak self] serviceError in
                 guard let `self` = self else { return }
@@ -165,25 +171,12 @@ class StormModeHomeViewController: AccountPickerViewController {
                 
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self.scrollView?.isHidden = true
-//                    self.noNetworkConnectionView.isHidden = false
                 } else {
                     self.scrollView?.isHidden = false
-//                    self.noNetworkConnectionView.isHidden = true
                 }
-                
-//                if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
-//                    self.errorLabel.isHidden = true
-//                    self.customErrorView.isHidden = false
-//                } else {
-//                    self.errorLabel.isHidden = false
-//                    self.customErrorView.isHidden = true
-//                }
-                
+
                 // Hide everything else
-//                self.accountContentView.isHidden = true
-//                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 self.gasOnlyView.isHidden = true
-//                self.maintenanceModeView.isHidden = true
             })
     }
     
@@ -209,58 +202,26 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     func getOutageStatus() {
-        //accountContentView.isHidden = true
-        //gasOnlyTextViewBottomSpaceConstraint.isActive = false
         gasOnlyView.isHidden = true
-        //errorLabel.isHidden = true
-        //customErrorView.isHidden = true
         loadingView.isHidden = false
         scrollView?.isHidden = false
-        //noNetworkConnectionView.isHidden = true
-        //maintenanceModeView.isHidden = true
         setRefreshControlEnabled(enabled: false)
         
         viewModel.fetchData(onSuccess: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             self?.scrollView?.isHidden = false
-            //self?.noNetworkConnectionView.isHidden = true
             self?.loadingView.isHidden = true
-            //self?.maintenanceModeView.isHidden = true
             self?.setRefreshControlEnabled(enabled: true)
             self?.updateContent(outageJustReported: false)
-            
-            // If coming from shortcut, check these flags for report outage button availablility
-//            if let outageStatus = self?.viewModel.currentOutageStatus,
-//                !outageStatus.flagGasOnly &&
-//                    !outageStatus.flagNoPay &&
-//                    !outageStatus.flagFinaled &&
-//                    !outageStatus.flagNonService &&
-//                    self?.shortcutItem == .reportOutage {
-//                self?.performSegue(withIdentifier: "reportOutageSegue", sender: self)
-//            }
-            
-//            self?.shortcutItem = .none
             }, onError: { [weak self] serviceError in
-//                self?.shortcutItem = .none
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self?.scrollView?.isHidden = true
-//                    self?.noNetworkConnectionView.isHidden = false
                 } else {
                     self?.scrollView?.isHidden = false
-//                    self?.noNetworkConnectionView.isHidden = true
                 }
                 self?.loadingView.isHidden = true
                 self?.setRefreshControlEnabled(enabled: true)
-                
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
-//                    self?.errorLabel.isHidden = true
-//                    self?.customErrorView.isHidden = false
-                } else {
-//                    self?.errorLabel.isHidden = false
-//                    self?.customErrorView.isHidden = true
-                }
-//                self?.maintenanceModeView.isHidden = true
             })
     }
     
@@ -278,13 +239,9 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         // Show/hide the top level container views
         if currentOutageStatus.flagGasOnly {
-            //gasOnlyTextViewBottomSpaceConstraint.isActive = true
             gasOnlyView.isHidden = false
-            //accountContentView.isHidden = true
         } else {
-            //gasOnlyTextViewBottomSpaceConstraint.isActive = false
             gasOnlyView.isHidden = true
-            //accountContentView.isHidden = false
         }
     }
     
