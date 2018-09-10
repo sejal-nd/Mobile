@@ -85,7 +85,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
-    var shouldShowReportOutageButton = false
+    var shouldShowOutageButtons = false
 
     
     // MARK: - View Life Cycle
@@ -234,17 +234,33 @@ class StormModeHomeViewController: AccountPickerViewController {
     func updateContent(outageJustReported: Bool) {
         guard let currentOutageStatus = viewModel.currentOutageStatus  else { return }
 
+        layoutBigButtonContent(outageJustReported: outageJustReported)
+        
         // Show/hide the top level container views
         if currentOutageStatus.flagGasOnly {
             gasOnlyView.isHidden = false
-            shouldShowReportOutageButton = false
+            shouldShowOutageButtons = false
         } else {
             gasOnlyView.isHidden = true
-            shouldShowReportOutageButton = true
+            shouldShowOutageButtons = true
         }
         
         // Update after just reporting outage
         tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+    }
+    
+    func layoutBigButtonContent(outageJustReported: Bool) {
+        let currentOutageStatus = viewModel.currentOutageStatus!
+        
+        if outageJustReported && viewModel.reportedOutage != nil {
+            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+        } else if currentOutageStatus.activeOutage {
+            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
+            outageStatusButton.setIneligibleState(flagFinaled: currentOutageStatus.flagFinaled, nonPayFinaledMessage: viewModel.accountNonPayFinaledMessage)
+        } else { // Power is on
+            outageStatusButton.setPowerOnState()
+        }
     }
     
     @objc private func killRefresh() -> Void {

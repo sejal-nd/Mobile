@@ -19,8 +19,8 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath == IndexPath(row: 0, section: 0) {
-            return shouldShowReportOutageButton ? 60 : 0
+        if indexPath == IndexPath(row: 0, section: 0) || indexPath == IndexPath(row: 1, section: 0) {
+            return shouldShowOutageButtons ? 60 : 0
         } else {
             return 60
         }
