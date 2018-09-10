@@ -108,14 +108,49 @@ class StormModeHomeViewModel {
         return NSLocalizedString("Reported", comment: "")
     }
     
-    var footerTextViewText: String {
+    var footerTextViewText: NSMutableAttributedString {
         switch Environment.shared.opco {
         case .bge:
-            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123\n\nFor downed or sparking power lines or dim/flickering lights, please call 1-877-778-2222", comment: "")
+            let gasEmergencyText = "To report a gas emergency, please call "
+            let gasEmergencyPhoneNumber = NSLocalizedString("1-800-685-0123", comment: "")
+            let downedPowerLineText = "\n\nFor downed or sparking power lines or dim/flickering lights, please call "
+            let downedPowerLinePhoneNumber = NSLocalizedString("1-877-778-2222", comment: "")
+            
+            let gasEmergencyTextMutableAttributedString = NSMutableAttributedString(string: gasEmergencyText)
+            let gasEmergencyMutableAttributedString = NSMutableAttributedString(string: gasEmergencyPhoneNumber)
+            gasEmergencyMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, gasEmergencyPhoneNumber.count))
+            
+            let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
+            let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
+            downedPowerLineMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
+            
+            gasEmergencyTextMutableAttributedString.append(gasEmergencyMutableAttributedString)
+            gasEmergencyTextMutableAttributedString.append(downedPowerLineTextMutableAttributedString)
+            gasEmergencyTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
+            
+            return gasEmergencyTextMutableAttributedString
         case .comEd:
-            return NSLocalizedString("To report a downed or sparking power line, please call 1-800-334-7661", comment: "")
+            let downedPowerLineText = "To report a downed or sparking power line, please call "
+            let downedPowerLinePhoneNumber = NSLocalizedString("1-800-334-7661", comment: "")
+            
+            let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
+            let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
+            downedPowerLineMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
+            
+            downedPowerLineTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
+
+            return downedPowerLineTextMutableAttributedString
         case .peco:
-            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
+            let downedPowerLineText = "To report a gas emergency or a downed or sparking power line, please call "
+            let downedPowerLinePhoneNumber = NSLocalizedString("1-800-841-4141", comment: "")
+            
+            let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
+            let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
+            downedPowerLineMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
+            
+            downedPowerLineTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
+            
+            return downedPowerLineTextMutableAttributedString
         }
     }
     

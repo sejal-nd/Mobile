@@ -32,7 +32,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var headerContentView: ButtonControl! {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
-            
             headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
         }
     }
@@ -51,8 +50,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var footerTextView: DataDetectorTextView! {
         didSet {
-            footerTextView.text = viewModel.footerTextViewText
-            
+            footerTextView.attributedText = viewModel.footerTextViewText
             footerTextView.textContainerInset = .zero
             footerTextView.textColor = .softGray
             footerTextView.tintColor = .white // For phone numbers
@@ -89,6 +87,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     var shouldShowReportOutageButton = false
 
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
