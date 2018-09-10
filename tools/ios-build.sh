@@ -302,6 +302,8 @@ fi
 
 if [[ $target_phases = *"unitTest"* ]]; then
 
+	set -o pipefail
+
 	echo "Running automation tests"
 	xcrun xcodebuild  -sdk iphonesimulator \
 		-project $PROJECT \
@@ -310,12 +312,16 @@ if [[ $target_phases = *"unitTest"* ]]; then
 		-configuration Automation \
 		test | tee build/logs/xcodebuild_automation_unittests.log | xcpretty --report junit 
 	check_errs $? "Xcode unit tests exited with a non-zero status"
+
+	set +o pipefail
 fi
 
 if [[ $target_phases = *"build"* ]]; then
 
 	echo "------------------------------ Building Application  ----------------------------"
 	# Build App
+
+	set -o pipefail
 
 	xcrun xcodebuild -sdk iphoneos \
 		-configuration $CONFIGURATION \
@@ -340,6 +346,7 @@ if [[ $target_phases = *"build"* ]]; then
 
 	echo "--------------------------------- Post archiving -------------------------------"
 
+	set +o pipefail
 
 	if [[ $target_phases = *"distribute"* ]]; then
 		# Push to App Center Distribute
