@@ -167,7 +167,7 @@
                                                         </view>
                                                     </subviews>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9t-CL-fDL">
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9t-CL-fDL">
                                                     <rect key="frame" x="21" y="254" width="300" height="300"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4mv-Ce-wvt">
@@ -209,27 +209,27 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="s8A-H1-Rf9" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="578" width="343" height="49"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="65" id="Nxi-RX-K2H"/>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="75" id="Nxi-RX-K2H"/>
                                                     </constraints>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                 </textView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAz-Ed-8Hy">
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAz-Ed-8Hy">
                                                     <rect key="frame" x="0.0" y="254" width="343" height="373"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="qfu-kV-Gsd">
                                                             <rect key="frame" x="109" y="24" width="125" height="126"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This account receives gas service only" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-Xw-UzD">
-                                                            <rect key="frame" x="16" y="170" width="311" height="57.5"/>
+                                                            <rect key="frame" x="16" y="166" width="311" height="57.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-Gn-JzO" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="250.5" width="311" height="98.5"/>
+                                                            <rect key="frame" x="16" y="231.5" width="311" height="117.5"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <string key="text">We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call x-xxx-xxx-xxxx.</string>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -246,10 +246,10 @@
                                                         <constraint firstItem="qfu-kV-Gsd" firstAttribute="centerX" secondItem="kAz-Ed-8Hy" secondAttribute="centerX" id="ZAW-FQ-IwH"/>
                                                         <constraint firstItem="eiY-Gn-JzO" firstAttribute="centerX" secondItem="kAz-Ed-8Hy" secondAttribute="centerX" id="ekp-9P-ghL"/>
                                                         <constraint firstAttribute="bottom" secondItem="eiY-Gn-JzO" secondAttribute="bottom" constant="24" id="kso-oZ-hsn"/>
-                                                        <constraint firstItem="eiY-Gn-JzO" firstAttribute="top" secondItem="Zga-Xw-UzD" secondAttribute="bottom" constant="23" id="ldU-bC-2hj"/>
+                                                        <constraint firstItem="eiY-Gn-JzO" firstAttribute="top" secondItem="Zga-Xw-UzD" secondAttribute="bottom" constant="8" id="ldU-bC-2hj"/>
                                                         <constraint firstAttribute="trailing" secondItem="eiY-Gn-JzO" secondAttribute="trailing" constant="16" id="sUb-gy-fCE"/>
                                                         <constraint firstItem="Zga-Xw-UzD" firstAttribute="leading" secondItem="kAz-Ed-8Hy" secondAttribute="leading" constant="16" id="u29-HZ-cUC"/>
-                                                        <constraint firstItem="Zga-Xw-UzD" firstAttribute="top" secondItem="qfu-kV-Gsd" secondAttribute="bottom" constant="20" id="x3V-sn-bHm"/>
+                                                        <constraint firstItem="Zga-Xw-UzD" firstAttribute="top" secondItem="qfu-kV-Gsd" secondAttribute="bottom" constant="16" id="x3V-sn-bHm"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
