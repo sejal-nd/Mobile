@@ -327,8 +327,8 @@
                         <segue destination="sPB-eX-Wol" kind="show" identifier="UpdatesDetailSegue" id="dl6-MB-aP3"/>
                         <segue destination="lad-rp-6Hu" kind="show" identifier="ReportOutageSegue" id="FfH-4L-PLT"/>
                         <segue destination="TNc-26-PRH" kind="show" identifier="OutageMapSegue" id="vLv-HQ-qvU"/>
-                        <segue destination="GsU-eb-LDr" kind="show" identifier="BillSegue" id="SJm-1T-cf3"/>
                         <segue destination="Fwc-du-AbA" kind="show" identifier="MoreSegue" id="NBA-cC-9mx"/>
+                        <segue destination="Hnl-So-iQC" kind="show" identifier="BillSegue" id="9l8-da-Tdd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YT-28-unr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -359,7 +359,7 @@
                 <viewControllerPlaceholder storyboardName="Updates" referencedIdentifier="UpdatesDetailViewController" id="sPB-eX-Wol" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMN-WW-UKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2817" y="-263"/>
+            <point key="canvasLocation" x="2694" y="-402"/>
         </scene>
         <!--ReportOutageViewController-->
         <scene sceneID="iZD-FQ-ilH">
@@ -367,7 +367,7 @@
                 <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="ReportOutageViewController" id="lad-rp-6Hu" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7A-sj-S9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2815" y="-77"/>
+            <point key="canvasLocation" x="2695" y="-365"/>
         </scene>
         <!--OutageMapViewController-->
         <scene sceneID="9QP-Ue-dGx">
@@ -375,15 +375,22 @@
                 <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="TNc-26-PRH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSc-Ij-dVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2803" y="83"/>
+            <point key="canvasLocation" x="2680" y="-327"/>
         </scene>
-        <!--Bill-->
-        <scene sceneID="Syy-A2-LNx">
+        <!--View Controller-->
+        <scene sceneID="w6R-y9-4Qa">
             <objects>
-                <viewControllerPlaceholder storyboardName="Bill" id="GsU-eb-LDr" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Le4-FL-bS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Hnl-So-iQC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6jw-ge-oMd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="UpR-nO-Em0"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D3Z-67-9wf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2690" y="217"/>
+            <point key="canvasLocation" x="2826" y="83"/>
         </scene>
         <!--More-->
         <scene sceneID="SlC-N4-J9k">
@@ -391,7 +398,7 @@
                 <viewControllerPlaceholder storyboardName="More" id="Fwc-du-AbA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mKR-Rf-ykc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2702" y="371"/>
+            <point key="canvasLocation" x="2580" y="-289"/>
         </scene>
     </scenes>
     <resources>
