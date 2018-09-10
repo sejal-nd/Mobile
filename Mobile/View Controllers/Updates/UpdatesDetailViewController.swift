@@ -10,14 +10,18 @@ import UIKit
 
 class UpdatesDetailViewController: UIViewController {
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var label: UILabel!
     
     var opcoUpdate: OpcoUpdate! // Passed from AlertsViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = opcoUpdate.title
+        titleLabel.textColor = .blackText
+        titleLabel.font = OpenSans.bold.of(textStyle: .title1)
+        titleLabel.attributedText = opcoUpdate.title
+            .attributedString(withLineHeight: 28)
         
         label.textColor = .blackText
         label.font = OpenSans.regular.of(textStyle: .body)
@@ -26,8 +30,14 @@ class UpdatesDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.setColoredNavBar(hidesBottomBorder: true)
+        navigationController?.setWhiteNavBar(hidesBottomBorder: true)
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            navigationController?.setColoredNavBar()
+        }
     }
 
 }
