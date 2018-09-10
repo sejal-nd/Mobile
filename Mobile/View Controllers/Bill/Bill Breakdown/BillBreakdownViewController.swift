@@ -92,16 +92,16 @@ class BillBreakdownViewController: UIViewController {
         
         var pieChartValues = [PieChartDataEntry]()
         var pieChartColors = [UIColor]()
-        if viewModel.supplyCharges > 0 {
-            pieChartValues.append(PieChartDataEntry(value: viewModel.supplyCharges))
+        if viewModel.deliveryCharges > 0 {
+            pieChartValues.append(PieChartDataEntry(value: viewModel.deliveryCharges))
             pieChartColors.append(.primaryColor)
         }
         if viewModel.taxesAndFees > 0 {
             pieChartValues.append(PieChartDataEntry(value: viewModel.taxesAndFees))
             pieChartColors.append(.blackText)
         }
-        if viewModel.deliveryCharges > 0 {
-            pieChartValues.append(PieChartDataEntry(value: viewModel.deliveryCharges))
+        if viewModel.supplyCharges > 0 {
+            pieChartValues.append(PieChartDataEntry(value: viewModel.supplyCharges))
             pieChartColors.append(.accentGray)
         }
         

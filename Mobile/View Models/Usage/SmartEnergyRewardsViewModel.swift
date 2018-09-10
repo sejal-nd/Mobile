@@ -70,7 +70,7 @@ class SmartEnergyRewardsViewModel {
         let bar1Val = $0[0].savingDollar
         let bar2Val = $0[1].savingDollar
         let bar3Val = $0[2].savingDollar
-        if max(bar1Val, bar2Val, bar3Val) == bar1Val {
+        if max(bar1Val, bar2Val, bar3Val) == bar1Val && bar1Val != 0 {
             return 121
         } else if max(bar2Val, bar3Val) == bar2Val {
             let fraction = CGFloat(121.0 * (bar1Val / bar2Val))
@@ -119,7 +119,7 @@ class SmartEnergyRewardsViewModel {
             let bar2Val = $0[1].savingDollar
             let bar3Val = $0[2].savingDollar
             
-            if max(bar1Val, bar2Val, bar3Val) == bar2Val {
+            if max(bar1Val, bar2Val, bar3Val) == bar2Val && bar2Val != 0 {
                 return 121
             } else if max(bar1Val, bar3Val) == bar1Val {
                 let fraction = CGFloat(121.0 * (bar2Val / bar1Val))
@@ -131,7 +131,7 @@ class SmartEnergyRewardsViewModel {
         } else if $0.count == 2 {
             let bar2Val = $0[0].savingDollar
             let bar3Val = $0[1].savingDollar
-            if bar2Val > bar3Val {
+            if bar2Val > bar3Val && bar2Val != 0 {
                 return 121
             } else {
                 let fraction = CGFloat(121.0 * (bar2Val / bar3Val))
@@ -189,7 +189,7 @@ class SmartEnergyRewardsViewModel {
             let bar2Val = $0[1].savingDollar
             let bar3Val = $0[2].savingDollar
             
-            if max(bar1Val, bar2Val, bar3Val) == bar3Val {
+            if max(bar1Val, bar2Val, bar3Val) == bar3Val && bar3Val != 0 {
                 return 121
             } else if max(bar1Val, bar2Val) == bar1Val {
                 let fraction = CGFloat(121.0 * (bar3Val / bar1Val))
@@ -201,16 +201,16 @@ class SmartEnergyRewardsViewModel {
         } else if $0.count == 2 {
             let bar2Val = $0[0].savingDollar
             let bar3Val = $0[1].savingDollar
-            if bar3Val > bar2Val {
+            if bar3Val > bar2Val && bar3Val != 0 {
                 return 121
             } else {
                 let fraction = CGFloat(121.0 * (bar3Val / bar2Val))
                 return fraction > 3 ? fraction : 3
             }
-        } else if $0.count == 1 {
+        } else if $0.count == 1 && $0[0].savingDollar > 0 {
             return 121
         }
-        return 0
+        return 3
     }
     
     private(set) lazy var bar3A11yLabel: Driver<String?> = self.latest3EventsThisSeason.map {
