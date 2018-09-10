@@ -21,10 +21,31 @@ class OutageStatusButton: UIView {
     @IBOutlet weak private var animationView: UIView!
     @IBOutlet weak private var outerCircleView: UIView!
     @IBOutlet weak private var innerCircleView: UIView!
-    @IBOutlet weak private var bigButtonImageView: UIImageView!
     
-    var onLottieAnimation = LOTAnimationView(name: "outage")
-
+    var onLottieAnimation: LOTAnimationView?
+    
+    @IBInspectable
+    public var isStormMode: Bool = false {
+        didSet {
+            onLottieAnimation?.removeFromSuperview()
+            
+            if isStormMode {
+                onLottieAnimation = LOTAnimationView(name: "sm_outage")
+            } else {
+                onLottieAnimation = LOTAnimationView(name: "outage")
+            }
+            
+            onLottieAnimation?.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
+            onLottieAnimation?.loopAnimation = true
+            onLottieAnimation?.contentMode = .scaleAspectFill
+            
+            guard let onLottieAnimation = onLottieAnimation else { return }
+            animationView.addSubview(onLottieAnimation)
+            
+            onLottieAnimation.play()
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -41,22 +62,20 @@ class OutageStatusButton: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
+
+        // Triggers Initial DidSet
+        isStormMode = false
         
-        onLottieAnimation.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
-        onLottieAnimation.loopAnimation = true
-        onLottieAnimation.contentMode = .scaleAspectFill
-        animationView.addSubview(onLottieAnimation)
-        onLottieAnimation.play()
         
         outerCircleView.layer.cornerRadius = outerCircleView.bounds.size.width / 2
         innerCircleView.layer.cornerRadius = innerCircleView.bounds.size.width / 2
         
-        let radius = bigButtonImageView.bounds.size.width / 2
-        bigButtonImageView.layer.cornerRadius = radius
-        bigButtonImageView.clipsToBounds = true // So text doesn't overflow
-        bigButtonImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
-        bigButtonImageView.isAccessibilityElement = true
-        bigButtonImageView.accessibilityTraits = UIAccessibilityTraitButton
+//        let radius = bigButtonImageView.bounds.size.width / 2
+//        bigButtonImageView.layer.cornerRadius = radius
+//        bigButtonImageView.clipsToBounds = true // So text doesn't overflow
+//        bigButtonImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
+//        bigButtonImageView.isAccessibilityElement = true
+//        bigButtonImageView.accessibilityTraits = UIAccessibilityTraitButton
 
     }
     
@@ -67,14 +86,14 @@ class OutageStatusButton: UIView {
 //    }
     
     private func setGrayCircles() {
-        outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1) // Special case color - do not change
-        innerCircleView.backgroundColor = .middleGray
+        outerCircleView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.3)
+        innerCircleView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9)
     }
     
-    private func setColoredCircles() {
-        outerCircleView.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.7)
-        innerCircleView.backgroundColor = .primaryColor
-    }
+//    private func setColoredCircles() {
+//        outerCircleView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.3)
+//        innerCircleView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.9)
+//    }
     
     func setReportedState(estimatedRestorationDateString: String) {
         clearSubviews()
@@ -82,9 +101,9 @@ class OutageStatusButton: UIView {
         animationView.isHidden = true
         outerCircleView.isHidden = false
         innerCircleView.isHidden = false
-        setColoredCircles()
+        setGrayCircles()
         
-        let bigButtonWidth = bigButtonImageView.frame.size.width
+        let bigButtonWidth = innerCircleView.frame.size.width
         
         let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 19, y: 80, width: 38, height: 31))
         icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
@@ -115,12 +134,12 @@ class OutageStatusButton: UIView {
         timeLabel.minimumScaleFactor = 0.5
         timeLabel.text = estimatedRestorationDateString
         
-        bigButtonImageView.addSubview(icon)
-        bigButtonImageView.addSubview(yourOutageIsLabel)
-        bigButtonImageView.addSubview(reportedLabel)
-        bigButtonImageView.addSubview(restRestorationLabel)
-        bigButtonImageView.addSubview(timeLabel)
-        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. Your outage is reported. Estimated restoration \(estimatedRestorationDateString).", comment: "")
+        innerCircleView.addSubview(icon)
+        innerCircleView.addSubview(yourOutageIsLabel)
+        innerCircleView.addSubview(reportedLabel)
+        innerCircleView.addSubview(restRestorationLabel)
+        innerCircleView.addSubview(timeLabel)
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. Your outage is reported. Estimated restoration \(estimatedRestorationDateString).", comment: "")
     }
     
     func setOutageState(estimatedRestorationDateString: String) {
@@ -131,7 +150,7 @@ class OutageStatusButton: UIView {
         innerCircleView.isHidden = false
         setGrayCircles()
         
-        let bigButtonWidth = bigButtonImageView.frame.size.width
+        let bigButtonWidth = innerCircleView.frame.size.width
         
         let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 11, y: 84, width: 22, height: 28))
         icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
@@ -162,12 +181,12 @@ class OutageStatusButton: UIView {
         timeLabel.minimumScaleFactor = 0.5
         timeLabel.text = estimatedRestorationDateString
         
-        bigButtonImageView.addSubview(icon)
-        bigButtonImageView.addSubview(yourPowerIsLabel)
-        bigButtonImageView.addSubview(outLabel)
-        bigButtonImageView.addSubview(restRestorationLabel)
-        bigButtonImageView.addSubview(timeLabel)
-        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. Our records indicate your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
+        innerCircleView.addSubview(icon)
+        innerCircleView.addSubview(yourPowerIsLabel)
+        innerCircleView.addSubview(outLabel)
+        innerCircleView.addSubview(restRestorationLabel)
+        innerCircleView.addSubview(timeLabel)
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. Our records indicate your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
     }
     
     func setIneligibleState(flagFinaled: Bool, nonPayFinaledMessage: String) {
@@ -193,7 +212,7 @@ class OutageStatusButton: UIView {
                 payBillLabel.textColor = .actionBlue
                 payBillLabel.textAlignment = .center
                 payBillLabel.text = NSLocalizedString("Pay Bill", comment: "")
-                bigButtonImageView.addSubview(payBillLabel)
+                innerCircleView.addSubview(payBillLabel)
             }
         }
         nonPayFinaledTextView.textContainerInset = .zero
@@ -203,9 +222,9 @@ class OutageStatusButton: UIView {
         nonPayFinaledTextView.textAlignment = .center
         nonPayFinaledTextView.text = nonPayFinaledMessage
         
-        bigButtonImageView.addSubview(nonPayFinaledTextView)
-        bigButtonImageView.bringSubview(toFront: payBillLabel)
-        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. \(nonPayFinaledMessage).", comment: "")
+        innerCircleView.addSubview(nonPayFinaledTextView)
+        innerCircleView.bringSubview(toFront: payBillLabel)
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. \(nonPayFinaledMessage).", comment: "")
     }
     
     func setPowerOnState() {
@@ -215,7 +234,7 @@ class OutageStatusButton: UIView {
         outerCircleView.isHidden = true
         innerCircleView.isHidden = true
         
-        let bigButtonWidth = bigButtonImageView.frame.size.width
+        let bigButtonWidth = innerCircleView.frame.size.width
         
         let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 15, y: 102, width: 30, height: 38))
         icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
@@ -232,14 +251,14 @@ class OutageStatusButton: UIView {
         onLabel.textAlignment = .center
         onLabel.text = NSLocalizedString("POWER IS ON", comment: "")
         
-        bigButtonImageView.addSubview(icon)
-        bigButtonImageView.addSubview(yourPowerIsLabel)
-        bigButtonImageView.addSubview(onLabel)
-        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, Button. Our records indicate your power is on.", comment: "")
+        innerCircleView.addSubview(icon)
+        innerCircleView.addSubview(yourPowerIsLabel)
+        innerCircleView.addSubview(onLabel)
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, Button. Our records indicate your power is on.", comment: "")
     }
     
     private func clearSubviews() {
-        for subview in bigButtonImageView.subviews {
+        for subview in innerCircleView.subviews {
             subview.removeFromSuperview()
         }
     }

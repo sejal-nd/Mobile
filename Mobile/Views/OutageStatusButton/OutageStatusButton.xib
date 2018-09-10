@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="animationView" destination="0P0-jf-3iW" id="Ob0-Me-SXO"/>
-                <outlet property="bigButtonImageView" destination="yGe-SX-8fp" id="SQS-7K-g50"/>
                 <outlet property="innerCircleView" destination="KEt-H0-Vtc" id="h7S-ax-kng"/>
                 <outlet property="outerCircleView" destination="aal-fY-fBz" id="ksJ-Zy-pnL"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ew9-J7-2zl"/>
@@ -24,7 +24,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0P0-jf-3iW">
                     <rect key="frame" x="5" y="5" width="290" height="290"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="290" id="mpD-BT-bo2"/>
                         <constraint firstAttribute="width" constant="290" id="sre-Xu-lPB"/>
@@ -46,26 +46,15 @@
                         <constraint firstAttribute="height" constant="246" id="udS-vx-x8y"/>
                     </constraints>
                 </view>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_outagebutton" translatesAutoresizingMaskIntoConstraints="NO" id="yGe-SX-8fp">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="300" id="Ila-bO-IzU"/>
-                        <constraint firstAttribute="height" constant="300" id="d3r-l9-Ybe"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="yGe-SX-8fp" firstAttribute="centerY" secondItem="KEt-H0-Vtc" secondAttribute="centerY" id="96U-24-iJn"/>
-                <constraint firstItem="yGe-SX-8fp" firstAttribute="centerY" secondItem="aal-fY-fBz" secondAttribute="centerY" id="HCy-YX-cMN"/>
-                <constraint firstItem="yGe-SX-8fp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HOQ-6f-qbG"/>
-                <constraint firstItem="yGe-SX-8fp" firstAttribute="centerY" secondItem="0P0-jf-3iW" secondAttribute="centerY" id="VzR-yx-eXw"/>
-                <constraint firstItem="yGe-SX-8fp" firstAttribute="centerX" secondItem="aal-fY-fBz" secondAttribute="centerX" id="dIb-rl-Fty"/>
-                <constraint firstItem="yGe-SX-8fp" firstAttribute="centerX" secondItem="KEt-H0-Vtc" secondAttribute="centerX" id="fDd-U6-N74"/>
-                <constraint firstAttribute="bottom" secondItem="yGe-SX-8fp" secondAttribute="bottom" id="ghS-aP-9Cv"/>
-                <constraint firstAttribute="trailing" secondItem="yGe-SX-8fp" secondAttribute="trailing" id="o7g-CV-dtK"/>
-                <constraint firstItem="yGe-SX-8fp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qjZ-En-vMP"/>
-                <constraint firstItem="yGe-SX-8fp" firstAttribute="centerX" secondItem="0P0-jf-3iW" secondAttribute="centerX" id="rZ9-lI-KU8"/>
+                <constraint firstItem="0P0-jf-3iW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9K5-7H-jXu"/>
+                <constraint firstItem="0P0-jf-3iW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Jar-At-BAj"/>
+                <constraint firstItem="KEt-H0-Vtc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Kor-At-qVs"/>
+                <constraint firstItem="aal-fY-fBz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="N5A-24-bHw"/>
+                <constraint firstItem="aal-fY-fBz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lLL-Ny-vSo"/>
+                <constraint firstItem="KEt-H0-Vtc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wSu-NC-IbA"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -73,7 +62,4 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
-    <resources>
-        <image name="img_outagebutton" width="300" height="300"/>
-    </resources>
 </document>
