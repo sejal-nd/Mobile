@@ -109,7 +109,8 @@ class HomeUsageCardViewModel {
     private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents.elements()
         .filter { accountDetail in
             if accountDetail.isBGEControlGroup {
-                return accountDetail.isSERAccount // BGE Control Group + SER enrollment get the SER graph on usage card
+                return !accountDetail.isSERAccount ||
+                    accountDetail.serInfo.eventResults.isEmpty // BGE Control Group + SER enrollment get the SER graph on usage card
             }
             
             return !accountDetail.isEligibleForUsageData
@@ -122,13 +123,11 @@ class HomeUsageCardViewModel {
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showSmartEnergyRewards: Driver<Void> = self.accountDetailEvents
-        .filter {
-            guard let accountDetail = $0.element else { return false }
-            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
-                return accountDetail.serInfo.eventResults.count > 0
-            }
-            return false
+    private(set) lazy var showSmartEnergyRewards: Driver<Void> = accountDetailEvents.elements()
+        .filter { accountDetail in
+            accountDetail.isBGEControlGroup &&
+                accountDetail.isSERAccount &&
+                !accountDetail.serInfo.eventResults.isEmpty
         }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
