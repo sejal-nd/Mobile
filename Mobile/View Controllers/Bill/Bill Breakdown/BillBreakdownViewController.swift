@@ -63,9 +63,7 @@ class BillBreakdownViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setWhiteNavBar()
-        }
+        navigationController?.setWhiteNavBar()
     }
     
     // MARK: - Style Views
