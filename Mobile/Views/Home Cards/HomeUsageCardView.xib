@@ -414,14 +414,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhr-Tm-Qmx">
-                                                    <rect key="frame" x="0.0" y="77" width="505" height="177.5"/>
+                                                    <rect key="frame" x="0.0" y="77" width="505" height="219.5"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="115" translatesAutoresizingMaskIntoConstraints="NO" id="eec-GG-spe" customClass="SmartEnergyRewardsView" customModule="BGE" customModuleProvider="target">
-                                                            <rect key="frame" x="22" y="10" width="461" height="115"/>
+                                                            <rect key="frame" x="22" y="10" width="461" height="157"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Footer Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVO-7X-IIq">
-                                                            <rect key="frame" x="22" y="137" width="461" height="20.5"/>
+                                                            <rect key="frame" x="22" y="179" width="461" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -478,30 +478,31 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="FrX-lg-bPh" firstAttribute="leading" secondItem="h2Z-AT-bub" secondAttribute="leading" id="Cvt-JR-qHA"/>
+                                                <constraint firstItem="FrX-lg-bPh" firstAttribute="top" secondItem="fhr-Tm-Qmx" secondAttribute="bottom" id="Gzq-oy-h3w"/>
                                                 <constraint firstItem="fhr-Tm-Qmx" firstAttribute="leading" secondItem="h2Z-AT-bub" secondAttribute="leading" id="Md4-ZK-rcC"/>
                                                 <constraint firstAttribute="bottom" secondItem="FrX-lg-bPh" secondAttribute="bottom" id="NlI-0M-MqI"/>
                                                 <constraint firstAttribute="trailing" secondItem="fhr-Tm-Qmx" secondAttribute="trailing" id="NxZ-Fr-tGP"/>
-                                                <constraint firstItem="tO1-EN-nBp" firstAttribute="top" secondItem="Nkl-J5-o5t" secondAttribute="bottom" priority="999" id="QJC-FA-rQ5"/>
+                                                <constraint firstItem="tO1-EN-nBp" firstAttribute="top" secondItem="Nkl-J5-o5t" secondAttribute="bottom" id="QJC-FA-rQ5"/>
                                                 <constraint firstItem="Nkl-J5-o5t" firstAttribute="centerX" secondItem="h2Z-AT-bub" secondAttribute="centerX" id="Rrq-0z-juA"/>
                                                 <constraint firstAttribute="trailing" secondItem="FrX-lg-bPh" secondAttribute="trailing" id="UaO-TE-yvW"/>
-                                                <constraint firstItem="Nkl-J5-o5t" firstAttribute="top" secondItem="h2Z-AT-bub" secondAttribute="top" priority="999" constant="20" id="VhK-IO-0Kr"/>
-                                                <constraint firstItem="fhr-Tm-Qmx" firstAttribute="top" secondItem="tO1-EN-nBp" secondAttribute="bottom" priority="999" constant="16" id="qtl-bF-cTQ"/>
+                                                <constraint firstItem="Nkl-J5-o5t" firstAttribute="top" secondItem="h2Z-AT-bub" secondAttribute="top" constant="20" id="VhK-IO-0Kr"/>
+                                                <constraint firstItem="fhr-Tm-Qmx" firstAttribute="top" secondItem="tO1-EN-nBp" secondAttribute="bottom" constant="16" id="qtl-bF-cTQ"/>
                                                 <constraint firstItem="tO1-EN-nBp" firstAttribute="centerX" secondItem="h2Z-AT-bub" secondAttribute="centerX" id="wRg-jK-mOq"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ko5-eL-MKE">
+                                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ko5-eL-MKE">
                                             <rect key="frame" x="0.0" y="1189" width="505" height="220.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smart Energy Rewards Empty State" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpR-pb-8Sl">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Smart Energy Rewards Empty State" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpR-pb-8Sl">
                                                     <rect key="frame" x="116.5" y="20" width="272" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_smartenergyempty" translatesAutoresizingMaskIntoConstraints="NO" id="9Gj-sl-QN3">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_smartenergyempty" translatesAutoresizingMaskIntoConstraints="NO" id="9Gj-sl-QN3">
                                                     <rect key="frame" x="193" y="58.5" width="119" height="105"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcm-Qk-y2c">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Detail Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcm-Qk-y2c">
                                                     <rect key="frame" x="28" y="182" width="449" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -512,12 +513,12 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Dcm-Qk-y2c" secondAttribute="trailing" constant="28" id="01d-aR-HhS"/>
                                                 <constraint firstItem="Dcm-Qk-y2c" firstAttribute="leading" secondItem="ko5-eL-MKE" secondAttribute="leading" constant="28" id="7Y9-I5-icV"/>
-                                                <constraint firstItem="9Gj-sl-QN3" firstAttribute="top" secondItem="EpR-pb-8Sl" secondAttribute="bottom" priority="999" constant="18" id="Ehk-ob-7F9"/>
+                                                <constraint firstItem="9Gj-sl-QN3" firstAttribute="top" secondItem="EpR-pb-8Sl" secondAttribute="bottom" constant="18" id="Ehk-ob-7F9"/>
                                                 <constraint firstItem="EpR-pb-8Sl" firstAttribute="centerX" secondItem="ko5-eL-MKE" secondAttribute="centerX" id="TEu-NC-jgh"/>
-                                                <constraint firstAttribute="bottom" secondItem="Dcm-Qk-y2c" secondAttribute="bottom" priority="999" constant="18" id="dMY-hF-lQE"/>
+                                                <constraint firstAttribute="bottom" secondItem="Dcm-Qk-y2c" secondAttribute="bottom" constant="18" id="dMY-hF-lQE"/>
                                                 <constraint firstItem="9Gj-sl-QN3" firstAttribute="centerX" secondItem="ko5-eL-MKE" secondAttribute="centerX" id="i89-xm-sjL"/>
-                                                <constraint firstItem="EpR-pb-8Sl" firstAttribute="top" secondItem="ko5-eL-MKE" secondAttribute="top" priority="999" constant="20" id="ihZ-mA-boP"/>
-                                                <constraint firstItem="Dcm-Qk-y2c" firstAttribute="top" secondItem="9Gj-sl-QN3" secondAttribute="bottom" priority="999" constant="18" id="m21-ye-jRU"/>
+                                                <constraint firstItem="EpR-pb-8Sl" firstAttribute="top" secondItem="ko5-eL-MKE" secondAttribute="top" constant="20" id="ihZ-mA-boP"/>
+                                                <constraint firstItem="Dcm-Qk-y2c" firstAttribute="top" secondItem="9Gj-sl-QN3" secondAttribute="bottom" constant="18" id="m21-ye-jRU"/>
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sDB-hX-BY3">
