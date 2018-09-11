@@ -19,54 +19,50 @@ class OutageStatusButton: UIView {
     @IBOutlet weak private var view: UIView!
     
     @IBOutlet weak private var animationView: UIView!
-    @IBOutlet weak private var outerCircleView: UIView!
-    @IBOutlet weak private var innerCircleView: UIView!
+    @IBOutlet weak private var outerCircleView: UIView! {
+        didSet {
+            outerCircleView.layer.borderWidth = 3
+        }
+    }
+    @IBOutlet weak private var innerCircleView: UIView! {
+        didSet {
+            innerCircleView.layer.borderWidth = 6
+        }
+    }
     
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var statusTitleLabel: UILabel! {
         didSet {
             statusTitleLabel.font = OpenSans.regular.of(size: 14)
-            statusTitleLabel.textColor = .white
-            statusTitleLabel.textAlignment = .center
         }
     }
     @IBOutlet weak var statusDetailLabel: UILabel! {
         didSet {
             statusDetailLabel.font = OpenSans.bold.of(size: 22)
-            statusDetailLabel.textColor = .white
-            statusDetailLabel.textAlignment = .center
         }
     }
 
-    @IBOutlet weak var reportedView: UIView!
-    @IBOutlet weak var reportedImageView: UIImageView!
-    @IBOutlet weak var reportedTitleLabel: UILabel! {
+    @IBOutlet weak var statusETRView: UIView!
+    @IBOutlet weak var statusETRImageView: UIImageView!
+    @IBOutlet weak var statusETRLabel: UILabel! {
         didSet {
-            reportedTitleLabel.font = OpenSans.regular.of(size: 16)
-            reportedTitleLabel.textColor = .white
-            reportedTitleLabel.textAlignment = .center
+            statusETRLabel.font = OpenSans.regular.of(size: 16)
         }
     }
     @IBOutlet weak var reportedDetailLabel: UILabel! {
         didSet {
             reportedDetailLabel.font = OpenSans.bold.of(size: 22)
-            reportedDetailLabel.textColor = .white
-            reportedDetailLabel.textAlignment = .center
         }
     }
     @IBOutlet weak var reportedETRTitleLabel: UILabel! {
         didSet {
             reportedETRTitleLabel.font = OpenSans.regular.of(size: 12)
-            reportedETRTitleLabel.textColor = .white
-            reportedETRTitleLabel.textAlignment = .center
         }
     }
     @IBOutlet weak var reportedETRLabel: UILabel! {
         didSet {
             reportedETRLabel.font = OpenSans.bold.of(size: 15)
-            reportedETRLabel.textColor = .white
-            reportedETRLabel.textAlignment = .center
             reportedETRLabel.adjustsFontSizeToFitWidth = true
             reportedETRLabel.minimumScaleFactor = 0.5
         }
@@ -77,17 +73,38 @@ class OutageStatusButton: UIView {
         didSet {
             inelligableDescriptionTextView.textContainerInset = .zero
             inelligableDescriptionTextView.font = SystemFont.light.of(size: 14)
-            inelligableDescriptionTextView.tintColor = .actionBlue // For the phone numbers
-            inelligableDescriptionTextView.textColor = .white
-            inelligableDescriptionTextView.textAlignment = .center
         }
     }
     @IBOutlet weak var inelligablePayBillLabel: UILabel! {
         didSet {
             inelligablePayBillLabel.font = SystemFont.semibold.of(size: 16)
-            inelligablePayBillLabel.textColor = .white
-            inelligablePayBillLabel.textAlignment = .center
         }
+    }
+    
+    private var innerBorderColor: UIColor {
+        let color: UIColor
+        switch Environment.shared.opco {
+        case .bge:
+            color = .primaryColor
+        case .comEd:
+            color = .primaryColor
+        case .peco:
+            color = isStormMode ? UIColor(red:0/255.0, green:162/255.0, blue:255/255.0,  alpha:1) : .primaryColor
+        }
+        return color
+    }
+    
+    private var outterBorderColor: UIColor {
+        let color: UIColor
+        switch Environment.shared.opco {
+        case .bge:
+            color = isStormMode ? .clear : UIColor(red: 61/255, green: 132/255, blue: 48/255, alpha:0.6)
+        case .comEd:
+            color = isStormMode ? .clear : UIColor(red: 206/255, green: 17/255, blue: 65/255, alpha:0.6)
+        case .peco:
+            color = isStormMode ? .clear : UIColor(red: 0/255, green: 119/255, blue: 187/255, alpha:0.6)
+        }
+        return color
     }
 
     var onLottieAnimation: LOTAnimationView?
@@ -99,8 +116,37 @@ class OutageStatusButton: UIView {
             
             if isStormMode {
                 onLottieAnimation = LOTAnimationView(name: "sm_outage")
+                
+                outerCircleView.isHidden = true
+                
+                statusTitleLabel.textColor = .white
+                statusDetailLabel.textColor = .white
+                
+                statusETRLabel.textColor = .white
+                reportedDetailLabel.textColor = .white
+                reportedETRTitleLabel.textColor = .white
+                reportedETRLabel.textColor = .white
+                
+                inelligablePayBillLabel.textColor = .white
+                inelligableDescriptionTextView.tintColor = .white // For the phone numbers
+                inelligableDescriptionTextView.textColor = .white
             } else {
                 onLottieAnimation = LOTAnimationView(name: "outage")
+                
+                outerCircleView.isHidden = false
+                outerCircleView.layer.borderColor = UIColor.red.cgColor // CHANGE
+                
+                statusTitleLabel.textColor = .actionBlue
+                statusDetailLabel.textColor = .actionBlue
+                
+                statusETRLabel.textColor = .actionBlue
+                reportedDetailLabel.textColor = .actionBlue
+                reportedETRTitleLabel.textColor = .deepGray
+                reportedETRLabel.textColor = .deepGray
+                
+                inelligablePayBillLabel.textColor = .actionBlue
+                inelligableDescriptionTextView.tintColor = .actionBlue // For the phone numbers
+                inelligableDescriptionTextView.textColor = .middleGray
             }
             
             onLottieAnimation?.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
@@ -136,13 +182,12 @@ class OutageStatusButton: UIView {
 
         // Triggers Initial DidSet
         isStormMode = false
-
-        setGrayCircles()
     }
 
-    private func setGrayCircles() {
-        outerCircleView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.3)
-        innerCircleView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1)
+    private func setStateColors(innerBackground: UIColor, innerStroke: UIColor, outerStroke: UIColor = .clear) {
+        innerCircleView.backgroundColor = innerBackground
+        innerCircleView.layer.borderColor = innerStroke.cgColor
+        outerCircleView.layer.borderColor = outerStroke.cgColor
     }
     
     func setReportedState(estimatedRestorationDateString: String) {
@@ -151,10 +196,24 @@ class OutageStatusButton: UIView {
         
         statusView.isHidden = true
         inelligableView.isHidden = true
-        reportedView.isHidden = false
+        statusETRView.isHidden = false
         
-        reportedImageView.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
-        reportedTitleLabel.text = NSLocalizedString("Your outage is", comment: "")
+        // Styling
+        
+        if isStormMode {
+            statusETRImageView.image = #imageLiteral(resourceName: "ic_reportoutage")
+            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
+                           innerStroke: innerBorderColor)
+        } else {
+            setStateColors(innerBackground: .white,
+                           innerStroke: innerBorderColor,
+                           outerStroke: outterBorderColor)
+            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
+        }
+        
+        // Set Values
+        
+        statusETRLabel.text = NSLocalizedString("Your outage is", comment: "")
         reportedDetailLabel.text = NSLocalizedString("REPORTED", comment: "")
         reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         reportedETRLabel.text = estimatedRestorationDateString
@@ -168,10 +227,24 @@ class OutageStatusButton: UIView {
         
         statusView.isHidden = true
         inelligableView.isHidden = true
-        reportedView.isHidden = false
+        statusETRView.isHidden = false
 
-        reportedImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out")
-        reportedTitleLabel.text = NSLocalizedString("Our records indicate your", comment: "")
+        // Styling
+        
+        if isStormMode {
+            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
+                           innerStroke: UIColor(red:255/255.0, green:255/255.0, blue:255/255.0,  alpha:0.3))
+            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out_white")
+        } else {
+            setStateColors(innerBackground: .white,
+                           innerStroke: .middleGray,
+                           outerStroke: UIColor(red:187/255.0, green:187/255.0, blue:187/255.0,  alpha:1))
+            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out")
+        }
+        
+        // Set Values
+        
+        statusETRLabel.text = NSLocalizedString("Our records indicate your", comment: "")
         reportedDetailLabel.text = NSLocalizedString("POWER IS OUT", comment: "")
         reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         reportedETRLabel.text = estimatedRestorationDateString
@@ -185,9 +258,20 @@ class OutageStatusButton: UIView {
         
         statusView.isHidden = true
         inelligableView.isHidden = false
-        reportedView.isHidden = true
+        statusETRView.isHidden = true
 
-        if Environment.shared.opco != .bge && !flagFinaled {
+        // Set Values
+        
+        if isStormMode {
+            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
+                           innerStroke: UIColor(red:255/255.0, green:255/255.0, blue:255/255.0,  alpha:0.3))
+        } else {
+            setStateColors(innerBackground: .white,
+                           innerStroke: .middleGray,
+                           outerStroke: UIColor(red:187/255.0, green:187/255.0, blue:187/255.0,  alpha:1))
+        }
+        
+                if Environment.shared.opco != .bge && !flagFinaled {
             inelligablePayBillLabel.text = NSLocalizedString("Pay Bill", comment: "")
         }
 
@@ -202,9 +286,23 @@ class OutageStatusButton: UIView {
         
         statusView.isHidden = false
         inelligableView.isHidden = true
-        reportedView.isHidden = true
+        statusETRView.isHidden = true
 
-        statusImageView.image = #imageLiteral(resourceName: "ic_outagestatus_on")
+        // Styling
+        
+        if isStormMode {
+            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
+                           innerStroke: UIColor.clear)
+            statusImageView.image = #imageLiteral(resourceName: "ic_lightbulb_on_white")
+        } else {
+            setStateColors(innerBackground: .white,
+                           innerStroke: UIColor.clear,
+                           outerStroke: UIColor.clear)
+            statusImageView.image = #imageLiteral(resourceName: "ic_outagestatus_on")
+        }
+        
+        // Set Values
+        
         statusTitleLabel.text = NSLocalizedString("Our records indicate", comment: "")
         statusDetailLabel.text = NSLocalizedString("POWER IS ON", comment: "")
 
