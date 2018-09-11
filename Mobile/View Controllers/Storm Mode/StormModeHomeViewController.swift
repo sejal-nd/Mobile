@@ -77,7 +77,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var loadingBackgroundView: UIView! {
         didSet {
             loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.height / 2
-            loadingBackgroundView.backgroundColor = .clear
         }
     }
     @IBOutlet weak var loadingAnimationView: UIView!
