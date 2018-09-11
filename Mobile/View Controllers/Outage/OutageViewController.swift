@@ -20,6 +20,7 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingBackgroundView: UIView!
     @IBOutlet weak var loadingAnimationView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
@@ -55,6 +56,8 @@ class OutageViewController: AccountPickerViewController {
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
+        
+        loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.size.height / 2
         
         loadingLottieAnimation.frame = CGRect(x: 0, y: 0, width: loadingAnimationView.frame.size.width, height: loadingAnimationView.frame.size.height)
         loadingLottieAnimation.loopAnimation = true
