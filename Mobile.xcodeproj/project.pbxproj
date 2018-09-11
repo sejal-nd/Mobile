@@ -209,6 +209,12 @@
 		359BB26321405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */; };
 		359BB2642141AD6C00FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */; };
 		359BB2652141AD6C00FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */; };
+		359BB2672146F05400FBAD83 /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2662146F05400FBAD83 /* sm_outage.json */; };
+		359BB2692146F06D00FBAD83 /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2682146F06D00FBAD83 /* sm_outage.json */; };
+		359BB26B2146F08300FBAD83 /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB26A2146F08200FBAD83 /* sm_outage.json */; };
+		359BB26D2146F09500FBAD83 /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB26C2146F09500FBAD83 /* sm_outage_loading.json */; };
+		359BB26F2146F0A700FBAD83 /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB26E2146F0A700FBAD83 /* sm_outage_loading.json */; };
+		359BB2712146F0B700FBAD83 /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2702146F0B600FBAD83 /* sm_outage_loading.json */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6BE211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BD211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift */; };
@@ -2332,6 +2338,12 @@
 		358DE0A721021B64002C544E /* UnavailableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnavailableView.xib; sourceTree = "<group>"; };
 		358DE0A921021B7A002C544E /* UnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableView.swift; sourceTree = "<group>"; };
 		359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StormModeHomeViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		359BB2662146F05400FBAD83 /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
+		359BB2682146F06D00FBAD83 /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
+		359BB26A2146F08200FBAD83 /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
+		359BB26C2146F09500FBAD83 /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
+		359BB26E2146F0A700FBAD83 /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
+		359BB2702146F0B600FBAD83 /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
 		35A6C6BD211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnauthenticatedUserViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -5203,6 +5215,8 @@
 				385AF21F1F278F11001E3619 /* uu_otp.json */,
 				E8494F3E1EBBCB3A0047D6BE /* outage_loading.json */,
 				E8FE30B01E787625009D28B7 /* outage.json */,
+				359BB26C2146F09500FBAD83 /* sm_outage_loading.json */,
+				359BB2662146F05400FBAD83 /* sm_outage.json */,
 				6A4FDA6DF9787E9CA31227BD /* splash.json */,
 				6A4FD2866F24DB5BEA543950 /* tutorial_otp */,
 			);
@@ -5215,6 +5229,8 @@
 				385AF21D1F278F06001E3619 /* uu_otp.json */,
 				E8494F401EBBCB430047D6BE /* outage_loading.json */,
 				E8FE30B21E78762B009D28B7 /* outage.json */,
+				359BB26E2146F0A700FBAD83 /* sm_outage_loading.json */,
+				359BB2682146F06D00FBAD83 /* sm_outage.json */,
 				6A4FD80B62F03A415062F85E /* splash.json */,
 				6A4FD62C65A749931DB4E6F8 /* tutorial_otp */,
 			);
@@ -5227,6 +5243,8 @@
 				385AF21B1F278EFD001E3619 /* uu_otp.json */,
 				E8494F421EBBCB4C0047D6BE /* outage_loading.json */,
 				E8FE30B41E78762F009D28B7 /* outage.json */,
+				359BB2702146F0B600FBAD83 /* sm_outage_loading.json */,
+				359BB26A2146F08200FBAD83 /* sm_outage.json */,
 				6A4FD46F61FB1F534F49F74E /* splash.json */,
 				6A4FD70300E4B36BC01D3FDF /* tutorial_otp */,
 			);
@@ -5626,6 +5644,7 @@
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				E87C41351FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */,
 				385AF2261F27915A001E3619 /* img_1.png in Resources */,
+				359BB2672146F05400FBAD83 /* sm_outage.json in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				E8FF08601F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E8EDC5361F32403A006DD927 /* speedpay_errors.xml in Resources */,
@@ -5666,6 +5685,7 @@
 				0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */,
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
 				E89399391F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
+				359BB26D2146F09500FBAD83 /* sm_outage_loading.json in Resources */,
 				35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				6A4FD7DC1371BC6129CC594F /* otps1_img_0.png in Resources */,
 				6A4FD375948286D6F4A38198 /* otps1_img_1.png in Resources */,
@@ -5711,6 +5731,7 @@
 				B5D415821F3A6E9000AC32B2 /* GoogleService-Info_peco.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */,
+				359BB26B2146F08300FBAD83 /* sm_outage.json in Resources */,
 				E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				385AF2251F27915A001E3619 /* img_0.png in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -5793,6 +5814,7 @@
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				6A4FD2E76D3407C06AB404C7 /* otp_step2.json in Resources */,
 				6A4FD3C6912E27F3EB5CCA96 /* otps3_img_0.png in Resources */,
+				359BB2712146F0B700FBAD83 /* sm_outage_loading.json in Resources */,
 				B07D247920C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				6A4FDEB37967D5B806CE00FC /* otps3_img_1.png in Resources */,
 				6A4FDCF675D261AB6008C079 /* otp_step3.json in Resources */,
@@ -5849,6 +5871,7 @@
 				B574BAD01E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				82A18ED01EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
+				359BB26F2146F0A700FBAD83 /* sm_outage_loading.json in Resources */,
 				9C97DB1C20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				E800432D1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
@@ -5889,6 +5912,7 @@
 				E8B8C8491F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */,
 				82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */,
 				0EF60FD220EE7AE8006ABC18 /* Assets.xcassets in Resources */,
+				359BB2692146F06D00FBAD83 /* sm_outage.json in Resources */,
 				E8494F3C1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
 				35A6C7042121DAF100C2A58F /* ToggleTableViewCell.xib in Resources */,
