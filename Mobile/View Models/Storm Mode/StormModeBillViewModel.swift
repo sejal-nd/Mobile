@@ -57,9 +57,15 @@ class StormModeBillViewModel {
                 return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
         })
     
-    private(set) lazy var showButtonStack: Driver<Bool> = switchAccountTracker
+    private(set) lazy var didFinishRefresh: Driver<Void> = refreshTracker
         .asDriver()
-        .not()
+        .filter(!)
+        .map(to: ())
+    
+    private(set) lazy var showButtonStack: Driver<Bool> = Observable
+        .merge(switchAccountTracker.asObservable().filter { $0 }.not(),
+               accountDetailEvents.map { $0.error == nil })
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMakeAPaymentButton: Driver<Bool> = accountDetailEvents.elements()
         .map { $0.billingInfo.netDueAmount ?? 0 > 0 || Environment.shared.opco == .bge }
