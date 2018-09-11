@@ -128,8 +128,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             guard let `self` = self else { return }
             switch(state) {
             case .loadingAccounts:
+                self.outageStatusButton.isHidden = true
                 self.gasOnlyView.isHidden = true
-                self.loadingView.isHidden = true
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
                 if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
@@ -182,6 +182,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 }
 
                 // Hide everything else
+                self.outageStatusButton.isHidden = true
                 self.gasOnlyView.isHidden = true
             })
     }
@@ -208,6 +209,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     func getOutageStatus() {
+        outageStatusButton.isHidden = true
         gasOnlyView.isHidden = true
         loadingView.isHidden = false
         scrollView?.isHidden = false
@@ -246,9 +248,11 @@ class StormModeHomeViewController: AccountPickerViewController {
         if currentOutageStatus.flagGasOnly {
             gasOnlyView.isHidden = false
             shouldShowOutageButtons = false
+            outageStatusButton.isHidden = true
         } else {
             gasOnlyView.isHidden = true
             shouldShowOutageButtons = true
+            outageStatusButton.isHidden = false
         }
         
         // Update after just reporting outage
@@ -258,8 +262,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     func layoutBigButtonContent(outageJustReported: Bool) {
         //outageStatusButton.setOutageState(estimatedRestorationDateString: "12:00:23")
         //outageStatusButton.setReportedState(estimatedRestorationDateString: "12:00:23")
-        outageStatusButton.setIneligibleState(flagFinaled: true, nonPayFinaledMessage: "Outage Status and Outage Reporting are not available for accounts with an outstanding balance.")
-       // outageStatusButton.setPowerOnState()
+        //outageStatusButton.setIneligibleState(flagFinaled: true, nonPayFinaledMessage: "Outage Status and Outage Reporting are not available for accounts with an outstanding balance.")
+       outageStatusButton.setPowerOnState()
 //        let currentOutageStatus = viewModel.currentOutageStatus!
 //
 //        if outageJustReported && viewModel.reportedOutage != nil {

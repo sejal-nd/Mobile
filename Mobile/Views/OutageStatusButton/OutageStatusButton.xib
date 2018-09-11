@@ -58,7 +58,7 @@
                             <rect key="frame" x="8" y="8" width="219" height="219"/>
                             <subviews>
                                 <view hidden="YES" verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLe-3B-kDr">
-                                    <rect key="frame" x="0.0" y="9.5" width="219" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="-63" width="219" height="0.0"/>
                                     <subviews>
                                         <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ppU-R8-pkP">
                                             <rect key="frame" x="8" y="60" width="203" height="99"/>
@@ -99,7 +99,7 @@
                                     </constraints>
                                 </view>
                                 <view hidden="YES" verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeJ-mH-xca">
-                                    <rect key="frame" x="0.0" y="-40" width="219" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="27" width="219" height="0.0"/>
                                     <subviews>
                                         <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="utK-ze-lbP">
                                             <rect key="frame" x="-10.5" y="42.5" width="240" height="134"/>
@@ -187,7 +187,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="235" id="3KU-Eu-xQf"/>
                         <constraint firstAttribute="trailing" secondItem="T4V-uw-F2u" secondAttribute="trailing" constant="8" id="ktW-a2-2rj"/>
