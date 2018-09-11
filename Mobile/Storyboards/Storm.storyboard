@@ -46,15 +46,18 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMu-am-j3r" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="21" y="254" width="300" height="300"/>
+                                                    <rect key="frame" x="21" y="258" width="300" height="300"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="300" id="bBo-jh-XM4"/>
                                                         <constraint firstAttribute="height" constant="300" id="sHx-ef-5ig"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isStormMode" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="V0G-ut-vCb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="230"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="234"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsK-4K-Hee">
                                                             <rect key="frame" x="0.0" y="0.0" width="343" height="97.5"/>
@@ -107,7 +110,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAd-jD-Fyb" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="132" width="343" height="98"/>
+                                                            <rect key="frame" x="0.0" y="136" width="343" height="98"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="D22-9R-29w">
                                                                     <rect key="frame" x="16" y="16" width="311" height="66"/>
@@ -168,7 +171,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9t-CL-fDL">
-                                                    <rect key="frame" x="21" y="254" width="300" height="300"/>
+                                                    <rect key="frame" x="21" y="258" width="300" height="300"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4mv-Ce-wvt">
                                                             <rect key="frame" x="24.5" y="25" width="250" height="250"/>
@@ -181,17 +184,23 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B6n-fy-3sU">
                                                             <rect key="frame" x="-0.5" y="0.0" width="300" height="300"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_outagebutton" translatesAutoresizingMaskIntoConstraints="NO" id="cpM-1X-yqc">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                </imageView>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCZ-Tu-J12">
+                                                                    <rect key="frame" x="32" y="32" width="236" height="236"/>
+                                                                    <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </view>
                                                                 <view contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="zej-KF-7fn" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="120" y="144" width="60" height="12"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </view>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="cCZ-Tu-J12" firstAttribute="top" secondItem="B6n-fy-3sU" secondAttribute="top" constant="32" id="6nX-ck-345"/>
+                                                                <constraint firstAttribute="bottom" secondItem="cCZ-Tu-J12" secondAttribute="bottom" constant="32" id="Nb6-C4-hTp"/>
+                                                                <constraint firstAttribute="trailing" secondItem="cCZ-Tu-J12" secondAttribute="trailing" constant="32" id="Oka-Ks-f0j"/>
+                                                                <constraint firstItem="cCZ-Tu-J12" firstAttribute="leading" secondItem="B6n-fy-3sU" secondAttribute="leading" constant="32" id="djh-HS-pWk"/>
+                                                            </constraints>
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -207,7 +216,7 @@
                                                     </constraints>
                                                 </view>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="s8A-H1-Rf9" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="578" width="343" height="49"/>
+                                                    <rect key="frame" x="0.0" y="582" width="343" height="45"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="75" id="Nxi-RX-K2H"/>
                                                     </constraints>
@@ -217,7 +226,7 @@
                                                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                 </textView>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAz-Ed-8Hy">
-                                                    <rect key="frame" x="0.0" y="254" width="343" height="373"/>
+                                                    <rect key="frame" x="0.0" y="258" width="343" height="369"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="qfu-kV-Gsd">
                                                             <rect key="frame" x="109" y="24" width="125" height="126"/>
@@ -229,7 +238,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-Gn-JzO" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="231.5" width="311" height="117.5"/>
+                                                            <rect key="frame" x="16" y="231.5" width="311" height="113.5"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <string key="text">We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call x-xxx-xxx-xxxx.</string>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -320,6 +329,7 @@
                         <outlet property="headerViewDescriptionLabel" destination="KFG-l4-4FT" id="wad-D4-Z6E"/>
                         <outlet property="headerViewTitleLabel" destination="f4G-79-UPu" id="hJj-0Z-IUn"/>
                         <outlet property="loadingAnimationView" destination="4mv-Ce-wvt" id="nDj-OL-Odf"/>
+                        <outlet property="loadingBackgroundView" destination="cCZ-Tu-J12" id="ass-gY-j5B"/>
                         <outlet property="loadingView" destination="z9t-CL-fDL" id="flB-AU-INU"/>
                         <outlet property="outageStatusButton" destination="gMu-am-j3r" id="NdO-h4-f9X"/>
                         <outlet property="scrollView" destination="Ec7-2S-gPb" id="kM5-jg-CBh"/>
@@ -398,6 +408,5 @@
         <image name="gasonly_graphic" width="125" height="126"/>
         <image name="ic_caret_white" width="8" height="13"/>
         <image name="ic_storm" width="60" height="66"/>
-        <image name="img_outagebutton" width="300" height="300"/>
     </resources>
 </document>

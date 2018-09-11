@@ -296,8 +296,8 @@ class OutageStatusButton: UIView {
             statusImageView.image = #imageLiteral(resourceName: "ic_lightbulb_on_white")
         } else {
             setStateColors(innerBackground: .white,
-                           innerStroke: UIColor.clear,
-                           outerStroke: UIColor.clear)
+                           innerStroke: .white,
+                           outerStroke: .clear)
             statusImageView.image = #imageLiteral(resourceName: "ic_outagestatus_on")
         }
         
