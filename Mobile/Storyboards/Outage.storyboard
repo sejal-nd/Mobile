@@ -373,9 +373,10 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6B-ne-mO1">
                                                         <rect key="frame" x="37" y="9" width="300" height="300"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_outagebutton" translatesAutoresizingMaskIntoConstraints="NO" id="KeB-Sl-rK2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                                                            </imageView>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yy1-T3-7bp">
+                                                                <rect key="frame" x="35" y="35" width="230" height="230"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </view>
                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="iNx-iE-a14" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="120" y="144" width="60" height="12"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -383,14 +384,14 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="KeB-Sl-rK2" secondAttribute="bottom" id="8JU-am-loZ"/>
                                                             <constraint firstItem="iNx-iE-a14" firstAttribute="centerY" secondItem="E6B-ne-mO1" secondAttribute="centerY" id="LwU-9Y-fMj"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Yy1-T3-7bp" secondAttribute="trailing" constant="35" id="M0e-t8-0O2"/>
                                                             <constraint firstAttribute="width" constant="300" id="OWl-b1-2X2"/>
-                                                            <constraint firstAttribute="trailing" secondItem="KeB-Sl-rK2" secondAttribute="trailing" id="ezD-2e-JIZ"/>
+                                                            <constraint firstItem="Yy1-T3-7bp" firstAttribute="leading" secondItem="E6B-ne-mO1" secondAttribute="leading" constant="35" id="OfR-0g-3LD"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Yy1-T3-7bp" secondAttribute="bottom" constant="35" id="bNa-yY-eox"/>
                                                             <constraint firstItem="iNx-iE-a14" firstAttribute="centerX" secondItem="E6B-ne-mO1" secondAttribute="centerX" id="gUT-MU-kwe"/>
                                                             <constraint firstAttribute="height" constant="300" id="o1V-zp-gy0"/>
-                                                            <constraint firstItem="KeB-Sl-rK2" firstAttribute="top" secondItem="E6B-ne-mO1" secondAttribute="top" id="rIM-gp-xca"/>
-                                                            <constraint firstItem="KeB-Sl-rK2" firstAttribute="leading" secondItem="E6B-ne-mO1" secondAttribute="leading" id="zPQ-5U-e8n"/>
+                                                            <constraint firstItem="Yy1-T3-7bp" firstAttribute="top" secondItem="E6B-ne-mO1" secondAttribute="top" constant="35" id="pYz-sd-ICN"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -535,6 +536,7 @@
                         <outlet property="gasOnlyTitleLabel" destination="ZQw-Ul-DsT" id="Fep-eH-vsa"/>
                         <outlet property="gasOnlyView" destination="H0L-QG-hAo" id="gUc-Os-TqR"/>
                         <outlet property="loadingAnimationView" destination="hNa-Vb-1pp" id="M29-8m-vrJ"/>
+                        <outlet property="loadingBackgroundView" destination="Yy1-T3-7bp" id="T6q-aA-h9C"/>
                         <outlet property="loadingView" destination="NzH-9I-b9u" id="Iki-bl-lva"/>
                         <outlet property="maintenanceModeView" destination="0ZA-lk-6E2" id="JAe-2g-2NB"/>
                         <outlet property="noNetworkConnectionView" destination="VZb-kv-znM" id="OnL-Ot-FoR"/>
@@ -1040,6 +1042,5 @@
         <image name="ic_graycircle" width="30" height="30"/>
         <image name="ic_lock_opco" width="125" height="126"/>
         <image name="icon_slash_check" width="20" height="20"/>
-        <image name="img_outagebutton" width="300" height="300"/>
     </resources>
 </document>
