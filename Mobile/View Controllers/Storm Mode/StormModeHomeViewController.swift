@@ -227,6 +227,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     private func returnToMainApp() {
         guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else { return }
+        StormModeStatus.shared.isOn = false
         window.rootViewController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateInitialViewController()
     }

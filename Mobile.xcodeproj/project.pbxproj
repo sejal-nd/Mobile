@@ -871,6 +871,12 @@
 		B0472B292111011F0048C1A7 /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0472B282111011F0048C1A7 /* UsageViewController.swift */; };
 		B0472B2A2111011F0048C1A7 /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0472B282111011F0048C1A7 /* UsageViewController.swift */; };
 		B0472B2B2111011F0048C1A7 /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0472B282111011F0048C1A7 /* UsageViewController.swift */; };
+		B0649A5F214834380041B299 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
+		B0649A60214834380041B299 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
+		B0649A61214834380041B299 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
+		B0649A62214834380041B299 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
+		B0649A63214834380041B299 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
+		B0649A64214834380041B299 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		B067E0A32045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
 		B067E0A42045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
 		B067E0A52045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
@@ -2589,6 +2595,7 @@
 		B01748912135D2C50039D0C6 /* StormModeHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeHomeViewController.swift; sourceTree = "<group>"; };
 		B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeHomeViewModel.swift; sourceTree = "<group>"; };
 		B0472B282111011F0048C1A7 /* UsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageViewController.swift; sourceTree = "<group>"; };
+		B0649A5E214834380041B299 /* StormModeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeStatus.swift; sourceTree = "<group>"; };
 		B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsViewModelTests.swift; sourceTree = "<group>"; };
 		B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPeakRewardsService.swift; sourceTree = "<group>"; };
 		B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsInitExtensions.swift; sourceTree = "<group>"; };
@@ -4664,6 +4671,7 @@
 				8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */,
 				B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */,
 				357757542114D32A00E73542 /* SharedWebCredentialService.swift */,
+				B0649A5E214834380041B299 /* StormModeStatus.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -6391,6 +6399,7 @@
 				E887C9F21ED5D367002433A3 /* CardIO.m in Sources */,
 				E8C29C7C1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */,
+				B0649A5F214834380041B299 /* StormModeStatus.swift in Sources */,
 				8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				82AC2A2A1FAB78E700EACB3B /* OMCPeakRewardsService.swift in Sources */,
@@ -6743,6 +6752,7 @@
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
+				B0649A61214834380041B299 /* StormModeStatus.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
@@ -7095,6 +7105,7 @@
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7D1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
+				B0649A60214834380041B299 /* StormModeStatus.swift in Sources */,
 				E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				8206D0141FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				54DF4BD21EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
@@ -7349,6 +7360,7 @@
 				B067E0A72045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
 				82B20A35203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
 				824004CD1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
+				B0649A62214834380041B299 /* StormModeStatus.swift in Sources */,
 				E881B1561F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				387E5C4A1F1FCDB800D6710D /* Percentage.swift in Sources */,
 				E8EC0F8E2028FA3C00956ABD /* WalletViewModelTests.swift in Sources */,
@@ -7571,6 +7583,7 @@
 				E8F62B71200924410077B3DA /* MockAlertsService.swift in Sources */,
 				B067E0A82045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
 				82B20A36203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
+				B0649A63214834380041B299 /* StormModeStatus.swift in Sources */,
 				E8F62B72200924410077B3DA /* TemplateCardViewModel.swift in Sources */,
 				E8F62B73200924410077B3DA /* UnauthenticatedOutageViewModel.swift in Sources */,
 				E8F62B74200924410077B3DA /* Percentage.swift in Sources */,
@@ -7749,6 +7762,7 @@
 				E8F62C26200924570077B3DA /* MockAlertsService.swift in Sources */,
 				B067E0A92045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
 				82B20A37203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
+				B0649A64214834380041B299 /* StormModeStatus.swift in Sources */,
 				E8F62C27200924570077B3DA /* TemplateCardViewModel.swift in Sources */,
 				E8F62C28200924570077B3DA /* UnauthenticatedOutageViewModel.swift in Sources */,
 				E8F62C29200924570077B3DA /* Percentage.swift in Sources */,

@@ -207,6 +207,8 @@ class HomeBillCardView: UIView {
     }
     
     private func bindViewModel() {
+        viewBillButton.isHidden = !viewModel.showViewBillButton
+        
         viewModel.paymentTracker.asDriver().drive(onNext: {
             if $0 {
                 LoadingView.show(animated: true)

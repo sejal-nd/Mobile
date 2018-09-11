@@ -325,6 +325,8 @@ class HomeBillCardViewModel {
     
     // MARK: - Show/Hide view logic
     
+    let showViewBillButton = !StormModeStatus.shared.isOn
+    
     private(set) lazy var showHeaderView: Driver<Bool> = billState.map {
         switch $0 {
         case .restoreService, .catchUp, .avoidShutoff, .pastDue, .credit:

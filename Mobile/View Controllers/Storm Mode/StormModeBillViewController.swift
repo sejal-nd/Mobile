@@ -32,6 +32,18 @@ class StormModeBillViewController: AccountPickerViewController {
         let billCard = HomeBillCardView.create(withViewModel: viewModel.billCardViewModel)
         contentStack.insertArrangedSubview(billCard, at: 0)
         
+        bindActions()
+        bindViewModel()
+        
+        viewModel.fetchData.onNext(.switchAccount)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setColoredNavBar()
+    }
+    
+    func bindActions() {
         paymentActivityButton.rx.tap.asDriver()
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
@@ -74,15 +86,11 @@ class StormModeBillViewController: AccountPickerViewController {
                 self?.performSegue(withIdentifier: "WalletSegue", sender: $0)
             })
             .disposed(by: disposeBag)
-        
-        viewModel.showButtonStack.not().drive(buttonStack.rx.isHidden).disposed(by: disposeBag)
-        
-        viewModel.fetchData.onNext(.switchAccount)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar()
+    func bindViewModel() {
+        viewModel.showButtonStack.not().drive(buttonStack.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: disposeBag)
     }
 
     // MARK: - Navigation
