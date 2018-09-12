@@ -287,6 +287,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         return
                 }
                 
+                StormModeStatus.shared.isOn = true
                 window.rootViewController = stormModeVC
             }
         }

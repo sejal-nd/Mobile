@@ -54,8 +54,8 @@ struct ServiceError : Error {
     
     init(serviceCode: String = ServiceErrorCode.localError.rawValue, serviceMessage: String? = nil, cause: Error? = nil) {
         self.serviceCode = serviceCode
-        self.serviceMessage = serviceMessage != nil ? serviceMessage! : nil
-        self.cause = cause != nil ? cause! : nil
+        self.serviceMessage = serviceMessage
+        self.cause = cause
     }
 }
 

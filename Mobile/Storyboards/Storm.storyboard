@@ -327,8 +327,8 @@
                         <segue destination="sPB-eX-Wol" kind="show" identifier="UpdatesDetailSegue" id="dl6-MB-aP3"/>
                         <segue destination="lad-rp-6Hu" kind="show" identifier="ReportOutageSegue" id="FfH-4L-PLT"/>
                         <segue destination="TNc-26-PRH" kind="show" identifier="OutageMapSegue" id="vLv-HQ-qvU"/>
-                        <segue destination="GsU-eb-LDr" kind="show" identifier="BillSegue" id="SJm-1T-cf3"/>
                         <segue destination="Fwc-du-AbA" kind="show" identifier="MoreSegue" id="NBA-cC-9mx"/>
+                        <segue destination="Hnl-So-iQC" kind="show" identifier="BillSegue" id="9l8-da-Tdd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YT-28-unr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -359,7 +359,7 @@
                 <viewControllerPlaceholder storyboardName="Updates" referencedIdentifier="UpdatesDetailViewController" id="sPB-eX-Wol" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMN-WW-UKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2817" y="-263"/>
+            <point key="canvasLocation" x="2694" y="-402"/>
         </scene>
         <!--ReportOutageViewController-->
         <scene sceneID="iZD-FQ-ilH">
@@ -367,7 +367,7 @@
                 <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="ReportOutageViewController" id="lad-rp-6Hu" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7A-sj-S9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2815" y="-77"/>
+            <point key="canvasLocation" x="2695" y="-365"/>
         </scene>
         <!--OutageMapViewController-->
         <scene sceneID="9QP-Ue-dGx">
@@ -375,15 +375,123 @@
                 <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="TNc-26-PRH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSc-Ij-dVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2803" y="83"/>
+            <point key="canvasLocation" x="2680" y="-327"/>
         </scene>
         <!--Bill-->
-        <scene sceneID="Syy-A2-LNx">
+        <scene sceneID="w6R-y9-4Qa">
             <objects>
-                <viewControllerPlaceholder storyboardName="Bill" id="GsU-eb-LDr" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Le4-FL-bS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="Bill" id="Hnl-So-iQC" customClass="StormModeBillViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6jw-ge-oMd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yw6-8A-Yfm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8L-CC-OTe">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="345"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="RrA-ci-l9Z" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="FFF-QK-sOi">
+                                                <rect key="frame" x="16" y="115" width="343" height="200"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MYj-jV-QOI">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="200"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ZA-aM-2mG" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Make a Payment"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KtO-H4-uEn" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="70" width="343" height="60"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Payment Activity"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UL9-05-v8P" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="140" width="343" height="60"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="My Wallet"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" priority="999" constant="460" id="Bci-g3-I7I"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="yt2-Ip-wXM"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FFF-QK-sOi" secondAttribute="trailing" constant="16" id="0Z9-00-KPE"/>
+                                            <constraint firstItem="FFF-QK-sOi" firstAttribute="top" secondItem="RrA-ci-l9Z" secondAttribute="bottom" constant="25" id="CAA-Av-6Sb"/>
+                                            <constraint firstAttribute="trailing" secondItem="FFF-QK-sOi" secondAttribute="trailing" priority="999" constant="16" id="E2d-4a-AFa"/>
+                                            <constraint firstItem="FFF-QK-sOi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="d8L-CC-OTe" secondAttribute="leading" constant="16" id="Yoe-bc-kDD"/>
+                                            <constraint firstItem="RrA-ci-l9Z" firstAttribute="leading" secondItem="d8L-CC-OTe" secondAttribute="leading" id="ZGc-Or-Dfe"/>
+                                            <constraint firstAttribute="trailing" secondItem="RrA-ci-l9Z" secondAttribute="trailing" id="a0r-F8-ZaX"/>
+                                            <constraint firstItem="FFF-QK-sOi" firstAttribute="centerX" secondItem="d8L-CC-OTe" secondAttribute="centerX" id="gqt-J9-lYa"/>
+                                            <constraint firstItem="FFF-QK-sOi" firstAttribute="leading" secondItem="d8L-CC-OTe" secondAttribute="leading" priority="999" constant="16" id="kAp-M5-5Im"/>
+                                            <constraint firstAttribute="bottom" secondItem="FFF-QK-sOi" secondAttribute="bottom" constant="30" id="p3n-RN-GpN"/>
+                                            <constraint firstItem="RrA-ci-l9Z" firstAttribute="top" secondItem="d8L-CC-OTe" secondAttribute="top" id="yZ4-aa-xxn"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="d8L-CC-OTe" secondAttribute="trailing" id="4ip-eI-NhC"/>
+                                    <constraint firstAttribute="bottom" secondItem="d8L-CC-OTe" secondAttribute="bottom" id="A3H-Md-5bg"/>
+                                    <constraint firstItem="d8L-CC-OTe" firstAttribute="top" secondItem="yw6-8A-Yfm" secondAttribute="top" id="Ugf-Cd-gqP"/>
+                                    <constraint firstItem="d8L-CC-OTe" firstAttribute="leading" secondItem="yw6-8A-Yfm" secondAttribute="leading" id="Xb9-bR-LVP"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yw6-8A-Yfm" firstAttribute="bottom" secondItem="UpR-nO-Em0" secondAttribute="bottom" id="9bH-RX-AEh"/>
+                            <constraint firstItem="yw6-8A-Yfm" firstAttribute="trailing" secondItem="UpR-nO-Em0" secondAttribute="trailing" id="VLo-fd-7JN"/>
+                            <constraint firstItem="yw6-8A-Yfm" firstAttribute="top" secondItem="6jw-ge-oMd" secondAttribute="top" id="sgI-GG-gNl"/>
+                            <constraint firstItem="yw6-8A-Yfm" firstAttribute="leading" secondItem="UpR-nO-Em0" secondAttribute="leading" id="wYg-we-KMf"/>
+                            <constraint firstItem="d8L-CC-OTe" firstAttribute="width" secondItem="6jw-ge-oMd" secondAttribute="width" id="yJa-UT-vfc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UpR-nO-Em0"/>
+                    </view>
+                    <connections>
+                        <outlet property="accountPicker" destination="RrA-ci-l9Z" id="VK3-h0-ZLn"/>
+                        <outlet property="buttonStack" destination="MYj-jV-QOI" id="m5h-G9-V9l"/>
+                        <outlet property="contentStack" destination="FFF-QK-sOi" id="vSV-YK-ezn"/>
+                        <outlet property="makeAPaymentButton" destination="9ZA-aM-2mG" id="9Gs-Cd-Ntc"/>
+                        <outlet property="myWalletButton" destination="UL9-05-v8P" id="QPn-er-RsV"/>
+                        <outlet property="paymentActivityButton" destination="KtO-H4-uEn" id="Mhc-gQ-DWk"/>
+                        <outlet property="scrollView" destination="yw6-8A-Yfm" id="gPP-WK-LqO"/>
+                        <segue destination="AR8-MS-udi" kind="show" identifier="PaymentActivitySegue" id="m6Z-o7-L8F"/>
+                        <segue destination="Cyp-mg-hQc" kind="show" identifier="WalletSegue" id="h9a-e0-RHg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D3Z-67-9wf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2690" y="217"/>
+            <point key="canvasLocation" x="2826" y="91"/>
+        </scene>
+        <!--billingHistory-->
+        <scene sceneID="zVb-Jf-Tx6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Bill" referencedIdentifier="billingHistory" id="AR8-MS-udi" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pGB-hA-bcl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3447" y="-197"/>
+        </scene>
+        <!--Wallet-->
+        <scene sceneID="LsP-lU-R7D">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Wallet" id="Cyp-mg-hQc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="70t-pb-B9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3411" y="-140"/>
         </scene>
         <!--More-->
         <scene sceneID="SlC-N4-J9k">
@@ -391,7 +499,7 @@
                 <viewControllerPlaceholder storyboardName="More" id="Fwc-du-AbA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mKR-Rf-ykc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2702" y="371"/>
+            <point key="canvasLocation" x="2580" y="-289"/>
         </scene>
     </scenes>
     <resources>
