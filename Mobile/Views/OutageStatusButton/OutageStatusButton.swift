@@ -182,6 +182,8 @@ class OutageStatusButton: UIView {
 
         // Triggers Initial DidSet
         isStormMode = false
+        
+        innerCircleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
     }
 
     private func setStateColors(innerBackground: UIColor, innerStroke: UIColor, outerStroke: UIColor = .clear) {
