@@ -21,12 +21,15 @@ class OutageStatusButton: UIView {
     @IBOutlet weak private var animationView: UIView!
     @IBOutlet weak private var outerCircleView: UIView! {
         didSet {
-            outerCircleView.layer.borderWidth = 3
+            outerCircleView.layer.cornerRadius = outerCircleView.bounds.size.width / 2
+            outerCircleView.layer.borderWidth = 6
         }
     }
     @IBOutlet weak private var innerCircleView: UIView! {
         didSet {
+            innerCircleView.layer.cornerRadius = innerCircleView.bounds.size.width / 2
             innerCircleView.layer.borderWidth = 6
+            innerCircleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
         }
     }
     
@@ -80,7 +83,7 @@ class OutageStatusButton: UIView {
             inelligablePayBillLabel.font = SystemFont.semibold.of(size: 16)
         }
     }
-    
+
     private var innerBorderColor: UIColor {
         let color: UIColor
         switch Environment.shared.opco {
@@ -176,14 +179,9 @@ class OutageStatusButton: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
-        
-        outerCircleView.layer.cornerRadius = outerCircleView.bounds.size.width / 2
-        innerCircleView.layer.cornerRadius = innerCircleView.bounds.size.width / 2
 
         // Triggers Initial DidSet
         isStormMode = false
-        
-        innerCircleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
     }
 
     private func setStateColors(innerBackground: UIColor, innerStroke: UIColor, outerStroke: UIColor = .clear) {
@@ -246,7 +244,7 @@ class OutageStatusButton: UIView {
         
         // Set Values
         
-        statusETRLabel.text = NSLocalizedString("Our records indicate your", comment: "")
+        statusETRLabel.text = NSLocalizedString("Our records indicate", comment: "")
         reportedDetailLabel.text = NSLocalizedString("POWER IS OUT", comment: "")
         reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         reportedETRLabel.text = estimatedRestorationDateString
