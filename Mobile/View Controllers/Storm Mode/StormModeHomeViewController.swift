@@ -259,21 +259,17 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     func layoutBigButtonContent(outageJustReported: Bool) {
-        //outageStatusButton.setOutageState(estimatedRestorationDateString: "12:00:23")
-        //outageStatusButton.setReportedState(estimatedRestorationDateString: "12:00:23")
-        //outageStatusButton.setIneligibleState(flagFinaled: true, nonPayFinaledMessage: "Outage Status and Outage Reporting are not available for accounts with an outstanding balance.")
-       outageStatusButton.setPowerOnState()
-//        let currentOutageStatus = viewModel.currentOutageStatus!
-//
-//        if outageJustReported && viewModel.reportedOutage != nil {
-//            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-//        } else if currentOutageStatus.activeOutage {
-//            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-//        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
-//            outageStatusButton.setIneligibleState(flagFinaled: currentOutageStatus.flagFinaled, nonPayFinaledMessage: viewModel.accountNonPayFinaledMessage)
-//        } else { // Power is on
-//            outageStatusButton.setPowerOnState()
-//        }
+        let currentOutageStatus = viewModel.currentOutageStatus!
+
+        if outageJustReported && viewModel.reportedOutage != nil {
+            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+        } else if currentOutageStatus.activeOutage {
+            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
+            outageStatusButton.setIneligibleState(flagFinaled: currentOutageStatus.flagFinaled, nonPayFinaledMessage: viewModel.accountNonPayFinaledMessage)
+        } else { // Power is on
+            outageStatusButton.setPowerOnState()
+        }
     }
     
     @objc private func killRefresh() -> Void {
