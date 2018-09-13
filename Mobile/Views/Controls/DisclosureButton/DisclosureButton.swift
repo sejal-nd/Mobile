@@ -78,4 +78,8 @@ class DisclosureButton: UIButton {
         }
     }
     
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 300, height: 60)
+    }
+    
 }
