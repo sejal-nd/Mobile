@@ -14,6 +14,7 @@ struct Maintenance: Mappable {
     let billStatus: Bool
     let outageStatus: Bool
     let alertStatus: Bool
+    let stormModeStatus: Bool
     
     init(map: Mapper) throws {
         allStatus = map.optionalFrom("all") ?? false
@@ -21,6 +22,11 @@ struct Maintenance: Mappable {
         billStatus = map.optionalFrom("bill") ?? false
         outageStatus = map.optionalFrom("outage") ?? false
         alertStatus = map.optionalFrom("alerts") ?? false
+        
+        // Storm mode is not in the October release, so keep it always false for now.
+        // Uncomment other code while testing.
+        stormModeStatus = false//map.optionalFrom("storm") ?? false
+//        stormModeStatus = arc4random_uniform(5) != 0
     }
     
 }

@@ -56,8 +56,8 @@ class HomeBillCardViewModel {
         self.switchAccountFetchTracker = switchAccountFetchTracker
         
         oneTouchPayResult
-            .withLatestFrom(Observable.combineLatest(walletItem.unwrap(), oneTouchPayResult))
-            .subscribe(onNext: { walletItem, oneTouchPayEvent in
+            .withLatestFrom(walletItem.unwrap()) { ($0, $1) }
+            .subscribe(onNext: { oneTouchPayEvent, walletItem in
                 switch (walletItem.bankOrCard, oneTouchPayEvent.error) {
                 case (.bank, nil):
                     Analytics.log(event: .oneTouchBankComplete)

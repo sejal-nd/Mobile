@@ -59,37 +59,40 @@ class HomeProjectedBillCardViewModel {
         .merge(accountDetailEvents.filter { $0.error != nil }.map(to: ()),
                billForecastEvents.filter {
                 $0.error != nil ||
-                $0.element?.gas?.errorMessage != nil ||
-                $0.element?.electric?.errorMessage != nil
+                ($0.element?.gas == nil && $0.element?.electric == nil)
                 }.map(to: ()))
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showContent: Driver<Void> = billForecastEvents
-        .filter { $0.element != nil && $0.element?.gas?.errorMessage == nil && $0.element?.electric?.errorMessage == nil }
+        .filter {
+            $0.element?.gas != nil || $0.element?.electric != nil
+        }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var billForecastEvents = self.accountDetailEvents.elements()
         .filter { $0.isEligibleForUsageData }
-        .withLatestFrom(Observable.combineLatest(self.fetchData, self.accountDetailEvents.elements()))
+        .withLatestFrom(fetchData)
+        { ($0, $1) }
         .toAsyncRequest(activityTracker: { [weak self] pair -> ActivityTracker? in
-            return self?.fetchTracker(forState: pair.0) },
+            return self?.fetchTracker(forState: pair.1) },
                         requestSelector: { [weak self] pair -> Observable<BillForecastResult> in
                             guard let this = self else { return .empty() }
-                            return this.usageService.fetchBillForecast(accountNumber: pair.1.accountNumber,
-                                                                       premiseNumber: pair.1.premiseNumber!)
+                            return this.usageService.fetchBillForecast(accountNumber: pair.0.accountNumber,
+                                                                       premiseNumber: pair.0.premiseNumber!)
         })
     
     private(set) lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var billForecastDriver: Driver<BillForecastResult> = self.billForecastEvents.elements().asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var shouldShowElectricGasSegmentedControl: Driver<Bool> = self.accountDetailEvents.map {
+    private(set) lazy var shouldShowElectricGasSegmentedControl: Driver<Bool> = accountDetailEvents.map {
         $0.element?.serviceType?.uppercased() == "GAS/ELECTRIC"
     }
     .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var isGas: Driver<Bool> = Driver.combineLatest(self.accountDetailDriver, self.electricGasSelectedSegmentIndex.asDriver())
+    private(set) lazy var isGas: Driver<Bool> = Driver
+        .combineLatest(accountDetailDriver, electricGasSelectedSegmentIndex.asDriver())
         .map { accountDetail, segmentIndex in
             if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
                 return true
@@ -99,8 +102,8 @@ class HomeProjectedBillCardViewModel {
             return false
         }
     
-    private(set) lazy var projectionNotAvailable: Driver<Bool> = Driver.combineLatest(self.billForecastDriver,
-                                                                                      self.isGas)
+    private(set) lazy var projectionNotAvailable: Driver<Bool> = Driver
+        .combineLatest(billForecastDriver, isGas)
         .map { billForecast, isGas in
             let today = Calendar.opCo.startOfDay(for: Date())
             if !isGas, let startDate = billForecast.electric?.billingStartDate {
@@ -113,9 +116,8 @@ class HomeProjectedBillCardViewModel {
             return false
         }
     
-    private(set) lazy var projectionLabelString: Driver<String?> = Driver.combineLatest(self.billForecastDriver,
-                                                                                        self.isGas,
-                                                                                        self.accountDetailDriver)
+    private(set) lazy var projectionLabelString: Driver<String?> = Driver
+        .combineLatest(billForecastDriver, isGas, accountDetailDriver)
         .map { billForecast, isGas, accountDetail in
             let today = Calendar.opCo.startOfDay(for: Date())
             let localizedString = NSLocalizedString("%@ days", comment: "")

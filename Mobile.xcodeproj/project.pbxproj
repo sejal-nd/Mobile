@@ -178,6 +178,7 @@
 		35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B062109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B072109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
+		352CB2072140448C00DAF045 /* UINavigationController+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CB2062140448C00DAF045 /* UINavigationController+Style.swift */; };
 		35376C6720F8FFC8007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		35376C6820F8FFC9007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		35376C6920F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
@@ -846,6 +847,18 @@
 		B011C0BB20F5063A00C900BE /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		B011C0BC20F5063B00C900BE /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		B011C0BD20F5063C00C900BE /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
+		B017488E2135D19B0039D0C6 /* Storm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B017488D2135D19B0039D0C6 /* Storm.storyboard */; };
+		B017488F2135D19B0039D0C6 /* Storm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B017488D2135D19B0039D0C6 /* Storm.storyboard */; };
+		B01748902135D19B0039D0C6 /* Storm.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B017488D2135D19B0039D0C6 /* Storm.storyboard */; };
+		B01748922135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748912135D2C50039D0C6 /* StormModeHomeViewController.swift */; };
+		B01748932135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748912135D2C50039D0C6 /* StormModeHomeViewController.swift */; };
+		B01748942135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748912135D2C50039D0C6 /* StormModeHomeViewController.swift */; };
+		B01748972135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
+		B01748982135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
+		B01748992135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
+		B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
+		B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
+		B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
 		B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
@@ -882,6 +895,12 @@
 		B06B40FD20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */; };
 		B06B40FE20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */; };
 		B06B40FF20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */; };
+		B07269352127579C009B2BFF /* HomeUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07269342127579C009B2BFF /* HomeUpdateView.swift */; };
+		B07269362127579C009B2BFF /* HomeUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07269342127579C009B2BFF /* HomeUpdateView.swift */; };
+		B07269372127579C009B2BFF /* HomeUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07269342127579C009B2BFF /* HomeUpdateView.swift */; };
+		B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0726938212757AA009B2BFF /* HomeUpdateView.xib */; };
+		B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0726938212757AA009B2BFF /* HomeUpdateView.xib */; };
+		B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0726938212757AA009B2BFF /* HomeUpdateView.xib */; };
 		B07D247320C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
 		B07D247420C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
 		B07D247520C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
@@ -966,6 +985,8 @@
 		B0A79B1120E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */; };
 		B0A79B1220E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */; };
 		B0A79B1320E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */; };
+		B0A8308221419C6200EC3F21 /* UINavigationController+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CB2062140448C00DAF045 /* UINavigationController+Style.swift */; };
+		B0A8308321419C6300EC3F21 /* UINavigationController+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CB2062140448C00DAF045 /* UINavigationController+Style.swift */; };
 		B0AD7FEE205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FEF205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FF0205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
@@ -2244,6 +2265,7 @@
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
+		352CB2062140448C00DAF045 /* UINavigationController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Style.swift"; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
@@ -2496,6 +2518,9 @@
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
 		B0030D072097BC8300327A3D /* MaintenanceModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModeView.swift; sourceTree = "<group>"; };
 		B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceModeView.xib; sourceTree = "<group>"; };
+		B017488D2135D19B0039D0C6 /* Storm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storm.storyboard; sourceTree = "<group>"; };
+		B01748912135D2C50039D0C6 /* StormModeHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeHomeViewController.swift; sourceTree = "<group>"; };
+		B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeHomeViewModel.swift; sourceTree = "<group>"; };
 		B0472B282111011F0048C1A7 /* UsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageViewController.swift; sourceTree = "<group>"; };
 		B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsViewModelTests.swift; sourceTree = "<group>"; };
 		B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPeakRewardsService.swift; sourceTree = "<group>"; };
@@ -2505,6 +2530,8 @@
 		B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditSectionHeaderView.swift; sourceTree = "<group>"; };
 		B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedFloatLabeledTextView.swift; sourceTree = "<group>"; };
 		B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditViewController.swift; sourceTree = "<group>"; };
+		B07269342127579C009B2BFF /* HomeUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUpdateView.swift; sourceTree = "<group>"; };
+		B0726938212757AA009B2BFF /* HomeUpdateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeUpdateView.xib; sourceTree = "<group>"; };
 		B07D247220C590AB00BD22EB /* HomeWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
 		B07D247620C590BE00BD22EB /* HomeWeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWeatherView.xib; sourceTree = "<group>"; };
 		B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherViewModel.swift; sourceTree = "<group>"; };
@@ -3542,6 +3569,8 @@
 				9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */,
 				35ACCB4420EA5ECE0022907F /* HomeOutageCardView.swift */,
 				35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */,
+				B07269342127579C009B2BFF /* HomeUpdateView.swift */,
+				B0726938212757AA009B2BFF /* HomeUpdateView.xib */,
 			);
 			path = "Home Cards";
 			sourceTree = "<group>";
@@ -3837,6 +3866,7 @@
 				0D79C6C41F1D3360004793DD /* Maintenance.storyboard */,
 				82AC2A101FAA691000EACB3B /* PeakRewards.storyboard */,
 				358BD20E20F7A8FD00DA2012 /* Usage.storyboard */,
+				B017488D2135D19B0039D0C6 /* Storm.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -3863,6 +3893,7 @@
 				822BBB961EFC17FC004EBBAB /* Web View Modal */,
 				CE28837A1F743DD800BBDB81 /* Tutorial */,
 				E827D2361ED49072004DA1D6 /* Info Modal */,
+				B017489D2135D37D0039D0C6 /* Storm Mode */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -3964,6 +3995,7 @@
 				35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */,
 				35277B042109FC1000411297 /* ViewControllerAlertable.swift */,
 				35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */,
+				352CB2062140448C00DAF045 /* UINavigationController+Style.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3975,6 +4007,22 @@
 				B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */,
 			);
 			path = MaintenanceModeView;
+			sourceTree = "<group>";
+		};
+		B01748952135D3550039D0C6 /* Storm Mode */ = {
+			isa = PBXGroup;
+			children = (
+				B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */,
+			);
+			path = "Storm Mode";
+			sourceTree = "<group>";
+		};
+		B017489D2135D37D0039D0C6 /* Storm Mode */ = {
+			isa = PBXGroup;
+			children = (
+				B01748912135D2C50039D0C6 /* StormModeHomeViewController.swift */,
+			);
+			path = "Storm Mode";
 			sourceTree = "<group>";
 		};
 		B067E0A12045E751001C1271 /* Peak Rewards */ = {
@@ -4735,6 +4783,7 @@
 		E8EEF70B1E565BE7006804D4 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				B01748952135D3550039D0C6 /* Storm Mode */,
 				E87C413C1FAA6BF800448F86 /* Alerts */,
 				35A6C6D9211CC08B00C2A58F /* Updates */,
 				82A18E581EB9186000BE9F21 /* Bill */,
@@ -5157,6 +5206,7 @@
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
+				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				2F3FA63B1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				826DCCFE1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
@@ -5215,6 +5265,7 @@
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
+				B017488E2135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				E8494F3F1EBBCB3A0047D6BE /* outage_loading.json in Resources */,
 				E873DA781EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				82A18EF31EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
@@ -5268,6 +5319,7 @@
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
+				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				385AF21C1F278EFD001E3619 /* uu_otp.json in Resources */,
@@ -5326,6 +5378,7 @@
 				826DCD001F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				E8494F431EBBCB4C0047D6BE /* outage_loading.json in Resources */,
+				B01748902135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
 				E80043371E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
@@ -5379,6 +5432,7 @@
 				B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
+				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				825FEE041FDF370C00DC1961 /* landing_video.mp4 in Resources */,
 				384F86A31F310B8600A85557 /* TermPolicies.html in Resources */,
 				8FD5AE951E54EA5E003F640D /* Cartfile in Resources */,
@@ -5437,6 +5491,7 @@
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				E8494F411EBBCB430047D6BE /* outage_loading.json in Resources */,
+				B017488F2135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
 				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
@@ -5806,7 +5861,9 @@
 				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				9C4C95CC203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
+				352CB2072140448C00DAF045 /* UINavigationController+Style.swift in Sources */,
 				E8400E691FE05F0C0064E242 /* MockWalletService.swift in Sources */,
+				B01748972135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				82AC2A161FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35820D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
 				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
@@ -5915,6 +5972,7 @@
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				E841F3B21F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
 				82E9B6121FA2401A00556C94 /* HomeProfile.swift in Sources */,
+				B07269352127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
@@ -6050,6 +6108,7 @@
 				E84705F72025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				826DCCE91F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
 				E82FF1E61F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift in Sources */,
+				B01748922135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
 				54930DC81EDB40B000912AF1 /* EditCreditCardViewModel.swift in Sources */,
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E87C414B1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
@@ -6151,7 +6210,9 @@
 				35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				9C4C95CE203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
+				B0A8308321419C6300EC3F21 /* UINavigationController+Style.swift in Sources */,
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
+				B01748992135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E8400E6B1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A181FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35A20D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
@@ -6260,6 +6321,7 @@
 				CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				E873DA771EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				82E9B6141FA2401A00556C94 /* HomeProfile.swift in Sources */,
+				B07269372127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				E87926DC1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63F210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
@@ -6395,6 +6457,7 @@
 				E84705F92025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				E82FF1E81F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift in Sources */,
+				B01748942135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				E87C414D1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
@@ -6496,7 +6559,9 @@
 				35A6C6F2211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				9C4C95CD203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
+				B0A8308221419C6200EC3F21 /* UINavigationController+Style.swift in Sources */,
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
+				B01748982135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E8400E6A1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A171FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35920D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
@@ -6605,6 +6670,7 @@
 				CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */,
+				B07269362127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				E87926DB1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63E210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
@@ -6740,6 +6806,7 @@
 				E84705F82025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				54AE06951ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				E82FF1E71F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift in Sources */,
+				B01748932135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				E87C414C1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
@@ -6842,6 +6909,7 @@
 				82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				B092185020A24CA400695888 /* MockData.swift in Sources */,
 				82AC2A271FAB736600EACB3B /* PeakRewardsService.swift in Sources */,
+				B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
 				E80043661E6A11E7005CF531 /* BiometricsService.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
@@ -7062,6 +7130,7 @@
 				351560CF210F8D81008C24F1 /* (null) in Sources */,
 				E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */,
 				E8F62B59200924410077B3DA /* PendingPaymentView.swift in Sources */,
+				B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				B092185120A24CA400695888 /* MockData.swift in Sources */,
 				E8F62B5B200924410077B3DA /* PeakRewardsService.swift in Sources */,
 				E8F62B5C200924410077B3DA /* AuthTokenResponse.swift in Sources */,
@@ -7238,6 +7307,7 @@
 				351560D0210F8D81008C24F1 /* (null) in Sources */,
 				E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */,
 				E8F62C0E200924570077B3DA /* PendingPaymentView.swift in Sources */,
+				B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				B092185220A24CA400695888 /* MockData.swift in Sources */,
 				E8F62C10200924570077B3DA /* PeakRewardsService.swift in Sources */,
 				E8F62C11200924570077B3DA /* AuthTokenResponse.swift in Sources */,

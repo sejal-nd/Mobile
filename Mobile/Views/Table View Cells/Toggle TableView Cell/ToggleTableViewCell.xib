@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,8 +26,12 @@
                             <constraint firstAttribute="height" constant="24" id="a73-qD-s4q"/>
                         </constraints>
                     </imageView>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8z-2X-PvY">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8z-2X-PvY" customClass="TestSwitch" customModule="BGE" customModuleProvider="target">
                         <rect key="frame" x="310" y="14" width="51" height="31"/>
+                        <connections>
+                            <action selector="toggleEditingChanged:" destination="mkP-aG-hE2" eventType="editingChanged" id="KBK-v7-2aV"/>
+                            <action selector="toggleValueChanged:" destination="mkP-aG-hE2" eventType="valueChanged" id="xuO-Lg-5OT"/>
+                        </connections>
                     </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvM-s2-8hR">
                         <rect key="frame" x="51" y="19" width="40.5" height="20"/>
@@ -41,18 +46,27 @@
                             <constraint firstAttribute="height" constant="0.5" id="sN7-gA-nnF"/>
                         </constraints>
                     </view>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_white" translatesAutoresizingMaskIntoConstraints="NO" id="iSU-vg-whc">
+                        <rect key="frame" x="339" y="24" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="P91-cG-DQw"/>
+                            <constraint firstAttribute="height" constant="12" id="PTw-0C-sKi"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="j8z-2X-PvY" firstAttribute="centerY" secondItem="bNz-gH-X2d" secondAttribute="centerY" id="1mW-wd-LVD"/>
+                    <constraint firstItem="j8z-2X-PvY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PvM-s2-8hR" secondAttribute="trailing" constant="8" id="0pM-Xi-sN6"/>
+                    <constraint firstItem="j8z-2X-PvY" firstAttribute="trailing" secondItem="bNz-gH-X2d" secondAttribute="trailingMargin" id="2fB-Bq-Jk9"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="iSU-vg-whc" secondAttribute="trailing" constant="8" id="5YF-7e-B03"/>
                     <constraint firstItem="PvM-s2-8hR" firstAttribute="leading" secondItem="cHe-M1-3DF" secondAttribute="trailing" constant="11" id="EIC-Ql-sZq"/>
                     <constraint firstItem="cHe-M1-3DF" firstAttribute="centerY" secondItem="bNz-gH-X2d" secondAttribute="centerY" id="F22-pd-gk9"/>
                     <constraint firstItem="cHe-M1-3DF" firstAttribute="leading" secondItem="bNz-gH-X2d" secondAttribute="leading" constant="16" id="HA1-O5-7pD"/>
                     <constraint firstAttribute="bottom" secondItem="j35-mm-AEU" secondAttribute="bottom" id="Lg9-gU-4qU"/>
-                    <constraint firstItem="j8z-2X-PvY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PvM-s2-8hR" secondAttribute="trailing" constant="8" id="aPK-1c-Oig"/>
+                    <constraint firstItem="j8z-2X-PvY" firstAttribute="centerY" secondItem="bNz-gH-X2d" secondAttribute="centerY" id="UbB-8T-rFc"/>
                     <constraint firstItem="PvM-s2-8hR" firstAttribute="centerY" secondItem="bNz-gH-X2d" secondAttribute="centerY" id="f7o-2l-mP2"/>
                     <constraint firstAttribute="trailing" secondItem="j35-mm-AEU" secondAttribute="trailing" id="g17-MI-79L"/>
                     <constraint firstItem="j35-mm-AEU" firstAttribute="leading" secondItem="bNz-gH-X2d" secondAttribute="leading" constant="52" id="huG-mE-wEW"/>
-                    <constraint firstAttribute="trailing" secondItem="j8z-2X-PvY" secondAttribute="trailing" constant="16" id="iUu-mM-Ap4"/>
+                    <constraint firstItem="iSU-vg-whc" firstAttribute="centerY" secondItem="bNz-gH-X2d" secondAttribute="centerY" id="kHu-qO-1NP"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="52" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -60,8 +74,12 @@
                 <outlet property="iconImageView" destination="cHe-M1-3DF" id="2q8-dD-iKY"/>
                 <outlet property="titleLabel" destination="PvM-s2-8hR" id="X9T-20-NtE"/>
                 <outlet property="toggle" destination="j8z-2X-PvY" id="lv5-AX-6jd"/>
+                <outlet property="toggleCheckImageView" destination="iSU-vg-whc" id="XcO-O3-nXh"/>
             </connections>
             <point key="canvasLocation" x="18.5" y="-102"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ic_check_white" width="13" height="10"/>
+    </resources>
 </document>

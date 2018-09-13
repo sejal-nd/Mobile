@@ -29,7 +29,7 @@ class HomeUsageCardViewModel {
         }
     }
     
-    let electricGasSelectedSegmentIndex = PublishSubject<Int>()
+    let electricGasSelectedSegmentIndex = Variable<Int>(0)
     
     /*
      * 0 = No Data
@@ -57,66 +57,42 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable.merge(self.accountDetailChanged, self.segmentedControlChanged).share(replay: 1)
     
-    private(set) lazy var accountDetailChanged = self.accountDetailEvents
-        .withLatestFrom(Observable.combineLatest(self.fetchData,
-                                                 self.accountDetailEvents,
-                                                 self.electricGasSelectedSegmentIndex.asObservable().startWith(0)))
-        .flatMapLatest { [unowned self] fetchState, accountDetailEvent, segmentIndex -> Observable<Event<BillComparison>> in
-            guard let accountDetail = accountDetailEvent.element else {
-                if let error = accountDetailEvent.error {
-                    return Observable.error(error).materialize()
-                }
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
-            }
-            
+    private(set) lazy var accountDetailChanged = accountDetailEvents.elements()
+        .filter { $0.isEligibleForUsageData }
+        .withLatestFrom(Observable.combineLatest(fetchData,
+                                                 electricGasSelectedSegmentIndex.asObservable()))
+        { ($0, $1.0, $1.1) }
+        .toAsyncRequest { [unowned self] data -> Observable<BillComparison> in
+            let (accountDetail, fetchState, segmentIndex) = data
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
-            guard let serviceType = accountDetail.serviceType else { return .empty() }
 
-            // Throw these Observable.errors to trigger a billComparisonDriver event even when we don't make the API call
-            if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
-            }
-            if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
-            }
-            
             var gas = false // Default to electric
-            if serviceType.uppercased() == "GAS" { // If account is gas only
+            if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
                 gas = true
-            } else if serviceType.uppercased() == "GAS/ELECTRIC" { // Use value of segmented control
+            } else if accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" { // Use value of segmented control
                 gas = segmentIndex == 1
             }
             
             return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
                 .trackActivity(self.fetchTracker(forState: fetchState))
-                .materialize()
-                .filter { !$0.isCompleted }
         }
-        .share()
     
-    private(set) lazy var segmentedControlChanged = self.electricGasSelectedSegmentIndex.asObservable()
-        .withLatestFrom(Observable.combineLatest(self.accountDetailEvents.elements(),
-                                                 self.electricGasSelectedSegmentIndex.asObservable()))
-        .flatMapLatest { [unowned self] accountDetail, segmentIndex -> Observable<Event<BillComparison>> in
+    private(set) lazy var segmentedControlChanged = self.electricGasSelectedSegmentIndex.asObservable().skip(1)
+        .withLatestFrom(accountDetailEvents.elements().filter { $0.isEligibleForUsageData })
+        { ($0, $1) }
+        .toAsyncRequest { [unowned self] segmentIndex, accountDetail -> Observable<BillComparison> in
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
-            guard let serviceType = accountDetail.serviceType else { return .empty() }
-            if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-                return Observable.error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)).materialize()
-            }
             
             var gas = false // Default to electric
-            if serviceType.uppercased() == "GAS" { // If account is gas only
+            if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
                 gas = true
-            } else if serviceType.uppercased() == "GAS/ELECTRIC" { // Use value of segmented control
+            } else if accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" { // Use value of segmented control
                 gas = segmentIndex == 1
             }
             
             return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, yearAgo: false, gas: gas)
                 .trackActivity(self.loadingTracker)
-                .materialize()
-                .filter { !$0.isCompleted }
         }
-        .share()
     
     private(set) lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
     
@@ -126,16 +102,15 @@ class HomeUsageCardViewModel {
     // MARK: Bill Comparison
     
     private(set) lazy var showBillComparison: Driver<Void> = billComparisonEvents
-        .filter {
-            return $0.element?.reference != nil
-        }
+        .filter { $0.element?.reference != nil }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents.elements()
         .filter { accountDetail in
             if accountDetail.isBGEControlGroup {
-                return accountDetail.isSERAccount // BGE Control Group + SER enrollment get the SER graph on usage card
+                return !accountDetail.isSERAccount ||
+                    accountDetail.serInfo.eventResults.isEmpty // BGE Control Group + SER enrollment get the SER graph on usage card
             }
             
             return !accountDetail.isEligibleForUsageData
@@ -144,19 +119,15 @@ class HomeUsageCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showBillComparisonEmptyState: Driver<Void> = billComparisonEvents
-        .filter {
-            return $0.element?.reference == nil
-        }
+        .filter { $0.element?.reference == nil }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showSmartEnergyRewards: Driver<Void> = self.accountDetailEvents
-        .filter {
-            guard let accountDetail = $0.element else { return false }
-            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
-                return accountDetail.serInfo.eventResults.count > 0
-            }
-            return false
+    private(set) lazy var showSmartEnergyRewards: Driver<Void> = accountDetailEvents.elements()
+        .filter { accountDetail in
+            accountDetail.isBGEControlGroup &&
+                accountDetail.isSERAccount &&
+                !accountDetail.serInfo.eventResults.isEmpty
         }
         .map(to: ())
         .asDriver(onErrorDriveWith: .empty())
@@ -170,10 +141,6 @@ class HomeUsageCardViewModel {
             return false
         }
         .map(to: ())
-        .asDriver(onErrorDriveWith: .empty())
-    
-    private(set) lazy var showBillComparisonEmptyStateButton: Driver<Bool> = accountDetailEvents
-        .map { $0.error == nil }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showElectricGasSegmentedControl: Driver<Bool> = accountDetailEvents.map {
@@ -357,4 +324,17 @@ class HomeUsageCardViewModel {
         return nil
     }
 
+    // MARK: Bill Comparison Empty State
+    
+    private(set) lazy var billComparisonEmptyStateText: Driver<String> = Driver
+        .combineLatest(electricGasSelectedSegmentIndex.asDriver(),
+                       showElectricGasSegmentedControl)
+        .map { segmentIndex, showSegmentedControl in
+            if showSegmentedControl {
+                let gasElectricString = NSLocalizedString(segmentIndex == 0 ? "electric" : "gas", comment: "")
+                return String.localizedStringWithFormat("Your %@ usage overview will be available here once we have two full months of data.", gasElectricString)
+            } else {
+                return NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
+            }
+        }
 }

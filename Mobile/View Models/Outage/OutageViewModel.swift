@@ -20,6 +20,8 @@ class OutageViewModel {
     private var currentGetOutageStatusDisposable: Disposable?
     
     var currentOutageStatus: OutageStatus?
+    
+    var hasPressedStreetlightOutageMapButton = false
 
     required init(accountService: AccountService, outageService: OutageService, authService: AuthenticationService) {
         self.accountService = accountService

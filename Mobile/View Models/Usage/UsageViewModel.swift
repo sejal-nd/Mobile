@@ -193,6 +193,18 @@ class UsageViewModel {
             }
     }
     
+    private(set) lazy var billComparisonEmptyStateText: Driver<String> = Driver
+        .combineLatest(electricGasSelectedSegmentIndex.asDriver(),
+                       showElectricGasSegmentedControl)
+        .map { segmentIndex, showSegmentedControl in
+            if showSegmentedControl {
+                let gasElectricString = NSLocalizedString(segmentIndex == 0 ? "electric" : "gas", comment: "")
+                return String.localizedStringWithFormat("Your %@ usage overview will be available here once we have two full months of data.", gasElectricString)
+            } else {
+                return NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
+            }
+    }
+    
     // MARK: No Data Bar Drivers
     
     private(set) lazy var noDataBarDateLabelText: Driver<String?> =
@@ -871,12 +883,13 @@ class UsageViewModel {
         Driver.combineLatest(accountDetail,
                              billComparison,
                              lastYearPreviousBillSelectedSegmentIndex.asDriver())
-        { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
+        { [weak self] accountDetail, billComparison, lastYearPreviousBillSelectedSegmentIndex in
             guard let this = self else { return nil }
+
             let isGas = this.isGas(accountDetail: accountDetail,
-                                   electricGasSelectedIndex: electricGasSelectedIndex)
-            let gasOrElectricString = isGas ? NSLocalizedString("gas", comment: "") :
-                NSLocalizedString("electric", comment: "")
+                                   electricGasSelectedIndex: this.electricGasSelectedSegmentIndex.value)
+
+            let gasOrElectricString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
             
             guard let reference = billComparison.reference, let compared = billComparison.compared else {
                 return String(format: NSLocalizedString("Data not available to explain likely reasons for changes in your %@ charges.", comment: ""), gasOrElectricString)
@@ -886,7 +899,7 @@ class UsageViewModel {
             let prevCharges = compared.charges
             let difference = abs(currentCharges - prevCharges)
             if difference < 1 { // About the same
-                if electricGasSelectedIndex == 0 { // Last Year
+                if lastYearPreviousBillSelectedSegmentIndex == 0 { // Last Year
                     let localizedString = NSLocalizedString("Likely reasons your %@ charges are about the same as last year.", comment: "")
                     return String(format: localizedString, gasOrElectricString)
                 } else { // Previous Bill
@@ -895,7 +908,7 @@ class UsageViewModel {
                 }
             } else {
                 if currentCharges > prevCharges {
-                    if electricGasSelectedIndex == 0 { // Last Year
+                    if lastYearPreviousBillSelectedSegmentIndex == 0 { // Last Year
                         let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ more than last year.", comment: "")
                         return String(format: localizedString, gasOrElectricString, difference.currencyString!)
                     } else { // Previous Bill
@@ -903,7 +916,7 @@ class UsageViewModel {
                         return String(format: localizedString, gasOrElectricString, difference.currencyString!)
                     }
                 } else {
-                    if electricGasSelectedIndex == 0 { // Last Year
+                    if lastYearPreviousBillSelectedSegmentIndex == 0 { // Last Year
                         let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ less than last year.", comment: "")
                         return String(format: localizedString, gasOrElectricString, difference.currencyString!)
                     } else { // Previous Bill

@@ -11,20 +11,21 @@ import RxSwift
 
 class UpdatesViewModelTests: XCTestCase {
     
+    let alertsService = MockAlertsService()
     var viewModel: UpdatesViewModel!
     let disposeBag = DisposeBag()
     
     override func setUp() {
         super.setUp()
         
-        viewModel = UpdatesViewModel(alertsService: MockAlertsService())
+        viewModel = UpdatesViewModel(alertsService: alertsService)
     }
     
     func testFetchDataSuccess() {
         viewModel.fetchData()
         
         let expect = expectation(description: "wait for callbacks")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1)) {
             XCTAssertNotNil(self.viewModel.currentOpcoUpdates.value, "currentOpcoUpdates should be set")
             XCTAssertFalse(self.viewModel.isFetchingUpdates.value, "isFetchingUpdates should be false")
             expect.fulfill()
@@ -36,17 +37,20 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testFetchDataErrors() {
-        viewModel.fetchData(shouldSucceed: false)
+        alertsService.updatesShouldSucceed = false
+        viewModel.fetchData()
         
         let expect1 = expectation(description: "wait for callbacks")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1)) {
             XCTAssertNil(self.viewModel.currentOpcoUpdates.value, "currentOpcoUpdates should be nil")
             XCTAssertFalse(self.viewModel.isFetchingUpdates.value, "isFetchingUpdates should be false")
             XCTAssert(self.viewModel.isUpdatesError.value, "isUpdatesError should be true")
+            self.alertsService.updatesShouldSucceed = true
             expect1.fulfill()
         }
         
         waitForExpectations(timeout: 2) { error in
+            self.alertsService.updatesShouldSucceed = true
             XCTAssertNil(error, "timeout")
         }
 

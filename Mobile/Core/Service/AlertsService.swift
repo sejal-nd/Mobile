@@ -63,9 +63,9 @@ protocol AlertsService {
     /// Fetch opco specific updates to be displayed in the "Updates" section of the Alerts tab
     ///
     /// - Parameters:
-    ///   - accountDetail: The account detail object - used for filtering the updates for specific program enrollments
+    ///   - bannerOnly: If true, filter out any updates that don't belong on the home screen "banner"
     ///   - completion: the completion block to execute upon completion.
-    func fetchOpcoUpdates(shouldSucceed: Bool, completion: @escaping (_ result: ServiceResult<[OpcoUpdate]>) -> Void)
+    func fetchOpcoUpdates(bannerOnly: Bool, completion: @escaping (_ result: ServiceResult<[OpcoUpdate]>) -> Void)
 }
 
 // MARK: - Reactive Extension to AlertsService
@@ -160,9 +160,9 @@ extension AlertsService {
         }
     }
     
-    func fetchOpcoUpdates(shouldSucceed: Bool = true) -> Observable<[OpcoUpdate]> {
+    func fetchOpcoUpdates(bannerOnly: Bool = false) -> Observable<[OpcoUpdate]> {
         return Observable.create { observer in
-            self.fetchOpcoUpdates(shouldSucceed: shouldSucceed, completion: { (result: ServiceResult<[OpcoUpdate]>) in
+            self.fetchOpcoUpdates(bannerOnly: bannerOnly, completion: { (result: ServiceResult<[OpcoUpdate]>) in
                 switch result {
                 case ServiceResult.success(let opcoUpdates):
                     observer.onNext(opcoUpdates)

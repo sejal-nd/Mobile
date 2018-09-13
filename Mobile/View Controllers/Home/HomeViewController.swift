@@ -30,6 +30,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var personalizeButton: UIButton!
     
     var weatherView: HomeWeatherView!
+    var importantUpdateView: HomeUpdateView?
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
@@ -48,7 +49,8 @@ class HomeViewController: AccountPickerViewController {
                                   paymentService: ServiceFactory.createPaymentService(),
                                   usageService: ServiceFactory.createUsageService(),
                                   authService: ServiceFactory.createAuthenticationService(),
-                                  outageService: ServiceFactory.createOutageService())
+                                  outageService: ServiceFactory.createOutageService(),
+                                  alertsService: ServiceFactory.createAlertsService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -67,8 +69,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         accountPickerViewControllerWillAppear
-            .withLatestFrom(Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
-                                                     viewModel.accountDetailEvents.map { $0 }.startWith(nil)))
+            .withLatestFrom(viewModel.accountDetailEvents.map { $0 }.startWith(nil)) { ($0, $1) }
             .subscribe(onNext: { [weak self] state, accountDetailEvent in
                 guard let `self` = self else { return }
                 switch(state) {
@@ -85,11 +86,15 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        weatherView = HomeWeatherView.create(withViewModel: viewModel.weatherViewModel)
-        mainStackView.insertArrangedSubview(weatherView, at: 1)
-        weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
-        weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
+        viewSetup()
+        styleViews()
+        bindLoadingStates()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
+    }
+    
+    func viewSetup() {
+        // Observe selected card list
         HomeCardPrefsStore.shared.listObservable
             .scan(([HomeCard](), [HomeCard]())) { oldCards, newCards in (oldCards.1, newCards) }
             .asDriver(onErrorDriveWith: .empty())
@@ -107,12 +112,67 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
+        // Create weather card
+        weatherView = HomeWeatherView.create(withViewModel: viewModel.weatherViewModel)
+        
+        mainStackView.insertArrangedSubview(weatherView, at: 1)
+        weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
+        weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
+        
+        weatherView.didTapTemperatureTip
+            .map(InfoModalViewController.init)
+            .drive(onNext: { [weak self] in
+                self?.present($0, animated: true, completion: nil)
+            })
+            .disposed(by: weatherView.bag)
+        
+        // Top personalize button logic
         let versionString = UserDefaults.standard.string(forKey: UserDefaultKeys.homeCardCustomizeTappedVersion) ?? "0.0.0"
         let tappedVersion = Version(string: versionString) ?? Version(major: 0, minor: 0, patch: 0)
         if tappedVersion < viewModel.latestNewCardVersion {
             topPersonalizeButtonSetup()
         }
         
+        // If no update, show weather and personalize button at the top.
+        // Hide the update view.
+        viewModel.importantUpdate
+            .filter { $0 == nil }
+            .drive(onNext: { [weak self] _ in
+                guard let this = self else { return }
+                this.weatherView.isHidden = false
+                this.topPersonalizeButton?.isHidden = false
+                this.importantUpdateView?.removeFromSuperview()
+                this.importantUpdateView = nil
+            })
+            .disposed(by: bag)
+        
+        // If update, show the update view.
+        // Hide weather and personalize button at the top.
+        viewModel.importantUpdate
+            .filter { $0 != nil }
+            .drive(onNext: { [weak self] update in
+                guard let this = self, let update = update else { return }
+                this.weatherView.isHidden = true
+                this.topPersonalizeButton?.isHidden = true
+                
+                if let importantUpdateView = this.importantUpdateView {
+                    importantUpdateView.configure(withUpdate: update)
+                } else {
+                    let importantUpdateView = HomeUpdateView.create(withUpdate: update)
+                    this.mainStackView.insertArrangedSubview(importantUpdateView, at: 1)
+                    importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
+                    importantUpdateView.button.rx.touchUpInside.asDriver()
+                        .drive(onNext: { [weak self] in
+                            self?.performSegue(withIdentifier: "UpdatesDetailSegue", sender: update)
+                        })
+                        .disposed(by: importantUpdateView.disposeBag)
+                    
+                    this.importantUpdateView = importantUpdateView
+                }
+            })
+            .disposed(by: bag)
+        
+        // Bottom personalize button setup
         personalizeButton.setTitleColor(.white, for: .normal)
         personalizeButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
         personalizeButton.titleLabel?.numberOfLines = 0
@@ -133,11 +193,6 @@ class HomeViewController: AccountPickerViewController {
                 })
             })
             .disposed(by: bag)
-        
-        styleViews()
-        bindLoadingStates()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
     }
     
     func topPersonalizeButtonSetup() {
@@ -351,8 +406,7 @@ class HomeViewController: AccountPickerViewController {
     func bindUsageCard() {
         guard let usageCardView = usageCardView else { return }
 
-        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
-                     usageCardView.viewUsageEmptyStateButton.rx.touchUpInside.asDriver())
+        usageCardView.viewUsageButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
@@ -476,13 +530,6 @@ class HomeViewController: AccountPickerViewController {
             .map(to: FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchData)
             .disposed(by: bag)
-        
-        weatherView.didTapTemperatureTip
-            .map(InfoModalViewController.init)
-            .drive(onNext: { [weak self] in
-                self?.present($0, animated: true, completion: nil)
-            })
-            .disposed(by: bag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -506,6 +553,9 @@ class HomeViewController: AccountPickerViewController {
                     })
                 })
                 .disposed(by: vc.disposeBag)
+        } else if let vc = segue.destination as? UpdatesDetailViewController,
+            let update = sender as? OpcoUpdate {
+            vc.opcoUpdate = update
         }
     }
     
