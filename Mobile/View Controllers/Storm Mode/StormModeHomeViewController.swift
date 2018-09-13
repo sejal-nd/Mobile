@@ -112,7 +112,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         loadingAnimationView.addSubview(loadingLottieAnimation)
         loadingLottieAnimation.play()
         
-        
+
         // MARK: - Events
         
         viewModel.stormModeEnded
@@ -256,7 +256,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
         
         // Update after just reporting outage
-        tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        tableView.reloadSections([0], with: .none)
     }
     
     func layoutBigButtonContent(outageJustReported: Bool) {

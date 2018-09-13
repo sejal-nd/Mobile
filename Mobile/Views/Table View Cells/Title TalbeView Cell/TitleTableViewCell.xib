@@ -92,7 +92,9 @@
                 <outlet property="contentContainerView" destination="vbd-17-Mv3" id="YPj-ol-aYX"/>
                 <outlet property="contentViewWidthConstraint" destination="hvG-ig-L5n" id="Huu-9x-0yE"/>
                 <outlet property="detailLabel" destination="ESi-w8-keP" id="EI4-UK-ECe"/>
+                <outlet property="disclosureImageView" destination="kg7-h3-qHb" id="YJa-6b-hOP"/>
                 <outlet property="iconImageView" destination="F4e-ka-6AD" id="UoN-Ss-ypn"/>
+                <outlet property="separatorView" destination="2O0-lO-zkL" id="7fy-yi-Y6E"/>
                 <outlet property="titleLabel" destination="nqd-2J-dVB" id="sLF-OF-vaE"/>
             </connections>
             <point key="canvasLocation" x="93.5" y="-6"/>

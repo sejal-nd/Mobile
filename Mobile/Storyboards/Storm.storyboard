@@ -38,15 +38,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHb-UX-xqs">
                                             <rect key="frame" x="16" y="114" width="343" height="651"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTk-MN-eFm">
-                                                    <rect key="frame" x="16" y="650.5" width="327" height="0.5"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="0.5" id="0f9-dY-wHW"/>
-                                                    </constraints>
-                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMu-am-j3r" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="49" y="290" width="244" height="244"/>
+                                                    <rect key="frame" x="49" y="298" width="244" height="244"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="244" id="bBo-jh-XM4"/>
@@ -57,7 +50,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="V0G-ut-vCb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="266"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="274"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsK-4K-Hee">
                                                             <rect key="frame" x="0.0" y="0.0" width="343" height="97.5"/>
@@ -110,7 +103,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAd-jD-Fyb" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="168" width="343" height="98"/>
+                                                            <rect key="frame" x="0.0" y="176" width="343" height="98"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="D22-9R-29w">
                                                                     <rect key="frame" x="16" y="16" width="311" height="66"/>
@@ -171,7 +164,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9t-CL-fDL">
-                                                    <rect key="frame" x="58.5" y="299.5" width="225" height="225"/>
+                                                    <rect key="frame" x="58.5" y="307.5" width="225" height="225"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4mv-Ce-wvt">
                                                             <rect key="frame" x="0.0" y="0.0" width="225" height="225"/>
@@ -217,7 +210,7 @@
                                                     </constraints>
                                                 </view>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="s8A-H1-Rf9" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="558" width="343" height="69"/>
+                                                    <rect key="frame" x="0.0" y="566" width="343" height="61"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="75" id="Nxi-RX-K2H"/>
                                                     </constraints>
@@ -227,7 +220,7 @@
                                                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                 </textView>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAz-Ed-8Hy">
-                                                    <rect key="frame" x="0.0" y="290" width="343" height="337"/>
+                                                    <rect key="frame" x="0.0" y="298" width="343" height="329"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="qfu-kV-Gsd">
                                                             <rect key="frame" x="109" y="24" width="125" height="126"/>
@@ -239,7 +232,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-Gn-JzO" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="231.5" width="311" height="81.5"/>
+                                                            <rect key="frame" x="16" y="231.5" width="311" height="73.5"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <string key="text">We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call x-xxx-xxx-xxxx.</string>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -271,13 +264,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="kAz-Ed-8Hy" secondAttribute="trailing" id="Gyn-zJ-zLz"/>
                                                 <constraint firstItem="s8A-H1-Rf9" firstAttribute="leading" secondItem="FHb-UX-xqs" secondAttribute="leading" id="I6P-wf-ntW"/>
                                                 <constraint firstItem="gMu-am-j3r" firstAttribute="top" secondItem="V0G-ut-vCb" secondAttribute="bottom" constant="24" id="IbZ-dc-dTp"/>
-                                                <constraint firstAttribute="trailing" secondItem="TTk-MN-eFm" secondAttribute="trailing" id="MBM-qb-JL3"/>
                                                 <constraint firstItem="V0G-ut-vCb" firstAttribute="top" secondItem="FHb-UX-xqs" secondAttribute="top" id="NTB-1W-yNk"/>
-                                                <constraint firstItem="TTk-MN-eFm" firstAttribute="leading" secondItem="FHb-UX-xqs" secondAttribute="leading" constant="16" id="Pgs-Tp-sef"/>
                                                 <constraint firstAttribute="trailing" secondItem="s8A-H1-Rf9" secondAttribute="trailing" id="Ppy-aZ-1mL"/>
                                                 <constraint firstAttribute="bottom" secondItem="kAz-Ed-8Hy" secondAttribute="bottom" constant="24" id="U3N-K5-Weq"/>
                                                 <constraint firstItem="kAz-Ed-8Hy" firstAttribute="top" secondItem="V0G-ut-vCb" secondAttribute="bottom" constant="24" id="UCl-TA-tUD"/>
-                                                <constraint firstAttribute="bottom" secondItem="TTk-MN-eFm" secondAttribute="bottom" id="ZCC-mH-v9e"/>
                                                 <constraint firstItem="s8A-H1-Rf9" firstAttribute="top" secondItem="gMu-am-j3r" secondAttribute="bottom" constant="24" id="bbr-Ey-Y80"/>
                                                 <constraint firstItem="kAz-Ed-8Hy" firstAttribute="leading" secondItem="FHb-UX-xqs" secondAttribute="leading" id="bvH-AT-mnB"/>
                                                 <constraint firstItem="z9t-CL-fDL" firstAttribute="top" secondItem="V0G-ut-vCb" secondAttribute="bottom" constant="33.5" id="fcS-mb-5G0"/>
@@ -287,7 +277,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="FHb-UX-xqs" secondAttribute="trailing" priority="999" constant="16" id="17x-gb-LeX"/>
                                         <constraint firstItem="FHb-UX-xqs" firstAttribute="centerX" secondItem="DTT-Yy-7Ip" secondAttribute="centerX" id="FrJ-Vv-dNR"/>

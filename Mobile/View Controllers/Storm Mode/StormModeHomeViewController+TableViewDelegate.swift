@@ -19,11 +19,7 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath == IndexPath(row: 0, section: 0) || indexPath == IndexPath(row: 1, section: 0) {
-            return shouldShowOutageButtons ? 60 : 0
-        } else {
-            return 60
-        }
+        return 60
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -34,13 +30,28 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
             switch indexPath.row {
             case 0:
                 // Must nil check AccountStore, it CAN be nil.  should be an optional AccountStore.shared.currentAccount
-                if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
-                    cell.configure(image: #imageLiteral(resourceName: "ic_check_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .black, shouldConstrainWidth: true)
+                
+                if shouldShowOutageButtons {
+                    // Populate Content
+                    if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
+                        // Reported State
+                        cell.configure(image: #imageLiteral(resourceName: "ic_check_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .black, shouldConstrainWidth: true)
+                    } else {
+                        // Regular State
+                        cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
+                    }
                 } else {
-                    cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
+                    // Hide Content
+                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .black, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
                 }
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
+                if shouldShowOutageButtons {
+                    // Populate Content
+                    cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
+                } else {
+                    // Hide Content
+                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .black, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
+                }
             default:
                 return UITableViewCell()
             }
@@ -88,15 +99,34 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard section == 1 else { return 0 }
-        return 60
+        switch section {
+        case 0:
+            return 0.5 // Only show the separator
+        default:
+            return 60
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleTableViewHeaderView.className) as? TitleTableViewHeaderView else { return nil }
         
-        guard section == 1 else { return nil }
-        headerView.configure(text: NSLocalizedString("More Options", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
+        switch section {
+        case 0:
+            print("SHOULD SHOW OUTAGE BUTTON: \(shouldShowOutageButtons)")
+            if shouldShowOutageButtons {
+                // Show Separator
+                headerView.configure(text: nil, backgroundColor: .black, shouldHideSeparator: false)
+            } else {
+                // Hide Separator
+                headerView.configure(text: nil, backgroundColor: .black, shouldHideSeparator: true)
+            }
+        case 1:
+            print("section 2")
+            headerView.configure(text: NSLocalizedString("More Options", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
+        default:
+            break
+        }
+
         return headerView
     }
     

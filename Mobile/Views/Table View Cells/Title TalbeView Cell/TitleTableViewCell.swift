@@ -25,6 +25,8 @@ class TitleTableViewCell: UITableViewCell {
         }
     }
     @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var disclosureImageView: UIImageView!
+    @IBOutlet weak var separatorView: UIView!
     
     private var bgColor = UIColor.primaryColor
     
@@ -66,7 +68,7 @@ class TitleTableViewCell: UITableViewCell {
     
     // MARK: - Configure
     
-    public func configure(image: UIImage, text: String, detailText: String? = nil, backgroundColor: UIColor, shouldConstrainWidth: Bool = false) {
+    public func configure(image: UIImage?, text: String?, detailText: String? = nil, backgroundColor: UIColor, shouldConstrainWidth: Bool = false, shouldHideDisclosure: Bool = false, shouldHideSeparator: Bool = false) {
         iconImageView.image = image
         titleLabel.text = text
         detailLabel.text = detailText
@@ -77,6 +79,10 @@ class TitleTableViewCell: UITableViewCell {
         if contentViewWidthConstraint != nil {
             contentViewWidthConstraint.isActive = shouldConstrainWidth
         }
+        
+        disclosureImageView.isHidden = shouldHideDisclosure
+        
+        separatorView.isHidden = shouldHideSeparator
         
         contentContainerView.backgroundColor = backgroundColor
         
