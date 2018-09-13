@@ -23,7 +23,17 @@ class LoadingIndicator: UIView {
                 lottieAnimationView = LOTAnimationView(name: "ellipses_loading")
             }
             guard let lottieAnimationView = lottieAnimationView else { return }
+            
+            lottieAnimationView.frame.size = CGSize(width: 60, height: 12)
+            lottieAnimationView.loopAnimation = true
+            lottieAnimationView.play()
+            
             addSubview(lottieAnimationView)
+            
+            //make accessibility label for loading animation - and make it the only thing tappable
+            lottieAnimationView.isAccessibilityElement = true;
+            lottieAnimationView.accessibilityLabel = "Loading";
+            lottieAnimationView .accessibilityViewIsModal = true;
         }
     }
     
@@ -49,14 +59,8 @@ class LoadingIndicator: UIView {
     func commonInit() {
         backgroundColor = .clear
         
-        lottieAnimationView?.frame.size = CGSize(width: 60, height: 12)
-        lottieAnimationView?.loopAnimation = true
-        lottieAnimationView?.play()
-        
-        //make accessibility label for loading animation - and make it the only thing tappable
-        lottieAnimationView?.isAccessibilityElement = true;
-        lottieAnimationView?.accessibilityLabel = "Loading";
-        lottieAnimationView? .accessibilityViewIsModal = true;
+        // Triggers Initial DidSet
+        isStormMode = false
     }
     
     override var intrinsicContentSize: CGSize {
