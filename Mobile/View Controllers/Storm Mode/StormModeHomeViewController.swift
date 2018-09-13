@@ -81,7 +81,11 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     @IBOutlet weak var loadingAnimationView: UIView!
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
-    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView! {
+        didSet {
+            noNetworkConnectionView.configureContactText(attributedText: viewModel.footerTextViewText)
+        }
+    }
     
     private var loadingLottieAnimation = LOTAnimationView(name: "sm_outage_loading")
     private var refreshControl: UIRefreshControl?
@@ -105,7 +109,7 @@ class StormModeHomeViewController: AccountPickerViewController {
 
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
-
+        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -154,7 +158,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     

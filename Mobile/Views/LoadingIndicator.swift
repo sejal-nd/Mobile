@@ -10,7 +10,23 @@ import Lottie
 
 class LoadingIndicator: UIView {
     
-    private var lottieAnimationView = LOTAnimationView(name: "ellipses_loading")
+    private var lottieAnimationView: LOTAnimationView?
+
+    @IBInspectable
+    public var isStormMode: Bool = false {
+        didSet {
+            lottieAnimationView?.removeFromSuperview()
+            
+            if isStormMode {
+                lottieAnimationView = LOTAnimationView(name: "ellipses_loading_white")
+            } else {
+                lottieAnimationView = LOTAnimationView(name: "ellipses_loading")
+            }
+            guard let lottieAnimationView = lottieAnimationView else { return }
+            addSubview(lottieAnimationView)
+        }
+    }
+    
     
     init() {
         super.init(frame: .zero)
@@ -33,16 +49,14 @@ class LoadingIndicator: UIView {
     func commonInit() {
         backgroundColor = .clear
         
-        lottieAnimationView.frame.size = CGSize(width: 60, height: 12)
-        lottieAnimationView.loopAnimation = true
-        lottieAnimationView.play()
-        
-        addSubview(lottieAnimationView)
+        lottieAnimationView?.frame.size = CGSize(width: 60, height: 12)
+        lottieAnimationView?.loopAnimation = true
+        lottieAnimationView?.play()
         
         //make accessibility label for loading animation - and make it the only thing tappable
-        lottieAnimationView.isAccessibilityElement = true;
-        lottieAnimationView.accessibilityLabel = "Loading";
-        lottieAnimationView.accessibilityViewIsModal = true;
+        lottieAnimationView?.isAccessibilityElement = true;
+        lottieAnimationView?.accessibilityLabel = "Loading";
+        lottieAnimationView? .accessibilityViewIsModal = true;
     }
     
     override var intrinsicContentSize: CGSize {
@@ -52,13 +66,13 @@ class LoadingIndicator: UIView {
     override var isHidden: Bool {
         didSet {
             if isHidden {
-                lottieAnimationView.accessibilityViewIsModal = false;
-                lottieAnimationView.isAccessibilityElement = false;
-                lottieAnimationView.pause()
+                lottieAnimationView?.accessibilityViewIsModal = false;
+                lottieAnimationView?.isAccessibilityElement = false;
+                lottieAnimationView?.pause()
             } else {
-                lottieAnimationView.accessibilityViewIsModal = true;
-                lottieAnimationView.isAccessibilityElement = true;
-                lottieAnimationView.play()
+                lottieAnimationView?.accessibilityViewIsModal = true;
+                lottieAnimationView?.isAccessibilityElement = true;
+                lottieAnimationView?.play()
             }
         }
     }
