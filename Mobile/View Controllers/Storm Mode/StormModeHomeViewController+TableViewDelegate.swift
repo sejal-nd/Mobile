@@ -35,7 +35,7 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
                     // Populate Content
                     if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
                         // Reported State
-                        cell.configure(image: #imageLiteral(resourceName: "ic_check_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .black, shouldConstrainWidth: true)
+                        cell.configure(image: #imageLiteral(resourceName: "ic_check_outage_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .black, shouldConstrainWidth: true)
                     } else {
                         // Regular State
                         cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
@@ -112,7 +112,6 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
         
         switch section {
         case 0:
-            print("SHOULD SHOW OUTAGE BUTTON: \(shouldShowOutageButtons)")
             if shouldShowOutageButtons {
                 // Show Separator
                 headerView.configure(text: nil, backgroundColor: .black, shouldHideSeparator: false)
@@ -121,7 +120,6 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
                 headerView.configure(text: nil, backgroundColor: .black, shouldHideSeparator: true)
             }
         case 1:
-            print("section 2")
             headerView.configure(text: NSLocalizedString("More Options", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
         default:
             break

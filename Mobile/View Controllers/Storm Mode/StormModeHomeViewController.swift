@@ -90,7 +90,11 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
-    var shouldShowOutageButtons = false
+    var shouldShowOutageButtons = false {
+        didSet {
+            tableView.reloadSections([0], with: .none)
+        }
+    }
 
     
     // MARK: - View Life Cycle
@@ -166,9 +170,20 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     @objc private func onPullToRefresh() {
+        outageStatusButton.isHidden = true
+        loadingView.isHidden = false
+        shouldShowOutageButtons = false
+        
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
+            
+            self.loadingLottieAnimation.animationProgress = 0.0
+            self.outageStatusButton.isHidden = false
+            self.loadingView.isHidden = true
+            
+            self.shouldShowOutageButtons = true
+
             self.updateContent(outageJustReported: false)
             }, onError: { [weak self] serviceError in
                 guard let `self` = self else { return }
@@ -181,6 +196,9 @@ class StormModeHomeViewController: AccountPickerViewController {
                 }
 
                 // Hide everything else
+                self.loadingView.isHidden = true
+                
+                self.shouldShowOutageButtons = false
                 self.outageStatusButton.isHidden = true
                 self.gasOnlyView.isHidden = true
             })
@@ -208,6 +226,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     func getOutageStatus() {
+        shouldShowOutageButtons = false
         outageStatusButton.isHidden = true
         gasOnlyView.isHidden = true
         loadingView.isHidden = false
@@ -216,6 +235,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         viewModel.fetchData(onSuccess: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+            self?.shouldShowOutageButtons = true
             self?.scrollView?.isHidden = false
             self?.loadingView.isHidden = true
             self?.setRefreshControlEnabled(enabled: true)
@@ -254,9 +274,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             shouldShowOutageButtons = true
             outageStatusButton.isHidden = false
         }
-        
-        // Update after just reporting outage
-        tableView.reloadSections([0], with: .none)
     }
     
     func layoutBigButtonContent(outageJustReported: Bool) {
