@@ -81,6 +81,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     @IBOutlet weak var loadingAnimationView: UIView!
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
+    @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     
     private var loadingLottieAnimation = LOTAnimationView(name: "sm_outage_loading")
     private var refreshControl: UIRefreshControl?
@@ -127,12 +128,18 @@ class StormModeHomeViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.updateContent(outageJustReported: true) })
             .disposed(by: disposeBag)
         
+        Observable.merge(noNetworkConnectionView.reload)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in self?.getOutageStatus() })
+            .disposed(by: disposeBag)
+        
         accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             switch(state) {
             case .loadingAccounts:
                 self.outageStatusButton.isHidden = true
                 self.gasOnlyView.isHidden = true
+                self.noNetworkConnectionView.isHidden = true
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
                 if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
@@ -191,8 +198,10 @@ class StormModeHomeViewController: AccountPickerViewController {
                 
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self.scrollView?.isHidden = true
+                    self.noNetworkConnectionView.isHidden = false
                 } else {
                     self.scrollView?.isHidden = false
+                    self.noNetworkConnectionView.isHidden = true
                 }
 
                 // Hide everything else
@@ -228,6 +237,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     func getOutageStatus() {
         shouldShowOutageButtons = false
         outageStatusButton.isHidden = true
+        noNetworkConnectionView.isHidden = true
         gasOnlyView.isHidden = true
         loadingView.isHidden = false
         scrollView?.isHidden = false
@@ -236,6 +246,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         viewModel.fetchData(onSuccess: { [weak self] in
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             self?.shouldShowOutageButtons = true
+            self?.noNetworkConnectionView.isHidden = true
             self?.scrollView?.isHidden = false
             self?.loadingView.isHidden = true
             self?.setRefreshControlEnabled(enabled: true)
@@ -244,8 +255,10 @@ class StormModeHomeViewController: AccountPickerViewController {
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self?.scrollView?.isHidden = true
+                    self?.noNetworkConnectionView.isHidden = false
                 } else {
                     self?.scrollView?.isHidden = false
+                    self?.noNetworkConnectionView.isHidden = true
                 }
                 self?.loadingView.isHidden = true
                 self?.setRefreshControlEnabled(enabled: true)
