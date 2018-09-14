@@ -73,6 +73,20 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
+    @IBOutlet weak var finalPayView: UIView!
+    @IBOutlet weak var finalPayTitleLabel: UILabel! {
+        didSet {
+            finalPayTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        }
+    }
+    @IBOutlet weak var finalPayTextView: DataDetectorTextView! {
+        didSet {
+            finalPayTextView.font = OpenSans.regular.of(textStyle: .subheadline)
+            finalPayTextView.textContainerInset = .zero
+            finalPayTextView.tintColor = .white
+        }
+    }
+    
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var loadingBackgroundView: UIView! {
         didSet {
@@ -122,7 +136,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         loadingLottieAnimation.play()
         
 
-        // MARK: - Events
+        // Events
         
         viewModel.stormModeEnded
             .drive(onNext: { [weak self] in self?.stormModeEnded() })
@@ -143,6 +157,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             case .loadingAccounts:
                 self.outageStatusButton.isHidden = true
                 self.gasOnlyView.isHidden = true
+                self.finalPayView.isHidden = true
                 self.noNetworkConnectionView.isHidden = true
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
@@ -183,6 +198,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         outageStatusButton.isHidden = true
         loadingView.isHidden = false
         shouldShowOutageButtons = false
+        finalPayView.isHidden = true
         
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
@@ -213,6 +229,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.shouldShowOutageButtons = false
                 self.outageStatusButton.isHidden = true
                 self.gasOnlyView.isHidden = true
+                self.finalPayView.isHidden = true
             })
     }
     
@@ -242,6 +259,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         outageStatusButton.isHidden = true
         noNetworkConnectionView.isHidden = true
         gasOnlyView.isHidden = true
+        finalPayView.isHidden = true
         loadingView.isHidden = false
         scrollView?.isHidden = false
         setRefreshControlEnabled(enabled: false)
@@ -278,8 +296,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     func updateContent(outageJustReported: Bool) {
         guard let currentOutageStatus = viewModel.currentOutageStatus  else { return }
 
-        layoutBigButtonContent(outageJustReported: outageJustReported)
-        
         // Show/hide the top level container views
         if currentOutageStatus.flagGasOnly {
             gasOnlyView.isHidden = false
@@ -290,6 +306,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             shouldShowOutageButtons = true
             outageStatusButton.isHidden = false
         }
+        
+        layoutBigButtonContent(outageJustReported: outageJustReported)
     }
     
     func layoutBigButtonContent(outageJustReported: Bool) {
@@ -300,7 +318,9 @@ class StormModeHomeViewController: AccountPickerViewController {
         } else if currentOutageStatus.activeOutage {
             outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
-            outageStatusButton.setIneligibleState(flagFinaled: currentOutageStatus.flagFinaled, nonPayFinaledMessage: viewModel.accountNonPayFinaledMessage)
+            outageStatusButton.isHidden = true
+            finalPayView.isHidden = false
+            finalPayTextView.text = viewModel.accountNonPayFinaledMessage
         } else { // Power is on
             outageStatusButton.setPowerOnState()
         }
@@ -352,6 +372,9 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
 }
+
+
+// MARK: - Delegate Actions
 
 extension StormModeHomeViewController: AccountPickerDelegate {
     
