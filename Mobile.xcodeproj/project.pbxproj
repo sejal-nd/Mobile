@@ -922,6 +922,9 @@
 		B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0726938212757AA009B2BFF /* HomeUpdateView.xib */; };
 		B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0726938212757AA009B2BFF /* HomeUpdateView.xib */; };
 		B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0726938212757AA009B2BFF /* HomeUpdateView.xib */; };
+		B073EC95214C3B7F0030B466 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
+		B073EC96214C3B820030B466 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
+		B073EC97214C3B820030B466 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		B07D247320C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
 		B07D247420C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
 		B07D247520C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
@@ -7463,6 +7466,7 @@
 				82DE61081FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				82E9B6151FA257ED00556C94 /* HomeProfile.swift in Sources */,
 				B0882C9A2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
+				B073EC95214C3B7F0030B466 /* HomeBillCardViewModel.swift in Sources */,
 				B067E0A32045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
@@ -7686,6 +7690,7 @@
 				E8F62BAF200924410077B3DA /* WeatherAPI.swift in Sources */,
 				E8F62BB0200924410077B3DA /* OverrideViewModel.swift in Sources */,
 				E8F62BB1200924410077B3DA /* HomeProfile.swift in Sources */,
+				B073EC96214C3B820030B466 /* HomeBillCardViewModel.swift in Sources */,
 				B0882C9B2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
 				B067E0A42045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8F62BB2200924410077B3DA /* OutageViewModelTests.swift in Sources */,
@@ -7865,6 +7870,7 @@
 				E8F62C64200924570077B3DA /* WeatherAPI.swift in Sources */,
 				E8F62C65200924570077B3DA /* OverrideViewModel.swift in Sources */,
 				E8F62C66200924570077B3DA /* HomeProfile.swift in Sources */,
+				B073EC97214C3B820030B466 /* HomeBillCardViewModel.swift in Sources */,
 				B0882C9C2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
 				B067E0A52045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8F62C67200924570077B3DA /* OutageViewModelTests.swift in Sources */,
