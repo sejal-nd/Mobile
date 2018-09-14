@@ -114,10 +114,10 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
         case 0:
             if shouldShowOutageButtons {
                 // Show Separator
-                headerView.configure(text: nil, backgroundColor: .black, shouldHideSeparator: false)
+                headerView.configure(text: nil, backgroundColor: .black, shouldConstrainWidth: true, shouldHideSeparator: false)
             } else {
                 // Hide Separator
-                headerView.configure(text: nil, backgroundColor: .black, shouldHideSeparator: true)
+                headerView.configure(text: nil, backgroundColor: .black, shouldConstrainWidth: true, shouldHideSeparator: true)
             }
         case 1:
             headerView.configure(text: NSLocalizedString("More Options", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)

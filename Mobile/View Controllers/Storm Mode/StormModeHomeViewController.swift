@@ -196,9 +196,10 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @objc private func onPullToRefresh() {
         outageStatusButton.isHidden = true
+        gasOnlyView.isHidden = true
+        finalPayView.isHidden = true
         loadingView.isHidden = false
         shouldShowOutageButtons = false
-        finalPayView.isHidden = true
         
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
