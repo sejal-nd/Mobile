@@ -221,14 +221,16 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     private func getOutageStatus(didPullToRefresh: Bool = false) {
-        shouldShowOutageButtons = false
-        outageStatusButton.isHidden = true
-        noNetworkConnectionView.isHidden = true
-        gasOnlyView.isHidden = true
-        finalPayView.isHidden = true
-        loadingView.isHidden = false
-        scrollView?.isHidden = false
-        setRefreshControlEnabled(enabled: false)
+        if !didPullToRefresh {
+            shouldShowOutageButtons = false
+            outageStatusButton.isHidden = true
+            noNetworkConnectionView.isHidden = true
+            gasOnlyView.isHidden = true
+            finalPayView.isHidden = true
+            loadingView.isHidden = false
+            scrollView?.isHidden = false
+            setRefreshControlEnabled(enabled: false)
+        }
         
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
@@ -293,19 +295,20 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     private func layoutBigButtonContent(outageJustReported: Bool) {
-        let currentOutageStatus = viewModel.currentOutageStatus!
-
-        if outageJustReported && viewModel.reportedOutage != nil {
-            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-        } else if currentOutageStatus.activeOutage {
-            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
+//        let currentOutageStatus = viewModel.currentOutageStatus!
+//
+//        if outageJustReported && viewModel.reportedOutage != nil {
+//            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+//        } else if currentOutageStatus.activeOutage {
+//            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+//        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
             outageStatusButton.isHidden = true
             finalPayView.isHidden = false
             finalPayTextView.text = viewModel.accountNonPayFinaledMessage
-        } else { // Power is on
-            outageStatusButton.setPowerOnState()
-        }
+        // Todo need to hide buttons
+//        } else { // Power is on
+//            outageStatusButton.setPowerOnState()
+//        }
     }
     
     private func setRefreshControlEnabled(enabled: Bool) {

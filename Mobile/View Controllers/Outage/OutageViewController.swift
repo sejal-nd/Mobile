@@ -303,13 +303,9 @@ class OutageViewController: AccountPickerViewController {
     // MARK: - Actions
     
     @objc func onPullToRefresh() {
-        finalPayView.isHidden = true
-        loadingView.isHidden = false
-        
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
-            self.loadingView.isHidden = true
             self.maintenanceModeView.isHidden = true
             self.updateContent(outageJustReported: false)
         }, onError: { [weak self] serviceError in
