@@ -19,7 +19,8 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        guard indexPath.section == 0 else { return 60 }
+        return shouldShowOutageCell ? 60 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -31,7 +32,7 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
             case 0:
                 // Must nil check AccountStore, it CAN be nil.  should be an optional AccountStore.shared.currentAccount
                 
-                if shouldShowOutageButtons {
+                if shouldShowOutageCellData {
                     // Populate Content
                     if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
                         // Reported State
@@ -45,7 +46,7 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
                     cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .black, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
                 }
             case 1:
-                if shouldShowOutageButtons {
+                if shouldShowOutageCellData {
                     // Populate Content
                     cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .black, shouldConstrainWidth: true)
                 } else {
@@ -112,7 +113,7 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
         
         switch section {
         case 0:
-            if shouldShowOutageButtons {
+            if shouldShowOutageCellData {
                 // Show Separator
                 headerView.configure(text: nil, backgroundColor: .black, shouldConstrainWidth: true, shouldHideSeparator: false)
             } else {

@@ -109,7 +109,15 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
-    var shouldShowOutageButtons = false {
+    /// Controls if content is shown within cells
+    var shouldShowOutageCellData = false {
+        didSet {
+            tableView.reloadSections([0], with: .none)
+        }
+    }
+    
+    // Controls if buttons / space are visible
+    var shouldShowOutageCell = true {
         didSet {
             tableView.reloadSections([0], with: .none)
         }
@@ -222,7 +230,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     private func getOutageStatus(didPullToRefresh: Bool = false) {
         if !didPullToRefresh {
-            shouldShowOutageButtons = false
+            shouldShowOutageCellData = false
             outageStatusButton.isHidden = true
             noNetworkConnectionView.isHidden = true
             gasOnlyView.isHidden = true
@@ -240,7 +248,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             }
 
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-            self.shouldShowOutageButtons = true
+            self.shouldShowOutageCellData = true
             self.noNetworkConnectionView.isHidden = true
             self.scrollView?.isHidden = false
             self.loadingView.isHidden = true
@@ -279,11 +287,13 @@ class StormModeHomeViewController: AccountPickerViewController {
         // Show/hide the top level container views
         if currentOutageStatus.flagGasOnly {
             gasOnlyView.isHidden = false
-            shouldShowOutageButtons = false
             outageStatusButton.isHidden = true
+            shouldShowOutageCellData = false
+            shouldShowOutageCell = false
         } else {
             gasOnlyView.isHidden = true
-            shouldShowOutageButtons = true
+            shouldShowOutageCellData = true
+            shouldShowOutageCell = true
             
             outageStatusButton.onLottieAnimation?.animationProgress = 0.0
             outageStatusButton.onLottieAnimation?.play()
@@ -295,20 +305,19 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     private func layoutBigButtonContent(outageJustReported: Bool) {
-//        let currentOutageStatus = viewModel.currentOutageStatus!
-//
-//        if outageJustReported && viewModel.reportedOutage != nil {
-//            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-//        } else if currentOutageStatus.activeOutage {
-//            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-//        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
+        let currentOutageStatus = viewModel.currentOutageStatus!
+
+        if outageJustReported && viewModel.reportedOutage != nil {
+            outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+        } else if currentOutageStatus.activeOutage {
+            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
+        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
             outageStatusButton.isHidden = true
             finalPayView.isHidden = false
             finalPayTextView.text = viewModel.accountNonPayFinaledMessage
-        // Todo need to hide buttons
-//        } else { // Power is on
-//            outageStatusButton.setPowerOnState()
-//        }
+        } else { // Power is on
+            outageStatusButton.setPowerOnState()
+        }
     }
     
     private func setRefreshControlEnabled(enabled: Bool) {

@@ -25,8 +25,8 @@ struct Maintenance: Mappable {
         
         // Storm mode is not in the October release, so keep it always false for now.
         // Uncomment other code while testing.
-        stormModeStatus = true//map.optionalFrom("storm") ?? false
-//        stormModeStatus = arc4random_uniform(5) != 0
+        stormModeStatus = false//map.optionalFrom("storm") ?? false
+        //stormModeStatus = arc4random_uniform(5) != 0
     }
     
 }
