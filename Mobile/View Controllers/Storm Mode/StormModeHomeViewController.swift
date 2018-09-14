@@ -179,6 +179,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        // Self Sizes Table View Header
         headerView.frame.size = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
         tableView.tableHeaderView = headerView
     }
@@ -195,43 +196,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     @objc private func onPullToRefresh() {
-        outageStatusButton.isHidden = true
-        gasOnlyView.isHidden = true
-        finalPayView.isHidden = true
-        loadingView.isHidden = false
-        shouldShowOutageButtons = false
-        
-        viewModel.fetchData(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
-            self.refreshControl?.endRefreshing()
-            
-            self.loadingLottieAnimation.animationProgress = 0.0
-            self.outageStatusButton.isHidden = false
-            self.loadingView.isHidden = true
-            
-            self.shouldShowOutageButtons = true
-
-            self.updateContent(outageJustReported: false)
-            }, onError: { [weak self] serviceError in
-                guard let `self` = self else { return }
-                self.refreshControl?.endRefreshing()
-                
-                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                    self.scrollView?.isHidden = true
-                    self.noNetworkConnectionView.isHidden = false
-                } else {
-                    self.scrollView?.isHidden = false
-                    self.noNetworkConnectionView.isHidden = true
-                }
-
-                // Hide everything else
-                self.loadingView.isHidden = true
-                
-                self.shouldShowOutageButtons = false
-                self.outageStatusButton.isHidden = true
-                self.gasOnlyView.isHidden = true
-                self.finalPayView.isHidden = true
-            })
+        getOutageStatus(didPullToRefresh: true)
     }
     
     
@@ -255,7 +220,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                      actions: [noAction, yesAction])
     }
     
-    func getOutageStatus() {
+    private func getOutageStatus(didPullToRefresh: Bool = false) {
         shouldShowOutageButtons = false
         outageStatusButton.isHidden = true
         noNetworkConnectionView.isHidden = true
@@ -266,24 +231,38 @@ class StormModeHomeViewController: AccountPickerViewController {
         setRefreshControlEnabled(enabled: false)
         
         viewModel.fetchData(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
+            
+            if didPullToRefresh {
+                self.refreshControl?.endRefreshing()
+            }
+            
+            self.loadingLottieAnimation.animationProgress = 0.0
+
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
-            self?.shouldShowOutageButtons = true
-            self?.noNetworkConnectionView.isHidden = true
-            self?.scrollView?.isHidden = false
-            self?.loadingView.isHidden = true
-            self?.setRefreshControlEnabled(enabled: true)
-            self?.updateContent(outageJustReported: false)
+            self.shouldShowOutageButtons = true
+            self.noNetworkConnectionView.isHidden = true
+            self.scrollView?.isHidden = false
+            self.loadingView.isHidden = true
+            self.setRefreshControlEnabled(enabled: true)
+            self.updateContent(outageJustReported: false)
             }, onError: { [weak self] serviceError in
+                guard let `self` = self else { return }
+                
+                if didPullToRefresh {
+                    self.refreshControl?.endRefreshing()
+                }
+                
                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                    self?.scrollView?.isHidden = true
-                    self?.noNetworkConnectionView.isHidden = false
+                    self.scrollView?.isHidden = true
+                    self.noNetworkConnectionView.isHidden = false
                 } else {
-                    self?.scrollView?.isHidden = false
-                    self?.noNetworkConnectionView.isHidden = true
+                    self.scrollView?.isHidden = false
+                    self.noNetworkConnectionView.isHidden = true
                 }
-                self?.loadingView.isHidden = true
-                self?.setRefreshControlEnabled(enabled: true)
+                self.loadingView.isHidden = true
+                self.setRefreshControlEnabled(enabled: true)
             })
     }
     
@@ -294,7 +273,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             .instantiateInitialViewController()
     }
     
-    func updateContent(outageJustReported: Bool) {
+    private func updateContent(outageJustReported: Bool) {
         guard let currentOutageStatus = viewModel.currentOutageStatus  else { return }
 
         // Show/hide the top level container views
@@ -311,7 +290,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         layoutBigButtonContent(outageJustReported: outageJustReported)
     }
     
-    func layoutBigButtonContent(outageJustReported: Bool) {
+    private func layoutBigButtonContent(outageJustReported: Bool) {
         let currentOutageStatus = viewModel.currentOutageStatus!
 
         if outageJustReported && viewModel.reportedOutage != nil {
@@ -325,11 +304,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         } else { // Power is on
             outageStatusButton.setPowerOnState()
         }
-    }
-    
-    @objc private func killRefresh() -> Void {
-        refreshControl?.endRefreshing()
-        scrollView!.alwaysBounceVertical = false
     }
     
     private func setRefreshControlEnabled(enabled: Bool) {
@@ -346,6 +320,11 @@ class StormModeHomeViewController: AccountPickerViewController {
             }
             scrollView!.alwaysBounceVertical = false
         }
+    }
+    
+    @objc private func killRefresh() -> Void {
+        refreshControl?.endRefreshing()
+        scrollView!.alwaysBounceVertical = false
     }
     
     
@@ -391,9 +370,7 @@ extension StormModeHomeViewController: OutageStatusButtonDelegate {
         Analytics.log(event: .outageStatusDetails)
         
         if let message = viewModel.currentOutageStatus!.outageDescription {
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+            presentAlert(title: nil, message: message, style: .alert, actions: [UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)])
         }
     }
     
