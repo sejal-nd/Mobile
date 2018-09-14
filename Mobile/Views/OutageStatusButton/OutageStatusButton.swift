@@ -70,19 +70,6 @@ class OutageStatusButton: UIView {
             reportedETRLabel.minimumScaleFactor = 0.5
         }
     }
-    
-    @IBOutlet weak var inelligableView: UIView!
-    @IBOutlet weak var inelligableDescriptionTextView: DataDetectorTextView! {
-        didSet {
-            inelligableDescriptionTextView.textContainerInset = .zero
-            inelligableDescriptionTextView.font = SystemFont.light.of(size: 14)
-        }
-    }
-    @IBOutlet weak var inelligablePayBillLabel: UILabel! {
-        didSet {
-            inelligablePayBillLabel.font = SystemFont.semibold.of(size: 16)
-        }
-    }
 
     private var innerBorderColor: UIColor {
         let color: UIColor
@@ -129,10 +116,6 @@ class OutageStatusButton: UIView {
                 reportedDetailLabel.textColor = .white
                 reportedETRTitleLabel.textColor = .white
                 reportedETRLabel.textColor = .white
-                
-                inelligablePayBillLabel.textColor = .white
-                inelligableDescriptionTextView.tintColor = .white // For the phone numbers
-                inelligableDescriptionTextView.textColor = .white
             } else {
                 onLottieAnimation = LOTAnimationView(name: "outage")
                 
@@ -146,10 +129,6 @@ class OutageStatusButton: UIView {
                 reportedDetailLabel.textColor = .actionBlue
                 reportedETRTitleLabel.textColor = .deepGray
                 reportedETRLabel.textColor = .deepGray
-                
-                inelligablePayBillLabel.textColor = .actionBlue
-                inelligableDescriptionTextView.tintColor = .actionBlue // For the phone numbers
-                inelligableDescriptionTextView.textColor = .middleGray
             }
             
             onLottieAnimation?.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
@@ -195,7 +174,6 @@ class OutageStatusButton: UIView {
         outerCircleView.isHidden = false
         
         statusView.isHidden = true
-        inelligableView.isHidden = true
         statusETRView.isHidden = false
         
         // Styling
@@ -226,7 +204,6 @@ class OutageStatusButton: UIView {
         outerCircleView.isHidden = false
         
         statusView.isHidden = true
-        inelligableView.isHidden = true
         statusETRView.isHidden = false
 
         // Styling
@@ -252,40 +229,11 @@ class OutageStatusButton: UIView {
         innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. Our records indicate your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
     }
     
-    func setIneligibleState(flagFinaled: Bool, nonPayFinaledMessage: String) {
-        animationView.isHidden = true
-        outerCircleView.isHidden = false
-        
-        statusView.isHidden = true
-        inelligableView.isHidden = false
-        statusETRView.isHidden = true
-
-        // Set Values
-        
-        if isStormMode {
-            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
-                           innerStroke: UIColor(red:255/255.0, green:255/255.0, blue:255/255.0,  alpha:0.3))
-        } else {
-            setStateColors(innerBackground: .white,
-                           innerStroke: .middleGray,
-                           outerStroke: UIColor(red:187/255.0, green:187/255.0, blue:187/255.0,  alpha:1))
-        }
-        
-                if Environment.shared.opco != .bge && !flagFinaled {
-            inelligablePayBillLabel.text = NSLocalizedString("Pay Bill", comment: "")
-        }
-
-        inelligableDescriptionTextView.text = nonPayFinaledMessage
-
-        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. \(nonPayFinaledMessage).", comment: "")
-    }
-    
     func setPowerOnState() {
         animationView.isHidden = false
         outerCircleView.isHidden = true
         
         statusView.isHidden = false
-        inelligableView.isHidden = true
         statusETRView.isHidden = true
 
         // Styling

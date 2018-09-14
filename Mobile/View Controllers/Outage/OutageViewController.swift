@@ -29,6 +29,9 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     @IBOutlet weak var gasOnlyTitleLabel: UILabel!
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
+    @IBOutlet weak var finalPayView: UIView!
+    @IBOutlet weak var finalPayTextView: DataDetectorTextView!
+    @IBOutlet weak var finalPayTitleLabel: UILabel!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     @IBOutlet weak var customErrorView: UIView!
@@ -80,6 +83,11 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.text = viewModel.gasOnlyMessage
         
+        finalPayTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        finalPayTextView.font = OpenSans.regular.of(textStyle: .subheadline)
+        finalPayTextView.textContainerInset = .zero
+        finalPayTextView.tintColor = .actionBlue
+        
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
@@ -97,6 +105,7 @@ class OutageViewController: AccountPickerViewController {
                 self.accountContentView.isHidden = true
                 self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 self.gasOnlyView.isHidden = true
+                self.finalPayView.isHidden = true
                 self.errorLabel.isHidden = true
                 self.customErrorView.isHidden = true
                 self.loadingView.isHidden = true
@@ -180,8 +189,6 @@ class OutageViewController: AccountPickerViewController {
     
     func updateContent(outageJustReported: Bool) {
         if let currentOutageStatus = viewModel.currentOutageStatus {
-            layoutBigButtonContent(outageJustReported: outageJustReported)
-            
             errorLabel.isHidden = true
             
             // Show/hide the top level container views
@@ -195,6 +202,8 @@ class OutageViewController: AccountPickerViewController {
                 accountContentView.isHidden = false
             }
             
+            layoutBigButtonContent(outageJustReported: outageJustReported)
+
             // Update the Report Outage button
             if viewModel.reportedOutage != nil {
                 reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
@@ -216,7 +225,9 @@ class OutageViewController: AccountPickerViewController {
         } else if currentOutageStatus.activeOutage {
             outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
-            outageStatusButton.setIneligibleState(flagFinaled: currentOutageStatus.flagFinaled, nonPayFinaledMessage: viewModel.accountNonPayFinaledMessage)
+            outageStatusButton.isHidden = true
+            finalPayView.isHidden = false
+            finalPayTextView.text = viewModel.accountNonPayFinaledMessage
         } else { // Power is on
             outageStatusButton.setPowerOnState()
         }
@@ -226,6 +237,7 @@ class OutageViewController: AccountPickerViewController {
         accountContentView.isHidden = true
         gasOnlyTextViewBottomSpaceConstraint.isActive = false
         gasOnlyView.isHidden = true
+        finalPayView.isHidden = true
         errorLabel.isHidden = true
         customErrorView.isHidden = true
         loadingView.isHidden = false
@@ -320,6 +332,7 @@ class OutageViewController: AccountPickerViewController {
             self.accountContentView.isHidden = true
             self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
             self.gasOnlyView.isHidden = true
+            self.finalPayView.isHidden = true
             self.maintenanceModeView.isHidden = true
             }, onMaintenance: { [weak self] in
                 guard let `self` = self else { return }
@@ -334,6 +347,7 @@ class OutageViewController: AccountPickerViewController {
                 self.accountContentView.isHidden = true
                 self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 self.gasOnlyView.isHidden = true
+                self.finalPayView.isHidden = true
         })
     }
     

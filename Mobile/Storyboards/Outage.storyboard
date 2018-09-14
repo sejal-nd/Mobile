@@ -411,7 +411,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SgL-GX-Dgb">
-                                                <rect key="frame" x="0.0" y="192" width="375" height="216"/>
+                                                <rect key="frame" x="0.0" y="191.5" width="375" height="216"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_opco" translatesAutoresizingMaskIntoConstraints="NO" id="ih2-NM-40p">
                                                         <rect key="frame" x="125.5" y="0.0" width="125" height="126"/>
@@ -443,15 +443,54 @@
                                                     <constraint firstItem="9Ig-jI-vMy" firstAttribute="leading" secondItem="SgL-GX-Dgb" secondAttribute="leading" constant="57" id="oAj-Sw-Cev"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VF-fc-ZZ8">
+                                                <rect key="frame" x="0.0" y="90" width="375" height="530"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nooutage" translatesAutoresizingMaskIntoConstraints="NO" id="w39-68-ZGq">
+                                                        <rect key="frame" x="125" y="70" width="125" height="126"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outage Unavailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bGi-tx-Zza">
+                                                        <rect key="frame" x="46" y="216" width="283" height="29"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                                        <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qAF-UH-EXa" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="46" y="268" width="283" height="233"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="bGi-tx-Zza" secondAttribute="trailing" constant="46" id="1iP-3Q-ai3"/>
+                                                    <constraint firstItem="qAF-UH-EXa" firstAttribute="leading" secondItem="5VF-fc-ZZ8" secondAttribute="leading" constant="46" id="8Mz-t3-nZr"/>
+                                                    <constraint firstItem="qAF-UH-EXa" firstAttribute="top" secondItem="bGi-tx-Zza" secondAttribute="bottom" constant="23" id="I61-xR-j8P"/>
+                                                    <constraint firstItem="bGi-tx-Zza" firstAttribute="leading" secondItem="5VF-fc-ZZ8" secondAttribute="leading" constant="46" id="QmN-dL-lWA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qAF-UH-EXa" secondAttribute="trailing" constant="46" id="ZMM-yU-i7Y"/>
+                                                    <constraint firstAttribute="bottom" secondItem="qAF-UH-EXa" secondAttribute="bottom" constant="29" id="dFI-op-CHc"/>
+                                                    <constraint firstItem="bGi-tx-Zza" firstAttribute="top" secondItem="w39-68-ZGq" secondAttribute="bottom" constant="20" id="doF-xY-t8E"/>
+                                                    <constraint firstItem="w39-68-ZGq" firstAttribute="centerX" secondItem="5VF-fc-ZZ8" secondAttribute="centerX" id="htd-XT-zvG"/>
+                                                    <constraint firstItem="qAF-UH-EXa" firstAttribute="centerX" secondItem="5VF-fc-ZZ8" secondAttribute="centerX" id="lzB-7D-frx"/>
+                                                    <constraint firstItem="w39-68-ZGq" firstAttribute="top" secondItem="5VF-fc-ZZ8" secondAttribute="top" constant="70" id="nFF-H6-PLD"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="u94-30-hMw"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="H0L-QG-hAo" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" id="2RT-IY-85o"/>
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" id="2vO-Zj-K8m"/>
+                                            <constraint firstAttribute="bottom" secondItem="5VF-fc-ZZ8" secondAttribute="bottom" id="5rY-yH-luQ"/>
                                             <constraint firstAttribute="bottom" secondItem="NzH-9I-b9u" secondAttribute="bottom" id="6LF-5K-16F"/>
                                             <constraint firstItem="H0L-QG-hAo" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="71k-D6-8tq"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lL0-H1-J9Q" secondAttribute="trailing" constant="29" id="7Fw-pZ-4rP"/>
+                                            <constraint firstItem="5VF-fc-ZZ8" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="C9U-Pj-37u"/>
                                             <constraint firstItem="lL0-H1-J9Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4LE-Ih-Txu" secondAttribute="leading" constant="29" id="GRK-en-gko"/>
+                                            <constraint firstItem="5VF-fc-ZZ8" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" id="GY6-tV-Dai"/>
                                             <constraint firstAttribute="trailing" secondItem="H0L-QG-hAo" secondAttribute="trailing" priority="999" id="I2D-Oy-CUP"/>
                                             <constraint firstAttribute="trailing" secondItem="FN2-AG-tRU" secondAttribute="trailing" id="LrU-ih-gyC"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="LwI-um-wff"/>
@@ -462,9 +501,11 @@
                                             <constraint firstItem="H0L-QG-hAo" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="Ual-of-aCU"/>
                                             <constraint firstItem="NzH-9I-b9u" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" id="V4q-1Z-xIh"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" id="VZ8-yy-E6R"/>
+                                            <constraint firstAttribute="trailing" secondItem="5VF-fc-ZZ8" secondAttribute="trailing" priority="999" id="VnS-37-zk5"/>
                                             <constraint firstAttribute="bottom" secondItem="0lx-Wl-bvy" secondAttribute="bottom" id="Zdh-53-MLu"/>
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="fSe-aZ-Wli"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="fjI-oh-c9e"/>
+                                            <constraint firstItem="5VF-fc-ZZ8" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="hAa-US-6k3"/>
                                             <constraint firstAttribute="trailing" secondItem="NzH-9I-b9u" secondAttribute="trailing" priority="999" id="iDt-mo-dyn"/>
                                             <constraint firstAttribute="trailing" secondItem="0lx-Wl-bvy" secondAttribute="trailing" priority="999" id="pSB-NR-AKC"/>
                                             <constraint firstItem="NzH-9I-b9u" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="vi6-G2-Afs"/>
@@ -530,6 +571,9 @@
                         <outlet property="customErrorTitleLabel" destination="hnI-1I-gKb" id="y74-We-7ed"/>
                         <outlet property="customErrorView" destination="SgL-GX-Dgb" id="mVy-5w-x1B"/>
                         <outlet property="errorLabel" destination="lL0-H1-J9Q" id="uZU-GT-HuL"/>
+                        <outlet property="finalPayTextView" destination="qAF-UH-EXa" id="pv2-3O-xhP"/>
+                        <outlet property="finalPayTitleLabel" destination="bGi-tx-Zza" id="rfs-LD-fNM"/>
+                        <outlet property="finalPayView" destination="5VF-fc-ZZ8" id="Cte-T6-5Jh"/>
                         <outlet property="footerTextView" destination="QN1-1Y-eoZ" id="DtU-Dv-8Uz"/>
                         <outlet property="gasOnlyTextView" destination="nUe-Ah-Ffw" id="sVi-Ap-BSv"/>
                         <outlet property="gasOnlyTextViewBottomSpaceConstraint" destination="M7F-0j-k6B" id="Tz5-af-RHw"/>
@@ -1041,6 +1085,7 @@
         <image name="ic_check_meterping" width="18" height="14"/>
         <image name="ic_graycircle" width="30" height="30"/>
         <image name="ic_lock_opco" width="125" height="126"/>
+        <image name="ic_nooutage" width="125" height="126"/>
         <image name="icon_slash_check" width="20" height="20"/>
     </resources>
 </document>

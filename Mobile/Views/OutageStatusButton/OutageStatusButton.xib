@@ -12,9 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="animationView" destination="0P0-jf-3iW" id="Ob0-Me-SXO"/>
-                <outlet property="inelligableDescriptionTextView" destination="FtI-v7-cYq" id="NqH-sq-qXt"/>
-                <outlet property="inelligablePayBillLabel" destination="ozb-2z-P4S" id="lLd-Sb-dtd"/>
-                <outlet property="inelligableView" destination="ki3-kb-MQA" id="Wvq-Je-PXc"/>
                 <outlet property="innerCircleView" destination="KEt-H0-Vtc" id="h7S-ax-kng"/>
                 <outlet property="outerCircleView" destination="aal-fY-fBz" id="ksJ-Zy-pnL"/>
                 <outlet property="reportedDetailLabel" destination="vZH-iM-gNG" id="UhP-6b-Vhz"/>
@@ -58,7 +55,7 @@
                             <rect key="frame" x="8" y="8" width="198" height="198"/>
                             <subviews>
                                 <view hidden="YES" verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLe-3B-kDr">
-                                    <rect key="frame" x="0.0" y="-46" width="198" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="26.5" width="198" height="0.0"/>
                                     <subviews>
                                         <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ppU-R8-pkP">
                                             <rect key="frame" x="-2.5" y="60" width="203" height="99"/>
@@ -159,32 +156,6 @@
                                     <constraints>
                                         <constraint firstItem="utK-ze-lbP" firstAttribute="centerY" secondItem="VeJ-mH-xca" secondAttribute="centerY" id="2D1-jK-TpK"/>
                                         <constraint firstItem="utK-ze-lbP" firstAttribute="centerX" secondItem="VeJ-mH-xca" secondAttribute="centerX" id="8XJ-7t-EBl"/>
-                                    </constraints>
-                                </view>
-                                <view hidden="YES" verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ki3-kb-MQA">
-                                    <rect key="frame" x="0.0" y="-73" width="198" height="92.5"/>
-                                    <subviews>
-                                        <textView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" scrollEnabled="NO" editable="NO" text="Outage Status and Outage Reporting are not available for accounts with an outstanding balance.@" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FtI-v7-cYq" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                            <rect key="frame" x="21" y="50" width="156" height="106"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
-                                        <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Pay Bill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozb-2z-P4S">
-                                            <rect key="frame" x="72" y="177.5" width="54.5" height="0.0"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstItem="FtI-v7-cYq" firstAttribute="leading" secondItem="ki3-kb-MQA" secondAttribute="leading" constant="21" id="ExP-bN-uOs"/>
-                                        <constraint firstItem="ozb-2z-P4S" firstAttribute="top" secondItem="FtI-v7-cYq" secondAttribute="bottom" constant="21" id="HrZ-I4-7UJ"/>
-                                        <constraint firstItem="FtI-v7-cYq" firstAttribute="top" secondItem="ki3-kb-MQA" secondAttribute="top" constant="50" id="WV3-dF-s2b"/>
-                                        <constraint firstAttribute="trailing" secondItem="FtI-v7-cYq" secondAttribute="trailing" constant="21" id="ZkL-yc-xoy"/>
-                                        <constraint firstItem="ozb-2z-P4S" firstAttribute="centerX" secondItem="ki3-kb-MQA" secondAttribute="centerX" id="vDi-pJ-s4D"/>
-                                        <constraint firstAttribute="bottom" secondItem="ozb-2z-P4S" secondAttribute="bottom" constant="21" id="wik-iV-Rzs"/>
                                     </constraints>
                                 </view>
                             </subviews>
