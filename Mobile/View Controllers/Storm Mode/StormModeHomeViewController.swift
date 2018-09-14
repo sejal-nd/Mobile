@@ -217,6 +217,9 @@ class StormModeHomeViewController: AccountPickerViewController {
         getOutageStatus(didPullToRefresh: true)
     }
     
+    @IBAction func payButtonPress(_ sender: Any) {
+        performSegue(withIdentifier: "BillSegue", sender: nil)
+    }
     
     // MARK: - Helper
     
@@ -322,11 +325,11 @@ class StormModeHomeViewController: AccountPickerViewController {
 //        } else if currentOutageStatus.activeOutage {
 //            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
 //        } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
-//            outageStatusButton.isHidden = true
-//            finalPayView.isHidden = false
-//            finalPayTextView.text = viewModel.accountNonPayFinaledMessage
+            outageStatusButton.isHidden = true
+            finalPayView.isHidden = false
+            finalPayTextView.text = viewModel.accountNonPayFinaledMessage
 //        } else { // Power is on
-            outageStatusButton.setPowerOnState()
+//            outageStatusButton.setPowerOnState()
 //        }
     }
     
