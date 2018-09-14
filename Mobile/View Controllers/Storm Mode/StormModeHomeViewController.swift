@@ -236,8 +236,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             if didPullToRefresh {
                 self.refreshControl?.endRefreshing()
             }
-            
-            self.loadingLottieAnimation.animationProgress = 0.0
 
             UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
             self.shouldShowOutageButtons = true
@@ -284,6 +282,10 @@ class StormModeHomeViewController: AccountPickerViewController {
         } else {
             gasOnlyView.isHidden = true
             shouldShowOutageButtons = true
+            
+            outageStatusButton.onLottieAnimation?.animationProgress = 0.0
+            outageStatusButton.onLottieAnimation?.play()
+            
             outageStatusButton.isHidden = false
         }
         
@@ -334,20 +336,20 @@ class StormModeHomeViewController: AccountPickerViewController {
         if let vc = segue.destination as? UpdatesDetailViewController {
             vc.opcoUpdate = OpcoUpdate(title: NSLocalizedString("Storm Mode is in effect", comment: ""), message: NSLocalizedString("Due to severe weather, limited features are available to allow us to better serve you.", comment: ""))
         } else if let vc = segue.destination as? ReportOutageViewController {
-            navigationController?.setNavigationBarHidden(false, animated: true) // may be able to refactor this out into the root of prep for segue
+            navigationController?.setNavigationBarHidden(false, animated: false) // may be able to refactor this out into the root of prep for segue
             vc.viewModel.outageStatus = viewModel.currentOutageStatus!
             
             guard let phone = viewModel.currentOutageStatus!.contactHomeNumber else { return }
             vc.viewModel.phoneNumber.value = phone
         } else if let vc = segue.destination as? OutageMapViewController {
-            navigationController?.setNavigationBarHidden(false, animated: true)
+            navigationController?.setNavigationBarHidden(false, animated: false)
             vc.hasPressedStreetlightOutageMapButton = false
         } else if let vc = segue.destination as? BillViewController {
             vc.shouldHideNavigationBar = false
-            navigationController?.setNavigationBarHidden(false, animated: true)
+            navigationController?.setNavigationBarHidden(false, animated: false)
         } else if let vc = segue.destination as? MoreViewController {
             vc.shouldHideNavigationBar = false
-            navigationController?.setNavigationBarHidden(false, animated: true)
+            navigationController?.setNavigationBarHidden(false, animated: false)
         }
     }
     
