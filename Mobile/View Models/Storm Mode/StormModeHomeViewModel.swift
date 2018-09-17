@@ -29,18 +29,22 @@ class StormModeHomeViewModel {
         currentGetOutageStatusDisposable?.dispose()
     }
     
-    private(set) lazy var stormModeEnded: Driver<Void> = Observable<Int>
-        .interval(stormModePollInterval, scheduler: MainScheduler.instance)
-        .toAsyncRequest { [weak self] _ in
-            self?.authService.getMaintenanceMode() ?? .empty()
-        }
-        // Ignore errors and positive storm mode responses
-        .elements()
-        .filter { !$0.stormModeStatus }
-        // Stop polling after storm mode ends
-        .take(1)
-        .map(to: ())
-        .asDriver(onErrorDriveWith: .empty())
+    func startStormModePolling() -> Driver<Void> {
+        return Observable<Int>
+            .interval(stormModePollInterval, scheduler: MainScheduler.instance)
+            .map(to: ())
+            .startWith(())
+            .toAsyncRequest { [weak self] _ in
+                self?.authService.getMaintenanceMode() ?? .empty()
+            }
+            // Ignore errors and positive storm mode responses
+            .elements()
+            .filter { !$0.stormModeStatus }
+            // Stop polling after storm mode ends
+            .take(1)
+            .map(to: ())
+            .asDriver(onErrorDriveWith: .empty())
+    }
     
     func fetchData(onSuccess: @escaping () -> Void,
                    onError: @escaping (ServiceError) -> Void) {

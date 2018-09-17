@@ -120,6 +120,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                                                    outageService: ServiceFactory.createOutageService())
     
     let disposeBag = DisposeBag()
+    var stormModePollingDisposable: Disposable?
     
     /// Controls if content is shown within cells
     var shouldShowOutageCellData = false {
@@ -134,6 +135,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             tableView.reloadSections([0], with: .none)
         }
     }
+    
+    var stormModeEnded = false
 
     
     // MARK: - View Life Cycle
@@ -157,10 +160,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         
 
         // Events
-        
-        viewModel.stormModeEnded
-            .drive(onNext: { [weak self] in self?.stormModeEnded() })
-            .disposed(by: disposeBag)
         
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.updateContent(outageJustReported: true) })
@@ -192,8 +191,23 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Start polling when the home screen appears, only if storm mode hasn't ended yet
+        stormModePollingDisposable?.dispose()
+        if !stormModeEnded {
+            stormModePollingDisposable = viewModel.startStormModePolling()
+                .drive(onNext: { [weak self] in self?.stormModeDidEnd() })
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        // Stop polling when the home screen is left
+        stormModePollingDisposable?.dispose()
     }
     
     override func viewDidLayoutSubviews() {
@@ -225,7 +239,9 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     // MARK: - Helper
     
-    private func stormModeEnded() {
+    private func stormModeDidEnd() {
+        stormModeEnded = true
+        
         let yesAction = UIAlertAction(title: NSLocalizedString("Exit Storm Mode", comment: ""), style: .default)
         { [weak self] _ in
             self?.returnToMainApp()
