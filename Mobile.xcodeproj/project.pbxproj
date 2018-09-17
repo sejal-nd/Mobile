@@ -3420,22 +3420,22 @@
 			path = "Unavailable View";
 			sourceTree = "<group>";
 		};
-		35A6C6BC211C6FD100C2A58F /* Title TableView Header View */ = {
+		35A6C6BC211C6FD100C2A58F /* TitleTableViewHeaderView */ = {
 			isa = PBXGroup;
 			children = (
 				35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */,
 				35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */,
 			);
-			path = "Title TableView Header View";
+			path = TitleTableViewHeaderView;
 			sourceTree = "<group>";
 		};
-		35A6C6BF211C7AB600C2A58F /* Title TalbeView Cell */ = {
+		35A6C6BF211C7AB600C2A58F /* TitleTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */,
 				35A6C6C2211C7ADE00C2A58F /* TitleTableViewCell.swift */,
 			);
-			path = "Title TalbeView Cell";
+			path = TitleTableViewCell;
 			sourceTree = "<group>";
 		};
 		35A6C6D9211CC08B00C2A58F /* Updates */ = {
@@ -3456,13 +3456,13 @@
 			path = Updates;
 			sourceTree = "<group>";
 		};
-		35A6C6F82121D62D00C2A58F /* Toggle TableView Cell */ = {
+		35A6C6F82121D62D00C2A58F /* ToggleTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				35A6C6F92121D64100C2A58F /* ToggleTableViewCell.xib */,
 				35A6C6FB2121D64C00C2A58F /* ToggleTableViewCell.swift */,
 			);
-			path = "Toggle TableView Cell";
+			path = ToggleTableViewCell;
 			sourceTree = "<group>";
 		};
 		385AF2291F2791A5001E3619 /* Unauthenticated OTP Animation Text */ = {
@@ -3916,9 +3916,9 @@
 		82A18EB21EBA668500BE9F21 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
-				35A6C6BF211C7AB600C2A58F /* Title TalbeView Cell */,
-				35A6C6F82121D62D00C2A58F /* Toggle TableView Cell */,
-				35A6C6BC211C6FD100C2A58F /* Title TableView Header View */,
+				35A6C6BF211C7AB600C2A58F /* TitleTableViewCell */,
+				35A6C6F82121D62D00C2A58F /* ToggleTableViewCell */,
+				35A6C6BC211C6FD100C2A58F /* TitleTableViewHeaderView */,
 				82E22B5B1F9FC798001F1A1B /* EnergyTipTableViewCell */,
 				826DCCF01F0E84EA0063D47E /* AdvancedAccountPickerTableViewCell */,
 				E84D42C41F4211A400783708 /* BillingHistoryTableViewCell */,
