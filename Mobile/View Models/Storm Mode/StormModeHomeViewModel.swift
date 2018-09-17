@@ -33,8 +33,9 @@ class StormModeHomeViewModel {
         return Observable<Int>
             .interval(stormModePollInterval, scheduler: MainScheduler.instance)
             .map(to: ())
+            // Start polling immediately
             .startWith(())
-            .toAsyncRequest { [weak self] _ in
+            .toAsyncRequest { [weak self] in
                 self?.authService.getMaintenanceMode() ?? .empty()
             }
             // Ignore errors and positive storm mode responses
