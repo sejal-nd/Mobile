@@ -14,4 +14,11 @@ extension UIView {
         layer.shadowRadius = CGFloat(radius)
         layer.masksToBounds = false
     }
+    
+    func removeShadow() {
+        layer.shadowColor = nil
+        layer.shadowOpacity = 0
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 0
+    }
 }

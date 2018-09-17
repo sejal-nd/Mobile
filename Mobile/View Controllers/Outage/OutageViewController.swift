@@ -60,13 +60,13 @@ class OutageViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.size.height / 2
-        
         loadingLottieAnimation.frame = CGRect(x: 0, y: 0, width: loadingAnimationView.frame.size.width, height: loadingAnimationView.frame.size.height)
         loadingLottieAnimation.loopAnimation = true
         loadingLottieAnimation.contentMode = .scaleAspectFill
         loadingAnimationView.addSubview(loadingLottieAnimation)
         loadingLottieAnimation.play()
+        
+        loadingBackgroundView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 4), radius: 5)
         
         outageStatusButton.delegate = self
         
@@ -164,6 +164,11 @@ class OutageViewController: AccountPickerViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         shortcutItem = .none
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.size.height / 2
     }
     
     @objc func killRefresh() -> Void {

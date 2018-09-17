@@ -21,13 +21,11 @@ class OutageStatusButton: UIView {
     @IBOutlet weak private var animationView: UIView!
     @IBOutlet weak private var outerCircleView: UIView! {
         didSet {
-            outerCircleView.layer.cornerRadius = outerCircleView.bounds.size.width / 2
             outerCircleView.layer.borderWidth = 6
         }
     }
     @IBOutlet weak private var innerCircleView: UIView! {
         didSet {
-            innerCircleView.layer.cornerRadius = innerCircleView.bounds.size.width / 2
             innerCircleView.layer.borderWidth = 6
             innerCircleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
         }
@@ -50,7 +48,7 @@ class OutageStatusButton: UIView {
     @IBOutlet weak var statusETRImageView: UIImageView!
     @IBOutlet weak var statusETRLabel: UILabel! {
         didSet {
-            statusETRLabel.font = OpenSans.regular.of(size: 16)
+            statusETRLabel.font = OpenSans.regular.of(size: 14)
         }
     }
     @IBOutlet weak var reportedDetailLabel: UILabel! {
@@ -65,7 +63,7 @@ class OutageStatusButton: UIView {
     }
     @IBOutlet weak var reportedETRLabel: UILabel! {
         didSet {
-            reportedETRLabel.font = OpenSans.bold.of(size: 15)
+            reportedETRLabel.font = OpenSans.bold.of(size: 14)
             reportedETRLabel.adjustsFontSizeToFitWidth = true
             reportedETRLabel.minimumScaleFactor = 0.5
         }
@@ -162,6 +160,12 @@ class OutageStatusButton: UIView {
         // Triggers Initial DidSet
         isStormMode = false
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        innerCircleView.layer.cornerRadius = innerCircleView.bounds.width / 2
+        outerCircleView.layer.cornerRadius = outerCircleView.bounds.size.width / 2
+    }
 
     private func setStateColors(innerBackground: UIColor, innerStroke: UIColor, outerStroke: UIColor = .clear) {
         innerCircleView.backgroundColor = innerBackground
@@ -177,6 +181,8 @@ class OutageStatusButton: UIView {
         statusETRView.isHidden = false
         
         // Styling
+        
+        innerCircleView.removeShadow()
         
         if isStormMode {
             statusETRImageView.image = #imageLiteral(resourceName: "ic_reportoutage")
@@ -208,14 +214,16 @@ class OutageStatusButton: UIView {
 
         // Styling
         
+        innerCircleView.removeShadow()
+        
         if isStormMode {
             setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
-                           innerStroke: UIColor(red:255/255.0, green:255/255.0, blue:255/255.0,  alpha:0.3))
+                           innerStroke: UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0,  alpha: 0.3))
             statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out_white")
         } else {
             setStateColors(innerBackground: .white,
                            innerStroke: .middleGray,
-                           outerStroke: UIColor(red:187/255.0, green:187/255.0, blue:187/255.0,  alpha:1))
+                           outerStroke: UIColor(red: 216/255, green: 216/255, blue: 216/255,  alpha: 1))
             statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out")
         }
         
@@ -238,6 +246,8 @@ class OutageStatusButton: UIView {
 
         // Styling
         
+        innerCircleView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 4), radius: 5)
+        
         if isStormMode {
             setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
                            innerStroke: UIColor.clear)
@@ -246,7 +256,7 @@ class OutageStatusButton: UIView {
             setStateColors(innerBackground: .white,
                            innerStroke: .white,
                            outerStroke: .clear)
-            statusImageView.image = #imageLiteral(resourceName: "ic_outagestatus_on")
+            statusImageView.image = #imageLiteral(resourceName: "ic_lightbulb_on")
         }
         
         // Set Values
