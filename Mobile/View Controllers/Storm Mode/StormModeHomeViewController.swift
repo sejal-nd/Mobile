@@ -226,21 +226,21 @@ class StormModeHomeViewController: AccountPickerViewController {
     // MARK: - Helper
     
     private func stormModeEnded() {
-        let noAction = UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel)
+        let yesAction = UIAlertAction(title: NSLocalizedString("Exit Storm Mode", comment: ""), style: .default)
+        { [weak self] _ in
+            self?.returnToMainApp()
+        }
+        
+        let noAction = UIAlertAction(title: NSLocalizedString("No, Thanks", comment: ""), style: .cancel)
         { [weak self] _ in
             self?.exitView.isHidden = false
             self?.headerContentView.isHidden = true
         }
         
-        let yesAction = UIAlertAction(title: NSLocalizedString("Return", comment: ""), style: .default)
-        { [weak self] _ in
-            self?.returnToMainApp()
-        }
-        
-        presentAlert(title: NSLocalizedString("Storm Mode Has Ended", comment: ""),
-                     message: NSLocalizedString("Would you like to return to the main app?", comment: ""),
+        presentAlert(title: NSLocalizedString("Exit Storm Mode", comment: ""),
+                     message: NSLocalizedString("All features are now available. Would you like to exit storm mode? You can also do this from the home screen.", comment: ""),
                      style: .alert,
-                     actions: [noAction, yesAction])
+                     actions: [yesAction, noAction])
     }
     
     private func getOutageStatus(didPullToRefresh: Bool = false) {

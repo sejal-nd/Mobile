@@ -55,7 +55,7 @@
                             <rect key="frame" x="8" y="37" width="198" height="118.5"/>
                             <subviews>
                                 <view hidden="YES" verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLe-3B-kDr">
-                                    <rect key="frame" x="0.0" y="-70.5" width="198" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="-15.5" width="198" height="0.0"/>
                                     <subviews>
                                         <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ppU-R8-pkP">
                                             <rect key="frame" x="-2.5" y="-25.5" width="203" height="96"/>
@@ -168,7 +168,6 @@
                         <constraint firstAttribute="width" constant="214" id="3KU-Eu-xQf"/>
                         <constraint firstAttribute="trailing" secondItem="T4V-uw-F2u" secondAttribute="trailing" constant="8" id="ktW-a2-2rj"/>
                         <constraint firstItem="T4V-uw-F2u" firstAttribute="leading" secondItem="KEt-H0-Vtc" secondAttribute="leading" constant="8" id="lmh-Z5-kBQ"/>
-                        <constraint firstItem="T4V-uw-F2u" firstAttribute="centerX" secondItem="KEt-H0-Vtc" secondAttribute="centerX" id="oeK-AY-9Vx"/>
                         <constraint firstAttribute="height" constant="214" id="udS-vx-x8y"/>
                         <constraint firstItem="T4V-uw-F2u" firstAttribute="centerY" secondItem="KEt-H0-Vtc" secondAttribute="centerY" constant="-11" id="z42-X5-1vw"/>
                     </constraints>
