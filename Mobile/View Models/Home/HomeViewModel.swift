@@ -11,10 +11,6 @@ import RxCocoa
 import RxSwiftExt
 
 class HomeViewModel {
-    let defaultZip : String? = Environment.shared.opco == .bge ? "20201" : nil
-
-    let disposeBag = DisposeBag()
-    
     private let accountService: AccountService
     private let weatherService: WeatherService
     private let walletService: WalletService
