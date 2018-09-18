@@ -80,15 +80,13 @@ class NoNetworkConnectionView: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         containerView.translatesAutoresizingMaskIntoConstraints = true
         addSubview(containerView)
-        containerView.backgroundColor = .primaryColor
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         styleViews()
+        contactDetailsSpacerView.isHidden = true
+        contactDetailsTextView.isHidden = true
     }
     
     func styleViews() {
+        containerView.backgroundColor = .primaryColor
         reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
         noNetworkConnectionLabel.font = OpenSans.semibold.of(textStyle: .title1)
         pleaseReloadLabel.font = OpenSans.regular.of(textStyle: .subheadline)

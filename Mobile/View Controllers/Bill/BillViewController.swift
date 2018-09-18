@@ -128,8 +128,6 @@ class BillViewController: AccountPickerViewController {
     
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService(),
                                   authService: ServiceFactory.createAuthenticationService())
-    
-    var shouldHideNavigationBar = true
 
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -178,10 +176,7 @@ class BillViewController: AccountPickerViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if shouldHideNavigationBar {
-            navigationController?.setNavigationBarHidden(true, animated: true)
-        }
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     override func viewDidAppear(_ animated: Bool) {

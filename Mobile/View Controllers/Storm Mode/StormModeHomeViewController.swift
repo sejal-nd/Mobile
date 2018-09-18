@@ -100,11 +100,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     /// This houses both the outage status button and the loading view for the button
     @IBOutlet weak var loadingContentView: UIView!
     @IBOutlet weak var loadingView: UIView!
-    @IBOutlet weak var loadingBackgroundView: UIView! {
-        didSet {
-            loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.height / 2
-        }
-    }
+    @IBOutlet weak var loadingBackgroundView: UIView!
     @IBOutlet weak var loadingAnimationView: UIView!
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView! {
@@ -216,6 +212,8 @@ class StormModeHomeViewController: AccountPickerViewController {
         // Self Sizes Table View Header
         headerView.frame.size = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
         tableView.tableHeaderView = headerView
+        
+        loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.height / 2
     }
     
     
@@ -397,9 +395,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? OutageMapViewController {
             navigationController?.setNavigationBarHidden(false, animated: false)
             vc.hasPressedStreetlightOutageMapButton = false
-        } else if let vc = segue.destination as? BillViewController {
-            vc.shouldHideNavigationBar = false
-            navigationController?.setNavigationBarHidden(false, animated: false)
         } else if let vc = segue.destination as? MoreViewController {
             vc.shouldHideNavigationBar = false
             navigationController?.setNavigationBarHidden(false, animated: false)
