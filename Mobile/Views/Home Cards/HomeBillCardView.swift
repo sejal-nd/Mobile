@@ -207,6 +207,8 @@ class HomeBillCardView: UIView {
     }
     
     private func bindViewModel() {
+        viewBillButton.isHidden = !viewModel.showViewBillButton
+        
         viewModel.paymentTracker.asDriver().drive(onNext: {
             if $0 {
                 LoadingView.show(animated: true)
@@ -292,7 +294,11 @@ class HomeBillCardView: UIView {
         viewModel.headerA11yText.drive(headerLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.amountFont.drive(amountLabel.rx.font).disposed(by: bag)
         viewModel.amountText.drive(amountLabel.rx.text).disposed(by: bag)
-        viewModel.dueDateText.drive(dueDateLabel.rx.attributedText).disposed(by: bag)
+        
+        // `.delay(.leastNonzeroMagnitude)` fixes a weird bug where the label's font
+        // is set to regular instead of semibold while the view is still hidden.
+        // This is not an ideal fix, hoping to find a better one later.
+        viewModel.dueDateText.delay(.leastNonzeroMagnitude).drive(dueDateLabel.rx.attributedText).disposed(by: bag)
         viewModel.reinstatementFeeText.drive(reinstatementFeeLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardNumberText.drive(bankCreditCardNumberLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardImage.drive(bankCreditCardImageView.rx.image).disposed(by: bag)
@@ -489,16 +495,17 @@ class HomeBillCardView: UIView {
         .map { _ in UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEasy") }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(self.tooltipModal,
-                                                                                        self.oneTouchSliderWeekendAlert,
-                                                                                        self.paymentTACModal,
-                                                                                        self.oneTouchPayErrorAlert,
-                                                                                        self.oneTouchSliderCVV2Alert,
-                                                                                        self.tutorialViewController,
-                                                                                        self.bgeasyViewController)
+    private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(tooltipModal,
+                                                                                        oneTouchSliderWeekendAlert,
+                                                                                        paymentTACModal,
+                                                                                        oneTouchPayErrorAlert,
+                                                                                        oneTouchSliderCVV2Alert,
+                                                                                        tutorialViewController,
+                                                                                        bgeasyViewController)
     
     // Pushed View Controllers
-    private lazy var walletViewController: Driver<UIViewController> = self.bankCreditNumberButton.rx.touchUpInside.asObservable()
+    private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside
+        .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
@@ -508,7 +515,8 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var addOTPViewController: Driver<UIViewController> = self.saveAPaymentAccountButton.rx.touchUpInside.asObservable()
+    private lazy var addOTPViewController: Driver<UIViewController> = saveAPaymentAccountButton.rx.touchUpInside
+        .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
@@ -520,7 +528,8 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var billingHistoryViewController: Driver<UIViewController> = self.thankYouForSchedulingButton.rx.touchUpInside.asObservable()
+    private lazy var billingHistoryViewController: Driver<UIViewController> = thankYouForSchedulingButton.rx.touchUpInside
+        .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
@@ -529,7 +538,8 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var autoPayViewController: Driver<UIViewController> = self.autoPayButton.rx.tap.asObservable()
+    private lazy var autoPayViewController: Driver<UIViewController> = autoPayButton.rx.tap
+        .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { !$0.isBGEasy }
         .map { accountDetail in
@@ -546,10 +556,10 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.walletViewController,
-                                                                                         self.addOTPViewController,
-                                                                                         self.billingHistoryViewController,
-                                                                                         self.autoPayViewController)
+    private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(walletViewController,
+                                                                                         addOTPViewController,
+                                                                                         billingHistoryViewController,
+                                                                                         autoPayViewController)
 
     deinit {
         cvvValidationDisposable?.dispose()

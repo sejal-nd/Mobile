@@ -137,9 +137,7 @@ class BGEAutoPayViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        navigationController?.setColoredNavBar()
         
         if viewModel.initialEnrollmentStatus.value == .enrolled {
             selectBankAccountLabel.isHidden = true

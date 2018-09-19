@@ -36,8 +36,10 @@ class MockAlertsService: AlertsService {
         completion(.success(()))
     }
     
+    var updatesShouldSucceed = true
+    
     func fetchOpcoUpdates(bannerOnly: Bool = false, completion: @escaping (ServiceResult<[OpcoUpdate]>) -> Void) {
-        if bannerOnly {
+        if updatesShouldSucceed {
             let opcoUpdates = [OpcoUpdate.from(["Title": "Test Title", "Message": "Test Message"])!]
             completion(.success(opcoUpdates))
         } else {

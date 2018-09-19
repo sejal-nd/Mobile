@@ -78,16 +78,16 @@
                                                                             <rect key="frame" x="116" y="0.0" width="143" height="111"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="H4x-4C-4sr">
-                                                                                    <rect key="frame" x="0.0" y="31" width="143" height="49"/>
+                                                                                    <rect key="frame" x="0.0" y="31" width="143" height="46.5"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="999" text="$00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqP-4o-FJD">
-                                                                                            <rect key="frame" x="0.0" y="4.5" width="104" height="40"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="103" height="46.5"/>
                                                                                             <fontDescription key="fontDescription" name="OpenSans-SemiboldItalic" family="Open Sans" pointSize="34"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izL-VW-bDo">
-                                                                                            <rect key="frame" x="117" y="4.5" width="26" height="40"/>
+                                                                                            <rect key="frame" x="116" y="0.0" width="27" height="46.5"/>
                                                                                             <state key="normal" image="ic_question"/>
                                                                                         </button>
                                                                                     </subviews>
@@ -96,7 +96,7 @@
                                                                                     </constraints>
                                                                                 </stackView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APR 12 - MAY 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbN-nx-82e">
-                                                                                    <rect key="frame" x="0.0" y="80" width="143" height="14"/>
+                                                                                    <rect key="frame" x="0.0" y="77.5" width="143" height="16.5"/>
                                                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -115,12 +115,16 @@
                                                                             </constraints>
                                                                         </view>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've spent about $59 so far this bill period." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sh-Ha-qR4">
-                                                                            <rect key="frame" x="56.5" y="111" width="262.5" height="15.5"/>
+                                                                            <rect key="frame" x="51.5" y="111" width="272.5" height="15.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8sh-Ha-qR4" secondAttribute="trailing" constant="21" id="nXK-MF-kNz"/>
+                                                                        <constraint firstItem="8sh-Ha-qR4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mhY-b6-KRD" secondAttribute="leading" constant="21" id="xyU-L0-M7r"/>
+                                                                    </constraints>
                                                                 </stackView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -141,9 +141,7 @@ class WalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar(hidesBottomBorder: true)
-        }
+        navigationController?.setColoredNavBar(hidesBottomBorder: true)
     }
     
     override func viewDidLayoutSubviews() {

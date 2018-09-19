@@ -33,20 +33,7 @@ class TermsPoliciesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        } else { // Sent from unauthenticated user experience
-            navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-            navigationController?.navigationBar.barTintColor = .primaryColor
-            navigationController?.navigationBar.isTranslucent = false
-            
-            let titleDict: [NSAttributedStringKey: Any] = [
-                .foregroundColor: UIColor.white,
-                .font: OpenSans.bold.of(size: 18)
-            ]
-            navigationController?.navigationBar.titleTextAttributes = titleDict
-        }
+        navigationController?.setColoredNavBar()
     }
     
     

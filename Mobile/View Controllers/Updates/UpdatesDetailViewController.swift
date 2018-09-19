@@ -10,14 +10,18 @@ import UIKit
 
 class UpdatesDetailViewController: UIViewController {
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var label: UILabel!
     
     var opcoUpdate: OpcoUpdate! // Passed from AlertsViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = opcoUpdate.title
+        titleLabel.textColor = .blackText
+        titleLabel.font = OpenSans.bold.of(textStyle: .title1)
+        titleLabel.attributedText = opcoUpdate.title
+            .attributedString(withLineHeight: 28)
         
         label.textColor = .blackText
         label.font = OpenSans.regular.of(textStyle: .body)
@@ -26,26 +30,14 @@ class UpdatesDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = true
-        
-        setNeedsStatusBarAppearanceUpdate()
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.isTranslucent = false
-        
-        let titleDict: [NSAttributedStringKey: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
+        navigationController?.setWhiteNavBar(hidesBottomBorder: true)
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            navigationController?.setColoredNavBar()
+        }
     }
 
 }

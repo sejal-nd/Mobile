@@ -47,13 +47,10 @@ class TemplateCardView: UIView {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         clippingView.layer.cornerRadius = 10
         titleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        titleLabel.setLineHeight(lineHeight: 30)
         bodyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        bodyLabel.setLineHeight(lineHeight: 18)
         callToActionLabel.font = SystemFont.semibold.of(textStyle: .title1)
         
         errorLabel.font = OpenSans.regular.of(textStyle: .title1)
-        errorLabel.setLineHeight(lineHeight: 26)
         errorLabel.textAlignment = .center
     }
     
@@ -72,16 +69,24 @@ class TemplateCardView: UIView {
         
         //grab all the content
         viewModel.templateImage.drive(imageView.rx.image).disposed(by: bag)
-        viewModel.titleString.drive(titleLabel.rx.text).disposed(by: bag)
-        viewModel.bodyString.drive(bodyLabel.rx.text).disposed(by: bag)
+        viewModel.titleString
+            .map { $0?.attributedString(withLineHeight: 30, textAlignment: .center) }
+            .drive(titleLabel.rx.attributedText)
+            .disposed(by: bag)
+        
+        viewModel.bodyString
+            .map { $0?.attributedString(withLineHeight: 18) }
+            .drive(bodyLabel.rx.attributedText).disposed(by: bag)
         viewModel.bodyStringA11yLabel.drive(bodyLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.ctaString.drive(callToActionLabel.rx.text).disposed(by: bag)
         
-        viewModel.errorLabelText.drive(onNext: { [weak self] errorText in
-            self?.errorLabel.text = errorText
-            let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
-            self?.errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.shared.opco.displayString, errorText ?? "")
-        }).disposed(by: bag)
+        viewModel.errorLabelText
+            .map { $0?.attributedString(withLineHeight: 26, textAlignment: .center) }
+            .drive(onNext: { [weak self] errorText in
+                self?.errorLabel.attributedText = errorText
+                let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
+                self?.errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.shared.opco.displayString, errorText ?? "")
+            }).disposed(by: bag)
         
         callToActionButton.rx.touchUpInside.asObservable()
             .withLatestFrom(viewModel.ctaUrl.asObservable())

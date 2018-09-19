@@ -61,16 +61,7 @@ class ContactUsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar(hidesBottomBorder: true)
-        } else { // Sent from unauthenticated user experience
-            let titleDict: [NSAttributedStringKey: Any] = [
-                .foregroundColor: UIColor.white,
-                .font: OpenSans.bold.of(size: 18)
-            ]
-            navigationController?.navigationBar.titleTextAttributes = titleDict
-        }
+        navigationController?.setColoredNavBar(hidesBottomBorder: true)
     }
     
     override func updateViewConstraints() {
