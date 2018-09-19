@@ -246,9 +246,9 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         })
         
         switch analyticsSource {
-        case .report:
+        case .report?:
             Analytics.log(event: .reportAnOutageUnAuthSubmitAcctVal)
-        case .status:
+        case .status?:
             Analytics.log(event: .outageStatusUnAuthAcctValidate)
         default:
             break
