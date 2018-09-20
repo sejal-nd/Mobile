@@ -49,10 +49,11 @@ class LandingViewController: UIViewController {
         view.backgroundColor = .primaryColor
         
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            if !Environment.shared.mcsInstanceName.contains("Prod") {
-                versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
-            } else {
+            switch Environment.shared.environmentName {
+            case .prod:
                 versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
+            case .aut, .dev, .stage:
+                versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
             }
         } else {
             versionLabel.text = nil
