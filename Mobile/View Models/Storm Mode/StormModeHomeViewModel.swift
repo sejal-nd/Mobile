@@ -32,7 +32,7 @@ class StormModeHomeViewModel {
     func startStormModePolling() -> Driver<Void> {
         return Observable<Int>
             .interval(stormModePollInterval, scheduler: MainScheduler.instance)
-            .map(to: ())
+            .mapTo(())
             // Start polling immediately
             .startWith(())
             .toAsyncRequest { [weak self] in
@@ -43,7 +43,7 @@ class StormModeHomeViewModel {
             .filter { !$0.stormModeStatus }
             // Stop polling after storm mode ends
             .take(1)
-            .map(to: ())
+            .mapTo(())
             .asDriver(onErrorDriveWith: .empty())
     }
     

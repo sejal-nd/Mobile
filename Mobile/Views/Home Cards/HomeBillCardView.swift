@@ -354,7 +354,8 @@ class HomeBillCardView: UIView {
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
             self?.oneTouchSlider.reset(animated: true)
-        }).map(to: ())
+        })
+        .mapTo(())
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
@@ -483,7 +484,10 @@ class HomeBillCardView: UIView {
             return alertController
     }
     
-    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver.merge(self.tutorialTap.rx.event.asDriver().map(to: ()), self.tutorialSwipe.rx.event.asDriver().map(to: ()), self.a11yTutorialButton.rx.tap.asDriver())
+    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver
+        .merge(tutorialTap.rx.event.asDriver().map(to: ()),
+               tutorialSwipe.rx.event.asDriver().map(to: ()),
+               a11yTutorialButton.rx.tap.asDriver())
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
         .map(to: ())

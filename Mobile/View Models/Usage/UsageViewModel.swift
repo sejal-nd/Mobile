@@ -138,23 +138,23 @@ class UsageViewModel {
     private(set) lazy var showMainErrorState: Driver<Void> = accountDetailEvents
         .filter { $0.error != nil }
         .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showNoNetworkState: Driver<Void> = Observable
         .merge(accountDetailEvents.errors(), billAnalysisEvents.errors())
         .filter { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showNoUsageDataState: Driver<Void> = accountDetailEvents
         .filter { !($0.element?.isEligibleForUsageData ?? true) }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMainContents: Driver<Void> = accountDetailEvents
         .filter { $0.element?.isEligibleForUsageData ?? false }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     
@@ -162,12 +162,12 @@ class UsageViewModel {
     
     private(set) lazy var showBillComparisonContents: Driver<Void> = billAnalysisEvents
         .filter { $0.element?.0.reference != nil }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showBillComparisonErrorState: Driver<Void> = billAnalysisEvents
         .filter { $0.error != nil || $0.element?.0.reference == nil }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showElectricGasSegmentedControl: Driver<Bool> = accountDetailEvents.elements()

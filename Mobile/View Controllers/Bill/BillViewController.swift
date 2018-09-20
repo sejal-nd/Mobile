@@ -506,12 +506,12 @@ class BillViewController: AccountPickerViewController {
 
     func bindButtonTaps() {
         maintenanceModeView.reload
-            .map(to: FetchingAccountState.switchAccount)
+            .mapTo(FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchAccountDetail)
             .disposed(by: maintenanceModeView.disposeBag)
         
         noNetworkConnectionView.reload
-            .map(to: FetchingAccountState.switchAccount)
+            .mapTo(FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchAccountDetail)
             .disposed(by: bag)
         

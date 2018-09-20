@@ -75,7 +75,7 @@ class HomeBillCardViewModel {
     }
     
     private lazy var fetchTrigger = Observable
-        .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated.map(to: FetchingAccountState.switchAccount))
+        .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated.mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
     private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated

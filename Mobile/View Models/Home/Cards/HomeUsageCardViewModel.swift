@@ -103,7 +103,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var showBillComparison: Driver<Void> = billComparisonEvents
         .filter { $0.element?.reference != nil }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents.elements()
@@ -115,12 +115,12 @@ class HomeUsageCardViewModel {
             
             return !accountDetail.isEligibleForUsageData
         }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showBillComparisonEmptyState: Driver<Void> = billComparisonEvents
         .filter { $0.element?.reference == nil }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showSmartEnergyRewards: Driver<Void> = accountDetailEvents.elements()
@@ -129,7 +129,7 @@ class HomeUsageCardViewModel {
                 accountDetail.isSERAccount &&
                 !accountDetail.serInfo.eventResults.isEmpty
         }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = self.accountDetailEvents
@@ -140,7 +140,7 @@ class HomeUsageCardViewModel {
             }
             return false
         }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showElectricGasSegmentedControl: Driver<Bool> = accountDetailEvents.map {

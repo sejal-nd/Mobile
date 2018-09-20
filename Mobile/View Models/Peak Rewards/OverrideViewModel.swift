@@ -100,7 +100,7 @@ class OverrideViewModel {
     private(set) lazy var enableDateButton: Driver<Bool> = self.scheduledOverride.isNil()
     private(set) lazy var showScheduledOverride: Driver<Bool> = self.scheduledOverride.isNil().not()
     private(set) lazy var showActiveOverride: Driver<Bool> = self.activeOverride.isNil().not()
-    private(set) lazy var enableSaveButton: Driver<Bool> = self.selectedDate.map(to: true).startWith(false).asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var enableSaveButton: Driver<Bool> = self.selectedDate.mapTo(true).startWith(false).asDriver(onErrorDriveWith: .empty())
     
     //MARK: - Actions
     private lazy var saveEvents: Observable<Event<Void>> = self.saveAction

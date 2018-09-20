@@ -25,12 +25,12 @@ class TemplateCardViewModel {
     
     private(set) lazy var showContentState: Driver<Void> = accountDetailEvents
         .filter { $0.element != nil }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showErrorState: Driver<Void> = accountDetailEvents
         .filter { $0.error != nil }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     
