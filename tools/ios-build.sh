@@ -297,6 +297,12 @@ fi
 if xcodebuild -version | grep -q 9.4.1; then
 	echo "Switching VSTS build agent to Xcode 10 -- $XCODE_10_DEVELOPER_DIR"
 	sudo xcode-select -switch $XCODE_10_DEVELOPER_DIR
+
+	# Xcode 10's new build system seems to want all files in place, which causes issues with the environment switcher task
+	# Stick empty files in place
+
+	touch Mobile/Configuration/environment.plist
+	touch Mobile/Configuration/environment_preprocess.h
 fi
 
 # Restore Carthage Packages
