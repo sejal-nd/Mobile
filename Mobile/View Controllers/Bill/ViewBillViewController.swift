@@ -30,14 +30,13 @@ class ViewBillViewController: UIViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.isHidden = true
+        
+        fetchBillPDFData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setWhiteNavBar()
-        
-        fetchBillPDFData()
     }
     
     
