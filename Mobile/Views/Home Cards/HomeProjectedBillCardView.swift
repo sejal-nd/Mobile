@@ -84,7 +84,7 @@ class HomeProjectedBillCardView: UIView {
         segmentedControl.setItems(leftLabel: NSLocalizedString("Electric", comment: ""),
                                   rightLabel: NSLocalizedString("Gas", comment: ""),
                                   initialSelectedIndex: 0)
-        stackView.bringSubview(toFront: segmentedControlContainer)
+        stackView.bringSubviewToFront(segmentedControlContainer)
         
         infoButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
@@ -146,7 +146,7 @@ class HomeProjectedBillCardView: UIView {
             .disposed(by: disposeBag)
         
         viewModel.showLoadingState
-            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .drive(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
             .disposed(by: disposeBag)
         
         viewModel.shouldShowElectricGasSegmentedControl.drive(onNext: { [weak self] shouldShow in

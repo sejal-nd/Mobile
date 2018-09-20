@@ -62,7 +62,7 @@ class BillViewModel {
                 .filter { !$0.isCompleted }
         }
         .share(replay: 1)
-        .do(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+        .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
     
     private(set) lazy var accountDetailError: Driver<ServiceError?> = self.accountDetailEvents.errors()
         .map { $0 as? ServiceError }

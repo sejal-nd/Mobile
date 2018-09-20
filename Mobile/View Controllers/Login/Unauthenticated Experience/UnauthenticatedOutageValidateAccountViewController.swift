@@ -65,14 +65,14 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         
         maintenanceModeView.isHidden = true
         
-        NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: { [weak self] in
                 self?.keyboardWillShow(notification: $0)
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: { [weak self] in
                 self?.keyboardWillHide(notification: $0)
@@ -273,9 +273,9 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     
     func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - footerView.frame.size.height, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - footerView.frame.size.height, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }

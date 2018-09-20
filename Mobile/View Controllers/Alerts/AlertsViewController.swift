@@ -93,7 +93,7 @@ class AlertsViewController: AccountPickerViewController {
         
         // Dynamic sizing for the table header view
         if let headerView = tableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var headerFrame = headerView.frame
             
             // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -141,7 +141,7 @@ class AlertsViewController: AccountPickerViewController {
             self?.tableView.reloadData()
         }).disposed(by: disposeBag)
         viewModel.a11yScreenChangedEvent.asObservable().subscribe(onNext: { [weak self] in
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self?.view)
         }).disposed(by: disposeBag)
     }
     

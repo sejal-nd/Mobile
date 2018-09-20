@@ -89,7 +89,7 @@ class MiniWalletViewController: UIViewController {
         
         // Dynamic sizing for the table header view
         if let headerView = tableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var headerFrame = headerView.frame
             
             // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -102,7 +102,7 @@ class MiniWalletViewController: UIViewController {
         
         // Dynamic sizing for the table footer view
         if let footerView = tableView.tableFooterView {
-            let height = footerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            let height = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var footerFrame = footerView.frame
             
             // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -151,10 +151,10 @@ class MiniWalletViewController: UIViewController {
             guard let `self` = self else { return }
             self.tableView.reloadData()
             self.view.setNeedsLayout()
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
         }, onError: { [weak self] in
             guard let `self` = self else { return }
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
     }
     
@@ -206,7 +206,7 @@ extension MiniWalletViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -123,11 +123,11 @@ class StormModeHomeViewModel {
             
             let gasEmergencyTextMutableAttributedString = NSMutableAttributedString(string: gasEmergencyText)
             let gasEmergencyMutableAttributedString = NSMutableAttributedString(string: gasEmergencyPhoneNumber)
-            gasEmergencyMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, gasEmergencyPhoneNumber.count))
+            gasEmergencyMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, gasEmergencyPhoneNumber.count))
             
             let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
             let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
+            downedPowerLineMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
             
             gasEmergencyTextMutableAttributedString.append(gasEmergencyMutableAttributedString)
             gasEmergencyTextMutableAttributedString.append(downedPowerLineTextMutableAttributedString)
@@ -140,7 +140,7 @@ class StormModeHomeViewModel {
             
             let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
             let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
+            downedPowerLineMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
             
             downedPowerLineTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
 
@@ -151,7 +151,7 @@ class StormModeHomeViewModel {
             
             let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
             let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
+            downedPowerLineMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
             
             downedPowerLineTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
             

@@ -512,7 +512,7 @@ class HomeViewController: AccountPickerViewController {
     
     func bindLoadingStates() {
         viewModel.refreshFetchTracker.asObservable()
-            .subscribe(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .subscribe(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
             .disposed(by: bag)
         
         viewModel.refreshFetchTracker.asDriver().filter(!)

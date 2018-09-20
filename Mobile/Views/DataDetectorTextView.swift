@@ -18,7 +18,7 @@ class DataDetectorTextView: UITextView, UITextViewDelegate {
     
     var voiceOverRunning: Bool {
         get {
-            return UIAccessibilityIsVoiceOverRunning()
+            return UIAccessibility.isVoiceOverRunning
         }
     }
     
@@ -37,7 +37,7 @@ class DataDetectorTextView: UITextView, UITextViewDelegate {
     func commonInit() {
         isEditable = false
         dataDetectorTypes = .phoneNumber
-        accessibilityTraits = UIAccessibilityTraitStaticText
+        accessibilityTraits = .staticText
         
         didChangeVoiceOver()
         

@@ -27,7 +27,7 @@ class LandingViewController: UIViewController {
     
     private var playerLayer: AVPlayerLayer!
     private var avPlayer: AVPlayer?
-    private var avPlayerPlaybackTime = kCMTimeZero
+    private var avPlayerPlaybackTime = CMTime.zero
     
     private var viewDidAppear = false
 
@@ -122,9 +122,13 @@ class LandingViewController: UIViewController {
     // MARK: - Helper
     
     private func backgroundVideoSetup() {
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+        // The old method that supports iOS 9 is not available in Swift 4.2 🤷‍♂️.
+        // Could make an objective-c function and call that, but we're dropping iOS 9 soon anyway.
+        if #available(iOS 10, *) {
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
+        }
         
-        view.sendSubview(toBack: videoView)
+        view.sendSubviewToBack(videoView)
         let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video", ofType: "mp4")!)
         let asset = AVAsset(url: movieUrl)
         let avPlayerItem = AVPlayerItem(asset: asset)
@@ -149,17 +153,17 @@ class LandingViewController: UIViewController {
         
         videoView.layer.addSublayer(playerLayer)
         
-        avPlayer?.seek(to: kCMTimeZero)
+        avPlayer?.seek(to: .zero)
         avPlayer?.actionAtItemEnd = .none
         
         NotificationCenter.default.rx.notification(.AVPlayerItemDidPlayToEndTime)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: {
-                ($0.object as? AVPlayerItem)?.seek(to: kCMTimeZero)
+                ($0.object as? AVPlayerItem)?.seek(to: .zero)
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 self?.avPlayer?.play()

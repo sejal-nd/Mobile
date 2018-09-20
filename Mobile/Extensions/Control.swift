@@ -11,6 +11,6 @@ import RxCocoa
 
 extension Reactive where Base : UIControl {
     var touchUpInside: RxCocoa.ControlEvent<Swift.Void> {
-        return controlEvent(UIControlEvents.touchUpInside)
+        return controlEvent(.touchUpInside)
     }
 }

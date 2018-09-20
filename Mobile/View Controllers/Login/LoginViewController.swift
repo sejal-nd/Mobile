@@ -38,11 +38,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // This is necessary to handle the Touch/Face ID cancel action -- do not remove
-        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification, object: nil)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
@@ -206,7 +206,7 @@ class LoginViewController: UIViewController {
         signInButton.accessibilityViewIsModal = true;
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+            UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
         })
 
         // Hide password while loading
@@ -215,7 +215,7 @@ class LoginViewController: UIViewController {
         }
 
         viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
             guard let `self` = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
                 guard let `self` = self else { return }
@@ -380,7 +380,7 @@ class LoginViewController: UIViewController {
                                               .fingerprintUsed: "enabled"])
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+                UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
             })
             self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
             self.signInButton.setLoading()
@@ -397,7 +397,7 @@ class LoginViewController: UIViewController {
             self?.biometricButton.isEnabled = true
             self?.navigationController?.view.isUserInteractionEnabled = true
             }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in // Face/Touch ID and subsequent login successful
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
             guard let `self` = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
                 self?.navigationController?.view.isUserInteractionEnabled = true
@@ -414,13 +414,13 @@ class LoginViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
             safeAreaBottomInset = self.view.safeAreaInsets.bottom
         }
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
 

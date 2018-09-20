@@ -468,7 +468,7 @@ class HomeBillCardViewModel {
         
         let style = NSMutableParagraphStyle()
         style.minimumLineHeight = 16
-        var attributes: [NSAttributedStringKey: Any] = [.font: SystemFont.semibold.of(textStyle: .footnote),
+        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.semibold.of(textStyle: .footnote),
                                                         .paragraphStyle: style,
                                                         .foregroundColor: UIColor.errorRed]
         

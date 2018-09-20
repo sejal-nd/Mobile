@@ -57,7 +57,7 @@ class SplashViewController: UIViewController{
         errorTextView.tintColor = .actionBlue // For the phone numbers
         errorTextView.attributedText = viewModel.errorLabelText
 
-        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification, object: nil)
             .skip(1) // Ignore the initial notification that fires, causing a double call to checkAppVersion
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
@@ -97,7 +97,7 @@ class SplashViewController: UIViewController{
             splashAnimationContainer.addSubview(splashAnimationView!)
             splashAnimationView!.play()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, Environment.shared.opco.taglineString)
+                UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.taglineString)
             }
         }
         
@@ -206,7 +206,7 @@ class SplashViewController: UIViewController{
         requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] action in
             if let url = self?.viewModel.appStoreLink, UIApplication.shared.canOpenURL(url) {
                 if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { (success: Bool) in })
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 } else {
                     UIApplication.shared.openURL(url)
                 }

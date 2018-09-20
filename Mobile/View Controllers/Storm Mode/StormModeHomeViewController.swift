@@ -210,7 +210,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         super.viewDidLayoutSubviews()
         
         // Self Sizes Table View Header
-        headerView.frame.size = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        headerView.frame.size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         tableView.tableHeaderView = headerView
         
         loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.height / 2
@@ -277,7 +277,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.refreshControl?.endRefreshing()
             }
 
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+            UIAccessibility.post(notification: .screenChanged, argument: nil)
             self.shouldShowOutageCellData = true
             self.noNetworkConnectionView.isHidden = true
             self.scrollView?.isHidden = false
@@ -291,7 +291,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                     self.refreshControl?.endRefreshing()
                 }
                 
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+                UIAccessibility.post(notification: .screenChanged, argument: nil)
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self.scrollView?.isHidden = true
                     self.noNetworkConnectionView.isHidden = false
