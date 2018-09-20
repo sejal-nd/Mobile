@@ -296,7 +296,7 @@ fi
 # Check VSTS xcode version. If set to 9.4.1, change it to 10.0. This branch requires 10.0+ to run.
 if xcodebuild -version | grep -q 9.4.1; then
 	echo "Switching VSTS build agent to Xcode 10 -- $XCODE_10_DEVELOPER_DIR"
-	sudo xcode-select -switch $(XCODE_10_DEVELOPER_DIR)
+	sudo xcode-select -switch $XCODE_10_DEVELOPER_DIR
 fi
 
 # Restore Carthage Packages
