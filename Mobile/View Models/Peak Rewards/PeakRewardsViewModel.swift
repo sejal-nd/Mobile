@@ -132,6 +132,10 @@ class PeakRewardsViewModel {
                 }.first
             
             return programs
+                .sorted { program1, program2 in
+                    !program1.displayName.lowercased().contains("localized") &&
+                        program2.displayName.lowercased().contains("localized")
+                }
                 .map { program -> (String, String) in
                     let body: String
                     switch (program.status, override?.status) {
