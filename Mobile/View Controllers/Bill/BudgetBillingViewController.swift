@@ -258,7 +258,7 @@ class BudgetBillingViewController: UIViewController {
         
         // Dynamic sizing for the table header view
         if let headerView = reasonForStoppingTableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var headerFrame = headerView.frame
             
             // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -359,7 +359,7 @@ extension BudgetBillingViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }
 

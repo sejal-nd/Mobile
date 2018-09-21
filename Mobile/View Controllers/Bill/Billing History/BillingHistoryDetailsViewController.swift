@@ -79,7 +79,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         bindLoadingStates()
         
         viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem, onCompletion: {
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
+            UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
         })
     }
  

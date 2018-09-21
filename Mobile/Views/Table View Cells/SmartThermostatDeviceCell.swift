@@ -17,7 +17,7 @@ class SmartThermostatDeviceCell: UITableViewCell {
     let checkImageView = UIImageView(image: #imageLiteral(resourceName: "icon_check")).usingAutoLayout()
     let nameLabel = UILabel().usingAutoLayout()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
     }

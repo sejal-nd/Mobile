@@ -34,7 +34,7 @@ class SelectDeviceViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         tableView.estimatedRowHeight = 68
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: SelectDeviceViewController.className)
         tableView.dataSource = self

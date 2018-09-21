@@ -24,7 +24,7 @@ extension UINavigationController {
             navigationBar.shadowImage = nil
         }
         
-        let titleDict: [NSAttributedStringKey: Any] = [
+        let titleDict: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.blackText,
             .font: OpenSans.bold.of(size: 18)
         ]
@@ -49,7 +49,7 @@ extension UINavigationController {
             navigationBar.shadowImage = nil
         }
         
-        let titleDict: [NSAttributedStringKey: Any] = [
+        let titleDict: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white,
             .font: OpenSans.bold.of(size: 18)
         ]

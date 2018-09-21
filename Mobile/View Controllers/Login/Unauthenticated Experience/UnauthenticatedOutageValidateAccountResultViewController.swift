@@ -77,7 +77,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         
         // Dynamic sizing for the table header view
         if let headerView = tableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var headerFrame = headerView.frame
 
             // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -99,9 +99,9 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
             vc.analyticsSource = analyticsSource
             
             switch analyticsSource {
-            case .report:
+            case .report?:
                 Analytics.log(event: .reportAnOutageUnAuthSubmitAcctSelection)
-            case .status:
+            case .status?:
                 Analytics.log(event: .outageStatusUnAuthAcctSelect)
             default:
                 break

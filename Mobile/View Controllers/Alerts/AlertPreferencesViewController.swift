@@ -112,7 +112,7 @@ class AlertPreferencesViewController: UIViewController {
         bindViewModel()
         
         checkForNotificationsPermissions()
-        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.checkForNotificationsPermissions()
@@ -120,7 +120,7 @@ class AlertPreferencesViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.fetchData(onCompletion: { [weak self] in
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self?.view)
         })
     }
     
@@ -280,7 +280,7 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     @IBAction func onNotificationsDisabledButtonPress(_ sender: Any) {
-        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
             Analytics.log(event: .alertsDevSet)
             UIApplication.shared.openURL(url)
         }
@@ -303,7 +303,7 @@ class AlertPreferencesViewController: UIViewController {
                 }
             },
             onCancel: nil)
-        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select number of days", comment: ""))
+        UIAccessibility.post(notification: .layoutChanged, argument: NSLocalizedString("Please select number of days", comment: ""))
     }
     
     @IBAction func onSwitchToggle(_ sender: Switch) {

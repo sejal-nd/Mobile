@@ -11,10 +11,6 @@ import RxCocoa
 import RxSwiftExt
 
 class HomeViewModel {
-    let defaultZip : String? = Environment.shared.opco == .bge ? "20201" : nil
-
-    let disposeBag = DisposeBag()
-    
     private let accountService: AccountService
     private let weatherService: WeatherService
     private let walletService: WalletService
@@ -101,7 +97,7 @@ class HomeViewModel {
                                 refreshFetchTracker: refreshFetchTracker,
                                 switchAccountFetchTracker: outageTracker)
     
-    private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated.map(to: FetchingAccountState.switchAccount))
+    private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
     private lazy var fetchDataMMEvents: Observable<Event<Maintenance>> = fetchData

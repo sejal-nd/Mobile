@@ -50,7 +50,7 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
         let account = accounts[indexPath.row]
         
         if account.isMultipremise {
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString("Please select premises address", comment: ""))
+            UIAccessibility.post(notification: .layoutChanged, argument: NSLocalizedString("Please select premises address", comment: ""))
             self.accountIndexToEditPremise = indexPath.row
             
             let dataArray = account.premises.map { $0.addressLineString }
@@ -103,7 +103,7 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

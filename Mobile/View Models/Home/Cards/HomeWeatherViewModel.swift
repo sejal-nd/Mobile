@@ -45,7 +45,7 @@ class HomeWeatherViewModel {
     private(set) lazy var greeting: Driver<String?> = Observable<Int>
         .interval(60, scheduler: MainScheduler.instance)
 //        .map { "\($0)" }
-        .map(to: ())
+        .mapTo(())
         .startWith(())
         .map { Date().localizedGreeting }
         .startWith(nil)
@@ -68,8 +68,8 @@ class HomeWeatherViewModel {
     
     private(set) lazy var showWeatherDetails: Driver<Bool> = Observable
         .merge(
-            accountDetailTracker.asObservable().filter { $0 }.map(to: false),
-            weatherEvents.elements().map(to: true)
+            accountDetailTracker.asObservable().filter { $0 }.mapTo(false),
+            weatherEvents.elements().mapTo(true)
         )
         .startWith(false)
         .distinctUntilChanged()
@@ -77,7 +77,7 @@ class HomeWeatherViewModel {
     
     private(set) lazy var showTemperatureTip: Driver<Bool> = Observable
         .merge(
-            accountDetailTracker.asObservable().filter { $0 }.map(to: false),
+            accountDetailTracker.asObservable().filter { $0 }.mapTo(false),
             temperatureTipEvents.map { $0.error == nil }
         )
         .startWith(false)

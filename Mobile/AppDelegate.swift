@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var window: UIWindow?
     #endif
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let processInfo = ProcessInfo.processInfo
         if processInfo.arguments.contains("UITest") || processInfo.environment["XCTestConfigurationFilePath"] != nil {
             // Clear UserDefaults if Unit or UI testing -- ensures consistent fresh run
@@ -60,9 +60,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(showIOSVersionWarning), name: .shouldShowIOSVersionWarning, object: nil)
         
         // If app was cold-launched from a push notification
-        if let options = launchOptions, let userInfo = options[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
+        if let options = launchOptions, let userInfo = options[.remoteNotification] as? [AnyHashable : Any] {
             self.application(application, didReceiveRemoteNotification: userInfo)
-        } else if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+        } else if let shortcutItem = launchOptions?[.shortcutItem] as? UIApplicationShortcutItem {
             handleShortcut(shortcutItem)
             return false
         }
@@ -151,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else {
             return false
         }
@@ -281,6 +281,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         return
                 }
                 
+                StormModeStatus.shared.isOn = true
                 window.rootViewController = stormModeVC
             }
         }

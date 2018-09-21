@@ -67,9 +67,9 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         switch analyticsSource {
-        case .report:
+        case .report?:
             Analytics.log(event: .reportAnOutageUnAuthOutScreen)
-        case .status:
+        case .status?:
             Analytics.log(event: .outageStatusUnAuthComplete)
         default:
             break

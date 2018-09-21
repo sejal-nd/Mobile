@@ -19,6 +19,15 @@ class NoNetworkConnectionView: UIView {
     @IBOutlet weak var reloadLabel: UILabel!
     @IBOutlet weak var noNetworkConnectionLabel: UILabel!
     @IBOutlet weak var pleaseReloadLabel: UILabel!
+    @IBOutlet weak var contactDetailsSpacerView: UIView!
+    @IBOutlet weak var contactDetailsTextView: DataDetectorTextView! {
+        didSet {
+            contactDetailsTextView.textContainerInset = .zero
+            contactDetailsTextView.textColor = .softGray
+            contactDetailsTextView.tintColor = .white // For phone numbers
+            contactDetailsTextView.linkTapDelegate = self
+        }
+    }
     
     @IBInspectable var isColorBackground: Bool = true {
         didSet {
@@ -39,6 +48,21 @@ class NoNetworkConnectionView: UIView {
             }
         }
     }
+    
+    @IBInspectable var isStormMode: Bool = false {
+        didSet {
+            if isStormMode {
+                containerView.backgroundColor = .black
+                contactDetailsSpacerView.isHidden = false
+                contactDetailsTextView.isHidden = false
+                
+                noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_color")
+            } else {
+                contactDetailsSpacerView.isHidden = true
+                contactDetailsTextView.isHidden = true
+            }
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,19 +80,29 @@ class NoNetworkConnectionView: UIView {
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         containerView.translatesAutoresizingMaskIntoConstraints = true
         addSubview(containerView)
-        containerView.backgroundColor = .primaryColor
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         styleViews()
+        contactDetailsSpacerView.isHidden = true
+        contactDetailsTextView.isHidden = true
     }
     
     func styleViews() {
+        containerView.backgroundColor = .primaryColor
         reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
         noNetworkConnectionLabel.font = OpenSans.semibold.of(textStyle: .title1)
         pleaseReloadLabel.font = OpenSans.regular.of(textStyle: .subheadline)
     }
     
+    public func configureContactText(attributedText: NSMutableAttributedString) {
+        contactDetailsTextView.attributedText = attributedText
+    }
+    
     private(set) lazy var reload: Observable<Void> = self.reloadButton.rx.touchUpInside.asObservable()
+}
+
+extension NoNetworkConnectionView: DataDetectorTextViewLinkTapDelegate {
+    
+    func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
+        Analytics.log(event: .outageAuthEmergencyCall)
+    }
+    
 }

@@ -19,12 +19,127 @@ class OutageStatusButton: UIView {
     @IBOutlet weak private var view: UIView!
     
     @IBOutlet weak private var animationView: UIView!
-    @IBOutlet weak private var outerCircleView: UIView!
-    @IBOutlet weak private var innerCircleView: UIView!
-    @IBOutlet weak private var bigButtonImageView: UIImageView!
+    @IBOutlet weak private var outerCircleView: UIView! {
+        didSet {
+            outerCircleView.layer.borderWidth = 6
+        }
+    }
+    @IBOutlet weak private var innerCircleView: UIView! {
+        didSet {
+            innerCircleView.layer.borderWidth = 6
+            innerCircleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
+        }
+    }
     
-    var onLottieAnimation = LOTAnimationView(name: "outage")
+    @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var statusImageView: UIImageView!
+    @IBOutlet weak var statusTitleLabel: UILabel! {
+        didSet {
+            statusTitleLabel.font = OpenSans.regular.of(size: 14)
+        }
+    }
+    @IBOutlet weak var statusDetailLabel: UILabel! {
+        didSet {
+            statusDetailLabel.font = OpenSans.bold.of(size: 22)
+        }
+    }
 
+    @IBOutlet weak var statusETRView: UIView!
+    @IBOutlet weak var statusETRImageView: UIImageView!
+    @IBOutlet weak var statusETRLabel: UILabel! {
+        didSet {
+            statusETRLabel.font = OpenSans.regular.of(size: 14)
+        }
+    }
+    @IBOutlet weak var reportedDetailLabel: UILabel! {
+        didSet {
+            reportedDetailLabel.font = OpenSans.bold.of(size: 22)
+        }
+    }
+    @IBOutlet weak var reportedETRTitleLabel: UILabel! {
+        didSet {
+            reportedETRTitleLabel.font = OpenSans.regular.of(size: 12)
+        }
+    }
+    @IBOutlet weak var reportedETRLabel: UILabel! {
+        didSet {
+            reportedETRLabel.font = OpenSans.bold.of(size: 14)
+            reportedETRLabel.adjustsFontSizeToFitWidth = true
+            reportedETRLabel.minimumScaleFactor = 0.5
+        }
+    }
+
+    private var innerBorderColor: UIColor {
+        let color: UIColor
+        switch Environment.shared.opco {
+        case .bge:
+            color = .primaryColor
+        case .comEd:
+            color = .primaryColor
+        case .peco:
+            color = isStormMode ? UIColor(red:0/255.0, green:162/255.0, blue:255/255.0,  alpha:1) : .primaryColor
+        }
+        return color
+    }
+    
+    private var outterBorderColor: UIColor {
+        let color: UIColor
+        switch Environment.shared.opco {
+        case .bge:
+            color = isStormMode ? .clear : UIColor(red: 61/255, green: 132/255, blue: 48/255, alpha:0.6)
+        case .comEd:
+            color = isStormMode ? .clear : UIColor(red: 206/255, green: 17/255, blue: 65/255, alpha:0.6)
+        case .peco:
+            color = isStormMode ? .clear : UIColor(red: 0/255, green: 119/255, blue: 187/255, alpha:0.6)
+        }
+        return color
+    }
+
+    var onLottieAnimation: LOTAnimationView?
+    
+    @IBInspectable
+    public var isStormMode: Bool = false {
+        didSet {
+            onLottieAnimation?.removeFromSuperview()
+            
+            if isStormMode {
+                onLottieAnimation = LOTAnimationView(name: "sm_outage")
+                
+                outerCircleView.isHidden = true
+                
+                statusTitleLabel.textColor = .white
+                statusDetailLabel.textColor = .white
+                
+                statusETRLabel.textColor = .white
+                reportedDetailLabel.textColor = .white
+                reportedETRTitleLabel.textColor = .white
+                reportedETRLabel.textColor = .white
+            } else {
+                onLottieAnimation = LOTAnimationView(name: "outage")
+                
+                outerCircleView.isHidden = false
+                outerCircleView.layer.borderColor = UIColor.red.cgColor // CHANGE
+                
+                statusTitleLabel.textColor = .actionBlue
+                statusDetailLabel.textColor = .actionBlue
+                
+                statusETRLabel.textColor = .actionBlue
+                reportedDetailLabel.textColor = .actionBlue
+                reportedETRTitleLabel.textColor = .deepGray
+                reportedETRLabel.textColor = .deepGray
+            }
+            
+            onLottieAnimation?.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
+            onLottieAnimation?.loopAnimation = true
+            onLottieAnimation?.contentMode = .scaleAspectFill
+            
+            guard let onLottieAnimation = onLottieAnimation else { return }
+            animationView.addSubview(onLottieAnimation)
+            
+            onLottieAnimation.play()
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -41,210 +156,119 @@ class OutageStatusButton: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
-        
-        onLottieAnimation.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
-        onLottieAnimation.loopAnimation = true
-        onLottieAnimation.contentMode = .scaleAspectFill
-        animationView.addSubview(onLottieAnimation)
-        onLottieAnimation.play()
-        
-        outerCircleView.layer.cornerRadius = outerCircleView.bounds.size.width / 2
-        innerCircleView.layer.cornerRadius = innerCircleView.bounds.size.width / 2
-        
-        let radius = bigButtonImageView.bounds.size.width / 2
-        bigButtonImageView.layer.cornerRadius = radius
-        bigButtonImageView.clipsToBounds = true // So text doesn't overflow
-        bigButtonImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
-        bigButtonImageView.isAccessibilityElement = true
-        bigButtonImageView.accessibilityTraits = UIAccessibilityTraitButton
 
+        // Triggers Initial DidSet
+        isStormMode = false
     }
     
-//    func setPowerIsOn(_ powerIsOn: Bool = true) {
-//        animationView.isHidden = !powerIsOn
-//        outerCircleView.isHidden = powerIsOn
-//        innerCircleView.isHidden = powerIsOn
-//    }
-    
-    private func setGrayCircles() {
-        outerCircleView.backgroundColor = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1) // Special case color - do not change
-        innerCircleView.backgroundColor = .middleGray
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        innerCircleView.layer.cornerRadius = innerCircleView.bounds.width / 2
+        outerCircleView.layer.cornerRadius = outerCircleView.bounds.size.width / 2
     }
-    
-    private func setColoredCircles() {
-        outerCircleView.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.7)
-        innerCircleView.backgroundColor = .primaryColor
+
+    private func setStateColors(innerBackground: UIColor, innerStroke: UIColor, outerStroke: UIColor = .clear) {
+        innerCircleView.backgroundColor = innerBackground
+        innerCircleView.layer.borderColor = innerStroke.cgColor
+        outerCircleView.layer.borderColor = outerStroke.cgColor
     }
     
     func setReportedState(estimatedRestorationDateString: String) {
-        clearSubviews()
-        
         animationView.isHidden = true
         outerCircleView.isHidden = false
-        innerCircleView.isHidden = false
-        setColoredCircles()
         
-        let bigButtonWidth = bigButtonImageView.frame.size.width
+        statusView.isHidden = true
+        statusETRView.isHidden = false
         
-        let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 19, y: 80, width: 38, height: 31))
-        icon.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
+        // Styling
         
-        let yourOutageIsLabel = UILabel(frame: CGRect(x: 30, y: 114, width: bigButtonWidth - 60, height: 20))
-        yourOutageIsLabel.font = OpenSans.regular.of(size: 16)
-        yourOutageIsLabel.textColor = .actionBlue
-        yourOutageIsLabel.textAlignment = .center
-        yourOutageIsLabel.text = NSLocalizedString("Your outage is", comment: "")
+        innerCircleView.removeShadow()
         
-        let reportedLabel = UILabel(frame: CGRect(x: 30, y: 134, width: bigButtonWidth - 60, height: 25))
-        reportedLabel.font = OpenSans.bold.of(size: 22)
-        reportedLabel.textColor = .actionBlue
-        reportedLabel.textAlignment = .center
-        reportedLabel.text = NSLocalizedString("REPORTED", comment: "")
+        if isStormMode {
+            statusETRImageView.image = #imageLiteral(resourceName: "ic_reportoutage")
+            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
+                           innerStroke: innerBorderColor)
+        } else {
+            setStateColors(innerBackground: .white,
+                           innerStroke: innerBorderColor,
+                           outerStroke: outterBorderColor)
+            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_reported")
+        }
         
-        let restRestorationLabel = UILabel(frame: CGRect(x: 30, y: 170, width: bigButtonWidth - 60, height: 14))
-        restRestorationLabel.font = OpenSans.regular.of(size: 12)
-        restRestorationLabel.textColor = .deepGray
-        restRestorationLabel.textAlignment = .center
-        restRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
+        // Set Values
         
-        let timeLabel = UILabel(frame: CGRect(x: 22, y: 184, width: bigButtonWidth - 44, height: 20))
-        timeLabel.font = OpenSans.bold.of(size: 15)
-        timeLabel.textColor = .deepGray
-        timeLabel.textAlignment = .center
-        timeLabel.adjustsFontSizeToFitWidth = true
-        timeLabel.minimumScaleFactor = 0.5
-        timeLabel.text = estimatedRestorationDateString
-        
-        bigButtonImageView.addSubview(icon)
-        bigButtonImageView.addSubview(yourOutageIsLabel)
-        bigButtonImageView.addSubview(reportedLabel)
-        bigButtonImageView.addSubview(restRestorationLabel)
-        bigButtonImageView.addSubview(timeLabel)
-        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. Your outage is reported. Estimated restoration \(estimatedRestorationDateString).", comment: "")
+        statusETRLabel.text = NSLocalizedString("Your outage is", comment: "")
+        reportedDetailLabel.text = NSLocalizedString("REPORTED", comment: "")
+        reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
+        reportedETRLabel.text = estimatedRestorationDateString
+
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. Your outage is reported. Estimated restoration \(estimatedRestorationDateString).", comment: "")
     }
     
     func setOutageState(estimatedRestorationDateString: String) {
-        clearSubviews()
-        
         animationView.isHidden = true
         outerCircleView.isHidden = false
-        innerCircleView.isHidden = false
-        setGrayCircles()
         
-        let bigButtonWidth = bigButtonImageView.frame.size.width
+        statusView.isHidden = true
+        statusETRView.isHidden = false
+
+        // Styling
         
-        let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 11, y: 84, width: 22, height: 28))
-        icon.image = #imageLiteral(resourceName: "ic_outagestatus_out")
+        innerCircleView.removeShadow()
         
-        let yourPowerIsLabel = UILabel(frame: CGRect(x: 30, y: 115, width: bigButtonWidth - 60, height: 20))
-        yourPowerIsLabel.font = OpenSans.regular.of(size: 14)
-        yourPowerIsLabel.textColor = .actionBlue
-        yourPowerIsLabel.textAlignment = .center
-        yourPowerIsLabel.text = NSLocalizedString("Our records indicate your", comment: "")
-        
-        let outLabel = UILabel(frame: CGRect(x: 44, y: 135, width: bigButtonWidth - 88, height: 25))
-        outLabel.font = OpenSans.bold.of(size: 22)
-        outLabel.textColor = .actionBlue
-        outLabel.textAlignment = .center
-        outLabel.text = NSLocalizedString("POWER IS OUT", comment: "")
-        
-        let restRestorationLabel = UILabel(frame: CGRect(x: 30, y: 170, width: bigButtonWidth - 60, height: 14))
-        restRestorationLabel.font = OpenSans.regular.of(size: 12)
-        restRestorationLabel.textColor = .deepGray
-        restRestorationLabel.textAlignment = .center
-        restRestorationLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
-        
-        let timeLabel = UILabel(frame: CGRect(x: 22, y: 184, width: bigButtonWidth - 44, height: 20))
-        timeLabel.font = OpenSans.bold.of(size: 15)
-        timeLabel.textColor = .deepGray
-        timeLabel.textAlignment = .center
-        timeLabel.adjustsFontSizeToFitWidth = true
-        timeLabel.minimumScaleFactor = 0.5
-        timeLabel.text = estimatedRestorationDateString
-        
-        bigButtonImageView.addSubview(icon)
-        bigButtonImageView.addSubview(yourPowerIsLabel)
-        bigButtonImageView.addSubview(outLabel)
-        bigButtonImageView.addSubview(restRestorationLabel)
-        bigButtonImageView.addSubview(timeLabel)
-        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. Our records indicate your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
-    }
-    
-    func setIneligibleState(flagFinaled: Bool, nonPayFinaledMessage: String) {
-        clearSubviews()
-        
-        animationView.isHidden = true
-        outerCircleView.isHidden = false
-        innerCircleView.isHidden = false
-        setGrayCircles()
-        
-        let bigButtonWidth = 194 // The old width of the button prior to the redesign
-        
-        let nonPayFinaledTextView = DataDetectorTextView(frame: CGRect(x: 67, y: 91, width: bigButtonWidth - 28, height: 120))
-        nonPayFinaledTextView.backgroundColor = .clear
-        
-        let payBillLabel = UILabel(frame: .zero)
-        if Environment.shared.opco != .bge {
-            if flagFinaled {
-                nonPayFinaledTextView.frame = CGRect(x: 67, y: 121, width: bigButtonWidth - 28, height: 84)
-            } else { // accountPaid = false
-                payBillLabel.frame = CGRect(x: 76, y: 203, width: bigButtonWidth - 46, height: 19)
-                payBillLabel.font = SystemFont.semibold.of(size: 16)
-                payBillLabel.textColor = .actionBlue
-                payBillLabel.textAlignment = .center
-                payBillLabel.text = NSLocalizedString("Pay Bill", comment: "")
-                bigButtonImageView.addSubview(payBillLabel)
-            }
+        if isStormMode {
+            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
+                           innerStroke: UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0,  alpha: 0.3))
+            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out_white")
+        } else {
+            setStateColors(innerBackground: .white,
+                           innerStroke: .middleGray,
+                           outerStroke: UIColor(red: 216/255, green: 216/255, blue: 216/255,  alpha: 1))
+            statusETRImageView.image = #imageLiteral(resourceName: "ic_outagestatus_out")
         }
-        nonPayFinaledTextView.textContainerInset = .zero
-        nonPayFinaledTextView.font = SystemFont.light.of(size: 14)
-        nonPayFinaledTextView.tintColor = .actionBlue // For the phone numbers
-        nonPayFinaledTextView.textColor = .middleGray
-        nonPayFinaledTextView.textAlignment = .center
-        nonPayFinaledTextView.text = nonPayFinaledMessage
         
-        bigButtonImageView.addSubview(nonPayFinaledTextView)
-        bigButtonImageView.bringSubview(toFront: payBillLabel)
-        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, button. \(nonPayFinaledMessage).", comment: "")
+        // Set Values
+        
+        statusETRLabel.text = NSLocalizedString("Our records indicate", comment: "")
+        reportedDetailLabel.text = NSLocalizedString("POWER IS OUT", comment: "")
+        reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
+        reportedETRLabel.text = estimatedRestorationDateString
+
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. Our records indicate your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
     }
     
     func setPowerOnState() {
-        clearSubviews()
-        
         animationView.isHidden = false
         outerCircleView.isHidden = true
-        innerCircleView.isHidden = true
         
-        let bigButtonWidth = bigButtonImageView.frame.size.width
+        statusView.isHidden = false
+        statusETRView.isHidden = true
+
+        // Styling
         
-        let icon = UIImageView(frame: CGRect(x: bigButtonWidth / 2 - 15, y: 102, width: 30, height: 38))
-        icon.image = #imageLiteral(resourceName: "ic_outagestatus_on")
+        innerCircleView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 4), radius: 5)
         
-        let yourPowerIsLabel = UILabel(frame: CGRect(x: 40, y: 142, width: bigButtonWidth - 80, height: 20))
-        yourPowerIsLabel.font = OpenSans.regular.of(size: 14)
-        yourPowerIsLabel.textColor = .actionBlue
-        yourPowerIsLabel.textAlignment = .center
-        yourPowerIsLabel.text = NSLocalizedString("Our records indicate your", comment: "")
-        
-        let onLabel = UILabel(frame: CGRect(x: 40, y: 162, width: bigButtonWidth - 80, height: 25))
-        onLabel.font = OpenSans.bold.of(size: 22)
-        onLabel.textColor = .actionBlue
-        onLabel.textAlignment = .center
-        onLabel.text = NSLocalizedString("POWER IS ON", comment: "")
-        
-        bigButtonImageView.addSubview(icon)
-        bigButtonImageView.addSubview(yourPowerIsLabel)
-        bigButtonImageView.addSubview(onLabel)
-        bigButtonImageView.accessibilityLabel = NSLocalizedString("Outage status, Button. Our records indicate your power is on.", comment: "")
-    }
-    
-    private func clearSubviews() {
-        for subview in bigButtonImageView.subviews {
-            subview.removeFromSuperview()
+        if isStormMode {
+            setStateColors(innerBackground: UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1),
+                           innerStroke: UIColor.clear)
+            statusImageView.image = #imageLiteral(resourceName: "ic_lightbulb_on_white")
+        } else {
+            setStateColors(innerBackground: .white,
+                           innerStroke: .white,
+                           outerStroke: .clear)
+            statusImageView.image = #imageLiteral(resourceName: "ic_lightbulb_on")
         }
+        
+        // Set Values
+        
+        statusTitleLabel.text = NSLocalizedString("Our records indicate", comment: "")
+        statusDetailLabel.text = NSLocalizedString("POWER IS ON", comment: "")
+
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, Button. Our records indicate your power is on.", comment: "")
     }
-    
+
     @objc func onBigButtonTap() {
         delegate?.outageStatusButtonWasTapped(self)
     }
+    
 }
