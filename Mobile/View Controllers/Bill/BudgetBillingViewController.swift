@@ -293,10 +293,9 @@ class BudgetBillingViewController: UIViewController {
     @objc func onSubmitPress() {
         if viewModel.enrolling.value {
             LoadingView.show()
-            Analytics.log(event: .BudgetBillUnEnrollOffer)
+            Analytics.log(event: .BudgetBillEnrollOffer)
             viewModel.enroll(onSuccess: { [weak self] in
                 LoadingView.hide()
-                Analytics.log(event: .BudgetBillEnrollOffer)
                 
                 guard let `self` = self else { return }
                 self.delegate?.budgetBillingViewControllerDidEnroll(self, averageMonthlyBill: self.viewModel.averageMonthlyBill)
@@ -309,6 +308,7 @@ class BudgetBillingViewController: UIViewController {
             })
 
         } else if viewModel.unenrolling.value {
+            Analytics.log(event: .BudgetBillUnEnrollOffer)
             var message = ""
             if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
                 message = NSLocalizedString("You will see your regular bill amount on your next billing cycle. Any credit balance remaining in your account will be applied to your bill until used, and any negative account balance will become due with your next bill.", comment: "")
@@ -320,6 +320,7 @@ class BudgetBillingViewController: UIViewController {
                 Analytics.log(event: .BudgetBillUnEnrollCancel);}))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
                 LoadingView.show()
+                Analytics.log(event: .BudgetBillUnEnrollOK)
                 
                 guard let `self` = self else { return }
                 self.viewModel.unenroll(onSuccess: { [weak self] in
@@ -328,7 +329,6 @@ class BudgetBillingViewController: UIViewController {
                     guard let `self` = self else { return }
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)
-                    Analytics.log(event: .BudgetBillUnEnrollOK)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
                     

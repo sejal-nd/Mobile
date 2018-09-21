@@ -40,7 +40,7 @@ struct OutageStatus: Mappable {
     var flagFinaled: Bool
     var flagNoPay: Bool
     var flagNonService: Bool
-    let meterPingInfo: MeterPingInfo?
+    //let meterPingInfo: MeterPingInfo?
     var etr: Date?
     let locationId: String?
     
@@ -61,7 +61,7 @@ struct OutageStatus: Mappable {
         flagFinaled = map.optionalFrom("flagFinaled") ?? false
         flagNoPay = map.optionalFrom("flagNoPay") ?? false
         flagNonService = map.optionalFrom("flagNonService") ?? false
-        meterPingInfo = map.optionalFrom("meterInfo")
+        //meterPingInfo = map.optionalFrom("meterInfo")
         etr = map.optionalFrom("ETR", transformation: extractDate)
         locationId = map.optionalFrom("locationId")
         
@@ -75,13 +75,13 @@ struct OutageStatus: Mappable {
 }
 
 struct MeterPingInfo: Mappable {
-    let preCheckSuccess: Bool
+    //let preCheckSuccess: Bool
     let pingResult: Bool
     let voltageResult: Bool
     let voltageReads: String?
     
     init(map: Mapper) throws {
-        preCheckSuccess = map.optionalFrom("preCheckSuccess") ?? false
+        //preCheckSuccess = map.optionalFrom("preCheckSuccess") ?? false
         pingResult = map.optionalFrom("pingResult") ?? false
         voltageResult = map.optionalFrom("voltageResult") ?? false
         voltageReads = map.optionalFrom("voltageReads")
