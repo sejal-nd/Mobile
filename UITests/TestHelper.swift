@@ -29,7 +29,7 @@ class ExelonUITestCase: XCTestCase{
     
     override func tearDown() {
         ACTLabel.labelStep("Tearing down")
-        
+
         super.tearDown()
     }
     
