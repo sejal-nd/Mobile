@@ -175,7 +175,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         confirmUsernameTextField.setKeyboardType(.emailAddress)
         confirmUsernameTextField.textField.returnKeyType = .next
         confirmUsernameTextField.textField.delegate = self
-        confirmUsernameTextField.setEnabled(false)
+//        confirmUsernameTextField.setEnabled(false)
         confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
                 
         viewModel.newPasswordIsValid.drive(onNext: { [weak self] valid in
@@ -337,15 +337,15 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             self?.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
         }).disposed(by: disposeBag)
         
-        viewModel.newUsernameIsValidBool
-            .drive(onNext: { [weak self] valid in
-                self?.confirmUsernameTextField.setEnabled(valid)
-            }).disposed(by: disposeBag)
-        
-        viewModel.everythingValid
-            .drive(onNext: { [weak self] valid in
-                self?.confirmPasswordTextField.setEnabled(valid)
-            }).disposed(by: disposeBag)
+//        viewModel.newUsernameIsValidBool
+//            .drive(onNext: { [weak self] valid in
+//                self?.confirmUsernameTextField.setEnabled(valid)
+//            }).disposed(by: disposeBag)
+//
+//        viewModel.everythingValid
+//            .drive(onNext: { [weak self] valid in
+//                self?.confirmPasswordTextField.setEnabled(true)
+//            }).disposed(by: disposeBag)
         
         
         // Password cannot match email

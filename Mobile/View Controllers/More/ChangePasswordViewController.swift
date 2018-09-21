@@ -318,7 +318,7 @@ class ChangePasswordViewController: UIViewController {
         }).disposed(by: disposeBag)
         viewModel.everythingValid.drive(onNext: { [weak self] valid in
             self?.newPasswordTextField.setValidated(valid, accessibilityLabel: valid ? NSLocalizedString("Minimum password criteria met", comment: "") : nil)
-            self?.confirmPasswordTextField.setEnabled(valid)
+//            self?.confirmPasswordTextField.setEnabled(valid)
         }).disposed(by: disposeBag)
         
         // Password cannot match username
