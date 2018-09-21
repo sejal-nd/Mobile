@@ -75,7 +75,7 @@ class HomeBillCardViewModel {
     }
     
     private lazy var fetchTrigger = Observable
-        .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated.map(to: FetchingAccountState.switchAccount))
+        .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated.mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
     private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated
@@ -468,7 +468,7 @@ class HomeBillCardViewModel {
         
         let style = NSMutableParagraphStyle()
         style.minimumLineHeight = 16
-        var attributes: [NSAttributedStringKey: Any] = [.font: SystemFont.semibold.of(textStyle: .footnote),
+        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.semibold.of(textStyle: .footnote),
                                                         .paragraphStyle: style,
                                                         .foregroundColor: UIColor.errorRed]
         

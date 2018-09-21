@@ -65,7 +65,7 @@ extension OutageMapViewController: WKNavigationDelegate {
         
         webView.isHidden = false
         webView.isAccessibilityElement = true
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+        UIAccessibility.post(notification: .screenChanged, argument: nil)
     }
     
 }

@@ -227,7 +227,7 @@ class BillViewController: AccountPickerViewController {
         
         alertBannerView.layer.cornerRadius = 10
 
-        totalAmountView.superview?.bringSubview(toFront: totalAmountView)
+        totalAmountView.superview?.bringSubviewToFront(totalAmountView)
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
 
         billBreakdownButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
@@ -506,12 +506,12 @@ class BillViewController: AccountPickerViewController {
 
     func bindButtonTaps() {
         maintenanceModeView.reload
-            .map(to: FetchingAccountState.switchAccount)
+            .mapTo(FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchAccountDetail)
             .disposed(by: maintenanceModeView.disposeBag)
         
         noNetworkConnectionView.reload
-            .map(to: FetchingAccountState.switchAccount)
+            .mapTo(FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchAccountDetail)
             .disposed(by: bag)
         

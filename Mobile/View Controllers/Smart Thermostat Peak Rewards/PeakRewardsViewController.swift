@@ -96,12 +96,12 @@ class PeakRewardsViewController: UIViewController {
         
         viewModel.showMainContent.asDriver()
             .filter { $0 }
-            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.scrollView) })
+            .drive(onNext: { [weak self] _ in UIAccessibility.post(notification: .screenChanged, argument: self?.scrollView) })
             .disposed(by: disposeBag)
         
         viewModel.showMainErrorState.asDriver()
             .filter { $0 }
-            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.mainErrorLabel) })
+            .drive(onNext: { [weak self] _ in UIAccessibility.post(notification: .screenChanged, argument: self?.mainErrorLabel) })
             .disposed(by: disposeBag)
         
         viewModel.showDeviceButton.not().drive(deviceButton.rx.isHidden).disposed(by: disposeBag)
@@ -119,12 +119,12 @@ class PeakRewardsViewController: UIViewController {
         
         viewModel.showScheduleContent.asDriver()
             .filter { $0 }
-            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.scheduleContentStack) })
+            .drive(onNext: { [weak self] _ in UIAccessibility.post(notification: .screenChanged, argument: self?.scheduleContentStack) })
             .disposed(by: disposeBag)
         
         viewModel.showScheduleErrorState.asDriver()
             .filter { $0 }
-            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.scheduleErrorView) })
+            .drive(onNext: { [weak self] _ in UIAccessibility.post(notification: .screenChanged, argument: self?.scheduleErrorView) })
             .disposed(by: disposeBag)
         
         viewModel.programCardsData

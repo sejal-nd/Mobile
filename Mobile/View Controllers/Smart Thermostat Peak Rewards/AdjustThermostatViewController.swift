@@ -135,12 +135,12 @@ class AdjustThermostatViewController: UIViewController {
         
         viewModel.showMainContent.asDriver()
             .filter { $0 }
-            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view) })
+            .drive(onNext: { [weak self] _ in UIAccessibility.post(notification: .screenChanged, argument: self?.view) })
             .disposed(by: disposeBag)
         
         viewModel.showErrorLabel.asDriver()
             .filter { $0 }
-            .drive(onNext: { [weak self] _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view) })
+            .drive(onNext: { [weak self] _ in UIAccessibility.post(notification: .screenChanged, argument: self?.view) })
             .disposed(by: disposeBag)
         
         viewModel.initialTemp.drive(tempSliderView.currentTemperature).disposed(by: disposeBag)

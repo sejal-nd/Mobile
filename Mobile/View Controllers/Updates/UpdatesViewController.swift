@@ -51,7 +51,7 @@ class UpdatesViewController: UIViewController {
         
         view.backgroundColor = .primaryColor
         
-        tableView.contentInset = UIEdgeInsetsMake(8, 0, 8, 0)
+        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -78,7 +78,7 @@ class UpdatesViewController: UIViewController {
             self?.tableView.reloadData()
         }).disposed(by: disposeBag)
         viewModel.a11yScreenChangedEvent.asObservable().subscribe(onNext: { [weak self] in
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self?.view)
         }).disposed(by: disposeBag)
     }
 

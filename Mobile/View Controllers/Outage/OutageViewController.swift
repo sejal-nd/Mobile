@@ -251,7 +251,7 @@ class OutageViewController: AccountPickerViewController {
         maintenanceModeView.isHidden = true
         setRefreshControlEnabled(enabled: false)
         viewModel.fetchData(onSuccess: { [weak self] in
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+            UIAccessibility.post(notification: .screenChanged, argument: nil)
             self?.scrollView?.isHidden = false
             self?.noNetworkConnectionView.isHidden = true
             self?.loadingView.isHidden = true
@@ -272,7 +272,7 @@ class OutageViewController: AccountPickerViewController {
             self?.shortcutItem = .none
             }, onError: { [weak self] serviceError in
                 self?.shortcutItem = .none
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+                UIAccessibility.post(notification: .screenChanged, argument: nil)
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self?.scrollView?.isHidden = true
                     self?.noNetworkConnectionView.isHidden = false
@@ -293,7 +293,7 @@ class OutageViewController: AccountPickerViewController {
                 self?.maintenanceModeView.isHidden = true
             }, onMaintenance: { [weak self] in
                 self?.shortcutItem = .none
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+                UIAccessibility.post(notification: .screenChanged, argument: nil)
                 self?.maintenanceModeView.isHidden = false
                 self?.scrollView?.isHidden = true
                 self?.noNetworkConnectionView.isHidden = true

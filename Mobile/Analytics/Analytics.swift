@@ -271,6 +271,6 @@ struct Analytics {
             dimensionBuilder.set(value, forKey: GAIFields.customDimension(for: dimension.rawValue))
         }
         
-        tracker?.send(dimensionBuilder.build() as! [AnyHashable: Any])
+        tracker?.send(dimensionBuilder.build() as? [AnyHashable: Any])
     }
 }
