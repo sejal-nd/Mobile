@@ -94,7 +94,9 @@ class RegistrationViewModel {
         registrationService.checkForDuplicateAccount(username.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                if #available(iOS 12.0, *) { }
+                if #available(iOS 12.0, *) {
+                    onSuccess()
+                }
                     // Save to SWC if iOS 11
                 else if #available(iOS 11.0, *) {
                     guard let this = self else { return }
