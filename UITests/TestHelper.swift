@@ -86,11 +86,36 @@ class ExelonUITestCase: XCTestCase{
     
     func tapButton(buttonText: String){
         ACTLabel.labelStep("Pre-tap button \(buttonText)")
-        let makePaymentButton = app.scrollViews.otherElements.buttons[buttonText]
-        XCTAssert(makePaymentButton.waitForExistence(timeout: 3))
-        makePaymentButton.tap()
+        var button: XCUIElement?
+       
+        // Buttons could be anywhere in the view hierarchy...
+        let buttonInScrollView = app.scrollViews.otherElements.buttons[buttonText]
+        let buttonInApp = app.buttons[buttonText]
+        let buttonInTableView = app.tables.buttons[buttonText]
+        let buttonDescendants = app.buttons.descendants(matching: XCUIElement.ElementType.button).matching(NSPredicate(format: "label CONTAINS '\(buttonText)'")).firstMatch
+        let lastDitchEffort = app.staticTexts[buttonText]
+        
+        if buttonInScrollView.waitForExistence(timeout: 3){
+            button = buttonInScrollView
+        } else if buttonInApp.waitForExistence(timeout: 3){
+            button = buttonInApp
+        } else if buttonInTableView.waitForExistence(timeout: 3){
+            button = buttonInTableView
+        } else if buttonDescendants.waitForExistence(timeout: 3){
+            button = buttonDescendants
+        } else if lastDitchEffort.waitForExistence(timeout: 3){
+            button = lastDitchEffort
+        }
+        
+        guard let buttonToTap = button else {
+            XCTFail("Unable to locate button with text \(buttonText)")
+            return
+        }
+        buttonToTap.tap()
         sleep(1)
         ACTLabel.labelStep("Post-tap button \(buttonText)")
+        
+       
     }
 }
 

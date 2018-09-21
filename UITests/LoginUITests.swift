@@ -190,7 +190,7 @@ class LoginUITests: ExelonUITestCase {
         XCTAssert(moreButton.waitForExistence(timeout: 10))
         moreButton.tap()
         
-        app.buttons["Sign out"].tap()
+        tapButton(buttonText: "Sign Out")
         app.alerts["Sign Out"].buttons["Yes"].tap()
         signInButton.tap()
         
@@ -231,10 +231,10 @@ class LoginUITests: ExelonUITestCase {
         XCTAssert(moreButton.waitForExistence(timeout: 10))
         moreButton.tap()
         
-        app.buttons["Sign out"].tap()
+        tapButton(buttonText: "Sign Out")
         app.alerts["Sign Out"].buttons["Yes"].tap()
         app.buttons["CONTINUE AS GUEST"].tap()
-        app.scrollViews.otherElements.buttons["Report an outage"].tap()
+        tapButton(buttonText: "Report Outage")
         
         var outageMmStaticText: XCUIElement
         if appName.contains("BGE") {
