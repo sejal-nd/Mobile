@@ -83,9 +83,9 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     switch accountDetail.peakRewards {
                     case "ACTIVE"?:
-                        return NSLocalizedString("Stay in Control", comment: "")
+                        return NSLocalizedString("PeakRewards Program", comment: "")
                     case "ECOBEE WIFI"?:
-                        return NSLocalizedString("Enjoy year-round savings and stay connected", comment: "")
+                        return NSLocalizedString("Ecobee Thermostat", comment: "")
                     default:
                         return NSLocalizedString("BGE Bill Credits with PeakRewards", comment: "")
                     }
@@ -157,9 +157,9 @@ class TemplateCardViewModel {
                 if accountDetail.isResidential {
                     switch accountDetail.peakRewards {
                     case "ACTIVE"?:
-                        return NSLocalizedString("Adjust Your Settings", comment: "")
+                        return NSLocalizedString("Manage Your Devices", comment: "")
                     case "ECOBEE WIFI"?:
-                        return NSLocalizedString("Adjust Your Settings", comment: "")
+                        return NSLocalizedString("Manage Your Devices", comment: "")
                     default:
                         return NSLocalizedString("Enroll Now", comment: "")
                     }
