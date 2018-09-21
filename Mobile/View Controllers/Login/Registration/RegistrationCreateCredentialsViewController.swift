@@ -139,6 +139,14 @@ class RegistrationCreateCredentialsViewController: UIViewController {
 
         passwordStrengthView.isHidden = true
         
+        if #available(iOS 11.0, *) {
+            createUsernameTextField.textField.textContentType = .username
+            confirmUsernameTextField.textField.textContentType = .username
+        } else if #available(iOS 10.0, *) {
+            createUsernameTextField.textField.textContentType = .emailAddress
+            confirmUsernameTextField.textField.textContentType = .emailAddress
+        }
+        
         createUsernameTextField.textField.placeholder = NSLocalizedString("Email Address*", comment: "")
         createUsernameTextField.setKeyboardType(.emailAddress)
         createUsernameTextField.textField.returnKeyType = .next
@@ -197,7 +205,13 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         createPasswordTextField.textField.delegate = self
         createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-        if #available(iOS 11.0, *) {
+        if #available(iOS 12.0, *) {
+            createPasswordTextField.textField.textContentType = .newPassword
+            confirmPasswordTextField.textField.textContentType = .newPassword
+            let rulesDescriptor = "required: lower, upper, digit, special; minlength: 8; maxlength: 16;"
+            createPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+            confirmPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+        } else if #available(iOS 11.0, *) {
             createPasswordTextField.textField.inputAccessoryView = toolbar
             confirmPasswordTextField.textField.inputAccessoryView = toolbar
         }

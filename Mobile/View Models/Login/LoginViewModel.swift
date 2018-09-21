@@ -73,7 +73,9 @@ class LoginViewModel {
                         dLog("Logout Error: \(error)")
                     }).disposed(by: self.disposeBag)
                 } else {
-                    if #available(iOS 11.0, *) {
+                    if #available(iOS 12.0, *) { }
+                        // Save to SWC if iOS 11
+                    else if #available(iOS 11.0, *) {
                         SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                     }
                     

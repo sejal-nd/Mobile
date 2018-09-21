@@ -47,7 +47,7 @@ class ChangePasswordViewController: UIViewController {
     lazy var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
     lazy var submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
 
-    lazy var toolbar: UIToolbar = {
+    let toolbar: UIToolbar = {
         let toolbar = UIToolbar()
         let suggestPasswordButton = UIBarButtonItem(title: "Suggest Password", style: .plain, target: self, action: #selector(suggestPassword))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -95,7 +95,13 @@ class ChangePasswordViewController: UIViewController {
         newPasswordTextField.textField.returnKeyType = .next
         newPasswordTextField.textField.delegate = self
         
-        if #available(iOS 11.0, *) {
+        if #available(iOS 12.0, *) {
+            newPasswordTextField.textField.textContentType = .newPassword
+            confirmPasswordTextField.textField.textContentType = .newPassword
+            let rulesDescriptor = "required: lower, upper, digit, special; minlength: 8; maxlength: 16;"
+            newPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+            confirmPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+        } else if #available(iOS 11.0, *) {
             newPasswordTextField.textField.inputAccessoryView = toolbar
             confirmPasswordTextField.textField.inputAccessoryView = toolbar
         }

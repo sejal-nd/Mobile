@@ -94,7 +94,9 @@ class RegistrationViewModel {
         registrationService.checkForDuplicateAccount(username.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                if #available(iOS 11.0, *) {
+                if #available(iOS 12.0, *) { }
+                    // Save to SWC if iOS 11
+                else if #available(iOS 11.0, *) {
                     guard let this = self else { return }
                     SharedWebCredentials.save(credential: (this.username.value, this.newPassword.value), domain: Environment.shared.associatedDomain) { [weak this] error in
                         DispatchQueue.main.async {
