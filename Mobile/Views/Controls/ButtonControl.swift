@@ -57,13 +57,13 @@ class ButtonControl: UIControl {
             .disposed(by: bag)
         
         isAccessibilityElement = true
-        accessibilityTraits = UIAccessibilityTraitButton
+        accessibilityTraits = .button
     }
     
     override var isEnabled: Bool {
         didSet {
             alpha = isEnabled ? 1 : 0.5
-            accessibilityTraits = isEnabled ? UIAccessibilityTraitButton : (UIAccessibilityTraitButton|UIAccessibilityTraitNotEnabled)
+            accessibilityTraits = isEnabled ? .button : [.button, .notEnabled]
         }
     }
 

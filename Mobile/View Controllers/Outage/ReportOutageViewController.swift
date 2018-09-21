@@ -77,8 +77,8 @@ class ReportOutageViewController: UIViewController {
         navigationItem.rightBarButtonItem = submitButton
         viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         if unauthenticatedExperience {
             accountInfoBar.update(accountNumber: viewModel.outageStatus!.maskedAccountNumber, address: viewModel.outageStatus!.maskedAddress)
@@ -91,7 +91,7 @@ class ReportOutageViewController: UIViewController {
             bg.backgroundColor = .softGray
             bg.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
             meterPingStackView.addSubview(bg)
-            meterPingStackView.sendSubview(toBack: bg)
+            meterPingStackView.sendSubviewToBack(bg)
             
             meterPingStackView.spacing = 20
             meterPingStackView.isHidden = false
@@ -248,7 +248,7 @@ class ReportOutageViewController: UIViewController {
         // METER PING
         if Environment.shared.opco == .comEd && viewModel.outageStatus!.meterPingInfo != nil {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Verifying meter has power", comment: ""))
+                UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Verifying meter has power", comment: ""))
             })
             
             viewModel.meterPingGetPowerStatus(onPowerVerified: { canPerformVoltageCheck in
@@ -256,7 +256,7 @@ class ReportOutageViewController: UIViewController {
                 self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Successful", comment: "")
                 self.meterPingPowerStatusLabel.textColor = .blackText
                 
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+                UIAccessibility.post(notification: .screenChanged, argument: self)
                 if !canPerformVoltageCheck { // POWER STATUS SUCCESS BUT NO VOLTAGE CHECK
                     self.meterPingCurrentStatusLoadingView.isHidden = true
                     self.meterPingCurrentStatusCheckImageView.isHidden = false
@@ -267,14 +267,14 @@ class ReportOutageViewController: UIViewController {
                     self.meterPingFuseBoxView.isHidden = false
                     self.footerContainerView.isHidden = false
                     
-                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
-                    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Check Complete", comment: ""))
+                    UIAccessibility.post(notification: .screenChanged, argument: self)
+                    UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
                 } else { // POWER STATUS SUCCESS
                     self.meterPingCurrentStatusLabel.text = NSLocalizedString("Verifying voltage level of the meter...", comment: "")
                     self.meterPingVoltageStatusView.isHidden = false
                     
-                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
-                    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Verifying voltage level of the meter", comment: ""))
+                    UIAccessibility.post(notification: .screenChanged, argument: self)
+                    UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Verifying voltage level of the meter", comment: ""))
                     self.viewModel.meterPingGetVoltageStatus(onVoltageVerified: {
                         self.meterPingCurrentStatusLoadingView.isHidden = true
                         self.meterPingCurrentStatusCheckImageView.isHidden = false
@@ -287,8 +287,8 @@ class ReportOutageViewController: UIViewController {
                         self.meterPingFuseBoxView.isHidden = false
                         self.footerContainerView.isHidden = false
                         
-                        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
-                        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Check Complete", comment: ""))
+                        UIAccessibility.post(notification: .screenChanged, argument: self)
+                        UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
                     }, onError: { // VOLTAGE STATUS ERROR
                         self.meterPingCurrentStatusLoadingView.isHidden = true
                         self.meterPingCurrentStatusCheckImageView.isHidden = false
@@ -306,7 +306,7 @@ class ReportOutageViewController: UIViewController {
                         self.viewModel.reportFormHidden.value = false
                         self.footerContainerView.isHidden = false
                         
-                        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+                        UIAccessibility.post(notification: .screenChanged, argument: self)
                     })
                 }
             }, onError: { // POWER STATUS ERROR
@@ -326,8 +326,8 @@ class ReportOutageViewController: UIViewController {
                 self.viewModel.reportFormHidden.value = false
                 self.footerContainerView.isHidden = false
                 
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Check Complete", comment: ""))
+                UIAccessibility.post(notification: .screenChanged, argument: self)
+                UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
             })
         }
     }
@@ -387,13 +387,13 @@ class ReportOutageViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
             safeAreaBottomInset = self.view.safeAreaInsets.bottom
         }
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }

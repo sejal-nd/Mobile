@@ -22,7 +22,7 @@ class OneTouchSlider: UIControl {
     private var sliderFinishWidthConstraint: NSLayoutConstraint!
     private var shouldSlide: Bool = false
     private let imageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
-    private let accessibilityButton = UIButton(type: UIButtonType.system)
+    private let accessibilityButton = UIButton(type: .system)
     
     //MARK: - Public Variables
     private(set) var progress: CGFloat = 0.0
@@ -159,16 +159,16 @@ class OneTouchSlider: UIControl {
         accessibilityButton.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         accessibilityButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
-        accessibilityButton.isHidden = !UIAccessibilityIsVoiceOverRunning() && !UIAccessibilityIsSwitchControlRunning()
-        isAccessibilityElement = !UIAccessibilityIsVoiceOverRunning() && !UIAccessibilityIsSwitchControlRunning()
+        accessibilityButton.isHidden = !UIAccessibility.isVoiceOverRunning && !UIAccessibility.isSwitchControlRunning
+        isAccessibilityElement = !UIAccessibility.isVoiceOverRunning && !UIAccessibility.isSwitchControlRunning
         accessibilityLabel = sliderText
         
-        Observable.merge(NotificationCenter.default.rx.notification(.UIAccessibilitySwitchControlStatusDidChange, object: nil),
+        Observable.merge(NotificationCenter.default.rx.notification(UIAccessibility.switchControlStatusDidChangeNotification, object: nil),
                          NotificationCenter.default.rx.notification(Notification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                self?.accessibilityButton.isHidden = !UIAccessibilityIsVoiceOverRunning() && !UIAccessibilityIsSwitchControlRunning()
-                self?.isAccessibilityElement = !UIAccessibilityIsVoiceOverRunning() && !UIAccessibilityIsSwitchControlRunning()
+                self?.accessibilityButton.isHidden = !UIAccessibility.isVoiceOverRunning && !UIAccessibility.isSwitchControlRunning
+                self?.isAccessibilityElement = !UIAccessibility.isVoiceOverRunning && !UIAccessibility.isSwitchControlRunning
             })
             .disposed(by: bag)
     }

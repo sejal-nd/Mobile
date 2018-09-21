@@ -725,7 +725,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYw-aP-xdY" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="570"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="561"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLD-E0-iMr" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -734,16 +734,12 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                     <constraint firstAttribute="height" constant="50" id="P95-lV-oyR"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kuy-ht-Q3x" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="37" y="59" width="300" height="300"/>
+                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="100" placeholderIntrinsicWidth="267" placeholderIntrinsicHeight="267" translatesAutoresizingMaskIntoConstraints="NO" id="Kuy-ht-Q3x" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="53.5" y="71" width="267" height="267"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="300" id="ttT-E4-JCq"/>
-                                                    <constraint firstAttribute="width" constant="300" id="uKe-wq-KAx"/>
-                                                </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjr-tL-pFh" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="369" width="316" height="60"/>
+                                                <rect key="frame" x="29" y="360" width="316" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <accessibility key="accessibilityConfiguration" label="Report outage"/>
                                                 <constraints>
@@ -758,7 +754,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="of0-TU-uY3" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="439" width="316" height="60"/>
+                                                <rect key="frame" x="29" y="430" width="316" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <accessibility key="accessibilityConfiguration" label="View outage map"/>
                                                 <constraints>
@@ -773,7 +769,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                 </connections>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NCZ-xQ-xbF" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="509" width="316" height="49"/>
+                                                <rect key="frame" x="29" y="500" width="316" height="49"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cGe-OA-ryI"/>
@@ -788,9 +784,9 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                             <constraint firstItem="of0-TU-uY3" firstAttribute="centerX" secondItem="XYw-aP-xdY" secondAttribute="centerX" id="0Cc-7i-ztb"/>
                                             <constraint firstItem="Zjr-tL-pFh" firstAttribute="leading" secondItem="XYw-aP-xdY" secondAttribute="leading" priority="999" constant="29" id="AvQ-is-RiR"/>
                                             <constraint firstItem="Zjr-tL-pFh" firstAttribute="centerX" secondItem="XYw-aP-xdY" secondAttribute="centerX" id="Bda-xh-J5X"/>
-                                            <constraint firstItem="Kuy-ht-Q3x" firstAttribute="top" secondItem="LLD-E0-iMr" secondAttribute="bottom" constant="9" id="DCp-H1-hfC"/>
+                                            <constraint firstItem="Kuy-ht-Q3x" firstAttribute="top" secondItem="LLD-E0-iMr" secondAttribute="bottom" constant="21" id="DCp-H1-hfC"/>
                                             <constraint firstAttribute="bottom" secondItem="NCZ-xQ-xbF" secondAttribute="bottom" constant="12" id="DFH-b5-49f"/>
-                                            <constraint firstItem="Zjr-tL-pFh" firstAttribute="top" secondItem="Kuy-ht-Q3x" secondAttribute="bottom" constant="10" id="F8s-Ao-NAu"/>
+                                            <constraint firstItem="Zjr-tL-pFh" firstAttribute="top" secondItem="Kuy-ht-Q3x" secondAttribute="bottom" constant="22" id="F8s-Ao-NAu"/>
                                             <constraint firstItem="NCZ-xQ-xbF" firstAttribute="leading" secondItem="XYw-aP-xdY" secondAttribute="leading" priority="999" constant="29" id="JPg-pO-BTu"/>
                                             <constraint firstAttribute="trailing" secondItem="of0-TU-uY3" secondAttribute="trailing" priority="999" constant="29" id="NDr-Ee-zva"/>
                                             <constraint firstAttribute="trailing" secondItem="LLD-E0-iMr" secondAttribute="trailing" id="Oeh-JS-FPE"/>

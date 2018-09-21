@@ -30,14 +30,13 @@ class ViewBillViewController: UIViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.isHidden = true
+        
+        fetchBillPDFData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setWhiteNavBar()
-        
-        fetchBillPDFData()
     }
     
     
@@ -61,8 +60,8 @@ class ViewBillViewController: UIViewController {
         webView.load(pdfData, mimeType: "application/pdf", characterEncodingName: "utf-8", baseURL: baseUrl)
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         if parent == nil {
             navigationController?.setColoredNavBar()
         }

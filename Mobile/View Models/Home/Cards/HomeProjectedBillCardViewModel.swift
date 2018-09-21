@@ -52,22 +52,22 @@ class HomeProjectedBillCardViewModel {
     
     private(set) lazy var showEmptyState: Driver<Void> = accountDetailEvents
         .filter { !($0.element?.isEligibleForUsageData ?? true) }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showError: Driver<Void> = Observable
-        .merge(accountDetailEvents.filter { $0.error != nil }.map(to: ()),
+        .merge(accountDetailEvents.filter { $0.error != nil }.mapTo(()),
                billForecastEvents.filter {
                 $0.error != nil ||
                 ($0.element?.gas == nil && $0.element?.electric == nil)
-                }.map(to: ()))
+                }.mapTo(()))
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showContent: Driver<Void> = billForecastEvents
         .filter {
             $0.element?.gas != nil || $0.element?.electric != nil
         }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var billForecastEvents = self.accountDetailEvents.elements()

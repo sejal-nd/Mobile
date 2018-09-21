@@ -43,7 +43,7 @@ class BillViewModel {
     
     private lazy var fetchTrigger = Observable.merge(self.fetchAccountDetail,
                                                      RxNotifications.shared.accountDetailUpdated
-                                                        .map(to: FetchingAccountState.switchAccount))
+                                                        .mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = self.fetchTrigger
@@ -62,7 +62,7 @@ class BillViewModel {
                 .filter { !$0.isCompleted }
         }
         .share(replay: 1)
-        .do(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+        .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
     
     private(set) lazy var accountDetailError: Driver<ServiceError?> = self.accountDetailEvents.errors()
         .map { $0 as? ServiceError }
@@ -70,7 +70,7 @@ class BillViewModel {
     
     private(set) lazy var showLoadedState: Driver<Void> = self.accountDetailEvents
         .filter { $0.error == nil }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
 	func fetchAccountDetail(isRefresh: Bool) {
@@ -84,12 +84,12 @@ class BillViewModel {
     
     private(set) lazy var showMaintenanceMode: Driver<Void> = self.maintenanceModeEvents.elements()
         .filter { $0.billStatus }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var shouldShowAlertBanner: Driver<Bool> = {
         let showFromResponse = Driver
-            .merge(self.accountDetailEvents.errors().map(to: false).asDriver(onErrorDriveWith: .empty()),
+            .merge(self.accountDetailEvents.errors().mapTo(false).asDriver(onErrorDriveWith: .empty()),
                    Driver.zip(self.shouldShowRestoreService, self.shouldShowAvoidShutoff).map { $0 || $1 })
         return Driver.combineLatest(showFromResponse, self.switchAccountsTracker.asDriver()) { $0 && !$1 }
             .startWith(false)

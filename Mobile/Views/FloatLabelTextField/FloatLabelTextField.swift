@@ -167,7 +167,7 @@ class FloatLabelTextField: UIView {
             isUserInteractionEnabled = false
             
             textField.text = ""
-            textField.sendActions(for: UIControlEvents.valueChanged)
+            textField.sendActions(for: .valueChanged)
             textField.isEnabled = false
             setError(nil)
             setValidated(false)

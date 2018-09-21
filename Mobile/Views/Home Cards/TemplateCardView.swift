@@ -64,7 +64,7 @@ class TemplateCardView: UIView {
             viewModel.showContentState,
             viewModel.showErrorState
         )
-            .drive(onNext: { UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .drive(onNext: { UIAccessibility.post(notification: .screenChanged, argument: nil) })
             .disposed(by: bag)
         
         //grab all the content

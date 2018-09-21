@@ -20,6 +20,7 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var accountContentView: UIView!
     @IBOutlet weak var gasOnlyView: UIView!
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingBackgroundView: UIView!
     @IBOutlet weak var loadingAnimationView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
@@ -28,6 +29,9 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     @IBOutlet weak var gasOnlyTitleLabel: UILabel!
     @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
+    @IBOutlet weak var finalPayView: UIView!
+    @IBOutlet weak var finalPayTextView: DataDetectorTextView!
+    @IBOutlet weak var finalPayTitleLabel: UILabel!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     @IBOutlet weak var customErrorView: UIView!
@@ -62,6 +66,8 @@ class OutageViewController: AccountPickerViewController {
         loadingAnimationView.addSubview(loadingLottieAnimation)
         loadingLottieAnimation.play()
         
+        loadingBackgroundView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 4), radius: 5)
+        
         outageStatusButton.delegate = self
         
         footerTextView.font = SystemFont.regular.of(textStyle: .headline)
@@ -76,6 +82,11 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyTextView.textContainerInset = .zero
         gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.text = viewModel.gasOnlyMessage
+        
+        finalPayTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        finalPayTextView.font = OpenSans.regular.of(textStyle: .subheadline)
+        finalPayTextView.textContainerInset = .zero
+        finalPayTextView.tintColor = .actionBlue
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -94,6 +105,7 @@ class OutageViewController: AccountPickerViewController {
                 self.accountContentView.isHidden = true
                 self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 self.gasOnlyView.isHidden = true
+                self.finalPayView.isHidden = true
                 self.errorLabel.isHidden = true
                 self.customErrorView.isHidden = true
                 self.loadingView.isHidden = true
@@ -154,6 +166,11 @@ class OutageViewController: AccountPickerViewController {
         shortcutItem = .none
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.size.height / 2
+    }
+    
     @objc func killRefresh() -> Void {
         refreshControl?.endRefreshing()
         scrollView!.alwaysBounceVertical = false
@@ -177,8 +194,6 @@ class OutageViewController: AccountPickerViewController {
     
     func updateContent(outageJustReported: Bool) {
         if let currentOutageStatus = viewModel.currentOutageStatus {
-            layoutBigButtonContent(outageJustReported: outageJustReported)
-            
             errorLabel.isHidden = true
             
             // Show/hide the top level container views
@@ -192,6 +207,8 @@ class OutageViewController: AccountPickerViewController {
                 accountContentView.isHidden = false
             }
             
+            layoutBigButtonContent(outageJustReported: outageJustReported)
+
             // Update the Report Outage button
             if viewModel.reportedOutage != nil {
                 reportOutageButton.setDetailLabel(text: viewModel.outageReportedDateString, checkHidden: false)
@@ -213,7 +230,9 @@ class OutageViewController: AccountPickerViewController {
         } else if currentOutageStatus.activeOutage {
             outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
-            outageStatusButton.setIneligibleState(flagFinaled: currentOutageStatus.flagFinaled, nonPayFinaledMessage: viewModel.accountNonPayFinaledMessage)
+            outageStatusButton.isHidden = true
+            finalPayView.isHidden = false
+            finalPayTextView.text = viewModel.accountNonPayFinaledMessage
         } else { // Power is on
             outageStatusButton.setPowerOnState()
         }
@@ -223,6 +242,7 @@ class OutageViewController: AccountPickerViewController {
         accountContentView.isHidden = true
         gasOnlyTextViewBottomSpaceConstraint.isActive = false
         gasOnlyView.isHidden = true
+        finalPayView.isHidden = true
         errorLabel.isHidden = true
         customErrorView.isHidden = true
         loadingView.isHidden = false
@@ -231,7 +251,7 @@ class OutageViewController: AccountPickerViewController {
         maintenanceModeView.isHidden = true
         setRefreshControlEnabled(enabled: false)
         viewModel.fetchData(onSuccess: { [weak self] in
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+            UIAccessibility.post(notification: .screenChanged, argument: nil)
             self?.scrollView?.isHidden = false
             self?.noNetworkConnectionView.isHidden = true
             self?.loadingView.isHidden = true
@@ -252,7 +272,7 @@ class OutageViewController: AccountPickerViewController {
             self?.shortcutItem = .none
             }, onError: { [weak self] serviceError in
                 self?.shortcutItem = .none
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+                UIAccessibility.post(notification: .screenChanged, argument: nil)
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self?.scrollView?.isHidden = true
                     self?.noNetworkConnectionView.isHidden = false
@@ -273,7 +293,7 @@ class OutageViewController: AccountPickerViewController {
                 self?.maintenanceModeView.isHidden = true
             }, onMaintenance: { [weak self] in
                 self?.shortcutItem = .none
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil)
+                UIAccessibility.post(notification: .screenChanged, argument: nil)
                 self?.maintenanceModeView.isHidden = false
                 self?.scrollView?.isHidden = true
                 self?.noNetworkConnectionView.isHidden = true
@@ -296,6 +316,7 @@ class OutageViewController: AccountPickerViewController {
         }, onError: { [weak self] serviceError in
             guard let `self` = self else { return }
             self.refreshControl?.endRefreshing()
+            self.loadingView.isHidden = true
             
             if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                 self.scrollView?.isHidden = true
@@ -317,10 +338,12 @@ class OutageViewController: AccountPickerViewController {
             self.accountContentView.isHidden = true
             self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
             self.gasOnlyView.isHidden = true
+            self.finalPayView.isHidden = true
             self.maintenanceModeView.isHidden = true
             }, onMaintenance: { [weak self] in
                 guard let `self` = self else { return }
                 self.refreshControl?.endRefreshing()
+                self.loadingView.isHidden = true
                 self.maintenanceModeView.isHidden = false
                 self.scrollView?.isHidden = true
                 self.noNetworkConnectionView.isHidden = true
@@ -331,6 +354,7 @@ class OutageViewController: AccountPickerViewController {
                 self.accountContentView.isHidden = true
                 self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
                 self.gasOnlyView.isHidden = true
+                self.finalPayView.isHidden = true
         })
     }
     

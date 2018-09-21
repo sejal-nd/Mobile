@@ -512,7 +512,7 @@ class HomeViewController: AccountPickerViewController {
     
     func bindLoadingStates() {
         viewModel.refreshFetchTracker.asObservable()
-            .subscribe(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .subscribe(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
             .disposed(by: bag)
         
         viewModel.refreshFetchTracker.asDriver().filter(!)
@@ -527,7 +527,7 @@ class HomeViewController: AccountPickerViewController {
             .drive(scrollView!.rx.isHidden).disposed(by: bag)
         
         Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
-            .map(to: FetchingAccountState.switchAccount)
+            .mapTo(FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchData)
             .disposed(by: bag)
     }

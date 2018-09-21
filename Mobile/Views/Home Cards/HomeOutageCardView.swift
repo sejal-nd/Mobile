@@ -162,7 +162,7 @@ class HomeOutageCardView: UIView {
             viewModel.showCustomErrorView,
             viewModel.showErrorState
         )
-            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .drive(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
             .disposed(by: bag)
         
         // Show/Hide States

@@ -107,7 +107,7 @@ class HomeUsageCardView: UIView {
                                   rightLabel: NSLocalizedString("Gas", comment: ""),
                                   initialSelectedIndex: 0)
         
-        billComparisonStackView.bringSubview(toFront: segmentedControl)
+        billComparisonStackView.bringSubviewToFront(segmentedControl)
         
         clippingView.layer.cornerRadius = 10
         styleBillComparison()
@@ -257,7 +257,7 @@ class HomeUsageCardView: UIView {
         viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.showLoadingState
-            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .drive(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
             .disposed(by: disposeBag)
         
         // Bill Comparison vs. SER Show/Hide

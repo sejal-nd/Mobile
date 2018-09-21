@@ -20,8 +20,28 @@ class MoreViewController: UIViewController {
             signOutButton.setTitleColor(.white, for: .normal)
         }
     }
+    
+    @IBOutlet private weak var versionLabel: UILabel! {
+        didSet {
+            if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+                switch Environment.shared.environmentName {
+                case .prod:
+                    versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
+                case .aut, .dev, .stage:
+                    versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
+                }
+            } else {
+                versionLabel.text = nil
+            }
+            
+            versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+            versionLabel.textColor = .white
+        }
+    }
 
     let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
+    
+    var shouldHideNavigationBar = true
     
     private var biometricsPasswordRetryCount = 0
     
@@ -43,7 +63,9 @@ class MoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        if shouldHideNavigationBar {
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        }
         
         if AccountsStore.shared.accounts == nil {
             fetchAccounts()

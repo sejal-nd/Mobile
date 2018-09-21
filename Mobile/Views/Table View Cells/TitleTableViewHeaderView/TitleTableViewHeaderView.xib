@@ -38,6 +38,7 @@
                         <constraint firstItem="CSu-oY-TAT" firstAttribute="bottom" secondItem="aiE-BC-TeO" secondAttribute="bottom" constant="10" id="Cp3-wF-Vgb"/>
                         <constraint firstItem="CSu-oY-TAT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aiE-BC-TeO" secondAttribute="trailing" constant="16" id="Eaw-jq-PgQ"/>
                         <constraint firstItem="HsD-6C-4U7" firstAttribute="trailing" secondItem="6fA-V3-R0X" secondAttribute="trailing" id="ZRy-PQ-K6w"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="fOZ-dj-PjJ"/>
                         <constraint firstItem="HsD-6C-4U7" firstAttribute="leading" secondItem="CSu-oY-TAT" secondAttribute="leading" constant="16" id="fvl-Ki-3Ae"/>
                         <constraint firstItem="HsD-6C-4U7" firstAttribute="bottom" secondItem="6fA-V3-R0X" secondAttribute="bottom" id="oW8-xx-njk"/>
                         <constraint firstItem="aiE-BC-TeO" firstAttribute="leading" secondItem="CSu-oY-TAT" secondAttribute="leading" constant="16" id="oYu-E0-hBg"/>
@@ -48,13 +49,16 @@
             <constraints>
                 <constraint firstItem="6fA-V3-R0X" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0nz-kA-Ctk"/>
                 <constraint firstAttribute="bottom" secondItem="6fA-V3-R0X" secondAttribute="bottom" id="3WY-tC-4On"/>
-                <constraint firstItem="6fA-V3-R0X" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Q4G-pX-ila"/>
-                <constraint firstItem="6fA-V3-R0X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jrq-au-pUp"/>
+                <constraint firstItem="6fA-V3-R0X" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" priority="999" id="Q4G-pX-ila"/>
+                <constraint firstItem="6fA-V3-R0X" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hbN-2e-cTn"/>
+                <constraint firstItem="6fA-V3-R0X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="999" id="jrq-au-pUp"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="colorView" destination="6fA-V3-R0X" id="eEN-GE-ICo"/>
+                <outlet property="contentViewWidthConstraint" destination="fOZ-dj-PjJ" id="MQx-ns-7kb"/>
+                <outlet property="separatorView" destination="HsD-6C-4U7" id="hr0-MM-nMu"/>
                 <outlet property="titleLabel" destination="aiE-BC-TeO" id="nBv-AU-26b"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="54"/>

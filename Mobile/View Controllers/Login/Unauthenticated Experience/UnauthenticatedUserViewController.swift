@@ -55,7 +55,7 @@ class UnauthenticatedUserViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        headerView.frame.size = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        headerView.frame.size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         tableView.tableHeaderView = headerView
     }
     
