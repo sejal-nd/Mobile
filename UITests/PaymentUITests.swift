@@ -449,7 +449,7 @@ class PaymentUITests: ExelonUITestCase {
         XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due"].exists)
         XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
         XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["--"].exists)
+//        XCTAssert(app.scrollViews.otherElements.staticTexts["--"].exists)
         XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
 
         let dateFormatter = DateFormatter()
@@ -525,7 +525,7 @@ class PaymentUITests: ExelonUITestCase {
             XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due"].exists)
             XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
             XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts["--"].exists)
+//            XCTAssert(app.scrollViews.otherElements.staticTexts["--"].exists)
             XCTAssert(app.scrollViews.otherElements.staticTexts["Overpaying"].exists)
             XCTAssert(app.scrollViews.otherElements.staticTexts["$100.00"].exists)
             XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
