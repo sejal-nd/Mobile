@@ -26,12 +26,13 @@ struct BillComparison: Mappable {
         } catch {
             meterUnit = ""
         }
+
         if meterUnit == "KWH" {
             meterUnit = "kWh"
         } else if meterUnit == "THERM" {
             meterUnit = "therms"
         }
-            
+
         try currencySymbol = map.from("currencySymbol")
         try temperatureUnit = map.from("temperatureUnit")
         analysisResults = map.optionalFrom("analysisResults")
@@ -50,6 +51,31 @@ struct BillComparison: Mappable {
                 }
             }
         }
+    }
+    
+    init(meterUnit: String = "KWH",
+         currencySymbol: String = "$",
+         temperatureUnit: String = "FAHRENHEIT",
+         reference: UsageBillPeriod? = UsageBillPeriod(),
+         compared: UsageBillPeriod? = UsageBillPeriod(),
+         billPeriodCostDifference: Double = 0,
+         weatherCostDifference: Double = 0,
+         otherCostDifference: Double = 0) {
+        
+        var map = [String: Any]()
+        map["meterUnit"] = meterUnit
+        map["currencySymbol"] = currencySymbol
+        map["temperatureUnit"] = temperatureUnit
+        if let reference = reference {
+            map["reference"] = reference.toJSON()
+        }
+        if let compared = compared {
+            map["compared"] = compared.toJSON()
+        }
+        self = BillComparison.from(map as NSDictionary)!
+        self.billPeriodCostDifference = billPeriodCostDifference
+        self.weatherCostDifference = weatherCostDifference
+        self.otherCostDifference = otherCostDifference
     }
 }
 
@@ -78,5 +104,31 @@ struct UsageBillPeriod: Mappable {
         try endDate = map.from("endDate", transformation: DateParser().extractDate)
         averageTemperature = map.optionalFrom("averageTemperature")
         ratePlan = map.optionalFrom("ratePlan")
+    }
+    
+    init(charges: Double = 100,
+         usage: Double = 100,
+         startDate: String = "2017-08-01", // Pass in yyyy-MM-dd format
+        endDate: String? = "2017-09-01", // Pass in yyyy-MM-dd format
+        averageTemperature: Double = 72) {
+        
+        var map = [String: Any]()
+        map["charges"] = charges
+        map["usage"] = usage
+        map["startDate"] = startDate
+        map["endDate"] = endDate
+        map["averageTemperature"] = averageTemperature
+        
+        self = UsageBillPeriod.from(map as NSDictionary)!
+    }
+    
+    func toJSON() -> [String : Any?] {
+        return [
+            "charges": charges,
+            "usage": usage,
+            "startDate": DateFormatter.yyyyMMddFormatter.string(from: startDate),
+            "endDate": DateFormatter.yyyyMMddFormatter.string(from: endDate),
+            "averageTemperature": averageTemperature
+        ]
     }
 }
