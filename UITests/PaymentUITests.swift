@@ -79,7 +79,14 @@ class PaymentUITests: ExelonUITestCase {
         dateFormatter.timeZone = .opCo
         dateFormatter.calendar = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
-        let dateString = dateFormatter.string(from: Date())
+        var dateString: String
+        if !appName.contains("BGE") {
+            // ComEd + PECO default to payment date, not today
+            // Mock data sets this to 10 days from today
+            dateString = dateFormatter.string(from: Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000))
+        } else {
+            dateString = dateFormatter.string(from: Date())
+        }
         let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
         XCTAssert(paymentDateButton.exists)
         paymentDateButton.tap()
@@ -246,7 +253,14 @@ class PaymentUITests: ExelonUITestCase {
             dateFormatter.timeZone = .opCo
             dateFormatter.calendar = .opCo
             dateFormatter.dateFormat = "MM/dd/yyyy"
-            let dateString = dateFormatter.string(from: Date())
+            var dateString: String
+            if !appName.contains("BGE") {
+                // ComEd + PECO default to payment date, not today
+                // Mock data sets this to 10 days from today
+                dateString = dateFormatter.string(from: Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000))
+            } else {
+                dateString = dateFormatter.string(from: Date())
+            }
             let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
             XCTAssert(paymentDateButton.exists)
             paymentDateButton.tap()
@@ -456,7 +470,14 @@ class PaymentUITests: ExelonUITestCase {
         dateFormatter.timeZone = .opCo
         dateFormatter.calendar = .opCo
         dateFormatter.dateFormat = "MM/dd/yyyy"
-        let dateString = dateFormatter.string(from: Date())
+        var dateString: String
+        if !appName.contains("BGE") {
+            // ComEd + PECO default to payment date, not today
+            // Mock data sets this to 10 days from today
+            dateString = dateFormatter.string(from: Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000))
+        } else {
+            dateString = dateFormatter.string(from: Date())
+        }
         XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)
         XCTAssert(app.scrollViews.otherElements.staticTexts["Total Payment"].exists)
         XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)

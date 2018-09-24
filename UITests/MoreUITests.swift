@@ -45,7 +45,7 @@ class MoreUITests: ExelonUITestCase {
         }
         
         if appName.contains("BGE") {
-            XCTAssert(app.cells.staticTexts["Default Account"].isHittable)
+            XCTAssert(app.cells.staticTexts["Set Default Account"].isHittable)
         } else if appName.contains("PECO") {
             XCTAssert(app.cells.staticTexts["Release of Info"].isHittable)
         }

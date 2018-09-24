@@ -41,10 +41,15 @@ class ExelonUITestCase: XCTestCase{
         let continueSwitch = app.switches.element(boundBy: 0)
         continueSwitch.tap()
         
-        if !continueButton.isEnabled {
+        var i = 0
+        while !continueButton.isEnabled {
             // seems the app sometimes has trouble starting up quickly enough for the button to react?
-            sleep(5)
+            usleep(50000)
             continueSwitch.tap()
+            i += 1
+            if i > 10{
+                break
+            }
         }
         ACTLabel.labelStep("Continue switch tapped")
         continueButton.tap()

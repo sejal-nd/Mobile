@@ -127,7 +127,7 @@ class LoginUITests: ExelonUITestCase {
         let elementsQuery = app.scrollViews.otherElements
         
         app.buttons["CONTINUE AS GUEST"].tap()
-        app.buttons["Contact us"].tap()
+        tapButton(buttonText: "Contact Us")
         XCTAssert(app.navigationBars.buttons["Back"].exists)
         XCTAssert(app.navigationBars["Contact Us"].exists)
         XCTAssert(elementsQuery.staticTexts["Emergency"].exists)
