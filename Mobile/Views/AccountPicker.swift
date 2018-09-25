@@ -227,7 +227,8 @@ class AccountPicker: UIView {
     private func addAccountToScrollView(_ account: Account, advancedPicker: Bool = false) {
         let commercialUser = !account.isResidential
         
-        let pageView = UIView(frame: .zero)
+        // Setting the page view to this initial size avoids upfront autolayout warnings
+        let pageView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 60))
         pageViews.append(pageView)
         
         let icon: UIImage
@@ -295,7 +296,6 @@ class AccountPicker: UIView {
         accountStackView.spacing = 7
         
         pageView.addSubview(accountStackView)
-        scrollView.addSubview(pageView)
         
         accountStackView.centerXAnchor.constraint(equalTo: pageView.centerXAnchor, constant: 0).isActive = true
         accountStackView.topAnchor.constraint(equalTo: pageView.topAnchor, constant: 10).isActive = true
@@ -305,6 +305,8 @@ class AccountPicker: UIView {
         
         leftCaretImageView.image = tintWhite ? #imageLiteral(resourceName: "ic_caret_white_left"):#imageLiteral(resourceName: "ic_caret_left")
         rightCaretImageView.image = tintWhite ? #imageLiteral(resourceName: "ic_caret_white"):#imageLiteral(resourceName: "ic_caret")
+        
+        scrollView.addSubview(pageView)
         
         if advancedPicker { // Makes area tappable and adds caret icon
             advancedAccountIconImageView = iconImageView
