@@ -32,6 +32,10 @@ class MoreUITests: ExelonUITestCase {
         XCTAssert(app.cells.staticTexts["Set Default Account"].exists)
         XCTAssert(app.cells.staticTexts["Policies and Terms"].exists)
         
+        let table = app.tables.element(boundBy: 0)
+        let lastCell = table.cells.element(boundBy: table.cells.count-1)
+        table.scrollToElement(element: lastCell)
+        
         XCTAssert(app.tables.buttons["Sign Out"].isHittable)
         
         
