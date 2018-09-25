@@ -2326,7 +2326,6 @@
 		0EB93B6B202CA4DF0049E7A2 /* BGE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-AUT.plist"; sourceTree = "<group>"; };
 		0EB93B6D202CA4F30049E7A2 /* ComEd-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-AUT.plist"; sourceTree = "<group>"; };
 		0EB93B6F202CA5040049E7A2 /* PECO-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-AUT.plist"; sourceTree = "<group>"; };
-		0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MobileConfig.xcconfig; sourceTree = "<group>"; };
 		0EF60FB420EE78F6006ABC18 /* GSTouchesShowingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSTouchesShowingWindow.swift; sourceTree = "<group>"; };
 		0EF60FB520EE78F6006ABC18 /* GSTouchesShowingGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSTouchesShowingGestureRecognizer.swift; sourceTree = "<group>"; };
 		0EF60FB620EE78F6006ABC18 /* GSTouchesShowingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSTouchesShowingController.swift; sourceTree = "<group>"; };
@@ -4536,7 +4535,6 @@
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
-				0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */,
 				E81CFFE81EC230B5004FDA7E /* Entitlements */,
 				B58B5AC31E4E28740051FD5F /* Mobile */,
 				B5AC06D61E52238900BBA4ED /* UnitTests */,
@@ -8039,7 +8037,6 @@
 		};
 		0E131751202B583000865819 /* Prodbeta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -8319,7 +8316,6 @@
 		};
 		0EB93B5E202CA3C70049E7A2 /* Automation */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -8810,7 +8806,6 @@
 		};
 		B58B5AE81E4E28740051FD5F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -8933,7 +8928,6 @@
 		};
 		B58B5AF61E51497B0051FD5F /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
