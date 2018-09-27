@@ -271,4 +271,8 @@ class OutageStatusButton: UIView {
         delegate?.outageStatusButtonWasTapped(self)
     }
     
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 267, height: 267)
+    }
+    
 }
