@@ -12,10 +12,11 @@ import RxCocoa
 class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     @IBOutlet weak var mainErrorLabel: UILabel!
     @IBOutlet weak var mainLoadingIndicator: LoadingIndicator!
     
+    @IBOutlet weak var deviceSelectionStack: UIStackView!
+    @IBOutlet weak var selectDeviceLabel: UILabel!
     @IBOutlet weak var deviceButton: DisclosureButton!
     
     @IBOutlet weak var programCardStack: UIStackView!
@@ -24,9 +25,11 @@ class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var overrideButton: DisclosureButton!
     @IBOutlet weak var adjustThermostatButton: DisclosureButton!
     
+    @IBOutlet weak var adjustScaleLabel: UILabel!
     @IBOutlet weak var temperatureScaleLabel: UILabel!
     @IBOutlet weak var segmentedControl: SegmentedControl!
     
+    @IBOutlet weak var scheduleHeaderStack: UIStackView!
     @IBOutlet weak var scheduleContentStack: UIStackView!
     @IBOutlet weak var wakePeriodCard: SmartThermostatPeriodCard!
     @IBOutlet weak var leavePeriodCard: SmartThermostatPeriodCard!
@@ -64,8 +67,11 @@ class PeakRewardsViewController: UIViewController {
         ]
         gradientView.layer.addSublayer(gradientLayer)
         
+        selectDeviceLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        
         cyclingStatusLabel.font = OpenSans.bold.of(textStyle: .title1)
-        temperatureScaleLabel.font = OpenSans.bold.of(textStyle: .title1)
+        adjustScaleLabel.font = OpenSans.bold.of(textStyle: .title1)
+        temperatureScaleLabel.font = OpenSans.regular.of(textStyle: .headline)
         segmentedControl.items = [TemperatureScale.fahrenheit, TemperatureScale.celsius].map { $0.displayString }
         
         coolLegendLabel.font = OpenSans.semibold.of(textStyle: .footnote)
@@ -104,14 +110,13 @@ class PeakRewardsViewController: UIViewController {
             .drive(onNext: { [weak self] _ in UIAccessibility.post(notification: .screenChanged, argument: self?.mainErrorLabel) })
             .disposed(by: disposeBag)
         
-        viewModel.showDeviceButton.not().drive(deviceButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showDeviceButton.not().drive(deviceSelectionStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.deviceButtonText.drive(deviceButton.label.rx.text).disposed(by: disposeBag)
         viewModel.deviceButtonText.drive(deviceButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         viewModel.programCardsData.map { $0.isEmpty }.drive(programCardStack.rx.isHidden).disposed(by: disposeBag)
         
-        viewModel.selectedDeviceIsSmartThermostat.asDriver().not().drive(temperatureScaleLabel.rx.isHidden).disposed(by: disposeBag)
-        viewModel.selectedDeviceIsSmartThermostat.asDriver().not().drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
+        viewModel.selectedDeviceIsSmartThermostat.asDriver().not().drive(scheduleHeaderStack.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.showScheduleContent.asDriver().not().drive(scheduleContentStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.showScheduleLoadingState.asDriver().not().drive(scheduleLoadingView.rx.isHidden).disposed(by: disposeBag)
