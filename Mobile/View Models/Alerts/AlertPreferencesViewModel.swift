@@ -18,6 +18,30 @@ class AlertPreferencesViewModel {
     
     var accountDetail: AccountDetail! // Passed from AlertsViewController
     
+    let sectionTitles = [NSLocalizedString("Outage", comment: ""),
+                         NSLocalizedString("Billing", comment: ""),
+                         NSLocalizedString("Payment", comment: ""),
+                         NSLocalizedString("News", comment: "")]
+    
+    let sections: [[AlertPreferencesOptions]] = {
+        switch Environment.shared.opco {
+        case .bge:
+            return [
+                [.outage, .scheduledMaintenanceOutage, .severeWeather],
+                [.billIsReady],
+                [.paymentDueReminder],
+                [.forYourInformation]
+            ]
+        case .comEd, .peco:
+            return [
+                [.outage, .severeWeather],
+                [.billIsReady],
+                [.paymentDueReminder, .budgetBillingReview],
+                [.forYourInformation]
+            ]
+        }
+    }()
+    
     // Notification Preferences
     let outage = Variable(false)
     let scheduledMaint = Variable(false)
@@ -146,7 +170,7 @@ class AlertPreferencesViewModel {
         return $0 && $1
     }
     
-    private(set) lazy var paymentDueDaysBeforeButtonText: Driver<String?> = self.paymentDueDaysBefore.asDriver().map {
+    private(set) lazy var paymentDueDaysBeforeButtonText: Driver<String> = self.paymentDueDaysBefore.asDriver().map {
         if $0 == 1 {
             return NSLocalizedString("1 Day Before", comment: "")
         }
@@ -226,6 +250,91 @@ class AlertPreferencesViewModel {
         }
     }
     
-    
-
+    enum AlertPreferencesOptions {
+        // Outage
+        case outage, scheduledMaintenanceOutage, severeWeather
+        // Billing
+        case billIsReady
+        // Payment
+        case paymentDueReminder, budgetBillingReview
+        // News
+        case forYourInformation
+        
+        var titleText: String {
+            switch self {
+            case .outage:
+                return NSLocalizedString("Outage", comment: "")
+            case .scheduledMaintenanceOutage:
+                return NSLocalizedString("Scheduled Maintenance Outage", comment: "")
+            case .severeWeather:
+                return NSLocalizedString("Severe Weather", comment: "")
+            case .billIsReady:
+                return NSLocalizedString("Bill is Ready", comment: "")
+            case .paymentDueReminder:
+                return NSLocalizedString("Payment Due Reminder", comment: "")
+            case .budgetBillingReview:
+                return NSLocalizedString("Budget Billing Review", comment: "")
+            case .forYourInformation:
+                return NSLocalizedString("For Your Information", comment: "")
+            }
+        }
+        
+        var detailText: String {
+            switch (self, Environment.shared.opco) {
+                
+            // Outage
+            case (.outage, .bge):
+                return NSLocalizedString("Receive updates on unplanned outages due to storms.", comment: "")
+            case (.outage, .comEd):
+                return NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.\n\nNOTE: Outage Notifications will be provided by ComEd on a 24/7 basis. You may be updated with outage information during the overnight hours or over holidays where applicable.", comment: "")
+            case (.outage, .peco):
+                return NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.", comment: "")
+                
+            // Scheduled Maintenance Outage
+            case (.scheduledMaintenanceOutage, _):
+                return NSLocalizedString("From time to time, BGE must temporarily stop service in order to perform system maintenance or repairs. BGE typically informs customers of planned outages in their area by letter, however, in emergency situations we can inform customers by push notification. Planned outage information will also be available on the planned outages web page on BGE.com.", comment: "")
+                
+            // Severe Weather
+            case (.severeWeather, .bge):
+                return NSLocalizedString("BGE may choose to contact you if a severe-impact storm, such as a hurricane or blizzard, is imminent in our service area to encourage you to prepare for potential outages.", comment: "")
+            case (.severeWeather, .comEd):
+                return NSLocalizedString("Receive an alert about weather conditions that could potentially impact ComEd service in your area.", comment: "")
+            case (.severeWeather, .peco):
+                return NSLocalizedString("Receive an alert about weather conditions that could potentially impact PECO service in your area.", comment: "")
+                
+            // Bill is Ready
+            case (.billIsReady, .bge):
+                return NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert will contain the bill due date and amount due.", comment: "")
+            case (.billIsReady, .comEd): fallthrough
+            case (.billIsReady, .peco):
+                return NSLocalizedString("Receive an alert when your monthly bill is ready to be viewed online. By choosing to receive this notification, you will no longer receive a paper bill through the mail.", comment: "")
+                
+            // Payment Due Reminder
+            case (.paymentDueReminder, .bge):
+                return NSLocalizedString("Choose to receive an alert 1 to 14 days before your payment due date. Customers are responsible for payment for the total amount due on their account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
+            case (.paymentDueReminder, .comEd): fallthrough
+            case (.paymentDueReminder, .peco):
+                return NSLocalizedString("Receive an alert 1 to 7 days before your payment due date. If enrolled in AutoPay, the alert will notify you of when a payment will be deducted from your bank account.\n\nNOTE: You are responsible for payment of the total amount due on your account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
+                
+            // Budget Billing Review
+            case (.budgetBillingReview, .bge):
+                return ""
+            case (.budgetBillingReview, .comEd):
+                return NSLocalizedString("Your monthly Budget Bill Payment may be adjusted every six months to keep your account current with your actual electricity usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
+            case (.budgetBillingReview, .peco):
+                return NSLocalizedString("Your monthly Budget Bill payment may be adjusted every four months to keep your account current with your actual energy usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
+                
+            // For Your Information
+            case (.forYourInformation, .bge):
+                return NSLocalizedString("Occasionally, BGE may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
+            case (.forYourInformation, .comEd):
+                return NSLocalizedString("Occasionally, ComEd may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
+            case (.forYourInformation, .peco):
+                return NSLocalizedString("Occasionally, PECO may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
+            }
+        }
+    }
 }
+
+
+
