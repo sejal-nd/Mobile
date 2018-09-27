@@ -15,7 +15,7 @@ class ReportOutageViewModel {
     
     private var outageService: OutageService
     
-    var accountNumber: String?
+    var accountNumber: String? // Passed from UnauthenticatedOutageStatusViewController
     var outageStatus: OutageStatus! // Passed from OutageViewController/UnauthenticatedOutageStatusViewController
     var selectedSegmentIndex = Variable(0)
     var phoneNumber = Variable("")
