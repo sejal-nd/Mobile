@@ -27,7 +27,9 @@ class AlertPreferencesTableViewController: UIViewController {
     
     weak var delegate: AlertPreferencesViewControllerDelegate?
     
-    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(), billService: ServiceFactory.createBillService())
+    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(),
+                                              billService: ServiceFactory.createBillService(),
+                                              accountService: ServiceFactory.createAccountService())
     
     var hasMadeAnalyticsOffer = false
     

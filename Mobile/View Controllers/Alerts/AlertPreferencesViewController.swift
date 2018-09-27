@@ -70,7 +70,9 @@ class AlertPreferencesViewController: UIViewController {
     
     @IBOutlet var dividerLineConstraints: [NSLayoutConstraint]!
     
-    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(), billService: ServiceFactory.createBillService())
+    let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(),
+                                              billService: ServiceFactory.createBillService(),
+                                              accountService: ServiceFactory.createAccountService())
     
     var hasMadeAnalyticsOffer = false
     
