@@ -282,7 +282,7 @@
                                                                                 <rect key="frame" x="58.5" y="89.5" width="200" height="50"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1j-cR-LsI">
-                                                                                        <rect key="frame" x="78.5" y="14.5" width="42" height="21"/>
+                                                                                        <rect key="frame" x="79" y="15" width="42" height="20.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
@@ -443,7 +443,7 @@
                                                 <rect key="frame" x="0.0" y="90" width="375" height="973.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6B-ne-mO1">
-                                                        <rect key="frame" x="80.5" y="49" width="214" height="214"/>
+                                                        <rect key="frame" x="80.5" y="56.5" width="214" height="214"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yy1-T3-7bp">
                                                                 <rect key="frame" x="0.0" y="0.0" width="214" height="214"/>
@@ -467,7 +467,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-Vb-1pp">
-                                                        <rect key="frame" x="72.5" y="41" width="230" height="230"/>
+                                                        <rect key="frame" x="72.5" y="48.5" width="230" height="230"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="230" id="aDb-i5-y0g"/>
@@ -481,7 +481,7 @@
                                                     <constraint firstItem="hNa-Vb-1pp" firstAttribute="centerY" secondItem="E6B-ne-mO1" secondAttribute="centerY" id="IXZ-Bd-bUw"/>
                                                     <constraint firstItem="E6B-ne-mO1" firstAttribute="centerX" secondItem="NzH-9I-b9u" secondAttribute="centerX" id="RHA-iv-nzk"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="f7z-S5-3G7"/>
-                                                    <constraint firstItem="E6B-ne-mO1" firstAttribute="top" secondItem="NzH-9I-b9u" secondAttribute="top" constant="49" id="lXc-3r-frB"/>
+                                                    <constraint firstItem="E6B-ne-mO1" firstAttribute="top" secondItem="NzH-9I-b9u" secondAttribute="top" constant="56.5" id="lXc-3r-frB"/>
                                                 </constraints>
                                             </view>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lL0-H1-J9Q">

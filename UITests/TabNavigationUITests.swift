@@ -35,13 +35,7 @@ class TabNavigationUITests: ExelonUITestCase {
         outageTab.tap()
         XCTAssertTrue(outageTab.isSelected)
     }
-    
-    func testAlertsTab() {
-        let alertsTab = app.tabBars.buttons["Alerts"]
-        alertsTab.tap()
-        XCTAssertTrue(alertsTab.isSelected)
-    }
-    
+        
     func testMoreTab() {
         let moreTab = app.tabBars.buttons["More"]
         moreTab.tap()

@@ -118,7 +118,6 @@ class OutageStatusButton: UIView {
                 onLottieAnimation = LOTAnimationView(name: "outage")
                 
                 outerCircleView.isHidden = false
-                outerCircleView.layer.borderColor = UIColor.red.cgColor // CHANGE
                 
                 statusTitleLabel.textColor = .actionBlue
                 statusDetailLabel.textColor = .actionBlue

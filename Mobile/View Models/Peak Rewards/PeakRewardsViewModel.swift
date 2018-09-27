@@ -22,7 +22,7 @@ class PeakRewardsViewModel {
             accountDetail.premiseNumber!
     }
     
-    let selectedDeviceIndex = Variable(0)
+    let selectedDeviceIndex = BehaviorSubject(value: 0)
     
     let peakRewardsSummaryFetchTracker = ActivityTracker()
     let deviceScheduleFetchTracker = ActivityTracker()
@@ -101,11 +101,18 @@ class PeakRewardsViewModel {
     //MARK: - View Values
     private(set) lazy var devices: Driver<[SmartThermostatDevice]> = self.peakRewardsSummaryEvents.elements()
         .map { $0.devices }
+        .do(onNext: { [weak self] devices in
+            if let (index, thermostat) = devices.enumerated().first(where: { $0.1.isSmartThermostat }) {
+                self?.selectedDeviceIndex.onNext(index)
+            } else {
+                self?.selectedDeviceIndex.onNext(0)
+            }
+        })
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var selectedDevice: Driver<SmartThermostatDevice> = Observable
-        .combineLatest(self.peakRewardsSummaryEvents.elements(),
-                       self.selectedDeviceIndex.asObservable().distinctUntilChanged())
+        .combineLatest(peakRewardsSummaryEvents.elements(),
+                       selectedDeviceIndex.asObservable().skip(1).distinctUntilChanged())
         .map { $0.devices[$1] }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -113,8 +120,8 @@ class PeakRewardsViewModel {
         String(format: NSLocalizedString("Device: %@", comment: ""), $0.name)
     }
     
-    private(set) lazy var programCardsData: Driver<[(String, String)]> = Observable.combineLatest(self.programsAndOverridesElements,
-                                                                                                  self.selectedDevice.asObservable())
+    private(set) lazy var programCardsData: Driver<[(String, String)]> = Observable
+        .combineLatest(programsAndOverridesElements, selectedDevice.asObservable())
         .map { pair, selectedDevice -> [(String, String)] in
             let (summary, overrides) = pair
             
@@ -125,6 +132,10 @@ class PeakRewardsViewModel {
                 }.first
             
             return programs
+                .sorted { program1, program2 in
+                    !program1.displayName.lowercased().contains("localized") &&
+                        program2.displayName.lowercased().contains("localized")
+                }
                 .map { program -> (String, String) in
                     let body: String
                     switch (program.status, override?.status) {

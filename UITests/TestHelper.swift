@@ -29,7 +29,7 @@ class ExelonUITestCase: XCTestCase{
     
     override func tearDown() {
         ACTLabel.labelStep("Tearing down")
-        
+
         super.tearDown()
     }
     
@@ -41,10 +41,15 @@ class ExelonUITestCase: XCTestCase{
         let continueSwitch = app.switches.element(boundBy: 0)
         continueSwitch.tap()
         
-        if !continueButton.isEnabled {
+        var i = 0
+        while !continueButton.isEnabled {
             // seems the app sometimes has trouble starting up quickly enough for the button to react?
-            sleep(5)
+            usleep(50000)
             continueSwitch.tap()
+            i += 1
+            if i > 10{
+                break
+            }
         }
         ACTLabel.labelStep("Continue switch tapped")
         continueButton.tap()
@@ -86,11 +91,48 @@ class ExelonUITestCase: XCTestCase{
     
     func tapButton(buttonText: String){
         ACTLabel.labelStep("Pre-tap button \(buttonText)")
-        let makePaymentButton = app.scrollViews.otherElements.buttons[buttonText]
-        XCTAssert(makePaymentButton.waitForExistence(timeout: 3))
-        makePaymentButton.tap()
+        var button: XCUIElement?
+       
+        // Buttons could be anywhere in the view hierarchy...
+        let buttonInScrollView = app.scrollViews.otherElements.buttons[buttonText]
+        let buttonInApp = app.buttons[buttonText]
+        let buttonInTableView = app.tables.buttons[buttonText]
+        let buttonDescendants = app.buttons.descendants(matching: XCUIElement.ElementType.button).matching(NSPredicate(format: "label CONTAINS '\(buttonText)'")).firstMatch
+        let lastDitchEffort = app.staticTexts[buttonText]
+        
+        if buttonInScrollView.waitForExistence(timeout: 3){
+            button = buttonInScrollView
+        } else if buttonInApp.waitForExistence(timeout: 3){
+            button = buttonInApp
+        } else if buttonInTableView.waitForExistence(timeout: 3){
+            button = buttonInTableView
+        } else if buttonDescendants.waitForExistence(timeout: 3){
+            button = buttonDescendants
+        } else if lastDitchEffort.waitForExistence(timeout: 3){
+            button = lastDitchEffort
+        }
+        
+        guard let buttonToTap = button else {
+            XCTFail("Unable to locate button with text \(buttonText)")
+            return
+        }
+        buttonToTap.tap()
         sleep(1)
         ACTLabel.labelStep("Post-tap button \(buttonText)")
+        
+       
     }
 }
 
+extension XCUIElement {
+    func scrollToElement(element: XCUIElement) {
+        while !element.visible() {
+            swipeUp()
+        }
+    }
+    
+    func visible() -> Bool {
+        guard self.exists && !self.frame.isEmpty else { return false }
+        return XCUIApplication().windows.element(boundBy: 0).frame.contains(self.frame)
+    }
+}
