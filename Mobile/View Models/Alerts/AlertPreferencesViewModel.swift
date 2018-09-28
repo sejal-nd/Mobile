@@ -44,7 +44,7 @@ class AlertPreferencesViewModel {
         return initialBillReadyValue == false && billReady.value == true
     }
     
-    let devicePushNotificationsEnabled = Variable(false)
+    var devicePushNotificationsEnabled = false
     
     required init(alertsService: AlertsService, billService: BillService, accountService: AccountService) {
         self.alertsService = alertsService
@@ -169,14 +169,15 @@ class AlertPreferencesViewModel {
             .disposed(by: disposeBag)
     }
     
-    private(set) lazy var prefsChanged = Observable.combineLatest(outage.asObservable(),
-                                                                  scheduledMaint.asObservable(),
-                                                                  severeWeather.asObservable(),
-                                                                  billReady.asObservable(),
-                                                                  paymentDue.asObservable(),
-                                                                  paymentDueDaysBefore.asObservable(),
-                                                                  budgetBilling.asObservable(),
-                                                                  forYourInfo.asObservable())
+    private lazy var mainPrefsChanged = Observable
+        .combineLatest(outage.asObservable(),
+                       scheduledMaint.asObservable(),
+                       severeWeather.asObservable(),
+                       billReady.asObservable(),
+                       paymentDue.asObservable(),
+                       paymentDueDaysBefore.asObservable(),
+                       budgetBilling.asObservable(),
+                       forYourInfo.asObservable())
         .map {
             AlertPreferences(outage: $0,
                              scheduledMaint: $1,
@@ -189,10 +190,15 @@ class AlertPreferencesViewModel {
         }
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0.isDifferent(fromOriginal: $1) }
-        .withLatestFrom(english.asObservable())
-        { [weak self] in $0 || $1 != self?.initialEnglishValue ?? false }
-        .distinctUntilChanged()
+    
+    private lazy var languagePrefChanged = english.asObservable()
+        .map { [weak self] in $0 != self?.initialEnglishValue ?? false }
+    
+    private(set) lazy var prefsChanged = Observable
+        .combineLatest(mainPrefsChanged, languagePrefChanged)
+        { $0 || $1 }
         .startWith(false)
+        .share(replay: 1, scope: .forever)
     
     private func saveAlertPreferences() -> Observable<Void> {
         let alertPreferences = AlertPreferences(outage: outage.value,

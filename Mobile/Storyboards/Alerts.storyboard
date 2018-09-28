@@ -740,85 +740,14 @@ this time.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="150" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="tGP-At-eB8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="150" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="tGP-At-eB8">
                                 <rect key="frame" x="0.0" y="44" width="375" height="768"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="7ZV-5A-E5T" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="cpL-ec-B8i"/>
-                                    </constraints>
-                                </view>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="iBt-dZ-9bD">
-                                    <rect key="frame" x="0.0" y="50" width="375" height="184"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="999" text="I would like to receive my notifications in" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NV4-Py-9qy">
-                                            <rect key="frame" x="21" y="18" width="334" height="18.666666666666671"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="52" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IW3-jR-9qy" customClass="RadioSelectControl" customModule="BGE" customModuleProvider="target">
-                                            <rect key="frame" x="21" y="50.666666666666657" width="334" height="52"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="title" value="English"/>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="onLanguageRadioControlPress:" destination="leW-pj-b7g" eventType="touchUpInside" id="QIb-dW-swL"/>
-                                            </connections>
-                                        </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tPN-Qe-ZH8" userLabel="Divider Line">
-                                            <rect key="frame" x="56" y="102.66666666666667" width="298" height="0.3333333333333286"/>
-                                            <color key="backgroundColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="0.5" id="DFF-HA-g4d"/>
-                                            </constraints>
-                                        </view>
-                                        <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="52" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XxN-tc-oOm" customClass="RadioSelectControl" customModule="BGE" customModuleProvider="target">
-                                            <rect key="frame" x="21" y="103" width="333" height="52"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="title" value="Spanish"/>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="onLanguageRadioControlPress:" destination="leW-pj-b7g" eventType="touchUpInside" id="GiD-rF-xRw"/>
-                                            </connections>
-                                        </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qxs-c3-RVC" userLabel="Divider Line">
-                                            <rect key="frame" x="56" y="155" width="298" height="0.66666666666665719"/>
-                                            <color key="backgroundColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="0.5" id="j4n-Zw-JhF"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="XxN-tc-oOm" secondAttribute="trailing" constant="21" id="2zj-ag-Q5L"/>
-                                        <constraint firstAttribute="trailing" secondItem="NV4-Py-9qy" secondAttribute="trailing" constant="20" id="AKE-wk-uct"/>
-                                        <constraint firstItem="XxN-tc-oOm" firstAttribute="leading" secondItem="iBt-dZ-9bD" secondAttribute="leading" constant="21" id="C0l-VN-EoZ"/>
-                                        <constraint firstItem="NV4-Py-9qy" firstAttribute="leading" secondItem="iBt-dZ-9bD" secondAttribute="leading" constant="21" id="FoL-OO-O1J"/>
-                                        <constraint firstAttribute="bottom" secondItem="XxN-tc-oOm" secondAttribute="bottom" constant="29" id="IN1-Dh-Q2l"/>
-                                        <constraint firstItem="Qxs-c3-RVC" firstAttribute="leading" secondItem="iBt-dZ-9bD" secondAttribute="leading" constant="56" id="J6q-qh-swK"/>
-                                        <constraint firstItem="tPN-Qe-ZH8" firstAttribute="leading" secondItem="iBt-dZ-9bD" secondAttribute="leading" constant="56" id="LPd-oZ-B67"/>
-                                        <constraint firstAttribute="trailing" secondItem="IW3-jR-9qy" secondAttribute="trailing" constant="20" id="Ujz-u1-5c9"/>
-                                        <constraint firstItem="Qxs-c3-RVC" firstAttribute="top" secondItem="XxN-tc-oOm" secondAttribute="bottom" id="eTD-Fy-3gJ"/>
-                                        <constraint firstItem="tPN-Qe-ZH8" firstAttribute="top" secondItem="IW3-jR-9qy" secondAttribute="bottom" id="fdy-WY-yid"/>
-                                        <constraint firstItem="IW3-jR-9qy" firstAttribute="top" secondItem="NV4-Py-9qy" secondAttribute="bottom" constant="14" id="g2E-0R-D57"/>
-                                        <constraint firstItem="XxN-tc-oOm" firstAttribute="top" secondItem="tPN-Qe-ZH8" secondAttribute="bottom" id="lTN-jz-WM7"/>
-                                        <constraint firstItem="IW3-jR-9qy" firstAttribute="leading" secondItem="iBt-dZ-9bD" secondAttribute="leading" constant="21" id="nAz-4B-Sag"/>
-                                        <constraint firstAttribute="trailing" secondItem="tPN-Qe-ZH8" secondAttribute="trailing" constant="21" id="owF-R4-xAX"/>
-                                        <constraint firstItem="NV4-Py-9qy" firstAttribute="top" secondItem="iBt-dZ-9bD" secondAttribute="top" constant="18" id="zmK-1N-v2H"/>
-                                        <constraint firstAttribute="trailing" secondItem="Qxs-c3-RVC" secondAttribute="trailing" constant="21" id="zv4-eY-X9o"/>
-                                    </constraints>
-                                </view>
                                 <connections>
                                     <outlet property="dataSource" destination="leW-pj-b7g" id="B15-dZ-yYq"/>
+                                    <outlet property="delegate" destination="leW-pj-b7g" id="a2j-LX-m1Q"/>
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFK-DZ-ctu">
@@ -851,13 +780,8 @@ this time.</string>
                         <viewLayoutGuide key="safeArea" id="8VJ-Nk-vPQ"/>
                     </view>
                     <connections>
-                        <outlet property="accountInfoBar" destination="7ZV-5A-E5T" id="g7U-D0-Cvh"/>
-                        <outlet property="englishRadioControl" destination="IW3-jR-9qy" id="GhO-5Z-AbU"/>
                         <outlet property="errorLabel" destination="pFK-DZ-ctu" id="3nf-TU-WNO"/>
-                        <outlet property="languageSelectionLabel" destination="NV4-Py-9qy" id="QCr-vJ-onO"/>
-                        <outlet property="languageSelectionView" destination="iBt-dZ-9bD" id="s91-Au-D76"/>
                         <outlet property="loadingIndicator" destination="bVz-N3-ck9" id="9Xc-DN-Rwt"/>
-                        <outlet property="spanishRadioControl" destination="XxN-tc-oOm" id="zIb-Vb-wEP"/>
                         <outlet property="tableView" destination="tGP-At-eB8" id="rT6-xb-3zf"/>
                     </connections>
                 </viewController>
