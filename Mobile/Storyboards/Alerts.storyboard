@@ -18,13 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1S-W0-fgM" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i1F-C3-Con">
                                 <rect key="frame" x="0.0" y="44" width="375" height="90"/>
                                 <subviews>
@@ -141,22 +134,18 @@ this time.</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="i1F-C3-Con" firstAttribute="leading" secondItem="XyN-vy-JOx" secondAttribute="leading" id="6WD-C6-w8m"/>
                             <constraint firstItem="XyN-vy-JOx" firstAttribute="trailing" secondItem="Fcn-Wj-y0Q" secondAttribute="trailing" priority="999" id="877-Ad-LBn"/>
                             <constraint firstAttribute="bottom" secondItem="Fcn-Wj-y0Q" secondAttribute="bottom" id="Cog-iU-2ro"/>
-                            <constraint firstAttribute="bottom" secondItem="a1S-W0-fgM" secondAttribute="bottom" id="EV4-UW-ciS"/>
                             <constraint firstItem="MC6-cd-MhW" firstAttribute="centerY" secondItem="Fcn-Wj-y0Q" secondAttribute="centerY" id="Eo6-4H-Lnz"/>
                             <constraint firstItem="XyN-vy-JOx" firstAttribute="trailing" secondItem="i1F-C3-Con" secondAttribute="trailing" id="O61-Ik-1Fj"/>
                             <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="top" secondItem="i1F-C3-Con" secondAttribute="bottom" id="YoO-YR-kWz"/>
                             <constraint firstItem="i1F-C3-Con" firstAttribute="top" secondItem="XyN-vy-JOx" secondAttribute="top" id="ZlV-DM-k3z"/>
                             <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="centerX" secondItem="XyN-vy-JOx" secondAttribute="centerX" id="g5q-ii-2i7"/>
                             <constraint firstItem="Fcn-Wj-y0Q" firstAttribute="leading" secondItem="XyN-vy-JOx" secondAttribute="leading" priority="999" id="jdU-e7-dml"/>
-                            <constraint firstItem="a1S-W0-fgM" firstAttribute="top" secondItem="SQH-FY-2sQ" secondAttribute="top" id="jh3-Yd-LOo"/>
                             <constraint firstItem="MC6-cd-MhW" firstAttribute="centerX" secondItem="Fcn-Wj-y0Q" secondAttribute="centerX" id="kuI-01-vhw"/>
-                            <constraint firstItem="a1S-W0-fgM" firstAttribute="leading" secondItem="XyN-vy-JOx" secondAttribute="leading" id="oNs-g4-6ix"/>
-                            <constraint firstItem="XyN-vy-JOx" firstAttribute="trailing" secondItem="a1S-W0-fgM" secondAttribute="trailing" id="uhF-hz-7PC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XyN-vy-JOx"/>
                     </view>
@@ -167,7 +156,6 @@ this time.</string>
                         <outlet property="accountPicker" destination="cmz-Qs-KFn" id="12g-O5-a00"/>
                         <outlet property="alertsEmptyStateLabel" destination="gCj-TX-FPa" id="V5G-2D-wg5"/>
                         <outlet property="alertsEmptyStateView" destination="MC6-cd-MhW" id="7ap-pX-X4g"/>
-                        <outlet property="noNetworkConnectionView" destination="a1S-W0-fgM" id="69b-Np-hbd"/>
                         <outlet property="preferencesButton" destination="fyw-HH-wzm" id="arJ-vo-3tk"/>
                         <outlet property="preferencesButtonLabel" destination="UfZ-yO-Fmf" id="xWF-Og-ifW"/>
                         <outlet property="tableView" destination="Fcn-Wj-y0Q" id="nKs-sG-cgg"/>

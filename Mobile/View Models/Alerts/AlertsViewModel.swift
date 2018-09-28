@@ -19,5 +19,4 @@ class AlertsViewModel {
 
     private(set) lazy var shouldShowAlertsEmptyState: Driver<Bool> = currentAlerts.asDriver()
         .map { $0.count == 0 }
-
 }

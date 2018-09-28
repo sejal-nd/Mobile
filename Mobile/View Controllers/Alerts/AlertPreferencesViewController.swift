@@ -9,7 +9,7 @@
 import RxSwift
 
 protocol AlertPreferencesViewControllerDelegate: class {
-    func alertPreferencesViewControllerDidSavePreferences(_ alertPreferencesViewController: AlertPreferencesViewController)
+    func alertPreferencesViewControllerDidSavePreferences()
 }
 
 class AlertPreferencesViewController: UIViewController {
@@ -299,7 +299,7 @@ class AlertPreferencesViewController: UIViewController {
                 if self.viewModel.paymentDueDaysBefore.value != index + 1 {
                     if self.viewModel.paymentDue.value {
                         self.makeAnalyticsOffer()
-                        self.viewModel.userChangedPrefs.value = true
+//                        self.viewModel.userChangedPrefs.value = true
                     }
                     self.viewModel.paymentDueDaysBefore.value = index + 1
                 }
@@ -333,13 +333,13 @@ class AlertPreferencesViewController: UIViewController {
                             Analytics.log(event: .alertseBillUnenrollPushContinue)
                         }
                         self?.makeAnalyticsOffer()
-                        self?.viewModel.userChangedPrefs.value = true
+//                        self?.viewModel.userChangedPrefs.value = true
                     }))
                     
                     present(alertVc, animated: true, completion: nil)
                 } else {
                     makeAnalyticsOffer()
-                    viewModel.userChangedPrefs.value = true
+//                    viewModel.userChangedPrefs.value = true
                 }
             } else {
                 let alertTitle = NSLocalizedString("Paperless eBill", comment: "")
@@ -349,14 +349,14 @@ class AlertPreferencesViewController: UIViewController {
                 
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in
                     self?.makeAnalyticsOffer()
-                    self?.viewModel.userChangedPrefs.value = true
+//                    self?.viewModel.userChangedPrefs.value = true
                 }))
                 
                 present(alertVc, animated: true, completion: nil)
             }
         } else {
             makeAnalyticsOffer()
-            viewModel.userChangedPrefs.value = true
+//            viewModel.userChangedPrefs.value = true
         }
     }
     
@@ -370,24 +370,24 @@ class AlertPreferencesViewController: UIViewController {
         let newVal = sender == englishRadioControl
         if newVal != viewModel.english.value {
             makeAnalyticsOffer()
-            viewModel.userChangedPrefs.value = true
+//            viewModel.userChangedPrefs.value = true
             viewModel.english.value = newVal
         }
     }
     
     @objc func onCancelPress() {
-        if viewModel.userChangedPrefs.value {
-            let alertVc = UIAlertController(title: NSLocalizedString("Exit Notification Preferences", comment: ""),
-                                            message: NSLocalizedString("Are you sure you want to leave without saving your changes?", comment: ""),
-                                            preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .destructive, handler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }))
-            present(alertVc, animated: true, completion: nil)
-        } else {
-            navigationController?.popViewController(animated: true)
-        }
+//        if viewModel.userChangedPrefs.value {
+//            let alertVc = UIAlertController(title: NSLocalizedString("Exit Notification Preferences", comment: ""),
+//                                            message: NSLocalizedString("Are you sure you want to leave without saving your changes?", comment: ""),
+//                                            preferredStyle: .alert)
+//            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+//            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .destructive, handler: { [weak self] _ in
+//                self?.navigationController?.popViewController(animated: true)
+//            }))
+//            present(alertVc, animated: true, completion: nil)
+//        } else {
+//            navigationController?.popViewController(animated: true)
+//        }
     }
     
     @objc func onSavePress() {
@@ -397,7 +397,7 @@ class AlertPreferencesViewController: UIViewController {
         viewModel.saveChanges(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let `self` = self else { return }
-            self.delegate?.alertPreferencesViewControllerDidSavePreferences(self)
+            self.delegate?.alertPreferencesViewControllerDidSavePreferences()
             self.navigationController?.popViewController(animated: true)
         }, onError: { [weak self] errMessage in
             LoadingView.hide()

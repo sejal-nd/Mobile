@@ -19,29 +19,7 @@ class AlertPreferencesViewModel {
     
     var accountDetail: AccountDetail! // Passed from AlertsViewController
     
-    let sectionTitles = [NSLocalizedString("Outage", comment: ""),
-                         NSLocalizedString("Billing", comment: ""),
-                         NSLocalizedString("Payment", comment: ""),
-                         NSLocalizedString("News", comment: "")]
-    
-    let sections: [[AlertPreferencesOptions]] = {
-        switch Environment.shared.opco {
-        case .bge:
-            return [
-                [.outage, .scheduledMaintenanceOutage, .severeWeather],
-                [.billIsReady],
-                [.paymentDueReminder],
-                [.forYourInformation]
-            ]
-        case .comEd, .peco:
-            return [
-                [.outage, .severeWeather],
-                [.billIsReady],
-                [.paymentDueReminder, .budgetBillingReview],
-                [.forYourInformation]
-            ]
-        }
-    }()
+    var sections: [(String, [AlertPreferencesOptions])] = []
     
     // Notification Preferences
     let outage = Variable(false)
@@ -57,8 +35,6 @@ class AlertPreferencesViewModel {
     let isFetching = Variable(false)
     let isError = Variable(false)
     let alertPrefs = Variable<AlertPreferences?>(nil)
-    
-    let userChangedPrefs = Variable(false)
     
     var initialBillReadyValue = false
     var initialEnglishValue = true
@@ -90,7 +66,41 @@ class AlertPreferencesViewModel {
         Observable.zip(observables)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                self?.isFetching.value = false
+                guard let self = self else { return }
+                
+                self.isFetching.value = false
+                
+                switch Environment.shared.opco {
+                case .bge:
+                    self.sections = [
+                        (NSLocalizedString("Outage", comment: ""),
+                         [.outage, .scheduledMaintenanceOutage, .severeWeather]),
+                        (NSLocalizedString("Billing", comment: ""),
+                         [.billIsReady]),
+                        (NSLocalizedString("Payment", comment: ""),
+                         [.paymentDueReminder]),
+                        (NSLocalizedString("News", comment: ""),
+                         [.forYourInformation])
+                    ]
+                case .comEd, .peco:
+                    self.sections = [(NSLocalizedString("Outage", comment: ""),
+                                      [.outage, .severeWeather])]
+                    
+                    if self.accountDetail.isResidential && !self.accountDetail.isFinaled &&
+                        (self.accountDetail.isEBillEligible || self.accountDetail.isEBillEnrollment) {
+                        self.sections.append((NSLocalizedString("Billing", comment: ""),
+                                              [.billIsReady]))
+                    }
+                    
+                    var paymentOptions = [AlertPreferencesOptions.paymentDueReminder]
+                    if !self.accountDetail.isBudgetBillEnrollment {
+                        paymentOptions.append(.budgetBillingReview)
+                    }
+                    
+                    self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
+                    self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
+                }
+                
                 onCompletion()
             }, onError: { [weak self] err in
                 self?.isFetching.value = false
@@ -113,7 +123,7 @@ class AlertPreferencesViewModel {
         return alertsService
             .fetchAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
             .do(onNext: { [weak self] alertPrefs in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 
                 self.alertPrefs.value = alertPrefs
                 self.outage.value = alertPrefs.outage
@@ -159,6 +169,31 @@ class AlertPreferencesViewModel {
             .disposed(by: disposeBag)
     }
     
+    private(set) lazy var prefsChanged = Observable.combineLatest(outage.asObservable(),
+                                                                  scheduledMaint.asObservable(),
+                                                                  severeWeather.asObservable(),
+                                                                  billReady.asObservable(),
+                                                                  paymentDue.asObservable(),
+                                                                  paymentDueDaysBefore.asObservable(),
+                                                                  budgetBilling.asObservable(),
+                                                                  forYourInfo.asObservable())
+        .map {
+            AlertPreferences(outage: $0,
+                             scheduledMaint: $1,
+                             severeWeather: $2,
+                             billReady: $3,
+                             paymentDue: $4,
+                             paymentDueDaysBefore: $5,
+                             budgetBilling: $6,
+                             forYourInfo: $7)
+        }
+        .withLatestFrom(alertPrefs.asObservable().unwrap())
+        { $0.isDifferent(fromOriginal: $1) }
+        .withLatestFrom(english.asObservable())
+        { [weak self] in $0 || $1 != self?.initialEnglishValue ?? false }
+        .distinctUntilChanged()
+        .startWith(false)
+    
     private func saveAlertPreferences() -> Observable<Void> {
         let alertPreferences = AlertPreferences(outage: outage.value,
                                                 scheduledMaint: scheduledMaint.value,
@@ -185,13 +220,14 @@ class AlertPreferencesViewModel {
                                     email: accountDetail.customerInfo.emailAddress)
     }
     
-    private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver()) {
-        return !$0 && !$1
-    }
+    private(set) lazy var shouldShowContent: Driver<Bool> = Driver
+        .combineLatest(isFetching.asDriver(), isError.asDriver())
+        { !$0 && !$1 }
     
-    private(set) lazy var saveButtonEnabled: Driver<Bool> = Driver.combineLatest(self.shouldShowContent, self.userChangedPrefs.asDriver()) {
-        return $0 && $1
-    }
+    private(set) lazy var saveButtonEnabled: Driver<Bool> = Driver
+        .combineLatest(shouldShowContent,
+                       prefsChanged.asDriver(onErrorDriveWith: .empty()))
+        { $0 && $1 }
     
     private(set) lazy var paymentDueDaysBeforeButtonText: Driver<String> = self.paymentDueDaysBefore.asDriver().map {
         if $0 == 1 {

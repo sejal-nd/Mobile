@@ -18,13 +18,13 @@ class AlertPreferencesTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var pickerButtonStack: UIStackView!
     @IBOutlet private weak var pickerLabel: UILabel!
-    @IBOutlet private weak var pickerButton: UIButton!
+    @IBOutlet weak var pickerButton: UIButton!
     
-    @IBOutlet private weak var toggle: Switch!
+    @IBOutlet weak var toggle: Switch!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        nameLabel.isAccessibilityElement = false
         nameLabel.textColor = .blackText
         nameLabel.font = SystemFont.regular.of(textStyle: .title1)
         pickerLabel.textColor = .deepGray
@@ -37,14 +37,10 @@ class AlertPreferencesTableViewCell: UITableViewCell {
     }
     
     func configure(withPreferenceOption option: AlertPreferencesViewModel.AlertPreferencesOptions,
-                   toggleValue: Variable<Bool>,
-                   pickerButtonText: Driver<String>? = nil,
-                   onPickerButtonPress: (() -> ())? = nil) {
+                   pickerButtonText: Driver<String>? = nil) {
         nameLabel.text = option.titleText
         detailLabel.text = option.detailText
-        
-        toggle.rx.isOn.asDriver().distinctUntilChanged().drive(toggleValue).disposed(by: disposeBag)
-        toggleValue.asDriver().distinctUntilChanged().drive(toggle.rx.isOn).disposed(by: disposeBag)
+        toggle.accessibilityLabel = option.titleText
         
         pickerButtonText?
             .drive(onNext: { [weak self] buttonText in
@@ -55,14 +51,8 @@ class AlertPreferencesTableViewCell: UITableViewCell {
             })
             .disposed(by: disposeBag)
         
-        if let onPickerButtonPress = onPickerButtonPress {
-            pickerButtonStack.isHidden = false
-            pickerButton.rx.tap.asDriver()
-                .drive(onNext: onPickerButtonPress)
-                .disposed(by: disposeBag)
-        } else {
-            pickerButtonStack.isHidden = true
-        }
+        
+        pickerButtonStack.isHidden = pickerButtonText == nil
     }
     
     override func prepareForReuse() {
