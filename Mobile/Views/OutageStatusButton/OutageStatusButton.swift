@@ -118,7 +118,6 @@ class OutageStatusButton: UIView {
                 onLottieAnimation = LOTAnimationView(name: "outage")
                 
                 outerCircleView.isHidden = false
-                outerCircleView.layer.borderColor = UIColor.red.cgColor // CHANGE
                 
                 statusTitleLabel.textColor = .actionBlue
                 statusDetailLabel.textColor = .actionBlue
@@ -269,6 +268,10 @@ class OutageStatusButton: UIView {
 
     @objc func onBigButtonTap() {
         delegate?.outageStatusButtonWasTapped(self)
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 267, height: 267)
     }
     
 }
