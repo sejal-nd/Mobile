@@ -137,9 +137,7 @@ class ChangePasswordViewModel {
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }
                     
-                    if #available(iOS 12.0, *) { }
-                        // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
-                    else if #available(iOS 11.0, *) {
+                    if #available(iOS 11.0, *) {
                         if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
                             SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                         }
@@ -166,9 +164,7 @@ class ChangePasswordViewModel {
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }
                     
-                    if #available(iOS 12.0, *) { }
-                        // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
-                    else if #available(iOS 11.0, *) {
+                    if #available(iOS 11.0, *) {
                         if let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername), shouldSaveToWebCredentials {
                             SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                         }
