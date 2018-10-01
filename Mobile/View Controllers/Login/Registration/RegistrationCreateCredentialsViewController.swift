@@ -338,7 +338,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
 
         viewModel.everythingValid
             .drive(onNext: { [weak self] valid in
-                self?.confirmPasswordTextField.setEnabled(true)
+                self?.confirmPasswordTextField.setEnabled(valid)
             }).disposed(by: disposeBag)
         
         
