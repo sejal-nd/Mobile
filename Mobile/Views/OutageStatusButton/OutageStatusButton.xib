@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,14 +33,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0P0-jf-3iW">
-                    <rect key="frame" x="1" y="1" width="266" height="266"/>
+                    <rect key="frame" x="1" y="0.0" width="266" height="267"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="266" id="mpD-BT-bo2"/>
+                        <constraint firstAttribute="height" constant="267" id="mpD-BT-bo2"/>
                         <constraint firstAttribute="width" constant="266" id="sre-Xu-lPB"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aal-fY-fBz">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aal-fY-fBz">
                     <rect key="frame" x="23.5" y="23.5" width="220" height="220"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -55,28 +55,28 @@
                             <rect key="frame" x="8" y="37" width="198" height="118.5"/>
                             <subviews>
                                 <view hidden="YES" verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLe-3B-kDr">
-                                    <rect key="frame" x="0.0" y="-15.5" width="198" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="198" height="0.0"/>
                                     <subviews>
-                                        <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ppU-R8-pkP">
-                                            <rect key="frame" x="-2.5" y="-25.5" width="203" height="96"/>
+                                        <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ppU-R8-pkP">
+                                            <rect key="frame" x="-2.5" y="-48" width="203" height="96"/>
                                             <subviews>
-                                                <imageView verifyAmbiguity="off" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" placeholderIntrinsicWidth="45" placeholderIntrinsicHeight="45" translatesAutoresizingMaskIntoConstraints="NO" id="2nh-Fy-jnT">
+                                                <imageView verifyAmbiguity="off" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="45" placeholderIntrinsicHeight="45" translatesAutoresizingMaskIntoConstraints="NO" id="2nh-Fy-jnT">
                                                     <rect key="frame" x="79" y="0.0" width="45" height="45"/>
                                                 </imageView>
-                                                <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVx-jp-gyn">
+                                                <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVx-jp-gyn">
                                                     <rect key="frame" x="0.0" y="45" width="203" height="10"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="10" id="VTD-LT-tlN"/>
                                                     </constraints>
                                                 </view>
-                                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Our records indicate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcO-BM-jwS">
+                                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our records indicate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcO-BM-jwS">
                                                     <rect key="frame" x="35.5" y="55" width="132" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="POWER IS ON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A40-kJ-bo8">
+                                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POWER IS ON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A40-kJ-bo8">
                                                     <rect key="frame" x="30.5" y="72" width="142.5" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="5gX-ny-P8a"/>
@@ -177,7 +177,7 @@
             <constraints>
                 <constraint firstItem="KEt-H0-Vtc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Kor-At-qVs"/>
                 <constraint firstItem="aal-fY-fBz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="N5A-24-bHw"/>
-                <constraint firstItem="0P0-jf-3iW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="ZHH-kE-BEd"/>
+                <constraint firstItem="0P0-jf-3iW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ZHH-kE-BEd"/>
                 <constraint firstAttribute="trailing" secondItem="0P0-jf-3iW" secondAttribute="trailing" id="avV-QP-voe"/>
                 <constraint firstItem="0P0-jf-3iW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="1" id="cPD-Lj-V6R"/>
                 <constraint firstAttribute="bottom" secondItem="0P0-jf-3iW" secondAttribute="bottom" id="fG0-Rc-0hC"/>
