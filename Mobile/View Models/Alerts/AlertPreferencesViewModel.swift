@@ -242,6 +242,32 @@ class AlertPreferencesViewModel {
         return String(format: NSLocalizedString("%d Days Before", comment: ""), $0)
     }
     
+    var showAccountInfoBar: Bool {
+        switch Environment.shared.opco {
+        case .bge:
+            return false
+        case .comEd, .peco:
+            return true
+        }
+    }
+    
+    var showNotificationSettingsView: Bool {
+        return !devicePushNotificationsEnabled
+    }
+    
+    var showTopSection: Bool {
+        return showAccountInfoBar || showNotificationSettingsView
+    }
+    
+    var showLanguageSection: Bool {
+        switch Environment.shared.opco {
+        case .comEd:
+            return true
+        case .bge, .peco:
+            return false
+        }
+    }
+    
     // MARK: Detail Label Strings
     
     var outageDetailLabelText: String? {

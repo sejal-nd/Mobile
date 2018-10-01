@@ -17,7 +17,7 @@ class AlertPreferencesTableViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private var saveButton: UIBarButtonItem!
+    private var saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: nil, action: nil)
     private let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
     
     weak var delegate: AlertPreferencesViewControllerDelegate?
@@ -38,7 +38,6 @@ class AlertPreferencesTableViewController: UIViewController {
         tableView.register(UINib(nibName: AccountInfoBarCell.className, bundle: nil),
                            forCellReuseIdentifier: AccountInfoBarCell.className)
         
-        saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
         
@@ -54,11 +53,23 @@ class AlertPreferencesTableViewController: UIViewController {
             .disposed(by: disposeBag)
         
         
+        errorLabel.isHidden = true
         tableView.isHidden = true
         viewModel.fetchData(onCompletion: { [weak self] in
-            self?.tableView.reloadData()
-            self?.tableView.isHidden = false
-            UIAccessibility.post(notification: .screenChanged, argument: self?.view)
+            guard let self = self else { return }
+            
+            self.loadingIndicator.isHidden = true
+            
+            if self.viewModel.isError.value {
+                self.tableView.isHidden = true
+                self.errorLabel.isHidden = false
+            } else {
+                self.tableView.isHidden = false
+                self.errorLabel.isHidden = true
+                
+                self.tableView.reloadData()
+                UIAccessibility.post(notification: .screenChanged, argument: self.view)
+            }
         })
     }
     
@@ -67,7 +78,16 @@ class AlertPreferencesTableViewController: UIViewController {
             let enabled = !notificationSettings.types.isEmpty
             if enabled != viewModel.devicePushNotificationsEnabled {
                 viewModel.devicePushNotificationsEnabled = enabled
-                tableView.reloadData()
+                switch (viewModel.showAccountInfoBar, viewModel.showNotificationSettingsView) {
+                case (true, true):
+                    tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
+                case (true, false):
+                    tableView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
+                case (false, true):
+                    tableView.insertSections(IndexSet([0]), with: .bottom)
+                case (false, false):
+                    tableView.deleteSections(IndexSet([0]), with: .bottom)
+                }
             }
         }
     }
@@ -79,9 +99,6 @@ class AlertPreferencesTableViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
-        
         viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         
         viewModel.prefsChanged.filter { $0 }.take(1)
@@ -92,6 +109,10 @@ class AlertPreferencesTableViewController: UIViewController {
             .withLatestFrom(viewModel.prefsChanged)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.onCancelPress(prefsChanged: $0) })
+            .disposed(by: disposeBag)
+        
+        saveButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in self?.onSavePress() })
             .disposed(by: disposeBag)
     }
     
@@ -178,49 +199,36 @@ extension AlertPreferencesTableViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sections.count +
-            ((!viewModel.devicePushNotificationsEnabled || Environment.shared.opco != .bge) ? 1 : 0) +
-            (Environment.shared.opco == .comEd ? 1 : 0)
+            (viewModel.showTopSection ? 1 : 0) +
+            (viewModel.showLanguageSection ? 1 : 0)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 && (!viewModel.devicePushNotificationsEnabled || Environment.shared.opco != .bge) {
-            return (!viewModel.devicePushNotificationsEnabled ? 1 : 0) + (Environment.shared.opco != .bge ? 1 : 0)
-        } else if section == numberOfSections(in: tableView) - 1 && Environment.shared.opco == .comEd {
+        if section == 0 && viewModel.showTopSection {
+            return (viewModel.showNotificationSettingsView ? 1 : 0) + (viewModel.showAccountInfoBar ? 1 : 0)
+        } else if section == numberOfSections(in: tableView) - 1 && viewModel.showLanguageSection {
             return 1
         } else {
-            let offset = ((!viewModel.devicePushNotificationsEnabled || Environment.shared.opco != .bge) ? 1 : 0)
+            let offset = viewModel.showTopSection ? 1 : 0
             return viewModel.sections[section - offset].1.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard !(indexPath.section == 0 && (!viewModel.devicePushNotificationsEnabled || Environment.shared.opco != .bge)) else {
-            if indexPath.row == 0 && Environment.shared.opco != .bge {
+        guard !(indexPath.section == 0 && viewModel.showTopSection) else {
+            if indexPath.row == 0 && viewModel.showAccountInfoBar {
                 return tableView.dequeueReusableCell(withIdentifier: AccountInfoBarCell.className) ?? UITableViewCell()
             } else {
                 return tableView.dequeueReusableCell(withIdentifier: AlertPreferencesNotificationsSettingsCell.className) ?? UITableViewCell()
             }
         }
         
-        guard !(indexPath.section == numberOfSections(in: tableView) - 1 && Environment.shared.opco == .comEd) else {
+        guard !(indexPath.section == numberOfSections(in: tableView) - 1 && viewModel.showLanguageSection) else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AlertPreferencesLanguageCell.className) as? AlertPreferencesLanguageCell else {
                 return UITableViewCell()
             }
             
-            cell.englishRadioSelectControl.rx.touchUpInside.mapTo(true).bind(to: viewModel.english).disposed(by: cell.disposeBag)
-            cell.spanishRadioSelectControl.rx.touchUpInside.mapTo(false).bind(to: viewModel.english).disposed(by: cell.disposeBag)
-         
-            viewModel.english.asDriver()
-                .drive(onNext: { [weak cell] english in
-                    guard let cell = cell else { return }
-                    
-                    cell.englishRadioSelectControl.isSelected = english
-                    cell.spanishRadioSelectControl.isSelected = !english
-                    cell.englishRadioSelectControl.accessibilityLabel = String(format: NSLocalizedString("English, option 1 of 2, %@", comment: ""), english ? "selected" : "")
-                    cell.spanishRadioSelectControl.accessibilityLabel = String(format: NSLocalizedString("Spanish, option 2 of 2, %@", comment: ""), !english ? "selected" : "")
-                })
-                .disposed(by: cell.disposeBag)
-            
+            configureLanguageCell(cell)
             return cell
         }
         
@@ -228,7 +236,28 @@ extension AlertPreferencesTableViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let offset = ((!viewModel.devicePushNotificationsEnabled || Environment.shared.opco != .bge) ? 1 : 0)
+        configureToggleCell(cell, forIndexPath: indexPath)
+        return cell
+    }
+    
+    private func configureLanguageCell(_ cell: AlertPreferencesLanguageCell) {
+        cell.englishRadioSelectControl.rx.touchUpInside.mapTo(true).bind(to: viewModel.english).disposed(by: cell.disposeBag)
+        cell.spanishRadioSelectControl.rx.touchUpInside.mapTo(false).bind(to: viewModel.english).disposed(by: cell.disposeBag)
+        
+        viewModel.english.asDriver()
+            .drive(onNext: { [weak cell] english in
+                guard let cell = cell else { return }
+                
+                cell.englishRadioSelectControl.isSelected = english
+                cell.spanishRadioSelectControl.isSelected = !english
+                cell.englishRadioSelectControl.accessibilityLabel = String(format: NSLocalizedString("English, option 1 of 2, %@", comment: ""), english ? "selected" : "")
+                cell.spanishRadioSelectControl.accessibilityLabel = String(format: NSLocalizedString("Spanish, option 2 of 2, %@", comment: ""), !english ? "selected" : "")
+            })
+            .disposed(by: cell.disposeBag)
+    }
+    
+    private func configureToggleCell(_ cell: AlertPreferencesTableViewCell, forIndexPath indexPath: IndexPath) {
+        let offset = viewModel.showTopSection ? 1 : 0
         let option = viewModel.sections[indexPath.section - offset].1[indexPath.row]
         
         var toggleVariable: Variable<Bool>?
@@ -285,8 +314,6 @@ extension AlertPreferencesTableViewController: UITableViewDataSource {
         
         cell.configure(withPreferenceOption: option,
                        pickerButtonText: pickerButtonText)
-        
-        return cell
     }
     
 }
@@ -294,9 +321,9 @@ extension AlertPreferencesTableViewController: UITableViewDataSource {
 extension AlertPreferencesTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 && (!viewModel.devicePushNotificationsEnabled || Environment.shared.opco != .bge) {
+        if section == 0 && viewModel.showTopSection {
             return 0.01
-        } else if section == numberOfSections(in: tableView) - 1 && Environment.shared.opco == .comEd {
+        } else if section == numberOfSections(in: tableView) - 1 && viewModel.showLanguageSection {
             return 0.01
         } else {
             return 73
@@ -312,16 +339,16 @@ extension AlertPreferencesTableViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard !(section == 0 && (!viewModel.devicePushNotificationsEnabled || Environment.shared.opco != .bge)) else {
+        guard !(section == 0 && viewModel.showTopSection) else {
             return UIView(frame: .zero)
         }
         
-        guard section != numberOfSections(in: tableView) - 1 || Environment.shared.opco != .comEd else {
+        guard !(section == numberOfSections(in: tableView) - 1 && viewModel.showLanguageSection) else {
             return UIView(frame: .zero)
         }
         
         let view = AlertPreferencesSectionHeaderView()
-        let offset = ((!viewModel.devicePushNotificationsEnabled || Environment.shared.opco != .bge) ? 1 : 0)
+        let offset = viewModel.showTopSection ? 1 : 0
         view.configure(withTitle: viewModel.sections[section - offset].0)
         return view
     }
