@@ -136,7 +136,6 @@ class OutageViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.getOutageStatus() })
             .disposed(by: disposeBag)
         
-        
         scrollView?.rx.contentOffset.asDriver()
             .map { min(0, $0.y) }
             .distinctUntilChanged()
@@ -155,6 +154,9 @@ class OutageViewController: AccountPickerViewController {
         noPayPayBillButtonLabel.textColor = .actionBlue
         noPayPayBillButtonLabel.font = OpenSans.semibold.of(size: 18)
         noPayPayBillButtonLabel.text = NSLocalizedString("Pay Bill", comment: "")
+        noPayPayBillButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
+            self?.tabBarController?.selectedIndex = 1 // Jump to Bill tab
+        }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -310,7 +312,6 @@ class OutageViewController: AccountPickerViewController {
                 self?.setRefreshControlEnabled(enabled: true)
                 self?.errorLabel.isHidden = true
                 self?.customErrorView.isHidden = true
-                
         })
     }
     
@@ -420,14 +421,10 @@ extension OutageViewController: AccountPickerDelegate {
 extension OutageViewController: OutageStatusButtonDelegate {
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
         Analytics.log(event: .outageStatusDetails)
-        if viewModel.currentOutageStatus!.flagNoPay && Environment.shared.opco != .bge  {
-            tabBarController?.selectedIndex = 1 // Jump to Bill tab
-        } else {
-            if let message = viewModel.currentOutageStatus!.outageDescription {
-                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
-            }
+        if let message = viewModel.currentOutageStatus!.outageDescription {
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
 }
