@@ -97,7 +97,7 @@ class RegistrationViewModel {
                 if #available(iOS 12.0, *) {
                     onSuccess()
                 }
-                    // Save to SWC if iOS 11
+                    // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
                 else if #available(iOS 11.0, *) {
                     guard let this = self else { return }
                     SharedWebCredentials.save(credential: (this.username.value, this.newPassword.value), domain: Environment.shared.associatedDomain) { [weak this] error in

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbd-17-Mv3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2O0-lO-zkL">
-                                <rect key="frame" x="52" y="59.5" width="323" height="0.5"/>
+                                <rect key="frame" x="52" y="59" width="323" height="0.5"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="yu9-he-nNK"/>
@@ -36,7 +36,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vUf-9D-NaE">
-                                <rect key="frame" x="48" y="13" width="40.5" height="34"/>
+                                <rect key="frame" x="51" y="13" width="40.5" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqd-2J-dVB">
                                         <rect key="frame" x="0.0" y="0.0" width="40.5" height="19.5"/>
@@ -66,7 +66,7 @@
                             <constraint firstItem="F4e-ka-6AD" firstAttribute="centerY" secondItem="vbd-17-Mv3" secondAttribute="centerY" id="M82-bd-KSl"/>
                             <constraint firstItem="2O0-lO-zkL" firstAttribute="leading" secondItem="vbd-17-Mv3" secondAttribute="leading" constant="52" id="OJd-n5-3xU"/>
                             <constraint firstItem="kg7-h3-qHb" firstAttribute="centerY" secondItem="vbd-17-Mv3" secondAttribute="centerY" id="T96-b5-9kn"/>
-                            <constraint firstItem="vUf-9D-NaE" firstAttribute="leading" secondItem="F4e-ka-6AD" secondAttribute="trailing" constant="8" id="YAw-FG-9rg"/>
+                            <constraint firstItem="vUf-9D-NaE" firstAttribute="leading" secondItem="F4e-ka-6AD" secondAttribute="trailing" constant="11" id="YAw-FG-9rg"/>
                             <constraint firstAttribute="trailing" secondItem="kg7-h3-qHb" secondAttribute="trailing" constant="16" id="beW-JI-vLX"/>
                             <constraint firstAttribute="trailing" secondItem="2O0-lO-zkL" secondAttribute="trailing" id="bua-pz-LaX"/>
                             <constraint firstItem="vUf-9D-NaE" firstAttribute="centerY" secondItem="vbd-17-Mv3" secondAttribute="centerY" id="hIG-Z4-n4g"/>

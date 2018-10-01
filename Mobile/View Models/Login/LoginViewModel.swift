@@ -74,7 +74,7 @@ class LoginViewModel {
                     }).disposed(by: self.disposeBag)
                 } else {
                     if #available(iOS 12.0, *) { }
-                        // Save to SWC if iOS 11
+                        // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
                     else if #available(iOS 11.0, *) {
                         SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                     }
