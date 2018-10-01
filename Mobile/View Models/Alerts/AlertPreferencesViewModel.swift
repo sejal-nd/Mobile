@@ -32,7 +32,6 @@ class AlertPreferencesViewModel {
     let forYourInfo = Variable(false)
     let english = Variable(true) // Language selection. False = Spanish
     
-    let isFetching = Variable(false)
     let isError = Variable(false)
     let alertPrefs = Variable<AlertPreferences?>(nil)
     
@@ -55,7 +54,6 @@ class AlertPreferencesViewModel {
     // MARK: Web Services
     
     func fetchData(onCompletion: @escaping () -> Void) {
-        isFetching.value = true
         isError.value = false
         
         var observables = [fetchAccountDetail(), fetchAlertPreferences()]
@@ -67,8 +65,6 @@ class AlertPreferencesViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                
-                self.isFetching.value = false
                 
                 switch Environment.shared.opco {
                 case .bge:
@@ -103,7 +99,6 @@ class AlertPreferencesViewModel {
                 
                 onCompletion()
             }, onError: { [weak self] err in
-                self?.isFetching.value = false
                 self?.isError.value = true
                 onCompletion()
             })
@@ -226,14 +221,7 @@ class AlertPreferencesViewModel {
                                     email: accountDetail.customerInfo.emailAddress)
     }
     
-    private(set) lazy var shouldShowContent: Driver<Bool> = Driver
-        .combineLatest(isFetching.asDriver(), isError.asDriver())
-        { !$0 && !$1 }
-    
-    private(set) lazy var saveButtonEnabled: Driver<Bool> = Driver
-        .combineLatest(shouldShowContent,
-                       prefsChanged.asDriver(onErrorDriveWith: .empty()))
-        { $0 && $1 }
+    private(set) lazy var saveButtonEnabled: Driver<Bool> = prefsChanged.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var paymentDueDaysBeforeButtonText: Driver<String> = self.paymentDueDaysBefore.asDriver().map {
         if $0 == 1 {
