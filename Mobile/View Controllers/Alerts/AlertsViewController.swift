@@ -114,7 +114,7 @@ class AlertsViewController: AccountPickerViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? AlertPreferencesTableViewController {
+        if let vc = segue.destination as? AlertPreferencesViewController {
             vc.delegate = self
         }
     }

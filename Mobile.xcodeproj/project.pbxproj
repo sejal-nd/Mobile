@@ -916,9 +916,9 @@
 		B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0726938212757AA009B2BFF /* HomeUpdateView.xib */; };
 		B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0726938212757AA009B2BFF /* HomeUpdateView.xib */; };
 		B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0726938212757AA009B2BFF /* HomeUpdateView.xib */; };
-		B0728E40215AD18C0007C608 /* AlertPreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0728E3F215AD18C0007C608 /* AlertPreferencesTableViewController.swift */; };
-		B0728E41215AD18C0007C608 /* AlertPreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0728E3F215AD18C0007C608 /* AlertPreferencesTableViewController.swift */; };
-		B0728E42215AD18C0007C608 /* AlertPreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0728E3F215AD18C0007C608 /* AlertPreferencesTableViewController.swift */; };
+		B0728E40215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0728E3F215AD18C0007C608 /* AlertPreferencesViewController.swift */; };
+		B0728E41215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0728E3F215AD18C0007C608 /* AlertPreferencesViewController.swift */; };
+		B0728E42215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0728E3F215AD18C0007C608 /* AlertPreferencesViewController.swift */; };
 		B0728E46215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0728E44215C149A0007C608 /* AlertPreferencesTableViewCell.swift */; };
 		B0728E47215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0728E44215C149A0007C608 /* AlertPreferencesTableViewCell.swift */; };
 		B0728E48215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0728E44215C149A0007C608 /* AlertPreferencesTableViewCell.swift */; };
@@ -1610,9 +1610,6 @@
 		E87C413F1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */; };
 		E87C41401FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */; };
 		E87C41411FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */; };
-		E87C41431FAB6D0400448F86 /* AlertPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41421FAB6D0400448F86 /* AlertPreferencesViewController.swift */; };
-		E87C41441FAB6D0400448F86 /* AlertPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41421FAB6D0400448F86 /* AlertPreferencesViewController.swift */; };
-		E87C41451FAB6D0400448F86 /* AlertPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41421FAB6D0400448F86 /* AlertPreferencesViewController.swift */; };
 		E87C41471FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */; };
 		E87C41481FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */; };
 		E87C41491FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */; };
@@ -2651,7 +2648,7 @@
 		B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditViewController.swift; sourceTree = "<group>"; };
 		B07269342127579C009B2BFF /* HomeUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUpdateView.swift; sourceTree = "<group>"; };
 		B0726938212757AA009B2BFF /* HomeUpdateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeUpdateView.xib; sourceTree = "<group>"; };
-		B0728E3F215AD18C0007C608 /* AlertPreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesTableViewController.swift; sourceTree = "<group>"; };
+		B0728E3F215AD18C0007C608 /* AlertPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewController.swift; sourceTree = "<group>"; };
 		B0728E44215C149A0007C608 /* AlertPreferencesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesTableViewCell.swift; sourceTree = "<group>"; };
 		B0728E45215C149A0007C608 /* AlertPreferencesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPreferencesTableViewCell.xib; sourceTree = "<group>"; };
 		B07D247220C590AB00BD22EB /* HomeWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
@@ -2962,7 +2959,6 @@
 		E87C41341FAA562500448F86 /* AlertsSegmentedControl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertsSegmentedControl.xib; sourceTree = "<group>"; };
 		E87C41381FAA565700448F86 /* AlertsSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsSegmentedControl.swift; sourceTree = "<group>"; };
 		E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
-		E87C41421FAB6D0400448F86 /* AlertPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewController.swift; sourceTree = "<group>"; };
 		E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTableViewCell.swift; sourceTree = "<group>"; };
 		E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewModel.swift; sourceTree = "<group>"; };
 		E87E8AE21FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewModelTests.swift; sourceTree = "<group>"; };
@@ -5079,8 +5075,7 @@
 			isa = PBXGroup;
 			children = (
 				E87C412F1FAA522B00448F86 /* AlertsViewController.swift */,
-				E87C41421FAB6D0400448F86 /* AlertPreferencesViewController.swift */,
-				B0728E3F215AD18C0007C608 /* AlertPreferencesTableViewController.swift */,
+				B0728E3F215AD18C0007C608 /* AlertPreferencesViewController.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -6420,7 +6415,7 @@
 				35A6C6DE211CC0CA00C2A58F /* UpdatesViewController.swift in Sources */,
 				E8D340961EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				B068DB5E20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
-				B0728E40215AD18C0007C608 /* AlertPreferencesTableViewController.swift in Sources */,
+				B0728E40215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
 				E8C29C731F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
 				826773351FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
@@ -6671,7 +6666,6 @@
 				B0A8308D2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				35A6C6E6211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */,
 				B0882CAD210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
-				E87C41431FAB6D0400448F86 /* AlertPreferencesViewController.swift in Sources */,
 				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				548288DF1ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
 				82AC2A231FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
@@ -6778,7 +6772,7 @@
 				B068DB6020D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				35A6C7022121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
-				B0728E42215AD18C0007C608 /* AlertPreferencesTableViewController.swift in Sources */,
+				B0728E42215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				E8C29C751F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
@@ -7029,7 +7023,6 @@
 				B0A8308F2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */,
 				B0882CAF210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
-				E87C41451FAB6D0400448F86 /* AlertPreferencesViewController.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A41ED87AE200F0198B /* CreditCard.swift in Sources */,
 				82AC2A251FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
@@ -7136,7 +7129,7 @@
 				B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				35A6C7012121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
-				B0728E41215AD18C0007C608 /* AlertPreferencesTableViewController.swift in Sources */,
+				B0728E41215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				E81F38141ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				826773361FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				E8C29C741F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
@@ -7387,7 +7380,6 @@
 				B0A8308E2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				2F5C81FB1F1D5C4A005B35FA /* WeatherAPI.swift in Sources */,
 				B0882CAE210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
-				E87C41441FAB6D0400448F86 /* AlertPreferencesViewController.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */,
 				82AC2A241FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
