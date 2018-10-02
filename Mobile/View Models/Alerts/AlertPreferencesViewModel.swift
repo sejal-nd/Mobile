@@ -89,7 +89,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     var paymentOptions = [AlertPreferencesOptions.paymentDueReminder]
-                    if !self.accountDetail.isBudgetBillEnrollment {
+                    if self.accountDetail.isBudgetBillEnrollment {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
