@@ -73,6 +73,16 @@ struct AlertPreferences {
         return array
     }
     
+    func isDifferent(fromOriginal originalPrefs: AlertPreferences) -> Bool {
+        return outage != originalPrefs.outage ||
+            scheduledMaint != originalPrefs.scheduledMaint ||
+            severeWeather != originalPrefs.severeWeather ||
+            billReady != originalPrefs.billReady ||
+            paymentDue != originalPrefs.paymentDue ||
+            (paymentDue && paymentDueDaysBefore != originalPrefs.paymentDueDaysBefore) ||
+            budgetBilling != originalPrefs.budgetBilling ||
+            forYourInfo != originalPrefs.forYourInfo
+    }
 }
 
 struct AlertPreference: Mappable {

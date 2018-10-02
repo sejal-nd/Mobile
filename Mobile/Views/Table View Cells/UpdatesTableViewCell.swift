@@ -6,11 +6,14 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
+import RxCocoa
 
 class UpdatesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var innerContentView: UIView!
+    var disposeBag = DisposeBag()
+    
+    @IBOutlet weak var innerContentView: ButtonControl!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     
@@ -65,4 +68,8 @@ class UpdatesTableViewCell: UITableViewCell {
         innerContentView.accessibilityLabel = "\(title): \(detail)"
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
 }
