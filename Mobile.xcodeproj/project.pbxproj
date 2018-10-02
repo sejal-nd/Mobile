@@ -823,12 +823,6 @@
 		9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
-		9C47AED5203E3101000AECF4 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C47AED4203E3101000AECF4 /* BillComparisonInitExtensions.swift */; };
-		9C47AED6203E3140000AECF4 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C47AED4203E3101000AECF4 /* BillComparisonInitExtensions.swift */; };
-		9C47AED7203E3141000AECF4 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C47AED4203E3101000AECF4 /* BillComparisonInitExtensions.swift */; };
-		9C47AED8203E3142000AECF4 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C47AED4203E3101000AECF4 /* BillComparisonInitExtensions.swift */; };
-		9C47AED9203E3142000AECF4 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C47AED4203E3101000AECF4 /* BillComparisonInitExtensions.swift */; };
-		9C47AEDA203E3143000AECF4 /* BillComparisonInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C47AED4203E3101000AECF4 /* BillComparisonInitExtensions.swift */; };
 		9C4C95CC203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95CD203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95CE203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
@@ -2272,7 +2266,6 @@
 		0EB93B6B202CA4DF0049E7A2 /* BGE-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-AUT.plist"; sourceTree = "<group>"; };
 		0EB93B6D202CA4F30049E7A2 /* ComEd-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-AUT.plist"; sourceTree = "<group>"; };
 		0EB93B6F202CA5040049E7A2 /* PECO-Environment-AUT.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-AUT.plist"; sourceTree = "<group>"; };
-		0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MobileConfig.xcconfig; sourceTree = "<group>"; };
 		0EF60FB420EE78F6006ABC18 /* GSTouchesShowingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSTouchesShowingWindow.swift; sourceTree = "<group>"; };
 		0EF60FB520EE78F6006ABC18 /* GSTouchesShowingGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSTouchesShowingGestureRecognizer.swift; sourceTree = "<group>"; };
 		0EF60FB620EE78F6006ABC18 /* GSTouchesShowingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSTouchesShowingController.swift; sourceTree = "<group>"; };
@@ -2549,7 +2542,6 @@
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
 		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
-		9C47AED4203E3101000AECF4 /* BillComparisonInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillComparisonInitExtensions.swift; sourceTree = "<group>"; };
 		9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillForecastInitExtensions.swift; sourceTree = "<group>"; };
 		9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
 		9C6BC8A620ADCECF00B4399B /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
@@ -4184,7 +4176,6 @@
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
-				0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */,
 				E81CFFE81EC230B5004FDA7E /* Entitlements */,
 				B58B5AC31E4E28740051FD5F /* Mobile */,
 				B5AC06D61E52238900BBA4ED /* UnitTests */,
@@ -4484,7 +4475,6 @@
 			isa = PBXGroup;
 			children = (
 				823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */,
-				9C47AED4203E3101000AECF4 /* BillComparisonInitExtensions.swift */,
 				9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */,
 				E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */,
 				829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */,
@@ -6072,7 +6062,6 @@
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
-				9C47AED5203E3101000AECF4 /* BillComparisonInitExtensions.swift in Sources */,
 				E89C162A1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				82EAB3341F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
@@ -6410,7 +6399,6 @@
 				82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				E8EDC5461F324242006DD927 /* FiservErrorMapper.swift in Sources */,
 				9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
-				9C47AED7203E3141000AECF4 /* BillComparisonInitExtensions.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
@@ -6763,7 +6751,6 @@
 				82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				E8EDC5451F324242006DD927 /* FiservErrorMapper.swift in Sources */,
 				9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
-				9C47AED6203E3140000AECF4 /* BillComparisonInitExtensions.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7D1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
@@ -7065,7 +7052,6 @@
 				E840CB381F82D13A00357780 /* AutoPayViewModelTests.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
 				B011C0BB20F5063A00C900BE /* RecentPaymentsStore.swift in Sources */,
-				9C47AED8203E3142000AECF4 /* BillComparisonInitExtensions.swift in Sources */,
 				B067E0AE2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				E8039FF81EFB041D004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				54AE06971ECF7809004A1FDA /* RegistrationService.swift in Sources */,
@@ -7290,7 +7276,6 @@
 				E8F62B97200924410077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62B98200924410077B3DA /* BillViewModelTests.swift in Sources */,
 				B011C0BC20F5063B00C900BE /* RecentPaymentsStore.swift in Sources */,
-				9C47AED9203E3142000AECF4 /* BillComparisonInitExtensions.swift in Sources */,
 				B067E0AF2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				E8F62B99200924410077B3DA /* BGEAutoPayInfo.swift in Sources */,
 				E8F62B9A200924410077B3DA /* RegistrationService.swift in Sources */,
@@ -7470,7 +7455,6 @@
 				E8F62C4C200924570077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62C4D200924570077B3DA /* BillViewModelTests.swift in Sources */,
 				B011C0BD20F5063C00C900BE /* RecentPaymentsStore.swift in Sources */,
-				9C47AEDA203E3143000AECF4 /* BillComparisonInitExtensions.swift in Sources */,
 				B067E0B02045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				E8F62C4E200924570077B3DA /* BGEAutoPayInfo.swift in Sources */,
 				E8F62C4F200924570077B3DA /* RegistrationService.swift in Sources */,
@@ -7655,7 +7639,6 @@
 		};
 		0E131751202B583000865819 /* Prodbeta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -7935,7 +7918,6 @@
 		};
 		0EB93B5E202CA3C70049E7A2 /* Automation */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -8426,7 +8408,6 @@
 		};
 		B58B5AE81E4E28740051FD5F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -8549,7 +8530,6 @@
 		};
 		B58B5AF61E51497B0051FD5F /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EBF2DCA202CC72800DCFD30 /* MobileConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

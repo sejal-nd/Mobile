@@ -142,4 +142,8 @@ class OutageViewModel {
         }
         return ""
     }
+    
+    var shouldShowPayBillButton: Bool {
+        return Environment.shared.opco != .bge && currentOutageStatus!.flagNoPay
+    }
 }
