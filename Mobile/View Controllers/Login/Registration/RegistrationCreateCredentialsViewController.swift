@@ -139,6 +139,14 @@ class RegistrationCreateCredentialsViewController: UIViewController {
 
         passwordStrengthView.isHidden = true
         
+        if #available(iOS 11.0, *) {
+            createUsernameTextField.textField.textContentType = .username
+            confirmUsernameTextField.textField.textContentType = .username
+        } else if #available(iOS 10.0, *) {
+            createUsernameTextField.textField.textContentType = .emailAddress
+            confirmUsernameTextField.textField.textContentType = .emailAddress
+        }
+        
         createUsernameTextField.textField.placeholder = NSLocalizedString("Email Address*", comment: "")
         createUsernameTextField.setKeyboardType(.emailAddress)
         createUsernameTextField.textField.returnKeyType = .next
@@ -197,7 +205,13 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         createPasswordTextField.textField.delegate = self
         createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-        if #available(iOS 11.0, *) {
+        if #available(iOS 12.0, *) {
+            createPasswordTextField.textField.textContentType = .newPassword
+            confirmPasswordTextField.textField.textContentType = .newPassword
+            let rulesDescriptor = "required: lower, upper, digit, special; minlength: 8; maxlength: 16;"
+            createPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+            confirmPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+        } else if #available(iOS 11.0, *) {
             createPasswordTextField.textField.inputAccessoryView = toolbar
             confirmPasswordTextField.textField.inputAccessoryView = toolbar
         }
@@ -327,7 +341,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             .drive(onNext: { [weak self] valid in
                 self?.confirmUsernameTextField.setEnabled(valid)
             }).disposed(by: disposeBag)
-        
+
         viewModel.everythingValid
             .drive(onNext: { [weak self] valid in
                 self?.confirmPasswordTextField.setEnabled(valid)
@@ -411,7 +425,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
-            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+            safeAreaBottomInset = view.safeAreaInsets.bottom
         }
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
@@ -468,16 +482,16 @@ extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
                 createUsernameTextField.textField.becomeFirstResponder()
             }
         } else if textField == confirmPasswordTextField.textField {
-			viewModel.doneButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
-				.drive(onNext: { [weak self] enabled in
-					if enabled {
-						self?.onNextPress()
-					} else {
-						self?.view.endEditing(true)
-					}
-				}).disposed(by: disposeBag)
+            viewModel.doneButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+                .drive(onNext: { [weak self] enabled in
+                    if enabled {
+                        self?.onNextPress()
+                    } else {
+                        self?.view.endEditing(true)
+                    }
+                }).disposed(by: disposeBag)
         }
-		
+        
         return false
     }
     
