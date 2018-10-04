@@ -21,20 +21,22 @@ class ToggleTableViewCell: UITableViewCell {
     @IBOutlet weak var toggleCheckImageView: UIImageView!
     @IBOutlet weak var toggle: UISwitch! {
         didSet {
-            
             toggle.layer.cornerRadius = 16.0
             toggle.layer.masksToBounds = true
-            
             toggle.tintColor = .switchBackgroundColor
             toggle.backgroundColor = .switchBackgroundColor
             toggle.thumbTintColor = .primaryColor
             toggle.onTintColor = .white
         }
     }
-
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        isAccessibilityElement = false
+    }
     
     // MARK: - Configure
-
     public func configure(viewModel: MoreViewModel, tag: Int) {
         // Style
         backgroundColor = .primaryColor
@@ -51,11 +53,8 @@ class ToggleTableViewCell: UITableViewCell {
         toggle.isOn = viewModel.isBiometryEnabled()
         toggleCheckImageView.isHidden = !toggle.isOn
         
-        // Accessibility
-        titleLabel.accessibilityLabel = titleLabel.text
         toggle.isAccessibilityElement = true
     }
-    
     
     // MARK:  Actions
 

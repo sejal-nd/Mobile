@@ -220,7 +220,6 @@
 		359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2822148519D00FBAD83 /* sm_outage_loading.json */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
-		35A6C6BE211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BD211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift */; };
 		35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
 		35A6C6C3211C7ADE00C2A58F /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6C2211C7ADE00C2A58F /* TitleTableViewCell.swift */; };
 		35A6C6CA211C8B3100C2A58F /* UIColorDarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */; };
@@ -228,8 +227,6 @@
 		35A6C6D0211C8F0500C2A58F /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6C2211C7ADE00C2A58F /* TitleTableViewCell.swift */; };
 		35A6C6D1211C8F0700C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
 		35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
-		35A6C6D3211C8F0B00C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BD211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift */; };
-		35A6C6D4211C8F0B00C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BD211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift */; };
 		35A6C6D5211C8F1200C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6D6211C8F1300C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6D7211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
@@ -2390,7 +2387,6 @@
 		359BB2822148519D00FBAD83 /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
-		35A6C6BD211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnauthenticatedUserViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
 		35A6C6C2211C7ADE00C2A58F /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorDarker.swift; sourceTree = "<group>"; };
@@ -5100,7 +5096,6 @@
 			isa = PBXGroup;
 			children = (
 				389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */,
-				35A6C6BD211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift */,
 				E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */,
 				E89983E01F61F4B0001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift */,
 				E8C29C721F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift */,
@@ -6456,7 +6451,6 @@
 				2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				82AC2A1A1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
-				35A6C6BE211C706700C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				54C1DEF21F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
@@ -6993,7 +6987,6 @@
 				B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399371F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
 				E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
-				35A6C6D4211C8F0B00C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift in Sources */,
 				E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E971EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				54AE06B71ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
@@ -7350,7 +7343,6 @@
 				B0EA71C02090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399361F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
 				E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
-				35A6C6D3211C8F0B00C2A58F /* UnauthenticatedUserViewController+TableViewDelegate.swift in Sources */,
 				E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,

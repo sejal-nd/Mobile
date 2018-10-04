@@ -39,7 +39,7 @@ class TitleTableViewCell: UITableViewCell {
         contentContainerView.backgroundColor = bgColor
         
         detailLabel.isHidden = true
-        
+        accessibilityTraits = .button
     }
     
     
