@@ -127,4 +127,17 @@ class SmartThermostatScheduleViewModel {
         })
     private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
         .map { ($0 as? ServiceError)?.errorDescription ?? "" }
+    
+    var didYouKnowText: String {
+        switch self.period {
+        case .wake:
+            return NSLocalizedString("As a guideline, the U.S. Department of Energy suggests setting your thermostat to 68°F for heating and 78°F for cooling while you are awake at home.", comment: "")
+        case .leave:
+            return NSLocalizedString("Program the thermostat to an energy-saving level for when your household members are away. Setting your home's temperature at least 10°F higher in the summer and 10°F lower in the winter is a good rule of thumb.", comment: "")
+        case .return:
+            return NSLocalizedString("As a guideline, the U.S. Department of Energy suggests setting your thermostat to 68°F for heating and 78°F for cooling while you are awake at home.", comment: "")
+        case .sleep:
+            return NSLocalizedString("Program your thermostat at least 10°F lower in the winter or 4°F higher in the summer while you're sleeping. The temperature will return to your preferred comfort level by the time you wake up.", comment: "")
+        }
+    }
 }
