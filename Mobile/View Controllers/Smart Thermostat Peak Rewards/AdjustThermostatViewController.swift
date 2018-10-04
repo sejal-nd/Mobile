@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import SafariServices
 
 class AdjustThermostatViewController: UIViewController {
     
