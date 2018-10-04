@@ -176,6 +176,7 @@ class HomeUsageCardView: UIView {
         viewUsageButtonLabel.textColor = .actionBlue
         viewUsageButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
         viewUsageButtonLabel.text = NSLocalizedString("View Usage", comment: "")
+        viewUsageButton.accessibilityLabel = viewUsageButtonLabel.text
     }
     
     private func styleSmartEnergyRewards() {
