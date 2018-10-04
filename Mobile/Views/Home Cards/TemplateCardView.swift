@@ -79,6 +79,7 @@ class TemplateCardView: UIView {
             .drive(bodyLabel.rx.attributedText).disposed(by: bag)
         viewModel.bodyStringA11yLabel.drive(bodyLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.ctaString.drive(callToActionLabel.rx.text).disposed(by: bag)
+        viewModel.ctaString.drive(callToActionButton.rx.accessibilityLabel).disposed(by: bag)
         
         viewModel.errorLabelText
             .map { $0?.attributedString(withLineHeight: 26, textAlignment: .center) }

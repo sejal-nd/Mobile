@@ -43,5 +43,6 @@ class HomeUpdateView: UIView {
     func configure(withUpdate update: OpcoUpdate) {
         titleLabel.text = update.title
         descriptionLabel.text = update.message
+        button.accessibilityLabel = String(format: "%@, %@", update.title, update.message)
     }
 }

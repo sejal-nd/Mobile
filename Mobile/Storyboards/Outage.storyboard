@@ -344,7 +344,7 @@
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQU-ql-0n5" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="742.5" width="317" height="60"/>
-                                                                <accessibility key="accessibilityConfiguration" label="Report outage"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Report streetlight outage"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="R3F-PS-9RU"/>
                                                                 </constraints>
