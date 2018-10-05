@@ -50,7 +50,7 @@
 			<key>baseURL</key>
 			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
 			<key>appKey</key>
-			<string>4891c190-d3b2-4125-b640-f96fed10ae98</string>
+			<string>cdacfdc9-8f90-4089-80c1-21361403ab1c</string>
 			<key>authorization</key>
 			<dict>
 				<key>authenticationType</key>
@@ -74,7 +74,7 @@
 				<key>Basic</key>
 				<dict>
 					<key>mobileBackendID</key>
-					<string>75926ee8-5d41-4375-92d3-d4c01f73b432</string>
+					<string>d612762f-f41d-432b-a056-83ef7780b44c</string>
 					<key>anonymousKey</key>
 					<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 				</dict>
