@@ -17,7 +17,7 @@ protocol AlertsService {
     ///   - completion: the completion block to execute upon completion.
     ///     The ServiceResult that is provided will contain an AlertPreferences
     ////    object upon success, or the error on failure.
-    func register(token: String, firstLogin: Bool, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func register(token: String, firstLogin: Bool) -> Observable<Void>
     
     /// Fetch infomation about what push notifications the user is subscribed for
     ///
@@ -26,7 +26,7 @@ protocol AlertsService {
     ///   - completion: the completion block to execute upon completion.
     ///     The ServiceResult that is provided will contain an AlertPreferences
     ////    object upon success, or the error on failure.
-    func fetchAlertPreferences(accountNumber: String, completion: @escaping (_ result: ServiceResult<AlertPreferences>) -> Void)
+    func fetchAlertPreferences(accountNumber: String) -> Observable<AlertPreferences>
     
     /// Subscribes or unsubscribes from certain push notifications
     ///
@@ -34,7 +34,7 @@ protocol AlertsService {
     ///   - accountNumber: The account to set prefs for
     ///   - alertPreferences: An AlertPreferences object describing the alerts the user wants/does not want
     ///   - completion: the completion block to execute upon completion.
-    func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences) -> Observable<Void>
     
     /// Enrolls in the budget billing push notification preference. This is a separate call so that
     /// we can use it individually during budget billing enrollment without impacting other notification prefs
@@ -42,7 +42,7 @@ protocol AlertsService {
     /// - Parameters:
     ///   - accountNumber: The account to set prefs for
     ///   - completion: the completion block to execute upon completion.
-    func enrollBudgetBillingNotification(accountNumber: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func enrollBudgetBillingNotification(accountNumber: String) -> Observable<Void>
     
     /// Fetch alerts language setting for ComEd account
     ///
@@ -50,7 +50,7 @@ protocol AlertsService {
     ///   - accountNumber: The account to fetch info for
     ///   - completion: the completion block to execute upon completion.
     ///     The ServiceResult that is provided will contain either 'English' or 'Spanish'
-    func fetchAlertLanguage(accountNumber: String, completion: @escaping (_ result: ServiceResult<String>) -> Void)
+    func fetchAlertLanguage(accountNumber: String) -> Observable<String>
     
     /// Set alerts language setting for ComEd account
     ///
@@ -58,120 +58,12 @@ protocol AlertsService {
     ///   - accountNumber: The account to fetch info for
     ///   - english: true for "English", false for "Spanish"
     ///   - completion: the completion block to execute upon completion.
-    func setAlertLanguage(accountNumber: String, english: Bool, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func setAlertLanguage(accountNumber: String, english: Bool) -> Observable<Void>
     
     /// Fetch opco specific updates to be displayed in the "Updates" section of the Alerts tab
     ///
     /// - Parameters:
     ///   - bannerOnly: If true, filter out any updates that don't belong on the home screen "banner"
     ///   - completion: the completion block to execute upon completion.
-    func fetchOpcoUpdates(bannerOnly: Bool, completion: @escaping (_ result: ServiceResult<[OpcoUpdate]>) -> Void)
-}
-
-// MARK: - Reactive Extension to AlertsService
-extension AlertsService {
-    func register(token: String, firstLogin: Bool) -> Observable<Void> {
-        return Observable.create { observer in
-            self.register(token: token, firstLogin: firstLogin, completion: { (result: ServiceResult<Void>) in
-                switch result {
-                case ServiceResult.success:
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func fetchAlertPreferences(accountNumber: String) -> Observable<AlertPreferences> {
-        return Observable.create { observer in
-            self.fetchAlertPreferences(accountNumber: accountNumber, completion: { (result: ServiceResult<AlertPreferences>) in
-                switch result {
-                case ServiceResult.success(let alertPrefs):
-                    observer.onNext(alertPrefs)
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences) -> Observable<Void> {
-        return Observable.create { observer in
-            self.setAlertPreferences(accountNumber: accountNumber, alertPreferences: alertPreferences, completion: { (result: ServiceResult<Void>) in
-                switch result {
-                case ServiceResult.success:
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func enrollBudgetBillingNotification(accountNumber: String) -> Observable<Void> {
-        return Observable.create { observer in
-            self.enrollBudgetBillingNotification(accountNumber: accountNumber, completion: { (result: ServiceResult<Void>) in
-                switch result {
-                case ServiceResult.success:
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func fetchAlertLanguage(accountNumber: String) -> Observable<String> {
-        return Observable.create { observer in
-            self.fetchAlertLanguage(accountNumber: accountNumber, completion: { (result: ServiceResult<String>) in
-                switch result {
-                case ServiceResult.success(let language):
-                    observer.onNext(language)
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func setAlertLanguage(accountNumber: String, english: Bool) -> Observable<Void> {
-        return Observable.create { observer in
-            self.setAlertLanguage(accountNumber: accountNumber, english: english, completion: { (result: ServiceResult<Void>) in
-                switch result {
-                case ServiceResult.success:
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func fetchOpcoUpdates(bannerOnly: Bool = false) -> Observable<[OpcoUpdate]> {
-        return Observable.create { observer in
-            self.fetchOpcoUpdates(bannerOnly: bannerOnly, completion: { (result: ServiceResult<[OpcoUpdate]>) in
-                switch result {
-                case ServiceResult.success(let opcoUpdates):
-                    observer.onNext(opcoUpdates)
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
+    func fetchOpcoUpdates(bannerOnly: Bool) -> Observable<[OpcoUpdate]>
 }

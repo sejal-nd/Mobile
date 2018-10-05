@@ -19,7 +19,7 @@ protocol AccountService {
     /// - Parameters:
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain an AccountPage on success, or a ServiceError on failure.
-    func fetchAccounts(completion: @escaping (_ result: ServiceResult<[Account]>) -> Void)
+    func fetchAccounts() -> Observable<[Account]>
     
     
     /// Fetch an accounts detailed information.
@@ -28,7 +28,7 @@ protocol AccountService {
     ///   - account: the account to fetch
     ///   - completion: the block to execute upon completion, the ServiceResult
     ///     that is provided will contain the AccountDetails on success, or a ServiceError on failure.
-    func fetchAccountDetail(account: Account, completion: @escaping (_ result: ServiceResult<AccountDetail>) -> Void)
+    func fetchAccountDetail(account: Account) -> Observable<AccountDetail>
     
     
     /// Updates the Release of Information in preferences for the specified account (PECO ONLY)
@@ -36,99 +36,19 @@ protocol AccountService {
     /// - Parameters:
     ///   - account: the account to update
     ///   - completion: the block to execute upon completion
-    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void>
     
     
     /// Sets the user's default account to the specified account
     ///
     /// - Parameters:
     ///   - account: the account to set as default
-    func setDefaultAccount(account: Account, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func setDefaultAccount(account: Account) -> Observable<Void>
     
     /// Gets single sign-on info so that we can display the logged-in user's usage web view
     ///
     /// - Parameters:
     ///   - accountNumber: the account to fetch SSOData for
     ///   - premiseNumber: the premiseNumber to fetch SSOData for
-    func fetchSSOData(accountNumber: String, premiseNumber: String, completion: @escaping (_ result: ServiceResult<SSOData>) -> Void)
+    func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData>
 }
-
-// MARK: - Reactive Extension to AccountService
-extension AccountService {
-    
-    func fetchAccounts() -> Observable<[Account]> {
-        return Observable.create { observer in
-            self.fetchAccounts { (result: ServiceResult<[Account]>) in
-                switch result {
-                case ServiceResult.success(let accounts):
-                    observer.onNext(accounts)
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
-    func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
-        return Observable.create { observer in
-            self.fetchAccountDetail(account: account, completion: { (result: ServiceResult<AccountDetail>) in
-                switch result {
-                case ServiceResult.success(let accountDetail):
-                    observer.onNext(accountDetail)
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void> {
-        return Observable.create { observer in
-            self.updatePECOReleaseOfInfoPreference(account: account, selectedIndex: selectedIndex, completion: { (result: ServiceResult<Void>) in
-                switch result {
-                case ServiceResult.success:
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func setDefaultAccount(account: Account) -> Observable<Void> {
-        return Observable.create { observer in
-            self.setDefaultAccount(account: account, completion: { (result: ServiceResult<Void>) in
-                switch result {
-                case ServiceResult.success:
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
-        return Observable.create { observer in
-            self.fetchSSOData(accountNumber: accountNumber, premiseNumber: premiseNumber, completion: { (result: ServiceResult<SSOData>) in
-                switch result {
-                case ServiceResult.success(let ssoData):
-                    observer.onNext(ssoData)
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-}
-

@@ -15,7 +15,7 @@ protocol PaymentService {
     /// - Parameters:
     ///   - accountNumber: The account to get the info for
     ///   - completion: the completion block to execute upon completion.
-    func fetchBGEAutoPayInfo(accountNumber: String, completion: @escaping (_ result: ServiceResult<BGEAutoPayInfo>) -> Void)
+    func fetchBGEAutoPayInfo(accountNumber: String) -> Observable<BGEAutoPayInfo>
 
 
     /// Enroll in AutoPay (BGE only)
@@ -34,15 +34,14 @@ protocol PaymentService {
                             effectivePeriod: EffectivePeriod,
                             effectiveEndDate: Date?,
                             effectiveNumPayments: String,
-                            isUpdate: Bool,
-                            completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+                            isUpdate: Bool) -> Observable<Void>
     
     /// Unenroll in AutoPay (BGE only)
     ///
     /// - Parameters:
     ///   - accountNumber: The account to enroll
     ///   - completion: the completion block to execute upon completion.
-    func unenrollFromAutoPayBGE(accountNumber: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void>
 
     /// Enroll in AutoPay (ComEd & PECO only)
     ///
@@ -59,8 +58,7 @@ protocol PaymentService {
                          bankAccountType: BankAccountType,
                          routingNumber: String,
                          bankAccountNumber: String,
-                         isUpdate: Bool,
-                         completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+                         isUpdate: Bool) -> Observable<Void>
 
     /// Unenroll in AutoPay (ComEd & PECO only)
     ///
@@ -68,29 +66,27 @@ protocol PaymentService {
     ///   - accountNumber: The account to unenroll
     ///   - reason: Reason for unenrolling
     ///   - completion: the completion block to execute upon completion.
-    func unenrollFromAutoPay(accountNumber: String,
-                             reason: String,
-                             completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func unenrollFromAutoPay(accountNumber: String, reason: String) -> Observable<Void>
     
     /// Fetch the next 90 days that PECO users are elibile to make payments
     ///
     /// - Parameters:
     ///   - completion: the completion block to execute upon completion.
-    func fetchWorkdays(completion: @escaping (_ result: ServiceResult<[Date]>) -> Void)
+    func fetchWorkdays() -> Observable<[Date]>
     
     /// Schedule a payment
     ///
     /// - Parameters:
     ///   - payment: the payment to schedule
     ///   - completion: the completion block to execute upon completion.
-    func schedulePayment(payment: Payment, completion: @escaping (_ result: ServiceResult<String>) -> Void)
+    func schedulePayment(payment: Payment) -> Observable<Void>
     
     /// Schedule a payment
     ///
     /// - Parameters:
     ///   - creditCard: the card details
     ///   - completion: the completion block to execute upon completion.
-    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard, completion: @escaping (ServiceResult<String>) -> Void)
+    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<Void>
     
     /// Gets full details of an one time payment transaction
     ///
@@ -98,214 +94,9 @@ protocol PaymentService {
     ///   - accountNumber: The account to fetch for
     ///   - paymentId: the paymentId
     ///   - completion: the completion block to execute upon completion.
-    func fetchPaymentDetails(accountNumber: String, paymentId: String, completion: @escaping (_ result: ServiceResult<PaymentDetail>) -> Void)
+    func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail>
     
-    func updatePayment(paymentId: String, payment: Payment, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
+    func updatePayment(paymentId: String, payment: Payment) -> Observable<Void>
     
-    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail, completion: @escaping (_ result: ServiceResult<Void>) -> Void)
-}
-
-// MARK: - Reactive Extension to PaymentService
-extension PaymentService {
-
-    func fetchBGEAutoPayInfo(accountNumber: String) -> Observable<BGEAutoPayInfo> {
-        return Observable.create { observer in
-            self.fetchBGEAutoPayInfo(accountNumber: accountNumber, completion: { (result: ServiceResult<BGEAutoPayInfo>) in
-                switch (result) {
-                case ServiceResult.success(let autoPayInfo):
-                    observer.onNext(autoPayInfo)
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-
-    func enrollInAutoPayBGE(accountNumber: String,
-                            walletItemId: String?,
-                            amountType: AmountType,
-                            amountThreshold: String,
-                            paymentDatesBeforeDue: String,
-                            effectivePeriod: EffectivePeriod,
-                            effectiveEndDate: Date?,
-                            effectiveNumPayments: String,
-                            isUpdate: Bool) -> Observable<Void> {
-        
-        return Observable.create { observer in
-            self.enrollInAutoPayBGE(accountNumber: accountNumber, walletItemId: walletItemId, amountType: amountType, amountThreshold: amountThreshold, paymentDaysBeforeDue: paymentDatesBeforeDue, effectivePeriod: effectivePeriod, effectiveEndDate: effectiveEndDate, effectiveNumPayments: effectiveNumPayments, isUpdate: isUpdate, completion: { (result: ServiceResult<Void>) in
-                switch (result) {
-                case ServiceResult.success(()):
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void> {
-        
-        return Observable.create { observer in
-            self.unenrollFromAutoPayBGE(accountNumber: accountNumber)
-            { (result: ServiceResult<Void>) in
-                switch (result) {
-                case ServiceResult.success:
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            }
-            return Disposables.create()
-        }
-    }
-
-    func enrollInAutoPay(accountNumber: String,
-                         nameOfAccount: String,
-                         bankAccountType: BankAccountType,
-                         routingNumber: String,
-                         bankAccountNumber: String,
-                         isUpdate: Bool) -> Observable<Void> {
-
-        return Observable.create { observer in
-            self.enrollInAutoPay(accountNumber: accountNumber,
-                                 nameOfAccount: nameOfAccount,
-                                 bankAccountType: bankAccountType,
-                                 routingNumber: routingNumber,
-                                 bankAccountNumber: bankAccountNumber,
-                                 isUpdate: isUpdate)
-            { (result: ServiceResult<Void>) in
-                switch (result) {
-                case ServiceResult.success(_):
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            }
-            return Disposables.create()
-        }
-    }
-
-    func unenrollFromAutoPay(accountNumber: String, reason: String) -> Observable<Void> {
-
-        return Observable.create { observer in
-            self.unenrollFromAutoPay(accountNumber: accountNumber,
-                                     reason: reason)
-            { (result: ServiceResult<Void>) in
-                switch (result) {
-                case ServiceResult.success(_):
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
-    func fetchWorkdays() -> Observable<[Date]> {
-        return Observable.create { observer in
-            self.fetchWorkdays(completion: { (result: ServiceResult<[Date]>) in
-                switch (result) {
-                case ServiceResult.success(let workdays):
-                    observer.onNext(workdays)
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            })
-            return Disposables.create()
-        }
-    }
-
-    func schedulePayment(payment: Payment) -> Observable<Void> {
-        
-        return Observable.create { observer in
-            self.schedulePayment(payment: payment)
-            { (result: ServiceResult<String>) in
-                switch (result) {
-                case ServiceResult.success(_):
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
-    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<Void> {
-        
-        return Observable.create { observer in
-            self.scheduleBGEOneTimeCardPayment(accountNumber: accountNumber, paymentAmount: paymentAmount, paymentDate: paymentDate, creditCard: creditCard)
-            { (result: ServiceResult<String>) in
-                switch (result) {
-                case ServiceResult.success(_):
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
-    func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail> {
-        
-        return Observable.create { observer in
-            self.fetchPaymentDetails(accountNumber: accountNumber, paymentId: paymentId)
-            { (result: ServiceResult<PaymentDetail>) in
-                switch (result) {
-                case ServiceResult.success(let paymentDetail):
-                    observer.onNext(paymentDetail)
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
-    func updatePayment(paymentId: String, payment: Payment) -> Observable<Void> {
-        
-        return Observable.create { observer in
-            self.updatePayment(paymentId: paymentId, payment: payment)
-            { (result: ServiceResult<Void>) in
-                switch (result) {
-                case ServiceResult.success(_):
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
-    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail) -> Observable<Void> {
-        
-        return Observable.create { observer in
-            self.cancelPayment(accountNumber: accountNumber, paymentId: paymentId, bankOrCard: bankOrCard, paymentDetail: paymentDetail)
-            { (result: ServiceResult<Void>) in
-                switch (result) {
-                case ServiceResult.success(()):
-                    observer.onNext(())
-                    observer.onCompleted()
-                case ServiceResult.failure(let err):
-                    observer.onError(err)
-                }
-            }
-            return Disposables.create()
-        }
-    }
+    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail) -> Observable<Void>
 }

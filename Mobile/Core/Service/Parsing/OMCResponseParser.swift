@@ -21,26 +21,18 @@ enum OMCResponseKey : String {
 
 class OMCResponseParser : NSObject {
     
-    static func parse(data: Any?, error: Error?, response: HTTPURLResponse?) -> ServiceResult<Any> {
+    static func parse(response: HTTPURLResponse, data: Any) -> ServiceResult<Any> {
         
         var result: ServiceResult<Any>
         
         //There are 4 scenerios here.
-        //1. We have no error, and data that can be parsed.
-        //2. We have no error, and the data is not parsable.
-        //3. We have no error, and do NOT have data to parse (unexpected type).
-        //4. We have an error.
+        //1. We have data that can be parsed.
+        //2. The data is not parsable.
         
-        if data != nil {
-            if let d = data as? [String: Any] {
-                result = parseData(data: d) //1.
-            } else {
-                result = ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)) //2.
-            }
-        } else if error != nil {
-            result = ServiceResult.failure(ServiceError(cause: error!)) //4.
+        if let d = data as? [String: Any] {
+            result = parseData(data: d) //1.
         } else {
-            result = ServiceResult.failure(ServiceError())
+            result = ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)) //2.
         }
         
         return result
