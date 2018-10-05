@@ -25,7 +25,11 @@ class HomeBillCardView: UIView {
     
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var headerAlertAnimationContainer: UIView!
+    @IBOutlet private weak var headerAlertAnimationContainer: UIView! {
+        didSet {
+            headerAlertAnimationContainer.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        }
+    }
     private var alertAnimation = LOTAnimationView(name: "alert_icon")
     
     @IBOutlet private weak var topSpacerHeight: NSLayoutConstraint!

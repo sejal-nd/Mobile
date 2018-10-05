@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .primaryColor
 
         viewModel.biometricsEnabled.asDriver().drive(onNext: { [weak self] enabled in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if enabled {
                 self.biometricButton.isHidden = false
                 self.loginFormViewHeightConstraint.constant = 420

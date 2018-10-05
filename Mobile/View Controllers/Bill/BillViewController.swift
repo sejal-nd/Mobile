@@ -493,7 +493,7 @@ class BillViewController: AccountPickerViewController {
         viewModel.paymentStatusText.drive(makeAPaymentStatusButton.rx.accessibilityLabel).disposed(by: bag)
         
         viewModel.billBreakdownButtonTitle.drive(billBreakdownLabel.rx.text).disposed(by: bag)
-        viewModel.billBreakdownButtonTitle.drive(billBreakdownLabel.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.billBreakdownButtonTitle.drive(billBreakdownButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.hasBillBreakdownData
             .map { $0 ? #imageLiteral(resourceName: "ic_billbreakdown") : #imageLiteral(resourceName: "ic_usagemini") }
             .drive(billBreakdownImageView.rx.image)

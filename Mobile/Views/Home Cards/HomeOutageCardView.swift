@@ -216,6 +216,7 @@ class HomeOutageCardView: UIView {
             .disposed(by: bag)
         
         viewModel.callToActionButtonText.drive(buttonControlLabel.rx.text).disposed(by: bag)
+        viewModel.callToActionButtonText.drive(callToActionButton.rx.accessibilityLabel).disposed(by: bag)
     }
     
 }

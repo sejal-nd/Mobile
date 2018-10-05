@@ -273,8 +273,7 @@ class ReportOutageViewController: UIViewController {
                     self.meterPingCurrentStatusLabel.text = NSLocalizedString("Verifying voltage level of the meter...", comment: "")
                     self.meterPingVoltageStatusView.isHidden = false
                     
-                    UIAccessibility.post(notification: .screenChanged, argument: self)
-                    UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Verifying voltage level of the meter", comment: ""))
+                    UIAccessibility.post(notification: .screenChanged, argument: self) 
                     self.viewModel.meterPingGetVoltageStatus(onVoltageVerified: {
                         self.meterPingCurrentStatusLoadingView.isHidden = true
                         self.meterPingCurrentStatusCheckImageView.isHidden = false

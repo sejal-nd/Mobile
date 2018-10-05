@@ -27,6 +27,8 @@ class OutageStatusButton: UIView {
     @IBOutlet weak private var innerCircleView: UIView! {
         didSet {
             innerCircleView.layer.borderWidth = 6
+            innerCircleView.isAccessibilityElement = true
+            innerCircleView.accessibilityTraits = .button
             innerCircleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
         }
     }
