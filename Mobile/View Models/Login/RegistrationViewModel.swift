@@ -94,7 +94,11 @@ class RegistrationViewModel {
         registrationService.checkForDuplicateAccount(username.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                if #available(iOS 11.0, *) {
+                if #available(iOS 12.0, *) {
+                    onSuccess()
+                }
+                // Manually save to SWC if iOS 11
+                else if #available(iOS 11.0, *) {
                     guard let this = self else { return }
                     SharedWebCredentials.save(credential: (this.username.value, this.newPassword.value), domain: Environment.shared.associatedDomain) { [weak this] error in
                         DispatchQueue.main.async {
@@ -397,10 +401,9 @@ class RegistrationViewModel {
                                                                                       resultSelector: ==)
     
     // THIS IS FOR THE NEXT BUTTON ON THE SECOND STEP (CREATE SIGN IN CREDENTIALS)
-    private(set) lazy var doneButtonEnabled: Driver<Bool> = Driver.combineLatest(self.everythingValid,
-                                                                                 self.confirmPasswordMatches,
-                                                                                 self.newPasswordHasText)
-	{ $0 && $1 && $2 }
+    private(set) lazy var doneButtonEnabled: Driver<Bool> = Driver
+        .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
+        { $0 && $1 && $2 }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
 	private(set) lazy var question1Selected: Driver<Bool> = self.securityQuestion1.asDriver().map { !$0.isEmpty }

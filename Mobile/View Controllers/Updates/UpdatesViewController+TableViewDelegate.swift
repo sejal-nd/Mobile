@@ -6,9 +6,10 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
+import RxCocoa
 
-extension UpdatesViewController: UITableViewDataSource, UITableViewDelegate {
+extension UpdatesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.currentOpcoUpdates.value?.count ?? 0
@@ -18,13 +19,13 @@ extension UpdatesViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UpdatesTableViewCell.className, for: indexPath) as? UpdatesTableViewCell, let opcoUpdates = viewModel.currentOpcoUpdates.value else { return UITableViewCell() }
 
         cell.configure(title: opcoUpdates[indexPath.row].title, detail: opcoUpdates[indexPath.row].message)
+        cell.innerContentView.rx.touchUpInside.asDriver()
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "UpdatesDetailSegue", sender: indexPath)
+            })
+            .disposed(by: cell.disposeBag)
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "UpdatesDetailSegue", sender: indexPath)
     }
     
 }

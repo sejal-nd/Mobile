@@ -21,6 +21,14 @@ protocol OutageService {
     ///     that is provided will contain the OutageStatus on success, or a ServiceError on failure.
     func fetchOutageStatus(account: Account, completion: @escaping (_ result: ServiceResult<OutageStatus>) -> Void)
     
+    /// Fetch the meter data for a given Account.
+    ///
+    /// - Parameters:
+    ///   - account: the account to fetch outage status for
+    ///   - completion: the block to execute upon completion, the ServiceResult
+    ///     that is provided will contain the MeterPingInfo on success, or a ServiceError on failure.
+    func pingMeter(account: Account, completion: @escaping (_ result: ServiceResult<MeterPingInfo>) -> Void)
+    
     /// Report an outage for the current customer.
     ///
     /// - Parameters:
@@ -101,4 +109,19 @@ extension OutageService {
         }
     }
     
+    func pingMeter(account: Account) -> Observable<MeterPingInfo> {
+        return Observable.create { observer in
+            self.pingMeter(account: account, completion: { (result: ServiceResult<MeterPingInfo>) in
+                switch result {
+                case ServiceResult.success(let outageStatus):
+                    observer.onNext(outageStatus)
+                    observer.onCompleted()
+                case ServiceResult.failure(let err):
+                    observer.onError(err)
+                }
+            })
+            return Disposables.create()
+        }
+    }
+
 }

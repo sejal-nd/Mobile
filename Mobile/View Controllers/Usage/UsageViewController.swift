@@ -17,6 +17,7 @@ class UsageViewController: AccountPickerViewController {
     
     @IBOutlet private weak var switchAccountsLoadingIndicator: LoadingIndicator!
     @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet private weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var unavailableView: UnavailableView!
     @IBOutlet private weak var mainErrorView: UIView!
@@ -163,7 +164,9 @@ class UsageViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = UsageViewModel(accountService: ServiceFactory.createAccountService(), usageService: ServiceFactory.createUsageService())
+    let viewModel = UsageViewModel(authService: ServiceFactory.createAuthenticationService(),
+                                   accountService: ServiceFactory.createAccountService(),
+                                   usageService: ServiceFactory.createUsageService())
     
     
     // MARK: - View Life Cycle
@@ -322,7 +325,8 @@ class UsageViewController: AccountPickerViewController {
             })
             .disposed(by: disposeBag)
         
-        RxNotifications.shared.accountDetailUpdated
+        Observable.merge(RxNotifications.shared.accountDetailUpdated,
+                         maintenanceModeView.reload)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
                 self?.showSwitchAccountsLoadingState()
@@ -353,6 +357,10 @@ class UsageViewController: AccountPickerViewController {
         
         viewModel.showNoNetworkState
             .drive(onNext: { [weak self] in self?.showNoNetworkState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showMaintenanceModeState
+            .drive(onNext: { [weak self] in self?.showMaintenanceModeState() })
             .disposed(by: disposeBag)
         
         viewModel.showBillComparisonContents
@@ -538,6 +546,7 @@ class UsageViewController: AccountPickerViewController {
         contentStack.isHidden = true
         mainErrorView.isHidden = true
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
         showBillComparisonLoadingState()
     }
     
@@ -548,6 +557,7 @@ class UsageViewController: AccountPickerViewController {
         contentStack.isHidden = false
         mainErrorView.isHidden = true
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showNoUsageDataState() {
@@ -557,6 +567,7 @@ class UsageViewController: AccountPickerViewController {
         contentStack.isHidden = true
         mainErrorView.isHidden = true
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showMainErrorState() {
@@ -566,6 +577,7 @@ class UsageViewController: AccountPickerViewController {
         contentStack.isHidden = true
         mainErrorView.isHidden = false
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showNoNetworkState() {
@@ -575,6 +587,17 @@ class UsageViewController: AccountPickerViewController {
         contentStack.isHidden = true
         mainErrorView.isHidden = true
         noNetworkConnectionView.isHidden = false
+        maintenanceModeView.isHidden = true
+    }
+    
+    private func showMaintenanceModeState() {
+        scrollView?.isHidden = true
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        contentStack.isHidden = true
+        mainErrorView.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = false
     }
     
     private func showBillComparisonLoadingState() {

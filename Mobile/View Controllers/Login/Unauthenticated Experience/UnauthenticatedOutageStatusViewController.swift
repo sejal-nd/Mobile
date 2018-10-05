@@ -89,6 +89,7 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
         if let vc = segue.destination as? ReportOutageViewController {
             vc.unauthenticatedExperience = true
             vc.viewModel.outageStatus = viewModel.selectedOutageStatus!
+            vc.viewModel.accountNumber = viewModel.accountNumber.value.isEmpty ? nil : viewModel.accountNumber.value
             if let phone = viewModel.selectedOutageStatus!.contactHomeNumber {
                 vc.viewModel.phoneNumber.value = phone
             }

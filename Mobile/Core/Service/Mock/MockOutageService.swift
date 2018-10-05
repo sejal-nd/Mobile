@@ -61,12 +61,6 @@ class MockOutageService: OutageService {
                 "smartMeterStatus": false,
                 "flagFinaled": false,
                 "flagNoPay": false,
-                "meterInfo": [
-                    "preCheckSuccess": true,
-                    "pingResult": true,
-                    "voltageResult": true,
-                    "voltageReads": "yeah!"
-                ]
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         case "9836621902":
@@ -125,12 +119,6 @@ class MockOutageService: OutageService {
                 "smartMeterStatus": false,
                 "flagFinaled": false,
                 "flagNoPay": true,
-                "meterInfo": [
-                    "preCheckSuccess": true,
-                    "pingResult": true,
-                    "voltageResult": true,
-                    "voltageReads": "yeah!"
-                ]
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         case "75395146464":
@@ -142,12 +130,6 @@ class MockOutageService: OutageService {
                 "smartMeterStatus": false,
                 "flagFinaled": true,
                 "flagNoPay": false,
-                "meterInfo": [
-                    "preCheckSuccess": true,
-                    "pingResult": true,
-                    "voltageResult": true,
-                    "voltageReads": "yeah!"
-                ]
             ]
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         default:
@@ -163,6 +145,23 @@ class MockOutageService: OutageService {
             status = OutageStatus.from(NSDictionary(dictionary: dict))!
         }
         return status
+    }
+    
+    func pingMeter(account: Account, completion: @escaping (ServiceResult<MeterPingInfo>) -> Void) {
+        var meterPing: MeterPingInfo?
+        switch account.accountNumber {
+        case "1234567890":
+            meterPing = MeterPingInfo(preCheckSuccess: true, pingResult: true, voltageResult: true, voltageReads: "proper")
+        default:
+            meterPing = nil
+        }
+        
+        if let mp = meterPing {
+            completion(ServiceResult.success(mp))
+        } else {
+            completion(ServiceResult.failure(ServiceError()))
+        }
+        
     }
     
     
