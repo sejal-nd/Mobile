@@ -34,7 +34,12 @@ extension Date {
     }
     
     @nonobjc var hourAmPmString: String {
-        return DateFormatter.hourAmPmFormatter.string(from: self)
+        var date = self
+        let minutes = Calendar.current.component(.minute, from: date)
+        if minutes >= 30, let adjustedDate = Calendar.current.date(byAdding: .hour, value: 1, to: date) {
+            date = adjustedDate
+        }
+        return DateFormatter.hourAmPmFormatter.string(from: date)
     }
     
     @nonobjc var apiFormatString: String {
