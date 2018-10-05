@@ -12,6 +12,7 @@ import RxCocoa
 
 class UsageViewModel {
     
+    private let authService: AuthenticationService
     private let accountService: AccountService
     private let usageService: UsageService
     
@@ -19,7 +20,8 @@ class UsageViewModel {
     
     // MARK: - Init
     
-    required init(accountService: AccountService, usageService: UsageService) {
+    required init(authService: AuthenticationService, accountService: AccountService, usageService: UsageService) {
+        self.authService = authService
         self.accountService = accountService
         self.usageService = usageService
     }
@@ -32,11 +34,17 @@ class UsageViewModel {
         fetchAllDataTrigger.onNext(())
     }
     
-    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = fetchAllDataTrigger
+    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = fetchAllDataTrigger
         // Clear cache on refresh or account switch
         .do(onNext: { [weak self] in self?.billAnalysisCache.clear() })
-        .toAsyncRequest { [unowned self] in
-            self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        .toAsyncRequest { [weak self] in
+            self?.authService.getMaintenanceMode() ?? .empty()
+    }
+    
+    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
+        .filter { !($0.element?.usageStatus ?? false) }
+        .toAsyncRequest { [weak self] _ in
+            self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
     }
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
@@ -131,6 +139,7 @@ class UsageViewModel {
     
     private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showMainErrorState,
                                                                      showNoNetworkState,
+                                                                     showMaintenanceModeState,
                                                                      showBillComparisonContents,
                                                                      showBillComparisonErrorState,
                                                                      showNoUsageDataState)
@@ -144,6 +153,12 @@ class UsageViewModel {
     private(set) lazy var showNoNetworkState: Driver<Void> = Observable
         .merge(accountDetailEvents.errors(), billAnalysisEvents.errors())
         .filter { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents
+        .elements()
+        .filter { $0.usageStatus }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     

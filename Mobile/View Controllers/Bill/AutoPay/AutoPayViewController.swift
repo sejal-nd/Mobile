@@ -121,7 +121,9 @@ class AutoPayViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setColoredNavBar()
+        if let navController = navigationController as? MainBaseNavigationController {
+            navController.setColoredNavBar()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -219,7 +221,6 @@ class AutoPayViewController: UIViewController {
         reasonForStoppingLabel.textColor = .blackText
         reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         reasonForStoppingLabel.sizeToFit()
-        Analytics.log(event: .autoPayUnenrollOffer)
     }
     
     private func textFieldSetup() {

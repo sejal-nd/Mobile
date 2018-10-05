@@ -12,6 +12,7 @@ extension Maintenance {
          bill: Bool = false,
          outage: Bool = false,
          alert: Bool = false,
+         usage: Bool = false,
          storm: Bool = false) {
         
         assert(Environment.shared.environmentName == .aut,
@@ -22,6 +23,7 @@ extension Maintenance {
         billStatus = bill
         outageStatus = outage
         alertStatus = alert
+        usageStatus = usage
         stormModeStatus = storm
     }
 }
