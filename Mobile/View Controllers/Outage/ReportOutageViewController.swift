@@ -276,7 +276,6 @@ class ReportOutageViewController: UIViewController {
                 if meterPingInfo.voltageResult {
                     if meterPingInfo.pingResult {
                         self.meterPingVoltageStatusView.isHidden = false
-                    
                     }
                     if let voltageReads = meterPingInfo.voltageReads,
                         !voltageReads.lowercased().contains("improper"),

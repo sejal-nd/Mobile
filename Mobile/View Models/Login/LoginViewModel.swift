@@ -10,55 +10,55 @@ import RxSwift
 import RxCocoa
 
 class LoginViewModel {
-    
+
     let disposeBag = DisposeBag()
-    
+
     var username = Variable("")
     var password = Variable("")
     var biometricsAutofilledPassword: String? = nil
     var keepMeSignedIn = Variable(false)
     var biometricsEnabled = Variable(false)
     var isLoggingIn = false
-    
+
     var accountDetail: AccountDetail?
-    
+
     private var authService: AuthenticationService
     private var biometricsService: BiometricsService
     private var registrationService: RegistrationService
-    
+
     init(authService: AuthenticationService, biometricsService: BiometricsService, registrationService: RegistrationService) {
         self.authService = authService
         self.biometricsService = biometricsService
         self.registrationService = registrationService
-        
+
         if let username = biometricsService.getStoredUsername() {
             self.username.value = username
         }
         biometricsEnabled.value = biometricsService.isBiometricsEnabled()
     }
-    
+
     func isDeviceBiometricCompatible() -> Bool {
         return biometricsService.deviceBiometryType() != nil
     }
-    
+
     func biometricsString() -> String? {
         return biometricsService.deviceBiometryType()
     }
-        
+
     func shouldPromptToEnableBiometrics() -> Bool {
         return UserDefaults.standard.bool(forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
     }
-    
+
     func setShouldPromptToEnableBiometrics(_ prompt: Bool) {
         UserDefaults.standard.set(prompt, forKey: UserDefaultKeys.shouldPromptToEnableBiometrics)
     }
-    
+
     func performLogin(onSuccess: @escaping (Bool, Bool) -> Void, onRegistrationNotComplete: @escaping () -> Void, onError: @escaping (String?, String) -> Void) {
         if username.value.isEmpty || password.value.isEmpty {
             onError(nil, "Please enter your username and password")
             return
         }
-        
+
         isLoggingIn = true
         authService.login(username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
@@ -69,16 +69,14 @@ class LoginViewModel {
                 let tempPassword = responseTuple.0.tempPassword
                 if tempPassword {
                     onSuccess(tempPassword, false)
-                    self.authService.logout().subscribe(onError: { (error) in
-                        dLog("Logout Error: \(error)")
-                    }).disposed(by: self.disposeBag)
+                    self.authService.logout()
                 } else {
                     if #available(iOS 12.0, *) { }
                         // Save to SWC if iOS 11. In iOS 12 the system handles this automagically
                     else if #available(iOS 11.0, *) {
                         SharedWebCredentials.save(credential: (self.username.value, self.password.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                     }
-                    
+
                     self.checkStormMode { isStormMode in
                         onSuccess(tempPassword, isStormMode)
                     }
@@ -98,7 +96,7 @@ class LoginViewModel {
             })
             .disposed(by: disposeBag)
     }
-    
+
     func checkStormMode(completion: @escaping (Bool) -> ()) {
         authService.getMaintenanceMode()
             .observeOn(MainScheduler.instance)
@@ -109,19 +107,19 @@ class LoginViewModel {
             })
             .disposed(by: disposeBag)
     }
-    
+
     func getStoredUsername() -> String? {
         return biometricsService.getStoredUsername()
     }
-    
+
     func storeUsername() {
         biometricsService.setStoredUsername(username: username.value)
     }
-    
+
     func storePasswordInSecureEnclave() {
         biometricsService.setStoredPassword(password: password.value)
     }
-    
+
     func attemptLoginWithBiometrics(onLoad: @escaping () -> Void, onDidNotLoad: @escaping () -> Void, onSuccess: @escaping (Bool, Bool) -> Void, onError: @escaping (String?, String) -> Void) {
         if let username = biometricsService.getStoredUsername(), let password = biometricsService.getStoredPassword() {
             self.username.value = username
@@ -134,12 +132,12 @@ class LoginViewModel {
             onDidNotLoad()
         }
     }
-    
+
     func disableBiometrics() {
         biometricsService.disableBiometrics()
         biometricsEnabled.value = false
     }
-    
+
     func checkForMaintenance(onSuccess: @escaping () -> Void,
                              onMaintenanceMode: @escaping () -> Void,
                              onError: @escaping (String) -> Void) {
@@ -155,7 +153,7 @@ class LoginViewModel {
                 onError(error.localizedDescription)
             }).disposed(by: disposeBag)
     }
-    
+
     func validateRegistration(guid: String, onSuccess: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         registrationService.validateConfirmationEmail(guid)
             .observeOn(MainScheduler.instance)
@@ -170,7 +168,7 @@ class LoginViewModel {
                 }
             }).disposed(by: disposeBag)
     }
-    
+
     func resendValidationEmail(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         registrationService.resendConfirmationEmail(username.value)
             .observeOn(MainScheduler.instance)
@@ -181,5 +179,5 @@ class LoginViewModel {
             })
             .disposed(by: disposeBag)
     }
-    
+
 }

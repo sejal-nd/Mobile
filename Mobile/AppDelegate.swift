@@ -47,10 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
         }
         
-        if Environment.shared.environmentName == .prod {
-            OMCMobileBackendManager.shared().logLevel = "none"
-        }
-        
         setupUserDefaults()
         setupToastStyles()
         setupAppearance()
@@ -204,10 +200,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
             let biometricsService = ServiceFactory.createBiometricsService()
             biometricsService.disableBiometrics()
-            
-            // Log the user out (Oracle SDK appears to be persisting the auth token through uninstalls)
-            let auth = OMCApi.shared.getBackend().authorization
-            auth.logoutClearCredentials(true, completionBlock: nil)
+
+            OMCApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }
