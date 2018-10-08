@@ -12,6 +12,12 @@ import Lottie
 
 class StormModeHomeViewController: AccountPickerViewController {
     
+    override var showMinimizedPicker: Bool {
+        return false
+    }
+    
+    @IBOutlet weak var gradientView: UIView!
+    var gradientLayer = CAGradientLayer()
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var exitView: UIView! {
@@ -130,7 +136,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             tableView.reloadSections([0], with: .none)
         }
-    }
+    } 
     
     var stormModeEnded = false
 
@@ -139,6 +145,13 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        gradientLayer.frame = gradientView.bounds
+        gradientLayer.colors = [
+            UIColor.primaryColor.cgColor,
+            UIColor.primaryColor.withAlphaComponent(0).cgColor
+        ]
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
 
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
@@ -362,6 +375,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     private func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             refreshControl = UIRefreshControl()
+            refreshControl?.tintColor = .white
             refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
             scrollView!.insertSubview(refreshControl!, at: 0)
             scrollView!.alwaysBounceVertical = true
@@ -399,6 +413,137 @@ class StormModeHomeViewController: AccountPickerViewController {
             vc.shouldHideNavigationBar = false
             navigationController?.setNavigationBarHidden(false, animated: false)
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+}
+
+extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard indexPath.section == 0 else { return 60 }
+        return shouldShowOutageCell ? 60 : 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className) as? TitleTableViewCell else { return UITableViewCell() }
+        
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                // Must nil check AccountStore, it CAN be nil.  should be an optional AccountStore.shared.currentAccount
+                
+                if shouldShowOutageCellData {
+                    // Populate Content
+                    if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
+                        // Reported State
+                        cell.configure(image: #imageLiteral(resourceName: "ic_check_outage_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .clear, shouldConstrainWidth: true)
+                    } else {
+                        // Regular State
+                        cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+                    }
+                } else {
+                    // Hide Content
+                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .clear, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
+                }
+            case 1:
+                if shouldShowOutageCellData {
+                    // Populate Content
+                    cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+                } else {
+                    // Hide Content
+                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .clear, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
+                }
+            default:
+                return UITableViewCell()
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                cell.configure(image: #imageLiteral(resourceName: "ic_nav_bill_white"), text: NSLocalizedString("Bill", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+            case 1:
+                cell.configure(image: #imageLiteral(resourceName: "ic_nav_more_white"), text: NSLocalizedString("More", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+            default:
+                return UITableViewCell()
+            }
+        default:
+            return UITableViewCell()
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: "ReportOutageSegue", sender: nil)
+            case 1:
+                performSegue(withIdentifier: "OutageMapSegue", sender: nil)
+            default:
+                break
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: "BillSegue", sender: nil)
+            case 1:
+                performSegue(withIdentifier: "MoreSegue", sender: nil)
+            default:
+                break
+            }
+        default:
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 0.5 // Only show the separator
+        default:
+            return 60
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleTableViewHeaderView.className) as? TitleTableViewHeaderView else { return nil }
+        
+        switch section {
+        case 0:
+            if shouldShowOutageCellData {
+                // Show Separator
+                headerView.configure(text: nil, backgroundColor: .clear, shouldConstrainWidth: true, shouldHideSeparator: false)
+            } else {
+                // Hide Separator
+                headerView.configure(text: nil, backgroundColor: .clear, shouldConstrainWidth: true, shouldHideSeparator: true)
+            }
+        case 1:
+            headerView.configure(text: NSLocalizedString("More Options", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+        default:
+            break
+        }
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 21
     }
     
 }

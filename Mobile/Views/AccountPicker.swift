@@ -63,6 +63,7 @@ class AccountPicker: UIView {
     var advancedAccountButton: UIButton?
     
     @IBInspectable var tintWhite: Bool = false
+    @IBInspectable var stormMode: Bool = false
     
     @IBInspectable var showShadow: Bool = true {
         didSet {
@@ -165,12 +166,20 @@ class AccountPicker: UIView {
         shadowView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         shadowView.topAnchor.constraint(equalTo: bottomAnchor).isActive = true
         shadowView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 3)
-        shadowView.backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
-        
+
         leftButton.addTarget(self, action: #selector(leftPressed), for: .touchUpInside)
         rightButton.addTarget(self, action: #selector(rightPressed), for: .touchUpInside)
         
-        backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
+        if (tintWhite) {
+            backgroundColor = .primaryColorAccountPicker
+            shadowView.backgroundColor = .primaryColorAccountPicker
+        } else {
+            backgroundColor = .white
+            shadowView.backgroundColor = .white
+        }
+        if (stormMode) {
+            backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        }
     }
     
     @objc func rightPressed() {
@@ -247,9 +256,6 @@ class AccountPicker: UIView {
             icon = #imageLiteral(resourceName: "ic_residential")
             a11yDescription = NSLocalizedString("Residential account", comment: "")
         }
-        
-        shadowView.backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
-        backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
         
         let iconImageView = UIImageView(image: icon)
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
