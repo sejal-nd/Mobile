@@ -21,7 +21,6 @@ class RegistrationViewModel {
     let accountNumber = Variable("")
     
     let username = Variable("")
-    let confirmUsername = Variable("")
     let newPassword = Variable("")
     let confirmPassword = Variable("")
     
@@ -310,9 +309,6 @@ class RegistrationViewModel {
 		return nil
 	}
 	
-	private(set) lazy var usernameMatches: Driver<Bool> = Driver.combineLatest(self.confirmUsername.asDriver(), self.username.asDriver())
-		.map { $0 == $1 && !$0.isEmpty }
-	
 	private(set) lazy var newPasswordHasText: Driver<Bool> = self.newPassword.asDriver().map{ !$0.isEmpty }
 	
 	private(set) lazy var characterCountValid: Driver<Bool> = self.newPassword.asDriver()
@@ -374,10 +370,9 @@ class RegistrationViewModel {
 	                                                                            self.containsNumber,
 	                                                                            self.containsSpecialCharacter,
 	                                                                            self.newUsernameHasText,
-	                                                                            self.usernameMatches,
 	                                                                            self.newUsernameIsValidBool])
 	{ array in
-		if !array[0] && array[1] && array[6] && array[7] && array[8] {
+		if !array[0] && array[1] && array[6] && array[7] {
 			let otherArray = array[2...5].filter{ $0 }
 			
 			if otherArray.count >= 3 {
