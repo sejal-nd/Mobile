@@ -11,6 +11,7 @@ import ToastSwiftFramework
 import Firebase
 import AppCenter
 import AppCenterCrashes
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     #else
         var window: UIWindow?
     #endif
+    
+    let disposeBag = DisposeBag()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let processInfo = ProcessInfo.processInfo
@@ -88,19 +91,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             let alertsService = ServiceFactory.createAlertsService()
-            alertsService.register(token: token, firstLogin: firstLogin) { (result: ServiceResult<Void>) in
-                switch result {
-                case .success:
+            alertsService.register(token: token, firstLogin: firstLogin)
+                .subscribe(onNext: {
                     dLog("*-*-*-*-* Registered token with MCS")
                     if firstLogin { // Add the username to the array
                         var newUsernamesArray = usernamesArray
                         newUsernamesArray.append(loggedInUsername)
                         UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
                     }
-                case .failure(let err):
+                }, onError: { err in
                     dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
-                }
-            }
+                })
+                .disposed(by: disposeBag)
         }
     }
     

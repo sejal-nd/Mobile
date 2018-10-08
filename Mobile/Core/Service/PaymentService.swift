@@ -79,14 +79,14 @@ protocol PaymentService {
     /// - Parameters:
     ///   - payment: the payment to schedule
     ///   - completion: the completion block to execute upon completion.
-    func schedulePayment(payment: Payment) -> Observable<Void>
+    func schedulePayment(payment: Payment) -> Observable<String>
     
     /// Schedule a payment
     ///
     /// - Parameters:
     ///   - creditCard: the card details
     ///   - completion: the completion block to execute upon completion.
-    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<Void>
+    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String>
     
     /// Gets full details of an one time payment transaction
     ///

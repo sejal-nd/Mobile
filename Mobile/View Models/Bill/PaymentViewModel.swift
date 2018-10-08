@@ -291,7 +291,9 @@ class PaymentViewModel {
                             guard let `self` = self else { return }
                             if !self.addBankFormViewModel.saveToWallet.value {
                                 // Rollback the wallet add
-                                self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
+                                self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!)
+                                    .subscribe()
+                                    .disposed(by: self.disposeBag)
                             }
                             onError(err as! ServiceError)
                         }).disposed(by: self.disposeBag)
@@ -371,7 +373,9 @@ class PaymentViewModel {
                                 guard let `self` = self else { return }
                                 if !self.addCardFormViewModel.saveToWallet.value {
                                     // Rollback the wallet add
-                                    self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!, completion: { _ in })
+                                    self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!)
+                                        .subscribe()
+                                        .disposed(by: self.disposeBag)
                                 }
                                 onError(err as! ServiceError)
                             }).disposed(by: self.disposeBag)
