@@ -262,9 +262,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 toggleCell.configure(viewModel: viewModel, tag: indexPath.row)
                 toggleCell.toggle.addTarget(self, action: #selector(toggleBiometrics), for: .valueChanged)
-                if (self.tableView(tableView, heightForRowAt: indexPath) == 0) {
-                    toggleCell.accessibilityElementsHidden = true
-                }
+                toggleCell.accessibilityElementsHidden = self.tableView(tableView, heightForRowAt: indexPath) == 0
                 return toggleCell
             case 2:
                 cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""), backgroundColor: .primaryColor)
@@ -288,9 +286,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        if (self.tableView(tableView, heightForRowAt: indexPath) == 0) {
-            cell.accessibilityElementsHidden = true
-        }
+        cell.accessibilityElementsHidden = self.tableView(tableView, heightForRowAt: indexPath) == 0
         return cell
     }
     
