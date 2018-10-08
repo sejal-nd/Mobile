@@ -251,9 +251,6 @@
 		35A6C6F1211DEC4000C2A58F /* UpdatesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6EB211DEB3300C2A58F /* UpdatesViewModelTests.swift */; };
 		35A6C6F2211E07B800C2A58F /* UIColorDarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */; };
 		35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */; };
-		35A6C6F52121B58200C2A58F /* MoreViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6F42121B58200C2A58F /* MoreViewController+TableViewDelegate.swift */; };
-		35A6C6F62121BAE600C2A58F /* MoreViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6F42121B58200C2A58F /* MoreViewController+TableViewDelegate.swift */; };
-		35A6C6F72121BAE700C2A58F /* MoreViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6F42121B58200C2A58F /* MoreViewController+TableViewDelegate.swift */; };
 		35A6C6FA2121D64100C2A58F /* ToggleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6F92121D64100C2A58F /* ToggleTableViewCell.xib */; };
 		35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6FB2121D64C00C2A58F /* ToggleTableViewCell.swift */; };
 		35A6C6FE2121D9D600C2A58F /* MoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6FD2121D9D600C2A58F /* MoreViewModel.swift */; };
@@ -835,6 +832,12 @@
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
+		9C7E5A53212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
+		9C7E5A54212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
+		9C7E5A55212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
+		9C7E5A56212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
+		9C7E5A57212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
+		9C7E5A58212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
 		9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
 		9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
 		9C97DB1920EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
@@ -844,12 +847,6 @@
 		9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
-		9C7E5A53212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
-		9C7E5A54212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
-		9C7E5A55212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
-		9C7E5A56212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
-		9C7E5A57212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
-		9C7E5A58212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */; };
 		B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
 		B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
 		B0030D0A2097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
@@ -2347,7 +2344,6 @@
 		35A6C6DF211CC11E00C2A58F /* Updates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Updates.storyboard; sourceTree = "<group>"; };
 		35A6C6E5211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdatesViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		35A6C6EB211DEB3300C2A58F /* UpdatesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesViewModelTests.swift; sourceTree = "<group>"; };
-		35A6C6F42121B58200C2A58F /* MoreViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoreViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		35A6C6F92121D64100C2A58F /* ToggleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleTableViewCell.xib; sourceTree = "<group>"; };
 		35A6C6FB2121D64C00C2A58F /* ToggleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleTableViewCell.swift; sourceTree = "<group>"; };
 		35A6C6FD2121D9D600C2A58F /* MoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewModel.swift; sourceTree = "<group>"; };
@@ -2575,10 +2571,10 @@
 		9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
 		9C6BC8A620ADCECF00B4399B /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
+		9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageStatusInitExtensions.swift; sourceTree = "<group>"; };
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
 		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
-		9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageStatusInitExtensions.swift; sourceTree = "<group>"; };
 		B0030D072097BC8300327A3D /* MaintenanceModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModeView.swift; sourceTree = "<group>"; };
 		B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceModeView.xib; sourceTree = "<group>"; };
 		B017488D2135D19B0039D0C6 /* Storm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storm.storyboard; sourceTree = "<group>"; };
@@ -4903,7 +4899,6 @@
 			isa = PBXGroup;
 			children = (
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
-				35A6C6F42121B58200C2A58F /* MoreViewController+TableViewDelegate.swift */,
 				22EBDCCC1ED3FDA50038D696 /* ContactUsViewController.swift */,
 				E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */,
 				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
@@ -5340,9 +5335,6 @@
 				385AF2231F27915A001E3619 /* img_0.png in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				358DE0A821021B64002C544E /* UnavailableView.xib in Resources */,
-				E8FE30B11E787625009D28B7 /* outage.json in Resources */,
-				B557363E1E6740C9003B9369 /* SyncStore.mom in Resources */,
-				B55736321E6740A8003B9369 /* INFO.txt in Resources */,
 				01F612251F1E404F00A4F9DA /* AddBankFormView.xib in Resources */,
 				01F612211F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
 				35A6C6E0211CC11E00C2A58F /* Updates.storyboard in Resources */,
@@ -5460,8 +5452,6 @@
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				E84407821F16CFD100CB9707 /* fiserv_errors.xml in Resources */,
-				E8FE30B61E787632009D28B7 /* outage.json in Resources */,
-				B55736401E6740C9003B9369 /* SyncStore.mom in Resources */,
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
 				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -5515,7 +5505,6 @@
 				0EF60FD120EE7AE8006ABC18 /* Assets.xcassets in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B0DB2750215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
-				B55736431E6740C9003B9369 /* VersionInfo.plist in Resources */,
 				35A6C7032121DAF100C2A58F /* ToggleTableViewCell.xib in Resources */,
 				35ACCB4D20EA7AC00022907F /* HomeOutageCardView.xib in Resources */,
 				82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
@@ -5589,9 +5578,6 @@
 				35277B00210794B000411297 /* UnavailableView.xib in Resources */,
 				E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */,
 				E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */,
-				E8FE30B71E787635009D28B7 /* outage.json in Resources */,
-				B557363F1E6740C9003B9369 /* SyncStore.mom in Resources */,
-				B55736331E6740A8003B9369 /* INFO.txt in Resources */,
 				35A6C6E3211CC17100C2A58F /* Updates.storyboard in Resources */,
 				B0882CB5210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B574BAD01E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -5968,7 +5954,6 @@
 				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				E87C413E1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
-				35A6C6F52121B58200C2A58F /* MoreViewController+TableViewDelegate.swift in Sources */,
 				B06B40F920D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */,
 				820125471F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
@@ -6325,7 +6310,6 @@
 				54C1DEF81F01EBFA00290FE5 /* BGEasyViewController.swift in Sources */,
 				824004CC1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				E87C41401FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
-				35A6C6F72121BAE700C2A58F /* MoreViewController+TableViewDelegate.swift in Sources */,
 				B06B40FB20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */,
 				820125491F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */,
@@ -6682,7 +6666,6 @@
 				54C1DEF71F01EBF900290FE5 /* BGEasyViewController.swift in Sources */,
 				E857C5221F269FF6002A8E94 /* TemplateCardView.swift in Sources */,
 				E87C413F1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
-				35A6C6F62121BAE600C2A58F /* MoreViewController+TableViewDelegate.swift in Sources */,
 				B06B40FA20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */,
 				820125481F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
