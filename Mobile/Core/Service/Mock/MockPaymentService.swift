@@ -6,11 +6,12 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import RxSwift
 import Foundation
 
 class MockPaymentService: PaymentService {
-    func fetchBGEAutoPayInfo(accountNumber: String, completion: @escaping (_ result: ServiceResult<BGEAutoPayInfo>) -> Void) {
-        completion(ServiceResult.failure(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil)))
+    func fetchBGEAutoPayInfo(accountNumber: String) -> Observable<BGEAutoPayInfo> {
+        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
     }
     
     
@@ -22,14 +23,13 @@ class MockPaymentService: PaymentService {
                             effectivePeriod: EffectivePeriod,
                             effectiveEndDate: Date?,
                             effectiveNumPayments: String,
-                            isUpdate: Bool,
-                            completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.failure(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil)))
+                            isUpdate: Bool) -> Observable<Void> {
+        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
     }
     
     
-    func unenrollFromAutoPayBGE(accountNumber: String, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.failure(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil)))
+    func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void> {
+        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
         
     }
     
@@ -39,45 +39,38 @@ class MockPaymentService: PaymentService {
                          bankAccountType: BankAccountType,
                          routingNumber: String,
                          bankAccountNumber: String,
-                         isUpdate: Bool,
-                         completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.failure(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil)))
+                         isUpdate: Bool) -> Observable<Void> {
+        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
     }
     
     
-    func unenrollFromAutoPay(accountNumber: String,
-                             reason: String,
-                             completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.failure(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil)))
+    func unenrollFromAutoPay(accountNumber: String, reason: String) -> Observable<Void> {
+        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
         
     }
     
-    func fetchWorkdays(completion: @escaping (_ result: ServiceResult<[Date]>) -> Void) {
-        completion(ServiceResult.success([Date()]))
+    func fetchWorkdays() -> Observable<[Date]> {
+        return .just([Date()])
     }
     
-    func schedulePayment(payment: Payment, completion: @escaping (_ result: ServiceResult<String>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            completion(ServiceResult.success(""))
-        }
+    func schedulePayment(payment: Payment) -> Observable<String> {
+        return Observable.just("").delay(2, scheduler: MainScheduler.instance)
     }
     
-    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard, completion: @escaping (ServiceResult<String>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            completion(ServiceResult.success(""))
-        }
+    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String> {
+        return Observable.just("").delay(2, scheduler: MainScheduler.instance)
     }
     
-    func fetchPaymentDetails(accountNumber: String, paymentId: String, completion: @escaping (_ result: ServiceResult<PaymentDetail>) -> Void) {
-        completion(.success(PaymentDetail(walletItemId: "1234", paymentAmount: 100, paymentDate: Date(timeIntervalSince1970: 13))))
+    func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail> {
+        return .just(PaymentDetail(walletItemId: "1234", paymentAmount: 100, paymentDate: Date(timeIntervalSince1970: 13)))
     }
     
-    func updatePayment(paymentId: String, payment: Payment, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        completion(.success(()))
+    func updatePayment(paymentId: String, payment: Payment) -> Observable<Void> {
+        return .just(())
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail, completion: @escaping (_ result: ServiceResult<Void>) -> Void) {
-        completion(.success(()))
+    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail) -> Observable<Void> {
+        return .just(())
     }
     
     

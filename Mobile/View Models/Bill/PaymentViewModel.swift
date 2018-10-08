@@ -291,7 +291,7 @@ class PaymentViewModel {
                             guard let `self` = self else { return }
                             if !self.addBankFormViewModel.saveToWallet.value {
                                 // Rollback the wallet add
-                                self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!)
+                                self.walletService.deletePaymentMethod(walletItem: WalletItem.from(["walletItemID": walletItemResult.walletItemId])!)
                                     .subscribe()
                                     .disposed(by: self.disposeBag)
                             }
@@ -373,7 +373,7 @@ class PaymentViewModel {
                                 guard let `self` = self else { return }
                                 if !self.addCardFormViewModel.saveToWallet.value {
                                     // Rollback the wallet add
-                                    self.walletService.deletePaymentMethod(WalletItem.from(["walletItemID": walletItemResult.walletItemId])!)
+                                    self.walletService.deletePaymentMethod(walletItem: WalletItem.from(["walletItemID": walletItemResult.walletItemId])!)
                                         .subscribe()
                                         .disposed(by: self.disposeBag)
                                 }

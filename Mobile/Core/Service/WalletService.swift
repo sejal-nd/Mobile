@@ -21,7 +21,7 @@ protocol WalletService {
     /// - Parameters:
     ///     - routing number
     ///     - completion: the result contains the name of the bank that is determined by the routing number.
-    func fetchBankName(_ routingNumber: String) -> Observable<String>
+    func fetchBankName(routingNumber: String) -> Observable<String>
     
     
     /// Add a bank account to the users wallet.
@@ -51,7 +51,7 @@ protocol WalletService {
     ///   - expirationYear: the expiration year to set
     ///   - securityCode: the security code to set
     ///   - postalCode: the postal code to set
-    func updateCreditCard(_ walletItemID: String,
+    func updateCreditCard(walletItemID: String,
                           customerNumber: String,
                           expirationMonth: String,
                           expirationYear: String,
@@ -64,7 +64,7 @@ protocol WalletService {
     ///		- walletItemID
     ///		- completion: the block to execute upon completion, the ServiceResult
     ///       that is provided will contain nothing on success, or a ServiceError on failure.
-    func deletePaymentMethod(_ walletItem : WalletItem) -> Observable<Void>
+    func deletePaymentMethod(walletItem: WalletItem) -> Observable<Void>
     
     
     /// Set a wallet item as the default/OneTouch payment method.
