@@ -235,7 +235,7 @@ fileprivate func APILog(requestId: String, path: String, method: HttpMethod, mes
     #endif
 }
 
-fileprivate struct ShortUUIDGenerator {
+struct ShortUUIDGenerator {
     private static let base62chars = [Character]("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
     private static let maxBase : UInt32 = 62
 

@@ -75,7 +75,6 @@ struct FiservApi {
                         token: String,
                         customerNumber: String,
                         oneTimeUse: Bool) -> Observable<WalletItemResult> {
-        
         var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: oneTimeUse)
         
         params[Parameter.messageId.rawValue] = MessageId.insertCheck.rawValue
@@ -84,7 +83,7 @@ struct FiservApi {
                                                                      firstName: firstName,
                                                                      lastName: lastName)
         
-        return getTokens(params: params)
+        return getTokensAndExecute(params: params, action: .insert)
     }
     
     func addCreditCard(cardNumber: String,
@@ -104,7 +103,7 @@ struct FiservApi {
                                                           securityCode: securityCode,
                                                           postalCode: postalCode)
         
-        return getTokens(params: params)
+        return getTokensAndExecute(params: params, action: .insert)
     }
     
     func updateCreditCard(walletItemID: String,
@@ -127,74 +126,12 @@ struct FiservApi {
         params[Parameter.cardDetail.rawValue] = cardDetail
         params[Parameter.walletItemId.rawValue] = walletItemID
         
-        return getTokens(params: params)
+        return getTokensAndExecute(params: params, action: .update)
     }
 }
 
 
-// MARK: - Helper Functions
-
-fileprivate func getTokens(params: [String: Any]) -> Observable<WalletItemResult> {
-    let guidString = UUID().uuidString
-    let urlRequest = createFiservRequest(with: nil, method: "GET", guid: guidString)
-    
-    return URLSession.shared.rx.dataResponse(request: urlRequest)
-        .map { data -> (String, String, String) in
-            let responseString = String(data: data, encoding: .utf8) ?? ""
-            dLog(responseString)
-            
-            let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
-            
-            guard let guid = resultDictionary?[ResponseKey.guid.rawValue] as? String,
-                let hash = resultDictionary?[ResponseKey.hash.rawValue] as? String else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.localError.rawValue)
-            }
-            return (guidString, guid, hash)
-        }
-        .flatMap { (unique, guid, hashResult) -> Observable<WalletItemResult> in
-            let encodedBody = try encodePayload(params, action: Action.update.rawValue, unique: unique, guid: guid, hashResult: hashResult)
-            let urlRequest = createFiservRequest(with: encodedBody, method: "POST")
-            return execute(request: urlRequest)
-        }
-        .catchError { err in
-            let error = err as? ServiceError ?? ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: err)
-            if let fiservError = FiservErrorMapper.shared.getError(message: error.errorDescription ?? "", context: nil) {
-                if fiservError.id == "INVAL-0019" { // Duplicate
-                    throw ServiceError(serviceCode: ServiceErrorCode.dupPaymentAccount.rawValue)
-                } else {
-                    throw ServiceError(serviceMessage: fiservError.text)
-                }
-            } else {
-                if error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                    throw error
-                } else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
-                }
-            }
-    }
-}
-
-
-fileprivate func execute(request: URLRequest) -> Observable<WalletItemResult> {
-    return URLSession.shared.rx.dataResponse(request: request)
-        .map { data -> WalletItemResult in
-            let responseString = String.init(data: data, encoding: .utf8) ?? ""
-            dLog(responseString)
-            
-            do {
-                let resultDictionary = try JSONSerialization.jsonObject(with: data, options:.allowFragments) as? [String: Any]
-                let responseValue = parseResponse(with: resultDictionary!)
-                
-                guard responseValue.responseCode == 0 else {
-                    throw ServiceError(serviceCode: "Fiserv", serviceMessage: responseValue.statusMessage)
-                }
-                
-                return responseValue
-            } catch let error as NSError {
-                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
-            }
-        }
-}
+// MARK: - Create Params
 
 fileprivate func createCardDetailDictionary(cardNumber: String?,
                                             expirationMonth: String,
@@ -204,13 +141,13 @@ fileprivate func createCardDetailDictionary(cardNumber: String?,
     let expiration = expirationMonth + expirationYear[expirationYear.index(expirationYear.startIndex, offsetBy: 2)...]
     var details = [Parameter.expirationDate.rawValue : expiration] as [String: Any]
     
-    if(!(cardNumber ?? "").isEmpty) {
+    if !(cardNumber ?? "").isEmpty {
         details[Parameter.cardNumber.rawValue] = cardNumber
     }
-    if(!(securityCode ?? "").isEmpty) {
+    if !(securityCode ?? "").isEmpty {
         details[Parameter.securityCode.rawValue] = securityCode
     }
-    if(!(postalCode ?? "").isEmpty) {
+    if !(postalCode ?? "").isEmpty {
         details[Parameter.postalCode.rawValue] = postalCode
     }
     
@@ -235,20 +172,7 @@ fileprivate func createBankAccountDetailDictionary(accountNumber: String,
     return details
 }
 
-fileprivate func encodePayload(_ payloadParameters : [String : Any], action: String, unique: String, guid: String, hashResult: String) throws -> Data {
-    let jsonData = try JSONSerialization.data(withJSONObject: payloadParameters)
-    
-    let payload = String(data: jsonData, encoding: .utf8)?.replacingOccurrences(of: "\\", with: "")
-    
-    let content = "action=\(action)&payload=\(payload!)&unique=\(unique)&guid=\(guid)&hashResult=\(hashResult)"
-    var encodedContent = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-    encodedContent = encodedContent.replacingOccurrences(of: "+", with: "%2B") // "+" signs were being turned into spaces on Fiserv's end
-    
-    return encodedContent.data(using: .utf8)!
-}
-
-fileprivate func createBaseParameters(token: String, customerNumber: String, nickname: String?, oneTimeUse: Bool) -> [String:Any] {
-    
+fileprivate func createBaseParameters(token: String, customerNumber: String, nickname: String?, oneTimeUse: Bool) -> [String: Any] {
     let opCo = Environment.shared.opco
     let time = Int(Date().timeIntervalSince1970)
     let billerId = "\(opCo.rawValue)Registered"
@@ -271,10 +195,110 @@ fileprivate func createBaseParameters(token: String, customerNumber: String, nic
     return params
 }
 
-fileprivate func createFiservRequest(with body: Data?, method: String, guid: String? = nil) -> URLRequest {
+// MARK: - Make Request
+
+fileprivate func getTokensAndExecute(params: [String: Any], action: Action) -> Observable<WalletItemResult> {
+    let guidString = UUID().uuidString
+    let urlRequest = createFiservRequest(with: nil, method: .get, guid: guidString)
+    let requestId = ShortUUIDGenerator.getUUID(length: 8)
+    let path = String(urlRequest.url?.absoluteString.suffix(Environment.shared.fiservUrl.count) ?? "")
+    
+    var requestBodyString = ""
+    if let body = urlRequest.httpBody {
+        requestBodyString = " - BODY:\n" + (String(data: body, encoding: .utf8) ?? "")
+    }
+    
+    APILog(requestId: requestId, path: path, method: .get, message: "REQUEST\(requestBodyString)")
+    
+    return URLSession.shared.rx.dataResponse(request: urlRequest)
+        .do(onNext: { data in
+            let responseString = String(data: data, encoding: .utf8) ?? ""
+            APILog(requestId: requestId, path: path, method: .get, message: "RESPONSE - BODY:\n\(responseString)")
+        }, onError: { error in
+            let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+            APILog(requestId: requestId, path: path, method: .get, message: "ERROR - \(serviceError.errorDescription ?? "")")
+        })
+        .flatMap { data -> Observable<WalletItemResult> in
+            let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            
+            guard let resultDictionary = result as? [String: Any],
+                let guid = resultDictionary[ResponseKey.guid.rawValue] as? String,
+                let hash = resultDictionary[ResponseKey.hash.rawValue] as? String else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.localError.rawValue)
+            }
+            
+            let encodedBody = try encodePayload(params, action: action, unique: guidString, guid: guid, hashResult: hash)
+            let request = createFiservRequest(with: encodedBody, method: .post)
+            
+            return executePost(request: request)
+        }
+        .catchError { err in
+            let error = err as? ServiceError ?? ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: err)
+            if let fiservError = FiservErrorMapper.shared.getError(message: error.errorDescription ?? "", context: nil) {
+                if fiservError.id == "INVAL-0019" { // Duplicate
+                    throw ServiceError(serviceCode: ServiceErrorCode.dupPaymentAccount.rawValue)
+                } else {
+                    throw ServiceError(serviceMessage: fiservError.text)
+                }
+            } else {
+                if error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                    throw error
+                } else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                }
+            }
+    }
+}
+
+fileprivate func executePost(request: URLRequest) -> Observable<WalletItemResult> {
+    let requestId = ShortUUIDGenerator.getUUID(length: 8)
+    var path = ""
+    if let urlString = request.url?.absoluteString {
+        path = String(urlString.suffix(from: Environment.shared.fiservUrl.endIndex))
+    }
+    
+    APILog(requestId: requestId, path: path, method: .post, message: "REQUEST")
+    
+    return URLSession.shared.rx.dataResponse(request: request)
+        .do(onError: { error in
+            let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+            APILog(requestId: requestId, path: path, method: .post, message: "ERROR - \(serviceError.errorDescription ?? "")")
+        })
+        .map { data -> WalletItemResult in
+            let responseString = String(data: data, encoding: .utf8) ?? ""
+            APILog(requestId: requestId, path: path, method: .post, message: "RESPONSE - BODY:  \(responseString)")
+            
+            do {
+                let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+                let responseValue = parseResponse(with: resultDictionary!)
+                
+                guard responseValue.responseCode == 0 else {
+                    throw ServiceError(serviceCode: "Fiserv", serviceMessage: responseValue.statusMessage)
+                }
+                
+                return responseValue
+            } catch let error as NSError {
+                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
+            }
+        }
+}
+
+fileprivate func encodePayload(_ payloadParameters : [String : Any], action: Action, unique: String, guid: String, hashResult: String) throws -> Data {
+    let jsonData = try JSONSerialization.data(withJSONObject: payloadParameters)
+    
+    let payload = String(data: jsonData, encoding: .utf8)?.replacingOccurrences(of: "\\", with: "")
+    
+    let content = "action=\(action.rawValue)&payload=\(payload!)&unique=\(unique)&guid=\(guid)&hashResult=\(hashResult)"
+    var encodedContent = content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+    encodedContent = encodedContent.replacingOccurrences(of: "+", with: "%2B") // "+" signs were being turned into spaces on Fiserv's end
+    
+    return encodedContent.data(using: .utf8)!
+}
+
+fileprivate func createFiservRequest(with body: Data?, method: HttpMethod, guid: String? = nil) -> URLRequest {
     let endpoint = guid != nil ? "FiservJsonMessenger?v=\(guid!)" : "Process"
     var urlRequest = URLRequest(url: URL(string: "\(Environment.shared.fiservUrl)/\(endpoint)")!)
-    urlRequest.httpMethod = method
+    urlRequest.httpMethod = method.rawValue
     urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
     if let body = body {
         urlRequest.httpBody = body
@@ -282,6 +306,8 @@ fileprivate func createFiservRequest(with body: Data?, method: String, guid: Str
     
     return urlRequest
 }
+
+// MARK: - Parse Response
 
 fileprivate func parseResponse(with value: [String:Any]) -> WalletItemResult {
     let code = value[ResponseKey.responseCode.rawValue] as? Int
@@ -292,4 +318,12 @@ fileprivate func parseResponse(with value: [String:Any]) -> WalletItemResult {
         walletItemIdString = String(walletItemId)
     }
     return WalletItemResult(responseCode: code ?? -1, statusMessage: statusMessage ?? "", walletItemId: walletItemIdString)
+}
+
+// MARK: - Logging
+
+fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
+    #if DEBUG
+    NSLog("[FiservApi][\(requestId)][\(path)] \(method.rawValue) \(message)")
+    #endif
 }
