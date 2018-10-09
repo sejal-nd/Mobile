@@ -30,6 +30,9 @@ class StormModeBillViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .stormModeBlack
+        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -78,7 +81,7 @@ class StormModeBillViewController: AccountPickerViewController {
             
             refreshControl = UIRefreshControl()
             refreshControl?.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
-//            refreshControl?.tintColor = .white
+            refreshControl?.tintColor = .white
             scrollView!.insertSubview(refreshControl!, at: 0)
         } else {
             if let rc = refreshControl {

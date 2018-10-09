@@ -32,6 +32,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             exitButton.layer.cornerRadius = 10.0
             exitButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+            exitButton.backgroundColorOnPress = .softGray
         }
     }
     
