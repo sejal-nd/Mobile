@@ -4411,7 +4411,7 @@
 			children = (
 				B56DD4961ED84E2400F0198B /* Fiserv */,
 				B54846921E6F4FD7008CE1B1 /* Mock */,
-				E801BAD31E8C436C00550F99 /* OMC */,
+				E801BAD31E8C436C00550F99 /* MCS */,
 				B5389EA11E53D8640028AF89 /* Parsing */,
 				B5A16F331F0D43C80016952C /* Speedpay */,
 				B574BAD81E78360D001E8A44 /* AccountService.swift */,
@@ -4499,7 +4499,7 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		E801BAD31E8C436C00550F99 /* OMC */ = {
+		E801BAD31E8C436C00550F99 /* MCS */ = {
 			isa = PBXGroup;
 			children = (
 				E801BAD81E8C43BB00550F99 /* MCSAccountService.swift */,
@@ -4514,7 +4514,7 @@
 				54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */,
 				82AC2A291FAB78E700EACB3B /* MCSPeakRewardsService.swift */,
 			);
-			path = OMC;
+			path = MCS;
 			sourceTree = "<group>";
 		};
 		E80D2E301E730180002626C9 /* Outage */ = {
