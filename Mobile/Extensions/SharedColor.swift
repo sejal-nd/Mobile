@@ -70,6 +70,10 @@ extension UIColor {
         return UIColor(red: 234/255, green: 230/255, blue: 188/255, alpha: 1)
     }
     
+    @nonobjc static var stormModeBlack: UIColor {
+        return UIColor(red: 44/255, green: 38/255, blue: 51/255, alpha: 1)
+    }
+    
 //    convenience init(hex: String, alpha: CGFloat = 1) {
 //        assert(hex[hex.startIndex] == "#", "Expected hex string of format #RRGGBB")
 //        

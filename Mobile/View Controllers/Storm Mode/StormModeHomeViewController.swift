@@ -146,6 +146,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .stormModeBlack
+        
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
             UIColor.primaryColor.cgColor,
