@@ -26,12 +26,10 @@ class ResponseParserTests: XCTestCase {
     
     /// Test that a valid success response is correctly parsed.
     func testValidSuccess() {
-       
-        let response = HTTPURLResponse(url: URL(string: "http://test.com")!, statusCode: 200, httpVersion: "", headerFields: ["":""])
-        let result = OMCResponseParser.parse(data: validSuccess, error: nil, response: response)
+        let result = OMCResponseParser.parse(data: validSuccess)
              
         switch result {
-        case .failure( _):
+        case .failure(_):
             XCTFail("Incorrect Result - Valid Success response should result in a Success return value.")
         case .success:
             break
@@ -41,9 +39,7 @@ class ResponseParserTests: XCTestCase {
     
     /// Test that an invalidly formatted response returns the correct error.
     func testInvalidSuccess() {
-        
-        let response = HTTPURLResponse(url: URL(string: "http://test.com")!, statusCode: 200, httpVersion: "", headerFields: ["":""])
-        let result = OMCResponseParser.parse(data: invalidSuccess, error: nil, response: response)
+        let result = OMCResponseParser.parse(data: invalidSuccess)
         
         switch result {
         case .failure(let err):
@@ -58,31 +54,11 @@ class ResponseParserTests: XCTestCase {
     
     /// Test that a failure in a valid format is correctly parsed.
     func testValidFailure() {
-        
-        let response = HTTPURLResponse(url: URL(string: "http://test.com")!, statusCode: 200, httpVersion: "", headerFields: ["":""])
-        let result = OMCResponseParser.parse(data: validFailure, error: nil, response: response)
+        let result = OMCResponseParser.parse(data: validFailure)
         
         switch result {
         case .failure:
             break
-        case .success:
-            XCTFail("Incorrect Result - Valid Failure response should result in a Failure return value.")
-        }
-    }
-    
-    
-    /// Test that if an error is passed to the parse
-    /// function, regardless of data. The error is returned
-    /// in a failure response.
-    func testError() {
-        
-        let response = HTTPURLResponse(url: URL(string: "http://test.com")!, statusCode: 200, httpVersion: "", headerFields: ["":""])
-        let error = NSError(domain: "testing", code: 1, userInfo: [NSLocalizedDescriptionKey:"error description"])
-        let result = OMCResponseParser.parse(data: validFailure, error: error, response: response)
- 
-        switch result {
-        case .failure(let err):
-            XCTAssert(err.localizedDescription == "Account Locked", "Incorrect error description")
         case .success:
             XCTFail("Incorrect Result - Valid Failure response should result in a Failure return value.")
         }

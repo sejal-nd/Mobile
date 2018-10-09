@@ -138,7 +138,7 @@ fileprivate func getTokens(params: [String: Any]) -> Observable<WalletItemResult
     let guidString = UUID().uuidString
     let urlRequest = createFiservRequest(with: nil, method: "GET", guid: guidString)
     
-    return URLSession.shared.rx.data(request: urlRequest)
+    return URLSession.shared.rx.dataResponse(request: urlRequest)
         .map { data -> (String, String, String) in
             let responseString = String(data: data, encoding: .utf8) ?? ""
             dLog(responseString)
@@ -176,7 +176,7 @@ fileprivate func getTokens(params: [String: Any]) -> Observable<WalletItemResult
 
 
 fileprivate func execute(request: URLRequest) -> Observable<WalletItemResult> {
-    return URLSession.shared.rx.data(request: request)
+    return URLSession.shared.rx.dataResponse(request: request)
         .map { data -> WalletItemResult in
             let responseString = String.init(data: data, encoding: .utf8) ?? ""
             dLog(responseString)

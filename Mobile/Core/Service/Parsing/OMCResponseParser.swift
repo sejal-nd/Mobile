@@ -21,21 +21,16 @@ enum OMCResponseKey : String {
 
 class OMCResponseParser : NSObject {
     
-    static func parse(response: HTTPURLResponse, data: Any) -> ServiceResult<Any> {
-        
-        var result: ServiceResult<Any>
-        
-        //There are 4 scenerios here.
+    static func parse(data: Any) -> ServiceResult<Any> {
+        //There are 2 scenerios here.
         //1. We have data that can be parsed.
         //2. The data is not parsable.
         
         if let d = data as? [String: Any] {
-            result = parseData(data: d) //1.
+            return parseData(data: d) //1.
         } else {
-            result = ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)) //2.
+            return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)) //2.
         }
-        
-        return result
     }
     
     /// Function to interpret the data or response body of a response.

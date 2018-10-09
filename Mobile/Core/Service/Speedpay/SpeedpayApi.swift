@@ -19,13 +19,13 @@ struct SpeedpayApi {
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)
             
-            return URLSession.shared.rx.data(request: urlRequest)
-                .catchError {
-                    let error = ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: $0)
-                    if let speedpayError = SpeedpayErrorMapper.shared.getError(message: error.errorDescription ?? "", context: nil) {
+            return URLSession.shared.rx.dataResponse(request: urlRequest)
+                .catchError { error in
+                    let serviceError = error as? ServiceError ?? ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)
+                    if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
                         throw ServiceError(serviceMessage: speedpayError.text)
                     } else {
-                        if error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                        if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                             throw error
                         } else {
                             throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
