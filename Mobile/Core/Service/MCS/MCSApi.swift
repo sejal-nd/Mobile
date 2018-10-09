@@ -181,20 +181,26 @@ class MCSApi {
 
             // Logging
             let requestId = ShortUUIDGenerator.getUUID(length: 8)
+            let logMessage: String
             if let params = params, let jsonData = try? JSONSerialization.data(withJSONObject: params) {
                 request.httpBody = jsonData
-                let bodyString = String(data: jsonData, encoding: String.Encoding.utf8) ?? ""
-                APILog("[\(requestId)][\(path)] \(method) REQUEST - BODY: \(bodyString)")
+                let bodyString = String(data: jsonData, encoding: .utf8) ?? ""
+                logMessage = "REQUEST - BODY:\n\(bodyString)"
             } else {
-                APILog("[\(requestId)][\(path)] \(method) REQUEST")
+                logMessage = "REQUEST"
             }
+            
+            APILog(requestId: requestId, path: path, method: method, message: logMessage)
 
             // Response
             return session.rx.fullResponse(request: request)
+                .do(onError: { error in
+                    let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                    APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                })
                 .map { [weak self] (response: HTTPURLResponse, data: Data) -> Any in
-                    let resBodyString = String(data: data, encoding: String.Encoding.utf8) ?? "No Response Data"
-                    APILog("[\(requestId)][\(path)] \(method) RESPONSE - BODY:\n\(resBodyString)")
-                    
+                    let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
+                    APILog(requestId: requestId, path: path, method: method, message: "RESPONSE - BODY:\n\(resBodyString)")
                     if response.statusCode == 401 {
                         self?.logout()
                         NotificationCenter.default.post(name: .didReceiveInvalidAuthToken, object: self)
@@ -210,6 +216,7 @@ class MCSApi {
                                 if error.serviceCode == "TC-SYS-MAINTENANCE" {
                                     NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: self)
                                 }
+                                
                                 throw error
                             }
                         } catch {
@@ -222,9 +229,9 @@ class MCSApi {
     }
 }
 
-fileprivate func APILog(_ message: String) {
+fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
     #if DEBUG
-        NSLog("[MCSApi]\(message)")
+        NSLog("[MCSApi][\(requestId)][\(path)] \(method.rawValue) \(message)")
     #endif
 }
 
