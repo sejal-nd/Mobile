@@ -76,6 +76,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             configureQuickActions(isAuthenticated: false)
         }
         
+        RxNotifications.shared.configureQuickActions
+            .subscribe(onNext: { [weak self] in
+                self?.configureQuickActions(isAuthenticated: $0)
+            })
+            .disposed(by: disposeBag)
+        
         return true
     }
     

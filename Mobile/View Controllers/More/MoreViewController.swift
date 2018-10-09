@@ -153,10 +153,9 @@ class MoreViewController: UIViewController {
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        RxNotifications.shared.configureQuickActions.onNext(false)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-        appDelegate.configureQuickActions(isAuthenticated: false)
-        appDelegate.resetNavigation()
+        (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
