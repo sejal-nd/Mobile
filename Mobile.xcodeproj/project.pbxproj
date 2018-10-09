@@ -7762,15 +7762,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Mobile/OMC",
-					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
@@ -8047,15 +8045,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Mobile/OMC",
-					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
@@ -8458,15 +8454,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Mobile/OMC",
-					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
@@ -8531,15 +8525,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Mobile/OMC",
-					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
@@ -8659,15 +8651,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/OMC/include/";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/Mobile/OMC",
-					"$(PROJECT_DIR)/Mobile/OMC/oamms_sdk_for_ios",
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
 				);
