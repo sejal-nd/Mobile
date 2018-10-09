@@ -209,7 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let biometricsService = ServiceFactory.createBiometricsService()
             biometricsService.disableBiometrics()
 
-            OMCApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
+            MCSApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }

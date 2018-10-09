@@ -26,7 +26,7 @@ class ResponseParserTests: XCTestCase {
     
     /// Test that a valid success response is correctly parsed.
     func testValidSuccess() {
-        let result = OMCResponseParser.parse(data: validSuccess)
+        let result = MCSResponseParser.parse(data: validSuccess)
              
         switch result {
         case .failure(_):
@@ -39,7 +39,7 @@ class ResponseParserTests: XCTestCase {
     
     /// Test that an invalidly formatted response returns the correct error.
     func testInvalidSuccess() {
-        let result = OMCResponseParser.parse(data: invalidSuccess)
+        let result = MCSResponseParser.parse(data: invalidSuccess)
         
         switch result {
         case .failure(let err):
@@ -54,7 +54,7 @@ class ResponseParserTests: XCTestCase {
     
     /// Test that a failure in a valid format is correctly parsed.
     func testValidFailure() {
-        let result = OMCResponseParser.parse(data: validFailure)
+        let result = MCSResponseParser.parse(data: validFailure)
         
         switch result {
         case .failure:

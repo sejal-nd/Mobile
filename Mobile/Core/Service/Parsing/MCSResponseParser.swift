@@ -1,5 +1,5 @@
 //
-//  OMCResponseParser.swift
+//  MCSResponseParser.swift
 //  Mobile
 //
 //  Created by Kenny Roethel on 2/28/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum OMCResponseKey : String {
+enum MCSResponseKey : String {
     case Success = "success"
     case Meta = "meta"
     case Code = "code"
@@ -19,7 +19,7 @@ enum OMCResponseKey : String {
     case Data = "data"
 }
 
-class OMCResponseParser : NSObject {
+class MCSResponseParser : NSObject {
     
     static func parse(data: Any) -> ServiceResult<Any> {
         //There are 2 scenerios here.
@@ -39,21 +39,21 @@ class OMCResponseParser : NSObject {
     /// - Returns: a ServiceResult that represents the provided data
     private static func parseData(data: [String:Any]) -> ServiceResult<Any> {
         
-        if let success = data[OMCResponseKey.Success.rawValue] as? Bool {
+        if let success = data[MCSResponseKey.Success.rawValue] as? Bool {
             if success {
-                if let returnData = data[OMCResponseKey.Data.rawValue] as? [String: Any] { // Dictionary
+                if let returnData = data[MCSResponseKey.Data.rawValue] as? [String: Any] { // Dictionary
                     return ServiceResult.success(returnData)
-                } else if let returnData = data[OMCResponseKey.Data.rawValue] as? [[String: Any]] { // Array of Dictionaries
+                } else if let returnData = data[MCSResponseKey.Data.rawValue] as? [[String: Any]] { // Array of Dictionaries
                     return ServiceResult.success(returnData)
-                } else if let returnData = data[OMCResponseKey.Data.rawValue] as? [String] { // Array of Strings
+                } else if let returnData = data[MCSResponseKey.Data.rawValue] as? [String] { // Array of Strings
                     return ServiceResult.success(returnData)
-                } else if let returnData = data[OMCResponseKey.Data.rawValue] as? String { //String
+                } else if let returnData = data[MCSResponseKey.Data.rawValue] as? String { //String
                     return ServiceResult.success(returnData)
                 } else {
                     return ServiceResult.success([:])
                 }
             } else {
-                if let meta = data[OMCResponseKey.Meta.rawValue] as? [String:Any] {
+                if let meta = data[MCSResponseKey.Meta.rawValue] as? [String:Any] {
                     return ServiceResult.failure(parseMetaError(meta:meta))
                 } else {
                     return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue))
@@ -72,8 +72,8 @@ class OMCResponseParser : NSObject {
     /// - Returns: the ServiceError
     private static func parseMetaError(meta: [String:Any]) -> ServiceError {
         
-        if let code = meta[OMCResponseKey.Code.rawValue] as? String {
-            if let description = meta[OMCResponseKey.Description.rawValue] as? String {
+        if let code = meta[MCSResponseKey.Code.rawValue] as? String {
+            if let description = meta[MCSResponseKey.Description.rawValue] as? String {
                 return ServiceError(serviceCode: code, serviceMessage: description)
             } else {
                 return ServiceError(serviceCode: code)

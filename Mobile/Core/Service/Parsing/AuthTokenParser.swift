@@ -144,10 +144,10 @@ class AuthTokenParser : NSObject {
     /// - Returns: A failure ServiceResult containing the error information.
     class private func parseError(parsedData: [String:Any]) -> ServiceResult<AuthTokenResponse> {
         let meta: NSDictionary = parsedData["meta"] as! NSDictionary
-        let code = meta[OMCResponseKey.Code.rawValue] as! String
-        let description = meta[OMCResponseKey.Description.rawValue] as! String
+        let code = meta[MCSResponseKey.Code.rawValue] as! String
+        let description = meta[MCSResponseKey.Description.rawValue] as! String
         
-        if let data = parsedData[OMCResponseKey.Data.rawValue] as? [String:Any] {
+        if let data = parsedData[MCSResponseKey.Data.rawValue] as? [String:Any] {
             if let statusData = data[ProfileStatusKey.profileStatus.rawValue] as? [String:Any] {
                 let profileStatus = parseProfileStatus(profileStatus: statusData)
             
