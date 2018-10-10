@@ -102,22 +102,33 @@ class MCSApi {
     ///   - token: the token to exchange.
     ///   - completion: the block to execute on completion.
     func exchangeToken(_ token: String, storeToken: Bool = false) -> Observable<Void> {
-
-        let reachability = Reachability()!
-        let networkStatus = reachability.connection
-
-        switch(networkStatus) {
+        // Logging
+        let requestId = ShortUUIDGenerator.getUUID(length: 8)
+        let path = "/mobile/platform/sso/exchange-token"
+        let method = HttpMethod.get
+        APILog(requestId: requestId, path: path, method: method, message: "REQUEST")
+        
+        switch Reachability()!.connection {
         case .none:
+            let serviceError = ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue)
+            APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
             return .error(ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue))
         case .wifi, .cellular:
-            let url = URL(string: "\(baseUrl)/mobile/platform/sso/exchange-token")!
+            let url = URL(string: "\(baseUrl)\(path)")!
             var request = URLRequest(url: url)
-            request.httpMethod = "GET"
+            request.httpMethod = method.rawValue
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.setValue(mobileBackendId, forHTTPHeaderField: "oracle-mobile-backend-id")
             request.setValue("xml", forHTTPHeaderField: "encode")
 
             return session.rx.dataResponse(request: request)
+                .do(onNext: { data in
+                    let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
+                    APILog(requestId: requestId, path: path, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+                }, onError: { error in
+                    let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                    APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                })
                 .map { data -> String in
                     guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
                         let parsedJSON = parsedData as? [String: Any],
@@ -160,47 +171,49 @@ class MCSApi {
     ///   - method: the method to apply (POST/PUT/GET/DELETE)
     ///   - completion: the block to execute on completion.
     func call(path: String, params: [String:Any]? = nil, method: HttpMethod) -> Observable<Any> {
+        // Logging
+        let requestId = ShortUUIDGenerator.getUUID(length: 8)
+        let logMessage: String
+        var requestBody: Data?
+        if let params = params, let jsonData = try? JSONSerialization.data(withJSONObject: params) {
+            requestBody = jsonData
+            let bodyString = String(data: jsonData, encoding: .utf8) ?? ""
+            logMessage = "REQUEST - BODY: \(bodyString)"
+        } else {
+            logMessage = "REQUEST"
+        }
+        
+        APILog(requestId: requestId, path: path, method: method, message: logMessage)
 
-        let networkStatus = Reachability()!.connection
-
-        switch(networkStatus) {
+        switch Reachability()!.connection {
         case .none:
-            return .error(ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue))
+            let serviceError = ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue)
+            APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+            return .error(serviceError)
         case .wifi, .cellular:
             // Build Request
             let url = URL(string: "\(baseUrl)/mobile/custom/\(path)")!
             var request = URLRequest(url: url)
             request.httpMethod = method.rawValue
+            request.httpBody = requestBody
             request.setValue(mobileBackendId, forHTTPHeaderField: "oracle-mobile-backend-id")
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            if (isAuthenticated()) {
+            if isAuthenticated() {
                 request.setValue("Bearer \(accessToken!)", forHTTPHeaderField: "Authorization")
             } else {
                 request.setValue("Basic \(anonymousKey)", forHTTPHeaderField: "Authorization")
             }
-
-            // Logging
-            let requestId = ShortUUIDGenerator.getUUID(length: 8)
-            let logMessage: String
-            if let params = params, let jsonData = try? JSONSerialization.data(withJSONObject: params) {
-                request.httpBody = jsonData
-                let bodyString = String(data: jsonData, encoding: .utf8) ?? ""
-                logMessage = "REQUEST - BODY:\n\(bodyString)"
-            } else {
-                logMessage = "REQUEST"
-            }
             
-            APILog(requestId: requestId, path: path, method: method, message: logMessage)
-
             // Response
             return session.rx.fullResponse(request: request)
-                .do(onError: { error in
+                .do(onNext: { _, data in
+                    let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
+                    APILog(requestId: requestId, path: path, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+                }, onError: { error in
                     let serviceError = error as? ServiceError ?? ServiceError(cause: error)
                     APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
                 })
                 .map { [weak self] (response: HTTPURLResponse, data: Data) -> Any in
-                    let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                    APILog(requestId: requestId, path: path, method: method, message: "RESPONSE - BODY:\n\(resBodyString)")
                     if response.statusCode == 401 {
                         self?.logout()
                         NotificationCenter.default.post(name: .didReceiveInvalidAuthToken, object: self)

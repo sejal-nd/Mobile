@@ -101,19 +101,29 @@ struct MCSAuthenticationService : AuthenticationService {
     ///   - password: the password to authenticate with.
     ///   - completion: the completion block to execute.
     private func fetchAuthToken(username: String, password: String) -> Observable<AuthTokenResponse> {
-
         guard let username = username.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved),
-            let password = password.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved),
-            let postData = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)".data(using: .utf8) else {
+            let password = password.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved) else {
                 return .error(ServiceError(serviceCode: "FN-FAIL-LOGIN"))
         }
         
+        let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)"
+        let method = HttpMethod.post
         var request = URLRequest(url: URL(string: Environment.shared.oAuthEndpoint)!)
-        request.httpMethod = "POST"
+        request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = ["content-type": "application/x-www-form-urlencoded"]
-        request.httpBody = postData
+        request.httpBody = postDataString.data(using: .utf8)
+        
+        let requestId = ShortUUIDGenerator.getUUID(length: 8)
+        APILog(requestId: requestId, method: method, message: "REQUEST - BODY: \(postDataString)")
         
         return URLSession.shared.rx.dataResponse(request: request)
+            .do(onNext: { data in
+                let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
+                APILog(requestId: requestId, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+            }, onError: { error in
+                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                APILog(requestId: requestId, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+            })
             .map { data in
                 switch AuthTokenParser.parseAuthTokenResponse(data: data) {
                 case .success(let response):
@@ -257,4 +267,10 @@ struct MCSAuthenticationService : AuthenticationService {
             .mapTo(())
     }
 
+}
+
+fileprivate func APILog(requestId: String, method: HttpMethod, message: String) {
+    #if DEBUG
+    NSLog("[oAuthApi][\(requestId)] \(method.rawValue) \(message)")
+    #endif
 }

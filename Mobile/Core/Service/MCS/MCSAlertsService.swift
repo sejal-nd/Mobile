@@ -69,10 +69,11 @@ struct MCSAlertsService: AlertsService {
     }
     
     func fetchOpcoUpdates(bannerOnly: Bool) -> Observable<[OpcoUpdate]> {
+        let path = "/_api/web/lists/GetByTitle('GlobalAlert')/items"
         let urlComponents = NSURLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = Environment.shared.opcoUpdatesHost
-        urlComponents.path = "/_api/web/lists/GetByTitle('GlobalAlert')/items"
+        urlComponents.path = path
         urlComponents.queryItems = [
             URLQueryItem(name: "$select", value: "Title,Message,Enable,CustomerType,Created,Modified"),
             URLQueryItem(name: "$orderby", value: "Modified desc")
@@ -98,13 +99,22 @@ struct MCSAlertsService: AlertsService {
             return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
         }
         
-        dLog("fetchOpcoUpdates request: \(url.absoluteString)")
-        
+        let method = HttpMethod.get
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.httpMethod = method.rawValue
         request.setValue("application/json;odata=verbose", forHTTPHeaderField: "Accept")
         
+        let requestId = ShortUUIDGenerator.getUUID(length: 8)
+        APILog(requestId: requestId, path: path, method: method, message: "REQUEST")
+        
         return URLSession.shared.rx.dataResponse(request: request)
+            .do(onNext: { data in
+                let responseString = String(data: data, encoding: .utf8) ?? ""
+                APILog(requestId: requestId, path: path, method: .post, message: "RESPONSE - BODY: \(responseString)")
+            }, onError: { error in
+                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                APILog(requestId: requestId, path: path, method: .post, message: "ERROR - \(serviceError.errorDescription ?? "")")
+            })
             .map { data in
                 guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
                     let dictData = parsedData as? [String: Any] else {
@@ -122,4 +132,10 @@ struct MCSAlertsService: AlertsService {
         
     }
     
+}
+
+fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
+    #if DEBUG
+    NSLog("[AlertsApi][\(requestId)][\(path)] \(method.rawValue) \(message)")
+    #endif
 }

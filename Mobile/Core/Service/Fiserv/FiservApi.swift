@@ -205,7 +205,7 @@ fileprivate func getTokensAndExecute(params: [String: Any], action: Action) -> O
     
     var requestBodyString = ""
     if let body = urlRequest.httpBody {
-        requestBodyString = " - BODY:\n" + (String(data: body, encoding: .utf8) ?? "")
+        requestBodyString = " - BODY: " + (String(data: body, encoding: .utf8) ?? "")
     }
     
     APILog(requestId: requestId, path: path, method: .get, message: "REQUEST\(requestBodyString)")
@@ -213,7 +213,7 @@ fileprivate func getTokensAndExecute(params: [String: Any], action: Action) -> O
     return URLSession.shared.rx.dataResponse(request: urlRequest)
         .do(onNext: { data in
             let responseString = String(data: data, encoding: .utf8) ?? ""
-            APILog(requestId: requestId, path: path, method: .get, message: "RESPONSE - BODY:\n\(responseString)")
+            APILog(requestId: requestId, path: path, method: .get, message: "RESPONSE - BODY: \(responseString)")
         }, onError: { error in
             let serviceError = error as? ServiceError ?? ServiceError(cause: error)
             APILog(requestId: requestId, path: path, method: .get, message: "ERROR - \(serviceError.errorDescription ?? "")")
@@ -260,14 +260,14 @@ fileprivate func executePost(request: URLRequest) -> Observable<WalletItemResult
     APILog(requestId: requestId, path: path, method: .post, message: "REQUEST")
     
     return URLSession.shared.rx.dataResponse(request: request)
-        .do(onError: { error in
+        .do(onNext: { data in
+            let responseString = String(data: data, encoding: .utf8) ?? ""
+            APILog(requestId: requestId, path: path, method: .post, message: "RESPONSE - BODY:  \(responseString)")
+        }, onError: { error in
             let serviceError = error as? ServiceError ?? ServiceError(cause: error)
             APILog(requestId: requestId, path: path, method: .post, message: "ERROR - \(serviceError.errorDescription ?? "")")
         })
         .map { data -> WalletItemResult in
-            let responseString = String(data: data, encoding: .utf8) ?? ""
-            APILog(requestId: requestId, path: path, method: .post, message: "RESPONSE - BODY:  \(responseString)")
-            
             do {
                 let resultDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
                 let responseValue = parseResponse(with: resultDictionary!)
@@ -280,7 +280,7 @@ fileprivate func executePost(request: URLRequest) -> Observable<WalletItemResult
             } catch let error as NSError {
                 throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
             }
-        }
+    }
 }
 
 fileprivate func encodePayload(_ payloadParameters : [String : Any], action: Action, unique: String, guid: String, hashResult: String) throws -> Data {

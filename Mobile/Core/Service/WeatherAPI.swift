@@ -139,10 +139,21 @@ struct WeatherAPI: WeatherService {
                 return Disposables.create()
             }
             .flatMap { urlString -> Observable<WeatherItem> in
+                let requestId = ShortUUIDGenerator.getUUID(length: 8)
+                let method = HttpMethod.get
+                APILog(requestId: requestId, method: method, message: "REQUEST")
+                
                 var urlRequest = URLRequest(url: URL(string: urlString)!)
-                urlRequest.httpMethod = "GET"
+                urlRequest.httpMethod = method.rawValue
                 
                 return URLSession.shared.rx.dataResponse(request: urlRequest)
+                    .do(onNext: { data in
+                        let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
+                        APILog(requestId: requestId, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+                    }, onError: { error in
+                        let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                        APILog(requestId: requestId, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                    })
                     .map { data -> WeatherItem in
                         guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
                             let dict = json as? [String: Any],
@@ -162,4 +173,10 @@ struct WeatherAPI: WeatherService {
         
     }
     
+}
+
+fileprivate func APILog(requestId: String, method: HttpMethod, message: String) {
+    #if DEBUG
+    NSLog("[WeatherApi][\(requestId)] \(method.rawValue) \(message)")
+    #endif
 }
