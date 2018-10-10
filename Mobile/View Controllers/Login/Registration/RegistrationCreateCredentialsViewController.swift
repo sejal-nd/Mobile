@@ -441,7 +441,7 @@ extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
                 }).disposed(by: disposeBag)
         }
         
-        return true
+        return false
     }
     
 }
