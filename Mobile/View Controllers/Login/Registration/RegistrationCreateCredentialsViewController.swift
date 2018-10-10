@@ -20,7 +20,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     
     @IBOutlet weak var createUsernameTextField: FloatLabelTextField!
-    @IBOutlet weak var confirmUsernameTextField: FloatLabelTextField!
     @IBOutlet weak var createPasswordContainerView: UIView!
     @IBOutlet weak var createPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
@@ -141,10 +140,8 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         if #available(iOS 11.0, *) {
             createUsernameTextField.textField.textContentType = .username
-            confirmUsernameTextField.textField.textContentType = .username
         } else if #available(iOS 10.0, *) {
             createUsernameTextField.textField.textContentType = .emailAddress
-            confirmUsernameTextField.textField.textContentType = .emailAddress
         }
         
         createUsernameTextField.textField.placeholder = NSLocalizedString("Email Address*", comment: "")
@@ -171,33 +168,9 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             self.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        confirmUsernameTextField.textField.placeholder = NSLocalizedString("Confirm Email Address*", comment: "")
-        confirmUsernameTextField.setKeyboardType(.emailAddress)
-        confirmUsernameTextField.textField.returnKeyType = .next
-        confirmUsernameTextField.textField.delegate = self
-        confirmUsernameTextField.setEnabled(false)
-        confirmUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-                
         viewModel.newPasswordIsValid.drive(onNext: { [weak self] valid in
             self?.createPasswordTextField.setValidated(valid, accessibilityLabel: NSLocalizedString("Minimum password criteria met", comment: ""))
         }).disposed(by: disposeBag)
-        
-        
-        Driver.combineLatest(viewModel.usernameMatches, viewModel.confirmUsername.asDriver()).drive(onNext: { [weak self] usernameMatches, confirmUsername in
-            guard let `self` = self else { return }
-            if !confirmUsername.isEmpty {
-                self.confirmUsernameTextField.setValidated(usernameMatches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))
-                
-                if !usernameMatches {
-                    self.confirmUsernameTextField.setError(NSLocalizedString("Email address does not match", comment: ""))
-                } else {
-                    self.confirmUsernameTextField.setError(nil)
-                }
-            } else {
-                self.confirmUsernameTextField.setError(nil)
-            }
-            self.accessibilityErrorLabel()
-        }).disposed(by: self.disposeBag)
 
         createPasswordTextField.textField.placeholder = NSLocalizedString("Password*", comment: "")
         createPasswordTextField.textField.isSecureTextEntry = true
@@ -225,7 +198,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                 
         // Bind to the view model
         createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
-        confirmUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmUsername).disposed(by: disposeBag)
         
         createPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).disposed(by: disposeBag)
         confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).disposed(by: disposeBag)
@@ -337,16 +309,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             self?.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
         }).disposed(by: disposeBag)
         
-        viewModel.newUsernameIsValidBool
-            .drive(onNext: { [weak self] valid in
-                self?.confirmUsernameTextField.setEnabled(valid)
-            }).disposed(by: disposeBag)
-
-        viewModel.everythingValid
-            .drive(onNext: { [weak self] valid in
-                self?.confirmPasswordTextField.setEnabled(valid)
-            }).disposed(by: disposeBag)
-        
         
         // Password cannot match email
         viewModel.passwordMatchesUsername
@@ -399,7 +361,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         message += createUsernameTextField.getError()
         message += createPasswordTextField.getError()
         message += confirmPasswordTextField.getError()
-        message += confirmUsernameTextField.getError()
         
         if message.isEmpty {
             nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
@@ -456,24 +417,12 @@ extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
         if string.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             return false
         }
-
-//        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-//        
-//        if textField == createUsernameTextField.textField || textField == confirmUsernameTextField?.textField {
-//            return newString.count <= viewModel.MAXUSERNAMECHARS + 10
-//        }
         
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == createUsernameTextField.textField {
-            if confirmUsernameTextField.isUserInteractionEnabled {
-                confirmUsernameTextField.textField.becomeFirstResponder()
-            } else {
-                createPasswordTextField.textField.becomeFirstResponder()
-            }
-        } else if textField == confirmUsernameTextField.textField {
             createPasswordTextField.textField.becomeFirstResponder()
         } else if textField == createPasswordTextField.textField {
             if confirmPasswordTextField.isUserInteractionEnabled {
