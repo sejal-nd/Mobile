@@ -55,13 +55,21 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet weak var footerTextView: DataDetectorTextView! {
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var footerLabel: UILabel! {
         didSet {
-            footerTextView.attributedText = viewModel.footerTextViewText
-            footerTextView.textContainerInset = .zero
-            footerTextView.textColor = .softGray
-            footerTextView.tintColor = .white // For phone numbers
-            footerTextView.linkTapDelegate = self
+            footerLabel.text = viewModel.footerLabelText
+        }
+    }
+    @IBOutlet weak var footerPhoneButton: ButtonControl! {
+        didSet {
+            footerPhoneButton.roundCorners(.allCorners, radius: 4)
+            footerPhoneButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        }
+    }
+    @IBOutlet weak var footerPhoneLabel: UILabel! {
+        didSet {
+            footerPhoneLabel.text = viewModel.footerPhoneLabelText
         }
     }
     
@@ -71,12 +79,22 @@ class StormModeHomeViewController: AccountPickerViewController {
             gasOnlyTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         }
     }
-    @IBOutlet weak var gasOnlyTextView: DataDetectorTextView! {
+    @IBOutlet weak var gasOnlyDetailLabel: UILabel! {
         didSet {
-            gasOnlyTextView.font = OpenSans.regular.of(textStyle: .subheadline)
-            gasOnlyTextView.textContainerInset = .zero
-            gasOnlyTextView.tintColor = .white
-            gasOnlyTextView.text = viewModel.gasOnlyMessage
+            gasOnlyDetailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+            gasOnlyDetailLabel.text = viewModel.gasOnlyMessage
+        }
+    }
+    @IBOutlet weak var gasOnlyPhoneButton: ButtonControl! {
+        didSet {
+            gasOnlyPhoneButton.roundCorners(.allCorners, radius: 4)
+            gasOnlyPhoneButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            gasOnlyPhoneButton.isHidden = Environment.shared.opco == .comEd
+        }
+    }
+    @IBOutlet weak var gasOnlyPhoneLabel: UILabel! {
+        didSet {
+            gasOnlyPhoneLabel.text = viewModel.footerPhoneLabelText
         }
     }
     
@@ -90,6 +108,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             finalPayTextView.font = OpenSans.regular.of(textStyle: .subheadline)
             finalPayTextView.textContainerInset = .zero
+            finalPayTextView.textContainer.lineFragmentPadding = 0
             finalPayTextView.tintColor = .white
         }
     }
@@ -112,7 +131,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView! {
         didSet {
-            noNetworkConnectionView.configureContactText(attributedText: viewModel.footerTextViewText)
+            noNetworkConnectionView.configureContactText(attributedText: viewModel.noNetworkAttributedText)
         }
     }
     
@@ -189,6 +208,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.outageStatusButton.isHidden = true
                 self.gasOnlyView.isHidden = true
                 self.finalPayView.isHidden = true
+                self.footerView.isHidden = true
                 self.noNetworkConnectionView.isHidden = true
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
@@ -278,6 +298,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             loadingContentView.isHidden = false
             shouldShowOutageCellData = false
             outageStatusButton.isHidden = true
+            footerView.isHidden = true
             noNetworkConnectionView.isHidden = true
             gasOnlyView.isHidden = true
             finalPayView.isHidden = true
@@ -335,14 +356,14 @@ class StormModeHomeViewController: AccountPickerViewController {
         // Show/hide the top level container views
         if currentOutageStatus.flagGasOnly {
             gasOnlyView.isHidden = false
-            footerTextView.isHidden = true
+            footerView.isHidden = true
             loadingContentView.isHidden = true
             outageStatusButton.isHidden = true
             shouldShowOutageCellData = false
             shouldShowOutageCell = false
         } else {
             gasOnlyView.isHidden = true
-            footerTextView.isHidden = false
+            footerView.isHidden = false
             shouldShowOutageCellData = true
             shouldShowOutageCell = true
             
@@ -361,21 +382,26 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         if outageJustReported && viewModel.reportedOutage != nil {
             outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-        } else if currentOutageStatus.activeOutage {
-            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
             loadingContentView.isHidden = true
             outageStatusButton.isHidden = true
             finalPayView.isHidden = false
             finalPayTextView.text = viewModel.accountNonPayFinaledMessage
             
-            finalPayButton.isHidden = currentOutageStatus.flagFinaled ? true : false
+            finalPayButton.isHidden = currentOutageStatus.flagNoPay && Environment.shared.opco != .bge ? false : true
+        } else if currentOutageStatus.activeOutage {
+            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else { // Power is on
             outageStatusButton.setPowerOnState()
         }
     }
     
     private func setRefreshControlEnabled(enabled: Bool) {
+        if let rc = refreshControl {
+            rc.endRefreshing()
+            rc.removeFromSuperview()
+            refreshControl = nil
+        }
         if enabled {
             refreshControl = UIRefreshControl()
             refreshControl?.tintColor = .white
@@ -383,11 +409,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             scrollView!.insertSubview(refreshControl!, at: 0)
             scrollView!.alwaysBounceVertical = true
         } else {
-            if let rc = refreshControl {
-                rc.endRefreshing()
-                rc.removeFromSuperview()
-                refreshControl = nil
-            }
             scrollView!.alwaysBounceVertical = false
         }
     }
@@ -422,6 +443,17 @@ class StormModeHomeViewController: AccountPickerViewController {
         return .lightContent
     }
     
+    @IBAction func onPhoneNumberPress(_ sender: ButtonControl) {
+        var phoneStr: String?
+
+        phoneStr = viewModel.footerPhoneLabelText
+        
+        if let phone = phoneStr, let url = URL(string: "telprompt://\(phone)"), UIApplication.shared.canOpenURL(url) {
+            Analytics.log(event: .outageAuthEmergencyCall)
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
 }
 
 extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -449,13 +481,14 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
                 // Must nil check AccountStore, it CAN be nil.  should be an optional AccountStore.shared.currentAccount
                 
                 if shouldShowOutageCellData {
+                    let reportOutageDisabled = viewModel.currentOutageStatus?.flagFinaled ?? false || viewModel.currentOutageStatus?.flagNoPay ?? false || viewModel.currentOutageStatus?.flagNonService ?? false
                     // Populate Content
                     if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
                         // Reported State
                         cell.configure(image: #imageLiteral(resourceName: "ic_check_outage_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .clear, shouldConstrainWidth: true)
                     } else {
                         // Regular State
-                        cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+                        cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true, disabled: reportOutageDisabled)
                     }
                 } else {
                     // Hide Content
@@ -486,6 +519,14 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            let reportOutageDisabled = viewModel.currentOutageStatus?.flagFinaled ?? false || viewModel.currentOutageStatus?.flagNoPay ?? false || viewModel.currentOutageStatus?.flagNonService ?? false
+            return reportOutageDisabled ? nil : indexPath
+        }
+        return indexPath
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

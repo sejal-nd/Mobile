@@ -52,11 +52,10 @@ class NoNetworkConnectionView: UIView {
     @IBInspectable var isStormMode: Bool = false {
         didSet {
             if isStormMode {
-                containerView.backgroundColor = .black
+                containerView.backgroundColor = .clear
+                noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_color")
                 contactDetailsSpacerView.isHidden = false
                 contactDetailsTextView.isHidden = false
-                
-                noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_color")
             } else {
                 contactDetailsSpacerView.isHidden = true
                 contactDetailsTextView.isHidden = true
@@ -94,6 +93,9 @@ class NoNetworkConnectionView: UIView {
     
     public func configureContactText(attributedText: NSMutableAttributedString) {
         contactDetailsTextView.attributedText = attributedText
+        if isStormMode {
+            contactDetailsTextView.textColor = .white
+        }
     }
     
     private(set) lazy var reload: Observable<Void> = self.reloadButton.rx.touchUpInside.asObservable()
