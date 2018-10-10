@@ -119,13 +119,44 @@ class AdjustThermostatViewController: UIViewController {
         fanStack.axis = .vertical
         fanStack.spacing = 10
         
-        [tempSliderView, permanentHoldContainer, modeStack, fanStack]
+        let didYouKnowView = UIView().usingAutoLayout()
+        let didYouKnowLabel = UILabel().usingAutoLayout()
+        didYouKnowLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        didYouKnowLabel.textColor = .blackText
+        didYouKnowLabel.text = NSLocalizedString("Did you know?", comment: "")
+        
+        let didYouKnowDetailLabel = UILabel().usingAutoLayout()
+        didYouKnowDetailLabel.font = SystemFont.regular.of(textStyle: .headline)
+        didYouKnowDetailLabel.textColor = .blackText
+        didYouKnowDetailLabel.numberOfLines = 0
+        didYouKnowDetailLabel.text = NSLocalizedString("By turning your thermostat back by 7-10°F for eight hours a day, you can save 10% a year on heating and cooling.", comment: "")
+        
+        didYouKnowView.addSubview(didYouKnowLabel)
+        didYouKnowView.addSubview(didYouKnowDetailLabel)
+        
+        didYouKnowLabel.topAnchor.constraint(equalTo: didYouKnowView.topAnchor).isActive = true
+        didYouKnowLabel.leadingAnchor.constraint(equalTo: didYouKnowView.leadingAnchor).isActive = true
+        didYouKnowLabel.trailingAnchor.constraint(equalTo: didYouKnowView.trailingAnchor).isActive = true
+        didYouKnowLabel.bottomAnchor.constraint(equalTo: didYouKnowDetailLabel.topAnchor, constant: -10).isActive = true
+        didYouKnowDetailLabel.leadingAnchor.constraint(equalTo: didYouKnowView.leadingAnchor).isActive = true
+        didYouKnowDetailLabel.trailingAnchor.constraint(equalTo: didYouKnowView.trailingAnchor).isActive = true
+        didYouKnowDetailLabel.bottomAnchor.constraint(equalTo: didYouKnowView.bottomAnchor, constant: -15).isActive = true
+        
+        let scrollView = UIScrollView().usingAutoLayout()
+        view.addSubview(scrollView)
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        [tempSliderView, permanentHoldContainer, modeStack, fanStack, didYouKnowView]
             .forEach(mainContentStack.addArrangedSubview)
         mainContentStack.axis = .vertical
         mainContentStack.spacing = 30
-        view.addSubview(mainContentStack)
+        scrollView.addSubview(mainContentStack)
         mainContentStack.addTabletWidthConstraints(horizontalPadding: 29)
-        mainContentStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
+        mainContentStack.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 40).isActive = true
+        mainContentStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -29).isActive = true
     }
     
     func bindViews() {
