@@ -121,7 +121,6 @@ struct MCSAlertsService: AlertsService {
                         throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
                 
-                dLog("Response: \(String(data: data, encoding: String.Encoding.utf8) ?? "No Response Data")")
                 guard let d = dictData["d"] as? [String: Any],
                     let results = d["results"] as? [NSDictionary] else {
                         throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
