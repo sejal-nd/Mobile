@@ -141,52 +141,53 @@ class HomeViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] showAppointmentCard in
                 guard let self = self else { return }
                 
-                if showAppointmentCard {
-                    let appointmentCardView = HomeAppointmentCardView
-                        .create(withViewModel: self.viewModel.appointmentCardViewModel)
-                    appointmentCardView.bottomButton.rx.touchUpInside.asObservable()
-                        .withLatestFrom(self.viewModel.appointmentCardViewModel.appointments)
-                        .asDriver(onErrorDriveWith: .empty())
-                        .drive(onNext: { [weak self] appointments in
-                            guard let self = self else { return }
-                            let appointment = appointments[0]
-                            
-                            let status: Appointment.Status
-                            if appointments.count > 1 {
-                                status = .complete
-                            } else {
-                                status = appointment.status
-                            }
-                            
-                            switch status {
-                            case .scheduled, .inProgress, .enRoute:
-                                self.performSegue(withIdentifier: "appointmentDetailSegue", sender: appointments)
-                            case .complete:
-                                let safariVC = SFSafariViewController
-                                    .createWithCustomStyle(url: URL(string: "https://google.com")!)
-                                self.present(safariVC, animated: true, completion: nil)
-                            case .canceled:
-                                guard let url = URL(string: "tel://" + self.viewModel.appointmentCardViewModel.contactNumber),
-                                    UIApplication.shared.canOpenURL(url) else {
-                                        return
-                                }
-                                
-                                if #available(iOS 10, *) {
-                                    UIApplication.shared.open(url)
-                                } else {
-                                    UIApplication.shared.openURL(url)
-                                }
-                            }
-                        })
-                        .disposed(by: appointmentCardView.disposeBag)
-                    
-                    let index = self.topPersonalizeButton != nil ? 1 : 0
-                    self.contentStackView.insertArrangedSubview(appointmentCardView, at: index)
-                    self.appointmentCardView = appointmentCardView
-                } else {
+                guard showAppointmentCard else {
                     self.appointmentCardView?.removeFromSuperview()
                     self.appointmentCardView = nil
+                    return
                 }
+                
+                let appointmentCardView = HomeAppointmentCardView
+                    .create(withViewModel: self.viewModel.appointmentCardViewModel)
+                appointmentCardView.bottomButton.rx.touchUpInside.asObservable()
+                    .withLatestFrom(self.viewModel.appointmentCardViewModel.appointments)
+                    .asDriver(onErrorDriveWith: .empty())
+                    .drive(onNext: { [weak self] appointments in
+                        guard let self = self else { return }
+                        let appointment = appointments[0]
+                        
+                        let status: Appointment.Status
+                        if appointments.count > 1 {
+                            status = .complete
+                        } else {
+                            status = appointment.status
+                        }
+                        
+                        switch status {
+                        case .scheduled, .inProgress, .enRoute:
+                            self.performSegue(withIdentifier: "appointmentDetailSegue", sender: appointments)
+                        case .complete:
+                            let safariVC = SFSafariViewController
+                                .createWithCustomStyle(url: URL(string: "https://google.com")!)
+                            self.present(safariVC, animated: true, completion: nil)
+                        case .canceled:
+                            guard let url = URL(string: "tel://" + self.viewModel.appointmentCardViewModel.contactNumber),
+                                UIApplication.shared.canOpenURL(url) else {
+                                    return
+                            }
+                            
+                            if #available(iOS 10, *) {
+                                UIApplication.shared.open(url)
+                            } else {
+                                UIApplication.shared.openURL(url)
+                            }
+                        }
+                    })
+                    .disposed(by: appointmentCardView.disposeBag)
+                
+                let index = self.topPersonalizeButton != nil ? 1 : 0
+                self.contentStackView.insertArrangedSubview(appointmentCardView, at: index)
+                self.appointmentCardView = appointmentCardView
             })
             .disposed(by: bag)
         
