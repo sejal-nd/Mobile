@@ -25,11 +25,9 @@ struct Maintenance: Mappable {
         alertStatus = map.optionalFrom("alerts") ?? false
         usageStatus = map.optionalFrom("usage") ?? false
         
-        // Storm mode is not in the October release, so keep it always false for now.
-        // Uncomment other code while testing.
-        stormModeStatus = true
-        //stormModeStatus = map.optionalFrom("storm") ?? false
-        //stormModeStatus = arc4random_uniform(5) != 0
+        stormModeStatus = map.optionalFrom("storm") ?? false // Real Storm Mode value
+        //stormModeStatus = true // Force Storm Mode
+        //stormModeStatus = arc4random_uniform(5) != 0 // 1 in 5 chance to test exiting Storm Mode
     }
     
 }
