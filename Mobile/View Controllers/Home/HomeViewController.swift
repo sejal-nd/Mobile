@@ -12,6 +12,7 @@ import RxSwiftExt
 import Lottie
 import StoreKit
 import UserNotifications
+import SafariServices
 
 fileprivate let editHomeSegueId = "editHomeSegue"
 
@@ -31,6 +32,7 @@ class HomeViewController: AccountPickerViewController {
     
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
+    var appointmentCardView: HomeAppointmentCardView?
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
@@ -132,6 +134,62 @@ class HomeViewController: AccountPickerViewController {
         if tappedVersion < viewModel.latestNewCardVersion {
             topPersonalizeButtonSetup()
         }
+        
+        // Appointment Card Logic
+        viewModel.showAppointmentCard
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] showAppointmentCard in
+                guard let self = self else { return }
+                
+                if showAppointmentCard {
+                    let appointmentCardView = HomeAppointmentCardView
+                        .create(withViewModel: self.viewModel.appointmentCardViewModel)
+                    appointmentCardView.bottomButton.rx.touchUpInside.asObservable()
+                        .withLatestFrom(self.viewModel.appointmentCardViewModel.appointments)
+                        .asDriver(onErrorDriveWith: .empty())
+                        .drive(onNext: { [weak self] appointments in
+                            guard let self = self else { return }
+                            let appointment = appointments[0]
+                            
+                            let status: AppointmentStatus
+                            if appointments.count > 1 {
+                                status = .complete
+                            } else {
+                                status = appointment.status
+                            }
+                            
+                            switch status {
+                            case .scheduled, .inProgress, .enRoute:
+                                let safariVC = SFSafariViewController
+                                    .createWithCustomStyle(url: URL(string: "https://google.com")!)
+                                self.present(safariVC, animated: true, completion: nil)
+                            case .complete:
+                                let safariVC = SFSafariViewController
+                                    .createWithCustomStyle(url: URL(string: "https://google.com")!)
+                                self.present(safariVC, animated: true, completion: nil)
+                            case .canceled:
+                                guard let url = URL(string: "tel://" + self.viewModel.appointmentCardViewModel.contactNumber),
+                                    UIApplication.shared.canOpenURL(url) else {
+                                        return
+                                }
+                                
+                                if #available(iOS 10, *) {
+                                    UIApplication.shared.open(url)
+                                } else {
+                                    UIApplication.shared.openURL(url)
+                                }
+                            }
+                        })
+                        .disposed(by: appointmentCardView.disposeBag)
+                    
+                    self.contentStackView.insertArrangedSubview(appointmentCardView, at: 0)
+                    self.appointmentCardView = appointmentCardView
+                } else {
+                    self.appointmentCardView?.removeFromSuperview()
+                    self.appointmentCardView = nil
+                }
+            })
+            .disposed(by: bag)
         
         // If no update, show weather and personalize button at the top.
         // Hide the update view.

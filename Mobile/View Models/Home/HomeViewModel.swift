@@ -26,6 +26,7 @@ class HomeViewModel {
     let refreshFetchTracker = ActivityTracker()
     
     // A tracker for each card that loads data
+    private let appointmentTracker = ActivityTracker()
     private let billTracker = ActivityTracker()
     private let usageTracker = ActivityTracker()
     private let accountDetailTracker = ActivityTracker()
@@ -52,6 +53,9 @@ class HomeViewModel {
         self.outageService = outageService
         self.alertsService = alertsService
     }
+    
+    private(set) lazy var appointmentCardViewModel =
+        HomeAppointmentCardViewModel(appointments: appointmentEvents.elements())
     
     private(set) lazy var weatherViewModel =
         HomeWeatherViewModel(accountDetailEvents: accountDetailEvents,
@@ -107,14 +111,14 @@ class HomeViewModel {
             case .refresh:
                 return [this.refreshFetchTracker]
             case .switchAccount:
-                return [this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
+                return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
             }
             }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
     private lazy var accountDetailUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.accountDetailUpdated
         .toAsyncRequest(activityTrackers: { [weak self] in
             guard let this = self else { return nil }
-            return [this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
+            return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
             }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable
@@ -162,5 +166,51 @@ class HomeViewModel {
                 .catchError { _ in .just(nil) }
         }
         .elements()
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var appointmentEvents = maintenanceModeEvents
+        .filter { !($0.element?.homeStatus ?? false) }
+        .withLatestFrom(fetchTrigger)
+        .toAsyncRequest(activityTrackers: { [weak self] state in
+            guard let self = self else { return nil }
+            switch state {
+            case .refresh:
+                return [self.refreshFetchTracker]
+            case .switchAccount:
+                return [self.appointmentTracker]
+            }
+            }, requestSelector: { [weak self] _ -> Observable<[Appointment]> in
+                let accountIndex = AccountsStore.shared.accounts.index(of: AccountsStore.shared.currentAccount)
+                
+                switch accountIndex {
+                case 0:
+                    return .just([Appointment(startTime: Date(),
+                                              endTime: Date(),
+                                              status: .complete,
+                                              caseNumber: 0)])
+                case 1:
+                    return .just([Appointment(startTime: Date(),
+                                              endTime: Date(),
+                                              status: .canceled,
+                                              caseNumber: 1)])
+                case 2:
+                    return .just([Appointment(startTime: Date(),
+                                              endTime: Date(),
+                                              status: .inProgress,
+                                              caseNumber: 2),
+                                  Appointment(startTime: Date(),
+                                              endTime: Date(),
+                                              status: .canceled,
+                                              caseNumber: 3)])
+                default:
+                    return .just([])
+                }
+                
+        })
+        .share(replay: 1, scope: .forever)
+    
+    private(set) lazy var showAppointmentCard = Observable
+        .merge(appointmentEvents.map { !($0.element?.isEmpty ?? true) },
+               appointmentTracker.asObservable().filter { $0 }.not())
         .asDriver(onErrorDriveWith: .empty())
 }

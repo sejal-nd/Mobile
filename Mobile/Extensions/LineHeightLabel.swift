@@ -25,13 +25,22 @@ extension UILabel {
 
 extension String {
     
-    func attributedString(withLineHeight lineHeight: CGFloat, textAlignment: NSTextAlignment = .left) -> NSAttributedString {
+    func attributedString(textAlignment: NSTextAlignment = .left,
+                          lineHeight: CGFloat? = nil,
+                          otherAttributes: [NSAttributedString.Key : Any]? = nil) -> NSAttributedString {
         let style = NSMutableParagraphStyle()
-        style.minimumLineHeight = lineHeight
+        if let lineHeight = lineHeight {
+            style.minimumLineHeight = lineHeight
+        }
+        
         style.alignment = textAlignment
         
         let attributedString = NSMutableAttributedString(string: self)
         attributedString.addAttribute(.paragraphStyle, value: style, range: NSMakeRange(0, count))
+        
+        if let otherAttributes = otherAttributes {
+            attributedString.addAttributes(otherAttributes, range: NSMakeRange(0, count))
+        }
         return attributedString
     }
     

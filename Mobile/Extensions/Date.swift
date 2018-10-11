@@ -33,6 +33,10 @@ extension Date {
         return DateFormatter.shortMonthDayAndYearFormatter.string(from: self)
     }
     
+    @nonobjc var dayMonthDayString: String {
+        return DateFormatter.dayMonthDayFormatter.string(from: self)
+    }
+    
     @nonobjc var hourAmPmString: String {
         var date = self
         let minutes = Calendar.current.component(.minute, from: date)
@@ -222,6 +226,14 @@ extension DateFormatter {
         dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd'T'12:00:00"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let dayMonthDayFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "EEEE, MMM d"
         return dateFormatter
     }()
     
