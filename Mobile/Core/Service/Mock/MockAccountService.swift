@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class MockAccountService: AccountService {
     
@@ -23,7 +24,7 @@ class MockAccountService: AccountService {
         AccountDetail.from(["accountNumber": "9836621902", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
     ]
     
-    func fetchAccounts(completion: @escaping (ServiceResult<[Account]>) -> Void) {
+    func fetchAccounts() -> Observable<[Account]> {
         var accounts = mockAccounts
     
 //        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.LoggedInUsername)
@@ -35,10 +36,10 @@ class MockAccountService: AccountService {
         AccountsStore.shared.currentAccount = accounts[0]
         AccountsStore.shared.customerIdentifier = "123"
         RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = nil
-        completion(ServiceResult.success(accounts as [Account]))
+        return .just(accounts)
     }
     
-    func fetchAccountDetail(account: Account, completion: @escaping (ServiceResult<AccountDetail>) -> Void) {
+    func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         let tenDaysFromToday = Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000)
         switch loggedInUsername {
@@ -46,46 +47,46 @@ class MockAccountService: AccountService {
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
                                                                        dueByDate: tenDaysFromToday))
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "billCardWithDefaultCcPayment", "billCardWithExpiredDefaultPayment":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
                                                                        dueByDate: tenDaysFromToday),
                                               isResidential: false)
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "minPaymentAmount":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 0.001,
                                                                        dueByDate: tenDaysFromToday))
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "maxPaymentAmount":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 100_000_000,
                                                                        dueByDate: tenDaysFromToday))
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "cashOnly":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
                                                                        dueByDate: tenDaysFromToday),
                                               isCashOnly: true)
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "scheduledPayment":
             let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 82,
                                                                                               dueByDate: tenDaysFromToday,
                                                                                               scheduledPayment: PaymentItem(amount: 82)))
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "autoPay":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 82,
                                                                        dueByDate: tenDaysFromToday),
                                               isAutoPay: true)
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "autoPayScheduled":
             let accountDetail = AccountDetail(accountNumber: "1234",
@@ -93,7 +94,7 @@ class MockAccountService: AccountService {
                                                                        dueByDate: tenDaysFromToday,
                                                                        scheduledPayment: PaymentItem(amount: 82)),
                                               isAutoPay: true)
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "thankYouForPayment":
             let now = Date()
@@ -102,19 +103,19 @@ class MockAccountService: AccountService {
                                               billingInfo: BillingInfo(lastPaymentAmount: 200,
                                                                        lastPaymentDate: now,
                                                                        billDate: yesterday))
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "thankYouForPaymentOTP":
             RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = PaymentDetails(amount: 234,
                                                                                              date: Date().addingTimeInterval(-3600))
             let accountDetail = AccountDetail(accountNumber: "1234")
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "pastDue":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
                                                                        pastDueAmount: 200))
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "restoreService":
             let accountDetail = AccountDetail(accountNumber: "1234",
@@ -122,7 +123,7 @@ class MockAccountService: AccountService {
                                                                        restorationAmount: 200,
                                                                        dueByDate: tenDaysFromToday),
                                               isCutOutNonPay: true)
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "avoidShutoff":
             let accountDetail = AccountDetail(accountNumber: "1234",
@@ -130,7 +131,7 @@ class MockAccountService: AccountService {
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 200,
                                                                        isDisconnectNotice: true))
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "catchUp":
             let accountDetail = AccountDetail(accountNumber: "1234",
@@ -139,7 +140,7 @@ class MockAccountService: AccountService {
                                                                        dueByDate: tenDaysFromToday,
                                                                        atReinstateFee: 5),
                                               isLowIncome: false)
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "paymentPending":
             let accountDetail = AccountDetail(accountNumber: "1234",
@@ -147,43 +148,41 @@ class MockAccountService: AccountService {
                                                                        dueByDate: tenDaysFromToday,
                                                                        pendingPayments: [PaymentItem(amount: 200,
                                                                                                      status: .pending)]))
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "credit":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: -350.34))
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         case "billNotReady":
             let accountDetail = AccountDetail(accountNumber: "1234")
-            return completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
             
         default:
             guard let accountIndex = mockAccounts.index(of: account) else {
-                completion(.failure(ServiceError(serviceMessage: "No account detail found for the provided account.")))
-                return
+                return .error(ServiceError(serviceMessage: "No account detail found for the provided account."))
             }
             let accountDetail = mockAccountDetails[accountIndex]
             
             guard accountDetail.accountNumber != "failure" else {
-                completion(.failure(ServiceError(serviceMessage: "Account detail fetch failed.")))
-                return
+                return .error(ServiceError(serviceMessage: "Account detail fetch failed."))
             }
             
-            completion(ServiceResult.success(accountDetail))
+            return .just(accountDetail)
         }
     }
     
-    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int, completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.success(()))
+    func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void> {
+        return .just(())
     }
     
-    func setDefaultAccount(account: Account, completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.success(()))
+    func setDefaultAccount(account: Account) -> Observable<Void> {
+        return .just(())
     }
     
-    func fetchSSOData(accountNumber: String, premiseNumber: String, completion: @escaping (ServiceResult<SSOData>) -> Void) {
+    func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
         let ssoData = SSOData.from(["utilityCustomerId": "1234", "ssoPostURL": "https://google.com", "relayState": "https://google.com", "samlResponse": "test"])!
-        completion(ServiceResult.success(ssoData))
+        return .just(ssoData)
     }
 }

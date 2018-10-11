@@ -205,7 +205,7 @@ class HomeOutageCardView: UIView {
         viewModel.powerStatus.drive(powerStatusLabel.rx.text).disposed(by: bag)
         
         viewModel.etrText
-            .map { $0.attributedString(withLineHeight: 20, textAlignment: .center) }
+            .map { $0.attributedString(textAlignment: .center, lineHeight: 20) }
             .drive(restorationStatusLabel.rx.attributedText)
             .disposed(by: bag)
         

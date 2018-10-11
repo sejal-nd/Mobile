@@ -91,7 +91,7 @@ class AddBankFormViewModel {
     }
     
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
-        walletService.fetchBankName(routingNumber.value)
+        walletService.fetchBankName(routingNumber: routingNumber.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] bankName in
                 self?.bankName = bankName

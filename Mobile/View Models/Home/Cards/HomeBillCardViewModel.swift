@@ -157,10 +157,11 @@ class HomeBillCardViewModel {
         .toAsyncRequest(activityTracker: paymentTracker,
                         requestSelector: { [unowned self] payment in
                             self.paymentService.schedulePayment(payment: payment)
-                                .do(onNext: {
+                                .do(onNext: { _ in
                                     let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
                                     RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = paymentDetails
                                 })
+                                .mapTo(())
         })
     
     private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {

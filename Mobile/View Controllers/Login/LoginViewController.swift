@@ -136,7 +136,6 @@ class LoginViewController: UIViewController {
         keepMeSignedInSwitch.accessibilityLabel = keepMeSignedInLabel.text
 
         checkForMaintenanceMode(onCompletion: { [weak self] in
-            // We wait until after the maintence mode check due to the issue with calling 2 anon functions at once. See "IMPORTANT NOTE!" in OMCApi.swift for more info
             if let guid = UserDefaults.standard.string(forKey: UserDefaultKeys.accountVerificationDeepLinkGuid) {
                 UserDefaults.standard.removeObject(forKey: UserDefaultKeys.accountVerificationDeepLinkGuid) // Clear once consumed
                 LoadingView.show()
