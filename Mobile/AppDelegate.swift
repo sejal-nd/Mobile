@@ -11,6 +11,7 @@ import ToastSwiftFramework
 import Firebase
 import AppCenter
 import AppCenterCrashes
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     #else
         var window: UIWindow?
     #endif
+    
+    let disposeBag = DisposeBag()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let processInfo = ProcessInfo.processInfo
@@ -73,6 +76,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             configureQuickActions(isAuthenticated: false)
         }
         
+        RxNotifications.shared.configureQuickActions
+            .subscribe(onNext: { [weak self] in
+                self?.configureQuickActions(isAuthenticated: $0)
+            })
+            .disposed(by: disposeBag)
+        
         return true
     }
     
@@ -88,19 +97,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             let alertsService = ServiceFactory.createAlertsService()
-            alertsService.register(token: token, firstLogin: firstLogin) { (result: ServiceResult<Void>) in
-                switch result {
-                case .success:
+            alertsService.register(token: token, firstLogin: firstLogin)
+                .subscribe(onNext: {
                     dLog("*-*-*-*-* Registered token with MCS")
                     if firstLogin { // Add the username to the array
                         var newUsernamesArray = usernamesArray
                         newUsernamesArray.append(loggedInUsername)
                         UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
                     }
-                case .failure(let err):
+                }, onError: { err in
                     dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
-                }
-            }
+                })
+                .disposed(by: disposeBag)
         }
     }
     
@@ -201,7 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let biometricsService = ServiceFactory.createBiometricsService()
             biometricsService.disableBiometrics()
 
-            OMCApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
+            MCSApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }

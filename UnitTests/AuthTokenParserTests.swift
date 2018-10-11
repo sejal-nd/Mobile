@@ -38,7 +38,7 @@ class AuthTokenParserTests: XCTestCase {
     func testInvalidSuccessKey() {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: invalidSuccessKeyFormat)
-            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
+            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData)
             
             switch result {
             case .failure(let serviceError):
@@ -56,7 +56,7 @@ class AuthTokenParserTests: XCTestCase {
     func testValidFailedResponse() {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: validFailedResponse)
-            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
+            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData)
             
             switch result {
             case .failure(let serviceError):
@@ -74,7 +74,7 @@ class AuthTokenParserTests: XCTestCase {
     func testValidSuccessResponse() {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: validSuccessResponse)
-            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
+            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData)
             
             switch result {
             case .success(let value):
@@ -92,7 +92,7 @@ class AuthTokenParserTests: XCTestCase {
     func testNoProfileType() {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: noProfileTypeResponse)
-            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
+            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData)
             
             switch result {
             case .success:
@@ -110,7 +110,7 @@ class AuthTokenParserTests: XCTestCase {
     func testInvalidProfileType() {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: invalidProfileTypeResponse)
-            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData, response: nil, error: nil)
+            let result = AuthTokenParser.parseAuthTokenResponse(data: jsonData)
             
             switch result {
             case .success:
