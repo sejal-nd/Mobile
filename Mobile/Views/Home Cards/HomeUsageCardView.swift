@@ -119,7 +119,7 @@ class HomeUsageCardView: UIView {
         
         unavailableDescriptionLabel.textColor = .middleGray
         unavailableDescriptionLabel.attributedText = NSLocalizedString("Usage is not available for this account.", comment: "")
-            .attributedString(withLineHeight: 26, textAlignment: .center)
+            .attributedString(textAlignment: .center, lineHeight: 26)
     }
     
     func superviewDidLayoutSubviews() {
@@ -377,7 +377,7 @@ class HomeUsageCardView: UIView {
         
         // Bill Comparison Empty State
         viewModel.billComparisonEmptyStateText
-            .map { $0.attributedString(withLineHeight: 26, textAlignment: .center) }
+            .map { $0.attributedString(textAlignment: .center, lineHeight: 26) }
             .drive(billComparisonEmptyStateLabel.rx.attributedText)
             .disposed(by: disposeBag)
     }

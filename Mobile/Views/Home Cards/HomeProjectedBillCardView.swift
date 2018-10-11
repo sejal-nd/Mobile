@@ -72,14 +72,14 @@ class HomeProjectedBillCardView: UIView {
         emptyStateDescriptionLabel.textColor = .middleGray
         emptyStateDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
         emptyStateDescriptionLabel.attributedText = NSLocalizedString("Projected bill is not available for this account.", comment: "")
-            .attributedString(withLineHeight: 26, textAlignment: .center)
+            .attributedString(textAlignment: .center, lineHeight: 26)
         
         errorTitleLabel.textColor = .blackText
         errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         errorDescriptionLabel.textColor = .middleGray
         errorDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
         errorDescriptionLabel.attributedText = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-            .attributedString(withLineHeight: 26, textAlignment: .center)
+            .attributedString(textAlignment: .center, lineHeight: 26)
         
         segmentedControl.setItems(leftLabel: NSLocalizedString("Electric", comment: ""),
                                   rightLabel: NSLocalizedString("Gas", comment: ""),

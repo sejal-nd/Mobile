@@ -106,4 +106,8 @@ class ServiceFactory {
     class func createPeakRewardsService() -> PeakRewardsService {
         return OMCPeakRewardsService()
     }
+    
+    class func createAppointmentService() -> AppointmentService {
+        return MockAppointmentService()
+    }
 }
