@@ -9,17 +9,6 @@
 import RxSwift
 import RxCocoa
 
-enum AppointmentStatus {
-    case scheduled, enRoute, inProgress, complete, canceled
-}
-
-struct Appointment {
-    let startTime: Date
-    let endTime: Date
-    let status: AppointmentStatus
-    let caseNumber: Int
-}
-
 class HomeAppointmentCardViewModel {
     
     let appointments: Observable<[Appointment]>

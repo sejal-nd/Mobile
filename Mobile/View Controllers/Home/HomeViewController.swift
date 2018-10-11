@@ -52,7 +52,8 @@ class HomeViewController: AccountPickerViewController {
                                   usageService: ServiceFactory.createUsageService(),
                                   authService: ServiceFactory.createAuthenticationService(),
                                   outageService: ServiceFactory.createOutageService(),
-                                  alertsService: ServiceFactory.createAlertsService())
+                                  alertsService: ServiceFactory.createAlertsService(),
+                                  appointmentService: ServiceFactory.createAppointmentService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -115,8 +116,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         // Create weather card
-        weatherView = HomeWeatherView.create(withViewModel: viewModel.weatherViewModel)
-        
+        weatherView = .create(withViewModel: viewModel.weatherViewModel)
         mainStackView.insertArrangedSubview(weatherView, at: 1)
         weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
         weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
@@ -135,7 +135,7 @@ class HomeViewController: AccountPickerViewController {
             topPersonalizeButtonSetup()
         }
         
-        // Appointment Card Logic
+        // Appointment Card
         viewModel.showAppointmentCard
             .distinctUntilChanged()
             .drive(onNext: { [weak self] showAppointmentCard in
@@ -151,7 +151,7 @@ class HomeViewController: AccountPickerViewController {
                             guard let self = self else { return }
                             let appointment = appointments[0]
                             
-                            let status: AppointmentStatus
+                            let status: Appointment.Status
                             if appointments.count > 1 {
                                 status = .complete
                             } else {
@@ -160,9 +160,7 @@ class HomeViewController: AccountPickerViewController {
                             
                             switch status {
                             case .scheduled, .inProgress, .enRoute:
-                                let safariVC = SFSafariViewController
-                                    .createWithCustomStyle(url: URL(string: "https://google.com")!)
-                                self.present(safariVC, animated: true, completion: nil)
+                                self.performSegue(withIdentifier: "appointmentDetailSegue", sender: appointments)
                             case .complete:
                                 let safariVC = SFSafariViewController
                                     .createWithCustomStyle(url: URL(string: "https://google.com")!)
@@ -182,7 +180,8 @@ class HomeViewController: AccountPickerViewController {
                         })
                         .disposed(by: appointmentCardView.disposeBag)
                     
-                    self.contentStackView.insertArrangedSubview(appointmentCardView, at: 0)
+                    let index = self.topPersonalizeButton != nil ? 1 : 0
+                    self.contentStackView.insertArrangedSubview(appointmentCardView, at: index)
                     self.appointmentCardView = appointmentCardView
                 } else {
                     self.appointmentCardView?.removeFromSuperview()
@@ -363,7 +362,7 @@ class HomeViewController: AccountPickerViewController {
             if let billCard = self.billCardView {
                 billCardView = billCard
             } else {
-                billCardView = HomeBillCardView.create(withViewModel: viewModel.billCardViewModel)
+                billCardView = .create(withViewModel: viewModel.billCardViewModel)
                 self.billCardView = billCardView
                 bindBillCard()
             }
@@ -374,7 +373,7 @@ class HomeViewController: AccountPickerViewController {
             if let billCard = self.usageCardView {
                 usageCardView = billCard
             } else {
-                usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
+                usageCardView = .create(withViewModel: viewModel.usageCardViewModel)
                 self.usageCardView = usageCardView
                 bindUsageCard()
             }
@@ -385,7 +384,7 @@ class HomeViewController: AccountPickerViewController {
             if let templateCard = self.templateCardView {
                 templateCardView = templateCard
             } else {
-                templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
+                templateCardView = .create(withViewModel: viewModel.templateCardViewModel)
                 self.templateCardView = templateCardView
                 bindTemplateCard()
             }
@@ -396,7 +395,7 @@ class HomeViewController: AccountPickerViewController {
             if let projectedBillCard = self.projectedBillCardView {
                 projectedBillCardView = projectedBillCard
             } else {
-                projectedBillCardView = HomeProjectedBillCardView.create(withViewModel: viewModel.projectedBillCardViewModel)
+                projectedBillCardView = .create(withViewModel: viewModel.projectedBillCardViewModel)
                 self.projectedBillCardView = projectedBillCardView
                 bindProjectedBillCard()
             }
@@ -406,7 +405,7 @@ class HomeViewController: AccountPickerViewController {
             if let outageCard = self.outageCardView {
                 outageCardView = outageCard
             } else {
-                outageCardView = HomeOutageCardView.create(withViewModel: viewModel.outageCardViewModel)
+                outageCardView = .create(withViewModel: viewModel.outageCardViewModel)
                 self.outageCardView = outageCardView
                 bindOutageCard()
             }
@@ -591,11 +590,16 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? SmartEnergyRewardsViewController, let accountDetail = sender as? AccountDetail {
+        switch (segue.destination, sender) {
+        case let (vc as AppointmentDetailViewController, appointments as [Appointment]):
+            vc.appointments = appointments
+        case let (vc as SmartEnergyRewardsViewController, accountDetail as AccountDetail):
             vc.accountDetail = accountDetail
-        } else if let vc = segue.destination as? TotalSavingsViewController, let accountDetail = sender as? AccountDetail {
+        case let (vc as TotalSavingsViewController, accountDetail as AccountDetail):
             vc.eventResults = accountDetail.serInfo.eventResults
-        } else if let vc = segue.destination as? ReportOutageViewController, let currentOutageStatus = sender as? OutageStatus {
+        case let (vc as UpdatesDetailViewController, update as OpcoUpdate):
+            vc.opcoUpdate = update
+        case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):
             vc.viewModel.outageStatus = currentOutageStatus
             if let phone = currentOutageStatus.contactHomeNumber {
                 vc.viewModel.phoneNumber.value = phone
@@ -611,9 +615,8 @@ class HomeViewController: AccountPickerViewController {
                     })
                 })
                 .disposed(by: vc.disposeBag)
-        } else if let vc = segue.destination as? UpdatesDetailViewController,
-            let update = sender as? OpcoUpdate {
-            vc.opcoUpdate = update
+        default:
+            break
         }
     }
     

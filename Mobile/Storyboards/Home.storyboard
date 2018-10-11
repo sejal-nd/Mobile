@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GkP-jV-MfK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -99,7 +99,7 @@
                                                             <rect key="frame" x="328" y="0.0" width="47" height="60"/>
                                                             <subviews>
                                                                 <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_grip" translatesAutoresizingMaskIntoConstraints="NO" id="QFp-op-twT">
-                                                                    <rect key="frame" x="16" y="18" width="15" height="25"/>
+                                                                    <rect key="frame" x="16" y="17.5" width="15" height="25"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -157,7 +157,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All cards have been added" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAd-Nh-MXH">
-                                                    <rect key="frame" x="89.5" y="19.5" width="196" height="22"/>
+                                                    <rect key="frame" x="89.5" y="19" width="196" height="22"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -362,7 +362,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="xaj-LQ-p93">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="xaj-LQ-p93">
                                                         <rect key="frame" x="16" y="90" width="343" height="56"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Opk-mo-Gnw" userLabel="Card Stack View">
@@ -372,10 +372,10 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxd-b0-qbk">
-                                                                <rect key="frame" x="0.0" y="14" width="343" height="42"/>
+                                                                <rect key="frame" x="0.0" y="25" width="343" height="31"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="JqW-8P-SEa">
-                                                                        <rect key="frame" x="66" y="12" width="211" height="30"/>
+                                                                        <rect key="frame" x="66" y="1" width="211" height="30"/>
                                                                         <state key="normal" title="Personalize Your Home Screen"/>
                                                                     </button>
                                                                 </subviews>
@@ -383,7 +383,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JqW-8P-SEa" secondAttribute="trailing" id="3oI-ux-97u"/>
                                                                     <constraint firstAttribute="bottom" secondItem="JqW-8P-SEa" secondAttribute="bottom" priority="999" id="Wk2-Ay-SzZ"/>
-                                                                    <constraint firstItem="JqW-8P-SEa" firstAttribute="top" secondItem="rxd-b0-qbk" secondAttribute="top" priority="999" constant="12" id="g5r-z4-8EN"/>
+                                                                    <constraint firstItem="JqW-8P-SEa" firstAttribute="top" secondItem="rxd-b0-qbk" secondAttribute="top" priority="999" constant="1" id="g5r-z4-8EN"/>
                                                                     <constraint firstItem="JqW-8P-SEa" firstAttribute="centerX" secondItem="rxd-b0-qbk" secondAttribute="centerX" id="hWN-ZF-5Kc"/>
                                                                     <constraint firstItem="JqW-8P-SEa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rxd-b0-qbk" secondAttribute="leading" id="tXk-IA-pa7"/>
                                                                 </constraints>
@@ -461,6 +461,7 @@
                         <segue destination="ho2-TI-3tb" kind="show" identifier="reportOutageSegue" id="P2D-Ry-Yj3"/>
                         <segue destination="9AE-d3-QcS" kind="show" identifier="outageMapSegue" id="PBt-yQ-MvG"/>
                         <segue destination="8XL-jd-5lL" kind="show" identifier="UpdatesDetailSegue" id="8bf-8e-LkE"/>
+                        <segue destination="OFJ-OS-HhS" kind="show" identifier="appointmentDetailSegue" id="CD5-wn-emA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -550,7 +551,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Credit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxf-Oi-Umd">
-                                                                    <rect key="frame" x="136" y="20.5" width="73" height="14.5"/>
+                                                                    <rect key="frame" x="136" y="21" width="73" height="14.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="73" id="Ra0-11-mO1"/>
                                                                     </constraints>
@@ -577,7 +578,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Energy Savings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oar-Yz-J8P">
-                                                                    <rect key="frame" x="435" y="21" width="114.5" height="14.5"/>
+                                                                    <rect key="frame" x="435" y="21" width="115" height="14.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="115" id="MER-6o-sRj"/>
                                                                     </constraints>
@@ -586,7 +587,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxU-NV-cr7">
-                                                                    <rect key="frame" x="0.0" y="42.5" width="581" height="1"/>
+                                                                    <rect key="frame" x="0.0" y="43" width="581" height="0.5"/>
                                                                     <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="0.5" id="dlt-zv-cvQ"/>
@@ -636,7 +637,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$888.88" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PB6-Nm-xak">
-                                                                    <rect key="frame" x="136" y="27.5" width="73" height="17"/>
+                                                                    <rect key="frame" x="136" y="27" width="73" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="73" id="S2M-xU-YK7"/>
                                                                     </constraints>
@@ -645,7 +646,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="888.8 kWh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMn-O1-hO1">
-                                                                    <rect key="frame" x="223" y="27.5" width="92" height="17"/>
+                                                                    <rect key="frame" x="223" y="27" width="92" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="92" id="Y98-f6-yuS"/>
                                                                     </constraints>
@@ -765,6 +766,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDg-zb-1M2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2430" y="-1466"/>
+        </scene>
+        <!--Appointment Detail View Controller-->
+        <scene sceneID="FO9-X5-COH">
+            <objects>
+                <viewController id="OFJ-OS-HhS" customClass="AppointmentDetailViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CRe-wf-JRx"/>
+                        <viewControllerLayoutGuide type="bottom" id="fav-70-roP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lAE-Lz-JX5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gNt-SB-Q9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1441" y="-2189"/>
         </scene>
         <!--Main Base Navigation Controller-->
         <scene sceneID="lfl-ym-K3d">

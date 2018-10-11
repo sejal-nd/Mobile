@@ -19,6 +19,7 @@ class HomeViewModel {
     private let authService: AuthenticationService
     private let outageService: OutageService
     private let alertsService: AlertsService
+    private let appointmentService: AppointmentService
     
     let fetchData = PublishSubject<FetchingAccountState>()
     let fetchDataObservable: Observable<FetchingAccountState>
@@ -42,7 +43,8 @@ class HomeViewModel {
                   usageService: UsageService,
                   authService: AuthenticationService,
                   outageService: OutageService,
-                  alertsService: AlertsService) {
+                  alertsService: AlertsService,
+                  appointmentService: AppointmentService) {
         self.fetchDataObservable = fetchData.share()
         self.accountService = accountService
         self.weatherService = weatherService
@@ -52,6 +54,7 @@ class HomeViewModel {
         self.authService = authService
         self.outageService = outageService
         self.alertsService = alertsService
+        self.appointmentService = appointmentService
     }
     
     private(set) lazy var appointmentCardViewModel =
@@ -163,15 +166,16 @@ class HomeViewModel {
             guard let this = self else { return .empty() }
             return this.alertsService.fetchOpcoUpdates(bannerOnly: true)
                 .map { $0.first }
+                .mapTo(nil)
                 .catchError { _ in .just(nil) }
         }
         .elements()
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var appointmentEvents = maintenanceModeEvents
-        .filter { !($0.element?.homeStatus ?? false) }
-        .withLatestFrom(fetchTrigger)
-        .toAsyncRequest(activityTrackers: { [weak self] state in
+    private(set) lazy var appointmentEvents = accountDetailEvents
+        .elements()
+        .withLatestFrom(fetchTrigger) { ($0, $1) }
+        .toAsyncRequest(activityTrackers: { [weak self] (_, state) in
             guard let self = self else { return nil }
             switch state {
             case .refresh:
@@ -179,33 +183,15 @@ class HomeViewModel {
             case .switchAccount:
                 return [self.appointmentTracker]
             }
-            }, requestSelector: { [weak self] _ -> Observable<[Appointment]> in
-                let accountIndex = AccountsStore.shared.accounts.index(of: AccountsStore.shared.currentAccount)
-                
-                switch accountIndex {
-                case 0:
-                    return .just([Appointment(startTime: Date(),
-                                              endTime: Date(),
-                                              status: .complete,
-                                              caseNumber: 0)])
-                case 1:
-                    return .just([Appointment(startTime: Date(),
-                                              endTime: Date(),
-                                              status: .canceled,
-                                              caseNumber: 1)])
-                case 2:
-                    return .just([Appointment(startTime: Date(),
-                                              endTime: Date(),
-                                              status: .inProgress,
-                                              caseNumber: 2),
-                                  Appointment(startTime: Date(),
-                                              endTime: Date(),
-                                              status: .canceled,
-                                              caseNumber: 3)])
-                default:
-                    return .just([])
+            }, requestSelector: { [weak self] (accountDetail, _) -> Observable<[Appointment]> in
+                guard let self = self,
+                    let premiseNumber = accountDetail.premiseNumber else {
+                    return .empty()
                 }
                 
+                return self.appointmentService
+                    .fetchAppointments(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+                                       premiseNumber: premiseNumber)
         })
         .share(replay: 1, scope: .forever)
     

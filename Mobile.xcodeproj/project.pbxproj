@@ -1041,6 +1041,27 @@
 		B0AD7FF1205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FF2205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FF3205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
+		B0B0839A216F970800B1C632 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B08399216F970700B1C632 /* Appointment.swift */; };
+		B0B0839B216F970800B1C632 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B08399216F970700B1C632 /* Appointment.swift */; };
+		B0B0839C216F970800B1C632 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B08399216F970700B1C632 /* Appointment.swift */; };
+		B0B0839D216F970800B1C632 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B08399216F970700B1C632 /* Appointment.swift */; };
+		B0B0839E216F970800B1C632 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B08399216F970700B1C632 /* Appointment.swift */; };
+		B0B0839F216F970800B1C632 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B08399216F970700B1C632 /* Appointment.swift */; };
+		B0B083A1216F9D5C00B1C632 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */; };
+		B0B083A2216F9D5C00B1C632 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */; };
+		B0B083A3216F9D5C00B1C632 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */; };
+		B0B083A4216F9D5C00B1C632 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */; };
+		B0B083A5216F9D5C00B1C632 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */; };
+		B0B083A6216F9D5C00B1C632 /* AppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */; };
+		B0B083A8216F9DC100B1C632 /* MockAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */; };
+		B0B083A9216F9DC100B1C632 /* MockAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */; };
+		B0B083AA216F9DC100B1C632 /* MockAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */; };
+		B0B083AB216F9DC100B1C632 /* MockAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */; };
+		B0B083AC216F9DC100B1C632 /* MockAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */; };
+		B0B083AD216F9DC100B1C632 /* MockAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */; };
+		B0B083AF216FA79100B1C632 /* AppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083AE216FA79100B1C632 /* AppointmentDetailViewController.swift */; };
+		B0B083B0216FA79100B1C632 /* AppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083AE216FA79100B1C632 /* AppointmentDetailViewController.swift */; };
+		B0B083B1216FA79100B1C632 /* AppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083AE216FA79100B1C632 /* AppointmentDetailViewController.swift */; };
 		B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
@@ -2632,6 +2653,10 @@
 		B0A830882146F12F00EC3F21 /* StormModeBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeBillViewController.swift; sourceTree = "<group>"; };
 		B0A8308C2146FEF500EC3F21 /* StormModeBillViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeBillViewModel.swift; sourceTree = "<group>"; };
 		B0AD7FED205841C80090B40D /* SequenceForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceForEach.swift; sourceTree = "<group>"; };
+		B0B08399216F970700B1C632 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentService.swift; sourceTree = "<group>"; };
+		B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppointmentService.swift; sourceTree = "<group>"; };
+		B0B083AE216FA79100B1C632 /* AppointmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewController.swift; sourceTree = "<group>"; };
 		B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNotificationsSettingsCell.swift; sourceTree = "<group>"; };
 		B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPreferencesNotificationsSettingsCell.xib; sourceTree = "<group>"; };
 		B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -3242,6 +3267,7 @@
 			children = (
 				2FA5D8631F17D88500A8B16B /* HomeViewController.swift */,
 				B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */,
+				B0B083AE216FA79100B1C632 /* AppointmentDetailViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -4203,6 +4229,7 @@
 				E84705F62025160F00A749A3 /* MockRegistrationService.swift */,
 				B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */,
 				B092184C20A24CA400695888 /* MockData.swift */,
+				B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -4437,6 +4464,7 @@
 				2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */,
 				2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */,
 				82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */,
+				B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -4474,6 +4502,7 @@
 				B094A34C20D9442400E81303 /* HomeCard.swift */,
 				B0A79B0620E2BD1100E04DD8 /* Version.swift */,
 				35277AFC210266BF00411297 /* UsageTool.swift */,
+				B0B08399216F970700B1C632 /* Appointment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6086,6 +6115,7 @@
 				82E22B671F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
+				B0B0839A216F970800B1C632 /* Appointment.swift in Sources */,
 				824A96691FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
 				E89518731F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				E876A8561ECDEF6800CA63BF /* WalletViewController.swift in Sources */,
@@ -6163,12 +6193,14 @@
 				E807A9E2202246C500513921 /* WalletItemInitExtensions.swift in Sources */,
 				35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */,
+				B0B083A1216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8400E661FE05F060064E242 /* MockAuthenticationService.swift in Sources */,
 				35A6C6FE2121D9D600C2A58F /* MoreViewModel.swift in Sources */,
 				54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
+				B0B083AF216FA79100B1C632 /* AppointmentDetailViewController.swift in Sources */,
 				B56DD4981ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
@@ -6280,6 +6312,7 @@
 				E80D2E331E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				E867A8FF1F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
+				B0B083A8216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				829D396C203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
@@ -6444,6 +6477,7 @@
 				82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				2F5A3F8A1EFD979F00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
+				B0B0839C216F970800B1C632 /* Appointment.swift in Sources */,
 				824A966B1FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
 				82A18F0A1EBD12D600BE9F21 /* Control.swift in Sources */,
 				5492E0211EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
@@ -6521,12 +6555,14 @@
 				E807A9E4202246C600513921 /* WalletItemInitExtensions.swift in Sources */,
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8400E681FE05F070064E242 /* MockAuthenticationService.swift in Sources */,
+				B0B083A3216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				0D79C6CF1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				B5D07CB41F0EC2F10018B02D /* Payment.swift in Sources */,
 				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDC1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
+				B0B083B1216FA79100B1C632 /* AppointmentDetailViewController.swift in Sources */,
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
 				823694331FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
 				0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */,
@@ -6638,6 +6674,7 @@
 				82A18E971EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				54AE06B71ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E80D2E351E7301B8002626C9 /* OutageViewController.swift in Sources */,
+				B0B083AA216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				35A6C6D8211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
@@ -6802,6 +6839,7 @@
 				82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				82A18EDB1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
+				B0B0839B216F970800B1C632 /* Appointment.swift in Sources */,
 				824A966A1FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				5492E0201EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
@@ -6879,12 +6917,14 @@
 				E807A9E3202246C500513921 /* WalletItemInitExtensions.swift in Sources */,
 				82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8400E671FE05F060064E242 /* MockAuthenticationService.swift in Sources */,
+				B0B083A2216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				0D79C6CE1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				B5D07CB31F0EC2F10018B02D /* Payment.swift in Sources */,
 				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
+				B0B083B0216FA79100B1C632 /* AppointmentDetailViewController.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				823694321FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
 				0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */,
@@ -6996,6 +7036,7 @@
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E80D2E341E7301B8002626C9 /* OutageViewController.swift in Sources */,
+				B0B083A9216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				35A6C6D7211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* OMCAccountService.swift in Sources */,
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
@@ -7056,6 +7097,7 @@
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				54EDD2D81ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				08C9EC52200FD871000C7BC2 /* AddCardFormViewModelTests.swift in Sources */,
+				B0B0839D216F970800B1C632 /* Appointment.swift in Sources */,
 				8286F1A3204468B600EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E8F51EE31EC9F7F90080AB3E /* BudgetBillingViewModel.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
@@ -7119,6 +7161,7 @@
 				E84705FA2025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				E840BD421EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8F51EEA1ECA40870080AB3E /* PaperlessEBillViewModelTests.swift in Sources */,
+				B0B083A4216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
 				E81CFFF71EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				E8C0B4C91F55F692006DC694 /* BGEAutoPayViewModelTests.swift in Sources */,
@@ -7177,6 +7220,7 @@
 				B56DD49B1ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82D5994E1EC36B5500DDB380 /* Currency.swift in Sources */,
 				82AEF2E21F6054910057E7ED /* RxNotifications.swift in Sources */,
+				B0B083AB216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				9C7E5A56212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8C6F29F1F1F996A00C4644C /* WeatherAPI.swift in Sources */,
@@ -7281,6 +7325,7 @@
 				E8F62B45200924410077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */,
 				E8F62B46200924410077B3DA /* MockAccountService.swift in Sources */,
 				E8F62B47200924410077B3DA /* WalletItem.swift in Sources */,
+				B0B0839E216F970800B1C632 /* Appointment.swift in Sources */,
 				08C9EC53200FD871000C7BC2 /* AddCardFormViewModelTests.swift in Sources */,
 				8286F1A4204468B700EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E8F62B48200924410077B3DA /* BudgetBillingViewModel.swift in Sources */,
@@ -7344,6 +7389,7 @@
 				E8EC0F8F2028FA3C00956ABD /* WalletViewModelTests.swift in Sources */,
 				E84705FB2025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				E8F62B75200924410077B3DA /* BudgetBillingInfo.swift in Sources */,
+				B0B083A5216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8F62B77200924410077B3DA /* PaperlessEBillViewModelTests.swift in Sources */,
 				E8F62B78200924410077B3DA /* ForgotUsernameViewModelTests.swift in Sources */,
 				E8F62B79200924410077B3DA /* ViewBillViewModel.swift in Sources */,
@@ -7402,6 +7448,7 @@
 				E8F62BAA200924410077B3DA /* Macros.swift in Sources */,
 				E8F62BAB200924410077B3DA /* FiservApi.swift in Sources */,
 				E8F62BAC200924410077B3DA /* Currency.swift in Sources */,
+				B0B083AC216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				E8F62BAD200924410077B3DA /* RxNotifications.swift in Sources */,
 				9C7E5A57212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				E8F62BAE200924410077B3DA /* OutageService.swift in Sources */,
@@ -7462,6 +7509,7 @@
 				E8F62BFA200924570077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */,
 				E8F62BFB200924570077B3DA /* MockAccountService.swift in Sources */,
 				E8F62BFC200924570077B3DA /* WalletItem.swift in Sources */,
+				B0B0839F216F970800B1C632 /* Appointment.swift in Sources */,
 				08C9EC54200FD871000C7BC2 /* AddCardFormViewModelTests.swift in Sources */,
 				8286F1A6204468B800EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E8F62BFD200924570077B3DA /* BudgetBillingViewModel.swift in Sources */,
@@ -7525,6 +7573,7 @@
 				E8EC0F902028FA3C00956ABD /* WalletViewModelTests.swift in Sources */,
 				E84705FC2025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				E8F62C2A200924570077B3DA /* BudgetBillingInfo.swift in Sources */,
+				B0B083A6216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8F62C2C200924570077B3DA /* PaperlessEBillViewModelTests.swift in Sources */,
 				E8F62C2D200924570077B3DA /* ForgotUsernameViewModelTests.swift in Sources */,
 				E8F62C2E200924570077B3DA /* ViewBillViewModel.swift in Sources */,
@@ -7583,6 +7632,7 @@
 				E8F62C5F200924570077B3DA /* Macros.swift in Sources */,
 				E8F62C60200924570077B3DA /* FiservApi.swift in Sources */,
 				E8F62C61200924570077B3DA /* Currency.swift in Sources */,
+				B0B083AD216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				E8F62C62200924570077B3DA /* RxNotifications.swift in Sources */,
 				9C7E5A58212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				E8F62C63200924570077B3DA /* OutageService.swift in Sources */,
