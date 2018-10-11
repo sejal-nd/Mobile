@@ -41,6 +41,10 @@ class ForgotPasswordViewController: UIViewController {
         instructionLabel.text = viewModel.getInstructionLabelText()
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
+        if #available(iOS 11, *) {
+            usernameTextField.textField.textContentType = .username
+        }
+        
         usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .done

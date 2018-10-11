@@ -296,6 +296,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
+        cell.accessibilityElementsHidden = self.tableView(tableView, heightForRowAt: indexPath) == 0
         return cell
     }
     
@@ -358,7 +359,6 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if StormModeStatus.shared.isOn {
-            //headerView.backgroundColor = .stormModeBlack
             headerView.colorView.backgroundColor = .stormModeBlack
         }
         return headerView

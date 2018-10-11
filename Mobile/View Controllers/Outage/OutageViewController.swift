@@ -142,11 +142,7 @@ class OutageViewController: AccountPickerViewController {
             .drive(backgroundScrollConstraint.rx.constant)
             .disposed(by: disposeBag)
         
-        if Environment.shared.opco == .comEd {
-            reportStreetlightOutageButton.isHidden = false
-        } else {
-            reportStreetlightOutageButton.isHidden = true
-        }
+        reportStreetlightOutageButton.isHidden = !viewModel.showReportStreetlightOutageButton
         
         noPayPayBillButton.backgroundColorOnPress = .softGray
         noPayPayBillButton.layer.cornerRadius = 10
