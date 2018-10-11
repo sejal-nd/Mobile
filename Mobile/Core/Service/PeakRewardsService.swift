@@ -18,8 +18,6 @@ protocol PeakRewardsService {
     /// - Parameters:
     ///   - accountNumber: the account to fetch data for
     ///   - premiseNumber: the premise to fetch data for
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain a PeakRewardsSummary on success, or a ServiceError on failure.
     func fetchPeakRewardsSummary(accountNumber: String, premiseNumber: String) -> Observable<PeakRewardsSummary>
     
     /// Fetch the user's scheduled overrides.
@@ -27,8 +25,6 @@ protocol PeakRewardsService {
     /// - Parameters:
     ///   - accountNumber: the account to fetch data for
     ///   - premiseNumber: the premise to fetch data for
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain a PeakRewardsOverride on success, or a ServiceError on failure.
     func fetchPeakRewardsOverrides(accountNumber: String, premiseNumber: String) -> Observable<[PeakRewardsOverride]>
     
     /// Schedule an override.
@@ -38,8 +34,6 @@ protocol PeakRewardsService {
     ///   - premiseNumber: the premise to schedule the override for
     ///   - device: the device to schedule the override for
     ///   - date: the date to schedule the override for
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain a PeakRewardsOverride on success, or a ServiceError on failure.
     func scheduleOverride(accountNumber: String,
                           premiseNumber: String,
                           device: SmartThermostatDevice,
@@ -51,8 +45,6 @@ protocol PeakRewardsService {
     ///   - accountNumber: the account to delete the override for
     ///   - premiseNumber: the premise to delete the override for
     ///   - device: the device to delete the override for
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain a PeakRewardsOverride on success, or a ServiceError on failure.
     func deleteOverride(accountNumber: String,
                         premiseNumber: String,
                         device: SmartThermostatDevice) -> Observable<Void>
@@ -63,8 +55,6 @@ protocol PeakRewardsService {
     ///   - device: the device to fetch data for
     ///   - accountNumber: the account to fetch data for
     ///   - premiseNumber: the premise to fetch data for
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain a SmartThermostatDeviceSettings on success, or a ServiceError on failure.
     func fetchDeviceSettings(accountNumber: String,
                              premiseNumber: String,
                              device: SmartThermostatDevice) -> Observable<SmartThermostatDeviceSettings>
@@ -76,8 +66,6 @@ protocol PeakRewardsService {
     ///   - accountNumber: the account to fetch data for
     ///   - premiseNumber: the premise to fetch data for
     ///   - settings: the settings to update the device to
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain a SmartThermostatDeviceSettings on success, or a ServiceError on failure.
     func updateDeviceSettings(forDevice device: SmartThermostatDevice,
                               accountNumber: String,
                               premiseNumber: String,
@@ -89,8 +77,6 @@ protocol PeakRewardsService {
     ///   - device: the device to fetch data for
     ///   - accountNumber: the account to fetch data for
     ///   - premiseNumber: the premise to fetch data for
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain a SmartThermostatDeviceSchedule on success, or a ServiceError on failure.
     func fetchSmartThermostatSchedule(forDevice device: SmartThermostatDevice,
                                       accountNumber: String,
                                       premiseNumber: String) -> Observable<SmartThermostatDeviceSchedule>
@@ -102,8 +88,6 @@ protocol PeakRewardsService {
     ///   - accountNumber: the account to update data for
     ///   - premiseNumber: the premise to update data for
     ///   - schedule: the premise to update data for
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain Void on success, or a ServiceError on failure.
     func updateSmartThermostatSchedule(forDevice device: SmartThermostatDevice,
                                       accountNumber: String,
                                       premiseNumber: String,

@@ -99,7 +99,6 @@ struct MCSAuthenticationService : AuthenticationService {
     /// - Parameters:
     ///   - username: the username to authenticate with.
     ///   - password: the password to authenticate with.
-    ///   - completion: the completion block to execute.
     private func fetchAuthToken(username: String, password: String) -> Observable<AuthTokenResponse> {
         guard let username = username.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved),
             let password = password.addingPercentEncoding(withAllowedCharacters: .rfc3986Unreserved) else {

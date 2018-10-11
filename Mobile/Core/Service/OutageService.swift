@@ -17,24 +17,18 @@ protocol OutageService {
     ///
     /// - Parameters:
     ///   - account: the account to fetch outage status for
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain the OutageStatus on success, or a ServiceError on failure.
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus>
     
     /// Fetch the meter data for a given Account.
     ///
     /// - Parameters:
     ///   - account: the account to fetch outage status for
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain the MeterPingInfo on success, or a ServiceError on failure.
     func pingMeter(account: Account) -> Observable<MeterPingInfo>
     
     /// Report an outage for the current customer.
     ///
     /// - Parameters:
     ///   - outageInfo: the outage information to report
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain a ServiceError on failure.
     func reportOutage(outageInfo: OutageInfo) -> Observable<Void>
     
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult?

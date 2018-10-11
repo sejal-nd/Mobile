@@ -15,10 +15,6 @@ protocol AccountService {
 
     
     /// Fetch a page of accounts for the current customer.
-    ///
-    /// - Parameters:
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain an AccountPage on success, or a ServiceError on failure.
     func fetchAccounts() -> Observable<[Account]>
     
     
@@ -26,8 +22,6 @@ protocol AccountService {
     ///
     /// - Parameters:
     ///   - account: the account to fetch
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain the AccountDetails on success, or a ServiceError on failure.
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail>
     
     
@@ -35,7 +29,6 @@ protocol AccountService {
     ///
     /// - Parameters:
     ///   - account: the account to update
-    ///   - completion: the block to execute upon completion
     func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void>
     
     

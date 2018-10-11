@@ -57,7 +57,6 @@ class MCSApi {
     ///
     /// - Parameters:
     ///   - path: the relative path of the resource
-    ///   - completion: the block to execute on completion.
     func get(path: String) -> Observable<Any> {
         return call(path: path, method: .get)
     }
@@ -68,7 +67,6 @@ class MCSApi {
     /// - Parameters:
     ///   - path: the relative path of the resource
     ///   - params: the body parameters to post
-    ///   - completion: the block to execute on completion.
     func post(path: String, params: [String:Any]?) -> Observable<Any> {
         return call(path: path, params: params, method: .post)
     }
@@ -79,7 +77,6 @@ class MCSApi {
     /// - Parameters:
     ///   - path: the relative path of the resource
     ///   - params: the body parameters to post
-    ///   - completion: the block to execute on completion.
     func put(path: String, params: [String:Any]?) -> Observable<Any> {
         return call(path: path, params: params, method: .put)
     }
@@ -90,7 +87,6 @@ class MCSApi {
     /// - Parameters:
     ///   - path: the relative path of the resource
     ///   - params: the body parameters to send
-    ///   - completion: the block to execute on completion.
     func delete(path: String, params: [String:Any]?) -> Observable<Any> {
         return call(path: path, params: params, method: .delete)
     }
@@ -100,7 +96,6 @@ class MCSApi {
     ///
     /// - Parameters:
     ///   - token: the token to exchange.
-    ///   - completion: the block to execute on completion.
     func exchangeToken(_ token: String, storeToken: Bool = false) -> Observable<Void> {
         // Logging
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
@@ -169,7 +164,6 @@ class MCSApi {
     ///   - path: the relative path of the resource.
     ///   - params: the body parameters to supply.
     ///   - method: the method to apply (POST/PUT/GET/DELETE)
-    ///   - completion: the block to execute on completion.
     func call(path: String, params: [String:Any]? = nil, method: HttpMethod) -> Observable<Any> {
         // Logging
         let requestId = ShortUUIDGenerator.getUUID(length: 8)

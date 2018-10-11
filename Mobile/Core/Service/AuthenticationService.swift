@@ -18,9 +18,6 @@ protocol AuthenticationService {
     /// - Parameters:
     ///   - username: the username to authenticate with.
     ///   - password: the password to authenticate with.
-    ///   - completion: the completion block to execute upon completion. 
-    ///     The ServiceResult that is provided will contain a tuple with the
-    ///     ProfileStatus and AccountDetail on success, or the error on failure.
     func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<(ProfileStatus, AccountDetail)>
     
     /// Validate login credentials
@@ -28,9 +25,6 @@ protocol AuthenticationService {
     /// - Parameters:
     ///   - username: the suername to authenticate with.
     ///   - password: the password to authenticate with.
-    ///   - completion: the completion block to execute upon completion.
-    ///     The ServiceResult that is provided will contain the ProfileStatus on success,
-    ///     or the error on failure.
     func validateLogin(username: String, password: String) -> Observable<Void>
     
     /// Check if the user is authenticated
@@ -47,9 +41,6 @@ protocol AuthenticationService {
     /// - Parameters:
     ///   - currentPassword: the users current password.
     ///   - newPassword: the users new password to set.
-    ///   - completion: the completion block to execute upon completion. The
-    ///     ServiceResult that is provided will contain the user id on success,
-    ///     or the error on failure.
     func changePassword(currentPassword: String, newPassword: String) -> Observable<Void>
     
     /// Change the password for a given user. Used for temp password changes.
@@ -58,27 +49,24 @@ protocol AuthenticationService {
     ///   - username: current user's username
     ///   - currentPassword: the users current password.
     ///   - newPassword: the users new password to set.
-    ///   - completion: the completion block to execute upon completion. The
-    ///     ServiceResult that is provided will contain the user id on success,
-    ///     or the error on failure.
     func changePasswordAnon(username: String, currentPassword: String, newPassword: String) -> Observable<Void>
     
     func getMaintenanceMode() -> Observable<Maintenance>
     
     func getMinimumVersion() -> Observable<MinimumVersion>
     
-    /// Attempt to recover a username by providing a phone number and identifier.
+    /// Attempt to recover a username by providing a phone number and identifier. If the
+    ///     phone/identifier match an account, an array of ForgotUsernameMasked
+    ///     objects is returned, which will contain a list of masked usernames
+    ///     and security question info.
     ///
     /// - Parameters:
     ///   - phone: the phone number associated with the customer.
     ///   - identifier: the identifier (e.g ssn/pin/account#) - varies by opco.
-    ///   - completion: the completion block to execute upon completion. If the 
-    ///     phone/identifier match an account, an array of ForgotUsernameMasked 
-    ///     objects is returned, which will contain a list of masked usernames 
-    ///     and security question info.
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?) -> Observable<[ForgotUsernameMasked]>
     
-    /// Attempt to recover a username by providing a security question answer
+    /// Attempt to recover a username by providing a security question answer. If the
+    ///     question/id are correct, the response will contain an unmasked username
     ///
     /// - Parameters:
     ///   - phone: the phone number associated with the customer.
@@ -86,25 +74,20 @@ protocol AuthenticationService {
     ///   - questionId: the question id
     ///   - questionResponse: the question response
     ///   - cipher: the cipher for the username (supplied from masked username)
-    ///   - completion: the completion block to execute upon completion. If the
-    ///     question/id are correct, the response will contain an unmasked username
     func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String) -> Observable<String>
     
-    /// Look up an account number by phone and id
+    /// Look up an account number by phone and id. If the
+    ///     phone/id match an account, an array of AccountLookupResult objects
+    ///     is returned.
     ///
     /// - Parameters:
     ///   - phone: the phone number associated with the customer.
     ///   - identifier: the identifier (e.g ssn/pin) - varies by opco.
-    ///   - completion: the completion block to execute upon completion. If the
-    ///     phone/id match an account, an array of AccountLookupResult objects
-    ///     is returned.
     func lookupAccount(phone: String, identifier: String) -> Observable<[AccountLookupResult]>
     
     /// Reset a password by providing your username
     ///
     /// - Parameters:
     ///   - username: the username associated with the account.
-    ///   - completion: the completion block to execute upon completion
-    ///     of the password reset initiation process
     func recoverPassword(username: String) -> Observable<Void>
 }

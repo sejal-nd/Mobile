@@ -10,17 +10,9 @@ import RxSwift
 
 protocol WalletService {
     /// Fetch wallet items detailed information.
-    ///
-    /// - Parameters:
-    ///   	- completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain the WalletItem on success, or a ServiceError on failure.
     func fetchWalletItems() -> Observable<[WalletItem]>
     
     /// Fetch bank name through routing number
-    ///
-    /// - Parameters:
-    ///     - routing number
-    ///     - completion: the result contains the name of the bank that is determined by the routing number.
     func fetchBankName(routingNumber: String) -> Observable<String>
     
     
@@ -29,7 +21,6 @@ protocol WalletService {
     /// - Parameters:
     ///   - bankAccount: the account to add
     ///   - customerNumber: AccountsStore.shared.customerIdentifier
-    ///   - completiong: the block to execute upon completion
     func addBankAccount(_ bankAccount: BankAccount, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult>
     
     
@@ -38,7 +29,6 @@ protocol WalletService {
     /// - Parameters:
     ///   - creditCard: the card to add
     ///   - customerNumber: AccountsStore.shared.customerIdentifier
-    ///   - completion: the bock to execute upon completion
     func addCreditCard(_ creditCard: CreditCard, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult>
     
     
@@ -62,8 +52,6 @@ protocol WalletService {
     ///
     /// - Parameters:
     ///		- walletItemID
-    ///		- completion: the block to execute upon completion, the ServiceResult
-    ///       that is provided will contain nothing on success, or a ServiceError on failure.
     func deletePaymentMethod(walletItem: WalletItem) -> Observable<Void>
     
     
@@ -73,8 +61,6 @@ protocol WalletService {
     ///   - walletItemId: the wallet item id to set
     ///   - walletId: the wallet id
     ///   - customerId: the custom number
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain nothing on success or a ServiceError on failure.
     func setOneTouchPayItem(walletItemId: String,
                             walletId: String?,
                             customerId: String) -> Observable<Void>
@@ -84,7 +70,5 @@ protocol WalletService {
     ///
     /// - Parameters:
     ///   - customerId: the customer number to disable one touch pay for
-    ///   - completion: the block to execute upon completion, the ServiceResult
-    ///     that is provided will contain nothing on success or a ServiceError on failure.
     func removeOneTouchPayItem(customerId: String) -> Observable<Void>
 }

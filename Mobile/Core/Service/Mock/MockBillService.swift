@@ -16,7 +16,6 @@ class MockBillService: BillService {
     ///   - accountNumber: The account to get the bill for
     ///   - startDate: the start date of the desired history
     ///   - endDate: the end date of the desired history
-    ///   - completion: the completion block to execute upon completion.
     func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date) -> Observable<BillingHistory> {
         return .just(BillingHistory.from(["billing_and_payment_history": []])!)
     }
