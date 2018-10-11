@@ -532,7 +532,7 @@ class UsageViewController: AccountPickerViewController {
         
         // Empty State
         viewModel.billComparisonEmptyStateText
-            .map { $0.attributedString(withLineHeight: 26, textAlignment: .center) }
+            .map { $0.attributedString(textAlignment: .center, lineHeight: 26) }
             .drive(billComparisonErrorLabel.rx.attributedText)
             .disposed(by: disposeBag)
     }
