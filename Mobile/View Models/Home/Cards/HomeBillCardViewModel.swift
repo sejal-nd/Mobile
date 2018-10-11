@@ -420,7 +420,12 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
-    private(set) lazy var showAutoPay: Driver<Bool> = billState.map { $0 == .billReadyAutoPay }
+    private(set) lazy var showAutoPay: Driver<Bool> = billState.map {
+        if StormModeStatus.shared.isOn {
+            return false
+        }
+        return $0 == .billReadyAutoPay
+    }
     
     private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(showOneTouchPaySlider,
                                                                                        showCommercialBgeOtpVisaLabel,
@@ -602,15 +607,16 @@ class HomeBillCardViewModel {
                 return nil
             }
             
+            let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
             if days > 0 {
                 let localizedText = NSLocalizedString("Amount due in %d day%@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                          attributes: [.foregroundColor: UIColor.deepGray,
+                                          attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.regular.of(textStyle: .subheadline)])
             } else {
                 let localizedText = NSLocalizedString("Amount due on %@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
-                                          attributes: [.foregroundColor: UIColor.deepGray,
+                                          attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.regular.of(textStyle: .subheadline)])
             }
         }

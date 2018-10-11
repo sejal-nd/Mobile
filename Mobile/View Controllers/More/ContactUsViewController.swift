@@ -44,7 +44,7 @@ class ContactUsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .primaryColor
+        view.backgroundColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
         
         cardView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         cardView.layer.cornerRadius = 10.0
