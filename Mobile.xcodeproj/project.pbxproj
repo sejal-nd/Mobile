@@ -1035,6 +1035,12 @@
 		B0AD7FF1205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FF2205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0AD7FF3205841C80090B40D /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
+		B0B083B6216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
+		B0B083B7216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
+		B0B083B8216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
+		B0B083B9216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
+		B0B083BA216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
+		B0B083BB216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
 		B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
@@ -2624,6 +2630,7 @@
 		B0A830882146F12F00EC3F21 /* StormModeBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeBillViewController.swift; sourceTree = "<group>"; };
 		B0A8308C2146FEF500EC3F21 /* StormModeBillViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeBillViewModel.swift; sourceTree = "<group>"; };
 		B0AD7FED205841C80090B40D /* SequenceForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceForEach.swift; sourceTree = "<group>"; };
+		B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortUUIDGenerator.swift; sourceTree = "<group>"; };
 		B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNotificationsSettingsCell.swift; sourceTree = "<group>"; };
 		B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPreferencesNotificationsSettingsCell.xib; sourceTree = "<group>"; };
 		B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -4398,6 +4405,7 @@
 				B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */,
 				357757542114D32A00E73542 /* SharedWebCredentialService.swift */,
 				B0649A5E214834380041B299 /* StormModeStatus.swift */,
+				B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -6101,6 +6109,7 @@
 				35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */,
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
+				B0B083B6216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				E841F3B21F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
@@ -6458,6 +6467,7 @@
 				82D5994D1EC36B5500DDB380 /* Currency.swift in Sources */,
 				B5A16F371F0D44110016952C /* SpeedpayApi.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
+				B0B083B8216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				54AE06B21ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				E881B1551F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
@@ -6815,6 +6825,7 @@
 				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				B5A16F361F0D44110016952C /* SpeedpayApi.swift in Sources */,
 				82D5994C1EC36B5500DDB380 /* Currency.swift in Sources */,
+				B0B083B7216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E881B1541F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
@@ -7187,6 +7198,7 @@
 				E86DE4BA1F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
 				B0A79B0A20E2BD1100E04DD8 /* Version.swift in Sources */,
 				E8F51EEE1ECA51790080AB3E /* BillViewModel.swift in Sources */,
+				B0B083B9216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				E89496391EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */,
 				E8400E651FE05EFD0064E242 /* MockPaymentService.swift in Sources */,
@@ -7412,6 +7424,7 @@
 				E8F62BBD200924410077B3DA /* PaymentViewModel.swift in Sources */,
 				B0A79B0B20E2BD1100E04DD8 /* Version.swift in Sources */,
 				E8F62BBE200924410077B3DA /* BillViewModel.swift in Sources */,
+				B0B083BA216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				E8F62BBF200924410077B3DA /* NotificationNames.swift in Sources */,
 				E8F62BC0200924410077B3DA /* ReportOutageViewModel.swift in Sources */,
 				E8F62BC1200924410077B3DA /* MockPaymentService.swift in Sources */,
@@ -7593,6 +7606,7 @@
 				E8F62C72200924570077B3DA /* PaymentViewModel.swift in Sources */,
 				B0A79B0C20E2BD1100E04DD8 /* Version.swift in Sources */,
 				E8F62C73200924570077B3DA /* BillViewModel.swift in Sources */,
+				B0B083BB216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				E8F62C74200924570077B3DA /* NotificationNames.swift in Sources */,
 				E8F62C75200924570077B3DA /* ReportOutageViewModel.swift in Sources */,
 				E8F62C76200924570077B3DA /* MockPaymentService.swift in Sources */,
