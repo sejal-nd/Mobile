@@ -162,6 +162,7 @@ class AccountPicker: UIView {
         
         loadingIndicator.isHidden = true
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicator.isStormMode = StormModeStatus.shared.isOn
         addSubview(loadingIndicator)
         loadingIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true

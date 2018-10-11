@@ -661,9 +661,9 @@ class HomeBillCardViewModel {
         guard let walletItem = $0 else { return nil }
         switch walletItem.bankOrCard {
         case .bank:
-            return #imageLiteral(resourceName: "ic_bank")
+            return StormModeStatus.shared.isOn ? #imageLiteral(resourceName: "ic_bank_white.pdf") : #imageLiteral(resourceName: "ic_bank")
         case .card:
-            return #imageLiteral(resourceName: "ic_creditcard")
+            return StormModeStatus.shared.isOn ? #imageLiteral(resourceName: "ic_creditcard_white.pdf") : #imageLiteral(resourceName: "ic_creditcard")
         }
     }
     

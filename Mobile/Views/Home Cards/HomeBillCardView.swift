@@ -172,6 +172,7 @@ class HomeBillCardView: UIView {
         commericalBgeOtpVisaLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         walletItemInfoBox.layer.cornerRadius = 6
+        walletItemInfoBox.backgroundColor = .softGray
         
         scheduledPaymentBox.layer.cornerRadius = 6
         thankYouForSchedulingButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
@@ -234,6 +235,10 @@ class HomeBillCardView: UIView {
         errorLabel.textColor = .white
         customErrorDetailLabel.textColor = .white
         maintenanceModeLabel.textColor = .white
+        
+        dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_question_white.pdf"), for: .normal)
+        walletItemInfoBox.backgroundColor = .stormModeBlack
+        bankCreditNumberButton.backgroundColor = .stormModeGray
     }
     
     private func bindViewModel() {
