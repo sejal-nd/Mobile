@@ -13,14 +13,14 @@ class AppointmentDetailViewModel {
     
     let pollInterval = 30.0
     
-    let appointmentEvents: Observable<Event<[Appointment]>>
+    let appointments: Observable<[Appointment]>
     
     required init(premiseNumber: String,
-                  appointments: [Appointment],
+                  initialAppointments: [Appointment],
                   appointmentService: AppointmentService) {
         
         // Poll for appointments
-        appointmentEvents = Observable<Int>
+        appointments = Observable<Int>
             .interval(pollInterval, scheduler: MainScheduler.instance)
             .mapTo(())
             .toAsyncRequest {
@@ -28,8 +28,10 @@ class AppointmentDetailViewModel {
                     .fetchAppointments(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
                                        premiseNumber: premiseNumber)
             }
+            .elements()
             // Start with passed in value
-            .startWith(.next(appointments))
+            .startWith(initialAppointments)
+            .distinctUntilChanged()
             .share()
     }
 }

@@ -1083,6 +1083,9 @@
 		B0B083C0216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */; };
 		B0B083C1216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */; };
 		B0B083C2216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */; };
+		B0B083C5216FEE4100B1C632 /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B083C4216FEE4000B1C632 /* XLPagerTabStrip.framework */; };
+		B0B083C6216FEEF700B1C632 /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B083C4216FEE4000B1C632 /* XLPagerTabStrip.framework */; };
+		B0B083C7216FEF2500B1C632 /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B083C4216FEE4000B1C632 /* XLPagerTabStrip.framework */; };
 		B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
@@ -2681,6 +2684,7 @@
 		B0B083AE216FA79100B1C632 /* AppointmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewController.swift; sourceTree = "<group>"; };
 		B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortUUIDGenerator.swift; sourceTree = "<group>"; };
 		B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModel.swift; sourceTree = "<group>"; };
+		B0B083C4216FEE4000B1C632 /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XLPagerTabStrip.framework; path = Carthage/Build/iOS/XLPagerTabStrip.framework; sourceTree = "<group>"; };
 		B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNotificationsSettingsCell.swift; sourceTree = "<group>"; };
 		B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPreferencesNotificationsSettingsCell.xib; sourceTree = "<group>"; };
 		B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -3014,6 +3018,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0B083C5216FEE4100B1C632 /* XLPagerTabStrip.framework in Frameworks */,
 				B09356AC20D8042000DABC73 /* RxGesture.framework in Frameworks */,
 				E83F02831FB380700062A348 /* UserNotifications.framework in Frameworks */,
 				E8B9BD921F8826FD007C824C /* Charts.framework in Frameworks */,
@@ -3059,6 +3064,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0B083C7216FEF2500B1C632 /* XLPagerTabStrip.framework in Frameworks */,
 				B09356AE20D804B200DABC73 /* RxGesture.framework in Frameworks */,
 				E83F02851FB3807D0062A348 /* UserNotifications.framework in Frameworks */,
 				E8B9BD941F882742007C824C /* Charts.framework in Frameworks */,
@@ -3104,6 +3110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0B083C6216FEEF700B1C632 /* XLPagerTabStrip.framework in Frameworks */,
 				B09356AD20D8049C00DABC73 /* RxGesture.framework in Frameworks */,
 				E83F02841FB380770062A348 /* UserNotifications.framework in Frameworks */,
 				E8B9BD931F882732007C824C /* Charts.framework in Frameworks */,
@@ -3947,6 +3954,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0B083C4216FEE4000B1C632 /* XLPagerTabStrip.framework */,
 				B09356AB20D8042000DABC73 /* RxGesture.framework */,
 				9C6BC8A620ADCECF00B4399B /* AppCenter.framework */,
 				9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */,
@@ -5805,6 +5813,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/XLPagerTabStrip.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5821,10 +5830,11 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxGesture.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxBlocking.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/XLPagerTabStrip.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		8FD3C2641E5245D8005FB1BB /* Carthage App Store Submission Bug Workaround Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5845,6 +5855,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/XLPagerTabStrip.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5861,10 +5872,11 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxGesture.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxBlocking.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/XLPagerTabStrip.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		8FD3C2651E5245E9005FB1BB /* Carthage App Store Submission Bug Workaround Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5885,6 +5897,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/XLPagerTabStrip.framework",
 			);
 			name = "Carthage App Store Submission Bug Workaround Run Script";
 			outputPaths = (
@@ -5901,10 +5914,11 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Charts.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxGesture.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxBlocking.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/XLPagerTabStrip.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		9C25166C20406386007F3F80 /* Copy Carthage Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -9,7 +9,7 @@
 import Foundation
 import Mapper
 
-struct Appointment: Mappable {
+struct Appointment: Mappable, Equatable {
     
     enum Status: String {
         case scheduled, enRoute, inProgress, complete, canceled

@@ -18,18 +18,18 @@ class MockAppointmentService: AppointmentService {
                                       endTime: Date(),
                                       status: .scheduled,
                                       caseNumber: 0)])
-        case 1:
+        case 2:
             return .just([Appointment(startTime: Date(),
                                       endTime: Date(),
                                       status: .canceled,
                                       caseNumber: 1)])
-        case 2:
+        case 1:
             return .just([Appointment(startTime: Date(),
                                       endTime: Date(),
                                       status: .inProgress,
                                       caseNumber: 2),
-                          Appointment(startTime: Date(),
-                                      endTime: Date(),
+                          Appointment(startTime: Date().addingTimeInterval(86_400),
+                                      endTime: Date().addingTimeInterval(86_400),
                                       status: .canceled,
                                       caseNumber: 3)])
         default:

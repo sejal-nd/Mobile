@@ -38,6 +38,11 @@ extension Date {
             ordinal(forCalendar: DateFormatter.dayMonthDayFormatter.calendar)
     }
     
+    @nonobjc var monthDayOrdinalString: String {
+        return DateFormatter.monthDayFormatter.string(from: self) +
+            ordinal(forCalendar: DateFormatter.monthDayFormatter.calendar)
+    }
+    
     @nonobjc var hourAmPmString: String {
         var date = self
         let minutes = Calendar.current.component(.minute, from: date)
@@ -261,6 +266,14 @@ extension DateFormatter {
         dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "EEEE, MMM d"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let monthDayFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "MMM d"
         return dateFormatter
     }()
     

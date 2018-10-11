@@ -149,23 +149,26 @@ class HomeViewController: AccountPickerViewController {
                 
                 let appointmentCardView = HomeAppointmentCardView
                     .create(withViewModel: self.viewModel.appointmentCardViewModel)
+                
                 appointmentCardView.bottomButton.rx.touchUpInside.asObservable()
-                    .withLatestFrom(self.viewModel.appointmentCardViewModel.appointments)
+                    .withLatestFrom(Observable.combineLatest(self.viewModel.appointmentCardViewModel.appointments,
+                                                             self.viewModel.accountDetailEvents.elements()))
                     .asDriver(onErrorDriveWith: .empty())
-                    .drive(onNext: { [weak self] appointments in
+                    .drive(onNext: { [weak self] appointments, accountDetail in
                         guard let self = self else { return }
                         let appointment = appointments[0]
                         
                         let status: Appointment.Status
                         if appointments.count > 1 {
-                            status = .complete
+                            status = .scheduled
                         } else {
                             status = appointment.status
                         }
                         
                         switch status {
                         case .scheduled, .inProgress, .enRoute:
-                            self.performSegue(withIdentifier: "appointmentDetailSegue", sender: appointments)
+                            self.performSegue(withIdentifier: "appointmentDetailSegue",
+                                              sender: (appointments, accountDetail.premiseNumber!))
                         case .complete:
                             let safariVC = SFSafariViewController
                                 .createWithCustomStyle(url: URL(string: "https://google.com")!)
@@ -592,8 +595,9 @@ class HomeViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch (segue.destination, sender) {
-        case let (vc as AppointmentDetailViewController, appointments as [Appointment]):
+        case let (vc as AppointmentDetailViewController, (appointments, premiseNumber) as ([Appointment], String)):
             vc.appointments = appointments
+            vc.premiseNumber = premiseNumber
         case let (vc as SmartEnergyRewardsViewController, accountDetail as AccountDetail):
             vc.accountDetail = accountDetail
         case let (vc as TotalSavingsViewController, accountDetail as AccountDetail):

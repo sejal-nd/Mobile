@@ -142,6 +142,7 @@ class HomeViewModel {
                 guard let this = self else { return .empty() }
                 return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
         })
+        .share(replay: 1, scope: .forever)
 
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
