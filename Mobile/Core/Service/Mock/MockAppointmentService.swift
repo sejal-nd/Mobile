@@ -16,7 +16,7 @@ class MockAppointmentService: AppointmentService {
         case 0:
             return .just([Appointment(startTime: Date(),
                                       endTime: Date(),
-                                      status: .inProgress,
+                                      status: .scheduled,
                                       caseNumber: 0)])
         case 1:
             return .just([Appointment(startTime: Date(),

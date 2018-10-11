@@ -75,8 +75,8 @@ class HomeAppointmentCardViewModel {
                 let regularText = NSLocalizedString("Your appointment is scheduled for ", comment: "")
                 let boldText = String.localizedStringWithFormat("%@ between %@ - %@.",
                                                                 appointment.startTime.dayMonthDayString,
-                                                                appointment.startTime.hourAmPmString,
-                                                                appointment.endTime.hourAmPmString)
+                                                                appointment.startTime.hour_AmPmString,
+                                                                appointment.endTime.hour_AmPmString)
                 
                 let attributedText = NSMutableAttributedString(string: regularText + boldText)
                 attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
@@ -101,7 +101,7 @@ class HomeAppointmentCardViewModel {
             case .inProgress:
                 let regularText = NSLocalizedString("Your appointment is in progress. ", comment: "")
                 let boldText = String.localizedStringWithFormat("Estimated time of completion is %@.",
-                                                                appointment.endTime.hourAmPmString)
+                                                                appointment.endTime.hour_AmPmString)
                 
                 let attributedText = NSMutableAttributedString(string: regularText + boldText)
                 attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
