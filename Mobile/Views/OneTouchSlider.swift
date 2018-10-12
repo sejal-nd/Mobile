@@ -68,6 +68,10 @@ class OneTouchSlider: UIControl {
             if isEnabled {
                 backgroundColor = .primaryColor
                 sliderFinish.backgroundColor = Environment.shared.opco == .bge ? .primaryColorDark: .primaryColorADA
+                if StormModeStatus.shared.isOn {
+                    backgroundColor = .white
+                    sliderFinish.backgroundColor = .accentGray
+                }
                 sliderFinish.alpha = 1
                 imageView.image = #imageLiteral(resourceName: "ic_caret")
             } else {
@@ -94,7 +98,7 @@ class OneTouchSlider: UIControl {
         sliderLabel.textAlignment = .center
         sliderLabel.font = OpenSans.semibold.of(size: 16)
         sliderLabel.setLineHeight(lineHeight: 16)
-        sliderLabel.textColor = .white
+        sliderLabel.textColor = StormModeStatus.shared.isOn ? .actionBlue : .white
         sliderLabel.text = sliderText
         sliderLabel.isAccessibilityElement = false
         addSubview(sliderLabel)

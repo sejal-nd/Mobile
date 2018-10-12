@@ -20,6 +20,7 @@ class HomeBillCardView: UIView {
     
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var loadingView: UIView!
+    @IBOutlet private weak var loadingIndicator: LoadingIndicator!
     
     @IBOutlet private weak var infoStack: UIStackView!
     
@@ -171,6 +172,7 @@ class HomeBillCardView: UIView {
         commericalBgeOtpVisaLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         walletItemInfoBox.layer.cornerRadius = 6
+        walletItemInfoBox.backgroundColor = .softGray
         
         scheduledPaymentBox.layer.cornerRadius = 6
         thankYouForSchedulingButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
@@ -208,6 +210,34 @@ class HomeBillCardView: UIView {
         alertAnimation.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         bankCreditCardImageView.isAccessibilityElement = true
         resetAnimation()
+        
+        if StormModeStatus.shared.isOn {
+            styleStormMode()
+        }
+    }
+    
+    private func styleStormMode() {
+        clippingView.backgroundColor = .stormModeGray
+        loadingIndicator.isStormMode = true
+        headerView.backgroundColor = .stormModeLightGray
+        headerLabel.textColor = .white
+        paymentDescriptionLabel.textColor = .white
+        amountLabel.textColor = .white
+        reinstatementFeeLabel.textColor = .white
+        slideToPay24DisclaimerLabel.textColor = .white
+        bankCreditCardNumberLabel.textColor = .white
+        minimumPaymentLabel.textColor = .white
+        convenienceFeeLabel.textColor = .white
+        commericalBgeOtpVisaLabel.textColor = .white
+        oneTouchPayTCButtonLabel.textColor = .white
+        billNotReadyLabel.textColor = .white
+        errorLabel.textColor = .white
+        customErrorDetailLabel.textColor = .white
+        maintenanceModeLabel.textColor = .white
+        
+        dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_question_white.pdf"), for: .normal)
+        walletItemInfoBox.backgroundColor = .stormModeBlack
+        bankCreditNumberButton.backgroundColor = .stormModeGray
     }
     
     private func bindViewModel() {

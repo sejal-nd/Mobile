@@ -82,7 +82,7 @@ class EditBankAccountViewController: UIViewController {
     }
     
     func buildGradientAndBackgrounds() {
-        walletItemBGView.backgroundColor = .primaryColor
+        walletItemBGView.backgroundColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         innerContentView.layer.cornerRadius = 15
