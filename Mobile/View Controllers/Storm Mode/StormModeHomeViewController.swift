@@ -168,7 +168,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         view.backgroundColor = .stormModeBlack
         
-        gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
             UIColor.primaryColor.cgColor,
             UIColor.primaryColor.withAlphaComponent(0).cgColor
@@ -248,6 +247,8 @@ class StormModeHomeViewController: AccountPickerViewController {
         // Self Sizes Table View Header
         headerView.frame.size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         tableView.tableHeaderView = headerView
+        
+        gradientLayer.frame = gradientView.bounds
         
         loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.height / 2
     }

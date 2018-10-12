@@ -26,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLx-1J-TCL">
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLx-1J-TCL">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="656"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -412,16 +412,16 @@
                                                             <rect key="frame" x="0.0" y="1172" width="343" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To report a gas emergency, please call" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-QQ-AnX">
-                                                                    <rect key="frame" x="14" y="0.0" width="315" height="19.5"/>
+                                                                    <rect key="frame" x="14" y="0.0" width="315" height="20.5"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GuD-R7-9Ss" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                    <rect key="frame" x="115" y="25.5" width="113.5" height="24.5"/>
+                                                                    <rect key="frame" x="115" y="26.5" width="113.5" height="23.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBl-nh-b0J">
-                                                                            <rect key="frame" x="6" y="2" width="101.5" height="20.5"/>
+                                                                            <rect key="frame" x="6" y="2" width="101.5" height="19.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -474,12 +474,12 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="FHb-UX-xqs" secondAttribute="trailing" id="17x-gb-LeX"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FHb-UX-xqs" secondAttribute="trailing" id="17x-gb-LeX"/>
                                         <constraint firstItem="FHb-UX-xqs" firstAttribute="centerX" secondItem="DTT-Yy-7Ip" secondAttribute="centerX" id="FrJ-Vv-dNR"/>
                                         <constraint firstItem="FHb-UX-xqs" firstAttribute="top" secondItem="jT6-gQ-uaJ" secondAttribute="bottom" constant="24" id="PkA-X9-Duw"/>
                                         <constraint firstItem="jT6-gQ-uaJ" firstAttribute="leading" secondItem="DTT-Yy-7Ip" secondAttribute="leading" id="SvN-7p-f8b"/>
                                         <constraint firstAttribute="trailing" secondItem="jT6-gQ-uaJ" secondAttribute="trailing" id="amw-pF-2JH"/>
-                                        <constraint firstItem="FHb-UX-xqs" firstAttribute="leading" secondItem="DTT-Yy-7Ip" secondAttribute="leading" id="fcv-xo-EIB"/>
+                                        <constraint firstItem="FHb-UX-xqs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DTT-Yy-7Ip" secondAttribute="leading" id="fcv-xo-EIB"/>
                                         <constraint firstItem="jT6-gQ-uaJ" firstAttribute="top" secondItem="DTT-Yy-7Ip" secondAttribute="top" id="pce-tj-GOX"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="FHb-UX-xqs" secondAttribute="bottom" constant="20" id="uz7-Qm-ldg"/>
                                     </constraints>
