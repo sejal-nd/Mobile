@@ -2,90 +2,30 @@
 //  AppointmentDetailViewController.swift
 //  Mobile
 //
-//  Created by Samuel Francis on 10/11/18.
+//  Created by Sam Francis on 10/11/18.
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
+import UIKit
 import XLPagerTabStrip
-import RxSwift
-import RxCocoa
 
-class AppointmentDetailViewController: ButtonBarPagerTabStripViewController {
+class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     
-    var premiseNumber: String!
-    var appointments: [Appointment]!
+    let appointment: Appointment
     
-    let disposeBag = DisposeBag()
+    init(appointment: Appointment) {
+        self.appointment = appointment
+        super.init(nibName: AppointmentDetailViewController.className, bundle: nil)
+    }
     
-    private lazy var viewModel = AppointmentDetailViewModel(premiseNumber: premiseNumber,
-                                                            initialAppointments: appointments,
-                                                            appointmentService: ServiceFactory.createAppointmentService())
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.appointments.asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] appointments in
-                guard let self = self else { return }
-                self.appointments = appointments
-                
-                if appointments.count == 1 {
-                    self.buttonBarView.isHidden = true
-                    self.containerView.bounces = false
-                } else {
-                    self.buttonBarView.isHidden = false
-                    self.containerView.bounces = true
-                }
-                
-                self.reloadPagerTabStripView()
-                self.reloadInputViews()
-            })
-            .disposed(by: disposeBag)
         
-        buttonBarItemSpec = ButtonBarItemSpec<ButtonBarViewCell>.cellClass(width: { _ in 125 })
-        buttonBarView.selectedBar.backgroundColor = .primaryColor
-        buttonBarView.backgroundColor = .white
-        
-        settings.style.buttonBarBackgroundColor = .white
-        settings.style.buttonBarMinimumInteritemSpacing = 0
-        settings.style.buttonBarMinimumLineSpacing = 0
-        settings.style.buttonBarLeftContentInset = 55
-        settings.style.buttonBarRightContentInset = 55
-        settings.style.selectedBarBackgroundColor = .white
-        settings.style.selectedBarHeight = 4
-        settings.style.selectedBarVerticalAlignment = .bottom
-        settings.style.buttonBarItemBackgroundColor = .white
-        settings.style.buttonBarItemFont = OpenSans.semibold.of(textStyle: .subheadline)
-        settings.style.buttonBarItemTitleColor = .middleGray
-        settings.style.buttonBarItemsShouldFillAvailableWidth = false
-        settings.style.buttonBarHeight = 48
-        
-        changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
-            guard changeCurrentIndex == true else { return }
-            oldCell?.label.textColor = .middleGray
-            oldCell?.label.font = OpenSans.regular.of(textStyle: .subheadline)
-            newCell?.label.textColor = .actionBlue
-            newCell?.label.font = OpenSans.semibold.of(textStyle: .subheadline)
-        }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar()
-    }
-
-    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        return appointments.map {
-            let vc = DetailVC()
-            vc.view.backgroundColor = .white
-            vc.appointment = $0
-            return vc
-        }
-    }
-}
-
-class DetailVC: UIViewController, IndicatorInfoProvider {
-    
-    var appointment: Appointment!
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: appointment.startTime.monthDayOrdinalString,

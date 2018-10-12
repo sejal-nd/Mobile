@@ -224,7 +224,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeEditSectionHeaderView" id="wZW-zD-bZ5" customClass="HomeEditSectionHeaderView" customModule="BGE" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeEditSectionHeaderView" id="wZW-zD-bZ5" customClass="HomeEditSectionHeaderView" customModule="BGE" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -290,7 +290,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ele-wa-cpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1970" y="-156"/>
+            <point key="canvasLocation" x="2015" y="-686"/>
         </scene>
         <!--UpdatesDetailViewController-->
         <scene sceneID="g5d-Cq-yGf">
@@ -298,7 +298,7 @@
                 <viewControllerPlaceholder storyboardName="Updates" referencedIdentifier="UpdatesDetailViewController" id="8XL-jd-5lL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0N-Jo-QyJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2130" y="-1984"/>
+            <point key="canvasLocation" x="2151" y="-1529"/>
         </scene>
         <!--ReportOutageViewController-->
         <scene sceneID="Hv2-cW-QlF">
@@ -306,7 +306,7 @@
                 <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="ReportOutageViewController" id="ho2-TI-3tb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WeT-AG-oJw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2130" y="-1918"/>
+            <point key="canvasLocation" x="2151" y="-1464"/>
         </scene>
         <!--OutageMapViewController-->
         <scene sceneID="5Lv-X1-muK">
@@ -314,7 +314,7 @@
                 <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="9AE-d3-QcS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oie-4h-IwV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2118" y="-1858"/>
+            <point key="canvasLocation" x="2139" y="-1403"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="cod-qW-QjA">
@@ -765,7 +765,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDg-zb-1M2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2430" y="-1466"/>
+            <point key="canvasLocation" x="2964" y="-1242"/>
         </scene>
         <!--Main Base Navigation Controller-->
         <scene sceneID="lfl-ym-K3d">
@@ -783,12 +783,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Mv-Fh-LW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1194" y="-155"/>
+            <point key="canvasLocation" x="1271" y="-686"/>
         </scene>
-        <!--Appointment Detail View Controller-->
+        <!--Appointments View Controller-->
         <scene sceneID="4NA-aG-10r">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="WSt-KO-Xq2" customClass="AppointmentDetailViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="WSt-KO-Xq2" customClass="AppointmentsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pa1-8u-pKd"/>
                         <viewControllerLayoutGuide type="bottom" id="Dqq-1a-lJA"/>
@@ -843,7 +843,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xH0-tF-N6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1440.8" y="-2214.2428785607199"/>
+            <point key="canvasLocation" x="2284" y="-1949"/>
         </scene>
     </scenes>
     <resources>

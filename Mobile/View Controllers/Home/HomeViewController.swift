@@ -595,7 +595,7 @@ class HomeViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch (segue.destination, sender) {
-        case let (vc as AppointmentDetailViewController, (appointments, premiseNumber) as ([Appointment], String)):
+        case let (vc as AppointmentsViewController, (appointments, premiseNumber) as ([Appointment], String)):
             vc.appointments = appointments
             vc.premiseNumber = premiseNumber
         case let (vc as SmartEnergyRewardsViewController, accountDetail as AccountDetail):
