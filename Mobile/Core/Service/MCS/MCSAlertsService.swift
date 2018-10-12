@@ -135,6 +135,6 @@ struct MCSAlertsService: AlertsService {
 
 fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
     #if DEBUG
-    NSLog("[AlertsApi][\(requestId)][\(path)] \(method.rawValue) \(message)")
+        NSLog("[AlertsApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
     #endif
 }

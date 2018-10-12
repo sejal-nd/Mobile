@@ -66,6 +66,6 @@ struct SpeedpayApi {
 
 fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
     #if DEBUG
-    NSLog("[SpeedpayApi][\(requestId)][\(path)] \(method.rawValue) \(message)")
+        NSLog("[SpeedpayApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
     #endif
 }

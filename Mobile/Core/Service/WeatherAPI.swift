@@ -177,6 +177,6 @@ struct WeatherAPI: WeatherService {
 
 fileprivate func APILog(requestId: String, method: HttpMethod, message: String) {
     #if DEBUG
-    NSLog("[WeatherApi][\(requestId)] \(method.rawValue) \(message)")
+        NSLog("[WeatherApi][%@] %@ %@", requestId, method.rawValue, message)
     #endif
 }

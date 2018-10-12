@@ -238,6 +238,6 @@ class MCSApi {
 
 fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
     #if DEBUG
-        NSLog("[MCSApi][\(requestId)][\(path)] \(method.rawValue) \(message)")
+        NSLog("[MCSApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
     #endif
 }
