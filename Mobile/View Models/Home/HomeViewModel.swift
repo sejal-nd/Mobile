@@ -167,7 +167,6 @@ class HomeViewModel {
             guard let this = self else { return .empty() }
             return this.alertsService.fetchOpcoUpdates(bannerOnly: true)
                 .map { $0.first }
-                .mapTo(nil)
                 .catchError { _ in .just(nil) }
         }
         .elements()

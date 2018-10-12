@@ -1083,15 +1083,42 @@
 		B0B083B9216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
 		B0B083BA216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
 		B0B083BB216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
-		B0B083BD216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */; };
-		B0B083BE216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */; };
-		B0B083BF216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */; };
-		B0B083C0216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */; };
-		B0B083C1216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */; };
-		B0B083C2216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */; };
+		B0B083BD216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
+		B0B083BE216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
+		B0B083BF216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
+		B0B083C0216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
+		B0B083C1216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
+		B0B083C2216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
 		B0B083C5216FEE4100B1C632 /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B083C4216FEE4000B1C632 /* XLPagerTabStrip.framework */; };
 		B0B083C6216FEEF700B1C632 /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B083C4216FEE4000B1C632 /* XLPagerTabStrip.framework */; };
 		B0B083C7216FEF2500B1C632 /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B083C4216FEE4000B1C632 /* XLPagerTabStrip.framework */; };
+		B0B083EE21710C8900B1C632 /* Appt_Canceled.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083E921710C8500B1C632 /* Appt_Canceled.json */; };
+		B0B083EF21710C8900B1C632 /* Appt_Inprogress.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083EA21710C8600B1C632 /* Appt_Inprogress.json */; };
+		B0B083F021710C8900B1C632 /* Appt_otw.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083EB21710C8700B1C632 /* Appt_otw.json */; };
+		B0B083F121710C8900B1C632 /* Appt_Confirmed.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083EC21710C8800B1C632 /* Appt_Confirmed.json */; };
+		B0B083F221710C8900B1C632 /* Appt_Complete.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083ED21710C8900B1C632 /* Appt_Complete.json */; };
+		B0B083F821710CDB00B1C632 /* Appt_Canceled.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F321710CD700B1C632 /* Appt_Canceled.json */; };
+		B0B083F921710CDB00B1C632 /* Appt_Inprogress.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F421710CD800B1C632 /* Appt_Inprogress.json */; };
+		B0B083FA21710CDB00B1C632 /* Appt_otw.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F521710CD900B1C632 /* Appt_otw.json */; };
+		B0B083FB21710CDB00B1C632 /* Appt_Confirmed.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F621710CDA00B1C632 /* Appt_Confirmed.json */; };
+		B0B083FC21710CDB00B1C632 /* Appt_Complete.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083F721710CDB00B1C632 /* Appt_Complete.json */; };
+		B0B0840221710D1500B1C632 /* Appt_Canceled.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083FD21710D1000B1C632 /* Appt_Canceled.json */; };
+		B0B0840321710D1500B1C632 /* Appt_Inprogress.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083FE21710D1100B1C632 /* Appt_Inprogress.json */; };
+		B0B0840421710D1500B1C632 /* Appt_otw.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083FF21710D1200B1C632 /* Appt_otw.json */; };
+		B0B0840521710D1500B1C632 /* Appt_Confirmed.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840021710D1300B1C632 /* Appt_Confirmed.json */; };
+		B0B0840621710D1500B1C632 /* Appt_Complete.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840121710D1500B1C632 /* Appt_Complete.json */; };
+		B0B0840821710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
+		B0B0840921710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
+		B0B0840A21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
+		B0B0840B21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
+		B0B0840C21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
+		B0B0840D21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
+		B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
+		B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
+		B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
+		B0B084132171454900B1C632 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
+		B0B084142171454900B1C632 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
+		B0B084152171454900B1C632 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
 		B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
@@ -2691,8 +2718,26 @@
 		B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppointmentService.swift; sourceTree = "<group>"; };
 		B0B083AE216FA79100B1C632 /* AppointmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
 		B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortUUIDGenerator.swift; sourceTree = "<group>"; };
-		B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModel.swift; sourceTree = "<group>"; };
+		B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsViewModel.swift; sourceTree = "<group>"; };
 		B0B083C4216FEE4000B1C632 /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XLPagerTabStrip.framework; path = Carthage/Build/iOS/XLPagerTabStrip.framework; sourceTree = "<group>"; };
+		B0B083E921710C8500B1C632 /* Appt_Canceled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Canceled.json; sourceTree = "<group>"; };
+		B0B083EA21710C8600B1C632 /* Appt_Inprogress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Inprogress.json; sourceTree = "<group>"; };
+		B0B083EB21710C8700B1C632 /* Appt_otw.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_otw.json; sourceTree = "<group>"; };
+		B0B083EC21710C8800B1C632 /* Appt_Confirmed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Confirmed.json; sourceTree = "<group>"; };
+		B0B083ED21710C8900B1C632 /* Appt_Complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Complete.json; sourceTree = "<group>"; };
+		B0B083F321710CD700B1C632 /* Appt_Canceled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Canceled.json; sourceTree = "<group>"; };
+		B0B083F421710CD800B1C632 /* Appt_Inprogress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Inprogress.json; sourceTree = "<group>"; };
+		B0B083F521710CD900B1C632 /* Appt_otw.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_otw.json; sourceTree = "<group>"; };
+		B0B083F621710CDA00B1C632 /* Appt_Confirmed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Confirmed.json; sourceTree = "<group>"; };
+		B0B083F721710CDB00B1C632 /* Appt_Complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Complete.json; sourceTree = "<group>"; };
+		B0B083FD21710D1000B1C632 /* Appt_Canceled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Canceled.json; sourceTree = "<group>"; };
+		B0B083FE21710D1100B1C632 /* Appt_Inprogress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Inprogress.json; sourceTree = "<group>"; };
+		B0B083FF21710D1200B1C632 /* Appt_otw.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_otw.json; sourceTree = "<group>"; };
+		B0B0840021710D1300B1C632 /* Appt_Confirmed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Confirmed.json; sourceTree = "<group>"; };
+		B0B0840121710D1500B1C632 /* Appt_Complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Complete.json; sourceTree = "<group>"; };
+		B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModel.swift; sourceTree = "<group>"; };
+		B0B0840E217111CE00B1C632 /* appointment_tracker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointment_tracker.json; sourceTree = "<group>"; };
+		B0B084122171454900B1C632 /* EventKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKit.swift; sourceTree = "<group>"; };
 		B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNotificationsSettingsCell.swift; sourceTree = "<group>"; };
 		B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPreferencesNotificationsSettingsCell.xib; sourceTree = "<group>"; };
 		B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -3318,7 +3363,8 @@
 			children = (
 				825171B41F1D25130020A6CA /* HomeViewModel.swift */,
 				825171AF1F1D24C30020A6CA /* Cards */,
-				B0B083BC216FDE3700B1C632 /* AppointmentDetailViewModel.swift */,
+				B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */,
+				B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -4120,6 +4166,7 @@
 				E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */,
 				E8494F371EBBCB2B0047D6BE /* ellipses_loading.json */,
 				35AE569C214AD98500F633D0 /* ellipses_loading_white.json */,
+				B0B0840E217111CE00B1C632 /* appointment_tracker.json */,
 			);
 			path = "Lottie Animations";
 			sourceTree = "<group>";
@@ -4155,6 +4202,7 @@
 				35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */,
 				352CB2062140448C00DAF045 /* UINavigationController+Style.swift */,
 				2249C036216C44C800EAA44D /* URLSession+Rx.swift */,
+				B0B084122171454900B1C632 /* EventKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4230,6 +4278,42 @@
 				B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */,
 			);
 			path = "Usage Tool Card";
+			sourceTree = "<group>";
+		};
+		B0B083C821710BAE00B1C632 /* Appointments */ = {
+			isa = PBXGroup;
+			children = (
+				B0B083F321710CD700B1C632 /* Appt_Canceled.json */,
+				B0B083F721710CDB00B1C632 /* Appt_Complete.json */,
+				B0B083F621710CDA00B1C632 /* Appt_Confirmed.json */,
+				B0B083F421710CD800B1C632 /* Appt_Inprogress.json */,
+				B0B083F521710CD900B1C632 /* Appt_otw.json */,
+			);
+			path = Appointments;
+			sourceTree = "<group>";
+		};
+		B0B083D321710C1000B1C632 /* Appointments */ = {
+			isa = PBXGroup;
+			children = (
+				B0B083FD21710D1000B1C632 /* Appt_Canceled.json */,
+				B0B0840121710D1500B1C632 /* Appt_Complete.json */,
+				B0B0840021710D1300B1C632 /* Appt_Confirmed.json */,
+				B0B083FE21710D1100B1C632 /* Appt_Inprogress.json */,
+				B0B083FF21710D1200B1C632 /* Appt_otw.json */,
+			);
+			path = Appointments;
+			sourceTree = "<group>";
+		};
+		B0B083DE21710C3E00B1C632 /* Appointments */ = {
+			isa = PBXGroup;
+			children = (
+				B0B083E921710C8500B1C632 /* Appt_Canceled.json */,
+				B0B083ED21710C8900B1C632 /* Appt_Complete.json */,
+				B0B083EC21710C8800B1C632 /* Appt_Confirmed.json */,
+				B0B083EA21710C8600B1C632 /* Appt_Inprogress.json */,
+				B0B083EB21710C8700B1C632 /* Appt_otw.json */,
+			);
+			path = Appointments;
 			sourceTree = "<group>";
 		};
 		B0DB275D215ECF3B00CD703B /* Account Info Bar */ = {
@@ -5013,6 +5097,7 @@
 		E8FE30AD1E7875E5009D28B7 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
+				B0B083C821710BAE00B1C632 /* Appointments */,
 				385AF21F1F278F11001E3619 /* uu_otp.json */,
 				E8494F3E1EBBCB3A0047D6BE /* outage_loading.json */,
 				359BB2782148349200FBAD83 /* outage.json */,
@@ -5027,6 +5112,7 @@
 		E8FE30AE1E7875EA009D28B7 /* ComEd */ = {
 			isa = PBXGroup;
 			children = (
+				B0B083DE21710C3E00B1C632 /* Appointments */,
 				385AF21D1F278F06001E3619 /* uu_otp.json */,
 				E8494F401EBBCB430047D6BE /* outage_loading.json */,
 				359BB27A214834A900FBAD83 /* outage.json */,
@@ -5041,6 +5127,7 @@
 		E8FE30AF1E7875F0009D28B7 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
+				B0B083D321710C1000B1C632 /* Appointments */,
 				385AF21B1F278EFD001E3619 /* uu_otp.json */,
 				E8494F421EBBCB4C0047D6BE /* outage_loading.json */,
 				359BB27C214834BA00FBAD83 /* outage.json */,
@@ -5400,6 +5487,7 @@
 				8FD5AE941E54EA5E003F640D /* Cartfile in Resources */,
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				B0DB2763215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
+				B0B083FB21710CDB00B1C632 /* Appt_Confirmed.json in Resources */,
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
@@ -5413,6 +5501,7 @@
 				385AF2201F278F11001E3619 /* uu_otp.json in Resources */,
 				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
+				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
 				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
@@ -5423,6 +5512,7 @@
 				B0882CA6210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				B59EFA9D1F72E62A001490A1 /* FloatLabelTextView.xib in Resources */,
+				B0B083FC21710CDB00B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
@@ -5440,12 +5530,15 @@
 				359BB2792148349200FBAD83 /* outage.json in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
+				B0B083FA21710CDB00B1C632 /* Appt_otw.json in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895771E8AACFF009485E3 /* loading_blue.json in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */,
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
+				B0B083F821710CDB00B1C632 /* Appt_Canceled.json in Resources */,
+				B0B083F921710CDB00B1C632 /* Appt_Inprogress.json in Resources */,
 				E87C41351FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */,
 				385AF2261F27915A001E3619 /* img_1.png in Resources */,
 				359BB2672146F05400FBAD83 /* sm_outage.json in Resources */,
@@ -5522,6 +5615,7 @@
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				B0DB2765215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
+				B0B0840521710D1500B1C632 /* Appt_Confirmed.json in Resources */,
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				8FD5AE961E54EA5E003F640D /* Cartfile in Resources */,
@@ -5535,6 +5629,7 @@
 				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				B0728E4B215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				8FD3C2761E525D76005FB1BB /* environment.plist in Resources */,
+				B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				822BBBA61EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				B5D415821F3A6E9000AC32B2 /* GoogleService-Info_peco.plist in Resources */,
 				E80043341E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
@@ -5545,6 +5640,7 @@
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				B0B0840621710D1500B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1E216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				E84407821F16CFD100CB9707 /* fiserv_errors.xml in Resources */,
@@ -5562,12 +5658,15 @@
 				9C97DB1D20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				0D79C6C71F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				82A18EFE1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
+				B0B0840421710D1500B1C632 /* Appt_otw.json in Resources */,
 				385AF2281F27915A001E3619 /* img_1.png in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
+				B0B0840221710D1500B1C632 /* Appt_Canceled.json in Resources */,
+				B0B0840321710D1500B1C632 /* Appt_Inprogress.json in Resources */,
 				E87C41371FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */,
 				359BB27D214834BA00FBAD83 /* outage.json in Resources */,
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
@@ -5644,6 +5743,7 @@
 				B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				B0DB2764215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
+				B0B083F121710C8900B1C632 /* Appt_Confirmed.json in Resources */,
 				359BB27B214834A900FBAD83 /* outage.json in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
@@ -5657,6 +5757,7 @@
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B0728E4A215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				E841F3B01F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
+				B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				E841F3A01F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				B55736461E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B5D415801F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist in Resources */,
@@ -5667,6 +5768,7 @@
 				385AF2241F27915A001E3619 /* img_0.png in Resources */,
 				B0882CA7210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
+				B0B083F221710C8900B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1D216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				E80043331E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -5684,12 +5786,15 @@
 				359BB2812148518C00FBAD83 /* sm_outage_loading.json in Resources */,
 				9C97DB1C20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				E800432D1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
+				B0B083F021710C8900B1C632 /* Appt_otw.json in Resources */,
 				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895781E8AACFF009485E3 /* loading_blue.json in Resources */,
 				0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				385AF2271F27915A001E3619 /* img_1.png in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				35A6C6D1211C8F0700C2A58F /* TitleTableViewCell.xib in Resources */,
+				B0B083EE21710C8900B1C632 /* Appt_Canceled.json in Resources */,
+				B0B083EF21710C8900B1C632 /* Appt_Inprogress.json in Resources */,
 				82156F221F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				E87C41361FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */,
@@ -6123,6 +6228,7 @@
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				B5A16F351F0D44110016952C /* SpeedpayApi.swift in Sources */,
 				82A18EE31EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
+				B0B084132171454900B1C632 /* EventKit.swift in Sources */,
 				358DE0A521021471002C544E /* UsageViewModel.swift in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
@@ -6312,6 +6418,7 @@
 				B0AD7FEE205841C80090B40D /* SequenceForEach.swift in Sources */,
 				E803A0001EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
+				B0B0840821710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B0728E46215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
@@ -6393,7 +6500,7 @@
 				B0A8308D2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				35A6C6E6211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */,
 				B0882CAD210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
-				B0B083BD216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				B0B083BD216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				548288DF1ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
 				82AC2A231FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
@@ -6489,6 +6596,7 @@
 				E840BD411EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				35277AFB2102325100411297 /* UsageViewModel.swift in Sources */,
+				B0B084152171454900B1C632 /* EventKit.swift in Sources */,
 				E8C4532D1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
@@ -6678,6 +6786,7 @@
 				B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				545784B41EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFF1E787655001E8A44 /* OutageInfo.swift in Sources */,
+				B0B0840A21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				826773481FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B0728E48215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
@@ -6759,7 +6868,7 @@
 				B0A8308F2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */,
 				B0882CAF210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
-				B0B083BF216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				B0B083BF216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A41ED87AE200F0198B /* CreditCard.swift in Sources */,
 				82AC2A251FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
@@ -6855,6 +6964,7 @@
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				35277AFA2102325000411297 /* UsageViewModel.swift in Sources */,
+				B0B084142171454900B1C632 /* EventKit.swift in Sources */,
 				E8C4532C1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
@@ -7044,6 +7154,7 @@
 				B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				545784B31EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
 				B574BAFE1E787655001E8A44 /* OutageInfo.swift in Sources */,
+				B0B0840921710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				826773471FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				B0728E47215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
@@ -7125,7 +7236,7 @@
 				B0A8308E2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				2F5C81FB1F1D5C4A005B35FA /* WeatherAPI.swift in Sources */,
 				B0882CAE210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
-				B0B083BE216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				B0B083BE216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */,
 				82AC2A241FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
@@ -7144,7 +7255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B083C0216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				B0B083C0216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E840BD3D1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				B092184620A2400800695888 /* MaintenanceInitExtensions.swift in Sources */,
 				9C4C95CF203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
@@ -7174,6 +7285,7 @@
 				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
 				E8FF08661F7EDE330030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				826773441FB2303000A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
+				B0B0840B21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				82B20A39203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
 				E89F493E1F9685120060D084 /* BillBreakdownViewModelTests.swift in Sources */,
 				E81F38161ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
@@ -7376,7 +7488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B083C1216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				B0B083C1216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E8F62B35200924410077B3DA /* BillService.swift in Sources */,
 				B092184720A2400800695888 /* MaintenanceInitExtensions.swift in Sources */,
 				9C4C95D0203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
@@ -7406,6 +7518,7 @@
 				35A6C6F0211DEC4000C2A58F /* UpdatesViewModelTests.swift in Sources */,
 				E8F62B4B200924410077B3DA /* UIViewDashedBorders.swift in Sources */,
 				E8F62B4C200924410077B3DA /* Control.swift in Sources */,
+				B0B0840C21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				E8F62B4D200924410077B3DA /* BillingHistoryViewModel.swift in Sources */,
 				E8F62B4E200924410077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				82B20A3A203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
@@ -7564,7 +7677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B083C2216FDE3700B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				B0B083C2216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E8F62BEA200924570077B3DA /* BillService.swift in Sources */,
 				B092184820A2400800695888 /* MaintenanceInitExtensions.swift in Sources */,
 				9C4C95D1203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
@@ -7594,6 +7707,7 @@
 				35A6C6F1211DEC4000C2A58F /* UpdatesViewModelTests.swift in Sources */,
 				E8F62C00200924570077B3DA /* UIViewDashedBorders.swift in Sources */,
 				E8F62C01200924570077B3DA /* Control.swift in Sources */,
+				B0B0840D21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				E8F62C02200924570077B3DA /* BillingHistoryViewModel.swift in Sources */,
 				E8F62C03200924570077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				82B20A3B203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,

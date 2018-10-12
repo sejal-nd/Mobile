@@ -17,12 +17,14 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     
     let disposeBag = DisposeBag()
     
-    private lazy var viewModel = AppointmentDetailViewModel(premiseNumber: premiseNumber,
+    private lazy var viewModel = AppointmentsViewModel(premiseNumber: premiseNumber,
                                                             initialAppointments: appointments,
                                                             appointmentService: ServiceFactory.createAppointmentService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = NSLocalizedString("Appointment Tracker", comment: "")
+        
         viewModel.appointments.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] appointments in
                 guard let self = self else { return }
@@ -74,6 +76,8 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        return appointments.map(AppointmentDetailViewController.init)
+        return appointments
+            .map(AppointmentDetailViewModel.init)
+            .map(AppointmentDetailViewController.init)
     }
 }

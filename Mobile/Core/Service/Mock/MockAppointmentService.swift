@@ -12,24 +12,26 @@ class MockAppointmentService: AppointmentService {
     func fetchAppointments(accountNumber: String, premiseNumber: String) -> Observable<[Appointment]> {
         let accountIndex = AccountsStore.shared.accounts.index(of: AccountsStore.shared.currentAccount)
         
+        let startTime = Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(43_200)
+        let endTime = startTime.addingTimeInterval(3600)
         switch accountIndex {
         case 0:
-            return .just([Appointment(startTime: Date(),
-                                      endTime: Date(),
+            return .just([Appointment(startTime: startTime,
+                                      endTime: endTime,
                                       status: .scheduled,
                                       caseNumber: 0)])
         case 2:
-            return .just([Appointment(startTime: Date(),
-                                      endTime: Date(),
+            return .just([Appointment(startTime: startTime,
+                                      endTime: endTime,
                                       status: .canceled,
                                       caseNumber: 1)])
         case 1:
-            return .just([Appointment(startTime: Date(),
-                                      endTime: Date(),
+            return .just([Appointment(startTime: startTime,
+                                      endTime: endTime,
                                       status: .inProgress,
                                       caseNumber: 2),
-                          Appointment(startTime: Date().addingTimeInterval(86_400),
-                                      endTime: Date().addingTimeInterval(86_400),
+                          Appointment(startTime: startTime.addingTimeInterval(86_400),
+                                      endTime: endTime.addingTimeInterval(86_400),
                                       status: .canceled,
                                       caseNumber: 3)])
         default:
