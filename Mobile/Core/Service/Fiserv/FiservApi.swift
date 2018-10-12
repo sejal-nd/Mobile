@@ -324,6 +324,6 @@ fileprivate func parseResponse(with value: [String:Any]) -> WalletItemResult {
 
 fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
     #if DEBUG
-    NSLog("[FiservApi][\(requestId)][\(path)] \(method.rawValue) \(message)")
+        NSLog("[FiservApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
     #endif
 }
