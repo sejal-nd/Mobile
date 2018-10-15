@@ -892,6 +892,9 @@
 		B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
 		B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
 		B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
+		B0336FE22175166C00751430 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
+		B0336FE32175166C00751430 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
+		B0336FE42175166D00751430 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
 		B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
@@ -7437,6 +7440,7 @@
 				E89C162D1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */,
 				B085C44A20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
+				B0336FE22175166C00751430 /* EventKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7670,6 +7674,7 @@
 				E8F62BC3200924410077B3DA /* UsageService.swift in Sources */,
 				E8F62BC4200924410077B3DA /* LoginViewModelTests.swift in Sources */,
 				B085C44B20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
+				B0336FE32175166C00751430 /* EventKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7859,6 +7864,7 @@
 				E8F62C78200924570077B3DA /* UsageService.swift in Sources */,
 				E8F62C79200924570077B3DA /* LoginViewModelTests.swift in Sources */,
 				B085C44C20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
+				B0336FE42175166D00751430 /* EventKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
