@@ -230,9 +230,6 @@
 		358DE0A521021471002C544E /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		358DE0A821021B64002C544E /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
 		358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A921021B7A002C544E /* UnavailableView.swift */; };
-		359BB26321405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */; };
-		359BB2642141AD6C00FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */; };
-		359BB2652141AD6C00FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */; };
 		359BB2672146F05400FBAD83 /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2662146F05400FBAD83 /* sm_outage.json */; };
 		359BB2692146F06D00FBAD83 /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB2682146F06D00FBAD83 /* sm_outage.json */; };
 		359BB26B2146F08300FBAD83 /* sm_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BB26A2146F08200FBAD83 /* sm_outage.json */; };
@@ -2426,7 +2423,6 @@
 		358DE0A421021471002C544E /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
 		358DE0A721021B64002C544E /* UnavailableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnavailableView.xib; sourceTree = "<group>"; };
 		358DE0A921021B7A002C544E /* UnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableView.swift; sourceTree = "<group>"; };
-		359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StormModeHomeViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		359BB2662146F05400FBAD83 /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
 		359BB2682146F06D00FBAD83 /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
 		359BB26A2146F08200FBAD83 /* sm_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage.json; sourceTree = "<group>"; };
@@ -4236,7 +4232,6 @@
 			isa = PBXGroup;
 			children = (
 				B01748912135D2C50039D0C6 /* StormModeHomeViewController.swift */,
-				359BB26221405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift */,
 				B0A830882146F12F00EC3F21 /* StormModeBillViewController.swift */,
 			);
 			path = "Storm Mode";
@@ -6326,7 +6321,6 @@
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B092184D20A24CA400695888 /* MockData.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
-				359BB26321405F1800FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
 				9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
@@ -6696,7 +6690,6 @@
 				B094A63F210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B092184F20A24CA400695888 /* MockData.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
-				359BB2652141AD6C00FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */,
 				B085C44920FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757422113582D00E73542 /* DateParser.swift in Sources */,
@@ -7065,7 +7058,6 @@
 				B094A63E210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B092184E20A24CA400695888 /* MockData.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
-				359BB2642141AD6C00FBAD83 /* StormModeHomeViewController+TableViewDelegate.swift in Sources */,
 				B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757412113582D00E73542 /* DateParser.swift in Sources */,

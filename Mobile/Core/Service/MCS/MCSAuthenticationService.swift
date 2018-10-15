@@ -270,6 +270,6 @@ struct MCSAuthenticationService : AuthenticationService {
 
 fileprivate func APILog(requestId: String, method: HttpMethod, message: String) {
     #if DEBUG
-    NSLog("[oAuthApi][\(requestId)] \(method.rawValue) \(message)")
+        NSLog("[OAuthApi][%@] %@ %@", requestId, method.rawValue, message)
     #endif
 }

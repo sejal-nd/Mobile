@@ -421,7 +421,12 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
-    private(set) lazy var showAutoPay: Driver<Bool> = billState.map { $0 == .billReadyAutoPay }
+    private(set) lazy var showAutoPay: Driver<Bool> = billState.map {
+        if StormModeStatus.shared.isOn {
+            return false
+        }
+        return $0 == .billReadyAutoPay
+    }
     
     private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(showOneTouchPaySlider,
                                                                                        showCommercialBgeOtpVisaLabel,
@@ -433,12 +438,12 @@ class HomeBillCardViewModel {
     // MARK: - View States
     private(set) lazy var paymentDescriptionText: Driver<NSAttributedString?> = Driver.combineLatest(billState, accountDetailDriver)
     { (billState, accountDetail) in
-        
+        let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
         switch billState {
         case .billPaid, .billPaidIntermediate:
             let text = NSLocalizedString("Thank you for your payment", comment: "")
             return NSAttributedString(string: text, attributes: [.font: OpenSans.regular.of(textStyle: .title1),
-                                                                 .foregroundColor: UIColor.deepGray])
+                                                                 .foregroundColor: textColor])
         case .paymentPending:
             let text: String
             switch Environment.shared.opco {
@@ -448,7 +453,7 @@ class HomeBillCardViewModel {
                 text = NSLocalizedString("Your payment is pending", comment: "")
             }
             return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .title1),
-                                                                 .foregroundColor: UIColor.deepGray])
+                                                                 .foregroundColor: textColor])
         default:
             return nil
         }
@@ -467,15 +472,16 @@ class HomeBillCardViewModel {
     { accountDetail, billState in
         let isMultiPremise = AccountsStore.shared.currentAccount.isMultipremise
         
+        let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed
         let style = NSMutableParagraphStyle()
         style.minimumLineHeight = 16
         var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.semibold.of(textStyle: .footnote),
                                                         .paragraphStyle: style,
-                                                        .foregroundColor: UIColor.errorRed]
+                                                        .foregroundColor: textColor]
         
         switch billState {
         case .credit:
-            attributes[.foregroundColor] = UIColor.deepGray
+            attributes[.foregroundColor] = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
             return NSAttributedString(string: NSLocalizedString("Credit Balance", comment: ""),
                                       attributes: attributes)
         case .pastDue:
@@ -565,7 +571,7 @@ class HomeBillCardViewModel {
             }
         default:
             if AccountsStore.shared.currentAccount.isMultipremise {
-                attributes[.foregroundColor] = UIColor.deepGray
+                attributes[.foregroundColor] = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
                 return NSAttributedString(string: NSLocalizedString("Multi-premise Account", comment: ""),
                                           attributes: attributes)
             }
@@ -603,31 +609,34 @@ class HomeBillCardViewModel {
                 return nil
             }
             
+            let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
             if days > 0 {
                 let localizedText = NSLocalizedString("Amount due in %d day%@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
-                                          attributes: [.foregroundColor: UIColor.deepGray,
+                                          attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.regular.of(textStyle: .subheadline)])
             } else {
                 let localizedText = NSLocalizedString("Amount due on %@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
-                                          attributes: [.foregroundColor: UIColor.deepGray,
+                                          attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.regular.of(textStyle: .subheadline)])
             }
         }
         
         switch billState {
         case .pastDue:
+            let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed
             if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
                 return NSAttributedString(string: NSLocalizedString("Amount due immediately", comment: ""),
-                                          attributes: [.foregroundColor: UIColor.errorRed,
+                                          attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.semibold.of(textStyle: .subheadline)])
             } else {
                 return countdownText()
             }
         case .credit:
+            let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
             return NSAttributedString(string: NSLocalizedString("No amount due", comment: ""),
-                                      attributes: [.foregroundColor: UIColor.deepGray,
+                                      attributes: [.foregroundColor: textColor,
                                                    .font: OpenSans.semibold.of(textStyle: .subheadline)])
         default:
             return countdownText()
@@ -656,9 +665,9 @@ class HomeBillCardViewModel {
         guard let walletItem = $0 else { return nil }
         switch walletItem.bankOrCard {
         case .bank:
-            return #imageLiteral(resourceName: "ic_bank")
+            return StormModeStatus.shared.isOn ? #imageLiteral(resourceName: "ic_bank_white.pdf") : #imageLiteral(resourceName: "ic_bank")
         case .card:
-            return #imageLiteral(resourceName: "ic_creditcard")
+            return StormModeStatus.shared.isOn ? #imageLiteral(resourceName: "ic_creditcard_white.pdf") : #imageLiteral(resourceName: "ic_creditcard")
         }
     }
     

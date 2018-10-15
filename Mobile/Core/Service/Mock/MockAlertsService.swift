@@ -15,7 +15,7 @@ class MockAlertsService: AlertsService {
     }
     
     func fetchAlertPreferences(accountNumber: String) -> Observable<AlertPreferences> {
-        let testPrefs = AlertPreferences(outage: true, scheduledMaint: false, severeWeather: true, billReady: false, paymentDue: true, paymentDueDaysBefore: 99, budgetBilling: true, forYourInfo: false)
+        let testPrefs = AlertPreferences(outage: true, scheduledMaint: false, severeWeather: true, billReady: false, paymentDue: true, paymentDueDaysBefore: 99, budgetBilling: true, appointmentTracking: false, forYourInfo: false)
         return .just(testPrefs)
     }
     

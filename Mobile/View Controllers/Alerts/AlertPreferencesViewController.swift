@@ -307,6 +307,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                 .disposed(by: cell.disposeBag)
         case .budgetBillingReview:
             toggleVariable = viewModel.budgetBilling
+        case .appointmentTracking:
+            toggleVariable = viewModel.appointmentTracking
         case .forYourInformation:
             toggleVariable = viewModel.forYourInfo
         }

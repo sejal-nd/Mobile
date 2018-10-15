@@ -68,7 +68,7 @@ class TitleTableViewCell: UITableViewCell {
     
     // MARK: - Configure
     
-    public func configure(image: UIImage?, text: String?, detailText: String? = nil, backgroundColor: UIColor, shouldConstrainWidth: Bool = false, shouldHideDisclosure: Bool = false, shouldHideSeparator: Bool = false) {
+    public func configure(image: UIImage?, text: String?, detailText: String? = nil, backgroundColor: UIColor, shouldConstrainWidth: Bool = false, shouldHideDisclosure: Bool = false, shouldHideSeparator: Bool = false, disabled: Bool = false) {
         iconImageView.image = image
         titleLabel.text = text
         detailLabel.text = detailText
@@ -87,6 +87,10 @@ class TitleTableViewCell: UITableViewCell {
         contentContainerView.backgroundColor = backgroundColor
         
         bgColor = backgroundColor
+        
+        iconImageView.alpha = disabled ? 0.3 : 1
+        titleLabel.alpha = disabled ? 0.3 : 1
+        disclosureImageView.alpha = disabled ? 0.3 : 1
     }
     
 }

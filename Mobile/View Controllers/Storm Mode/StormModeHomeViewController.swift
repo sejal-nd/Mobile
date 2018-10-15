@@ -12,6 +12,12 @@ import Lottie
 
 class StormModeHomeViewController: AccountPickerViewController {
     
+    override var showMinimizedPicker: Bool {
+        return false
+    }
+    
+    @IBOutlet weak var gradientView: UIView!
+    var gradientLayer = CAGradientLayer()
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var exitView: UIView! {
@@ -26,6 +32,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             exitButton.layer.cornerRadius = 10.0
             exitButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+            exitButton.backgroundColorOnPress = .softGray
         }
     }
     
@@ -48,13 +55,21 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet weak var footerTextView: DataDetectorTextView! {
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var footerLabel: UILabel! {
         didSet {
-            footerTextView.attributedText = viewModel.footerTextViewText
-            footerTextView.textContainerInset = .zero
-            footerTextView.textColor = .softGray
-            footerTextView.tintColor = .white // For phone numbers
-            footerTextView.linkTapDelegate = self
+            footerLabel.text = viewModel.footerLabelText
+        }
+    }
+    @IBOutlet weak var footerPhoneButton: ButtonControl! {
+        didSet {
+            footerPhoneButton.roundCorners(.allCorners, radius: 4)
+            footerPhoneButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        }
+    }
+    @IBOutlet weak var footerPhoneLabel: UILabel! {
+        didSet {
+            footerPhoneLabel.text = viewModel.footerPhoneLabelText
         }
     }
     
@@ -64,12 +79,22 @@ class StormModeHomeViewController: AccountPickerViewController {
             gasOnlyTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         }
     }
-    @IBOutlet weak var gasOnlyTextView: DataDetectorTextView! {
+    @IBOutlet weak var gasOnlyDetailLabel: UILabel! {
         didSet {
-            gasOnlyTextView.font = OpenSans.regular.of(textStyle: .subheadline)
-            gasOnlyTextView.textContainerInset = .zero
-            gasOnlyTextView.tintColor = .white
-            gasOnlyTextView.text = viewModel.gasOnlyMessage
+            gasOnlyDetailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+            gasOnlyDetailLabel.text = viewModel.gasOnlyMessage
+        }
+    }
+    @IBOutlet weak var gasOnlyPhoneButton: ButtonControl! {
+        didSet {
+            gasOnlyPhoneButton.roundCorners(.allCorners, radius: 4)
+            gasOnlyPhoneButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            gasOnlyPhoneButton.isHidden = Environment.shared.opco == .comEd
+        }
+    }
+    @IBOutlet weak var gasOnlyPhoneLabel: UILabel! {
+        didSet {
+            gasOnlyPhoneLabel.text = viewModel.footerPhoneLabelText
         }
     }
     
@@ -83,6 +108,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             finalPayTextView.font = OpenSans.regular.of(textStyle: .subheadline)
             finalPayTextView.textContainerInset = .zero
+            finalPayTextView.textContainer.lineFragmentPadding = 0
             finalPayTextView.tintColor = .white
         }
     }
@@ -105,7 +131,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView! {
         didSet {
-            noNetworkConnectionView.configureContactText(attributedText: viewModel.footerTextViewText)
+            noNetworkConnectionView.configureContactText(attributedText: viewModel.noNetworkAttributedText)
         }
     }
     
@@ -130,7 +156,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             tableView.reloadSections([0], with: .none)
         }
-    }
+    } 
     
     var stormModeEnded = false
 
@@ -139,6 +165,14 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .stormModeBlack
+        
+        gradientLayer.colors = [
+            UIColor.primaryColor.cgColor,
+            UIColor.primaryColor.withAlphaComponent(0).cgColor
+        ]
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
 
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
@@ -173,6 +207,7 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.outageStatusButton.isHidden = true
                 self.gasOnlyView.isHidden = true
                 self.finalPayView.isHidden = true
+                self.footerView.isHidden = true
                 self.noNetworkConnectionView.isHidden = true
                 self.setRefreshControlEnabled(enabled: false)
             case .readyToFetchData:
@@ -187,7 +222,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -212,6 +247,8 @@ class StormModeHomeViewController: AccountPickerViewController {
         // Self Sizes Table View Header
         headerView.frame.size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         tableView.tableHeaderView = headerView
+        
+        gradientLayer.frame = gradientView.bounds
         
         loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.height / 2
     }
@@ -262,6 +299,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             loadingContentView.isHidden = false
             shouldShowOutageCellData = false
             outageStatusButton.isHidden = true
+            footerView.isHidden = true
             noNetworkConnectionView.isHidden = true
             gasOnlyView.isHidden = true
             finalPayView.isHidden = true
@@ -319,14 +357,14 @@ class StormModeHomeViewController: AccountPickerViewController {
         // Show/hide the top level container views
         if currentOutageStatus.flagGasOnly {
             gasOnlyView.isHidden = false
-            footerTextView.isHidden = true
+            footerView.isHidden = true
             loadingContentView.isHidden = true
             outageStatusButton.isHidden = true
             shouldShowOutageCellData = false
             shouldShowOutageCell = false
         } else {
             gasOnlyView.isHidden = true
-            footerTextView.isHidden = false
+            footerView.isHidden = false
             shouldShowOutageCellData = true
             shouldShowOutageCell = true
             
@@ -345,32 +383,33 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         if outageJustReported && viewModel.reportedOutage != nil {
             outageStatusButton.setReportedState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
-        } else if currentOutageStatus.activeOutage {
-            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else if currentOutageStatus.flagFinaled || currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService {
             loadingContentView.isHidden = true
             outageStatusButton.isHidden = true
             finalPayView.isHidden = false
             finalPayTextView.text = viewModel.accountNonPayFinaledMessage
             
-            finalPayButton.isHidden = currentOutageStatus.flagFinaled ? true : false
+            finalPayButton.isHidden = currentOutageStatus.flagNoPay && Environment.shared.opco != .bge ? false : true
+        } else if currentOutageStatus.activeOutage {
+            outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else { // Power is on
             outageStatusButton.setPowerOnState()
         }
     }
     
     private func setRefreshControlEnabled(enabled: Bool) {
+        if let rc = refreshControl {
+            rc.endRefreshing()
+            rc.removeFromSuperview()
+            refreshControl = nil
+        }
         if enabled {
             refreshControl = UIRefreshControl()
+            refreshControl?.tintColor = .white
             refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
             scrollView!.insertSubview(refreshControl!, at: 0)
             scrollView!.alwaysBounceVertical = true
         } else {
-            if let rc = refreshControl {
-                rc.endRefreshing()
-                rc.removeFromSuperview()
-                refreshControl = nil
-            }
             scrollView!.alwaysBounceVertical = false
         }
     }
@@ -399,6 +438,157 @@ class StormModeHomeViewController: AccountPickerViewController {
             vc.shouldHideNavigationBar = false
             navigationController?.setNavigationBarHidden(false, animated: false)
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    @IBAction func onPhoneNumberPress(_ sender: ButtonControl) {
+        var phoneStr: String?
+
+        phoneStr = viewModel.footerPhoneLabelText
+        
+        if let phone = phoneStr, let url = URL(string: "telprompt://\(phone)"), UIApplication.shared.canOpenURL(url) {
+            Analytics.log(event: .outageAuthEmergencyCall)
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+}
+
+extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard indexPath.section == 0 else { return 60 }
+        return shouldShowOutageCell ? 60 : 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className) as? TitleTableViewCell else { return UITableViewCell() }
+        
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                // Must nil check AccountStore, it CAN be nil.  should be an optional AccountStore.shared.currentAccount
+                
+                if shouldShowOutageCellData {
+                    let reportOutageDisabled = viewModel.currentOutageStatus?.flagFinaled ?? false || viewModel.currentOutageStatus?.flagNoPay ?? false || viewModel.currentOutageStatus?.flagNonService ?? false
+                    // Populate Content
+                    if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
+                        // Reported State
+                        cell.configure(image: #imageLiteral(resourceName: "ic_check_outage_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .clear, shouldConstrainWidth: true)
+                    } else {
+                        // Regular State
+                        cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true, disabled: reportOutageDisabled)
+                    }
+                } else {
+                    // Hide Content
+                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .clear, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
+                }
+            case 1:
+                if shouldShowOutageCellData {
+                    // Populate Content
+                    cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+                } else {
+                    // Hide Content
+                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .clear, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
+                }
+            default:
+                return UITableViewCell()
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                cell.configure(image: #imageLiteral(resourceName: "ic_nav_bill_white"), text: NSLocalizedString("Bill", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+            case 1:
+                cell.configure(image: #imageLiteral(resourceName: "ic_nav_more_white"), text: NSLocalizedString("More", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+            default:
+                return UITableViewCell()
+            }
+        default:
+            return UITableViewCell()
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            let reportOutageDisabled = viewModel.currentOutageStatus?.flagFinaled ?? false || viewModel.currentOutageStatus?.flagNoPay ?? false || viewModel.currentOutageStatus?.flagNonService ?? false
+            return reportOutageDisabled ? nil : indexPath
+        }
+        return indexPath
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: "ReportOutageSegue", sender: nil)
+            case 1:
+                performSegue(withIdentifier: "OutageMapSegue", sender: nil)
+            default:
+                break
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: "BillSegue", sender: nil)
+            case 1:
+                performSegue(withIdentifier: "MoreSegue", sender: nil)
+            default:
+                break
+            }
+        default:
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 0.5 // Only show the separator
+        default:
+            return 60
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleTableViewHeaderView.className) as? TitleTableViewHeaderView else { return nil }
+        
+        switch section {
+        case 0:
+            if shouldShowOutageCellData {
+                // Show Separator
+                headerView.configure(text: nil, backgroundColor: .clear, shouldConstrainWidth: true, shouldHideSeparator: false)
+            } else {
+                // Hide Separator
+                headerView.configure(text: nil, backgroundColor: .clear, shouldConstrainWidth: true, shouldHideSeparator: true)
+            }
+        case 1:
+            headerView.configure(text: NSLocalizedString("More Options", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+        default:
+            break
+        }
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 21
     }
     
 }

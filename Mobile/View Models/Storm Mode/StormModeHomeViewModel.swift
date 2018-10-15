@@ -113,45 +113,48 @@ class StormModeHomeViewModel {
         return NSLocalizedString("Reported", comment: "")
     }
     
-    var footerTextViewText: NSMutableAttributedString {
+    var footerLabelText: String {
+        switch Environment.shared.opco {
+        case .bge, .peco:
+            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call", comment: "")
+        case .comEd:
+            return NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
+        }
+    }
+    
+    var footerPhoneLabelText: String {
         switch Environment.shared.opco {
         case .bge:
-            let gasEmergencyText = "To report a gas emergency, please call "
-            let gasEmergencyPhoneNumber = NSLocalizedString("1-800-685-0123", comment: "")
-            let downedPowerLineText = "\n\nFor downed or sparking power lines or dim/flickering lights, please call "
-            let downedPowerLinePhoneNumber = NSLocalizedString("1-877-778-2222", comment: "")
-            
-            let gasEmergencyTextMutableAttributedString = NSMutableAttributedString(string: gasEmergencyText)
-            let gasEmergencyMutableAttributedString = NSMutableAttributedString(string: gasEmergencyPhoneNumber)
-            gasEmergencyMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, gasEmergencyPhoneNumber.count))
-            
-            let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
-            let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
-            
-            gasEmergencyTextMutableAttributedString.append(gasEmergencyMutableAttributedString)
-            gasEmergencyTextMutableAttributedString.append(downedPowerLineTextMutableAttributedString)
-            gasEmergencyTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
-            
-            return gasEmergencyTextMutableAttributedString
+            return "1-800-685-0123"
+        case .comEd:
+            return "1-800-334-7661"
+        case .peco:
+            return "1-800-841-4141"
+        }
+    }
+    
+    var noNetworkAttributedText: NSMutableAttributedString {
+        switch Environment.shared.opco {
         case .comEd:
             let downedPowerLineText = "To report a downed or sparking power line, please call "
             let downedPowerLinePhoneNumber = NSLocalizedString("1-800-334-7661", comment: "")
             
             let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
+            downedPowerLineTextMutableAttributedString.addAttribute(.font, value: OpenSans.regular.of(textStyle: .subheadline), range: NSMakeRange(0, downedPowerLineTextMutableAttributedString.string.count))
             let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
+            downedPowerLineMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .subheadline), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
             
             downedPowerLineTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
-
+            
             return downedPowerLineTextMutableAttributedString
-        case .peco:
+        case .bge, .peco:
             let downedPowerLineText = "To report a gas emergency or a downed or sparking power line, please call "
-            let downedPowerLinePhoneNumber = NSLocalizedString("1-800-841-4141", comment: "")
+            let downedPowerLinePhoneNumber = footerPhoneLabelText
             
             let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
+            downedPowerLineTextMutableAttributedString.addAttribute(.font, value: OpenSans.regular.of(textStyle: .subheadline), range: NSMakeRange(0, downedPowerLineTextMutableAttributedString.string.count))
             let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
+            downedPowerLineMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .subheadline), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
             
             downedPowerLineTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
             
@@ -162,10 +165,10 @@ class StormModeHomeViewModel {
     var gasOnlyMessage: String {
         switch Environment.shared.opco {
         case .bge:
-            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: "")
+            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call", comment: "")
         case .peco:
-            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: "")
-        default:
+            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call", comment: "")
+        case .comEd:
             return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
         }
     }

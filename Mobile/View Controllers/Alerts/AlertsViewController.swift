@@ -29,10 +29,17 @@ class AlertsViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if StormModeStatus.shared.isOn {
+            view.backgroundColor = .stormModeBlack
+            accountPicker.stormMode = true
+        }
+        
+        tableView.backgroundColor = .white
         tableView.separatorColor = .accentGray
         
         accountPicker.isHidden = Environment.shared.opco == .bge
-        
+    
         styleViews()
         bindViewModel()
         
