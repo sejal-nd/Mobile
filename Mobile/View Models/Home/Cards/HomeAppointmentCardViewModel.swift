@@ -72,11 +72,25 @@ class HomeAppointmentCardViewModel {
             
             switch appointment.status {
             case .scheduled:
-                let regularText = NSLocalizedString("Your appointment is scheduled for ", comment: "")
-                let boldText = String.localizedStringWithFormat("%@ between %@ - %@.",
+                let regularText: String
+                let boldText: String
+                if Calendar.opCo.isDateInToday(appointment.startTime) {
+                    regularText = NSLocalizedString("Your appointment is ", comment: "")
+                    boldText = String.localizedStringWithFormat("today between %@ - %@.",
+                                                                appointment.startTime.hour_AmPmString,
+                                                                appointment.endTime.hour_AmPmString)
+                } else if Calendar.opCo.isDateInTomorrow(appointment.startTime) {
+                    regularText = NSLocalizedString("Your appointment is ", comment: "")
+                    boldText = String.localizedStringWithFormat("tomorrow between %@ - %@.",
+                                                                appointment.startTime.hour_AmPmString,
+                                                                appointment.endTime.hour_AmPmString)
+                } else {
+                    regularText = NSLocalizedString("Your appointment is scheduled for ", comment: "")
+                    boldText = String.localizedStringWithFormat("%@ between %@ - %@.",
                                                                 appointment.startTime.dayMonthDayString,
                                                                 appointment.startTime.hour_AmPmString,
                                                                 appointment.endTime.hour_AmPmString)
+                }
                 
                 let attributedText = NSMutableAttributedString(string: regularText + boldText)
                 attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
