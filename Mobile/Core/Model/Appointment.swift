@@ -18,7 +18,7 @@ struct Appointment: Mappable, Equatable {
     let startTime: Date
     let endTime: Date
     let status: Status
-    let caseNumber: Int
+    let caseNumber: String
     
     init(map: Mapper) throws {
         startTime = try map.from("startTime", transformation: DateParser().extractDate)
@@ -38,7 +38,7 @@ struct Appointment: Mappable, Equatable {
     init(startTime: Date = Date(),
          endTime: Date = Date(),
          status: Status = .scheduled,
-         caseNumber: Int = 0) {
+         caseNumber: String = "0") {
         self.startTime = startTime
         self.endTime = endTime
         self.status = status

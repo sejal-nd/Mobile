@@ -16,24 +16,41 @@ class MockAppointmentService: AppointmentService {
         let endTime = startTime.addingTimeInterval(3600)
         switch accountIndex {
         case 0:
-            return .just([Appointment(startTime: startTime,
-                                      endTime: endTime,
-                                      status: .scheduled,
-                                      caseNumber: 0)])
+            return Observable<[Appointment]>
+                .just([Appointment(startTime: startTime,
+                                   endTime: endTime,
+                                   status: .scheduled,
+                                   caseNumber: "0"),
+                       Appointment(startTime: startTime,
+                                   endTime: endTime,
+                                   status: .enRoute,
+                                   caseNumber: "0"),
+                       Appointment(startTime: startTime,
+                                   endTime: endTime,
+                                   status: .inProgress,
+                                   caseNumber: "0"),
+                       Appointment(startTime: startTime,
+                                   endTime: endTime,
+                                   status: .complete,
+                                   caseNumber: "0"),
+                       Appointment(startTime: startTime,
+                                   endTime: endTime,
+                                   status: .canceled,
+                                   caseNumber: "0")])
         case 2:
             return .just([Appointment(startTime: startTime,
                                       endTime: endTime,
                                       status: .canceled,
-                                      caseNumber: 1)])
+                                      caseNumber: "1")])
         case 1:
             return .just([Appointment(startTime: startTime,
                                       endTime: endTime,
                                       status: .inProgress,
-                                      caseNumber: 2),
+                                      caseNumber: "2"),
                           Appointment(startTime: startTime.addingTimeInterval(86_400),
                                       endTime: endTime.addingTimeInterval(86_400),
                                       status: .canceled,
-                                      caseNumber: 3)])
+                                      caseNumber: "3")])
         default:
             return .just([])
         }
