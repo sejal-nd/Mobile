@@ -9,6 +9,9 @@
 import RxSwift
 
 class MockAppointmentService: AppointmentService {
+    
+    static var isFirstFetch = true
+    
     func fetchAppointments(accountNumber: String, premiseNumber: String) -> Observable<[Appointment]> {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         
@@ -46,6 +49,51 @@ class MockAppointmentService: AppointmentService {
                 Appointment(startTime: noon, endTime: one, status: .complete, caseNumber: "98765"),
                 Appointment(startTime: noon, endTime: one, status: .canceled, caseNumber: "02468")
             ]
+            
+        // Changing response during polling
+        case "apptInProgressThenComplete": // Changes the appt status after the first fetch
+            if MockAppointmentService.isFirstFetch {
+                MockAppointmentService.isFirstFetch = false
+                appointments = [Appointment(startTime: noon, endTime: one, status: .inProgress, caseNumber: "0")]
+            } else {
+                appointments = [Appointment(startTime: noon, endTime: one, status: .complete, caseNumber: "0")]
+            }
+        case "apptReschedule": // Reschedules the appt after the first fetch
+            let two = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: one)!
+            if MockAppointmentService.isFirstFetch {
+                MockAppointmentService.isFirstFetch = false
+                appointments = [Appointment(startTime: noon, endTime: one, status: .scheduled, caseNumber: "0")]
+            } else {
+                appointments = [Appointment(startTime: one, endTime: two, status: .scheduled, caseNumber: "0")]
+            }
+        case "apptAdd": // Starts with 2 appts, then adds 1 more after the first fetch
+            let two = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: one)!
+            let three = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: two)!
+            if MockAppointmentService.isFirstFetch {
+                MockAppointmentService.isFirstFetch = false
+                appointments = [Appointment(startTime: noon, endTime: one, status: .scheduled, caseNumber: "0"),
+                                Appointment(startTime: one, endTime: two, status: .scheduled, caseNumber: "0"),]
+            } else {
+                appointments = [Appointment(startTime: noon, endTime: one, status: .scheduled, caseNumber: "0"),
+                                Appointment(startTime: one, endTime: two, status: .scheduled, caseNumber: "0"),
+                                Appointment(startTime: two, endTime: three, status: .scheduled, caseNumber: "0")]
+            }
+        case "apptRemove": // Starts with 2 appts, then removes 1 after the first fetch
+            let two = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: one)!
+            if MockAppointmentService.isFirstFetch {
+                MockAppointmentService.isFirstFetch = false
+                appointments = [Appointment(startTime: noon, endTime: one, status: .scheduled, caseNumber: "0"),
+                                Appointment(startTime: one, endTime: two, status: .scheduled, caseNumber: "0")]
+            } else {
+                appointments = [Appointment(startTime: noon, endTime: one, status: .scheduled, caseNumber: "0")]
+            }
+        case "apptRemoveAll": // Starts with 1 appt, then removes it after the first fetch
+            if MockAppointmentService.isFirstFetch {
+                MockAppointmentService.isFirstFetch = false
+                appointments = [Appointment(startTime: noon, endTime: one, status: .scheduled, caseNumber: "0")]
+            } else {
+                appointments = []
+            }
         case "apptFailure":
             return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
         case "apptNone":
@@ -56,4 +104,5 @@ class MockAppointmentService: AppointmentService {
         
         return .just(appointments)
     }
+    
 }
