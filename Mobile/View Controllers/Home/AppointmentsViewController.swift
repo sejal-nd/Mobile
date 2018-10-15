@@ -18,8 +18,8 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     let disposeBag = DisposeBag()
     
     private lazy var viewModel = AppointmentsViewModel(premiseNumber: premiseNumber,
-                                                            initialAppointments: appointments,
-                                                            appointmentService: ServiceFactory.createAppointmentService())
+                                                       initialAppointments: appointments,
+                                                       appointmentService: ServiceFactory.createAppointmentService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,6 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
                 }
                 
                 self.reloadPagerTabStripView()
-                self.reloadInputViews()
             })
             .disposed(by: disposeBag)
         

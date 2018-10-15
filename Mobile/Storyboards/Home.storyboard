@@ -224,7 +224,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeEditSectionHeaderView" id="wZW-zD-bZ5" customClass="HomeEditSectionHeaderView" customModule="BGE" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeEditSectionHeaderView" id="wZW-zD-bZ5" customClass="HomeEditSectionHeaderView" customModule="BGE" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -788,7 +788,7 @@
         <!--Appointments View Controller-->
         <scene sceneID="4NA-aG-10r">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="WSt-KO-Xq2" customClass="AppointmentsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="WSt-KO-Xq2" customClass="AppointmentsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pa1-8u-pKd"/>
                         <viewControllerLayoutGuide type="bottom" id="Dqq-1a-lJA"/>
@@ -830,7 +830,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wrg-RC-Urp" firstAttribute="leading" secondItem="bB9-IB-WIF" secondAttribute="leading" id="AK2-CR-KWz"/>
-                            <constraint firstItem="Dqq-1a-lJA" firstAttribute="top" secondItem="wrg-RC-Urp" secondAttribute="bottom" id="QPu-H9-NiW"/>
+                            <constraint firstAttribute="bottom" secondItem="wrg-RC-Urp" secondAttribute="bottom" id="QPu-H9-NiW"/>
                             <constraint firstAttribute="trailing" secondItem="wrg-RC-Urp" secondAttribute="trailing" id="Zfa-f3-td8"/>
                             <constraint firstItem="wrg-RC-Urp" firstAttribute="top" secondItem="pa1-8u-pKd" secondAttribute="bottom" id="rVM-QL-Ccl"/>
                         </constraints>
