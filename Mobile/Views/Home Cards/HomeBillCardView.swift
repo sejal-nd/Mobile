@@ -217,6 +217,7 @@ class HomeBillCardView: UIView {
     }
     
     private func styleStormMode() {
+        backgroundColor = .stormModeGray
         clippingView.backgroundColor = .stormModeGray
         loadingIndicator.isStormMode = true
         headerView.backgroundColor = .stormModeLightGray
