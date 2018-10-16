@@ -157,7 +157,7 @@ class AppointmentDetailViewModel {
         }
     }
     
-    private(set) lazy var calendarEvent: EKEvent = {
+    var calendarEvent: EKEvent {
         let title = String.localizedStringWithFormat("My %@ appointment",
                                                      Environment.shared.opco.displayString)
         let description = String.localizedStringWithFormat("The appointment case number is %@",
@@ -171,10 +171,20 @@ class AppointmentDetailViewModel {
         event.calendar = EventStore.shared.defaultCalendarForNewEvents
         event.availability = .busy
         event.location = AccountsStore.shared.currentAccount.address
-        if let alarmTime = Calendar.opCo.date(byAdding: DateComponents(day: -1), to: appointment.startTime) {
-            event.alarms = [EKAlarm(absoluteDate: alarmTime)]
-        }
         //event.url Coordinate with web for URLs and deep linking
+        
+        var alarms = [EKAlarm]()
+        let now = Date()
+        if let alarmTime1 = Calendar.opCo.date(byAdding: DateComponents(day: -1), to: appointment.startTime), alarmTime1 > now {
+            alarms.append(EKAlarm(absoluteDate: alarmTime1))
+        }
+        
+        if let alarmTime2 = Calendar.opCo.date(byAdding: DateComponents(hour: -1), to: appointment.startTime), alarmTime2 > now {
+            alarms.append(EKAlarm(absoluteDate: alarmTime2))
+        }
+        
+        event.alarms = alarms
+        
         return event
-    }()
+    }
 }
