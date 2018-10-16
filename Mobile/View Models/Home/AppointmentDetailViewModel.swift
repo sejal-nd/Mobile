@@ -157,33 +157,23 @@ class AppointmentDetailViewModel {
         }
     }
     
-    func addCalendarEvent() -> Observable<Void> {
-        let title = String.localizedStringWithFormat("My %@ appointment",
-                                                     Environment.shared.opco.displayString)
-        let description = String.localizedStringWithFormat("The appointment case number is %@",
-                                                           appointment.caseNumber)
-        
-        return CalendarService().addEventToCalendar(title: title,
-                                                    description: description,
-                                                    startDate: appointment.startTime,
-                                                    endDate: appointment.endTime)
-    }
-    
-    let eventStore = EKEventStore()
-    
     private(set) lazy var calendarEvent: EKEvent = {
         let title = String.localizedStringWithFormat("My %@ appointment",
                                                      Environment.shared.opco.displayString)
         let description = String.localizedStringWithFormat("The appointment case number is %@",
                                                            appointment.caseNumber)
         
-        let event = EKEvent(eventStore: eventStore)
+        let event = EKEvent(eventStore: EventStore.shared)
         event.title = title
         event.startDate = appointment.startTime
         event.endDate = appointment.endTime
         event.notes = description
-        event.calendar = eventStore.defaultCalendarForNewEvents
+        event.calendar = EventStore.shared.defaultCalendarForNewEvents
         event.availability = .busy
+        event.location = AccountsStore.shared.currentAccount.address
+        if let alarmTime = Calendar.opCo.date(byAdding: DateComponents(day: -1), to: appointment.startTime) {
+            event.alarms = [EKAlarm(absoluteDate: alarmTime)]
+        }
         //event.url Coordinate with web for URLs and deep linking
         return event
     }()

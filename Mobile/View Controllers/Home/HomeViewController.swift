@@ -598,6 +598,10 @@ class HomeViewController: AccountPickerViewController {
         case let (vc as AppointmentsViewController, (appointments, premiseNumber) as ([Appointment], String)):
             vc.appointments = appointments
             vc.premiseNumber = premiseNumber
+            vc.viewModel.appointments
+                .skip(1) // First element just repeats the one passed in from this screen.
+                .bind(to: viewModel.appointmentsUpdates)
+                .disposed(by: vc.disposeBag)
         case let (vc as SmartEnergyRewardsViewController, accountDetail as AccountDetail):
             vc.accountDetail = accountDetail
         case let (vc as TotalSavingsViewController, accountDetail as AccountDetail):

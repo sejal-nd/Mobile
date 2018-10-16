@@ -35,6 +35,7 @@ class HomeViewModel {
     private let projectedBillTracker = ActivityTracker()
     
     let latestNewCardVersion = HomeCard.latestNewCardVersion
+    let appointmentsUpdates = PublishSubject<[Appointment]>() // Bind the detail screen's poll results to this
     
     required init(accountService: AccountService,
                   weatherService: WeatherService,
@@ -58,7 +59,7 @@ class HomeViewModel {
     }
     
     private(set) lazy var appointmentCardViewModel =
-        HomeAppointmentCardViewModel(appointments: appointmentEvents.elements())
+        HomeAppointmentCardViewModel(appointments: appointments)
     
     private(set) lazy var weatherViewModel =
         HomeWeatherViewModel(accountDetailEvents: accountDetailEvents,
@@ -172,7 +173,7 @@ class HomeViewModel {
         .elements()
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var appointmentEvents = accountDetailEvents
+    private lazy var appointmentEvents = accountDetailEvents
         .elements()
         .withLatestFrom(fetchTrigger) { ($0, $1) }
         .toAsyncRequest(activityTrackers: { [weak self] (_, state) in
@@ -195,8 +196,11 @@ class HomeViewModel {
         })
         .share(replay: 1, scope: .forever)
     
+    private(set) lazy var appointments = Observable.merge(appointmentEvents.elements(), appointmentsUpdates)
+    
     private(set) lazy var showAppointmentCard = Observable
         .merge(appointmentEvents.map { !($0.element?.isEmpty ?? true) },
+               appointmentsUpdates.map { !$0.isEmpty },
                appointmentTracker.asObservable().filter { $0 }.not())
         .asDriver(onErrorDriveWith: .empty())
 }

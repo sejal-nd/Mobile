@@ -17,9 +17,9 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     
     let disposeBag = DisposeBag()
     
-    private lazy var viewModel = AppointmentsViewModel(premiseNumber: premiseNumber,
-                                                       initialAppointments: appointments,
-                                                       appointmentService: ServiceFactory.createAppointmentService())
+    lazy var viewModel = AppointmentsViewModel(premiseNumber: premiseNumber,
+                                               initialAppointments: appointments,
+                                               appointmentService: ServiceFactory.createAppointmentService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +28,9 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         viewModel.appointments.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] appointments in
                 guard let self = self else { return }
+                guard !appointments.isEmpty else { return }
+                
                 self.appointments = appointments
-                
-                if appointments.count == 1 {
-                    self.buttonBarView.isHidden = true
-                    self.containerView.bounces = false
-                } else {
-                    self.buttonBarView.isHidden = false
-                    self.containerView.bounces = true
-                }
-                
                 self.reloadPagerTabStripView()
             })
             .disposed(by: disposeBag)
@@ -75,6 +68,14 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        if appointments.count == 1 {
+            self.buttonBarView.isHidden = true
+            self.containerView.bounces = false
+        } else {
+            self.buttonBarView.isHidden = false
+            self.containerView.bounces = true
+        }
+        
         return appointments
             .map(AppointmentDetailViewModel.init)
             .map(AppointmentDetailViewController.init)
