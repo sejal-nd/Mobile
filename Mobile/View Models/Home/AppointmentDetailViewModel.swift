@@ -171,6 +171,9 @@ class AppointmentDetailViewModel {
         event.calendar = EventStore.shared.defaultCalendarForNewEvents
         event.availability = .busy
         event.location = AccountsStore.shared.currentAccount.address
+        if let alarmTime = Calendar.opCo.date(byAdding: DateComponents(day: -1), to: appointment.startTime) {
+            event.alarms = [EKAlarm(absoluteDate: alarmTime)]
+        }
         //event.url Coordinate with web for URLs and deep linking
         return event
     }()

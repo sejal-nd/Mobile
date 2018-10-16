@@ -59,7 +59,7 @@ class MockAppointmentService: AppointmentService {
                 appointments = [Appointment(jobId: "0", startTime: noon, endTime: one, status: .complete, caseNumber: "0")]
             }
         case "apptReschedule": // Reschedules the appt after the first fetch
-            let two = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: one)!
+            let two = Calendar.opCo.date(byAdding: DateComponents(hour: 1), to: one)!
             if MockAppointmentService.isFirstFetch {
                 MockAppointmentService.isFirstFetch = false
                 appointments = [Appointment(jobId: "0", startTime: noon, endTime: one, status: .scheduled, caseNumber: "0")]
@@ -67,8 +67,8 @@ class MockAppointmentService: AppointmentService {
                 appointments = [Appointment(jobId: "0", startTime: one, endTime: two, status: .scheduled, caseNumber: "0")]
             }
         case "apptAdd": // Starts with 2 appts, then adds 1 more after the first fetch
-            let two = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: one)!
-            let three = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: two)!
+            let two = Calendar.opCo.date(byAdding: DateComponents(hour: 1), to: one)!
+            let three = Calendar.opCo.date(byAdding: DateComponents(hour: 1), to: two)!
             if MockAppointmentService.isFirstFetch {
                 MockAppointmentService.isFirstFetch = false
                 appointments = [Appointment(jobId: "0", startTime: noon, endTime: one, status: .scheduled, caseNumber: "0"),
@@ -79,7 +79,7 @@ class MockAppointmentService: AppointmentService {
                                 Appointment(jobId: "2", startTime: two, endTime: three, status: .scheduled, caseNumber: "0")]
             }
         case "apptRemove": // Starts with 2 appts, then removes 1 after the first fetch
-            let two = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: one)!
+            let two = Calendar.opCo.date(byAdding: DateComponents(hour: 1), to: one)!
             if MockAppointmentService.isFirstFetch {
                 MockAppointmentService.isFirstFetch = false
                 appointments = [Appointment(jobId: "0", startTime: noon, endTime: one, status: .scheduled, caseNumber: "0"),
