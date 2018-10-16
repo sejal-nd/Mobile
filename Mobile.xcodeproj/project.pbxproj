@@ -889,12 +889,15 @@
 		B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
 		B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
 		B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
-		B0336FE22175166C00751430 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
-		B0336FE32175166C00751430 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
-		B0336FE42175166D00751430 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
 		B0336FE621751FB700751430 /* MCSAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE521751FB700751430 /* MCSAppointmentService.swift */; };
 		B0336FE721751FB700751430 /* MCSAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE521751FB700751430 /* MCSAppointmentService.swift */; };
 		B0336FE821751FB700751430 /* MCSAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE521751FB700751430 /* MCSAppointmentService.swift */; };
+		B0336FEA21762FB400751430 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE921762FB400751430 /* EventStore.swift */; };
+		B0336FEB21762FB400751430 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE921762FB400751430 /* EventStore.swift */; };
+		B0336FEC21762FB400751430 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE921762FB400751430 /* EventStore.swift */; };
+		B0336FED21762FB400751430 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE921762FB400751430 /* EventStore.swift */; };
+		B0336FEE21762FB400751430 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE921762FB400751430 /* EventStore.swift */; };
+		B0336FEF21762FB400751430 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE921762FB400751430 /* EventStore.swift */; };
 		B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
@@ -1119,9 +1122,6 @@
 		B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
 		B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
 		B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
-		B0B084132171454900B1C632 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
-		B0B084142171454900B1C632 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
-		B0B084152171454900B1C632 /* EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B084122171454900B1C632 /* EventKit.swift */; };
 		B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
@@ -2679,6 +2679,7 @@
 		B01748912135D2C50039D0C6 /* StormModeHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeHomeViewController.swift; sourceTree = "<group>"; };
 		B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeHomeViewModel.swift; sourceTree = "<group>"; };
 		B0336FE521751FB700751430 /* MCSAppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCSAppointmentService.swift; sourceTree = "<group>"; };
+		B0336FE921762FB400751430 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		B0472B282111011F0048C1A7 /* UsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageViewController.swift; sourceTree = "<group>"; };
 		B0649A5E214834380041B299 /* StormModeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeStatus.swift; sourceTree = "<group>"; };
 		B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsViewModelTests.swift; sourceTree = "<group>"; };
@@ -2740,7 +2741,6 @@
 		B0B0840121710D1500B1C632 /* Appt_Complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Complete.json; sourceTree = "<group>"; };
 		B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModel.swift; sourceTree = "<group>"; };
 		B0B0840E217111CE00B1C632 /* appointment_tracker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointment_tracker.json; sourceTree = "<group>"; };
-		B0B084122171454900B1C632 /* EventKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKit.swift; sourceTree = "<group>"; };
 		B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNotificationsSettingsCell.swift; sourceTree = "<group>"; };
 		B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPreferencesNotificationsSettingsCell.xib; sourceTree = "<group>"; };
 		B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -4205,7 +4205,6 @@
 				35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */,
 				352CB2062140448C00DAF045 /* UINavigationController+Style.swift */,
 				2249C036216C44C800EAA44D /* URLSession+Rx.swift */,
-				B0B084122171454900B1C632 /* EventKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4566,6 +4565,7 @@
 				357757542114D32A00E73542 /* SharedWebCredentialService.swift */,
 				B0649A5E214834380041B299 /* StormModeStatus.swift */,
 				B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */,
+				B0336FE921762FB400751430 /* EventStore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -6232,7 +6232,6 @@
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				B5A16F351F0D44110016952C /* SpeedpayApi.swift in Sources */,
 				82A18EE31EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
-				B0B084132171454900B1C632 /* EventKit.swift in Sources */,
 				358DE0A521021471002C544E /* UsageViewModel.swift in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
@@ -6255,6 +6254,7 @@
 				E8FF085A1F7EDC160030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				82EAB3441F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				82A18EDA1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
+				B0336FEA21762FB400751430 /* EventStore.swift in Sources */,
 				826DCCED1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				228877011FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
@@ -6600,7 +6600,6 @@
 				E840BD411EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				35277AFB2102325100411297 /* UsageViewModel.swift in Sources */,
-				B0B084152171454900B1C632 /* EventKit.swift in Sources */,
 				E8C4532D1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				8FD5AE8E1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A31E609DC900F87F87 /* MainTabBarController.swift in Sources */,
@@ -6623,6 +6622,7 @@
 				E8FF085C1F7EDC250030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				82EAB3461F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				CEA215241F7900CC00689422 /* HomeBillCardView.swift in Sources */,
+				B0336FEC21762FB400751430 /* EventStore.swift in Sources */,
 				35A6C6E7211DE8CA00C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */,
 				E80D2E191E721668002626C9 /* MaskedString.swift in Sources */,
 				228877031FC611990024D7F0 /* MockAlertsService.swift in Sources */,
@@ -6968,7 +6968,6 @@
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				35277AFA2102325000411297 /* UsageViewModel.swift in Sources */,
-				B0B084142171454900B1C632 /* EventKit.swift in Sources */,
 				E8C4532C1EF435F700F5C781 /* MiniWalletViewController.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
@@ -6991,6 +6990,7 @@
 				E8FF085B1F7EDC240030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				82EAB3451F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				CEA215231F7900CC00689422 /* HomeBillCardView.swift in Sources */,
+				B0336FEB21762FB400751430 /* EventStore.swift in Sources */,
 				35A6C6E8211DE8CB00C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */,
 				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				228877021FC611990024D7F0 /* MockAlertsService.swift in Sources */,
@@ -7434,13 +7434,13 @@
 				B0B083B9216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				E89496391EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E895E9AC1EBB8464003B38A1 /* ReportOutageViewModel.swift in Sources */,
+				B0336FED21762FB400751430 /* EventStore.swift in Sources */,
 				E8400E651FE05EFD0064E242 /* MockPaymentService.swift in Sources */,
 				B0472B252110FCC30048C1A7 /* UsageTool.swift in Sources */,
 				E87E8AE31FDF3BE400C7E675 /* AlertPreferencesViewModelTests.swift in Sources */,
 				E89C162D1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				B54846901E6F4446008CE1B1 /* LoginViewModelTests.swift in Sources */,
 				B085C44A20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
-				B0336FE22175166C00751430 /* EventKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7668,13 +7668,13 @@
 				B0B083BA216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				E8F62BBF200924410077B3DA /* NotificationNames.swift in Sources */,
 				E8F62BC0200924410077B3DA /* ReportOutageViewModel.swift in Sources */,
+				B0336FEE21762FB400751430 /* EventStore.swift in Sources */,
 				E8F62BC1200924410077B3DA /* MockPaymentService.swift in Sources */,
 				B0472B262110FCC40048C1A7 /* UsageTool.swift in Sources */,
 				E8F62BC2200924410077B3DA /* AlertPreferencesViewModelTests.swift in Sources */,
 				E8F62BC3200924410077B3DA /* UsageService.swift in Sources */,
 				E8F62BC4200924410077B3DA /* LoginViewModelTests.swift in Sources */,
 				B085C44B20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
-				B0336FE32175166C00751430 /* EventKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7858,13 +7858,13 @@
 				B0B083BB216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				E8F62C74200924570077B3DA /* NotificationNames.swift in Sources */,
 				E8F62C75200924570077B3DA /* ReportOutageViewModel.swift in Sources */,
+				B0336FEF21762FB400751430 /* EventStore.swift in Sources */,
 				E8F62C76200924570077B3DA /* MockPaymentService.swift in Sources */,
 				B0472B272110FCC40048C1A7 /* UsageTool.swift in Sources */,
 				E8F62C77200924570077B3DA /* AlertPreferencesViewModelTests.swift in Sources */,
 				E8F62C78200924570077B3DA /* UsageService.swift in Sources */,
 				E8F62C79200924570077B3DA /* LoginViewModelTests.swift in Sources */,
 				B085C44C20FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
-				B0336FE42175166D00751430 /* EventKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

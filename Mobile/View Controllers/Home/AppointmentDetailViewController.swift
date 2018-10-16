@@ -193,37 +193,43 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 
-                self.eventVC = EKEventEditViewController()
-                self.eventVC.event = self.viewModel.calendarEvent
-                self.eventVC.eventStore = self.viewModel.eventStore
-                self.eventVC.editViewDelegate = self
-                
-                self.present(self.eventVC, animated: true)
+                switch EKEventStore.authorizationStatus(for: .event) {
+                case .authorized:
+                    self.addCalendarEvent()
+                case .denied:
+                    self.showCalendarPermissionsDeniedAlert()
+                case .notDetermined:
+                    EventStore.shared.requestAccess(to: .event) { [weak self] (granted, error) in
+                        guard let self = self, error == nil && granted else { return }
+                        self.addCalendarEvent()
+                    }
+                case .restricted:
+                    break
+                }
             })
             .disposed(by: disposeBag)
+    }
+    
+    func addCalendarEvent() {
+        eventVC = EKEventEditViewController()
+        eventVC.event = self.viewModel.calendarEvent
+        eventVC.eventStore = EventStore.shared
+        eventVC.editViewDelegate = self
+        present(self.eventVC, animated: true)
+    }
+    
+    func showCalendarPermissionsDeniedAlert() {
+        let title = String.localizedStringWithFormat("Adding to calendar is currently disabled on your device. Please visit your device settings to allow %@ to access your calendar.", Environment.shared.opco.displayString)
         
-        //        addToCalendarButton.rx.touchUpInside
-        //            .toAsyncRequest { [weak self] in
-        //                self?.viewModel.addCalendarEvent() ?? .empty()
-        //            }
-        //            .errors()
-        //            .asDriver(onErrorDriveWith: .empty())
-        //            .drive(onNext: { [weak self] _ in
-        //                guard let self = self else { return }
-        //
-        //                let title = String.localizedStringWithFormat("Adding to calendar is currently disabled on your device. Please visit your device settings to allow %@ to access your calendar.", Environment.shared.opco.displayString)
-        //
-        //                let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        //                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        //                alert.addAction(UIAlertAction(title: NSLocalizedString("Go to Settings", comment: ""), style: .default) { _ in
-        //                    if let url = URL(string: UIApplication.openSettingsURLString) {
-        //                        UIApplication.shared.openURL(url)
-        //                    }
-        //                })
-        //
-        //                self.present(alert, animated: true, completion: nil)
-        //            })
-        //            .disposed(by: disposeBag)
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Go to Settings", comment: ""), style: .default) { _ in
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.openURL(url)
+            }
+        })
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     func playProgressAnimation() {
@@ -316,6 +322,15 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
 extension AppointmentDetailViewController: EKEventEditViewDelegate {
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
         eventVC.dismiss(animated: true, completion: nil)
+        
+        switch action {
+        case .saved:
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                self.view.showToast(NSLocalizedString("Appointment added to calendar", comment: ""))
+            })
+        case .canceled, .deleted:
+            break
+        }
     }
 }
 

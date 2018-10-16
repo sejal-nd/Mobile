@@ -15,12 +15,14 @@ struct Appointment: Mappable, Equatable {
         case scheduled, enRoute, inProgress, complete, canceled
     }
     
+    let jobId: String
     let startTime: Date
     let endTime: Date
     let status: Status
     let caseNumber: String
     
     init(map: Mapper) throws {
+        jobId = try map.from("jobId")
         startTime = try map.from("startTime", transformation: DateParser().extractDate)
         endTime = try map.from("endTime", transformation: DateParser().extractDate)
         status = try map.from("status") { object in
@@ -35,13 +37,18 @@ struct Appointment: Mappable, Equatable {
         caseNumber = try map.from("caseNumber")
     }
     
-    init(startTime: Date = Date(),
-         endTime: Date = Date(),
-         status: Status = .scheduled,
-         caseNumber: String = "0") {
-        self.startTime = startTime
-        self.endTime = endTime
-        self.status = status
-        self.caseNumber = caseNumber
+    init(jobId: String, startTime: Date, endTime: Date, status: Status, caseNumber: String) {
+        
+        assert(Environment.shared.environmentName == .aut, "init only available for tests")
+        
+        var map = [String: Any]()
+        map["jobId"] = jobId
+        //TODO: Update these formatters when we get services
+        map["startTime"] = DateFormatter.yyyyMMddTHHmmssZFormatter.string(from: startTime)
+        map["endTime"] = DateFormatter.yyyyMMddTHHmmssZFormatter.string(from: endTime)
+        map["status"] = status.rawValue
+        map["caseNumber"] = caseNumber
+        
+        self = Appointment.from(map as NSDictionary)!
     }
 }
