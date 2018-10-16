@@ -31,7 +31,6 @@ class AlertsViewController: AccountPickerViewController {
         super.viewDidLoad()
         
         if StormModeStatus.shared.isOn {
-            view.backgroundColor = .stormModeBlack
             accountPicker.stormMode = true
         }
         
