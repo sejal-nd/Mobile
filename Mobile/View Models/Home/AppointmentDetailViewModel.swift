@@ -157,7 +157,7 @@ class AppointmentDetailViewModel {
         }
     }
     
-    private(set) lazy var calendarEvent: EKEvent = {
+    var calendarEvent: EKEvent {
         let title = String.localizedStringWithFormat("My %@ appointment",
                                                      Environment.shared.opco.displayString)
         let description = String.localizedStringWithFormat("The appointment case number is %@",
@@ -186,5 +186,5 @@ class AppointmentDetailViewModel {
         event.alarms = alarms
         
         return event
-    }()
+    }
 }
