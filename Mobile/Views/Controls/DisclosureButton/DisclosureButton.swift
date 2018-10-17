@@ -22,6 +22,14 @@ class DisclosureButton: UIButton {
         }
     }
     
+    var stormTheme = false {
+        didSet {
+            view.backgroundColor = .stormModeGray
+            label.textColor = .white
+            caretAccessory.image = #imageLiteral(resourceName: "ic_caret_white.pdf")
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -49,12 +57,6 @@ class DisclosureButton: UIButton {
         
         view.layer.cornerRadius = 10
         view.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        if StormModeStatus.shared.isOn {
-            view.backgroundColor = .stormModeGray
-            label.textColor = .white
-            caretAccessory.image = #imageLiteral(resourceName: "ic_caret_white.pdf")
-        }
-        
     }
     
     func setDetailLabel(text: String?, checkHidden: Bool) {
@@ -71,10 +73,10 @@ class DisclosureButton: UIButton {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-               view.backgroundColor = StormModeStatus.shared.isOn ? UIColor.stormModeGray.darker(by: 10) : .softGray
+               view.backgroundColor = stormTheme ? UIColor.stormModeGray.darker(by: 10) : .softGray
             }
             else {
-                view.backgroundColor = StormModeStatus.shared.isOn ? .stormModeGray : .white
+                view.backgroundColor = stormTheme ? .stormModeGray : .white
             }
         }
     }
