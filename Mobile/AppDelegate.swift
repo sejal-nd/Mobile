@@ -112,19 +112,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    // Only used on iOS 9 and below -- iOS 10+ uses the new UNUserNotificationCenter and handles the analytics in
-    // the callback in HomeViewController
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
-            UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
-            if notificationSettings.types.isEmpty {
-                Analytics.log(event: .alertsiOSPushDontAllowInitial)
-            } else {
-                Analytics.log(event: .alertsiOSPushOKInitial)
-            }
-        }
-    }
-    
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         dLog("*-*-*-*-* \(error.localizedDescription)")
     }

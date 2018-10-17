@@ -451,7 +451,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         if let phone = phoneStr, let url = URL(string: "telprompt://\(phone)"), UIApplication.shared.canOpenURL(url) {
             Analytics.log(event: .outageAuthEmergencyCall)
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url)
         }
     }
     

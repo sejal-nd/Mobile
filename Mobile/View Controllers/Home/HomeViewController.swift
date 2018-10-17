@@ -179,11 +179,7 @@ class HomeViewController: AccountPickerViewController {
                                     return
                             }
                             
-                            if #available(iOS 10, *) {
-                                UIApplication.shared.open(url)
-                            } else {
-                                UIApplication.shared.openURL(url)
-                            }
+                            UIApplication.shared.open(url)
                         }
                     })
                     .disposed(by: appointmentCardView.disposeBag)
@@ -293,21 +289,17 @@ class HomeViewController: AccountPickerViewController {
         }
         
         if Environment.shared.environmentName != .aut {
-            if #available(iOS 10.0, *) {
-                UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
-                    if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
-                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
-                        if granted {
-                            Analytics.log(event: .alertsiOSPushOKInitial)
-                        } else {
-                            Analytics.log(event: .alertsiOSPushDontAllowInitial)
-                        }
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
+                if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
+                    UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
+                    if granted {
+                        Analytics.log(event: .alertsiOSPushOKInitial)
+                    } else {
+                        Analytics.log(event: .alertsiOSPushDontAllowInitial)
                     }
-                })
-            } else {
-                let settings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
-                UIApplication.shared.registerUserNotificationSettings(settings)
-            }
+                }
+            })
+            
             UIApplication.shared.registerForRemoteNotifications()
         }
         

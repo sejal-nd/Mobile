@@ -105,10 +105,10 @@ class TemplateCardView: UIView {
                 
                 if UIApplication.shared.canOpenURL(appLinkUrl) {
                     Analytics.log(event: .homePromoCard, dimensions: [.link: appLinkUrl.absoluteString])
-                    UIApplication.shared.openURL(appLinkUrl)
+                    UIApplication.shared.open(appLinkUrl)
                 } else if UIApplication.shared.canOpenURL(appStoreUrl) {
                     Analytics.log(event: .homePromoCard, dimensions: [.link: appStoreUrl.absoluteString])
-                    UIApplication.shared.openURL(appStoreUrl)
+                    UIApplication.shared.open(appStoreUrl)
                 }
             })
             .disposed(by: bag)

@@ -230,7 +230,7 @@ extension AddCreditCardViewController: AddCardFormViewDelegate {
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""), style: .default, handler: { _ in
                 if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.openURL(url)
+                    UIApplication.shared.open(url)
                 }
             }))
             present(alertVC, animated: true, completion: nil)

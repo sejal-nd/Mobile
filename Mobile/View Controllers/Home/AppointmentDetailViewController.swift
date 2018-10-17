@@ -166,11 +166,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
                             return
                     }
                     
-                    if #available(iOS 10, *) {
-                        UIApplication.shared.open(url)
-                    } else {
-                        UIApplication.shared.openURL(url)
-                    }
+                    UIApplication.shared.open(url)
                 }
             })
             .disposed(by: disposeBag)
@@ -225,7 +221,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Go to Settings", comment: ""), style: .default) { _ in
             if let url = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
             }
         })
         
