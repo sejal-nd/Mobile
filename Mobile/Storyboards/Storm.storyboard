@@ -63,13 +63,13 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHb-UX-xqs">
-                                            <rect key="frame" x="0.0" y="114" width="375" height="1222"/>
+                                            <rect key="frame" x="0.0" y="114" width="375" height="1636"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pB2-hy-WuN">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="1222"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="1636"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V0G-ut-vCb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="217"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="217.5"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsK-4K-Hee">
                                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="105.5"/>
@@ -121,46 +121,50 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAd-jD-Fyb" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="105.5" width="343" height="111.5"/>
+                                                                    <rect key="frame" x="0.0" y="105.5" width="343" height="112"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="D22-9R-29w">
-                                                                            <rect key="frame" x="26" y="20" width="303" height="66.5"/>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_storm" translatesAutoresizingMaskIntoConstraints="NO" id="12w-0O-Cje">
+                                                                            <rect key="frame" x="29" y="23" width="60" height="66"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="60" id="ffS-za-zQI"/>
+                                                                                <constraint firstAttribute="height" constant="66" id="h8w-uw-OcE"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="CAE-c1-zpK">
+                                                                            <rect key="frame" x="111" y="20" width="194" height="67"/>
                                                                             <subviews>
-                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_storm" translatesAutoresizingMaskIntoConstraints="NO" id="12w-0O-Cje">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="66.5"/>
-                                                                                </imageView>
-                                                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="CAE-c1-zpK">
-                                                                                    <rect key="frame" x="76" y="0.0" width="203" height="66.5"/>
-                                                                                    <subviews>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Storm Mode is in effect." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4G-79-UPu">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="183" height="20.5"/>
-                                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                            <nil key="highlightedColor"/>
-                                                                                        </label>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Due to severe weather, the most relevant features are optimized to allow us to better serve you." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFG-l4-4FT">
-                                                                                            <rect key="frame" x="0.0" y="23.5" width="194" height="43"/>
-                                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                            <nil key="highlightedColor"/>
-                                                                                        </label>
-                                                                                    </subviews>
-                                                                                </stackView>
-                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret_white" translatesAutoresizingMaskIntoConstraints="NO" id="k0c-e3-K9c">
-                                                                                    <rect key="frame" x="295" y="0.0" width="8" height="66.5"/>
-                                                                                    <constraints>
-                                                                                        <constraint firstAttribute="width" constant="8" id="EUT-z2-sLj"/>
-                                                                                    </constraints>
-                                                                                </imageView>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Storm Mode is in effect." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4G-79-UPu">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="194" height="21"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due to severe weather, the most relevant features are optimized to allow us to better serve you." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFG-l4-4FT">
+                                                                                    <rect key="frame" x="0.0" y="24" width="194" height="43"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
                                                                             </subviews>
                                                                         </stackView>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret_white" translatesAutoresizingMaskIntoConstraints="NO" id="k0c-e3-K9c">
+                                                                            <rect key="frame" x="321" y="49.5" width="8" height="13"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="13" id="79s-yf-kTw"/>
+                                                                                <constraint firstAttribute="width" constant="8" id="EUT-z2-sLj"/>
+                                                                            </constraints>
+                                                                        </imageView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="0.098967251712328771" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstItem="D22-9R-29w" firstAttribute="top" secondItem="kAd-jD-Fyb" secondAttribute="top" constant="20" id="Ti0-nE-Bub"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="D22-9R-29w" secondAttribute="trailing" constant="14" id="YaU-uB-4Pd"/>
-                                                                        <constraint firstItem="D22-9R-29w" firstAttribute="leading" secondItem="kAd-jD-Fyb" secondAttribute="leading" constant="26" id="khK-cy-c0n"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="D22-9R-29w" secondAttribute="bottom" constant="25" id="zBK-mH-PR5"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="k0c-e3-K9c" secondAttribute="trailing" constant="14" id="5qX-Sj-5br"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="CAE-c1-zpK" secondAttribute="bottom" constant="25" id="6Dt-zR-RYm"/>
+                                                                        <constraint firstItem="CAE-c1-zpK" firstAttribute="leading" secondItem="12w-0O-Cje" secondAttribute="trailing" constant="22" id="Ejq-QR-ERO"/>
+                                                                        <constraint firstItem="CAE-c1-zpK" firstAttribute="top" secondItem="kAd-jD-Fyb" secondAttribute="top" constant="20" id="Onc-Fm-UuH"/>
+                                                                        <constraint firstItem="k0c-e3-K9c" firstAttribute="leading" secondItem="CAE-c1-zpK" secondAttribute="trailing" constant="16" id="RSd-Wq-jlY"/>
+                                                                        <constraint firstItem="12w-0O-Cje" firstAttribute="centerY" secondItem="kAd-jD-Fyb" secondAttribute="centerY" id="Wro-ja-sZD"/>
+                                                                        <constraint firstItem="k0c-e3-K9c" firstAttribute="centerY" secondItem="kAd-jD-Fyb" secondAttribute="centerY" id="bir-j6-vGd"/>
+                                                                        <constraint firstItem="12w-0O-Cje" firstAttribute="leading" secondItem="kAd-jD-Fyb" secondAttribute="leading" constant="29" id="cKo-Wn-qY4"/>
                                                                     </constraints>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="NO"/>
@@ -172,21 +176,20 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="exitStormMode:" destination="7nx-bF-5mO" eventType="valueChanged" id="nEF-Wg-csO"/>
                                                                         <action selector="showStormModeDetails:" destination="7nx-bF-5mO" eventType="touchUpInside" id="jhe-OZ-oj1"/>
                                                                     </connections>
                                                                 </view>
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bD8-zf-eGs">
-                                                            <rect key="frame" x="51.5" y="217" width="240" height="21"/>
+                                                            <rect key="frame" x="51.5" y="217.5" width="240" height="21"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="Qq7-LQ-SLv"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQl-fl-dZs">
-                                                            <rect key="frame" x="38" y="238" width="267" height="267"/>
+                                                            <rect key="frame" x="38" y="238.5" width="267" height="267"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="267" placeholderIntrinsicHeight="267" translatesAutoresizingMaskIntoConstraints="NO" id="gMu-am-j3r" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="267" height="267"/>
@@ -256,7 +259,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAz-Ed-8Hy">
-                                                            <rect key="frame" x="24" y="505" width="295" height="254"/>
+                                                            <rect key="frame" x="24" y="505.5" width="295" height="254"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="qfu-kV-Gsd">
                                                                     <rect key="frame" x="85" y="24" width="125" height="126"/>
@@ -316,10 +319,10 @@
                                                             </constraints>
                                                         </view>
                                                         <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zn1-ma-BGR">
-                                                            <rect key="frame" x="0.0" y="759" width="343" height="389"/>
+                                                            <rect key="frame" x="0.0" y="759.5" width="343" height="802.5"/>
                                                             <subviews>
                                                                 <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-fW-6tb">
-                                                                    <rect key="frame" x="16" y="24" width="311" height="341"/>
+                                                                    <rect key="frame" x="16" y="24" width="311" height="754.5"/>
                                                                     <subviews>
                                                                         <imageView verifyAmbiguity="off" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nooutage_sm" translatesAutoresizingMaskIntoConstraints="NO" id="nb9-Wc-OWK">
                                                                             <rect key="frame" x="93" y="0.0" width="125" height="125"/>
@@ -329,20 +332,20 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkO-hm-Egb">
-                                                                            <rect key="frame" x="35.5" y="125" width="240" height="16"/>
+                                                                            <rect key="frame" x="35.5" y="207.5" width="240" height="16"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="16" id="VOJ-tt-ahj"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outage Unavailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ytz-FG-53M">
-                                                                            <rect key="frame" x="75" y="141" width="161" height="21.5"/>
+                                                                            <rect key="frame" x="75" y="306.5" width="161" height="21.5"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <textView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jpt-Jv-nQF" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="2" y="162.5" width="307.5" height="111.5"/>
+                                                                            <rect key="frame" x="2" y="410.5" width="307.5" height="111.5"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <string key="text">We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call x-xxx-xxx-xxxx.</string>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -351,14 +354,14 @@
                                                                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                                         </textView>
                                                                         <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRo-38-cro" userLabel="Spacer View">
-                                                                            <rect key="frame" x="35.5" y="274" width="240" height="17"/>
+                                                                            <rect key="frame" x="35.5" y="605" width="240" height="17"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="17" id="tRE-FI-Thn"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gja-nT-rEZ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="55.5" y="291" width="200" height="50"/>
+                                                                            <rect key="frame" x="55.5" y="704.5" width="200" height="50"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Bill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SX4-b4-b99">
                                                                                     <rect key="frame" x="8" y="8" width="184" height="34"/>
@@ -402,14 +405,14 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFr-P5-xSY" userLabel="Spacer View">
-                                                            <rect key="frame" x="51.5" y="1148" width="240" height="24"/>
+                                                            <rect key="frame" x="51.5" y="1562" width="240" height="24"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="24" id="Q1l-MS-h69"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1b-5a-tGs">
-                                                            <rect key="frame" x="0.0" y="1172" width="343" height="50"/>
+                                                            <rect key="frame" x="0.0" y="1586" width="343" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To report a gas emergency, please call" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-QQ-AnX">
                                                                     <rect key="frame" x="14" y="0.0" width="315" height="20.5"/>
@@ -474,14 +477,16 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FHb-UX-xqs" secondAttribute="trailing" id="17x-gb-LeX"/>
+                                        <constraint firstAttribute="trailing" secondItem="FHb-UX-xqs" secondAttribute="trailing" priority="999" id="17x-gb-LeX"/>
                                         <constraint firstItem="FHb-UX-xqs" firstAttribute="centerX" secondItem="DTT-Yy-7Ip" secondAttribute="centerX" id="FrJ-Vv-dNR"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FHb-UX-xqs" secondAttribute="trailing" id="JIF-9a-tCg"/>
                                         <constraint firstItem="FHb-UX-xqs" firstAttribute="top" secondItem="jT6-gQ-uaJ" secondAttribute="bottom" constant="24" id="PkA-X9-Duw"/>
                                         <constraint firstItem="jT6-gQ-uaJ" firstAttribute="leading" secondItem="DTT-Yy-7Ip" secondAttribute="leading" id="SvN-7p-f8b"/>
                                         <constraint firstAttribute="trailing" secondItem="jT6-gQ-uaJ" secondAttribute="trailing" id="amw-pF-2JH"/>
-                                        <constraint firstItem="FHb-UX-xqs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DTT-Yy-7Ip" secondAttribute="leading" id="fcv-xo-EIB"/>
+                                        <constraint firstItem="FHb-UX-xqs" firstAttribute="leading" secondItem="DTT-Yy-7Ip" secondAttribute="leading" priority="999" id="fcv-xo-EIB"/>
                                         <constraint firstItem="jT6-gQ-uaJ" firstAttribute="top" secondItem="DTT-Yy-7Ip" secondAttribute="top" id="pce-tj-GOX"/>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="FHb-UX-xqs" secondAttribute="bottom" constant="20" id="uz7-Qm-ldg"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="FHb-UX-xqs" secondAttribute="bottom" id="uz7-Qm-ldg"/>
+                                        <constraint firstItem="FHb-UX-xqs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DTT-Yy-7Ip" secondAttribute="leading" id="vmG-Ky-Ufg"/>
                                     </constraints>
                                 </view>
                                 <connections>
