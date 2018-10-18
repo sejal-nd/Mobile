@@ -13,6 +13,8 @@ import SafariServices
 
 class UsageViewController: AccountPickerViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet private weak var backgroundScrollConstraint: NSLayoutConstraint!
     
     @IBOutlet private weak var switchAccountsLoadingIndicator: LoadingIndicator!
@@ -160,6 +162,8 @@ class UsageViewController: AccountPickerViewController {
         }
     }
     
+    // MARK: - Other Properties
+    
     var refreshControl: UIRefreshControl?
     
     let disposeBag = DisposeBag()
@@ -168,6 +172,7 @@ class UsageViewController: AccountPickerViewController {
                                    accountService: ServiceFactory.createAccountService(),
                                    usageService: ServiceFactory.createUsageService())
     
+    var initialSelection: (barSelection: UsageViewModel.BarGraphSelection, isGas: Bool)?
     
     // MARK: - View Life Cycle
     
@@ -186,6 +191,12 @@ class UsageViewController: AccountPickerViewController {
         
         showSwitchAccountsLoadingState()
         barGraphPress(currentContainerButton)
+        
+        if let (barSelection, isGas) = initialSelection {
+            viewModel.electricGasSelectedSegmentIndex.value = isGas ? 1 : 0
+            selectBar(barSelection, gas: isGas)
+        }
+        
         styleBarGraph()
         bindViewModel()
         dropdownView.configure(withViewModel: viewModel)
@@ -244,12 +255,12 @@ class UsageViewController: AccountPickerViewController {
     }
     
     @IBAction private func barGraphPress(_ sender: ButtonControl) {
-        barDescriptionTriangleCenterXConstraint.isActive = false
-        barDescriptionTriangleCenterXConstraint = barDescriptionTriangleImageView.centerXAnchor
-            .constraint(equalTo: sender.centerXAnchor)
-        barDescriptionTriangleCenterXConstraint.isActive = true
-        
         viewModel.setBarSelected(tag: sender.tag)
+    }
+    
+    func selectBar(_ selectedBar: UsageViewModel.BarGraphSelection, gas: Bool) {
+        viewModel.electricGasSelectedSegmentIndex.value = gas ? 1 : 0
+        viewModel.setBarSelected(tag: selectedBar.rawValue)
     }
     
     // MARK: - Style Views
@@ -389,7 +400,13 @@ class UsageViewController: AccountPickerViewController {
     
     private func bindBillComparisonData() {
         // Segmented Control
+        viewModel.electricGasSelectedSegmentIndex.asDriver()
+            .distinctUntilChanged()
+            .drive(segmentControl.selectedIndex)
+            .disposed(by: disposeBag)
+        
         segmentControl.selectedIndex.asDriver()
+            .distinctUntilChanged()
             .do(onNext: { [weak self] _ in self?.showBillComparisonLoadingState() })
             .drive(viewModel.electricGasSelectedSegmentIndex)
             .disposed(by: disposeBag)
@@ -415,32 +432,38 @@ class UsageViewController: AccountPickerViewController {
                              viewModel.noPreviousData.distinctUntilChanged(),
                              viewModel.showProjectionNotAvailableBar.distinctUntilChanged())
             .drive(onNext: { [weak self] barGraphSelection, showProjected, noPreviousData, showProjectionNotAvailableBar in
-                guard let this = self else { return }
+                guard let self = self else { return }
                 
+                let barView: UIView
                 switch barGraphSelection {
-                case .noData:
-                    if !noPreviousData {
-                        this.barGraphPress(this.previousContainerButton)
-                    }
-                case .previous:
+                case .noData, .previous:
                     if noPreviousData {
-                        this.barGraphPress(this.noDataContainerButton)
+                        barView = self.noDataContainerButton
+                    } else {
+                        barView = self.previousContainerButton
                     }
                 case .current:
-                    return // Current should always be available
+                    barView = self.currentContainerButton
                 case .projected:
-                    if !showProjected {
-                        this.barGraphPress(this.currentContainerButton)
+                    if showProjected {
+                        barView = self.projectedContainerButton
+                    } else {
+                        barView = self.currentContainerButton
                     }
                 case .projectionNotAvailable:
-                    if !showProjectionNotAvailableBar {
-                        if showProjected {
-                            this.barGraphPress(this.projectedContainerButton)
-                        } else {
-                            this.barGraphPress(this.currentContainerButton)
-                        }
+                    if showProjectionNotAvailableBar {
+                        barView = self.projectionNotAvailableContainerButton
+                    } else if showProjected {
+                        barView = self.projectedContainerButton
+                    } else {
+                        barView = self.currentContainerButton
                     }
                 }
+                
+                self.barDescriptionTriangleCenterXConstraint.isActive = false
+                self.barDescriptionTriangleCenterXConstraint = self.barDescriptionTriangleImageView.centerXAnchor
+                    .constraint(equalTo: barView.centerXAnchor)
+                self.barDescriptionTriangleCenterXConstraint.isActive = true
             })
             .disposed(by: disposeBag)
         
