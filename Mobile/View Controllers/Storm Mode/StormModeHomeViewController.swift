@@ -497,8 +497,7 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
                         cell.configure(image: #imageLiteral(resourceName: "ic_check_outage_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true)
                     } else {
                         // Regular State
-                        let reportOutageDisabled = true
-                        //let reportOutageDisabled = viewModel.currentOutageStatus?.flagFinaled ?? false || viewModel.currentOutageStatus?.flagNoPay ?? false || viewModel.currentOutageStatus?.flagNonService ?? false
+                        let reportOutageDisabled = viewModel.currentOutageStatus?.flagFinaled ?? false || viewModel.currentOutageStatus?.flagNoPay ?? false || viewModel.currentOutageStatus?.flagNonService ?? false
                         cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true, disabled: reportOutageDisabled)
                     }
                 } else {
