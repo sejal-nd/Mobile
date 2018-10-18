@@ -94,7 +94,10 @@ class MainTabBarController: UITabBarController {
             let usageVC = usageNavCtl.viewControllers.first as? UsageViewController
             else { return }
         
+        // initialSelection is effective if the VC has just been initialized by this navigation.
+        // (first time visiting the tab since launch)
         usageVC.initialSelection = (bar, isGas)
+        // selectBar is effective if the user has already visited the tab and the view has already been loaded.
         usageVC.selectBar(bar, gas: isGas)
     }
     

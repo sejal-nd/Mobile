@@ -434,35 +434,35 @@ class UsageViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] barGraphSelection, showProjected, noPreviousData, showProjectionNotAvailableBar in
                 guard let self = self else { return }
                 
-                let sender: UIView
+                let barView: UIView
                 switch barGraphSelection {
                 case .noData, .previous:
                     if noPreviousData {
-                        sender = self.noDataContainerButton
+                        barView = self.noDataContainerButton
                     } else {
-                        sender = self.previousContainerButton
+                        barView = self.previousContainerButton
                     }
                 case .current:
-                    sender = self.currentContainerButton
+                    barView = self.currentContainerButton
                 case .projected:
                     if showProjected {
-                        sender = self.projectedContainerButton
+                        barView = self.projectedContainerButton
                     } else {
-                        sender = self.currentContainerButton
+                        barView = self.currentContainerButton
                     }
                 case .projectionNotAvailable:
                     if showProjectionNotAvailableBar {
-                        sender = self.projectionNotAvailableContainerButton
+                        barView = self.projectionNotAvailableContainerButton
                     } else if showProjected {
-                        sender = self.projectedContainerButton
+                        barView = self.projectedContainerButton
                     } else {
-                        sender = self.currentContainerButton
+                        barView = self.currentContainerButton
                     }
                 }
                 
                 self.barDescriptionTriangleCenterXConstraint.isActive = false
                 self.barDescriptionTriangleCenterXConstraint = self.barDescriptionTriangleImageView.centerXAnchor
-                    .constraint(equalTo: sender.centerXAnchor)
+                    .constraint(equalTo: barView.centerXAnchor)
                 self.barDescriptionTriangleCenterXConstraint.isActive = true
             })
             .disposed(by: disposeBag)
