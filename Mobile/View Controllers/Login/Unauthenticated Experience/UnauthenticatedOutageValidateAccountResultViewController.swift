@@ -176,11 +176,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
                     if let url = URL(string: "tel://1-800-685-0123"), UIApplication.shared.canOpenURL(url) {
-                        if #available(iOS 10, *) {
-                            UIApplication.shared.open(url)
-                        } else {
-                            UIApplication.shared.openURL(url)
-                        }
+                        UIApplication.shared.open(url)
                     }
                 }))
                 self.present(alertVc, animated: true, completion: nil)
@@ -216,11 +212,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
                         if let url = URL(string: "tel://\(errMessage[phoneRange]))"), UIApplication.shared.canOpenURL(url) {
-                            if #available(iOS 10, *) {
-                                UIApplication.shared.open(url)
-                            } else {
-                                UIApplication.shared.openURL(url)
-                            }
+                            UIApplication.shared.open(url)
                         }
                     }))
                 } else {

@@ -8088,6 +8088,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -8116,6 +8117,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.prodbeta;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -8145,6 +8147,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.prodbeta;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -8420,6 +8423,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -8447,6 +8451,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.develop;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -8475,6 +8480,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.develop;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -8946,6 +8952,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -8975,6 +8982,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.bge;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -9085,6 +9093,7 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -9115,6 +9124,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.develop;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -9145,6 +9155,7 @@
 				ENABLE_BITCODE = YES;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.staging;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -9174,6 +9185,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -9201,6 +9213,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.develop;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -9230,6 +9243,7 @@
 				ENABLE_BITCODE = YES;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.staging;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
@@ -9258,6 +9272,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_BUNDLE_ID = com.iphoneproduction.exelon;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
 					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",

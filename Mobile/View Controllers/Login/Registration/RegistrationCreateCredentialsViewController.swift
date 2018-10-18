@@ -140,7 +140,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         if #available(iOS 11.0, *) {
             createUsernameTextField.textField.textContentType = .username
-        } else if #available(iOS 10.0, *) {
+        } else {
             createUsernameTextField.textField.textContentType = .emailAddress
         }
         

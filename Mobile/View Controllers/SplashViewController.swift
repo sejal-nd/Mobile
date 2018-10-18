@@ -205,11 +205,7 @@ class SplashViewController: UIViewController{
         let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
         requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] action in
             if let url = self?.viewModel.appStoreLink, UIApplication.shared.canOpenURL(url) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(url)
-                }
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }))
         present(requireUpdateAlert,animated: true, completion: nil)
