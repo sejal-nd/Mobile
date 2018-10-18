@@ -484,6 +484,7 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className) as? TitleTableViewCell else { return UITableViewCell() }
         
+        let onPressColor = UIColor.stormModeBlack.darker(by: 10)
         switch indexPath.section {
         case 0:
             switch indexPath.row {
@@ -491,26 +492,26 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
                 // Must nil check AccountStore, it CAN be nil.  should be an optional AccountStore.shared.currentAccount
                 
                 if shouldShowOutageCellData {
-                    let reportOutageDisabled = viewModel.currentOutageStatus?.flagFinaled ?? false || viewModel.currentOutageStatus?.flagNoPay ?? false || viewModel.currentOutageStatus?.flagNonService ?? false
-                    // Populate Content
                     if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
                         // Reported State
-                        cell.configure(image: #imageLiteral(resourceName: "ic_check_outage_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .clear, shouldConstrainWidth: true)
+                        cell.configure(image: #imageLiteral(resourceName: "ic_check_outage_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true)
                     } else {
                         // Regular State
-                        cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true, disabled: reportOutageDisabled)
+                        let reportOutageDisabled = true
+                        //let reportOutageDisabled = viewModel.currentOutageStatus?.flagFinaled ?? false || viewModel.currentOutageStatus?.flagNoPay ?? false || viewModel.currentOutageStatus?.flagNonService ?? false
+                        cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true, disabled: reportOutageDisabled)
                     }
                 } else {
                     // Hide Content
-                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .clear, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
+                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
                 }
             case 1:
                 if shouldShowOutageCellData {
                     // Populate Content
-                    cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+                    cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true)
                 } else {
                     // Hide Content
-                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .clear, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
+                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
                 }
             default:
                 return UITableViewCell()
@@ -518,9 +519,9 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_nav_bill_white"), text: NSLocalizedString("Bill", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+                cell.configure(image: #imageLiteral(resourceName: "ic_nav_bill_white"), text: NSLocalizedString("Bill", comment: ""), backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true)
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_nav_more_white"), text: NSLocalizedString("More", comment: ""), backgroundColor: .clear, shouldConstrainWidth: true)
+                cell.configure(image: #imageLiteral(resourceName: "ic_nav_more_white"), text: NSLocalizedString("More", comment: ""), backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true)
             default:
                 return UITableViewCell()
             }
@@ -528,20 +529,14 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
             return UITableViewCell()
         }
         
+        cell.contentContainerView.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
+            self?.tableViewDidSelectRow(at: indexPath)
+        }).disposed(by: cell.disposeBag)
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            let reportOutageDisabled = viewModel.currentOutageStatus?.flagFinaled ?? false || viewModel.currentOutageStatus?.flagNoPay ?? false || viewModel.currentOutageStatus?.flagNonService ?? false
-            return reportOutageDisabled ? nil : indexPath
-        }
-        return indexPath
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
+    func tableViewDidSelectRow(at indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             switch indexPath.row {

@@ -148,12 +148,14 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             return UITableViewCell()
         }
         
+        cell.contentContainerView.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
+            self?.tableViewDidSelectRow(at: indexPath)
+        }).disposed(by: cell.disposeBag)
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
+    func tableViewDidSelectRow(at indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             switch indexPath.row {

@@ -6,11 +6,15 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 
 class TitleTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var contentContainerView: UIView!
+    var disposeBag = DisposeBag()
+    
+    // NOTE: You must utilize contentContainerView as a button for row selection rather than didSelectRowAtIndexPath
+    // because didSelectRowAtIndexPath will allow taps outside of the 460 max width on iPad
+    @IBOutlet weak var contentContainerView: ButtonControl!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
@@ -28,47 +32,22 @@ class TitleTableViewCell: UITableViewCell {
     @IBOutlet weak var disclosureImageView: UIImageView!
     @IBOutlet weak var separatorView: UIView!
     
-    private var bgColor = UIColor.primaryColor
-    
-    
     // MARK: - View Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        contentContainerView.backgroundColor = bgColor
+        contentContainerView.normalBackgroundColor = UIColor.primaryColor
+        contentContainerView.backgroundColorOnPress = UIColor.primaryColor.darker(by: 10)
         
         detailLabel.isHidden = true
         accessibilityTraits = .button
     }
     
     
-    // MARK: - Cell Selection
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        if selected {
-            contentContainerView.backgroundColor = bgColor.darker(by: 10)
-        } else {
-            contentContainerView.backgroundColor = bgColor
-        }
-    }
-    
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        super.setHighlighted(highlighted, animated: animated)
-        
-        if highlighted {
-            contentContainerView.backgroundColor = bgColor.darker(by: 10)
-        } else {
-            contentContainerView.backgroundColor = bgColor
-        }
-    }
-    
-    
     // MARK: - Configure
     
-    public func configure(image: UIImage?, text: String?, detailText: String? = nil, backgroundColor: UIColor, shouldConstrainWidth: Bool = false, shouldHideDisclosure: Bool = false, shouldHideSeparator: Bool = false, disabled: Bool = false) {
+    public func configure(image: UIImage?, text: String?, detailText: String? = nil, backgroundColor: UIColor, backgroundColorOnPress: UIColor? = nil, shouldConstrainWidth: Bool = false, shouldHideDisclosure: Bool = false, shouldHideSeparator: Bool = false, disabled: Bool = false) {
         iconImageView.image = image
         titleLabel.text = text
         detailLabel.text = detailText
@@ -84,13 +63,14 @@ class TitleTableViewCell: UITableViewCell {
         
         separatorView.isHidden = shouldHideSeparator
         
-        contentContainerView.backgroundColor = backgroundColor
-        
-        bgColor = backgroundColor
-        
-        iconImageView.alpha = disabled ? 0.3 : 1
-        titleLabel.alpha = disabled ? 0.3 : 1
-        disclosureImageView.alpha = disabled ? 0.3 : 1
+        contentContainerView.isEnabled = !disabled
+        contentContainerView.normalBackgroundColor = backgroundColor
+        contentContainerView.backgroundColorOnPress = backgroundColorOnPress ?? backgroundColor.darker(by: 10)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
     
 }

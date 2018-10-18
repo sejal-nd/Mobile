@@ -23,7 +23,7 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="7nx-bF-5mO" customClass="StormModeHomeViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y2F-qh-7Mk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLx-1J-TCL">
@@ -38,7 +38,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybl-Tq-eQ9" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1800"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
@@ -46,7 +46,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ec7-2S-gPb">
-                                <rect key="frame" x="0.0" y="20" width="375" height="1780"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="1480"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="DTT-Yy-7Ip">
@@ -63,10 +63,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHb-UX-xqs">
-                                            <rect key="frame" x="0.0" y="114" width="375" height="1636"/>
+                                            <rect key="frame" x="0.0" y="114" width="375" height="1222.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pB2-hy-WuN">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="1636"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="1222.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V0G-ut-vCb">
                                                             <rect key="frame" x="0.0" y="0.0" width="343" height="217.5"/>
@@ -319,10 +319,10 @@
                                                             </constraints>
                                                         </view>
                                                         <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zn1-ma-BGR">
-                                                            <rect key="frame" x="0.0" y="759.5" width="343" height="802.5"/>
+                                                            <rect key="frame" x="0.0" y="759.5" width="343" height="389"/>
                                                             <subviews>
                                                                 <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-fW-6tb">
-                                                                    <rect key="frame" x="16" y="24" width="311" height="754.5"/>
+                                                                    <rect key="frame" x="16" y="24" width="311" height="341"/>
                                                                     <subviews>
                                                                         <imageView verifyAmbiguity="off" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nooutage_sm" translatesAutoresizingMaskIntoConstraints="NO" id="nb9-Wc-OWK">
                                                                             <rect key="frame" x="93" y="0.0" width="125" height="125"/>
@@ -332,20 +332,20 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkO-hm-Egb">
-                                                                            <rect key="frame" x="35.5" y="207.5" width="240" height="16"/>
+                                                                            <rect key="frame" x="35.5" y="125" width="240" height="16"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="16" id="VOJ-tt-ahj"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outage Unavailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ytz-FG-53M">
-                                                                            <rect key="frame" x="75" y="306.5" width="161" height="21.5"/>
+                                                                            <rect key="frame" x="75" y="141" width="161" height="21.5"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <textView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jpt-Jv-nQF" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="2" y="410.5" width="307.5" height="111.5"/>
+                                                                            <rect key="frame" x="2" y="162.5" width="307.5" height="111.5"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <string key="text">We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call x-xxx-xxx-xxxx.</string>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -354,14 +354,14 @@
                                                                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                                         </textView>
                                                                         <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRo-38-cro" userLabel="Spacer View">
-                                                                            <rect key="frame" x="35.5" y="605" width="240" height="17"/>
+                                                                            <rect key="frame" x="35.5" y="274" width="240" height="17"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="17" id="tRE-FI-Thn"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gja-nT-rEZ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="55.5" y="704.5" width="200" height="50"/>
+                                                                            <rect key="frame" x="55.5" y="291" width="200" height="50"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay Bill" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SX4-b4-b99">
                                                                                     <rect key="frame" x="8" y="8" width="184" height="34"/>
@@ -405,26 +405,26 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFr-P5-xSY" userLabel="Spacer View">
-                                                            <rect key="frame" x="51.5" y="1562" width="240" height="24"/>
+                                                            <rect key="frame" x="51.5" y="1148.5" width="240" height="24"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="24" id="Q1l-MS-h69"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1b-5a-tGs">
-                                                            <rect key="frame" x="0.0" y="1586" width="343" height="50"/>
+                                                            <rect key="frame" x="0.0" y="1172.5" width="343" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To report a gas emergency, please call" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-QQ-AnX">
-                                                                    <rect key="frame" x="14" y="0.0" width="315" height="20.5"/>
+                                                                    <rect key="frame" x="14" y="0.0" width="315" height="19.5"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GuD-R7-9Ss" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                    <rect key="frame" x="115" y="26.5" width="113.5" height="23.5"/>
+                                                                    <rect key="frame" x="115" y="25.5" width="113.5" height="24.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBl-nh-b0J">
-                                                                            <rect key="frame" x="6" y="2" width="101.5" height="19.5"/>
+                                                                            <rect key="frame" x="6" y="2" width="101.5" height="20.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -516,7 +516,7 @@
                         <viewLayoutGuide key="safeArea" id="NPq-OC-mEq"/>
                     </view>
                     <navigationItem key="navigationItem" id="KQk-NQ-VCi"/>
-                    <size key="freeformSize" width="375" height="1800"/>
+                    <size key="freeformSize" width="375" height="1500"/>
                     <connections>
                         <outlet property="accountPicker" destination="jT6-gQ-uaJ" id="7Jw-sY-ym9"/>
                         <outlet property="exitButton" destination="P5f-Ae-O7A" id="ABy-Fx-yzG"/>
@@ -548,8 +548,8 @@
                         <outlet property="loadingView" destination="z9t-CL-fDL" id="flB-AU-INU"/>
                         <outlet property="noNetworkConnectionView" destination="Ybl-Tq-eQ9" id="gyD-vP-Xso"/>
                         <outlet property="outageStatusButton" destination="gMu-am-j3r" id="NdO-h4-f9X"/>
-                        <outlet property="scrollView" destination="Ec7-2S-gPb" id="kM5-jg-CBh"/>
-                        <outlet property="tableView" destination="Ec7-2S-gPb" id="3cj-rJ-Avr"/>
+                        <outlet property="scrollView" destination="Ec7-2S-gPb" id="OzX-Ta-1jg"/>
+                        <outlet property="tableView" destination="Ec7-2S-gPb" id="gEn-Fq-aYl"/>
                         <segue destination="sPB-eX-Wol" kind="show" identifier="UpdatesDetailSegue" id="dl6-MB-aP3"/>
                         <segue destination="lad-rp-6Hu" kind="show" identifier="ReportOutageSegue" id="FfH-4L-PLT"/>
                         <segue destination="TNc-26-PRH" kind="show" identifier="OutageMapSegue" id="vLv-HQ-qvU"/>
