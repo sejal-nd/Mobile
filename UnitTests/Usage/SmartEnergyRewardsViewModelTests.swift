@@ -81,10 +81,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        XCTAssert(!observer.events
-            .map { ($0.time, $0.value.element!) }
-            .map { $0.1 == expectedEvents[$0.0] }
-            .contains(false))
+        XCTAssertRecordedElements(observer.events, expectedEvents)
     }
     
     func testNumBarsToShow() {

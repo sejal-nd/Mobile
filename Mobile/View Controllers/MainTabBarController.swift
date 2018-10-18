@@ -86,6 +86,18 @@ class MainTabBarController: UITabBarController {
         }
     }
     
+    func navigateToUsage(selectedBar: UsageViewModel.BarGraphSelection? = nil, isGas: Bool) {
+        selectedIndex = 3
+        
+        guard let bar = selectedBar,
+            let usageNavCtl = viewControllers?[3] as? MainBaseNavigationController,
+            let usageVC = usageNavCtl.viewControllers.first as? UsageViewController
+            else { return }
+        
+        usageVC.initialSelection = (bar, isGas)
+        usageVC.selectBar(bar, gas: isGas)
+    }
+    
     func navigateToAlerts() {
         selectedIndex = 4
         
