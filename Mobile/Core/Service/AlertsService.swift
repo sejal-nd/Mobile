@@ -53,5 +53,12 @@ protocol AlertsService {
     ///
     /// - Parameters:
     ///   - bannerOnly: If true, filter out any updates that don't belong on the home screen "banner"
-    func fetchOpcoUpdates(bannerOnly: Bool) -> Observable<[OpcoUpdate]>
+    ///   - stormOnly: If true, filter out any updates unrelated to storm mode
+    func fetchOpcoUpdates(bannerOnly: Bool, stormOnly: Bool) -> Observable<[OpcoUpdate]>
+}
+
+extension AlertsService {
+    func fetchOpcoUpdates(bannerOnly: Bool = false, stormOnly: Bool = false) -> Observable<[OpcoUpdate]> {
+        return fetchOpcoUpdates(bannerOnly: bannerOnly, stormOnly: stormOnly)
+    }
 }

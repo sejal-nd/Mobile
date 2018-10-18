@@ -68,7 +68,7 @@ struct MCSAlertsService: AlertsService {
             .mapTo(())
     }
     
-    func fetchOpcoUpdates(bannerOnly: Bool) -> Observable<[OpcoUpdate]> {
+    func fetchOpcoUpdates(bannerOnly: Bool, stormOnly: Bool) -> Observable<[OpcoUpdate]> {
         let path = "/_api/web/lists/GetByTitle('GlobalAlert')/items"
         let urlComponents = NSURLComponents()
         urlComponents.scheme = "https"
@@ -82,9 +82,11 @@ struct MCSAlertsService: AlertsService {
         var filterString: String
         if bannerOnly {
             filterString = "(Enable eq 1) and (CustomerType eq 'Banner')"
+        } else if stormOnly {
+            filterString = "(Enable eq 1) and (CustomerType eq 'Storm')"
         } else {
             filterString = "(Enable eq 1) and ((CustomerType eq 'All')"
-            ["Banner", "PeakRewards", "Peak Time Savings", "Smart Energy Rewards"]
+            ["Banner", "PeakRewards", "Peak Time Savings", "Smart Energy Rewards", "Storm"]
                 .forEach {
                     filterString += "or (CustomerType eq '\($0)')"
             }

@@ -147,7 +147,7 @@
                                                                                 </label>
                                                                             </subviews>
                                                                         </stackView>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret_white" translatesAutoresizingMaskIntoConstraints="NO" id="k0c-e3-K9c">
+                                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret_white" translatesAutoresizingMaskIntoConstraints="NO" id="k0c-e3-K9c">
                                                                             <rect key="frame" x="321" y="49.5" width="8" height="13"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="13" id="79s-yf-kTw"/>
@@ -537,6 +537,7 @@
                         <outlet property="gasOnlyTitleLabel" destination="Zga-Xw-UzD" id="qYY-Nm-gdu"/>
                         <outlet property="gasOnlyView" destination="kAz-Ed-8Hy" id="ARt-BU-gKk"/>
                         <outlet property="gradientView" destination="mLx-1J-TCL" id="YK8-lR-SF2"/>
+                        <outlet property="headerCaretImageView" destination="k0c-e3-K9c" id="BVY-09-Xcs"/>
                         <outlet property="headerContentView" destination="kAd-jD-Fyb" id="NRW-Cf-k4g"/>
                         <outlet property="headerView" destination="DTT-Yy-7Ip" id="byk-vs-0on"/>
                         <outlet property="headerViewDescriptionLabel" destination="KFG-l4-4FT" id="wad-D4-Z6E"/>

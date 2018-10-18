@@ -54,6 +54,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             headerViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         }
     }
+    @IBOutlet weak var headerCaretImageView: UIImageView!
     
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel! {
@@ -139,7 +140,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     private var refreshControl: UIRefreshControl?
     
     let viewModel = StormModeHomeViewModel(authService: ServiceFactory.createAuthenticationService(),
-                                                   outageService: ServiceFactory.createOutageService())
+                                           outageService: ServiceFactory.createOutageService(),
+                                           alertsService: ServiceFactory.createAlertsService())
     
     let disposeBag = DisposeBag()
     var stormModePollingDisposable: Disposable?
@@ -188,7 +190,8 @@ class StormModeHomeViewController: AccountPickerViewController {
         loadingAnimationView.addSubview(loadingLottieAnimation)
         loadingLottieAnimation.play()
         
-
+        viewModel.getStormModeUpdate()
+        
         // Events
         
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
@@ -218,6 +221,8 @@ class StormModeHomeViewController: AccountPickerViewController {
                 }
             }
         }).disposed(by: disposeBag)
+        
+        viewModel.stormModeUpdate.asDriver().isNil().drive(headerCaretImageView.rx.isHidden).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -257,7 +262,9 @@ class StormModeHomeViewController: AccountPickerViewController {
     // MARK: - Actions
     
     @IBAction func showStormModeDetails(_ sender: Any) {
-        performSegue(withIdentifier: "UpdatesDetailSegue", sender: nil)
+        if viewModel.stormModeUpdate.value != nil {
+            performSegue(withIdentifier: "UpdatesDetailSegue", sender: nil)
+        }
     }
 
     @IBAction func exitStormMode(_ sender: Any) {
@@ -424,7 +431,9 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UpdatesDetailViewController {
-            vc.opcoUpdate = OpcoUpdate(title: NSLocalizedString("Storm Mode is in effect", comment: ""), message: NSLocalizedString("Due to severe weather, limited features are available to allow us to better serve you.", comment: ""))
+            if let stormUpdate = viewModel.stormModeUpdate.value {
+                vc.opcoUpdate = OpcoUpdate(title: stormUpdate.title, message: stormUpdate.message)
+            }
         } else if let vc = segue.destination as? ReportOutageViewController {
             navigationController?.setNavigationBarHidden(false, animated: false) // may be able to refactor this out into the root of prep for segue
             vc.viewModel.outageStatus = viewModel.currentOutageStatus!

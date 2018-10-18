@@ -15,14 +15,19 @@ class StormModeHomeViewModel {
     
     private let authService: AuthenticationService
     private var outageService: OutageService
+    private let alertsService: AlertsService
     
     private var currentGetOutageStatusDisposable: Disposable?
     
-    var currentOutageStatus: OutageStatus?
+    private let disposeBag = DisposeBag()
     
-    init(authService: AuthenticationService, outageService: OutageService) {
+    var currentOutageStatus: OutageStatus?
+    let stormModeUpdate = Variable<OpcoUpdate?>(nil)
+    
+    init(authService: AuthenticationService, outageService: OutageService, alertsService: AlertsService) {
         self.authService = authService
         self.outageService = outageService
+        self.alertsService = alertsService
     }
     
     deinit {
@@ -84,6 +89,16 @@ class StormModeHomeViewModel {
                         onError(serviceError)
                     }
             })
+    }
+    
+    func getStormModeUpdate() {
+        alertsService.fetchOpcoUpdates(stormOnly: true)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] opcoUpdates in
+                if opcoUpdates.count > 0 {
+                    self?.stormModeUpdate.value = opcoUpdates[0]
+                }
+            }).disposed(by: disposeBag)
     }
     
     var reportedOutage: ReportedOutageResult? {
