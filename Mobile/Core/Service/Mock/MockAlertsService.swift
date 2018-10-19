@@ -41,7 +41,7 @@ class MockAlertsService: AlertsService {
     
     var updatesShouldSucceed = true
     
-    func fetchOpcoUpdates(bannerOnly: Bool = false) -> Observable<[OpcoUpdate]> {
+    func fetchOpcoUpdates(bannerOnly: Bool = false, stormOnly: Bool = false) -> Observable<[OpcoUpdate]> {
         if updatesShouldSucceed {
             let opcoUpdates = [OpcoUpdate.from(["Title": "Test Title", "Message": "Test Message"])!]
             return .just(opcoUpdates)

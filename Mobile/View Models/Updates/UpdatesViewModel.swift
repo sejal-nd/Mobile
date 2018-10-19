@@ -36,7 +36,7 @@ class UpdatesViewModel {
         isUpdatesError.value = false
         isNoNetworkConnection.value = false
         
-        alertsService.fetchOpcoUpdates(bannerOnly: false)
+        alertsService.fetchOpcoUpdates()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] opcoUpdates in
                 self?.currentOpcoUpdates.value = opcoUpdates

@@ -259,9 +259,6 @@
 		35A6C6E2211CC16C00C2A58F /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6DD211CC0C900C2A58F /* UpdatesViewController.swift */; };
 		35A6C6E3211CC17100C2A58F /* Updates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6DF211CC11E00C2A58F /* Updates.storyboard */; };
 		35A6C6E4211CC17100C2A58F /* Updates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6DF211CC11E00C2A58F /* Updates.storyboard */; };
-		35A6C6E6211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6E5211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift */; };
-		35A6C6E7211DE8CA00C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6E5211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift */; };
-		35A6C6E8211DE8CB00C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6E5211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift */; };
 		35A6C6E9211DE8D500C2A58F /* UpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6DA211CC09C00C2A58F /* UpdatesViewModel.swift */; };
 		35A6C6EA211DE8D600C2A58F /* UpdatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6DA211CC09C00C2A58F /* UpdatesViewModel.swift */; };
 		35A6C6EC211DEB3300C2A58F /* UpdatesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6EB211DEB3300C2A58F /* UpdatesViewModelTests.swift */; };
@@ -2440,7 +2437,6 @@
 		35A6C6DA211CC09C00C2A58F /* UpdatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesViewModel.swift; sourceTree = "<group>"; };
 		35A6C6DD211CC0C900C2A58F /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
 		35A6C6DF211CC11E00C2A58F /* Updates.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Updates.storyboard; sourceTree = "<group>"; };
-		35A6C6E5211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdatesViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		35A6C6EB211DEB3300C2A58F /* UpdatesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesViewModelTests.swift; sourceTree = "<group>"; };
 		35A6C6F92121D64100C2A58F /* ToggleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleTableViewCell.xib; sourceTree = "<group>"; };
 		35A6C6FB2121D64C00C2A58F /* ToggleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleTableViewCell.swift; sourceTree = "<group>"; };
@@ -3429,7 +3425,6 @@
 			isa = PBXGroup;
 			children = (
 				35A6C6DD211CC0C900C2A58F /* UpdatesViewController.swift */,
-				35A6C6E5211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift */,
 				E83F027E1FB247B30062A348 /* UpdatesDetailViewController.swift */,
 			);
 			path = Updates;
@@ -6501,7 +6496,6 @@
 				825171A31F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				E8039FF31EFB040E004DB789 /* MCSPaymentService.swift in Sources */,
 				B0A8308D2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
-				35A6C6E6211DC85400C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */,
 				B0882CAD210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				B0B083BD216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
@@ -6623,7 +6617,6 @@
 				82EAB3461F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				CEA215241F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				B0336FEC21762FB400751430 /* EventStore.swift in Sources */,
-				35A6C6E7211DE8CA00C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */,
 				E80D2E191E721668002626C9 /* MaskedString.swift in Sources */,
 				228877031FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				E86DE4B91F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
@@ -6991,7 +6984,6 @@
 				82EAB3451F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				CEA215231F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				B0336FEB21762FB400751430 /* EventStore.swift in Sources */,
-				35A6C6E8211DE8CB00C2A58F /* UpdatesViewController+TableViewDelegate.swift in Sources */,
 				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				228877021FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				E86DE4B81F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
