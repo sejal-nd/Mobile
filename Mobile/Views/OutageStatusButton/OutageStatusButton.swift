@@ -203,7 +203,7 @@ class OutageStatusButton: UIView {
         reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         reportedETRLabel.text = estimatedRestorationDateString
 
-        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. Your outage is reported. Estimated restoration \(estimatedRestorationDateString).", comment: "")
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status button. Your outage is reported. Estimated restoration \(estimatedRestorationDateString).", comment: "")
     }
     
     func setOutageState(estimatedRestorationDateString: String) {
@@ -235,7 +235,7 @@ class OutageStatusButton: UIView {
         reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         reportedETRLabel.text = estimatedRestorationDateString
 
-        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. Our records indicate your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status button. Our records indicate your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
     }
     
     func setPowerOnState() {
@@ -265,7 +265,7 @@ class OutageStatusButton: UIView {
         statusTitleLabel.text = NSLocalizedString("Our records indicate", comment: "")
         statusDetailLabel.text = NSLocalizedString("POWER IS ON", comment: "")
 
-        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, Button. Our records indicate your power is on.", comment: "")
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status button. Our records indicate your power is on.", comment: "")
     }
 
     @objc func onBigButtonTap() {

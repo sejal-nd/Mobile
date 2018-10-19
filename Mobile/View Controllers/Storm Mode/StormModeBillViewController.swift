@@ -60,8 +60,11 @@ class StormModeBillViewController: AccountPickerViewController {
         contentStack.insertArrangedSubview(billCardView, at: 0)
         
         makeAPaymentButton.stormTheme = true
+        makeAPaymentButton.accessibilityLabel = makeAPaymentButton.labelText
         paymentActivityButton.stormTheme = true
+        paymentActivityButton.accessibilityLabel = paymentActivityButton.labelText
         myWalletButton.stormTheme = true
+        myWalletButton.accessibilityLabel = myWalletButton.labelText
         
         bindActions()
         bindViewStates()

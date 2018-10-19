@@ -33,6 +33,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             exitButton.layer.cornerRadius = 10.0
             exitButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
             exitButton.backgroundColorOnPress = .softGray
+            exitButton.accessibilityLabel = NSLocalizedString("Exit storm mode", comment: "")
         }
     }
     
@@ -40,6 +41,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
             headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 6)
+            headerContentView.accessibilityLabel = NSLocalizedString("Storm mode is in effect. Due to severe weather, the most relevant features are optimized to allow us to beter serve you.", comment: "")
         }
     }
     
@@ -66,6 +68,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             footerPhoneButton.roundCorners(.allCorners, radius: 4)
             footerPhoneButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            footerPhoneButton.accessibilityLabel = viewModel.footerPhoneLabelText
         }
     }
     @IBOutlet weak var footerPhoneLabel: UILabel! {
@@ -91,6 +94,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             gasOnlyPhoneButton.roundCorners(.allCorners, radius: 4)
             gasOnlyPhoneButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
             gasOnlyPhoneButton.isHidden = Environment.shared.opco == .comEd
+            gasOnlyPhoneButton.accessibilityLabel = viewModel.footerPhoneLabelText
         }
     }
     @IBOutlet weak var gasOnlyPhoneLabel: UILabel! {
@@ -116,6 +120,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet weak var finalPayButton: ButtonControl! {
         didSet {
             finalPayButton.layer.cornerRadius = 10.0
+            finalPayButton.accessibilityLabel = NSLocalizedString("Pay bill", comment: "")
         }
     }
     @IBOutlet weak var finalPayButtonLabel: UILabel! {
@@ -162,7 +167,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     var stormModeEnded = false
 
-    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
