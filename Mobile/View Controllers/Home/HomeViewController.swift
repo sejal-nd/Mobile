@@ -289,7 +289,14 @@ class HomeViewController: AccountPickerViewController {
         }
         
         if Environment.shared.environmentName != .aut {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
+            let authOptions: UNAuthorizationOptions
+            if #available(iOS 12, *) {
+                authOptions = [.badge, .alert, .sound, .providesAppNotificationSettings]
+            } else {
+                authOptions = [.badge, .alert, .sound]
+            }
+            
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { (granted: Bool, error: Error?) in
                 if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
                     UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
                     if granted {
