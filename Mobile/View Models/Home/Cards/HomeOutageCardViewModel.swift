@@ -87,8 +87,8 @@ class HomeOutageCardViewModel {
     private(set) lazy var showLoadingState: Driver<Void> = switchAccountFetchTracker
         .asDriver().filter { $0 }.map(to: ())
     
-    private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents
-        .filter { $0.element?.outageStatus ?? false }
+    private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents.elements()
+        .filter { $0.outageStatus }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     

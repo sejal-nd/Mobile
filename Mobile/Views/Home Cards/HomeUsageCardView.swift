@@ -16,6 +16,7 @@ class HomeUsageCardView: UIView {
     @IBOutlet private weak var clippingView: UIView!
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var loadingView: UIView!
+    @IBOutlet private weak var maintenanceModeView: UIView!
     
     // Bill Comparison
     @IBOutlet private weak var billComparisonView: UIView!
@@ -218,6 +219,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showSmartEnergyRewards() {
@@ -226,6 +228,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showSmartEnergyRewardsEmptyState() {
@@ -234,6 +237,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = false
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showBillComparisonEmptyState() {
@@ -243,6 +247,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = false
         unavailableView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showUnavailableState() {
@@ -251,6 +256,16 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = false
+        maintenanceModeView.isHidden = true
+    }
+    
+    private func showMaintenanceModeState() {
+        billComparisonView.isHidden = true
+        smartEnergyRewardsView.isHidden = true
+        smartEnergyRewardsEmptyStateView.isHidden = true
+        billComparisonEmptyStateView.isHidden = true
+        unavailableView.isHidden = true
+        maintenanceModeView.isHidden = false
     }
     
     private func bindViewModel() {
@@ -282,6 +297,10 @@ class HomeUsageCardView: UIView {
         
         viewModel.showUnavailableState
             .drive(onNext: { [weak self] in self?.showUnavailableState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showMaintenanceModeState
+            .drive(onNext: { [weak self] in self?.showMaintenanceModeState() })
             .disposed(by: disposeBag)
         
         // --- Bill Comparison ---

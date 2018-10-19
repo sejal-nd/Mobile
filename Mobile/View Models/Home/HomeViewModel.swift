@@ -79,6 +79,7 @@ class HomeViewModel {
     
     private(set) lazy var usageCardViewModel =
         HomeUsageCardViewModel(fetchData: fetchDataObservable,
+                               maintenanceModeEvents: maintenanceModeEvents,
                                accountDetailEvents: accountDetailEvents,
                                usageService: usageService,
                                refreshFetchTracker: refreshFetchTracker,
