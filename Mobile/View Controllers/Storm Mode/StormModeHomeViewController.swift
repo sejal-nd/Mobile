@@ -432,7 +432,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UpdatesDetailViewController {
             if let stormUpdate = viewModel.stormModeUpdate.value {
-                vc.opcoUpdate = OpcoUpdate(title: stormUpdate.title, message: stormUpdate.message)
+                vc.opcoUpdate = stormUpdate
             }
         } else if let vc = segue.destination as? ReportOutageViewController {
             navigationController?.setNavigationBarHidden(false, animated: false) // may be able to refactor this out into the root of prep for segue
