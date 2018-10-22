@@ -39,6 +39,8 @@ class HomeProjectedBillCardView: UIView {
     @IBOutlet private weak var emptyStateTitleLabel: UILabel!
     @IBOutlet private weak var emptyStateDescriptionLabel: UILabel!
     
+    @IBOutlet private weak var maintenanceModeView: UIView!
+    
     @IBOutlet private weak var errorView: UIView!
     @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var errorDescriptionLabel: UILabel!
@@ -109,18 +111,28 @@ class HomeProjectedBillCardView: UIView {
         infoStack.isHidden = false
         emptyStateView.isHidden = true
         errorView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showEmptyState() {
         infoStack.isHidden = true
         emptyStateView.isHidden = false
         errorView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showErrorState() {
         infoStack.isHidden = true
         emptyStateView.isHidden = true
         errorView.isHidden = false
+        maintenanceModeView.isHidden = true
+    }
+    
+    private func showMaintenanceModeState() {
+        infoStack.isHidden = true
+        emptyStateView.isHidden = true
+        errorView.isHidden = true
+        maintenanceModeView.isHidden = false
     }
     
     private func bindViewModel() {
@@ -142,6 +154,12 @@ class HomeProjectedBillCardView: UIView {
         viewModel.showError
             .drive(onNext: { [weak self] in
                 self?.showErrorState()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.showMaintenanceModeState
+            .drive(onNext: { [weak self] in
+                self?.showMaintenanceModeState()
             })
             .disposed(by: disposeBag)
         

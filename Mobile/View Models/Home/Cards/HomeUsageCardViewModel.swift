@@ -46,11 +46,11 @@ class HomeUsageCardViewModel {
                   refreshFetchTracker: ActivityTracker,
                   switchAccountFetchTracker: ActivityTracker) {
         self.fetchData = fetchData
+        self.maintenanceModeEvents = maintenanceModeEvents
         self.accountDetailEvents = accountDetailEvents
         self.usageService = usageService
         self.refreshFetchTracker = refreshFetchTracker
         self.switchAccountFetchTracker = switchAccountFetchTracker
-        self.maintenanceModeEvents = maintenanceModeEvents
     }
     
     private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
