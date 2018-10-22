@@ -61,9 +61,9 @@ class HomeUsageCardViewModel {
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
         .merge(accountDetailChanged, segmentedControlChanged).share(replay: 1)
     
-    private(set) lazy var accountDetailChanged = Observable
-        .combineLatest(accountDetailEvents.elements(), maintenanceModeEvents)
-        .filter { $0.isEligibleForUsageData && !($1.element?.usageStatus ?? true) }
+    private(set) lazy var accountDetailChanged = accountDetailEvents.elements()
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { $0.isEligibleForUsageData && !$1 }
         .map { accountDetail, _ in accountDetail }
         .withLatestFrom(Observable.combineLatest(fetchData,
                                                  electricGasSelectedSegmentIndex.asObservable()))
@@ -114,7 +114,12 @@ class HomeUsageCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents.elements()
-        .filter { accountDetail in
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, isMaintenanceMode in
+            if isMaintenanceMode {
+                return false
+            }
+            
             if accountDetail.isBGEControlGroup {
                 return !accountDetail.isSERAccount ||
                     accountDetail.serInfo.eventResults.isEmpty // BGE Control Group + SER enrollment get the SER graph on usage card
@@ -136,20 +141,27 @@ class HomeUsageCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showSmartEnergyRewards: Driver<Void> = accountDetailEvents.elements()
-        .filter { accountDetail in
-            accountDetail.isBGEControlGroup &&
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, isMaintenanceMode in
+            !isMaintenanceMode &&
+                accountDetail.isBGEControlGroup &&
                 accountDetail.isSERAccount &&
                 !accountDetail.serInfo.eventResults.isEmpty
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = self.accountDetailEvents
-        .filter {
-            guard let accountDetail = $0.element else { return false }
-            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
-                return accountDetail.serInfo.eventResults.count == 0
+    private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = self.accountDetailEvents.elements()
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, isMaintenanceMode in
+            if isMaintenanceMode {
+                return false
             }
+            
+            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
+                return accountDetail.serInfo.eventResults.isEmpty
+            }
+            
             return false
         }
         .mapTo(())
