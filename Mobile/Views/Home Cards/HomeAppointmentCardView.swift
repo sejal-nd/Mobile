@@ -68,5 +68,9 @@ class HomeAppointmentCardView: UIView {
         viewModel.bottomButtonText
             .drive(bottomButtonLabel.rx.text)
             .disposed(by: disposeBag)
+        
+        viewModel.bottomButtonText
+            .drive(bottomButton.rx.accessibilityLabel)
+            .disposed(by: disposeBag)
     }
 }

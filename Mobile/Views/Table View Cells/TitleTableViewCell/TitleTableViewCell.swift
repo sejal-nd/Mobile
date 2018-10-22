@@ -41,9 +41,7 @@ class TitleTableViewCell: UITableViewCell {
         contentContainerView.backgroundColorOnPress = UIColor.primaryColor.darker(by: 10)
         
         detailLabel.isHidden = true
-        accessibilityTraits = .button
     }
-    
     
     // MARK: - Configure
     
@@ -63,6 +61,7 @@ class TitleTableViewCell: UITableViewCell {
         
         separatorView.isHidden = shouldHideSeparator
         
+        contentContainerView.accessibilityLabel = "\(text ?? ""). \(detailText ?? "")"
         contentContainerView.isEnabled = !disabled
         contentContainerView.normalBackgroundColor = backgroundColor
         contentContainerView.backgroundColorOnPress = backgroundColorOnPress ?? backgroundColor.darker(by: 10)

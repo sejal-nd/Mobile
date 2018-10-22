@@ -68,6 +68,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         bindActions()
         setUpTopAnimation()
         setUpProgressAnimation()
+        makeTimelineAccessible()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,6 +91,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         
         addToCalendarLabel.textColor = .actionBlue
         addToCalendarLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        addToCalendarButton.accessibilityLabel = addToCalendarLabel.text
         
         confirmedLabel.textColor = .deepGray
         onOurWayLabel.textColor = .deepGray
@@ -110,12 +112,14 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         
         upperContactButton.layer.cornerRadius = 10
         upperContactButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        upperContactButton.accessibilityLabel = upperContactLabel.text
         
         upperContactLabel.textColor = .actionBlue
         upperContactLabel.font = SystemFont.bold.of(textStyle: .title1)
         
         lowerContactButton.layer.cornerRadius = 10
         lowerContactButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        lowerContactButton.accessibilityLabel = lowerContactLabel.text
         
         lowerContactLabel.textColor = .actionBlue
         lowerContactLabel.font = SystemFont.bold.of(textStyle: .title1)
@@ -204,6 +208,34 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func makeTimelineAccessible() {
+        switch viewModel.status {
+        case .scheduled:
+            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, pending", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, pending", comment: "")
+            completeLabel.accessibilityLabel = NSLocalizedString("Complete, pending", comment: "")
+        case .enRoute:
+            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, complete", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, pending", comment: "")
+            completeLabel.accessibilityLabel = NSLocalizedString("Complete, pending", comment: "")
+        case .inProgress:
+            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, complete", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, complete", comment: "")
+            completeLabel.accessibilityLabel = NSLocalizedString("Complete, pending", comment: "")
+        case .complete:
+            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, complete", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, complete", comment: "")
+            completeLabel.accessibilityLabel = NSLocalizedString("Appointment complete", comment: "")
+        case .canceled:
+            // Do nothing, these labels are not displayed
+            break
+        }
     }
     
     func addCalendarEvent() {

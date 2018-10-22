@@ -32,6 +32,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
                 
                 self.appointments = appointments
                 self.reloadPagerTabStripView()
+                UIAccessibility.post(notification: .screenChanged, argument: nil)
             })
             .disposed(by: disposeBag)
         
