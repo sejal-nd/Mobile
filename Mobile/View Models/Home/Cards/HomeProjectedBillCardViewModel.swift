@@ -72,8 +72,7 @@ class HomeProjectedBillCardViewModel {
     
     private(set) lazy var billForecastEvents = self.accountDetailEvents.elements()
         .filter { $0.isEligibleForUsageData }
-        .withLatestFrom(fetchData)
-        { ($0, $1) }
+        .withLatestFrom(fetchData) { ($0, $1) }
         .toAsyncRequest(activityTracker: { [weak self] pair -> ActivityTracker? in
             return self?.fetchTracker(forState: pair.1) },
                         requestSelector: { [weak self] pair -> Observable<BillForecastResult> in

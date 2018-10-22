@@ -27,7 +27,7 @@ struct Maintenance: Mappable {
         
         stormModeStatus = map.optionalFrom("storm") ?? false // Real Storm Mode value
         //stormModeStatus = true // Force Storm Mode
-        //stormModeStatus = arc4random_uniform(5) != 0 // 1 in 5 chance to test exiting Storm Mode
+        //stormModeStatus = Int.random(in: 1...5) != 1 // 1 in 5 chance to test exiting Storm Mode
     }
     
 }
