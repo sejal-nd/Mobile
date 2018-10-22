@@ -119,7 +119,7 @@ class ReportOutageViewModel {
     
     private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver()
         .map { [weak self] text -> Bool in
-            guard let `self` = self else { return false }
+            guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.count == 10
         }

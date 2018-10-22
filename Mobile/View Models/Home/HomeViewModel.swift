@@ -79,6 +79,7 @@ class HomeViewModel {
     
     private(set) lazy var usageCardViewModel =
         HomeUsageCardViewModel(fetchData: fetchDataObservable,
+                               maintenanceModeEvents: maintenanceModeEvents,
                                accountDetailEvents: accountDetailEvents,
                                usageService: usageService,
                                refreshFetchTracker: refreshFetchTracker,
@@ -93,6 +94,7 @@ class HomeViewModel {
     
     private(set) lazy var projectedBillCardViewModel =
         HomeProjectedBillCardViewModel(fetchData: fetchDataObservable,
+                                       maintenanceModeEvents: maintenanceModeEvents,
                                        accountDetailEvents: accountDetailEvents,
                                        usageService: usageService,
                                        refreshFetchTracker: refreshFetchTracker,
