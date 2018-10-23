@@ -138,11 +138,8 @@ class ContactUsViewController: UIViewController {
                 button.setImage(image, for: .normal)
                 button.rx.tap.asDriver()
                     .drive(onNext: {
-                        guard let urlString = urlString,
-                            let url = URL(string: urlString),
-                            UIApplication.shared.canOpenURL(url) else { return }
-                        
-                        UIApplication.shared.open(url)
+                        guard let urlString = urlString else { return }
+                        UIApplication.shared.openUrlIfCan(string: urlString)
                     })
                     .disposed(by: bag)
                 return button

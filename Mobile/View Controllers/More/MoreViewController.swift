@@ -236,7 +236,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 return 60
             case 1:
-                return 0
+                return 60
             case 2:
                 return 60
             default:
@@ -330,7 +330,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 1:
-                break
+                UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
             case 2:
                 performSegue(withIdentifier: "termsPoliciesSegue", sender: nil)
             default:
