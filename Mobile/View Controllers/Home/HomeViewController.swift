@@ -174,12 +174,7 @@ class HomeViewController: AccountPickerViewController {
                                 .createWithCustomStyle(url: URL(string: "https://google.com")!)
                             self.present(safariVC, animated: true, completion: nil)
                         case .canceled:
-                            guard let url = URL(string: "tel://" + self.viewModel.appointmentCardViewModel.contactNumber),
-                                UIApplication.shared.canOpenURL(url) else {
-                                    return
-                            }
-                            
-                            UIApplication.shared.open(url)
+                            UIApplication.shared.openPhoneNumberIfCan(self.viewModel.appointmentCardViewModel.contactNumber)
                         }
                     })
                     .disposed(by: appointmentCardView.disposeBag)

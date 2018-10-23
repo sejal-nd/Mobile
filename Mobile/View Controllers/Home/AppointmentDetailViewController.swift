@@ -165,12 +165,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
                         .createWithCustomStyle(url: URL(string: "https://google.com")!)
                     self.present(safariVC, animated: true, completion: nil)
                 case .scheduled, .enRoute, .inProgress, .canceled:
-                    guard let url = URL(string: "tel://" + self.viewModel.contactNumber),
-                        UIApplication.shared.canOpenURL(url) else {
-                            return
-                    }
-                    
-                    UIApplication.shared.open(url)
+                    UIApplication.shared.openPhoneNumberIfCan(self.viewModel.contactNumber)
                 }
             })
             .disposed(by: disposeBag)

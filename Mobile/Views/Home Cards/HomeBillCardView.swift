@@ -431,9 +431,7 @@ class HomeBillCardView: UIView {
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
                     action -> Void in
-                    if let url = URL(string: "tel://\(errMessage[phoneRange]))"), UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url)
-                    }
+                    UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
                 }))
             } else {
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
