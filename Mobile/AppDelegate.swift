@@ -12,6 +12,7 @@ import Firebase
 import AppCenter
 import AppCenterCrashes
 import RxSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let disposeBag = DisposeBag()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
+        
         let processInfo = ProcessInfo.processInfo
         if processInfo.arguments.contains("UITest") || processInfo.environment["XCTestConfigurationFilePath"] != nil {
             // Clear UserDefaults if Unit or UI testing -- ensures consistent fresh run
@@ -135,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AlertsStore.shared.savePushNotification(notification)
         
         if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
-            if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+            if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
                 NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
             } else {
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
@@ -344,16 +347,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
+            let storyboardName = StormModeStatus.shared.isOn ? "Storm" : "Main"
             if let root = window.rootViewController, let _ = root.presentedViewController {
                 root.dismiss(animated: false) {
-                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
                     let newTabBarController = mainStoryboard.instantiateInitialViewController()
                     window.rootViewController = newTabBarController
                     NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
                 }
             } else {
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let mainStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
                 let newTabBarController = mainStoryboard.instantiateInitialViewController()
                 window.rootViewController = newTabBarController
                 NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
@@ -380,6 +384,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             newNavController.setViewControllers(vcArray, animated: false)
             window.rootViewController?.dismiss(animated: false)
             window.rootViewController = newNavController
+        } else if shortcutItem == .alertPreferences {
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+            let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+            
+            // Reset the unauthenticated nav stack
+            let newNavController = loginStoryboard.instantiateInitialViewController() as! UINavigationController
+            newNavController.setViewControllers([landing, login], animated: false)
+            window.rootViewController?.dismiss(animated: false)
+            window.rootViewController = newNavController
+            
+            let alert = UIAlertController(title: NSLocalizedString("You must be signed in to adjust alert preferences", comment: ""),
+                                          message: NSLocalizedString("You can turn on the \"Keep me signed in\" toggle for convenience.", comment: ""),
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            landing.present(alert, animated: true, completion: nil)
         } else {
             return false
         }
@@ -425,3 +445,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
+        handleShortcut(UIApplicationShortcutItem(type: ShortcutItem.alertPreferences.rawValue, localizedTitle: ""))
+    }
+    
+}

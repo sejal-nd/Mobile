@@ -138,7 +138,7 @@ class SplashViewController: UIViewController{
             loadingTimer.invalidate()
             
             let navigate = { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if self.performDeepLink {
                     let storyboard = UIStoryboard(name: "Login", bundle: nil)
                     let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
@@ -161,6 +161,18 @@ class SplashViewController: UIViewController{
                     unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
                     
                     self.navigationController?.setViewControllers(vcArray, animated: true)
+                } else if self.shortcutItem == .alertPreferences {
+                    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+                    let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+                    let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+                    
+                    self.navigationController?.setViewControllers([landing, login], animated: false)
+                    
+                    let alert = UIAlertController(title: NSLocalizedString("You must be signed in to adjust alert preferences", comment: ""),
+                                                  message: NSLocalizedString("You can turn on the \"Keep me signed in\" toggle for convenience.", comment: ""),
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    landing.present(alert, animated: true, completion: nil)
                 } else {
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
