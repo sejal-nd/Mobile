@@ -201,8 +201,10 @@ fileprivate func getTokensAndExecute(params: [String: Any], action: Action) -> O
     let guidString = UUID().uuidString
     let urlRequest = createFiservRequest(with: nil, method: .get, guid: guidString)
     let requestId = ShortUUIDGenerator.getUUID(length: 8)
-    let path = String(urlRequest.url?.absoluteString.suffix(Environment.shared.fiservUrl.count) ?? "")
     
+    let totalPathLength = urlRequest.url!.absoluteString.count
+    let path = String(urlRequest.url!.absoluteString.suffix(totalPathLength - Environment.shared.fiservUrl.count))
+
     var requestBodyString = ""
     if let body = urlRequest.httpBody {
         requestBodyString = " - BODY: " + (String(data: body, encoding: .utf8) ?? "")
@@ -257,7 +259,12 @@ fileprivate func executePost(request: URLRequest) -> Observable<WalletItemResult
         path = String(urlString.suffix(from: Environment.shared.fiservUrl.endIndex))
     }
     
-    APILog(requestId: requestId, path: path, method: .post, message: "REQUEST")
+    var requestBodyString = ""
+    if let body = request.httpBody {
+        requestBodyString = " - BODY: " + (String(data: body, encoding: .utf8) ?? "")
+    }
+    
+    APILog(requestId: requestId, path: path, method: .post, message: "REQUEST\(requestBodyString)")
     
     return URLSession.shared.rx.dataResponse(request: request)
         .do(onNext: { data in
