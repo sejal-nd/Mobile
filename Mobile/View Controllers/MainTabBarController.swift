@@ -48,7 +48,7 @@ class MainTabBarController: UITabBarController {
         NotificationCenter.default.rx.notification(.didTapOnShortcutItem, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] notification in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 guard let shortcutItem = notification.object as? ShortcutItem else {
                     return
                 }
@@ -68,6 +68,8 @@ class MainTabBarController: UITabBarController {
                     }
                 case .viewUsageOptions:
                     self.selectedIndex = 3
+                case .alertPreferences:
+                    self.navigateToAlertPreferences()
                 case .none:
                     break
                 }
@@ -112,6 +114,21 @@ class MainTabBarController: UITabBarController {
             let alertsVC = alertsStoryboard.instantiateInitialViewController()
             else { return }
         
+        moreNavCtl.viewControllers = [moreVC, alertsVC]
+    }
+    
+    func navigateToAlertPreferences() {
+        selectedIndex = 4
+        
+        let moreStoryboard = UIStoryboard(name: "More", bundle: nil)
+        let alertsStoryboard = UIStoryboard(name: "Alerts", bundle: nil)
+        
+        guard let moreNavCtl = viewControllers?[4] as? MainBaseNavigationController,
+            let moreVC = moreStoryboard.instantiateInitialViewController(),
+            let alertsVC = alertsStoryboard.instantiateInitialViewController() as? AlertsViewController
+            else { return }
+        
+        alertsVC.shortcutToPrefs = true
         moreNavCtl.viewControllers = [moreVC, alertsVC]
     }
     
