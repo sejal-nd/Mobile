@@ -772,11 +772,12 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
+                let cutoffDate = min(startOfDueDate, viewModel.fiservCutoffDate)
                 if Environment.shared.opco == .peco {
                     let isInWorkdaysArray = viewModel.workdayArray.contains(opCoTimeDate)
-                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate && isInWorkdaysArray
+                    return opCoTimeDate >= today && opCoTimeDate <= cutoffDate && isInWorkdaysArray
                 } else {
-                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate
+                    return opCoTimeDate >= today && opCoTimeDate <= cutoffDate
                 }
             }
         }
