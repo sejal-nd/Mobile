@@ -395,8 +395,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.rootViewController?.dismiss(animated: false)
             window.rootViewController = newNavController
             
-            let alert = UIAlertController(title: NSLocalizedString("You must be signed in to adjust alert preferences", comment: ""),
-                                          message: NSLocalizedString("You can turn on the \"Keep me signed in\" toggle for convenience.", comment: ""),
+            let alert = UIAlertController(title: NSLocalizedString("You must be signed in to adjust alert preferences.", comment: ""),
+                                          message: NSLocalizedString("You can turn the \"Keep me signed in\" toggle ON for your convenience.", comment: ""),
                                           preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             landing.present(alert, animated: true, completion: nil)
