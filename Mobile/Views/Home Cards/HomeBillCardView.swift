@@ -60,6 +60,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var bankCreditCardImageView: UIImageView!
     @IBOutlet private weak var bankCreditCardNumberLabel: UILabel!
     @IBOutlet private weak var bankCreditCardExpiredContainer: UIView!
+    @IBOutlet private weak var expiredLabel: UILabel!
     
     @IBOutlet private weak var saveAPaymentAccountButton: ButtonControl!
     @IBOutlet private weak var saveAPaymentAccountLabel: UILabel!
@@ -238,7 +239,16 @@ class HomeBillCardView: UIView {
         
         dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_question_white.pdf"), for: .normal)
         walletItemInfoBox.backgroundColor = .stormModeBlack
-        bankCreditNumberButton.backgroundColor = .stormModeGray
+        bankCreditNumberButton.normalBackgroundColor = .stormModeGray
+        bankCreditNumberButton.backgroundColorOnPress = .stormModeBlack
+        bankCreditNumberButton.layer.borderColor = UIColor.red.cgColor
+        expiredLabel.textColor = .white
+        saveAPaymentAccountButton.normalBackgroundColor = .stormModeGray
+        saveAPaymentAccountButton.backgroundColorOnPress = .stormModeBlack
+        saveAPaymentAccountLabel.textColor = .white
+        
+        thankYouForSchedulingButton.setTitleColor(.white, for: .normal)
+        autoPayButton.setTitleColor(.white, for: .normal)
     }
     
     private func bindViewModel() {
