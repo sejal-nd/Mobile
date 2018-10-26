@@ -95,6 +95,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var viewBillButtonLabel: UILabel!
     
     @IBOutlet private weak var billNotReadyStack: UIStackView!
+    @IBOutlet private weak var billNotReadyImageView: UIImageView!
     @IBOutlet private weak var billNotReadyLabel: UILabel!
     @IBOutlet private weak var errorStack: UIStackView!
     @IBOutlet private weak var errorLabel: UILabel!
@@ -241,7 +242,7 @@ class HomeBillCardView: UIView {
         walletItemInfoBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         bankCreditNumberButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
         bankCreditNumberButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
-        saveAPaymentAccountButton.shouldFadeSubviewsOnPress = true
+        bankCreditNumberButton.shouldFadeSubviewsOnPress = true
         bankCreditNumberButton.layer.borderColor = UIColor.red.cgColor
         expiredLabel.textColor = .white
         saveAPaymentAccountButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
@@ -249,8 +250,15 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.shouldFadeSubviewsOnPress = true
         saveAPaymentAccountLabel.textColor = .white
         
+        scheduledPaymentBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         thankYouForSchedulingButton.setTitleColor(.white, for: .normal)
+        scheduledImageView.image = #imageLiteral(resourceName: "ic_scheduled_sm.pdf")
+        
+        autoPayBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         autoPayButton.setTitleColor(.white, for: .normal)
+        autoPayImageView.image = #imageLiteral(resourceName: "ic_autopay_sm.pdf")
+        
+        billNotReadyImageView.image = #imageLiteral(resourceName: "ic_home_billnotready_sm.pdf")
     }
     
     private func bindViewModel() {

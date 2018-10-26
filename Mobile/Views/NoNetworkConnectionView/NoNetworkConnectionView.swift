@@ -48,20 +48,6 @@ class NoNetworkConnectionView: UIView {
             }
         }
     }
-    
-    @IBInspectable var isStormMode: Bool = false {
-        didSet {
-            if isStormMode {
-                containerView.backgroundColor = .clear
-                noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_sm")
-                contactDetailsSpacerView.isHidden = false
-                contactDetailsTextView.isHidden = false
-            } else {
-                contactDetailsSpacerView.isHidden = true
-                contactDetailsTextView.isHidden = true
-            }
-        }
-    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -80,22 +66,28 @@ class NoNetworkConnectionView: UIView {
         containerView.translatesAutoresizingMaskIntoConstraints = true
         addSubview(containerView)
         styleViews()
-        contactDetailsSpacerView.isHidden = true
-        contactDetailsTextView.isHidden = true
     }
     
     func styleViews() {
-        containerView.backgroundColor = .primaryColor
         reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
         noNetworkConnectionLabel.font = OpenSans.semibold.of(textStyle: .title1)
         pleaseReloadLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        
+        if StormModeStatus.shared.isOn {
+            containerView.backgroundColor = .clear
+            noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_sm")
+            contactDetailsTextView.textColor = .white
+            contactDetailsSpacerView.isHidden = false
+            contactDetailsTextView.isHidden = false
+        } else {
+            containerView.backgroundColor = .primaryColor
+            contactDetailsSpacerView.isHidden = true
+            contactDetailsTextView.isHidden = true
+        }
     }
     
     public func configureContactText(attributedText: NSMutableAttributedString) {
         contactDetailsTextView.attributedText = attributedText
-        if isStormMode {
-            contactDetailsTextView.textColor = .white
-        }
     }
     
     private(set) lazy var reload: Observable<Void> = self.reloadButton.rx.touchUpInside.asObservable()

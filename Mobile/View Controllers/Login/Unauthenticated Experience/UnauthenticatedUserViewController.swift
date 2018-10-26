@@ -125,22 +125,22 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         case 0:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_checkoutage"), text: NSLocalizedString("Check My Outage Status", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_checkoutage"), text: NSLocalizedString("Check My Outage Status", comment: ""))
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""))
             default:
                 return UITableViewCell()
             }
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
             default:
                 return UITableViewCell()
             }

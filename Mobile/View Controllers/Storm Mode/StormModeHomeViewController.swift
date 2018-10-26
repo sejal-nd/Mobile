@@ -409,7 +409,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             finalPayView.isHidden = false
             finalPayTextView.text = viewModel.accountNonPayFinaledMessage
             
-            finalPayButton.isHidden = currentOutageStatus.flagNoPay && Environment.shared.opco != .bge ? false : true
+            finalPayButton.isHidden = !(currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService)
         } else if currentOutageStatus.activeOutage {
             outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else { // Power is on
@@ -423,6 +423,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             rc.removeFromSuperview()
             refreshControl = nil
         }
+        
         if enabled {
             refreshControl = UIRefreshControl()
             refreshControl?.tintColor = .white
@@ -497,7 +498,6 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className) as? TitleTableViewCell else { return UITableViewCell() }
         
-        let onPressColor = UIColor.stormModeBlack.darker(by: 10)
         switch indexPath.section {
         case 0:
             switch indexPath.row {
@@ -507,23 +507,23 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
                 if shouldShowOutageCellData {
                     if viewModel.reportedOutage != nil, AccountsStore.shared.currentAccount != nil {
                         // Reported State
-                        cell.configure(image: #imageLiteral(resourceName: "ic_check_outage_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true)
+                        cell.configure(image: #imageLiteral(resourceName: "ic_check_outage_white"), text: NSLocalizedString("Report Outage", comment: ""), detailText: viewModel.outageReportedDateString, shouldConstrainWidth: true)
                     } else {
                         // Regular State
                         let reportOutageDisabled = viewModel.currentOutageStatus?.flagFinaled ?? false || viewModel.currentOutageStatus?.flagNoPay ?? false || viewModel.currentOutageStatus?.flagNonService ?? false
-                        cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true, disabled: reportOutageDisabled)
+                        cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), shouldConstrainWidth: true, disabled: reportOutageDisabled)
                     }
                 } else {
                     // Hide Content
-                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
+                    cell.configure(image: nil, text: nil, detailText: nil, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
                 }
             case 1:
                 if shouldShowOutageCellData {
                     // Populate Content
-                    cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true)
+                    cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), shouldConstrainWidth: true)
                 } else {
                     // Hide Content
-                    cell.configure(image: nil, text: nil, detailText: nil, backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
+                    cell.configure(image: nil, text: nil, detailText: nil, shouldConstrainWidth: true, shouldHideDisclosure: true, shouldHideSeparator: true)
                 }
             default:
                 return UITableViewCell()
@@ -531,9 +531,9 @@ extension StormModeHomeViewController: UITableViewDataSource, UITableViewDelegat
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_nav_bill_white"), text: NSLocalizedString("Bill", comment: ""), backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true)
+                cell.configure(image: #imageLiteral(resourceName: "ic_nav_bill_white"), text: NSLocalizedString("Bill", comment: ""), shouldConstrainWidth: true)
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_nav_more_white"), text: NSLocalizedString("More", comment: ""), backgroundColor: .clear, backgroundColorOnPress: onPressColor, shouldConstrainWidth: true)
+                cell.configure(image: #imageLiteral(resourceName: "ic_nav_more_white"), text: NSLocalizedString("More", comment: ""), shouldConstrainWidth: true)
             default:
                 return UITableViewCell()
             }

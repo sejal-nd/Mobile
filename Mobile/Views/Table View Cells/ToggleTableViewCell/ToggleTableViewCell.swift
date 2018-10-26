@@ -32,6 +32,7 @@ class ToggleTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = StormModeStatus.shared.isOn ? .clear : .primaryColor
         
         isAccessibilityElement = false
     }

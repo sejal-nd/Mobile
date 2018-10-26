@@ -42,7 +42,6 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isStormMode" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ec7-2S-gPb">
@@ -415,16 +414,16 @@
                                                             <rect key="frame" x="0.0" y="1586" width="343" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To report a gas emergency, please call" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-QQ-AnX">
-                                                                    <rect key="frame" x="14" y="0.0" width="315" height="20.5"/>
+                                                                    <rect key="frame" x="14" y="0.0" width="315" height="19.5"/>
                                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GuD-R7-9Ss" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                    <rect key="frame" x="115" y="26.5" width="113.5" height="23.5"/>
+                                                                    <rect key="frame" x="115" y="25.5" width="113.5" height="24.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBl-nh-b0J">
-                                                                            <rect key="frame" x="6" y="2" width="101.5" height="19.5"/>
+                                                                            <rect key="frame" x="6" y="2" width="101.5" height="20.5"/>
                                                                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>

@@ -250,44 +250,41 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className) as? TitleTableViewCell else { return UITableViewCell() }
         
-        let bgColor: UIColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
-        
         switch indexPath.section {
         case 0:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""), backgroundColor: bgColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""), backgroundColor: bgColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             default:
                 return UITableViewCell()
             }
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""), backgroundColor: bgColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""))
             case 1:
                 guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.className) as? ToggleTableViewCell else { return UITableViewCell() }
                 
                 toggleCell.configure(viewModel: viewModel, tag: indexPath.row)
                 toggleCell.toggle.addTarget(self, action: #selector(toggleBiometrics), for: .valueChanged)
-                toggleCell.backgroundColor = bgColor
                 return toggleCell
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""), backgroundColor: bgColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""))
             case 3:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""), backgroundColor: bgColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""))
             default:
                 return UITableViewCell()
             }
         case 2:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""), backgroundColor: bgColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Tutorial Videos", comment: ""), backgroundColor: bgColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Tutorial Videos", comment: ""))
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""), backgroundColor: bgColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
             default:
                 return UITableViewCell()
             }

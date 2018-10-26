@@ -37,15 +37,20 @@ class TitleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        contentContainerView.normalBackgroundColor = UIColor.primaryColor
-        contentContainerView.backgroundColorOnPress = UIColor.primaryColor.darker(by: 10)
+        if StormModeStatus.shared.isOn {
+            contentContainerView.normalBackgroundColor = .clear
+            contentContainerView.backgroundColorOnPress = UIColor.black.withAlphaComponent(0.15)
+        } else {
+            contentContainerView.normalBackgroundColor = UIColor.primaryColor
+            contentContainerView.backgroundColorOnPress = UIColor.primaryColor.darker(by: 10)
+        }
         
         detailLabel.isHidden = true
     }
     
     // MARK: - Configure
     
-    public func configure(image: UIImage?, text: String?, detailText: String? = nil, backgroundColor: UIColor, backgroundColorOnPress: UIColor? = nil, shouldConstrainWidth: Bool = false, shouldHideDisclosure: Bool = false, shouldHideSeparator: Bool = false, disabled: Bool = false) {
+    public func configure(image: UIImage?, text: String?, detailText: String? = nil, shouldConstrainWidth: Bool = false, shouldHideDisclosure: Bool = false, shouldHideSeparator: Bool = false, disabled: Bool = false) {
         iconImageView.image = image
         titleLabel.text = text
         detailLabel.text = detailText
@@ -63,8 +68,6 @@ class TitleTableViewCell: UITableViewCell {
         
         contentContainerView.accessibilityLabel = "\(text ?? ""). \(detailText ?? "")"
         contentContainerView.isEnabled = !disabled
-        contentContainerView.normalBackgroundColor = backgroundColor
-        contentContainerView.backgroundColorOnPress = backgroundColorOnPress ?? backgroundColor.darker(by: 10)
     }
     
     override func prepareForReuse() {
