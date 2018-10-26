@@ -172,7 +172,7 @@ class UsageViewController: AccountPickerViewController {
                                    accountService: ServiceFactory.createAccountService(),
                                    usageService: ServiceFactory.createUsageService())
     
-    var initialSelection: (barSelection: UsageViewModel.BarGraphSelection, isGas: Bool)?
+    var initialSelection: (barSelection: UsageViewModel.BarGraphSelection, isGas: Bool, isPreviousBill: Bool)?
     
     // MARK: - View Life Cycle
     
@@ -192,8 +192,9 @@ class UsageViewController: AccountPickerViewController {
         showSwitchAccountsLoadingState()
         barGraphPress(currentContainerButton)
         
-        if let (barSelection, isGas) = initialSelection {
+        if let (barSelection, isGas, isPreviousBill) = initialSelection {
             viewModel.electricGasSelectedSegmentIndex.value = isGas ? 1 : 0
+            selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
             selectBar(barSelection, gas: isGas)
         }
         
@@ -324,15 +325,11 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func bindDataFetching() {
-        Driver.merge(lastYearButton.rx.tap.asDriver().map(to: 0),
-                     previousBillButton.rx.tap.asDriver().map(to: 1))
-            .drive(onNext: { [weak self] index in
-                guard let this = self else { return }
-                this.showBillComparisonLoadingState()
-                this.previousBillButton.isEnabled = index == 0
-                this.lastYearButton.isEnabled = index == 1
-                this.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = index
-                Analytics.log(event: index == 0 ? .billLastYearToggle : .billPreviousToggle)
+        Driver.merge(lastYearButton.rx.tap.asDriver().map(to: false),
+                     previousBillButton.rx.tap.asDriver().map(to: true))
+            .drive(onNext: { [weak self] isPreviousBill in
+                self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
+                Analytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)
             })
             .disposed(by: disposeBag)
         
@@ -344,6 +341,14 @@ class UsageViewController: AccountPickerViewController {
                 self?.viewModel.fetchAllData()
             })
             .disposed(by: disposeBag)
+    }
+    
+    func selectLastYearPreviousBill(isPreviousBill: Bool) {
+        if billComparisonLoadingIndicator != nil {
+            showBillComparisonLoadingState()
+        }
+        
+        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = isPreviousBill ? 1 : 0
     }
     
     private func bindViewStates() {
@@ -421,6 +426,16 @@ class UsageViewController: AccountPickerViewController {
                     Analytics.log(event: .billGasToggle)
                 }
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.lastYearPreviousBillSelectedSegmentIndex.asDriver()
+            .map { $0 == 0 }
+            .drive(previousBillButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.lastYearPreviousBillSelectedSegmentIndex.asDriver()
+            .map { $0 == 1 }
+            .drive(lastYearButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         viewModel.showElectricGasSegmentedControl.not().drive(segmentControl.rx.isHidden).disposed(by: disposeBag)

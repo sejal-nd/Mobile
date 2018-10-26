@@ -511,7 +511,7 @@ class HomeViewController: AccountPickerViewController {
                     return
                 }
                 
-                tabBarCtl.navigateToUsage(selectedBar: .projected, isGas: isGas)
+                tabBarCtl.navigateToUsage(selectedBar: .projected, isGas: isGas, isPreviousBill: true)
             }).disposed(by: projectedBillCardView.disposeBag)
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
