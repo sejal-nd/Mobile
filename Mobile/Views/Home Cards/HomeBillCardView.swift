@@ -238,13 +238,15 @@ class HomeBillCardView: UIView {
         maintenanceModeLabel.textColor = .white
         
         dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_question_white.pdf"), for: .normal)
-        walletItemInfoBox.backgroundColor = .stormModeBlack
-        bankCreditNumberButton.normalBackgroundColor = .stormModeGray
-        bankCreditNumberButton.backgroundColorOnPress = .stormModeBlack
+        walletItemInfoBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        bankCreditNumberButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
+        bankCreditNumberButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
+        saveAPaymentAccountButton.shouldFadeSubviewsOnPress = true
         bankCreditNumberButton.layer.borderColor = UIColor.red.cgColor
         expiredLabel.textColor = .white
-        saveAPaymentAccountButton.normalBackgroundColor = .stormModeGray
-        saveAPaymentAccountButton.backgroundColorOnPress = .stormModeBlack
+        saveAPaymentAccountButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
+        saveAPaymentAccountButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
+        saveAPaymentAccountButton.shouldFadeSubviewsOnPress = true
         saveAPaymentAccountLabel.textColor = .white
         
         thankYouForSchedulingButton.setTitleColor(.white, for: .normal)

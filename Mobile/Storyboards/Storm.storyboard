@@ -261,7 +261,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAz-Ed-8Hy">
                                                             <rect key="frame" x="24" y="505.5" width="295" height="254"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="qfu-kV-Gsd">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_gasonly_sm" translatesAutoresizingMaskIntoConstraints="NO" id="qfu-kV-Gsd">
                                                                     <rect key="frame" x="85" y="24" width="125" height="126"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas Only Account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-Xw-UzD">
@@ -734,8 +734,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gasonly_graphic" width="125" height="126"/>
         <image name="ic_caret_white" width="8" height="13"/>
+        <image name="ic_gasonly_sm" width="125" height="126"/>
         <image name="ic_nooutage_sm" width="125" height="126"/>
         <image name="ic_storm" width="60" height="66"/>
     </resources>

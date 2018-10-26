@@ -174,10 +174,19 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         view.backgroundColor = .stormModeBlack
         
+        let gradientColor: UIColor
+        switch Environment.shared.opco {
+        case .bge:
+            gradientColor = .bgeGreen
+        case .comEd, .peco:
+            gradientColor = .primaryColor
+        }
+        
         gradientLayer.colors = [
-            UIColor.primaryColor.cgColor,
-            UIColor.primaryColor.withAlphaComponent(0).cgColor
+            gradientColor.cgColor,
+            gradientColor.withAlphaComponent(0).cgColor
         ]
+        
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
 
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)

@@ -53,7 +53,7 @@ class NoNetworkConnectionView: UIView {
         didSet {
             if isStormMode {
                 containerView.backgroundColor = .clear
-                noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_color")
+                noNetworkImageView.image = #imageLiteral(resourceName: "ic_nonetwork_sm")
                 contactDetailsSpacerView.isHidden = false
                 contactDetailsTextView.isHidden = false
             } else {

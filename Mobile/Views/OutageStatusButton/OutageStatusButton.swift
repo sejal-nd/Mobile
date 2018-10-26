@@ -75,7 +75,7 @@ class OutageStatusButton: UIView {
         let color: UIColor
         switch Environment.shared.opco {
         case .bge:
-            color = .primaryColor
+            color = .bgeGreen
         case .comEd:
             color = .primaryColor
         case .peco:
@@ -85,16 +85,7 @@ class OutageStatusButton: UIView {
     }
     
     private var outterBorderColor: UIColor {
-        let color: UIColor
-        switch Environment.shared.opco {
-        case .bge:
-            color = isStormMode ? .clear : UIColor(red: 61/255, green: 132/255, blue: 48/255, alpha:0.6)
-        case .comEd:
-            color = isStormMode ? .clear : UIColor(red: 206/255, green: 17/255, blue: 65/255, alpha:0.6)
-        case .peco:
-            color = isStormMode ? .clear : UIColor(red: 0/255, green: 119/255, blue: 187/255, alpha:0.6)
-        }
-        return color
+        return isStormMode ? .clear : UIColor.primaryColor.withAlphaComponent(0.6)
     }
 
     var onLottieAnimation: LOTAnimationView?
