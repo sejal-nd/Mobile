@@ -102,8 +102,7 @@ class AddBankFormView: UIView {
         if Environment.shared.opco == .bge {
             saveToWalletStackView.isHidden = true // BGE bank payments must be saved
         } else {
-            // BGE only fields
-            checkingSavingsSegmentedControl.isHidden = true
+            // BGE only field
             accountHolderNameTextField.isHidden = true
         }
         

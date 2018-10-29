@@ -85,12 +85,11 @@ class MCSWalletService: WalletService {
     }
     
     func addBankAccount(_ bankAccount: BankAccount, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
-        let opCo = Environment.shared.opco
-        
-        if(opCo == .comEd || opCo == .peco) {
-            return addFiservBankAccount(bankAccount, forCustomerNumber: customerNumber)
-        } else {
+        switch Environment.shared.opco {
+        case .bge:
             return addMCSBankAccount(bankAccount)
+        case .comEd, .peco:
+            return addFiservBankAccount(bankAccount, forCustomerNumber: customerNumber)
         }
     }
     
@@ -121,6 +120,7 @@ class MCSWalletService: WalletService {
                                                   nickname: bankAccount.accountNickname,
                                                   token: token,
                                                   customerNumber: customerNumber,
+                                                  checkingOrSavings: bankAccount.accountType,
                                                   oneTimeUse: bankAccount.oneTimeUse)
             }
             .do(onNext: { [weak self] _ in
