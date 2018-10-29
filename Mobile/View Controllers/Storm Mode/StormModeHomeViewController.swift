@@ -408,8 +408,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             outageStatusButton.isHidden = true
             finalPayView.isHidden = false
             finalPayTextView.text = viewModel.accountNonPayFinaledMessage
-            
-            finalPayButton.isHidden = !(currentOutageStatus.flagNoPay || currentOutageStatus.flagNonService)
+            finalPayButton.isHidden = !currentOutageStatus.flagNoPay
         } else if currentOutageStatus.activeOutage {
             outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else { // Power is on
