@@ -88,7 +88,7 @@ class MainTabBarController: UITabBarController {
         }
     }
     
-    func navigateToUsage(selectedBar: UsageViewModel.BarGraphSelection? = nil, isGas: Bool) {
+    func navigateToUsage(selectedBar: UsageViewModel.BarGraphSelection? = nil, isGas: Bool, isPreviousBill: Bool) {
         selectedIndex = 3
         
         guard let bar = selectedBar,
@@ -98,8 +98,10 @@ class MainTabBarController: UITabBarController {
         
         // initialSelection is effective if the VC has just been initialized by this navigation.
         // (first time visiting the tab since launch)
-        usageVC.initialSelection = (bar, isGas)
-        // selectBar is effective if the user has already visited the tab and the view has already been loaded.
+        usageVC.initialSelection = (bar, isGas, isPreviousBill)
+        
+        // this is effective if the user has already visited the tab and the view has already been loaded.
+        usageVC.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
         usageVC.selectBar(bar, gas: isGas)
     }
     
