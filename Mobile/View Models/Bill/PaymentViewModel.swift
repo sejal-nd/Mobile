@@ -247,10 +247,7 @@ class PaymentViewModel {
     }
     
     private func scheduleInlineBankPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        var accountType: String?
-        if Environment.shared.opco == .bge {
-            accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
-        }
+        let accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
         let accountName: String? = addBankFormViewModel.accountHolderName.value.isEmpty ? nil : addBankFormViewModel.accountHolderName.value
         let nickname: String? = addBankFormViewModel.nickname.value.isEmpty ? nil : addBankFormViewModel.nickname.value
         

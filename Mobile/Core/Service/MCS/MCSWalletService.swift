@@ -120,6 +120,7 @@ class MCSWalletService: WalletService {
                                                   nickname: bankAccount.accountNickname,
                                                   token: token,
                                                   customerNumber: customerNumber,
+                                                  checkingOrSavings: bankAccount.accountType,
                                                   oneTimeUse: bankAccount.oneTimeUse)
             }
             .do(onNext: { [weak self] _ in
@@ -128,7 +129,7 @@ class MCSWalletService: WalletService {
                 
                 self?.addWalletItemMCS(accountNumber: AccountsStore.shared.accounts[0].accountNumber,
                                        maskedAccountNumber: String(last4),
-                                       categoryType: bankAccount.accountType)
+                                       categoryType: "Checking")
             })
     }
     
