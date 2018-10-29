@@ -94,6 +94,21 @@ class MockAppointmentService: AppointmentService {
             } else {
                 appointments = []
             }
+        case "multiApptChanges":
+            if MockAppointmentService.isFirstFetch {
+                MockAppointmentService.isFirstFetch = false
+                appointments = [
+                    Appointment(jobId: "0", startTime: noon, endTime: one, status: .scheduled, caseNumber: "01234"),
+                    Appointment(jobId: "1", startTime: noon, endTime: one, status: .enRoute, caseNumber: "43210"),
+                    Appointment(jobId: "2", startTime: noon, endTime: one, status: .inProgress, caseNumber: "56789"),
+                ]
+            } else {
+                appointments = [
+                    Appointment(jobId: "0", startTime: noon, endTime: one, status: .enRoute, caseNumber: "01234"),
+                    Appointment(jobId: "1", startTime: noon, endTime: one, status: .inProgress, caseNumber: "43210"),
+                    Appointment(jobId: "2", startTime: noon, endTime: one, status: .complete, caseNumber: "56789"),
+                ]
+            }
         case "apptFailure":
             return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
         case "apptNone":

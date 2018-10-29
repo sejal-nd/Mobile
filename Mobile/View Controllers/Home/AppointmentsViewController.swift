@@ -14,6 +14,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     
     var premiseNumber: String!
     var appointments: [Appointment]!
+    var appointmentVCs: [AppointmentDetailViewController]!
     
     let disposeBag = DisposeBag()
     
@@ -30,8 +31,17 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
                 guard let self = self else { return }
                 guard !appointments.isEmpty else { return }
                 
-                self.appointments = appointments
-                self.reloadPagerTabStripView()
+                if self.canAvoidFullReload(newAppointments: appointments) {
+                    self.appointments = appointments
+                    for i in 0..<appointments.count {
+                        let appointment = self.appointments[i]
+                        let appointmentVC = self.appointmentVCs[i]
+                        appointmentVC.update(withAppointment: appointment)
+                    }
+                } else {
+                    self.appointments = appointments
+                    self.reloadPagerTabStripView()
+                }
                 UIAccessibility.post(notification: .screenChanged, argument: nil)
             })
             .disposed(by: disposeBag)
@@ -77,8 +87,27 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
             self.containerView.bounces = true
         }
         
-        return appointments
+        appointmentVCs = appointments
             .map(AppointmentDetailViewModel.init)
             .map(AppointmentDetailViewController.init)
+        return appointmentVCs
+    }
+    
+    private func canAvoidFullReload(newAppointments: [Appointment]) -> Bool {
+        // If # of appointments has changed we must do a full reload
+        if appointments.count != newAppointments.count {
+            return false
+        }
+
+        // Ensure all jobId's remained the same
+        for i in 0..<appointments.count {
+            let currAppt = appointments[i]
+            let newAppt = newAppointments[i]
+            if currAppt.jobId != newAppt.jobId {
+                return false
+            }
+        }
+
+        return true
     }
 }
