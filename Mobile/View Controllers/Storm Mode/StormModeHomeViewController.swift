@@ -120,7 +120,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             finalPayTextView.textContainerInset = .zero
             finalPayTextView.textContainer.lineFragmentPadding = 0
             finalPayTextView.tintColor = .white
-            finalPayTextView.contentInset = UIEdgeInsets(top: 2, left: 0, bottom: 0, right: 0)
         }
     }
     
@@ -360,6 +359,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             self.noNetworkConnectionView.isHidden = true
             self.scrollView?.isHidden = false
             self.loadingView.isHidden = true
+            self.finalPayTitleLabel.isHidden = false
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent(outageJustReported: false)
             }, onError: { [weak self] serviceError in
@@ -379,6 +379,12 @@ class StormModeHomeViewController: AccountPickerViewController {
                 }
                 
                 self.loadingContentView.isHidden = true
+                self.finalPayView.isHidden = false
+                self.finalPayTitleLabel.isHidden = true
+                self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+                self.finalPayButtonContainer.isHidden = true
+                self.outageSectionContainer.isHidden = true
+                self.footerView.isHidden = false
                 self.loadingView.isHidden = true
                 self.setRefreshControlEnabled(enabled: true)
             })
@@ -407,8 +413,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             footerView.isHidden = false
             outageSectionContainer.isHidden = false
             outageSectionStack.isHidden = false
-            
-            self.loadingContentView.isHidden = false
+            loadingContentView.isHidden = false
             outageStatusButton.onLottieAnimation?.animationProgress = 0.0
             outageStatusButton.onLottieAnimation?.play()
             
