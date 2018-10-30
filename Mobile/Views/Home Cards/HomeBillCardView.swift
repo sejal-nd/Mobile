@@ -548,13 +548,29 @@ class HomeBillCardView: UIView {
         .map { _ in UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEasy") }
         .asDriver(onErrorDriveWith: .empty())
     
+    private lazy var autoPayAlert: Driver<UIViewController> = autoPayButton.rx.tap
+        .asObservable()
+        .withLatestFrom(self.viewModel.accountDetailEvents.elements())
+        .filter { !$0.isBGEasy && StormModeStatus.shared.isOn }
+        .map { accountDetail in
+            let alert = UIAlertController(title: NSLocalizedString("AutoPay Settings Unavailable", comment: ""),
+                                          message: NSLocalizedString("AutoPay settings are not available in Storm Mode. Sorry for the inconvenience.", comment: ""),
+                                          preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            
+            return alert
+        }
+        .asDriver(onErrorDriveWith: .empty())
+    
     private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(tooltipModal,
                                                                                         oneTouchSliderWeekendAlert,
                                                                                         paymentTACModal,
                                                                                         oneTouchPayErrorAlert,
                                                                                         oneTouchSliderCVV2Alert,
                                                                                         tutorialViewController,
-                                                                                        bgeasyViewController)
+                                                                                        bgeasyViewController,
+                                                                                        autoPayAlert)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside
@@ -594,7 +610,7 @@ class HomeBillCardView: UIView {
     private lazy var autoPayViewController: Driver<UIViewController> = autoPayButton.rx.tap
         .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
-        .filter { !$0.isBGEasy }
+        .filter { !$0.isBGEasy && !StormModeStatus.shared.isOn }
         .map { accountDetail in
             switch Environment.shared.opco {
             case .bge:
