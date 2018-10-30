@@ -13,7 +13,7 @@ class AppointmentDetailViewModel {
     
     let contactNumber = "1-800-685-0123"
     
-    private let appointment: Appointment
+    var appointment: Appointment
     
     required init(appointment: Appointment) {
         self.appointment = appointment

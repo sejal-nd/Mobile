@@ -129,10 +129,10 @@ class WalletTableViewCell: UITableViewCell {
             if Environment.shared.opco == .bge {
                 if walletItem.bankOrCard == .bank {
                     if let bankAccountType = walletItem.bankAccountType {
-                        if bankAccountType.rawValue.uppercased() == "SAVING"{
-                            nicknameLabel.text = NSLocalizedString(String(format:"%@, SAVINGS", nickname),comment: "")
+                        if bankAccountType.rawValue.uppercased() == "SAVING" {
+                            nicknameLabel.text = NSLocalizedString(String(format:"%@, SAVINGS", nickname), comment: "")
                         } else {
-                            nicknameLabel.text = NSLocalizedString(String(format:"%@, CHECKING", nickname),comment: "")
+                            nicknameLabel.text = NSLocalizedString(String(format:"%@, CHECKING", nickname), comment: "")
                         }
                     }
                 }

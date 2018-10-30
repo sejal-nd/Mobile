@@ -74,14 +74,16 @@ struct FiservApi {
                         nickname: String?,
                         token: String,
                         customerNumber: String,
+                        checkingOrSavings: String?,
                         oneTimeUse: Bool) -> Observable<WalletItemResult> {
         var params = createBaseParameters(token: token, customerNumber: customerNumber, nickname: nickname, oneTimeUse: oneTimeUse)
         
         params[Parameter.messageId.rawValue] = MessageId.insertCheck.rawValue
         params[Parameter.checkingDetail.rawValue] = createBankAccountDetailDictionary(accountNumber: bankAccountNumber,
-                                                                     routingNumber: routingNumber,
-                                                                     firstName: firstName,
-                                                                     lastName: lastName)
+                                                                                      routingNumber: routingNumber,
+                                                                                      firstName: firstName,
+                                                                                      lastName: lastName,
+                                                                                      checkingOrSavings: checkingOrSavings)
         
         return getTokensAndExecute(params: params, action: .insert)
     }
@@ -155,12 +157,12 @@ fileprivate func createCardDetailDictionary(cardNumber: String?,
 }
 
 fileprivate func createBankAccountDetailDictionary(accountNumber: String,
-                                                   routingNumber : String,
-                                                   firstName : String?,
-                                                   lastName : String?) -> [String:Any] {
+                                                   routingNumber: String,
+                                                   firstName: String?,
+                                                   lastName: String?,
+                                                   checkingOrSavings: String?) -> [String:Any] {
     var details = [Parameter.routingNumber.rawValue : routingNumber,
-                   Parameter.checkAccountNumber.rawValue : accountNumber,
-                   Parameter.checkType.rawValue : 0] as [String : Any]
+                   Parameter.checkAccountNumber.rawValue : accountNumber] as [String : Any]
     
     if !(firstName ?? "").isEmpty {
         details[Parameter.firstName.rawValue] = firstName
@@ -168,6 +170,12 @@ fileprivate func createBankAccountDetailDictionary(accountNumber: String,
     if !(lastName ?? "").isEmpty {
         details[Parameter.lastName.rawValue] = lastName
     }
+    
+    var checkType = 0 // default to "checking"
+    if checkingOrSavings == "saving" {
+        checkType = 1
+    }
+    details[Parameter.checkType.rawValue] = checkType
     
     return details
 }

@@ -52,6 +52,9 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     
     let disposeBag = DisposeBag()
     
+    var viewHasAppeared = false
+    var viewHasLoaded = false
+    
     init(viewModel: AppointmentDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: AppointmentDetailViewController.className, bundle: nil)
@@ -69,14 +72,28 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         setUpTopAnimation()
         setUpProgressAnimation()
         makeTimelineAccessible()
+        viewHasLoaded = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        topAnimation.setProgressWithFrame(NSNumber(integerLiteral: 0))
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-            self.topAnimation.play()
-            self.playProgressAnimation()
+        if !viewHasAppeared {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                self.topAnimation.play()
+                self.playProgressAnimation()
+            }
+        }
+        viewHasAppeared = true
+    }
+    
+    func update(withAppointment appointment: Appointment) {
+        let currApptStatus = viewModel.appointment.status
+        viewModel.appointment = appointment
+        if viewHasLoaded {
+            self.playProgressAnimation(fromStatus: currApptStatus)
+            bindViewModel()
+            bindActions()
+            makeTimelineAccessible()
         }
     }
     
@@ -255,23 +272,43 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func playProgressAnimation() {
-        let stopFrame: Int
-        switch viewModel.status {
+    func frameForStatus(_ status: Appointment.Status) -> Int {
+        switch status {
         case .scheduled:
-            stopFrame = 67
+            return 67
         case .enRoute:
-            stopFrame = 136
+            return 136
         case .inProgress:
-            stopFrame = 206
+            return 206
         case .complete:
-            stopFrame = 270
-        case .canceled:
-            return // no progress animation if canceled
+            return 270
+        default:
+            return 0
+        }
+    }
+    
+    func playProgressAnimation() {
+        if viewModel.status == .canceled {
+            return
         }
         
-//        progressAnimation.setProgressWithFrame(NSNumber(integerLiteral: 0))
+        let stopFrame = frameForStatus(viewModel.status)
+        progressAnimation.stop()
         progressAnimation.play(fromFrame: NSNumber(integerLiteral: 0),
+                               toFrame: NSNumber(integerLiteral: stopFrame),
+                               withCompletion: nil)
+    }
+    
+    func playProgressAnimation(fromStatus: Appointment.Status) {
+        if viewModel.status == .canceled {
+            return
+        }
+        
+        let startFrame = frameForStatus(fromStatus)
+        let stopFrame = frameForStatus(viewModel.status)
+        
+        progressAnimation.stop()
+        progressAnimation.play(fromFrame: NSNumber(integerLiteral: startFrame),
                                toFrame: NSNumber(integerLiteral: stopFrame),
                                withCompletion: nil)
     }
@@ -318,7 +355,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
             topAnimation.bottomAnchor.constraint(equalTo: topAnimationContainer.bottomAnchor),
             topAnimation.leadingAnchor.constraint(equalTo: topAnimationContainer.leadingAnchor),
             topAnimation.trailingAnchor.constraint(equalTo: topAnimationContainer.trailingAnchor)
-            ])
+        ])
     }
     
     func setUpProgressAnimation() {
@@ -338,7 +375,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
             progressAnimation.bottomAnchor.constraint(equalTo: progressAnimationContainer.bottomAnchor),
             progressAnimation.leadingAnchor.constraint(equalTo: progressAnimationContainer.leadingAnchor),
             progressAnimation.trailingAnchor.constraint(equalTo: progressAnimationContainer.trailingAnchor)
-            ])
+        ])
     }
 }
 

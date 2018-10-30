@@ -48,6 +48,8 @@ class PaymentViewModel {
     let allowEdits = Variable(true)
     let allowDeletes = Variable(false)
     
+    let fiservCutoffDate = Calendar.opCo.date(from: DateComponents(year: 2018, month: 10, day: 29))!
+    
     init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
@@ -85,7 +87,12 @@ class PaymentViewModel {
             self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
         } else if let dueDate = accountDetail.billingInfo.dueByDate {
             if dueDate >= now && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
-                self.paymentDate.value = dueDate
+                switch Environment.shared.opco {
+                case .bge:
+                    self.paymentDate.value = dueDate
+                case .comEd, .peco:
+                    self.paymentDate.value = min(dueDate, self.fiservCutoffDate)
+                }
             }
         }
     }
@@ -130,12 +137,12 @@ class PaymentViewModel {
         Observable.zip(observables)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.isFetching.value = false
                 
                 if let walletItems = self.walletItems.value, self.selectedWalletItem.value == nil {
                     if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment
-                        self.paymentAmount.value = String.init(format: "%.02f", paymentDetail.paymentAmount)
+                        self.paymentAmount.value = String(format: "%.02f", paymentDetail.paymentAmount)
                         self.formatPaymentAmount()
                         self.paymentDate.value = paymentDetail.paymentDate!
                         for item in walletItems {
@@ -240,10 +247,7 @@ class PaymentViewModel {
     }
     
     private func scheduleInlineBankPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        var accountType: String?
-        if Environment.shared.opco == .bge {
-            accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
-        }
+        let accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
         let accountName: String? = addBankFormViewModel.accountHolderName.value.isEmpty ? nil : addBankFormViewModel.accountHolderName.value
         let nickname: String? = addBankFormViewModel.nickname.value.isEmpty ? nil : addBankFormViewModel.nickname.value
         
