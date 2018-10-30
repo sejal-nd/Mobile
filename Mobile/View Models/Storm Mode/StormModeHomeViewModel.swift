@@ -24,6 +24,8 @@ class StormModeHomeViewModel {
     var currentOutageStatus: OutageStatus?
     let stormModeUpdate = Variable<OpcoUpdate?>(nil)
     
+    var stormModeEnded = false
+    
     init(authService: AuthenticationService, outageService: OutageService, alertsService: AlertsService) {
         self.authService = authService
         self.outageService = outageService
@@ -50,6 +52,7 @@ class StormModeHomeViewModel {
             .take(1)
             .mapTo(())
             .asDriver(onErrorDriveWith: .empty())
+            .do(onNext: { [weak self] in self?.stormModeEnded = true })
     }
     
     func fetchData(onSuccess: @escaping () -> Void,
@@ -199,5 +202,11 @@ class StormModeHomeViewModel {
             }
         }
         return ""
+    }
+    
+    var reportOutageEnabled: Bool {
+        return !(currentOutageStatus?.flagFinaled ?? false ||
+            currentOutageStatus?.flagNoPay ?? false ||
+            currentOutageStatus?.flagNonService ?? false)
     }
 }

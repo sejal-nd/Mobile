@@ -144,7 +144,7 @@ class OutageViewModel {
     }
     
     var shouldShowPayBillButton: Bool {
-        return Environment.shared.opco != .bge && currentOutageStatus!.flagNoPay
+        return currentOutageStatus!.flagNoPay
     }
     
     var showReportStreetlightOutageButton: Bool {

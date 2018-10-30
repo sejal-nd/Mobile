@@ -18,12 +18,16 @@ extension Maintenance {
         assert(Environment.shared.environmentName == .aut,
                "init only available for tests")
         
-        allStatus = all
-        homeStatus = home
-        billStatus = bill
-        outageStatus = outage
-        alertStatus = alert
-        usageStatus = usage
-        stormModeStatus = storm
+        let map: [String: Any] = [
+            "all": all,
+            "home": home,
+            "bill": bill,
+            "outage": outage,
+            "alert": alert,
+            "usage": usage,
+            "storm": storm
+        ]
+        
+        self = Maintenance.from(map as NSDictionary)!
     }
 }

@@ -70,6 +70,11 @@ extension UIColor {
         return UIColor(red: 234/255, green: 230/255, blue: 188/255, alpha: 1)
     }
     
+    @nonobjc static var bgeGreen: UIColor {
+        // Old BGE primary color
+        return UIColor(red: 102/255, green: 179/255, blue: 96/255, alpha: 1)
+    }
+    
     @nonobjc static var stormModeBlack: UIColor {
         return UIColor(red: 44/255, green: 38/255, blue: 51/255, alpha: 1)
     }
