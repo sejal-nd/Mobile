@@ -37,7 +37,10 @@ class MockOutageService: OutageService {
                 accountNum = "5591032203"
             } else if loggedInUsername == "outageTestReport" {
                 accountNum = "7003238921"
+            } else if loggedInUsername == "outageTestError" {
+                return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
             }
+            
             let outageStatus = getOutageStatus(accountNumber: accountNum)
             return .just(outageStatus)
         }

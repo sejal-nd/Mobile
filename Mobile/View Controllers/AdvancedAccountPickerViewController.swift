@@ -36,8 +36,11 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        navigationController?.setWhiteNavBar()
+        if StormModeStatus.shared.isOn {
+            navigationController?.setColoredNavBar()
+        } else {
+            navigationController?.setWhiteNavBar()
+        }
     }
 
 }

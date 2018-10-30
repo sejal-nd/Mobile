@@ -422,10 +422,7 @@ class HomeBillCardViewModel {
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
     private(set) lazy var showAutoPay: Driver<Bool> = billState.map {
-        if StormModeStatus.shared.isOn {
-            return false
-        }
-        return $0 == .billReadyAutoPay
+        $0 == .billReadyAutoPay
     }
     
     private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(showOneTouchPaySlider,
