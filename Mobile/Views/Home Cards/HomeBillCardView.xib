@@ -151,7 +151,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="zIp-lU-S5u" secondAttribute="bottom" priority="999" id="9uw-Nr-uSr"/>
                                                         <constraint firstItem="zIp-lU-S5u" firstAttribute="top" secondItem="h66-Bh-Kjm" secondAttribute="top" priority="999" constant="17" id="Lt7-Fd-dVN"/>
@@ -398,7 +398,7 @@
                                                             <state key="normal" title="View Tutorial"/>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="Lai-wo-Cje" firstAttribute="leading" secondItem="ygv-AU-pzi" secondAttribute="leading" id="0as-zi-o8L"/>
                                                         <constraint firstAttribute="bottom" secondItem="Lai-wo-Cje" secondAttribute="bottom" priority="999" constant="10" id="90m-fh-aFJ"/>
