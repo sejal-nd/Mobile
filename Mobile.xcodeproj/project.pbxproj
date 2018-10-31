@@ -865,6 +865,9 @@
 		9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
+		9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
+		9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
+		9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
 		B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
 		B0030D0A2097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
@@ -2681,6 +2684,7 @@
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
 		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
+		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
 		B0030D072097BC8300327A3D /* MaintenanceModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModeView.swift; sourceTree = "<group>"; };
 		B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceModeView.xib; sourceTree = "<group>"; };
 		B017488D2135D19B0039D0C6 /* Storm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storm.storyboard; sourceTree = "<group>"; };
@@ -4567,6 +4571,7 @@
 				B548468C1E6885FC008CE1B1 /* ResponseParserTests.swift */,
 				E8EC0F8D2028FA3C00956ABD /* WalletViewModelTests.swift */,
 				357757502113611000E73542 /* DateParserTests.swift */,
+				9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -7362,6 +7367,7 @@
 				823AA54B20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				B067E0A72045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
+				9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
 				2249C03D216C5F9C00EAA44D /* URLSession+Rx.swift in Sources */,
 				82B20A35203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
 				824004CD1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
@@ -7597,6 +7603,7 @@
 				E8F62B70200924410077B3DA /* MockBillService.swift in Sources */,
 				823AA54C20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62B71200924410077B3DA /* MockAlertsService.swift in Sources */,
+				9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
 				2249C03E216C5F9C00EAA44D /* URLSession+Rx.swift in Sources */,
 				B067E0A82045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
 				82B20A36203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
@@ -7788,6 +7795,7 @@
 				E8F62C25200924570077B3DA /* MockBillService.swift in Sources */,
 				823AA54D20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62C26200924570077B3DA /* MockAlertsService.swift in Sources */,
+				9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
 				2249C03F216C5F9D00EAA44D /* URLSession+Rx.swift in Sources */,
 				B067E0A92045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
 				82B20A37203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
