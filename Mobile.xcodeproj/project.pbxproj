@@ -2677,6 +2677,9 @@
 		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
 		9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillForecastInitExtensions.swift; sourceTree = "<group>"; };
+		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C6BC8A520ADCECF00B4399B /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
 		9C6BC8A620ADCECF00B4399B /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
@@ -4391,21 +4394,21 @@
 		B55A8B001F15640A00F63AC3 /* GoogleAnalytics */ = {
 			isa = PBXGroup;
 			children = (
+				B5D415831F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist */,
 				B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */,
 				B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */,
-				B5D415831F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist */,
-				B5D415811F3A6E9000AC32B2 /* GoogleService-Info_peco.plist */,
-				B5D4157F1F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist */,
-				0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */,
 				0E5BEF0C202E2389009D1ADB /* GoogleService-Info_peco_prodbeta.plist */,
+				B5D415811F3A6E9000AC32B2 /* GoogleService-Info_peco.plist */,
+				B5D4157B1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist */,
+				B5D4157F1F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist */,
 				B5D4157D1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist */,
 				0E5BEF09202E22CD009D1ADB /* GoogleService-Info_comed_prodbeta.plist */,
-				B5D4157B1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist */,
 				B5D415791F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist */,
-				B5D415771F3A6C6300AC32B2 /* GoogleService-Info_bge.plist */,
-				B5D415751F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist */,
-				B5D415711F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist */,
 				B5D415731F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist */,
+				B5D415711F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist */,
+				B5D415751F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist */,
+				0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */,
+				B5D415771F3A6C6300AC32B2 /* GoogleService-Info_bge.plist */,
 				B5D415701F3A655900AC32B2 /* module.modulemap */,
 				B5D4156F1F3A653200AC32B2 /* Firebase.h */,
 				B55A8B111F1564A400F63AC3 /* libGoogleAnalyticsServices.a */,
@@ -4495,16 +4498,19 @@
 				B5AC067C1E5178AB00BBA4ED /* environment.plist */,
 				0EB93B6B202CA4DF0049E7A2 /* BGE-Environment-AUT.plist */,
 				B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */,
+				9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */,
 				B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */,
 				0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */,
 				B58B5B5C1E516C360051FD5F /* BGE-Environment-RELEASE.plist */,
 				0EB93B6D202CA4F30049E7A2 /* ComEd-Environment-AUT.plist */,
 				B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEVELOP.plist */,
+				9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */,
 				B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */,
 				0E131760202B5B7D00865819 /* ComEd-Environment-PRODBETA.plist */,
 				B5AC06821E5212E300BBA4ED /* ComEd-Environment-RELEASE.plist */,
 				0EB93B6F202CA5040049E7A2 /* PECO-Environment-AUT.plist */,
 				B5AC06861E5212E300BBA4ED /* PECO-Environment-DEVELOP.plist */,
+				9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */,
 				B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */,
 				0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */,
 				B5AC06871E5212E300BBA4ED /* PECO-Environment-RELEASE.plist */,
@@ -8852,6 +8858,358 @@
 			};
 			name = Automation;
 		};
+		9C541053218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_ENVIRONMENT = TESTING;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics";
+			};
+			name = Testing;
+		};
+		9C541054218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COMPRESS_PNG_FILES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = YES;
+				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Enterprise Dist";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Testing;
+		};
+		9C541055218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ComEd-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = YES;
+				EXM_BUNDLE_ID = com.exelon.mobile.comed.testing;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0dbc7d4e-b1b0-4e69-a53b-306ca99104d2";
+				PROVISIONING_PROFILE_SPECIFIER = "ComEd Staging Enterprise Dist";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Testing;
+		};
+		9C541056218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/PECO-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COMPRESS_PNG_FILES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = YES;
+				EXM_BUNDLE_ID = com.exelon.mobile.peco.testing;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "26d3c4f4-431d-4400-a26d-910b8601a452";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Staging Enterprise Dist";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Testing;
+		};
+		9C541057218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Testing;
+		};
+		9C541058218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Testing;
+		};
+		9C541059218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Testing;
+		};
+		9C54105A218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+			};
+			name = Testing;
+		};
+		9C54105B218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
+			};
+			name = Testing;
+		};
+		9C54105C218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
+			};
+			name = Testing;
+		};
+		9C54105D218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
+				TEST_TARGET_NAME = BGE;
+			};
+			name = Testing;
+		};
+		9C54105E218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
+				TEST_TARGET_NAME = ComEd;
+			};
+			name = Testing;
+		};
+		9C54105F218B9D8700E03670 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
+					"$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
+				TEST_TARGET_NAME = PECO;
+			};
+			name = Testing;
+		};
 		B58B5AE71E4E28740051FD5F /* Develop */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -9917,6 +10275,7 @@
 				087630E51E72F5D000FA7020 /* Develop */,
 				0EB93B68202CA3C70049E7A2 /* Automation */,
 				087630E71E72F5D000FA7020 /* Staging */,
+				9C54105D218B9D8700E03670 /* Testing */,
 				087630E91E72F5D000FA7020 /* Release */,
 				0E13175B202B583000865819 /* Prodbeta */,
 			);
@@ -9929,6 +10288,7 @@
 				B58B5AE71E4E28740051FD5F /* Develop */,
 				0EB93B5E202CA3C70049E7A2 /* Automation */,
 				B58B5AF61E51497B0051FD5F /* Staging */,
+				9C541053218B9D8700E03670 /* Testing */,
 				B58B5AE81E4E28740051FD5F /* Release */,
 				0E131751202B583000865819 /* Prodbeta */,
 			);
@@ -9941,6 +10301,7 @@
 				B58B5AEA1E4E28740051FD5F /* Develop */,
 				0EB93B5F202CA3C70049E7A2 /* Automation */,
 				B58B5AF71E51497B0051FD5F /* Staging */,
+				9C541054218B9D8700E03670 /* Testing */,
 				B58B5AEB1E4E28740051FD5F /* Release */,
 				0E131752202B583000865819 /* Prodbeta */,
 			);
@@ -9953,6 +10314,7 @@
 				B58B5B191E515BD50051FD5F /* Develop */,
 				0EB93B61202CA3C70049E7A2 /* Automation */,
 				B58B5B1B1E515BD50051FD5F /* Staging */,
+				9C541056218B9D8700E03670 /* Testing */,
 				B58B5B1D1E515BD50051FD5F /* Release */,
 				0E131754202B583000865819 /* Prodbeta */,
 			);
@@ -9965,6 +10327,7 @@
 				B58B5B2A1E515C840051FD5F /* Develop */,
 				0EB93B60202CA3C70049E7A2 /* Automation */,
 				B58B5B2C1E515C840051FD5F /* Staging */,
+				9C541055218B9D8700E03670 /* Testing */,
 				B58B5B2E1E515C840051FD5F /* Release */,
 				0E131753202B583000865819 /* Prodbeta */,
 			);
@@ -9977,6 +10340,7 @@
 				B58B5B621E516EEE0051FD5F /* Develop */,
 				0EB93B62202CA3C70049E7A2 /* Automation */,
 				B58B5B641E516EEE0051FD5F /* Staging */,
+				9C541057218B9D8700E03670 /* Testing */,
 				B58B5B661E516EEE0051FD5F /* Release */,
 				0E131755202B583000865819 /* Prodbeta */,
 			);
@@ -9989,6 +10353,7 @@
 				B5AC06AC1E5216C300BBA4ED /* Develop */,
 				0EB93B63202CA3C70049E7A2 /* Automation */,
 				B5AC06AE1E5216C300BBA4ED /* Staging */,
+				9C541058218B9D8700E03670 /* Testing */,
 				B5AC06B01E5216C300BBA4ED /* Release */,
 				0E131756202B583000865819 /* Prodbeta */,
 			);
@@ -10001,6 +10366,7 @@
 				B5AC06B51E52171800BBA4ED /* Develop */,
 				0EB93B64202CA3C70049E7A2 /* Automation */,
 				B5AC06B71E52171800BBA4ED /* Staging */,
+				9C541059218B9D8700E03670 /* Testing */,
 				B5AC06B91E52171800BBA4ED /* Release */,
 				0E131757202B583000865819 /* Prodbeta */,
 			);
@@ -10013,6 +10379,7 @@
 				B5AC06DD1E52238900BBA4ED /* Develop */,
 				0EB93B65202CA3C70049E7A2 /* Automation */,
 				B5AC06DF1E52238900BBA4ED /* Staging */,
+				9C54105A218B9D8700E03670 /* Testing */,
 				B5AC06E11E52238900BBA4ED /* Release */,
 				0E131758202B583000865819 /* Prodbeta */,
 			);
@@ -10025,6 +10392,7 @@
 				E8F62B132009207C0077B3DA /* Develop */,
 				0EB93B69202CA3C70049E7A2 /* Automation */,
 				E8F62B162009207C0077B3DA /* Staging */,
+				9C54105E218B9D8700E03670 /* Testing */,
 				E8F62B192009207C0077B3DA /* Release */,
 				0E13175C202B583000865819 /* Prodbeta */,
 			);
@@ -10037,6 +10405,7 @@
 				E8F62B24200920870077B3DA /* Develop */,
 				0EB93B6A202CA3C70049E7A2 /* Automation */,
 				E8F62B27200920870077B3DA /* Staging */,
+				9C54105F218B9D8700E03670 /* Testing */,
 				E8F62B2A200920870077B3DA /* Release */,
 				0E13175D202B583000865819 /* Prodbeta */,
 			);
@@ -10049,6 +10418,7 @@
 				E8F62BDD200924410077B3DA /* Develop */,
 				0EB93B66202CA3C70049E7A2 /* Automation */,
 				E8F62BE0200924410077B3DA /* Staging */,
+				9C54105B218B9D8700E03670 /* Testing */,
 				E8F62BE3200924410077B3DA /* Release */,
 				0E131759202B583000865819 /* Prodbeta */,
 			);
@@ -10061,6 +10431,7 @@
 				E8F62C92200924570077B3DA /* Develop */,
 				0EB93B67202CA3C70049E7A2 /* Automation */,
 				E8F62C95200924570077B3DA /* Staging */,
+				9C54105C218B9D8700E03670 /* Testing */,
 				E8F62C98200924570077B3DA /* Release */,
 				0E13175A202B583000865819 /* Prodbeta */,
 			);

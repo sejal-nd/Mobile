@@ -3,22 +3,24 @@
 <plist version="1.0">
 <dict>
 	<key>environment</key>
-	<string>DEV</string>
+	<string>STAGE</string>
 	<key>appName</key>
-	<string>ComEd_DEV</string>
+	<string>ComEd_STAGE</string>
 	<key>opco</key>
 	<string>ComEd</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppDevTest</string>
+	<string>mobileAppUATTest</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_comed_develop</string>
+	<string>GoogleService-Info_comed_testing</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-16</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.comed.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.comed.com</string>
+	<key>appCenterId</key>
+	<string>bf4bfe55-3dfd-423b-acfa-32ef84b3776c</string>
 </dict>
 </plist>
