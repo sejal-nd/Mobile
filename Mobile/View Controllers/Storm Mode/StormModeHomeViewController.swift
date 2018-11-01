@@ -258,6 +258,13 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self?.performSegue(withIdentifier: $0, sender: nil)
             })
             .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.didTapOnPushNotification, object: nil)
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.navigateToAlerts()
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -489,6 +496,18 @@ class StormModeHomeViewController: AccountPickerViewController {
             vc.shouldHideNavigationBar = false
             navigationController?.setNavigationBarHidden(false, animated: false)
         }
+    }
+    
+    func navigateToAlerts() {
+        let moreStoryboard = UIStoryboard(name: "More", bundle: nil)
+        let alertsStoryboard = UIStoryboard(name: "Alerts", bundle: nil)
+        
+        guard let moreVC = moreStoryboard.instantiateInitialViewController() as? MoreViewController,
+            let alertsVC = alertsStoryboard.instantiateInitialViewController()
+            else { return }
+        
+        moreVC.shouldHideNavigationBar = false
+        navigationController?.viewControllers = [self, moreVC, alertsVC]
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
