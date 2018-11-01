@@ -8,14 +8,8 @@
 	<string>BGE_STAGE</string>
 	<key>opco</key>
 	<string>BGE</string>
-	<key>oauthEndpoint</key>
-	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppUAT</string>
-	<key>fiservUrl</key>
-	<string>https://billerwebui.clienttestmatrix.com/Mobile</string>
-	<key>speedpayUrl</key>
-	<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
+	<string>mobileAppUATStage</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
 	<key>firebaseConfigFile</key>
@@ -24,9 +18,9 @@
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.bge.com</string>
-	<key>appCenterId</key>
-	<string>3bf3242e-af11-4b1e-9242-99dce77bbbc8</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.bge.com</string>
+	<key>appCenterId</key>
+	<string>3bf3242e-af11-4b1e-9242-99dce77bbbc8</string>
 </dict>
 </plist>

@@ -14,7 +14,7 @@ struct SpeedpayApi {
         do {
             let params: [String: Any] = ["DEBIT_ACCOUNT": cardNumber]
             
-            let url = URL(string: Environment.shared.speedpayUrl)!
+            let url = URL(string: Environment.shared.mcsConfig.speedpayUrl)!
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -25,7 +25,7 @@ struct SpeedpayApi {
             let requestId = ShortUUIDGenerator.getUUID(length: 8)
             let bodyString = String(data: body, encoding: .utf8) ?? ""
             let logMessage = "REQUEST - BODY: \(bodyString)"
-            let path = String(url.absoluteString.suffix(from: Environment.shared.speedpayUrl.endIndex))
+            let path = String(url.absoluteString.suffix(from: Environment.shared.mcsConfig.speedpayUrl.endIndex))
             
             APILog(requestId: requestId, path: path, method: .post, message: logMessage)
             

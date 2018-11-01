@@ -9,11 +9,11 @@
 	<key>opco</key>
 	<string>ComEd</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppUATStage</string>
+	<string>mobileAppUATTest</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_comed_staging</string>
+	<string>GoogleService-Info_comed_testing</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-16</string>
 	<key>opcoUpdatesHost</key>

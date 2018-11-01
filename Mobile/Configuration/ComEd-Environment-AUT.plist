@@ -8,14 +8,8 @@
 	<string>ComEd_AUT</string>
 	<key>opco</key>
 	<string>ComEd</string>
-	<key>oauthEndpoint</key>
-	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppUAT</string>
-	<key>fiservUrl</key>
-	<string>https://billerwebui.clienttestmatrix.com/Mobile</string>
-	<key>speedpayUrl</key>
-	<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
+	<string>mobileAppUATStage</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>firebaseConfigFile</key>

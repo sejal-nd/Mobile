@@ -107,7 +107,7 @@ struct MCSAuthenticationService : AuthenticationService {
         
         let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)"
         let method = HttpMethod.post
-        var request = URLRequest(url: URL(string: Environment.shared.oAuthEndpoint)!)
+        var request = URLRequest(url: URL(string: Environment.shared.mcsConfig.oAuthEndpoint)!)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = ["content-type": "application/x-www-form-urlencoded"]
         request.httpBody = postDataString.data(using: .utf8)
