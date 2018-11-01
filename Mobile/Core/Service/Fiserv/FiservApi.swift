@@ -216,7 +216,7 @@ struct FiservApi {
                                                    lastName : String?) -> [String:Any] {
         var details = [Parameter.routingNumber.rawValue : routingNumber,
                        Parameter.checkAccountNumber.rawValue : accountNumber,
-                       Parameter.checkType.rawValue : 1] as [String : Any]
+                       Parameter.checkType.rawValue : 0] as [String : Any]
         
         if(!(firstName ?? "").isEmpty) {
             details[Parameter.firstName.rawValue] = firstName
