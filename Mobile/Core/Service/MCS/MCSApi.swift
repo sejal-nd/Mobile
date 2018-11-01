@@ -19,11 +19,6 @@ class MCSApi {
     static let API_VERSION = "v3"
     private let TIMEOUT = 120.0
 
-    // Pulled from MCSConfig.plist
-    private let baseUrl: String
-    private let mobileBackendId: String
-    private let anonymousKey: String
-
     final private let TOKEN_KEYCHAIN_KEY = "kExelon_Token"
     private let tokenKeychain = A0SimpleKeychain()
     private var accessToken: String?
@@ -31,22 +26,6 @@ class MCSApi {
     private let session: URLSession
 
     private init() {
-        guard
-            let configPath = Bundle.main.path(forResource: "MCSConfig", ofType: "plist"),
-            let dict = NSDictionary(contentsOfFile: configPath),
-            let mobileBackends = dict["mobileBackends"] as? [String: Any],
-            let mobileBackend = mobileBackends[Environment.shared.mcsInstanceName] as? [String: Any],
-            let baseUrl = mobileBackend["baseURL"] as? String,
-            let mobileBackendId = mobileBackend["mobileBackendID"] as? String,
-            let anonymousKey = mobileBackend["anonymousKey"] as? String
-        else {
-            fatalError("MCSConfig.plist does not exist or is configured incorrectly")
-        }
-
-        self.baseUrl = baseUrl
-        self.mobileBackendId = mobileBackendId
-        self.anonymousKey = anonymousKey
-
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = TIMEOUT
         sessionConfig.timeoutIntervalForResource = TIMEOUT
@@ -109,11 +88,11 @@ class MCSApi {
             APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
             return .error(ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue))
         case .wifi, .cellular:
-            let url = URL(string: "\(baseUrl)\(path)")!
+            let url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)\(path)")!
             var request = URLRequest(url: url)
             request.httpMethod = method.rawValue
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            request.setValue(mobileBackendId, forHTTPHeaderField: "oracle-mobile-backend-id")
+            request.setValue(Environment.shared.mcsConfig.mobileBackendId, forHTTPHeaderField: "oracle-mobile-backend-id")
             request.setValue("xml", forHTTPHeaderField: "encode")
 
             return session.rx.dataResponse(request: request)
@@ -186,16 +165,16 @@ class MCSApi {
             return .error(serviceError)
         case .wifi, .cellular:
             // Build Request
-            let url = URL(string: "\(baseUrl)/mobile/custom/\(path)")!
+            let url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)/mobile/custom/\(path)")!
             var request = URLRequest(url: url)
             request.httpMethod = method.rawValue
             request.httpBody = requestBody
-            request.setValue(mobileBackendId, forHTTPHeaderField: "oracle-mobile-backend-id")
+            request.setValue(Environment.shared.mcsConfig.mobileBackendId, forHTTPHeaderField: "oracle-mobile-backend-id")
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             if isAuthenticated() {
                 request.setValue("Bearer \(accessToken!)", forHTTPHeaderField: "Authorization")
             } else {
-                request.setValue("Basic \(anonymousKey)", forHTTPHeaderField: "Authorization")
+                request.setValue("Basic \(Environment.shared.mcsConfig.anonymousKey)", forHTTPHeaderField: "Authorization")
             }
             
             // Response

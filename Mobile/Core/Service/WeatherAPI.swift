@@ -11,7 +11,7 @@ import RxCocoa
 import CoreLocation
 import Mapper
 
-let baseUrl = "https://api.weather.gov/"
+private let baseUrl = "https://api.weather.gov/"
 
 //added greeting to this so everything loads at the same time
 struct WeatherItem {
