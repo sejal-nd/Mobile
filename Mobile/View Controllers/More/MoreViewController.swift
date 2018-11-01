@@ -72,7 +72,7 @@ class MoreViewController: UIViewController {
         if shouldHideNavigationBar {
             navigationController?.setNavigationBarHidden(true, animated: true)
         } else {
-            navigationController?.setColoredNavBar()
+            navigationController?.setColoredNavBar(hidesBottomBorder: true)
         }
         
         if AccountsStore.shared.accounts == nil {
