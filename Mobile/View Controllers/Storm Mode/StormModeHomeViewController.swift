@@ -144,11 +144,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet private weak var loadingBackgroundView: UIView!
     @IBOutlet private weak var loadingAnimationView: UIView!
     @IBOutlet private weak var outageStatusButton: OutageStatusButton!
-    @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView! {
-        didSet {
-            noNetworkConnectionView.configureContactText(attributedText: viewModel.noNetworkAttributedText)
-        }
-    }
+    @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
     
     @IBOutlet private weak var outageSectionContainer: UIView!
     @IBOutlet private weak var outageSectionStack: UIStackView!

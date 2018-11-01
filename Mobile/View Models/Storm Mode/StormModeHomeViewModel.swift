@@ -151,35 +151,6 @@ class StormModeHomeViewModel {
         }
     }
     
-    var noNetworkAttributedText: NSMutableAttributedString {
-        switch Environment.shared.opco {
-        case .comEd:
-            let downedPowerLineText = "To report a downed or sparking power line, please call "
-            let downedPowerLinePhoneNumber = NSLocalizedString("1-800-334-7661", comment: "")
-            
-            let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
-            downedPowerLineTextMutableAttributedString.addAttribute(.font, value: OpenSans.regular.of(textStyle: .subheadline), range: NSMakeRange(0, downedPowerLineTextMutableAttributedString.string.count))
-            let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .subheadline), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
-            
-            downedPowerLineTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
-            
-            return downedPowerLineTextMutableAttributedString
-        case .bge, .peco:
-            let downedPowerLineText = "To report a gas emergency or a downed or sparking power line, please call "
-            let downedPowerLinePhoneNumber = footerPhoneLabelText
-            
-            let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
-            downedPowerLineTextMutableAttributedString.addAttribute(.font, value: OpenSans.regular.of(textStyle: .subheadline), range: NSMakeRange(0, downedPowerLineTextMutableAttributedString.string.count))
-            let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .subheadline), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
-            
-            downedPowerLineTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
-            
-            return downedPowerLineTextMutableAttributedString
-        }
-    }
-    
     var gasOnlyMessage: String {
         switch Environment.shared.opco {
         case .bge:

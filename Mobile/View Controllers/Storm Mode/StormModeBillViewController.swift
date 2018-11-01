@@ -16,6 +16,7 @@ class StormModeBillViewController: AccountPickerViewController {
     @IBOutlet private weak var makeAPaymentButton: DisclosureButton!
     @IBOutlet private weak var paymentActivityButton: DisclosureButton!
     @IBOutlet private weak var myWalletButton: DisclosureButton!
+    @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
     
     var billCardView: HomeBillCardView!
     
@@ -80,7 +81,7 @@ class StormModeBillViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar()
+        navigationController?.setColoredNavBar(hidesBottomBorder: true)
     }
     
     @objc func setRefreshControlEnabled(enabled: Bool) {
@@ -119,6 +120,9 @@ class StormModeBillViewController: AccountPickerViewController {
         
         viewModel.showButtonStack.not().drive(buttonStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.showMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.showNoNetworkConnectionView.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showNoNetworkConnectionView.drive(scrollView!.rx.isHidden).disposed(by: disposeBag)
     }
     
     func bindActions() {
@@ -163,6 +167,11 @@ class StormModeBillViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in
                 self?.performSegue(withIdentifier: "WalletSegue", sender: $0)
             })
+            .disposed(by: disposeBag)
+        
+        Observable.merge(noNetworkConnectionView.reload)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in self?.viewModel.fetchData.onNext(.switchAccount) })
             .disposed(by: disposeBag)
     }
     
