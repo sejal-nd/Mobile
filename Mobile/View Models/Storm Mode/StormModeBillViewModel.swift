@@ -71,6 +71,11 @@ class StormModeBillViewModel {
         .map { $0.billingInfo.netDueAmount ?? 0 > 0 || Environment.shared.opco == .bge }
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var showNoNetworkConnectionView: Driver<Bool> = accountDetailEvents
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .startWith(false)
+        .asDriver(onErrorDriveWith: .empty())
+    
     private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = accountDetailEvents
         .elements()
         .map { accountDetail in

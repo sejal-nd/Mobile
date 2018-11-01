@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="14D-ll-3q4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="14D-ll-3q4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,7 +37,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybl-Tq-eQ9" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ybl-Tq-eQ9" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1800"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -247,22 +247,22 @@
                                                                         <rect key="frame" x="109" y="40" width="125" height="126"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas Only Account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-Xw-UzD">
-                                                                        <rect key="frame" x="75.5" y="182" width="192" height="29"/>
+                                                                        <rect key="frame" x="75.5" y="182" width="192" height="35"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To report a gas emergency, please call" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXp-va-glw">
-                                                                        <rect key="frame" x="24" y="221" width="295" height="19.5"/>
+                                                                        <rect key="frame" x="24" y="227" width="295" height="16.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WTJ-6M-0a3" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="115" y="246.5" width="113.5" height="23.5"/>
+                                                                        <rect key="frame" x="114.5" y="249.5" width="114" height="20.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-QC-lm0">
-                                                                                <rect key="frame" x="6" y="2" width="101.5" height="19.5"/>
+                                                                                <rect key="frame" x="6" y="2" width="102" height="16.5"/>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -310,7 +310,7 @@
                                                                                 <rect key="frame" x="93" y="0.0" width="125" height="126"/>
                                                                             </imageView>
                                                                             <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkO-hm-Egb">
-                                                                                <rect key="frame" x="155.5" y="135" width="0.0" height="20"/>
+                                                                                <rect key="frame" x="155.5" y="137.5" width="0.0" height="20"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" id="MmR-WT-ajM"/>
@@ -318,13 +318,13 @@
                                                                                 </constraints>
                                                                             </view>
                                                                             <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outage Unavailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ytz-FG-53M">
-                                                                                <rect key="frame" x="75" y="163.5" width="161" height="21.5"/>
+                                                                                <rect key="frame" x="75" y="169.5" width="161" height="21.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <textView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jpt-Jv-nQF" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="2" y="194" width="307.5" height="111.5"/>
+                                                                                <rect key="frame" x="8" y="202.5" width="295" height="100"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                 <string key="text">We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call x-xxx-xxx-xxxx.</string>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -389,16 +389,16 @@
                                                                 <rect key="frame" x="0.0" y="1258" width="343" height="69"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To report a gas emergency, please call" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfu-QQ-AnX">
-                                                                        <rect key="frame" x="14" y="0.0" width="315" height="39.5"/>
+                                                                        <rect key="frame" x="14" y="0.0" width="315" height="42.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GuD-R7-9Ss" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="115" y="45.5" width="113.5" height="23.5"/>
+                                                                        <rect key="frame" x="114.5" y="48.5" width="114" height="20.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1-800-685-0123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBl-nh-b0J">
-                                                                                <rect key="frame" x="6" y="2" width="101.5" height="19.5"/>
+                                                                                <rect key="frame" x="6" y="2" width="102" height="16.5"/>
                                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -682,6 +682,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUj-eo-RFp" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yw6-8A-Yfm">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -755,8 +762,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="IUj-eo-RFp" firstAttribute="trailing" secondItem="6jw-ge-oMd" secondAttribute="trailing" id="20M-kN-43Q"/>
+                            <constraint firstItem="IUj-eo-RFp" firstAttribute="top" secondItem="6jw-ge-oMd" secondAttribute="top" id="4m4-ux-Ejf"/>
                             <constraint firstItem="yw6-8A-Yfm" firstAttribute="bottom" secondItem="UpR-nO-Em0" secondAttribute="bottom" id="9bH-RX-AEh"/>
                             <constraint firstItem="yw6-8A-Yfm" firstAttribute="trailing" secondItem="UpR-nO-Em0" secondAttribute="trailing" id="VLo-fd-7JN"/>
+                            <constraint firstAttribute="bottom" secondItem="IUj-eo-RFp" secondAttribute="bottom" id="Yz9-Gu-gSb"/>
+                            <constraint firstItem="IUj-eo-RFp" firstAttribute="leading" secondItem="6jw-ge-oMd" secondAttribute="leading" id="dfQ-ir-d4U"/>
                             <constraint firstItem="yw6-8A-Yfm" firstAttribute="top" secondItem="6jw-ge-oMd" secondAttribute="top" id="sgI-GG-gNl"/>
                             <constraint firstItem="yw6-8A-Yfm" firstAttribute="leading" secondItem="UpR-nO-Em0" secondAttribute="leading" id="wYg-we-KMf"/>
                             <constraint firstItem="d8L-CC-OTe" firstAttribute="width" secondItem="6jw-ge-oMd" secondAttribute="width" id="yJa-UT-vfc"/>
@@ -769,6 +780,7 @@
                         <outlet property="contentStack" destination="FFF-QK-sOi" id="vSV-YK-ezn"/>
                         <outlet property="makeAPaymentButton" destination="9ZA-aM-2mG" id="9Gs-Cd-Ntc"/>
                         <outlet property="myWalletButton" destination="UL9-05-v8P" id="QPn-er-RsV"/>
+                        <outlet property="noNetworkConnectionView" destination="IUj-eo-RFp" id="X81-qP-IHy"/>
                         <outlet property="paymentActivityButton" destination="KtO-H4-uEn" id="Mhc-gQ-DWk"/>
                         <outlet property="scrollView" destination="yw6-8A-Yfm" id="gPP-WK-LqO"/>
                         <segue destination="AR8-MS-udi" kind="show" identifier="PaymentActivitySegue" id="m6Z-o7-L8F"/>
