@@ -26,11 +26,12 @@ Usage:
 --opco                    - BGE, PECO, or ComEd
 --build-number	          - Integer, will be appended to the base version number
 
---configuration           - Staging, Prodbeta, or Release
+--configuration           - Testing, Staging, Prodbeta, or Release
 							
 							or
 
---build-branch              refs/heads/stage
+--build-branch              refs/heads/test
+							refs/heads/stage
 							refs/heads/prodbeta
 							refs/heads/master
 
@@ -60,7 +61,8 @@ to just update the build script directly if it's a permanent change.
 --project                 - Name of the xcodeproj -- defaults to Mobile.xcodeproj
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
 --phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
---stage-mbe               - Override the default MBE for staging build only -- ${stagingMBEs[*]}
+--override-mbe            - Override the default MBE for testing or staging builds only 
+						  - Options: ${stagingMBEs[*]}
 "
 
 PROPERTIES_FILE='version.properties'
@@ -81,7 +83,7 @@ APP_CENTER_GROUP=
 OPCO=
 PHASE=
 BUILD_BRANCH=
-STAGE_MBE=
+OVERRIDE_MBE=
 
 # Parse arguments.
 for i in "$@"; do
@@ -100,7 +102,7 @@ for i in "$@"; do
 		--opco) OPCO="$2"; shift ;;
 		--phase) PHASE="$2"; shift ;;
 		--build-branch) BUILD_BRANCH="$2"; shift ;;
-		--stage-mbe) STAGE_MBE="$2"; shift ;;
+		--override-mbe) OVERRIDE_MBE="$2"; shift ;;
 	esac
 	shift
 done
@@ -279,13 +281,19 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 	echo "   CFBundleShortVersionString=$target_version_number"
 	echo ""
 
-	if [ "$CONFIGURATION" == "Staging" ] && [ "$STAGE_MBE" != "" ]; then
-		if find_in_array $STAGE_MBE "${stagingMBEs[@]}"; then
-			plutil -replace mcsInstanceName -string $STAGE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist
-			echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist"
-			echo "   mcsInstanceName=$STAGE_MBE"
+	if [[ ( "$CONFIGURATION" == "Staging"  ||  "$CONFIGURATION" == "Testing" ) &&  "$OVERRIDE_MBE" != "" ]]; then
+		if find_in_array $OVERRIDE_MBE "${stagingMBEs[@]}"; then
+
+			if [ "$CONFIGURATION" == "Staging" ]; then
+				plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist
+				echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist"
+			else
+				plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-TESTING.plist
+				echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-TESTING.plist"
+			fi
+			echo "   mcsInstanceName=$OVERRIDE_MBE"
 		else
-			echo "Specified Stage MBE $STAGE_MBE was not found"
+			echo "Specified Stage MBE $OVERRIDE_MBE was not found"
 			exit 1
 		fi
 	fi
