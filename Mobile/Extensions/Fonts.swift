@@ -50,7 +50,7 @@ enum SystemFont: FontType {
         }
     }
     
-    func of(textStyle: UIFontTextStyle) -> UIFont {
+    func of(textStyle: UIFont.TextStyle) -> UIFont {
         let size = UIFont.preferredSize(forTextStyle: textStyle)
         switch self {
         case .italic:
@@ -65,7 +65,7 @@ enum SystemFont: FontType {
 
 protocol FontType {
     func of(size: CGFloat) -> UIFont
-    func of(textStyle: UIFontTextStyle) -> UIFont
+    func of(textStyle: UIFont.TextStyle) -> UIFont
 }
 
 extension FontType where Self: RawRepresentable, Self.RawValue == String {
@@ -80,7 +80,7 @@ extension FontType where Self: RawRepresentable, Self.RawValue == String {
         return font
     }
     
-    func of(textStyle: UIFontTextStyle) -> UIFont {
+    func of(textStyle: UIFont.TextStyle) -> UIFont {
         let size = UIFont.preferredSize(forTextStyle: textStyle)
         guard let font = UIFont(name: rawValue, size: size) else {
             #if DEBUG
@@ -97,7 +97,7 @@ extension FontType where Self: RawRepresentable, Self.RawValue == String {
 
 extension UIFont {
     
-    static func preferredSize(forTextStyle textStyle: UIFontTextStyle) -> CGFloat {
+    static func preferredSize(forTextStyle textStyle: UIFont.TextStyle) -> CGFloat {
         let category = UIApplication.shared.preferredContentSizeCategory
         
         #if DEBUG
@@ -114,7 +114,7 @@ extension UIFont {
         #endif
     }
     
-    @nonobjc private static var sizeTable: [UIFontTextStyle : [UIContentSizeCategory : CGFloat]] = {
+    @nonobjc private static var sizeTable: [UIFont.TextStyle : [UIContentSizeCategory : CGFloat]] = {
         [
             .title1: [
                 .accessibilityExtraExtraExtraLarge: 23,

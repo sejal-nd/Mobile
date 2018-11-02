@@ -162,7 +162,7 @@ class HomeOutageCardView: UIView {
             viewModel.showCustomErrorView,
             viewModel.showErrorState
         )
-            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .drive(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
             .disposed(by: bag)
         
         // Show/Hide States
@@ -205,7 +205,7 @@ class HomeOutageCardView: UIView {
         viewModel.powerStatus.drive(powerStatusLabel.rx.text).disposed(by: bag)
         
         viewModel.etrText
-            .map { $0.attributedString(withLineHeight: 20, textAlignment: .center) }
+            .map { $0.attributedString(textAlignment: .center, lineHeight: 20) }
             .drive(restorationStatusLabel.rx.attributedText)
             .disposed(by: bag)
         
@@ -216,6 +216,7 @@ class HomeOutageCardView: UIView {
             .disposed(by: bag)
         
         viewModel.callToActionButtonText.drive(buttonControlLabel.rx.text).disposed(by: bag)
+        viewModel.callToActionButtonText.drive(callToActionButton.rx.accessibilityLabel).disposed(by: bag)
     }
     
 }

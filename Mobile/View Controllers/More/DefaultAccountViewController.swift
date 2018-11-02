@@ -94,11 +94,11 @@ extension DefaultAccountViewController: UITableViewDataSource {
         if account.address == nil || (account.serviceType ?? "").isEmpty {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.2
-            cell.accessibilityTraits = UIAccessibilityTraitNotEnabled
+            cell.accessibilityTraits = .notEnabled
         } else {
             cell.selectionStyle = .default
             cell.contentView.alpha = 1
-            cell.accessibilityTraits = UIAccessibilityTraitNone
+            cell.accessibilityTraits = .none
         }
         
         return cell

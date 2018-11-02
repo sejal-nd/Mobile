@@ -21,7 +21,7 @@ class BillAlertBannerView: UIView {
         super.awakeFromNib()
         
         label.font = OpenSans.regular.of(textStyle: .subheadline)
-        iconView.superview?.bringSubview(toFront: iconView)
+        iconView.superview?.bringSubviewToFront(iconView)
         iconView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         
         animationView.isAccessibilityElement = true

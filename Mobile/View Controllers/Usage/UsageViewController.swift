@@ -13,10 +13,13 @@ import SafariServices
 
 class UsageViewController: AccountPickerViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet private weak var backgroundScrollConstraint: NSLayoutConstraint!
     
     @IBOutlet private weak var switchAccountsLoadingIndicator: LoadingIndicator!
     @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet private weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var unavailableView: UnavailableView!
     @IBOutlet private weak var mainErrorView: UIView!
@@ -159,12 +162,17 @@ class UsageViewController: AccountPickerViewController {
         }
     }
     
+    // MARK: - Other Properties
+    
     var refreshControl: UIRefreshControl?
     
     let disposeBag = DisposeBag()
     
-    let viewModel = UsageViewModel(accountService: ServiceFactory.createAccountService(), usageService: ServiceFactory.createUsageService())
+    let viewModel = UsageViewModel(authService: ServiceFactory.createAuthenticationService(),
+                                   accountService: ServiceFactory.createAccountService(),
+                                   usageService: ServiceFactory.createUsageService())
     
+    var initialSelection: (barSelection: UsageViewModel.BarGraphSelection, isGas: Bool, isPreviousBill: Bool)?
     
     // MARK: - View Life Cycle
     
@@ -183,6 +191,13 @@ class UsageViewController: AccountPickerViewController {
         
         showSwitchAccountsLoadingState()
         barGraphPress(currentContainerButton)
+        
+        if let (barSelection, isGas, isPreviousBill) = initialSelection {
+            viewModel.electricGasSelectedSegmentIndex.value = isGas ? 1 : 0
+            selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
+            selectBar(barSelection, gas: isGas)
+        }
+        
         styleBarGraph()
         bindViewModel()
         dropdownView.configure(withViewModel: viewModel)
@@ -241,12 +256,12 @@ class UsageViewController: AccountPickerViewController {
     }
     
     @IBAction private func barGraphPress(_ sender: ButtonControl) {
-        barDescriptionTriangleCenterXConstraint.isActive = false
-        barDescriptionTriangleCenterXConstraint = barDescriptionTriangleImageView.centerXAnchor
-            .constraint(equalTo: sender.centerXAnchor)
-        barDescriptionTriangleCenterXConstraint.isActive = true
-        
         viewModel.setBarSelected(tag: sender.tag)
+    }
+    
+    func selectBar(_ selectedBar: UsageViewModel.BarGraphSelection, gas: Bool) {
+        viewModel.electricGasSelectedSegmentIndex.value = gas ? 1 : 0
+        viewModel.setBarSelected(tag: selectedBar.rawValue)
     }
     
     // MARK: - Style Views
@@ -310,25 +325,30 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func bindDataFetching() {
-        Driver.merge(lastYearButton.rx.tap.asDriver().map(to: 0),
-                     previousBillButton.rx.tap.asDriver().map(to: 1))
-            .drive(onNext: { [weak self] index in
-                guard let this = self else { return }
-                this.showBillComparisonLoadingState()
-                this.previousBillButton.isEnabled = index == 0
-                this.lastYearButton.isEnabled = index == 1
-                this.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = index
-                Analytics.log(event: index == 0 ? .billLastYearToggle : .billPreviousToggle)
+        Driver.merge(lastYearButton.rx.tap.asDriver().map(to: false),
+                     previousBillButton.rx.tap.asDriver().map(to: true))
+            .drive(onNext: { [weak self] isPreviousBill in
+                self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
+                Analytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)
             })
             .disposed(by: disposeBag)
         
-        RxNotifications.shared.accountDetailUpdated
+        Observable.merge(RxNotifications.shared.accountDetailUpdated,
+                         maintenanceModeView.reload)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
                 self?.showSwitchAccountsLoadingState()
                 self?.viewModel.fetchAllData()
             })
             .disposed(by: disposeBag)
+    }
+    
+    func selectLastYearPreviousBill(isPreviousBill: Bool) {
+        if billComparisonLoadingIndicator != nil {
+            showBillComparisonLoadingState()
+        }
+        
+        viewModel.lastYearPreviousBillSelectedSegmentIndex.value = isPreviousBill ? 1 : 0
     }
     
     private func bindViewStates() {
@@ -353,6 +373,10 @@ class UsageViewController: AccountPickerViewController {
         
         viewModel.showNoNetworkState
             .drive(onNext: { [weak self] in self?.showNoNetworkState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showMaintenanceModeState
+            .drive(onNext: { [weak self] in self?.showMaintenanceModeState() })
             .disposed(by: disposeBag)
         
         viewModel.showBillComparisonContents
@@ -381,7 +405,13 @@ class UsageViewController: AccountPickerViewController {
     
     private func bindBillComparisonData() {
         // Segmented Control
+        viewModel.electricGasSelectedSegmentIndex.asDriver()
+            .distinctUntilChanged()
+            .drive(segmentControl.selectedIndex)
+            .disposed(by: disposeBag)
+        
         segmentControl.selectedIndex.asDriver()
+            .distinctUntilChanged()
             .do(onNext: { [weak self] _ in self?.showBillComparisonLoadingState() })
             .drive(viewModel.electricGasSelectedSegmentIndex)
             .disposed(by: disposeBag)
@@ -398,6 +428,16 @@ class UsageViewController: AccountPickerViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.lastYearPreviousBillSelectedSegmentIndex.asDriver()
+            .map { $0 == 0 }
+            .drive(previousBillButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.lastYearPreviousBillSelectedSegmentIndex.asDriver()
+            .map { $0 == 1 }
+            .drive(lastYearButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
         viewModel.showElectricGasSegmentedControl.not().drive(segmentControl.rx.isHidden).disposed(by: disposeBag)
         viewModel.compareBillTitle.drive(compareBillTitlelabel.rx.text).disposed(by: disposeBag)
         
@@ -407,32 +447,38 @@ class UsageViewController: AccountPickerViewController {
                              viewModel.noPreviousData.distinctUntilChanged(),
                              viewModel.showProjectionNotAvailableBar.distinctUntilChanged())
             .drive(onNext: { [weak self] barGraphSelection, showProjected, noPreviousData, showProjectionNotAvailableBar in
-                guard let this = self else { return }
+                guard let self = self else { return }
                 
+                let barView: UIView
                 switch barGraphSelection {
-                case .noData:
-                    if !noPreviousData {
-                        this.barGraphPress(this.previousContainerButton)
-                    }
-                case .previous:
+                case .noData, .previous:
                     if noPreviousData {
-                        this.barGraphPress(this.noDataContainerButton)
+                        barView = self.noDataContainerButton
+                    } else {
+                        barView = self.previousContainerButton
                     }
                 case .current:
-                    return // Current should always be available
+                    barView = self.currentContainerButton
                 case .projected:
-                    if !showProjected {
-                        this.barGraphPress(this.currentContainerButton)
+                    if showProjected {
+                        barView = self.projectedContainerButton
+                    } else {
+                        barView = self.currentContainerButton
                     }
                 case .projectionNotAvailable:
-                    if !showProjectionNotAvailableBar {
-                        if showProjected {
-                            this.barGraphPress(this.projectedContainerButton)
-                        } else {
-                            this.barGraphPress(this.currentContainerButton)
-                        }
+                    if showProjectionNotAvailableBar {
+                        barView = self.projectionNotAvailableContainerButton
+                    } else if showProjected {
+                        barView = self.projectedContainerButton
+                    } else {
+                        barView = self.currentContainerButton
                     }
                 }
+                
+                self.barDescriptionTriangleCenterXConstraint.isActive = false
+                self.barDescriptionTriangleCenterXConstraint = self.barDescriptionTriangleImageView.centerXAnchor
+                    .constraint(equalTo: barView.centerXAnchor)
+                self.barDescriptionTriangleCenterXConstraint.isActive = true
             })
             .disposed(by: disposeBag)
         
@@ -524,7 +570,7 @@ class UsageViewController: AccountPickerViewController {
         
         // Empty State
         viewModel.billComparisonEmptyStateText
-            .map { $0.attributedString(withLineHeight: 26, textAlignment: .center) }
+            .map { $0.attributedString(textAlignment: .center, lineHeight: 26) }
             .drive(billComparisonErrorLabel.rx.attributedText)
             .disposed(by: disposeBag)
     }
@@ -538,6 +584,7 @@ class UsageViewController: AccountPickerViewController {
         contentStack.isHidden = true
         mainErrorView.isHidden = true
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
         showBillComparisonLoadingState()
     }
     
@@ -548,6 +595,7 @@ class UsageViewController: AccountPickerViewController {
         contentStack.isHidden = false
         mainErrorView.isHidden = true
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showNoUsageDataState() {
@@ -557,6 +605,7 @@ class UsageViewController: AccountPickerViewController {
         contentStack.isHidden = true
         mainErrorView.isHidden = true
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showMainErrorState() {
@@ -566,6 +615,7 @@ class UsageViewController: AccountPickerViewController {
         contentStack.isHidden = true
         mainErrorView.isHidden = false
         noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showNoNetworkState() {
@@ -575,6 +625,17 @@ class UsageViewController: AccountPickerViewController {
         contentStack.isHidden = true
         mainErrorView.isHidden = true
         noNetworkConnectionView.isHidden = false
+        maintenanceModeView.isHidden = true
+    }
+    
+    private func showMaintenanceModeState() {
+        scrollView?.isHidden = true
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        contentStack.isHidden = true
+        mainErrorView.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = false
     }
     
     private func showBillComparisonLoadingState() {

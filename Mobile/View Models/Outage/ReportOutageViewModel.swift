@@ -15,7 +15,8 @@ class ReportOutageViewModel {
     
     private var outageService: OutageService
     
-    var outageStatus: OutageStatus?
+    var accountNumber: String? // Passed from UnauthenticatedOutageStatusViewController
+    var outageStatus: OutageStatus! // Passed from OutageViewController/UnauthenticatedOutageStatusViewController
     var selectedSegmentIndex = Variable(0)
     var phoneNumber = Variable("")
     var phoneExtension = Variable("")
@@ -24,9 +25,6 @@ class ReportOutageViewModel {
     
     required init(outageService: OutageService) {
         self.outageService = outageService
-        if Environment.shared.opco == .comEd {
-            reportFormHidden.value = true
-        }
     }
     
     private(set) lazy var submitEnabled: Driver<Bool> = Driver.combineLatest(self.reportFormHidden.asDriver(),
@@ -48,6 +46,12 @@ class ReportOutageViewModel {
         }
     }
     
+    lazy var shouldPingMeter: Bool = {
+        return Environment.shared.opco == .comEd &&
+            outageStatus.activeOutage == false &&
+            outageStatus.smartMeterStatus == true
+    }()
+    
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var outageIssue = OutageIssue.allOut
         if selectedSegmentIndex.value == 1 {
@@ -55,7 +59,7 @@ class ReportOutageViewModel {
         } else if selectedSegmentIndex.value == 2 {
             outageIssue = OutageIssue.flickering
         }
-
+        
         var outageInfo = OutageInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
         if phoneExtension.value.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
@@ -83,7 +87,7 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.flickering
         }
         
-        var outageInfo = OutageInfo(accountNumber: outageStatus!.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
+        var outageInfo = OutageInfo(accountNumber: accountNumber ?? outageStatus.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
         if phoneExtension.value.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }
@@ -102,37 +106,20 @@ class ReportOutageViewModel {
             .disposed(by: disposeBag)
     }
     
-    func meterPingGetPowerStatus(onPowerVerified: @escaping (_ canPerformVoltageCheck: Bool) -> Void, onError: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
-            if self.outageStatus!.meterPingInfo!.pingResult {
-                if self.outageStatus!.meterPingInfo!.voltageResult {
-                    onPowerVerified(true)
-                } else {
-                    onPowerVerified(false)
-                }
-            } else {
+    func meterPingGetStatus(onComplete: @escaping (MeterPingInfo) -> Void, onError: @escaping () -> Void) {
+        outageService.pingMeter(account: AccountsStore.shared.currentAccount)
+            .observeOn(MainScheduler.instance)
+            .asObservable()
+            .subscribe(onNext: { meterPingInfo in
+                onComplete(meterPingInfo)
+            }, onError: { _ in
                 onError()
-            }
-        }
-    }
-    
-    func meterPingGetVoltageStatus(onVoltageVerified: @escaping () -> Void, onError: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2500)) {
-            if let voltageReads = self.outageStatus!.meterPingInfo!.voltageReads {
-                if voltageReads.lowercased().contains("improper") {
-                    onError()
-                } else if voltageReads.lowercased().contains("proper") {
-                    onVoltageVerified()
-                }
-            } else {
-                onError()
-            }
-        }
+            }).disposed(by: disposeBag)
     }
     
     private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver()
         .map { [weak self] text -> Bool in
-            guard let `self` = self else { return false }
+            guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.count == 10
         }

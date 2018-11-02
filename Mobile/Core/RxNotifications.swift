@@ -14,6 +14,7 @@ struct RxNotifications {
     let accountDetailUpdated = PublishSubject<Void>()
     let defaultWalletItemUpdated = PublishSubject<Void>()
     let outageReported = PublishSubject<Void>()
+    let configureQuickActions = PublishSubject<Bool>()
     
     private init() { }
     

@@ -33,7 +33,7 @@ class EditBankAccountViewModel {
     }
 
     func deleteBankAccount(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        walletService.deletePaymentMethod(walletItem)
+        walletService.deletePaymentMethod(walletItem: walletItem)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

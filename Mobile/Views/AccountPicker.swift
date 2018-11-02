@@ -63,6 +63,13 @@ class AccountPicker: UIView {
     var advancedAccountButton: UIButton?
     
     @IBInspectable var tintWhite: Bool = false
+    @IBInspectable var stormMode: Bool = false {
+        didSet {
+            if stormMode {
+                backgroundColor = UIColor.black.withAlphaComponent(0.1)
+            }
+        }
+    }
     
     @IBInspectable var showShadow: Bool = true {
         didSet {
@@ -155,6 +162,7 @@ class AccountPicker: UIView {
         
         loadingIndicator.isHidden = true
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicator.isStormMode = StormModeStatus.shared.isOn
         addSubview(loadingIndicator)
         loadingIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -165,12 +173,20 @@ class AccountPicker: UIView {
         shadowView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         shadowView.topAnchor.constraint(equalTo: bottomAnchor).isActive = true
         shadowView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 3)
-        shadowView.backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
-        
+
         leftButton.addTarget(self, action: #selector(leftPressed), for: .touchUpInside)
         rightButton.addTarget(self, action: #selector(rightPressed), for: .touchUpInside)
         
-        backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
+        if tintWhite {
+            backgroundColor = .primaryColorAccountPicker
+            shadowView.backgroundColor = .primaryColorAccountPicker
+        } else {
+            backgroundColor = .white
+            shadowView.backgroundColor = .white
+        }
+        if stormMode {
+            backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        }
     }
     
     @objc func rightPressed() {
@@ -227,7 +243,8 @@ class AccountPicker: UIView {
     private func addAccountToScrollView(_ account: Account, advancedPicker: Bool = false) {
         let commercialUser = !account.isResidential
         
-        let pageView = UIView(frame: .zero)
+        // Setting the page view to this initial size avoids upfront autolayout warnings
+        let pageView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 60))
         pageViews.append(pageView)
         
         let icon: UIImage
@@ -246,9 +263,6 @@ class AccountPicker: UIView {
             icon = #imageLiteral(resourceName: "ic_residential")
             a11yDescription = NSLocalizedString("Residential account", comment: "")
         }
-        
-        shadowView.backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
-        backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
         
         let iconImageView = UIImageView(image: icon)
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -295,7 +309,6 @@ class AccountPicker: UIView {
         accountStackView.spacing = 7
         
         pageView.addSubview(accountStackView)
-        scrollView.addSubview(pageView)
         
         accountStackView.centerXAnchor.constraint(equalTo: pageView.centerXAnchor, constant: 0).isActive = true
         accountStackView.topAnchor.constraint(equalTo: pageView.topAnchor, constant: 10).isActive = true
@@ -305,6 +318,8 @@ class AccountPicker: UIView {
         
         leftCaretImageView.image = tintWhite ? #imageLiteral(resourceName: "ic_caret_white_left"):#imageLiteral(resourceName: "ic_caret_left")
         rightCaretImageView.image = tintWhite ? #imageLiteral(resourceName: "ic_caret_white"):#imageLiteral(resourceName: "ic_caret")
+        
+        scrollView.addSubview(pageView)
         
         if advancedPicker { // Makes area tappable and adds caret icon
             advancedAccountIconImageView = iconImageView

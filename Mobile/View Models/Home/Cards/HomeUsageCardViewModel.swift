@@ -13,6 +13,7 @@ class HomeUsageCardViewModel {
     
     let disposeBag = DisposeBag()
     
+    private let maintenanceModeEvents: Observable<Event<Maintenance>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
     private let usageService: UsageService
     
@@ -39,11 +40,13 @@ class HomeUsageCardViewModel {
     let barGraphSelectionStates = Variable([Variable(false), Variable(false), Variable(true)])
     
     required init(fetchData: Observable<FetchingAccountState>,
+                  maintenanceModeEvents: Observable<Event<Maintenance>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
                   usageService: UsageService,
                   refreshFetchTracker: ActivityTracker,
                   switchAccountFetchTracker: ActivityTracker) {
         self.fetchData = fetchData
+        self.maintenanceModeEvents = maintenanceModeEvents
         self.accountDetailEvents = accountDetailEvents
         self.usageService = usageService
         self.refreshFetchTracker = refreshFetchTracker
@@ -55,10 +58,13 @@ class HomeUsageCardViewModel {
         .startWith(true)
         .distinctUntilChanged()
     
-    private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable.merge(self.accountDetailChanged, self.segmentedControlChanged).share(replay: 1)
+    private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
+        .merge(accountDetailChanged, segmentedControlChanged).share(replay: 1)
     
     private(set) lazy var accountDetailChanged = accountDetailEvents.elements()
-        .filter { $0.isEligibleForUsageData }
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { $0.isEligibleForUsageData && !$1 }
+        .map { accountDetail, _ in accountDetail }
         .withLatestFrom(Observable.combineLatest(fetchData,
                                                  electricGasSelectedSegmentIndex.asObservable()))
         { ($0, $1.0, $1.1) }
@@ -77,7 +83,8 @@ class HomeUsageCardViewModel {
                 .trackActivity(self.fetchTracker(forState: fetchState))
         }
     
-    private(set) lazy var segmentedControlChanged = self.electricGasSelectedSegmentIndex.asObservable().skip(1)
+    private(set) lazy var segmentedControlChanged = self.electricGasSelectedSegmentIndex.asObservable()
+        .skip(1)
         .withLatestFrom(accountDetailEvents.elements().filter { $0.isEligibleForUsageData })
         { ($0, $1) }
         .toAsyncRequest { [unowned self] segmentIndex, accountDetail -> Observable<BillComparison> in
@@ -101,13 +108,18 @@ class HomeUsageCardViewModel {
     
     // MARK: Bill Comparison
     
-    private(set) lazy var showBillComparison: Driver<Void> = billComparisonEvents
-        .filter { $0.element?.reference != nil }
-        .map(to: ())
+    private(set) lazy var showBillComparison: Driver<Void> = billComparisonEvents.elements()
+        .filter { $0.reference != nil }
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents.elements()
-        .filter { accountDetail in
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, isMaintenanceMode in
+            if isMaintenanceMode {
+                return false
+            }
+            
             if accountDetail.isBGEControlGroup {
                 return !accountDetail.isSERAccount ||
                     accountDetail.serInfo.eventResults.isEmpty // BGE Control Group + SER enrollment get the SER graph on usage card
@@ -115,32 +127,44 @@ class HomeUsageCardViewModel {
             
             return !accountDetail.isEligibleForUsageData
         }
-        .map(to: ())
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents.elements()
+        .filter { $0.usageStatus }
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showBillComparisonEmptyState: Driver<Void> = billComparisonEvents
         .filter { $0.element?.reference == nil }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showSmartEnergyRewards: Driver<Void> = accountDetailEvents.elements()
-        .filter { accountDetail in
-            accountDetail.isBGEControlGroup &&
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, isMaintenanceMode in
+            !isMaintenanceMode &&
+                accountDetail.isBGEControlGroup &&
                 accountDetail.isSERAccount &&
                 !accountDetail.serInfo.eventResults.isEmpty
         }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = self.accountDetailEvents
-        .filter {
-            guard let accountDetail = $0.element else { return false }
-            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
-                return accountDetail.serInfo.eventResults.count == 0
+    private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = self.accountDetailEvents.elements()
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, isMaintenanceMode in
+            if isMaintenanceMode {
+                return false
             }
+            
+            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
+                return accountDetail.serInfo.eventResults.isEmpty
+            }
+            
             return false
         }
-        .map(to: ())
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showElectricGasSegmentedControl: Driver<Bool> = accountDetailEvents.map {

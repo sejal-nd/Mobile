@@ -40,7 +40,6 @@ class HomeWeatherView: UIView {
         greetingLabel.isAccessibilityElement = true
         temperatureLabel.isAccessibilityElement = true
         weatherIconImage.isAccessibilityElement = true
-        temperatureTipButton.isAccessibilityElement = true
         accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage, temperatureTipButton]
     }
     
@@ -54,10 +53,15 @@ class HomeWeatherView: UIView {
         
         viewModel.greeting.drive(greetingLabel.rx.text).disposed(by: bag)
         viewModel.weatherTemp.drive(temperatureLabel.rx.text).disposed(by: bag)
+        viewModel.weatherTemp.drive(onNext: { [weak self] weatherTemp in
+            guard let tempString = weatherTemp else { return }
+            self?.temperatureLabel.accessibilityLabel = String(format: NSLocalizedString("Current temperature %@", comment: ""), tempString)
+        }).disposed(by: bag)
         viewModel.weatherIcon.drive(weatherIconImage.rx.image).disposed(by: bag)
         viewModel.weatherIconA11yLabel.drive(weatherIconImage.rx.accessibilityLabel).disposed(by: bag)
         
         viewModel.temperatureTipText.drive(temperatureTipLabel.rx.text).disposed(by: bag)
+        viewModel.temperatureTipText.isNil().not().drive(temperatureTipButton.rx.isAccessibilityElement).disposed(by: bag)
         viewModel.temperatureTipText.drive(temperatureTipButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.temperatureTipImage.drive(temperatureTipImageView.rx.image).disposed(by: bag)
     }

@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     
-    func presentAlert(title: String?, message: String?, style: UIAlertControllerStyle, actions: [UIAlertAction]) {
+    func presentAlert(title: String?, message: String?, style: UIAlertController.Style, actions: [UIAlertAction]) {
         var alertController = UIAlertController()
         alertController.view.tintColor = .actionBlue
         

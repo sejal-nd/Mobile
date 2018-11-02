@@ -22,6 +22,14 @@ class DisclosureButton: UIButton {
         }
     }
     
+    var stormTheme = false {
+        didSet {
+            view.backgroundColor = .stormModeGray
+            label.textColor = .white
+            caretAccessory.image = #imageLiteral(resourceName: "ic_caret_white.pdf")
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -65,10 +73,10 @@ class DisclosureButton: UIButton {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-               view.backgroundColor = .softGray
+               view.backgroundColor = stormTheme ? UIColor.stormModeGray.darker(by: 10) : .softGray
             }
             else {
-                view.backgroundColor = .white
+                view.backgroundColor = stormTheme ? .stormModeGray : .white
             }
         }
     }

@@ -20,7 +20,7 @@ class UsageViewModelTests: XCTestCase {
     
     override func setUp() {
         accountService = MockAccountService()
-        viewModel = UsageViewModel(accountService: accountService, usageService: MockUsageService())
+        viewModel = UsageViewModel(authService: MockAuthenticationService(), accountService: accountService, usageService: MockUsageService())
         scheduler = TestScheduler(initialClock: 0)
     }
     

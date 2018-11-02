@@ -47,7 +47,7 @@ class ChangePasswordViewController: UIViewController {
     lazy var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
     lazy var submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
 
-    lazy var toolbar: UIToolbar = {
+    let toolbar: UIToolbar = {
         let toolbar = UIToolbar()
         let suggestPasswordButton = UIBarButtonItem(title: "Suggest Password", style: .plain, target: self, action: #selector(suggestPassword))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -73,8 +73,8 @@ class ChangePasswordViewController: UIViewController {
         navigationItem.hidesBackButton = sentFromLogin
         navigationItem.rightBarButtonItem = submitButton
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         setupValidation()
         
@@ -95,7 +95,13 @@ class ChangePasswordViewController: UIViewController {
         newPasswordTextField.textField.returnKeyType = .next
         newPasswordTextField.textField.delegate = self
         
-        if #available(iOS 11.0, *) {
+        if #available(iOS 12.0, *) {
+            newPasswordTextField.textField.textContentType = .newPassword
+            confirmPasswordTextField.textField.textContentType = .newPassword
+            let rulesDescriptor = "required: lower, upper, digit, special; minlength: 8; maxlength: 16;"
+            newPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+            confirmPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
+        } else if #available(iOS 11.0, *) {
             newPasswordTextField.textField.inputAccessoryView = toolbar
             confirmPasswordTextField.textField.inputAccessoryView = toolbar
         }
@@ -106,7 +112,6 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
-        confirmPasswordTextField.setEnabled(false)
         
         mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .headline)
         for label in passwordRequirementLabels {
@@ -171,7 +176,7 @@ class ChangePasswordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if sentFromLogin {
+        if sentFromLogin || StormModeStatus.shared.isOn {
             navigationController?.setColoredNavBar()
         } else {
             navigationController?.setWhiteNavBar()
@@ -312,7 +317,6 @@ class ChangePasswordViewController: UIViewController {
         }).disposed(by: disposeBag)
         viewModel.everythingValid.drive(onNext: { [weak self] valid in
             self?.newPasswordTextField.setValidated(valid, accessibilityLabel: valid ? NSLocalizedString("Minimum password criteria met", comment: "") : nil)
-            self?.confirmPasswordTextField.setEnabled(valid)
         }).disposed(by: disposeBag)
         
         // Password cannot match username
@@ -349,13 +353,13 @@ class ChangePasswordViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
             safeAreaBottomInset = self.view.safeAreaInsets.bottom
         }
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }

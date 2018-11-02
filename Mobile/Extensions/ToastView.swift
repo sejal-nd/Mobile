@@ -14,7 +14,7 @@ extension UIView {
         makeToast(message, duration: 5, position: .bottom, title: nil, image: nil, style: ToastManager.shared.style, completion: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message)
+            UIAccessibility.post(notification: .announcement, argument: message)
         })
     }
 }

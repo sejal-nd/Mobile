@@ -64,24 +64,25 @@ class TemplateCardView: UIView {
             viewModel.showContentState,
             viewModel.showErrorState
         )
-            .drive(onNext: { UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .drive(onNext: { UIAccessibility.post(notification: .screenChanged, argument: nil) })
             .disposed(by: bag)
         
         //grab all the content
         viewModel.templateImage.drive(imageView.rx.image).disposed(by: bag)
         viewModel.titleString
-            .map { $0?.attributedString(withLineHeight: 30, textAlignment: .center) }
+            .map { $0?.attributedString(textAlignment: .center, lineHeight: 30) }
             .drive(titleLabel.rx.attributedText)
             .disposed(by: bag)
         
         viewModel.bodyString
-            .map { $0?.attributedString(withLineHeight: 18) }
+            .map { $0?.attributedString(textAlignment: .left, lineHeight: 18) }
             .drive(bodyLabel.rx.attributedText).disposed(by: bag)
         viewModel.bodyStringA11yLabel.drive(bodyLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.ctaString.drive(callToActionLabel.rx.text).disposed(by: bag)
+        viewModel.ctaString.drive(callToActionButton.rx.accessibilityLabel).disposed(by: bag)
         
         viewModel.errorLabelText
-            .map { $0?.attributedString(withLineHeight: 26, textAlignment: .center) }
+            .map { $0?.attributedString(textAlignment: .center, lineHeight: 26) }
             .drive(onNext: { [weak self] errorText in
                 self?.errorLabel.attributedText = errorText
                 let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
@@ -104,10 +105,10 @@ class TemplateCardView: UIView {
                 
                 if UIApplication.shared.canOpenURL(appLinkUrl) {
                     Analytics.log(event: .homePromoCard, dimensions: [.link: appLinkUrl.absoluteString])
-                    UIApplication.shared.openURL(appLinkUrl)
+                    UIApplication.shared.open(appLinkUrl)
                 } else if UIApplication.shared.canOpenURL(appStoreUrl) {
                     Analytics.log(event: .homePromoCard, dimensions: [.link: appStoreUrl.absoluteString])
-                    UIApplication.shared.openURL(appStoreUrl)
+                    UIApplication.shared.open(appStoreUrl)
                 }
             })
             .disposed(by: bag)

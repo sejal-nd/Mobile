@@ -44,7 +44,7 @@ class ContactUsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .primaryColor
+        view.backgroundColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
         
         cardView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         cardView.layer.cornerRadius = 10.0
@@ -138,11 +138,8 @@ class ContactUsViewController: UIViewController {
                 button.setImage(image, for: .normal)
                 button.rx.tap.asDriver()
                     .drive(onNext: {
-                        guard let urlString = urlString,
-                            let url = URL(string: urlString),
-                            UIApplication.shared.canOpenURL(url) else { return }
-                        
-                        UIApplication.shared.openURL(url)
+                        guard let urlString = urlString else { return }
+                        UIApplication.shared.openUrlIfCan(string: urlString)
                     })
                     .disposed(by: bag)
                 return button

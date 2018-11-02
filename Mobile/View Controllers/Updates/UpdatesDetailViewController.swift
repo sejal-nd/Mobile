@@ -21,7 +21,7 @@ class UpdatesDetailViewController: UIViewController {
         titleLabel.textColor = .blackText
         titleLabel.font = OpenSans.bold.of(textStyle: .title1)
         titleLabel.attributedText = opcoUpdate.title
-            .attributedString(withLineHeight: 28)
+            .attributedString(lineHeight: 28)
         
         label.textColor = .blackText
         label.font = OpenSans.regular.of(textStyle: .body)
@@ -33,8 +33,8 @@ class UpdatesDetailViewController: UIViewController {
         navigationController?.setWhiteNavBar(hidesBottomBorder: true)
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         if parent == nil {
             navigationController?.setColoredNavBar()
         }

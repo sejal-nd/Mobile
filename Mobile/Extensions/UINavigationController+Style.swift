@@ -24,7 +24,7 @@ extension UINavigationController {
             navigationBar.shadowImage = nil
         }
         
-        let titleDict: [NSAttributedStringKey: Any] = [
+        let titleDict: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.blackText,
             .font: OpenSans.bold.of(size: 18)
         ]
@@ -37,7 +37,7 @@ extension UINavigationController {
     
     func setColoredNavBar(hidesBottomBorder: Bool = false) {
         navigationBar.barStyle = .black
-        navigationBar.barTintColor = .primaryColor
+        navigationBar.barTintColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
         navigationBar.tintColor = .white
         navigationBar.isTranslucent = false
         
@@ -49,7 +49,7 @@ extension UINavigationController {
             navigationBar.shadowImage = nil
         }
         
-        let titleDict: [NSAttributedStringKey: Any] = [
+        let titleDict: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white,
             .font: OpenSans.bold.of(size: 18)
         ]

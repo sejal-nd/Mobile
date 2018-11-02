@@ -82,7 +82,7 @@ class EditBankAccountViewController: UIViewController {
     }
     
     func buildGradientAndBackgrounds() {
-        walletItemBGView.backgroundColor = .primaryColor
+        walletItemBGView.backgroundColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         innerContentView.layer.cornerRadius = 15
@@ -288,7 +288,7 @@ class EditBankAccountViewController: UIViewController {
         var messageString = NSLocalizedString("Are you sure you want to delete this Bank Account? Note: If you proceed, all payments scheduled for today's date will still be processed. Pending payments for future dates using this account will be cancelled and you will need to reschedule your payment with another bank account.", comment: "")
         
         if Environment.shared.opco == .bge {
-            messageString = NSLocalizedString("Deleting this payment account will also delete all the pending payments associated with this payment account. Please click 'Delete' to delete this payment account.", comment: "")
+            messageString = NSLocalizedString("Deleting this payment account will also delete all the pending payments associated with this payment account. Please tap 'Delete' to delete this payment account.", comment: "")
         }
         
         let alertController = UIAlertController(title: NSLocalizedString("Delete Bank Account", comment: ""), message: messageString, preferredStyle: .alert)

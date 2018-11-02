@@ -66,7 +66,7 @@ class EditCreditCardViewModel {
     private(set) lazy var zipCodeIs5Digits: Driver<Bool> = self.zipCode.asDriver().map { $0.count == 5 }
     
     func editCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        walletService.updateCreditCard(walletItem.walletItemID!, customerNumber: AccountsStore.shared.customerIdentifier, expirationMonth: expMonth.value, expirationYear: expYear.value, securityCode: cvv.value, postalCode: zipCode.value)
+        walletService.updateCreditCard(walletItemID: walletItem.walletItemID!, customerNumber: AccountsStore.shared.customerIdentifier, expirationMonth: expMonth.value, expirationYear: expYear.value, securityCode: cvv.value, postalCode: zipCode.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -77,7 +77,7 @@ class EditCreditCardViewModel {
     }
     
     func deleteCreditCard(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        walletService.deletePaymentMethod(walletItem)
+        walletService.deletePaymentMethod(walletItem: walletItem)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

@@ -113,7 +113,7 @@ class MakePaymentViewController: UIViewController {
         bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         bg.backgroundColor = .white
         stackView.addSubview(bg)
-        stackView.sendSubview(toBack: bg)
+        stackView.sendSubviewToBack(bg)
         
         if billingHistoryItem != nil {
             title = NSLocalizedString("Modify Payment", comment: "")
@@ -130,8 +130,8 @@ class MakePaymentViewController: UIViewController {
                 self?.navigationItem.rightBarButtonItem = nil
             }).disposed(by: disposeBag)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // Inline bank fields
         addBankContainerView.isHidden = true
@@ -275,10 +275,10 @@ class MakePaymentViewController: UIViewController {
         viewModel.formatPaymentAmount() // Initial formatting
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
         }, onError: { [weak self] in
             guard let `self` = self else { return }
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
     }
     
@@ -306,7 +306,7 @@ class MakePaymentViewController: UIViewController {
         cardIOViewController.navigationBarTintColor = .primaryColor
         cardIOViewController.navigationBar.isTranslucent = false
         cardIOViewController.navigationBar.tintColor = .white
-        let titleDict: [NSAttributedStringKey: Any] = [
+        let titleDict: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white,
             .font: OpenSans.bold.of(size: 18)
         ]
@@ -655,9 +655,9 @@ class MakePaymentViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
@@ -772,11 +772,12 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
+                let cutoffDate = min(startOfDueDate, viewModel.fiservCutoffDate)
                 if Environment.shared.opco == .peco {
                     let isInWorkdaysArray = viewModel.workdayArray.contains(opCoTimeDate)
-                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate && isInWorkdaysArray
+                    return opCoTimeDate >= today && opCoTimeDate <= cutoffDate && isInWorkdaysArray
                 } else {
-                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate
+                    return opCoTimeDate >= today && opCoTimeDate <= cutoffDate
                 }
             }
         }
@@ -812,8 +813,8 @@ extension MakePaymentViewController: AddCardFormViewDelegate {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""), style: .default, handler: { _ in
-                if let url = URL(string: UIApplicationOpenSettingsURLString) {
-                    UIApplication.shared.openURL(url)
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
                 }
             }))
             present(alertVC, animated: true, completion: nil)

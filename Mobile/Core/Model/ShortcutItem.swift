@@ -10,6 +10,7 @@ enum ShortcutItem: String {
     case payBill = "PayBill"
     case reportOutage = "ReportOutage"
     case viewUsageOptions = "ViewUsageOptions"
+    case alertPreferences = "AlertPreferences"
     case none = ""
     
     init(identifier: String) {

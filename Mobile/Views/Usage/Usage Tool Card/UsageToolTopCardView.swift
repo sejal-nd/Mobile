@@ -30,6 +30,7 @@ class UsageToolTopCardView: ButtonControl {
     public func configureView(withUsageTool usageTool: UsageTool) {
         titleLabel.text = usageTool.title
         imageView.image = usageTool.icon
+        accessibilityLabel = usageTool.title
     }
     
     private func styleViews() {

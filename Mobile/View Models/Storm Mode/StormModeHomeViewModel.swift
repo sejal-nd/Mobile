@@ -15,14 +15,21 @@ class StormModeHomeViewModel {
     
     private let authService: AuthenticationService
     private var outageService: OutageService
+    private let alertsService: AlertsService
     
     private var currentGetOutageStatusDisposable: Disposable?
     
-    var currentOutageStatus: OutageStatus?
+    private let disposeBag = DisposeBag()
     
-    init(authService: AuthenticationService, outageService: OutageService) {
+    var currentOutageStatus: OutageStatus?
+    let stormModeUpdate = Variable<OpcoUpdate?>(nil)
+    
+    var stormModeEnded = false
+    
+    init(authService: AuthenticationService, outageService: OutageService, alertsService: AlertsService) {
         self.authService = authService
         self.outageService = outageService
+        self.alertsService = alertsService
     }
     
     deinit {
@@ -32,7 +39,7 @@ class StormModeHomeViewModel {
     func startStormModePolling() -> Driver<Void> {
         return Observable<Int>
             .interval(stormModePollInterval, scheduler: MainScheduler.instance)
-            .map(to: ())
+            .mapTo(())
             // Start polling immediately
             .startWith(())
             .toAsyncRequest { [weak self] in
@@ -43,8 +50,9 @@ class StormModeHomeViewModel {
             .filter { !$0.stormModeStatus }
             // Stop polling after storm mode ends
             .take(1)
-            .map(to: ())
+            .mapTo(())
             .asDriver(onErrorDriveWith: .empty())
+            .do(onNext: { [weak self] in self?.stormModeEnded = true })
     }
     
     func fetchData(onSuccess: @escaping () -> Void,
@@ -86,6 +94,16 @@ class StormModeHomeViewModel {
             })
     }
     
+    func getStormModeUpdate() {
+        alertsService.fetchOpcoUpdates(stormOnly: true)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] opcoUpdates in
+                if opcoUpdates.count > 0 {
+                    self?.stormModeUpdate.value = opcoUpdates[0]
+                }
+            }).disposed(by: disposeBag)
+    }
+    
     var reportedOutage: ReportedOutageResult? {
         guard AccountsStore.shared.currentAccount != nil else { return nil }
         return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
@@ -113,59 +131,33 @@ class StormModeHomeViewModel {
         return NSLocalizedString("Reported", comment: "")
     }
     
-    var footerTextViewText: NSMutableAttributedString {
+    var footerLabelText: String {
+        switch Environment.shared.opco {
+        case .bge, .peco:
+            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call", comment: "")
+        case .comEd:
+            return NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
+        }
+    }
+    
+    var footerPhoneLabelText: String {
         switch Environment.shared.opco {
         case .bge:
-            let gasEmergencyText = "To report a gas emergency, please call "
-            let gasEmergencyPhoneNumber = NSLocalizedString("1-800-685-0123", comment: "")
-            let downedPowerLineText = "\n\nFor downed or sparking power lines or dim/flickering lights, please call "
-            let downedPowerLinePhoneNumber = NSLocalizedString("1-877-778-2222", comment: "")
-            
-            let gasEmergencyTextMutableAttributedString = NSMutableAttributedString(string: gasEmergencyText)
-            let gasEmergencyMutableAttributedString = NSMutableAttributedString(string: gasEmergencyPhoneNumber)
-            gasEmergencyMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, gasEmergencyPhoneNumber.count))
-            
-            let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
-            let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
-            
-            gasEmergencyTextMutableAttributedString.append(gasEmergencyMutableAttributedString)
-            gasEmergencyTextMutableAttributedString.append(downedPowerLineTextMutableAttributedString)
-            gasEmergencyTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
-            
-            return gasEmergencyTextMutableAttributedString
+            return "1-800-685-0123"
         case .comEd:
-            let downedPowerLineText = "To report a downed or sparking power line, please call "
-            let downedPowerLinePhoneNumber = NSLocalizedString("1-800-334-7661", comment: "")
-            
-            let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
-            let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
-            
-            downedPowerLineTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
-
-            return downedPowerLineTextMutableAttributedString
+            return "1-800-334-7661"
         case .peco:
-            let downedPowerLineText = "To report a gas emergency or a downed or sparking power line, please call "
-            let downedPowerLinePhoneNumber = NSLocalizedString("1-800-841-4141", comment: "")
-            
-            let downedPowerLineTextMutableAttributedString = NSMutableAttributedString(string: downedPowerLineText)
-            let downedPowerLineMutableAttributedString = NSMutableAttributedString(string: downedPowerLinePhoneNumber)
-            downedPowerLineMutableAttributedString.addAttribute(NSAttributedStringKey.font, value: OpenSans.semibold.of(textStyle: .footnote), range: NSMakeRange(0, downedPowerLinePhoneNumber.count))
-            
-            downedPowerLineTextMutableAttributedString.append(downedPowerLineMutableAttributedString)
-            
-            return downedPowerLineTextMutableAttributedString
+            return "1-800-841-4141"
         }
     }
     
     var gasOnlyMessage: String {
         switch Environment.shared.opco {
         case .bge:
-            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: "")
+            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call", comment: "")
         case .peco:
-            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: "")
-        default:
+            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call", comment: "")
+        case .comEd:
             return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
         }
     }
@@ -181,5 +173,11 @@ class StormModeHomeViewModel {
             }
         }
         return ""
+    }
+    
+    var reportOutageEnabled: Bool {
+        return !(currentOutageStatus?.flagFinaled ?? false ||
+            currentOutageStatus?.flagNoPay ?? false ||
+            currentOutageStatus?.flagNonService ?? false)
     }
 }

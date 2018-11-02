@@ -16,75 +16,65 @@ class AlertsViewController: AccountPickerViewController {
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     
     @IBOutlet weak var topStackView: UIStackView!
-
-    @IBOutlet weak var backgroundView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var preferencesButton: ButtonControl!
     @IBOutlet weak var preferencesButtonLabel: UILabel!
     @IBOutlet weak var alertsEmptyStateView: UIView!
     @IBOutlet weak var alertsEmptyStateLabel: UILabel!
-
-    @IBOutlet weak var loadingIndicator: LoadingIndicator!
-    @IBOutlet weak var errorLabel: UILabel!
+    
+    var shortcutToPrefs = false
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
-    let viewModel = AlertsViewModel(accountService: ServiceFactory.createAccountService())
+    let viewModel = AlertsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        backgroundView.backgroundColor = .white
         
-        if Environment.shared.opco == .bge {
-            self.accountPicker.isHidden = true
-            self.view.backgroundColor = .primaryColor
-        } else {
-            self.view.backgroundColor = .primaryColorAccountPicker
+        if StormModeStatus.shared.isOn {
+            accountPicker.stormMode = true
         }
-
+        
+        tableView.backgroundColor = .white
         tableView.separatorColor = .accentGray
-
+        
+        accountPicker.isHidden = Environment.shared.opco == .bge
+    
         styleViews()
         bindViewModel()
         
-        NotificationCenter.default.rx.notification(.didChangeBudgetBillingEnrollment, object: nil)
-            .asObservable()
-            .subscribe(onNext: { [weak self] _ in
-                // Clear account detail, which would force a refresh (in the .readyToFetchData block below) when the screen appears
-                self?.viewModel.currentAccountDetail = nil
-            })
-            .disposed(by: disposeBag)
-
         accountPicker.delegate = self
         accountPicker.parentViewController = self
-        accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
-            guard let `self` = self else { return }
-            switch(state) {
-            case .loadingAccounts:
-                self.viewModel.isFetchingAccountDetail.value = true
-                break
-            case .readyToFetchData:
-                if Environment.shared.opco == .bge || AccountsStore.shared.accounts.count == 1 {
-                    self.accountPicker.isHidden = true
-                    self.view.backgroundColor = .primaryColor
-                } else {
-                    self.view.backgroundColor = .primaryColorAccountPicker
-                }
+        accountPickerViewControllerWillAppear
+            .subscribe(onNext: { [weak self] state in
+                guard let self = self else { return }
                 
-                if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
-                    self.viewModel.fetchData()
-                } else if self.viewModel.currentAccountDetail == nil {
-                    self.viewModel.fetchData()
+                switch(state) {
+                case .loadingAccounts:
+                    self.tableView.isHidden = true
+                case .readyToFetchData:
+                    self.tableView.isHidden = false
+                    
+                    if AccountsStore.shared.accounts.count == 1 {
+                        self.accountPicker.isHidden = true
+                    }
+                    
+                    self.viewModel.fetchAlertsFromDisk()
+                    
+                    // Don't push straight to prefs for ComEd/PECO multi-account users
+                    if self.shortcutToPrefs && (Environment.shared.opco == .bge || AccountsStore.shared.accounts.count == 1) {
+                        self.performSegue(withIdentifier: "preferencesSegue", sender: nil)
+                    }
+                    
+                    self.shortcutToPrefs = false
                 }
-            }
-        }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         navigationController?.setColoredNavBar(hidesBottomBorder: true)
     }
     
@@ -93,7 +83,7 @@ class AlertsViewController: AccountPickerViewController {
         
         // Dynamic sizing for the table header view
         if let headerView = tableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var headerFrame = headerView.frame
             
             // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -105,11 +95,12 @@ class AlertsViewController: AccountPickerViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shortcutToPrefs = false
+    }
+    
     private func styleViews() {
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .blackText
-        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        
         preferencesButtonLabel.textColor = .actionBlue
         preferencesButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
@@ -121,28 +112,20 @@ class AlertsViewController: AccountPickerViewController {
     }
     
     private func bindViewModel() {
-        noNetworkConnectionView.reload
-            .subscribe(onNext: { [weak self] in self?.viewModel.fetchData() })
+        viewModel.shouldShowAlertsEmptyState.not()
+            .drive(alertsEmptyStateView.rx.isHidden)
             .disposed(by: disposeBag)
         
-        viewModel.shouldShowLoadingIndicator.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowNoNetworkConnectionView.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowNoNetworkConnectionView.drive(backgroundView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowNoNetworkConnectionView.drive(topStackView.rx.isHidden).disposed(by: disposeBag)
-        
-        viewModel.shouldShowAlertsTableView.not().drive(tableView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowAlertsEmptyState.not().drive(alertsEmptyStateView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowAlertsEmptyState.asObservable().subscribe(onNext: { [weak self] shouldShow in
-            self?.tableView.isScrollEnabled = !shouldShow
-        }).disposed(by: disposeBag)
+        viewModel.shouldShowAlertsEmptyState.not()
+            .drive(tableView.rx.isScrollEnabled)
+            .disposed(by: disposeBag)
 
-        viewModel.reloadAlertsTableViewEvent.asObservable().subscribe(onNext: { [weak self] in
-            self?.tableView.reloadData()
-        }).disposed(by: disposeBag)
-        viewModel.a11yScreenChangedEvent.asObservable().subscribe(onNext: { [weak self] in
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view)
-        }).disposed(by: disposeBag)
+        viewModel.currentAlerts.asDriver()
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
     
     @IBAction func onPreferencesButtonTap(_ sender: Any) {
@@ -153,7 +136,6 @@ class AlertsViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AlertPreferencesViewController {
             vc.delegate = self
-            vc.viewModel.accountDetail = viewModel.currentAccountDetail!
         }
     }
     
@@ -197,14 +179,13 @@ extension AlertsViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         viewModel.fetchAlertsFromDisk()
-        viewModel.fetchData()
     }
     
 }
 
 extension AlertsViewController: AlertPreferencesViewControllerDelegate {
     
-    func alertPreferencesViewControllerDidSavePreferences(_ alertPreferencesViewController: AlertPreferencesViewController) {
+    func alertPreferencesViewControllerDidSavePreferences() {
         Analytics.log(event: .alertsPrefCenterComplete)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Preferences saved", comment: ""))

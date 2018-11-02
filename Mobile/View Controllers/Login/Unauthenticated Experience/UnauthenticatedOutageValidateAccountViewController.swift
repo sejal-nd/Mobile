@@ -65,14 +65,14 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         
         maintenanceModeView.isHidden = true
         
-        NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: { [weak self] in
                 self?.keyboardWillShow(notification: $0)
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: { [weak self] in
                 self?.keyboardWillHide(notification: $0)
@@ -230,13 +230,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
                 // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
-                    if let url = URL(string: "tel://\(errMessage[phoneRange]))"), UIApplication.shared.canOpenURL(url) {
-                        if #available(iOS 10, *) {
-                            UIApplication.shared.open(url)
-                        } else {
-                            UIApplication.shared.openURL(url)
-                        }
-                    }
+                    UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
                 }))
             } else {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -246,9 +240,9 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         })
         
         switch analyticsSource {
-        case .report:
+        case .report?:
             Analytics.log(event: .reportAnOutageUnAuthSubmitAcctVal)
-        case .status:
+        case .status?:
             Analytics.log(event: .outageStatusUnAuthAcctValidate)
         default:
             break
@@ -273,9 +267,9 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     
     func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - footerView.frame.size.height, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - footerView.frame.size.height, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }

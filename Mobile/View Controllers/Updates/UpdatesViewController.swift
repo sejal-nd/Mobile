@@ -51,7 +51,7 @@ class UpdatesViewController: UIViewController {
         
         view.backgroundColor = .primaryColor
         
-        tableView.contentInset = UIEdgeInsetsMake(8, 0, 8, 0)
+        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -78,7 +78,7 @@ class UpdatesViewController: UIViewController {
             self?.tableView.reloadData()
         }).disposed(by: disposeBag)
         viewModel.a11yScreenChangedEvent.asObservable().subscribe(onNext: { [weak self] in
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self?.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self?.view)
         }).disposed(by: disposeBag)
     }
 
@@ -93,4 +93,25 @@ class UpdatesViewController: UIViewController {
         }
     }
 
+}
+
+extension UpdatesViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.currentOpcoUpdates.value?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UpdatesTableViewCell.className, for: indexPath) as? UpdatesTableViewCell, let opcoUpdates = viewModel.currentOpcoUpdates.value else { return UITableViewCell() }
+        
+        cell.configure(title: opcoUpdates[indexPath.row].title, detail: opcoUpdates[indexPath.row].message)
+        cell.innerContentView.rx.touchUpInside.asDriver()
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "UpdatesDetailSegue", sender: indexPath)
+            })
+            .disposed(by: cell.disposeBag)
+        
+        return cell
+    }
+    
 }

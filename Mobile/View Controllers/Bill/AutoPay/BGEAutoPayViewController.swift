@@ -123,10 +123,10 @@ class BGEAutoPayViewController: UIViewController {
     
         viewModel.getAutoPayInfo(onSuccess: { [weak self] in
             guard let `self` = self else { return }
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
         }, onError: { [weak self] _ in
             guard let `self` = self else { return }
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
         
         if viewModel.initialEnrollmentStatus.value == .unenrolled {

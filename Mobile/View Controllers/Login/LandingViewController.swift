@@ -27,7 +27,7 @@ class LandingViewController: UIViewController {
     
     private var playerLayer: AVPlayerLayer!
     private var avPlayer: AVPlayer?
-    private var avPlayerPlaybackTime = kCMTimeZero
+    private var avPlayerPlaybackTime = CMTime.zero
     
     private var viewDidAppear = false
 
@@ -49,10 +49,11 @@ class LandingViewController: UIViewController {
         view.backgroundColor = .primaryColor
         
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            if !Environment.shared.mcsInstanceName.contains("Prod") {
-                versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
-            } else {
+            switch Environment.shared.environmentName {
+            case .prod:
                 versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
+            case .aut, .dev, .stage:
+                versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
             }
         } else {
             versionLabel.text = nil
@@ -121,9 +122,9 @@ class LandingViewController: UIViewController {
     // MARK: - Helper
     
     private func backgroundVideoSetup() {
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
         
-        view.sendSubview(toBack: videoView)
+        view.sendSubviewToBack(videoView)
         let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video", ofType: "mp4")!)
         let asset = AVAsset(url: movieUrl)
         let avPlayerItem = AVPlayerItem(asset: asset)
@@ -148,17 +149,17 @@ class LandingViewController: UIViewController {
         
         videoView.layer.addSublayer(playerLayer)
         
-        avPlayer?.seek(to: kCMTimeZero)
+        avPlayer?.seek(to: .zero)
         avPlayer?.actionAtItemEnd = .none
         
         NotificationCenter.default.rx.notification(.AVPlayerItemDidPlayToEndTime)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: {
-                ($0.object as? AVPlayerItem)?.seek(to: kCMTimeZero)
+                ($0.object as? AVPlayerItem)?.seek(to: .zero)
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 self?.avPlayer?.play()

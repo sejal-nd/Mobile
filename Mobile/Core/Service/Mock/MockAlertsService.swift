@@ -6,44 +6,47 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import RxSwift
+
 class MockAlertsService: AlertsService {
     
-    func register(token: String, firstLogin: Bool, completion: @escaping (ServiceResult<Void>) -> Void) {
+    func register(token: String, firstLogin: Bool) -> Observable<Void> {
+        return .just(())
     }
     
-    func fetchAlertPreferences(accountNumber: String, completion: @escaping (ServiceResult<AlertPreferences>) -> Void) {
-        let testPrefs = AlertPreferences(outage: true, scheduledMaint: false, severeWeather: true, billReady: false, paymentDue: true, paymentDueDaysBefore: 99, budgetBilling: true, forYourInfo: false)
-        completion(.success(testPrefs))
+    func fetchAlertPreferences(accountNumber: String) -> Observable<AlertPreferences> {
+        let testPrefs = AlertPreferences(outage: true, scheduledMaint: false, severeWeather: true, billReady: false, paymentDue: true, paymentDueDaysBefore: 99, budgetBilling: true, appointmentTracking: false, forYourInfo: false)
+        return .just(testPrefs)
     }
     
-    func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences, completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(.success(()))
+    func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences) -> Observable<Void> {
+        return .just(())
     }
     
-    func enrollBudgetBillingNotification(accountNumber: String, completion: @escaping (ServiceResult<Void>) -> Void) {
+    func enrollBudgetBillingNotification(accountNumber: String) -> Observable<Void> {
         if accountNumber == "0000" {
-            completion(.failure(ServiceError(serviceMessage: "Mock Error")))
+            return .error(ServiceError(serviceMessage: "Mock Error"))
         } else {
-            completion(.success(()))
+            return .just(())
         }
     }
     
-    func fetchAlertLanguage(accountNumber: String, completion: @escaping (ServiceResult<String>) -> Void) {
-        completion(.success("English"))
+    func fetchAlertLanguage(accountNumber: String) -> Observable<String> {
+        return .just("English")
     }
     
-    func setAlertLanguage(accountNumber: String, english: Bool, completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(.success(()))
+    func setAlertLanguage(accountNumber: String, english: Bool) -> Observable<Void> {
+        return .just(())
     }
     
     var updatesShouldSucceed = true
     
-    func fetchOpcoUpdates(bannerOnly: Bool = false, completion: @escaping (ServiceResult<[OpcoUpdate]>) -> Void) {
+    func fetchOpcoUpdates(bannerOnly: Bool = false, stormOnly: Bool = false) -> Observable<[OpcoUpdate]> {
         if updatesShouldSucceed {
             let opcoUpdates = [OpcoUpdate.from(["Title": "Test Title", "Message": "Test Message"])!]
-            completion(.success(opcoUpdates))
+            return .just(opcoUpdates)
         } else {
-            completion(.failure(ServiceError(serviceMessage: "Mock Error")))
+            return .error(ServiceError(serviceMessage: "Mock Error"))
         }
     }
 }

@@ -16,6 +16,7 @@ class HomeUsageCardView: UIView {
     @IBOutlet private weak var clippingView: UIView!
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var loadingView: UIView!
+    @IBOutlet private weak var maintenanceModeView: UIView!
     
     // Bill Comparison
     @IBOutlet private weak var billComparisonView: UIView!
@@ -107,7 +108,7 @@ class HomeUsageCardView: UIView {
                                   rightLabel: NSLocalizedString("Gas", comment: ""),
                                   initialSelectedIndex: 0)
         
-        billComparisonStackView.bringSubview(toFront: segmentedControl)
+        billComparisonStackView.bringSubviewToFront(segmentedControl)
         
         clippingView.layer.cornerRadius = 10
         styleBillComparison()
@@ -119,7 +120,7 @@ class HomeUsageCardView: UIView {
         
         unavailableDescriptionLabel.textColor = .middleGray
         unavailableDescriptionLabel.attributedText = NSLocalizedString("Usage is not available for this account.", comment: "")
-            .attributedString(withLineHeight: 26, textAlignment: .center)
+            .attributedString(textAlignment: .center, lineHeight: 26)
     }
     
     func superviewDidLayoutSubviews() {
@@ -176,6 +177,7 @@ class HomeUsageCardView: UIView {
         viewUsageButtonLabel.textColor = .actionBlue
         viewUsageButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
         viewUsageButtonLabel.text = NSLocalizedString("View Usage", comment: "")
+        viewUsageButton.accessibilityLabel = viewUsageButtonLabel.text
     }
     
     private func styleSmartEnergyRewards() {
@@ -217,6 +219,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showSmartEnergyRewards() {
@@ -225,6 +228,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showSmartEnergyRewardsEmptyState() {
@@ -233,6 +237,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = false
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showBillComparisonEmptyState() {
@@ -242,6 +247,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = false
         unavailableView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showUnavailableState() {
@@ -250,6 +256,16 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = false
+        maintenanceModeView.isHidden = true
+    }
+    
+    private func showMaintenanceModeState() {
+        billComparisonView.isHidden = true
+        smartEnergyRewardsView.isHidden = true
+        smartEnergyRewardsEmptyStateView.isHidden = true
+        billComparisonEmptyStateView.isHidden = true
+        unavailableView.isHidden = true
+        maintenanceModeView.isHidden = false
     }
     
     private func bindViewModel() {
@@ -257,7 +273,7 @@ class HomeUsageCardView: UIView {
         viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.showLoadingState
-            .drive(onNext: { _ in UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil) })
+            .drive(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
             .disposed(by: disposeBag)
         
         // Bill Comparison vs. SER Show/Hide
@@ -281,6 +297,10 @@ class HomeUsageCardView: UIView {
         
         viewModel.showUnavailableState
             .drive(onNext: { [weak self] in self?.showUnavailableState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showMaintenanceModeState
+            .drive(onNext: { [weak self] in self?.showMaintenanceModeState() })
             .disposed(by: disposeBag)
         
         // --- Bill Comparison ---
@@ -376,7 +396,7 @@ class HomeUsageCardView: UIView {
         
         // Bill Comparison Empty State
         viewModel.billComparisonEmptyStateText
-            .map { $0.attributedString(withLineHeight: 26, textAlignment: .center) }
+            .map { $0.attributedString(textAlignment: .center, lineHeight: 26) }
             .drive(billComparisonEmptyStateLabel.rx.attributedText)
             .disposed(by: disposeBag)
     }

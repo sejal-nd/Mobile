@@ -27,6 +27,8 @@ class OutageStatusButton: UIView {
     @IBOutlet weak private var innerCircleView: UIView! {
         didSet {
             innerCircleView.layer.borderWidth = 6
+            innerCircleView.isAccessibilityElement = true
+            innerCircleView.accessibilityTraits = .button
             innerCircleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBigButtonTap)))
         }
     }
@@ -73,7 +75,7 @@ class OutageStatusButton: UIView {
         let color: UIColor
         switch Environment.shared.opco {
         case .bge:
-            color = .primaryColor
+            color = .bgeGreen
         case .comEd:
             color = .primaryColor
         case .peco:
@@ -83,16 +85,7 @@ class OutageStatusButton: UIView {
     }
     
     private var outterBorderColor: UIColor {
-        let color: UIColor
-        switch Environment.shared.opco {
-        case .bge:
-            color = isStormMode ? .clear : UIColor(red: 61/255, green: 132/255, blue: 48/255, alpha:0.6)
-        case .comEd:
-            color = isStormMode ? .clear : UIColor(red: 206/255, green: 17/255, blue: 65/255, alpha:0.6)
-        case .peco:
-            color = isStormMode ? .clear : UIColor(red: 0/255, green: 119/255, blue: 187/255, alpha:0.6)
-        }
-        return color
+        return isStormMode ? .clear : UIColor.primaryColor.withAlphaComponent(0.6)
     }
 
     var onLottieAnimation: LOTAnimationView?
@@ -118,7 +111,6 @@ class OutageStatusButton: UIView {
                 onLottieAnimation = LOTAnimationView(name: "outage")
                 
                 outerCircleView.isHidden = false
-                outerCircleView.layer.borderColor = UIColor.red.cgColor // CHANGE
                 
                 statusTitleLabel.textColor = .actionBlue
                 statusDetailLabel.textColor = .actionBlue
@@ -202,7 +194,7 @@ class OutageStatusButton: UIView {
         reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         reportedETRLabel.text = estimatedRestorationDateString
 
-        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. Your outage is reported. Estimated restoration \(estimatedRestorationDateString).", comment: "")
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status button. Your outage is reported. Estimated restoration \(estimatedRestorationDateString).", comment: "")
     }
     
     func setOutageState(estimatedRestorationDateString: String) {
@@ -234,7 +226,7 @@ class OutageStatusButton: UIView {
         reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         reportedETRLabel.text = estimatedRestorationDateString
 
-        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, button. Our records indicate your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status button. Our records indicate your power is out. Estimated restoration \(estimatedRestorationDateString).", comment: "")
     }
     
     func setPowerOnState() {
@@ -264,11 +256,15 @@ class OutageStatusButton: UIView {
         statusTitleLabel.text = NSLocalizedString("Our records indicate", comment: "")
         statusDetailLabel.text = NSLocalizedString("POWER IS ON", comment: "")
 
-        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status, Button. Our records indicate your power is on.", comment: "")
+        innerCircleView.accessibilityLabel = NSLocalizedString("Outage status button. Our records indicate your power is on.", comment: "")
     }
 
     @objc func onBigButtonTap() {
         delegate?.outageStatusButtonWasTapped(self)
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 267, height: 267)
     }
     
 }

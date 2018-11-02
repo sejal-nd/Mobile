@@ -241,7 +241,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
                        isActive: indexPath.section == 0,
                        addRemoveTapped: addRemoveTapped)
         
-        cell.gripView.rx.panGesture(minimumNumberOfTouches: 1, maximumNumberOfTouches: 1) { _, delegate in
+        cell.gripView.rx.panGesture() { _, delegate in
             delegate.beginPolicy = .custom { [weak self] _ in !(self?.isReordering.value ?? false) }
             delegate.simultaneousRecognitionPolicy = .never
             }
@@ -264,7 +264,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeEditSectionHeaderView.className, for: indexPath) as! HomeEditSectionHeaderView
             switch indexPath.section {
             case 0:

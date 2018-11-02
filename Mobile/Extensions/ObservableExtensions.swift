@@ -43,6 +43,11 @@ extension ObservableType {
     }
 }
 
+extension ObservableType where E: Sequence {
+    func mapElements<R>(_ transform: @escaping (Self.E.Element) throws -> R) -> Observable<Array<R>> {
+        return map { try $0.map(transform) }
+    }
+}
 
 import RxCocoa
 

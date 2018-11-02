@@ -57,7 +57,7 @@ class SplashViewController: UIViewController{
         errorTextView.tintColor = .actionBlue // For the phone numbers
         errorTextView.attributedText = viewModel.errorLabelText
 
-        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification, object: nil)
             .skip(1) // Ignore the initial notification that fires, causing a double call to checkAppVersion
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
@@ -97,7 +97,7 @@ class SplashViewController: UIViewController{
             splashAnimationContainer.addSubview(splashAnimationView!)
             splashAnimationView!.play()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, Environment.shared.opco.taglineString)
+                UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.taglineString)
             }
         }
         
@@ -138,7 +138,7 @@ class SplashViewController: UIViewController{
             loadingTimer.invalidate()
             
             let navigate = { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if self.performDeepLink {
                     let storyboard = UIStoryboard(name: "Login", bundle: nil)
                     let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
@@ -161,6 +161,18 @@ class SplashViewController: UIViewController{
                     unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
                     
                     self.navigationController?.setViewControllers(vcArray, animated: true)
+                } else if self.shortcutItem == .alertPreferences {
+                    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+                    let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+                    let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+                    
+                    self.navigationController?.setViewControllers([landing, login], animated: false)
+                    
+                    let alert = UIAlertController(title: NSLocalizedString("You must be signed in to adjust alert preferences.", comment: ""),
+                                                  message: NSLocalizedString("You can turn the \"Keep me signed in\" toggle ON for your convenience.", comment: ""),
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    landing.present(alert, animated: true, completion: nil)
                 } else {
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
@@ -204,13 +216,7 @@ class SplashViewController: UIViewController{
     func handleOutOfDate(){
         let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
         requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] action in
-            if let url = self?.viewModel.appStoreLink, UIApplication.shared.canOpenURL(url) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { (success: Bool) in })
-                } else {
-                    UIApplication.shared.openURL(url)
-                }
-            }
+            UIApplication.shared.openUrlIfCan(self?.viewModel.appStoreLink)
         }))
         present(requireUpdateAlert,animated: true, completion: nil)
     }

@@ -77,7 +77,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         
         // Dynamic sizing for the table header view
         if let headerView = tableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var headerFrame = headerView.frame
 
             // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -99,9 +99,9 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
             vc.analyticsSource = analyticsSource
             
             switch analyticsSource {
-            case .report:
+            case .report?:
                 Analytics.log(event: .reportAnOutageUnAuthSubmitAcctSelection)
-            case .status:
+            case .status?:
                 Analytics.log(event: .outageStatusUnAuthAcctSelect)
             default:
                 break
@@ -175,13 +175,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
                 let alertVc = UIAlertController(title: NSLocalizedString("Outage status unavailable", comment: ""), message: NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""), preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
-                    if let url = URL(string: "tel://1-800-685-0123"), UIApplication.shared.canOpenURL(url) {
-                        if #available(iOS 10, *) {
-                            UIApplication.shared.open(url)
-                        } else {
-                            UIApplication.shared.openURL(url)
-                        }
-                    }
+                    UIApplication.shared.openPhoneNumberIfCan("1-800-685-0123")
                 }))
                 self.present(alertVc, animated: true, completion: nil)
             } else {
@@ -215,13 +209,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
                     // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
-                        if let url = URL(string: "tel://\(errMessage[phoneRange]))"), UIApplication.shared.canOpenURL(url) {
-                            if #available(iOS 10, *) {
-                                UIApplication.shared.open(url)
-                            } else {
-                                UIApplication.shared.openURL(url)
-                            }
-                        }
+                        UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
                     }))
                 } else {
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))

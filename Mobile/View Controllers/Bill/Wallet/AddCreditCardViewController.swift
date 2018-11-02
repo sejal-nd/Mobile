@@ -47,8 +47,8 @@ class AddCreditCardViewController: UIViewController {
         viewModel.accountDetail = accountDetail
         viewModel.oneTouchPayItem = oneTouchPayItem
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         title = NSLocalizedString("Add Card", comment: "")
         
@@ -181,7 +181,7 @@ class AddCreditCardViewController: UIViewController {
         cardIOViewController.navigationBarTintColor = .primaryColor
         cardIOViewController.navigationBar.isTranslucent = false
         cardIOViewController.navigationBar.tintColor = .white
-        let titleDict: [NSAttributedStringKey: Any] = [
+        let titleDict: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white,
             .font: OpenSans.bold.of(size: 18)
         ]
@@ -192,13 +192,13 @@ class AddCreditCardViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
             safeAreaBottomInset = self.view.safeAreaInsets.bottom
         }
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
@@ -229,8 +229,8 @@ extension AddCreditCardViewController: AddCardFormViewDelegate {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""), style: .default, handler: { _ in
-                if let url = URL(string: UIApplicationOpenSettingsURLString) {
-                    UIApplication.shared.openURL(url)
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
                 }
             }))
             present(alertVC, animated: true, completion: nil)

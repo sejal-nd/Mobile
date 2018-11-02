@@ -21,7 +21,6 @@ class RegistrationViewModel {
     let accountNumber = Variable("")
     
     let username = Variable("")
-    let confirmUsername = Variable("")
     let newPassword = Variable("")
     let confirmPassword = Variable("")
     
@@ -94,7 +93,11 @@ class RegistrationViewModel {
         registrationService.checkForDuplicateAccount(username.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                if #available(iOS 11.0, *) {
+                if #available(iOS 12.0, *) {
+                    onSuccess()
+                }
+                // Manually save to SWC if iOS 11
+                else if #available(iOS 11.0, *) {
                     guard let this = self else { return }
                     SharedWebCredentials.save(credential: (this.username.value, this.newPassword.value), domain: Environment.shared.associatedDomain) { [weak this] error in
                         DispatchQueue.main.async {
@@ -306,9 +309,6 @@ class RegistrationViewModel {
 		return nil
 	}
 	
-	private(set) lazy var usernameMatches: Driver<Bool> = Driver.combineLatest(self.confirmUsername.asDriver(), self.username.asDriver())
-		.map { $0 == $1 && !$0.isEmpty }
-	
 	private(set) lazy var newPasswordHasText: Driver<Bool> = self.newPassword.asDriver().map{ !$0.isEmpty }
 	
 	private(set) lazy var characterCountValid: Driver<Bool> = self.newPassword.asDriver()
@@ -370,10 +370,9 @@ class RegistrationViewModel {
 	                                                                            self.containsNumber,
 	                                                                            self.containsSpecialCharacter,
 	                                                                            self.newUsernameHasText,
-	                                                                            self.usernameMatches,
 	                                                                            self.newUsernameIsValidBool])
 	{ array in
-		if !array[0] && array[1] && array[6] && array[7] && array[8] {
+		if !array[0] && array[1] && array[6] && array[7] {
 			let otherArray = array[2...5].filter{ $0 }
 			
 			if otherArray.count >= 3 {
@@ -397,10 +396,9 @@ class RegistrationViewModel {
                                                                                       resultSelector: ==)
     
     // THIS IS FOR THE NEXT BUTTON ON THE SECOND STEP (CREATE SIGN IN CREDENTIALS)
-    private(set) lazy var doneButtonEnabled: Driver<Bool> = Driver.combineLatest(self.everythingValid,
-                                                                                 self.confirmPasswordMatches,
-                                                                                 self.newPasswordHasText)
-	{ $0 && $1 && $2 }
+    private(set) lazy var doneButtonEnabled: Driver<Bool> = Driver
+        .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
+        { $0 && $1 && $2 }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
 	private(set) lazy var question1Selected: Driver<Bool> = self.securityQuestion1.asDriver().map { !$0.isEmpty }

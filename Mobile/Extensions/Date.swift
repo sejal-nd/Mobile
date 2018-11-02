@@ -33,8 +33,32 @@ extension Date {
         return DateFormatter.shortMonthDayAndYearFormatter.string(from: self)
     }
     
+    @nonobjc var dayMonthDayString: String {
+        return DateFormatter.dayMonthDayFormatter.string(from: self) +
+            ordinal(forCalendar: DateFormatter.dayMonthDayFormatter.calendar)
+    }
+    
+    @nonobjc var monthDayOrdinalString: String {
+        return DateFormatter.monthDayFormatter.string(from: self) +
+            ordinal(forCalendar: DateFormatter.monthDayFormatter.calendar)
+    }
+    
     @nonobjc var hourAmPmString: String {
-        return DateFormatter.hourAmPmFormatter.string(from: self)
+        var date = self
+        let minutes = Calendar.current.component(.minute, from: date)
+        if minutes >= 30, let adjustedDate = Calendar.current.date(byAdding: .hour, value: 1, to: date) {
+            date = adjustedDate
+        }
+        return DateFormatter.hourAmPmFormatter.string(from: date)
+    }
+    
+    @nonobjc var hour_AmPmString: String {
+        var date = self
+        let minutes = Calendar.current.component(.minute, from: date)
+        if minutes >= 30, let adjustedDate = Calendar.current.date(byAdding: .hour, value: 1, to: date) {
+            date = adjustedDate
+        }
+        return DateFormatter.hour_AmPmFormatter.string(from: date)
     }
     
     @nonobjc var apiFormatString: String {
@@ -68,6 +92,15 @@ extension Date {
         guard let start = currentCalendar.ordinality(of: comp, in: .era, for: date) else { return 0 }
         guard let end = currentCalendar.ordinality(of: comp, in: .era, for: self) else { return 0 }
         return end - start
+    }
+    
+    func ordinal(forCalendar calendar: Calendar) -> String {
+        switch calendar.component(.day, from: self) {
+        case 1, 21, 31: return "st"
+        case 2, 22: return "nd"
+        case 3, 23: return "rd"
+        default: return "th"
+        }
     }
 }
 
@@ -196,6 +229,14 @@ extension DateFormatter {
         return dateFormatter
     }()
     
+    @nonobjc static let hour_AmPmFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "h a"
+        return dateFormatter
+    }()
+    
     @nonobjc static let apiFormatterGMT: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = .gmt
@@ -217,6 +258,22 @@ extension DateFormatter {
         dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd'T'12:00:00"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let dayMonthDayFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "EEEE, MMM d"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let monthDayFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .opCo
+        dateFormatter.timeZone = .opCo
+        dateFormatter.dateFormat = "MMM d"
         return dateFormatter
     }()
     

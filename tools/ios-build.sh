@@ -4,17 +4,17 @@
 # Reads in the mobile cloud config file directly, filtering out prod instances
 # Have to convert to json first
 
-plutil -convert json -e json Mobile/OMC.plist
+plutil -convert json -e json Mobile/MCSConfig.plist
 
 string_of_mbes="$(perl -MJSON::PP -e "my \$data = decode_json(<STDIN>); \
 	foreach my \$key ( keys \$data -> {mobileBackends} ){ \
 		if (index(\$key, \"Prod\") == -1){ \
 			print \$key , \" \"; \
-	}}" < Mobile/OMC.json)"
+	}}" < Mobile/MCSConfig.json)"
 
 stagingMBEs=($string_of_mbes)
 
-rm Mobile/OMC.json
+rm Mobile/MCSConfig.json
 
 echo "
 Exelon Utilities Mobile Build Script for iOS
@@ -293,6 +293,18 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 fi
 
 
+# Check VSTS xcode version. If set to 9.4.1, change it to 10.0. This branch requires 10.0+ to run.
+if xcodebuild -version | grep -q 9.4.1; then
+	echo "Switching VSTS build agent to Xcode 10 -- $XCODE_10_DEVELOPER_DIR"
+	sudo xcode-select -switch $XCODE_10_DEVELOPER_DIR
+
+	# Xcode 10's new build system seems to want all files in place, which causes issues with the environment switcher task
+	# Stick empty files in place
+
+	touch Mobile/Configuration/environment.plist
+	touch Mobile/Configuration/environment_preprocess.h
+fi
+
 # Restore Carthage Packages
 if [[ $target_phases = *"carthage"* ]]; then 
 	# carthage update --platform iOS --project-directory $PROJECT_DIR
@@ -453,8 +465,12 @@ if [[ $target_phases = *"veracodePrep"* ]]; then
 		mkdir build/veracode
 		mkdir build/veracode/Payload
 
-		cp -a build/$CONFIGURATION/$OPCO.app.dSYM/. build/veracode/Payload/$OPCO.app.dSYM/
-		cp -a build/$CONFIGURATION/$OPCO.swiftmodule/. build/veracode/Payload/$OPCO.swiftmodule/
+		# xcode logs include a statement to output the location of the build directory
+		$(grep "export BUILT_PRODUCTS_DIR" build/logs/xcodebuild_archive.log| head -n1)
+		echo "Set environment variable BUILT_PRODUCTS_DIR to $BUILT_PRODUCTS_DIR"
+
+		cp -a $BUILT_PRODUCTS_DIR/$OPCO.app.dSYM/. build/veracode/Payload/$OPCO.app.dSYM/
+		cp -a $BUILT_PRODUCTS_DIR/$OPCO.swiftmodule/. build/veracode/Payload/$OPCO.swiftmodule/
 		cp -a build/archive/$target_scheme.xcarchive/Products/Applications/$OPCO.app/. build/veracode/Payload/$OPCO.app/
 		pushd ./build/veracode
 		zip -r $OPCO-Veracode-$target_version_number.zip ./Payload
@@ -495,15 +511,19 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 		check_errs $? "Build for testing exited with a non-zero status"
 
 		# find .
-
 		echo "--------------------------------- Uploading to appcenter -------------------------------"
+
+		# xcode logs include a statement to output the location of the build directory
+		$(grep "export BUILT_PRODUCTS_DIR" build/logs/xcodebuild_build_for_testing.log| head -n1)
+		echo "Set environment variable BUILT_PRODUCTS_DIR to $BUILT_PRODUCTS_DIR"
+
 		# Upload your test to App Center
 		appcenter test run xcuitest \
 			--app $target_app_center_app \
 			--devices $APP_CENTER_TEST_DEVICES \
 			--test-series "$APP_CENTER_TEST_SERIES"  \
 			--locale "en_US" \
-			--build-dir Build/Automation \
+			--build-dir $BUILT_PRODUCTS_DIR \
 			--token $APP_CENTER_API_TOKEN \
 			--async
 

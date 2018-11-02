@@ -7,34 +7,35 @@
 //
 
 import Foundation
+import RxSwift
 
 struct MockRegistrationService: RegistrationService {
     
-    func createNewAccount(username: String, password: String, accountNum: String?, identifier: String, phone: String, question1: String, answer1: String, question2: String, answer2: String, question3: String, answer3: String, isPrimary: String, isEnrollEBill: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        
+    func createNewAccount(username: String, password: String, accountNum: String?, identifier: String, phone: String, question1: String, answer1: String, question2: String, answer2: String, question3: String, answer3: String, isPrimary: String, isEnrollEBill: String) -> Observable<Void> {
+        return .just(())
     }
     
-    func checkForDuplicateAccount(_ username: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        
+    func checkForDuplicateAccount(_ username: String) -> Observable<Void> {
+        return .just(())
     }
     
-    func loadSecretQuestions(_ completion: @escaping (ServiceResult<[String]>) -> Void) {
-        
+    func loadSecretQuestions() -> Observable<[String]> {
+        return .just(["Hello", "Hi", "Howdy", "Aloha", "Guten tag"])
     }
     
-    func validateAccountInformation(_ identifier: String, phone: String, accountNum: String?, completion: @escaping (ServiceResult<[String : Any]>) -> Void) {
-        
+    func validateAccountInformation(_ identifier: String, phone: String, accountNum: String?) -> Observable<[String : Any]> {
+        return .just([:])
     }
     
-    func resendConfirmationEmail(_ username: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        
+    func resendConfirmationEmail(_ username: String) -> Observable<Void> {
+        return .just(())
     }
     
-    func validateConfirmationEmail(_ guid: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        
+    func validateConfirmationEmail(_ guid: String) -> Observable<Void> {
+        return .just(())
     }
     
-    func recoverPassword(_ username: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        
+    func recoverPassword(_ username: String) -> Observable<Void> {
+        return .just(())
     }
 }

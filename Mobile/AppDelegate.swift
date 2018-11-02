@@ -11,6 +11,8 @@ import ToastSwiftFramework
 import Firebase
 import AppCenter
 import AppCenterCrashes
+import RxSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,7 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var window: UIWindow?
     #endif
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    let disposeBag = DisposeBag()
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
+        
         let processInfo = ProcessInfo.processInfo
         if processInfo.arguments.contains("UITest") || processInfo.environment["XCTestConfigurationFilePath"] != nil {
             // Clear UserDefaults if Unit or UI testing -- ensures consistent fresh run
@@ -47,10 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
         }
         
-        if Environment.shared.environmentName == .prod {
-            OMCMobileBackendManager.shared().logLevel = "none"
-        }
-        
         setupUserDefaults()
         setupToastStyles()
         setupAppearance()
@@ -64,9 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(showIOSVersionWarning), name: .shouldShowIOSVersionWarning, object: nil)
         
         // If app was cold-launched from a push notification
-        if let options = launchOptions, let userInfo = options[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
+        if let options = launchOptions, let userInfo = options[.remoteNotification] as? [AnyHashable : Any] {
             self.application(application, didReceiveRemoteNotification: userInfo)
-        } else if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+        } else if let shortcutItem = launchOptions?[.shortcutItem] as? UIApplicationShortcutItem {
             handleShortcut(shortcutItem)
             return false
         }
@@ -76,6 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.bool(forKey:  UserDefaultKeys.hasAcceptedTerms) {
             configureQuickActions(isAuthenticated: false)
         }
+        
+        RxNotifications.shared.configureQuickActions
+            .subscribe(onNext: { [weak self] in
+                self?.configureQuickActions(isAuthenticated: $0)
+            })
+            .disposed(by: disposeBag)
         
         return true
     }
@@ -92,32 +100,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             let alertsService = ServiceFactory.createAlertsService()
-            alertsService.register(token: token, firstLogin: firstLogin) { (result: ServiceResult<Void>) in
-                switch result {
-                case .success:
+            alertsService.register(token: token, firstLogin: firstLogin)
+                .subscribe(onNext: {
                     dLog("*-*-*-*-* Registered token with MCS")
                     if firstLogin { // Add the username to the array
                         var newUsernamesArray = usernamesArray
                         newUsernamesArray.append(loggedInUsername)
                         UserDefaults.standard.set(newUsernamesArray, forKey: UserDefaultKeys.usernamesRegisteredForPushNotifications)
                     }
-                case .failure(let err):
+                }, onError: { err in
                     dLog("*-*-*-*-* Failed to register token with MCS with error: \(err.localizedDescription)")
-                }
-            }
-        }
-    }
-    
-    // Only used on iOS 9 and below -- iOS 10+ uses the new UNUserNotificationCenter and handles the analytics in
-    // the callback in HomeViewController
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
-            UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
-            if notificationSettings.types.isEmpty {
-                Analytics.log(event: .alertsiOSPushDontAllowInitial)
-            } else {
-                Analytics.log(event: .alertsiOSPushOKInitial)
-            }
+                })
+                .disposed(by: disposeBag)
         }
     }
     
@@ -144,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AlertsStore.shared.savePushNotification(notification)
         
         if application.applicationState == .background || application.applicationState == .inactive { // App was in background when PN tapped
-            if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+            if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
                 NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
             } else {
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
@@ -155,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else {
             return false
         }
@@ -204,10 +198,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
             let biometricsService = ServiceFactory.createBiometricsService()
             biometricsService.disableBiometrics()
-            
-            // Log the user out (Oracle SDK appears to be persisting the auth token through uninstalls)
-            let auth = OMCApi.shared.getBackend().authorization
-            auth.logoutClearCredentials(true, completionBlock: nil)
+
+            MCSApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }
@@ -355,16 +347,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
+            let storyboardName = StormModeStatus.shared.isOn ? "Storm" : "Main"
             if let root = window.rootViewController, let _ = root.presentedViewController {
                 root.dismiss(animated: false) {
-                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
                     let newTabBarController = mainStoryboard.instantiateInitialViewController()
                     window.rootViewController = newTabBarController
                     NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
                 }
             } else {
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let mainStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
                 let newTabBarController = mainStoryboard.instantiateInitialViewController()
                 window.rootViewController = newTabBarController
                 NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
@@ -391,6 +384,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             newNavController.setViewControllers(vcArray, animated: false)
             window.rootViewController?.dismiss(animated: false)
             window.rootViewController = newNavController
+        } else if shortcutItem == .alertPreferences {
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+            let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+            
+            // Reset the unauthenticated nav stack
+            let newNavController = loginStoryboard.instantiateInitialViewController() as! UINavigationController
+            newNavController.setViewControllers([landing, login], animated: false)
+            window.rootViewController?.dismiss(animated: false)
+            window.rootViewController = newNavController
+            
+            let alert = UIAlertController(title: NSLocalizedString("You must be signed in to adjust alert preferences.", comment: ""),
+                                          message: NSLocalizedString("You can turn the \"Keep me signed in\" toggle ON for your convenience.", comment: ""),
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            landing.present(alert, animated: true, completion: nil)
         } else {
             return false
         }
@@ -436,3 +445,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
+        handleShortcut(UIApplicationShortcutItem(type: ShortcutItem.alertPreferences.rawValue, localizedTitle: ""))
+    }
+    
+}
