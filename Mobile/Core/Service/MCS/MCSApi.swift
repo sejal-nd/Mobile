@@ -120,10 +120,17 @@ class MCSApi {
                 }
                 .do(onNext: { [weak self] token in
                     guard let self = self else { return }
-                        self.accessToken = token
-                        if storeToken {
-                            self.tokenKeychain.setString(token, forKey: self.TOKEN_KEYCHAIN_KEY)
-                        }
+                    self.accessToken = token
+                    
+                    #if os(iOS)
+                    if let token = self.accessToken {
+                        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : token])
+                    }
+                    #endif
+                    
+                    if storeToken {
+                        self.tokenKeychain.setString(token, forKey: self.TOKEN_KEYCHAIN_KEY)
+                    }
                 })
                 .mapTo(())
                 .observeOn(MainScheduler.instance)

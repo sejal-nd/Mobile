@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 enum MainFeature {
     case outage
@@ -51,6 +52,8 @@ class NetworkingUtility {
     private let accountManager = AccountsManager()
     
     private var pollingTimer: Timer!
+    
+    private let disposeBag = DisposeBag()
     
     private init() {
         aLog("init network manager.")
@@ -216,17 +219,20 @@ class NetworkingUtility {
         aLog("Fetching Maintenance Mode Status...")
         
         let authService = MCSAuthenticationService()
-        // todo convert to rx swifty
-//        authService.getMaintenanceMode { serviceResult in
-//            switch serviceResult {
-//            case .success(let status):
-//                aLog("Maintenance Mode Fetched.")
-//                completion(status, nil)
-//            case .failure(let error):
-//                aLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
-//                completion(nil, error)
-//            }
-//        }
+        
+        
+        authService.getMaintenanceMode()
+            .subscribe(onNext: { maintenance in
+                // handle success
+                aLog("Maintenance Mode Fetched.")
+                
+                completion(maintenance, nil)
+            }, onError: { error in
+                // handle error
+                aLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
+                completion(nil, error as? ServiceError)
+            })
+            .disposed(by: disposeBag)
     }
     
     /// Fetches outage data fort he current account triggering various networkUtilityDelegate methods along the way.
@@ -246,18 +252,20 @@ class NetworkingUtility {
         }
         
         let outageService = MCSOutageService()
-        // todo convert into rx swifty
-//        outageService.fetchOutageStatus(account: currentAccount) { [weak self] serviceResult in
-//            switch serviceResult {
-//            case .success(let outageStatus):
-//                aLog("Outage Status Fetched.")
-//                success(outageStatus)
-//                self?.outageStatus = outageStatus
-//            case .failure(let serviceError):
-//                aLog("Failed to retrieve outage status: \(serviceError.localizedDescription)")
-//                error(serviceError)
-//            }
-//        }
+        
+        outageService.fetchOutageStatus(account: currentAccount).subscribe(onNext: { [weak self] outageStatus in
+            // handle success
+            aLog("Outage Status Fetched.")
+            success(outageStatus)
+            self?.outageStatus = outageStatus
+            }, onError: { outageError in
+                // handle error
+                aLog("Failed to retrieve outage status: \(outageError.localizedDescription)")
+                let serviceError = (outageError as? ServiceError) ?? ServiceError(serviceCode: outageError.localizedDescription, serviceMessage: nil, cause: nil)
+
+                error(serviceError)
+        })
+        .disposed(by: disposeBag)
     }
     
     /// Fetches usage data fort he current account triggering various networkUtilityDelegate methods along the way.
@@ -278,17 +286,18 @@ class NetworkingUtility {
         }
         let accountNumber = accountDetail.accountNumber
         
-        // todo vonert to rxswifty
-//        MCSUsageService().fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber) { serviceResult in
-//            switch serviceResult {
-//            case .success(let billForcast):
-//                aLog("Usage Data Fetched.")
-//                success(billForcast)
-//            case .failure(let serviceError):
-//                aLog("Error Fetching Usage: \(serviceError.localizedDescription)...\(serviceError)")
-//                error(serviceError)
-//            }
-//        }
+        MCSUsageService().fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
+            // handle success
+            aLog("Usage Data Fetched.")
+            success(billForecastResult)
+            }, onError: { usageError in
+                // handle error
+                aLog("Failed to retrieve usage data: \(usageError.localizedDescription)")
+                let serviceError = (usageError as? ServiceError) ?? ServiceError(serviceCode: usageError.localizedDescription, serviceMessage: nil, cause: nil)
+                
+                error(serviceError)
+        })
+            .disposed(by: disposeBag)
     }
 
 }

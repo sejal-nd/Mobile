@@ -158,6 +158,9 @@ class MoreViewController: UIViewController {
     }
     
     private func logout(action: UIAlertAction) {
+        // Sign out of Apple Watch App
+        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
+        
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout()
         

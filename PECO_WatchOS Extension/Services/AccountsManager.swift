@@ -7,8 +7,11 @@
 //
 
 import WatchKit
+import RxSwift
 
 class AccountsManager {
+    
+    private let disposeBag = DisposeBag()
     
     public func fetchAccounts(success: @escaping ([Account]) -> Void) {
         aLog("Fetching Accounts...")
@@ -19,27 +22,25 @@ class AccountsManager {
         }
         
         let accountService = MCSAccountService()
-        
-        // todo Rxswiftify
-//        accountService.fetchAccounts { serviceResult in
-//            switch serviceResult {
-//            case .success(let accounts):
-//                guard let firstAccount = AccountsStore.shared.accounts.first else {
-//                    aLog("Could not retrieve first account in account list.")
-//                    return
-//                }
-//                
-//                if AccountsStore.shared.getSelectedAccount() == nil {
-//                    AccountsStore.shared.setSelectedAccount(firstAccount)
-//                }
-//                
-//                aLog("Accounts Fetched.")
-//                
-//                success(accounts)
-//            case .failure(let serviceError):
-//                aLog("Failed to retrieve accounts: \(serviceError.localizedDescription)")
-//            }
-//        }
+        accountService.fetchAccounts().subscribe(onNext: { accounts in
+            // handle success
+            guard let firstAccount = AccountsStore.shared.accounts.first else {
+                aLog("Could not retrieve first account in account list.")
+                return
+            }
+            
+            if AccountsStore.shared.getSelectedAccount() == nil {
+                AccountsStore.shared.setSelectedAccount(firstAccount)
+            }
+            
+            aLog("Accounts Fetched.")
+            
+            success(accounts)
+        }, onError: { error in
+            // handle error
+            aLog("Failed to retrieve accounts: \(error.localizedDescription)")
+        })
+            .disposed(by: disposeBag)
     }
     
     // Fetch Account Details: We need this to determine if the current account is password protected.
@@ -52,23 +53,20 @@ class AccountsManager {
             return
         }
         
-        
         let accountService = MCSAccountService()
-        // todo: rxswiftity
-//        accountService.fetchAccountDetail(account: currentAccount) { serviceResult in
-//            DispatchQueue.main.async {
-//                switch serviceResult {
-//                case .success(let accountDetail):
-//                    aLog("Account Details Fetched.")
-//                    
-//                    success(accountDetail)
-//                case .failure(let serviceError):
-//                    aLog("Failed to Fetch Account Details. \(serviceError.localizedDescription)")
-//                    
-//                    error(serviceError)
-//                }
-//            }
-//        }
+        accountService.fetchAccountDetail(account: currentAccount).subscribe(onNext: { accountDetail in
+            // handle success
+            aLog("Account Details Fetched.")
+            
+            success(accountDetail)
+        }, onError: { accountDetailError in
+            // handle error
+            aLog("Failed to Fetch Account Details. \(accountDetailError.localizedDescription)")
+            let serviceError = (accountDetailError as? ServiceError) ?? ServiceError(serviceCode: accountDetailError.localizedDescription, serviceMessage: nil, cause: nil)
+            
+            error(serviceError)
+        })
+            .disposed(by: disposeBag)
     }
     
 }
