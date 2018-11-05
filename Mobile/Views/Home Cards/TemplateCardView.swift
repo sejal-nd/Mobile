@@ -81,13 +81,10 @@ class TemplateCardView: UIView {
         viewModel.ctaString.drive(callToActionLabel.rx.text).disposed(by: bag)
         viewModel.ctaString.drive(callToActionButton.rx.accessibilityLabel).disposed(by: bag)
         
-        viewModel.errorLabelText
-            .map { $0?.attributedString(textAlignment: .center, lineHeight: 26) }
-            .drive(onNext: { [weak self] errorText in
-                self?.errorLabel.attributedText = errorText
-                let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
-                self?.errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.shared.opco.displayString, errorText ?? "")
-            }).disposed(by: bag)
+        let attributedErrorText = viewModel.errorLabelText.attributedString(textAlignment: .center, lineHeight: 26)
+        errorLabel.attributedText = attributedErrorText
+        let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
+        errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.shared.opco.displayString, attributedErrorText)
         
         callToActionButton.rx.touchUpInside.asObservable()
             .withLatestFrom(viewModel.ctaUrl.asObservable())

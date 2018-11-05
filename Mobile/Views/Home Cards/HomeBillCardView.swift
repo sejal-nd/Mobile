@@ -99,8 +99,6 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var billNotReadyLabel: UILabel!
     @IBOutlet private weak var errorStack: UIStackView!
     @IBOutlet private weak var errorLabel: UILabel!
-    @IBOutlet private weak var customErrorView: UIView!
-    @IBOutlet private weak var customErrorDetailLabel: UILabel!
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
     
@@ -199,11 +197,6 @@ class HomeBillCardView: UIView {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
-        customErrorDetailLabel.font = OpenSans.regular.of(textStyle: .title1)
-        customErrorDetailLabel.setLineHeight(lineHeight: 26)
-        customErrorDetailLabel.textAlignment = .center
-        customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to billing information. " +
-            "Access your account on our responsive website.", comment: "")
         
         maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
         
@@ -235,7 +228,6 @@ class HomeBillCardView: UIView {
         oneTouchPayTCButtonLabel.textColor = .white
         billNotReadyLabel.textColor = .white
         errorLabel.textColor = .white
-        customErrorDetailLabel.textColor = .white
         maintenanceModeLabel.textColor = .white
         
         dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_question_white.pdf"), for: .normal)
@@ -292,16 +284,7 @@ class HomeBillCardView: UIView {
             .drive(onNext: { _ in Analytics.log(event: .checkBalanceError) })
             .disposed(by: bag)
         
-        Driver.combineLatest(viewModel.showErrorState, viewModel.showCustomErrorState)
-            .map { $0 && !$1 }
-            .not()
-            .drive(errorStack.rx.isHidden)
-            .disposed(by: bag)
-        
-        Driver.combineLatest(viewModel.showCustomErrorState, viewModel.showMaintenanceModeState)
-        { $0 && !$1 }
-            .not()
-            .drive(customErrorView.rx.isHidden).disposed(by: bag)
+        viewModel.showErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
         
         viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
         

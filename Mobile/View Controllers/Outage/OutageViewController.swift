@@ -36,10 +36,6 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var noPayPayBillButtonLabel: UILabel!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
-    @IBOutlet weak var customErrorView: UIView!
-    @IBOutlet weak var customErrorTitleLabel: UILabel!
-    @IBOutlet weak var customErrorDetailLabel: UILabel!
-    
     // We keep track of this constraint because AutoLayout uses it to calculate the height of the scrollView's content
     // When the gasOnlyView is hidden, we do not want it's height to impact the scrollView content size (the normal outage
     // view does not need to scroll on iPhone 7 size), so we use this to toggle active/inactive. Cannot be weak reference
@@ -94,12 +90,6 @@ class OutageViewController: AccountPickerViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
-        customErrorTitleLabel.textColor = .blackText
-        customErrorTitleLabel.text = NSLocalizedString("Account Ineligible", comment: "")
-        customErrorDetailLabel.textColor = .blackText
-        customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to the mobile app. " +
-            "Access your account on our responsive website.", comment: "")
-        
         accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             switch(state) {
@@ -109,7 +99,6 @@ class OutageViewController: AccountPickerViewController {
                 self.gasOnlyView.isHidden = true
                 self.finaledNoPayView.isHidden = true
                 self.errorLabel.isHidden = true
-                self.customErrorView.isHidden = true
                 self.loadingView.isHidden = true
                 self.noNetworkConnectionView.isHidden = true
                 self.maintenanceModeView.isHidden = true
@@ -251,7 +240,6 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyView.isHidden = true
         finaledNoPayView.isHidden = true
         errorLabel.isHidden = true
-        customErrorView.isHidden = true
         loadingView.isHidden = false
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
@@ -290,13 +278,7 @@ class OutageViewController: AccountPickerViewController {
                 self?.loadingView.isHidden = true
                 self?.setRefreshControlEnabled(enabled: true)
                 
-                if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
-                    self?.errorLabel.isHidden = true
-                    self?.customErrorView.isHidden = false
-                } else {
-                    self?.errorLabel.isHidden = false
-                    self?.customErrorView.isHidden = true
-                }
+                self?.errorLabel.isHidden = false
                 self?.maintenanceModeView.isHidden = true
             }, onMaintenance: { [weak self] in
                 self?.shortcutItem = .none
@@ -307,7 +289,6 @@ class OutageViewController: AccountPickerViewController {
                 self?.loadingView.isHidden = true
                 self?.setRefreshControlEnabled(enabled: true)
                 self?.errorLabel.isHidden = true
-                self?.customErrorView.isHidden = true
         })
     }
     
@@ -332,13 +313,7 @@ class OutageViewController: AccountPickerViewController {
                 self.noNetworkConnectionView.isHidden = true
             }
 
-            if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
-                self.errorLabel.isHidden = true
-                self.customErrorView.isHidden = false
-            } else {
-                self.errorLabel.isHidden = false
-                self.customErrorView.isHidden = true
-            }
+            self.errorLabel.isHidden = false
             
             // Hide everything else
             self.accountContentView.isHidden = true
@@ -354,7 +329,6 @@ class OutageViewController: AccountPickerViewController {
                 self.scrollView?.isHidden = true
                 self.noNetworkConnectionView.isHidden = true
                 self.errorLabel.isHidden = true
-                self.customErrorView.isHidden = true
                 
                 // Hide everything else
                 self.accountContentView.isHidden = true

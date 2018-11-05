@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -2058,7 +2058,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xyl-IY-iJM" userLabel="Bottom View">
                                                         <rect key="frame" x="0.0" y="1644.5" width="375" height="675.5"/>
                                                         <subviews>
-                                                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52M-Kq-h1c" userLabel="White Background">
+                                                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52M-Kq-h1c" userLabel="White Background">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="835.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </view>
@@ -2315,49 +2315,12 @@
                                                                     <constraint firstItem="tzo-vJ-13J" firstAttribute="top" secondItem="KV6-S8-LRw" secondAttribute="top" id="U5D-LZ-5rt"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A0e-3k-M9N">
-                                                                <rect key="frame" x="0.0" y="-122" width="375" height="244.5"/>
-                                                                <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_white" translatesAutoresizingMaskIntoConstraints="NO" id="IkB-Rc-JVt">
-                                                                        <rect key="frame" x="125" y="0.0" width="125" height="126"/>
-                                                                    </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtN-ZO-Eac">
-                                                                        <rect key="frame" x="0.0" y="160" width="375" height="25"/>
-                                                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account is password protected and cannot be accessed through this app." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDq-GD-hFp">
-                                                                        <rect key="frame" x="57" y="187" width="261" height="57.5"/>
-                                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="1f6-lB-FW0"/>
-                                                                    <constraint firstItem="IkB-Rc-JVt" firstAttribute="top" secondItem="A0e-3k-M9N" secondAttribute="top" id="41J-Qq-WqA"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="mDq-GD-hFp" secondAttribute="bottom" id="49a-dc-hVo"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="mDq-GD-hFp" secondAttribute="trailing" constant="57" id="NG6-6J-fHs"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="PtN-ZO-Eac" secondAttribute="trailing" id="UU3-cA-AnH"/>
-                                                                    <constraint firstItem="mDq-GD-hFp" firstAttribute="leading" secondItem="A0e-3k-M9N" secondAttribute="leading" constant="57" id="ZCC-hu-WaO"/>
-                                                                    <constraint firstItem="PtN-ZO-Eac" firstAttribute="leading" secondItem="A0e-3k-M9N" secondAttribute="leading" id="caw-Dp-VYO"/>
-                                                                    <constraint firstItem="PtN-ZO-Eac" firstAttribute="top" secondItem="IkB-Rc-JVt" secondAttribute="bottom" constant="34" id="dWT-7M-i9T"/>
-                                                                    <constraint firstItem="mDq-GD-hFp" firstAttribute="top" secondItem="PtN-ZO-Eac" secondAttribute="bottom" constant="2" id="kLW-yG-Djc"/>
-                                                                    <constraint firstItem="IkB-Rc-JVt" firstAttribute="centerX" secondItem="A0e-3k-M9N" secondAttribute="centerX" id="pg7-ZT-GBH"/>
-                                                                </constraints>
-                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="A0e-3k-M9N" firstAttribute="centerX" secondItem="ohR-qR-Y1P" secondAttribute="centerX" id="64J-bD-aLX"/>
-                                                            <constraint firstItem="A0e-3k-M9N" firstAttribute="centerY" secondItem="ohR-qR-Y1P" secondAttribute="centerY" id="9MZ-Gs-fTW"/>
                                                             <constraint firstItem="KV6-S8-LRw" firstAttribute="centerY" secondItem="ohR-qR-Y1P" secondAttribute="centerY" id="KBd-td-1Ma"/>
                                                             <constraint firstItem="KV6-S8-LRw" firstAttribute="centerX" secondItem="ohR-qR-Y1P" secondAttribute="centerX" id="bh4-2K-c2b"/>
-                                                            <constraint firstAttribute="trailing" secondItem="A0e-3k-M9N" secondAttribute="trailing" priority="999" id="m2t-jR-n40"/>
                                                             <constraint firstItem="KV6-S8-LRw" firstAttribute="leading" secondItem="ohR-qR-Y1P" secondAttribute="leading" priority="999" id="qNz-ul-mM6"/>
-                                                            <constraint firstItem="A0e-3k-M9N" firstAttribute="leading" secondItem="ohR-qR-Y1P" secondAttribute="leading" priority="999" id="uHm-56-UY2"/>
                                                             <constraint firstAttribute="trailing" secondItem="KV6-S8-LRw" secondAttribute="trailing" priority="999" id="wPG-LV-0n9"/>
                                                         </constraints>
                                                     </view>
@@ -2439,9 +2402,6 @@
                         <outlet property="creditAmountLabel" destination="yfo-bY-zmE" id="Ps2-4B-34v"/>
                         <outlet property="creditLabel" destination="7so-k1-rVr" id="OIG-xw-sIU"/>
                         <outlet property="creditView" destination="EcT-zQ-sYK" id="0LE-uT-NCR"/>
-                        <outlet property="customErrorDetailLabel" destination="mDq-GD-hFp" id="ytG-Pa-AMG"/>
-                        <outlet property="customErrorTitleLabel" destination="PtN-ZO-Eac" id="tBi-CV-ROe"/>
-                        <outlet property="customErrorView" destination="A0e-3k-M9N" id="fQ1-2k-sOU"/>
                         <outlet property="errorView" destination="ohR-qR-Y1P" id="pfS-Ck-z2l"/>
                         <outlet property="genericErrorLabel" destination="tzo-vJ-13J" id="k8C-jl-qoD"/>
                         <outlet property="genericErrorView" destination="KV6-S8-LRw" id="13v-lt-F2U"/>
@@ -2663,7 +2623,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view verifyAmbiguity="off" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIY-h8-nGr" userLabel="Gradient View">
+                            <view verifyAmbiguity="off" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIY-h8-nGr" userLabel="Gradient View">
                                 <rect key="frame" x="0.0" y="70" width="375" height="538.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -4677,7 +4637,6 @@ the year</string>
         <image name="ic_ebilllearn" width="25" height="25"/>
         <image name="ic_email" width="43" height="43"/>
         <image name="ic_invoice" width="53" height="62"/>
-        <image name="ic_lock_white" width="125" height="126"/>
         <image name="ic_paperlessleaf" width="47" height="51"/>
         <image name="ic_pdf" width="18" height="20"/>
         <image name="ic_question" width="17" height="17"/>

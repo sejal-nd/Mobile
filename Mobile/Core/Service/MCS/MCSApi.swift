@@ -16,7 +16,7 @@ class MCSApi {
 
     static let shared = MCSApi()
 
-    static let API_VERSION = "v3"
+    static let API_VERSION = "v4"
     private let TIMEOUT = 120.0
 
     final private let TOKEN_KEYCHAIN_KEY = "kExelon_Token"
