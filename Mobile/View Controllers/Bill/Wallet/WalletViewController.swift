@@ -136,6 +136,8 @@ class WalletViewController: UIViewController {
         creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit Card. " + creditCardFeeLabel.text!, comment: "")
         miniCreditCardButton.isAccessibilityElement = true
         miniCreditCardButton.accessibilityLabel = NSLocalizedString("Add Credit card", comment: "")
+        
+        addPaymentAccountBottomBar.accessibilityElements = [addPaymentAccountLabel, miniBankButton, miniCreditCardButton]
     }
     
     override func viewWillAppear(_ animated: Bool) {
