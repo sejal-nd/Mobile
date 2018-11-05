@@ -18,7 +18,7 @@ protocol AuthenticationService {
     /// - Parameters:
     ///   - username: the username to authenticate with.
     ///   - password: the password to authenticate with.
-    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<(ProfileStatus, AccountDetail)>
+    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus>
     
     /// Validate login credentials
     ///
