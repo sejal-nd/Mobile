@@ -259,6 +259,11 @@
 		356C7FA12190A4BE003E8A90 /* UsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16291F87D6AE0023DC02 /* UsageService.swift */; };
 		356C7FA22190A50C003E8A90 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
 		356C7FA32190AC28003E8A90 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
+		356C7FAA2190D940003E8A90 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
+		356C7FAB2190D940003E8A90 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
+		356C7FAC2190D940003E8A90 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
+		356C7FAD2190D940003E8A90 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
+		356C7FAE2190DC63003E8A90 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
 		3577573A2113582700E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		3577573B2113582700E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		3577573C2113582800E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
@@ -2566,10 +2571,10 @@
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
 		352CB2062140448C00DAF045 /* UINavigationController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Style.swift"; sourceTree = "<group>"; };
-		356C7F3021908E29003E8A90 /* environment.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
 		356C7F3121908E2A003E8A90 /* environment_preprocess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
 		356C7F7E21909976003E8A90 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		356C7F8021909997003E8A90 /* KeychainUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
+		356C7FA92190D93F003E8A90 /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
@@ -4956,7 +4961,7 @@
 			isa = PBXGroup;
 			children = (
 				356C7F3121908E2A003E8A90 /* environment_preprocess.h */,
-				356C7F3021908E29003E8A90 /* environment.plist */,
+				356C7FA92190D93F003E8A90 /* environment.plist */,
 				0EB93B6B202CA4DF0049E7A2 /* BGE-Environment-AUT.plist */,
 				B58B5B591E516B100051FD5F /* BGE-Environment-DEVELOP.plist */,
 				9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */,
@@ -6052,9 +6057,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				356C7FAD2190D940003E8A90 /* environment.plist in Resources */,
 				356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */,
 				356C7F2F21908BBA003E8A90 /* README.md in Resources */,
 				35E7C7E92190804600BA13C6 /* Assets.xcassets in Resources */,
+				356C7FAE2190DC63003E8A90 /* MCSConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6142,6 +6149,7 @@
 				E8494F3F1EBBCB3A0047D6BE /* outage_loading.json in Resources */,
 				E873DA781EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				82A18EF31EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
+				356C7FAA2190D940003E8A90 /* environment.plist in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
 				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
@@ -6270,6 +6278,7 @@
 				82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
 				E80043371E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
+				356C7FAC2190D940003E8A90 /* environment.plist in Resources */,
 				E800433D1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA7A1EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				E8494F3A1EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
@@ -6398,6 +6407,7 @@
 				82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
 				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
+				356C7FAB2190D940003E8A90 /* environment.plist in Resources */,
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA791EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,

@@ -304,7 +304,8 @@ extension UsageInterfaceController: NetworkingDelegate {
             if daysSinceBillingStart < 7 {
                 state = .nextForecast(daysSinceBillingStart)
             }
-        } else if let gas = billForecast.gas {
+        }
+        if let gas = billForecast.gas {
             gasForecast = gas
             
             addMenuItem(withImageNamed: AppImage.gas.name, title: "Gas", action: #selector(selectGasMenuItem))
@@ -317,7 +318,8 @@ extension UsageInterfaceController: NetworkingDelegate {
             if daysSinceBillingStart < 7 {
                 state = .nextForecast(daysSinceBillingStart)
             }
-        } else if let electric = billForecast.electric {
+        }
+        if let electric = billForecast.electric {
             // Add Menu Items & Set State
             
             electricForecast = electric
