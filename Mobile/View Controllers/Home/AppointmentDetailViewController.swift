@@ -169,6 +169,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         
         caseNumberLabel.text = viewModel.caseNumberText
         appointmentDescriptionTextView.attributedText = viewModel.appointmentDescriptionText
+        appointmentDescriptionTextView.accessibilityValue = viewModel.appointmentDescriptionText.string.replacingOccurrences(of: "-", with: "and")
     }
     
     func bindActions() {
@@ -223,26 +224,23 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     private func makeTimelineAccessible() {
+         confirmedLabel.accessibilityLabel = NSLocalizedString("Appointment progress tracker. Confirmed step, complete", comment: "")
         switch viewModel.status {
         case .scheduled:
-            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
-            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, pending", comment: "")
-            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, pending", comment: "")
-            completeLabel.accessibilityLabel = NSLocalizedString("Complete, pending", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way step, pending", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress step, pending", comment: "")
+            completeLabel.accessibilityLabel = NSLocalizedString("Complete step, pending", comment: "")
         case .enRoute:
-            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
-            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, complete", comment: "")
-            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, pending", comment: "")
-            completeLabel.accessibilityLabel = NSLocalizedString("Complete, pending", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("We are on our way", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress step, pending", comment: "")
+            completeLabel.accessibilityLabel = NSLocalizedString("Complete step, pending", comment: "")
         case .inProgress:
-            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
-            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, complete", comment: "")
-            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, complete", comment: "")
-            completeLabel.accessibilityLabel = NSLocalizedString("Complete, pending", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way step, complete", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("Appointment currently in progress", comment: "")
+            completeLabel.accessibilityLabel = NSLocalizedString("Complete step, pending", comment: "")
         case .complete:
-            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
-            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, complete", comment: "")
-            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, complete", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way step, complete", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress step, complete", comment: "")
             completeLabel.accessibilityLabel = NSLocalizedString("Appointment complete", comment: "")
         case .canceled:
             // Do nothing, these labels are not displayed
