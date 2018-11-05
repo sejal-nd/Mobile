@@ -215,6 +215,50 @@
 		35510E4A2190886E00347539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C921907F2E00BA13C6 /* Main.storyboard */; };
 		356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		356C7F2F21908BBA003E8A90 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
+		356C7F752190974A003E8A90 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		356C7F7621909783003E8A90 /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
+		356C7F772190979C003E8A90 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
+		356C7F78219097D0003E8A90 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		356C7F7921909819003E8A90 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
+		356C7F7A21909887003E8A90 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
+		356C7F7B219098C4003E8A90 /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF01E785AE3001E8A44 /* OutageStatus.swift */; };
+		356C7F7C219098D7003E8A90 /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
+		356C7F7D219098F8003E8A90 /* MCSAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD81E8C43BB00550F99 /* MCSAccountService.swift */; };
+		356C7F7F21909976003E8A90 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
+		356C7F8121909997003E8A90 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainUtility.swift */; };
+		356C7F8221909997003E8A90 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainUtility.swift */; };
+		356C7F8321909E7E003E8A90 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
+		356C7F8421909E97003E8A90 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
+		356C7F8521909EB3003E8A90 /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		356C7F8621909EE2003E8A90 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
+		356C7F8721909EFC003E8A90 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
+		356C7F8821909F46003E8A90 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
+		356C7F8921909F6F003E8A90 /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		356C7F8A21909F89003E8A90 /* PecoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C681E550545000B7BD0 /* PecoColor.swift */; };
+		356C7F8B21909FBB003E8A90 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAD81E78360D001E8A44 /* AccountService.swift */; };
+		356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
+		356C7F8D2190A09F003E8A90 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
+		356C7F8E2190A0AA003E8A90 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
+		356C7F8F2190A162003E8A90 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		356C7F902190A173003E8A90 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
+		356C7F912190A17F003E8A90 /* Percentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387E5C461F1FCC4600D6710D /* Percentage.swift */; };
+		356C7F922190A1B9003E8A90 /* MCSOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* MCSOutageService.swift */; };
+		356C7F932190A1DD003E8A90 /* MCSUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CFB8A91F87D789003E1AB5 /* MCSUsageService.swift */; };
+		356C7F942190A1F8003E8A90 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
+		356C7F952190A262003E8A90 /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
+		356C7F962190A275003E8A90 /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
+		356C7F982190A2D1003E8A90 /* BillComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790BE61F8C18C20067BE85 /* BillComparison.swift */; };
+		356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
+		356C7F9A2190A2EF003E8A90 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
+		356C7F9B2190A37F003E8A90 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
+		356C7F9C2190A3CE003E8A90 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
+		356C7F9D2190A436003E8A90 /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
+		356C7F9E2190A446003E8A90 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
+		356C7F9F2190A455003E8A90 /* MCSResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* MCSResponseParser.swift */; };
+		356C7FA02190A46E003E8A90 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
+		356C7FA12190A4BE003E8A90 /* UsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16291F87D6AE0023DC02 /* UsageService.swift */; };
+		356C7FA22190A50C003E8A90 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
+		356C7FA32190AC28003E8A90 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
 		3577573A2113582700E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		3577573B2113582700E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		3577573C2113582800E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
@@ -2524,6 +2568,8 @@
 		352CB2062140448C00DAF045 /* UINavigationController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Style.swift"; sourceTree = "<group>"; };
 		356C7F3021908E29003E8A90 /* environment.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
 		356C7F3121908E2A003E8A90 /* environment_preprocess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
+		356C7F7E21909976003E8A90 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		356C7F8021909997003E8A90 /* KeychainUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
@@ -5013,6 +5059,7 @@
 				B0649A5E214834380041B299 /* StormModeStatus.swift */,
 				B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */,
 				B0336FE921762FB400751430 /* EventStore.swift */,
+				356C7F7E21909976003E8A90 /* WatchSessionManager.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -5438,6 +5485,7 @@
 				E887C9DC1ED5D326002433A3 /* CardIO */,
 				E8B4F4C41E5CE18F0031D934 /* A0SimpleKeychain */,
 				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
+				356C7F8021909997003E8A90 /* KeychainUtility.swift */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -6904,26 +6952,68 @@
 			buildActionMask = 2147483647;
 			files = (
 				35E7C7F42190804E00BA13C6 /* Equatable+Rearrange.swift in Sources */,
+				356C7F7921909819003E8A90 /* Account.swift in Sources */,
 				35E7C8052190805C00BA13C6 /* AccountListInterfaceController.swift in Sources */,
 				35E7C7F32190804E00BA13C6 /* AccountStore+SelectedAccount.swift in Sources */,
+				356C7FA32190AC28003E8A90 /* NotificationNames.swift in Sources */,
+				356C7FA22190A50C003E8A90 /* Fillable.swift in Sources */,
+				356C7F7A21909887003E8A90 /* AccountsStore.swift in Sources */,
+				356C7F8F2190A162003E8A90 /* MinimumVersion.swift in Sources */,
+				356C7F8621909EE2003E8A90 /* WalletItem.swift in Sources */,
 				35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */,
+				356C7F7B219098C4003E8A90 /* OutageStatus.swift in Sources */,
+				356C7F902190A173003E8A90 /* SSOData.swift in Sources */,
+				356C7F8721909EFC003E8A90 /* UserDefaultKeys.swift in Sources */,
 				35E7C8072190805C00BA13C6 /* OutageInterfaceController.swift in Sources */,
+				356C7F9C2190A3CE003E8A90 /* AuthTokenResponse.swift in Sources */,
 				35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */,
+				356C7F922190A1B9003E8A90 /* MCSOutageService.swift in Sources */,
+				356C7F8421909E97003E8A90 /* DateParser.swift in Sources */,
 				35E7C7F72190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift in Sources */,
+				356C7F8B21909FBB003E8A90 /* AccountService.swift in Sources */,
+				356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */,
 				35E7C8062190805C00BA13C6 /* BillInterfaceController.swift in Sources */,
+				356C7F7621909783003E8A90 /* ServiceResult.swift in Sources */,
 				35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */,
 				35E7C8042190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift in Sources */,
+				356C7F7C219098D7003E8A90 /* BillForecast.swift in Sources */,
 				35E7C7F82190804E00BA13C6 /* NSAttributedString+ColorInRange.swift in Sources */,
 				35E7C8032190805C00BA13C6 /* SignInInterfaceController.swift in Sources */,
+				356C7F9F2190A455003E8A90 /* MCSResponseParser.swift in Sources */,
+				356C7F752190974A003E8A90 /* NibViews.swift in Sources */,
+				356C7F8521909EB3003E8A90 /* Maintenance.swift in Sources */,
+				356C7F8821909F46003E8A90 /* AuthenticationService.swift in Sources */,
+				356C7F8921909F6F003E8A90 /* Premise.swift in Sources */,
+				356C7F9D2190A436003E8A90 /* URLSession+Rx.swift in Sources */,
+				356C7F982190A2D1003E8A90 /* BillComparison.swift in Sources */,
+				356C7F962190A275003E8A90 /* OutageService.swift in Sources */,
+				356C7F9B2190A37F003E8A90 /* MCSAuthenticationService.swift in Sources */,
 				35E7C7E62190803900BA13C6 /* AccountsManager.swift in Sources */,
 				35E7C80B2190806800BA13C6 /* DebugOptions.swift in Sources */,
+				356C7F8E2190A0AA003E8A90 /* ForgotUsername.swift in Sources */,
+				356C7F8A21909F89003E8A90 /* PecoColor.swift in Sources */,
+				356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */,
+				356C7F8321909E7E003E8A90 /* Currency.swift in Sources */,
 				35E7C7FA2190805500BA13C6 /* ExtensionDelegate.swift in Sources */,
 				35E7C7E02190802C00BA13C6 /* NetworkingUtility.swift in Sources */,
 				35E7C7E12190802C00BA13C6 /* GAUtility.swift in Sources */,
+				356C7F942190A1F8003E8A90 /* HomeProfile.swift in Sources */,
+				356C7F9E2190A446003E8A90 /* AuthTokenParser.swift in Sources */,
+				356C7F78219097D0003E8A90 /* Environment.swift in Sources */,
+				356C7F772190979C003E8A90 /* Date.swift in Sources */,
+				356C7F9A2190A2EF003E8A90 /* ShortUUIDGenerator.swift in Sources */,
 				35E7C7F22190804E00BA13C6 /* Date+DueBy.swift in Sources */,
+				356C7F8221909997003E8A90 /* KeychainUtility.swift in Sources */,
+				356C7F932190A1DD003E8A90 /* MCSUsageService.swift in Sources */,
+				356C7FA02190A46E003E8A90 /* HttpMethod.swift in Sources */,
 				35E7C7DF2190802C00BA13C6 /* Constants.swift in Sources */,
 				35E7C8022190805C00BA13C6 /* UsageInterfaceController.swift in Sources */,
 				35E7C7E52190803900BA13C6 /* WatchSessionManager.swift in Sources */,
+				356C7F7D219098F8003E8A90 /* MCSAccountService.swift in Sources */,
+				356C7F8D2190A09F003E8A90 /* ProfileStatus.swift in Sources */,
+				356C7F952190A262003E8A90 /* OutageInfo.swift in Sources */,
+				356C7FA12190A4BE003E8A90 /* UsageService.swift in Sources */,
+				356C7F912190A17F003E8A90 /* Percentage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7330,6 +7420,7 @@
 				824A96671FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				01F6122B1F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
+				356C7F7F21909976003E8A90 /* WatchSessionManager.swift in Sources */,
 				82EAB33E1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
@@ -7407,6 +7498,7 @@
 				82E22B601F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				E8D340981EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				224EFF1A216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
+				356C7F8121909997003E8A90 /* KeychainUtility.swift in Sources */,
 				822BBB951EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				01F6121F1F1E400E00A4F9DA /* AddCardFormView.swift in Sources */,
 				E835D1D01FB63288008CE250 /* PushNotification.swift in Sources */,
@@ -9685,6 +9777,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -9731,6 +9824,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
@@ -9760,11 +9854,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.staging;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.staging.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -9789,11 +9884,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.testing;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.testing.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -9818,11 +9914,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -9847,11 +9944,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.prodbeta;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.prodbeta.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -9902,6 +10000,12 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.develop.watchkitapp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -9927,6 +10031,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -9945,6 +10050,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.develop.watchkitapp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -9954,6 +10065,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -9971,15 +10083,22 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.staging.watchkitapp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -9997,15 +10116,22 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.testing.watchkitapp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -10023,15 +10149,22 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.watchkitapp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -10049,15 +10182,22 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.prodbeta.watchkitapp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;

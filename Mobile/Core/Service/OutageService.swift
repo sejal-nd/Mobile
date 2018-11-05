@@ -25,11 +25,13 @@ protocol OutageService {
     ///   - account: the account to fetch outage status for
     func pingMeter(account: Account) -> Observable<MeterPingInfo>
     
+    #if os(iOS)
     /// Report an outage for the current customer.
     ///
     /// - Parameters:
     ///   - outageInfo: the outage information to report
     func reportOutage(outageInfo: OutageInfo) -> Observable<Void>
+    #endif
     
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult?
     

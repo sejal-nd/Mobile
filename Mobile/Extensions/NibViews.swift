@@ -18,8 +18,10 @@ extension NSObject {
     }
 }
 
+#if os(iOS)
 extension Bundle {
     func loadViewFromNib<View: UIView>() -> View {
         return loadNibNamed(View.className, owner: nil, options: nil)![0] as! View
     }
 }
+#endif

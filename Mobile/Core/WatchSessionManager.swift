@@ -55,7 +55,7 @@ class WatchSessionManager: NSObject {
         DispatchQueue.main.async { [weak self] in
             if let needsUpdate = applicationContext["askForUpdate"] as? Bool, needsUpdate {
                 //check for valid jwt else clear and log out
-                if OMCApi.shared.isAuthenticated(), let accessToken = OMCApi.shared.accessToken {
+                if MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken {
                     try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
                 } else {
                     try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])

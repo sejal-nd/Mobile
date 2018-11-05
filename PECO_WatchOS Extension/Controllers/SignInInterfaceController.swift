@@ -7,7 +7,6 @@
 //
 
 import WatchKit
-import RxSwift
 
 class SignInInterfaceController: WKInterfaceController {
     

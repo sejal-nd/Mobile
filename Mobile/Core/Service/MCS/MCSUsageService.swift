@@ -72,6 +72,7 @@ class MCSUsageService: UsageService {
         }
     }
     
+    #if os(iOS)
     func updateHomeProfile(accountNumber: String, premiseNumber: String, homeProfile: HomeProfile) -> Observable<Void> {
         guard homeProfile.isFilled else {
             return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
@@ -88,7 +89,6 @@ class MCSUsageService: UsageService {
         return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile", params: params)
             .mapTo(())
     }
-    
     
     func fetchEnergyTips(accountNumber: String, premiseNumber: String) -> Observable<[EnergyTip]> {
         return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/premises/\(premiseNumber)/tips")
@@ -111,4 +111,6 @@ class MCSUsageService: UsageService {
                 return tip
         }
     }
+    #endif
+
 }

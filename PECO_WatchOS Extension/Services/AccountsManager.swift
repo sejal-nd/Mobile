@@ -18,27 +18,28 @@ class AccountsManager {
             return
         }
         
-        let accountService = OMCAccountService()
+        let accountService = MCSAccountService()
         
-        accountService.fetchAccounts { serviceResult in
-            switch serviceResult {
-            case .success(let accounts):
-                guard let firstAccount = AccountsStore.shared.accounts.first else {
-                    aLog("Could not retrieve first account in account list.")
-                    return
-                }
-                
-                if AccountsStore.shared.getSelectedAccount() == nil {
-                    AccountsStore.shared.setSelectedAccount(firstAccount)
-                }
-                
-                aLog("Accounts Fetched.")
-                
-                success(accounts)
-            case .failure(let serviceError):
-                aLog("Failed to retrieve accounts: \(serviceError.localizedDescription)")
-            }
-        }
+        // todo Rxswiftify
+//        accountService.fetchAccounts { serviceResult in
+//            switch serviceResult {
+//            case .success(let accounts):
+//                guard let firstAccount = AccountsStore.shared.accounts.first else {
+//                    aLog("Could not retrieve first account in account list.")
+//                    return
+//                }
+//                
+//                if AccountsStore.shared.getSelectedAccount() == nil {
+//                    AccountsStore.shared.setSelectedAccount(firstAccount)
+//                }
+//                
+//                aLog("Accounts Fetched.")
+//                
+//                success(accounts)
+//            case .failure(let serviceError):
+//                aLog("Failed to retrieve accounts: \(serviceError.localizedDescription)")
+//            }
+//        }
     }
     
     // Fetch Account Details: We need this to determine if the current account is password protected.
@@ -52,22 +53,22 @@ class AccountsManager {
         }
         
         
-        let accountService = OMCAccountService()
-        
-        accountService.fetchAccountDetail(account: currentAccount) { serviceResult in
-            DispatchQueue.main.async {
-                switch serviceResult {
-                case .success(let accountDetail):
-                    aLog("Account Details Fetched.")
-                    
-                    success(accountDetail)
-                case .failure(let serviceError):
-                    aLog("Failed to Fetch Account Details. \(serviceError.localizedDescription)")
-                    
-                    error(serviceError)
-                }
-            }
-        }
+        let accountService = MCSAccountService()
+        // todo: rxswiftity
+//        accountService.fetchAccountDetail(account: currentAccount) { serviceResult in
+//            DispatchQueue.main.async {
+//                switch serviceResult {
+//                case .success(let accountDetail):
+//                    aLog("Account Details Fetched.")
+//                    
+//                    success(accountDetail)
+//                case .failure(let serviceError):
+//                    aLog("Failed to Fetch Account Details. \(serviceError.localizedDescription)")
+//                    
+//                    error(serviceError)
+//                }
+//            }
+//        }
     }
     
 }

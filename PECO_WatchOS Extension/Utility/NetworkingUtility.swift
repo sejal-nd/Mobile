@@ -215,18 +215,18 @@ class NetworkingUtility {
     private func fetchMaintenanceModeStatus(completion: @escaping (Maintenance?, ServiceError?) -> Void) {
         aLog("Fetching Maintenance Mode Status...")
         
-        let authService = OMCAuthenticationService()
-        
-        authService.getMaintenanceMode { serviceResult in
-            switch serviceResult {
-            case .success(let status):
-                aLog("Maintenance Mode Fetched.")
-                completion(status, nil)
-            case .failure(let error):
-                aLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
-                completion(nil, error)
-            }
-        }
+        let authService = MCSAuthenticationService()
+        // todo convert to rx swifty
+//        authService.getMaintenanceMode { serviceResult in
+//            switch serviceResult {
+//            case .success(let status):
+//                aLog("Maintenance Mode Fetched.")
+//                completion(status, nil)
+//            case .failure(let error):
+//                aLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
+//                completion(nil, error)
+//            }
+//        }
     }
     
     /// Fetches outage data fort he current account triggering various networkUtilityDelegate methods along the way.
@@ -245,19 +245,19 @@ class NetworkingUtility {
             return
         }
         
-        let outageService = OMCOutageService()
-        
-        outageService.fetchOutageStatus(account: currentAccount) { [weak self] serviceResult in
-            switch serviceResult {
-            case .success(let outageStatus):
-                aLog("Outage Status Fetched.")
-                success(outageStatus)
-                self?.outageStatus = outageStatus
-            case .failure(let serviceError):
-                aLog("Failed to retrieve outage status: \(serviceError.localizedDescription)")
-                error(serviceError)
-            }
-        }
+        let outageService = MCSOutageService()
+        // todo convert into rx swifty
+//        outageService.fetchOutageStatus(account: currentAccount) { [weak self] serviceResult in
+//            switch serviceResult {
+//            case .success(let outageStatus):
+//                aLog("Outage Status Fetched.")
+//                success(outageStatus)
+//                self?.outageStatus = outageStatus
+//            case .failure(let serviceError):
+//                aLog("Failed to retrieve outage status: \(serviceError.localizedDescription)")
+//                error(serviceError)
+//            }
+//        }
     }
     
     /// Fetches usage data fort he current account triggering various networkUtilityDelegate methods along the way.
@@ -278,16 +278,17 @@ class NetworkingUtility {
         }
         let accountNumber = accountDetail.accountNumber
         
-        OMCUsageService().fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber) { serviceResult in
-            switch serviceResult {
-            case .success(let billForcast):
-                aLog("Usage Data Fetched.")
-                success(billForcast)
-            case .failure(let serviceError):
-                aLog("Error Fetching Usage: \(serviceError.localizedDescription)...\(serviceError)")
-                error(serviceError)
-            }
-        }
+        // todo vonert to rxswifty
+//        MCSUsageService().fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber) { serviceResult in
+//            switch serviceResult {
+//            case .success(let billForcast):
+//                aLog("Usage Data Fetched.")
+//                success(billForcast)
+//            case .failure(let serviceError):
+//                aLog("Error Fetching Usage: \(serviceError.localizedDescription)...\(serviceError)")
+//                error(serviceError)
+//            }
+//        }
     }
 
 }

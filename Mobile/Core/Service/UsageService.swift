@@ -33,6 +33,7 @@ protocol UsageService {
     ///   - premiseNumber: the premise to fetch data for
     func fetchHomeProfile(accountNumber: String, premiseNumber: String) -> Observable<HomeProfile>
     
+    #if os(iOS)
     /// Updates your home profile data
     ///
     /// - Parameters:
@@ -55,4 +56,6 @@ protocol UsageService {
 ///   - premiseNumber: the premise to fetch data for
 ///   - tipName : the tip we are looking for
     func fetchEnergyTipByName(accountNumber: String, premiseNumber:String,tipName:String) -> Observable<EnergyTip>
+    #endif
+
 }
