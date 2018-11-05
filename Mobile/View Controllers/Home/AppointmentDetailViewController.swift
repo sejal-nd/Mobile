@@ -55,6 +55,9 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     var viewHasAppeared = false
     var viewHasLoaded = false
     
+    var index = -1
+    var totalCount = -1
+    
     init(viewModel: AppointmentDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: AppointmentDetailViewController.className, bundle: nil)
@@ -312,7 +315,9 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: viewModel.tabTitle)
+        var indicator = IndicatorInfo(title: viewModel.tabTitle)
+        indicator.accessibilityLabel = String.localizedStringWithFormat("%@, %d of %d appointments", viewModel.tabTitle, index + 1, totalCount)
+        return indicator
     }
     
     func setUpTopAnimation() {
