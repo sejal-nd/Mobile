@@ -143,7 +143,9 @@ class HomeViewModel {
             }
             }, requestSelector: { [weak self] _ in
                 guard let this = self else { return .empty() }
-                return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount,
+                                                              getPayments: true,
+                                                              getBudgetBilling: false)
         })
         .share(replay: 1, scope: .forever)
 

@@ -55,9 +55,9 @@ class BillViewModel {
         .filter { !($0.element?.billStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .flatMapLatest { [weak self] state -> Observable<Event<AccountDetail>> in
-            guard let this = self, let account = AccountsStore.shared.currentAccount else { return .empty() }
-            return this.accountService.fetchAccountDetail(account: account)
-                .trackActivity(this.tracker(forState: state))
+            guard let self = self, let account = AccountsStore.shared.currentAccount else { return .empty() }
+            return self.accountService.fetchAccountDetail(account: account, getPayments: true, getBudgetBilling: true)
+                .trackActivity(self.tracker(forState: state))
                 .materialize()
                 .filter { !$0.isCompleted }
         }
