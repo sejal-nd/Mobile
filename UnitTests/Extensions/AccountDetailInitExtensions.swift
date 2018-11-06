@@ -364,7 +364,7 @@ extension SERResult: JSONEncodable {
     init(actualKWH: Double = 0,
          baselineKWH: Double = 0,
          eventStart: Date = Date(),
-         eventEnd: Date = Date(),
+         eventEnd: Date? = nil,
          savingDollar: Double = 0,
          savingKWH: Double = 0) {
         
@@ -372,11 +372,13 @@ extension SERResult: JSONEncodable {
             fatalError("init only available for tests")
         }
         
+        let end = eventEnd ?? Calendar.opCo.date(byAdding: DateComponents(hour: 8), to: eventStart)!
+        
         var map = [String: Any?]()
         map["actualKWH"] = String(actualKWH)
         map["baselineKWH"] = String(baselineKWH)
         map["eventStart"] = eventStart.apiString
-        map["eventEnd"] = eventEnd.apiString
+        map["eventEnd"] = end.apiString
         map["savingDollar"] = String(savingDollar)
         map["savingKWH"] = String(savingKWH)
         self = SERResult.from(map as NSDictionary)!
