@@ -265,6 +265,17 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 	plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Mobile/$OPCO-Info.plist
 	plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Mobile/$OPCO-Info.plist
 
+    if [[ $OPCO == "PECO"* ]]; then
+
+        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Exelon_Mobile_watchOS/Info.plist
+        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Exelon_Mobile_watchOS/Info.plist
+        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Exelon_Mobile_watchOS/Info.plist
+
+        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Exelon_Mobile_watchOS_Extension/Info.plist
+        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Exelon_Mobile_watchOS_Extension/Info.plist
+        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Exelon_Mobile_watchOS_Extension/Info.plist
+    
+    fi
 	
 	echo "$PROJECT_DIR/Mobile/$OPCO-Info.plist updated:"
 	echo "   CFBundleVersion=$BUILD_NUMBER"
@@ -335,9 +346,9 @@ if [[ $target_phases = *"build"* ]]; then
 
 	set -o pipefail
 
-	xcrun xcodebuild -sdk iphoneos \
+	xcrun xcodebuild \
 		-configuration $CONFIGURATION \
-		-project $PROJECT \
+		-project Moible.xcworkspace \
 		-scheme "$target_scheme" \
 		-archivePath build/archive/$target_scheme.xcarchive \
 		archive | tee build/logs/xcodebuild_archive.log | xcpretty
