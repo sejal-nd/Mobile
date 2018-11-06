@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked) {
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), Environment.shared.opco == .peco {
             try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
         }
     }
@@ -195,6 +195,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Helper
     
     private func setupWatchConnectivity() {
+        guard Environment.shared.opco == .peco else { return }
+        
         // Watch Connectivity
         WatchSessionManager.shared.startSession()
         
@@ -221,8 +223,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             MCSApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
             
-            // Clear watch jwt
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
+            if Environment.shared.opco == .peco {
+                // Clear watch jwt
+                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
+            }
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }
