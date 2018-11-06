@@ -13,7 +13,7 @@
 		<key>com.exelon.mobile.peco.prodbeta.watchkitapp</key>
 		<string>PECO Production Beta Watchkit App Enterprise Dist</string>
 		<key>com.exelon.mobile.peco.prodbeta.watchkitapp.watchkitextension</key>
-		<string>PECO Production Beta Watchkit Enterprise Dist</string>
+		<string>PECO Production Beta WatchkitExt Enterprise Dist</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>
