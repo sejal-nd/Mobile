@@ -86,6 +86,14 @@
 		0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF09202E22CD009D1ADB /* GoogleService-Info_comed_prodbeta.plist */; };
 		0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */; };
 		0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0C202E2389009D1ADB /* GoogleService-Info_peco_prodbeta.plist */; };
+		0E7B52642191EA1C006C229C /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
+		0E7B52652191EA59006C229C /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
+		0E7B52662191EA59006C229C /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
+		0E7B52672191EA59006C229C /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
+		0E7E16352191E75800A3748A /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
+		0E7E16362191E75800A3748A /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
+		0E7E16372191E75900A3748A /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
+		0E7E163B2191E7A000A3748A /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
 		0E863D8720DD4992004D77EC /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E863D8520DD4703004D77EC /* TestHelper.swift */; };
 		0E863D8820DD4992004D77EC /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E863D8520DD4703004D77EC /* TestHelper.swift */; };
 		0E863D8920DD4992004D77EC /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E863D8520DD4703004D77EC /* TestHelper.swift */; };
@@ -7061,6 +7069,7 @@
 				824A96651FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				E841F3A21F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				01F612291F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
+				0E7E163B2191E7A000A3748A /* WatchSessionManager.swift in Sources */,
 				82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
 				9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
@@ -7801,6 +7810,7 @@
 				824A96661FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				01F6122A1F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
+				0E7B52642191EA1C006C229C /* WatchSessionManager.swift in Sources */,
 				82EAB33D1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
@@ -8206,6 +8216,7 @@
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
 				B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */,
 				E827F1921F8E9D620090C5A5 /* BillForecast.swift in Sources */,
+				0E7E16352191E75800A3748A /* WatchSessionManager.swift in Sources */,
 				E8264EF5200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */,
 				E87C414E1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				B5D07CB51F0EC2F10018B02D /* Payment.swift in Sources */,
@@ -8246,6 +8257,7 @@
 				E895E9B21EBB84B7003B38A1 /* LoginViewModel.swift in Sources */,
 				B094A35020D9442400E81303 /* HomeCard.swift in Sources */,
 				E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
+				0E7B52652191EA59006C229C /* MCSApi.swift in Sources */,
 				E80D2E1A1E721668002626C9 /* MaskedString.swift in Sources */,
 				B094A640210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E8EDC54D1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
@@ -8442,6 +8454,7 @@
 				E8F62B68200924410077B3DA /* MockOutageService.swift in Sources */,
 				E8F62B69200924410077B3DA /* AuthTokenParser.swift in Sources */,
 				E8F62B6A200924410077B3DA /* CreditCard.swift in Sources */,
+				0E7E16362191E75800A3748A /* WatchSessionManager.swift in Sources */,
 				E8F62B6B200924410077B3DA /* BillForecast.swift in Sources */,
 				E8264EF6200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */,
 				E8F62B6C200924410077B3DA /* AlertPreferencesViewModel.swift in Sources */,
@@ -8482,6 +8495,7 @@
 				E8F62B86200924410077B3DA /* AlertPreferences.swift in Sources */,
 				E8F62B88200924410077B3DA /* LoginViewModel.swift in Sources */,
 				B094A35120D9442400E81303 /* HomeCard.swift in Sources */,
+				0E7B52662191EA59006C229C /* MCSApi.swift in Sources */,
 				E8F62B89200924410077B3DA /* UIViewAddShadow.swift in Sources */,
 				E8F62B8A200924410077B3DA /* MaskedString.swift in Sources */,
 				B094A641210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
@@ -8634,6 +8648,7 @@
 				E8F62C1D200924570077B3DA /* MockOutageService.swift in Sources */,
 				E8F62C1E200924570077B3DA /* AuthTokenParser.swift in Sources */,
 				E8F62C1F200924570077B3DA /* CreditCard.swift in Sources */,
+				0E7E16372191E75900A3748A /* WatchSessionManager.swift in Sources */,
 				E8F62C20200924570077B3DA /* BillForecast.swift in Sources */,
 				E8264EF7200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */,
 				E8F62C21200924570077B3DA /* AlertPreferencesViewModel.swift in Sources */,
@@ -8674,6 +8689,7 @@
 				E8F62C3B200924570077B3DA /* AlertPreferences.swift in Sources */,
 				E8F62C3D200924570077B3DA /* LoginViewModel.swift in Sources */,
 				B094A35220D9442400E81303 /* HomeCard.swift in Sources */,
+				0E7B52672191EA59006C229C /* MCSApi.swift in Sources */,
 				E8F62C3E200924570077B3DA /* UIViewAddShadow.swift in Sources */,
 				E8F62C3F200924570077B3DA /* MaskedString.swift in Sources */,
 				B094A642210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
