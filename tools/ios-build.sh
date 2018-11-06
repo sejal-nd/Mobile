@@ -241,7 +241,7 @@ else
     exit 1
 fi
 
-if [ -n "$SCHEME" ]; then
+if [ -n "$SCHEME" ]; then 
     echo "Scheme has been specified via args -- overriding default of $target_scheme with $SCHEME"
     target_scheme=$SCHEME
 fi
@@ -345,7 +345,7 @@ if [[ $target_phases = *"unitTest"* ]]; then
 
     echo "Running automation tests"
     xcrun xcodebuild  -sdk iphonesimulator \
-        -project $PROJECT \
+        -workspace $PROJECT \
         -scheme "$OPCO-AUT" \
         -destination "$UNIT_TEST_SIMULATOR" \
         -configuration Automation \
@@ -364,7 +364,7 @@ if [[ $target_phases = *"build"* ]]; then
 
 	xcrun xcodebuild \
 		-configuration $CONFIGURATION \
-		-project $PROJECT \
+		-workspace $PROJECT \
 		-scheme "$target_scheme" \
 		-archivePath build/archive/$target_scheme.xcarchive \
 		archive | tee build/logs/xcodebuild_archive.log | xcpretty
@@ -527,7 +527,7 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
         echo "----------------------------------- Build-for-testing -------------------------------"
         xcrun xcodebuild \
             -configuration Automation \
-            -project $PROJECT \
+            -workspace $PROJECT \
             -sdk iphoneos \
             -scheme "$OPCO-AUT-UITest" \
             ONLY_ACTIVE_ARCH=NO \
