@@ -48,7 +48,7 @@ class PaymentViewModel {
     let allowEdits = Variable(true)
     let allowDeletes = Variable(false)
     
-    let fiservCutoffDate = Calendar.opCo.date(from: DateComponents(year: 2018, month: 10, day: 29))!
+    let fiservCutoffDate = Variable<Date?>(nil)
     
     init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
@@ -91,7 +91,11 @@ class PaymentViewModel {
                 case .bge:
                     self.paymentDate.value = dueDate
                 case .comEd, .peco:
-                    self.paymentDate.value = min(dueDate, self.fiservCutoffDate)
+                    if let cutoffDate = self.fiservCutoffDate.value {
+                        self.paymentDate.value = min(dueDate, cutoffDate)
+                    } else {
+                        self.paymentDate.value = dueDate
+                    }
                 }
             }
         }
@@ -121,6 +125,27 @@ class PaymentViewModel {
     func fetchPaymentDetails(paymentId: String) -> Observable<Void> {
         return paymentService.fetchPaymentDetails(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId).map { paymentDetail in
             self.paymentDetail.value = paymentDetail
+        }
+    }
+    
+    func fetchFiservCutoff() -> Observable<Date> {
+        return paymentService.fetchPaymentFreezeDate().map { date in
+            self.fiservCutoffDate.value = date
+            return date
+        }
+    }
+    
+    func checkForCutoff(onShouldReject: @escaping (() -> Void), onShouldContinue: @escaping (() -> Void)) {
+        if Environment.shared.opco == .bge {
+            onShouldContinue()
+        } else {
+            isFetching.value = true
+            fetchFiservCutoff().subscribe(onNext: { [weak self] cutoffDate in
+                self?.isFetching.value = false
+                onShouldReject()
+            }, onError: { _ in
+                onShouldContinue()
+            }).disposed(by: disposeBag)
         }
     }
     
