@@ -58,7 +58,7 @@ to just update the build script directly if it's a permanent change.
                             or 
                             com.iphoneproduction.exelon -- if building a ComEd Prod app
 
---project                 - Name of the xcodeproj -- defaults to Mobile.xcodeproj
+--project                 - Name of the xcworkspace -- defaults to Mobile.xcworkspace
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
 --phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
 --override-mbe            - Override the default MBE for testing or staging builds only 
@@ -68,7 +68,7 @@ to just update the build script directly if it's a permanent change.
 PROPERTIES_FILE='version.properties'
 PROJECT_DIR="."
 ASSET_DIR="$PROJECT_DIR/Mobile/Assets/"
-PROJECT="Mobile.xcodeproj"
+PROJECT="Mobile.xcworkspace"
 CONFIGURATION=""
 UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
 BUILD_NUMBER=
@@ -355,7 +355,7 @@ if [[ $target_phases = *"build"* ]]; then
 
 	xcrun xcodebuild \
 		-configuration $CONFIGURATION \
-		-project Moible.xcworkspace \
+		-project $PROJECT \
 		-scheme "$target_scheme" \
 		-archivePath build/archive/$target_scheme.xcarchive \
 		archive | tee build/logs/xcodebuild_archive.log | xcpretty
