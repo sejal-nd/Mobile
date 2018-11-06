@@ -1,10 +1,10 @@
 PODS:
   - ModelMapper (9.0.0)
-  - RxSwift (4.3.1)
+  - RxSwift (4.3.0)
 
 DEPENDENCIES:
-  - ModelMapper (~> 9.0.0)
-  - RxSwift (~> 4.3.0)
+  - ModelMapper (= 9.0.0)
+  - RxSwift (= 4.3.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -13,8 +13,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   ModelMapper: d73910ce35d8dca0042bcea4cddc24050014e09a
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  RxSwift: a9717a34df3179fe63563f76e046ad345078dd3a
 
-PODFILE CHECKSUM: 940ea4748805d63428b3871df7f10fc547f17a14
+PODFILE CHECKSUM: d1e56dbc9186dd5b0911e94f2b02b2aaf9b6f969
 
 COCOAPODS: 1.5.0
