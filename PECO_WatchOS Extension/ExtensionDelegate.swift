@@ -19,6 +19,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         _ = GATracker.shared
         
         setInitialScreen()
+        if !UserDefaults.standard.hasRunBefore {
+            UserDefaults.standard.hasRunBefore = true
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
+            WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OpenAppOnPhoneInterfaceController.className, context: [:] as AnyObject)])
+        }
     }
 
     

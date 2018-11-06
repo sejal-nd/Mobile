@@ -147,20 +147,20 @@ class BillInterfaceController: WKInterfaceController {
                 
                 aLog("Loading")
             case .error(let error):
-                aLog("Error: \(error.localizedDescription)")
+
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
-                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OpenAppOnPhoneInterfaceController.className, context: [:] as AnyObject)])
-//                errorGroup.setHidden(false)
-//                errorImage.setImageNamed(AppImage.error.name)
-//                errorTitleLabel.setHidden(true)
-//                errorDetailLabel.setText("Unable to retrieve data at this time.  Please try again later.")
-//
-//                loadingImageGroup.setHidden(true)
-//
-//
-//                billGroup.setHidden(true)
-//
-//                aLog("Error: \(error.localizedDescription)")
+
+                errorGroup.setHidden(false)
+                errorImage.setImageNamed(AppImage.error.name)
+                errorTitleLabel.setHidden(true)
+                errorDetailLabel.setText("Unable to retrieve data at this time.  Please try again later.  You may be able to resolve this issue by opening the PECO app on your phone.")
+
+                loadingImageGroup.setHidden(true)
+
+
+                billGroup.setHidden(true)
+
+                aLog("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.maintenanceMode.name)

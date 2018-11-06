@@ -10,7 +10,7 @@ import Foundation
 
 class GATracker {
 
-    private var propertyId = "UA-126768324-1"
+    private var propertyId = "UA-128753085-1"
     private var clientId: String
     private var appName: String
     private var appVersion: String

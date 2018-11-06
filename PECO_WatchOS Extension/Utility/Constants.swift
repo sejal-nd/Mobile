@@ -122,3 +122,4 @@ enum AppImage {
         }
     }
 }
+
