@@ -86,17 +86,17 @@
 		0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF09202E22CD009D1ADB /* GoogleService-Info_comed_prodbeta.plist */; };
 		0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */; };
 		0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0C202E2389009D1ADB /* GoogleService-Info_peco_prodbeta.plist */; };
-		0E7B52642191EA1C006C229C /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
 		0E7B52652191EA59006C229C /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
 		0E7B52662191EA59006C229C /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
 		0E7B52672191EA59006C229C /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
 		0E7E16352191E75800A3748A /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
 		0E7E16362191E75800A3748A /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
 		0E7E16372191E75900A3748A /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
-		0E7E163B2191E7A000A3748A /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
 		0E863D8720DD4992004D77EC /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E863D8520DD4703004D77EC /* TestHelper.swift */; };
 		0E863D8820DD4992004D77EC /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E863D8520DD4703004D77EC /* TestHelper.swift */; };
 		0E863D8920DD4992004D77EC /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E863D8520DD4703004D77EC /* TestHelper.swift */; };
+		0ED0E9922191EE5D0050C719 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
+		0ED0E9932191EE5E0050C719 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
 		0EF60FBA20EE78F7006ABC18 /* GSTouchesShowingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF60FB420EE78F6006ABC18 /* GSTouchesShowingWindow.swift */; };
 		0EF60FBB20EE78F7006ABC18 /* GSTouchesShowingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF60FB420EE78F6006ABC18 /* GSTouchesShowingWindow.swift */; };
 		0EF60FBC20EE78F7006ABC18 /* GSTouchesShowingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF60FB420EE78F6006ABC18 /* GSTouchesShowingWindow.swift */; };
@@ -272,8 +272,6 @@
 		356C7FAC2190D940003E8A90 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
 		356C7FAD2190D940003E8A90 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
 		356C7FAE2190DC63003E8A90 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
-		356C7FAF2191E925003E8A90 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
-		356C7FB02191E926003E8A90 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F7E21909976003E8A90 /* WatchSessionManager.swift */; };
 		3577573A2113582700E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		3577573B2113582700E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		3577573C2113582800E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
@@ -7071,6 +7069,7 @@
 				824A96651FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				E841F3A21F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				01F612291F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
+				0ED0E9932191EE5E0050C719 /* WatchSessionManager.swift in Sources */,
 				82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
 				9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
@@ -7811,6 +7810,7 @@
 				824A96661FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				01F6122A1F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
+				0ED0E9922191EE5D0050C719 /* WatchSessionManager.swift in Sources */,
 				82EAB33D1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
