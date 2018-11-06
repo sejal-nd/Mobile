@@ -130,7 +130,9 @@ find_in_array() {
 mkdir -p build/logs
 
 # git repo branches can be used to specify the build type instead of the configuration directly
-if [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
+if [[ "$BUILD_BRANCH" == "refs/heads/test" ]]; then
+  CONFIGURATION="Testing"
+elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
   CONFIGURATION="Staging"
 elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
   CONFIGURATION="Prodbeta"
@@ -201,7 +203,14 @@ elif [ "$OPCO" == "PECO" ]; then
     target_version_number=$PECO_VERSION_NUMBER
 fi
 
-if [ "$CONFIGURATION" == "Staging" ]; then
+if [ "$CONFIGURATION" == "Testing" ]; then
+    target_bundle_id="$BASE_BUNDLE_NAME.testing"
+    target_app_name="$OPCO Testing"
+    target_icon_asset="tools/$OPCO/testing"
+    target_scheme="$OPCO-TESTING"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO"
+    target_version_number="$target_version_number.$BUILD_NUMBER-testing"
+elif [ "$CONFIGURATION" == "Staging" ]; then
     target_bundle_id="$BASE_BUNDLE_NAME.staging"
     target_app_name="$OPCO Staging"
     target_icon_asset="tools/$OPCO/staging"
@@ -228,7 +237,7 @@ elif [ "$CONFIGURATION" == "Release" ]; then
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
 else
     echo "Invalid argument: configuration"
-    echo "    value must be either \"Staging\", \"Prodbeta\", or \"Release\""
+    echo "    value must be either \"Testing\", \"Staging\", \"Prodbeta\", or \"Release\""
     exit 1
 fi
 
