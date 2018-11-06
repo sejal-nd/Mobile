@@ -9,66 +9,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
-        <scene sceneID="2h2-YQ-1AO">
-            <objects>
-                <controller id="MNK-Y5-aKC">
-                    <items>
-                        <group width="1" alignment="left" layout="vertical" id="ig9-TU-Bvr">
-                            <items>
-                                <group width="1" alignment="center" id="j6i-kj-e9K">
-                                    <items>
-                                        <group alignment="center" radius="11.5" id="HYB-Ff-pxu">
-                                            <items>
-                                                <group width="1" height="23" alignment="left" radius="11.5" id="zYo-dk-esd">
-                                                    <items>
-                                                        <imageView width="20" height="1" alignment="center" verticalAlignment="center" image="residential_mini_white" contentMode="scaleAspectFit" id="slV-4L-cD9"/>
-                                                        <label height="1" alignment="center" text="194735628" textAlignment="left" id="aTX-5X-wVA">
-                                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                        </label>
-                                                    </items>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <edgeInsets key="margins" left="8" right="8" top="0.0" bottom="0.0"/>
-                                                </group>
-                                            </items>
-                                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </group>
-                                    </items>
-                                </group>
-                                <group width="1" alignment="center" layout="vertical" id="20O-4q-w5A">
-                                    <items>
-                                        <group width="1" height="151" alignment="left" backgroundImage="usageProgress74" contentMode="scaleAspectFit" layout="vertical" id="Kwb-oZ-uuA">
-                                            <items>
-                                                <group width="1" height="1" alignment="left" layout="vertical" id="KW2-PP-KJz">
-                                                    <items>
-                                                        <imageView alignment="center" verticalAlignment="center" image="gas" id="NuJ-YO-mkb"/>
-                                                        <label width="90" alignment="center" verticalAlignment="center" text="Spent So Far" textAlignment="center" id="utX-q7-8Ux">
-                                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                        </label>
-                                                        <label width="90" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="bBu-lX-cWJ">
-                                                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                                        </label>
-                                                    </items>
-                                                </group>
-                                            </items>
-                                            <variation key="device=watch38mm" height="124"/>
-                                            <variation key="device=watch40mm" height="142"/>
-                                            <variation key="device=watch42mm" height="147"/>
-                                            <variation key="device=watch44mm" height="166"/>
-                                        </group>
-                                    </items>
-                                </group>
-                            </items>
-                        </group>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="163" y="-492"/>
-        </scene>
         <!--Usage-->
         <scene sceneID="dHc-uN-uYT">
             <objects>
-                <controller identifier="UsageInterfaceController" title="Usage" id="h9L-49-ru4" customClass="UsageInterfaceController" customModule="Exelon_Mobile_watchOS" customModuleProvider="target">
+                <controller identifier="UsageInterfaceController" title="Usage" id="h9L-49-ru4" customClass="UsageInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="dxx-ys-Ed4">
                             <items>

@@ -52,7 +52,7 @@ class WatchSessionManager: NSObject {
     }
     
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        DispatchQueue.main.async { [weak self] in
+        DispatchQueue.main.async {
             if let needsUpdate = applicationContext["askForUpdate"] as? Bool, needsUpdate {
                 //check for valid jwt else clear and log out
                 if MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken {
