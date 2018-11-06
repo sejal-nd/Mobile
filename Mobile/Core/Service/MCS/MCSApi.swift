@@ -123,7 +123,7 @@ class MCSApi {
                     self.accessToken = token
                     
                     #if os(iOS)
-                    if let token = self.accessToken {
+                    if let token = self.accessToken, Environment.shared.opco == .peco {
                         try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : token])
                     }
                     #endif
