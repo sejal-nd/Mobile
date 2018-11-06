@@ -13,8 +13,8 @@ extension Date {
     // todo: Rename to something more descriptive
     public func dueBy() -> String {
         var due = "immediately"
-        
-        guard let numberOfDays = Calendar.current.dateComponents([.day], from: self, to: Date()).day else { return due }
+
+        guard let numberOfDays = Calendar.opCo.dateComponents([.day], from: self, to: Date()).day else { return due }
         
         if numberOfDays > 5 {
             due = "by \(self.mmDdYyyyString)"

@@ -33,7 +33,6 @@ fileprivate extension CharacterSet {
 struct MCSAuthenticationService : AuthenticationService {
     
     #if os(iOS)
-
     // MCS Login Implementation
     // Steps:
     //  1. Retreive token from Layer 7 API gateway
