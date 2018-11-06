@@ -344,7 +344,7 @@ if [[ $target_phases = *"unitTest"* ]]; then
     set -o pipefail
 
     echo "Running automation tests"
-    xcrun xcodebuild  -sdk iphonesimulator \
+    xcrun xcodebuild \
         -workspace $PROJECT \
         -scheme "$OPCO-AUT" \
         -destination "$UNIT_TEST_SIMULATOR" \
