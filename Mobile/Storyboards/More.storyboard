@@ -79,6 +79,9 @@
                             <constraint firstItem="Idb-9j-ygX" firstAttribute="top" secondItem="XBu-Wr-l1z" secondAttribute="bottom" id="tAN-0f-ULq"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="sJ1-X9-dQt">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="wQn-I7-edj"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="signOutButton" destination="82T-ES-k9e" id="Y2A-5I-mpO"/>
