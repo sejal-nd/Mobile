@@ -39,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if processInfo.arguments.contains("UITest") || processInfo.environment["XCTestConfigurationFilePath"] != nil {
             // Clear UserDefaults if Unit or UI testing -- ensures consistent fresh run
             UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+            //Speed up animations for UI Testing
+            UIApplication.shared.keyWindow?.layer.speed = 200
         }
         
         if let appInfo = Bundle.main.infoDictionary,
