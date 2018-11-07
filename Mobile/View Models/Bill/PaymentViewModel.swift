@@ -142,7 +142,11 @@ class PaymentViewModel {
             isFetching.value = true
             fetchFiservCutoff().subscribe(onNext: { [weak self] cutoffDate in
                 self?.isFetching.value = false
-                onShouldReject()
+                if (cutoffDate >= Date()) {
+                    onShouldReject()
+                } else {
+                    onShouldContinue()
+                }
             }, onError: { _ in
                 onShouldContinue()
             }).disposed(by: disposeBag)
