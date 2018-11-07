@@ -57,8 +57,10 @@ extension WatchSessionManager {
             
                 // Reset Selected Account
                 AccountsStore.shared.setSelectedAccount(nil)
-            
+                
                 self?.authTokenChangeDelegate?.authTokenSuccess()
+                
+                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
             } else {
                 self?.authTokenChangeDelegate?.authTokenFailure()
             }
