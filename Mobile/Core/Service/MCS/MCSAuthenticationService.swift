@@ -32,6 +32,7 @@ fileprivate extension CharacterSet {
 
 struct MCSAuthenticationService : AuthenticationService {
     
+    #if os(iOS)
     // MCS Login Implementation
     // Steps:
     //  1. Retreive token from Layer 7 API gateway
@@ -70,6 +71,7 @@ struct MCSAuthenticationService : AuthenticationService {
         return fetchAuthToken(username: username, password: password)
             .mapTo(())
     }
+    #endif
     
     func isAuthenticated() -> Bool {
         return MCSApi.shared.isAuthenticated();
@@ -87,22 +89,24 @@ struct MCSAuthenticationService : AuthenticationService {
         }
         
         let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)"
+        let postDataLoggingStr = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=******"
         let method = HttpMethod.post
-        var request = URLRequest(url: URL(string: Environment.shared.mcsConfig.oAuthEndpoint)!)
+        let path = Environment.shared.mcsConfig.oAuthEndpoint
+        var request = URLRequest(url: URL(string: path)!)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = ["content-type": "application/x-www-form-urlencoded"]
         request.httpBody = postDataString.data(using: .utf8)
         
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
-        APILog(requestId: requestId, method: method, message: "REQUEST - BODY: \(postDataString)")
+        APILog(requestId: requestId, path: path, method: method, message: "REQUEST - BODY: \(postDataLoggingStr)")
         
         return URLSession.shared.rx.dataResponse(request: request)
             .do(onNext: { data in
                 let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                APILog(requestId: requestId, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+                APILog(requestId: requestId, path: path, method: method, message: "RESPONSE - BODY: \(resBodyString)")
             }, onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(requestId: requestId, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
             })
             .map { data in
                 switch AuthTokenParser.parseAuthTokenResponse(data: data) {
@@ -142,6 +146,7 @@ struct MCSAuthenticationService : AuthenticationService {
         }
     }
     
+    #if os(iOS)
     func changePassword(currentPassword: String, newPassword: String) -> Observable<Void> {
         
         let params = [ChangePasswordParams.oldPassword.rawValue: currentPassword,
@@ -165,6 +170,7 @@ struct MCSAuthenticationService : AuthenticationService {
         return MCSApi.shared.put(path: path, params: params)
             .mapTo(())
     }
+    #endif
     
     
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?) -> Observable<[ForgotUsernameMasked]> {
@@ -238,6 +244,7 @@ struct MCSAuthenticationService : AuthenticationService {
         }
     }
     
+    #if os(iOS)
     func recoverPassword(username: String) -> Observable<Void> {
         let params = ["username" : username]
         let opco = Environment.shared.opco.displayString.uppercased()
@@ -246,11 +253,12 @@ struct MCSAuthenticationService : AuthenticationService {
         return MCSApi.shared.post(path: path, params: params)
             .mapTo(())
     }
+    #endif
 
 }
 
-fileprivate func APILog(requestId: String, method: HttpMethod, message: String) {
+fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
     #if DEBUG
-        NSLog("[OAuthApi][%@] %@ %@", requestId, method.rawValue, message)
+        NSLog("[OAuthApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
     #endif
 }

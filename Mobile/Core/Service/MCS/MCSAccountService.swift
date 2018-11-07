@@ -51,6 +51,7 @@ struct MCSAccountService: AccountService {
         }
     }
     
+    #if os(iOS)
     func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void> {
         let valueString = "0\(selectedIndex + 1)"
         let params = ["release_info_value": valueString]
@@ -62,6 +63,7 @@ struct MCSAccountService: AccountService {
         return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/accounts/\(account.accountNumber)/default", params: nil)
             .mapTo(())
     }
+    #endif
     
     func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
         return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/premises/\(premiseNumber)/ssodata")

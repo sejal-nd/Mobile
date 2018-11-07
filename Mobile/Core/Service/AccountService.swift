@@ -24,7 +24,7 @@ protocol AccountService {
     ///   - account: the account to fetch
     func fetchAccountDetail(account: Account, getPayments: Bool, getBudgetBilling: Bool) -> Observable<AccountDetail>
     
-    
+    #if os(iOS)
     /// Updates the Release of Information in preferences for the specified account (PECO ONLY)
     ///
     /// - Parameters:
@@ -37,7 +37,8 @@ protocol AccountService {
     /// - Parameters:
     ///   - account: the account to set as default
     func setDefaultAccount(account: Account) -> Observable<Void>
-    
+    #endif
+
     /// Gets single sign-on info so that we can display the logged-in user's usage web view
     ///
     /// - Parameters:

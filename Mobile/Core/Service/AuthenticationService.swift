@@ -13,6 +13,7 @@ import RxSwift
 /// login/logout.
 protocol AuthenticationService {
     
+    #if os(iOS)
     /// Authenticate a user with the supplied credentials.
     ///
     /// - Parameters:
@@ -26,6 +27,7 @@ protocol AuthenticationService {
     ///   - username: the suername to authenticate with.
     ///   - password: the password to authenticate with.
     func validateLogin(username: String, password: String) -> Observable<Void>
+    #endif
     
     /// Check if the user is authenticated
     func isAuthenticated() -> Bool
@@ -36,6 +38,7 @@ protocol AuthenticationService {
     /// any cached information related to the user, either in memory or on disk.
     func logout()
     
+    #if os(iOS)
     /// Change the currently logged in users password.
     ///
     /// - Parameters:
@@ -50,6 +53,7 @@ protocol AuthenticationService {
     ///   - currentPassword: the users current password.
     ///   - newPassword: the users new password to set.
     func changePasswordAnon(username: String, currentPassword: String, newPassword: String) -> Observable<Void>
+    #endif
     
     func getMaintenanceMode() -> Observable<Maintenance>
     
@@ -85,9 +89,11 @@ protocol AuthenticationService {
     ///   - identifier: the identifier (e.g ssn/pin) - varies by opco.
     func lookupAccount(phone: String, identifier: String) -> Observable<[AccountLookupResult]>
     
+    #if os(iOS)
     /// Reset a password by providing your username
     ///
     /// - Parameters:
     ///   - username: the username associated with the account.
     func recoverPassword(username: String) -> Observable<Void>
+    #endif
 }

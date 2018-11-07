@@ -6,10 +6,10 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-
+import Foundation
 import Mapper
 
-struct Account: Mappable, Equatable, Hashable {
+struct Account: Mappable, Equatable, Hashable, Codable {
     let accountNumber: String
     let address: String?
     let premises: [Premise]

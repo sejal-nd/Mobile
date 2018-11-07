@@ -8,7 +8,7 @@
 
 import Mapper
 
-struct Premise: Mappable, Equatable, Hashable {
+struct Premise: Mappable, Equatable, Hashable, Codable {
     let premiseNumber: String 
     let addressGeneral: String?
     let zipCode: String?

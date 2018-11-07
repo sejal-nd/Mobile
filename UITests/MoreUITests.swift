@@ -23,14 +23,14 @@ class MoreUITests: ExelonUITestCase {
     func testMoreTabLayout() {
 
         // Ensure all Cells & Buttons exist
-        XCTAssert(app.cells.staticTexts["My Alerts"].exists)
-        XCTAssert(app.cells.staticTexts["News and Updates"].exists)
-        XCTAssert(app.cells.staticTexts["Change Password"].exists)
-        XCTAssert(app.cells.staticTexts["Release of Info"].exists)
+        XCTAssert(buttonElement(withText: "My Alerts").exists)
+        XCTAssert(buttonElement(withText: "News and Updates").exists)
+        XCTAssert(buttonElement(withText: "Change Password").exists)
+        XCTAssert(buttonElement(withText: "Release of Info").exists)
 
-        XCTAssert(app.cells.staticTexts["Contact Us"].exists)
-        XCTAssert(app.cells.staticTexts["Set Default Account"].exists)
-        XCTAssert(app.cells.staticTexts["Policies and Terms"].exists)
+        XCTAssert(buttonElement(withText: "Contact Us").exists)
+        XCTAssert(buttonElement(withText: "Set Default Account").exists)
+        XCTAssert(buttonElement(withText: "Policies and Terms").exists)
         
         let table = app.tables.element(boundBy: 0)
         let lastCell = table.cells.element(boundBy: table.cells.count-1)
@@ -49,9 +49,9 @@ class MoreUITests: ExelonUITestCase {
         }
         
         if appName.contains("BGE") {
-            XCTAssert(app.cells.staticTexts["Set Default Account"].isHittable)
+            XCTAssert(buttonElement(withText: "Set Default Account").isHittable)
         } else if appName.contains("PECO") {
-            XCTAssert(app.cells.staticTexts["Release of Info"].isHittable)
+            XCTAssert(buttonElement(withText: "Release of Info").isHittable)
         }
     }
 
@@ -59,8 +59,8 @@ class MoreUITests: ExelonUITestCase {
 
         let elementsQuery = app.scrollViews.otherElements
         
-        app.tables/*@START_MENU_TOKEN@*/.cells.staticTexts["Contact Us"]/*[[".cells.staticTexts[\"Contact Us\"]",".staticTexts[\"Contact Us\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.tap()
-        XCTAssert(app.navigationBars.buttons["Back"].exists)
+        tapButton(buttonText: "Contact Us")
+        XCTAssert(buttonElement(withText: "Back").exists)
         XCTAssert(app.navigationBars["Contact Us"].exists)
         XCTAssert(elementsQuery.staticTexts["Emergency"].exists)
         XCTAssert(elementsQuery.buttons["Submit Form"].exists)
@@ -104,7 +104,7 @@ class MoreUITests: ExelonUITestCase {
     }
     
     func testPoliciesAndTermsButtonAndLayout() {
-        app.cells.staticTexts["Policies and Terms"].tap()
+        tapButton(buttonText: "Policies and Terms")
         XCTAssert(app.navigationBars.buttons["Back"].exists)
         XCTAssert(app.navigationBars["Policies and Terms"].exists)
         
@@ -115,7 +115,7 @@ class MoreUITests: ExelonUITestCase {
     }
 
     func testChangePasswordButtonAndLayout() {
-        app.cells.staticTexts["Change Password"].tap()
+        tapButton(buttonText: "Change Password")
         
         XCTAssert(app.navigationBars.buttons["Cancel"].exists)
         XCTAssert(app.navigationBars.buttons["Submit"].exists)
@@ -128,7 +128,7 @@ class MoreUITests: ExelonUITestCase {
     }
 
     func testChangePasswordSubmit() {
-        app.cells.staticTexts["Change Password"].tap()
+        tapButton(buttonText: "Change Password")
 
         let submitButton = app.navigationBars.buttons["Submit"]
 
