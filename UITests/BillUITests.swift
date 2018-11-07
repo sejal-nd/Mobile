@@ -13,35 +13,27 @@ class BillUITests: ExelonUITestCase {
     func testScheduledPayment() {
         doLogin(username: "scheduledPayment")
         selectTab(tabName: "Bill")
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .opCo
-        dateFormatter.calendar = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        let dateString = dateFormatter.string(from: Date())
-        XCTAssert(app.scrollViews.otherElements.buttons["Thank you for scheduling your $82.00 payment for \(dateString)"].waitForExistence(timeout: 3))
+
+        let buttonText = "Thank you for scheduling your $82.00 payment for \(dateString(from: Date()))"
+        XCTAssert(buttonElement(withText: buttonText).exists)
     }
     
     func testThankYouForPayment() {
         doLogin(username: "thankYouForPayment")
         selectTab(tabName: "Bill")
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .opCo
-        dateFormatter.calendar = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        let dateString = dateFormatter.string(from: Date())
-        XCTAssert(app.scrollViews.otherElements.buttons["Thank you for $200.00 payment on \(dateString)"].waitForExistence(timeout: 3))
+
+        let buttonText = "Thank you for $200.00 payment on \(dateString(from: Date()))"
+        XCTAssert(buttonElement(withText: buttonText).exists)
     }
     
     func testPastDue() {
         doLogin(username: "pastDue")
         selectTab(tabName: "Bill")
         
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Past Due"].waitForExistence(timeout: 3))
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Total Amount Due Immediately"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Due Immediately"].exists)
+        XCTAssert(staticTextElement(withText: "Amount Past Due").exists)
+        XCTAssert(staticTextElement(withText: "Total Amount Due Immediately").exists)
+        XCTAssert(staticTextElement(withText: "$200.00").exists)
+        XCTAssert(staticTextElement(withText: "Due Immediately").exists)
     }
     
     func testAvoidShutoff() {
@@ -49,13 +41,14 @@ class BillUITests: ExelonUITestCase {
         selectTab(tabName: "Bill")
         
         if appName.contains("BGE") {
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due to Avoid Service Interruption"].waitForExistence(timeout: 3))
+            XCTAssert(staticTextElement(withText: "Amount Due to Avoid Service Interruption").exists)
         } else {
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Payment due to avoid shut-off is $200.00 due immediately."].waitForExistence(timeout: 3))
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due to Avoid shut-off"].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Due Immediately"].exists)
+            XCTAssert(staticTextElement(withText: "Payment due to avoid shut-off is $200.00 due immediately.").exists)
+            XCTAssert(staticTextElement(withText: "Amount Due to Avoid shut-off", timeout: 0.1).exists)
+            XCTAssert(staticTextElement(withText: "Due Immediately", timeout: 0.1).exists)
         }
-        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
+
+        XCTAssert(staticTextElement(withText: "$200.00", timeout: 0.1).exists)
     }
     
     func testPaymentPending() {
