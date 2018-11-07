@@ -275,13 +275,10 @@ class MakePaymentViewController: UIViewController {
         viewModel.formatPaymentAmount() // Initial formatting
         
         viewModel.checkForCutoff(onShouldReject: { [weak self] in
-            let alert = UIAlertController(title: NSLocalizedString("Payment Temporarily Unavailable", comment: ""),
-                                          message: NSLocalizedString("Payment via the mobile application is temporarily unavailable. Please check for an app update. You can make a payment on the OpCo website if needed. Sorry for the inconvenience.", comment: ""),
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default , handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.present(self.viewModel.cutoffAlert(handler: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
-            }))
-            self?.present(alert, animated: true, completion: nil)
+            }), animated: true, completion: nil)
         }, onShouldContinue: { [weak self] in
             self?.viewModel.fetchData(onSuccess: { [weak self] in
                 guard let `self` = self else { return }

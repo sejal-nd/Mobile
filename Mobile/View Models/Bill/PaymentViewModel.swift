@@ -142,15 +142,24 @@ class PaymentViewModel {
             isFetching.value = true
             fetchFiservCutoff().subscribe(onNext: { [weak self] cutoffDate in
                 self?.isFetching.value = false
-                if (cutoffDate >= Date()) {
+                if Date() >= cutoffDate {
                     onShouldReject()
                 } else {
                     onShouldContinue()
                 }
-            }, onError: { _ in
+            }, onError: { [weak self] _ in
+                self?.isFetching.value = false
                 onShouldContinue()
             }).disposed(by: disposeBag)
         }
+    }
+    
+    func cutoffAlert(handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
+        let alert = UIAlertController(title: NSLocalizedString("Payment Temporarily Unavailable", comment: ""),
+                                      message: NSLocalizedString("Payment via the mobile application is temporarily unavailable. Please check for an app update. You can make a payment on the OpCo website if needed. Sorry for the inconvenience.", comment: ""),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default , handler: handler))
+        return alert
     }
     
     func fetchData(onSuccess: (() -> Void)?, onError: (() -> Void)?) {
