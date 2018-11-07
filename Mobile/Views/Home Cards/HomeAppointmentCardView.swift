@@ -62,7 +62,10 @@ class HomeAppointmentCardView: UIView {
             .disposed(by: disposeBag)
         
         viewModel.topText
-            .drive(topTextView.rx.attributedText)
+            .drive(onNext: { [weak self] topText in
+                self?.topTextView.attributedText = topText
+                self?.topTextView.accessibilityValue = topText.string.replacingOccurrences(of: "-", with: "and")
+            })
             .disposed(by: disposeBag)
         
         viewModel.bottomButtonText

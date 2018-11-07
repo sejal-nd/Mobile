@@ -248,7 +248,10 @@ class StormModeHomeViewController: AccountPickerViewController {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.stormModeUpdate.asDriver().isNil().drive(headerCaretImageView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.stormModeUpdate.asDriver().isNil().drive(onNext: { [weak self] noUpdate in
+            self?.headerCaretImageView.isHidden = noUpdate
+            self?.headerContentView.accessibilityTraits = noUpdate ? [.none] : [.button]
+        }).disposed(by: disposeBag)
         
         Driver.merge(reportOutageButton.rx.touchUpInside.asDriver().map(to: "ReportOutageSegue"),
                      outageMapButton.rx.touchUpInside.asDriver().map(to: "OutageMapSegue"),
