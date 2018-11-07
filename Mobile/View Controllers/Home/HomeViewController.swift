@@ -57,6 +57,8 @@ class HomeViewController: AccountPickerViewController {
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
+    var didSendLaunchAnalyticsEvent = false
+    
     let bag = DisposeBag()
     
     override func viewDidLoad() {
@@ -88,6 +90,23 @@ class HomeViewController: AccountPickerViewController {
                 }
             })
             .disposed(by: bag)
+        
+        viewModel.accountDetailEvents.elements().subscribe(onNext: { [weak self] accountDetail in
+            guard let self = self else { return }
+            if !self.didSendLaunchAnalyticsEvent {
+                self.didSendLaunchAnalyticsEvent = true
+                
+                let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
+                
+                let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
+                    (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
+                
+                Analytics.log(event: .accountLoaded,
+                              dimensions: [.residentialAMI: residentialAMIString,
+                                           .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
+                                           .peakSmart: isPeakSmart ? "true" : "false"])
+            }
+        }).disposed(by: bag)
         
         viewSetup()
         styleViews()
