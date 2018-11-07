@@ -19,18 +19,18 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         _ = GATracker.shared
         
         setInitialScreen()
-        if !UserDefaults.standard.hasRunBefore {
-            UserDefaults.standard.hasRunBefore = true
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
-            WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OpenAppOnPhoneInterfaceController.className, context: [:] as AnyObject)])
-        }
+
     }
 
     
     // MARK: - Helper
     
     private func setInitialScreen() {
-        if KeychainUtility.shared[keychainKeys.authToken] != nil {
+        if !UserDefaults.standard.hasRunBefore {
+            UserDefaults.standard.hasRunBefore = true
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
+            WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OpenAppOnPhoneInterfaceController.className, context: [:] as AnyObject)])
+        } else if KeychainUtility.shared[keychainKeys.authToken] != nil {
             WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
         } else {
             WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: SignInInterfaceController.className, context: [:] as AnyObject)])
