@@ -200,7 +200,9 @@ class OutageInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(outageReportedFromPhone), name: Notification.Name.outageReported, object: nil)
+        
+        
         // Clear Default Account Info
         accountTitleLabel.setText(nil)
         
@@ -232,7 +234,9 @@ class OutageInterfaceController: WKInterfaceController {
         shouldAnimateStatusImage = false
     }
     
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     // MARK: - Action
     
     @IBAction func presentReportOutage(_ sender: Any) {
@@ -260,7 +264,10 @@ class OutageInterfaceController: WKInterfaceController {
             })
         })
     }
-
+    @objc
+    func outageReportedFromPhone() {
+        self.state = .loaded(.powerOut)
+    }
 }
 
 

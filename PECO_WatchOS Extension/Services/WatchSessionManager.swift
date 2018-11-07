@@ -62,6 +62,9 @@ extension WatchSessionManager {
             } else {
                 self?.authTokenChangeDelegate?.authTokenFailure()
             }
+            if let outageReported = applicationContext[keychainKeys.outageReported] as? Bool, outageReported {
+                NotificationCenter.default.post(name: Notification.Name.outageReported, object: nil)
+            }
             
         }
     }
