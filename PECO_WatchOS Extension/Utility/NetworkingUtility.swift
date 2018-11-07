@@ -31,6 +31,9 @@ protocol NetworkingDelegate {
     
     func accountDetailDidUpdate(_ accountDetail: AccountDetail)
     
+    /// Informs IC that the account list and account details have both been updated (not neccisarrily successfully)
+    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?)
+    
     /// Informs IC that an error occured somewhere along the process.
     func error(_ serviceError: ServiceError, feature: MainFeature)
     
@@ -47,11 +50,17 @@ class NetworkingUtility {
     
     public var networkUtilityDelegates = [NetworkingDelegate]()
     
+    // Outage Menu Population
+    private let group = DispatchGroup()
+    
     public var outageStatus: OutageStatus?
     
     private let accountManager = AccountsManager()
     
     private var pollingTimer: Timer!
+    
+    private var accounts = [Account]()
+    private var accountDetails: AccountDetail?
     
     private let disposeBag = DisposeBag()
     
@@ -152,6 +161,13 @@ class NetworkingUtility {
                 self?.networkUtilityDelegates.forEach { $0.error(Errors.invalidInformation, feature: .all) }
             }
         }
+        
+        // Account list and Account Detail calls have completed
+        group.notify(queue: .main) { [weak self] in
+            guard let `self` = self else { return }
+            self.networkUtilityDelegates.forEach { $0.accountListAndAccountDetailsDidUpdate(accounts: self.accounts, accountDetail: self.accountDetails) }
+        }
+        
     }
     
     
@@ -167,8 +183,11 @@ class NetworkingUtility {
     ///     - noAuthToken: Triggers delegate method for an error due to no jwt token presen: Service Error Code: 981156.
     ///     - error: Triggers delegate method for a general error occured attempting to fetch the account list.
     private func fetchAccountsWithData() {
+        group.enter()
         accountManager.fetchAccounts(success: { [weak self] accounts in
+            self?.accounts = accounts
             self?.networkUtilityDelegates.forEach { $0.accountListDidUpdate(accounts) }
+            self?.group.leave()
         })
     }
     
@@ -187,6 +206,7 @@ class NetworkingUtility {
     ///     - noAuthToken: Triggers delegate method for an error due to no jwt token presen: Service Error Code: 981156.
     ///     - error: Triggers delegate method for a general error occured attempting to fetch account details.
     private func fetchAccountDetailsWithData(maintenanceModeStatus: Maintenance, completion: @escaping (AccountDetail?) -> Void) {
+        group.enter()
         accountManager.fetchAccountDetails(success: { [weak self] accountDetail in
             if accountDetail.isPasswordProtected {
                 self?.networkUtilityDelegates.forEach { $0.error(Errors.passwordProtected, feature: .all) }
@@ -195,15 +215,19 @@ class NetworkingUtility {
                 if maintenanceModeStatus.billStatus {
                     self?.networkUtilityDelegates.forEach { $0.maintenanceMode(feature: .bill) }
                 } else {
+                    self?.accountDetails = accountDetail
                     self?.networkUtilityDelegates.forEach { $0.accountDetailDidUpdate(accountDetail) }
                 }
                 completion(accountDetail)
             }
+            self?.group.leave()
             }, noAuthToken: { [weak self] serviceError in
                 self?.networkUtilityDelegates.forEach { $0.error(serviceError, feature: .all) }
+                self?.group.leave()
                 completion(nil)
             }, error: { [weak self] serviceError in
                 self?.networkUtilityDelegates.forEach { $0.error(serviceError, feature: .all) }
+                self?.group.leave()
                 completion(nil)
         })
     }

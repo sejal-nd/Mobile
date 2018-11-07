@@ -120,7 +120,13 @@ class UsageInterfaceController: WKInterfaceController {
                 
                 // set nextForecast data
                 nextForecastImage.setImageNamed(AppImage.usage.name)
-                nextForecastTitleLabel.setText("\(numberOfDays) days")
+                
+                if numberOfDays == 1 {
+                    nextForecastTitleLabel.setText("\(numberOfDays) day")
+                } else {
+                    nextForecastTitleLabel.setText("\(numberOfDays) days")
+                }
+                
                 nextForecastDetailLabel.setText("until next forecast")
             case .loading:
                 // Hide all other groups
@@ -295,51 +301,43 @@ extension UsageInterfaceController: NetworkingDelegate {
         
         // Determine if after first 7 days of billing period
         
-        // todo: does setting the nextForecast state here leave problems due to order of exectuion? user state switching?
-        
         // Gas
         if let gas = billForecast.gas, let startDate = gas.billingStartDate {
             let today = Calendar.opCo.startOfDay(for: Date())
             let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
             if daysSinceBillingStart < 7 {
-                state = .nextForecast(daysSinceBillingStart)
+                let daysRemaining = 7 - daysSinceBillingStart
+                state = .nextForecast(daysRemaining)
+            } else {
+                // Set State
+                gasForecast = gas
+                
+                state = .loaded(gas)
             }
         }
-        if let gas = billForecast.gas {
-            gasForecast = gas
-            
-            addMenuItem(withImageNamed: AppImage.gas.name, title: "Gas", action: #selector(selectGasMenuItem))
-        }
-        
+
         // Electric
         if let electric = billForecast.electric, let startDate = electric.billingStartDate {
             let today = Calendar.opCo.startOfDay(for: Date())
             let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
             if daysSinceBillingStart < 7 {
-                state = .nextForecast(daysSinceBillingStart)
+                let daysRemaining = 7 - daysSinceBillingStart
+                state = .nextForecast(daysRemaining)
+            } else {
+                // Set State
+                electricForecast = electric
+                
+                state = .loaded(electric)
             }
         }
-        if let electric = billForecast.electric {
-            // Add Menu Items & Set State
-            
-            electricForecast = electric
-            
-            state = .loaded(electric)
-            
-            addMenuItem(withImageNamed: AppImage.electric.name, title: "Electric", action: #selector(selectElectricMenuItem))
-        }
+
         
         // todo: we may need to rethink this logic, because the gas and electric state sort of live side by side of each other rather than one or the other due to how a user is able to switch between the two.
         
         aLog("Usage Status Did Update: \(billForecast)")
     }
     
-    func accountListDidUpdate(_ accounts: [Account]) {
-        clearAllMenuItems()
-        
-        guard accounts.count > 1 else { return }
-        addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
-    }
+    func accountListDidUpdate(_ accounts: [Account]) { }
     
     func currentAccountDidUpdate(_ account: Account) {
         updateAccountInformation(account)
@@ -348,11 +346,39 @@ extension UsageInterfaceController: NetworkingDelegate {
     }
     
     func accountDetailDidUpdate(_ accountDetail: AccountDetail) {
-        guard accountDetail.isPasswordProtected else { return }
-        
         isModeledForOpower = accountDetail.isModeledForOpower
-        
+
+        guard accountDetail.isPasswordProtected else { return }
+
         state = .passwordProtected
+    }
+    
+    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) {
+        clearAllMenuItems()
+        
+        guard !accounts.isEmpty, let accountDetail = accountDetail else { return }
+        
+        if accounts.count > 1 {
+            addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
+        }
+        // todo set isElectric here, this will dictate the elec/gas image
+        if let serviceType = accountDetail.serviceType {
+            if serviceType.uppercased() == "GAS" {
+                isElectricSelected = false
+                
+                addMenuItem(withImageNamed: AppImage.gas.name, title: "Gas", action: #selector(selectGasMenuItem))
+            } else if serviceType.uppercased() == "ELECTRIC" {
+                isElectricSelected = true
+                
+                addMenuItem(withImageNamed: AppImage.electric.name, title: "Electric", action: #selector(selectElectricMenuItem))
+            } else if serviceType.uppercased() == "GAS/ELECTRIC" {
+                isElectricSelected = true
+                
+                addMenuItem(withImageNamed: AppImage.gas.name, title: "Gas", action: #selector(selectGasMenuItem))
+                addMenuItem(withImageNamed: AppImage.electric.name, title: "Electric", action: #selector(selectElectricMenuItem))
+            }
+        }
+        
     }
     
     func error(_ serviceError: ServiceError, feature: MainFeature) {

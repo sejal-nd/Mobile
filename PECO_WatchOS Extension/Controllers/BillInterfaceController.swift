@@ -424,6 +424,8 @@ extension BillInterfaceController: NetworkingDelegate {
         addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
     }
     
+    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) { }
+    
     func maintenanceMode(feature: MainFeature) {
         guard feature == .all || feature == .bill else { return }
         state = .maintenanceMode
