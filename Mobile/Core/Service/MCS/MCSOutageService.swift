@@ -63,6 +63,7 @@ class MCSOutageService: OutageService {
         }
     }
     
+    #if os(iOS)
     func reportOutage(outageInfo: OutageInfo) -> Observable<Void> {
         var params = [ReportOutageParams.AccountNumber.rawValue: outageInfo.accountNumber,
                       ReportOutageParams.Phone.rawValue: outageInfo.phoneNumber,
@@ -93,6 +94,7 @@ class MCSOutageService: OutageService {
             })
             .mapTo(())
     }
+    #endif
     
     func reportOutageAnon(outageInfo: OutageInfo) -> Observable<ReportedOutageResult> {
         var params = [ReportOutageParams.AccountNumber.rawValue: outageInfo.accountNumber,

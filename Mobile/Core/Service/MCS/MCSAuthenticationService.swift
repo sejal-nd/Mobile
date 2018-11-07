@@ -32,6 +32,7 @@ fileprivate extension CharacterSet {
 
 struct MCSAuthenticationService : AuthenticationService {
     
+    #if os(iOS)
     // MCS Login Implementation
     // Steps:
     //  1. Retreive token from Layer 7 API gateway
@@ -89,6 +90,7 @@ struct MCSAuthenticationService : AuthenticationService {
         return fetchAuthToken(username: username, password: password)
             .mapTo(())
     }
+    #endif
     
     func isAuthenticated() -> Bool {
         return MCSApi.shared.isAuthenticated();
@@ -161,6 +163,7 @@ struct MCSAuthenticationService : AuthenticationService {
         }
     }
     
+    #if os(iOS)
     func changePassword(currentPassword: String, newPassword: String) -> Observable<Void> {
         
         let params = [ChangePasswordParams.oldPassword.rawValue: currentPassword,
@@ -184,6 +187,7 @@ struct MCSAuthenticationService : AuthenticationService {
         return MCSApi.shared.put(path: path, params: params)
             .mapTo(())
     }
+    #endif
     
     
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?) -> Observable<[ForgotUsernameMasked]> {
@@ -257,6 +261,7 @@ struct MCSAuthenticationService : AuthenticationService {
         }
     }
     
+    #if os(iOS)
     func recoverPassword(username: String) -> Observable<Void> {
         let params = ["username" : username]
         let opco = Environment.shared.opco.displayString.uppercased()
@@ -265,6 +270,7 @@ struct MCSAuthenticationService : AuthenticationService {
         return MCSApi.shared.post(path: path, params: params)
             .mapTo(())
     }
+    #endif
 
 }
 
