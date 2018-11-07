@@ -361,7 +361,6 @@ class ReportOutageViewController: UIViewController {
                 guard let `self` = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
                 self.navigationController?.popViewController(animated: true)
-                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["outageReported" : true])
             }, onError: errorBlock)
             Analytics.log(event: .reportOutageAuthSubmit)
         }
