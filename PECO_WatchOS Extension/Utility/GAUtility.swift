@@ -10,7 +10,7 @@ import Foundation
 
 class GATracker {
 
-    private var propertyId = "UA-126768324-1"
+    private var propertyId = "UA-128885640-1" //Carey's token
     private var clientId: String
     private var appName: String
     private var appVersion: String
@@ -89,7 +89,7 @@ class GATracker {
      A screenview hit, use screenname
      */
     func screenView(screenName: String, customParameters: Dictionary<String, String>?) {
-        var params = ["cd" : screenName]
+        var params = ["cd" : "WatchApp_\(screenName)"]
         if (customParameters != nil) {
             for (key, value) in customParameters! {
                 params.updateValue(value, forKey: key)

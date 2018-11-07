@@ -30,11 +30,11 @@
         <!--AccountListInterfaceController-->
         <scene sceneID="QsP-lO-Kwh">
             <objects>
-                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="Exelon_Mobile_watchOS" customModuleProvider="target">
+                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
                     <items>
                         <table alignment="left" id="sgx-CZ-A51">
                             <items>
-                                <tableRow identifier="AccountTableRowController" id="Orz-c5-1Ov" customClass="AccountTableRowController" customModule="Exelon_Mobile_watchOS" customModuleProvider="target">
+                                <tableRow identifier="AccountTableRowController" id="Orz-c5-1Ov" customClass="AccountTableRowController" customModule="PECO_WatchOS" customModuleProvider="target">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="sdA-I2-UIm">
                                         <items>
                                             <imageView width="24" height="1" alignment="left" image="checkmark_white" contentMode="scaleAspectFit" id="eSW-rz-UXJ"/>
@@ -73,7 +73,7 @@
         <!--SignInInterfaceController-->
         <scene sceneID="MbM-Z9-klW">
             <objects>
-                <controller identifier="SignInInterfaceController" id="yv4-PS-J3u" customClass="SignInInterfaceController" customModule="Exelon_Mobile_watchOS" customModuleProvider="target">
+                <controller identifier="SignInInterfaceController" id="yv4-PS-J3u" customClass="SignInInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="RQM-iB-7iQ">
                             <items>
@@ -95,14 +95,14 @@
         <!--OpenAppOnPhoneInterfaceController-->
         <scene sceneID="49C-7x-8A7">
             <objects>
-                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="Exelon_Mobile_watchOS_Extension">
+                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="PECO_WatchOS_Extension">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Cpt-5p-t75">
                             <items>
                                 <imageView width="1" height="103" alignment="center" verticalAlignment="center" image="signin" contentMode="scaleAspectFit" id="qnW-l4-G4g"/>
                                 <group width="1" alignment="left" verticalAlignment="bottom" id="aRF-2Y-Pdy">
                                     <items>
-                                        <label alignment="center" verticalAlignment="center" text="Please open the app on your phone.  An error has occured" textAlignment="center" numberOfLines="0" id="Pgc-NG-h8H">
+                                        <label alignment="center" verticalAlignment="center" text="Please open the app on your phone.  We need to make sure we're synced up" textAlignment="center" numberOfLines="0" id="Pgc-NG-h8H">
                                             <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
                                         </label>
                                     </items>
