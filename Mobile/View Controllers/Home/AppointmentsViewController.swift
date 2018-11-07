@@ -90,6 +90,13 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         appointmentVCs = appointments
             .map(AppointmentDetailViewModel.init)
             .map(AppointmentDetailViewController.init)
+        
+        for i in 0..<appointments.count {
+            let apptVC = appointmentVCs[i]
+            apptVC.index = i
+            apptVC.totalCount = appointments.count
+        }
+        
         return appointmentVCs
     }
     

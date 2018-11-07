@@ -40,7 +40,7 @@ class ToggleTableViewCell: UITableViewCell {
     // MARK: - Configure
     public func configure(viewModel: MoreViewModel, tag: Int) {
         // Style
-        backgroundColor = .primaryColor
+        backgroundColor = StormModeStatus.shared.isOn ? .clear : .primaryColor
         
         // Set Data
         if viewModel.biometricsString() == "Face ID" {
