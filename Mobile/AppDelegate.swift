@@ -53,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
         }
         
+        setupWatchConnectivity()
         setupUserDefaults()
         setupToastStyles()
         setupAppearance()
@@ -86,6 +87,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .disposed(by: disposeBag)
         
         return true
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), Environment.shared.opco == .peco {
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
+        }
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -184,6 +191,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return nil
     }
     
+    
+    // MARK: - Helper
+    
+    private func setupWatchConnectivity() {
+        guard Environment.shared.opco == .peco else { return }
+        
+        // Watch Connectivity
+        WatchSessionManager.shared.startSession()
+        
+        // Send jwt to watch if available
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken {
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
+        }
+    }
+    
     func setupUserDefaults() {
         let userDefaults = UserDefaults.standard
         userDefaults.register(defaults: [
@@ -200,6 +222,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             biometricsService.disableBiometrics()
 
             MCSApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
+            
+            if Environment.shared.opco == .peco {
+                // Clear watch jwt
+                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
+            }
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }

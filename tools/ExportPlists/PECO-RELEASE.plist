@@ -8,6 +8,10 @@
 	<dict>
 		<key>com.exelon.mobile.peco</key>
 		<string>PECO App Store</string>
+		<key>com.exelon.mobile.peco.watchkitapp</key>
+		<string>PECO Watchkit App Store</string>
+		<key>com.exelon.mobile.peco.watchkitapp.watchkitextension</key>
+		<string>PECO WatchkitExtension App Store</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>305192A978161F709EFCE001FC6CE04332EA32A2</string>

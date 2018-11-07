@@ -6,6 +6,8 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import Foundation
+
 extension NSNotification.Name {
     
     static let didReceiveInvalidAuthToken = NSNotification.Name(rawValue: "kDidReceiveInvalidAuthToken")

@@ -58,7 +58,7 @@ to just update the build script directly if it's a permanent change.
                             or 
                             com.iphoneproduction.exelon -- if building a ComEd Prod app
 
---project                 - Name of the xcodeproj -- defaults to Mobile.xcodeproj
+--project                 - Name of the xcworkspace -- defaults to Mobile.xcworkspace
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
 --phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
 --override-mbe            - Override the default MBE for testing or staging builds only 
@@ -68,7 +68,7 @@ to just update the build script directly if it's a permanent change.
 PROPERTIES_FILE='version.properties'
 PROJECT_DIR="."
 ASSET_DIR="$PROJECT_DIR/Mobile/Assets/"
-PROJECT="Mobile.xcodeproj"
+PROJECT="Mobile.xcworkspace"
 CONFIGURATION=""
 UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
 BUILD_NUMBER=
@@ -130,7 +130,9 @@ find_in_array() {
 mkdir -p build/logs
 
 # git repo branches can be used to specify the build type instead of the configuration directly
-if [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
+if [[ "$BUILD_BRANCH" == "refs/heads/test" ]]; then
+  CONFIGURATION="Testing"
+elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
   CONFIGURATION="Staging"
 elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
   CONFIGURATION="Prodbeta"
@@ -201,7 +203,14 @@ elif [ "$OPCO" == "PECO" ]; then
     target_version_number=$PECO_VERSION_NUMBER
 fi
 
-if [ "$CONFIGURATION" == "Staging" ]; then
+if [ "$CONFIGURATION" == "Testing" ]; then
+    target_bundle_id="$BASE_BUNDLE_NAME.testing"
+    target_app_name="$OPCO Testing"
+    target_icon_asset="tools/$OPCO/testing"
+    target_scheme="$OPCO-TESTING"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Test-$OPCO"
+    target_version_number="$target_version_number.$BUILD_NUMBER-testing"
+elif [ "$CONFIGURATION" == "Staging" ]; then
     target_bundle_id="$BASE_BUNDLE_NAME.staging"
     target_app_name="$OPCO Staging"
     target_icon_asset="tools/$OPCO/staging"
@@ -228,11 +237,11 @@ elif [ "$CONFIGURATION" == "Release" ]; then
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
 else
     echo "Invalid argument: configuration"
-    echo "    value must be either \"Staging\", \"Prodbeta\", or \"Release\""
+    echo "    value must be either \"Testing\", \"Staging\", \"Prodbeta\", or \"Release\""
     exit 1
 fi
 
-if [ -n "$SCHEME" ]; then
+if [ -n "$SCHEME" ]; then 
     echo "Scheme has been specified via args -- overriding default of $target_scheme with $SCHEME"
     target_scheme=$SCHEME
 fi
@@ -245,43 +254,54 @@ fi
 
 if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]]; then
 
-    echo "Replacing app icon set..."
-    subs=`ls $target_icon_asset`
+	echo "Replacing app icon set..."
+	subs=`ls $target_icon_asset`
 
-    for i in $subs; do
-        if [[ $i == *.png ]]; then
-            echo "    Updating: $i"
-            rm -rf "$current_icon_set/$i"
-            cp "$target_icon_asset/$i" "$current_icon_set"
-        fi
-    done
-    echo "App Icon updated:"
-    echo "   Replaced current_icon_set=$current_icon_set"
-    echo "   with: "
-    echo "   AppIconSet=$target_icon_asset"
+	for i in $subs; do
+		if [[ $i == *.png ]]; then
+			echo "    Updating: $i"
+			rm -rf "$current_icon_set/$i"
+			cp "$target_icon_asset/$i" "$current_icon_set"
+		fi
+	done
+	echo "App Icon updated:"
+	echo "   Replaced current_icon_set=$current_icon_set"
+	echo "   with: "
+	echo "   AppIconSet=$target_icon_asset"
 
-    echo "Updating plist $PROJECT_DIR/Mobile/$OPCO-Info.plist"
+	echo "Updating plist $PROJECT_DIR/Mobile/$OPCO-Info.plist"
 
-    # Update Bundle ID, App Name, App Version, and Icons
-    plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Mobile/$OPCO-Info.plist
-    plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Mobile/$OPCO-Info.plist
-    plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Mobile/$OPCO-Info.plist
+	# Update Bundle ID, App Name, App Version, and Icons
+	plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Mobile/$OPCO-Info.plist
+	plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Mobile/$OPCO-Info.plist
+	plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Mobile/$OPCO-Info.plist
 
+    if [[ $OPCO == "PECO"* ]]; then
+
+        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Exelon_Mobile_watchOS/Info.plist
+        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Exelon_Mobile_watchOS/Info.plist
+        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Exelon_Mobile_watchOS/Info.plist
+
+        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Exelon_Mobile_watchOS_Extension/Info.plist
+        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Exelon_Mobile_watchOS_Extension/Info.plist
+        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Exelon_Mobile_watchOS_Extension/Info.plist
     
-    echo "$PROJECT_DIR/Mobile/$OPCO-Info.plist updated:"
-    echo "   CFBundleVersion=$BUILD_NUMBER"
-    if [ -n "$BUNDLE_SUFFIX" ]; then 
-        # Optional -- the defaults are all defined in the xcode project, this just gives the user the ability to override
-        echo "   CFBundleIdentifier=$target_bundle_id"
-        plutil -replace CFBundleIdentifier -string $target_bundle_id $PROJECT_DIR/Mobile/$OPCO-Info.plist
-    else
-        echo "   CFBundleIdentifier=(Left as is -- should be \${EXM_BUNDLE_ID} which means Xcode project settings take affect)"
     fi
-    echo "   CFBundleName=$target_app_name"
-    echo "   CFBundleShortVersionString=$target_version_number"
-    echo ""
+	
+	echo "$PROJECT_DIR/Mobile/$OPCO-Info.plist updated:"
+	echo "   CFBundleVersion=$BUILD_NUMBER"
+	if [ -n "$BUNDLE_SUFFIX" ]; then 
+		# Optional -- the defaults are all defined in the xcode project, this just gives the user the ability to override
+		echo "   CFBundleIdentifier=$target_bundle_id"
+		plutil -replace CFBundleIdentifier -string $target_bundle_id $PROJECT_DIR/Mobile/$OPCO-Info.plist
+	else
+		echo "   CFBundleIdentifier=(Left as is -- should be \${EXM_BUNDLE_ID} which means Xcode project settings take affect)"
+	fi
+	echo "   CFBundleName=$target_app_name"
+	echo "   CFBundleShortVersionString=$target_version_number"
+	echo ""
 
-    if [[ ( "$CONFIGURATION" == "Staging"  ||  "$CONFIGURATION" == "Testing" ) &&  "$OVERRIDE_MBE" != "" ]]; then
+	if [[ ( "$CONFIGURATION" == "Staging"  ||  "$CONFIGURATION" == "Testing" ) &&  "$OVERRIDE_MBE" != "" ]]; then
         if find_in_array $OVERRIDE_MBE "${stagingMBEs[@]}"; then
 
             if [ "$CONFIGURATION" == "Staging" ]; then
@@ -297,7 +317,6 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
             exit 1
         fi
     fi
-
 fi
 
 
@@ -325,8 +344,8 @@ if [[ $target_phases = *"unitTest"* ]]; then
     set -o pipefail
 
     echo "Running automation tests"
-    xcrun xcodebuild  -sdk iphonesimulator \
-        -project $PROJECT \
+    xcrun xcodebuild \
+        -workspace $PROJECT \
         -scheme "$OPCO-AUT" \
         -destination "$UNIT_TEST_SIMULATOR" \
         -configuration Automation \
@@ -343,12 +362,12 @@ if [[ $target_phases = *"build"* ]]; then
 
     set -o pipefail
 
-    xcrun xcodebuild -sdk iphoneos \
-        -configuration $CONFIGURATION \
-        -project $PROJECT \
-        -scheme "$target_scheme" \
-        -archivePath build/archive/$target_scheme.xcarchive \
-        archive | tee build/logs/xcodebuild_archive.log | xcpretty
+	xcrun xcodebuild \
+		-configuration $CONFIGURATION \
+		-workspace $PROJECT \
+		-scheme "$target_scheme" \
+		-archivePath build/archive/$target_scheme.xcarchive \
+		archive | tee build/logs/xcodebuild_archive.log | xcpretty
 
     check_errs $? "Xcode build exited with a non-zero status"
 
@@ -508,7 +527,7 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
         echo "----------------------------------- Build-for-testing -------------------------------"
         xcrun xcodebuild \
             -configuration Automation \
-            -project $PROJECT \
+            -workspace $PROJECT \
             -sdk iphoneos \
             -scheme "$OPCO-AUT-UITest" \
             ONLY_ACTIVE_ARCH=NO \
