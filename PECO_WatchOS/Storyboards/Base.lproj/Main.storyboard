@@ -95,7 +95,7 @@
         <!--OpenAppOnPhoneInterfaceController-->
         <scene sceneID="49C-7x-8A7">
             <objects>
-                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="PECO_WatchOS_Extension">
+                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Cpt-5p-t75">
                             <items>
