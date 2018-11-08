@@ -95,7 +95,7 @@
         <!--OpenAppOnPhoneInterfaceController-->
         <scene sceneID="49C-7x-8A7">
             <objects>
-                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
+                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="PECO_WatchOS_Extension">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Cpt-5p-t75">
                             <items>
@@ -103,6 +103,7 @@
                                 <group width="1" alignment="left" verticalAlignment="bottom" id="aRF-2Y-Pdy">
                                     <items>
                                         <label alignment="center" verticalAlignment="center" text="Please open the app on your phone.  An error has occured" textAlignment="center" numberOfLines="0" id="Pgc-NG-h8H">
+                                        <label alignment="center" verticalAlignment="center" text="Please open the app on your phone.  We need to make sure we're synced up" textAlignment="center" numberOfLines="0" id="Pgc-NG-h8H">
                                             <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
                                         </label>
                                     </items>

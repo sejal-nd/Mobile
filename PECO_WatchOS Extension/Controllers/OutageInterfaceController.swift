@@ -75,21 +75,18 @@ class OutageInterfaceController: WKInterfaceController {
                 shouldAnimateStatusImage = false
                 aLog("Loading")
             case .error(let error):
-                aLog("Service code: \(error.serviceCode)")
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
-                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OpenAppOnPhoneInterfaceController.className, context: [:] as AnyObject)])
-//
-//                loadingImageGroup.setHidden(true)
-//
-//                reportOutageTapGesture.isEnabled = false
-//                statusGroup.setHidden(true)
-//                powerStatusImage.setHidden(true)
-//                errorGroup.setHidden(false)
-//                shouldAnimateStatusImage = false
-//
-//                errorImage.setImageNamed(AppImage.error.name)
-//                errorTitleLabel.setHidden(true)
-//                errorDetailLabel.setText("Unable to retrieve data at this time.  Please try again later.")
+                loadingImageGroup.setHidden(true)
+
+                reportOutageTapGesture.isEnabled = false
+                statusGroup.setHidden(true)
+                powerStatusImage.setHidden(true)
+                errorGroup.setHidden(false)
+                shouldAnimateStatusImage = false
+
+                errorImage.setImageNamed(AppImage.error.name)
+                errorTitleLabel.setHidden(true)
+                errorDetailLabel.setText("Unable to retrieve data at this time.  Please try again later.  You may be able to resolve this issue by opening the PECO app on your phone.")
                 aLog("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 loadingImageGroup.setHidden(true)
@@ -203,7 +200,9 @@ class OutageInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(outageReportedFromPhone), name: Notification.Name.outageReported, object: nil)
+        
+        
         // Clear Default Account Info
         accountTitleLabel.setText(nil)
         
@@ -235,7 +234,9 @@ class OutageInterfaceController: WKInterfaceController {
         shouldAnimateStatusImage = false
     }
     
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     // MARK: - Action
     
     @IBAction func presentReportOutage(_ sender: Any) {
@@ -263,7 +264,10 @@ class OutageInterfaceController: WKInterfaceController {
             })
         })
     }
-
+    @objc
+    func outageReportedFromPhone() {
+        self.state = .loaded(.powerOut)
+    }
 }
 
 

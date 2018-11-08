@@ -23,9 +23,8 @@ class OutageUITests: ExelonUITestCase {
     func testPowerOnState() {
         doLogin(username: "outageTestPowerOn")
         selectTab(tabName: "Outage")
-        let predicate = NSPredicate(format: "label CONTAINS 'Outage status, Button. Our records indicate your power is on.'")
-        let outageStatusButton = app.scrollViews.otherElements.element(matching: predicate)
-        XCTAssert(outageStatusButton.waitForExistence(timeout: 5))
+        let outageStatusButton = buttonElement(withText: "Outage status button. Our records indicate your power is on.")
+        XCTAssertTrue(outageStatusButton.exists)
         
         outageStatusButton.tap()
         XCTAssert(app.alerts.staticTexts["test power on message"].waitForExistence(timeout: 3))
@@ -34,9 +33,8 @@ class OutageUITests: ExelonUITestCase {
     func testPowerOutState() {
         doLogin(username: "outageTestPowerOut")
         selectTab(tabName: "Outage")
-        let predicate = NSPredicate(format: "label CONTAINS 'Our records indicate your power is out'")
-        let outageStatusButton = app.scrollViews.otherElements.element(matching: predicate)
-        XCTAssert(outageStatusButton.waitForExistence(timeout: 5))
+        let outageStatusButton = buttonElement(withText: "Our records indicate your power is out")
+        XCTAssertTrue(outageStatusButton.exists)
         
         outageStatusButton.tap()
         XCTAssert(app.alerts.staticTexts["test power out message"].waitForExistence(timeout: 3))
@@ -45,42 +43,37 @@ class OutageUITests: ExelonUITestCase {
     func testGasOnlyState() {
         doLogin(username: "outageTestGasOnly")
         selectTab(tabName: "Outage")
-        let predicate = NSPredicate(format: "label CONTAINS 'Our records indicate'")
-        let outageStatusButton = app.scrollViews.otherElements.buttons.element(matching: predicate)
-        XCTAssertFalse(outageStatusButton.waitForExistence(timeout: 3)) // Should not be an outage status button
+        let outageStatusButton = buttonElement(withText: "Our records indicate")
+        // Should not be an outage status button
+        XCTAssertFalse(outageStatusButton.exists)
         
-        XCTAssert(app.scrollViews.otherElements.staticTexts["This account receives gas service only"].waitForExistence(timeout: 3))
+        XCTAssertTrue(staticTextElement(withText: "This account receives gas service only").exists)
     }
     
     func testFinaledState() {
         doLogin(username: "outageTestFinaled")
         selectTab(tabName: "Outage")
         
-        let predicate = NSPredicate(format: "label CONTAINS 'Our records indicate'")
-        let outageStatusButton = app.scrollViews.otherElements.buttons.element(matching: predicate)
-        XCTAssertFalse(outageStatusButton.waitForExistence(timeout: 3)) // Should not be an outage status button
+        let outageStatusButton = buttonElement(withText: "Our records indicate")
+        // Should not be an outage status button
+        XCTAssertFalse(outageStatusButton.exists)
             
-        let reportOutageButton = app.scrollViews.otherElements.buttons["Report outage"]
+        let reportOutageButton = buttonElement(withText: "Report outage")
         XCTAssertFalse(reportOutageButton.isEnabled, "Report outage button should be disabled for finaled accounts")
     }
     
     func testReportOutage() {
         doLogin(username: "outageTestReport")
         selectTab(tabName: "Outage")
-        let reportOutageButton = app.scrollViews.otherElements.buttons["Report outage"]
-        _ = reportOutageButton.waitForExistence(timeout: 3)
-        reportOutageButton.tap()
-        
-        let submitButton = app.navigationBars.buttons["Submit"]
-        _ = submitButton.waitForExistence(timeout: 3)
-        submitButton.tap()
-        
-        var predicate = NSPredicate(format: "label CONTAINS 'Your outage is reported.'")
-        let outageStatusButton = app.scrollViews.otherElements.element(matching: predicate)
-        XCTAssert(outageStatusButton.waitForExistence(timeout: 3), "Expected the outage status button in the reported state")
-        
-        predicate = NSPredicate(format: "label CONTAINS 'Report outage. Reported'")
-        XCTAssert(app.scrollViews.otherElements.buttons.element(matching: predicate).waitForExistence(timeout: 3), "Expected the report outage button in the reported state")
+
+        tapButton(buttonText: "Report outage")
+        tapButton(buttonText: "Submit")
+
+        let outageStatusButton = buttonElement(withText: "Your outage is reported.")
+        XCTAssertTrue(outageStatusButton.exists, "Expected the outage status button in the reported state")
+
+        let reportOutageButton = buttonElement(withText: "Report outage. Reported")
+        XCTAssertTrue(reportOutageButton.exists, "Expected the report outage button in the reported state")
     }
     
     func testMaintModeOutage() {
@@ -88,7 +81,7 @@ class OutageUITests: ExelonUITestCase {
         selectTab(tabName: "Outage")
         XCTAssert(app.buttons["Reload"].exists)
         XCTAssert(app.staticTexts["Scheduled Maintenance"].exists)
-        XCTAssert(app.staticTexts["Outage is currently unavailable due to\nscheduled maintenance."].waitForExistence(timeout: 3))
+        XCTAssertTrue(staticTextElement(withText: "Outage is currently unavailable due to").exists)
         var outageMmStaticText: XCUIElement
         
         if appName.contains("BGE") {

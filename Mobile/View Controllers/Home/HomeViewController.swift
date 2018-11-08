@@ -505,13 +505,16 @@ class HomeViewController: AccountPickerViewController {
         guard let projectedBillCardView = projectedBillCardView else { return }
         
         projectedBillCardView.viewMoreButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.projectedBillCardViewModel.isGas)
-            .drive(onNext: { [weak self] isGas in
+            .withLatestFrom(Driver.combineLatest(viewModel.projectedBillCardViewModel.isGas,
+                                                 viewModel.projectedBillCardViewModel.projectionNotAvailable))
+            .drive(onNext: { [weak self] isGas, projectionNotAvailable in
                 guard let tabBarCtl = self?.tabBarController as? MainTabBarController else {
                     return
                 }
                 
-                tabBarCtl.navigateToUsage(selectedBar: .projected, isGas: isGas, isPreviousBill: true)
+                tabBarCtl.navigateToUsage(selectedBar: projectionNotAvailable ? .projectionNotAvailable : .projected,
+                                          isGas: isGas,
+                                          isPreviousBill: true)
             }).disposed(by: projectedBillCardView.disposeBag)
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in

@@ -40,7 +40,13 @@ struct keychainKeys {
     
     static let askForUpdate = "askForUpdate"
     
+    static let outageReported = "outageReported"
+    
 }
+extension Notification.Name {
+    static let outageReported: Notification.Name = Notification.Name(rawValue: "outageReportedNotificationName")
+}
+
 
 enum AppImage {
     case alert
@@ -122,3 +128,4 @@ enum AppImage {
         }
     }
 }
+

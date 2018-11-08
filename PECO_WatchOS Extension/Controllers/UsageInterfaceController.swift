@@ -178,23 +178,21 @@ class UsageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.usage.name)
                 errorTitleLabel.setText("Usage is not available for this account.")
             case .error(let serviceError):
-                aLog("Usage Error State: \(serviceError.localizedDescription)")
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
-                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OpenAppOnPhoneInterfaceController.className, context: [:] as AnyObject)])
-//                // Hide all other groups
-//                loadingImageGroup.setHidden(true)
-//                errorGroup.setHidden(true)
-//                nextForecastGroup.setHidden(true)
-//                mainGroup.setHidden(true)
-//
-//                // show error group
-//                errorGroup.setHidden(false)
-//
-//                // set error data
-//                errorImage.setImageNamed(AppImage.error.name)
-//                errorTitleLabel.setText("Unable to retrieve data at this time.  Please try again later.")
-//
-//                aLog("Usage Error State: \(serviceError.localizedDescription)")
+                // Hide all other groups
+                loadingImageGroup.setHidden(true)
+                errorGroup.setHidden(true)
+                nextForecastGroup.setHidden(true)
+                mainGroup.setHidden(true)
+
+                // show error group
+                errorGroup.setHidden(false)
+
+                // set error data
+                errorImage.setImageNamed(AppImage.error.name)
+                errorTitleLabel.setText("Unable to retrieve data at this time.  Please try again later.  You may be able to resolve this issue by opening the PECO app on your phone.")
+
+                aLog("Usage Error State: \(serviceError.localizedDescription)")
             }
         }
     }
