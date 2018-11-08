@@ -10,6 +10,8 @@ import Foundation
 
 // Used for WatchOS
 protocol AccountStoreChangedDelegate {
+    func newAccountUpdate(_ account: Account)
+    
     func currentAccountDidUpdate(_ account: Account)
 }
 
@@ -21,6 +23,8 @@ final class AccountsStore {
         didSet {
             if oldValue != nil {
                 accountStoreChangedDelegate?.currentAccountDidUpdate(currentAccount)
+            } else {
+                accountStoreChangedDelegate?.newAccountUpdate(currentAccount)
             }
         }
     }

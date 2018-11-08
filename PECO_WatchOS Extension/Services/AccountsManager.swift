@@ -13,11 +13,12 @@ class AccountsManager {
     
     private let disposeBag = DisposeBag()
     
-    public func fetchAccounts(success: @escaping ([Account]) -> Void) {
+    public func fetchAccounts(success: @escaping ([Account]) -> Void, error: @escaping (ServiceError) -> Void) {
         aLog("Fetching Accounts...")
         
         guard KeychainUtility.shared[keychainKeys.authToken] != nil else {
             aLog("Could not find auth token in Accounts Manager Fetch Accounts.")
+            error(Errors.noAuthTokenFound)
             return
         }
         
@@ -29,16 +30,18 @@ class AccountsManager {
                 return
             }
             
-            if AccountsStore.shared.getSelectedAccount() == nil {
-                AccountsStore.shared.setSelectedAccount(firstAccount)
+            if AccountsStore.shared.currentAccount == nil {
+                AccountsStore.shared.currentAccount = firstAccount
             }
             
             aLog("Accounts Fetched.")
             
             success(accounts)
-        }, onError: { error in
+        }, onError: { accountsError in
             // handle error
-            aLog("Failed to retrieve accounts: \(error.localizedDescription)")
+            aLog("Failed to retrieve accounts: \(accountsError.localizedDescription)")
+            let serviceError = (accountsError as? ServiceError) ?? ServiceError(serviceCode: accountsError.localizedDescription, serviceMessage: nil, cause: nil)
+            error(serviceError)
         })
             .disposed(by: disposeBag)
     }
@@ -47,7 +50,7 @@ class AccountsManager {
     public func fetchAccountDetails(success: @escaping (AccountDetail) -> Void, noAuthToken: @escaping (ServiceError) -> Void, error: @escaping (ServiceError) -> Void) {
         aLog("Fetching Account Details...")
         
-        guard KeychainUtility.shared[keychainKeys.authToken] != nil, let currentAccount = AccountsStore.shared.getSelectedAccount() else {
+        guard KeychainUtility.shared[keychainKeys.authToken] != nil, let currentAccount = AccountsStore.shared.currentAccount else {
             aLog("Could not find auth token in Accounts Manager Fetch Account Details.")
             noAuthToken(Errors.noAuthTokenFound)
             return

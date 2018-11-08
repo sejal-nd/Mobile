@@ -198,7 +198,7 @@ class BillInterfaceController: WKInterfaceController {
         accountTitleLabel.setText(nil)
         
         // Populate Account Info
-        if let selectedAccount = AccountsStore.shared.getSelectedAccount() {
+        if let selectedAccount = AccountsStore.shared.currentAccount {
             updateAccountInformation(selectedAccount)
         }
         
@@ -240,7 +240,11 @@ class BillInterfaceController: WKInterfaceController {
 // MARK: - Networking Delegate
 
 extension BillInterfaceController: NetworkingDelegate {
-
+    
+    func newAccountDidUpdate(_ account: Account) {
+        updateAccountInformation(account)
+    }
+    
     func currentAccountDidUpdate(_ account: Account) {
         updateAccountInformation(account)
         

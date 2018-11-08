@@ -37,7 +37,7 @@ class AccountListInterfaceController: WKInterfaceController {
     
     private func loadTableData() {
         guard let storedAccounts = AccountsStore.shared.accounts,
-              let currentAccount = AccountsStore.shared.getSelectedAccount() else { return }
+              let currentAccount = AccountsStore.shared.currentAccount else { return }
 
         accounts = storedAccounts
         
@@ -68,7 +68,7 @@ extension AccountListInterfaceController {
         }
         
         // Set Selected Account
-        AccountsStore.shared.setSelectedAccount(accounts[rowIndex], isUserSelection: true)
+        AccountsStore.shared.currentAccount = accounts[rowIndex]//.setSelectedAccount(accounts[rowIndex], isUserSelection: true)
 
         dismiss()
     }

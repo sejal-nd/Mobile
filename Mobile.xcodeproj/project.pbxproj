@@ -376,7 +376,6 @@
 		35E7C7E62190803900BA13C6 /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E42190803900BA13C6 /* AccountsManager.swift */; };
 		35E7C7E92190804600BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7E82190804600BA13C6 /* Assets.xcassets */; };
 		35E7C7F22190804E00BA13C6 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
-		35E7C7F32190804E00BA13C6 /* AccountStore+SelectedAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EC2190804E00BA13C6 /* AccountStore+SelectedAccount.swift */; };
 		35E7C7F42190804E00BA13C6 /* Equatable+Rearrange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7ED2190804E00BA13C6 /* Equatable+Rearrange.swift */; };
 		35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
@@ -2644,7 +2643,6 @@
 		35E7C7E42190803900BA13C6 /* AccountsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsManager.swift; sourceTree = "<group>"; };
 		35E7C7E82190804600BA13C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
-		35E7C7EC2190804E00BA13C6 /* AccountStore+SelectedAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AccountStore+SelectedAccount.swift"; sourceTree = "<group>"; };
 		35E7C7ED2190804E00BA13C6 /* Equatable+Rearrange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Equatable+Rearrange.swift"; sourceTree = "<group>"; };
 		35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Italic.swift"; sourceTree = "<group>"; };
 		35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnimateWithDuration+Completion.swift"; sourceTree = "<group>"; };
@@ -3814,7 +3812,6 @@
 			isa = PBXGroup;
 			children = (
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
-				35E7C7EC2190804E00BA13C6 /* AccountStore+SelectedAccount.swift */,
 				35E7C7ED2190804E00BA13C6 /* Equatable+Rearrange.swift */,
 				35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */,
 				35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */,
@@ -6972,7 +6969,6 @@
 				35E7C7F42190804E00BA13C6 /* Equatable+Rearrange.swift in Sources */,
 				356C7F7921909819003E8A90 /* Account.swift in Sources */,
 				35E7C8052190805C00BA13C6 /* AccountListInterfaceController.swift in Sources */,
-				35E7C7F32190804E00BA13C6 /* AccountStore+SelectedAccount.swift in Sources */,
 				356C7FA32190AC28003E8A90 /* NotificationNames.swift in Sources */,
 				356C7FA22190A50C003E8A90 /* Fillable.swift in Sources */,
 				356C7F7A21909887003E8A90 /* AccountsStore.swift in Sources */,
