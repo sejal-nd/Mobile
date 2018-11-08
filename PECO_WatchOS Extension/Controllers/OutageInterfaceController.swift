@@ -295,7 +295,7 @@ extension OutageInterfaceController: NetworkingDelegate {
     
     func outageStatusDidUpdate(_ outageStatus: OutageStatus) {
         
-        guard false else {//!outageStatus.flagGasOnly else {
+        guard !outageStatus.flagGasOnly else {
             state = .loaded(.gasOnly)
             return
         }
