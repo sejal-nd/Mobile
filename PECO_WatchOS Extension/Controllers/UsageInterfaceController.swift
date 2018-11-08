@@ -184,7 +184,7 @@ class UsageInterfaceController: WKInterfaceController {
 
                 // set error data
                 errorImage.setImageNamed(AppImage.error.name)
-                errorTitleLabel.setText("Unable to retrieve data at this time.  Please try again later.  You may be able to resolve this issue by opening the PECO app on your phone.")
+                errorTitleLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
 
                 aLog("Usage Error State: \(serviceError.localizedDescription)")
             }
