@@ -97,7 +97,7 @@ class HomeViewController: AccountPickerViewController {
                 let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
                     (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
                 
-                Analytics.log(event: .accountLoaded,
+                Analytics.log(event: .profileLoaded,
                               dimensions: [.residentialAMI: residentialAMIString,
                                            .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
                                            .peakSmart: isPeakSmart ? "true" : "false"])

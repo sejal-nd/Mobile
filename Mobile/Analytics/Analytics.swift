@@ -227,7 +227,7 @@ enum AnalyticsEvent: String {
     case strongPasswordComplete = "StrongPasswordComplete"
     
     case viewStreetlightMapOfferComplete = "ViewStreetlightMapOfferComplete"
-    case accountLoaded = "AccountLoaded"
+    case profileLoaded = "ProfileLoaded"
 }
 
 enum AnalyticsOutageSource {
