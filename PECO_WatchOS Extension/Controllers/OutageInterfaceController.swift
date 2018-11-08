@@ -128,10 +128,13 @@ class OutageInterfaceController: WKInterfaceController {
             case .powerOn:
                 statusGroup.setHidden(false)
                 powerStatusImage.setHidden(false)
-                etrGroup.setHidden(true)
+                etrGroup.setHidden(false)
+                etrTitleLabel.setHidden(true)
+                etrDetailLabel.setHidden(true)
                 errorGroup.setHidden(true)
                 
                 powerStatusImage.setImageNamed(AppImage.onAnimation.name)
+
                 shouldAnimateStatusImage = true
 
                 powerStatusLabel.setText("POWER IS ON")

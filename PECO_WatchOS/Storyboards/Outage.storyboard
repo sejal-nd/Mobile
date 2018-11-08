@@ -12,7 +12,7 @@
         <!--Outage-->
         <scene sceneID="hol-pR-2GK">
             <objects>
-                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="Exelon_Mobile_watchOS" customModuleProvider="target">
+                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Qu5-Yb-MPl">
                             <items>
@@ -48,20 +48,20 @@
                                     <items>
                                         <group alignment="center" verticalAlignment="center" layout="vertical" spacing="0.0" id="hdB-uD-QUk">
                                             <items>
-                                                <label alignment="center" text="Our records indicate" textAlignment="center" id="OE6-hz-SgF">
+                                                <label alignment="center" text="Our records indicate" textAlignment="center" minimumScaleFactor="0.5" id="OE6-hz-SgF">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
-                                                <label alignment="center" text="POWER IS ON" id="unw-81-wSf">
+                                                <label alignment="center" text="POWER IS ON" minimumScaleFactor="0.5" id="unw-81-wSf">
                                                     <fontDescription key="font" type="boldSystem" pointSize="20"/>
                                                 </label>
                                             </items>
                                         </group>
                                         <group width="1" alignment="center" verticalAlignment="bottom" layout="vertical" spacing="0.0" id="p5D-o7-JLZ">
                                             <items>
-                                                <label alignment="center" text="Estimated Restoration" textAlignment="center" id="MEX-00-2UP">
+                                                <label alignment="center" text="Estimated Restoration" textAlignment="center" minimumScaleFactor="0.5" id="MEX-00-2UP">
                                                     <fontDescription key="font" type="system" pointSize="10"/>
                                                 </label>
-                                                <label alignment="center" text="10:30AM 10/09/2018" id="GYa-hc-Udw">
+                                                <label alignment="center" text="10:30AM 10/09/2018" minimumScaleFactor="0.5" id="GYa-hc-Udw">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                                 <imageView alignment="center" verticalAlignment="bottom" image="On_0" id="fzl-mw-v2T"/>
