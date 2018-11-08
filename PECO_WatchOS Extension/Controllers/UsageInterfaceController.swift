@@ -75,13 +75,17 @@ class UsageInterfaceController: WKInterfaceController {
                 mainGroup.setHidden(false)
 
                 // Spent so far cost
-                if let toDateCost = billForecast.toDateCost {
+                if isModeledForOpower, let toDateCost = billForecast.toDateCost {
                     mainSpentSoFarValueLabel.setText("\(toDateCost.currencyString ?? "")")
+                } else if let toDateUsage = billForecast.toDateUsage {
+                    mainSpentSoFarValueLabel.setText("\(toDateUsage) \(billForecast.meterUnit)")
                 }
                 
                 // Projected Bill Cost
-                if let projectedBillCost = billForecast.projectedCost {
-                    mainprojectedBillValueLabel.setText("\(projectedBillCost.currencyString ?? "")")
+                if isModeledForOpower, let projectedBillCost = billForecast.projectedCost {
+                    mainprojectedBillValueLabel.setText("\(projectedBillCost.currencyString ?? "--")")
+                } else if let projectedUsage = billForecast.projectedUsage {
+                    mainprojectedBillValueLabel.setText("\(projectedUsage) \(billForecast.meterUnit)")
                 }
                 
                 // Set Date Labels
@@ -99,14 +103,14 @@ class UsageInterfaceController: WKInterfaceController {
                     let progress = toDateCost / projectedCost
                     setImageForProgress(progress.isNaN ? 0.0 : progress) // handle division by 0
                     
-                    mainTitleLabel.setText("\((billForecast.toDateCost ?? 0).currencyString ?? "")")
+                    mainTitleLabel.setText("\((toDateCost).currencyString ?? "")")
                 } else if let toDateUsage = billForecast.toDateUsage, let projectedUsage = billForecast.projectedUsage {
                     
                     // Set Image
                     let progress = toDateUsage / projectedUsage
                     setImageForProgress(progress.isNaN ? 0.0 : progress) // handle division by 0
                     
-                    mainTitleLabel.setText("\(billForecast.toDateUsage ?? 0) \(billForecast.meterUnit)")
+                    mainTitleLabel.setText("\(toDateUsage) \(billForecast.meterUnit)")
                 }
                 
             case .nextForecast(let numberOfDays):
@@ -264,7 +268,6 @@ class UsageInterfaceController: WKInterfaceController {
     }
     
     private func setImageForProgress(_ progress: Double) {
-        aLog("Progress: \(progress)")
         let cleanedProgress = Int(floor(progress * 100)) // we will need to double check this, because it may be a floating point between 0-1 (0-100)
         
         if cleanedProgress >= 100 {
@@ -283,10 +286,10 @@ class UsageInterfaceController: WKInterfaceController {
         let today = Calendar.opCo.startOfDay(for: Date())
         let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
         if daysSinceBillingStart < 7 {
+            electricForecast = electric
+
             let daysRemaining = 7 - daysSinceBillingStart
             state = .nextForecast(daysRemaining)
-            
-            electricForecast = electric
         } else {
             // Set State
             electricForecast = electric
@@ -299,6 +302,8 @@ class UsageInterfaceController: WKInterfaceController {
         let today = Calendar.opCo.startOfDay(for: Date())
         let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
         if daysSinceBillingStart < 7 {
+            gasForecast = gas
+            
             let daysRemaining = 7 - daysSinceBillingStart
             state = .nextForecast(daysRemaining)
         } else {
@@ -344,14 +349,23 @@ extension UsageInterfaceController: NetworkingDelegate {
         updateAccountInformation(account)
         
         accountChangeAnimation(duration: 1.0)
+        
+        guard !account.isResidential else { return }
+        state = .unavailable
     }
     
     func accountDetailDidUpdate(_ accountDetail: AccountDetail) {
+        
         isModeledForOpower = accountDetail.isModeledForOpower
-
-        guard accountDetail.isPasswordProtected else { return }
-
-        state = .passwordProtected
+        
+        guard !accountDetail.isPasswordProtected else {
+            state = .passwordProtected
+            return
+        }
+        
+        if !accountDetail.isAMIAccount {
+            state = .unavailable
+        }
     }
     
     func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) {
