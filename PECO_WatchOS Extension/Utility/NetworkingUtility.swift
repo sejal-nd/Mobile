@@ -153,6 +153,13 @@ class NetworkingUtility {
                                 self?.networkUtilityDelegates.forEach { $0.error(serviceError, feature: .outage) }
                         })
                     }
+                    
+                    // Account list and Account Detail calls have completed
+                    self?.group.notify(queue: .main) { [weak self] in
+                        guard let `self` = self else { return }
+                        self.networkUtilityDelegates.forEach { $0.accountListAndAccountDetailsDidUpdate(accounts: self.accounts, accountDetail: self.accountDetails) }
+                    }
+                    
                 })
             } else {
                 // Error status is nil
@@ -160,12 +167,6 @@ class NetworkingUtility {
                 
                 self?.networkUtilityDelegates.forEach { $0.error(Errors.invalidInformation, feature: .all) }
             }
-        }
-        
-        // Account list and Account Detail calls have completed
-        group.notify(queue: .main) { [weak self] in
-            guard let `self` = self else { return }
-            self.networkUtilityDelegates.forEach { $0.accountListAndAccountDetailsDidUpdate(accounts: self.accounts, accountDetail: self.accountDetails) }
         }
         
     }
@@ -316,6 +317,7 @@ class NetworkingUtility {
             success(billForecastResult)
             }, onError: { usageError in
                 // handle error
+                aLog("Potential 2 month error") // todo: we must handle the case where usage does not have 2 full months of data
                 aLog("Failed to retrieve usage data: \(usageError.localizedDescription)")
                 let serviceError = (usageError as? ServiceError) ?? ServiceError(serviceCode: usageError.localizedDescription, serviceMessage: nil, cause: nil)
                 
