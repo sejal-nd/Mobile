@@ -164,7 +164,7 @@ class OutageInterfaceController: WKInterfaceController {
                 
                 errorImage.setImageNamed(AppImage.gasOnly.name)
                 errorTitleLabel.setText("Gas Only Account")
-                errorDetailLabel.setText("We currently do not allow reporting of gas issues online.")
+                errorDetailLabel.setText("Reporting of issues for gas only accounts not allowed online.")
                 aLog("Outage Status: Gas Only")
             case .unavilable:
                 statusGroup.setHidden(true)
@@ -295,7 +295,7 @@ extension OutageInterfaceController: NetworkingDelegate {
     
     func outageStatusDidUpdate(_ outageStatus: OutageStatus) {
         
-        guard !outageStatus.flagGasOnly else {
+        guard false else {//!outageStatus.flagGasOnly else {
             state = .loaded(.gasOnly)
             return
         }
