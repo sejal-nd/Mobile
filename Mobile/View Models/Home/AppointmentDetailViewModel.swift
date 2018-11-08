@@ -20,7 +20,7 @@ class AppointmentDetailViewModel {
     }
     
     var tabTitle: String {
-        return appointment.startTime.monthDayOrdinalString
+        return appointment.startDate.monthDayOrdinalString
     }
     
     var status: Appointment.Status {
@@ -74,22 +74,22 @@ class AppointmentDetailViewModel {
         case .scheduled:
             let regularText: String
             let boldText: String
-            if Calendar.opCo.isDateInToday(appointment.startTime) {
+            if Calendar.opCo.isDateInToday(appointment.startDate) {
                 regularText = NSLocalizedString("Your appointment is ", comment: "")
                 boldText = String.localizedStringWithFormat("today between %@ - %@.",
-                                                            appointment.startTime.hour_AmPmString,
-                                                            appointment.endTime.hour_AmPmString)
-            } else if Calendar.opCo.isDateInTomorrow(appointment.startTime) {
+                                                            appointment.startDate.hour_AmPmString,
+                                                            appointment.stopDate.hour_AmPmString)
+            } else if Calendar.opCo.isDateInTomorrow(appointment.startDate) {
                 regularText = NSLocalizedString("Your appointment is ", comment: "")
                 boldText = String.localizedStringWithFormat("tomorrow between %@ - %@.",
-                                                            appointment.startTime.hour_AmPmString,
-                                                            appointment.endTime.hour_AmPmString)
+                                                            appointment.startDate.hour_AmPmString,
+                                                            appointment.stopDate.hour_AmPmString)
             } else {
                 regularText = NSLocalizedString("Your appointment is scheduled for ", comment: "")
                 boldText = String.localizedStringWithFormat("%@ between %@ - %@.",
-                                                            appointment.startTime.dayMonthDayString,
-                                                            appointment.startTime.hour_AmPmString,
-                                                            appointment.endTime.hour_AmPmString)
+                                                            appointment.startDate.dayMonthDayString,
+                                                            appointment.startDate.hour_AmPmString,
+                                                            appointment.stopDate.hour_AmPmString)
             }
             
             let attributedText = NSMutableAttributedString(string: regularText + boldText)
@@ -115,7 +115,7 @@ class AppointmentDetailViewModel {
         case .inProgress:
             let regularText = NSLocalizedString("Your appointment is in progress. ", comment: "")
             let boldText = String.localizedStringWithFormat("Estimated time of completion is %@.",
-                                                            appointment.endTime.hour_AmPmString)
+                                                            appointment.stopDate.hour_AmPmString)
             
             let attributedText = NSMutableAttributedString(string: regularText + boldText)
             attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
@@ -165,8 +165,8 @@ class AppointmentDetailViewModel {
         
         let event = EKEvent(eventStore: EventStore.shared)
         event.title = title
-        event.startDate = appointment.startTime
-        event.endDate = appointment.endTime
+        event.startDate = appointment.startDate
+        event.endDate = appointment.stopDate
         event.notes = description
         event.calendar = EventStore.shared.defaultCalendarForNewEvents
         event.availability = .busy
@@ -175,11 +175,11 @@ class AppointmentDetailViewModel {
         
         var alarms = [EKAlarm]()
         let now = Date()
-        if let alarmTime1 = Calendar.opCo.date(byAdding: DateComponents(day: -1), to: appointment.startTime), alarmTime1 > now {
+        if let alarmTime1 = Calendar.opCo.date(byAdding: DateComponents(day: -1), to: appointment.startDate), alarmTime1 > now {
             alarms.append(EKAlarm(absoluteDate: alarmTime1))
         }
         
-        if let alarmTime2 = Calendar.opCo.date(byAdding: DateComponents(hour: -1), to: appointment.startTime), alarmTime2 > now {
+        if let alarmTime2 = Calendar.opCo.date(byAdding: DateComponents(hour: -1), to: appointment.startDate), alarmTime2 > now {
             alarms.append(EKAlarm(absoluteDate: alarmTime2))
         }
         
