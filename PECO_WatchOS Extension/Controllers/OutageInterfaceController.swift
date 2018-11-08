@@ -86,7 +86,7 @@ class OutageInterfaceController: WKInterfaceController {
 
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setHidden(true)
-                errorDetailLabel.setText("Unable to retrieve data at this time.  Please try again later.  You may be able to resolve this issue by opening the PECO app on your phone.")
+                errorDetailLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
                 aLog("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 loadingImageGroup.setHidden(true)
