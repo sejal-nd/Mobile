@@ -125,6 +125,8 @@ class NetworkingUtility {
         fetchMainFeatureData()
     }
     
+    /// Begins chain of MM -> Account details -> Outage + Usage
+    /// We have in a separate function due to needing to nest it into fetch account list based on function boolean value
     private func fetchMainFeatureData() {
         // Maintenance Mode Fetch
         fetchMaintenanceModeStatus { [weak self] (status, serviceError) in
