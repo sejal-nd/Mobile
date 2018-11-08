@@ -27,6 +27,9 @@ protocol NetworkingDelegate {
     func accountListDidUpdate(_ accounts: [Account])
     
     /// Informs IC that current account did update
+    func newAccountDidUpdate(_ account: Account)
+    
+    /// Informs IC that current account did update
     func currentAccountDidUpdate(_ account: Account)
     
     func accountDetailDidUpdate(_ accountDetail: AccountDetail)
@@ -111,9 +114,18 @@ class NetworkingUtility {
         
         // Fetch Account List
         if shouldLoadAccountList {
-            fetchAccountsWithData()
+            fetchAccountsWithData { [weak self] success in
+                guard success else { return }
+                
+                self?.fetchMainFeatureData()
+                return
+            }
         }
         
+        fetchMainFeatureData()
+    }
+    
+    private func fetchMainFeatureData() {
         // Maintenance Mode Fetch
         fetchMaintenanceModeStatus { [weak self] (status, serviceError) in
             if let status = status {
@@ -168,7 +180,6 @@ class NetworkingUtility {
                 self?.networkUtilityDelegates.forEach { $0.error(Errors.invalidInformation, feature: .all) }
             }
         }
-        
     }
     
     
@@ -183,13 +194,27 @@ class NetworkingUtility {
     ///                Also triggers the fetch account details call to occur.
     ///     - noAuthToken: Triggers delegate method for an error due to no jwt token presen: Service Error Code: 981156.
     ///     - error: Triggers delegate method for a general error occured attempting to fetch the account list.
-    private func fetchAccountsWithData() {
+    private func fetchAccountsWithData(completion: @escaping (Bool) -> Void) {
+//        group.enter()
+//        accountManager.fetchAccounts(success: { [weak self] accounts in
+//            self?.accounts = accounts
+//            self?.networkUtilityDelegates.forEach { $0.accountListDidUpdate(accounts) }
+//            self?.group.leave()
+//            completion(true)
+//        })
+        
         group.enter()
         accountManager.fetchAccounts(success: { [weak self] accounts in
             self?.accounts = accounts
             self?.networkUtilityDelegates.forEach { $0.accountListDidUpdate(accounts) }
             self?.group.leave()
-        })
+            completion(true)
+        }) { [weak self] serviceError in
+            self?.networkUtilityDelegates.forEach { $0.error(serviceError, feature: .all) }
+            self?.group.leave()
+            completion(false)
+        }
+        
     }
     
     /// Fetches the account details for the current user triggering various networkUtilityDelegate methods along the way.
@@ -270,7 +295,7 @@ class NetworkingUtility {
     private func fetchOutageStatus(success: @escaping (OutageStatus) -> Void, error: @escaping (ServiceError) -> Void) {
         aLog("Fetching Outage Status...")
         
-        guard let currentAccount = AccountsStore.shared.getSelectedAccount() else {
+        guard let currentAccount = AccountsStore.shared.currentAccount else {
             aLog("Failed to retreive current account while fetching outage status.")
             error(Errors.noAccountsFound)
             return
@@ -332,6 +357,12 @@ class NetworkingUtility {
 // MARK: - Current Account Delegate Methods
 
 extension NetworkingUtility: AccountStoreChangedDelegate {
+    
+    func newAccountUpdate(_ account: Account) {
+        aLog("Initial Account Did Update")
+        
+        networkUtilityDelegates.forEach { $0.newAccountDidUpdate(account) }
+    }
     
     // User selected account did update
     func currentAccountDidUpdate(_ account: Account) {

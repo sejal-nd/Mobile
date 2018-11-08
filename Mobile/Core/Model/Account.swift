@@ -9,7 +9,7 @@
 import Foundation
 import Mapper
 
-struct Account: Mappable, Equatable, Hashable, Codable {
+struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
     let premises: [Premise]

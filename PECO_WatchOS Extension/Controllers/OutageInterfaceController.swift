@@ -205,12 +205,11 @@ class OutageInterfaceController: WKInterfaceController {
         super.awake(withContext: context)
         NotificationCenter.default.addObserver(self, selector: #selector(outageReportedFromPhone), name: Notification.Name.outageReported, object: nil)
         
-        
         // Clear Default Account Info
         accountTitleLabel.setText(nil)
         
         // Populate Account Info
-        if let selectedAccount = AccountsStore.shared.getSelectedAccount() {
+        if let selectedAccount = AccountsStore.shared.currentAccount {
             updateAccountInformation(selectedAccount)
         }
 
@@ -267,8 +266,7 @@ class OutageInterfaceController: WKInterfaceController {
             })
         })
     }
-    @objc
-    func outageReportedFromPhone() {
+    @objc func outageReportedFromPhone() {
         self.state = .loaded(.powerOut)
     }
 }
@@ -277,6 +275,10 @@ class OutageInterfaceController: WKInterfaceController {
 // MARK: - Networking Delegate
 
 extension OutageInterfaceController: NetworkingDelegate {
+    
+    func newAccountDidUpdate(_ account: Account) {
+        updateAccountInformation(account)
+    }
     
     func currentAccountDidUpdate(_ account: Account) {
         updateAccountInformation(account)
