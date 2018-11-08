@@ -25,6 +25,7 @@ class SignInInterfaceController: WKInterfaceController {
         
         // Log Analytics
         GATracker.shared.screenView(screenName: SignInInterfaceController.className, customParameters: nil)
+        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
     }
 
 }

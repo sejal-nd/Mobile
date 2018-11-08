@@ -22,6 +22,7 @@ class OpenAppOnPhoneInterfaceController: WKInterfaceController {
         
         // Log Analytics
         GATracker.shared.screenView(screenName: OpenAppOnPhoneInterfaceController.className, customParameters: nil)
+        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
     }
 
     override func willActivate() {
