@@ -153,7 +153,7 @@ class BillInterfaceController: WKInterfaceController {
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setHidden(true)
-                errorDetailLabel.setText("Unable to retrieve data at this time.  Please try again later.  You may be able to resolve this issue by opening the PECO app on your phone.")
+                errorDetailLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
 
                 loadingImageGroup.setHidden(true)
 
@@ -423,6 +423,8 @@ extension BillInterfaceController: NetworkingDelegate {
         guard accounts.count > 1 else { return }
         addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
     }
+    
+    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) { }
     
     func maintenanceMode(feature: MainFeature) {
         guard feature == .all || feature == .bill else { return }

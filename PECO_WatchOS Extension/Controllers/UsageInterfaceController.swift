@@ -75,13 +75,17 @@ class UsageInterfaceController: WKInterfaceController {
                 mainGroup.setHidden(false)
 
                 // Spent so far cost
-                if let toDateCost = billForecast.toDateCost {
+                if isModeledForOpower, let toDateCost = billForecast.toDateCost {
                     mainSpentSoFarValueLabel.setText("\(toDateCost.currencyString ?? "")")
+                } else if let toDateUsage = billForecast.toDateUsage {
+                    mainSpentSoFarValueLabel.setText("\(toDateUsage) \(billForecast.meterUnit)")
                 }
                 
                 // Projected Bill Cost
-                if let projectedBillCost = billForecast.projectedCost {
-                    mainprojectedBillValueLabel.setText("\(projectedBillCost.currencyString ?? "")")
+                if isModeledForOpower, let projectedBillCost = billForecast.projectedCost {
+                    mainprojectedBillValueLabel.setText("\(projectedBillCost.currencyString ?? "--")")
+                } else if let projectedUsage = billForecast.projectedUsage {
+                    mainprojectedBillValueLabel.setText("\(projectedUsage) \(billForecast.meterUnit)")
                 }
                 
                 // Set Date Labels
@@ -97,16 +101,16 @@ class UsageInterfaceController: WKInterfaceController {
                     
                     // Set Image
                     let progress = toDateCost / projectedCost
-                    setImageForProgress(progress)
+                    setImageForProgress(progress.isNaN ? 0.0 : progress) // handle division by 0
                     
-                    mainTitleLabel.setText("\((billForecast.toDateCost ?? 0).currencyString ?? "")")
+                    mainTitleLabel.setText("\((toDateCost).currencyString ?? "")")
                 } else if let toDateUsage = billForecast.toDateUsage, let projectedUsage = billForecast.projectedUsage {
                     
                     // Set Image
                     let progress = toDateUsage / projectedUsage
-                    setImageForProgress(progress)
+                    setImageForProgress(progress.isNaN ? 0.0 : progress) // handle division by 0
                     
-                    mainTitleLabel.setText("\(billForecast.toDateUsage ?? 0) \(billForecast.meterUnit)")
+                    mainTitleLabel.setText("\(toDateUsage) \(billForecast.meterUnit)")
                 }
                 
             case .nextForecast(let numberOfDays):
@@ -120,7 +124,13 @@ class UsageInterfaceController: WKInterfaceController {
                 
                 // set nextForecast data
                 nextForecastImage.setImageNamed(AppImage.usage.name)
-                nextForecastTitleLabel.setText("\(numberOfDays) days")
+                
+                if numberOfDays == 1 {
+                    nextForecastTitleLabel.setText("\(numberOfDays) day")
+                } else {
+                    nextForecastTitleLabel.setText("\(numberOfDays) days")
+                }
+                
                 nextForecastDetailLabel.setText("until next forecast")
             case .loading:
                 // Hide all other groups
@@ -184,7 +194,7 @@ class UsageInterfaceController: WKInterfaceController {
 
                 // set error data
                 errorImage.setImageNamed(AppImage.error.name)
-                errorTitleLabel.setText("Unable to retrieve data at this time.  Please try again later.  You may be able to resolve this issue by opening the PECO app on your phone.")
+                errorTitleLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
 
                 aLog("Usage Error State: \(serviceError.localizedDescription)")
             }
@@ -224,19 +234,19 @@ class UsageInterfaceController: WKInterfaceController {
     }
     
     @objc private func selectElectricMenuItem() {
-        guard let electric = electricForecast else { return }
+        guard let electric = electricForecast, let startDate = electric.billingStartDate else { return }
         
         isElectricSelected = true
         
-        state = .loaded(electric)
+        setElectricState(electric: electric, startDate: startDate)
     }
     
     @objc private func selectGasMenuItem() {
-        guard let gas = gasForecast else { return }
+        guard let gas = gasForecast, let startDate = gas.billingStartDate else { return }
         
-        isElectricSelected = true
+        isElectricSelected = false
         
-        state = .loaded(gas)
+        setGasState(gas: gas, startDate: startDate)
     }
     
     
@@ -272,6 +282,38 @@ class UsageInterfaceController: WKInterfaceController {
         }
     }
     
+    private func setElectricState(electric: BillForecast, startDate: Date) {
+        let today = Calendar.opCo.startOfDay(for: Date())
+        let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
+        if daysSinceBillingStart < 7 {
+            electricForecast = electric
+
+            let daysRemaining = 7 - daysSinceBillingStart
+            state = .nextForecast(daysRemaining)
+        } else {
+            // Set State
+            electricForecast = electric
+            
+            state = .loaded(electric)
+        }
+    }
+    
+    private func setGasState(gas: BillForecast, startDate: Date) {
+        let today = Calendar.opCo.startOfDay(for: Date())
+        let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
+        if daysSinceBillingStart < 7 {
+            gasForecast = gas
+            
+            let daysRemaining = 7 - daysSinceBillingStart
+            state = .nextForecast(daysRemaining)
+        } else {
+            // Set State
+            gasForecast = gas
+            
+            state = .loaded(gas)
+        }
+    }
+    
 }
 
 
@@ -285,72 +327,71 @@ extension UsageInterfaceController: NetworkingDelegate {
         if billForecast.electric == nil, billForecast.gas == nil {
             state = .unavailable
         }
-        
-        
-        
-        
+
         // todo, figure out what data looks like if the user doesnt have 2 full months of usage
-        
-        // Determine if after first 7 days of billing period
-        
-        // todo: does setting the nextForecast state here leave problems due to order of exectuion? user state switching?
         
         // Gas
         if let gas = billForecast.gas, let startDate = gas.billingStartDate {
-            let today = Calendar.opCo.startOfDay(for: Date())
-            let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
-            if daysSinceBillingStart < 7 {
-                state = .nextForecast(daysSinceBillingStart)
-            }
+            setGasState(gas: gas, startDate: startDate)
         }
-        if let gas = billForecast.gas {
-            gasForecast = gas
-            
-            addMenuItem(withImageNamed: AppImage.gas.name, title: "Gas", action: #selector(selectGasMenuItem))
-        }
-        
+
         // Electric
         if let electric = billForecast.electric, let startDate = electric.billingStartDate {
-            let today = Calendar.opCo.startOfDay(for: Date())
-            let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
-            if daysSinceBillingStart < 7 {
-                state = .nextForecast(daysSinceBillingStart)
-            }
+            setElectricState(electric: electric, startDate: startDate)
         }
-        if let electric = billForecast.electric {
-            // Add Menu Items & Set State
-            
-            electricForecast = electric
-            
-            state = .loaded(electric)
-            
-            addMenuItem(withImageNamed: AppImage.electric.name, title: "Electric", action: #selector(selectElectricMenuItem))
-        }
-        
-        // todo: we may need to rethink this logic, because the gas and electric state sort of live side by side of each other rather than one or the other due to how a user is able to switch between the two.
-        
+
         aLog("Usage Status Did Update: \(billForecast)")
     }
     
-    func accountListDidUpdate(_ accounts: [Account]) {
-        clearAllMenuItems()
-        
-        guard accounts.count > 1 else { return }
-        addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
-    }
+    func accountListDidUpdate(_ accounts: [Account]) { }
     
     func currentAccountDidUpdate(_ account: Account) {
         updateAccountInformation(account)
         
         accountChangeAnimation(duration: 1.0)
+        
+        guard !account.isResidential else { return }
+        state = .unavailable
     }
     
     func accountDetailDidUpdate(_ accountDetail: AccountDetail) {
-        guard accountDetail.isPasswordProtected else { return }
         
         isModeledForOpower = accountDetail.isModeledForOpower
         
-        state = .passwordProtected
+        guard !accountDetail.isPasswordProtected else {
+            state = .passwordProtected
+            return
+        }
+        
+        if !accountDetail.isAMIAccount {
+            state = .unavailable
+        }
+    }
+    
+    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) {
+        clearAllMenuItems()
+        
+        guard !accounts.isEmpty, let accountDetail = accountDetail else { return }
+                
+        // Set Account list menu item
+        if accounts.count > 1 {
+            addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
+        }
+
+        // Set electric image. gas / electric menu items
+        if let serviceType = accountDetail.serviceType {
+            if serviceType.uppercased() == "GAS" {
+                isElectricSelected = false
+            } else if serviceType.uppercased() == "ELECTRIC" {
+                isElectricSelected = true
+            } else if serviceType.uppercased() == "GAS/ELECTRIC" {
+                isElectricSelected = true
+                
+                addMenuItem(withImageNamed: AppImage.gas.name, title: "Gas", action: #selector(selectGasMenuItem))
+                addMenuItem(withImageNamed: AppImage.electric.name, title: "Electric", action: #selector(selectElectricMenuItem))
+            }
+        }
+        
     }
     
     func error(_ serviceError: ServiceError, feature: MainFeature) {

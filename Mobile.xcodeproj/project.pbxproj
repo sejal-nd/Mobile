@@ -3827,11 +3827,11 @@
 		35E7C7FB2190805C00BA13C6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
 				35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */,
 				35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */,
 				35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */,
 				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
+				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
 				35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */,
 			);
 			path = Controllers;
