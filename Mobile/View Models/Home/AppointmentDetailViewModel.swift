@@ -27,10 +27,6 @@ class AppointmentDetailViewModel {
         return appointment.status
     }
     
-    var caseNumberText: String {
-        return String.localizedStringWithFormat("Case #%@", appointment.caseNumber)
-    }
-    
     var showProgressView: Bool {
         switch status {
         case .scheduled: return true
@@ -160,14 +156,11 @@ class AppointmentDetailViewModel {
     var calendarEvent: EKEvent {
         let title = String.localizedStringWithFormat("My %@ appointment",
                                                      Environment.shared.opco.displayString)
-        let description = String.localizedStringWithFormat("The appointment case number is %@",
-                                                           appointment.caseNumber)
         
         let event = EKEvent(eventStore: EventStore.shared)
         event.title = title
         event.startDate = appointment.startDate
         event.endDate = appointment.stopDate
-        event.notes = description
         event.calendar = EventStore.shared.defaultCalendarForNewEvents
         event.availability = .busy
         event.location = AccountsStore.shared.currentAccount.address
