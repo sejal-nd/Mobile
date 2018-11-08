@@ -278,13 +278,13 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 
     if [[ $OPCO == "PECO"* ]]; then
 
-        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Exelon_Mobile_watchOS/Info.plist
-        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Exelon_Mobile_watchOS/Info.plist
-        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Exelon_Mobile_watchOS/Info.plist
+        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/PECO_WatchOS/Info.plist
+        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS/Info.plist
+        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS/Info.plist
 
-        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Exelon_Mobile_watchOS_Extension/Info.plist
-        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Exelon_Mobile_watchOS_Extension/Info.plist
-        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Exelon_Mobile_watchOS_Extension/Info.plist
+        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/PECO_WatchOS\ Extension/Info.plist
+        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS\ Extension/Info.plist
+        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS\ Extension/Info.plist
     
     fi
 	
