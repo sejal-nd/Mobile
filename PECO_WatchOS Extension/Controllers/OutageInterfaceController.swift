@@ -285,6 +285,8 @@ extension OutageInterfaceController: NetworkingDelegate {
     }
     
     func accountDetailDidUpdate(_ accountDetail: AccountDetail) { }
+    
+    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) { }
 
     func accountListDidUpdate(_ accounts: [Account]) {
         clearAllMenuItems()
