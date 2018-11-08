@@ -12,7 +12,11 @@ import Mapper
 struct Appointment: Mappable, Equatable {
     
     enum Status: String {
-        case scheduled, enRoute, inProgress, complete, canceled
+        case scheduled = "accepted"
+        case enRoute = "enroute"
+        case inProgress = "onsite"
+        case complete = "cleared"
+        case canceled = "canceled"
     }
     
     let id: String
@@ -25,15 +29,12 @@ struct Appointment: Mappable, Equatable {
         id = try map.from("id")
         startDate = try map.from("startDate", transformation: DateParser().extractDate)
         stopDate = try map.from("stopDate", transformation: DateParser().extractDate)
-        status = .complete
-//        status = try map.from("status") { object in
-//            guard let string = object as? String,
-//                let status = Status(rawValue: string) else {
-//                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-//            }
-//
-//            return status
-//        }
+        status = try map.from("status") { object in
+            guard let string = object as? String, let status = Status(rawValue: string) else {
+                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+            }
+            return status
+        }
         
         caseNumber = id
         //caseNumber = try map.from("caseNumber")
