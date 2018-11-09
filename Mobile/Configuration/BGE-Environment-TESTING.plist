@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>environment</key>
-	<string>STAGE</string>
+	<string>TEST</string>
 	<key>appName</key>
-	<string>BGE_STAGE</string>
+	<string>BGE_TEST</string>
 	<key>opco</key>
 	<string>BGE</string>
 	<key>mcsInstanceName</key>

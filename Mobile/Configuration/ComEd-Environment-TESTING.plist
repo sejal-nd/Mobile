@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>environment</key>
-	<string>STAGE</string>
+	<string>TEST</string>
 	<key>appName</key>
-	<string>ComEd_STAGE</string>
+	<string>ComEd_TEST</string>
 	<key>opco</key>
 	<string>ComEd</string>
 	<key>mcsInstanceName</key>

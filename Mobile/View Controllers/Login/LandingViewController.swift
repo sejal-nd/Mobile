@@ -52,7 +52,7 @@ class LandingViewController: UIViewController {
             switch Environment.shared.environmentName {
             case .prod:
                 versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
-            case .aut, .dev, .stage:
+            default:
                 versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
             }
         } else {
