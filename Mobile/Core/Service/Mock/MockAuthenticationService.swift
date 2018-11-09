@@ -14,13 +14,10 @@ struct MockAuthenticationService: AuthenticationService {
     let invalidUsername = "invalid@test.com"
     let validPassword = "Password1"
     
-    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<(ProfileStatus, AccountDetail)> {
+    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
         if username != invalidUsername && password == validPassword {
             MockData.shared.username = username
-            // The account detail returned here does not influence anything in the rest of the app.
-            // Most account-related things will come from the call to fetchAccounts or fetchAccountDetail in MockAccountService
-            let accountDetail = AccountDetail.from(["accountNumber": "123456789", "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
-            return .just((ProfileStatus(), accountDetail))
+            return .just(ProfileStatus())
         } else {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnPwdInvalid.rawValue, serviceMessage: "Invalid credentials"))
         }

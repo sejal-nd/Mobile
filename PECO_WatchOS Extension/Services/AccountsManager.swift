@@ -57,18 +57,19 @@ class AccountsManager {
         }
         
         let accountService = MCSAccountService()
-        accountService.fetchAccountDetail(account: currentAccount).subscribe(onNext: { accountDetail in
-            // handle success
-            aLog("Account Details Fetched.")
-            
-            success(accountDetail)
-        }, onError: { accountDetailError in
-            // handle error
-            aLog("Failed to Fetch Account Details. \(accountDetailError.localizedDescription)")
-            let serviceError = (accountDetailError as? ServiceError) ?? ServiceError(serviceCode: accountDetailError.localizedDescription, serviceMessage: nil, cause: nil)
-            
-            error(serviceError)
-        })
+        accountService.fetchAccountDetail(account: currentAccount, getPayments: true, getBudgetBilling: false)
+            .subscribe(onNext: { accountDetail in
+                // handle success
+                aLog("Account Details Fetched.")
+                
+                success(accountDetail)
+            }, onError: { accountDetailError in
+                // handle error
+                aLog("Failed to Fetch Account Details. \(accountDetailError.localizedDescription)")
+                let serviceError = (accountDetailError as? ServiceError) ?? ServiceError(serviceCode: accountDetailError.localizedDescription, serviceMessage: nil, cause: nil)
+                
+                error(serviceError)
+            })
             .disposed(by: disposeBag)
     }
     

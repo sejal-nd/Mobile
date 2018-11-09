@@ -89,6 +89,21 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
+        viewModel.accountDetailEvents.elements()
+            .take(1)
+            .subscribe(onNext: { accountDetail in
+                let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
+                
+                let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
+                    (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
+                
+                Analytics.log(event: .profileLoaded,
+                              dimensions: [.residentialAMI: residentialAMIString,
+                                           .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
+                                           .peakSmart: isPeakSmart ? "true" : "false"])
+            })
+            .disposed(by: bag)
+        
         viewSetup()
         styleViews()
         bindLoadingStates()

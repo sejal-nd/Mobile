@@ -17,14 +17,19 @@ struct MCSAccountService: AccountService {
                 let accountArray = (accounts as! [[String: Any]])
                     .compactMap { Account.from($0 as NSDictionary) }
                 
-                if accountArray.count == 0 {
+                guard !accountArray.isEmpty else {
                     throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue,
                                        serviceMessage: NSLocalizedString("No accounts found", comment: ""))
                 }
                 
-                let sortedAccounts = accountArray.sorted {
-                    ($0.isDefault && !$1.isDefault) || (!$0.isFinaled && $1.isFinaled)
+                // Error if the first account is password protected.
+                guard !accountArray[0].isPasswordProtected else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.fnAccountProtected.rawValue)
                 }
+                
+                let sortedAccounts = accountArray
+                    .filter { !$0.isPasswordProtected } // Filter out password protected accounts
+                    .sorted { ($0.isDefault && !$1.isDefault) || (!$0.isFinaled && $1.isFinaled) }
                 
                 AccountsStore.shared.accounts = sortedAccounts
                 AccountsStore.shared.currentAccount = sortedAccounts[0]
@@ -33,8 +38,10 @@ struct MCSAccountService: AccountService {
         }
     }
     
-    func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
-        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(account.accountNumber)")
+    func fetchAccountDetail(account: Account, getPayments: Bool, getBudgetBilling: Bool) -> Observable<AccountDetail> {
+        let payments = getPayments ? "true" : "false"
+        let budgetBilling = getBudgetBilling ? "true" : "false"
+        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(account.accountNumber)?payments=\(payments)&budgetBilling=\(budgetBilling)")
             .map { json in
                 guard let dict = json as? NSDictionary, let accountDetail = AccountDetail.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)

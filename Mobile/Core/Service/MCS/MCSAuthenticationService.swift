@@ -38,16 +38,13 @@ struct MCSAuthenticationService : AuthenticationService {
     //  1. Retreive token from Layer 7 API gateway
     //  2. Exchange the token
     //  3. Fetch the list of accounts for the user
-    //  4. Fetch the account detail for the first account
-    //  5. If not password protected account - success
-    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<(ProfileStatus, AccountDetail)> {
+    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
         // 1
         return fetchAuthToken(username: username, password: password)
-            
             // 2
             .flatMap { tokenResponse in
                 MCSApi.shared.exchangeToken(tokenResponse.token, storeToken: stayLoggedIn)
-                    .map { tokenResponse }
+                    .mapTo(tokenResponse.profileStatus)
             }
             .do(onNext: { _ in
                 UserDefaults.standard.set(stayLoggedIn, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
@@ -58,9 +55,9 @@ struct MCSAuthenticationService : AuthenticationService {
             })
             
             // 3
-            .flatMap { tokenResponse in
-                MCSAccountService().fetchAccounts()
-                    .map { ($0, tokenResponse)}
+            .flatMap { profileStatus in
+                // This will error if the first account is password protected
+                MCSAccountService().fetchAccounts().mapTo(profileStatus)
             }
             .do(onNext: { _ in
                 // Reconfigure quick actions since we now know whether or not the user is multi-account.
@@ -68,22 +65,6 @@ struct MCSAuthenticationService : AuthenticationService {
             },
                 onError: { _ in  self.logout() }
             )
-            
-            // 4
-            .flatMap { (accounts, tokenResponse) in
-                MCSAccountService().fetchAccountDetail(account: accounts[0])
-                    .map { ($0, tokenResponse) }
-            }
-            .map { (accountDetail, tokenResponse) in
-                // 5
-                if accountDetail.isPasswordProtected {
-                    self.logout()
-                    throw ServiceError(serviceCode: ServiceErrorCode.fnAccountProtected.rawValue)
-                } else {
-                    return (tokenResponse.profileStatus, accountDetail)
-                }
-            }
-            .do(onError: { _ in self.logout() })
     }
     
     func validateLogin(username: String, password: String) -> Observable<Void> {
