@@ -107,21 +107,21 @@ class AppointmentDetailViewModelTests: XCTestCase {
         let today2 = Calendar.opCo.date(bySettingHour: 14, minute: 0, second: 0, of: Date())!
         let today3 = Calendar.opCo.date(bySettingHour: 15, minute: 0, second: 0, of: Date())!
         viewModel.appointment = Appointment(id: "0", startDate: today2, stopDate: today3, status: .scheduled)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is today between 2 PM - 3 PM.", comment: ""))
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is today between 2PM - 3PM.", comment: ""))
         
         // Scheduled tomorrow (also tests half hour round ups)
         let tomorrow = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: Date())!
         let tomorrow230 = Calendar.opCo.date(bySettingHour: 14, minute: 30, second: 0, of: tomorrow)!
         let tomorrow330 = Calendar.opCo.date(bySettingHour: 15, minute: 30, second: 0, of: tomorrow)!
         viewModel.appointment = Appointment(id: "0", startDate: tomorrow230, stopDate: tomorrow330, status: .scheduled)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is tomorrow between 3 PM - 4 PM.", comment: ""))
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is tomorrow between 3PM - 4PM.", comment: ""))
         
         // Scheduled beyond tomorrow (also tests half hour round downs)
         let superFutureDate = Calendar.opCo.date(from: DateComponents(year: 2100, month: 10, day: 31))! // So we never have to worry about tests going out of date
         let future9 = Calendar.opCo.date(bySettingHour: 9, minute: 15, second: 0, of: superFutureDate)!
         let future11 = Calendar.opCo.date(bySettingHour: 11, minute: 15, second: 0, of: superFutureDate)!
         viewModel.appointment = Appointment(id: "0", startDate: future9, stopDate: future11, status: .scheduled)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is scheduled for Sunday, Oct 31st between 9 AM - 11 AM.", comment: ""))
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is scheduled for Sunday, Oct 31st between 9AM - 11AM.", comment: ""))
         
         // En Route
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .enRoute)
@@ -129,7 +129,7 @@ class AppointmentDetailViewModelTests: XCTestCase {
         
         // In Progress
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: today3, status: .inProgress)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is in progress. Estimated time of completion is 3 PM.", comment: ""))
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is in progress. Estimated time of completion is 3PM.", comment: ""))
         
         // Complete
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .complete)
@@ -137,7 +137,7 @@ class AppointmentDetailViewModelTests: XCTestCase {
         
         // Canceled
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .canceled)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment has been canceled due to inclement weather.", comment: ""))
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment has been canceled. We apologize for the inconvenience. Please contact us to reschedule.", comment: ""))
     }
     
     func testCalendarEvent() {
