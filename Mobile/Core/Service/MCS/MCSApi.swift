@@ -11,6 +11,7 @@ import Foundation
 import Reachability
 #endif
 import RxSwift
+import WatchKit
 
 /// MCSApi is a wrapper around the URLSession networking APIs. It provides convenience methods
 /// for executing POST/PUT/GET/DELETE custom endpoints, as well as authentication related APIs.
@@ -36,10 +37,17 @@ class MCSApi {
         sessionConfig.timeoutIntervalForRequest = TIMEOUT
         sessionConfig.timeoutIntervalForResource = TIMEOUT
         
+        
+        #if os(iOS)
+        let systemVersion = UIDevice.current.systemVersion
+        #elseif os(watchOS)
+        let systemVersion = WKInterfaceDevice.current().systemVersion
+        #endif
+        
         //[OPCO] Mobile App/[APP_VERSION].[BUILD_NUMBER] ([PLATFORM] [OS_VERSION]; [MANUFACTURER] [MODEL])
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
             let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
-            let userAgentString = "\(Environment.shared.opco.displayString) Mobile App/\(version).\(build) (iOS \(UIDevice.current.systemVersion); Apple \(modelIdentifier))"
+            let userAgentString = "\(Environment.shared.opco.displayString) Mobile App/\(version).\(build) (iOS \(systemVersion); Apple \(modelIdentifier))"
             sessionConfig.httpAdditionalHeaders = [
                 "User-Agent": userAgentString
             ]
