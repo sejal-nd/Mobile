@@ -71,34 +71,7 @@ class PaymentViewModel {
             paymentAmount = Variable("")
         }
         
-        let now = Date()
-        self.paymentDate = Variable(now)
-        let startOfTodayDate = Calendar.current.startOfDay(for: now)
-        let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
-        
-        if Environment.shared.opco == .bge &&
-            Calendar.opCo.component(.hour, from: Date()) >= 20 &&
-            !accountDetail.isActiveSeverance {
-            self.paymentDate.value = tomorrow
-        }
-        if Environment.shared.opco == .bge &&
-            !accountDetail.isActiveSeverance &&
-            !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
-            self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
-        } else if let dueDate = accountDetail.billingInfo.dueByDate {
-            if dueDate >= now && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
-                switch Environment.shared.opco {
-                case .bge:
-                    self.paymentDate.value = dueDate
-                case .comEd, .peco:
-                    if let cutoffDate = self.fiservCutoffDate.value {
-                        self.paymentDate.value = min(dueDate, cutoffDate)
-                    } else {
-                        self.paymentDate.value = dueDate
-                    }
-                }
-            }
-        }
+        self.paymentDate = Variable(Date()) // May be updated later...see computeDefaultPaymentDate()
     }
     
     // MARK: - Service Calls
@@ -162,6 +135,36 @@ class PaymentViewModel {
         return alert
     }
     
+    func computeDefaultPaymentDate() {
+        let now = Date()
+        let startOfTodayDate = Calendar.current.startOfDay(for: now)
+        let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
+        
+        if Environment.shared.opco == .bge &&
+            Calendar.opCo.component(.hour, from: Date()) >= 20 &&
+            !accountDetail.value.isActiveSeverance {
+            self.paymentDate.value = tomorrow
+        }
+        if Environment.shared.opco == .bge &&
+            !accountDetail.value.isActiveSeverance &&
+            !self.fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
+            self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
+        } else if let dueDate = accountDetail.value.billingInfo.dueByDate {
+            if dueDate >= now && !self.fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
+                switch Environment.shared.opco {
+                case .bge:
+                    self.paymentDate.value = dueDate
+                case .comEd, .peco:
+                    if let cutoffDate = self.fiservCutoffDate.value {
+                        self.paymentDate.value = min(dueDate, cutoffDate)
+                    } else {
+                        self.paymentDate.value = dueDate
+                    }
+                }
+            }
+        }
+    }
+    
     func fetchData(onSuccess: (() -> Void)?, onError: (() -> Void)?) {
         var observables = [fetchWalletItems()]
         if Environment.shared.opco == .peco {
@@ -177,6 +180,8 @@ class PaymentViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.isFetching.value = false
+                
+                self.computeDefaultPaymentDate()
                 
                 if let walletItems = self.walletItems.value, self.selectedWalletItem.value == nil {
                     if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment
