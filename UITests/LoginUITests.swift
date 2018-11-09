@@ -152,7 +152,7 @@ class LoginUITests: ExelonUITestCase {
             let pred = NSPredicate(format: "label like %@", "If you see downed power lines or smell natural gas, leave the area immediately and then call BGE. Representatives are available 24 hours a day, 7 days a week.")
             XCTAssert(elementsQuery.staticTexts.element(matching: pred).exists)
             
-            } else if appName.contains("PECO"){
+        } else if appName.contains("PECO"){
             XCTAssert(elementsQuery.links["1-800-841-4141"].exists)
             XCTAssert(elementsQuery.links["1-800-494-4000"].exists)
             XCTAssert(elementsQuery.staticTexts["All Customers"].exists)

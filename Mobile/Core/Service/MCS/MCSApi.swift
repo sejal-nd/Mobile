@@ -11,6 +11,7 @@ import Foundation
 import Reachability
 #endif
 import RxSwift
+import WatchKit
 
 /// MCSApi is a wrapper around the URLSession networking APIs. It provides convenience methods
 /// for executing POST/PUT/GET/DELETE custom endpoints, as well as authentication related APIs.
@@ -18,7 +19,7 @@ class MCSApi {
 
     static let shared = MCSApi()
 
-    static let API_VERSION = "v3"
+    static let API_VERSION = "v4"
     private let TIMEOUT = 120.0
 
     final private let TOKEN_KEYCHAIN_KEY = "kExelon_Token"
@@ -35,6 +36,23 @@ class MCSApi {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = TIMEOUT
         sessionConfig.timeoutIntervalForResource = TIMEOUT
+        
+        
+        #if os(iOS)
+        let systemVersion = UIDevice.current.systemVersion
+        #elseif os(watchOS)
+        let systemVersion = WKInterfaceDevice.current().systemVersion
+        #endif
+        
+        //[OPCO] Mobile App/[APP_VERSION].[BUILD_NUMBER] ([PLATFORM] [OS_VERSION]; [MANUFACTURER] [MODEL])
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
+            let userAgentString = "\(Environment.shared.opco.displayString) Mobile App/\(version).\(build) (iOS \(systemVersion); Apple \(modelIdentifier))"
+            sessionConfig.httpAdditionalHeaders = [
+                "User-Agent": userAgentString
+            ]
+        }
+        
         self.session = URLSession(configuration: sessionConfig)
     }
 
@@ -258,4 +276,14 @@ fileprivate func APILog(requestId: String, path: String, method: HttpMethod, mes
     #if DEBUG
         NSLog("[MCSApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
     #endif
+}
+
+// Machine Identifier Reference: https://www.theiphonewiki.com/wiki/Models
+fileprivate var modelIdentifier: String {
+    if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
+        return "\(simulatorModelIdentifier) [Simulator]"
+    }
+    var sysinfo = utsname()
+    uname(&sysinfo)
+    return String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
 }

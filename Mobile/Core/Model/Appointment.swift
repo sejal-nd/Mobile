@@ -12,42 +12,38 @@ import Mapper
 struct Appointment: Mappable, Equatable {
     
     enum Status: String {
-        case scheduled, enRoute, inProgress, complete, canceled
+        case scheduled = "Confirmed"
+        case enRoute = "On Our Way"
+        case inProgress = "In Progress"
+        case complete = "Complete"
+        case canceled = "Cancelled"
     }
     
-    let jobId: String
-    let startTime: Date
-    let endTime: Date
+    let id: String
+    let startDate: Date
+    let stopDate: Date
     let status: Status
-    let caseNumber: String
     
     init(map: Mapper) throws {
-        jobId = try map.from("jobId")
-        startTime = try map.from("startTime", transformation: DateParser().extractDate)
-        endTime = try map.from("endTime", transformation: DateParser().extractDate)
+        id = try map.from("id")
+        startDate = try map.from("startDate", transformation: DateParser().extractDate)
+        stopDate = try map.from("stopDate", transformation: DateParser().extractDate)
         status = try map.from("status") { object in
-            guard let string = object as? String,
-                let status = Status(rawValue: string) else {
+            guard let string = object as? String, let status = Status(rawValue: string) else {
                 throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
             }
-            
             return status
         }
-        
-        caseNumber = try map.from("caseNumber")
     }
     
-    init(jobId: String, startTime: Date, endTime: Date, status: Status, caseNumber: String) {
-        
+    init(id: String, startDate: Date, stopDate: Date, status: Status) {
         assert(Environment.shared.environmentName == .aut, "init only available for tests")
         
         var map = [String: Any]()
-        map["jobId"] = jobId
-        //TODO: Update these formatters when we get services
-        map["startTime"] = DateFormatter.yyyyMMddTHHmmssZFormatter.string(from: startTime)
-        map["endTime"] = DateFormatter.yyyyMMddTHHmmssZFormatter.string(from: endTime)
+        map["id"] = id
+        map["startDate"] = DateFormatter.yyyyMMddTHHmmssZFormatter.string(from: startDate)
+        map["stopDate"] = DateFormatter.yyyyMMddTHHmmssZFormatter.string(from: stopDate)
         map["status"] = status.rawValue
-        map["caseNumber"] = caseNumber
         
         self = Appointment.from(map as NSDictionary)!
     }

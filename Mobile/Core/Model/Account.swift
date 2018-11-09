@@ -9,7 +9,7 @@
 import Foundation
 import Mapper
 
-struct Account: Mappable, Equatable, Hashable, Codable {
+struct Account: Mappable, Equatable, Hashable {
     let accountNumber: String
     let address: String?
     let premises: [Premise]
@@ -21,6 +21,8 @@ struct Account: Mappable, Equatable, Hashable, Codable {
     let isFinaled: Bool
     let isResidential: Bool
     let serviceType: String?
+    
+    let isPasswordProtected: Bool
 
     init(map: Mapper) throws {
         accountNumber = try map.from("accountNumber")
@@ -33,6 +35,8 @@ struct Account: Mappable, Equatable, Hashable, Codable {
         isFinaled = map.optionalFrom("flagFinaled") ?? false
         isResidential = map.optionalFrom("isResidential") ?? false
         serviceType = map.optionalFrom("serviceType")
+        
+        isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
         
         currentPremise = isMultipremise ? premises[0] : nil 
     }

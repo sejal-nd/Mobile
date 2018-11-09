@@ -89,6 +89,21 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
+        viewModel.accountDetailEvents.elements()
+            .take(1)
+            .subscribe(onNext: { accountDetail in
+                let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
+                
+                let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
+                    (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
+                
+                Analytics.log(event: .profileLoaded,
+                              dimensions: [.residentialAMI: residentialAMIString,
+                                           .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
+                                           .peakSmart: isPeakSmart ? "true" : "false"])
+            })
+            .disposed(by: bag)
+        
         viewSetup()
         styleViews()
         bindLoadingStates()
@@ -505,13 +520,16 @@ class HomeViewController: AccountPickerViewController {
         guard let projectedBillCardView = projectedBillCardView else { return }
         
         projectedBillCardView.viewMoreButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.projectedBillCardViewModel.isGas)
-            .drive(onNext: { [weak self] isGas in
+            .withLatestFrom(Driver.combineLatest(viewModel.projectedBillCardViewModel.isGas,
+                                                 viewModel.projectedBillCardViewModel.projectionNotAvailable))
+            .drive(onNext: { [weak self] isGas, projectionNotAvailable in
                 guard let tabBarCtl = self?.tabBarController as? MainTabBarController else {
                     return
                 }
                 
-                tabBarCtl.navigateToUsage(selectedBar: .projected, isGas: isGas, isPreviousBill: true)
+                tabBarCtl.navigateToUsage(selectedBar: projectionNotAvailable ? .projectionNotAvailable : .projected,
+                                          isGas: isGas,
+                                          isPreviousBill: true)
             }).disposed(by: projectedBillCardView.disposeBag)
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in

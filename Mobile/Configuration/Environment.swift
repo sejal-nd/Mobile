@@ -35,6 +35,7 @@ enum OpCo: String {
 enum EnvironmentName: String {
     case aut = "AUT"
     case dev = "DEV"
+    case test = "TEST"
     case stage = "STAGE"
     case prod = "PROD"
 }

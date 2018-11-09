@@ -75,21 +75,18 @@ class OutageInterfaceController: WKInterfaceController {
                 shouldAnimateStatusImage = false
                 aLog("Loading")
             case .error(let error):
-                aLog("Service code: \(error.serviceCode)")
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
-                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OpenAppOnPhoneInterfaceController.className, context: [:] as AnyObject)])
-//
-//                loadingImageGroup.setHidden(true)
-//
-//                reportOutageTapGesture.isEnabled = false
-//                statusGroup.setHidden(true)
-//                powerStatusImage.setHidden(true)
-//                errorGroup.setHidden(false)
-//                shouldAnimateStatusImage = false
-//
-//                errorImage.setImageNamed(AppImage.error.name)
-//                errorTitleLabel.setHidden(true)
-//                errorDetailLabel.setText("Unable to retrieve data at this time.  Please try again later.")
+                loadingImageGroup.setHidden(true)
+
+                reportOutageTapGesture.isEnabled = false
+                statusGroup.setHidden(true)
+                powerStatusImage.setHidden(true)
+                errorGroup.setHidden(false)
+                shouldAnimateStatusImage = false
+
+                errorImage.setImageNamed(AppImage.error.name)
+                errorTitleLabel.setHidden(true)
+                errorDetailLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
                 aLog("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 loadingImageGroup.setHidden(true)
@@ -131,10 +128,13 @@ class OutageInterfaceController: WKInterfaceController {
             case .powerOn:
                 statusGroup.setHidden(false)
                 powerStatusImage.setHidden(false)
-                etrGroup.setHidden(true)
+                etrGroup.setHidden(false)
+                etrTitleLabel.setHidden(true)
+                etrDetailLabel.setHidden(true)
                 errorGroup.setHidden(true)
                 
                 powerStatusImage.setImageNamed(AppImage.onAnimation.name)
+
                 shouldAnimateStatusImage = true
 
                 powerStatusLabel.setText("POWER IS ON")
@@ -164,7 +164,7 @@ class OutageInterfaceController: WKInterfaceController {
                 
                 errorImage.setImageNamed(AppImage.gasOnly.name)
                 errorTitleLabel.setText("Gas Only Account")
-                errorDetailLabel.setText("We currently do not allow reporting of gas issues online.")
+                errorDetailLabel.setText("Reporting of issues for gas only accounts not allowed online.")
                 aLog("Outage Status: Gas Only")
             case .unavilable:
                 statusGroup.setHidden(true)
@@ -203,12 +203,13 @@ class OutageInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(outageReportedFromPhone), name: Notification.Name.outageReported, object: nil)
+        
         // Clear Default Account Info
         accountTitleLabel.setText(nil)
         
         // Populate Account Info
-        if let selectedAccount = AccountsStore.shared.getSelectedAccount() {
+        if let selectedAccount = AccountsStore.shared.currentAccount {
             updateAccountInformation(selectedAccount)
         }
 
@@ -235,7 +236,9 @@ class OutageInterfaceController: WKInterfaceController {
         shouldAnimateStatusImage = false
     }
     
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     // MARK: - Action
     
     @IBAction func presentReportOutage(_ sender: Any) {
@@ -263,13 +266,19 @@ class OutageInterfaceController: WKInterfaceController {
             })
         })
     }
-
+    @objc func outageReportedFromPhone() {
+        self.state = .loaded(.powerOut)
+    }
 }
 
 
 // MARK: - Networking Delegate
 
 extension OutageInterfaceController: NetworkingDelegate {
+    
+    func newAccountDidUpdate(_ account: Account) {
+        updateAccountInformation(account)
+    }
     
     func currentAccountDidUpdate(_ account: Account) {
         updateAccountInformation(account)
@@ -278,6 +287,8 @@ extension OutageInterfaceController: NetworkingDelegate {
     }
     
     func accountDetailDidUpdate(_ accountDetail: AccountDetail) { }
+    
+    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) { }
 
     func accountListDidUpdate(_ accounts: [Account]) {
         clearAllMenuItems()

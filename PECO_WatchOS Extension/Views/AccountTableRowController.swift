@@ -23,7 +23,7 @@ class AccountTableRowController: NSObject {
         detailLabel.setText(account.address)
         imageView.setImageNamed(account.isResidential ? AppImage.residential.name : AppImage.commercial.name)
         
-        guard let currentAccount = AccountsStore.shared.getSelectedAccount() else {
+        guard let currentAccount = AccountsStore.shared.currentAccount else {
             checkmarkImageView.setHidden(true)
             return
         }

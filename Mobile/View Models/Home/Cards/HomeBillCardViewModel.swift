@@ -225,17 +225,6 @@ class HomeBillCardViewModel {
         
     }()
     
-    private(set) lazy var showCustomErrorState: Driver<Bool> = accountDetailEvents
-        .map {
-            if let serviceError = $0.error as? ServiceError {
-                return serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue
-            }
-            return false
-        }
-        .startWith(false)
-        .distinctUntilChanged()
-        .asDriver(onErrorDriveWith: .empty())
-    
     private(set) lazy var showMaintenanceModeState: Driver<Bool> = maintenanceModeEvents
         .map { $0.element?.billStatus ?? false }
         .startWith(false)

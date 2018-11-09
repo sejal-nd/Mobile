@@ -16,10 +16,10 @@ class ServiceFactory {
 
     class func createAuthenticationService() -> AuthenticationService {
         switch Environment.shared.environmentName {
-        case .dev, .stage, .prod:
-            return MCSAuthenticationService()
         case .aut:
             return MockAuthenticationService()
+        default:
+            return MCSAuthenticationService()
         }
     }
 
@@ -29,55 +29,55 @@ class ServiceFactory {
 
     class func createAccountService() -> AccountService {
         switch Environment.shared.environmentName {
-        case .dev, .stage, .prod:
-            return MCSAccountService()
         case .aut:
             return MockAccountService()
+        default:
+            return MCSAccountService()
         }
     }
 
     class func createOutageService() -> OutageService {
         switch Environment.shared.environmentName {
-        case .dev, .stage, .prod:
-            return sharedOutageService
         case .aut:
             return sharedMockOutageService
+        default:
+            return sharedOutageService
         }
     }
 
     class func createBillService() -> BillService {
         switch Environment.shared.environmentName {
-        case .dev, .stage, .prod:
-            return MCSBillService()
         case .aut:
             return MockBillService()
+        default:
+            return MCSBillService()
         }
     }
 
     class func createWalletService() -> WalletService {
         switch Environment.shared.environmentName {
-        case .dev, .stage, .prod:
-            return MCSWalletService()
         case .aut:
             return MockWalletService()
+        default:
+            return MCSWalletService()
         }
     }
 
     class func createRegistrationService() -> RegistrationService {
         switch Environment.shared.environmentName {
-        case .dev, .stage, .prod:
-            return MCSRegistrationService()
         case .aut:
             return MockRegistrationService()
+        default:
+            return MCSRegistrationService()
         }
     }
 
     class func createPaymentService() -> PaymentService {
         switch Environment.shared.environmentName {
-        case .dev, .stage, .prod:
-            return MCSPaymentService()
         case .aut:
             return MockPaymentService()
+        default:
+            return MCSPaymentService()
         }
     }
 
@@ -87,19 +87,19 @@ class ServiceFactory {
 
     class func createUsageService() -> UsageService {
         switch Environment.shared.environmentName {
-        case .dev, .stage, .prod:
-            return MCSUsageService()
         case .aut:
             return MockUsageService()
+        default:
+            return MCSUsageService()
         }
     }
 
     class func createAlertsService() -> AlertsService {
         switch Environment.shared.environmentName {
-        case .dev, .stage, .prod:
-            return MCSAlertsService()
         case .aut:
             return MockAlertsService()
+        default:
+            return MCSAlertsService()
         }
     }
     
@@ -109,10 +109,10 @@ class ServiceFactory {
     
     class func createAppointmentService() -> AppointmentService {
         switch Environment.shared.environmentName {
-        case .dev, .stage, .prod:
-            return MCSAppointmentService()
         case .aut:
             return MockAppointmentService()
+        default:
+            return MCSAppointmentService()
         }
     }
 }

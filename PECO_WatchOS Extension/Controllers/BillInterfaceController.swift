@@ -147,20 +147,20 @@ class BillInterfaceController: WKInterfaceController {
                 
                 aLog("Loading")
             case .error(let error):
-                aLog("Error: \(error.localizedDescription)")
+
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
-                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OpenAppOnPhoneInterfaceController.className, context: [:] as AnyObject)])
-//                errorGroup.setHidden(false)
-//                errorImage.setImageNamed(AppImage.error.name)
-//                errorTitleLabel.setHidden(true)
-//                errorDetailLabel.setText("Unable to retrieve data at this time.  Please try again later.")
-//
-//                loadingImageGroup.setHidden(true)
-//
-//
-//                billGroup.setHidden(true)
-//
-//                aLog("Error: \(error.localizedDescription)")
+
+                errorGroup.setHidden(false)
+                errorImage.setImageNamed(AppImage.error.name)
+                errorTitleLabel.setHidden(true)
+                errorDetailLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
+
+                loadingImageGroup.setHidden(true)
+
+
+                billGroup.setHidden(true)
+
+                aLog("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.maintenanceMode.name)
@@ -198,7 +198,7 @@ class BillInterfaceController: WKInterfaceController {
         accountTitleLabel.setText(nil)
         
         // Populate Account Info
-        if let selectedAccount = AccountsStore.shared.getSelectedAccount() {
+        if let selectedAccount = AccountsStore.shared.currentAccount {
             updateAccountInformation(selectedAccount)
         }
         
@@ -240,7 +240,11 @@ class BillInterfaceController: WKInterfaceController {
 // MARK: - Networking Delegate
 
 extension BillInterfaceController: NetworkingDelegate {
-
+    
+    func newAccountDidUpdate(_ account: Account) {
+        updateAccountInformation(account)
+    }
+    
     func currentAccountDidUpdate(_ account: Account) {
         updateAccountInformation(account)
         
@@ -423,6 +427,8 @@ extension BillInterfaceController: NetworkingDelegate {
         guard accounts.count > 1 else { return }
         addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
     }
+    
+    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) { }
     
     func maintenanceMode(feature: MainFeature) {
         guard feature == .all || feature == .bill else { return }

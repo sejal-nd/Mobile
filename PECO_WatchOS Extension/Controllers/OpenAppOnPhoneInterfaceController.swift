@@ -17,6 +17,13 @@ class OpenAppOnPhoneInterfaceController: WKInterfaceController {
         
         // Configure interface objects here.
     }
+    override func didAppear() {
+        super.didAppear()
+        
+        // Log Analytics
+        GATracker.shared.screenView(screenName: OpenAppOnPhoneInterfaceController.className, customParameters: nil)
+        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
+    }
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user

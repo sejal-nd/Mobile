@@ -12,7 +12,7 @@
         <!--Outage-->
         <scene sceneID="hol-pR-2GK">
             <objects>
-                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="Exelon_Mobile_watchOS" customModuleProvider="target">
+                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Qu5-Yb-MPl">
                             <items>
@@ -48,20 +48,20 @@
                                     <items>
                                         <group alignment="center" verticalAlignment="center" layout="vertical" spacing="0.0" id="hdB-uD-QUk">
                                             <items>
-                                                <label alignment="center" text="Our records indicate" textAlignment="center" id="OE6-hz-SgF">
+                                                <label alignment="center" text="Our records indicate" textAlignment="center" minimumScaleFactor="0.5" id="OE6-hz-SgF">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
-                                                <label alignment="center" text="POWER IS ON" id="unw-81-wSf">
+                                                <label alignment="center" text="POWER IS ON" minimumScaleFactor="0.5" id="unw-81-wSf">
                                                     <fontDescription key="font" type="boldSystem" pointSize="20"/>
                                                 </label>
                                             </items>
                                         </group>
                                         <group width="1" alignment="center" verticalAlignment="bottom" layout="vertical" spacing="0.0" id="p5D-o7-JLZ">
                                             <items>
-                                                <label alignment="center" text="Estimated Restoration" textAlignment="center" id="MEX-00-2UP">
+                                                <label alignment="center" text="Estimated Restoration" textAlignment="center" minimumScaleFactor="0.5" id="MEX-00-2UP">
                                                     <fontDescription key="font" type="system" pointSize="10"/>
                                                 </label>
-                                                <label alignment="center" text="10:30AM 10/09/2018" id="GYa-hc-Udw">
+                                                <label alignment="center" text="10:30AM 10/09/2018" minimumScaleFactor="0.5" id="GYa-hc-Udw">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                                 <imageView alignment="center" verticalAlignment="bottom" image="On_0" id="fzl-mw-v2T"/>
@@ -73,20 +73,22 @@
                                     <variation key="device=watch42mm" height="130"/>
                                     <variation key="device=watch44mm" height="130"/>
                                 </group>
-                                <group width="1" height="100" alignment="center" layout="vertical" id="UcK-eo-7fT">
+                                <group width="1" alignment="center" layout="vertical" spacing="0.0" id="UcK-eo-7fT">
                                     <items>
-                                        <imageView height="0.5" alignment="center" verticalAlignment="center" image="outageUnavailable" contentMode="scaleAspectFit" id="8Av-tA-f0B"/>
-                                        <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" minimumScaleFactor="0.75" id="2xl-p0-GHX">
+                                        <imageView height="65" alignment="center" verticalAlignment="center" image="outageUnavailable" contentMode="scaleAspectFit" id="8Av-tA-f0B">
+                                            <variation key="device=watch38mm" height="65"/>
+                                            <variation key="device=watch40mm" height="70"/>
+                                            <variation key="device=watch42mm" height="75"/>
+                                            <variation key="device=watch44mm" height="80"/>
+                                        </imageView>
+                                        <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" minimumScaleFactor="0.10000000000000001" id="2xl-p0-GHX">
                                             <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                         </label>
-                                        <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" id="FXc-7K-yGw">
+                                        <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.10000000000000001" id="FXc-7K-yGw">
                                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                         </label>
                                     </items>
-                                    <variation key="device=watch38mm" height="110"/>
-                                    <variation key="device=watch40mm" height="110"/>
-                                    <variation key="device=watch42mm" height="130"/>
-                                    <variation key="device=watch44mm" height="135"/>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="5"/>
                                 </group>
                             </items>
                             <gestureRecognizers>

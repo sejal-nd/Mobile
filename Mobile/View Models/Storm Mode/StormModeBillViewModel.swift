@@ -54,7 +54,7 @@ class StormModeBillViewModel {
             }
             }, requestSelector: { [weak self] _ in
                 guard let this = self else { return .empty() }
-                return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount, getPayments: true, getBudgetBilling: false)
         })
     
     private(set) lazy var didFinishRefresh: Driver<Void> = refreshTracker

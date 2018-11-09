@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification, object: nil)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = !self.viewModel.isLoggingIn
                 
                 if !self.viewModel.isDeviceBiometricCompatible() { // In case user tapped "Don't Allow" on Face ID Permissions dialog
@@ -94,7 +94,7 @@ class LoginViewController: UIViewController {
         viewModel.username.asDriver().drive(usernameTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
         viewModel.password.asDriver().drive(passwordTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
         viewModel.password.asDriver().drive(onNext: { [weak self] (password) in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if let autofilledPw = self.viewModel.biometricsAutofilledPassword, password != autofilledPw {
                 // The password field was successfully auto-filled from biometrics, but then the user manually changed it,
                 // presumably because the password has been changed and is now different than what's stored in the keychain.
@@ -215,9 +215,9 @@ class LoginViewController: UIViewController {
 
         viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in
             UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = true
 
                 // Get the last username that logged in first, and then store the one currently logging in
@@ -270,7 +270,7 @@ class LoginViewController: UIViewController {
                 }
             })
         }, onRegistrationNotComplete: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.navigationController?.view.isUserInteractionEnabled = true
             self.signInButton.reset()
             self.signInButton.accessibilityLabel = "Sign In";
@@ -280,7 +280,7 @@ class LoginViewController: UIViewController {
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Resend", comment: ""), style: .default, handler: { [weak self] (action) in
                 LoadingView.show()
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.viewModel.resendValidationEmail(onSuccess: { [weak self] in
                     LoadingView.hide()
                     self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
@@ -336,17 +336,7 @@ class LoginViewController: UIViewController {
     }
     
     func launchMainApp(isStormMode: Bool) {
-        if let accountDetail = viewModel.accountDetail {
-            let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-            
-            let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
-                (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
-            
-            Analytics.log(event: .loginComplete,
-                                 dimensions: [.residentialAMI: residentialAMIString,
-                                              .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
-                                              .peakSmart: isPeakSmart ? "true" : "false"])
-        }
+        Analytics.log(event: .loginComplete)
 
         if isStormMode {
             (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
@@ -372,7 +362,7 @@ class LoginViewController: UIViewController {
     
     func presentBiometricsPrompt() {
         viewModel.attemptLoginWithBiometrics(onLoad: { [weak self] in // Face/Touch ID was successful
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             
             Analytics.log(event: .loginOffer,
                                  dimensions: [.keepMeSignedIn: self.keepMeSignedInSwitch.isOn ? "true":"false",
@@ -383,8 +373,8 @@ class LoginViewController: UIViewController {
             })
             self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
             self.signInButton.setLoading()
-            self.signInButton.accessibilityLabel = "Loading";
-            self.signInButton.accessibilityViewIsModal = true;
+            self.signInButton.accessibilityLabel = "Loading"
+            self.signInButton.accessibilityViewIsModal = true
             self.biometricButton.isEnabled = true
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
             
@@ -397,13 +387,13 @@ class LoginViewController: UIViewController {
             self?.navigationController?.view.isUserInteractionEnabled = true
             }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in // Face/Touch ID and subsequent login successful
             UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
                 self?.navigationController?.view.isUserInteractionEnabled = true
                 self?.launchMainApp(isStormMode: isStormMode)
             })
         }, onError: { [weak self] (title, message) in // Face/Touch ID successful but login failed
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.navigationController?.view.isUserInteractionEnabled = true
             self.showErrorAlertWith(title: title, message: message + "\n\n" + String(format: NSLocalizedString("If you have changed your password recently, enter it manually and re-enable %@", comment: ""), self.viewModel.biometricsString()!))
         })
