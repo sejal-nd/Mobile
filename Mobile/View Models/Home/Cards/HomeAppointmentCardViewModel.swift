@@ -77,19 +77,19 @@ class HomeAppointmentCardViewModel {
                 if Calendar.opCo.isDateInToday(appointment.startDate) {
                     regularText = NSLocalizedString("Your appointment is ", comment: "")
                     boldText = String.localizedStringWithFormat("today between %@ - %@.",
-                                                                appointment.startDate.hour_AmPmString,
-                                                                appointment.stopDate.hour_AmPmString)
+                                                                appointment.startDate.hourAmPmString,
+                                                                appointment.stopDate.hourAmPmString)
                 } else if Calendar.opCo.isDateInTomorrow(appointment.startDate) {
                     regularText = NSLocalizedString("Your appointment is ", comment: "")
                     boldText = String.localizedStringWithFormat("tomorrow between %@ - %@.",
-                                                                appointment.startDate.hour_AmPmString,
-                                                                appointment.stopDate.hour_AmPmString)
+                                                                appointment.startDate.hourAmPmString,
+                                                                appointment.stopDate.hourAmPmString)
                 } else {
                     regularText = NSLocalizedString("Your appointment is scheduled for ", comment: "")
                     boldText = String.localizedStringWithFormat("%@ between %@ - %@.",
                                                                 appointment.startDate.dayMonthDayString,
-                                                                appointment.startDate.hour_AmPmString,
-                                                                appointment.stopDate.hour_AmPmString)
+                                                                appointment.startDate.hourAmPmString,
+                                                                appointment.stopDate.hourAmPmString)
                 }
                 
                 let attributedText = NSMutableAttributedString(string: regularText + boldText)
@@ -115,7 +115,7 @@ class HomeAppointmentCardViewModel {
             case .inProgress:
                 let regularText = NSLocalizedString("Your appointment is in progress. ", comment: "")
                 let boldText = String.localizedStringWithFormat("Estimated time of completion is %@.",
-                                                                appointment.stopDate.hour_AmPmString)
+                                                                appointment.stopDate.hourAmPmString)
                 
                 let attributedText = NSMutableAttributedString(string: regularText + boldText)
                 attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
