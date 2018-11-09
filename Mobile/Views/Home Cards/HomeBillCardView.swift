@@ -357,7 +357,7 @@ class HomeBillCardView: UIView {
         viewModel.enableOneTouchPayTCButton.not().drive(oneTouchPayTCButtonLabel.rx.isAccessibilityElement).disposed(by: bag)
         
         // Actions
-        oneTouchSlider.didFinishSwipe
+        otpIsBeforeFiservCutoffDate.filter { $0 }
             .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV))
             .filter { !$0 && !$1 }
             .map(to: ())
@@ -385,6 +385,31 @@ class HomeBillCardView: UIView {
     }
     
     // Actions
+    private lazy var otpIsBeforeFiservCutoffDate = oneTouchSlider.didFinishSwipe
+        // Fiserv Cutoff Date Check START
+        // Remove this block after ePay transition
+        .do(onNext: { _ in
+            switch Environment.shared.opco {
+            case .bge: break
+            case .comEd, .peco:
+                LoadingView.show(animated: true)
+            }
+        })
+        .asObservable()
+        .toAsyncRequest { [weak self] _ -> Observable<Bool> in
+            self?.viewModel.isBeforeFiservCutoffDate() ?? .empty()
+        }
+        .dematerialize()
+        .asDriver(onErrorDriveWith: .empty())
+        .do(onNext: { _ in
+            switch Environment.shared.opco {
+            case .bge: break
+            case .comEd, .peco:
+                LoadingView.hide(animated: true)
+            }
+        })
+        // Fiserv Cutoff Date Check END
+    
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
         .do(onNext: { Analytics.log(event: .viewBillBillCard) })
     
@@ -406,7 +431,25 @@ class HomeBillCardView: UIView {
         .map(WebViewController.init)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
+    private(set) lazy var cutoffAlert = otpIsBeforeFiservCutoffDate
+        .filter(!)
+        .map { [weak self] _ -> UIViewController in
+            let title = NSLocalizedString("Payment Temporarily Unavailable", comment: "")
+            let message = String.localizedStringWithFormat("Payment via the mobile application is temporarily unavailable. Please check for an app update. You can make a payment on the %@ website if needed. Sorry for the inconvenience.", Environment.shared.opco.displayString)
+            
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default)
+            { [weak self] _ in
+                self?.oneTouchSlider.reset(animated: true)
+            }
+            
+            alert.addAction(action)
+            return alert
+    }
+    
+    private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
+        .filter { $0 }
         .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
         .filter { $0 }
         .map { [weak self] _ in
@@ -459,7 +502,8 @@ class HomeBillCardView: UIView {
         return alertController2
     }
     
-    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
+    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
+        .filter { $0 }
         .withLatestFrom(self.viewModel.promptForCVV)
         .asObservable()
         .filter { $0 }
@@ -546,14 +590,16 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(tooltipModal,
-                                                                                        oneTouchSliderWeekendAlert,
-                                                                                        paymentTACModal,
-                                                                                        oneTouchPayErrorAlert,
-                                                                                        oneTouchSliderCVV2Alert,
-                                                                                        tutorialViewController,
-                                                                                        bgeasyViewController,
-                                                                                        autoPayAlert)
+    private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver
+        .merge(tooltipModal,
+               oneTouchSliderWeekendAlert,
+               paymentTACModal,
+               oneTouchPayErrorAlert,
+               oneTouchSliderCVV2Alert,
+               tutorialViewController,
+               bgeasyViewController,
+               autoPayAlert,
+               cutoffAlert)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside
