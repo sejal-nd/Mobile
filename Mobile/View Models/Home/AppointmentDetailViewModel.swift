@@ -147,7 +147,7 @@ class AppointmentDetailViewModel {
             
             return attributedText
         case .canceled:
-            return NSLocalizedString("Your appointment has been canceled due to inclement weather.", comment: "")
+            return NSLocalizedString("Your appointment has been cancelled. We apologize for the inconvenience. Please contact us to reschedule.", comment: "")
                 .attributedString(textAlignment: .center,
                                   otherAttributes: standardAttributes)
         }
