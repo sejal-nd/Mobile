@@ -12,9 +12,9 @@ import Mapper
 struct Appointment: Mappable, Equatable {
     
     enum Status: String {
-        case scheduled = "accepted"
-        case enRoute = "enroute"
-        case inProgress = "onsite"
+        case scheduled = "Confirmed"
+        case enRoute = "On Our Way"
+        case inProgress = "In Progress"
         case complete = "Complete"
         case canceled = "Cancelled"
     }
