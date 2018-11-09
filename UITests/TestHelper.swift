@@ -10,6 +10,12 @@ import Foundation
 import AppCenterXCUITestExtensions
 import XCTest
 
+internal var appOpCo: OpCo {
+    let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
+    let options: [OpCo] = [.bge, .comEd, .peco]
+
+    return options.lazy.filter({ appName.contains($0.displayString) }).first ?? .bge
+}
 
 class ExelonUITestCase: XCTestCase{
     
@@ -42,7 +48,7 @@ class ExelonUITestCase: XCTestCase{
     }
     
     func handleTermsFirstLaunch() {
-        let continueButton = buttonElement(withText: "Continue")
+        let continueButton = buttonElement(withText: "Continue", timeout: 5)
         XCTAssertTrue(continueButton.exists)
         // Assert button is disabled when the switch is not enabled
         XCTAssertFalse(continueButton.isEnabled)
@@ -104,6 +110,16 @@ class ExelonUITestCase: XCTestCase{
         ACTLabel.labelStep("Post-tap button \(buttonText)")
     }
 
+    func checkExistenceOfElements(_ typesAndTexts: [(XCUIElement.ElementType, String)], timeout: TimeInterval = 3) {
+        for (type, text) in typesAndTexts {
+            checkExistenceOfElement(type, text, timeout: timeout)
+        }
+    }
+
+    func checkExistenceOfElement(_ type: XCUIElement.ElementType, _ text: String, timeout: TimeInterval = 3) {
+        XCTAssertTrue(element(ofType: type, withText: text, timeout: timeout).exists, "Element with text \"\(text)\" could not be found.")
+    }
+
     func tabButtonElement(withText text: String, timeout: TimeInterval = 5) -> XCUIElement {
         let tab = app.tabBars.buttons[text]
 
@@ -122,20 +138,32 @@ class ExelonUITestCase: XCTestCase{
         return element(ofType: .staticText, withText: text, timeout: timeout)
     }
 
-    private func element(ofType type: XCUIElement.ElementType, withText text: String, timeout: TimeInterval) -> XCUIElement {
-        // Could be anywhere in the view hierarchy...
-        let inScrollView = app.scrollViews.otherElements.descendants(matching: type)[text]
-        let inApp = app.descendants(matching: type)[text]
-        let inTableView = app.tables.descendants(matching: type)[text]
-        let inTabBar = app.tabBars.descendants(matching: type)[text]
-        let inDescendants = app.descendants(matching: type).descendants(matching: type).matching(NSPredicate(format: "label CONTAINS '\(text)'")).firstMatch
-        let closeMatch = app.descendants(matching: type).element(matching: NSPredicate(format: "label CONTAINS '\(text)'"))
-        let lastDitchEffort = app.staticTexts[text]
+    /// Could be anywhere in the view hierarchy
+    func element(ofType type: XCUIElement.ElementType, withText text: String, timeout: TimeInterval = 3) -> XCUIElement {
+        assert(type != .other, "It is not safe to use ElementType \"other\" in this helper method as it can create a recursive loop")
+
+        let shouldOnlyUsePredicates: Bool = text.count > 128
+
+        let inDescendants = app.descendants(matching: type).descendants(matching: type).matching(labelPredicate(forText: text)).firstMatch
+        let closeMatch = app.descendants(matching: type).element(matching: labelPredicate(forText: text))
+
+        var possibleElements: [XCUIElement] = [inDescendants, closeMatch]
+
+        if !shouldOnlyUsePredicates {
+            let inScrollView = app.scrollViews.otherElements.descendants(matching: type)[text]
+            let inApp = app.descendants(matching: type)[text]
+            let inTableView = app.tables.descendants(matching: type)[text]
+            let inTabBar = app.tabBars.descendants(matching: type)[text]
+            let inNavBar = app.navigationBars.descendants(matching: type)[text]
+            let lastDitchEffort = app.staticTexts[text]
+
+            possibleElements.append(contentsOf: [inScrollView, inApp, inTableView, inTabBar, inNavBar, lastDitchEffort])
+        }
 
         var elapsedTime: TimeInterval = 0
         while elapsedTime < timeout {
 
-            if let validElement = [inScrollView, inApp, inTableView, inTabBar, closeMatch, inDescendants, lastDitchEffort].lazy.filter({ $0.exists }).first {
+            if let validElement = possibleElements.lazy.filter({ $0.exists }).first {
                 return validElement
             }
             usleep(200000) // sleep for .2 seconds
@@ -143,6 +171,18 @@ class ExelonUITestCase: XCTestCase{
         }
 
         return closeMatch
+    }
+
+    private func labelPredicate(forText text: String) -> NSPredicate {
+        let linesOfText = text.components(separatedBy: "\n")
+        var format = "label CONTAINS '\(linesOfText.first!)'"
+
+        if linesOfText.count > 1 {
+            for i in 1..<linesOfText.count where !linesOfText[i].isEmpty {
+                format += " AND label CONTAINS '\(linesOfText[i])'"
+            }
+        }
+        return NSPredicate(format: format)
     }
 }
 
