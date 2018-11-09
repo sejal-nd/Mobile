@@ -18,7 +18,6 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet private weak var scrollView: UIScrollView!
     
     @IBOutlet private weak var topAnimationContainer: UIView!
-    @IBOutlet private weak var caseNumberLabel: UILabel!
     @IBOutlet private weak var appointmentDescriptionTextView: DataDetectorTextView!
     @IBOutlet private weak var progressView: UIView!
     @IBOutlet private weak var progressAnimationContainer: UIView!
@@ -101,9 +100,6 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func styleViews() {
-        caseNumberLabel.textColor = .blackText
-        caseNumberLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        
         appointmentDescriptionTextView.textContainerInset = UIEdgeInsets(top: 14, left: 0, bottom: 8, right: 0) // top/bottom padding
         appointmentDescriptionTextView.textColor = .blackText
         appointmentDescriptionTextView.tintColor = .actionBlue // Color of the phone numbers
@@ -170,7 +166,6 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         upperContactButtonContainer.isHidden = !viewModel.showUpperContactButton
         howToPrepareContainer.isHidden = !viewModel.showHowToPrepare
         
-        caseNumberLabel.text = viewModel.caseNumberText
         appointmentDescriptionTextView.attributedText = viewModel.appointmentDescriptionText
         appointmentDescriptionTextView.accessibilityValue = viewModel.appointmentDescriptionText.string.replacingOccurrences(of: "-", with: "and")
     }

@@ -17,6 +17,10 @@ extension Date {
         return DateFormatter.mmDdYyyyFormatter.string(from: self)
     }
     
+    @nonobjc var yyyyMMddString: String {
+        return DateFormatter.yyyyMMddFormatter.string(from: self)
+    }
+    
     @nonobjc var shortMonthAndDayString: String {
         return DateFormatter.shortMonthAndDayFormatter.string(from: self)
     }
@@ -51,16 +55,7 @@ extension Date {
         }
         return DateFormatter.hourAmPmFormatter.string(from: date)
     }
-    
-    @nonobjc var hour_AmPmString: String {
-        var date = self
-        let minutes = Calendar.current.component(.minute, from: date)
-        if minutes >= 30, let adjustedDate = Calendar.current.date(byAdding: .hour, value: 1, to: date) {
-            date = adjustedDate
-        }
-        return DateFormatter.hour_AmPmFormatter.string(from: date)
-    }
-    
+        
     @nonobjc var apiFormatString: String {
         return DateFormatter.apiFormatter.string(from: self)
     }
@@ -228,15 +223,7 @@ extension DateFormatter {
         dateFormatter.dateFormat = "ha"
         return dateFormatter
     }()
-    
-    @nonobjc static let hour_AmPmFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = .opCo
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "h a"
-        return dateFormatter
-    }()
-    
+        
     @nonobjc static let apiFormatterGMT: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = .gmt
