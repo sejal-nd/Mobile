@@ -33,12 +33,8 @@ class MoreUITests: ExelonUITestCase {
             (.button, "Policies and Terms")
         ])
 
-        
-        let table = app.tables.element(boundBy: 0)
-        let lastCell = table.cells.element(boundBy: table.cells.count-1)
-        table.scrollToElement(element: lastCell)
-        
-        XCTAssertTrue(buttonElement(withText: "Sign Out").isHittable)
+        scrollToBottomOfTable()
+        XCTAssertTrue(buttonElement(withText: "Sign Out", timeout: 5).isHittable)
         
         // Face ID/Touch ID buttons should not be shown because they are never enabled during UI testing
         if #available(iOS 11.0, *) {

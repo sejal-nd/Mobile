@@ -17,7 +17,7 @@ internal var appOpCo: OpCo {
     return options.lazy.filter({ appName.contains($0.displayString) }).first ?? .bge
 }
 
-class ExelonUITestCase: XCTestCase{
+class ExelonUITestCase: XCTestCase {
     
     let app = XCUIApplication()
     
@@ -36,15 +36,6 @@ class ExelonUITestCase: XCTestCase{
         ACTLabel.labelStep("Tearing down")
 
         super.tearDown()
-    }
-
-    func dateString(from date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .opCo
-        dateFormatter.calendar = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-
-        return dateFormatter.string(from: date)
     }
     
     func handleTermsFirstLaunch() {
@@ -93,6 +84,19 @@ class ExelonUITestCase: XCTestCase{
         XCTAssertTrue(tabButtonElement(withText: "Home").exists)
         ACTLabel.labelStep("Signed in")
     }
+}
+
+// MARK: - Helpers
+extension ExelonUITestCase {
+
+    func dateString(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.calendar = .opCo
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+
+        return dateFormatter.string(from: date)
+    }
 
     func selectTab(tabName: String) {
         ACTLabel.labelStep("Pre-select tab \(tabName)")
@@ -108,6 +112,13 @@ class ExelonUITestCase: XCTestCase{
         XCTAssertTrue(button.exists)
         button.tap()
         ACTLabel.labelStep("Post-tap button \(buttonText)")
+    }
+
+    func scrollToBottomOfTable() {
+        let table = app.tables.element(boundBy: 0)
+        let lastCell = table.cells.element(boundBy: table.cells.count - 1)
+        table.scrollToElement(lastCell)
+        table.swipeUp() // In case the last cell becomes visible but we're looking for another element inside or the footer view
     }
 
     func checkExistenceOfElements(_ typesAndTexts: [(XCUIElement.ElementType, String)], timeout: TimeInterval = 3) {
@@ -138,7 +149,7 @@ class ExelonUITestCase: XCTestCase{
         return element(ofType: .staticText, withText: text, timeout: timeout)
     }
 
-    /// Could be anywhere in the view hierarchy
+    /// Search for element in multiple locations within the view hierarchy
     func element(ofType type: XCUIElement.ElementType, withText text: String, timeout: TimeInterval = 3) -> XCUIElement {
         assert(type != .other, "It is not safe to use ElementType \"other\" in this helper method as it can create a recursive loop")
 
@@ -173,6 +184,7 @@ class ExelonUITestCase: XCTestCase{
         return closeMatch
     }
 
+    /// Breaks down multi-line text for predicate use
     private func labelPredicate(forText text: String) -> NSPredicate {
         let linesOfText = text.components(separatedBy: "\n")
         var format = "label CONTAINS '\(linesOfText.first!)'"
@@ -187,7 +199,7 @@ class ExelonUITestCase: XCTestCase{
 }
 
 extension XCUIElement {
-    func scrollToElement(element: XCUIElement) {
+    func scrollToElement(_ element: XCUIElement) {
         while !element.visible() {
             swipeUp()
         }
