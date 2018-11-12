@@ -6,6 +6,7 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import Foundation
 import Mapper
 
 struct Payment {

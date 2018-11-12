@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import UIKit
 
 class PaymentViewModel {
     let disposeBag = DisposeBag()
@@ -114,8 +115,9 @@ class PaymentViewModel {
         } else {
             isFetching.value = true
             fetchFiservCutoff().subscribe(onNext: { [weak self] cutoffDate in
-                self?.isFetching.value = false
-                if Date() >= cutoffDate {
+                guard let self = self else { return }
+                self.isFetching.value = false
+                if Date() >= cutoffDate || self.paymentDate.value >= cutoffDate {
                     onShouldReject()
                 } else {
                     onShouldContinue()
@@ -156,9 +158,20 @@ class PaymentViewModel {
                 switch Environment.shared.opco {
                 case .bge:
                     self.paymentDate.value = dueDate
-                case .comEd, .peco:
+                case .comEd:
                     if let cutoffDate = self.fiservCutoffDate.value {
                         self.paymentDate.value = min(dueDate, cutoffDate)
+                    } else {
+                        self.paymentDate.value = dueDate
+                    }
+                case .peco:
+                    if let cutoffDate = self.fiservCutoffDate.value {
+                        guard let cutoffWorkday = self.workdayArray.last(where: { $0 <= cutoffDate }) else {
+                            self.paymentDate.value = min(dueDate, cutoffDate)
+                            return
+                        }
+                        
+                        self.paymentDate.value = min(dueDate, cutoffWorkday)
                     } else {
                         self.paymentDate.value = dueDate
                     }
@@ -167,11 +180,23 @@ class PaymentViewModel {
         }
     }
     
-    func fetchData(onSuccess: (() -> Void)?, onError: (() -> Void)?) {
+    func fetchData(onSuccess: (() -> ())?, onError: (() -> ())?, onFiservCutoff: (() -> ())?) {
         var observables = [fetchWalletItems()]
+        if Environment.shared.opco == .peco || Environment.shared.opco == .comEd {
+            let cutoffObservable = fetchFiservCutoff()
+                .do(onNext: { [weak self] date in
+                    self?.fiservCutoffDate.value = date
+                })
+                .mapTo(())
+                .catchErrorJustReturn(())
+            
+            observables.append(cutoffObservable)
+        }
+        
         if Environment.shared.opco == .peco {
             observables.append(fetchPECOWorkdays())
         }
+        
         if let paymentId = paymentId.value, paymentDetail.value == nil {
             observables.append(fetchPaymentDetails(paymentId: paymentId))
         }
@@ -182,6 +207,23 @@ class PaymentViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.isFetching.value = false
+                
+                if let cutoffDate = self.fiservCutoffDate.value {
+                    if Environment.shared.opco == .peco {
+                        guard let nextWorkday = self.workdayArray.first(where: { $0 >= Calendar.opCo.startOfDay(for: Date()) }) else {
+                            onError?()
+                            return
+                        }
+                       
+                        guard nextWorkday < cutoffDate else {
+                            onFiservCutoff?()
+                            return
+                        }
+                    } else if Date() >= cutoffDate {
+                        onFiservCutoff?()
+                        return
+                    }
+                }
                 
                 self.computeDefaultPaymentDate()
                 

@@ -274,19 +274,17 @@ class MakePaymentViewController: UIViewController {
 
         viewModel.formatPaymentAmount() // Initial formatting
         
-        viewModel.checkForCutoff(onShouldReject: { [weak self] in
+        viewModel.fetchData(onSuccess: { [weak self] in
             guard let self = self else { return }
-            self.present(self.viewModel.cutoffAlert(handler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }), animated: true, completion: nil)
-        }, onShouldContinue: { [weak self] in
-            self?.viewModel.fetchData(onSuccess: { [weak self] in
-                guard let `self` = self else { return }
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
+            }, onError: { [weak self] in
+                guard let self = self else { return }
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
-                }, onError: { [weak self] in
-                    guard let `self` = self else { return }
-                    UIAccessibility.post(notification: .screenChanged, argument: self.view)
-            })
+            }, onFiservCutoff: { [weak self] in
+                guard let self = self else { return }
+                self.present(self.viewModel.cutoffAlert(handler: { [weak self] _ in
+                    self?.navigationController?.popViewController(animated: true)
+                }), animated: true, completion: nil)
         })
     }
     
