@@ -12,7 +12,7 @@ class BillUtility {
     
     // we could edit enum so each enum case takes in the variables needed to populate the state
     enum BillState {
-        case restoreService(restoreAmount: Double, dpaReinstAmount: Double, netDueAmount: Double)
+        case restoreService(restoreAmount: Double, dpaReinstAmount: Double)
         case catchUp(amount: Double, date: Date)
         case avoidShutoff(amount: Double)
         case pastDue(pastDueAmount: Double, netDueAmount: Double, remainingBalanceDue: Double)
@@ -86,14 +86,9 @@ class BillUtility {
             }
         }
         
-        // Most Recent Bill
-        if let amount = accountDetail.billingInfo.currentDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate {
-            billStates.append(.mostRecent(amount: amount, date: dueDate))
-        }
-        
         // Restore Service
-        if let amount = accountDetail.billingInfo.restorationAmount, amount > 0, accountDetail.isCutOutNonPay {
-            billStates.append(.restoreService(restoreAmount: amount, dpaReinstAmount: 0, netDueAmount: 0))
+        if let amount = accountDetail.billingInfo.restorationAmount, amount > 0, accountDetail.isCutOutNonPay, let dpaAmount = accountDetail.billingInfo.amtDpaReinst {
+            billStates.append(.restoreService(restoreAmount: amount, dpaReinstAmount: dpaAmount))
             isPrecarious = true
         } else {
             // Avoid Shutoff
@@ -122,6 +117,11 @@ class BillUtility {
                 billStates.append(.remainingBalance(amount: amount, date: dueDate))
             }
             
+        }
+        
+        // Most Recent Bill
+        if let amount = accountDetail.billingInfo.currentDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, (isPrecarious && isPendingPayment) {
+            billStates.append(.mostRecent(amount: amount, date: dueDate))
         }
         
         return billStates

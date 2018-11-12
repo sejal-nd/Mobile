@@ -225,6 +225,9 @@ extension BillInterfaceController: NetworkingDelegate {
         // Hides all groups
         hideAllStates()
         
+        // Resets label
+        billAmountTitleLabel.setAttributedText(("--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
+        
         // Shows overarching bill group
         state = .loaded
         
@@ -236,12 +239,8 @@ extension BillInterfaceController: NetworkingDelegate {
         // Set States
         for state in billStates {
             switch state {
-            case .restoreService(let restoreAmount, let dpaReinstAmount, let netDueAmount):
+            case .restoreService(let restoreAmount, let dpaReinstAmount):
                 restoreServiceGroup.setHidden(false)
-                // Bill $ Label Color
-                if netDueAmount > 0 {
-                    billAmountTitleLabel.setAttributedText((restoreAmount.currencyString ?? "--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
-                }
 
                 restoreServiceAmountLabel.setText(restoreAmount.currencyString ?? "--")
 
@@ -263,11 +262,6 @@ extension BillInterfaceController: NetworkingDelegate {
                 // Alert Banner
                 billAlertGroup.setHidden(false)
                 billAlertLabel.setText("\(amount.currencyString ?? "--") is due \(date.dueBy().string) to catch up on your DPA.")
-
-                // Bill $ Label Color
-                if let amount = accountDetail.billingInfo.netDueAmount, amount > 0 {
-                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
-                }
             case .avoidShutoff(let amount):
                 avoidShutoffGroup.setHidden(false)
                 avoidShutoffAmountLabel.setText(amount.currencyString ?? "--")
@@ -275,22 +269,12 @@ extension BillInterfaceController: NetworkingDelegate {
                 // Alert Banner
                 billAlertGroup.setHidden(false)
                 billAlertLabel.setText("\(amount.currencyString ?? "--") is due immediately to avoid shutoff.")
-
-                // Bill $ Label Color
-                if let amount = accountDetail.billingInfo.netDueAmount, amount > 0 {
-                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
-                }
             case .pastDue(let pastDueAmount, let netDueAmount, let remainingBalanceDue):
                 amountPastDueGroup.setHidden(false)
                 amountPastDueLabel.setText(pastDueAmount.currencyString ?? "--")
 
                 // Alert Banner
                 billAlertGroup.setHidden(false)
-
-                // Bill $ Label Color
-                if let amount = accountDetail.billingInfo.netDueAmount, amount > 0 {
-                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
-                }
 
                 if netDueAmount == pastDueAmount, remainingBalanceDue <= 0 {
                     billAlertLabel.setText("Your bill is past due.")
@@ -299,15 +283,23 @@ extension BillInterfaceController: NetworkingDelegate {
                 }
             case .billReady(let amount, let date):
                 billAmountGroup.setHidden(false)
-                billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: .primaryColor, range: NSRange(location: 0, length: 1)))
+                
+                // Add Colored Dollar Sign if there is a precarious bill state
+                if billStates.contains(where: { $0.isPrecariousBillSituation }) {
+                    // White
+                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
+                } else {
+                    // Blue
+                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6), range: NSRange(location: 0, length: 1)))
+                }
                 
                 let text = "Amount due \(date.dueBy().string)"
                 if text == "Amount due Immediately" {
-                    let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6)]
+                    let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 255.0 / 255.0, green: 51.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)]
                     let attributedText = NSAttributedString(string: text, attributes: attributes)
                     billAmountDescriptionLabel.setAttributedText(attributedText)
                 } else {
-                    billAmountDescriptionLabel.setAttributedText(date.dueBy())
+                    billAmountDescriptionLabel.setText(text)
                 }
                 
                 billPaidGroup.setHidden(true)
@@ -326,6 +318,10 @@ extension BillInterfaceController: NetworkingDelegate {
                 remainingBalanceGroup.setHidden(false)
                 remainingBalanaceAmountLabel.setText(amount.currencyString ?? "--")
                 remainingBalanceDateLabel.setAttributedText(date.dueBy(shouldColor: true, shouldIncludePrefix: true))
+                
+                // Alert Banner
+                billAlertGroup.setHidden(false)
+                billAlertLabel.setText("\(amount.currencyString ?? "--") is due \(date.dueBy()).")
             case .paymentPending(let amount):
                 pendingPaymentGroup.setHidden(false)
                 
