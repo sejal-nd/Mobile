@@ -8,6 +8,7 @@
 
 import XCTest
 import AppCenterXCUITestExtensions
+
 class PaymentUITests: ExelonUITestCase {
    
     // MARK: MakePaymentViewController Layout Tests
@@ -17,7 +18,7 @@ class PaymentUITests: ExelonUITestCase {
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
 
-        XCTAssertTrue(app.navigationBars["Make a Payment"].waitForExistence(timeout: 3))
+        checkExistenceOfElement(.navigationBar, "Make a Payment")
         XCTAssertFalse(app.navigationBars.buttons["Next"].isEnabled, "Next button should be disabed initially")
 
         checkExistenceOfElements([
@@ -66,30 +67,22 @@ class PaymentUITests: ExelonUITestCase {
             (.textField, "Payment Amount, required")
         ])
 
-        let paymentAmountTextField = app.scrollViews.otherElements.textFields["Payment Amount, required"]
-        if let textFieldValue = paymentAmountTextField.value as? String {
-            XCTAssertEqual(textFieldValue, "$200.00", "Payment amount value entry should default to the amount due")
-        } else {
-            XCTFail("Could not get paymentAmountTextField value")
-        }
+        let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
+        XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
 
-        let dateText: String
-        if appOpCo != .bge {
-
-            // ComEd + PECO default to payment date, not today
-            // Mock data sets this to 10 days from today
-            let date = Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000)
-            dateText = dateString(from: date)
-        } else {
-            dateText = dateString(from: Date())
-        }
+        // ComEd + PECO default to payment date, not today
+        // Mock data sets this to 10 days from today
+        let testDate: Date = appOpCo == .bge
+            ? Date()
+            : Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000)
+        let dateText = dateString(from: testDate)
 
         tapButton(buttonText: dateText)
-        XCTAssertTrue(app.navigationBars["Select Payment Date"].waitForExistence(timeout: 2))
+        checkExistenceOfElement(.navigationBar, "Select Payment Date")
         tapButton(buttonText: "Back")
         
         if appOpCo != .bge {
-            checkExistenceOfElements([(.image, "ic_billmatrix")])
+            checkExistenceOfElement(.image, "ic_billmatrix")
             
             tapButton(buttonText: "Privacy Policy")
 
@@ -155,19 +148,10 @@ class PaymentUITests: ExelonUITestCase {
         XCTAssertFalse(confirmAccountField.isEnabled)
 
         let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment account")
-        if let switchValueStr = defaultAccountSwitch.value as? String {
-            XCTAssertEqual(switchValueStr, "0", "Default Payment Account switch should be OFF by default")
-        } else {
-            XCTFail("Could not get defaultAccountSwitch value")
-        }
+        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Account switch should be OFF by default")
 
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
-        XCTAssertTrue(paymentAmountTextField.exists)
-        if let textFieldValue = paymentAmountTextField.value as? String {
-            XCTAssert(textFieldValue == "$200.00", "Payment amount value entry should default to the amount due")
-        } else {
-            XCTFail("Could not get paymentAmountTextField value")
-        }
+        XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
 
         tapButton(buttonText: dateString(from: Date()))
         XCTAssertTrue(app.navigationBars["Select Payment Date"].waitForExistence(timeout: 2))
@@ -227,27 +211,14 @@ class PaymentUITests: ExelonUITestCase {
         let confirmAccountField = element(ofType: .textField, withText: "Confirm Account Number, required")
         XCTAssertFalse(confirmAccountField.isEnabled)
 
-        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment account")
-        if let switchValueStr = defaultAccountSwitch.value as? String {
-            XCTAssertEqual(switchValueStr, "0", "Default Payment Account switch should be OFF by default")
-        } else {
-            XCTFail("Could not get defaultAccountSwitch value")
-        }
-
         let saveToWalletSwitch = element(ofType: .switch, withText: "Save to my wallet")
-        if let switchValueStr = saveToWalletSwitch.value as? String {
-            XCTAssertEqual(switchValueStr, "1", "Save to My Wallet switch should be ON by default")
-        } else {
-            XCTFail("Could not get saveToWalletSwitch value")
-        }
+        XCTAssertEqual(saveToWalletSwitch.value as? String, "1", "Save to My Wallet switch should be ON by default")
+
+        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment account")
+        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Account switch should be OFF by default")
 
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
-        XCTAssertTrue(paymentAmountTextField.exists)
-        if let textFieldValue = paymentAmountTextField.value as? String {
-            XCTAssert(textFieldValue == "$200.00", "Payment amount value entry should default to the amount due")
-        } else {
-            XCTFail("Could not get paymentAmountTextField value")
-        }
+        XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
 
         // ComEd + PECO default to payment date, not today
         // Mock data sets this to 10 days from today
@@ -265,85 +236,51 @@ class PaymentUITests: ExelonUITestCase {
     }
 
     func testInlineCardLayoutBGE() {
-        if appOpCo == .bge {
-            doLogin(username: "billCardNoDefaultPayment")
-            selectTab(tabName: "Bill")
-            tapButton(buttonText: "Make a Payment")
-            
-            let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
-            XCTAssert(addCardButton.waitForExistence(timeout: 3))
-            addCardButton.tap()
-
-            XCTAssert(app.scrollViews.otherElements.textFields["Name on Card, required"].exists)
-            XCTAssert(app.scrollViews.otherElements.textFields["Card Number, required"].exists)
-            
-            // Card IO test
-            let cardIOButton = app.scrollViews.otherElements.buttons["Take a photo to scan credit card number"]
-            XCTAssert(cardIOButton.exists)
-//            cardIOButton.tap()
-//            XCTAssert(app.navigationBars["Card"].waitForExistence(timeout: 2))
-//            app.navigationBars.buttons["Cancel"].tap()
-            
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Expiration Date"].waitForExistence(timeout: 2))
-            XCTAssert(app.scrollViews.otherElements.textFields["Month, two digits"].exists)
-            XCTAssert(app.scrollViews.otherElements.textFields["Year, four digits"].exists)
-            
-            XCTAssert(app.scrollViews.otherElements.textFields["CVV, required"].exists)
-            let cvvTooltip = app.scrollViews.otherElements.buttons["Tool tip"]
-            XCTAssert(cvvTooltip.exists)
-            cvvTooltip.tap()
-            XCTAssert(app.staticTexts["What's a CVV?"].waitForExistence(timeout: 2))
-            let closeButton = app.buttons["Close"]
-            XCTAssert(closeButton.exists)
-            closeButton.tap()
-            
-            XCTAssert(app.scrollViews.otherElements.textFields["Zip Code, required"].waitForExistence(timeout: 2))
-            
-            let saveToWalletSwitch = app.scrollViews.otherElements.switches["Save to my wallet"]
-            XCTAssert(saveToWalletSwitch.exists)
-            if let switchValueStr = saveToWalletSwitch.value as? String {
-                XCTAssert(switchValueStr == "1", "Save to My Wallet switch should be ON by default")
-            } else {
-                XCTFail("Could not get saveToWalletSwitch value")
-            }
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Save to My Wallet"].exists)
-
-            XCTAssert(app.scrollViews.otherElements.textFields["Nickname, required"].exists)
-            
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Set this payment account as default to easily pay from the Home and Bill screens."].exists)
-            let defaultAccountSwitch = app.scrollViews.otherElements.switches["Default payment account"]
-            if let switchValueStr = defaultAccountSwitch.value as? String {
-                XCTAssert(switchValueStr == "0", "Default Payment Account switch should be OFF by default")
-            } else {
-                XCTFail("Could not get defaultAccountSwitch value")
-            }
-            
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due"].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
-            
-            XCTAssert(app.scrollViews.otherElements.staticTexts["A convenience fee will be applied to this payment. Residential accounts: $0.00. Business accounts: 0%."].exists)
-            let paymentAmountTextField = app.scrollViews.otherElements.textFields["Payment Amount, required"]
-            XCTAssert(paymentAmountTextField.exists)
-            if let textFieldValue = paymentAmountTextField.value as? String {
-                XCTAssert(textFieldValue == "$200.00", "Payment amount value entry should default to the amount due")
-            } else {
-                XCTFail("Could not get paymentAmountTextField value")
-            }
-            
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
-            
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
-
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = .opCo
-            dateFormatter.calendar = .opCo
-            dateFormatter.dateFormat = "MM/dd/yyyy"
-            let dateString = dateFormatter.string(from: Date())
-            let paymentDateButton = app.scrollViews.otherElements.buttons[dateString]
-            XCTAssert(paymentDateButton.exists)
-            paymentDateButton.tap()
-            XCTAssert(app.navigationBars["Select Payment Date"].waitForExistence(timeout: 2))
+        guard appOpCo == .bge else {
+            return
         }
+        doLogin(username: "billCardNoDefaultPayment")
+        selectTab(tabName: "Bill")
+        tapButton(buttonText: "Make a Payment")
+        tapButton(buttonText: "Add credit/debit card")
+
+        checkExistenceOfElements([
+            (.textField, "Name on Card, required"),
+            (.textField, "Card Number, required"),
+            (.button, "Take a photo to scan credit card number"),
+            (.staticText, "Expiration Date"),
+            (.textField, "Month, two digits"),
+            (.textField, "Year, four digits"),
+            (.textField, "CVV, required"),
+            (.textField, "Zip Code, required"),
+            (.textField, "Nickname, required"),
+            (.staticText, "Save to My Wallet"),
+            (.staticText, "Set this payment account as default to easily pay from the Home and Bill screens."),
+            (.staticText, "Amount Due"),
+            (.staticText, "$200.00"),
+            (.staticText, "A convenience fee will be applied to this payment. Residential accounts: $0.00. Business accounts: 0%."),
+            (.staticText, "Due Date"),
+            (.staticText, "Payment Date")
+        ])
+
+        let saveToWalletSwitch = element(ofType: .switch, withText: "Save to my wallet")
+        XCTAssertEqual(saveToWalletSwitch.value as? String, "1", "Save to My Wallet switch should be ON by default")
+
+        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment account")
+        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Account switch should be OFF by default")
+
+        let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
+        XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
+
+        tapButton(buttonText: "Tool tip")
+        checkExistenceOfElements([
+            (.image, "cvv_info"),
+            (.staticText, "Your security code is usually a 3 or 4 digit number found on your card.")
+        ])
+        tapButton(buttonText: "Close")
+
+        tapButton(buttonText: dateString(from: Date()))
+        checkExistenceOfElement(.navigationBar, "Select Payment Date")
     }
     
     func testInlineCardLayoutComEdPECO() {
@@ -353,84 +290,51 @@ class PaymentUITests: ExelonUITestCase {
         doLogin(username: "billCardNoDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
+        tapButton(buttonText: "Add credit/debit card")
 
-        let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
-        XCTAssert(addCardButton.waitForExistence(timeout: 3))
-        addCardButton.tap()
+        let dateText = dateString(from: Date())
 
-        XCTAssert(app.scrollViews.otherElements.textFields["Card Number, required"].exists)
+        checkExistenceOfElements([
+            (.textField, "Card Number, required"),
+            (.button, "Take a photo to scan credit card number"),
+            (.staticText, "Expiration Date"),
+            (.textField, "Month, two digits"),
+            (.textField, "Year, four digits"),
+            (.textField, "CVV, required"),
+            (.textField, "Zip Code, required"),
+            (.textField, "Nickname (Optional)"),
+            (.staticText, "Save to My Wallet"),
+            (.staticText, "Set this payment account as default to easily pay from the Home and Bill screens."),
+            (.staticText, "Amount Due"),
+            (.staticText, "$200.00"),
+            (.staticText, "A $0.00 convenience fee will be applied by Bill Matrix, our payment partner."),
+            (.staticText, "Due Date"),
+            (.staticText, "Payment Date"),
+            (.staticText, dateText),
+            (.image, "ic_billmatrix")
 
-        // Card IO test
-        let cardIOButton = app.scrollViews.otherElements.buttons["Take a photo to scan credit card number"]
-        XCTAssert(cardIOButton.exists)
-        //            cardIOButton.tap()
-        //            XCTAssert(app.navigationBars["Card"].waitForExistence(timeout: 2))
-        //            app.navigationBars.buttons["Cancel"].tap()
+        ])
 
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Expiration Date"].waitForExistence(timeout: 2))
-        XCTAssert(app.scrollViews.otherElements.textFields["Month, two digits"].exists)
-        XCTAssert(app.scrollViews.otherElements.textFields["Year, four digits"].exists)
+        let saveToWalletSwitch = element(ofType: .switch, withText: "Save to my wallet")
+        XCTAssertEqual(saveToWalletSwitch.value as? String, "1", "Save to My Wallet switch should be ON by default")
 
-        XCTAssert(app.scrollViews.otherElements.textFields["CVV, required"].exists)
-        let cvvTooltip = app.scrollViews.otherElements.buttons["Tool tip"]
-        XCTAssert(cvvTooltip.exists)
-        cvvTooltip.tap()
-        XCTAssert(app.staticTexts["What's a CVV?"].waitForExistence(timeout: 2))
-        let closeButton = app.buttons["Close"]
-        XCTAssert(closeButton.exists)
-        closeButton.tap()
+        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment account")
+        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Account switch should be OFF by default")
 
-        XCTAssert(app.scrollViews.otherElements.textFields["Zip Code, required"].waitForExistence(timeout: 2))
+        let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
+        XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
 
-        let saveToWalletSwitch = app.scrollViews.otherElements.switches["Save to my wallet"]
-        XCTAssert(saveToWalletSwitch.exists)
-        if let switchValueStr = saveToWalletSwitch.value as? String {
-            XCTAssert(switchValueStr == "1", "Save to My Wallet switch should be ON by default")
-        } else {
-            XCTFail("Could not get saveToWalletSwitch value")
-        }
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Save to My Wallet"].exists)
+        tapButton(buttonText: "Tool tip")
+        checkExistenceOfElements([
+            (.image, "cvv_info"),
+            (.staticText, "Your security code is usually a 3 digit number found on the back of your card.")
+        ])
+        tapButton(buttonText: "Close")
 
-        XCTAssert(app.scrollViews.otherElements.textFields["Nickname (Optional)"].exists)
+        XCTAssertFalse(buttonElement(withText: dateText).exists, "ComEd/PECO inline card should be fixed date")
 
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Set this payment account as default to easily pay from the Home and Bill screens."].exists)
-        let defaultAccountSwitch = app.scrollViews.otherElements.switches["Default payment account"]
-        if let switchValueStr = defaultAccountSwitch.value as? String {
-            XCTAssert(switchValueStr == "0", "Default Payment Account switch should be OFF by default")
-        } else {
-            XCTFail("Could not get defaultAccountSwitch value")
-        }
-
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
-
-        XCTAssert(app.scrollViews.otherElements.staticTexts["A $0.00 convenience fee will be applied by Bill Matrix, our payment partner."].exists)
-        let paymentAmountTextField = app.scrollViews.otherElements.textFields["Payment Amount, required"]
-        XCTAssert(paymentAmountTextField.exists)
-        if let textFieldValue = paymentAmountTextField.value as? String {
-            XCTAssert(textFieldValue == "$200.00", "Payment amount value entry should default to the amount due")
-        } else {
-            XCTFail("Could not get paymentAmountTextField value")
-        }
-
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
-
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .opCo
-        dateFormatter.calendar = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        let dateString = dateFormatter.string(from: Date())
-        XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)
-        XCTAssertFalse(app.scrollViews.otherElements.buttons[dateString].exists, "ComEd/PECO inline card should be fixed date")
-
-        XCTAssert(app.scrollViews.otherElements.images["ic_billmatrix"].waitForExistence(timeout: 2))
-
-        let privacyPolicyButton = app.scrollViews.otherElements.buttons["Privacy Policy"]
-        XCTAssert(privacyPolicyButton.exists)
-        privacyPolicyButton.tap()
-        XCTAssert(app.staticTexts["Privacy Policy"].waitForExistence(timeout: 2))
+        tapButton(buttonText: "Privacy Policy")
+        checkExistenceOfElement(.staticText, "Privacy Policy")
     }
     
     // MARK: Schedule Payments
@@ -439,205 +343,171 @@ class PaymentUITests: ExelonUITestCase {
         doLogin(username: "billCardWithDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
-        
-        let nextButton = app.navigationBars.buttons["Next"]
-        XCTAssert(nextButton.waitForExistence(timeout: 2))
+        let nextButton = buttonElement(withText: "Next")
+        sleep(1) // Button becomes enabled asynchronously
+        XCTAssertTrue(nextButton.isEnabled)
         nextButton.tap()
-        
-        XCTAssert(app.navigationBars["Review Payment"].waitForExistence(timeout: 2))
-        
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Account"].exists)
-        XCTAssert(app.scrollViews.otherElements["Bank account, Test Nickname, Account number ending in, 1234"].exists)
-        
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
-//        XCTAssert(app.scrollViews.otherElements.staticTexts["--"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .opCo
-        dateFormatter.calendar = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        var dateString: String
-        if appOpCo != .bge {
-            // ComEd + PECO default to payment date, not today
-            // Mock data sets this to 10 days from today
-            dateString = dateFormatter.string(from: Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000))
-        } else {
-            dateString = dateFormatter.string(from: Date())
-        }
-        XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Total Payment"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
+        // ComEd + PECO default to payment date, not today
+        // Mock data sets this to 10 days from today
+        let testDate: Date = appOpCo == .bge
+            ? Date()
+            : Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000)
+        let dateText = dateString(from: testDate)
+
+        XCTAssertTrue(app.scrollViews.otherElements["Bank account, Test Nickname, Account number ending in, 1234"].exists)
+
+        checkExistenceOfElements([
+            (.navigationBar, "Review Payment"),
+            (.staticText, "Payment Account"),
+            (.staticText, "Amount Due"),
+            (.staticText, "$200.00"),
+            (.staticText, "Due Date"),
+            (.staticText, "Payment Date"),
+            (.staticText, "Total Payment"),
+            (.staticText, "$200.00"),
+            (.staticText, dateText)
+        ])
         
         let submitButton = app.navigationBars.buttons["Submit"]
         if appOpCo == .bge {
-            XCTAssert(submitButton.isEnabled, "BGE does not need to agree to terms so submit should be immediately enabled")
+            XCTAssertTrue(submitButton.isEnabled, "BGE does not need to agree to terms so submit should be immediately enabled")
         } else {
             let termsButton = app.scrollViews.otherElements.buttons.element(boundBy: 0)
-            XCTAssert(termsButton.exists)
+            XCTAssertTrue(termsButton.exists)
             termsButton.tap()
-            XCTAssert(app.staticTexts["Terms and Conditions"].waitForExistence(timeout: 2))
-            let closeButton = app.buttons["Close"]
-            XCTAssert(closeButton.exists)
-            closeButton.tap()
+
+            checkExistenceOfElement(.staticText, "Terms and Conditions")
+
+            tapButton(buttonText: "Close")
         
-            let termsSwitch = app.scrollViews.otherElements.switches["Yes, I have read, understand, and agree to the terms and conditions provided below:"]
-            XCTAssert(termsSwitch.waitForExistence(timeout: 2))
-            if let switchValueStr = termsSwitch.value as? String {
-                XCTAssert(switchValueStr == "0", "Terms switch should be OFF by default")
-            } else {
-                XCTFail("Could not get termsSwitch value")
-            }
+            let termsSwitch = element(ofType: .switch, withText: "Yes, I have read, understand, and agree to the terms and conditions provided below:")
+            XCTAssertEqual(termsSwitch.value as? String, "0", "Terms switch should be OFF by default")
             
             XCTAssertFalse(submitButton.isEnabled, "ComEd/PECO needs to agree to terms first so submit should be initially disabled")
             termsSwitch.tap()
-            XCTAssert(submitButton.isEnabled)
+            XCTAssertTrue(submitButton.isEnabled)
         }
         submitButton.tap()
+
+        let thankyouText = appOpCo == .bge
+            ? "Thank you for your payment."
+            : "Thank you for your payment. A confirmation email will be sent to you shortly."
+
+        checkExistenceOfElements([
+            (.staticText, thankyouText),
+            (.staticText, "Payment Confirmation"),
+            (.staticText, "Payment Date"),
+            (.staticText, dateText),
+            (.staticText, "Amount Paid"),
+            (.staticText, "$200.00"),
+        ])
+
+        tapButton(buttonText: "Close")
         
-        XCTAssert(app.staticTexts["Payment Confirmation"].waitForExistence(timeout: 3))
-        
-        if appOpCo == .bge {
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Thank you for your payment."].exists)
-        } else {
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Thank you for your payment. A confirmation email will be sent to you shortly."].exists)
-        }
-        
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Paid"].exists)
-        XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
-        
-        let closeButton = app.buttons["Close"]
-        XCTAssert(closeButton.exists)
-        closeButton.tap()
-        
-        XCTAssert(app.tabBars.buttons["Bill"].waitForExistence(timeout: 2), "Should be back on the bill tab after closing")
+        XCTAssertTrue(app.tabBars.buttons["Bill"].waitForExistence(timeout: 2), "Should be back on the bill tab after closing")
     }
     
     func testMakePaymentBGEOverpaying() {
-        if appOpCo == .bge {
-            doLogin(username: "billCardWithDefaultPayment")
-            selectTab(tabName: "Bill")
-            tapButton(buttonText: "Make a Payment")
-            
-            let paymentAmountTextField = app.scrollViews.otherElements.textFields["Payment Amount, required"]
-            XCTAssert(paymentAmountTextField.waitForExistence(timeout: 2))
-            paymentAmountTextField.clearAndEnterText("30000")
-            
-            app.navigationBars.buttons["Next"].tap()
-            
-            XCTAssert(app.navigationBars["Review Payment"].waitForExistence(timeout: 2))
-            XCTAssert(app.scrollViews.otherElements.staticTexts["You are scheduling a payment that may result in overpaying your amount due."].exists)
-            
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Amount Due"].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts["$200.00"].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Due Date"].exists)
-//            XCTAssert(app.scrollViews.otherElements.staticTexts["--"].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Overpaying"].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts["$100.00"].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Date"].exists)
-
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = .opCo
-            dateFormatter.calendar = .opCo
-            dateFormatter.dateFormat = "MM/dd/yyyy"
-            let dateString = dateFormatter.string(from: Date())
-            XCTAssert(app.scrollViews.otherElements.staticTexts[dateString].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts["Payment Amount"].exists)
-            XCTAssert(app.scrollViews.otherElements.staticTexts["$300.00"].exists)
-            
-            let overpaySwitch = app.scrollViews.otherElements.switches["Yes, I acknowledge I am scheduling a payment for more than is currently due on my account."]
-            XCTAssert(overpaySwitch.exists)
-            if let switchValueStr = overpaySwitch.value as? String {
-                XCTAssert(switchValueStr == "0", "Overpay switch should be OFF by default")
-            } else {
-                XCTFail("Could not get termsSwitch value")
-            }
-
-            let submitButton = app.navigationBars.buttons["Submit"]
-            XCTAssertFalse(submitButton.isEnabled, "Submit should be disabled until overpay switch is toggled")
-            overpaySwitch.tap()
-            XCTAssert(submitButton.isEnabled)
-            submitButton.tap()
-            
-            XCTAssert(app.staticTexts["Payment Confirmation"].waitForExistence(timeout: 3))
+        guard appOpCo == .bge else {
+            return
         }
+        doLogin(username: "billCardWithDefaultPayment")
+        selectTab(tabName: "Bill")
+        tapButton(buttonText: "Make a Payment")
+
+        let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
+        paymentAmountTextField.clearAndEnterText("30000")
+
+        app.navigationBars.buttons["Next"].tap()
+
+        checkExistenceOfElements([
+            (.navigationBar, "Review Payment"),
+            (.staticText, "You are scheduling a payment that may result in overpaying your amount due."),
+            (.staticText, "Amount Due"),
+            (.staticText, "$200.00"),
+            (.staticText, "Due Date"),
+            (.staticText, "Overpaying"),
+            (.staticText, "$100.00"),
+            (.staticText, "Payment Date"),
+            (.staticText, dateString(from: Date())),
+            (.staticText, "Payment Amount"),
+            (.staticText, "$300.00"),
+        ])
+
+        let overpaySwitch = element(ofType: .switch, withText: "Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.")
+        XCTAssertEqual(overpaySwitch.value as? String, "0", "Overpay switch should be OFF by default")
+
+        let submitButton = app.navigationBars.buttons["Submit"]
+        XCTAssertFalse(submitButton.isEnabled, "Submit should be disabled until overpay switch is toggled")
+        overpaySwitch.tap()
+        XCTAssertTrue(submitButton.isEnabled)
+        submitButton.tap()
+
+        checkExistenceOfElement(.staticText, "Payment Confirmation")
     }
     
     func testBGEInlineBankPayment() {
-        if appOpCo == .bge {
-            doLogin(username: "billCardNoDefaultPayment")
-            selectTab(tabName: "Bill")
-            tapButton(buttonText: "Make a Payment")
-            
-            let addBankButton = app.scrollViews.otherElements.buttons["Add bank account"]
-            XCTAssert(addBankButton.waitForExistence(timeout: 3))
-            addBankButton.tap()
-            
-            let nextButton = app.navigationBars.buttons["Next"]
-            XCTAssertFalse(nextButton.isEnabled)
-            
-            app.scrollViews.otherElements.textFields["Bank Account Holder Name, required"].clearAndEnterText("Testy McTesterson")
-            app.scrollViews.otherElements.textFields["Routing Number, required"].clearAndEnterText("022000046")
-            app.scrollViews.otherElements.textFields["Account Number, required"].clearAndEnterText("1234567890")
-            app.scrollViews.otherElements.textFields["Confirm Account Number, required"].clearAndEnterText("1234567890")
-            app.scrollViews.otherElements.textFields["Nickname, required"].clearAndEnterText("Test nickname")
-            
-            XCTAssert(nextButton.isEnabled)
-            nextButton.tap()
-            
-            XCTAssert(app.navigationBars["Review Payment"].waitForExistence(timeout: 2))
+        guard appOpCo == .bge else {
+            return
         }
+        doLogin(username: "billCardNoDefaultPayment")
+        selectTab(tabName: "Bill")
+        tapButton(buttonText: "Make a Payment")
+        tapButton(buttonText: "Add bank account")
+
+        let textFields = app.scrollViews.otherElements.textFields
+        let nextButton = app.navigationBars.buttons["Next"]
+        XCTAssertFalse(nextButton.isEnabled)
+
+        textFields["Bank Account Holder Name, required"].clearAndEnterText("Testy McTesterson")
+        textFields["Routing Number, required"].clearAndEnterText("022000046")
+        textFields["Account Number, required"].clearAndEnterText("1234567890")
+        textFields["Confirm Account Number, required"].clearAndEnterText("1234567890")
+        textFields["Nickname, required"].clearAndEnterText("Test nickname")
+
+        XCTAssertTrue(nextButton.isEnabled)
+        nextButton.tap()
+
+        checkExistenceOfElement(.navigationBar, "Review Payment")
     }
     
     func testBGEInlineCardPayment() {
-        if appOpCo == .bge {
-            doLogin(username: "billCardNoDefaultPayment")
-            selectTab(tabName: "Bill")
-            tapButton(buttonText: "Make a Payment")
-            
-            let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
-            XCTAssert(addCardButton.waitForExistence(timeout: 3))
-            addCardButton.tap()
-            
-            let nextButton = app.navigationBars.buttons["Next"]
-            XCTAssertFalse(nextButton.isEnabled)
-            
-            app.scrollViews.otherElements.textFields["Name on Card, required"].clearAndEnterText("Testy McTesterson")
-            app.scrollViews.otherElements.textFields["Card Number, required"].clearAndEnterText("5444009999222205")
-            app.scrollViews.otherElements.textFields["Month, two digits"].clearAndEnterText("08")
-            app.scrollViews.otherElements.textFields["Year, four digits"].clearAndEnterText("3000")
-            app.scrollViews.otherElements.textFields["CVV, required"].clearAndEnterText("123")
-            app.scrollViews.otherElements.textFields["Zip Code, required"].clearAndEnterText("10007")
-            app.scrollViews.otherElements.textFields["Nickname, required"].clearAndEnterText("Test nickname")
-            
-            XCTAssert(nextButton.isEnabled)
-            nextButton.tap()
-            
-            XCTAssert(app.navigationBars["Review Payment"].waitForExistence(timeout: 2))
-            
-            let pred = NSPredicate(format: "label like %@", "I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records.")
-            let bgeCardSwitch = app.scrollViews.otherElements.switches.element(matching: pred)
-            XCTAssert(bgeCardSwitch.exists)
-            
-            if let switchValueStr = bgeCardSwitch.value as? String {
-                XCTAssert(switchValueStr == "0", "Switch should be OFF by default")
-            } else {
-                XCTFail("Could not get termsSwitch value")
-            }
-            
-            let submitButton = app.navigationBars.buttons["Submit"]
-            XCTAssert(submitButton.exists)
-            XCTAssertFalse(submitButton.isEnabled)
-            
-            bgeCardSwitch.tap()
-            XCTAssert(submitButton.isEnabled)
-            submitButton.tap()
-            XCTAssert(app.staticTexts["Payment Confirmation"].waitForExistence(timeout: 3))
+        guard appOpCo == .bge else {
+            return
         }
+        doLogin(username: "billCardNoDefaultPayment")
+        selectTab(tabName: "Bill")
+        tapButton(buttonText: "Make a Payment")
+        tapButton(buttonText: "Add credit/debit card")
+
+        let textFields = app.scrollViews.otherElements.textFields
+        let nextButton = app.navigationBars.buttons["Next"]
+        XCTAssertFalse(nextButton.isEnabled)
+
+        textFields["Name on Card, required"].clearAndEnterText("Testy McTesterson")
+        textFields["Card Number, required"].clearAndEnterText("5444009999222205")
+        textFields["Month, two digits"].clearAndEnterText("08")
+        textFields["Year, four digits"].clearAndEnterText("3000")
+        textFields["CVV, required"].clearAndEnterText("123")
+        textFields["Zip Code, required"].clearAndEnterText("10007")
+        textFields["Nickname, required"].clearAndEnterText("Test nickname")
+
+        XCTAssert(nextButton.isEnabled)
+        nextButton.tap()
+
+        checkExistenceOfElement(.navigationBar, "Review Payment")
+
+        let submitButton = element(ofType: .button, withText: "Submit")
+        let bgeCardSwitch = element(ofType: .switch, withText: "I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records.")
+        XCTAssertEqual(bgeCardSwitch.value as? String, "0", "Switch should be OFF by default")
+        XCTAssertFalse(submitButton.isEnabled)
+
+        bgeCardSwitch.tap()
+        XCTAssert(submitButton.isEnabled)
+        submitButton.tap()
+
+        checkExistenceOfElement(.staticText, "Payment Confirmation")
     }
     
     func testComEdPECOInlineBankPayment() {
@@ -647,22 +517,20 @@ class PaymentUITests: ExelonUITestCase {
         doLogin(username: "billCardNoDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
+        tapButton(buttonText: "Add bank account")
 
-        let addBankButton = app.scrollViews.otherElements.buttons["Add bank account"]
-        XCTAssert(addBankButton.waitForExistence(timeout: 3))
-        addBankButton.tap()
-
+        let textFields = app.scrollViews.otherElements.textFields
         let nextButton = app.navigationBars.buttons["Next"]
         XCTAssertFalse(nextButton.isEnabled)
 
-        app.scrollViews.otherElements.textFields["Routing Number, required"].clearAndEnterText("022000046")
-        app.scrollViews.otherElements.textFields["Account Number, required"].clearAndEnterText("1234567890")
-        app.scrollViews.otherElements.textFields["Confirm Account Number, required"].clearAndEnterText("1234567890")
+        textFields["Routing Number, required"].clearAndEnterText("022000046")
+        textFields["Account Number, required"].clearAndEnterText("1234567890")
+        textFields["Confirm Account Number, required"].clearAndEnterText("1234567890")
 
-        XCTAssert(nextButton.isEnabled)
+        XCTAssertTrue(nextButton.isEnabled)
         nextButton.tap()
 
-        XCTAssert(app.navigationBars["Review Payment"].waitForExistence(timeout: 2))
+        checkExistenceOfElement(.navigationBar, "Review Payment")
     }
     
     func testComEdPECOInlineCardPayment() {
@@ -672,31 +540,22 @@ class PaymentUITests: ExelonUITestCase {
         doLogin(username: "billCardNoDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
+        tapButton(buttonText: "Add credit/debit card")
 
-        let addCardButton = app.scrollViews.otherElements.buttons["Add credit/debit card"]
-        XCTAssert(addCardButton.waitForExistence(timeout: 3))
-        addCardButton.tap()
-
+        let textFields = app.scrollViews.otherElements.textFields
         let nextButton = app.navigationBars.buttons["Next"]
         XCTAssertFalse(nextButton.isEnabled)
 
-        app.scrollViews.otherElements.textFields["Card Number, required"].clearAndEnterText("5444009999222205")
-        app.scrollViews.otherElements.textFields["Month, two digits"].clearAndEnterText("08")
-        app.scrollViews.otherElements.textFields["Year, four digits"].clearAndEnterText("3000")
-        app.scrollViews.otherElements.textFields["CVV, required"].clearAndEnterText("123")
-        app.scrollViews.otherElements.textFields["Zip Code, required"].clearAndEnterText("10007")
+        textFields["Card Number, required"].clearAndEnterText("5444009999222205")
+        textFields["Month, two digits"].clearAndEnterText("08")
+        textFields["Year, four digits"].clearAndEnterText("3000")
+        textFields["CVV, required"].clearAndEnterText("123")
+        textFields["Zip Code, required"].clearAndEnterText("10007")
 
-        XCTAssert(nextButton.isEnabled)
+        XCTAssertTrue(nextButton.isEnabled)
         nextButton.tap()
 
-        XCTAssert(app.navigationBars["Review Payment"].waitForExistence(timeout: 2))
-    }
-
-    
-    // MARK: Helpers
-    
-    private var appName: String {
-        return Bundle.main.infoDictionary?["CFBundleName"] as! String
+        checkExistenceOfElement(.navigationBar, "Review Payment")
     }
 }
 
