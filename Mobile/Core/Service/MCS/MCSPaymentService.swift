@@ -323,4 +323,17 @@ class MCSPaymentService: PaymentService {
                 AppRating.logRatingEvent()
             })
     }
+    
+    func fetchPaymentFreezeDate() -> Observable<Date> {
+        let opCo = Environment.shared.opco.displayString.uppercased()
+        return MCSApi.shared.get(path: "anon_\(MCSApi.API_VERSION)/\(opCo)/config/epay_freeze")
+            .map { response in
+                guard let json = response as? [String: Any],
+                   let dateString = json["cutover_date"] as? String else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                
+                return try DateParser().extractDate(object: dateString)
+        }
+    }
 }
