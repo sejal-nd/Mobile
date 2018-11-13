@@ -150,7 +150,7 @@ class OutageViewModel {
     var showReportStreetlightOutageButton: Bool {
         switch Environment.shared.opco {
         case .comEd:
-            return false // should change to true once the map is ready
+            return true
         case .bge, .peco:
             return false
         }

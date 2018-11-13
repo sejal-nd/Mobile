@@ -43,6 +43,8 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
+        }, onFiservCutoff: {
+            XCTFail("unexpected fiserv cutoff")
         })
         
         XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
@@ -73,6 +75,8 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
+        }, onFiservCutoff: {
+            XCTFail("unexpected fiserv cutoff")
         })
         
         XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
@@ -97,6 +101,8 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
+        }, onFiservCutoff: {
+            XCTFail("unexpected fiserv cutoff")
         })
 
         waitForExpectations(timeout: 3) { err in
@@ -118,6 +124,8 @@ class PaymentViewModelTests: XCTestCase {
                 expect1.fulfill()
             }, onError: {
                 XCTFail("unexpected error response")
+            }, onFiservCutoff: {
+                XCTFail("unexpected fiserv cutoff")
             })
 
             waitForExpectations(timeout: 3) { err in
@@ -133,6 +141,8 @@ class PaymentViewModelTests: XCTestCase {
                 expect2.fulfill()
             }, onError: {
                 XCTFail("unexpected error response")
+            }, onFiservCutoff: {
+                XCTFail("unexpected fiserv cutoff")
             })
             
             waitForExpectations(timeout: 3) { err in
@@ -155,6 +165,8 @@ class PaymentViewModelTests: XCTestCase {
             expect1.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
+        }, onFiservCutoff: {
+            XCTFail("unexpected fiserv cutoff")
         })
         
         waitForExpectations(timeout: 3) { err in
@@ -170,6 +182,8 @@ class PaymentViewModelTests: XCTestCase {
             expect2.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
+        }, onFiservCutoff: {
+            XCTFail("unexpected fiserv cutoff")
         })
         
         waitForExpectations(timeout: 3) { err in

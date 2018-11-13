@@ -273,12 +273,18 @@ class MakePaymentViewController: UIViewController {
         bindButtonTaps()
 
         viewModel.formatPaymentAmount() // Initial formatting
+        
         viewModel.fetchData(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
-        }, onError: { [weak self] in
-            guard let `self` = self else { return }
-            UIAccessibility.post(notification: .screenChanged, argument: self.view)
+            }, onError: { [weak self] in
+                guard let self = self else { return }
+                UIAccessibility.post(notification: .screenChanged, argument: self.view)
+            }, onFiservCutoff: { [weak self] in
+                guard let self = self else { return }
+                self.present(self.viewModel.cutoffAlert(handler: { [weak self] _ in
+                    self?.navigationController?.popViewController(animated: true)
+                }), animated: true, completion: nil)
         })
     }
     
@@ -772,7 +778,12 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                let cutoffDate = min(startOfDueDate, viewModel.fiservCutoffDate)
+                var cutoffDate: Date
+                if let cutoff = viewModel.fiservCutoffDate.value {
+                    cutoffDate = min(startOfDueDate, cutoff)
+                } else {
+                    cutoffDate = dueDate
+                }
                 if Environment.shared.opco == .peco {
                     let isInWorkdaysArray = viewModel.workdayArray.contains(opCoTimeDate)
                     return opCoTimeDate >= today && opCoTimeDate <= cutoffDate && isInWorkdaysArray
