@@ -312,7 +312,6 @@ class PaymentUITests: ExelonUITestCase {
             (.staticText, "Payment Date"),
             (.staticText, dateText),
             (.image, "ic_billmatrix")
-
         ])
 
         let saveToWalletSwitch = element(ofType: .switch, withText: "Save to my wallet")

@@ -156,7 +156,7 @@ extension ExelonUITestCase {
         let shouldOnlyUsePredicates: Bool = text.count > 128
 
         let inDescendants = app.descendants(matching: type).descendants(matching: type).matching(labelPredicate(forText: text)).firstMatch
-        let closeMatch = app.descendants(matching: type).element(matching: labelPredicate(forText: text))
+        let closeMatch = app.descendants(matching: type).element(matching: labelPredicate(forText: text)).firstMatch
 
         var possibleElements: [XCUIElement] = [inDescendants, closeMatch]
 
@@ -171,17 +171,19 @@ extension ExelonUITestCase {
             possibleElements.append(contentsOf: [inScrollView, inApp, inTableView, inTabBar, inNavBar, lastDitchEffort])
         }
 
+        let matchFilter: (XCUIElement) -> Bool = { $0.exists && $0.elementType == type }
         var elapsedTime: TimeInterval = 0
+
         while elapsedTime < timeout {
 
-            if let validElement = possibleElements.lazy.filter({ $0.exists }).first {
+            if let validElement = possibleElements.lazy.filter(matchFilter).first {
                 return validElement
             }
             usleep(200000) // sleep for .2 seconds
             elapsedTime += 0.2
         }
 
-        return closeMatch
+        return app.descendants(matching: type)["Intentionally Returning an element that does not exist"]
     }
 
     /// Breaks down multi-line text for predicate use
