@@ -12,7 +12,7 @@ import Foundation
 class MCSAppointmentService: AppointmentService {
     func fetchAppointments(accountNumber: String, premiseNumber: String) -> Observable<[Appointment]> {
         let threeDaysAgo = Calendar.opCo.date(byAdding: .day, value: -3, to: Date())!
-        let future = Calendar.opCo.date(byAdding: .year, value: 100, to: Date())!
+        let future = Calendar.opCo.date(byAdding: .year, value: 1, to: Date())!
         let params = [
             "start_date": threeDaysAgo.yyyyMMddString,
             "end_date": future.yyyyMMddString
