@@ -10,9 +10,14 @@ import UIKit
 
 extension String {
     
-    public func textWithColorInRange(color: UIColor, range: NSRange) -> NSMutableAttributedString {
+    public func textWithColorInRange(color: UIColor, range: NSRange, shouldChangeFontSize: Bool = false) -> NSMutableAttributedString {
         let attributedText = NSMutableAttributedString(string: self)
         attributedText.addAttribute(.foregroundColor, value: color, range: range)
+        
+        if shouldChangeFontSize {
+            
+            //attributedText.addAttribute(.font, value: <#T##Any#>, range: range)
+        }
         
         return attributedText
     }
