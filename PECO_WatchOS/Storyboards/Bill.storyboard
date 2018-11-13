@@ -12,7 +12,7 @@
         <!--Bill-->
         <scene sceneID="0SA-xD-T2x">
             <objects>
-                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="Exelon_Mobile_watchOS" customModuleProvider="target">
+                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="tax-4C-a6R">
                             <items>
@@ -59,9 +59,9 @@
                                     <variation key="device=watch42mm" height="130"/>
                                     <variation key="device=watch44mm" height="130"/>
                                 </group>
+                                <group width="1" height="6" alignment="left" id="XPD-e9-Vgv"/>
                                 <group width="1" alignment="left" layout="vertical" spacing="8" id="tPK-Sl-QXF">
                                     <items>
-                                        <group width="1" height="6" alignment="left" id="XPD-e9-Vgv"/>
                                         <group width="1" alignment="left" radius="4" spacing="6" id="rC6-p8-6uf">
                                             <items>
                                                 <imageView width="26" alignment="left" image="alert" contentMode="scaleAspectFit" id="svH-eA-CWT"/>
@@ -72,10 +72,13 @@
                                             <color key="backgroundColor" red="0.19997459650039673" green="0.20001497864723206" blue="0.19996893405914307" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
                                         </group>
-                                        <group width="1" height="100" alignment="left" layout="vertical" id="hQI-2U-ZeZ">
+                                        <group width="1" height="100" alignment="left" layout="vertical" id="P9P-zW-vSc">
                                             <items>
-                                                <imageView height="60" alignment="center" image="autoPay" contentMode="scaleAspectFit" id="Sdd-Uj-qLY"/>
-                                                <label width="1" alignment="center" text="Label" textAlignment="center" numberOfLines="0" id="tAq-ZU-nbS">
+                                                <group width="1" height="6" alignment="left" id="HVM-SJ-ScV"/>
+                                                <label alignment="center" text="$130.00" textAlignment="center" minimumScaleFactor="0.75" id="lDA-dY-QiO">
+                                                    <fontDescription key="font" style="UICTFontTextStyleTitle1"/>
+                                                </label>
+                                                <label alignment="center" text="Total Amount Due" textAlignment="center" numberOfLines="0" id="24p-98-gVK">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
@@ -99,13 +102,10 @@
                                             <variation key="device=watch42mm" height="139"/>
                                             <variation key="device=watch44mm" height="158"/>
                                         </group>
-                                        <group width="1" height="100" alignment="left" layout="vertical" id="P9P-zW-vSc">
+                                        <group width="1" height="100" alignment="left" layout="vertical" id="hQI-2U-ZeZ">
                                             <items>
-                                                <group width="1" height="6" alignment="left" id="HVM-SJ-ScV"/>
-                                                <label alignment="center" text="$130.00" textAlignment="center" minimumScaleFactor="0.75" id="lDA-dY-QiO">
-                                                    <fontDescription key="font" style="UICTFontTextStyleTitle1"/>
-                                                </label>
-                                                <label alignment="center" text="Total Amount Due" textAlignment="center" numberOfLines="0" id="24p-98-gVK">
+                                                <imageView height="60" alignment="center" image="autoPay" contentMode="scaleAspectFit" id="Sdd-Uj-qLY"/>
+                                                <label width="1" alignment="center" text="Label" textAlignment="center" numberOfLines="0" id="tAq-ZU-nbS">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
@@ -114,25 +114,22 @@
                                             <variation key="device=watch42mm" height="139"/>
                                             <variation key="device=watch44mm" height="158"/>
                                         </group>
-                                        <group width="1" alignment="left" layout="vertical" radius="8" id="3nl-G6-pBJ">
+                                        <group width="1" alignment="center" layout="vertical" radius="8" id="o1x-31-mqT">
                                             <items>
-                                                <label alignment="center" text="$150.00" textAlignment="center" minimumScaleFactor="0.75" id="2J5-dL-Z5V">
+                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="g2o-us-bNb">
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
-                                                <group width="1" height="2" alignment="left" id="4Nb-1x-rQJ"/>
-                                                <label alignment="center" text="Most Recent Bill" textAlignment="center" id="QWs-vL-aED">
-                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                </label>
-                                                <label alignment="center" text="Due by 09/25/2018" textAlignment="center" minimumScaleFactor="0.75" id="Vro-PE-6ci">
+                                                <group width="1" height="2" alignment="left" id="KMM-tA-OKK"/>
+                                                <label alignment="center" text="Pending Payment" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="FHu-PO-h09">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
                                             <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="4"/>
+                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
                                         </group>
-                                        <group width="1" alignment="left" layout="vertical" radius="8" id="rvO-3U-9Ul">
+                                        <group width="1" alignment="center" layout="vertical" radius="8" id="rvO-3U-9Ul">
                                             <items>
-                                                <label alignment="center" text="$150.00" textAlignment="center" minimumScaleFactor="0.75" id="0vq-db-dF8">
+                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="0vq-db-dF8">
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
                                                 <group width="1" height="2" alignment="left" id="Ino-eP-z8w"/>
@@ -145,11 +142,11 @@
                                                 </label>
                                             </items>
                                             <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="4"/>
+                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
                                         </group>
-                                        <group width="1" alignment="left" layout="vertical" radius="8" id="9RK-d6-w7V">
+                                        <group width="1" alignment="center" layout="vertical" radius="8" id="9RK-d6-w7V">
                                             <items>
-                                                <label alignment="center" text="$150.00" textAlignment="center" minimumScaleFactor="0.75" id="Q0x-hY-aBx">
+                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="Q0x-hY-aBx">
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
                                                 <group width="1" height="2" alignment="left" id="LGa-QC-G51"/>
@@ -162,11 +159,11 @@
                                                 </label>
                                             </items>
                                             <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="4"/>
+                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
                                         </group>
-                                        <group width="1" alignment="left" layout="vertical" radius="8" id="L4p-r4-dZ5">
+                                        <group width="1" alignment="center" layout="vertical" radius="8" id="L4p-r4-dZ5">
                                             <items>
-                                                <label alignment="center" text="$150.00" textAlignment="center" minimumScaleFactor="0.75" id="l8n-Gp-VYb">
+                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="l8n-Gp-VYb">
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
                                                 <label alignment="center" text="Amount Due to Restore Service" textAlignment="center" numberOfLines="0" id="lDt-82-Vjb">
@@ -179,11 +176,11 @@
                                                 </label>
                                             </items>
                                             <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="4"/>
+                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
                                         </group>
-                                        <group width="1" alignment="left" layout="vertical" radius="8" id="Vmi-6d-FoC">
+                                        <group width="1" alignment="center" layout="vertical" radius="8" id="Vmi-6d-FoC">
                                             <items>
-                                                <label alignment="center" text="$150.00" textAlignment="center" minimumScaleFactor="0.75" id="f2j-i9-2zo">
+                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="f2j-i9-2zo">
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
                                                 <group width="1" height="2" alignment="left" id="4Pi-IY-zmf"/>
@@ -195,11 +192,27 @@
                                                 </label>
                                             </items>
                                             <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="4"/>
+                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
                                         </group>
-                                        <group width="1" alignment="left" layout="vertical" radius="8" id="od3-16-YHY">
+                                        <group width="1" alignment="center" layout="vertical" radius="8" id="3nl-G6-pBJ">
                                             <items>
-                                                <label alignment="center" text="$150.00" textAlignment="center" minimumScaleFactor="0.75" id="a1e-JS-QCS">
+                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="2J5-dL-Z5V">
+                                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                                </label>
+                                                <group width="1" height="2" alignment="left" id="4Nb-1x-rQJ"/>
+                                                <label alignment="center" text="Most Recent Bill" textAlignment="center" id="QWs-vL-aED">
+                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                </label>
+                                                <label alignment="center" text="Due by 09/25/2018" textAlignment="center" minimumScaleFactor="0.75" id="Vro-PE-6ci">
+                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                </label>
+                                            </items>
+                                            <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
+                                        </group>
+                                        <group width="1" alignment="center" layout="vertical" radius="8" id="od3-16-YHY">
+                                            <items>
+                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="a1e-JS-QCS">
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
                                                 <group width="1" height="2" alignment="left" id="km7-U4-xwX"/>
@@ -211,26 +224,18 @@
                                                 </label>
                                             </items>
                                             <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="4"/>
+                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
                                         </group>
-                                        <group width="1" alignment="left" layout="vertical" radius="8" id="o1x-31-mqT">
+                                        <group width="1" alignment="center" layout="vertical" id="WiM-Mf-i9F">
                                             <items>
-                                                <label alignment="center" text="-$150.00" textAlignment="center" minimumScaleFactor="0.75" id="g2o-us-bNb">
-                                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                                </label>
-                                                <group width="1" height="2" alignment="left" id="KMM-tA-OKK"/>
-                                                <label alignment="center" text="Pending Payment" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="FHu-PO-h09">
+                                                <group width="1" height="16" alignment="left" id="RHz-CJ-hga"/>
+                                                <label alignment="center" numberOfLines="0" id="kmz-wz-aIl">
+                                                    <string key="text">If you recently changed your energy supplier, a portion of your balance may have an earlier due date. Please view your previous bills and corresponding due dates.</string>
+                                                    <color key="textColor" red="0.63522547483444214" green="0.63533484935760498" blue="0.63521009683609009" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
-                                            <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="4"/>
                                         </group>
-                                        <label alignment="left" numberOfLines="0" id="kmz-wz-aIl">
-                                            <string key="text">If you recently changed your energy supplier, a portion of your balance may have an earlier due date. Please view your previous bills and corresponding due dates.</string>
-                                            <color key="textColor" red="0.63522547483444214" green="0.63533484935760498" blue="0.63521009683609009" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                        </label>
                                     </items>
                                 </group>
                             </items>
@@ -262,11 +267,13 @@
                         <outlet property="errorGroup" destination="k99-kY-Ghs" id="DNV-q4-cKz"/>
                         <outlet property="errorImage" destination="t25-mM-fED" id="G8u-dB-hyx"/>
                         <outlet property="errorTitleLabel" destination="yrO-gy-zWL" id="twS-c0-xNu"/>
+                        <outlet property="footerGroup" destination="WiM-Mf-i9F" id="rIH-zF-NHQ"/>
                         <outlet property="loadingImageGroup" destination="lni-Wf-0hF" id="vfb-e8-h7Q"/>
                         <outlet property="mostRecentBillAmountLabel" destination="2J5-dL-Z5V" id="R0s-Bv-f9C"/>
                         <outlet property="mostRecentBillDueDateLabel" destination="Vro-PE-6ci" id="PTT-un-Rw2"/>
                         <outlet property="mostRecentBillGroup" destination="3nl-G6-pBJ" id="nxX-8B-Olc"/>
                         <outlet property="pendingPaymentAmountLabel" destination="g2o-us-bNb" id="ybQ-oz-INq"/>
+                        <outlet property="pendingPaymentDescriptionLabel" destination="FHu-PO-h09" id="cFs-eP-zAc"/>
                         <outlet property="pendingPaymentGroup" destination="o1x-31-mqT" id="zg2-fa-euo"/>
                         <outlet property="remainingBalanaceAmountLabel" destination="a1e-JS-QCS" id="Inb-r2-nKh"/>
                         <outlet property="remainingBalanceDateLabel" destination="3Cb-Te-N2u" id="Cdp-uk-UiG"/>

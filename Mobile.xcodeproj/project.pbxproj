@@ -292,6 +292,7 @@
 		358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21720F8FB2D00DA2012 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		358BD21920F8FDAE00DA2012 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
+		358D677321961BC400395D0F /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
 		358DE0A521021471002C544E /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		358DE0A821021B64002C544E /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
 		358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A921021B7A002C544E /* UnavailableView.swift */; };
@@ -2587,6 +2588,7 @@
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
 		358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillImpactDropdownView.xib; sourceTree = "<group>"; };
 		358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillImpactDropdownView.swift; sourceTree = "<group>"; };
+		358D677221961BC400395D0F /* BillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUtility.swift; sourceTree = "<group>"; };
 		358DE0A421021471002C544E /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
 		358DE0A721021B64002C544E /* UnavailableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnavailableView.xib; sourceTree = "<group>"; };
 		358DE0A921021B7A002C544E /* UnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableView.swift; sourceTree = "<group>"; };
@@ -3787,6 +3789,7 @@
 				35E7C7DC2190802C00BA13C6 /* Constants.swift */,
 				35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */,
 				35E7C7DE2190802C00BA13C6 /* GAUtility.swift */,
+				358D677221961BC400395D0F /* BillUtility.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -7000,6 +7003,7 @@
 				356C7F8921909F6F003E8A90 /* Premise.swift in Sources */,
 				356C7F9D2190A436003E8A90 /* URLSession+Rx.swift in Sources */,
 				356C7F982190A2D1003E8A90 /* BillComparison.swift in Sources */,
+				358D677321961BC400395D0F /* BillUtility.swift in Sources */,
 				356C7F962190A275003E8A90 /* OutageService.swift in Sources */,
 				356C7F9B2190A37F003E8A90 /* MCSAuthenticationService.swift in Sources */,
 				35E7C7E62190803900BA13C6 /* AccountsManager.swift in Sources */,
