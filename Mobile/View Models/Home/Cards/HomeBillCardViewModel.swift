@@ -120,11 +120,11 @@ class HomeBillCardViewModel {
                     
                     return paymentDate < freezeDate
                 }
-                .catchErrorJustReturn(false)
+                .catchErrorJustReturn(true)
         case .comEd:
             return paymentService.fetchPaymentFreezeDate()
                 .map { now < $0 }
-                .catchErrorJustReturn(false)
+                .catchErrorJustReturn(true)
         case .bge:
             return .just(true)
         }
