@@ -294,7 +294,7 @@ extension BillInterfaceController: NetworkingDelegate {
                 }
                 
                 let text = "Amount due \(date.dueBy().string)"
-                if text == "Amount due Immediately" {
+                if text == "Amount due immediately" {
                     let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 255.0 / 255.0, green: 51.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)]
                     let attributedText = NSAttributedString(string: text, attributes: attributes)
                     billAmountDescriptionLabel.setAttributedText(attributedText)
