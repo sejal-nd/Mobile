@@ -290,7 +290,7 @@ extension BillInterfaceController: NetworkingDelegate {
                     billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
                 } else {
                     // Blue
-                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6), range: NSRange(location: 0, length: 1)))
+                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6), range: NSRange(location: 0, length: 1), shouldChangeFontSize: true))
                 }
                 
                 let text = "Amount due \(date.dueBy().string)"
