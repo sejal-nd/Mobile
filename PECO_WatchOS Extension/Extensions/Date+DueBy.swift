@@ -10,7 +10,6 @@ import WatchKit
 
 extension Date {
     
-    // todo: Rename to something more descriptive
     public func dueBy(shouldColor: Bool = false, shouldIncludePrefix: Bool = false) -> NSAttributedString {
 
         let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 255.0 / 255.0, green: 51.0 / 255.0, blue: 0.0 / 255.0, alpha: 1)]
@@ -18,7 +17,7 @@ extension Date {
         var due = shouldIncludePrefix ? (shouldColor ? NSMutableAttributedString(string: "Due immediately", attributes: attributes) : NSMutableAttributedString(string: "Due immediately")) : (shouldColor ? NSMutableAttributedString(string: "immediately", attributes: attributes) : NSMutableAttributedString(string: "immediately"))
 
         guard let numberOfDays = Calendar.opCo.dateComponents([.day], from: self, to: Date()).day else { return due }
-                
+        
         if numberOfDays > 5, self > Date() {
             due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due by \(self.mmDdYyyyString)") : NSMutableAttributedString(string: "by \(self.mmDdYyyyString)")
         } else if numberOfDays == 5, self > Date() {
