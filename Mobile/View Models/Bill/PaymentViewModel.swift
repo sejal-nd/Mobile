@@ -129,16 +129,6 @@ class PaymentViewModel {
         }
     }
     
-    func cutoffAlert(handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
-        let message = String.localizedStringWithFormat("Payment via the mobile application is temporarily unavailable. Please check for an app update. You can make a payment on the %@ website if needed. Sorry for the inconvenience.", Environment.shared.opco.displayString)
-        
-        let alert = UIAlertController(title: NSLocalizedString("Payment Temporarily Unavailable", comment: ""),
-                                      message: message,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default , handler: handler))
-        return alert
-    }
-    
     func computeDefaultPaymentDate() {
         let now = Date()
         let startOfTodayDate = Calendar.current.startOfDay(for: now)

@@ -30,6 +30,17 @@ enum OpCo: String {
         }
         return tagline
     }
+    
+    var appStoreLink: URL? {
+        switch self {
+        case .bge:
+            return URL(string: "https://itunes.apple.com/us/app/bge-an-exelon-company/id1274170174?ls=1&mt=8")
+        case .comEd:
+            return URL(string: "https://itunes.apple.com/us/app/comed-an-exelon-company/id519716176?mt=8")
+        case .peco:
+            return URL(string: "https://itunes.apple.com/us/app/peco-an-exelon-company/id1274171957?ls=1&mt=8")
+        }
+    }
 }
 
 enum EnvironmentName: String {

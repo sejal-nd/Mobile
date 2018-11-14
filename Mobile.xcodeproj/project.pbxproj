@@ -1228,6 +1228,9 @@
 		B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
 		B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
 		B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
+		B0D57929219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D57928219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift */; };
+		B0D5792A219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D57928219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift */; };
+		B0D5792B219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D57928219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift */; };
 		B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
@@ -2986,6 +2989,7 @@
 		B0B0840121710D1500B1C632 /* Appt_Complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Complete.json; sourceTree = "<group>"; };
 		B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModel.swift; sourceTree = "<group>"; };
 		B0B0840E217111CE00B1C632 /* appointment_tracker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointment_tracker.json; sourceTree = "<group>"; };
+		B0D57928219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+FiservCutoff.swift"; sourceTree = "<group>"; };
 		B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNotificationsSettingsCell.swift; sourceTree = "<group>"; };
 		B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPreferencesNotificationsSettingsCell.xib; sourceTree = "<group>"; };
 		B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -4620,6 +4624,7 @@
 				352CB2062140448C00DAF045 /* UINavigationController+Style.swift */,
 				2249C036216C44C800EAA44D /* URLSession+Rx.swift */,
 				B05E9D12217F688A0003FAB8 /* Application.swift */,
+				B0D57928219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -7272,6 +7277,7 @@
 				54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				358BD21920F8FDAE00DA2012 /* BillImpactDropdownView.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
+				B0D57929219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift in Sources */,
 				829E058B1FA7928E00697633 /* Fillable.swift in Sources */,
 				0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				0EF60FD420EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
@@ -7472,6 +7478,7 @@
 				E8FF08651F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				82A18EC01EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
 				E803A0021EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
+				B0D5792B219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift in Sources */,
 				E89518751F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				B0DB2762215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
@@ -8013,6 +8020,7 @@
 				829E058C1FA7928E00697633 /* Fillable.swift in Sources */,
 				E8CA07DE1E9BD10000A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				0EF60FD720EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
+				B0D5792A219CCB5900FAAE96 /* UIAlertViewController+FiservCutoff.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
 				82DE61061FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				E8C453241EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,

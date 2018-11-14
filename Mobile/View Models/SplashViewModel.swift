@@ -50,17 +50,6 @@ class SplashViewModel{
             .disposed(by: disposeBag)
     }
     
-    var appStoreLink: URL? {
-        switch Environment.shared.opco {
-        case .bge:
-            return URL(string: "https://itunes.apple.com/us/app/bge-an-exelon-company/id1274170174?ls=1&mt=8")
-        case .comEd:
-            return URL(string: "https://itunes.apple.com/us/app/comed-an-exelon-company/id519716176?mt=8")
-        case .peco:
-            return URL(string: "https://itunes.apple.com/us/app/peco-an-exelon-company/id1274171957?ls=1&mt=8")
-        }
-    }
-    
     var errorTitleText: String? {
         switch Environment.shared.opco {
         case .bge:
