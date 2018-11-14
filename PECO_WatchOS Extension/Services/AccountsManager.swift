@@ -57,7 +57,7 @@ class AccountsManager {
         }
         
         let accountService = MCSAccountService()
-        accountService.fetchAccountDetail(account: currentAccount, getPayments: true, getBudgetBilling: false)
+        accountService.fetchAccountDetail(account: currentAccount)
             .subscribe(onNext: { accountDetail in
                 // handle success
                 aLog("Account Details Fetched.")

@@ -44,7 +44,7 @@ class UsageViewModel {
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
         .filter { !($0.element?.usageStatus ?? false) }
         .toAsyncRequest { [weak self] _ in
-            self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount, getPayments: false, getBudgetBilling: false) ?? .empty()
+            self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
     }
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable

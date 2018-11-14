@@ -22,7 +22,7 @@ protocol AccountService {
     ///
     /// - Parameters:
     ///   - account: the account to fetch
-    func fetchAccountDetail(account: Account, getPayments: Bool, getBudgetBilling: Bool) -> Observable<AccountDetail>
+    func fetchAccountDetail(account: Account) -> Observable<AccountDetail>
     
     #if os(iOS)
     /// Updates the Release of Information in preferences for the specified account (PECO ONLY)

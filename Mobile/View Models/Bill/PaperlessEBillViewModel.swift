@@ -65,7 +65,7 @@ class PaperlessEBillViewModel {
                 if self.initialAccountDetail.value.accountNumber == account.accountNumber {
                     return Observable.just(self.initialAccountDetail.value)
                 }
-                return self.accountService.fetchAccountDetail(account: account, getPayments: false, getBudgetBilling: true)
+                return self.accountService.fetchAccountDetail(account: account)
                     .retry(2)
                     .map { $0 }
                     .catchErrorJustReturn(nil)
