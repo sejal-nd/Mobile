@@ -104,7 +104,7 @@
                                 </group>
                                 <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="CjN-Hl-PL8">
                                     <items>
-                                        <imageView width="0.5" alignment="center" verticalAlignment="center" image="error" contentMode="scaleAspectFit" id="mXk-TA-IgT"/>
+                                        <imageView height="60" alignment="center" verticalAlignment="center" image="error" contentMode="scaleAspectFit" id="mXk-TA-IgT"/>
                                         <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" id="xHW-eU-nmI">
                                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                         </label>
