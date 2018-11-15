@@ -66,7 +66,7 @@ class BillUtility {
         }
         
         // Net Amount Due
-        if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate {
+        if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, !accountDetail.isAutoPay {
             billStates.append(.billReady(amount: amount, date: dueDate))
         } else if let billDate = accountDetail.billingInfo.billDate, let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate, let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount, lastPaymentAmount > 0, billDate < lastPaymentDate {
             // Bill Paid - Payment Applied

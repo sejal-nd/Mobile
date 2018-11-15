@@ -12,7 +12,7 @@ extension Date {
     
     public func dueBy(shouldColor: Bool = false, shouldIncludePrefix: Bool = false) -> NSAttributedString {
 
-        let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 255.0 / 255.0, green: 51.0 / 255.0, blue: 0.0 / 255.0, alpha: 1)]
+        let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 255.0 / 255.0, green: 63.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)]
         
         var due = shouldIncludePrefix ? (shouldColor ? NSMutableAttributedString(string: "Due immediately", attributes: attributes) : NSMutableAttributedString(string: "Due immediately")) : (shouldColor ? NSMutableAttributedString(string: "immediately", attributes: attributes) : NSMutableAttributedString(string: "immediately"))
 

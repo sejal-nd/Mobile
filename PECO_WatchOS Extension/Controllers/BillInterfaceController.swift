@@ -295,7 +295,7 @@ extension BillInterfaceController: NetworkingDelegate {
                 
                 let text = "Amount due \(date.dueBy().string)"
                 if text == "Amount due immediately" {
-                    let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 255.0 / 255.0, green: 51.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)]
+                    let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 255.0 / 255.0, green: 63.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)]
                     let attributedText = NSAttributedString(string: text, attributes: attributes)
                     billAmountDescriptionLabel.setAttributedText(attributedText)
                 } else {
@@ -321,7 +321,7 @@ extension BillInterfaceController: NetworkingDelegate {
                 
                 // Alert Banner
                 billAlertGroup.setHidden(false)
-                billAlertLabel.setText("\(amount.currencyString ?? "--") is due \(date.dueBy()).")
+                billAlertLabel.setText("\(amount.currencyString ?? "--") is due \(date.dueBy().string).")
             case .paymentPending(let amount):
                 pendingPaymentGroup.setHidden(false)
                 
