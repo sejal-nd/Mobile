@@ -22,8 +22,9 @@ class MCSAppointmentService: AppointmentService {
                 guard let array = json as? [NSDictionary] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
-                let appointments = array.compactMap(Appointment.from)
-                return appointments
+                
+                return array.compactMap(Appointment.from)
+                    .sorted { $0.startDate < $1.startDate }
         }
     }
 }
