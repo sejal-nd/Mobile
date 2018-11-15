@@ -63,6 +63,9 @@ class ePayWalletTableViewCell: UITableViewCell {
         expiredView.layer.borderWidth = 2
         expiredView.layer.borderColor = UIColor.errorRed.cgColor
         expiredLabel.textColor = .errorRed
+        
+        editButton.accessibilityLabel = NSLocalizedString("Edit payment method", comment: "")
+        deleteButton.accessibilityLabel = NSLocalizedString("Delete payment method", comment: "")
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
