@@ -137,12 +137,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         appointmentDescriptionTextView.attributedText = viewModel.appointmentDescriptionText
         appointmentDescriptionTextView.accessibilityValue = viewModel.appointmentDescriptionText.string.replacingOccurrences(of: "-", with: "and")
         
-        switch viewModel.status {
-        case .scheduled:
-            addToCalendarButton.isHidden = false
-        case .enRoute, .inProgress, .complete, .canceled:
-            addToCalendarButton.isHidden = true
-        }
+        addToCalendarButton.isHidden = !viewModel.showCalendarButton
     }
     
     func bindActions() {

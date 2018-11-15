@@ -47,6 +47,15 @@ class AppointmentDetailViewModel {
         }
     }
     
+    var showCalendarButton: Bool {
+        switch status {
+        case .scheduled:
+            return true
+        case .enRoute, .inProgress, .complete, .canceled:
+            return false
+        }
+    }
+    
     var appointmentDescriptionText: NSAttributedString {
         let standardAttributes: [NSAttributedString.Key: Any] =
             [.font: OpenSans.regular.of(textStyle: .headline),
