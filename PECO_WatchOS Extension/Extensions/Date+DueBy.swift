@@ -16,19 +16,19 @@ extension Date {
         
         var due = shouldIncludePrefix ? (shouldColor ? NSMutableAttributedString(string: "Due immediately", attributes: attributes) : NSMutableAttributedString(string: "Due immediately")) : (shouldColor ? NSMutableAttributedString(string: "immediately", attributes: attributes) : NSMutableAttributedString(string: "immediately"))
 
-        guard let numberOfDays = Calendar.opCo.dateComponents([.day], from: self, to: Date()).day else { return due }
+        guard let numberOfDays = Calendar.opCo.dateComponents([.day], from: Date(), to: self).day else { return due }
         
-        if numberOfDays > 5, self > Date() {
+        if numberOfDays > 5 {
             due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due by \(self.mmDdYyyyString)") : NSMutableAttributedString(string: "by \(self.mmDdYyyyString)")
-        } else if numberOfDays == 5, self > Date() {
+        } else if numberOfDays == 5 {
             due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due in 5 days") : NSMutableAttributedString(string: "in 5 days")
-        } else if numberOfDays == 4, self > Date() {
+        } else if numberOfDays == 4 {
             due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due in 4 days") : NSMutableAttributedString(string: "in 4 days")
-        } else if numberOfDays == 3, self > Date() {
+        } else if numberOfDays == 3 {
                 due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due in 3 days") : NSMutableAttributedString(string: "in 3 days")
-        } else if numberOfDays == 2, self > Date() {
+        } else if numberOfDays == 2 {
             due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due in 2 days") : NSMutableAttributedString(string: "in 2 days")
-        } else if numberOfDays == 1, self > Date() {
+        } else if numberOfDays == 1 {
             due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due tomorrow") : NSMutableAttributedString(string: "tomorrow")
         } else if numberOfDays == 0 {
             due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due today") : NSMutableAttributedString(string: "today")
