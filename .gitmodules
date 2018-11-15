@@ -1,0 +1,3 @@
+[submodule "tools/release_notes_script"]
+	path = tools/release_notes_script
+	url = https://exelontfs.visualstudio.com/EU-DevOps/_git/eucoms-list-changes
