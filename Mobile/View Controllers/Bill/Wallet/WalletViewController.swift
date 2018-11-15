@@ -251,7 +251,34 @@ class WalletViewController: UIViewController {
     @objc func onDeleteWalletItemPress(sender: UIButton) {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
             selectedWalletItem = walletItems[sender.tag]
-            print("delete item at index \(sender.tag)")
+            
+            var title: String
+            var toast: String
+            if selectedWalletItem!.bankOrCard == .bank {
+                title = NSLocalizedString("Delete Bank Account?", comment: "")
+                toast = NSLocalizedString("Bank Account deleted", comment: "")
+            } else {
+                title = NSLocalizedString("Delete Card?", comment: "")
+                toast = NSLocalizedString("Card deleted", comment: "")
+            }
+            let messageString = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review and edit your scheduled payments in Payment Activity.", comment: "")
+            
+            let alertController = UIAlertController(title: title, message: messageString, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { [weak self] _ in
+                guard let self = self else { return }
+                LoadingView.show()
+                self.viewModel.deleteWalletItem(walletItem: self.selectedWalletItem!, onSuccess: {
+                    LoadingView.hide()
+                    self.didChangeAccount(toastMessage: toast)
+                }, onError: { errMessage in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
+                })
+            }))
+            present(alertController, animated: true, completion: nil)
         }
     }
     

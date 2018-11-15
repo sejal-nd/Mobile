@@ -40,6 +40,17 @@ class WalletViewModel {
             .materialize()
     }.share()
     
+    func deleteWalletItem(walletItem: WalletItem, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        walletService.deletePaymentMethod(walletItem: walletItem)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     private(set) lazy var hasExpiredWalletItem = self.walletItemEvents.elements()
         .filter { $0.contains { $0.isExpired } }
         .mapTo(())
