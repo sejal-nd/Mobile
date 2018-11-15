@@ -118,9 +118,9 @@ class BillUtility {
             }
             
         }
-        
+
         // Most Recent Bill
-        if let amount = accountDetail.billingInfo.currentDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, (isPrecarious && isPendingPayment) {
+        if let amount = accountDetail.billingInfo.currentDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate { // (isPrecarious && isPendingPayment) - apparently should not be here
             billStates.append(.mostRecent(amount: amount, date: dueDate))
         }
         

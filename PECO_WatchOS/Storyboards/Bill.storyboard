@@ -114,19 +114,6 @@
                                             <variation key="device=watch42mm" height="139"/>
                                             <variation key="device=watch44mm" height="158"/>
                                         </group>
-                                        <group width="1" alignment="center" layout="vertical" radius="8" id="o1x-31-mqT">
-                                            <items>
-                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="g2o-us-bNb">
-                                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                                </label>
-                                                <group width="1" height="2" alignment="left" id="KMM-tA-OKK"/>
-                                                <label alignment="center" text="Pending Payment" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="FHu-PO-h09">
-                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                </label>
-                                            </items>
-                                            <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
-                                        </group>
                                         <group width="1" alignment="center" layout="vertical" radius="8" id="rvO-3U-9Ul">
                                             <items>
                                                 <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="0vq-db-dF8">
@@ -204,6 +191,19 @@
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                                 <label alignment="center" text="Due by 09/25/2018" textAlignment="center" minimumScaleFactor="0.75" id="Vro-PE-6ci">
+                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                </label>
+                                            </items>
+                                            <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
+                                        </group>
+                                        <group width="1" alignment="center" layout="vertical" radius="8" id="o1x-31-mqT">
+                                            <items>
+                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="g2o-us-bNb">
+                                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                                </label>
+                                                <group width="1" height="2" alignment="left" id="KMM-tA-OKK"/>
+                                                <label alignment="center" text="Pending Payment" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="FHu-PO-h09">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
