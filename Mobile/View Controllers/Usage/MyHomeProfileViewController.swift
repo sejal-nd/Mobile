@@ -52,8 +52,8 @@ class MyHomeProfileViewController: UIViewController {
         super.viewDidLoad()
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics.log(event: .ViewHomeProfile,
-                             dimensions: [.ResidentialAMI: residentialAMIString])
+        Analytics.log(event: .viewHomeProfile,
+                             dimensions: [.residentialAMI: residentialAMIString])
         
         navigationItem.rightBarButtonItem = saveButton
         
@@ -67,17 +67,13 @@ class MyHomeProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        navigationController?.setColoredNavBar()
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         if parent == nil {
-            if let navController = navigationController as? MainBaseNavigationController {
-                navController.setWhiteNavBar()
-            }
+            navigationController?.setWhiteNavBar()
         }
     }
     
@@ -252,11 +248,11 @@ class MyHomeProfileViewController: UIViewController {
     func bindTextField() {
         homeSizeTextField.textField.delegate = self
         homeSizeTextField.setKeyboardType(.numberPad)
-        NotificationCenter.default.rx.notification(.UIKeyboardWillShow)
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] notification in
                 guard let `self` = self,
-                    let endFrameRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+                    let endFrameRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
                         return
                 }
                 
@@ -264,13 +260,13 @@ class MyHomeProfileViewController: UIViewController {
                 if #available(iOS 11.0, *) {
                     safeAreaBottomInset = self.view.safeAreaInsets.bottom
                 }
-                let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+                let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
                 self.scrollView.contentInset = insets
                 self.scrollView.scrollIndicatorInsets = insets
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: { [weak self] _ in
                 self?.scrollView.contentInset = .zero

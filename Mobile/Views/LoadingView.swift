@@ -56,7 +56,7 @@ class LoadingView: UIView {
             UIView.animate(withDuration: animated ? 0.2 : 0, delay: 0.0, options: .curveEaseOut, animations: {
                 loadingView.alpha = 1.0
             }, completion: { _ in
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+                UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
             })
         }
     }

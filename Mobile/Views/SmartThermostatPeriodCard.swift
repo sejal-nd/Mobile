@@ -31,7 +31,7 @@ class SmartThermostatPeriodCard: ButtonControl {
         super.commonInit()
         backgroundColorOnPress = .softGray
         addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        layer.cornerRadius = 2
+        layer.cornerRadius = 10
         backgroundColor = .white
         
         // TIME/PERIOD

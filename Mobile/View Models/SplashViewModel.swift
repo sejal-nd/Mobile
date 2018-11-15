@@ -39,6 +39,17 @@ class SplashViewModel{
         return minVersion.compare(currentVersion, options: .numeric) == .orderedDescending
     }
     
+    func checkStormMode(completion: @escaping (Bool) -> ()) {
+        authService.getMaintenanceMode()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { maintenance in
+                completion(maintenance.stormModeStatus)
+            }, onError: { err in
+                completion(false)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     var appStoreLink: URL? {
         switch Environment.shared.opco {
         case .bge:

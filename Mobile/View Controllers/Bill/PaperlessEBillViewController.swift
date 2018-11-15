@@ -84,7 +84,7 @@ class PaperlessEBillViewController: UIViewController {
                 
                 self.enrollAllAccountsSwitch.isEnabled = true
                 self.detailsLoadingActivityView.isHidden = true
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+                UIAccessibility.post(notification: .screenChanged, argument: self.view)
                 if self.viewModel.accounts.value.count == 1 {
                     let accountDetail = accountDetails.first!
                     self.singleAccountEnrollSwitch.isOn = accountDetail.eBillEnrollStatus == .canUnenroll
@@ -165,9 +165,7 @@ class PaperlessEBillViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        navigationController?.setColoredNavBar()
     }
     
     override func viewDidLayoutSubviews() {

@@ -20,17 +20,6 @@ enum OutageTrivalent : String {
     case unsure = "Unsure"
 }
 
-private func extractDate(object: Any?) throws -> Date? {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-    dateFormatter.timeZone = .opCo
-    return dateFormatter.date(from: dateString)
-}
-
 
 /// Representation of an outage to be reported
 struct OutageInfo {
@@ -69,10 +58,16 @@ struct OutageInfo {
 }
 
 struct ReportedOutageResult: Mappable {
-    let reportedTime = Date()
+    let reportedTime: Date
     let etr: Date?
     
     init(map: Mapper) throws {
-        etr = map.optionalFrom("etr", transformation: extractDate)
+        etr = map.optionalFrom("etr", transformation: DateParser().extractDate)
+        
+        do {
+            reportedTime = try map.from("reportedTime", transformation: DateParser().extractDate)
+        } catch {
+            reportedTime = Date()
+        }
     }
 }

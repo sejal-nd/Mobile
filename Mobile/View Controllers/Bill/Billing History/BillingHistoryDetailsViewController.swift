@@ -79,15 +79,14 @@ class BillingHistoryDetailsViewController: UIViewController {
         bindLoadingStates()
         
         viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem, onCompletion: {
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
+            UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
         })
     }
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+
+        navigationController?.setColoredNavBar()
     }
     
     func formatViews() {

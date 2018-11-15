@@ -13,6 +13,11 @@ import RxCocoa
 class ButtonControl: UIControl {
     
     @IBInspectable var shouldFadeSubviewsOnPress: Bool = false
+    @IBInspectable var normalBackgroundColor: UIColor? {
+        didSet {
+            backgroundColor = normalBackgroundColor
+        }
+    }
     @IBInspectable var backgroundColorOnPress: UIColor?
 
     let bag = DisposeBag()
@@ -28,7 +33,9 @@ class ButtonControl: UIControl {
     }
     
     func commonInit() {
-        let normalStateColor = backgroundColor
+        if normalBackgroundColor == nil {
+            normalBackgroundColor = backgroundColor
+        }
         
         let pressed = rx.controlEvent(.touchDown).asDriver().map(to: true)
         
@@ -42,7 +49,7 @@ class ButtonControl: UIControl {
             .distinctUntilChanged()
             .drive(onNext: { [weak self] pressed in
                 guard let `self` = self else { return }
-                self.backgroundColor = pressed ? self.backgroundColorOnPress: normalStateColor
+                self.backgroundColor = pressed ? self.backgroundColorOnPress: self.normalBackgroundColor
                 if self.shouldFadeSubviewsOnPress {
                     self.fadeSubviews(fadeAmount: pressed ? 0.5: 1, animationDuration: 0.1)
                 }
@@ -50,13 +57,13 @@ class ButtonControl: UIControl {
             .disposed(by: bag)
         
         isAccessibilityElement = true
-        accessibilityTraits = UIAccessibilityTraitButton
+        accessibilityTraits = .button
     }
     
     override var isEnabled: Bool {
         didSet {
             alpha = isEnabled ? 1 : 0.5
-            accessibilityTraits = isEnabled ? UIAccessibilityTraitButton : (UIAccessibilityTraitButton|UIAccessibilityTraitNotEnabled)
+            accessibilityTraits = isEnabled ? .button : [.button, .notEnabled]
         }
     }
 

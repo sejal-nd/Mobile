@@ -56,15 +56,13 @@ class PECOReleaseOfInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        navigationController?.setColoredNavBar()
         
         fetchCurrentSelection()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .ReleaseInfoOffer)
+        Analytics.log(event: .releaseInfoOffer)
     }
     
     @objc func onCancelPress() {
@@ -80,7 +78,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
         }
         
         LoadingView.show()
-        Analytics.log(event: .ReleaseInfoSubmit)
+        Analytics.log(event: .releaseInfoSubmit)
         accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.shared.currentAccount!, selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
@@ -119,12 +117,12 @@ class PECOReleaseOfInfoViewController: UIViewController {
                     }
                     self.loadingIndicator.isHidden = true
                     self.tableView.isHidden = false
-                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
+                    UIAccessibility.post(notification: .screenChanged, argument: self.tableView)
                 }, onError: { [weak self] error in
                     guard let `self` = self else { return }
                     self.errorLabel.isHidden = false
                     self.loadingIndicator.isHidden = true
-                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+                    UIAccessibility.post(notification: .screenChanged, argument: self.view)
                 })
                 .disposed(by: self.disposeBag)
         }
@@ -160,7 +158,7 @@ extension PECOReleaseOfInfoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }
 

@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+
+# Reads in the mobile cloud config file directly, filtering out prod instances
+# Have to convert to json first
+
+plutil -convert json -e json Mobile/MCSConfig.plist
+
+string_of_mbes="$(perl -MJSON::PP -e "my \$data = decode_json(<STDIN>); \
+	foreach my \$key ( keys \$data -> {mobileBackends} ){ \
+		if (index(\$key, \"Prod\") == -1){ \
+			print \$key , \" \"; \
+	}}" < Mobile/MCSConfig.json)"
+
+stagingMBEs=($string_of_mbes)
+
+rm Mobile/MCSConfig.json
+
 echo "
 Exelon Utilities Mobile Build Script for iOS
 
@@ -11,12 +27,12 @@ Usage:
 --build-number	          - Integer, will be appended to the base version number
 
 --configuration           - Staging, Prodbeta, or Release
-                            
-                            or
+							
+							or
 
 --build-branch              refs/heads/stage
-                            refs/heads/prodbeta
-                            refs/heads/master
+							refs/heads/prodbeta
+							refs/heads/master
 
 ------ App Center Arguments -----
 
@@ -28,7 +44,7 @@ groups of users already signed up in App Center
 --app-center-test-series  - Unused?
 --app-center-group        - The app center group to publish signed app to
 --app-center-app          - Optional, app center slug. Defaults are set in this script
-                            to Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-\$OPCO
+							to Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-\$OPCO
 ------- Optional Arguments ------
 
 The build script already figures these values based on opco + configuration, but if you
@@ -37,20 +53,21 @@ to just update the build script directly if it's a permanent change.
 
 --bundle-suffix           - Appends to the end of bundle_name.opco if specified
 --bundle-name             - Specifies the base bundle_name. Defaults to either:
-                            com.exelon.mobile
-                            or 
-                            com.iphoneproduction.exelon -- if building a ComEd Prod app
+							com.exelon.mobile
+							or 
+							com.iphoneproduction.exelon -- if building a ComEd Prod app
 
 --project                 - Name of the xcodeproj -- defaults to Mobile.xcodeproj
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
 --phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
+--stage-mbe               - Override the default MBE for staging build only -- ${stagingMBEs[*]}
 "
 
 PROPERTIES_FILE='version.properties'
 PROJECT_DIR="."
 ASSET_DIR="$PROJECT_DIR/Mobile/Assets/"
 PROJECT="Mobile.xcodeproj"
-CONFIGURATION="Release"
+CONFIGURATION=""
 UNIT_TEST_SIMULATOR="platform=iOS Simulator,name=iPhone 8"
 BUILD_NUMBER=
 BUNDLE_SUFFIX=
@@ -64,6 +81,7 @@ APP_CENTER_GROUP=
 OPCO=
 PHASE=
 BUILD_BRANCH=
+STAGE_MBE=
 
 # Parse arguments.
 for i in "$@"; do
@@ -82,13 +100,30 @@ for i in "$@"; do
 		--opco) OPCO="$2"; shift ;;
 		--phase) PHASE="$2"; shift ;;
 		--build-branch) BUILD_BRANCH="$2"; shift ;;
+		--stage-mbe) STAGE_MBE="$2"; shift ;;
 	esac
 	shift
 done
 
+check_errs()
+{
+  # Function. Parameter 1 is the return code
+  # Para. 2 is text to display on failure.
+  if [ "${1}" -ne "0" ]; then
+    echo "ERROR # ${1} : ${2}"
+    # as a bonus, make our script exit with the right error code.
+    exit ${1}
+  fi
+}
 
-# https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
-set -eo pipefail
+# https://stackoverflow.com/questions/3685970/check-if-a-bash-array-contains-a-value
+find_in_array() {
+  local word=$1
+  shift
+  for e in "$@"; do
+    [[ "$e" == "$word" ]] && return 0; 
+  done
+}
 
 mkdir -p build/logs
 
@@ -124,8 +159,8 @@ if [ -f "$PROPERTIES_FILE" ]; then
 
   while IFS='=' read -r key value
   do
-    key=$(echo $key | tr '.' '_')
-    eval "${key}='${value}'"
+	key=$(echo $key | tr '.' '_')
+	eval "${key}='${value}'"
   done < "$PROPERTIES_FILE"
 else
   echo "$PROPERTIES_FILE not found."
@@ -244,17 +279,42 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 	echo "   CFBundleShortVersionString=$target_version_number"
 	echo ""
 
+	if [ "$CONFIGURATION" == "Staging" ] && [ "$STAGE_MBE" != "" ]; then
+		if find_in_array $STAGE_MBE "${stagingMBEs[@]}"; then
+			plutil -replace mcsInstanceName -string $STAGE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist
+			echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist"
+			echo "   mcsInstanceName=$STAGE_MBE"
+		else
+			echo "Specified Stage MBE $STAGE_MBE was not found"
+			exit 1
+		fi
+	fi
+
 fi
 
 
-# Restore Carthage Packages
+# Check VSTS xcode version. If set to 9.4.1, change it to 10.0. This branch requires 10.0+ to run.
+if xcodebuild -version | grep -q 9.4.1; then
+	echo "Switching VSTS build agent to Xcode 10 -- $XCODE_10_DEVELOPER_DIR"
+	sudo xcode-select -switch $XCODE_10_DEVELOPER_DIR
 
+	# Xcode 10's new build system seems to want all files in place, which causes issues with the environment switcher task
+	# Stick empty files in place
+
+	touch Mobile/Configuration/environment.plist
+	touch Mobile/Configuration/environment_preprocess.h
+fi
+
+# Restore Carthage Packages
 if [[ $target_phases = *"carthage"* ]]; then 
 	# carthage update --platform iOS --project-directory $PROJECT_DIR
 	carthage update --platform iOS --project-directory $PROJECT_DIR --cache-builds
+	check_errs $? "Carthage update exited with a non-zero status"
 fi
 
 if [[ $target_phases = *"unitTest"* ]]; then
+
+	set -o pipefail
 
 	echo "Running automation tests"
 	xcrun xcodebuild  -sdk iphonesimulator \
@@ -263,7 +323,9 @@ if [[ $target_phases = *"unitTest"* ]]; then
 		-destination "$UNIT_TEST_SIMULATOR" \
 		-configuration Automation \
 		test | tee build/logs/xcodebuild_automation_unittests.log | xcpretty --report junit 
+	check_errs $? "Xcode unit tests exited with a non-zero status"
 
+	set +o pipefail
 fi
 
 if [[ $target_phases = *"build"* ]]; then
@@ -271,12 +333,16 @@ if [[ $target_phases = *"build"* ]]; then
 	echo "------------------------------ Building Application  ----------------------------"
 	# Build App
 
+	set -o pipefail
+
 	xcrun xcodebuild -sdk iphoneos \
 		-configuration $CONFIGURATION \
 		-project $PROJECT \
 		-scheme "$target_scheme" \
 		-archivePath build/archive/$target_scheme.xcarchive \
 		archive | tee build/logs/xcodebuild_archive.log | xcpretty
+
+	check_errs $? "Xcode build exited with a non-zero status"
 
 	echo "--------------------------------- Post archiving  -------------------------------"
 
@@ -288,8 +354,11 @@ if [[ $target_phases = *"build"* ]]; then
 		-exportPath build/output/$target_scheme \
 		-exportOptionsPlist tools/ExportPlists/$target_scheme.plist
 
-	echo "--------------------------------- Post exporting -------------------------------"
+	check_errs $? "Xcode archiving exited with a non-zero status"
 
+	echo "--------------------------------- Post archiving -------------------------------"
+
+	set +o pipefail
 
 	if [[ $target_phases = *"distribute"* ]]; then
 		# Push to App Center Distribute
@@ -301,6 +370,9 @@ if [[ $target_phases = *"build"* ]]; then
 				--token $APP_CENTER_API_TOKEN \
 				--file "build/output/$target_scheme/$target_scheme.ipa" \
 				--group "$APP_CENTER_GROUP"
+
+			check_errs $? "App center distribution exited with a non-zero status"
+
 		echo "--------------------------------- Completed release to $APP_CENTER_GROUP -------------------------------"
 		else
 			echo "Skipping App Center Distribution due to missing variables - \"app-center-group\" or \"app-center-api-token\""
@@ -336,6 +408,8 @@ if [[ $target_phases = *"build"* ]]; then
 					--app $target_app_center_app \
 					--token $APP_CENTER_API_TOKEN
 
+			check_errs $? "App center crash uploading exited with a non-zero status"
+
 				rm -r build/appcentersymbols
 			
 			echo "--------------------------------- Completed symbols  -------------------------------"
@@ -358,8 +432,8 @@ APP_CENTER_GROUP=
 # Parse arguments.
 for i in \"\$@\"; do
 case \$1 in
-    --app-center-api-token) APP_CENTER_API_TOKEN=\"\$2\"; shift ;;
-    --app-center-group) APP_CENTER_GROUP=\"\$2\"; shift ;;
+	--app-center-api-token) APP_CENTER_API_TOKEN=\"\$2\"; shift ;;
+	--app-center-group) APP_CENTER_GROUP=\"\$2\"; shift ;;
 esac
 shift
 done
@@ -434,6 +508,9 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 			VALID_ARCHS="armv7 armv7s arm64" \
 			build-for-testing | tee build/logs/xcodebuild_build_for_testing.log | xcpretty
 
+		check_errs $? "Build for testing exited with a non-zero status"
+
+		# find .
 		echo "--------------------------------- Uploading to appcenter -------------------------------"
 
 		# xcode logs include a statement to output the location of the build directory
@@ -449,6 +526,8 @@ if [[ $target_phases = *"appCenterTest"* ]]; then
 			--build-dir $BUILT_PRODUCTS_DIR \
 			--token $APP_CENTER_API_TOKEN \
 			--async
+
+		check_errs $? "App center test upload exited with a non-zero status"
 
 	else
 		echo "Skipping App Center Test due to missing variables - \"app-center-test-devices\", or \"app-center-api-token\""

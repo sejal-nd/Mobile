@@ -18,7 +18,7 @@ class TotalSavingsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewWidthConstraint: NSLayoutConstraint!
     
-    var eventResults: [SERResult]! // Passed from HomeViewController/UsageViewController
+    var eventResults: [SERResult]! // Passed from HomeViewController/SmartEnergyRewardsViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,9 +53,7 @@ class TotalSavingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setWhiteNavBar()
-        }
+        navigationController?.setWhiteNavBar()
         
         scrollViewDidScroll(scrollView)
     }

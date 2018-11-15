@@ -11,7 +11,7 @@
 	<key>oauthEndpoint</key>
 	<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>ProdBGE</string>
+	<string>Prod-bgeMBE</string>
 	<key>fiservUrl</key>
 	<string>https://billerwebui.fiservapps.com/Mobile</string>
 	<key>speedpayUrl</key>
@@ -26,5 +26,7 @@
 	<string>www.bge.com</string>
 	<key>appCenterId</key>
 	<string>bddc73d9-4dfb-421f-a59f-71c08c3647e5</string>
+	<key>associatedDomain</key>
+	<string>secure.bge.com</string>
 </dict>
 </plist>

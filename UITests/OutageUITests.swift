@@ -8,55 +8,13 @@
 
 import XCTest
 import AppCenterXCUITestExtensions
-class OutageUITests: XCTestCase {
+class OutageUITests: ExelonUITestCase {
     
-    let app = XCUIApplication()
     
-    override func setUp() {
-        super.setUp()
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        app.launchArguments = ["UITest"]
-        ACTLaunch.launch(app)
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func doLogin(username: String) {
-        let continueButton = app.buttons["Continue"]
-        XCTAssert(continueButton.waitForExistence(timeout: 30))
-        
-        // Assert button is disabled when the switch is not enabled
-        XCTAssert(!continueButton.isEnabled)
-        app.switches.element(boundBy: 0).tap()
-        XCTAssert(continueButton.isEnabled)
-        continueButton.tap()
-        
-        let signInButton = app.buttons["Sign In"]
-        XCTAssert(signInButton.waitForExistence(timeout: 5))
-        signInButton.tap()
-        
-        let elementsQuery = app.scrollViews.otherElements
-        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
-        usernameEmailAddressTextField.clearAndEnterText(username)
-        
-        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.clearAndEnterText("Password1")
-        elementsQuery.buttons["Sign In"].tap()
-        
-        XCTAssert(app.tabBars.buttons["Home"].waitForExistence(timeout: 10))
-        app.tabBars.buttons["Outage"].tap()
-    }
     
     func testOutageTabLayout() {
         doLogin(username: "valid@test.com")
+        selectTab(tabName: "Outage")
         
         XCTAssert(app.scrollViews.otherElements.buttons["Report outage"].waitForExistence(timeout: 3))
         XCTAssert(app.scrollViews.otherElements.buttons["View outage map"].waitForExistence(timeout: 3))
@@ -64,9 +22,9 @@ class OutageUITests: XCTestCase {
     
     func testPowerOnState() {
         doLogin(username: "outageTestPowerOn")
-        
-        let predicate = NSPredicate(format: "label CONTAINS 'Our records indicate your power is on'")
-        let outageStatusButton = app.scrollViews.otherElements.buttons.element(matching: predicate)
+        selectTab(tabName: "Outage")
+        let predicate = NSPredicate(format: "label CONTAINS 'Outage status, Button. Our records indicate your power is on.'")
+        let outageStatusButton = app.scrollViews.otherElements.element(matching: predicate)
         XCTAssert(outageStatusButton.waitForExistence(timeout: 5))
         
         outageStatusButton.tap()
@@ -75,9 +33,9 @@ class OutageUITests: XCTestCase {
     
     func testPowerOutState() {
         doLogin(username: "outageTestPowerOut")
-        
+        selectTab(tabName: "Outage")
         let predicate = NSPredicate(format: "label CONTAINS 'Our records indicate your power is out'")
-        let outageStatusButton = app.scrollViews.otherElements.buttons.element(matching: predicate)
+        let outageStatusButton = app.scrollViews.otherElements.element(matching: predicate)
         XCTAssert(outageStatusButton.waitForExistence(timeout: 5))
         
         outageStatusButton.tap()
@@ -86,7 +44,7 @@ class OutageUITests: XCTestCase {
     
     func testGasOnlyState() {
         doLogin(username: "outageTestGasOnly")
-        
+        selectTab(tabName: "Outage")
         let predicate = NSPredicate(format: "label CONTAINS 'Our records indicate'")
         let outageStatusButton = app.scrollViews.otherElements.buttons.element(matching: predicate)
         XCTAssertFalse(outageStatusButton.waitForExistence(timeout: 3)) // Should not be an outage status button
@@ -96,13 +54,11 @@ class OutageUITests: XCTestCase {
     
     func testFinaledState() {
         doLogin(username: "outageTestFinaled")
+        selectTab(tabName: "Outage")
         
-        let predicate = NSPredicate(format: "label CONTAINS 'available for this account.'")
+        let predicate = NSPredicate(format: "label CONTAINS 'Our records indicate'")
         let outageStatusButton = app.scrollViews.otherElements.buttons.element(matching: predicate)
-        XCTAssert(outageStatusButton.waitForExistence(timeout: 3))
-            
-        outageStatusButton.tap()
-        XCTAssert(app.alerts.count == 0, "Should be no alert when tapping")
+        XCTAssertFalse(outageStatusButton.waitForExistence(timeout: 3)) // Should not be an outage status button
             
         let reportOutageButton = app.scrollViews.otherElements.buttons["Report outage"]
         XCTAssertFalse(reportOutageButton.isEnabled, "Report outage button should be disabled for finaled accounts")
@@ -110,7 +66,7 @@ class OutageUITests: XCTestCase {
     
     func testReportOutage() {
         doLogin(username: "outageTestReport")
-        
+        selectTab(tabName: "Outage")
         let reportOutageButton = app.scrollViews.otherElements.buttons["Report outage"]
         _ = reportOutageButton.waitForExistence(timeout: 3)
         reportOutageButton.tap()
@@ -120,7 +76,7 @@ class OutageUITests: XCTestCase {
         submitButton.tap()
         
         var predicate = NSPredicate(format: "label CONTAINS 'Your outage is reported.'")
-        let outageStatusButton = app.scrollViews.otherElements.buttons.element(matching: predicate)
+        let outageStatusButton = app.scrollViews.otherElements.element(matching: predicate)
         XCTAssert(outageStatusButton.waitForExistence(timeout: 3), "Expected the outage status button in the reported state")
         
         predicate = NSPredicate(format: "label CONTAINS 'Report outage. Reported'")
@@ -129,10 +85,10 @@ class OutageUITests: XCTestCase {
     
     func testMaintModeOutage() {
         doLogin(username: "maintNotHome")
-        
+        selectTab(tabName: "Outage")
         XCTAssert(app.buttons["Reload"].exists)
         XCTAssert(app.staticTexts["Scheduled Maintenance"].exists)
-        XCTAssert(app.staticTexts["Outage is currently unavailable due to\nscheduled maintenance."].exists)
+        XCTAssert(app.staticTexts["Outage is currently unavailable due to\nscheduled maintenance."].waitForExistence(timeout: 3))
         var outageMmStaticText: XCUIElement
         
         if appName.contains("BGE") {

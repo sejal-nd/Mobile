@@ -99,20 +99,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
-        navigationController?.navigationBar.tintColor = .white
-        
-        setNeedsStatusBarAppearanceUpdate()
-        
-        let titleDict: [NSAttributedStringKey: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setColoredNavBar()
     }
     
     @objc func onNextPress() {
@@ -122,7 +109,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         
         viewModel.validateAccount(onSuccess: {
             LoadingView.hide()
-            Analytics.log(event: .RegisterAccountSetup)
+            Analytics.log(event: .registerAccountSetup)
             self.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
             
         }, onMultipleAccounts:  { // should never happen

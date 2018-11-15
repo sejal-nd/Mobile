@@ -77,8 +77,8 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedEvents = [SmartThermostatDevice](repeating: SmartThermostatDevice(), count: 2).enumerated().map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        let expectedElements = [SmartThermostatDevice](repeating: SmartThermostatDevice(), count: 2)
+        XCTAssertRecordedElements(observer.events, expectedElements)
     }
     
     func testDeviceButtonText() {
@@ -98,8 +98,8 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedEvents = [String](repeating: "Device: ", count: 2).enumerated().map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        let expectedElements = [String](repeating: "Device: ", count: 2)
+        XCTAssertRecordedElements(observer.events, expectedElements)
     }
     
     func testProgramCardsDataActiveOverride() {

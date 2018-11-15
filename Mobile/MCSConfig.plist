@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>mobileBackends</key>
+	<dict>
+		<key>mobileAppDev</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>mobileBackendID</key>
+			<string>471e5945-7a9b-40ef-8b0e-19b8230a7872</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+		</dict>
+		<key>mobileAppUAT</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>mobileBackendID</key>
+			<string>75926ee8-5d41-4375-92d3-d4c01f73b432</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+		</dict>
+		<key>stageMain</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>mobileBackendID</key>
+			<string>d612762f-f41d-432b-a056-83ef7780b44c</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+		</dict>
+		<key>Prod-bgeMBE</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>mobileBackendID</key>
+			<string>6681b1e8-bf86-40c2-8faf-66b140c76cea</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
+		</dict>
+		<key>Prod-comedMBE</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>mobileBackendID</key>
+			<string>e4018111-369f-418e-9d31-e95377170d0e</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
+		</dict>
+		<key>Prod-pecoMBE</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>mobileBackendID</key>
+			<string>b7990531-b75c-4345-91c1-1c2ff9b81612</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

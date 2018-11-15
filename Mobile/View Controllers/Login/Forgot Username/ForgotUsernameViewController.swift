@@ -29,8 +29,8 @@ class ForgotUsernameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         title = NSLocalizedString("Forgot Username", comment: "")
         
@@ -156,16 +156,7 @@ class ForgotUsernameViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.isTranslucent = false
-
-        let titleDict: [NSAttributedStringKey: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setColoredNavBar()
     }
     
     @objc func onCancelPress() {
@@ -187,7 +178,7 @@ class ForgotUsernameViewController: UIViewController {
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
             self?.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
-            Analytics.log(event: .ForgotUsernameCompleteAccountValidation)
+            Analytics.log(event: .forgotUsernameCompleteAccountValidation)
         }, onNeedAccountNumber: { [weak self] in
             LoadingView.hide()
             self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
@@ -232,13 +223,13 @@ class ForgotUsernameViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
             safeAreaBottomInset = self.view.safeAreaInsets.bottom
         }
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }

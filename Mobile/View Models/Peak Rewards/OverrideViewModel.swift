@@ -100,11 +100,11 @@ class OverrideViewModel {
     private(set) lazy var enableDateButton: Driver<Bool> = self.scheduledOverride.isNil()
     private(set) lazy var showScheduledOverride: Driver<Bool> = self.scheduledOverride.isNil().not()
     private(set) lazy var showActiveOverride: Driver<Bool> = self.activeOverride.isNil().not()
-    private(set) lazy var enableSaveButton: Driver<Bool> = self.selectedDate.map(to: true).startWith(false).asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var enableSaveButton: Driver<Bool> = self.selectedDate.mapTo(true).startWith(false).asDriver(onErrorDriveWith: .empty())
     
     //MARK: - Actions
     private lazy var saveEvents: Observable<Event<Void>> = self.saveAction
-        .do(onNext: { Analytics.log(event: .OverrideSave) })
+        .do(onNext: { Analytics.log(event: .overrideSave) })
         .withLatestFrom(self.selectedDate.asObservable())
         .flatMapLatest { [weak self] selectedDate -> Observable<Event<Void>> in
             guard let `self` = self else { return .empty() }
@@ -118,7 +118,7 @@ class OverrideViewModel {
         .share()
     
     private lazy var cancelEvents: Observable<Event<Void>> = self.cancelAction
-        .do(onNext: { Analytics.log(event: .CancelOverride) })
+        .do(onNext: { Analytics.log(event: .cancelOverride) })
         .flatMapLatest { [weak self] _ -> Observable<Event<Void>> in
             guard let `self` = self else { return .empty() }
             return self.peakRewardsService.deleteOverride(accountNumber: self.accountDetail.accountNumber,
@@ -130,10 +130,10 @@ class OverrideViewModel {
         .share()
     
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
-        .do(onNext: { Analytics.log(event: .OverrideToast) })
+        .do(onNext: { Analytics.log(event: .overrideToast) })
     
     private(set) lazy var cancelSuccess: Observable<Void> = self.cancelEvents.elements()
-        .do(onNext: { Analytics.log(event: .CancelOverrideToast) })
+        .do(onNext: { Analytics.log(event: .cancelOverrideToast) })
     
     private(set) lazy var error: Observable<(String?, String?)> = Observable.merge(self.saveEvents.errors(), self.cancelEvents.errors())
         .map {

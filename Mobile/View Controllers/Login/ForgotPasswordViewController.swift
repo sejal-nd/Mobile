@@ -41,6 +41,10 @@ class ForgotPasswordViewController: UIViewController {
         instructionLabel.text = viewModel.getInstructionLabelText()
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
+        if #available(iOS 11, *) {
+            usernameTextField.textField.textContentType = .username
+        }
+        
         usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .done
@@ -77,16 +81,7 @@ class ForgotPasswordViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.isTranslucent = false
-        
-        let titleDict: [NSAttributedStringKey: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
-                
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setColoredNavBar()
     }
     
     @objc func onCancelPress() {

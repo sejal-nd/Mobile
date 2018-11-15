@@ -22,11 +22,17 @@ extension ObservableType {
     
     func toAsyncRequest<T>(activityTracker: @escaping (E) -> ActivityTracker?,
                            requestSelector: @escaping (E) -> Observable<T>) -> Observable<Event<T>> {
+        return toAsyncRequest(activityTrackers: { [activityTracker($0)].compactMap { $0 } },
+                              requestSelector: requestSelector)
+    }
+    
+    func toAsyncRequest<T>(activityTrackers: @escaping (E) -> [ActivityTracker]?,
+                           requestSelector: @escaping (E) -> Observable<T>) -> Observable<Event<T>> {
         return flatMapLatest { element -> Observable<Event<T>> in
             var observable = requestSelector(element)
             
-            if let tracker = activityTracker(element) {
-                observable = observable.trackActivity(tracker)
+            activityTrackers(element)?.forEach {
+                observable = observable.trackActivity($0)
             }
             
             return observable

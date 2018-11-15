@@ -20,14 +20,14 @@ class UsageWebViewController: UIViewController {
     
     let accountService = ServiceFactory.createAccountService()
     
-    var accountDetail: AccountDetail! // Passed from UsageViewController
+    var accountDetail: AccountDetail! // Passed from SmartEnergyRewardsViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics.log(event: .ViewUsageOfferComplete,
-                             dimensions: [.ResidentialAMI: residentialAMIString])
+        Analytics.log(event: .viewUsageOfferComplete,
+                             dimensions: [.residentialAMI: residentialAMIString])
         
         title = NSLocalizedString("Usage Details", comment: "")
         
@@ -72,17 +72,14 @@ class UsageWebViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        
+        navigationController?.setColoredNavBar()
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         if parent == nil {
-            if let navController = navigationController as? MainBaseNavigationController {
-                navController.setWhiteNavBar()
-            }
+            navigationController?.setWhiteNavBar()
         }
     }
     

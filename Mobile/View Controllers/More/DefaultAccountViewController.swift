@@ -46,7 +46,7 @@ class DefaultAccountViewController: UIViewController {
                                               preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
-                    Analytics.log(event: .SetDefaultAccountChange)
+                    Analytics.log(event: .setDefaultAccountChange)
                 })
                 
                 self?.present(alert, animated: true, completion: nil)
@@ -57,9 +57,7 @@ class DefaultAccountViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        navigationController?.setColoredNavBar()
     }
     
     func showLoadingView(_ show: Bool) {
@@ -96,11 +94,11 @@ extension DefaultAccountViewController: UITableViewDataSource {
         if account.address == nil || (account.serviceType ?? "").isEmpty {
             cell.selectionStyle = .none
             cell.contentView.alpha = 0.2
-            cell.accessibilityTraits = UIAccessibilityTraitNotEnabled
+            cell.accessibilityTraits = .notEnabled
         } else {
             cell.selectionStyle = .default
             cell.contentView.alpha = 1
-            cell.accessibilityTraits = UIAccessibilityTraitNone
+            cell.accessibilityTraits = .none
         }
         
         return cell
@@ -127,12 +125,12 @@ extension DefaultAccountViewController: UITableViewDelegate {
                                           preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
-                Analytics.log(event: .SetDefaultAccountCancel)
+                Analytics.log(event: .setDefaultAccountCancel)
                 observer.onCompleted()
             })
             
             alert.addAction(UIAlertAction(title: NSLocalizedString("Change", comment: ""), style: .default) { [weak self] _ in
-                Analytics.log(event: .SetDefaultAccountChange)
+                Analytics.log(event: .setDefaultAccountChange)
                 if let `self` = self {
                     observer.onNext(self.viewModel.accounts.value[indexPath.row])
                 }

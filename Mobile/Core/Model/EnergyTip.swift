@@ -15,24 +15,13 @@ struct EnergyTip: Mappable, Equatable {
     let body: String
     
     init(map: Mapper) throws {
-        title = try map.from("title")
-        
-        let htmlBody: String = try map.from("shortBody")
-        
-        guard let data = htmlBody.data(using: .unicode, allowLossyConversion: true) else {
-            throw MapperError.convertibleError(value: htmlBody, type: String.self)
-        }
-        
-        let attributedBody = try NSAttributedString(data: data,
-                                         options: [.documentType: NSAttributedString.DocumentType.html],
-                                         documentAttributes: nil)
-        body = attributedBody.string
+        title = try string(fromHtmlString: map.from("title"))
+        body = try string(fromHtmlString: map.from("shortBody"))
         
         //TODO: Actually implement something for this
         image = map.optionalFrom("image") {
             $0 as? UIImage
         }
-        
     }
     
     static func ==(lhs: EnergyTip, rhs: EnergyTip) -> Bool {
@@ -41,4 +30,15 @@ struct EnergyTip: Mappable, Equatable {
             lhs.body == rhs.body
     }
     
+}
+
+fileprivate func string(fromHtmlString htmlString: String) throws -> String {
+    guard let data = htmlString.data(using: .unicode, allowLossyConversion: true) else {
+        throw MapperError.convertibleError(value: htmlString, type: String.self)
+    }
+    
+    let attributedString = try NSAttributedString(data: data,
+                                                  options: [.documentType: NSAttributedString.DocumentType.html],
+                                                  documentAttributes: nil)
+    return attributedString.string
 }

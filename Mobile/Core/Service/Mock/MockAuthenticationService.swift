@@ -35,8 +35,8 @@ struct MockAuthenticationService: AuthenticationService {
         return false
     }
     
-    func logout(completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.success(()))
+    func logout() {
+
     }
     
     func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {

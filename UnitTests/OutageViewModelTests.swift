@@ -126,31 +126,6 @@ class OutageViewModelTests: XCTestCase {
         }
     }
     
-    func testClearReportedOutage() {
-        // Clear the user defaults first (UI testing may interfere with this test)
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
-        
-        let expect = expectation(description: "Test report outage expectation")
-        let mockOutageService = MockOutageService()
-        viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
-        let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
-        
-        reportViewModel.reportOutage(onSuccess: {
-            expect.fulfill()
-        }, onError: {_ in
-            XCTFail("Unexpected failure response")
-        })
-        
-        viewModel.clearReportedOutage()
-        XCTAssertNil(self.viewModel.reportedOutage, "Reported outage was not empty after clearing")
-        
-        waitForExpectations(timeout: 5) { (error) in
-            XCTAssertNil(error, "timeout")
-        }
-    }
-    
     func testEstimatedRestorationDateStringCurrentOutage() {
         AccountsStore.shared.currentAccount = Account.from(["accountNumber": "9836621902", "address": "573 Elm Street"])!
         

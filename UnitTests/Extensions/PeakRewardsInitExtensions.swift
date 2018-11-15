@@ -8,10 +8,7 @@
 
 private extension Date {
     var apiString: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return dateFormatter.string(from: self)
+        return DateFormatter.yyyyMMddTHHmmssZFormatter.string(from: self)
     }
 }
 

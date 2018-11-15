@@ -7,11 +7,12 @@
 */
 
 "FN-ACCT-LOCKED-LOGIN" = "You cannot access your account because you have exceeded the limit of login attempts. Your account may be locked out for the next 15 minutes. Please try again later.";
-"FN-FAIL-LOGIN" = "We're sorry, this combination of username and password is invalid. Please try again.";
+"FN-FAIL-LOGIN" = "We're sorry, this combination of username and password is invalid. Please try again. Too many consecutive attempts may result in your account being temporarily locked.";
 "INVALID-PROFILE-TYPE" = "This profile type does not have access to the mobile app. Access your account on our responsive website.";
 "FN-NOT-FOUND" = "Account not found.";
 "ERR-NO-NETWORK-CONNECTION" = "No network available, please try again later.";
-"FN-PROF-BADSECURITY" = "The security answer does not match our records.";
+"FN-PROF-BADSECURITY" = "The security answer does not match our records. Too many consecutive attempts may result in your account being temporarily locked.";
+"FN-LOCKED-PWD" = "You cannot access your account because you have exceeded the limit of security question attempts. Your account may be locked out for the next 15 minutes. Please try again later.";
 "FN-PROF-NOTFOUND" = "The information entered does not match our records. Please try again.";
 "FN-ACCT-NOTFOUND" = "The information entered does not match our records. Please try again.";
 "FN-NOT-FOUND" = "The information entered does not match our records. Please try again.";

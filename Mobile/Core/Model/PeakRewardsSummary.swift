@@ -71,25 +71,9 @@ struct PeakRewardsProgram: Mappable {
             return status
         }
         gearName = try map.from("gearName")
-        
-        let extractDate = { (object: Any) throws -> Date in
-            guard let string = object as? String else {
-                throw MapperError.convertibleError(value: object, type: String.self)
-            }
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = .opCo
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            
-            guard let date = dateFormatter.date(from: string) else {
-                throw MapperError.convertibleError(value: string, type: Date.self)
-            }
-            
-            return date
-        }
-        
-        startDate = map.optionalFrom("startDate", transformation: extractDate)
-        stopDate = map.optionalFrom("stopDate", transformation: extractDate)
+
+        startDate = map.optionalFrom("startDate", transformation: DateParser().extractDate)
+        stopDate = map.optionalFrom("stopDate", transformation: DateParser().extractDate)
     }
 }
 
@@ -117,24 +101,8 @@ struct PeakRewardsOverride: Mappable, Equatable {
             return status
         }
         
-        let extractDate = { (object: Any) throws -> Date in
-            guard let string = object as? String else {
-                throw MapperError.convertibleError(value: object, type: String.self)
-            }
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = .opCo
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            
-            guard let date = dateFormatter.date(from: string) else {
-                throw MapperError.convertibleError(value: string, type: Date.self)
-            }
-            
-            return date
-        }
-        
-        start = map.optionalFrom("start", transformation: extractDate)
-        stop = map.optionalFrom("stop", transformation: extractDate)
+        start = map.optionalFrom("start", transformation: DateParser().extractDate)
+        stop = map.optionalFrom("stop", transformation: DateParser().extractDate)
         
         serialNumber = try map.from("device.serialNumber")
     }
@@ -306,30 +274,13 @@ struct SmartThermostatPeriodInfo: Mappable {
     let startTime: Date
     
     var startTimeDisplayString: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "h:mm a"
-        return dateFormatter.string(from: startTime)
+        return DateFormatter.hmmaFormatter.string(from: startTime)
     }
     
     init(map: Mapper) throws {
         coolTemp = try map.from("coolTemp", transformation: tempMapper)
         heatTemp = try map.from("heatTemp", transformation: tempMapper)
-        
-        startTime = try map.from("startTime") {
-            guard let string = $0 as? String else {
-                throw MapperError.convertibleError(value: $0, type: String.self)
-            }
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = .opCo
-            dateFormatter.dateFormat = "HH:mm"
-            guard let date = dateFormatter.date(from: string) else {
-                throw MapperError.convertibleError(value: string, type: Date.self)
-            }
-            
-            return date
-        }
+        startTime = try map.from("startTime", transformation: DateParser().extractDate)
     }
     
     init(startTime: Date,
@@ -341,11 +292,7 @@ struct SmartThermostatPeriodInfo: Mappable {
     }
     
     func toDictionary() -> [String: Any] {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .opCo
-        dateFormatter.dateFormat = "HH:mm"
-        
-        return ["coolTemp": coolTemp.fahrenheit, "heatTemp": heatTemp.fahrenheit, "startTime": dateFormatter.string(from: startTime)]
+        return ["coolTemp": coolTemp.fahrenheit, "heatTemp": heatTemp.fahrenheit, "startTime": DateFormatter.HHmmFormatter.string(from: startTime)]
     }
 }
 

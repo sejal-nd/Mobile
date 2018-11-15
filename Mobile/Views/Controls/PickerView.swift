@@ -173,7 +173,7 @@ fileprivate class BasePickerView: UIView {
             self.backgroundColor = UIColor.black.withAlphaComponent(0)
         }, completion: { [weak self] _ in
             self?.accessibilityViewIsModal = false
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+            UIAccessibility.post(notification: .screenChanged, argument: self)
             self?.removeFromSuperview()
         })
     }
@@ -186,7 +186,7 @@ fileprivate class BasePickerView: UIView {
             self.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         }, completion: { [weak self] _ in
             self?.accessibilityViewIsModal = true
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+            UIAccessibility.post(notification: .screenChanged, argument: self)
         })
     }
 

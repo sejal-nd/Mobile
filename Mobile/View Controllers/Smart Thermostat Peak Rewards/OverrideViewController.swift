@@ -214,6 +214,7 @@ class OverrideViewController: UIViewController {
                 self.navigationItem.backBarButtonItem = backItem
                 
                 let calendarVC = PDTSimpleCalendarViewController()
+                calendarVC.calendar = .opCo
                 calendarVC.delegate = self
                 calendarVC.title = NSLocalizedString("Select Override Date", comment: "")
                 
@@ -266,7 +267,7 @@ class OverrideViewController: UIViewController {
 
 extension OverrideViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
         let today = Calendar.opCo.startOfDay(for: Date())
@@ -278,7 +279,7 @@ extension OverrideViewController: PDTSimpleCalendarViewDelegate {
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
         viewModel.selectedDate.onNext(opCoTimeDate)
     }

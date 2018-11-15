@@ -57,13 +57,11 @@ class BillingHistoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        navigationController?.setColoredNavBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .BillingOfferComplete)
+        Analytics.log(event: .billingOfferComplete)
     }
     
     func getBillingHistory() {
@@ -78,10 +76,10 @@ class BillingHistoryViewController: UIViewController {
             if billingHistory.upcoming.count == 0 && billingHistory.past.count == 0 {
                 self.tableView.isHidden = true
                 self.emptyStateLabel.isHidden = false
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.emptyStateLabel)
+                UIAccessibility.post(notification: .screenChanged, argument: self.emptyStateLabel)
             } else {
                 self.tableView.reloadData()
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
+                UIAccessibility.post(notification: .screenChanged, argument: self.tableView)
             }
             
         }) { [weak self] (error) in
@@ -110,7 +108,7 @@ class BillingHistoryViewController: UIViewController {
         } else if let vc = segue.destination as? ViewBillViewController {
             let billingHistoryItem = selectedIndexPath.section == 0 ? billingHistory.upcoming[selectedIndexPath.row] : billingHistory.past[selectedIndexPath.row]
             vc.viewModel.billDate = billingHistoryItem.date
-            Analytics.log(event: .BillViewPastOfferComplete)
+            Analytics.log(event: .billViewPastOfferComplete)
             AppRating.logRatingEvent()
         } else if let vc = segue.destination as? BGEAutoPayViewController {
             vc.accountDetail = accountDetail
@@ -373,7 +371,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         view.backgroundColor = .white
         let label = UILabel()
-        let button = UIButton(type: UIButtonType.system)
+        let button = UIButton(type: .system)
         
         label.text = section == 0 ? NSLocalizedString("UPCOMING", comment: "") : NSLocalizedString("PAST", comment: "")
         label.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -448,15 +446,15 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
-        let button = UIButton(type: UIButtonType.system)
-        button.contentEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8)
+        let button = UIButton(type: .system)
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.titleLabel?.font = SystemFont.semibold.of(size: 18)
         button.setTitle("View More", for: .normal)
         button.setTitleColor(.actionBlue, for: .normal)
         button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "ViewMoreCell")
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "ViewMoreCell")
         cell.selectionStyle = .none
         cell.contentView.addSubview(button)
         
@@ -468,7 +466,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     
     func bgEasyTableViewCell(indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "BgEasyCell")
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "BgEasyCell")
         
         cell.selectionStyle = .none
         
