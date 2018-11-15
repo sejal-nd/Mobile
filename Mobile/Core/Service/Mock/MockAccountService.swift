@@ -39,7 +39,7 @@ class MockAccountService: AccountService {
         return .just(accounts)
     }
     
-    func fetchAccountDetail(account: Account, getPayments: Bool, getBudgetBilling: Bool) -> Observable<AccountDetail> {
+    func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         let tenDaysFromToday = Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000)
         switch loggedInUsername {

@@ -38,10 +38,8 @@ struct MCSAccountService: AccountService {
         }
     }
     
-    func fetchAccountDetail(account: Account, getPayments: Bool, getBudgetBilling: Bool) -> Observable<AccountDetail> {
-        let payments = getPayments ? "true" : "false"
-        let budgetBilling = getBudgetBilling ? "true" : "false"
-        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(account.accountNumber)?payments=\(payments)&budgetBilling=\(budgetBilling)")
+    func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
+        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(account.accountNumber)")
             .map { json in
                 guard let dict = json as? NSDictionary, let accountDetail = AccountDetail.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
