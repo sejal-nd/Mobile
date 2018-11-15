@@ -310,7 +310,7 @@ class ReviewPaymentViewController: UIViewController {
             viewModel.checkForCutoff(onShouldReject: { [weak self] in
                 guard let self = self else { return }
                 LoadingView.hide()
-                self.present(self.viewModel.cutoffAlert(handler: nil), animated: true, completion: nil)
+                self.present(UIAlertController.fiservCutoffAlert(), animated: true, completion: nil)
             }, onShouldContinue: { [weak self] in
                 self?.viewModel.schedulePayment(onDuplicate: { [weak self] (errTitle, errMessage) in
                     LoadingView.hide()

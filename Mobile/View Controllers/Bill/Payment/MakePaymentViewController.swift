@@ -282,9 +282,11 @@ class MakePaymentViewController: UIViewController {
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
             }, onFiservCutoff: { [weak self] in
                 guard let self = self else { return }
-                self.present(self.viewModel.cutoffAlert(handler: { [weak self] _ in
+                let alert = UIAlertController.fiservCutoffAlert { [weak self] _ in
                     self?.navigationController?.popViewController(animated: true)
-                }), animated: true, completion: nil)
+                }
+                
+                self.present(alert, animated: true, completion: nil)
         })
     }
     

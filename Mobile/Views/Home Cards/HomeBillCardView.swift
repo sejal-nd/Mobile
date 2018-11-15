@@ -431,21 +431,12 @@ class HomeBillCardView: UIView {
         .map(WebViewController.init)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var cutoffAlert = otpIsBeforeFiservCutoffDate
+    private(set) lazy var cutoffAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
         .filter(!)
-        .map { [weak self] _ -> UIViewController in
-            let title = NSLocalizedString("Payment Temporarily Unavailable", comment: "")
-            let message = String.localizedStringWithFormat("Payment via the mobile application is temporarily unavailable. Please check for an app update. You can make a payment on the %@ website if needed. Sorry for the inconvenience.", Environment.shared.opco.displayString)
-            
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            
-            let action = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default)
-            { [weak self] _ in
+        .map { _ in
+            UIAlertController.fiservCutoffAlert { [weak self] _ in
                 self?.oneTouchSlider.reset(animated: true)
             }
-            
-            alert.addAction(action)
-            return alert
     }
     
     private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
