@@ -8,18 +8,14 @@
 
 import Foundation
 
-fileprivate let appName: String = {
-    return Bundle.main.infoDictionary?["CFBundleName"] as! String
-}()
-
 extension TimeZone {
     static let opCo: TimeZone = {
-        if appName.contains("BGE") || appName.contains("PECO") {
+
+        switch appOpCo {
+        case .bge, .peco:
             return TimeZone(identifier: "America/New_York")!
-        } else if appName.contains("ComEd") {
+        case .comEd:
             return TimeZone(identifier: "America/Chicago")!
-        } else {
-            fatalError("Unsupported OpCo: \(appName)")
         }
     }()
 }

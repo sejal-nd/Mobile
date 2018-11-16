@@ -99,8 +99,6 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var billNotReadyLabel: UILabel!
     @IBOutlet private weak var errorStack: UIStackView!
     @IBOutlet private weak var errorLabel: UILabel!
-    @IBOutlet private weak var customErrorView: UIView!
-    @IBOutlet private weak var customErrorDetailLabel: UILabel!
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
     
@@ -159,7 +157,7 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
         
-        a11yTutorialButton.setTitleColor(.actionBlue, for: .normal)
+        a11yTutorialButton.setTitleColor(StormModeStatus.shared.isOn ? .white : .actionBlue, for: .normal)
         a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
         a11yTutorialButton.titleLabel?.text = NSLocalizedString("View Tutorial", comment: "")
         
@@ -199,11 +197,6 @@ class HomeBillCardView: UIView {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
-        customErrorDetailLabel.font = OpenSans.regular.of(textStyle: .title1)
-        customErrorDetailLabel.setLineHeight(lineHeight: 26)
-        customErrorDetailLabel.textAlignment = .center
-        customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to billing information. " +
-            "Access your account on our responsive website.", comment: "")
         
         maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
         
@@ -235,7 +228,6 @@ class HomeBillCardView: UIView {
         oneTouchPayTCButtonLabel.textColor = .white
         billNotReadyLabel.textColor = .white
         errorLabel.textColor = .white
-        customErrorDetailLabel.textColor = .white
         maintenanceModeLabel.textColor = .white
         
         dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_question_white.pdf"), for: .normal)
@@ -292,16 +284,7 @@ class HomeBillCardView: UIView {
             .drive(onNext: { _ in Analytics.log(event: .checkBalanceError) })
             .disposed(by: bag)
         
-        Driver.combineLatest(viewModel.showErrorState, viewModel.showCustomErrorState)
-            .map { $0 && !$1 }
-            .not()
-            .drive(errorStack.rx.isHidden)
-            .disposed(by: bag)
-        
-        Driver.combineLatest(viewModel.showCustomErrorState, viewModel.showMaintenanceModeState)
-        { $0 && !$1 }
-            .not()
-            .drive(customErrorView.rx.isHidden).disposed(by: bag)
+        viewModel.showErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
         
         viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
         
@@ -374,7 +357,7 @@ class HomeBillCardView: UIView {
         viewModel.enableOneTouchPayTCButton.not().drive(oneTouchPayTCButtonLabel.rx.isAccessibilityElement).disposed(by: bag)
         
         // Actions
-        oneTouchSlider.didFinishSwipe
+        otpIsBeforeFiservCutoffDate.filter { $0 }
             .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV))
             .filter { !$0 && !$1 }
             .map(to: ())
@@ -402,6 +385,31 @@ class HomeBillCardView: UIView {
     }
     
     // Actions
+    private lazy var otpIsBeforeFiservCutoffDate = oneTouchSlider.didFinishSwipe
+        // Fiserv Cutoff Date Check START
+        // Remove this block after ePay transition
+        .do(onNext: { _ in
+            switch Environment.shared.opco {
+            case .bge: break
+            case .comEd, .peco:
+                LoadingView.show(animated: true)
+            }
+        })
+        .asObservable()
+        .toAsyncRequest { [weak self] _ -> Observable<Bool> in
+            self?.viewModel.isBeforeFiservCutoffDate() ?? .empty()
+        }
+        .dematerialize()
+        .asDriver(onErrorDriveWith: .empty())
+        .do(onNext: { _ in
+            switch Environment.shared.opco {
+            case .bge: break
+            case .comEd, .peco:
+                LoadingView.hide(animated: true)
+            }
+        })
+        // Fiserv Cutoff Date Check END
+    
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
         .do(onNext: { Analytics.log(event: .viewBillBillCard) })
     
@@ -423,7 +431,16 @@ class HomeBillCardView: UIView {
         .map(WebViewController.init)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
+    private(set) lazy var cutoffAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
+        .filter(!)
+        .map { _ in
+            UIAlertController.fiservCutoffAlert { [weak self] _ in
+                self?.oneTouchSlider.reset(animated: true)
+            }
+    }
+    
+    private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
+        .filter { $0 }
         .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
         .filter { $0 }
         .map { [weak self] _ in
@@ -476,7 +493,8 @@ class HomeBillCardView: UIView {
         return alertController2
     }
     
-    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = self.oneTouchSlider.didFinishSwipe
+    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
+        .filter { $0 }
         .withLatestFrom(self.viewModel.promptForCVV)
         .asObservable()
         .filter { $0 }
@@ -563,14 +581,16 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(tooltipModal,
-                                                                                        oneTouchSliderWeekendAlert,
-                                                                                        paymentTACModal,
-                                                                                        oneTouchPayErrorAlert,
-                                                                                        oneTouchSliderCVV2Alert,
-                                                                                        tutorialViewController,
-                                                                                        bgeasyViewController,
-                                                                                        autoPayAlert)
+    private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver
+        .merge(tooltipModal,
+               oneTouchSliderWeekendAlert,
+               paymentTACModal,
+               oneTouchPayErrorAlert,
+               oneTouchSliderCVV2Alert,
+               tutorialViewController,
+               bgeasyViewController,
+               autoPayAlert,
+               cutoffAlert)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside

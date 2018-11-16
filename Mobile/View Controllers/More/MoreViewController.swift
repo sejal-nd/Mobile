@@ -27,7 +27,7 @@ class MoreViewController: UIViewController {
                 switch Environment.shared.environmentName {
                 case .prod:
                     versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
-                case .aut, .dev, .stage:
+                default:
                     versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
                 }
             } else {
@@ -72,7 +72,7 @@ class MoreViewController: UIViewController {
         if shouldHideNavigationBar {
             navigationController?.setNavigationBarHidden(true, animated: true)
         } else {
-            navigationController?.setColoredNavBar()
+            navigationController?.setColoredNavBar(hidesBottomBorder: true)
         }
         
         if AccountsStore.shared.accounts == nil {
@@ -158,6 +158,11 @@ class MoreViewController: UIViewController {
     }
     
     private func logout(action: UIAlertAction) {
+        if Environment.shared.opco == .peco {
+            // Sign out of Apple Watch App
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
+        }
+            
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout()
         

@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import UIKit
 
 class PaymentViewModel {
     let disposeBag = DisposeBag()
@@ -48,7 +49,7 @@ class PaymentViewModel {
     let allowEdits = Variable(true)
     let allowDeletes = Variable(false)
     
-    let fiservCutoffDate = Calendar.opCo.date(from: DateComponents(year: 2018, month: 10, day: 29))!
+    let fiservCutoffDate = Variable<Date?>(nil)
     
     init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
@@ -71,30 +72,7 @@ class PaymentViewModel {
             paymentAmount = Variable("")
         }
         
-        let now = Date()
-        self.paymentDate = Variable(now)
-        let startOfTodayDate = Calendar.current.startOfDay(for: now)
-        let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
-        
-        if Environment.shared.opco == .bge &&
-            Calendar.opCo.component(.hour, from: Date()) >= 20 &&
-            !accountDetail.isActiveSeverance {
-            self.paymentDate.value = tomorrow
-        }
-        if Environment.shared.opco == .bge &&
-            !accountDetail.isActiveSeverance &&
-            !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
-            self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
-        } else if let dueDate = accountDetail.billingInfo.dueByDate {
-            if dueDate >= now && !self.fixedPaymentDateLogic(accountDetail: accountDetail, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
-                switch Environment.shared.opco {
-                case .bge:
-                    self.paymentDate.value = dueDate
-                case .comEd, .peco:
-                    self.paymentDate.value = min(dueDate, self.fiservCutoffDate)
-                }
-            }
-        }
+        self.paymentDate = Variable(Date()) // May be updated later...see computeDefaultPaymentDate()
     }
     
     // MARK: - Service Calls
@@ -124,11 +102,91 @@ class PaymentViewModel {
         }
     }
     
-    func fetchData(onSuccess: (() -> Void)?, onError: (() -> Void)?) {
+    func fetchFiservCutoff() -> Observable<Date> {
+        return paymentService.fetchPaymentFreezeDate().map { date in
+            self.fiservCutoffDate.value = date
+            return date
+        }
+    }
+    
+    func checkForCutoff(onShouldReject: @escaping (() -> Void), onShouldContinue: @escaping (() -> Void)) {
+        if Environment.shared.opco == .bge {
+            onShouldContinue()
+        } else {
+            isFetching.value = true
+            fetchFiservCutoff().subscribe(onNext: { [weak self] cutoffDate in
+                guard let self = self else { return }
+                self.isFetching.value = false
+                if Date() >= cutoffDate || self.paymentDate.value >= cutoffDate {
+                    onShouldReject()
+                } else {
+                    onShouldContinue()
+                }
+            }, onError: { [weak self] _ in
+                self?.isFetching.value = false
+                onShouldContinue()
+            }).disposed(by: disposeBag)
+        }
+    }
+    
+    func computeDefaultPaymentDate() {
+        let now = Date()
+        let startOfTodayDate = Calendar.current.startOfDay(for: now)
+        let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
+        
+        if Environment.shared.opco == .bge &&
+            Calendar.opCo.component(.hour, from: Date()) >= 20 &&
+            !accountDetail.value.isActiveSeverance {
+            self.paymentDate.value = tomorrow
+        }
+        if Environment.shared.opco == .bge &&
+            !accountDetail.value.isActiveSeverance &&
+            !self.fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
+            self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
+        } else if let dueDate = accountDetail.value.billingInfo.dueByDate {
+            if dueDate >= now && !self.fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
+                switch Environment.shared.opco {
+                case .bge:
+                    self.paymentDate.value = dueDate
+                case .comEd:
+                    if let cutoffDate = self.fiservCutoffDate.value {
+                        self.paymentDate.value = min(dueDate, cutoffDate)
+                    } else {
+                        self.paymentDate.value = dueDate
+                    }
+                case .peco:
+                    if let cutoffDate = self.fiservCutoffDate.value {
+                        guard let cutoffWorkday = self.workdayArray.last(where: { $0 <= cutoffDate }) else {
+                            self.paymentDate.value = min(dueDate, cutoffDate)
+                            return
+                        }
+                        
+                        self.paymentDate.value = min(dueDate, cutoffWorkday)
+                    } else {
+                        self.paymentDate.value = dueDate
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchData(onSuccess: (() -> ())?, onError: (() -> ())?, onFiservCutoff: (() -> ())?) {
         var observables = [fetchWalletItems()]
+        if Environment.shared.opco == .peco || Environment.shared.opco == .comEd {
+            let cutoffObservable = fetchFiservCutoff()
+                .do(onNext: { [weak self] date in
+                    self?.fiservCutoffDate.value = date
+                })
+                .mapTo(())
+                .catchErrorJustReturn(())
+            
+            observables.append(cutoffObservable)
+        }
+        
         if Environment.shared.opco == .peco {
             observables.append(fetchPECOWorkdays())
         }
+        
         if let paymentId = paymentId.value, paymentDetail.value == nil {
             observables.append(fetchPaymentDetails(paymentId: paymentId))
         }
@@ -139,6 +197,25 @@ class PaymentViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.isFetching.value = false
+                
+                if let cutoffDate = self.fiservCutoffDate.value {
+                    if Environment.shared.opco == .peco {
+                        guard let nextWorkday = self.workdayArray.first(where: { $0 >= Calendar.opCo.startOfDay(for: Date()) }) else {
+                            onError?()
+                            return
+                        }
+                       
+                        guard nextWorkday < cutoffDate else {
+                            onFiservCutoff?()
+                            return
+                        }
+                    } else if Date() >= cutoffDate {
+                        onFiservCutoff?()
+                        return
+                    }
+                }
+                
+                self.computeDefaultPaymentDate()
                 
                 if let walletItems = self.walletItems.value, self.selectedWalletItem.value == nil {
                     if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment

@@ -203,7 +203,7 @@ fileprivate func getTokensAndExecute(params: [String: Any], action: Action) -> O
     let requestId = ShortUUIDGenerator.getUUID(length: 8)
     
     let totalPathLength = urlRequest.url!.absoluteString.count
-    let path = String(urlRequest.url!.absoluteString.suffix(totalPathLength - Environment.shared.fiservUrl.count))
+    let path = String(urlRequest.url!.absoluteString.suffix(totalPathLength - Environment.shared.mcsConfig.fiservUrl.count))
 
     var requestBodyString = ""
     if let body = urlRequest.httpBody {
@@ -256,7 +256,7 @@ fileprivate func executePost(request: URLRequest) -> Observable<WalletItemResult
     let requestId = ShortUUIDGenerator.getUUID(length: 8)
     var path = ""
     if let urlString = request.url?.absoluteString {
-        path = String(urlString.suffix(from: Environment.shared.fiservUrl.endIndex))
+        path = String(urlString.suffix(from: Environment.shared.mcsConfig.fiservUrl.endIndex))
     }
     
     var requestBodyString = ""
@@ -304,7 +304,7 @@ fileprivate func encodePayload(_ payloadParameters : [String : Any], action: Act
 
 fileprivate func createFiservRequest(with body: Data?, method: HttpMethod, guid: String? = nil) -> URLRequest {
     let endpoint = guid != nil ? "FiservJsonMessenger?v=\(guid!)" : "Process"
-    var urlRequest = URLRequest(url: URL(string: "\(Environment.shared.fiservUrl)/\(endpoint)")!)
+    var urlRequest = URLRequest(url: URL(string: "\(Environment.shared.mcsConfig.fiservUrl)/\(endpoint)")!)
     urlRequest.httpMethod = method.rawValue
     urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
     if let body = body {

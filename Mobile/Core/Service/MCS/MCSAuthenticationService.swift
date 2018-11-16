@@ -32,21 +32,19 @@ fileprivate extension CharacterSet {
 
 struct MCSAuthenticationService : AuthenticationService {
     
+    #if os(iOS)
     // MCS Login Implementation
     // Steps:
     //  1. Retreive token from Layer 7 API gateway
     //  2. Exchange the token
     //  3. Fetch the list of accounts for the user
-    //  4. Fetch the account detail for the first account
-    //  5. If not password protected account - success
-    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<(ProfileStatus, AccountDetail)> {
+    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
         // 1
         return fetchAuthToken(username: username, password: password)
-            
             // 2
             .flatMap { tokenResponse in
                 MCSApi.shared.exchangeToken(tokenResponse.token, storeToken: stayLoggedIn)
-                    .map { tokenResponse }
+                    .mapTo(tokenResponse.profileStatus)
             }
             .do(onNext: { _ in
                 UserDefaults.standard.set(stayLoggedIn, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
@@ -57,9 +55,9 @@ struct MCSAuthenticationService : AuthenticationService {
             })
             
             // 3
-            .flatMap { tokenResponse in
-                MCSAccountService().fetchAccounts()
-                    .map { ($0, tokenResponse)}
+            .flatMap { profileStatus in
+                // This will error if the first account is password protected
+                MCSAccountService().fetchAccounts().mapTo(profileStatus)
             }
             .do(onNext: { _ in
                 // Reconfigure quick actions since we now know whether or not the user is multi-account.
@@ -67,28 +65,13 @@ struct MCSAuthenticationService : AuthenticationService {
             },
                 onError: { _ in  self.logout() }
             )
-            
-            // 4
-            .flatMap { (accounts, tokenResponse) in
-                MCSAccountService().fetchAccountDetail(account: accounts[0])
-                    .map { ($0, tokenResponse) }
-            }
-            .map { (accountDetail, tokenResponse) in
-                // 5
-                if accountDetail.isPasswordProtected {
-                    self.logout()
-                    throw ServiceError(serviceCode: ServiceErrorCode.fnAccountProtected.rawValue)
-                } else {
-                    return (tokenResponse.profileStatus, accountDetail)
-                }
-            }
-            .do(onError: { _ in self.logout() })
     }
     
     func validateLogin(username: String, password: String) -> Observable<Void> {
         return fetchAuthToken(username: username, password: password)
             .mapTo(())
     }
+    #endif
     
     func isAuthenticated() -> Bool {
         return MCSApi.shared.isAuthenticated();
@@ -106,22 +89,24 @@ struct MCSAuthenticationService : AuthenticationService {
         }
         
         let postDataString = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=\(password)"
+        let postDataLoggingStr = "username=\(Environment.shared.opco.rawValue.uppercased())\\\(username)&password=******"
         let method = HttpMethod.post
-        var request = URLRequest(url: URL(string: Environment.shared.oAuthEndpoint)!)
+        let path = Environment.shared.mcsConfig.oAuthEndpoint
+        var request = URLRequest(url: URL(string: path)!)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = ["content-type": "application/x-www-form-urlencoded"]
         request.httpBody = postDataString.data(using: .utf8)
         
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
-        APILog(requestId: requestId, method: method, message: "REQUEST - BODY: \(postDataString)")
+        APILog(requestId: requestId, path: path, method: method, message: "REQUEST - BODY: \(postDataLoggingStr)")
         
         return URLSession.shared.rx.dataResponse(request: request)
             .do(onNext: { data in
                 let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                APILog(requestId: requestId, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+                APILog(requestId: requestId, path: path, method: method, message: "RESPONSE - BODY: \(resBodyString)")
             }, onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(requestId: requestId, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
             })
             .map { data in
                 switch AuthTokenParser.parseAuthTokenResponse(data: data) {
@@ -161,6 +146,7 @@ struct MCSAuthenticationService : AuthenticationService {
         }
     }
     
+    #if os(iOS)
     func changePassword(currentPassword: String, newPassword: String) -> Observable<Void> {
         
         let params = [ChangePasswordParams.oldPassword.rawValue: currentPassword,
@@ -184,6 +170,7 @@ struct MCSAuthenticationService : AuthenticationService {
         return MCSApi.shared.put(path: path, params: params)
             .mapTo(())
     }
+    #endif
     
     
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?) -> Observable<[ForgotUsernameMasked]> {
@@ -257,6 +244,7 @@ struct MCSAuthenticationService : AuthenticationService {
         }
     }
     
+    #if os(iOS)
     func recoverPassword(username: String) -> Observable<Void> {
         let params = ["username" : username]
         let opco = Environment.shared.opco.displayString.uppercased()
@@ -265,11 +253,12 @@ struct MCSAuthenticationService : AuthenticationService {
         return MCSApi.shared.post(path: path, params: params)
             .mapTo(())
     }
+    #endif
 
 }
 
-fileprivate func APILog(requestId: String, method: HttpMethod, message: String) {
+fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
     #if DEBUG
-        NSLog("[OAuthApi][%@] %@ %@", requestId, method.rawValue, message)
+        NSLog("[OAuthApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
     #endif
 }

@@ -90,6 +90,13 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         appointmentVCs = appointments
             .map(AppointmentDetailViewModel.init)
             .map(AppointmentDetailViewController.init)
+        
+        for i in 0..<appointments.count {
+            let apptVC = appointmentVCs[i]
+            apptVC.index = i
+            apptVC.totalCount = appointments.count
+        }
+        
         return appointmentVCs
     }
     
@@ -99,11 +106,11 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
             return false
         }
 
-        // Ensure all jobId's remained the same
+        // Ensure all id's remained the same
         for i in 0..<appointments.count {
             let currAppt = appointments[i]
             let newAppt = newAppointments[i]
-            if currAppt.jobId != newAppt.jobId {
+            if currAppt.id != newAppt.id {
                 return false
             }
         }

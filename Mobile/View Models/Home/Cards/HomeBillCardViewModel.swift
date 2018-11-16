@@ -105,6 +105,30 @@ class HomeBillCardViewModel {
                                 return Observable<[Date]>.just([])
                             }
         })
+        .share(replay: 1)
+    
+    func isBeforeFiservCutoffDate() -> Observable<Bool> {
+        let now = Date()
+        switch Environment.shared.opco {
+        case .peco:
+            return paymentService.fetchPaymentFreezeDate()
+                .withLatestFrom(workDayEvents.elements()) { freezeDate, workDays in
+                    guard let paymentDate = workDays.sorted()
+                        .first(where: { $0 >= Calendar.opCo.startOfDay(for: now) }) else {
+                            return false
+                    }
+                    
+                    return paymentDate < freezeDate
+                }
+                .catchErrorJustReturn(true)
+        case .comEd:
+            return paymentService.fetchPaymentFreezeDate()
+                .map { now < $0 }
+                .catchErrorJustReturn(true)
+        case .bge:
+            return .just(true)
+        }
+    }
     
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
@@ -224,17 +248,6 @@ class HomeBillCardViewModel {
         }
         
     }()
-    
-    private(set) lazy var showCustomErrorState: Driver<Bool> = accountDetailEvents
-        .map {
-            if let serviceError = $0.error as? ServiceError {
-                return serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue
-            }
-            return false
-        }
-        .startWith(false)
-        .distinctUntilChanged()
-        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMaintenanceModeState: Driver<Bool> = maintenanceModeEvents
         .map { $0.element?.billStatus ?? false }

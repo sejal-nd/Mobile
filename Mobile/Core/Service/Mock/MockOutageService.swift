@@ -53,7 +53,8 @@ class MockOutageService: OutageService {
         
         let reportedMessage = "As of 6:21 AM EST on 8/19/2017 we are working to identify the cause of this outage. We currently estimate your service will be restored by 10:30 AM EST on 8/19/2025."
         
-        let opCoGMTOffset = abs(Int(TimeZone.opCo.secondsFromGMT() / 3600))
+        let etr = Calendar.opCo.date(from: DateComponents(year: 2017, month: 4, day: 10, hour: 3, minute: 45))
+        let opCoGMTOffset = abs(Int(TimeZone.opCo.secondsFromGMT(for: etr!)) / 3600)
         
         switch accountNumber {
         case "1234567890":

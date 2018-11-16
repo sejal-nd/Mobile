@@ -248,7 +248,10 @@ class StormModeHomeViewController: AccountPickerViewController {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.stormModeUpdate.asDriver().isNil().drive(headerCaretImageView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.stormModeUpdate.asDriver().isNil().drive(onNext: { [weak self] noUpdate in
+            self?.headerCaretImageView.isHidden = noUpdate
+            self?.headerContentView.accessibilityTraits = noUpdate ? [.none] : [.button]
+        }).disposed(by: disposeBag)
         
         Driver.merge(reportOutageButton.rx.touchUpInside.asDriver().map(to: "ReportOutageSegue"),
                      outageMapButton.rx.touchUpInside.asDriver().map(to: "OutageMapSegue"),
@@ -256,6 +259,13 @@ class StormModeHomeViewController: AccountPickerViewController {
                      moreButton.rx.touchUpInside.asDriver().map(to: "MoreSegue"))
             .drive(onNext: { [weak self] in
                 self?.performSegue(withIdentifier: $0, sender: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.didTapOnPushNotification, object: nil)
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.navigateToAlerts()
             })
             .disposed(by: disposeBag)
     }
@@ -489,6 +499,18 @@ class StormModeHomeViewController: AccountPickerViewController {
             vc.shouldHideNavigationBar = false
             navigationController?.setNavigationBarHidden(false, animated: false)
         }
+    }
+    
+    func navigateToAlerts() {
+        let moreStoryboard = UIStoryboard(name: "More", bundle: nil)
+        let alertsStoryboard = UIStoryboard(name: "Alerts", bundle: nil)
+        
+        guard let moreVC = moreStoryboard.instantiateInitialViewController() as? MoreViewController,
+            let alertsVC = alertsStoryboard.instantiateInitialViewController()
+            else { return }
+        
+        moreVC.shouldHideNavigationBar = false
+        navigationController?.viewControllers = [self, moreVC, alertsVC]
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

@@ -18,7 +18,6 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet private weak var scrollView: UIScrollView!
     
     @IBOutlet private weak var topAnimationContainer: UIView!
-    @IBOutlet private weak var caseNumberLabel: UILabel!
     @IBOutlet private weak var appointmentDescriptionTextView: DataDetectorTextView!
     @IBOutlet private weak var progressView: UIView!
     @IBOutlet private weak var progressAnimationContainer: UIView!
@@ -33,15 +32,8 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet private weak var adjustAlertPreferencesContainer: UIView!
     @IBOutlet private weak var wantNotificationsLabel: UILabel!
     @IBOutlet private weak var adjustAlertPreferencesButton: UIButton!
-    @IBOutlet private weak var upperContactButtonContainer: UIView!
-    @IBOutlet private weak var upperContactButton: ButtonControl!
-    @IBOutlet private weak var upperContactLabel: UILabel!
-    
-    @IBOutlet private weak var howToPrepareContainer: UIView!
-    @IBOutlet private weak var howToPrepareHeaderLabel: UILabel!
-    @IBOutlet private weak var howToPrepareBodyLabel: UILabel!
-    @IBOutlet private weak var lowerContactButton: ButtonControl!
-    @IBOutlet private weak var lowerContactLabel: UILabel!
+    @IBOutlet private weak var contactButton: ButtonControl!
+    @IBOutlet private weak var contactLabel: UILabel!
     
     var topAnimation = LOTAnimationView()
     var progressAnimation = LOTAnimationView(name: "appointment_tracker")
@@ -54,6 +46,9 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     
     var viewHasAppeared = false
     var viewHasLoaded = false
+    
+    var index = -1
+    var totalCount = -1
     
     init(viewModel: AppointmentDetailViewModel) {
         self.viewModel = viewModel
@@ -98,9 +93,6 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func styleViews() {
-        caseNumberLabel.textColor = .blackText
-        caseNumberLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        
         appointmentDescriptionTextView.textContainerInset = UIEdgeInsets(top: 14, left: 0, bottom: 8, right: 0) // top/bottom padding
         appointmentDescriptionTextView.textColor = .blackText
         appointmentDescriptionTextView.tintColor = .actionBlue // Color of the phone numbers
@@ -121,38 +113,15 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         adjustAlertPreferencesButton.setTitleColor(.actionBlue, for: .normal)
         adjustAlertPreferencesButton.titleLabel?.font = OpenSans.bold.of(textStyle: .title1)
         
-        howToPrepareHeaderLabel.textColor = .blackText
-        howToPrepareHeaderLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        contactButton.layer.cornerRadius = 10
+        contactButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        contactButton.accessibilityLabel = contactLabel.text
         
-        howToPrepareBodyLabel.textColor = .blackText
-        howToPrepareBodyLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        
-        upperContactButton.layer.cornerRadius = 10
-        upperContactButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        upperContactButton.accessibilityLabel = upperContactLabel.text
-        
-        upperContactLabel.textColor = .actionBlue
-        upperContactLabel.font = SystemFont.bold.of(textStyle: .title1)
-        
-        lowerContactButton.layer.cornerRadius = 10
-        lowerContactButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        lowerContactButton.accessibilityLabel = lowerContactLabel.text
-        
-        lowerContactLabel.textColor = .actionBlue
-        lowerContactLabel.font = SystemFont.bold.of(textStyle: .title1)
+        contactLabel.textColor = .actionBlue
+        contactLabel.font = SystemFont.bold.of(textStyle: .title1)
     }
     
     func bindViewModel() {
-        if viewModel.showHowToPrepare {
-            // So the bottom stays gray when the scroll view rubber bands
-            scrollView.rx.contentOffset.asDriver()
-                .map { $0.y < 0 }
-                .distinctUntilChanged()
-                .map { $0 ? UIColor.white : UIColor.softGray }
-                .drive(scrollView.rx.backgroundColor)
-                .disposed(by: disposeBag)
-        }
-        
         progressView.isHidden = !viewModel.showProgressView
         
         let regular = OpenSans.regular.of(textStyle: .headline)
@@ -164,26 +133,18 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         completeLabel.font = viewModel.status == .complete ? bold : regular
         
         adjustAlertPreferencesContainer.isHidden = !viewModel.showAdjustAlertPreferences
-        upperContactButtonContainer.isHidden = !viewModel.showUpperContactButton
-        howToPrepareContainer.isHidden = !viewModel.showHowToPrepare
         
-        caseNumberLabel.text = viewModel.caseNumberText
         appointmentDescriptionTextView.attributedText = viewModel.appointmentDescriptionText
+        appointmentDescriptionTextView.accessibilityValue = viewModel.appointmentDescriptionText.string.replacingOccurrences(of: "-", with: "and")
+        
+        addToCalendarButton.isHidden = !viewModel.showCalendarButton
     }
     
     func bindActions() {
-        Driver.merge(upperContactButton.rx.touchUpInside.asDriver(),
-                     lowerContactButton.rx.touchUpInside.asDriver())
+        contactButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                switch self.viewModel.status {
-                case .complete:
-                    let safariVC = SFSafariViewController
-                        .createWithCustomStyle(url: URL(string: "https://google.com")!)
-                    self.present(safariVC, animated: true, completion: nil)
-                case .scheduled, .enRoute, .inProgress, .canceled:
-                    UIApplication.shared.openPhoneNumberIfCan(self.viewModel.contactNumber)
-                }
+                UIApplication.shared.openPhoneNumberIfCan(self.viewModel.contactNumber)
             })
             .disposed(by: disposeBag)
         
@@ -223,26 +184,23 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     private func makeTimelineAccessible() {
+         confirmedLabel.accessibilityLabel = NSLocalizedString("Appointment progress tracker. Confirmed step, complete", comment: "")
         switch viewModel.status {
         case .scheduled:
-            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
-            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, pending", comment: "")
-            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, pending", comment: "")
-            completeLabel.accessibilityLabel = NSLocalizedString("Complete, pending", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way step, pending", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress step, pending", comment: "")
+            completeLabel.accessibilityLabel = NSLocalizedString("Complete step, pending", comment: "")
         case .enRoute:
-            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
-            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, complete", comment: "")
-            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, pending", comment: "")
-            completeLabel.accessibilityLabel = NSLocalizedString("Complete, pending", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("We are on our way", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress step, pending", comment: "")
+            completeLabel.accessibilityLabel = NSLocalizedString("Complete step, pending", comment: "")
         case .inProgress:
-            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
-            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, complete", comment: "")
-            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, complete", comment: "")
-            completeLabel.accessibilityLabel = NSLocalizedString("Complete, pending", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way step, complete", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("Appointment currently in progress", comment: "")
+            completeLabel.accessibilityLabel = NSLocalizedString("Complete step, pending", comment: "")
         case .complete:
-            confirmedLabel.accessibilityLabel = NSLocalizedString("Confirmed, complete", comment: "")
-            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way, complete", comment: "")
-            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress, complete", comment: "")
+            onOurWayLabel.accessibilityLabel = NSLocalizedString("On our way step, complete", comment: "")
+            inProgressLabel.accessibilityLabel = NSLocalizedString("In progress step, complete", comment: "")
             completeLabel.accessibilityLabel = NSLocalizedString("Appointment complete", comment: "")
         case .canceled:
             // Do nothing, these labels are not displayed
@@ -314,7 +272,9 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: viewModel.tabTitle)
+        var indicator = IndicatorInfo(title: viewModel.tabTitle)
+        indicator.accessibilityLabel = String.localizedStringWithFormat("%@, %d of %d appointments", viewModel.tabTitle, index + 1, totalCount)
+        return indicator
     }
     
     func setUpTopAnimation() {
