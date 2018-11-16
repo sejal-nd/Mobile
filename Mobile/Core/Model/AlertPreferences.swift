@@ -16,7 +16,7 @@ struct AlertPreferences {
     var paymentDue = false
     var paymentDueDaysBefore = 1
     var budgetBilling = false // ComEd/PECO only
-    var appointmentTracking = false
+//    var appointmentTracking = false
     var forYourInfo = false
     
     init(alertPreferences: [AlertPreference]) {
@@ -37,8 +37,8 @@ struct AlertPreferences {
                 }
             case "Budget Billing":
                 budgetBilling = true
-            case "Customer Appointments":
-                appointmentTracking = true
+//            case "Customer Appointments":
+//                appointmentTracking = true
             case "News", "Marketing":
                 forYourInfo = true
             default:
@@ -48,7 +48,15 @@ struct AlertPreferences {
     }
     
     // To create programatically, not from JSON
-    init(outage: Bool, scheduledMaint: Bool, severeWeather: Bool, billReady: Bool, paymentDue: Bool, paymentDueDaysBefore: Int, budgetBilling: Bool, appointmentTracking: Bool, forYourInfo: Bool) {
+    init(outage: Bool,
+         scheduledMaint: Bool,
+         severeWeather: Bool,
+         billReady: Bool,
+         paymentDue: Bool,
+         paymentDueDaysBefore: Int,
+         budgetBilling: Bool,
+//         appointmentTracking: Bool,
+         forYourInfo: Bool) {
         self.outage = outage
         self.scheduledMaint = scheduledMaint
         self.severeWeather = severeWeather
@@ -56,7 +64,7 @@ struct AlertPreferences {
         self.paymentDue = paymentDue
         self.paymentDueDaysBefore = paymentDueDaysBefore
         self.budgetBilling = budgetBilling
-        self.appointmentTracking = appointmentTracking
+//        self.appointmentTracking = appointmentTracking
         self.forYourInfo = forYourInfo
     }
     
@@ -72,7 +80,7 @@ struct AlertPreferences {
             ["programName": billReadyProgramName, "type": "push", "isActive": billReady],
             ["programName": paymentDueProgramName, "type": "push", "isActive": paymentDue, "daysPrior": paymentDueDaysBefore],
             ["programName": "Budget Billing", "type": "push", "isActive": budgetBilling],
-            ["programName": "Customer Appointments", "type": "push", "isActive": appointmentTracking],
+//            ["programName": "Customer Appointments", "type": "push", "isActive": appointmentTracking],
             ["programName": forYourInfoProgramName, "type": "push", "isActive": forYourInfo]
         ]
         return array
@@ -87,7 +95,7 @@ struct AlertPreferences {
             billReady != originalPrefs.billReady ||
             paymentDue != originalPrefs.paymentDue ||
             budgetBilling != originalPrefs.budgetBilling ||
-            appointmentTracking != originalPrefs.appointmentTracking ||
+//            appointmentTracking != originalPrefs.appointmentTracking ||
             forYourInfo != originalPrefs.forYourInfo
     }
 }
