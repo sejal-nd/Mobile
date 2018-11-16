@@ -184,11 +184,7 @@ class HomeViewController: AccountPickerViewController {
                         case .scheduled, .inProgress, .enRoute:
                             self.performSegue(withIdentifier: "appointmentDetailSegue",
                                               sender: (appointments, accountDetail.premiseNumber!))
-                        case .complete:
-                            let safariVC = SFSafariViewController
-                                .createWithCustomStyle(url: URL(string: "https://google.com")!)
-                            self.present(safariVC, animated: true, completion: nil)
-                        case .canceled:
+                        case .canceled, .complete:
                             UIApplication.shared.openPhoneNumberIfCan(self.viewModel.appointmentCardViewModel.contactNumber)
                         }
                     })

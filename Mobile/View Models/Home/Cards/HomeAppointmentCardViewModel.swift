@@ -134,22 +134,9 @@ class HomeAppointmentCardViewModel {
                 
                 return attributedText
             case .complete:
-                let localizedText = String.localizedStringWithFormat("Your appointment is complete. For further assistance, please call %@.", self.contactNumber)
-                
-                let attributedText = NSMutableAttributedString(string: localizedText)
-                attributedText.addAttribute(.foregroundColor, value: UIColor.blackText,
-                                            range: NSMakeRange(0, attributedText.string.count))
-                attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
-                                            range: NSMakeRange(0, localizedText.count))
-                attributedText.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .headline),
-                                            range: NSMakeRange(localizedText.count - self.contactNumber.count - 1, self.contactNumber.count))
-                
-                let style = NSMutableParagraphStyle()
-                style.alignment = .center
-                attributedText.addAttribute(.paragraphStyle, value: style,
-                                            range: NSMakeRange(0, attributedText.string.count))
-                
-                return attributedText
+                return NSLocalizedString("Your appointment is complete. Please call for further assistance.", comment: "")
+                    .attributedString(textAlignment: .center,
+                                      otherAttributes: standardAttributes)
             case .canceled:
                 return NSLocalizedString("Your appointment has been canceled due to inclement weather.", comment: "")
                     .attributedString(textAlignment: .center,
@@ -167,9 +154,7 @@ class HomeAppointmentCardViewModel {
             switch appointments[0].status {
             case .scheduled, .inProgress, .enRoute:
                 return NSLocalizedString("View Details", comment: "")
-            case .complete:
-                return NSLocalizedString("Send Feedback", comment: "")
-            case .canceled:
+            case .canceled, .complete:
                 return NSLocalizedString("Contact Us", comment: "")
             }
         }

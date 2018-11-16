@@ -32,15 +32,8 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet private weak var adjustAlertPreferencesContainer: UIView!
     @IBOutlet private weak var wantNotificationsLabel: UILabel!
     @IBOutlet private weak var adjustAlertPreferencesButton: UIButton!
-    @IBOutlet private weak var upperContactButtonContainer: UIView!
-    @IBOutlet private weak var upperContactButton: ButtonControl!
-    @IBOutlet private weak var upperContactLabel: UILabel!
-    
-    @IBOutlet private weak var howToPrepareContainer: UIView!
-    @IBOutlet private weak var howToPrepareHeaderLabel: UILabel!
-    @IBOutlet private weak var howToPrepareBodyLabel: UILabel!
-    @IBOutlet private weak var lowerContactButton: ButtonControl!
-    @IBOutlet private weak var lowerContactLabel: UILabel!
+    @IBOutlet private weak var contactButton: ButtonControl!
+    @IBOutlet private weak var contactLabel: UILabel!
     
     var topAnimation = LOTAnimationView()
     var progressAnimation = LOTAnimationView(name: "appointment_tracker")
@@ -120,38 +113,15 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         adjustAlertPreferencesButton.setTitleColor(.actionBlue, for: .normal)
         adjustAlertPreferencesButton.titleLabel?.font = OpenSans.bold.of(textStyle: .title1)
         
-        howToPrepareHeaderLabel.textColor = .blackText
-        howToPrepareHeaderLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        contactButton.layer.cornerRadius = 10
+        contactButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        contactButton.accessibilityLabel = contactLabel.text
         
-        howToPrepareBodyLabel.textColor = .blackText
-        howToPrepareBodyLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        
-        upperContactButton.layer.cornerRadius = 10
-        upperContactButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        upperContactButton.accessibilityLabel = upperContactLabel.text
-        
-        upperContactLabel.textColor = .actionBlue
-        upperContactLabel.font = SystemFont.bold.of(textStyle: .title1)
-        
-        lowerContactButton.layer.cornerRadius = 10
-        lowerContactButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        lowerContactButton.accessibilityLabel = lowerContactLabel.text
-        
-        lowerContactLabel.textColor = .actionBlue
-        lowerContactLabel.font = SystemFont.bold.of(textStyle: .title1)
+        contactLabel.textColor = .actionBlue
+        contactLabel.font = SystemFont.bold.of(textStyle: .title1)
     }
     
     func bindViewModel() {
-        if viewModel.showHowToPrepare {
-            // So the bottom stays gray when the scroll view rubber bands
-            scrollView.rx.contentOffset.asDriver()
-                .map { $0.y < 0 }
-                .distinctUntilChanged()
-                .map { $0 ? UIColor.white : UIColor.softGray }
-                .drive(scrollView.rx.backgroundColor)
-                .disposed(by: disposeBag)
-        }
-        
         progressView.isHidden = !viewModel.showProgressView
         
         let regular = OpenSans.regular.of(textStyle: .headline)
@@ -163,26 +133,18 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         completeLabel.font = viewModel.status == .complete ? bold : regular
         
         adjustAlertPreferencesContainer.isHidden = !viewModel.showAdjustAlertPreferences
-        upperContactButtonContainer.isHidden = !viewModel.showUpperContactButton
-        howToPrepareContainer.isHidden = !viewModel.showHowToPrepare
         
         appointmentDescriptionTextView.attributedText = viewModel.appointmentDescriptionText
         appointmentDescriptionTextView.accessibilityValue = viewModel.appointmentDescriptionText.string.replacingOccurrences(of: "-", with: "and")
+        
+        addToCalendarButton.isHidden = !viewModel.showCalendarButton
     }
     
     func bindActions() {
-        Driver.merge(upperContactButton.rx.touchUpInside.asDriver(),
-                     lowerContactButton.rx.touchUpInside.asDriver())
+        contactButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                switch self.viewModel.status {
-                case .complete:
-                    let safariVC = SFSafariViewController
-                        .createWithCustomStyle(url: URL(string: "https://google.com")!)
-                    self.present(safariVC, animated: true, completion: nil)
-                case .scheduled, .enRoute, .inProgress, .canceled:
-                    UIApplication.shared.openPhoneNumberIfCan(self.viewModel.contactNumber)
-                }
+                UIApplication.shared.openPhoneNumberIfCan(self.viewModel.contactNumber)
             })
             .disposed(by: disposeBag)
         
