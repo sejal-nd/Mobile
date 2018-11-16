@@ -114,19 +114,6 @@
                                             <variation key="device=watch42mm" height="139"/>
                                             <variation key="device=watch44mm" height="158"/>
                                         </group>
-                                        <group width="1" alignment="center" layout="vertical" radius="8" id="o1x-31-mqT">
-                                            <items>
-                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="g2o-us-bNb">
-                                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                                </label>
-                                                <group width="1" height="2" alignment="left" id="KMM-tA-OKK"/>
-                                                <label alignment="center" text="Pending Payment" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="FHu-PO-h09">
-                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                </label>
-                                            </items>
-                                            <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
-                                        </group>
                                         <group width="1" alignment="center" layout="vertical" radius="8" id="rvO-3U-9Ul">
                                             <items>
                                                 <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="0vq-db-dF8">
@@ -137,7 +124,7 @@
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                                 <label alignment="center" text="Due Immediately" textAlignment="center" minimumScaleFactor="0.75" id="M5D-M4-1BR">
-                                                    <color key="textColor" red="0.81568627449999997" green="0.0078431372550000003" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="1" green="0.24705882352941178" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
@@ -154,7 +141,7 @@
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                                 <label alignment="center" text="Due Immediately" textAlignment="center" minimumScaleFactor="0.75" id="Rmq-uV-PYU">
-                                                    <color key="textColor" red="0.81568627449999997" green="0.0078431372550000003" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="1" green="0.24705882352941178" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
@@ -171,7 +158,7 @@
                                                 </label>
                                                 <group width="1" height="2" alignment="left" id="cpZ-W7-ghz"/>
                                                 <label alignment="center" text="Due Immediately" textAlignment="center" minimumScaleFactor="0.75" id="6od-8E-4aG">
-                                                    <color key="textColor" red="0.81568627449999997" green="0.0078431372550000003" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="1" green="0.24705882352941178" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
@@ -204,6 +191,19 @@
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                                 <label alignment="center" text="Due by 09/25/2018" textAlignment="center" minimumScaleFactor="0.75" id="Vro-PE-6ci">
+                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                </label>
+                                            </items>
+                                            <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
+                                        </group>
+                                        <group width="1" alignment="center" layout="vertical" radius="8" id="o1x-31-mqT">
+                                            <items>
+                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="g2o-us-bNb">
+                                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                                </label>
+                                                <group width="1" height="2" alignment="left" id="KMM-tA-OKK"/>
+                                                <label alignment="center" text="Pending Payment" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="FHu-PO-h09">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>

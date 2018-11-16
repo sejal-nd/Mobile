@@ -15,7 +15,7 @@ extension String {
         attributedText.addAttribute(.foregroundColor, value: color, range: range)
         
         if shouldChangeFontSize {
-            attributedText.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .caption1), range: range)
+            attributedText.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .title2), range: range)
         } else {
             attributedText.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .title1), range: range)
         }
