@@ -29,7 +29,7 @@ class AlertPreferencesViewModel {
     let paymentDue = Variable(false)
     let paymentDueDaysBefore = Variable(1)
     let budgetBilling = Variable(false)
-//    let appointmentTracking = Variable(false)
+    let appointmentTracking = Variable(false)
     let forYourInfo = Variable(false)
     let english = Variable(true) // Language selection. False = Spanish
     
@@ -76,8 +76,8 @@ class AlertPreferencesViewModel {
                          [.billIsReady]),
                         (NSLocalizedString("Payment", comment: ""),
                          [.paymentDueReminder]),
-//                        (NSLocalizedString("Customer Appointments", comment: ""),
-//                         [.appointmentTracking]),
+                        (NSLocalizedString("Customer Appointments", comment: ""),
+                         [.appointmentTracking]),
                         (NSLocalizedString("News", comment: ""),
                          [.forYourInformation])
                     ]
@@ -97,7 +97,7 @@ class AlertPreferencesViewModel {
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
-//                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 }
                 
@@ -133,7 +133,7 @@ class AlertPreferencesViewModel {
                 self.paymentDue.value = alertPrefs.paymentDue
                 self.paymentDueDaysBefore.value = alertPrefs.paymentDueDaysBefore
                 self.budgetBilling.value = alertPrefs.budgetBilling
-//                self.appointmentTracking.value = alertPrefs.appointmentTracking
+                self.appointmentTracking.value = alertPrefs.appointmentTracking
                 self.forYourInfo.value = alertPrefs.forYourInfo
             })
             .mapTo(())
@@ -180,7 +180,7 @@ class AlertPreferencesViewModel {
                        billReady.asObservable(),
                        paymentDue.asObservable(),
                        budgetBilling.asObservable(),
-//                       appointmentTracking.asObservable(),
+                       appointmentTracking.asObservable(),
                        forYourInfo.asObservable())
         .map {
             AlertPreferences(outage: $0.0,
@@ -190,8 +190,8 @@ class AlertPreferencesViewModel {
                              paymentDue: $0.4,
                              paymentDueDaysBefore: 0,
                              budgetBilling: $0.5,
-//                             appointmentTracking: $0.6,
-                             forYourInfo: $0.6)
+                             appointmentTracking: $0.6,
+                             forYourInfo: $0.7)
         }
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0.isDifferent(fromOriginal: $1) }
@@ -213,7 +213,7 @@ class AlertPreferencesViewModel {
                                                 paymentDue: paymentDue.value,
                                                 paymentDueDaysBefore: paymentDueDaysBefore.value,
                                                 budgetBilling: budgetBilling.value,
-//                                                appointmentTracking: appointmentTracking.value,
+                                                appointmentTracking: appointmentTracking.value,
                                                 forYourInfo: forYourInfo.value)
         return alertsService
             .setAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
@@ -348,7 +348,7 @@ class AlertPreferencesViewModel {
         // Payment
         case paymentDueReminder, budgetBillingReview
         // Customer Appointments
-//        case appointmentTracking
+        case appointmentTracking
         // News
         case forYourInformation
         
@@ -366,8 +366,8 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Payment Due Reminder", comment: "")
             case .budgetBillingReview:
                 return NSLocalizedString("Budget Billing Review", comment: "")
-//            case .appointmentTracking:
-//                return NSLocalizedString("Appointment Tracking", comment: "")
+            case .appointmentTracking:
+                return NSLocalizedString("Appointment Tracking", comment: "")
             case .forYourInformation:
                 return NSLocalizedString("For Your Information", comment: "")
             }
@@ -419,8 +419,8 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Your monthly Budget Bill payment may be adjusted every four months to keep your account current with your actual energy usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
                 
             // Appointment Tracking
-//            case (.appointmentTracking, _):
-//                return NSLocalizedString("Receive notifications such as confirmations, reminders, and relevant status updates for your scheduled service appointment.", comment: "")
+            case (.appointmentTracking, _):
+                return NSLocalizedString("Receive notifications such as confirmations, reminders, and relevant status updates for your scheduled service appointment.", comment: "")
                 
             // For Your Information
             case (.forYourInformation, .bge):
