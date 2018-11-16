@@ -67,38 +67,21 @@ class AppointmentDetailViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.showAdjustAlertPreferences)
     }
     
-    func testShowUpperContactButton() {
+    func testShowCalendarButton() {
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .scheduled)
-        XCTAssertFalse(viewModel.showUpperContactButton)
+        XCTAssertTrue(viewModel.showCalendarButton)
         
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .enRoute)
-        XCTAssertFalse(viewModel.showUpperContactButton)
+        XCTAssertFalse(viewModel.showCalendarButton)
         
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .inProgress)
-        XCTAssertTrue(viewModel.showUpperContactButton)
+        XCTAssertFalse(viewModel.showCalendarButton)
         
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .complete)
-        XCTAssertTrue(viewModel.showUpperContactButton)
+        XCTAssertFalse(viewModel.showCalendarButton)
         
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .canceled)
-        XCTAssertTrue(viewModel.showUpperContactButton)
-    }
-    
-    func testShowHowToPrepare() {
-        viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .scheduled)
-        XCTAssertTrue(viewModel.showHowToPrepare)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .enRoute)
-        XCTAssertTrue(viewModel.showHowToPrepare)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .inProgress)
-        XCTAssertFalse(viewModel.showHowToPrepare)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .complete)
-        XCTAssertFalse(viewModel.showHowToPrepare)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .canceled)
-        XCTAssertFalse(viewModel.showHowToPrepare)
+        XCTAssertFalse(viewModel.showCalendarButton)
     }
     
     // Only testing the actual string, ignoring attributed values
@@ -133,7 +116,7 @@ class AppointmentDetailViewModelTests: XCTestCase {
         
         // Complete
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .complete)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is complete. For further assistance, please call 1-800-685-0123.", comment: ""))
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is complete. Please call for further assistance.", comment: ""))
         
         // Canceled
         viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .canceled)
