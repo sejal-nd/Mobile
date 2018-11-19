@@ -48,7 +48,15 @@ struct AlertPreferences {
     }
     
     // To create programatically, not from JSON
-    init(outage: Bool, scheduledMaint: Bool, severeWeather: Bool, billReady: Bool, paymentDue: Bool, paymentDueDaysBefore: Int, budgetBilling: Bool, appointmentTracking: Bool, forYourInfo: Bool) {
+    init(outage: Bool,
+         scheduledMaint: Bool,
+         severeWeather: Bool,
+         billReady: Bool,
+         paymentDue: Bool,
+         paymentDueDaysBefore: Int,
+         budgetBilling: Bool,
+         appointmentTracking: Bool,
+         forYourInfo: Bool) {
         self.outage = outage
         self.scheduledMaint = scheduledMaint
         self.severeWeather = severeWeather

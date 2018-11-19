@@ -17,13 +17,15 @@ class MCSAppointmentService: AppointmentService {
             "start_date": threeDaysAgo.yyyyMMddString,
             "end_date": future.yyyyMMddString
         ]
+        
         return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/premises/\(premiseNumber)/appointments/query", params: params)
             .map { json in
                 guard let array = json as? [NSDictionary] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
-                let appointments = array.compactMap(Appointment.from)
-                return appointments
+
+                return array.compactMap(Appointment.from)
+                    .sorted { $0.startDate < $1.startDate }
         }
     }
 }
