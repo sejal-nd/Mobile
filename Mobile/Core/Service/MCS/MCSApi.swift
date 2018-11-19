@@ -60,8 +60,8 @@ class MCSApi {
     ///
     /// - Parameters:
     ///   - path: the relative path of the resource
-    func get(path: String) -> Observable<Any> {
-        return call(path: path, method: .get)
+    func get(anon: Bool = false, path: String) -> Observable<Any> {
+        return call(anon: anon, path: path, method: .get)
     }
 
 
@@ -70,8 +70,8 @@ class MCSApi {
     /// - Parameters:
     ///   - path: the relative path of the resource
     ///   - params: the body parameters to post
-    func post(path: String, params: [String:Any]?) -> Observable<Any> {
-        return call(path: path, params: params, method: .post)
+    func post(anon: Bool = false, path: String, params: [String:Any]?) -> Observable<Any> {
+        return call(anon: anon, path: path, params: params, method: .post)
     }
 
 
@@ -80,8 +80,8 @@ class MCSApi {
     /// - Parameters:
     ///   - path: the relative path of the resource
     ///   - params: the body parameters to post
-    func put(path: String, params: [String:Any]?) -> Observable<Any> {
-        return call(path: path, params: params, method: .put)
+    func put(anon: Bool = false, path: String, params: [String:Any]?) -> Observable<Any> {
+        return call(anon: anon, path: path, params: params, method: .put)
     }
 
 
@@ -90,8 +90,8 @@ class MCSApi {
     /// - Parameters:
     ///   - path: the relative path of the resource
     ///   - params: the body parameters to send
-    func delete(path: String, params: [String:Any]?) -> Observable<Any> {
-        return call(path: path, params: params, method: .delete)
+    func delete(anon: Bool = false, path: String, params: [String:Any]?) -> Observable<Any> {
+        return call(anon: anon, path: path, params: params, method: .delete)
     }
 
     #if os(iOS)
@@ -184,7 +184,7 @@ class MCSApi {
     ///   - params: the body parameters to supply.
     ///   - method: the method to apply (POST/PUT/GET/DELETE)
     ///   - completion: the block to execute on completion.
-    func call(path: String, params: [String: Any]? = nil, method: HttpMethod) -> Observable<Any> {
+    func call(anon: Bool, path: String, params: [String: Any]? = nil, method: HttpMethod) -> Observable<Any> {
         
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
         
@@ -198,7 +198,7 @@ class MCSApi {
             APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
             return .error(serviceError)
         case .wifi, .cellular:
-            return performCall(requestId: requestId, path: path, params: params, method: method)
+            return performCall(anon: anon, requestId: requestId, path: path, params: params, method: method)
         }
         #elseif os(watchOS)
         accessToken = tokenKeychain["authToken"]
@@ -207,7 +207,7 @@ class MCSApi {
         #endif
     }
     
-    private func performCall(requestId: String, path: String, params: [String: Any]? = nil, method: HttpMethod) -> Observable<Any> {
+    private func performCall(anon: Bool, requestId: String, path: String, params: [String: Any]? = nil, method: HttpMethod) -> Observable<Any> {
         // Logging
         let logMessage: String
         var requestBody: Data?
@@ -222,7 +222,14 @@ class MCSApi {
         APILog(requestId: requestId, path: path, method: method, message: logMessage)
         
         // Build Request
-        let url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)/mobile/custom/\(path)")!
+        var url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)/mobile/custom/")!
+        if anon {
+            let opCoString = Environment.shared.opco.displayString.uppercased()
+            url.appendPathComponent("anon_\(MCSApi.API_VERSION)/\(opCoString)/\(path)")
+        } else {
+            url.appendPathComponent("auth_\(MCSApi.API_VERSION)/\(path)")
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.httpBody = requestBody
