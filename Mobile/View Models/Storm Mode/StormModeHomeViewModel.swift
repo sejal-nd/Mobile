@@ -76,7 +76,7 @@ class StormModeHomeViewModel {
                 self?.currentOutageStatus = outageStatus
                 onSuccess()
                 }, onError: { [weak self] error in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     let serviceError = error as! ServiceError
                     if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
                         self.currentOutageStatus = OutageStatus.from(["flagFinaled": true])

@@ -15,7 +15,7 @@ class MCSUsageService: UsageService {
         let params = ["compare_with": yearAgo ? "YEAR_AGO" : "PREVIOUS",
                       "fuel_type": gas ? "GAS" : "ELEC"]
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/compare_bills", params: params)
+        return MCSApi.shared.post(path: "accounts/\(accountNumber)/premises/\(premiseNumber)/usage/compare_bills", params: params)
             .map { response in
                 guard let dict = response as? NSDictionary, let billComparison = BillComparison.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -46,7 +46,7 @@ class MCSUsageService: UsageService {
     }
     
     func fetchBillForecast(accountNumber: String, premiseNumber: String) -> Observable<BillForecastResult> {
-        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/premises/\(premiseNumber)/usage/forecast_bill")
+        return MCSApi.shared.get(path: "accounts/\(accountNumber)/premises/\(premiseNumber)/usage/forecast_bill")
             .map { response in
                 guard let array = response as? [[String: Any]] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -62,7 +62,7 @@ class MCSUsageService: UsageService {
     }
     
     func fetchHomeProfile(accountNumber: String, premiseNumber: String) -> Observable<HomeProfile> {
-        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile")
+        return MCSApi.shared.get(path: "accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile")
             .map { response in
                 guard let dict = response as? NSDictionary, let billComparison = HomeProfile.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -86,12 +86,12 @@ class MCSUsageService: UsageService {
             "child_count": homeProfile.numberOfChildren!,
             ]
         
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile", params: params)
+        return MCSApi.shared.put(path: "accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile", params: params)
             .mapTo(())
     }
     
     func fetchEnergyTips(accountNumber: String, premiseNumber: String) -> Observable<[EnergyTip]> {
-        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/premises/\(premiseNumber)/tips")
+        return MCSApi.shared.get(path: "accounts/\(accountNumber)/premises/\(premiseNumber)/tips")
             .map { response in
                 guard let array = response as? [NSDictionary] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -102,7 +102,7 @@ class MCSUsageService: UsageService {
     }
     
     func fetchEnergyTipByName(accountNumber: String, premiseNumber:String, tipName:String) -> Observable<EnergyTip> {
-        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/premises/\(premiseNumber)/tips/\(tipName)")
+        return MCSApi.shared.get(path: "accounts/\(accountNumber)/premises/\(premiseNumber)/tips/\(tipName)")
             .map { response in
                 guard let dict = response as? NSDictionary, let tip = EnergyTip.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)

@@ -228,11 +228,11 @@ class EditBankAccountViewController: UIViewController {
         
         let saveBankAccountChanges = { [weak self] (oneTouchPay: Bool) in
             LoadingView.show()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if oneTouchPay {
                 self.viewModel.enableOneTouchPay(onSuccess: { [weak self] in
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
                     if self.shouldPopToRootOnSave {
                         self.navigationController?.popToRootViewController(animated: true)
@@ -248,7 +248,7 @@ class EditBankAccountViewController: UIViewController {
             } else {
                 self.viewModel.deleteOneTouchPay(onSuccess: { [weak self] in
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
                     if self.shouldPopToRootOnSave {
                         self.navigationController?.popToRootViewController(animated: true)
@@ -298,7 +298,7 @@ class EditBankAccountViewController: UIViewController {
             LoadingView.show()
             self?.viewModel.deleteBankAccount(onSuccess: { [weak self] in
                 LoadingView.hide()
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Bank Account deleted", comment: ""))
                 if self.shouldPopToRootOnSave {
                     self.navigationController?.popToRootViewController(animated: true)

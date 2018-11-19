@@ -30,7 +30,7 @@ class ReportOutageViewModel {
     private(set) lazy var submitEnabled: Driver<Bool> = Driver.combineLatest(self.reportFormHidden.asDriver(),
                                                                              self.phoneNumber.asDriver())
     { [weak self] in
-        guard let `self` = self else { return false }
+        guard let self = self else { return false }
         let digitsOnlyString = self.extractDigitsFrom($1)
         return !$0 && digitsOnlyString.count == 10
     }

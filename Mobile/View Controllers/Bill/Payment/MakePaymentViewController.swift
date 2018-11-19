@@ -452,7 +452,7 @@ class MakePaymentViewController: UIViewController {
     
     func bindButtonTaps() {
         paymentAccountButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.view.endEditing(true)
             let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
             miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
@@ -478,7 +478,7 @@ class MakePaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         paymentDateButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.view.endEditing(true)
             
             let calendarVC = PDTSimpleCalendarViewController()
@@ -615,7 +615,7 @@ class MakePaymentViewController: UIViewController {
             let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
             }))
             present(alertVc, animated: true, completion: nil)
@@ -638,7 +638,7 @@ class MakePaymentViewController: UIViewController {
             self?.viewModel.cancelPayment(onSuccess: { [weak self] in
                 LoadingView.hide()
 
-                guard let `self` = self, let navigationController = self.navigationController else { return }
+                guard let self = self, let navigationController = self.navigationController else { return }
                 // Always pop back to the root billing history screen here (because MoreBillingHistoryViewController does not refetch data)
                 for vc in navigationController.viewControllers {
                     guard let dest = vc as? BillingHistoryViewController else {

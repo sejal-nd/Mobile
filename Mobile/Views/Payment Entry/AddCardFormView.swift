@@ -166,7 +166,7 @@ class AddCardFormView: UIView {
     
     func bindValidation() {
         viewModel.cardNumber.asDriver().drive(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if let cardIcon = self.viewModel.cardIcon {
                 self.cardLogoImageView.image = cardIcon
                 self.cardNumberTextField.textField.isShowingLeftAccessory = true
@@ -180,7 +180,7 @@ class AddCardFormView: UIView {
             .withLatestFrom(Driver.zip(viewModel.expMonth.asDriver(), viewModel.expMonthIsValidMonth, viewModel.expMonthIs2Digits))
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] _, expMonthIsValidMonth, expMonthIs2Digits  in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !expMonthIsValidMonth {
                     self.expMonthTextField.setError(NSLocalizedString("Invalid Month", comment: ""))
                 } else if !expMonthIs2Digits {
@@ -208,7 +208,7 @@ class AddCardFormView: UIView {
             .withLatestFrom(Driver.zip(viewModel.expYear.asDriver(), viewModel.expYearIsNotInPast, viewModel.expYearIs4Digits))
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] _, expYearIsNotInPast, expYearIs4Digits  in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !expYearIsNotInPast {
                     self.expYearTextField.setError(NSLocalizedString("Cannot be in the past", comment: ""))
                 } else if !expYearIs4Digits {

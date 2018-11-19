@@ -91,7 +91,7 @@ class OutageViewController: AccountPickerViewController {
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
         accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             switch(state) {
             case .loadingAccounts:
                 self.accountContentView.isHidden = true
@@ -296,12 +296,12 @@ class OutageViewController: AccountPickerViewController {
     
     @objc func onPullToRefresh() {
         viewModel.fetchData(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.refreshControl?.endRefreshing()
             self.maintenanceModeView.isHidden = true
             self.updateContent(outageJustReported: false)
         }, onError: { [weak self] serviceError in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.refreshControl?.endRefreshing()
             self.loadingView.isHidden = true
             
@@ -322,7 +322,7 @@ class OutageViewController: AccountPickerViewController {
             self.finaledNoPayView.isHidden = true
             self.maintenanceModeView.isHidden = true
             }, onMaintenance: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.refreshControl?.endRefreshing()
                 self.loadingView.isHidden = true
                 self.maintenanceModeView.isHidden = false

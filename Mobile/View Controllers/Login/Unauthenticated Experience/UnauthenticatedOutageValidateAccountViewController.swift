@@ -142,7 +142,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
             .withLatestFrom(Driver.zip(viewModel.phoneNumber.asDriver(), viewModel.phoneNumberHasTenDigits))
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !$1 {
                     self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
                 }
@@ -159,7 +159,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
             .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !$1 {
                     self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
                 }
@@ -203,7 +203,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         
         LoadingView.show()
         viewModel.fetchOutageStatus(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             LoadingView.hide()
             
             if self.viewModel.selectedOutageStatus != nil {
@@ -212,7 +212,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
                 self.performSegue(withIdentifier: "outageValidateAccountResultSegue", sender: self)
             }
         }, onError: { [weak self] errTitle, errMessage in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             LoadingView.hide()
             
             let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)

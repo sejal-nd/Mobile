@@ -82,7 +82,7 @@ class SmartThermostatScheduleViewModel {
     
     private lazy var saveEvents: Observable<Event<Void>> = self.saveAction
         .do(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             let pageView: AnalyticsEvent
             switch self.period {
             case .wake:
@@ -98,7 +98,7 @@ class SmartThermostatScheduleViewModel {
         })
         .withLatestFrom(self.updatedPeriodInfo)
         .flatMapLatest { [weak self] periodInfo -> Observable<Event<Void>> in
-            guard let `self` = self else { return .empty() }
+            guard let self = self else { return .empty() }
             let updatedSchedule = self.schedule.newSchedule(forPeriod: self.period, info: periodInfo)
             return self.peakRewardsService.updateSmartThermostatSchedule(forDevice: self.device,
                                                                          accountNumber: self.accountDetail.accountNumber,
@@ -111,7 +111,7 @@ class SmartThermostatScheduleViewModel {
     
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
         .do(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             let pageView: AnalyticsEvent
             switch self.period {
             case .wake:

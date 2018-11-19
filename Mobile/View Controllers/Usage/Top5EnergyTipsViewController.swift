@@ -54,7 +54,7 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
         viewModel.energyTips
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.energyTips = $0
                 self.tableView.reloadData()
                 self.loadingIndicator.isHidden = true
