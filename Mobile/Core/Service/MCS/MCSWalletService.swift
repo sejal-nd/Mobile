@@ -457,4 +457,26 @@ class MCSWalletService: WalletService {
                 RxNotifications.shared.defaultWalletItemUpdated.onNext(())
             })
     }
+    
+    func fetchWalletEncryptionKey(customerId: String, walletItemId: String? = nil) -> Observable<String> {
+        let opco = Environment.shared.opco.displayString.uppercased()
+        let anonPath = "anon_\(MCSApi.API_VERSION)/\(opco)/encryptionkey/"
+        let authPath = "auth_\(MCSApi.API_VERSION)/encryptionkey/"
+        var params = [
+            "pmCategory": "DD",
+            "ownerId": customerId,
+            "postbackUrl": "https://google.com",
+        ]
+        if let wid = walletItemId { // Indicates that this is an edit operation (as opposed to an add)
+            params["wallet_item_id"] = wid
+        }
+        return MCSApi.shared.post(path: authPath, params: params)
+            .map { json in
+                guard let dict = json as? [String: Any],
+                    let token = dict["Token"] as? String else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                return token
+            }
+    }
 }

@@ -89,4 +89,8 @@ struct MockWalletService: WalletService {
     func removeOneTouchPayItem(customerId: String) -> Observable<Void> {
         return .just(())
     }
+    
+    func fetchWalletEncryptionKey(customerId: String, walletItemId: String? = nil) -> Observable<String> {
+        return .just("")
+    }
 }

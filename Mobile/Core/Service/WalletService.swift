@@ -71,4 +71,6 @@ protocol WalletService {
     /// - Parameters:
     ///   - customerId: the customer number to disable one touch pay for
     func removeOneTouchPayItem(customerId: String) -> Observable<Void>
+    
+    func fetchWalletEncryptionKey(customerId: String, walletItemId: String? = nil) -> Observable<String>
 }
