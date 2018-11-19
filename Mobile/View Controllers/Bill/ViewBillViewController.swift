@@ -70,10 +70,10 @@ class ViewBillViewController: UIViewController {
     func fetchBillPDFData() {
         loadingIndicator.isHidden = false
         viewModel.fetchBillPDFData(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.setupWKWebView()
         }, onError: { [weak self] errMessage in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.loadingIndicator.isHidden = true
             self.errorLabel.isHidden = false
         })

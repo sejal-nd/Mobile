@@ -40,7 +40,7 @@ class UnauthenticatedOutageViewModel {
         outageService.fetchOutageStatusAnon(phoneNumber: phone, accountNumber: accountNum)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] outageStatusArray in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if outageStatusArray.isEmpty { // Should never happen, but just in case
                     onError(NSLocalizedString("Error", comment: ""), NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: ""))
                 } else if outageStatusArray.count == 1 {
@@ -98,7 +98,7 @@ class UnauthenticatedOutageViewModel {
     
     var phoneNumberHasTenDigits: Driver<Bool> {
         return self.phoneNumber.asDriver().map { [weak self] text -> Bool in
-            guard let `self` = self else { return false }
+            guard let self = self else { return false }
             let digitsOnlyString = self.extractDigitsFrom(text)
             return digitsOnlyString.count == 10
         }

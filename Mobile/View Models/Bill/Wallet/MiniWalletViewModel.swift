@@ -30,12 +30,12 @@ class MiniWalletViewModel {
         walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] walletItems in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.isFetchingWalletItems.value = false
                 self.walletItems.value = walletItems
                 onSuccess()
                 }, onError: { [weak self] err in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.isFetchingWalletItems.value = false
                     self.isError.value = true
                 onError?()

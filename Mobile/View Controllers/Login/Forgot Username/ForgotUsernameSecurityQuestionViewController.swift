@@ -79,7 +79,7 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         LoadingView.show()
         viewModel.submitSecurityQuestionAnswer(onSuccess: { [weak self] unmaskedUsername in
             LoadingView.hide()
-            guard let `self` = self, let viewControllers = self.navigationController?.viewControllers else { return }
+            guard let self = self, let viewControllers = self.navigationController?.viewControllers else { return }
             for vc in viewControllers {
                 guard let dest = vc as? LoginViewController else {
                     continue

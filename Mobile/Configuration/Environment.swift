@@ -19,16 +19,14 @@ enum OpCo: String {
     
     // Used for reading the splash screen animation to VoiceOver users
     var taglineString: String {
-        var tagline: String
         switch self {
         case .bge:
-            tagline = "That's smart energy"
+            return "That's smart energy"
         case .comEd:
-            tagline = "Powering lives"
+            return "Powering lives"
         case .peco:
-            tagline = "The future is on"
+            return "The future is on"
         }
-        return tagline
     }
     
     var appStoreLink: URL? {

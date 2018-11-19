@@ -27,7 +27,7 @@ struct MCSAlertsService: AlertsService {
     }
 
     func fetchAlertPreferences(accountNumber: String) -> Observable<AlertPreferences> {
-        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/alerts/preferences/push")
+        return MCSApi.shared.get(path: "accounts/\(accountNumber)/alerts/preferences/push")
             .map { json in
                 guard let responseObj = json as? NSDictionary,
                     let prefsDictArray = responseObj["alertPreferences"] as? [NSDictionary] else {
@@ -41,18 +41,18 @@ struct MCSAlertsService: AlertsService {
     
     func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences) -> Observable<Void> {
         let params = ["alertPreferences": alertPreferences.createAlertPreferencesJSONArray()]
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/alerts/preferences", params: params)
+        return MCSApi.shared.put(path: "accounts/\(accountNumber)/alerts/preferences", params: params)
             .mapTo(())
     }
     
     func enrollBudgetBillingNotification(accountNumber: String) -> Observable<Void> {
         let params = ["alertPreferences": [["programName": "Budget Billing", "type": "push", "isActive": true]]]
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/alerts/preferences", params: params)
+        return MCSApi.shared.put(path: "accounts/\(accountNumber)/alerts/preferences", params: params)
             .mapTo(())
     }
     
     func fetchAlertLanguage(accountNumber: String) -> Observable<String> {
-        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/alerts/accounts")
+        return MCSApi.shared.get(path: "accounts/\(accountNumber)/alerts/accounts")
             .map { json in
                 guard let responseObj = json as? NSDictionary, let language = responseObj["language"] as? String else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -64,7 +64,7 @@ struct MCSAlertsService: AlertsService {
     
     func setAlertLanguage(accountNumber: String, english: Bool) -> Observable<Void> {
         let params = ["language": english ? "English" : "Spanish"]
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/accounts/\(accountNumber)/alerts/accounts", params: params)
+        return MCSApi.shared.put(path: "accounts/\(accountNumber)/alerts/accounts", params: params)
             .mapTo(())
     }
     

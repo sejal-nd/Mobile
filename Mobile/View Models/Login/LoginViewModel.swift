@@ -61,7 +61,7 @@ class LoginViewModel {
         authService.login(username: username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] profileStatus in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.isLoggingIn = false
                 let tempPassword = profileStatus.tempPassword
                 if tempPassword {

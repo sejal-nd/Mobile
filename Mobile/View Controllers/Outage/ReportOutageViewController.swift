@@ -350,7 +350,7 @@ class ReportOutageViewController: UIViewController {
         if unauthenticatedExperience {
             viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
                 LoadingView.hide()
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
                 self.navigationController?.popViewController(animated: true)
             }, onError: errorBlock)
@@ -358,7 +358,7 @@ class ReportOutageViewController: UIViewController {
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 LoadingView.hide()
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
                 self.navigationController?.popViewController(animated: true)
             }, onError: errorBlock)

@@ -336,7 +336,7 @@ class HomeUsageCardView: UIView {
         }).disposed(by: disposeBag)
         
         viewModel.billComparisonEvents.subscribe({ [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.moveTriangleTo(barView: self.currentContainerButton)
             
             self.viewModel.setBarSelected(tag: 2)
@@ -373,7 +373,7 @@ class HomeUsageCardView: UIView {
         viewModel.previousBarA11yLabel.drive(previousContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.noPreviousData.asObservable().subscribe(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             var a11yElementArray: [ButtonControl] = []
             if $0 {
                 a11yElementArray.append(self.noDataContainerButton)

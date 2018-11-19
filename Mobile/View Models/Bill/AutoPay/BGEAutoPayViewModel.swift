@@ -66,7 +66,7 @@ class BGEAutoPayViewModel {
         paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (autoPayInfo: BGEAutoPayInfo) in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.isFetchingAutoPayInfo.value = false
                 self.isError.value = false
                 
@@ -114,7 +114,7 @@ class BGEAutoPayViewModel {
                 
                 onSuccess?()
             }, onError: { [weak self] error in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.isFetchingAutoPayInfo.value = false
                     self.isError.value = true
                     onError?(error.localizedDescription)

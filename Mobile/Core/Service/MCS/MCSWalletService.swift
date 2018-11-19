@@ -21,7 +21,7 @@ class MCSWalletService: WalletService {
             params["biller_id"] = "\(opCo.rawValue)Registered"
         }
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/query", params: params)
+        return MCSApi.shared.post(path: "wallet/query", params: params)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let walletItems = dict["WalletItems"] as? [[String: Any]] else {
@@ -58,7 +58,7 @@ class MCSWalletService: WalletService {
             params["biller_id"] = "\(opCo.rawValue)Registered"
         }
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/query", params: params)
+        return MCSApi.shared.post(path: "wallet/query", params: params)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let token = dict["authSessionToken"] as? String else {
@@ -71,9 +71,7 @@ class MCSWalletService: WalletService {
     }
     
     func fetchBankName(routingNumber: String) -> Observable<String> {
-        let opCo = Environment.shared.opco.displayString.uppercased()
-        let path = "anon_\(MCSApi.API_VERSION)/" + opCo + "/bank/" + routingNumber
-        return MCSApi.shared.get(path: path)
+        return MCSApi.shared.get(anon: true, path: "bank/" + routingNumber)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let bankName = dict["BankName"] as? String else {
@@ -106,7 +104,7 @@ class MCSWalletService: WalletService {
             params["biller_id"] = "\(opCo.rawValue)Registered"
         }
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/query", params: params)
+        return MCSApi.shared.post(path: "wallet/query", params: params)
             .flatMap { json -> Observable<WalletItemResult> in
                 guard let dict = json as? [String: Any],
                     let token = dict["authSessionToken"] as? String else {
@@ -141,7 +139,7 @@ class MCSWalletService: WalletService {
                       "bank_account_number" : bankAccount.bankAccountNumber,
                       "bank_account_name" : bankAccount.accountName ?? ""] as [String:Any]
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet", params: params)
+        return MCSApi.shared.post(path: "wallet", params: params)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let message = dict["message"] as? String,
@@ -182,7 +180,7 @@ class MCSWalletService: WalletService {
         var params: Dictionary<String, String> = [:]
         params["biller_id"] = "\(Environment.shared.opco.rawValue)Registered"
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/query", params: params)
+        return MCSApi.shared.post(path: "wallet/query", params: params)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let token = dict["authSessionToken"] as? String else {
@@ -232,7 +230,7 @@ class MCSWalletService: WalletService {
                       "cvv" : creditCard.securityCode,
                       "expiration_date" : DateFormatter.yyyyMMddFormatter.string(from: parsed!)] as [String: Any]
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet", params: params)
+        return MCSApi.shared.post(path: "wallet", params: params)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let message = dict["message"] as? String,
@@ -272,7 +270,7 @@ class MCSWalletService: WalletService {
                                      "masked_wallet_item_acc_num" : maskedAccountNumber,
                                      "payment_category_type" : categoryType]
         
-        MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet", params: params)
+        MCSApi.shared.post(path: "wallet", params: params)
             .subscribe()
             .disposed(by: disposeBag)
     }
@@ -316,7 +314,7 @@ class MCSWalletService: WalletService {
             params["expiration_date"] = DateFormatter.yyyyMMddFormatter.string(from: parsed)
         }
         
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/wallet", params: params)
+        return MCSApi.shared.put(path: "wallet", params: params)
             .mapTo(())
             .catchError { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
@@ -351,7 +349,7 @@ class MCSWalletService: WalletService {
             break
         }
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/query", params: params)
+        return MCSApi.shared.post(path: "wallet/query", params: params)
             .flatMap { json -> Observable<WalletItemResult> in
                 guard let dict = json as? [String: Any],
                     let token = dict["authSessionToken"] as? String else {
@@ -400,7 +398,7 @@ class MCSWalletService: WalletService {
             params["bank_account_name"] = accountName
         }
         
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/wallet", params: params)
+        return MCSApi.shared.put(path: "wallet", params: params)
             .mapTo(())
     }
     
@@ -414,7 +412,7 @@ class MCSWalletService: WalletService {
             params["payment_category_type"] = walletItem.paymentCategoryType?.rawValue
         }
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/delete", params: params)
+        return MCSApi.shared.post(path: "wallet/delete", params: params)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.defaultWalletItemUpdated.onNext(())
@@ -443,7 +441,7 @@ class MCSWalletService: WalletService {
                       "wallet_id":walletId ?? "",
                       "person_id":customerId]
         
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/wallet/default", params: params)
+        return MCSApi.shared.put(path: "wallet/default", params: params)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.defaultWalletItemUpdated.onNext(())
@@ -451,7 +449,7 @@ class MCSWalletService: WalletService {
     }
     
     func removeOneTouchPayItem(customerId: String) -> Observable<Void> {
-        return MCSApi.shared.delete(path: "auth_\(MCSApi.API_VERSION)/wallet/default/\(customerId)", params: nil)
+        return MCSApi.shared.delete(path: "wallet/default/\(customerId)", params: nil)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.defaultWalletItemUpdated.onNext(())

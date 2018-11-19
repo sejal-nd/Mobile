@@ -99,7 +99,7 @@ class WalletViewModel {
     
     var addBankDisabled: Driver<Bool> {
         return bankAccountLimitReached.map { [weak self] in
-            guard let `self` = self else { return true }
+            guard let self = self else { return true }
             return $0 || self.accountDetail.isCashOnly
         }
     }
