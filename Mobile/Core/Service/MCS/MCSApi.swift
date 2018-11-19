@@ -203,7 +203,7 @@ class MCSApi {
         #elseif os(watchOS)
         accessToken = tokenKeychain["authToken"]
         
-        return performCall(requestId: requestId, path: path, params: params, method: method)
+        return performCall(anon: anon, requestId: requestId, path: path, params: params, method: method)
         #endif
     }
     
