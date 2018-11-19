@@ -3195,7 +3195,9 @@ to your payments.</string>
                             <constraint firstAttribute="trailing" secondItem="07H-3r-ibw" secondAttribute="trailing" id="zy3-hh-RXh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Wallet" id="wfM-W8-eOg"/>
+                    <navigationItem key="navigationItem" title="My Wallet" id="wfM-W8-eOg">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="E5s-mr-4C4"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="600"/>
@@ -3694,7 +3696,7 @@ to your payments.</string>
         <image name="opco_bank_mini" width="50" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bsy-MF-jk9"/>
-        <segue reference="A8Z-wI-v0q"/>
+        <segue reference="t7P-RQ-Ct7"/>
+        <segue reference="7YH-hS-G7V"/>
     </inferredMetricsTieBreakers>
 </document>

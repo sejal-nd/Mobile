@@ -220,13 +220,23 @@ class WalletViewController: UIViewController {
         Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
+                if Environment.shared.opco == .bge {
+                    self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
+                } else {
+                    let paymentusVC = WebFormViewController(bankOrCard: .bank)
+                    self.navigationController?.pushViewController(paymentusVC, animated: true)
+                }
             }).disposed(by: disposeBag)
         
         Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
+                if Environment.shared.opco == .bge {
+                    self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
+                } else {
+                    let paymentusVC = WebFormViewController(bankOrCard: .card)
+                    self.navigationController?.pushViewController(paymentusVC, animated: true)
+                }
             }).disposed(by: disposeBag)
     }
     
