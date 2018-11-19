@@ -223,7 +223,8 @@ class WalletViewController: UIViewController {
                 if Environment.shared.opco == .bge {
                     self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
                 } else {
-                    let paymentusVC = WebFormViewController(bankOrCard: .bank)
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank)
+                    paymentusVC.delegate = self
                     self.navigationController?.pushViewController(paymentusVC, animated: true)
                 }
             }).disposed(by: disposeBag)
@@ -234,7 +235,8 @@ class WalletViewController: UIViewController {
                 if Environment.shared.opco == .bge {
                     self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
                 } else {
-                    let paymentusVC = WebFormViewController(bankOrCard: .card)
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card)
+                    paymentusVC.delegate = self
                     self.navigationController?.pushViewController(paymentusVC, animated: true)
                 }
             }).disposed(by: disposeBag)
@@ -254,7 +256,8 @@ class WalletViewController: UIViewController {
     @objc func onEditWalletItemPress(sender: UIButton) {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
             selectedWalletItem = walletItems[sender.tag]
-            let paymentusVC = WebFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, walletItemId: selectedWalletItem!.walletItemID)
+            let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, walletItemId: selectedWalletItem!.walletItemID)
+            paymentusVC.delegate = self
             self.navigationController?.pushViewController(paymentusVC, animated: true)
         }
     }
@@ -441,5 +444,9 @@ extension WalletViewController: EditCreditCardViewControllerDelegate {
     func editCreditCardViewControllerDidEditAccount(_ editCreditCardViewController: EditCreditCardViewController, message: String) {
         didChangeAccount(toastMessage: message)
     }
+    
+}
+
+extension WalletViewController: PaymentusFormViewControllerDelegate {
     
 }

@@ -457,9 +457,6 @@ class MCSWalletService: WalletService {
     }
     
     func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, postbackUrl: String, walletItemId: String? = nil) -> Observable<String> {
-        let opco = Environment.shared.opco.displayString.uppercased()
-        let anonPath = "anon_\(MCSApi.API_VERSION)/\(opco)/encryptionkey"
-        let authPath = "auth_\(MCSApi.API_VERSION)/encryptionkey"
         var params = [
             "pmCategory": bankOrCard == .bank ? "DD" : "CC", // "DC" = Debit Card
             "ownerId": customerId,
@@ -468,7 +465,8 @@ class MCSWalletService: WalletService {
         if let wid = walletItemId { // Indicates that this is an edit operation (as opposed to an add)
             params["wallet_item_id"] = wid
         }
-        return MCSApi.shared.post(path: anonPath, params: params)
+        return MCSApi.shared.post(anon: true, path: "encryptionkey", params: params)
+        //return MCSApi.shared.post(path: "encryptionkey", params: params)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let token = dict["Token"] as? String else {

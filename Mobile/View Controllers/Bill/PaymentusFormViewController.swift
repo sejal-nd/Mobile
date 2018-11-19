@@ -1,5 +1,5 @@
 //
-//  WebFormViewController.swift
+//  PaymentusFormViewController.swift
 //  Mobile
 //
 //  Created by Samuel Francis on 11/15/18.
@@ -10,11 +10,11 @@ import UIKit
 import WebKit
 import RxSwift
 
-protocol WebFormViewControllerDelegate: class {
-    func webFormViewController(_ viewController: WebFormViewController, didRedirectToUrl url: URL)
+protocol PaymentusFormViewControllerDelegate: class {
+    // TODO - Delegate methods for add, edit, etc
 }
 
-class WebFormViewController: UIViewController {
+class PaymentusFormViewController: UIViewController {
     
     let loadingIndicator = LoadingIndicator().usingAutoLayout()
     let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration()).usingAutoLayout()
@@ -32,9 +32,9 @@ class WebFormViewController: UIViewController {
     }
     private let postbackUrl = "https://whateverwewant.com"
     
-    weak var delegate: WebFormViewControllerDelegate?
-    let bankOrCard: BankOrCard!
-    var walletItemId: String? = nil // Setting this will load the edit iFrame rather than add
+    weak var delegate: PaymentusFormViewControllerDelegate?
+    let bankOrCard: BankOrCard
+    let walletItemId: String? // Setting this will load the edit iFrame rather than add
     
     let disposeBag = DisposeBag()
     
@@ -103,8 +103,7 @@ class WebFormViewController: UIViewController {
                                                walletItemId: self.walletItemId)
             .subscribe(onNext: { [weak self] key in
                 guard let self = self else { return }
-                print(key)
-                
+
                 var urlComponents = URLComponents(string: self.urlString)
                 urlComponents?.queryItems = [
                     URLQueryItem(name: "authToken", value: key)
@@ -122,13 +121,13 @@ class WebFormViewController: UIViewController {
 
 }
 
-extension WebFormViewController: WKNavigationDelegate {
+extension PaymentusFormViewController: WKNavigationDelegate {
     
     /// One of these two methods will catch the postback.
     /// We might want to remove one when we figure out which it will be.
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
         if let url = webView.url, url.absoluteString.starts(with: postbackUrl) {
-            delegate?.webFormViewController(self, didRedirectToUrl: url)
+
         }
     }
     
@@ -137,7 +136,7 @@ extension WebFormViewController: WKNavigationDelegate {
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let url = webView.url, url.absoluteString.starts(with: postbackUrl) {
             decisionHandler(.cancel)
-            delegate?.webFormViewController(self, didRedirectToUrl: url)
+
         } else {
             decisionHandler(.allow)
         }
