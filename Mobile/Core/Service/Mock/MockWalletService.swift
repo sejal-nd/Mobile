@@ -77,7 +77,7 @@ struct MockWalletService: WalletService {
     }
 
     func deletePaymentMethod(walletItem : WalletItem) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: ""))
+        return Observable.just(()).delay(1, scheduler: MainScheduler.instance)
     }
 
     func setOneTouchPayItem(walletItemId: String,
@@ -88,5 +88,9 @@ struct MockWalletService: WalletService {
     
     func removeOneTouchPayItem(customerId: String) -> Observable<Void> {
         return .just(())
+    }
+    
+    func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, postbackUrl: String, walletItemId: String? = nil) -> Observable<String> {
+        return .just("")
     }
 }

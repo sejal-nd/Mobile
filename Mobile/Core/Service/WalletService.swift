@@ -71,4 +71,12 @@ protocol WalletService {
     /// - Parameters:
     ///   - customerId: the customer number to disable one touch pay for
     func removeOneTouchPayItem(customerId: String) -> Observable<Void>
+    
+    func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, postbackUrl: String, walletItemId: String?) -> Observable<String>
+}
+
+extension WalletService {
+    func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, postbackUrl: String, walletItemId: String? = nil) -> Observable<String> {
+        return fetchWalletEncryptionKey(customerId: customerId, bankOrCard: bankOrCard, postbackUrl: postbackUrl, walletItemId: walletItemId)
+    }
 }
