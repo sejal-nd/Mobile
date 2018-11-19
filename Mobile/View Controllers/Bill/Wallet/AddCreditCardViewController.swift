@@ -94,7 +94,7 @@ class AddCreditCardViewController: UIViewController {
             }, onSuccess: { walletItemResult in
                 let completion = {
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.addCreditCardViewControllerDidAddAccount(self)
                     if self.shouldPopToRootOnSave {
                         self.navigationController?.popToRootViewController(animated: true)

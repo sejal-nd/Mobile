@@ -374,7 +374,7 @@ class HomeBillCardView: UIView {
                          NotificationCenter.default.rx.notification(Notification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.viewModel.showSaveAPaymentAccountButton.asObservable().single().subscribe(onNext: { show in
                     let a11yEnabled = UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
                     self.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
@@ -500,7 +500,7 @@ class HomeBillCardView: UIView {
         .filter { $0 }
         .flatMap { [weak self] _ -> Observable<UIViewController> in
             Observable<UIViewController>.create { [weak self] observer in
-                guard let `self` = self else {
+                guard let self = self else {
                     observer.onCompleted()
                     return Disposables.create()
                 }
@@ -515,7 +515,7 @@ class HomeBillCardView: UIView {
                 }
                 
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.cvvValidationDisposable?.dispose()
                     let textField = alertController.textFields![0]
                     let alertController2 = self.oneTouchBGELegalAlert(observer: observer)

@@ -141,7 +141,7 @@ class BillViewController: AccountPickerViewController {
                                  viewModel.accountDetailEvents.asObservable().map { $0 }.startWith(nil))
             .sample(accountPickerViewControllerWillAppear)
             .subscribe(onNext: { [weak self] state, accountDetail in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 switch(state) {
                 case .loadingAccounts:
                     break
@@ -164,7 +164,7 @@ class BillViewController: AccountPickerViewController {
 
         NotificationCenter.default.rx.notification(.didSelectEnrollInAutoPay, object: nil)
         .subscribe(onNext: { [weak self] notification in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if let accountDetail = notification.object as? AccountDetail {
                 self.navigateToAutoPay(accountDetail: accountDetail)
             }
@@ -450,7 +450,7 @@ class BillViewController: AccountPickerViewController {
 		viewModel.pendingPaymentAmounts
 			.map { $0.map { PendingPaymentView.create(withAmount: $0) } }
 			.drive(onNext: { [weak self] pendingPaymentViews in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 
 				self.paymentStackView.arrangedSubviews.forEach {
 					self.paymentStackView.removeArrangedSubview($0)
@@ -529,7 +529,7 @@ class BillViewController: AccountPickerViewController {
         viewBillButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] accountDetail in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if Environment.shared.opco == .comEd &&
                     accountDetail.hasElectricSupplier &&
                     accountDetail.isSingleBillOption {
@@ -567,7 +567,7 @@ class BillViewController: AccountPickerViewController {
         walletButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 let walletVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateInitialViewController() as! WalletViewController
                 walletVc.viewModel.accountDetail = $0
                 self.navigationController?.pushViewController(walletVc, animated: true)
@@ -577,7 +577,7 @@ class BillViewController: AccountPickerViewController {
 		paperlessButton.rx.touchUpInside.asDriver()
 			.withLatestFrom(viewModel.currentAccountDetail)
 			.drive(onNext: { [weak self] accountDetail in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !accountDetail.isResidential && Environment.shared.opco != .bge {
 					self.performSegue(withIdentifier: "paperlessEBillCommercialSegue", sender: accountDetail)
 				} else {
@@ -589,7 +589,7 @@ class BillViewController: AccountPickerViewController {
         budgetButton.rx.touchUpInside.asDriver()
             .withLatestFrom(viewModel.currentAccountDetail)
             .drive(onNext: { [weak self] accountDetail in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if accountDetail.isBudgetBillEligible || accountDetail.isBudgetBillEnrollment {
                     self.performSegue(withIdentifier: "budgetBillingSegue", sender: accountDetail)
                 } else {
@@ -617,11 +617,11 @@ class BillViewController: AccountPickerViewController {
         Observable.merge(makeAPaymentButtonTapped, shortcutReady)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] alertInfo in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.shortcutItem = .none
                 let (titleOpt, messageOpt, accountDetail) = alertInfo
                 let goToMakePayment = { [weak self] in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
                     paymentVc.accountDetail = accountDetail
                     self.navigationController?.pushViewController(paymentVc, animated: true)
@@ -643,7 +643,7 @@ class BillViewController: AccountPickerViewController {
         makeAPaymentStatusButton.rx.touchUpInside.asDriver()
             .withLatestFrom(Driver.combineLatest(viewModel.makePaymentStatusTextTapRouting, viewModel.currentAccountDetail))
             .drive(onNext: { [weak self] route, accountDetail in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if route == .activity {
                     self.performSegue(withIdentifier: "billingHistorySegue", sender: accountDetail)
                 } else if route == .autoPay {

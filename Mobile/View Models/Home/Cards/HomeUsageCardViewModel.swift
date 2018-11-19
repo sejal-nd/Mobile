@@ -262,7 +262,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var barDescriptionDateLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if selectionStates[0].value { // No data
                 return NSLocalizedString("Previous Bill - Not enough data available.", comment: "")
             } else if selectionStates[1].value { // Previous
@@ -279,7 +279,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var barDescriptionTotalBillTitleLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if selectionStates[0].value {
                 return nil
             } else {
@@ -289,7 +289,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var barDescriptionTotalBillValueLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if selectionStates[1].value { // Previous
                 if let compared = billComparison.compared {
                     return compared.charges.currencyString!
@@ -304,7 +304,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var barDescriptionUsageTitleLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if selectionStates[0].value {
                 return nil
             } else {
@@ -314,7 +314,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var barDescriptionUsageValueLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if selectionStates[1].value { // Previous
                 if let compared = billComparison.compared {
                     return "\(Int(compared.usage)) \(billComparison.meterUnit)"

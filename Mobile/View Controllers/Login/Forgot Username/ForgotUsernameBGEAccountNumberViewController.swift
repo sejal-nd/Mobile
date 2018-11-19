@@ -44,7 +44,7 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
             .drive(onNext: { [weak self] accountNumber, hasTenDigits in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !accountNumber.isEmpty {
                     if !hasTenDigits {
                         self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))

@@ -433,7 +433,7 @@ class EditCreditCardViewController: UIViewController {
         
         let handleSuccess = { [weak self] in
             LoadingView.hide()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
             if self.shouldPopToRootOnSave {
                 self.navigationController?.popToRootViewController(animated: true)
@@ -445,7 +445,7 @@ class EditCreditCardViewController: UIViewController {
         if cardDataEntered {
             let editCreditCard = { [weak self] (oneTouchPay: Bool) in
                 let editOneTouchPay = { [weak self] in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     if oneTouchPay {
                         self.viewModel.enableOneTouchPay(onSuccess: {
                             handleSuccess()
@@ -496,7 +496,7 @@ class EditCreditCardViewController: UIViewController {
         } else {
             let toggleOneTouchPay = { [weak self] in
                 LoadingView.show()
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if self.viewModel.oneTouchPay.value {
                     self.viewModel.enableOneTouchPay(onSuccess: {
                         handleSuccess()
@@ -546,7 +546,7 @@ class EditCreditCardViewController: UIViewController {
             LoadingView.show()
             self?.viewModel.deleteCreditCard(onSuccess: { [weak self] in
                 LoadingView.hide()
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Card deleted", comment: ""))
                 if self.shouldPopToRootOnSave {
                     self.navigationController?.popToRootViewController(animated: true)

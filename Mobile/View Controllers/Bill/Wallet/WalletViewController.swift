@@ -186,14 +186,14 @@ class WalletViewController: UIViewController {
         
         viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowEmptyState.drive(onNext: { [weak self] shouldShow in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if shouldShow {
                 UIAccessibility.post(notification: .screenChanged, argument: self.emptyStateScrollView)
             }
         }).disposed(by: disposeBag)
         viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWallet.filter { $0 }.drive(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.tableView.reloadData()
             UIAccessibility.post(notification: .screenChanged, argument: self.tableView)
         }).disposed(by: disposeBag)
@@ -216,13 +216,13 @@ class WalletViewController: UIViewController {
     func setupButtonTaps() {
         Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
             }).disposed(by: disposeBag)
         
         Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
             }).disposed(by: disposeBag)
     }
