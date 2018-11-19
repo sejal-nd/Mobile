@@ -254,7 +254,8 @@ class WalletViewController: UIViewController {
     @objc func onEditWalletItemPress(sender: UIButton) {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
             selectedWalletItem = walletItems[sender.tag]
-            print("edit item at index \(sender.tag)")
+            let paymentusVC = WebFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, walletItemId: selectedWalletItem!.walletItemID)
+            self.navigationController?.pushViewController(paymentusVC, animated: true)
         }
     }
     
