@@ -188,6 +188,14 @@ class MCSApi {
         
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
         
+        var authPath: String
+        if anon {
+            let opCoString = Environment.shared.opco.displayString.uppercased()
+            authPath = "anon_\(MCSApi.API_VERSION)/\(opCoString)/\(path)"
+        } else {
+            authPath = "auth_\(MCSApi.API_VERSION)/\(path)"
+        }
+        
         #if os(iOS)
         let reachability = Reachability()!
         let networkStatus = reachability.connection
@@ -195,15 +203,15 @@ class MCSApi {
         switch(networkStatus) {
         case .none:
             let serviceError = ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue)
-            APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+            APILog(requestId: requestId, path: authPath, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
             return .error(serviceError)
         case .wifi, .cellular:
-            return performCall(anon: anon, requestId: requestId, path: path, params: params, method: method)
+            return performCall(anon: anon, requestId: requestId, path: authPath, params: params, method: method)
         }
         #elseif os(watchOS)
         accessToken = tokenKeychain["authToken"]
         
-        return performCall(anon: anon, requestId: requestId, path: path, params: params, method: method)
+        return performCall(anon: anon, requestId: requestId, path: authPath, params: params, method: method)
         #endif
     }
     
@@ -222,14 +230,7 @@ class MCSApi {
         APILog(requestId: requestId, path: path, method: method, message: logMessage)
         
         // Build Request
-        var url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)/mobile/custom/")!
-        if anon {
-            let opCoString = Environment.shared.opco.displayString.uppercased()
-            url.appendPathComponent("anon_\(MCSApi.API_VERSION)/\(opCoString)/\(path)")
-        } else {
-            url.appendPathComponent("auth_\(MCSApi.API_VERSION)/\(path)")
-        }
-        
+        let url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)/mobile/custom/\(path)")!
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.httpBody = requestBody
