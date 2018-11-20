@@ -11,7 +11,9 @@ import WebKit
 import RxSwift
 
 protocol PaymentusFormViewControllerDelegate: class {
-    // TODO - Delegate methods for add, edit, etc
+    func didEditWalletItem()
+    func didAddCard(_ walletItem: WalletItem?)
+    func didAddBank(_ walletItem: WalletItem?)
 }
 
 class PaymentusFormViewController: UIViewController {
@@ -30,13 +32,16 @@ class PaymentusFormViewController: UIViewController {
             return "https://peco-sit-622.paymentus.io/xotp/pm/peco"
         }
     }
-    private let postbackUrl = "https://whateverwewant.com"
+    
+    private let postbackUrl = "https://mindgrub.com/"
     
     weak var delegate: PaymentusFormViewControllerDelegate?
     let bankOrCard: BankOrCard
     let walletItemId: String? // Setting this will load the edit iFrame rather than add
     
     let disposeBag = DisposeBag()
+    
+    var shouldPopToRootOnSave = false
     
     init(bankOrCard: BankOrCard, walletItemId: String? = nil) {
         self.bankOrCard = bankOrCard
@@ -92,15 +97,28 @@ class PaymentusFormViewController: UIViewController {
     
     func showError() {
         loadingIndicator.isHidden = true
+        webView.isHidden = true
         errorLabel.isHidden = false
+    }
+    
+    func showLoadingState() {
+        loadingIndicator.isHidden = false
+        webView.isHidden = true
+        errorLabel.isHidden = true
+    }
+    
+    func showWebView() {
+        loadingIndicator.isHidden = true
+        webView.isHidden = false
+        errorLabel.isHidden = true
     }
     
     func fetchEncryptionKey() {
         let walletService = ServiceFactory.createWalletService()
         walletService.fetchWalletEncryptionKey(customerId: AccountsStore.shared.customerIdentifier,
-                                               bankOrCard: self.bankOrCard,
-                                               postbackUrl: self.postbackUrl,
-                                               walletItemId: self.walletItemId)
+                                               bankOrCard: bankOrCard,
+                                               postbackUrl: postbackUrl,
+                                               walletItemId: walletItemId)
             .subscribe(onNext: { [weak self] key in
                 guard let self = self else { return }
 
@@ -123,26 +141,51 @@ class PaymentusFormViewController: UIViewController {
 
 extension PaymentusFormViewController: WKNavigationDelegate {
     
-    /// One of these two methods will catch the postback.
-    /// We might want to remove one when we figure out which it will be.
-    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-        if let url = webView.url, url.absoluteString.starts(with: postbackUrl) {
-
-        }
-    }
-    
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = webView.url, url.absoluteString.starts(with: postbackUrl) {
+        guard let url = navigationAction.request.url else {
+            decisionHandler(.allow)
+            return
+        }
+        
+        if url.absoluteString.starts(with: postbackUrl) {
             decisionHandler(.cancel)
-
+            
+            // parse wallet item from request
+            
+            if walletItemId != nil {
+                delegate?.didEditWalletItem()
+            } else {
+                switch bankOrCard {
+                case .bank:
+                    delegate?.didAddBank(nil)
+                case .card:
+                    delegate?.didAddCard(nil)
+                }
+            }
+            
+            if shouldPopToRootOnSave {
+                navigationController?.popToRootViewController(animated: true)
+            } else {
+                navigationController?.popViewController(animated: true)
+            }
+        } else if !url.absoluteString.starts(with: urlString) {
+            showLoadingState()
+            decisionHandler(.allow)
         } else {
             decisionHandler(.allow)
         }
     }
     
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        loadingIndicator.isHidden = true
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        showError()
     }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if webView.url?.absoluteString.starts(with: urlString) ?? false {
+            showWebView()
+        }
+    }
+    
 }

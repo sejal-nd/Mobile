@@ -934,8 +934,7 @@ class PaymentViewModel {
             guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
             
             if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
-                return nickname == String(last4) ? nil : nickname
+                return nickname == maskedNumber ? nil : nickname
             } else {
                 return nickname
             }
