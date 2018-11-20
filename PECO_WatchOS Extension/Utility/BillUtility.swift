@@ -69,7 +69,7 @@ class BillUtility {
         } else if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, !accountDetail.isAutoPay {
             // Net Amount Due
             billStates.append(.billReady(amount: amount, date: dueDate))
-        } else if let billDate = accountDetail.billingInfo.billDate, let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate, let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount, lastPaymentAmount > 0, billDate < lastPaymentDate, let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == 0  {
+        } else if let billDate = accountDetail.billingInfo.billDate, let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate, let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount, lastPaymentAmount > 0, lastPaymentDate < billDate, let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == 0  {
             // Bill Paid - Payment Applied
             billStates.append(.billPaid(amount: lastPaymentAmount))
         } else if let amount = accountDetail.billingInfo.netDueAmount, amount == 0, accountDetail.billingInfo.billDate == nil {
