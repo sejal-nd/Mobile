@@ -165,6 +165,9 @@ extension PaymentusFormViewController: WKNavigationDelegate {
                 }
             }
             
+            // If we can know the `isDefault` status here, we can be smarter about firing this notification.
+            RxNotifications.shared.defaultWalletItemUpdated.onNext(())
+            
             if shouldPopToRootOnSave {
                 navigationController?.popToRootViewController(animated: true)
             } else {

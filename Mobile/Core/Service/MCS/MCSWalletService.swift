@@ -460,8 +460,7 @@ class MCSWalletService: WalletService {
         var params = [
             "pmCategory": bankOrCard == .bank ? "DD" : "CC", // "DC" = Debit Card
             "ownerId": customerId,
-            "postbackUrl": postbackUrl,
-            "opco": Environment.shared.opco.displayString.uppercased()
+            "postbackUrl": postbackUrl
         ]
         
         if let wid = walletItemId { // Indicates that this is an edit operation (as opposed to an add)
