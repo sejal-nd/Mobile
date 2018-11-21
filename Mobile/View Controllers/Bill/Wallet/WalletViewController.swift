@@ -219,24 +219,26 @@ class WalletViewController: UIViewController {
     func setupButtonTaps() {
         Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if Environment.shared.opco == .bge {
                     self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
                 } else {
                     let paymentusVC = PaymentusFormViewController(bankOrCard: .bank)
                     paymentusVC.delegate = self
+                    paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
                     self.navigationController?.pushViewController(paymentusVC, animated: true)
                 }
             }).disposed(by: disposeBag)
         
         Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if Environment.shared.opco == .bge {
                     self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
                 } else {
                     let paymentusVC = PaymentusFormViewController(bankOrCard: .card)
                     paymentusVC.delegate = self
+                    paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
                     self.navigationController?.pushViewController(paymentusVC, animated: true)
                 }
             }).disposed(by: disposeBag)
@@ -258,6 +260,7 @@ class WalletViewController: UIViewController {
             selectedWalletItem = walletItems[sender.tag]
             let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, walletItemId: selectedWalletItem!.walletItemID)
             paymentusVC.delegate = self
+            paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
             self.navigationController?.pushViewController(paymentusVC, animated: true)
         }
     }
@@ -448,5 +451,17 @@ extension WalletViewController: EditCreditCardViewControllerDelegate {
 }
 
 extension WalletViewController: PaymentusFormViewControllerDelegate {
+    func didEditWalletItem() {
+        didChangeAccount(toastMessage: NSLocalizedString("Changes saved", comment: ""))
+    }
     
+    func didAddBank(_ walletItem: WalletItem?) {
+        didChangeAccount(toastMessage: NSLocalizedString("Bank account added", comment: ""))
+        Analytics.log(event: .addWalletComplete)
+    }
+    
+    func didAddCard(_ walletItem: WalletItem?) {
+        didChangeAccount(toastMessage: NSLocalizedString("Card added", comment: ""))
+        Analytics.log(event: .addWalletComplete)
+    }
 }

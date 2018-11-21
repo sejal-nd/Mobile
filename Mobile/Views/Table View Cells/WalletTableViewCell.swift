@@ -119,8 +119,7 @@ class WalletTableViewCell: UITableViewCell {
         if let nickname = walletItem.nickName {
             let displayNickname: String
             if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
-                displayNickname = nickname == last4 ? "" : nickname
+                displayNickname = nickname == maskedNumber ? "" : nickname
             } else {
                 displayNickname = nickname
             }
@@ -129,10 +128,11 @@ class WalletTableViewCell: UITableViewCell {
             if Environment.shared.opco == .bge {
                 if walletItem.bankOrCard == .bank {
                     if let bankAccountType = walletItem.bankAccountType {
-                        if bankAccountType.rawValue.uppercased() == "SAVING"{
-                            nicknameLabel.text = NSLocalizedString(String(format:"%@, SAVINGS", nickname),comment: "")
-                        } else {
-                            nicknameLabel.text = NSLocalizedString(String(format:"%@, CHECKING", nickname),comment: "")
+                        switch bankAccountType {
+                        case .savings:
+                            nicknameLabel.text = String.localizedStringWithFormat("%@, SAVINGS", nickname)
+                        default:
+                            nicknameLabel.text = String.localizedStringWithFormat("%@, CHECKING", nickname)
                         }
                     }
                 }

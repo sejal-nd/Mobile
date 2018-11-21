@@ -19,7 +19,15 @@ class MCSApi {
 
     static let shared = MCSApi()
 
-    static let API_VERSION = "v5"
+    static let API_VERSION: String = {
+        switch Environment.shared.opco {
+        case .bge:
+            return "v4"
+        case .comEd, .peco:
+            return "v5"
+        }
+    }()
+    
     private let TIMEOUT = 120.0
 
     final private let TOKEN_KEYCHAIN_KEY = "kExelon_Token"

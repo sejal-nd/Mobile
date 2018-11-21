@@ -17,9 +17,10 @@ enum PaymentType: String {
 
 // Comed/PECO
 enum PaymentCategoryType: String {
-    case check = "Check"
-    case credit = "Credit"
-    case debit = "Debit"
+    case check = "CHECK"
+    case saving = "SAVING"
+    case credit = "CREDIT"
+    case debit = "DEBIT"
 }
 
 // BGE
@@ -39,7 +40,12 @@ private func extractLast4(object: Any?) throws -> String? {
     guard let string = object as? String else {
         throw MapperError.convertibleError(value: object, type: String.self)
     }
-    return string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+    
+    let last4 = string.components(separatedBy: CharacterSet.decimalDigits.inverted)
+        .joined()
+        .suffix(4)
+    
+    return String(last4)
 }
 
 struct WalletItem: Mappable, Equatable, Hashable {
@@ -90,7 +96,12 @@ struct WalletItem: Mappable, Equatable, Hashable {
         if let type = bankAccountType, Environment.shared.opco == .bge {
             bankOrCard = type == .card ? .card : .bank
         } else if let type = paymentCategoryType {
-            bankOrCard = (type == .credit || type == .debit) ? .card : .bank
+            switch type {
+            case .credit, .debit:
+                bankOrCard = .card
+            case .check, .saving:
+                bankOrCard = .bank
+            }
         }
     }
     
