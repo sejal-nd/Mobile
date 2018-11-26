@@ -30,18 +30,30 @@ class MCSWalletService: WalletService {
                 
                 let itemArray = walletItems.compactMap { WalletItem.from($0 as NSDictionary) }
                     .sorted { (a: WalletItem, b: WalletItem) in
-                        switch (a.bankOrCard, b.bankOrCard) {
-                        case (.bank, .bank):
-                            guard let aCreated = a.dateCreated, let bCreated = b.dateCreated else {
+                        // Sort order:
+                        // 1. Default Payment Account (Paymentus Only)
+                        // 2. Most recent to least recently added bank accounts
+                        // 3. Most recent to least recently added credit cards
+                        if Environment.shared.opco != .bge {
+                            if a.isDefault && !b.isDefault {
                                 return true
+                            } else if b.isDefault && !a.isDefault {
+                                return false
                             }
-                            return aCreated >= bCreated
+                        }
+
+                        switch (a.bankOrCard, b.bankOrCard) {
                         case (.bank, .card):
                             return true
                         case (.card, .bank):
                             return false
+                        case (.bank, .bank):
+                            fallthrough
                         case (.card, .card):
-                            return true
+                            guard let aCreated = a.dateCreated, let bCreated = b.dateCreated else {
+                                return true
+                            }
+                            return aCreated >= bCreated
                         }
                 }
                 
