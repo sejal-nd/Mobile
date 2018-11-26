@@ -3834,9 +3834,9 @@
 				35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */,
 				35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */,
 				35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */,
-				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
-				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
 				35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */,
+				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
+				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -9772,7 +9772,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A0B2CF62B6B3538390205C4 /* Pods-PECO_WatchOS.develop.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9848,7 +9848,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 05DFA5B9B1BAB35F544A3BCE /* Pods-PECO_WatchOS.automation.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9878,7 +9878,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 277241359D21FBE81E2E1E5D /* Pods-PECO_WatchOS.staging.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9908,7 +9908,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9BEBD3C5006A1BBCE7CFD96B /* Pods-PECO_WatchOS.testing.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9938,7 +9938,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F7291B0AF47D72DF84B1C5DB /* Pods-PECO_WatchOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9968,7 +9968,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3D769EB6C31625603286F56F /* Pods-PECO_WatchOS.prodbeta.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
