@@ -1640,16 +1640,16 @@
                                                                 </constraints>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes, I have read, understand, and agree to the terms and conditions provided below:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pq3-k6-sNT">
-                                                                <rect key="frame" x="61" y="0.0" width="274" height="67"/>
+                                                                <rect key="frame" x="61" y="0.0" width="274" height="57.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="Hyo-W8-y4V" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="61" y="80" width="202.5" height="20.5"/>
+                                                                <rect key="frame" x="61" y="70.5" width="202.5" height="30"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View terms and conditions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffz-iA-WfL">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2979,14 +2979,14 @@ to your payments.</string>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8L8-nP-WmG">
-                                                                            <rect key="frame" x="261" y="0.0" width="40" height="31"/>
+                                                                            <rect key="frame" x="250" y="0.0" width="40" height="31"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="40" id="1Za-90-5s1"/>
                                                                             </constraints>
                                                                             <state key="normal" image="ic_edit"/>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stf-f1-Mrr">
-                                                                            <rect key="frame" x="301" y="0.0" width="40" height="31"/>
+                                                                            <rect key="frame" x="290" y="0.0" width="40" height="31"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="40" id="OTI-NK-dFt"/>
                                                                             </constraints>
@@ -3000,7 +3000,7 @@ to your payments.</string>
                                                                         <constraint firstItem="3vv-bZ-9rs" firstAttribute="leading" secondItem="IS1-Hy-ct4" secondAttribute="leading" constant="21" id="giO-B0-MQG"/>
                                                                         <constraint firstItem="3vv-bZ-9rs" firstAttribute="centerY" secondItem="IS1-Hy-ct4" secondAttribute="centerY" id="og8-Dw-bxu"/>
                                                                         <constraint firstItem="8L8-nP-WmG" firstAttribute="top" secondItem="IS1-Hy-ct4" secondAttribute="top" id="pfo-oC-OXX"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="Stf-f1-Mrr" secondAttribute="trailing" id="rXN-lG-tjw"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="Stf-f1-Mrr" secondAttribute="trailing" constant="11" id="rXN-lG-tjw"/>
                                                                         <constraint firstItem="Stf-f1-Mrr" firstAttribute="leading" secondItem="8L8-nP-WmG" secondAttribute="trailing" id="rp3-DN-b29"/>
                                                                         <constraint firstItem="Stf-f1-Mrr" firstAttribute="top" secondItem="IS1-Hy-ct4" secondAttribute="top" id="yYu-Kw-Srj"/>
                                                                     </constraints>
@@ -3696,7 +3696,7 @@ to your payments.</string>
         <image name="opco_bank_mini" width="50" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="t7P-RQ-Ct7"/>
-        <segue reference="7YH-hS-G7V"/>
+        <segue reference="bsy-MF-jk9"/>
+        <segue reference="A8Z-wI-v0q"/>
     </inferredMetricsTieBreakers>
 </document>

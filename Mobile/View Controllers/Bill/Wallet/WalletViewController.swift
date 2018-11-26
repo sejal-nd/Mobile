@@ -96,7 +96,7 @@ class WalletViewController: UIViewController {
         miniBankButton.layer.cornerRadius = 8
 
         tableViewFooter.text = viewModel.footerLabelText
-        tableViewFooter.font = SystemFont.regular.of(textStyle: .footnote)
+        tableViewFooter.font = OpenSans.semibold.of(textStyle: .footnote)
         
         emptyStateScrollView.isHidden = true
         nonEmptyStateView.isHidden = true
