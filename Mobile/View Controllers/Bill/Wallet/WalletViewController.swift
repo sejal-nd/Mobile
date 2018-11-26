@@ -404,6 +404,7 @@ extension WalletViewController: UITableViewDataSource {
             cell.editButton.tag = indexPath.section
             cell.editButton.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
             cell.editButton.addTarget(self, action: #selector(onEditWalletItemPress(sender:)), for: .touchUpInside)
+            cell.editButton.isEnabled = !(walletItem.bankOrCard == .bank && viewModel.accountDetail.isCashOnly)
             
             cell.deleteButton.tag = indexPath.section
             cell.deleteButton.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
