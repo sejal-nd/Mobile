@@ -31,27 +31,29 @@ class MCSWalletService: WalletService {
                 let itemArray = walletItems.compactMap { WalletItem.from($0 as NSDictionary) }
                     .sorted { (a: WalletItem, b: WalletItem) in
                         // Sort order:
-                        // 1. Default Payment Account
+                        // 1. Default Payment Account (Paymentus Only)
                         // 2. Most recent to least recently added bank accounts
                         // 3. Most recent to least recently added credit cards
-                        if a.isDefault && !b.isDefault {
-                            return true
-                        } else if b.isDefault && !a.isDefault {
-                            return false
-                        } else {
-                            switch (a.bankOrCard, b.bankOrCard) {
-                            case (.bank, .card):
+                        if Environment.shared.opco != .bge {
+                            if a.isDefault && !b.isDefault {
                                 return true
-                            case (.card, .bank):
+                            } else if b.isDefault && !a.isDefault {
                                 return false
-                            case (.bank, .bank):
-                                fallthrough
-                            case (.card, .card):
-                                guard let aCreated = a.dateCreated, let bCreated = b.dateCreated else {
-                                    return true
-                                }
-                                return aCreated >= bCreated
                             }
+                        }
+
+                        switch (a.bankOrCard, b.bankOrCard) {
+                        case (.bank, .card):
+                            return true
+                        case (.card, .bank):
+                            return false
+                        case (.bank, .bank):
+                            fallthrough
+                        case (.card, .card):
+                            guard let aCreated = a.dateCreated, let bCreated = b.dateCreated else {
+                                return true
+                            }
+                            return aCreated >= bCreated
                         }
                 }
                 
