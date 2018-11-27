@@ -89,7 +89,7 @@ class NetworkingUtility {
         aLog("Polling new data...")
         guard WatchSessionManager.shared.isReachable() else { return }
         
-        fetchData(shouldShowLoading: false, shouldLoadAccountList: false)
+        fetchData(shouldShowLoading: true, shouldLoadAccountList: false)
     }
     
     
@@ -118,8 +118,8 @@ class NetworkingUtility {
                 guard success else { return }
                 
                 self?.fetchMainFeatureData()
-                return
             }
+            return
         }
         
         fetchMainFeatureData()
@@ -140,6 +140,7 @@ class NetworkingUtility {
                 self?.fetchAccountDetailsWithData(maintenanceModeStatus: status, completion: { [weak self] accountDetails in
                     guard let accountDetails = accountDetails else {
                         aLog("ERROR: Account Details is nil.")
+                        
                         self?.networkUtilityDelegates.forEach { $0.error(Errors.invalidInformation, feature: .all) }
                         return
                     }
@@ -178,7 +179,6 @@ class NetworkingUtility {
             } else {
                 // Error status is nil
                 aLog("ERROR: Maintenance Mode Status is nil.")
-                
                 self?.networkUtilityDelegates.forEach { $0.error(Errors.invalidInformation, feature: .all) }
             }
         }
