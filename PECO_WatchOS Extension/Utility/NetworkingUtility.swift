@@ -141,9 +141,7 @@ class NetworkingUtility {
                     guard let accountDetails = accountDetails else {
                         aLog("ERROR: Account Details is nil.")
                         
-                        let error = ServiceError(serviceCode: "1234", serviceMessage: "Error 1", cause: nil)
-                        
-                        self?.networkUtilityDelegates.forEach { $0.error(error, feature: .all) }
+                        self?.networkUtilityDelegates.forEach { $0.error(Errors.invalidInformation, feature: .all) }
                         return
                     }
                     
@@ -181,8 +179,7 @@ class NetworkingUtility {
             } else {
                 // Error status is nil
                 aLog("ERROR: Maintenance Mode Status is nil.")
-                let error = ServiceError(serviceCode: "1234", serviceMessage: "Error 2", cause: nil)
-                self?.networkUtilityDelegates.forEach { $0.error(error, feature: .all) }
+                self?.networkUtilityDelegates.forEach { $0.error(Errors.invalidInformation, feature: .all) }
             }
         }
     }
@@ -336,8 +333,7 @@ class NetworkingUtility {
         aLog("Fetching Usage Data...")
         
         guard accountDetail.isAMIAccount, let premiseNumber = accountDetail.premiseNumber else {
-            let error3 = ServiceError(serviceCode: "1234", serviceMessage: "Error 3", cause: nil)
-            error(error3)
+            error(Errors.invalidInformation)
             return
         }
         let accountNumber = accountDetail.accountNumber

@@ -362,7 +362,6 @@
 		35AFB42B20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
 		35AFB42C20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
 		35AFB42D20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
-		35E6608321AD8BAF00685A0C /* TestIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6608221AD8BAF00685A0C /* TestIC.swift */; };
 		35E7C79C21907EA400BA13C6 /* PECO_WatchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35E7C79B21907EA300BA13C6 /* PECO_WatchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E7C7A921907EA400BA13C6 /* PECO_WatchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO_WatchOS.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -2632,7 +2631,6 @@
 		35CE69DA21122F50007EB844 /* BGE-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-STAGE.entitlements"; sourceTree = "<group>"; };
 		35CE69DB21122F50007EB844 /* ComEd-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-STAGE.entitlements"; sourceTree = "<group>"; };
 		35CE69DC21122F51007EB844 /* PECO-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-PROD.entitlements"; sourceTree = "<group>"; };
-		35E6608221AD8BAF00685A0C /* TestIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestIC.swift; sourceTree = "<group>"; };
 		35E7C78F21907EA200BA13C6 /* PECO_WatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PECO_WatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E7C79B21907EA300BA13C6 /* PECO_WatchOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PECO_WatchOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -3839,7 +3837,6 @@
 				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
 				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
 				35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */,
-				35E6608221AD8BAF00685A0C /* TestIC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -6996,7 +6993,6 @@
 				356C7F8421909E97003E8A90 /* DateParser.swift in Sources */,
 				35E7C7F72190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift in Sources */,
 				356C7F8B21909FBB003E8A90 /* AccountService.swift in Sources */,
-				35E6608321AD8BAF00685A0C /* TestIC.swift in Sources */,
 				356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */,
 				35E7C8062190805C00BA13C6 /* BillInterfaceController.swift in Sources */,
 				356C7F7621909783003E8A90 /* ServiceResult.swift in Sources */,

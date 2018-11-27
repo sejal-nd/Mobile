@@ -283,25 +283,10 @@
                         <outlet property="restoreServiceDateLabel" destination="6od-8E-4aG" id="r02-mN-foF"/>
                         <outlet property="restoreServiceDescriptionLabel" destination="lDt-82-Vjb" id="Dd8-MW-jff"/>
                         <outlet property="restoreServiceGroup" destination="L4p-r4-dZ5" id="KGH-AX-PHl"/>
-                        <segue destination="fJQ-Rq-BnN" kind="relationship" relationship="nextPage" id="gwh-Kl-HRf"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="954" y="-311"/>
-        </scene>
-        <!--TestIC-->
-        <scene sceneID="IpM-MK-SVe">
-            <objects>
-                <controller identifier="TestIC" id="fJQ-Rq-BnN" customClass="TestIC" customModule="PECO_WatchOS" customModuleProvider="target">
-                    <items>
-                        <label width="1" alignment="left" text="Label" numberOfLines="0" id="hm6-xu-8u3"/>
-                    </items>
-                    <connections>
-                        <outlet property="label" destination="hm6-xu-8u3" id="Am5-9n-cOa"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="1361" y="-756"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
