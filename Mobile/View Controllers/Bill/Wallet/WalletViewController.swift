@@ -285,9 +285,15 @@ class WalletViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { [weak self] _ in
                 guard let self = self else { return }
                 LoadingView.show()
-                self.viewModel.deleteWalletItem(walletItem: self.selectedWalletItem!, onSuccess: {
+                self.viewModel.deleteWalletItem(walletItem: self.selectedWalletItem!, onSuccess: { [weak self] in
                     LoadingView.hide()
-                    self.didChangeAccount(toastMessage: toast)
+                    
+                    guard let self = self else { return }
+                    
+                    self.viewModel.fetchWalletItems.onNext(())
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                        self.view.showToast(toast)
+                    })
                 }, onError: { errMessage in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
