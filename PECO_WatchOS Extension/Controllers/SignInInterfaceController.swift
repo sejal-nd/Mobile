@@ -37,7 +37,7 @@ extension SignInInterfaceController: AuthTokenChangeDelegate {
     
     func authTokenSuccess() {
         // Replace lock screen with main app
-        WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject), (name: TestIC.className, context: [:] as AnyObject)])
+        WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
     }
     
     func authTokenFailure() {
