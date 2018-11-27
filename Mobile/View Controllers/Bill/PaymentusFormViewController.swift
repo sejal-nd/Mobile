@@ -186,9 +186,7 @@ extension PaymentusFormViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if webView.url?.absoluteString.starts(with: urlString) ?? false {
-            showWebView()
-        }
+        showWebView()
     }
     
 }
