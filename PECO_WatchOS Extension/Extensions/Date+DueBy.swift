@@ -15,11 +15,13 @@ extension Date {
         let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 255.0 / 255.0, green: 63.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)]
         
         var due = shouldIncludePrefix ? (shouldColor ? NSMutableAttributedString(string: "Due immediately", attributes: attributes) : NSMutableAttributedString(string: "Due immediately")) : (shouldColor ? NSMutableAttributedString(string: "immediately", attributes: attributes) : NSMutableAttributedString(string: "immediately"))
-
-        guard let numberOfDays = Calendar.opCo.dateComponents([.day], from: Date(), to: self).day else { return due }
         
-        if numberOfDays > 5 {
+        let numberOfDays = self.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
+
+        if numberOfDays > 6 {
             due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due by \(self.mmDdYyyyString)") : NSMutableAttributedString(string: "by \(self.mmDdYyyyString)")
+        } else if numberOfDays == 6 {
+            due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due in 6 days") : NSMutableAttributedString(string: "in 6 days")
         } else if numberOfDays == 5 {
             due = shouldIncludePrefix ? NSMutableAttributedString(string: "Due in 5 days") : NSMutableAttributedString(string: "in 5 days")
         } else if numberOfDays == 4 {
