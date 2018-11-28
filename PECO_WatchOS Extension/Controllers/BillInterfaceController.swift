@@ -55,7 +55,6 @@ class BillInterfaceController: WKInterfaceController {
     @IBOutlet var remainingBalanceGroup: WKInterfaceGroup!
     @IBOutlet var remainingBalanaceAmountLabel: WKInterfaceLabel!
     @IBOutlet var remainingBalanceDescriptionLabel: WKInterfaceLabel!
-    @IBOutlet var remainingBalanceDateLabel: WKInterfaceLabel!
     
     @IBOutlet var pendingPaymentGroup: WKInterfaceGroup!
     @IBOutlet var pendingPaymentAmountLabel: WKInterfaceLabel!
@@ -313,12 +312,10 @@ extension BillInterfaceController: NetworkingDelegate {
                 }
                 
                 billPaidGroup.setHidden(true)
-            case .billReadyAutoPay:
+            case .billReadyAutoPay:                
                 autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentImage.setImageNamed(AppImage.autoPay.name)
                 autoPayScheduledPaymentDetailLabel.setText("You are enrolled in Autopay")
-                
-                billAmountGroup.setHidden(true)
             case .billPaid(let amount):
                 billPaidGroup.setHidden(false)
                 billPaidAmountLabel.setText(amount.currencyString ?? "--")

@@ -64,8 +64,9 @@ class BillUtility {
         }
         
         // Auto Pay
-        if accountDetail.billingInfo.netDueAmount ?? 0 > 0, accountDetail.isAutoPay { // this is correct, however we need to change the IC logic, such that both autopay and the normal due amount will show
+        if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate,  accountDetail.isAutoPay {
             billStates.append(.billReadyAutoPay)
+            billStates.append(.billReady(amount: amount, date: dueDate))
         } else if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, !accountDetail.isAutoPay {
             // Net Amount Due
             billStates.append(.billReady(amount: amount, date: dueDate))
@@ -86,6 +87,11 @@ class BillUtility {
 
                 isPendingPayment = true
             }
+        }
+        
+        // Remaining Balance
+        if let amount = accountDetail.billingInfo.remainingBalanceDue, amount > 0, isPendingPayment {
+            billStates.append(.remainingBalance(remainingBalanceAmount: amount))
         }
         
         // Restore Service
@@ -110,11 +116,6 @@ class BillUtility {
                 billStates.append(.pastDue(pastDueAmount: pastDueAmount, netDueAmount: accountDetail.billingInfo.netDueAmount ?? 0.0, remainingBalanceDue: accountDetail.billingInfo.remainingBalanceDue ?? 0.0))
                 isPrecarious = true
             }
-        }
-        
-        // Remaining Balance
-        if let amount = accountDetail.billingInfo.remainingBalanceDue, amount > 0, isPendingPayment {
-                billStates.append(.remainingBalance(remainingBalanceAmount: amount))
         }
 
         // Most Recent Bill
