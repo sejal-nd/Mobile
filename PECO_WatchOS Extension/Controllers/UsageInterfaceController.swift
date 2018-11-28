@@ -112,8 +112,6 @@ class UsageInterfaceController: WKInterfaceController {
                     setImageForProgress(progress.isNaN ? 0.0 : progress) // handle division by 0
                     
                     mainTitleLabel.setText("\(Int(toDateUsage)) \(billForecast.meterUnit)")
-                    //let attributedText = NSMutableAttributedString(string: self)
-                    //attributedText.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .title2), range: range)
                 }
                 
             case .nextForecast(let numberOfDays):
@@ -186,8 +184,6 @@ class UsageInterfaceController: WKInterfaceController {
                 // set error data
                 nextForecastImage.setImageNamed(AppImage.usage.name)
                 nextForecastDetailLabel.setText("Usage is not available for this account.")
-                //errorImage.setImageNamed(AppImage.usage.name)
-                //errorTitleLabel.setText("Usage is not available for this account.")
             case .error(let serviceError):
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
                 // Hide all other groups
