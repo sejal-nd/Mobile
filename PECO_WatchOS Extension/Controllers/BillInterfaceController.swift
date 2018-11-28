@@ -324,14 +324,13 @@ extension BillInterfaceController: NetworkingDelegate {
                 billPaidAmountLabel.setText(amount.currencyString ?? "--")
                 
                 billAmountGroup.setHidden(true)
-            case .remainingBalance(let remainingBalanceAmount, let date):
+            case .remainingBalance(let remainingBalanceAmount):
                 remainingBalanceGroup.setHidden(false)
                 remainingBalanaceAmountLabel.setText(remainingBalanceAmount.currencyString ?? "--")
-                remainingBalanceDateLabel.setAttributedText(date.dueBy(shouldColor: true, shouldIncludePrefix: true))
                 
                 // Alert Banner
                 billAlertGroup.setHidden(false)
-                billAlertLabel.setText("\(remainingBalanceAmount.currencyString ?? "--") is due \(date.dueBy().string).")
+                billAlertLabel.setText("\(remainingBalanceAmount.currencyString ?? "--") is due immediately.")
             case .paymentPending(let amount):
                 pendingPaymentGroup.setHidden(false)
                 

@@ -16,7 +16,7 @@ enum BillState {
     case billReady(amount: Double, date: Date)
     case billReadyAutoPay
     case billPaid(amount: Double)
-    case remainingBalance(remainingBalanceAmount: Double, date: Date)
+    case remainingBalance(remainingBalanceAmount: Double)
     case paymentPending(amount: Double)
     case billNotReady
     case paymentScheduled(scheduledPayment: PaymentItem)
@@ -64,7 +64,7 @@ class BillUtility {
         }
         
         // Auto Pay
-        if accountDetail.billingInfo.netDueAmount ?? 0 > 0, accountDetail.isAutoPay {
+        if accountDetail.billingInfo.netDueAmount ?? 0 > 0, accountDetail.isAutoPay { // this is correct, however we need to change the IC logic, such that both autopay and the normal due amount will show
             billStates.append(.billReadyAutoPay)
         } else if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, !accountDetail.isAutoPay {
             // Net Amount Due
@@ -113,12 +113,8 @@ class BillUtility {
         }
         
         // Remaining Balance
-        if let amount = accountDetail.billingInfo.remainingBalanceDue, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, isPrecarious, isPendingPayment {
-            
-            if let lastBillDate = accountDetail.billingInfo.billDate, dueDate != lastBillDate {
-                billStates.append(.remainingBalance(remainingBalanceAmount: amount, date: dueDate))
-            }
-            
+        if let amount = accountDetail.billingInfo.remainingBalanceDue, amount > 0, isPendingPayment {
+                billStates.append(.remainingBalance(remainingBalanceAmount: amount))
         }
 
         // Most Recent Bill
