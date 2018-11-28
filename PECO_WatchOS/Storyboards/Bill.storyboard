@@ -102,17 +102,14 @@
                                             <variation key="device=watch42mm" height="110"/>
                                             <variation key="device=watch44mm" height="133"/>
                                         </group>
-                                        <group width="1" height="100" alignment="left" layout="vertical" id="hQI-2U-ZeZ">
+                                        <group width="1" alignment="left" layout="vertical" id="hQI-2U-ZeZ">
                                             <items>
-                                                <imageView width="40" height="40" alignment="center" verticalAlignment="center" image="autoPay" contentMode="scaleAspectFit" id="Sdd-Uj-qLY"/>
-                                                <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" id="tAq-ZU-nbS">
+                                                <imageView width="40" height="40" alignment="center" image="autoPay" contentMode="scaleAspectFit" id="Sdd-Uj-qLY"/>
+                                                <label width="1" alignment="center" text="Label" textAlignment="center" numberOfLines="0" id="tAq-ZU-nbS">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
-                                            <variation key="device=watch38mm" height="91"/>
-                                            <variation key="device=watch40mm" height="109"/>
-                                            <variation key="device=watch42mm" height="110"/>
-                                            <variation key="device=watch44mm" height="133"/>
+                                            <edgeInsets key="margins" left="0.0" right="0.0" top="20" bottom="15"/>
                                         </group>
                                         <group width="1" alignment="center" layout="vertical" radius="8" id="rvO-3U-9Ul">
                                             <items>
