@@ -343,7 +343,6 @@ extension BillInterfaceController: NetworkingDelegate {
                 pendingPaymentDescriptionLabel.setAttributedText(attributedFootnoteString)
             case .billNotReady:
                 autoPayScheduledPaymentGroup.setHidden(false)
-                autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentImage.setImageNamed(AppImage.billNotReady.name)
                 autoPayScheduledPaymentDetailLabel.setText("Your bill will be available here once it is ready")
                 
