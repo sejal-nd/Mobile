@@ -72,6 +72,8 @@ enum AppImage {
     case usageProgress(Int)
     case onAnimation
     case offAnimation
+    case gasMenuItem
+    case electricMenuItem
     
     var image: UIImage {
         return UIImage(imageLiteralResourceName: self.name)
@@ -125,6 +127,10 @@ enum AppImage {
             return "On_"
         case .offAnimation:
             return "Out_"
+        case .gasMenuItem:
+            return "gasMenuItem"
+        case .electricMenuItem:
+            return "electricMenuItem"
         }
     }
 }

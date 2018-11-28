@@ -77,8 +77,6 @@ extension WatchSessionManager {
     // Yes, that's it!
     // Just updateApplicationContext on the session!
     func updateApplicationContext(applicationContext: [String : Any]) throws {
-        
-        
         do {
             try session.updateApplicationContext(applicationContext)
         } catch let error {
