@@ -468,12 +468,17 @@ class MCSWalletService: WalletService {
             })
     }
     
-    func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, postbackUrl: String, walletItemId: String? = nil) -> Observable<String> {
+    func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, postbackUrl: String, walletItemId: String? = nil, temporary: Bool = false) -> Observable<String> {
         var params = [
             "pmCategory": bankOrCard == .bank ? "DD" : "CC", // "DC" = Debit Card
-            "ownerId": customerId,
             "postbackUrl": postbackUrl
         ]
+        
+        var strParam = "pageView=mobile;"
+        if temporary {
+            strParam += "nickname=false;primaryPM=false;"
+        }
+        params["strParam"] = strParam
         
         if let wid = walletItemId { // Indicates that this is an edit operation (as opposed to an add)
             params["wallet_item_id"] = wid
