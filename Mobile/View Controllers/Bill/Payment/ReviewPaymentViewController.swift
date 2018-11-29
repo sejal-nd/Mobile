@@ -307,16 +307,11 @@ class ReviewPaymentViewController: UIViewController {
                 handleError(errMessage)
             })
         } else { // Schedule
-            viewModel.checkForCutoff(onShouldReject: { [weak self] in
-                guard let self = self else { return }
+            viewModel.schedulePayment(onDuplicate: { [weak self] (errTitle, errMessage) in
                 LoadingView.hide()
-                self.present(UIAlertController.fiservCutoffAlert(), animated: true, completion: nil)
-            }, onShouldContinue: { [weak self] in
-                self?.viewModel.schedulePayment(onDuplicate: { [weak self] (errTitle, errMessage) in
-                    LoadingView.hide()
-                    let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self?.present(alertVc, animated: true, completion: nil)
+                let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertVc, animated: true, completion: nil)
                 }, onSuccess: { [weak self] in
                     LoadingView.hide()
                     
@@ -347,10 +342,8 @@ class ReviewPaymentViewController: UIViewController {
                                       dimensions: [.errorCode: error.serviceCode])
                     }
                     handleError(error.localizedDescription)
-                })
             })
         }
-
     }
     
     func onTermsConditionsPress() {
