@@ -56,9 +56,6 @@ class OutageInterfaceController: WKInterfaceController {
         case unavilable
     }
     
-    var runCount = 0
-
-    
     // Changes the Interface for error states
     var state = State.loading {
         didSet {
@@ -303,11 +300,6 @@ extension OutageInterfaceController: NetworkingDelegate {
     
     
     func outageStatusDidUpdate(_ outageStatus: OutageStatus) {
-        
-        runCount += 1
-        
-        aLog("Delegate trigger count: \(runCount)")
-        
         guard !outageStatus.flagGasOnly else {
             state = .loaded(.gasOnly)
             return
@@ -329,6 +321,7 @@ extension OutageInterfaceController: NetworkingDelegate {
     
     func loading(feature: MainFeature) {
         guard feature == .all || feature == .outage else { return }
+
         state = .loading
     }
     

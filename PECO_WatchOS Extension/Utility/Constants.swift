@@ -45,6 +45,10 @@ struct keychainKeys {
 }
 extension Notification.Name {
     static let outageReported: Notification.Name = Notification.Name(rawValue: "outageReportedNotificationName")
+    
+    static let defaultAccountSet: Notification.Name = Notification.Name(rawValue: "defaultAccountSet")
+    
+    static let currentAccountUpdated: Notification.Name = Notification.Name(rawValue: "currentAccountUpdated")
 }
 
 
