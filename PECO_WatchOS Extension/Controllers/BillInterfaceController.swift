@@ -55,7 +55,6 @@ class BillInterfaceController: WKInterfaceController {
     @IBOutlet var remainingBalanceGroup: WKInterfaceGroup!
     @IBOutlet var remainingBalanaceAmountLabel: WKInterfaceLabel!
     @IBOutlet var remainingBalanceDescriptionLabel: WKInterfaceLabel!
-    @IBOutlet var remainingBalanceDateLabel: WKInterfaceLabel!
     
     @IBOutlet var pendingPaymentGroup: WKInterfaceGroup!
     @IBOutlet var pendingPaymentAmountLabel: WKInterfaceLabel!
@@ -238,7 +237,7 @@ extension BillInterfaceController: NetworkingDelegate {
         aLog("Account detail did update")
         
         // Retrieve a list of states
-        let billStates = BillUtility().generateBillState(accountDetail: accountDetail)
+        let billStates = BillUtility().generateBillStates(accountDetail: accountDetail)
         
         // Set States
         for state in billStates {
@@ -313,25 +312,22 @@ extension BillInterfaceController: NetworkingDelegate {
                 }
                 
                 billPaidGroup.setHidden(true)
-            case .billReadyAutoPay:
+            case .billReadyAutoPay:                
                 autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentImage.setImageNamed(AppImage.autoPay.name)
                 autoPayScheduledPaymentDetailLabel.setText("You are enrolled in Autopay")
-                
-                billAmountGroup.setHidden(true)
             case .billPaid(let amount):
                 billPaidGroup.setHidden(false)
                 billPaidAmountLabel.setText(amount.currencyString ?? "--")
                 
                 billAmountGroup.setHidden(true)
-            case .remainingBalance(let remainingBalanceAmount, let date):
+            case .remainingBalance(let remainingBalanceAmount):
                 remainingBalanceGroup.setHidden(false)
                 remainingBalanaceAmountLabel.setText(remainingBalanceAmount.currencyString ?? "--")
-                remainingBalanceDateLabel.setAttributedText(date.dueBy(shouldColor: true, shouldIncludePrefix: true))
                 
                 // Alert Banner
                 billAlertGroup.setHidden(false)
-                billAlertLabel.setText("\(remainingBalanceAmount.currencyString ?? "--") is due \(date.dueBy().string).")
+                billAlertLabel.setText("\(remainingBalanceAmount.currencyString ?? "--") is due immediately.")
             case .paymentPending(let amount):
                 pendingPaymentGroup.setHidden(false)
                 
@@ -346,7 +342,6 @@ extension BillInterfaceController: NetworkingDelegate {
                 let attributedFootnoteString = NSAttributedString(string: "Pending Payment", attributes: fontFootnoteAttribute)
                 pendingPaymentDescriptionLabel.setAttributedText(attributedFootnoteString)
             case .billNotReady:
-                autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentImage.setImageNamed(AppImage.billNotReady.name)
                 autoPayScheduledPaymentDetailLabel.setText("Your bill will be available here once it is ready")

@@ -16,7 +16,7 @@ enum BillState {
     case billReady(amount: Double, date: Date)
     case billReadyAutoPay
     case billPaid(amount: Double)
-    case remainingBalance(remainingBalanceAmount: Double, date: Date)
+    case remainingBalance(remainingBalanceAmount: Double)
     case paymentPending(amount: Double)
     case billNotReady
     case paymentScheduled(scheduledPayment: PaymentItem)
@@ -52,7 +52,7 @@ enum BillState {
 
 class BillUtility {
 
-    public func generateBillState(accountDetail: AccountDetail) -> [BillState] {
+    public func generateBillStates(accountDetail: AccountDetail) -> [BillState] {
         var billStates = [BillState]()
         
         var isPrecarious = false
@@ -64,12 +64,13 @@ class BillUtility {
         }
         
         // Auto Pay
-        if accountDetail.billingInfo.netDueAmount ?? 0 > 0, accountDetail.isAutoPay {
+        if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate,  accountDetail.isAutoPay {
             billStates.append(.billReadyAutoPay)
+            billStates.append(.billReady(amount: amount, date: dueDate))
         } else if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, !accountDetail.isAutoPay {
             // Net Amount Due
             billStates.append(.billReady(amount: amount, date: dueDate))
-        } else if let billDate = accountDetail.billingInfo.billDate, let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate, let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount, lastPaymentAmount > 0, lastPaymentDate < billDate, let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == 0  {
+        } else if let billDate = accountDetail.billingInfo.billDate, let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate, let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount, lastPaymentAmount > 0, billDate < lastPaymentDate, let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == 0  {
             // Bill Paid - Payment Applied
             billStates.append(.billPaid(amount: lastPaymentAmount))
         } else if let amount = accountDetail.billingInfo.netDueAmount, amount == 0, accountDetail.billingInfo.billDate == nil {
@@ -88,37 +89,37 @@ class BillUtility {
             }
         }
         
+        // Remaining Balance
+        if let amount = accountDetail.billingInfo.remainingBalanceDue, amount > 0, isPendingPayment {
+            billStates.append(.remainingBalance(remainingBalanceAmount: amount))
+        }
+        
         // Restore Service
         if let amount = accountDetail.billingInfo.restorationAmount, amount > 0, accountDetail.isCutOutNonPay {
             billStates.append(.restoreService(restoreAmount: amount, dpaReinstAmount: accountDetail.billingInfo.amtDpaReinst ?? 0.0))
+            
             isPrecarious = true
         } else {
             // Avoid Shutoff
             if let amount = accountDetail.billingInfo.disconnectNoticeArrears, amount > 0, accountDetail.billingInfo.isDisconnectNotice, !isPrecarious {
                 billStates.append(.avoidShutoff(amount: amount))
+                
                 isPrecarious = true
             }
 
             // Catch up on Agreement - no mention of dueDate for catch up on agreement
             if let amount = accountDetail.billingInfo.amtDpaReinst, amount > 0, let date = accountDetail.billingInfo.dueByDate, !isPrecarious {
                 billStates.append(.catchUp(amount: amount, date: date))
+                
                 isPrecarious = true
             }
             
             // Amount Past Due
             if let pastDueAmount = accountDetail.billingInfo.pastDueAmount, pastDueAmount > 0, !isPrecarious {
                 billStates.append(.pastDue(pastDueAmount: pastDueAmount, netDueAmount: accountDetail.billingInfo.netDueAmount ?? 0.0, remainingBalanceDue: accountDetail.billingInfo.remainingBalanceDue ?? 0.0))
+                
                 isPrecarious = true
             }
-        }
-        
-        // Remaining Balance
-        if let amount = accountDetail.billingInfo.remainingBalanceDue, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, isPrecarious, isPendingPayment {
-            
-            if let lastBillDate = accountDetail.billingInfo.billDate, dueDate != lastBillDate {
-                billStates.append(.remainingBalance(remainingBalanceAmount: amount, date: dueDate))
-            }
-            
         }
 
         // Most Recent Bill

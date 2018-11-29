@@ -213,10 +213,7 @@
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
                                                 <group width="1" height="2" alignment="left" id="km7-U4-xwX"/>
-                                                <label alignment="center" text="Total Remaining Balance Due" textAlignment="center" numberOfLines="0" id="KGX-pP-kId">
-                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                </label>
-                                                <label alignment="center" text="Due by 09/25/2018" textAlignment="center" minimumScaleFactor="0.75" id="3Cb-Te-N2u">
+                                                <label alignment="center" text="Remaining Balance Due" textAlignment="center" numberOfLines="0" id="KGX-pP-kId">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
@@ -273,7 +270,6 @@
                         <outlet property="pendingPaymentDescriptionLabel" destination="FHu-PO-h09" id="cFs-eP-zAc"/>
                         <outlet property="pendingPaymentGroup" destination="o1x-31-mqT" id="zg2-fa-euo"/>
                         <outlet property="remainingBalanaceAmountLabel" destination="a1e-JS-QCS" id="Inb-r2-nKh"/>
-                        <outlet property="remainingBalanceDateLabel" destination="3Cb-Te-N2u" id="Cdp-uk-UiG"/>
                         <outlet property="remainingBalanceDescriptionLabel" destination="KGX-pP-kId" id="NDU-Lp-jRh"/>
                         <outlet property="remainingBalanceGroup" destination="od3-16-YHY" id="VqG-WE-xDR"/>
                         <outlet property="restoreServiceAmountLabel" destination="l8n-Gp-VYb" id="hte-lw-kv1"/>
