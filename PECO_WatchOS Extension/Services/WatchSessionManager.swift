@@ -57,7 +57,7 @@ extension WatchSessionManager {
 
                 self?.authTokenChangeDelegate?.authTokenSuccess()
                 
-                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
+                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)]) // we may want to remove this
             } else {
                 self?.authTokenChangeDelegate?.authTokenFailure()
             }

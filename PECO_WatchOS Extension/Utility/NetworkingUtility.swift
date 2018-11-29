@@ -146,7 +146,7 @@ class NetworkingUtility {
                     return
                 }
                 
-                
+                // this is triggering twice
                 // fetch account details is getting called twice here
                 self?.fetchAccountDetailsWithData(maintenanceModeStatus: status, completion: { [weak self] accountDetails in
                     guard let accountDetails = accountDetails else {
@@ -293,19 +293,7 @@ class NetworkingUtility {
         aLog("Fetching Maintenance Mode Status...")
         
         let authService = MCSAuthenticationService()
-        
-        let maint = authService.getMaintenanceMode().subscribe(onNext: { maintenance in
-            // handle success
-            aLog("Maintenance Mode Fetched.")
-            
-            completion(maintenance, nil)
-        }, onError: { error in
-            // handle error
-            aLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
-            completion(nil, error as? ServiceError)
-        })
-            .disposed(by: disposeBag)
-        
+
         authService.getMaintenanceMode()
             .subscribe(onNext: { maintenance in
                 // handle success
