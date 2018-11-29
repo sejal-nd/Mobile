@@ -148,12 +148,12 @@ class MiniWalletViewController: UIViewController {
     
     func fetchWalletItems() {
         viewModel.fetchWalletItems(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.tableView.reloadData()
             self.view.setNeedsLayout()
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
         }, onError: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
     }

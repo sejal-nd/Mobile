@@ -1,16 +1,16 @@
 //
-//  WalletTableViewCell.swift
+//  ePayWalletTableViewCell.swift
 //  Mobile
 //
-//  Created by Marc Shilling on 5/19/17.
-//  Copyright © 2017 Exelon Corporation. All rights reserved.
+//  Created by Marc Shilling on 11/15/18.
+//  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
 
-class WalletTableViewCell: UITableViewCell {
+class ePayWalletTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var innerContentView: ButtonControl!
+    @IBOutlet weak var innerContentView: UIView!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumberLabel: UILabel!
@@ -22,9 +22,11 @@ class WalletTableViewCell: UITableViewCell {
     @IBOutlet weak var bottomBarLabel: UILabel!
     @IBOutlet weak var expiredView: UIView!
     @IBOutlet weak var expiredLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     var gradientLayer = CAGradientLayer()
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -61,8 +63,11 @@ class WalletTableViewCell: UITableViewCell {
         expiredView.layer.borderWidth = 2
         expiredView.layer.borderColor = UIColor.errorRed.cgColor
         expiredLabel.textColor = .errorRed
-    }
         
+        editButton.accessibilityLabel = NSLocalizedString("Edit payment method", comment: "")
+        deleteButton.accessibilityLabel = NSLocalizedString("Delete payment method", comment: "")
+    }
+    
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         // disable highlight
     }
@@ -114,7 +119,7 @@ class WalletTableViewCell: UITableViewCell {
         }
         
         a11yLabel += NSLocalizedString(" button", comment: "")
-
+        
         // Nickname
         if let nickname = walletItem.nickName {
             let displayNickname: String
@@ -128,11 +133,10 @@ class WalletTableViewCell: UITableViewCell {
             if Environment.shared.opco == .bge {
                 if walletItem.bankOrCard == .bank {
                     if let bankAccountType = walletItem.bankAccountType {
-                        switch bankAccountType {
-                        case .savings:
-                            nicknameLabel.text = String.localizedStringWithFormat("%@, SAVINGS", nickname)
-                        default:
-                            nicknameLabel.text = String.localizedStringWithFormat("%@, CHECKING", nickname)
+                        if bankAccountType.rawValue.uppercased() == "SAVING"{
+                            nicknameLabel.text = NSLocalizedString(String(format:"%@, SAVINGS", nickname),comment: "")
+                        } else {
+                            nicknameLabel.text = NSLocalizedString(String(format:"%@, CHECKING", nickname),comment: "")
                         }
                     }
                 }
@@ -180,3 +184,4 @@ class WalletTableViewCell: UITableViewCell {
     }
     
 }
+

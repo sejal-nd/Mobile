@@ -170,7 +170,7 @@ class NetworkingUtility {
                     
                     // Account list and Account Detail calls have completed
                     self?.group.notify(queue: .main) { [weak self] in
-                        guard let `self` = self else { return }
+                        guard let self = self else { return }
                         self.networkUtilityDelegates.forEach { $0.accountListAndAccountDetailsDidUpdate(accounts: self.accounts, accountDetail: self.accountDetails) }
                     }
                     

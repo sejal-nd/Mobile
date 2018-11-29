@@ -81,7 +81,7 @@ class AddBankAccountViewController: UIViewController {
         
         let addBankAccount = { [weak self] (setAsOneTouchPay: Bool) in
             LoadingView.show()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.viewModel.addBankAccount(onDuplicate: { [weak self] message in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Duplicate Bank Account", comment: ""), message: message, preferredStyle: .alert)
@@ -90,7 +90,7 @@ class AddBankAccountViewController: UIViewController {
             }, onSuccess: { [weak self] walletItemResult in
                 let completion = { [weak self] in
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.addBankAccountViewControllerDidAddAccount(self)
                     if self.shouldPopToRootOnSave {
                         self.navigationController?.popToRootViewController(animated: true)

@@ -86,7 +86,9 @@ class WalletViewController: UIViewController {
         
         addPaymentAccountBottomBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         addPaymentAccountLabel.textColor = .deepGray
-        addPaymentAccountLabel.text = NSLocalizedString("Add Payment Account", comment: "")
+        addPaymentAccountLabel.text = Environment.shared.opco == .bge ?
+            NSLocalizedString("Add Payment Account", comment: "") :
+            NSLocalizedString("Add Payment Method", comment: "")
         addPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
         miniCreditCardButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniCreditCardButton.layer.cornerRadius = 8
@@ -94,7 +96,7 @@ class WalletViewController: UIViewController {
         miniBankButton.layer.cornerRadius = 8
 
         tableViewFooter.text = viewModel.footerLabelText
-        tableViewFooter.font = SystemFont.regular.of(textStyle: .footnote)
+        tableViewFooter.font = OpenSans.semibold.of(textStyle: .footnote)
         
         emptyStateScrollView.isHidden = true
         nonEmptyStateView.isHidden = true
@@ -186,21 +188,22 @@ class WalletViewController: UIViewController {
         
         viewModel.shouldShowEmptyState.map(!).drive(emptyStateScrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowEmptyState.drive(onNext: { [weak self] shouldShow in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if shouldShow {
                 UIAccessibility.post(notification: .screenChanged, argument: self.emptyStateScrollView)
             }
         }).disposed(by: disposeBag)
         viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWallet.filter { $0 }.drive(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.tableView.reloadData()
             UIAccessibility.post(notification: .screenChanged, argument: self.tableView)
         }).disposed(by: disposeBag)
         
-        viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).disposed(by: disposeBag)
-        viewModel.addBankDisabled.map(!).drive(miniBankButton.rx.isEnabled).disposed(by: disposeBag)
-        viewModel.addBankDisabled.map(!).drive(bankButton.rx.isEnabled).disposed(by: disposeBag)
+        if viewModel.addBankDisabled {
+            miniBankButton.isEnabled = false
+            bankButton.isEnabled = false
+        }
         
         viewModel.hasExpiredWalletItem
             .drive(onNext: { [weak self] in
@@ -216,14 +219,28 @@ class WalletViewController: UIViewController {
     func setupButtonTaps() {
         Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
-                self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
+                guard let self = self else { return }
+                if Environment.shared.opco == .bge {
+                    self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
+                } else {
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank)
+                    paymentusVC.delegate = self
+                    paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
+                    self.navigationController?.pushViewController(paymentusVC, animated: true)
+                }
             }).disposed(by: disposeBag)
         
         Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
-                self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
+                guard let self = self else { return }
+                if Environment.shared.opco == .bge {
+                    self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
+                } else {
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card)
+                    paymentusVC.delegate = self
+                    paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
+                    self.navigationController?.pushViewController(paymentusVC, animated: true)
+                }
             }).disposed(by: disposeBag)
     }
     
@@ -235,6 +252,56 @@ class WalletViewController: UIViewController {
             } else {
                 performSegue(withIdentifier: "editBankAccountSegue", sender: self)
             }
+        }
+    }
+    
+    @objc func onEditWalletItemPress(sender: UIButton) {
+        if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
+            selectedWalletItem = walletItems[sender.tag]
+            let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, walletItemId: selectedWalletItem!.walletItemID)
+            paymentusVC.delegate = self
+            paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
+            self.navigationController?.pushViewController(paymentusVC, animated: true)
+        }
+    }
+    
+    @objc func onDeleteWalletItemPress(sender: UIButton) {
+        if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
+            selectedWalletItem = walletItems[sender.tag]
+            
+            var title: String
+            var toast: String
+            if selectedWalletItem!.bankOrCard == .bank {
+                title = NSLocalizedString("Delete Bank Account?", comment: "")
+                toast = NSLocalizedString("Bank Account deleted", comment: "")
+            } else {
+                title = NSLocalizedString("Delete Card?", comment: "")
+                toast = NSLocalizedString("Card deleted", comment: "")
+            }
+            let messageString = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review and edit your scheduled payments in Payment Activity.", comment: "")
+            
+            let alertController = UIAlertController(title: title, message: messageString, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { [weak self] _ in
+                guard let self = self else { return }
+                LoadingView.show()
+                self.viewModel.deleteWalletItem(walletItem: self.selectedWalletItem!, onSuccess: { [weak self] in
+                    LoadingView.hide()
+                    
+                    guard let self = self else { return }
+                    
+                    self.viewModel.fetchWalletItems.onNext(())
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                        self.view.showToast(toast)
+                    })
+                }, onError: { errMessage in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
+                })
+            }))
+            present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -321,17 +388,38 @@ extension WalletViewController: UITableViewDelegate {
 extension WalletViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WalletCell", for: indexPath) as! WalletTableViewCell
-        
-        let walletItem = viewModel.walletItems.value![indexPath.section]
-        cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
-        cell.innerContentView.tag = indexPath.section
-        cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
-        cell.innerContentView.addTarget(self, action: #selector(onWalletItemPress(sender:)), for: .touchUpInside)
-        
-        cell.oneTouchPayView.isHidden = !walletItem.isDefault
-        
-        return cell
+        if Environment.shared.opco == .bge {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WalletCell", for: indexPath) as! WalletTableViewCell
+            
+            let walletItem = viewModel.walletItems.value![indexPath.section]
+            cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
+            
+            cell.innerContentView.tag = indexPath.section
+            cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
+            cell.innerContentView.addTarget(self, action: #selector(onWalletItemPress(sender:)), for: .touchUpInside)
+            
+            cell.oneTouchPayView.isHidden = !walletItem.isDefault
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ePayWalletCell", for: indexPath) as! ePayWalletTableViewCell
+            
+            let walletItem = viewModel.walletItems.value![indexPath.section]
+            cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
+            
+            cell.editButton.tag = indexPath.section
+            cell.editButton.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
+            cell.editButton.addTarget(self, action: #selector(onEditWalletItemPress(sender:)), for: .touchUpInside)
+            cell.editButton.isEnabled = !(walletItem.bankOrCard == .bank && viewModel.accountDetail.isCashOnly)
+            
+            cell.deleteButton.tag = indexPath.section
+            cell.deleteButton.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
+            cell.deleteButton.addTarget(self, action: #selector(onDeleteWalletItemPress(sender:)), for: .touchUpInside)
+            
+            cell.oneTouchPayView.isHidden = !walletItem.isDefault
+            
+            return cell
+        }
     }
     
 }
@@ -367,4 +455,20 @@ extension WalletViewController: EditCreditCardViewControllerDelegate {
         didChangeAccount(toastMessage: message)
     }
     
+}
+
+extension WalletViewController: PaymentusFormViewControllerDelegate {
+    func didEditWalletItem() {
+        didChangeAccount(toastMessage: NSLocalizedString("Changes saved", comment: ""))
+    }
+    
+    func didAddBank(_ walletItem: WalletItem?) {
+        didChangeAccount(toastMessage: NSLocalizedString("Bank account added", comment: ""))
+        Analytics.log(event: .addWalletComplete)
+    }
+    
+    func didAddCard(_ walletItem: WalletItem?) {
+        didChangeAccount(toastMessage: NSLocalizedString("Card added", comment: ""))
+        Analytics.log(event: .addWalletComplete)
+    }
 }

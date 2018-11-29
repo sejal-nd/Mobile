@@ -107,7 +107,7 @@ class OverrideViewModel {
         .do(onNext: { Analytics.log(event: .overrideSave) })
         .withLatestFrom(self.selectedDate.asObservable())
         .flatMapLatest { [weak self] selectedDate -> Observable<Event<Void>> in
-            guard let `self` = self else { return .empty() }
+            guard let self = self else { return .empty() }
             return self.peakRewardsService.scheduleOverride(accountNumber: self.accountDetail.accountNumber,
                                                      premiseNumber: self.premiseNumber,
                                                      device: self.device,
@@ -120,7 +120,7 @@ class OverrideViewModel {
     private lazy var cancelEvents: Observable<Event<Void>> = self.cancelAction
         .do(onNext: { Analytics.log(event: .cancelOverride) })
         .flatMapLatest { [weak self] _ -> Observable<Event<Void>> in
-            guard let `self` = self else { return .empty() }
+            guard let self = self else { return .empty() }
             return self.peakRewardsService.deleteOverride(accountNumber: self.accountDetail.accountNumber,
                                                           premiseNumber: self.premiseNumber,
                                                           device: self.device)

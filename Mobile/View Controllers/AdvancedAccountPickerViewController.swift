@@ -61,7 +61,7 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
                             data: dataArray,
                             selectedIndex: 0,
                             onDone: { [weak self] value, index in
-                                guard let `self` = self else { return }
+                                guard let self = self else { return }
                                 self.accounts[self.accountIndexToEditPremise].currentPremise = self.accounts[self.accountIndexToEditPremise].premises[index]
                                 
                                 AccountsStore.shared.accounts = self.accounts

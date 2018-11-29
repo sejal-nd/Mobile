@@ -124,7 +124,7 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).disposed(by: disposeBag)
         
         currentPasswordTextField.textField.rx.controlEvent(.editingChanged).asDriver().drive(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             // If we displayed an inline error, clear it when user edits the text
             if self.currentPasswordTextField.errorState {
                 self.currentPasswordTextField.setError(nil)
@@ -140,7 +140,7 @@ class ChangePasswordViewController: UIViewController {
         
         newPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.scrollView.setContentOffset(self.newPasswordTextField.frame.origin, animated: true)
                 UIView.animate(withDuration: 0.5) {
                     self.passwordStrengthView.isHidden = false
@@ -148,7 +148,7 @@ class ChangePasswordViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         newPasswordTextField.textField.rx.text.orEmpty.asDriver().drive(onNext: { [weak self] text in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             let score = self.viewModel.passwordScore
             self.passwordStrengthMeterView.setScore(score)
             if score < 2 {
@@ -164,7 +164,7 @@ class ChangePasswordViewController: UIViewController {
         }).disposed(by: disposeBag)
         newPasswordTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .drive(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.view.layoutIfNeeded()
                 UIView.animate(withDuration: 0.5, animations: {
                     self.passwordStrengthView.isHidden = true
@@ -209,7 +209,7 @@ class ChangePasswordViewController: UIViewController {
         LoadingView.show()
         viewModel.changePassword(sentFromLogin: sentFromLogin, onSuccess: { [weak self] in
             LoadingView.hide()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
             self.navigationController?.popViewController(animated: true)
 
@@ -221,7 +221,7 @@ class ChangePasswordViewController: UIViewController {
 
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
             self.accessibilityErrorLabel()
             
@@ -332,7 +332,7 @@ class ChangePasswordViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         viewModel.confirmPasswordMatches.drive(onNext: { [weak self] matches in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if self.confirmPasswordTextField.textField.hasText {
                 if matches {
                     self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))

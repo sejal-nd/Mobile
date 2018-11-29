@@ -89,7 +89,7 @@ class AccountPickerViewController: UIViewController {
             }
             .distinctUntilChanged()
             .drive(onNext: { [weak self] pickerVisible in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if let currentAccount = AccountsStore.shared.currentAccount { // Don't show if accounts not loaded
                     self.iconView.image = currentAccount.isResidential ? #imageLiteral(resourceName: "ic_residential_mini") : #imageLiteral(resourceName: "ic_commercial_mini")
                     self.iconView.accessibilityLabel = currentAccount.isResidential ? NSLocalizedString("Residential account", comment: "") : NSLocalizedString("Commercial account", comment: "")
@@ -135,12 +135,12 @@ class AccountPickerViewController: UIViewController {
         accountService.fetchAccounts()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.accountPicker.setLoading(false)
                 self.accountPicker.loadAccounts()
                 self.accountPickerViewControllerWillAppear.onNext(.readyToFetchData)
             }, onError: { [weak self] err in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.accountPicker.setLoading(false)
                 let alertVc = UIAlertController(title: NSLocalizedString("Could Not Load Accounts", comment: ""), message: err.localizedDescription, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))

@@ -191,7 +191,7 @@ class StormModeBillViewController: AccountPickerViewController {
         
         billCardView.pushedViewControllers
             .drive(onNext: { [weak self] viewController in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 
                 if let vc = viewController as? WalletViewController {
                     vc.didUpdate

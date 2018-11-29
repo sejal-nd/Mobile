@@ -51,7 +51,7 @@ class AddCardFormViewModel {
     private(set) lazy var cardNumberHasText: Driver<Bool> = self.cardNumber.asDriver().map { !$0.isEmpty }
     
     private(set) lazy var cardNumberIsValid: Driver<Bool> = self.cardNumber.asDriver().map { [weak self] in
-        guard let `self` = self else { return false }
+        guard let self = self else { return false }
         return self.firstNumberCheck(cardNumber: $0) && self.luhnCheck(cardNumber: $0)
     }
     
@@ -121,7 +121,7 @@ class AddCardFormViewModel {
         }
         
         // Check for duplicate nickname
-        guard let `self` = self else { return nil }
+        guard let self = self else { return nil }
         let isDuplicate = self.nicknamesInWallet.map { $0.lowercased() }.contains($0.lowercased())
         if isDuplicate {
             return NSLocalizedString("This nickname is already in use", comment: "")

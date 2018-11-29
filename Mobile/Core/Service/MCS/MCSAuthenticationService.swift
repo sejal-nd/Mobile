@@ -129,18 +129,14 @@ struct MCSAuthenticationService : AuthenticationService {
     }
     
     func getMaintenanceMode() -> Observable<Maintenance> {
-        let opco = Environment.shared.opco.displayString.uppercased()
-        
-        return MCSApi.shared.get(path: "anon_\(MCSApi.API_VERSION)/" + opco + "/config/maintenance")
+        return MCSApi.shared.get(anon: true, path: "config/maintenance")
             .map { json in
                 Maintenance.from(json as! NSDictionary)!
         }
     }
     
     func getMinimumVersion() -> Observable<MinimumVersion> {
-        let opco = Environment.shared.opco.displayString.uppercased()
-        
-        return MCSApi.shared.get(path: "anon_\(MCSApi.API_VERSION)/" + opco + "/config/versions")
+        return MCSApi.shared.get(anon: true, path: "config/versions")
             .map { json in
                 MinimumVersion.from(json as! NSDictionary)!
         }
@@ -152,7 +148,7 @@ struct MCSAuthenticationService : AuthenticationService {
         let params = [ChangePasswordParams.oldPassword.rawValue: currentPassword,
                       ChangePasswordParams.newPassword.rawValue: newPassword]
         
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/profile/password", params: params)
+        return MCSApi.shared.put(path: "profile/password", params: params)
             .mapTo(())
     }
     
@@ -162,12 +158,7 @@ struct MCSAuthenticationService : AuthenticationService {
                       AnonChangePasswordParams.oldPassword.rawValue: currentPassword,
                       AnonChangePasswordParams.newPassword.rawValue: newPassword]
         
-        let opco = Environment.shared.opco.displayString.uppercased()
-
-        
-        let path = "anon_\(MCSApi.API_VERSION)/" + opco + "/profile/password"
-        
-        return MCSApi.shared.put(path: path, params: params)
+        return MCSApi.shared.put(anon: true, path: "profile/password", params: params)
             .mapTo(())
     }
     #endif
@@ -183,10 +174,7 @@ struct MCSAuthenticationService : AuthenticationService {
             params["account_number"] = accNum
         }
         
-        let opco = Environment.shared.opco.displayString.uppercased()
-        let path = "anon_\(MCSApi.API_VERSION)/" + opco + "/recover/username"
-        
-        return MCSApi.shared.post(path: path, params: params)
+        return MCSApi.shared.post(anon: true, path: "recover/username", params: params)
             .map { json in
                 guard let maskedEntries = json as? [NSDictionary] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -210,10 +198,7 @@ struct MCSAuthenticationService : AuthenticationService {
             params["account_number"] = accNum
         }
         
-        let opco = Environment.shared.opco.displayString.uppercased()
-        let path = "anon_\(MCSApi.API_VERSION)/" + opco + "/recover/username"
-        
-        return MCSApi.shared.post(path: path, params: params)
+        return MCSApi.shared.post(anon: true, path: "recover/username", params: params)
             .map { data in
                 guard let unmasked = data as? String else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue,
@@ -227,11 +212,8 @@ struct MCSAuthenticationService : AuthenticationService {
     func lookupAccount(phone: String, identifier: String) -> Observable<[AccountLookupResult]> {
         //let params = ["AccountDetails": ["SocialSecurityOrTaxId" : identifier, "PhoneNumber" : phone]] // MMS - Kenny added this, I don't know where it comes from. It's not in the API documentation and the call fails unless the params are as follows:
         let params: [String: Any] = ["identifier": identifier, "phone": phone]
-    
-        let opco = Environment.shared.opco.displayString.uppercased()
-        let path = "anon_\(MCSApi.API_VERSION)/" + opco + "/account/lookup"
         
-        return MCSApi.shared.post(path: path, params: params)
+        return MCSApi.shared.post(anon: true, path: "account/lookup", params: params)
             .map { json in
                 guard let entries = json as? [NSDictionary] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue,
@@ -247,10 +229,7 @@ struct MCSAuthenticationService : AuthenticationService {
     #if os(iOS)
     func recoverPassword(username: String) -> Observable<Void> {
         let params = ["username" : username]
-        let opco = Environment.shared.opco.displayString.uppercased()
-        let path = "anon_\(MCSApi.API_VERSION)/" + opco + "/recover/password"
-        
-        return MCSApi.shared.post(path: path, params: params)
+        return MCSApi.shared.post(anon: true, path: "recover/password", params: params)
             .mapTo(())
     }
     #endif

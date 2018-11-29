@@ -74,7 +74,7 @@ class HomeViewController: AccountPickerViewController {
         accountPickerViewControllerWillAppear
             .withLatestFrom(viewModel.accountDetailEvents.map { $0 }.startWith(nil)) { ($0, $1) }
             .subscribe(onNext: { [weak self] state, accountDetailEvent in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 switch(state) {
                 case .loadingAccounts:
                     self.setRefreshControlEnabled(enabled: false)
@@ -447,7 +447,7 @@ class HomeViewController: AccountPickerViewController {
         
         billCardView.pushedViewControllers
             .drive(onNext: { [weak self] viewController in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 
                 if let vc = viewController as? WalletViewController {
                     vc.didUpdate

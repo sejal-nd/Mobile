@@ -290,7 +290,7 @@ class PaymentViewModel {
             scheduleInlineCardPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
         } else { // Existing wallet item
             self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
                 var paymentDate = self.paymentDate.value
                 if isFixed {
@@ -342,7 +342,7 @@ class PaymentViewModel {
             .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.shared.customerIdentifier)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] walletItemResult in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 
                 let otp = self.addBankFormViewModel.oneTouchPay.value
                 
@@ -355,7 +355,7 @@ class PaymentViewModel {
                 }
                 
                 self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     
                     let paymentType: PaymentType = .check
                     var paymentDate = self.paymentDate.value
@@ -372,7 +372,7 @@ class PaymentViewModel {
                         .subscribe(onNext: { _ in
                             onSuccess()
                         }, onError: { [weak self] err in
-                            guard let `self` = self else { return }
+                            guard let self = self else { return }
                             if !self.addBankFormViewModel.saveToWallet.value {
                                 // Rollback the wallet add
                                 self.walletService.deletePaymentMethod(walletItem: WalletItem.from(["walletItemID": walletItemResult.walletItemId])!)
@@ -398,7 +398,7 @@ class PaymentViewModel {
         
         if Environment.shared.opco == .bge && !addCardFormViewModel.saveToWallet.value {
             self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 var paymentDate = self.paymentDate.value
                 if isFixed {
                     paymentDate = Date()
@@ -417,7 +417,7 @@ class PaymentViewModel {
                 .addCreditCard(card, forCustomerNumber: AccountsStore.shared.customerIdentifier)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] walletItemResult in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     
                     let otp = self.addCardFormViewModel.oneTouchPay.value
                     Analytics.log(event: .cardAddNewWallet, dimensions: [.otpEnabled: otp ? "enabled" : "disabled"])
@@ -427,7 +427,7 @@ class PaymentViewModel {
                     }
                     
                     self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-                        guard let `self` = self else { return }
+                        guard let self = self else { return }
                         
                         let paymentType: PaymentType = .credit
                         var paymentDate = self.paymentDate.value
@@ -454,7 +454,7 @@ class PaymentViewModel {
                             .subscribe(onNext: { _ in
                                 onSuccess()
                             }, onError: { [weak self] err in
-                                guard let `self` = self else { return }
+                                guard let self = self else { return }
                                 if !self.addCardFormViewModel.saveToWallet.value {
                                     // Rollback the wallet add
                                     self.walletService.deletePaymentMethod(walletItem: WalletItem.from(["walletItemID": walletItemResult.walletItemId])!)
@@ -508,7 +508,7 @@ class PaymentViewModel {
     
     func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
             var paymentDate = self.paymentDate.value
             if isFixed {
@@ -855,7 +855,7 @@ class PaymentViewModel {
     
     private(set) lazy var paymentAmountFeeLabelText: Driver<String?> = Driver.combineLatest(self.bankWorkflow, self.cardWorkflow, self.convenienceFee)
     { [weak self] (bankWorkflow, cardWorkflow, fee) -> String? in
-        guard let `self` = self else { return nil }
+        guard let self = self else { return nil }
         if bankWorkflow {
             return NSLocalizedString("No convenience fee will be applied.", comment: "")
         } else if cardWorkflow {
@@ -934,8 +934,7 @@ class PaymentViewModel {
             guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
             
             if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
-                return nickname == String(last4) ? nil : nickname
+                return nickname == maskedNumber ? nil : nickname
             } else {
                 return nickname
             }
@@ -1059,7 +1058,7 @@ class PaymentViewModel {
                                                                                   self.addCardFormViewModel.saveToWallet.asDriver(),
                                                                                   self.allowEdits.asDriver())
     { [weak self] (accountDetail, cardWorkflow, inlineCard, saveBank, saveCard, allowEdits) in
-        guard let `self` = self else { return false }
+        guard let self = self else { return false }
         return self.fixedPaymentDateLogic(accountDetail: accountDetail,
                                           cardWorkflow: cardWorkflow,
                                           inlineCard: inlineCard,
@@ -1181,7 +1180,7 @@ class PaymentViewModel {
             Double(String($0.filter { "0123456789.".contains($0) })) ?? 0
             })
         { [weak self] in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
                 return (($0 / 100) * $1).currencyString
             } else {
@@ -1202,7 +1201,7 @@ class PaymentViewModel {
         Driver.combineLatest(self.paymentAmount.asDriver().map {
             Double(String($0.filter { "0123456789.".contains($0) })) ?? 0
         }, self.reviewPaymentShouldShowConvenienceFeeBox, self.convenienceFee).map { [weak self] in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if $1 {
                 if (Environment.shared.opco == .bge) {
                     if (self.accountDetail.value.isResidential) {

@@ -22,7 +22,7 @@ class MockAlertsService: AlertsService {
                                          paymentDue: true,
                                          paymentDueDaysBefore: 99,
                                          budgetBilling: true,
-//                                         appointmentTracking: false,
+                                         appointmentTracking: false,
                                          forYourInfo: false)
         return .just(testPrefs)
     }
