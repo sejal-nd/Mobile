@@ -52,7 +52,7 @@ enum BillState {
 
 class BillUtility {
 
-    public func generateBillState(accountDetail: AccountDetail) -> [BillState] {
+    public func generateBillStates(accountDetail: AccountDetail) -> [BillState] {
         var billStates = [BillState]()
         
         var isPrecarious = false
@@ -97,23 +97,27 @@ class BillUtility {
         // Restore Service
         if let amount = accountDetail.billingInfo.restorationAmount, amount > 0, accountDetail.isCutOutNonPay {
             billStates.append(.restoreService(restoreAmount: amount, dpaReinstAmount: accountDetail.billingInfo.amtDpaReinst ?? 0.0))
+            
             isPrecarious = true
         } else {
             // Avoid Shutoff
             if let amount = accountDetail.billingInfo.disconnectNoticeArrears, amount > 0, accountDetail.billingInfo.isDisconnectNotice, !isPrecarious {
                 billStates.append(.avoidShutoff(amount: amount))
+                
                 isPrecarious = true
             }
 
             // Catch up on Agreement - no mention of dueDate for catch up on agreement
             if let amount = accountDetail.billingInfo.amtDpaReinst, amount > 0, let date = accountDetail.billingInfo.dueByDate, !isPrecarious {
                 billStates.append(.catchUp(amount: amount, date: date))
+                
                 isPrecarious = true
             }
             
             // Amount Past Due
             if let pastDueAmount = accountDetail.billingInfo.pastDueAmount, pastDueAmount > 0, !isPrecarious {
                 billStates.append(.pastDue(pastDueAmount: pastDueAmount, netDueAmount: accountDetail.billingInfo.netDueAmount ?? 0.0, remainingBalanceDue: accountDetail.billingInfo.remainingBalanceDue ?? 0.0))
+                
                 isPrecarious = true
             }
         }

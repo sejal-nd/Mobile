@@ -237,7 +237,7 @@ extension BillInterfaceController: NetworkingDelegate {
         aLog("Account detail did update")
         
         // Retrieve a list of states
-        let billStates = BillUtility().generateBillState(accountDetail: accountDetail)
+        let billStates = BillUtility().generateBillStates(accountDetail: accountDetail)
         
         // Set States
         for state in billStates {

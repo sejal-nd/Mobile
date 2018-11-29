@@ -68,7 +68,7 @@ extension AccountListInterfaceController {
         }
         
         // Set Selected Account
-        AccountsStore.shared.currentAccount = accounts[rowIndex]//.setSelectedAccount(accounts[rowIndex], isUserSelection: true)
+        AccountsStore.shared.currentAccount = accounts[rowIndex]
 
         dismiss()
     }
