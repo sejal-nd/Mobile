@@ -275,9 +275,10 @@ class MCSApi {
                             if error.serviceCode == "TC-SYS-MAINTENANCE" {
                                 NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: self)
                             }
-                            
                             throw error
                         }
+                    } catch let error as ServiceError {
+                        throw error
                     } catch {
                         throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
