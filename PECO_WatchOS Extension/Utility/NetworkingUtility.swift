@@ -66,22 +66,25 @@ class NetworkingUtility {
     private var accountDetails: AccountDetail?
     
     private let disposeBag = DisposeBag()
-    
+
     private init() {
         aLog("init network manager.")
         
-        // Set Delegate
-        AccountsStore.shared.accountStoreChangedDelegate = self
+        // Observer Notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(newAccountUpdate(_:)), name: Notification.Name.defaultAccountSet, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(currentAccountDidUpdate(_:)), name: Notification.Name.currentAccountUpdated, object: nil)
         
         // Set a 15 minute polling timer here.
         pollingTimer = Timer.scheduledTimer(timeInterval: 900, target: self, selector: #selector(reloadPollingData), userInfo: nil, repeats: true)
     }
     
     deinit {
+        NotificationCenter.default.removeObserver(self)
+        
         pollingTimer.invalidate()
     }
     
-    
+
     // MARK: - Timer
     
     /// Reload Data every 15 minutes without the loading indicator if the app is reachable
@@ -106,7 +109,6 @@ class NetworkingUtility {
     ///     - maintenanceMode: Triggers delegate method for maintenance mode.
     ///     - error: Triggers delegate method for a general error occured attempting to fetch data.
     public func fetchData(shouldShowLoading: Bool = true, shouldLoadAccountList: Bool = true) {
-        
         if shouldShowLoading {
             // Trigger Loading in IC's
             networkUtilityDelegates.forEach { $0.loading(feature: .all) }
@@ -129,6 +131,7 @@ class NetworkingUtility {
     /// We have in a separate function due to needing to nest it into fetch account list based on function boolean value
     private func fetchMainFeatureData() {
         // Maintenance Mode Fetch
+        
         fetchMaintenanceModeStatus { [weak self] (status, serviceError) in
             if let status = status {
                 // if mm all status, make no network calls and present maintenance mode for everything.
@@ -136,7 +139,7 @@ class NetworkingUtility {
                     self?.networkUtilityDelegates.forEach { $0.maintenanceMode(feature: .all) }
                     return
                 }
-                
+
                 self?.fetchAccountDetailsWithData(maintenanceModeStatus: status, completion: { [weak self] accountDetails in
                     guard let accountDetails = accountDetails else {
                         aLog("ERROR: Account Details is nil.")
@@ -149,14 +152,14 @@ class NetworkingUtility {
                         self?.networkUtilityDelegates.forEach { $0.error(Errors.passwordProtected, feature: .all) }
                         return
                     }
-                    
+
                     // fetch usage
                     self?.fetchUsageData(accountDetail: accountDetails, success: { billForecast in
                         self?.networkUtilityDelegates.forEach { $0.usageStatusDidUpdate(billForecast) }
                     }, error: { serviceError in
                         self?.networkUtilityDelegates.forEach { $0.error(serviceError, feature: .usage) }
                     })
-                    
+
                     if status.outageStatus {
                         // Maint - Outage
                         self?.networkUtilityDelegates.forEach { $0.maintenanceMode(feature: .outage) }
@@ -271,8 +274,7 @@ class NetworkingUtility {
         aLog("Fetching Maintenance Mode Status...")
         
         let authService = MCSAuthenticationService()
-        
-        
+
         authService.getMaintenanceMode()
             .subscribe(onNext: { maintenance in
                 // handle success
@@ -296,7 +298,7 @@ class NetworkingUtility {
     ///     - error: completion handler for `fetchData()` call resulting in an error state.
     private func fetchOutageStatus(success: @escaping (OutageStatus) -> Void, error: @escaping (ServiceError) -> Void) {
         aLog("Fetching Outage Status...")
-        
+
         guard let currentAccount = AccountsStore.shared.currentAccount else {
             aLog("Failed to retreive current account while fetching outage status.")
             error(Errors.noAccountsFound)
@@ -358,16 +360,22 @@ class NetworkingUtility {
 
 // MARK: - Current Account Delegate Methods
 
-extension NetworkingUtility: AccountStoreChangedDelegate {
+extension NetworkingUtility {
     
-    func newAccountUpdate(_ account: Account) {
+    @objc func newAccountUpdate(_ notification: NSNotification) {
+
+        guard let account = notification.object as? Account else { return }
+        
         aLog("Initial Account Did Update")
         
         networkUtilityDelegates.forEach { $0.newAccountDidUpdate(account) }
     }
     
     // User selected account did update
-    func currentAccountDidUpdate(_ account: Account) {
+    @objc func currentAccountDidUpdate(_ notification: NSNotification) {
+
+        guard let account = notification.object as? Account else { return }
+        
         aLog("Current Account Did Update")
         
         // Reset timer

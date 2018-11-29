@@ -68,8 +68,10 @@ extension AccountListInterfaceController {
         }
         
         // Set Selected Account
-        AccountsStore.shared.currentAccount = accounts[rowIndex]
-
+        let newAccount = accounts[rowIndex]
+        AccountsStore.shared.currentAccount = newAccount
+        NotificationCenter.default.post(name: Notification.Name.currentAccountUpdated, object: newAccount)
+        
         dismiss()
     }
     

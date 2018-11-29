@@ -297,8 +297,9 @@ extension OutageInterfaceController: NetworkingDelegate {
         addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
     }
     
+    
+    
     func outageStatusDidUpdate(_ outageStatus: OutageStatus) {
-        
         guard !outageStatus.flagGasOnly else {
             state = .loaded(.gasOnly)
             return
@@ -320,6 +321,7 @@ extension OutageInterfaceController: NetworkingDelegate {
     
     func loading(feature: MainFeature) {
         guard feature == .all || feature == .outage else { return }
+
         state = .loading
     }
     
