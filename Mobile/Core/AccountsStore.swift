@@ -21,9 +21,17 @@ final class AccountsStore {
     var accounts: [Account]!
     var currentAccount: Account! {
         didSet {
+            if currentAccount == nil {
+                
+                
+                return
+            }
+            
             if oldValue != nil {
+                
                 accountStoreChangedDelegate?.currentAccountDidUpdate(currentAccount)
             } else {
+                
                 accountStoreChangedDelegate?.newAccountUpdate(currentAccount)
             }
         }

@@ -67,6 +67,10 @@ class NetworkingUtility {
     
     private let disposeBag = DisposeBag()
     
+    var runCount = 0
+    var outageRunCount = 0
+    var outageDelegateTriggerCount = 0
+    
     private init() {
         aLog("init network manager.")
         
@@ -107,6 +111,10 @@ class NetworkingUtility {
     ///     - error: Triggers delegate method for a general error occured attempting to fetch data.
     public func fetchData(shouldShowLoading: Bool = true, shouldLoadAccountList: Bool = true) {
         
+        runCount += 1
+        
+        aLog("public RunCount: \(runCount)")
+        
         if shouldShowLoading {
             // Trigger Loading in IC's
             networkUtilityDelegates.forEach { $0.loading(feature: .all) }
@@ -117,18 +125,19 @@ class NetworkingUtility {
             fetchAccountsWithData { [weak self] success in
                 guard success else { return }
                 
-                self?.fetchMainFeatureData()
+                self?.fetchMainFeatureData() // 2 // 4
             }
             return
         }
         
-        fetchMainFeatureData()
+        fetchMainFeatureData() // 1 // 3
     }
     
     /// Begins chain of MM -> Account details -> Outage + Usage
     /// We have in a separate function due to needing to nest it into fetch account list based on function boolean value
     private func fetchMainFeatureData() {
         // Maintenance Mode Fetch
+        
         fetchMaintenanceModeStatus { [weak self] (status, serviceError) in
             if let status = status {
                 // if mm all status, make no network calls and present maintenance mode for everything.
@@ -137,6 +146,8 @@ class NetworkingUtility {
                     return
                 }
                 
+                
+                // fetch account details is getting called twice here
                 self?.fetchAccountDetailsWithData(maintenanceModeStatus: status, completion: { [weak self] accountDetails in
                     guard let accountDetails = accountDetails else {
                         aLog("ERROR: Account Details is nil.")
@@ -150,6 +161,10 @@ class NetworkingUtility {
                         return
                     }
                     
+                    
+                    
+                    
+                    
                     // fetch usage
                     self?.fetchUsageData(accountDetail: accountDetails, success: { billForecast in
                         self?.networkUtilityDelegates.forEach { $0.usageStatusDidUpdate(billForecast) }
@@ -157,12 +172,19 @@ class NetworkingUtility {
                         self?.networkUtilityDelegates.forEach { $0.error(serviceError, feature: .usage) }
                     })
                     
+                    
+                    
+                     // this is getting hit twice - why?
                     if status.outageStatus {
                         // Maint - Outage
                         self?.networkUtilityDelegates.forEach { $0.maintenanceMode(feature: .outage) }
                     } else {
                         // No Maint - Outage
                         self?.fetchOutageStatus(success: { [weak self] outageStatus in
+                            self?.outageDelegateTriggerCount += 1
+                            
+                            aLog("Outage delegate trigger count: \(self?.outageDelegateTriggerCount)")
+                            
                             self?.networkUtilityDelegates.forEach { $0.outageStatusDidUpdate(outageStatus) }
                             }, error: { serviceError in
                                 self?.networkUtilityDelegates.forEach { $0.error(serviceError, feature: .outage) }
@@ -272,6 +294,17 @@ class NetworkingUtility {
         
         let authService = MCSAuthenticationService()
         
+        let maint = authService.getMaintenanceMode().subscribe(onNext: { maintenance in
+            // handle success
+            aLog("Maintenance Mode Fetched.")
+            
+            completion(maintenance, nil)
+        }, onError: { error in
+            // handle error
+            aLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
+            completion(nil, error as? ServiceError)
+        })
+            .disposed(by: disposeBag)
         
         authService.getMaintenanceMode()
             .subscribe(onNext: { maintenance in
@@ -297,7 +330,13 @@ class NetworkingUtility {
     private func fetchOutageStatus(success: @escaping (OutageStatus) -> Void, error: @escaping (ServiceError) -> Void) {
         aLog("Fetching Outage Status...")
         
+        outageRunCount += 1 // why does this get run twice?
+        
+        aLog("Outage run count: \(outageRunCount)")
+        
         guard let currentAccount = AccountsStore.shared.currentAccount else {
+            
+            
             aLog("Failed to retreive current account while fetching outage status.")
             error(Errors.noAccountsFound)
             return
