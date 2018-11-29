@@ -18,8 +18,8 @@ protocol PaymentusFormViewControllerDelegate: class {
 
 class PaymentusFormViewController: UIViewController {
     
+    var webView: WKWebView!
     let loadingIndicator = LoadingIndicator().usingAutoLayout()
-    let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration()).usingAutoLayout()
     let errorLabel = UILabel(frame: .zero).usingAutoLayout()
     
     private var urlString: String {
@@ -64,8 +64,19 @@ class PaymentusFormViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        
         view.backgroundColor = .white
         
+        let contentController = WKUserContentController()
+        let source = "window.addEventListener('message', function(event){ window.webkit.messageHandlers.iosListener.postMessage(JSON.stringify(event.data)); })"
+        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        contentController.addUserScript(script)
+        contentController.add(self, name: "iosListener")
+        
+        let config = WKWebViewConfiguration()
+        config.userContentController = contentController
+        
+        webView = WKWebView(frame: .zero, configuration: config).usingAutoLayout()
         webView.navigationDelegate = self
         
         view.addSubview(webView)
@@ -137,6 +148,12 @@ class PaymentusFormViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
 
+}
+
+extension PaymentusFormViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print("Received postMessage: \(message.body)")
+    }
 }
 
 extension PaymentusFormViewController: WKNavigationDelegate {
