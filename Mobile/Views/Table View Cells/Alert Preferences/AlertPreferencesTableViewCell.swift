@@ -34,6 +34,7 @@ class AlertPreferencesTableViewCell: UITableViewCell {
         pickerButton.titleLabel?.font = SystemFont.regular.of(textStyle: .headline)
         detailLabel.textColor = .deepGray
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        contentView.backgroundColor = .clear
     }
     
     func configure(withPreferenceOption option: AlertPreferencesViewModel.AlertPreferencesOptions,
