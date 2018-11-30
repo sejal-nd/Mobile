@@ -200,14 +200,6 @@ class NetworkingUtility {
     ///     - noAuthToken: Triggers delegate method for an error due to no jwt token presen: Service Error Code: 981156.
     ///     - error: Triggers delegate method for a general error occured attempting to fetch the account list.
     private func fetchAccountsWithData(completion: @escaping (Bool) -> Void) {
-//        group.enter()
-//        accountManager.fetchAccounts(success: { [weak self] accounts in
-//            self?.accounts = accounts
-//            self?.networkUtilityDelegates.forEach { $0.accountListDidUpdate(accounts) }
-//            self?.group.leave()
-//            completion(true)
-//        })
-        
         group.enter()
         accountManager.fetchAccounts(success: { [weak self] accounts in
             self?.accounts = accounts
@@ -346,7 +338,6 @@ class NetworkingUtility {
             success(billForecastResult)
             }, onError: { usageError in
                 // handle error
-                aLog("Potential 2 month error") // todo: we must handle the case where usage does not have 2 full months of data
                 aLog("Failed to retrieve usage data: \(usageError.localizedDescription)")
                 let serviceError = (usageError as? ServiceError) ?? ServiceError(serviceCode: usageError.localizedDescription, serviceMessage: nil, cause: nil)
                 

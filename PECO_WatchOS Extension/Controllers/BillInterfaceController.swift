@@ -168,7 +168,7 @@ class BillInterfaceController: WKInterfaceController {
     // MARK: - Helper
     
     @objc private func presentAccountList() {
-        presentController(withName: "AccountListInterfaceController", context: nil)
+        presentController(withName: AccountListInterfaceController.className, context: nil)
     }
     
     private func updateAccountInformation(_ account: Account) {
@@ -191,6 +191,7 @@ class BillInterfaceController: WKInterfaceController {
         
         footerGroup.setHidden(false)
         
+        accountGroup.setHidden(true)
         errorGroup.setHidden(true)
         billAlertGroup.setHidden(true)
         billGroup.setHidden(true)
@@ -233,6 +234,9 @@ extension BillInterfaceController: NetworkingDelegate {
         
         // Shows overarching bill group
         state = .loaded
+        
+        // Display Account Group
+        accountGroup.setHidden(false)
         
         aLog("Account detail did update")
         
@@ -312,7 +316,7 @@ extension BillInterfaceController: NetworkingDelegate {
                 }
                 
                 billPaidGroup.setHidden(true)
-            case .billReadyAutoPay:                
+            case .autoPay:
                 autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentImage.setImageNamed(AppImage.autoPay.name)
                 autoPayScheduledPaymentDetailLabel.setText("You are enrolled in Autopay")
@@ -376,6 +380,7 @@ extension BillInterfaceController: NetworkingDelegate {
     
     func maintenanceMode(feature: MainFeature) {
         guard feature == .all || feature == .bill else { return }
+        accountGroup.setHidden(false)
         state = .maintenanceMode
     }
     
@@ -386,6 +391,9 @@ extension BillInterfaceController: NetworkingDelegate {
     
     func error(_ serviceError: ServiceError, feature: MainFeature) {
         guard feature == .all || feature == .bill else { return }
+        
+        accountGroup.setHidden(false)
+        
         guard serviceError.serviceCode == Errors.Code.passwordProtected else {
             state = .error(serviceError)
             return

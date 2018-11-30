@@ -14,7 +14,7 @@ enum BillState {
     case avoidShutoff(amount: Double)
     case pastDue(pastDueAmount: Double, netDueAmount: Double, remainingBalanceDue: Double)
     case billReady(amount: Double, date: Date)
-    case billReadyAutoPay
+    case autoPay
     case billPaid(amount: Double)
     case remainingBalance(remainingBalanceAmount: Double)
     case paymentPending(amount: Double)
@@ -54,7 +54,7 @@ class BillUtility {
 
     public func generateBillStates(accountDetail: AccountDetail) -> [BillState] {
         var billStates = [BillState]()
-        
+
         var isPrecarious = false
         var isPendingPayment = false
 
@@ -65,15 +65,15 @@ class BillUtility {
         
         // Auto Pay
         if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate,  accountDetail.isAutoPay {
-            billStates.append(.billReadyAutoPay)
+            billStates.append(.autoPay)
             billStates.append(.billReady(amount: amount, date: dueDate))
         } else if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, !accountDetail.isAutoPay {
             // Net Amount Due
             billStates.append(.billReady(amount: amount, date: dueDate))
-        } else if let billDate = accountDetail.billingInfo.billDate, let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate, let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount, lastPaymentAmount > 0, billDate < lastPaymentDate, let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == 0  {
+        } else if let billDate = accountDetail.billingInfo.billDate, let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate, accountDetail.billingInfo.lastPaymentAmount ?? 0 > 0, billDate < lastPaymentDate {
             // Bill Paid - Payment Applied
-            billStates.append(.billPaid(amount: lastPaymentAmount))
-        } else if let amount = accountDetail.billingInfo.netDueAmount, amount == 0, accountDetail.billingInfo.billDate == nil {
+            billStates.append(.billPaid(amount: accountDetail.billingInfo.lastPaymentAmount ?? 0))
+        } else if let amount = accountDetail.billingInfo.netDueAmount, amount == 0 {
             // Bill Not Ready
             billStates.append(.billNotReady)
         }
