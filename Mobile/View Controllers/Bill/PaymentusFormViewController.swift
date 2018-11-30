@@ -134,7 +134,7 @@ class PaymentusFormViewController: UIViewController {
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in
                 self?.showLoadingState()
                 self?.webView.resignFirstResponder() // Dismissing the keyboard resolves some jankiness
-                self?.webView.reload()
+                self?.fetchEncryptionKey()
             }))
             self?.present(alert, animated: true, completion: nil)
         }
