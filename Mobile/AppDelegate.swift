@@ -91,11 +91,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     func applicationDidEnterBackground(_ application: UIApplication) {
-        self.logoutOfWatch()
+        logoutOfWatch()
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-       self.logoutOfWatch()
+       logoutOfWatch()
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
