@@ -14,7 +14,7 @@ enum BillState {
     case avoidShutoff(amount: Double)
     case pastDue(pastDueAmount: Double, netDueAmount: Double, remainingBalanceDue: Double)
     case billReady(amount: Double, date: Date)
-    case billReadyAutoPay
+    case autoPay
     case billPaid(amount: Double)
     case remainingBalance(remainingBalanceAmount: Double)
     case paymentPending(amount: Double)
@@ -69,7 +69,7 @@ class BillUtility {
         
         // Auto Pay
         if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate,  accountDetail.isAutoPay {
-            billStates.append(.billReadyAutoPay)
+            billStates.append(.autoPay)
             billStates.append(.billReady(amount: amount, date: dueDate))
         } else if let amount = accountDetail.billingInfo.netDueAmount, amount > 0, let dueDate = accountDetail.billingInfo.dueByDate, !accountDetail.isAutoPay {
             // Net Amount Due

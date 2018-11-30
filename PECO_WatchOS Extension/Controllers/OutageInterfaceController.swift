@@ -12,7 +12,11 @@ class OutageInterfaceController: WKInterfaceController {
  
     @IBOutlet var loadingImageGroup: WKInterfaceGroup!
     
-    @IBOutlet var accountGroup: WKInterfaceGroup!
+    @IBOutlet var accountGroup: WKInterfaceGroup! {
+        didSet {
+            accountGroup.setHidden(true)
+        }
+    }
     @IBOutlet var accountImage: WKInterfaceImage!
     @IBOutlet var accountTitleLabel: WKInterfaceLabel!
     
@@ -300,6 +304,9 @@ extension OutageInterfaceController: NetworkingDelegate {
     
     
     func outageStatusDidUpdate(_ outageStatus: OutageStatus) {
+        
+        accountGroup.setHidden(false)
+        
         guard !outageStatus.flagGasOnly else {
             state = .loaded(.gasOnly)
             return
@@ -316,6 +323,9 @@ extension OutageInterfaceController: NetworkingDelegate {
     
     func maintenanceMode(feature: MainFeature) {
         guard feature == .all || feature == .outage else { return }
+        
+        accountGroup.setHidden(false)
+        
         state = .maintenanceMode
     }
     
@@ -327,6 +337,9 @@ extension OutageInterfaceController: NetworkingDelegate {
     
     func error(_ serviceError: ServiceError, feature: MainFeature) {
         guard feature == .all || feature == .outage else { return }
+        
+        accountGroup.setHidden(false)
+        
         guard serviceError.serviceCode == Errors.Code.passwordProtected else {
             state = .error(serviceError)
             return

@@ -12,7 +12,11 @@ class UsageInterfaceController: WKInterfaceController {
     
     @IBOutlet var loadingImageGroup: WKInterfaceGroup!
     
-    @IBOutlet var accountGroup: WKInterfaceGroup!
+    @IBOutlet var accountGroup: WKInterfaceGroup! {
+        didSet {
+            accountGroup.setHidden(true)
+        }
+    }
     @IBOutlet var accountImage: WKInterfaceImage!
     @IBOutlet var accountTitleLabel: WKInterfaceLabel!
     
@@ -326,12 +330,12 @@ extension UsageInterfaceController: NetworkingDelegate {
     
     func usageStatusDidUpdate(_ billForecast: BillForecastResult) {
         
-        // Determine if data is avilable - we need to double check this is the correct logic to determine unavailable
+        accountGroup.setHidden(false)
+        
+        // Determine if data is avilable
         if billForecast.electric == nil, billForecast.gas == nil {
             state = .unavailable
         }
-
-        // todo, figure out what data looks like if the user doesnt have 2 full months of usage
         
         // Gas
         if let gas = billForecast.gas, let startDate = gas.billingStartDate {
@@ -404,6 +408,8 @@ extension UsageInterfaceController: NetworkingDelegate {
     func error(_ serviceError: ServiceError, feature: MainFeature) {
         guard feature == .all || feature == .usage else { return }
         
+        accountGroup.setHidden(false)
+        
         hasError = true
         clearAllMenuItems()
         
@@ -421,6 +427,9 @@ extension UsageInterfaceController: NetworkingDelegate {
     
     func maintenanceMode(feature: MainFeature) {
         guard feature == .all || feature == .usage else { return }
+        
+        accountGroup.setHidden(false)
+        
         state = .maintenanceMode
     }
     
