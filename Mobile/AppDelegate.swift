@@ -90,11 +90,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        self.logoutOfWatch()
+    }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), Environment.shared.opco == .peco {
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
-        }
+       self.logoutOfWatch()
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -207,7 +208,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
         }
     }
-    
+    private func logoutOfWatch() {
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), Environment.shared.opco == .peco {
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
+        }
+    }
     func setupUserDefaults() {
         let userDefaults = UserDefaults.standard
         userDefaults.register(defaults: [
