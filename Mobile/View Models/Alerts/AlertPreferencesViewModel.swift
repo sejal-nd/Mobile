@@ -20,6 +20,7 @@ class AlertPreferencesViewModel {
     var accountDetail: AccountDetail! // Passed from AlertsViewController
     
     var sections: [(String, [AlertPreferencesOptions])] = []
+    var shownSections = Set<Int>() // Set of section numbers that should be expanded
     
     // Notification Preferences
     let outage = Variable(false)
@@ -50,6 +51,14 @@ class AlertPreferencesViewModel {
         self.alertsService = alertsService
         self.billService = billService
         self.accountService = accountService
+    }
+    
+    func toggleSectionVisibility(_ section: Int) {
+        if !shownSections.contains(section) {
+            shownSections.insert(section)
+        } else {
+            shownSections.remove(section)
+        }
     }
     
     // MARK: Web Services
