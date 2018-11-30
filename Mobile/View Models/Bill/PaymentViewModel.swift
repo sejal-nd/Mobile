@@ -110,9 +110,9 @@ class PaymentViewModel {
             if let nextWorkday = workdayArray.first(where: { $0 >= startOfTodayDate }),
                 !Calendar.opCo.isDateInToday(nextWorkday) {
                 paymentDate.value = nextWorkday
+            } else {
+                paymentDate.value = now
             }
-            
-            paymentDate.value = now
         case .comEd:
             paymentDate.value = now
         case .bge:
