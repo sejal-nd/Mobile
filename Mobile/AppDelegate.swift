@@ -90,12 +90,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        checkAndLoginOnWatch()
+    }
     func applicationDidEnterBackground(_ application: UIApplication) {
         logoutOfWatch()
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-       logoutOfWatch()
+        logoutOfWatch()
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -195,8 +198,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    // MARK: - Helper
     
+    //MARK: - Watch Helper
     private func setupWatchConnectivity() {
         guard Environment.shared.opco == .peco else { return }
         
@@ -208,11 +211,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
         }
     }
+    private func checkAndLoginOnWatch() {
+        //checks if still logged in if app just went home and reloads watch app
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken, Environment.shared.opco == .peco {
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
+        }
+    }
     private func logoutOfWatch() {
         if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), Environment.shared.opco == .peco {
             try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
         }
     }
+    // MARK: - Helper
     func setupUserDefaults() {
         let userDefaults = UserDefaults.standard
         userDefaults.register(defaults: [
