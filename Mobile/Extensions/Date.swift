@@ -112,6 +112,14 @@ extension DateFormatter {
         return dateFormatter
     }()
     
+    @nonobjc static let MMSlashyyyyFormatter: DateFormatter = { // Wallet Item expirationDate
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = .gmt
+        dateFormatter.timeZone = .gmt
+        dateFormatter.dateFormat = "MM/yyyy"
+        return dateFormatter
+    }()
+    
     @nonobjc static let HHmmFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = .opCo
