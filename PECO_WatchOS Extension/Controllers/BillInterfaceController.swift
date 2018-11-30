@@ -168,7 +168,7 @@ class BillInterfaceController: WKInterfaceController {
     // MARK: - Helper
     
     @objc private func presentAccountList() {
-        presentController(withName: "AccountListInterfaceController", context: nil)
+        presentController(withName: AccountListInterfaceController.className, context: nil)
     }
     
     private func updateAccountInformation(_ account: Account) {
@@ -316,7 +316,7 @@ extension BillInterfaceController: NetworkingDelegate {
                 }
                 
                 billPaidGroup.setHidden(true)
-            case .autoPay:                
+            case .autoPay:
                 autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentImage.setImageNamed(AppImage.autoPay.name)
                 autoPayScheduledPaymentDetailLabel.setText("You are enrolled in Autopay")
