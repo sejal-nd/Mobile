@@ -54,11 +54,7 @@ class BillUtility {
 
     public func generateBillStates(accountDetail: AccountDetail) -> [BillState] {
         var billStates = [BillState]()
-        
-        //billStates.append(.billReadyAutoPay)
-        
-        //return billStates
-        
+
         var isPrecarious = false
         var isPendingPayment = false
 
