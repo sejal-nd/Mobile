@@ -253,7 +253,7 @@ class OutageInterfaceController: WKInterfaceController {
     // MARK: - Helper
     
     @objc private func presentAccountList() {
-        presentController(withName: "AccountListInterfaceController", context: nil)
+        presentController(withName: AccountListInterfaceController.className, context: nil)
     }
     
     private func updateAccountInformation(_ account: Account) {

@@ -237,7 +237,7 @@ class UsageInterfaceController: WKInterfaceController {
     // MARK: - Actions
     
     @objc private func presentAccountList() {
-        presentController(withName: "AccountListInterfaceController", context: nil)
+        presentController(withName: AccountListInterfaceController.className, context: nil)
     }
     
     @objc private func selectElectricMenuItem() {
