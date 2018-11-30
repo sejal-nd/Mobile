@@ -20,14 +20,6 @@ class MCSApi {
     static let shared = MCSApi()
 
     static let API_VERSION: String = "v5"
-//    {
-//        switch Environment.shared.opco {
-//        case .bge:
-//            return "v4"
-//        case .comEd, .peco:
-//            return "v4"
-//        }
-//    }()
     
     private let TIMEOUT = 120.0
 
