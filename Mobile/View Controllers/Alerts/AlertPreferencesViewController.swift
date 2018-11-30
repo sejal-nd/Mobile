@@ -271,7 +271,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
     
     private func configureToggleCell(_ cell: AlertPreferencesTableViewCell, forIndexPath indexPath: IndexPath) {
         let offset = viewModel.showTopSection ? 1 : 0
-        let option = viewModel.sections[indexPath.section - offset].1[indexPath.row]
+        let options = viewModel.sections[indexPath.section - offset].1
+        let option = options[indexPath.row]
         
         var toggleVariable: Variable<Bool>?
         var pickerButtonText: Driver<String>?
@@ -328,7 +329,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         }
         
         cell.configure(withPreferenceOption: option,
-                       pickerButtonText: pickerButtonText)
+                       pickerButtonText: pickerButtonText,
+                       isLastItem: options.count - 1 == indexPath.row)
     }
     
 }
@@ -341,7 +343,7 @@ extension AlertPreferencesViewController: UITableViewDelegate {
         } else if section == numberOfSections(in: tableView) - 1 && viewModel.showLanguageSection {
             return 0.01
         } else {
-            return 73
+            return 59
         }
     }
     

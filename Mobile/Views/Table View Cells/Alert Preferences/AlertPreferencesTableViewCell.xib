@@ -80,7 +80,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gUg-fZ-vpS" secondAttribute="trailing" id="Gkl-oq-96h"/>
                             <constraint firstAttribute="bottom" secondItem="arD-p2-ggJ" secondAttribute="bottom" constant="15" id="S7J-3l-xDK"/>
@@ -114,6 +114,7 @@
                 <outlet property="pickerButton" destination="NCI-8S-CcA" id="tD1-V8-ViE"/>
                 <outlet property="pickerButtonStack" destination="7uS-AZ-Gbe" id="gbo-gd-rqX"/>
                 <outlet property="pickerLabel" destination="XCs-kI-gcs" id="Mug-t4-R4c"/>
+                <outlet property="separatorView" destination="gUg-fZ-vpS" id="Fcy-Ae-r6X"/>
                 <outlet property="toggle" destination="oXi-cq-esY" id="XHe-EM-nKR"/>
             </connections>
             <point key="canvasLocation" x="132.80000000000001" y="189.3553223388306"/>

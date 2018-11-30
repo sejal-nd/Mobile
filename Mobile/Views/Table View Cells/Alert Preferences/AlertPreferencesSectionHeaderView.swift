@@ -11,6 +11,7 @@ import UIKit
 class AlertPreferencesSectionHeaderView: UIView {
     private let label = UILabel().usingAutoLayout()
     private let caretImageView = UIImageView(image: #imageLiteral(resourceName: "ic_carat_down")).usingAutoLayout()
+    let separator = UIView().usingAutoLayout()
     var tapped: (() -> ())?
     
     init() {
@@ -41,19 +42,18 @@ class AlertPreferencesSectionHeaderView: UIView {
         
         contentView.addSubview(label)
         contentView.addSubview(caretImageView)
-        label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -7).isActive = true
+        label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         label.trailingAnchor.constraint(lessThanOrEqualTo: caretImageView.leadingAnchor, constant: 8).isActive = true
         caretImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         caretImageView.centerYAnchor.constraint(equalTo: label.centerYAnchor).isActive = true
         
-        let separator = UIView().usingAutoLayout()
         separator.backgroundColor = .accentGray
         
         contentView.addSubview(separator)
         separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTap(tapRecognizer:)))
@@ -63,10 +63,11 @@ class AlertPreferencesSectionHeaderView: UIView {
     func configure(withTitle title: String, isExpanded: Bool) {
         label.text = title
         caretImageView.image = isExpanded ? #imageLiteral(resourceName: "ic_carat_up") : #imageLiteral(resourceName: "ic_carat_down")
+        separator.isHidden = isExpanded
     }
 
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 300, height: 73)
+        return CGSize(width: 300, height: 59)
     }
     
     @objc func didTap(tapRecognizer: UITapGestureRecognizer) {
