@@ -87,7 +87,7 @@
                                             <variation key="device=watch42mm" height="110"/>
                                             <variation key="device=watch44mm" height="133"/>
                                         </group>
-                                        <group width="1" height="100" alignment="left" layout="vertical" spacing="6" id="orj-4a-aIm">
+                                        <group width="1" height="100" alignment="left" layout="vertical" spacing="8" id="orj-4a-aIm">
                                             <items>
                                                 <imageView alignment="center" verticalAlignment="center" image="paymentConfirmation" contentMode="scaleAspectFit" id="2vB-s7-pMg"/>
                                                 <label width="1" alignment="center" verticalAlignment="center" text="Thank you for your payment" textAlignment="center" numberOfLines="0" id="Les-qd-1Gt">
