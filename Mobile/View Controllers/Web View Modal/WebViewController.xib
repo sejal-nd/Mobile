@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -19,7 +20,7 @@
                 <outlet property="navBarView" destination="on1-18-FdC" id="RgH-nr-tXF"/>
                 <outlet property="titleLabel" destination="tfC-gp-qu3" id="iv7-9a-0PR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="webView" destination="1kK-Eb-Gri" id="ZdT-JB-L5R"/>
+                <outlet property="webContainerView" destination="hAU-dd-LWD" id="Pkn-eg-kfU"/>
                 <outlet property="xButton" destination="9Zv-82-2fX" id="oWG-Os-Mvc"/>
             </connections>
         </placeholder>
@@ -61,26 +62,26 @@
                         <constraint firstItem="tfC-gp-qu3" firstAttribute="leading" secondItem="9Zv-82-2fX" secondAttribute="trailing" constant="8" id="wVT-pv-Idb"/>
                     </constraints>
                 </view>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kK-Eb-Gri">
-                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </webView>
                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="kZ3-gn-Q4T" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                     <rect key="frame" x="157" y="327" width="60" height="12"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAU-dd-LWD">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="1kK-Eb-Gri" firstAttribute="top" secondItem="on1-18-FdC" secondAttribute="bottom" id="7MJ-Za-2w8"/>
-                <constraint firstAttribute="trailing" secondItem="1kK-Eb-Gri" secondAttribute="trailing" id="DvV-Sf-aJ2"/>
+                <constraint firstAttribute="trailing" secondItem="hAU-dd-LWD" secondAttribute="trailing" id="9J0-Sn-jGb"/>
                 <constraint firstAttribute="trailing" secondItem="on1-18-FdC" secondAttribute="trailing" id="RDp-Yx-Ixr"/>
+                <constraint firstAttribute="bottom" secondItem="hAU-dd-LWD" secondAttribute="bottom" id="T87-Vj-Lzk"/>
                 <constraint firstItem="on1-18-FdC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TIn-Em-5vU"/>
-                <constraint firstAttribute="bottom" secondItem="1kK-Eb-Gri" secondAttribute="bottom" id="ZJY-Ry-3aJ"/>
                 <constraint firstItem="on1-18-FdC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="750" id="ZmO-Rv-2rW"/>
                 <constraint firstItem="kZ3-gn-Q4T" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ehC-jj-dBk"/>
                 <constraint firstItem="kZ3-gn-Q4T" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iah-wr-OtV"/>
-                <constraint firstItem="1kK-Eb-Gri" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vzE-kF-CYS"/>
+                <constraint firstItem="hAU-dd-LWD" firstAttribute="top" secondItem="on1-18-FdC" secondAttribute="bottom" id="mXf-PL-bth"/>
+                <constraint firstItem="hAU-dd-LWD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="w17-eE-c5g"/>
             </constraints>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>

@@ -20,6 +20,8 @@ class OutageViewModel {
     private var currentGetOutageStatusDisposable: Disposable?
     
     var currentOutageStatus: OutageStatus?
+    
+    var hasPressedStreetlightOutageMapButton = false
 
     required init(accountService: AccountService, outageService: OutageService, authService: AuthenticationService) {
         self.accountService = accountService
@@ -84,10 +86,6 @@ class OutageViewModel {
         return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
     }
     
-    func clearReportedOutage() {
-        outageService.clearReportedOutageStatus(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
-    }
-    
     var estimatedRestorationDateString: String {
         if let reportedOutage = reportedOutage {
             if let reportedETR = reportedOutage.etr {
@@ -143,5 +141,18 @@ class OutageViewModel {
             }
         }
         return ""
+    }
+    
+    var shouldShowPayBillButton: Bool {
+        return Environment.shared.opco != .bge && currentOutageStatus!.flagNoPay
+    }
+    
+    var showReportStreetlightOutageButton: Bool {
+        switch Environment.shared.opco {
+        case .comEd:
+            return false // should change to true once the map is ready
+        case .bge, .peco:
+            return false
+        }
     }
 }

@@ -15,9 +15,20 @@ import AppCenterCrashes
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var window: UIWindow?
+    #if SHOWTOUCHES
+        var customWindow: GSTouchesShowingWindow?
+        var window: UIWindow? {
+            get {
+                customWindow = customWindow ?? GSTouchesShowingWindow(frame: UIScreen.main.bounds)
+                return customWindow
+            }
+            set { }
+        }
+    #else
+        var window: UIWindow?
+    #endif
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let processInfo = ProcessInfo.processInfo
         if processInfo.arguments.contains("UITest") || processInfo.environment["XCTestConfigurationFilePath"] != nil {
             // Clear UserDefaults if Unit or UI testing -- ensures consistent fresh run
@@ -36,10 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
         }
         
-        if Environment.shared.environmentName == .prod {
-            OMCMobileBackendManager.shared().logLevel = "none"
-        }
-        
         setupUserDefaults()
         setupToastStyles()
         setupAppearance()
@@ -50,11 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: .didMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showIOSVersionWarning), name: .shouldShowIOSVersionWarning, object: nil)
         
         // If app was cold-launched from a push notification
-        if let options = launchOptions, let userInfo = options[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
+        if let options = launchOptions, let userInfo = options[.remoteNotification] as? [AnyHashable : Any] {
             self.application(application, didReceiveRemoteNotification: userInfo)
-        } else if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+        } else if let shortcutItem = launchOptions?[.shortcutItem] as? UIApplicationShortcutItem {
             handleShortcut(shortcutItem)
             return false
         }
@@ -102,9 +110,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
             UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
             if notificationSettings.types.isEmpty {
-                Analytics.log(event: .AlertsiOSPushDontAllowInitial)
+                Analytics.log(event: .alertsiOSPushDontAllowInitial)
             } else {
-                Analytics.log(event: .AlertsiOSPushOKInitial)
+                Analytics.log(event: .alertsiOSPushOKInitial)
             }
         }
     }
@@ -143,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else {
             return false
         }
@@ -184,7 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaultKeys.shouldPromptToEnableBiometrics: true,
             UserDefaultKeys.paymentDetailsDictionary: [String: NSDictionary](),
             UserDefaultKeys.usernamesRegisteredForPushNotifications: [String]()
-            ])
+        ])
         
         userDefaults.set(false, forKey: UserDefaultKeys.inMainApp)
         
@@ -192,10 +200,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Clear the secure enclave keychain item on first launch of the app (we found it was persisting after uninstalls)
             let biometricsService = ServiceFactory.createBiometricsService()
             biometricsService.disableBiometrics()
-            
-            // Log the user out (Oracle SDK appears to be persisting the auth token through uninstalls)
-            let auth = OMCApi.shared.getBackend().authorization
-            auth.logoutClearCredentials(true, completionBlock: nil)
+
+            OMCApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }
@@ -256,6 +262,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let maintenanceStoryboard = UIStoryboard(name: "Maintenance", bundle: nil)
                 let vc = maintenanceStoryboard.instantiateInitialViewController()!
                 topmostVC.present(vc, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func showStormMode(){
+        DispatchQueue.main.async { [weak self] in
+            LoadingView.hide()
+            
+            if let rootVC = self?.window?.rootViewController {
+                var topmostVC = rootVC
+                while let presentedVC = topmostVC.presentedViewController {
+                    topmostVC = presentedVC
+                }
+                
+                guard let stormModeVC = UIStoryboard(name: "Storm", bundle: nil).instantiateInitialViewController(),
+                    let window = self?.window else {
+                        return
+                }
+                
+                StormModeStatus.shared.isOn = true
+                window.rootViewController = stormModeVC
+            }
+        }
+    }
+    
+    @objc func showIOSVersionWarning() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) {
+            let versionAlert = UIAlertController(title: NSLocalizedString("Warning", comment: ""),
+                                                 message: NSLocalizedString("Support for your current operating system will expire in the near future.", comment: ""),
+                                                 preferredStyle: .alert)
+            versionAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            versionAlert.addAction(UIAlertAction(title: NSLocalizedString("Don't warn me again", comment: ""), style: .cancel, handler: { _ in
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.doNotShowIOS9VersionWarningAgain)
+            }))
+            if let rootVC = self.window?.rootViewController {
+                var topmostVC = rootVC
+                while let presentedVC = topmostVC.presentedViewController {
+                    topmostVC = presentedVC
+                }
+                topmostVC.present(versionAlert, animated: true, completion: nil)
             }
         }
     }
@@ -331,8 +377,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
             
-            Analytics.log(event: .ReportAnOutageUnAuthOffer)
-            unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.Report
+            Analytics.log(event: .reportAnOutageUnAuthOffer)
+            unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
             
             // Reset the unauthenticated nav stack
             let newNavController = loginStoryboard.instantiateInitialViewController() as! UINavigationController
@@ -346,41 +392,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func configureQuickActions(isAuthenticated: Bool, showViewUsageOptions: Bool = false) {
+    func configureQuickActions(isAuthenticated: Bool) {
         let reportOutageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_outage")
         let reportOutageShortcut = UIApplicationShortcutItem(type: "ReportOutage", localizedTitle: "Report Outage", localizedSubtitle: nil, icon: reportOutageIcon, userInfo: nil)
         
         guard let accounts = AccountsStore.shared.accounts else {
-            // Signed in, but no accounts pulled yet
             if isAuthenticated {
+                // Signed in, but no accounts pulled yet
                 UIApplication.shared.shortcutItems = []
-            }
-            
-            // Not signed in
-            else {
+            } else {
+                // Not signed in
                 UIApplication.shared.shortcutItems = [reportOutageShortcut]
             }
             return
         }
         
-        let payBillIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_bill")
-        let payBillShortcut = UIApplicationShortcutItem(type: "PayBill", localizedTitle: "Pay Bill", localizedSubtitle: nil, icon: payBillIcon, userInfo: nil)
+        if accounts.count != 1 {
+            // Multi-account user
+            UIApplication.shared.shortcutItems = []
+            return
+        }
         
-        switch (accounts.count == 1, UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), showViewUsageOptions) {
-        case (true, false, _):
-            // Single account, no keep me signed in
-            UIApplication.shared.shortcutItems = [reportOutageShortcut]
-        case (true, true, true):
-            // Single account, keep me signed in, show usage
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked) {
+            // Single account, keep me signed in
+            let payBillIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_bill")
+            let payBillShortcut = UIApplicationShortcutItem(type: "PayBill", localizedTitle: "Pay Bill", localizedSubtitle: nil, icon: payBillIcon, userInfo: nil)
             let usageIcon = UIApplicationShortcutIcon(templateImageName: "ic_quick_usage")
             let usageShortcut = UIApplicationShortcutItem(type: "ViewUsageOptions", localizedTitle: "View Usage", localizedSubtitle: nil, icon: usageIcon, userInfo: nil)
             UIApplication.shared.shortcutItems = [payBillShortcut, reportOutageShortcut, usageShortcut]
-        case (true, true, false):
-            // Single account, keep me signed in, don't show usage
-            UIApplication.shared.shortcutItems = [payBillShortcut, reportOutageShortcut]
-        case (false, _, _):
-            // Multi-account user
-            UIApplication.shared.shortcutItems = []
+        } else {
+            // Single account, no keep me signed in
+            UIApplication.shared.shortcutItems = [reportOutageShortcut]
         }
         
     }

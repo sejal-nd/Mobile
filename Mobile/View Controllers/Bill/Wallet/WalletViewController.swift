@@ -81,7 +81,7 @@ class WalletViewController: UIViewController {
         
         // Non-empty state stuff
         tableView.backgroundColor = .primaryColor
-        tableView.contentInset = UIEdgeInsetsMake(15, 0, 15, 0)
+        tableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
         tableView.indicatorStyle = .white
         
         addPaymentAccountBottomBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
@@ -141,9 +141,7 @@ class WalletViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar(hidesBottomBorder: true)
-        }
+        navigationController?.setColoredNavBar(hidesBottomBorder: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -152,7 +150,7 @@ class WalletViewController: UIViewController {
         // Dynamic sizing for the table header view
         if let headerView = tableView.tableHeaderView {
             if viewModel.accountDetail.isCashOnly {
-                let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+                let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
                 var headerFrame = headerView.frame
                 
                 // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -168,7 +166,7 @@ class WalletViewController: UIViewController {
         
         // Dynamic sizing for the table footer view
         if let footerView = tableView.tableFooterView {
-            let height = footerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            let height = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var footerFrame = footerView.frame
             
             // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -188,14 +186,14 @@ class WalletViewController: UIViewController {
         viewModel.shouldShowEmptyState.drive(onNext: { [weak self] shouldShow in
             guard let `self` = self else { return }
             if shouldShow {
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.emptyStateScrollView)
+                UIAccessibility.post(notification: .screenChanged, argument: self.emptyStateScrollView)
             }
         }).disposed(by: disposeBag)
         viewModel.shouldShowWallet.map(!).drive(nonEmptyStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowWallet.filter { $0 }.drive(onNext: { [weak self] _ in
             guard let `self` = self else { return }
             self.tableView.reloadData()
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.tableView)
+            UIAccessibility.post(notification: .screenChanged, argument: self.tableView)
         }).disposed(by: disposeBag)
         
         viewModel.creditCardLimitReached.map(!).drive(miniCreditCardButton.rx.isEnabled).disposed(by: disposeBag)
@@ -340,7 +338,7 @@ extension WalletViewController: AddBankAccountViewControllerDelegate {
     
     func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
         didChangeAccount(toastMessage: NSLocalizedString("Bank account added", comment: ""))
-        Analytics.log(event: .AddWalletComplete)
+        Analytics.log(event: .addWalletComplete)
     }
     
 }
@@ -357,7 +355,7 @@ extension WalletViewController: AddCreditCardViewControllerDelegate {
     
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
         didChangeAccount(toastMessage: NSLocalizedString("Card added", comment: ""))
-        Analytics.log(event: .AddWalletComplete)
+        Analytics.log(event: .addWalletComplete)
     }
 }
 

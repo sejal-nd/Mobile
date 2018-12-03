@@ -50,12 +50,12 @@ class AutoPayChangeBankViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
 		navigationItem.rightBarButtonItem = saveButton
 		
-		NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil)
 			.asDriver(onErrorDriveWith: Driver.empty())
 			.drive(onNext: keyboardWillShow)
 			.disposed(by: bag)
 		
-		NotificationCenter.default.rx.notification(.UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil)
 			.asDriver(onErrorDriveWith: Driver.empty())
 			.drive(onNext: keyboardWillHide)
 			.disposed(by: bag)
@@ -68,7 +68,7 @@ class AutoPayChangeBankViewController: UIViewController {
 	}
 	
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .AutoPayModifyBankView)
+        Analytics.log(event: .autoPayModifyBankView)
     }
     
 	private func style() {
@@ -255,13 +255,13 @@ class AutoPayChangeBankViewController: UIViewController {
 	
 	func keyboardWillShow(notification: Notification) {
 		let userInfo = notification.userInfo!
-		let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+		let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 		
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
             safeAreaBottomInset = self.view.safeAreaInsets.bottom
         }
-		let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+		let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
 		scrollView.contentInset = insets
 		scrollView.scrollIndicatorInsets = insets
 	}
@@ -278,7 +278,7 @@ class AutoPayChangeBankViewController: UIViewController {
     
     @objc func onSavePress() {
         LoadingView.show()
-        Analytics.log(event: .AutoPayModifyBankSave)
+        Analytics.log(event: .autoPayModifyBankSave)
         viewModel.submit()
             .observeOn(MainScheduler.instance)
             .subscribe(

@@ -22,7 +22,7 @@ class LoginViewModelTests: XCTestCase {
         viewModel.username.value = "valid@test.com"
         viewModel.password.value = "Password1"
         
-        viewModel.performLogin(onSuccess: { _ in 
+        viewModel.performLogin(onSuccess: { _,_ in
             asyncExpectation.fulfill()
         }, onRegistrationNotComplete: {
             XCTFail("Unexpected onRegistrationNotComplete response")
@@ -42,7 +42,7 @@ class LoginViewModelTests: XCTestCase {
         viewModel.username.value = "invalid@test.com"
         viewModel.password.value = "Password1"
         
-        viewModel.performLogin(onSuccess: {_ in 
+        viewModel.performLogin(onSuccess: { _,_ in
             XCTFail("Unexpected success response")
         }, onRegistrationNotComplete: {
             XCTFail("Unexpected onRegistrationNotComplete response")

@@ -47,7 +47,7 @@ class SplashViewController: UIViewController{
         loadingLabel.text = NSLocalizedString("We’re Working on Loading the App…", comment: "")
         
         errorViewBackground.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
-        errorViewBackground.layer.cornerRadius = 2
+        errorViewBackground.layer.cornerRadius = 10
         
         errorTitleLabel.textColor = .deepGray
         errorTitleLabel.text = viewModel.errorTitleText
@@ -57,13 +57,13 @@ class SplashViewController: UIViewController{
         errorTextView.tintColor = .actionBlue // For the phone numbers
         errorTextView.attributedText = viewModel.errorLabelText
 
-        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification, object: nil)
             .skip(1) // Ignore the initial notification that fires, causing a double call to checkAppVersion
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                self?.checkAppVersion(callback: {
+                self?.checkAppVersion { [weak self] in
                     self?.doLoginLogic()
-                })
+                }
             })
             .disposed(by: bag)
         
@@ -81,9 +81,9 @@ class SplashViewController: UIViewController{
         super.viewDidAppear(animated)
         
         loadingTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(loadingTimerExpired), userInfo: nil, repeats: false)
-        checkAppVersion(callback: {
-            self.doLoginLogic()
-        })
+        checkAppVersion { [weak self] in
+            self?.doLoginLogic()
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -96,6 +96,9 @@ class SplashViewController: UIViewController{
             splashAnimationView!.contentMode = .scaleAspectFit
             splashAnimationContainer.addSubview(splashAnimationView!)
             splashAnimationView!.play()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.taglineString)
+            }
         }
         
         if loadingAnimationView == nil {
@@ -111,17 +114,29 @@ class SplashViewController: UIViewController{
         bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch/Face ID alert prompt is dismissed
         
         if keepMeSignedIn {
-            guard let viewController = UIStoryboard(name: "Main", bundle: nil)
-                .instantiateInitialViewController() as? MainTabBarController else {
-                return
-            }
-            
-            self.present(viewController, animated: true, completion: { [weak self] in
-                if let shortcutItem = self?.shortcutItem, shortcutItem != .none {
-                    NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
+            viewModel.checkStormMode { [weak self] isStormMode in
+                guard let this = self else { return }
+                this.loadingTimer.invalidate()
+                
+                if isStormMode {
+                    (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
+                } else {
+                    guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+                        let navController = this.navigationController else {
+                            return
+                    }
+                    
+                    navController.setViewControllers([viewController], animated: false)
+                    if this.shortcutItem != .none {
+                        NotificationCenter.default.post(name: .didTapOnShortcutItem, object: this.shortcutItem)
+                    }
                 }
-            })
+                
+                this.checkIOSVersion()
+            }
         } else {
+            loadingTimer.invalidate()
+            
             let navigate = { [weak self] in
                 guard let `self` = self else { return }
                 if self.performDeepLink {
@@ -142,13 +157,14 @@ class SplashViewController: UIViewController{
                     
                     let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
                     
-                    Analytics.log(event: .ReportAnOutageUnAuthOffer)
-                    unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.Report
+                    Analytics.log(event: .reportAnOutageUnAuthOffer)
+                    unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
                     
                     self.navigationController?.setViewControllers(vcArray, animated: true)
                 } else {
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
+                self.checkIOSVersion()
             }
             
             if self.splashAnimationView == nil || !self.splashAnimationView!.isAnimationPlaying {
@@ -163,7 +179,6 @@ class SplashViewController: UIViewController{
     
     func checkAppVersion(callback: @escaping() -> Void) {
         viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
-            self?.loadingTimer.invalidate()
             if isOutOfDate {
                 self?.handleOutOfDate()
             } else {
@@ -178,12 +193,20 @@ class SplashViewController: UIViewController{
         })
     }
     
+    func checkIOSVersion() {
+        // Warn iOS 9 users that we will soon not support their iOS version
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.doNotShowIOS9VersionWarningAgain) == false &&
+            UIDevice.current.systemVersion.compare("10.0", options: NSString.CompareOptions.numeric) == .orderedAscending {
+            NotificationCenter.default.post(name: .shouldShowIOSVersionWarning, object: nil)
+        }
+    }
+    
     func handleOutOfDate(){
         let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
         requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] action in
             if let url = self?.viewModel.appStoreLink, UIApplication.shared.canOpenURL(url) {
                 if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { (success: Bool) in })
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 } else {
                     UIApplication.shared.openURL(url)
                 }
@@ -213,9 +236,9 @@ class SplashViewController: UIViewController{
     @IBAction func onRetryPress(_ sender: Any) {
         errorView.isHidden = true
         loadingContainerView.isHidden = false
-        checkAppVersion(callback: {
-            self.doLoginLogic()
-        })
+        checkAppVersion { [weak self] in
+            self?.doLoginLogic()
+        }
     }
     
 }

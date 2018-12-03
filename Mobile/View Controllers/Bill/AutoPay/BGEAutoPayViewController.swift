@@ -123,23 +123,21 @@ class BGEAutoPayViewController: UIViewController {
     
         viewModel.getAutoPayInfo(onSuccess: { [weak self] in
             guard let `self` = self else { return }
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
         }, onError: { [weak self] _ in
             guard let `self` = self else { return }
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
         
         if viewModel.initialEnrollmentStatus.value == .unenrolled {
-            Analytics.log(event: .AutoPayEnrollOffer)
+            Analytics.log(event: .autoPayEnrollOffer)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        navigationController?.setColoredNavBar()
         
         if viewModel.initialEnrollmentStatus.value == .enrolled {
             selectBankAccountLabel.isHidden = true
@@ -218,16 +216,16 @@ class BGEAutoPayViewController: UIViewController {
         LoadingView.show()
         
         if viewModel.initialEnrollmentStatus.value == .unenrolled {
-            Analytics.log(event: .AutoPayEnrollSubmit)
+            Analytics.log(event: .autoPayEnrollSubmit)
             if viewModel.userDidChangeSettings.value {
-                Analytics.log(event: .AutoPayModifySettingSubmit)
+                Analytics.log(event: .autoPayModifySettingSubmit)
             }
             
             viewModel.enrollOrUpdate(onSuccess: { [weak self] in
                 LoadingView.hide()
-                Analytics.log(event: .AutoPayEnrollComplete)
+                Analytics.log(event: .autoPayEnrollComplete)
                 if self?.viewModel.userDidChangeSettings.value ?? false {
-                    Analytics.log(event: .AutoPayModifySettingCompleteNew)
+                    Analytics.log(event: .autoPayModifySettingCompleteNew)
                 }
                 
                 guard let `self` = self else { return }
@@ -243,10 +241,10 @@ class BGEAutoPayViewController: UIViewController {
             })
         } else if viewModel.initialEnrollmentStatus.value == .enrolled {
             if viewModel.enrollSwitchValue.value { // Update
-                Analytics.log(event: .AutoPayModifySettingSubmit)
+                Analytics.log(event: .autoPayModifySettingSubmit)
                 viewModel.enrollOrUpdate(update: true, onSuccess: { [weak self] in
                     LoadingView.hide()
-                    Analytics.log(event: .AutoPayModifySettingComplete)
+                    Analytics.log(event: .autoPayModifySettingComplete)
                     
                     guard let `self` = self else { return }
                     self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
@@ -260,10 +258,10 @@ class BGEAutoPayViewController: UIViewController {
                     self.present(alertVc, animated: true, completion: nil)
                 })
             } else { // Unenroll
-                Analytics.log(event: .AutoPayUnenrollOffer)
+                Analytics.log(event: .autoPayUnenrollOffer)
                 viewModel.unenroll(onSuccess: { [weak self] in
                     LoadingView.hide()
-                    Analytics.log(event: .AutoPayUnenrollComplete)
+                    Analytics.log(event: .autoPayUnenrollComplete)
                     
                     guard let `self` = self else { return }
                     self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Unenrolled from AutoPay", comment: ""))
@@ -293,9 +291,9 @@ class BGEAutoPayViewController: UIViewController {
         miniWalletVC.creditCardsDisabled = true
         miniWalletVC.delegate = self
         if accountDetail.isAutoPay {
-            Analytics.log(event: .AutoPayModifyWallet)
+            Analytics.log(event: .autoPayModifyWallet)
         } else {
-            Analytics.log(event: .AutoPayEnrollSelectBank)
+            Analytics.log(event: .autoPayEnrollSelectBank)
         }
         navigationController?.pushViewController(miniWalletVC, animated: true)
     }

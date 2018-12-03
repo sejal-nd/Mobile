@@ -21,13 +21,6 @@ struct Payment {
     let cvv: String?
 }
 
-private func extractDate(object: Any?) throws -> Date? {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
-    return dateString.apiFormatDate
-}
-
 struct PaymentDetail: Mappable {
     var walletItemId: String?
     var paymentAmount: Double
@@ -39,7 +32,7 @@ struct PaymentDetail: Mappable {
     init(map: Mapper) throws {
         walletItemId = map.optionalFrom("wallet_item_id")
         paymentAmount = map.optionalFrom("payment_amount") ?? 0
-        paymentDate = map.optionalFrom("payment_date", transformation: extractDate)
+        paymentDate = map.optionalFrom("payment_date", transformation: DateParser().extractDate)
         convenienceFee = map.optionalFrom("convenience_fee")
         paymentAccount = map.optionalFrom("payment_account")
         accountNumber = map.optionalFrom("account_number")

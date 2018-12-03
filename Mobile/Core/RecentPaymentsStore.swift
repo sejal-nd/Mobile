@@ -15,19 +15,12 @@ struct PaymentDetails: Mappable {
     
     init(map: Mapper) throws {
         amount = try map.from("amount")
-        date = try map.from("date", transformation: PaymentDetails.extractDate)
+        date = try map.from("date", transformation: DateParser().extractDate)
     }
     
     init(amount: Double, date: Date) {
         self.amount = amount
         self.date = date
-    }
-    
-    private static func extractDate(object: Any?) throws -> Date {
-        guard let dateString = object as? String, let date = dateString.apiFormatDate else {
-            throw MapperError.convertibleError(value: object, type: Date.self)
-        }
-        return date
     }
 }
 

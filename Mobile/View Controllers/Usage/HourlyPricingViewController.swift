@@ -18,7 +18,7 @@ class HourlyPricingViewController: UIViewController {
     
     let accountService = ServiceFactory.createAccountService()
     
-    var accountDetail: AccountDetail! // Passed from UsageViewController
+    var accountDetail: AccountDetail! // Passed from SmartEnergyRewardsViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,9 +54,7 @@ class HourlyPricingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        navigationController?.setColoredNavBar()
     }
     
 }

@@ -49,7 +49,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .RegisterOffer)
+        Analytics.log(event: .registerOffer)
     }
     
     func checkForMaintenanceMode(){
@@ -68,8 +68,8 @@ class RegistrationValidateAccountViewController: UIViewController {
     
     /// Helpers
     func setupNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func setupNavigationButtons() {
@@ -214,20 +214,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
-        navigationController?.navigationBar.tintColor = .white
-
-        setNeedsStatusBarAppearanceUpdate()
-      
-        let titleDict: [NSAttributedStringKey: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setColoredNavBar()
     }
     
     @objc func onIdentifierKeyboardDonePress() {
@@ -254,11 +241,11 @@ class RegistrationValidateAccountViewController: UIViewController {
         
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
-            Analytics.log(event: .RegisterAccountValidation)
+            Analytics.log(event: .registerAccountValidation)
             self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
         }, onMultipleAccounts:  { [weak self] in
             LoadingView.hide()
-            Analytics.log(event: .RegisterAccountValidation)
+            Analytics.log(event: .registerAccountValidation)
             self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { [weak self] (title, message) in
             LoadingView.hide()
@@ -279,13 +266,13 @@ class RegistrationValidateAccountViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
             safeAreaBottomInset = self.view.safeAreaInsets.bottom
         }
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }

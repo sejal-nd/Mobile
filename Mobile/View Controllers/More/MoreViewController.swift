@@ -9,109 +9,378 @@
 import UIKit
 import RxSwift
 import StoreKit
+import ToastSwiftFramework
 
 class MoreViewController: UIViewController {
     
-    @IBOutlet weak var settingsButton: DisclosureButton!
-    @IBOutlet weak var contactUsButton: DisclosureButton!
-    @IBOutlet weak var termAndPoliciesButton: DisclosureButton!
-    @IBOutlet weak var signOutButton: DisclosureButton!
-    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var signOutButton: UIButton! {
+        didSet {
+            signOutButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
+            signOutButton.setTitleColor(.white, for: .normal)
+        }
+    }
     
-    let disposeBag = DisposeBag()
+    @IBOutlet private weak var versionLabel: UILabel! {
+        didSet {
+            if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+                switch Environment.shared.environmentName {
+                case .prod:
+                    versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
+                case .aut, .dev, .stage:
+                    versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
+                }
+            } else {
+                versionLabel.text = nil
+            }
+            
+            versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+            versionLabel.textColor = .white
+        }
+    }
 
+    let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
+    
+    var shouldHideNavigationBar = true
+    
+    private var biometricsPasswordRetryCount = 0
+    
+    private let disposeBag = DisposeBag()
+    
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
-        } else {
-            versionLabel.text = nil
-        }
+        tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
+        tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
+        tableView.register(UINib(nibName: ToggleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ToggleTableViewCell.className)
         
-        versionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        
-        addAccessibility()
-        styleViews()
-        bindViews()
+        view.backgroundColor = .primaryColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        if shouldHideNavigationBar {
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+        
+        if AccountsStore.shared.accounts == nil {
+            fetchAccounts()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
     }
     
-    func addAccessibility() {
-        settingsButton.isAccessibilityElement = true
-        settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "")
-        contactUsButton.isAccessibilityElement = true
-        contactUsButton.accessibilityLabel = NSLocalizedString("Contact us", comment: "")
-        termAndPoliciesButton.isAccessibilityElement = true
-        termAndPoliciesButton.accessibilityLabel = NSLocalizedString("Policies and Terms", comment: "")
-        signOutButton.isAccessibilityElement = true
-        signOutButton.accessibilityLabel = NSLocalizedString("Sign out", comment: "")
+    
+    // MARK: - Actions
+    
+    @objc func toggleBiometrics(_ sender: UISwitch) {
+        if sender.isOn {
+            presentPasswordAlert(message: viewModel.getConfirmPasswordMessage(), toggle: sender)
+            Analytics.log(event: .touchIDEnable)
+        } else {
+            viewModel.disableBiometrics()
+            Analytics.log(event: .touchIDDisable)
+        }
     }
     
-    func styleViews() {
-        view.backgroundColor = .primaryColor
-        signOutButton.setHideCaret(caretHidden: true)
+    @IBAction func signOutPress(_ sender: Any) {
+        presentAlert(title: NSLocalizedString("Sign Out", comment: ""),
+                     message: NSLocalizedString("Are you sure you want to sign out?", comment: ""),
+                     style: .alert,
+                     actions: [UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil),
+                               UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: logout)])
     }
     
-    func bindViews() {
-        settingsButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "settingsSegue", sender: self)
-            })
-            .disposed(by: disposeBag)
+    
+    // MARK: - Helper
+    
+    private func fetchAccounts() {
+        viewModel.fetchAccounts()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
+            }).disposed(by: disposeBag)
+    }
+    
+    private func presentPasswordAlert(message: String, toggle: UISwitch) {
+        let indexPath = IndexPath(row: toggle.tag, section: 1)
+        guard let cell = tableView.cellForRow(at: indexPath) as? ToggleTableViewCell else { return }
         
-        contactUsButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "contactUsSegue", sender: self)
+        let pwAlert = UIAlertController(title: NSLocalizedString("Confirm Password", comment: ""), message: message, preferredStyle: .alert)
+        pwAlert.addTextField(configurationHandler: { [weak self] (textField) in
+            guard let `self` = self else { return }
+            textField.placeholder = NSLocalizedString("Password", comment: "")
+            textField.isSecureTextEntry = true
+            textField.rx.text.orEmpty.bind(to: self.viewModel.password).disposed(by: self.disposeBag)
+        })
+        pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) -> Void in
+            toggle.setOn(false, animated: true)
+            cell.toggleCheckImageView.isHidden = true
+        }))
+        pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) -> Void in
+            LoadingView.show()
+            self?.viewModel.validateCredentials(onSuccess: { [weak self] in
+                guard let `self` = self else { return }
+                LoadingView.hide()
+                self.view.showToast(String(format: NSLocalizedString("%@ Enabled", comment: ""), self.viewModel.biometricsString()!))
+                }, onError: { [weak self] (error) in
+                    LoadingView.hide()
+                    guard let `self` = self else { return }
+                    self.biometricsPasswordRetryCount += 1
+                    if self.biometricsPasswordRetryCount < 3 {
+                        self.presentPasswordAlert(message: NSLocalizedString("Error", comment: "") + ": \(error)", toggle: toggle)
+                    } else {
+                        self.biometricsPasswordRetryCount = 0
+                        toggle.setOn(false, animated: true)
+                        cell.toggleCheckImageView.isHidden = true
+                    }
             })
-            .disposed(by: disposeBag)
-        
-        termAndPoliciesButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "termsPoliciesSegue", sender: self)
-            })
-            .disposed(by: disposeBag)
-        
-        signOutButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.onSignOutPress()
-            })
-            .disposed(by: disposeBag)
+        }))
+        present(pwAlert, animated: true, completion: nil)
     }
     
-    
-    func onSignOutPress() {
-        let confirmAlert = UIAlertController(title: NSLocalizedString("Sign Out", comment: ""), message: NSLocalizedString("Are you sure you want to sign out?", comment: ""), preferredStyle: .alert)
-        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
-        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: logout))
-        present(confirmAlert, animated: true, completion: nil)
-    }
-    
-    func logout(action: UIAlertAction) {
+    private func logout(action: UIAlertAction) {
         let authService = ServiceFactory.createAuthenticationService()
-        authService.logout().subscribe(onNext: { (success) in
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-            appDelegate.configureQuickActions(isAuthenticated: false)
-            appDelegate.resetNavigation()
-        }, onError: { (error) in
-            dLog("Logout Error: \(error)")
-        }).disposed(by: disposeBag)
+        authService.logout()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
+        appDelegate.configureQuickActions(isAuthenticated: false)
+        appDelegate.resetNavigation()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
+        case let vc as ChangePasswordViewController:
+            vc.delegate = self
+        case let vc as PECOReleaseOfInfoViewController:
+            vc.delegate = self
+        default:
+            break
+        }
+    }
+    
+}
+
+extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 2
+        case 1:
+            return 4
+        case 2:
+            return 3
+        default:
+            return 0
+        }
+    }
+    
+    /// We Use row height to show/hide cells
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                return 60
+            case 1:
+                return 60
+            default:
+                return 60
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                return 60
+            case 1:
+                return viewModel.isDeviceBiometricCompatible() ? 60 : 0
+            case 2:
+                guard AccountsStore.shared.accounts != nil else { return 0 }
+                return (Environment.shared.opco == .bge && AccountsStore.shared.accounts.count > 1) ? 60 : 0
+            case 3:
+                return Environment.shared.opco == .peco ? 60 : 0
+            default:
+                return 60
+            }
+        case 2:
+            switch indexPath.row {
+            case 0:
+                return 60
+            case 1:
+                return 0
+            case 2:
+                return 60
+            default:
+                return 60
+            }
+        default:
+            return 60
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className) as? TitleTableViewCell else { return UITableViewCell() }
+        
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""), backgroundColor: .primaryColor)
+            case 1:
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""), backgroundColor: .primaryColor)
+            default:
+                return UITableViewCell()
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""), backgroundColor: .primaryColor)
+            case 1:
+                guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.className) as? ToggleTableViewCell else { return UITableViewCell() }
+                
+                toggleCell.configure(viewModel: viewModel, tag: indexPath.row)
+                toggleCell.toggle.addTarget(self, action: #selector(toggleBiometrics), for: .valueChanged)
+                toggleCell.accessibilityElementsHidden = self.tableView(tableView, heightForRowAt: indexPath) == 0
+                return toggleCell
+            case 2:
+                cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""), backgroundColor: .primaryColor)
+            case 3:
+                cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""), backgroundColor: .primaryColor)
+            default:
+                return UITableViewCell()
+            }
+        case 2:
+            switch indexPath.row {
+            case 0:
+                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""), backgroundColor: .primaryColor)
+            case 1:
+                cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Tutorial Videos", comment: ""), backgroundColor: .primaryColor)
+            case 2:
+                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""), backgroundColor: .primaryColor)
+            default:
+                return UITableViewCell()
+            }
+        default:
+            return UITableViewCell()
+        }
+        
+        cell.accessibilityElementsHidden = self.tableView(tableView, heightForRowAt: indexPath) == 0
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: "alertsSegue", sender: nil)
+            case 1:
+                performSegue(withIdentifier: "updatesSegue", sender: nil)
+            default:
+                break
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: "changePasswordSegue", sender: nil)
+            case 2:
+                performSegue(withIdentifier: "defaultAccountSegue", sender: nil)
+            case 3:
+                performSegue(withIdentifier: "releaseOfInfoSegue", sender: nil)
+            default:
+                break
+            }
+        case 2:
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: "contactUsSegue", sender: nil)
+            case 1:
+                break
+            case 2:
+                performSegue(withIdentifier: "termsPoliciesSegue", sender: nil)
+            default:
+                break
+            }
+        default:
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TitleTableViewHeaderView.className) as? TitleTableViewHeaderView else { return nil }
+        
+        switch section {
+        case 0:
+            headerView.configure(text: NSLocalizedString("Notifications", comment: ""))
+        case 1:
+            headerView.configure(text: NSLocalizedString("Settings", comment: ""))
+        case 2:
+            headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
+        default:
+            break
+        }
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 21
+    }
+    
+}
+
+
+// MARK: - Change Password
+
+extension MoreViewController: ChangePasswordViewControllerDelegate {
+    
+    func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Password changed", comment: ""))
+            Analytics.log(event: .changePasswordComplete)
+        })
+    }
+    
+}
+
+
+// MARK: - Change PECO Release
+
+extension MoreViewController: PECOReleaseOfInfoViewControllerDelegate {
+    
+    func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Release of information updated", comment: ""))
+            Analytics.log(event: .releaseInfoComplete)
+        })
     }
     
 }

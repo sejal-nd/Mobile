@@ -9,17 +9,22 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import WebKit
 
 class LoginTermsPoliciesViewController: UIViewController {
     
+    @IBOutlet weak var webContainerView: UIView!
     @IBOutlet weak var agreeSwitch: Switch!
     @IBOutlet weak var continueButton: UIButton!
-    @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var agreeView: UIView!
     @IBOutlet weak var agreeLabel: UILabel!
+    private var webView: WKWebView!
     
-    let viewModel = TermsPoliciesViewModel()
-    var viewAppeared = false
+    private let viewModel = TermsPoliciesViewModel()
+    private var viewAppeared = false
+    
+    
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +32,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         self.title = NSLocalizedString("Policies and Terms", comment: "")
         
         let url = viewModel.termPoliciesURL
-        webView.delegate = self
-        webView.backgroundColor = .white
-        webView.loadRequest(URLRequest(url: url))
+        setupWKWebView(with: url)
 
         agreeView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
 
@@ -45,18 +48,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
-        navigationController?.navigationBar.tintColor = .white
-        
-        setNeedsStatusBarAppearanceUpdate()
-        
-        let titleDict: [NSAttributedStringKey: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
+        navigationController?.setColoredNavBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,6 +56,19 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         viewAppeared = true
     }
+    
+
+    // MARK: - Actions
+    
+    @IBAction func onContinuePress() {
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.hasAcceptedTerms)
+        // Set "Report Outage" quick action
+        (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: false)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Helper
     
     private func accessibilitySetup() {
         agreeLabel.isAccessibilityElement = false
@@ -74,27 +79,23 @@ class LoginTermsPoliciesViewController: UIViewController {
         self.view.accessibilityElements = [webView, agreeSwitch, continueButton]
     }
     
-    @IBAction func onContinuePress() {
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.hasAcceptedTerms)
-        // Set "Report Outage" quick action
-        (UIApplication.shared.delegate as? AppDelegate)?.configureQuickActions(isAuthenticated: false)
-        dismiss(animated: true, completion: nil)
+    private func setupWKWebView(with url: URL) {
+        // Programtically Configure WKWebView due to a bug with using IB WKWebView before iOS 11
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero , configuration: webConfiguration)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webContainerView.addSubview(webView)
+        webView.topAnchor.constraint(equalTo: webContainerView.topAnchor).isActive = true
+        webView.rightAnchor.constraint(equalTo: webContainerView.rightAnchor).isActive = true
+        webView.leftAnchor.constraint(equalTo: webContainerView.leftAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: webContainerView.bottomAnchor).isActive = true
+        
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
-    }
-    
-}
-
-extension LoginTermsPoliciesViewController: UIWebViewDelegate {
-    
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.linkClicked {
-            UIApplication.shared.openURL(request.url!)
-            return false
-        }
-        return true
     }
     
 }

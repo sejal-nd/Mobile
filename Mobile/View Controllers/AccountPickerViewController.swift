@@ -31,13 +31,14 @@ class AccountPickerViewController: UIViewController {
     
     var defaultStatusBarStyle: UIStatusBarStyle { return .default }
     
+    var showMinimizedPicker: Bool { return true } // Override in subclasses to turn off
     var minimizedPickerHeight: CGFloat = 60
     var safeAreaTop: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let sv = scrollView {
+        if let sv = scrollView, showMinimizedPicker {
             containerView = UIView(frame: CGRect(x: 0, y: -minimizedPickerHeight, width: view.bounds.size.width, height: minimizedPickerHeight))
             containerView.backgroundColor = .white
             containerView.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: 2), radius: 2)
@@ -166,7 +167,7 @@ class AccountPickerViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        if let sv = scrollView {
+        if let sv = scrollView, showMinimizedPicker {
             containerView.frame = CGRect(x: 0, y: sv.contentOffset.y <= accountPicker.frame.size.height ? -minimizedPickerHeight : 0, width: view.bounds.size.width, height: minimizedPickerHeight)
         }
     }

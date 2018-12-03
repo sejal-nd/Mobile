@@ -38,11 +38,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // This is necessary to handle the Touch/Face ID cancel action -- do not remove
-        NotificationCenter.default.rx.notification(.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification, object: nil)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .primaryColor
 
         viewModel.biometricsEnabled.asDriver().drive(onNext: { [weak self] enabled in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if enabled {
                 self.biometricButton.isHidden = false
                 self.loginFormViewHeightConstraint.constant = 420
@@ -83,6 +83,11 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.returnKeyType = .done
         passwordTextField.textField.isShowingAccessory = true
         
+        if #available(iOS 11.0, *) {
+            usernameTextField.textField.textContentType = .username
+            passwordTextField.textField.textContentType = .password
+        }
+
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
     
         // Two-way data binding for the username/password fields
@@ -138,7 +143,7 @@ class LoginViewController: UIViewController {
                 self?.viewModel.validateRegistration(guid: guid, onSuccess: { [weak self] in
                     LoadingView.hide()
                     self?.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
-                    Analytics.log(event: .RegisterAccountVerify)
+                    Analytics.log(event: .registerAccountVerify)
                 }, onError: { [weak self] title, message in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -185,41 +190,41 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
-        Analytics.log(event: .LoginOffer,
-                        dimensions: [.KeepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
-                                     .FingerprintUsed: "disabled"])
-        
+        Analytics.log(event: .loginOffer,
+                        dimensions: [.keepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
+                                     .fingerprintUsed: "disabled"])
+
         if forgotUsernamePopulated {
-            Analytics.log(event: .ForgotUsernameCompleteAccountValidation)
+            Analytics.log(event: .forgotUsernameCompleteAccountValidation)
         }
-        
+
         view.endEditing(true)
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
-        
+
         signInButton.setLoading()
         signInButton.accessibilityLabel = "Loading";
         signInButton.accessibilityViewIsModal = true;
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+            UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
         })
-        
+
         // Hide password while loading
         if !passwordTextField.textField.isSecureTextEntry {
             onEyeballPress(eyeballButton)
         }
-        
-        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+
+        viewModel.performLogin(onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in
+            UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
             guard let `self` = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
                 guard let `self` = self else { return }
                 self.navigationController?.view.isUserInteractionEnabled = true
-                
+
                 // Get the last username that logged in first, and then store the one currently logging in
                 let lastLoggedInUsername: String? = self.viewModel.getStoredUsername()
                 self.viewModel.storeUsername()
-                
+
                 if loggedInWithTempPassword {
                     let storyboard = UIStoryboard(name: "More", bundle: nil)
                     let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
@@ -234,34 +239,34 @@ class LoginViewController: UIViewController {
                                                                     message: String(format: NSLocalizedString("Would you like to use %@ to sign in from now on?", comment: ""), biometricsString),
                                                                     preferredStyle: .alert)
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
-                                self?.launchMainApp()
+                                self?.launchMainApp(isStormMode: isStormMode)
                             }))
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
-                                self?.launchMainApp()
-                                Analytics.log(event: .TouchIDEnable)
+                                self?.launchMainApp(isStormMode: isStormMode)
+                                Analytics.log(event: .touchIDEnable)
                             }))
                             self.present(biometricsAlert, animated: true, completion: nil)
                             self.viewModel.setShouldPromptToEnableBiometrics(false)
                         } else if lastLoggedInUsername != nil && lastLoggedInUsername != self.viewModel.username.value {
                             let message = String(format: NSLocalizedString("%@ settings for %@ will be disabled upon signing in as %@. Would you like to enable %@ for %@ at this time?", comment: ""), biometricsString, lastLoggedInUsername!, self.viewModel.username.value, biometricsString, self.viewModel.username.value)
-                            
+
                             let differentAccountAlert = UIAlertController(title: String(format: NSLocalizedString("Enable %@", comment: ""), biometricsString), message: message, preferredStyle: .alert)
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.disableBiometrics()
-                                self?.launchMainApp()
+                                self?.launchMainApp(isStormMode: isStormMode)
                             }))
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
-                                self?.launchMainApp()
-                                Analytics.log(event: .TouchIDEnable)
+                                self?.launchMainApp(isStormMode: isStormMode)
+                                Analytics.log(event: .touchIDEnable)
                             }))
                             self.present(differentAccountAlert, animated: true, completion: nil)
                         } else {
-                            self.launchMainApp()
+                            self.launchMainApp(isStormMode: isStormMode)
                         }
                     } else {
-                        self.launchMainApp()
+                        self.launchMainApp(isStormMode: isStormMode)
                     }
                 }
             })
@@ -271,7 +276,7 @@ class LoginViewController: UIViewController {
             self.signInButton.reset()
             self.signInButton.accessibilityLabel = "Sign In";
             self.signInButton.accessibilityViewIsModal = false;
-            
+
             let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Resend", comment: ""), style: .default, handler: { [weak self] (action) in
@@ -293,7 +298,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
-        Analytics.log(event: .ForgotUsernameOffer)
+        Analytics.log(event: .forgotUsernameOffer)
         if Environment.shared.opco == .bge {
             performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
         } else {
@@ -302,7 +307,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotPasswordPress() {
-        Analytics.log(event: .ForgotPasswordOffer)
+        Analytics.log(event: .forgotPasswordOffer)
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
     }
     
@@ -331,21 +336,29 @@ class LoginViewController: UIViewController {
         })
     }
     
-    func launchMainApp() {
+    func launchMainApp(isStormMode: Bool) {
         if let accountDetail = viewModel.accountDetail {
             let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
             
             let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
                 (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
             
-            Analytics.log(event: .LoginComplete,
-                                 dimensions: [.ResidentialAMI: residentialAMIString,
-                                              .BGEControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
-                                              .PeakSmart: isPeakSmart ? "true" : "false"])
+            Analytics.log(event: .loginComplete,
+                                 dimensions: [.residentialAMI: residentialAMIString,
+                                              .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
+                                              .peakSmart: isPeakSmart ? "true" : "false"])
         }
 
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        present(viewController!, animated: true, completion: nil)
+        if isStormMode {
+            (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
+        } else {
+            guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? MainTabBarController,
+                let navController = self.navigationController else {
+                    return
+            }
+            navController.setNavigationBarHidden(true, animated: false)
+            navController.setViewControllers([viewController], animated: false)
+        }
     }
     
     func showErrorAlertWith(title: String?, message: String) {
@@ -362,12 +375,12 @@ class LoginViewController: UIViewController {
         viewModel.attemptLoginWithBiometrics(onLoad: { [weak self] in // Face/Touch ID was successful
             guard let `self` = self else { return }
             
-            Analytics.log(event: .LoginOffer,
-                                 dimensions: [.KeepMeSignedIn: self.keepMeSignedInSwitch.isOn ? "true":"false",
-                                              .FingerprintUsed: "enabled"])
+            Analytics.log(event: .loginOffer,
+                                 dimensions: [.keepMeSignedIn: self.keepMeSignedInSwitch.isOn ? "true":"false",
+                                              .fingerprintUsed: "enabled"])
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Loading", comment: ""))
+                UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
             })
             self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
             self.signInButton.setLoading()
@@ -383,12 +396,12 @@ class LoginViewController: UIViewController {
         }, onDidNotLoad:  { [weak self] in
             self?.biometricButton.isEnabled = true
             self?.navigationController?.view.isUserInteractionEnabled = true
-        }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool) in // Face/Touch ID and subsequent login successful
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Complete", comment: ""))
+            }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in // Face/Touch ID and subsequent login successful
+            UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
             guard let `self` = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
                 self?.navigationController?.view.isUserInteractionEnabled = true
-                self?.launchMainApp()
+                self?.launchMainApp(isStormMode: isStormMode)
             })
         }, onError: { [weak self] (title, message) in // Face/Touch ID successful but login failed
             guard let `self` = self else { return }
@@ -401,13 +414,13 @@ class LoginViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
             safeAreaBottomInset = self.view.safeAreaInsets.bottom
         }
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
 
@@ -426,14 +439,12 @@ class LoginViewController: UIViewController {
     }
     
     func checkForMaintenanceMode(onCompletion: @escaping () -> Void) {
-        viewModel.checkForMaintenance(onSuccess: { [weak self] isMaintenance in
-            if isMaintenance {
-                self?.navigationController?.view.isUserInteractionEnabled = true
-                let ad = UIApplication.shared.delegate as! AppDelegate
-                ad.showMaintenanceMode()
-            } else {
-                onCompletion()
-            }
+        viewModel.checkForMaintenance(onSuccess: {
+            onCompletion()
+        }, onMaintenanceMode: { [weak self] in
+            self?.navigationController?.view.isUserInteractionEnabled = true
+            let ad = UIApplication.shared.delegate as! AppDelegate
+            ad.showMaintenanceMode()
         }, onError: { errorMessage in
             onCompletion()
         })
@@ -479,7 +490,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
     func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))
-            Analytics.log(event: .ForgotPasswordComplete)
+            Analytics.log(event: .forgotPasswordComplete)
         })
     }
 }
@@ -488,7 +499,7 @@ extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDeleg
     
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String) {
         viewModel.username.value = username
-        Analytics.log(event: .ForgotUsernameCompleteAutoPopup)
+        Analytics.log(event: .forgotUsernameCompleteAutoPopup)
         forgotUsernamePopulated = true
     }
 }

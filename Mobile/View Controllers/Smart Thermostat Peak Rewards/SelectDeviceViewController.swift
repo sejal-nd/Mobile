@@ -34,7 +34,7 @@ class SelectDeviceViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         tableView.estimatedRowHeight = 68
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: SelectDeviceViewController.className)
         tableView.dataSource = self
@@ -58,7 +58,7 @@ extension SelectDeviceViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = SmartThermostatDeviceCell(style: .default, reuseIdentifier: SmartThermostatDeviceCell.className)
-        let isChecked = viewModel.selectedDeviceIndex.asDriver()
+        let isChecked = viewModel.selectedDeviceIndex.asDriver(onErrorJustReturn: 0)
             .map { indexPath.row == $0 }
         cell.configure(withDevice: devices[indexPath.row], isChecked: isChecked)
         return cell
@@ -67,7 +67,7 @@ extension SelectDeviceViewController: UITableViewDataSource {
 
 extension SelectDeviceViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedDeviceIndex.value = indexPath.row
+        viewModel.selectedDeviceIndex.onNext(indexPath.row)
         navigationController?.popViewController(animated: true)
     }
 }

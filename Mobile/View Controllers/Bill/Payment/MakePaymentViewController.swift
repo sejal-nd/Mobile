@@ -113,7 +113,7 @@ class MakePaymentViewController: UIViewController {
         bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         bg.backgroundColor = .white
         stackView.addSubview(bg)
-        stackView.sendSubview(toBack: bg)
+        stackView.sendSubviewToBack(bg)
         
         if billingHistoryItem != nil {
             title = NSLocalizedString("Modify Payment", comment: "")
@@ -130,8 +130,8 @@ class MakePaymentViewController: UIViewController {
                 self?.navigationItem.rightBarButtonItem = nil
             }).disposed(by: disposeBag)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // Inline bank fields
         addBankContainerView.isHidden = true
@@ -275,10 +275,10 @@ class MakePaymentViewController: UIViewController {
         viewModel.formatPaymentAmount() // Initial formatting
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let `self` = self else { return }
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
         }, onError: { [weak self] in
             guard let `self` = self else { return }
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
     }
     
@@ -289,9 +289,7 @@ class MakePaymentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        navigationController?.setColoredNavBar()
     }
     
     func configureCardIO() {
@@ -308,7 +306,7 @@ class MakePaymentViewController: UIViewController {
         cardIOViewController.navigationBarTintColor = .primaryColor
         cardIOViewController.navigationBar.isTranslucent = false
         cardIOViewController.navigationBar.tintColor = .white
-        let titleDict: [NSAttributedStringKey: Any] = [
+        let titleDict: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white,
             .font: OpenSans.bold.of(size: 18)
         ]
@@ -476,6 +474,7 @@ class MakePaymentViewController: UIViewController {
             self.view.endEditing(true)
             
             let calendarVC = PDTSimpleCalendarViewController()
+            calendarVC.calendar = .opCo
             calendarVC.delegate = self
             calendarVC.title = NSLocalizedString("Select Payment Date", comment: "")
             calendarVC.selectedDate = self.viewModel.paymentDate.value
@@ -484,12 +483,12 @@ class MakePaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         addBankAccountButton.rx.touchUpInside
-            .do(onNext: { Analytics.log(event: .AddBankNewWallet) })
+            .do(onNext: { Analytics.log(event: .addBankNewWallet) })
             .map { _ in true }
             .bind(to: viewModel.inlineBank).disposed(by: disposeBag)
         
         addCreditCardButton.rx.touchUpInside
-            .do(onNext: { Analytics.log(event: .AddCardNewWallet) })
+            .do(onNext: { Analytics.log(event: .addCardNewWallet) })
             .map { _ in true }
             .bind(to: viewModel.inlineCard)
             .disposed(by: disposeBag)
@@ -577,15 +576,15 @@ class MakePaymentViewController: UIViewController {
         view.endEditing(true)
         
         if viewModel.inlineBank.value {
-            Analytics.log(event: .ECheckOffer)
+            Analytics.log(event: .eCheckOffer)
         } else if viewModel.inlineCard.value {
-            Analytics.log(event: .CardOffer)
+            Analytics.log(event: .cardOffer)
         } else if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard { // Existing wallet item
             switch bankOrCard {
             case .bank:
-                Analytics.log(event: .ECheckOffer)
+                Analytics.log(event: .eCheckOffer)
             case .card:
-                Analytics.log(event: .CardOffer)
+                Analytics.log(event: .cardOffer)
             }
         }
         
@@ -656,9 +655,9 @@ class MakePaymentViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
@@ -740,7 +739,7 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
         let today = Calendar.opCo.startOfDay(for: Date())
@@ -787,9 +786,9 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
-        viewModel.paymentDate.value = Calendar.current.isDateInToday(opCoTimeDate) ? Date() : opCoTimeDate
+        viewModel.paymentDate.value = Calendar.opCo.isDateInToday(opCoTimeDate) ? Date() : opCoTimeDate
     }
 }
 
@@ -808,12 +807,12 @@ extension MakePaymentViewController: AddBankFormViewDelegate {
 extension MakePaymentViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
         let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        Analytics.log(event: .AddWalletCameraOffer)
+        Analytics.log(event: .addWalletCameraOffer)
         if cameraAuthorizationStatus == .denied || cameraAuthorizationStatus == .restricted {
             let alertVC = UIAlertController(title: NSLocalizedString("Camera Access", comment: ""), message: NSLocalizedString("You must allow camera access in Settings to use this feature.", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""), style: .default, handler: { _ in
-                if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.openURL(url)
                 }
             }))

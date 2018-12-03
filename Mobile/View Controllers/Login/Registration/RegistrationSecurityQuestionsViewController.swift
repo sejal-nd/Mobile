@@ -53,7 +53,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     @IBOutlet weak var accountDataStackView: UIStackView!
     
-    var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
+    var viewModel: RegistrationViewModel!
     
     var loadAccountsError = false
     
@@ -62,8 +62,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         loadSecurityQuestions()
         
@@ -103,7 +103,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             if self.viewModel.isPaperlessEbillEligible {
                 self.loadAccounts()
             } else {
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
+                UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
                 self.scrollView.isHidden = false
                 self.loadingIndicator.isHidden = true
                 
@@ -126,7 +126,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             let opco = Environment.shared.opco
             
             if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
-                UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
+                UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
                 self.scrollView.isHidden = false
                 self.loadingIndicator.isHidden = true
                 
@@ -139,7 +139,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             self.buildAccountListing()
             self.toggleAccountListing(self.viewModel.accounts.value.count > self.displayAccountsIfGreaterThan)
             
-            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.scrollView)
+            UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
             self.scrollView.isHidden = false
             self.loadingIndicator.isHidden = true
             
@@ -346,11 +346,11 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         eBillSwitchInstructions.isAccessibilityElement = false
         enrollIneBillSwitch.isAccessibilityElement = true
         enrollIneBillSwitch.accessibilityLabel = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
-        question1Label.accessibilityTraits = UIAccessibilityTraitButton
-        question2Label.accessibilityTraits = UIAccessibilityTraitButton
+        question1Label.accessibilityTraits = .button
+        question2Label.accessibilityTraits = .button
         
         if Environment.shared.opco == .bge {
-           question3Label.accessibilityTraits = UIAccessibilityTraitButton 
+           question3Label.accessibilityTraits = .button 
         }
         
     }
@@ -371,9 +371,16 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         LoadingView.show()
         
         viewModel.registerUser(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
             LoadingView.hide()
-            Analytics.log(event: .RegisterAccountSecurityQuestions)
-            self?.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
+
+            if self.viewModel.hasStrongPassword {
+                Analytics.log(event: .strongPasswordComplete)
+            }
+            
+            Analytics.log(event: .registerAccountSecurityQuestions)
+            self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
+
         }, onError: { [weak self] (title, message) in
             LoadingView.hide()
             
@@ -390,7 +397,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
         
         if(enrollIneBillSwitch.isOn) {
-            Analytics.log(event: .RegisterEBillEnroll)
+            Analytics.log(event: .registerEBillEnroll)
         }
     }
     
@@ -403,13 +410,13 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
             safeAreaBottomInset = self.view.safeAreaInsets.bottom
         }
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }

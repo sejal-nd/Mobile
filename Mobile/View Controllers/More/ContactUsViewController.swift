@@ -61,16 +61,7 @@ class ContactUsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar(hidesBottomBorder: true)
-        } else { // Sent from unauthenticated user experience
-            let titleDict: [NSAttributedStringKey: Any] = [
-                .foregroundColor: UIColor.white,
-                .font: OpenSans.bold.of(size: 18)
-            ]
-            navigationController?.navigationBar.titleTextAttributes = titleDict
-        }
+        navigationController?.setColoredNavBar(hidesBottomBorder: true)
     }
     
     override func updateViewConstraints() {
@@ -95,7 +86,7 @@ class ContactUsViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 
-                Analytics.log(event: self.unauthenticatedExperience ? .UnAuthContactUsForm : .ContactUsForm)
+                Analytics.log(event: self.unauthenticatedExperience ? .unAuthContactUsForm : .contactUsForm)
                 
                 let safariVC = SFSafariViewController.createWithCustomStyle(url: self.contactUsViewModel.onlineFormUrl)
                 self.present(safariVC, animated: true, completion: nil)
@@ -196,7 +187,7 @@ class ContactUsViewController: UIViewController {
 extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName: AnalyticsPageView = unauthenticatedExperience ? .ContactUsUnAuthCall : .ContactUsAuthCall
+        let screenName: AnalyticsEvent = unauthenticatedExperience ? .contactUsUnAuthCall : .contactUsAuthCall
         var dimensionValue: String?
         
         if textView == emergencyNumberTextView {
@@ -210,7 +201,7 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
         }
         
         if let value = dimensionValue {
-            Analytics.log(event: screenName, dimensions: [.Link: value])
+            Analytics.log(event: screenName, dimensions: [.link: value])
         }
     }
 }

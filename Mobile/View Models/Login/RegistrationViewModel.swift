@@ -21,7 +21,6 @@ class RegistrationViewModel {
     let accountNumber = Variable("")
     
     let username = Variable("")
-    let confirmUsername = Variable("")
     let newPassword = Variable("")
     let confirmPassword = Variable("")
     
@@ -53,6 +52,9 @@ class RegistrationViewModel {
     
     var registrationService: RegistrationService
     var authenticationService: AuthenticationService
+    
+    // Keeps track of strong password for Analytics
+    var hasStrongPassword = false
     
     required init(registrationService: RegistrationService, authenticationService: AuthenticationService) {
         self.registrationService = registrationService
@@ -90,9 +92,26 @@ class RegistrationViewModel {
     func verifyUniqueUsername(onSuccess: @escaping () -> Void, onEmailAlreadyExists: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
         registrationService.checkForDuplicateAccount(username.value)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                onSuccess()
-            }, onError: { error in
+            .subscribe(onNext: { [weak self] _ in
+                if #available(iOS 12.0, *) {
+                    onSuccess()
+                }
+                // Manually save to SWC if iOS 11
+                else if #available(iOS 11.0, *) {
+                    guard let this = self else { return }
+                    SharedWebCredentials.save(credential: (this.username.value, this.newPassword.value), domain: Environment.shared.associatedDomain) { [weak this] error in
+                        DispatchQueue.main.async {
+                            if error != nil, this?.hasStrongPassword ?? false {
+                                onError(NSLocalizedString("Failed to Save Password", comment: ""), NSLocalizedString("Please make sure AutoFill is on in Safari Settings for Names and Passwords when using Strong Passwords.", comment: ""))
+                            } else {
+                                onSuccess()
+                            }
+                        }
+                    }
+                } else {
+                    onSuccess()
+                }
+                }, onError: { error in
                 let serviceError = error as! ServiceError
                 
                 if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
@@ -119,7 +138,7 @@ class RegistrationViewModel {
                                              isPrimary: primaryProfile.value ? "true" : "false",
                                              isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: {
                 onSuccess()
             }, onError: { error in
                 let serviceError = error as! ServiceError
@@ -290,9 +309,6 @@ class RegistrationViewModel {
 		return nil
 	}
 	
-	private(set) lazy var usernameMatches: Driver<Bool> = Driver.combineLatest(self.confirmUsername.asDriver(), self.username.asDriver())
-		.map { $0 == $1 && !$0.isEmpty }
-	
 	private(set) lazy var newPasswordHasText: Driver<Bool> = self.newPassword.asDriver().map{ !$0.isEmpty }
 	
 	private(set) lazy var characterCountValid: Driver<Bool> = self.newPassword.asDriver()
@@ -354,10 +370,9 @@ class RegistrationViewModel {
 	                                                                            self.containsNumber,
 	                                                                            self.containsSpecialCharacter,
 	                                                                            self.newUsernameHasText,
-	                                                                            self.usernameMatches,
 	                                                                            self.newUsernameIsValidBool])
 	{ array in
-		if !array[0] && array[1] && array[6] && array[7] && array[8] {
+		if !array[0] && array[1] && array[6] && array[7] {
 			let otherArray = array[2...5].filter{ $0 }
 			
 			if otherArray.count >= 3 {
@@ -381,10 +396,9 @@ class RegistrationViewModel {
                                                                                       resultSelector: ==)
     
     // THIS IS FOR THE NEXT BUTTON ON THE SECOND STEP (CREATE SIGN IN CREDENTIALS)
-    private(set) lazy var doneButtonEnabled: Driver<Bool> = Driver.combineLatest(self.everythingValid,
-                                                                                 self.confirmPasswordMatches,
-                                                                                 self.newPasswordHasText)
-	{ $0 && $1 && $2 }
+    private(set) lazy var doneButtonEnabled: Driver<Bool> = Driver
+        .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
+        { $0 && $1 && $2 }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
 	private(set) lazy var question1Selected: Driver<Bool> = self.securityQuestion1.asDriver().map { !$0.isEmpty }

@@ -10,93 +10,101 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import Lottie
 
 class HomeBillCardView: UIView {
     
     var bag = DisposeBag()
     
-    @IBOutlet weak var infoStack: UIStackView!
+    @IBOutlet private weak var clippingView: UIView!
     
-    @IBOutlet weak var alertContainer: UIView!
-    @IBOutlet weak var alertImageView: UIImageView!
+    @IBOutlet private weak var contentStack: UIStackView!
+    @IBOutlet private weak var loadingView: UIView!
     
-    @IBOutlet weak var paymentPendingContainer: UIView!
-    @IBOutlet weak var paymentPendingImageView: UIImageView!
+    @IBOutlet private weak var infoStack: UIStackView!
     
-    @IBOutlet weak var paymentConfirmationContainer: UIView!
-    @IBOutlet weak var paymentConfirmationImageView: UIImageView!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var headerAlertAnimationContainer: UIView! {
+        didSet {
+            headerAlertAnimationContainer.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        }
+    }
+    private var alertAnimation = LOTAnimationView(name: "alert_icon")
     
-    @IBOutlet weak var titleContainer: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var topSpacerHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet private weak var paymentPendingContainer: UIView!
+    @IBOutlet private weak var paymentPendingImageView: UIImageView!
     
-    @IBOutlet weak var dueDateStack: UIStackView!
-    @IBOutlet weak var dueDateLabel: UILabel!
-    @IBOutlet weak var dueDateTooltip: UIButton!
+    @IBOutlet private weak var paymentConfirmationContainer: UIView!
+    @IBOutlet private weak var paymentConfirmationImageView: UIImageView!
     
-    @IBOutlet weak var dueAmountAndDateContainer: UIView!
-    @IBOutlet weak var dueAmountAndDateStack: UIStackView!
-    @IBOutlet weak var dueAmountAndDateLabel: UILabel!
-    @IBOutlet weak var dueAmountAndDateTooltip: UIButton!
+    @IBOutlet private weak var paymentDescriptionLabel: UILabel!
+    @IBOutlet private weak var amountLabel: UILabel!
     
-    @IBOutlet weak var slideToPay24DisclaimerContainer: UIView!
-    @IBOutlet weak var slideToPay24DisclaimerLabel: UILabel!
+    @IBOutlet private weak var dueDateStack: UIStackView!
+    @IBOutlet private weak var dueDateLabel: UILabel!
+    @IBOutlet private weak var dueDateTooltip: UIButton!
     
-    @IBOutlet weak var bankCreditNumberContainer: UIView!
-    @IBOutlet weak var bankCreditNumberButton: ButtonControl!
-    @IBOutlet weak var bankCreditCardImageView: UIImageView!
-    @IBOutlet weak var bankCreditCardNumberLabel: UILabel!
-    @IBOutlet weak var bankCreditCardExpiredView: UIView!
+    @IBOutlet private weak var reinstatementFeeContainer: UIView!
+    @IBOutlet private weak var reinstatementFeeLabel: UILabel!
     
-    @IBOutlet weak var saveAPaymentAccountContainer: UIView!
-    @IBOutlet weak var saveAPaymentAccountButton: ButtonControl!
-    @IBOutlet weak var saveAPaymentAccountLabel: UILabel!
+    @IBOutlet private weak var slideToPay24DisclaimerContainer: UIView!
+    @IBOutlet private weak var slideToPay24DisclaimerLabel: UILabel!
     
-    @IBOutlet weak var minimumPaymentContainer: UIView!
-    @IBOutlet weak var minimumPaymentLabel: UILabel!
+    @IBOutlet private weak var walletItemInfoContainer: UIView!
+    @IBOutlet private weak var walletItemInfoBox: UIView!
+    @IBOutlet private weak var bankCreditNumberButton: ButtonControl!
+    @IBOutlet private weak var bankCreditCardImageView: UIImageView!
+    @IBOutlet private weak var bankCreditCardNumberLabel: UILabel!
+    @IBOutlet private weak var bankCreditCardExpiredContainer: UIView!
     
-    @IBOutlet weak var convenienceFeeContainer: UIView!
-    @IBOutlet weak var convenienceFeeLabel: UILabel!
+    @IBOutlet private weak var saveAPaymentAccountButton: ButtonControl!
+    @IBOutlet private weak var saveAPaymentAccountLabel: UILabel!
     
-    @IBOutlet weak var a11yTutorialButtonContainer: UIView!
-    @IBOutlet weak var a11yTutorialButton: UIButton!
+    @IBOutlet private weak var minimumPaymentContainer: UIView!
+    @IBOutlet private weak var minimumPaymentLabel: UILabel!
     
-    @IBOutlet weak var oneTouchSliderContainer: UIView!
-    @IBOutlet weak var oneTouchSlider: OneTouchSlider!
-    @IBOutlet weak var commercialBgeOtpVisaLabelContainer: UIView!
-    @IBOutlet weak var commericalBgeOtpVisaLabel: UILabel!
+    @IBOutlet private weak var convenienceFeeLabel: UILabel!
     
-    @IBOutlet weak var scheduledImageContainer: UIView!
-    @IBOutlet weak var scheduledImageView: UIImageView!
+    @IBOutlet private weak var a11yTutorialButtonContainer: UIView!
+    @IBOutlet private weak var a11yTutorialButton: UIButton!
     
-    @IBOutlet weak var autoPayImageContainer: UIView!
-    @IBOutlet weak var autoPayImageView: UIImageView!
+    @IBOutlet private weak var oneTouchSliderContainer: UIView!
+    @IBOutlet private weak var oneTouchSlider: OneTouchSlider!
+    @IBOutlet private weak var commercialBgeOtpVisaLabelContainer: UIView!
+    @IBOutlet private weak var commericalBgeOtpVisaLabel: UILabel!
     
-    @IBOutlet weak var automaticPaymentInfoButton: ButtonControl!
-    @IBOutlet weak var automaticPaymentInfoButtonLabel: UILabel!
-    @IBOutlet weak var thankYouForSchedulingButton: ButtonControl!
-    @IBOutlet weak var thankYouForSchedulingButtonLabel: UILabel!
-    @IBOutlet weak var oneTouchPayTCButton: ButtonControl!
-    @IBOutlet weak var oneTouchPayTCButtonLabel: UILabel!
+    @IBOutlet private weak var scheduledPaymentContainer: UIView!
+    @IBOutlet private weak var scheduledPaymentBox: UIView!
+    @IBOutlet private weak var scheduledImageView: UIImageView!
+    @IBOutlet private weak var thankYouForSchedulingButton: UIButton!
     
-    @IBOutlet weak var viewBillContainer: UIView!
-    @IBOutlet weak var viewBillButton: UIButton!
+    @IBOutlet private weak var autoPayContainer: UIView!
+    @IBOutlet private weak var autoPayBox: UIView!
+    @IBOutlet private weak var autoPayImageView: UIImageView!
+    @IBOutlet private weak var autoPayButton: UIButton!
     
-    @IBOutlet weak var billNotReadyStack: UIStackView!
-    @IBOutlet weak var billNotReadyLabel: UILabel!
-    @IBOutlet weak var errorStack: UIStackView!
-    @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var customErrorView: UIView!
-    @IBOutlet weak var customErrorDetailLabel: UILabel!
-    @IBOutlet weak var maintenanceModeView: UIView!
-    @IBOutlet weak var maintenanceModeLabel: UILabel!
+    @IBOutlet private weak var oneTouchPayTCButton: ButtonControl!
+    @IBOutlet private weak var oneTouchPayTCButtonLabel: UILabel!
     
-    let tutorialTap = UITapGestureRecognizer()
-    let tutorialSwipe = UISwipeGestureRecognizer()
+    @IBOutlet private weak var viewBillButton: ButtonControl!
+    @IBOutlet private weak var viewBillButtonLabel: UILabel!
     
-    fileprivate var viewModel: HomeBillCardViewModel! {
+    @IBOutlet private weak var billNotReadyStack: UIStackView!
+    @IBOutlet private weak var billNotReadyLabel: UILabel!
+    @IBOutlet private weak var errorStack: UIStackView!
+    @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet private weak var customErrorView: UIView!
+    @IBOutlet private weak var customErrorDetailLabel: UILabel!
+    @IBOutlet private weak var maintenanceModeView: UIView!
+    @IBOutlet private weak var maintenanceModeLabel: UILabel!
+    
+    private let tutorialTap = UITapGestureRecognizer()
+    private let tutorialSwipe = UISwipeGestureRecognizer()
+    
+    private var viewModel: HomeBillCardViewModel! {
         didSet {
             bag = DisposeBag() // Clear all pre-existing bindings
             bindViewModel()
@@ -116,19 +124,35 @@ class HomeBillCardView: UIView {
         return view
     }
     
+    func resetAnimation() {
+        alertAnimation.removeFromSuperview()
+        alertAnimation = LOTAnimationView(name: "alert_icon")
+        alertAnimation.translatesAutoresizingMaskIntoConstraints = false
+        alertAnimation.frame = headerAlertAnimationContainer.bounds
+        alertAnimation.contentMode = .scaleAspectFit
+        headerAlertAnimationContainer.addSubview(alertAnimation)
+        alertAnimation.centerXAnchor.constraint(equalTo: headerAlertAnimationContainer.centerXAnchor).isActive = true
+        alertAnimation.centerYAnchor.constraint(equalTo: headerAlertAnimationContainer.centerYAnchor).isActive = true
+        alertAnimation.play()
+    }
+    
     private func styleViews() {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 13)
         layer.cornerRadius = 10
+        clippingView.layer.cornerRadius = 10
         
-        alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        headerView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
         
-        bankCreditNumberButton.layer.borderWidth = 2
+        reinstatementFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        reinstatementFeeLabel.setLineHeight(lineHeight: 16)
+        
+        bankCreditNumberButton.layer.borderColor = UIColor.errorRed.cgColor
         bankCreditNumberButton.layer.cornerRadius = 3
+        bankCreditNumberButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
-        saveAPaymentAccountButton.layer.borderColor = UIColor.accentGray.cgColor
-        saveAPaymentAccountButton.layer.borderWidth = 2
         saveAPaymentAccountButton.layer.cornerRadius = 3
+        saveAPaymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
         
@@ -136,22 +160,30 @@ class HomeBillCardView: UIView {
         a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
         a11yTutorialButton.titleLabel?.text = NSLocalizedString("View Tutorial", comment: "")
         
-        dueAmountAndDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        dueDateLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-        dueAmountAndDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         slideToPay24DisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        convenienceFeeLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         commericalBgeOtpVisaLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
-        automaticPaymentInfoButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
-        thankYouForSchedulingButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        walletItemInfoBox.layer.cornerRadius = 6
+        
+        scheduledPaymentBox.layer.cornerRadius = 6
+        thankYouForSchedulingButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
+        thankYouForSchedulingButton.titleLabel?.numberOfLines = 0
+        
+        autoPayBox.layer.cornerRadius = 6
+        autoPayButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
+        autoPayButton.titleLabel?.numberOfLines = 0
+        
         oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
-        viewBillButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        viewBillButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        viewBillButton.accessibilityLabel = NSLocalizedString("View Bill Details", comment: "")
         
         billNotReadyLabel.font = OpenSans.regular.of(textStyle: .title1)
         billNotReadyLabel.setLineHeight(lineHeight: 26)
@@ -172,13 +204,15 @@ class HomeBillCardView: UIView {
         maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
         
         // Accessibility
-        alertImageView.isAccessibilityElement = true
-        alertImageView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
+        alertAnimation.isAccessibilityElement = true
+        alertAnimation.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         bankCreditCardImageView.isAccessibilityElement = true
-        
+        resetAnimation()
     }
     
     private func bindViewModel() {
+        viewBillButton.isHidden = !viewModel.showViewBillButton
+        
         viewModel.paymentTracker.asDriver().drive(onNext: {
             if $0 {
                 LoadingView.show(animated: true)
@@ -188,7 +222,14 @@ class HomeBillCardView: UIView {
             })
             .disposed(by: bag)
         
+        viewModel.showLoadingState
+            .drive(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
+            .disposed(by: bag)
+        
         // Show/Hide Subviews
+        viewModel.showLoadingState.drive(contentStack.rx.isHidden).disposed(by: bag)
+        viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: bag)
+        
         Driver.combineLatest(viewModel.billNotReady.startWith(false), viewModel.showErrorState)
             .map { $0 && !$1 }
             .not()
@@ -197,7 +238,7 @@ class HomeBillCardView: UIView {
         
         viewModel.showErrorState
             .filter { $0 }
-            .drive(onNext: { _ in Analytics.log(event: .CheckBalanceError) })
+            .drive(onNext: { _ in Analytics.log(event: .checkBalanceError) })
             .disposed(by: bag)
         
         Driver.combineLatest(viewModel.showErrorState, viewModel.showCustomErrorState)
@@ -219,56 +260,59 @@ class HomeBillCardView: UIView {
             .drive(infoStack.rx.isHidden)
             .disposed(by: bag)
         
-        viewModel.showAlertIcon.not().drive(alertContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showHeaderView.map { CGFloat($0 ? 20 : 30) }.drive(topSpacerHeight.rx.constant).disposed(by: bag)
+        viewModel.showHeaderView.not().drive(headerView.rx.isHidden).disposed(by: bag)
+        viewModel.showAlertAnimation.not().drive(headerAlertAnimationContainer.rx.isHidden).disposed(by: bag)
+        
         viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).disposed(by: bag)
         viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).disposed(by: bag)
         viewModel.showSlideToPay24DisclaimerLabel.not().drive(slideToPay24DisclaimerContainer.rx.isHidden).disposed(by: bag)
         
-        Driver.zip(viewModel.showAlertIcon, viewModel.showPaymentPendingIcon, viewModel.showBillPaidIcon)
-            .map { $0 || $1 || $2 }
-            .map { $0 ? 0: 32 }
-            .drive(titleLabelTopConstraint.rx.constant)
-            .disposed(by: bag)
-        
+        viewModel.showPaymentDescription.not().drive(paymentDescriptionLabel.rx.isHidden).disposed(by: bag)
         viewModel.showAmount.not().drive(amountLabel.rx.isHidden).disposed(by: bag)
         viewModel.showDueDate.not().drive(dueDateStack.rx.isHidden).disposed(by: bag)
-        viewModel.showDueDateTooltip.not().drive(dueDateTooltip.rx.isHidden).disposed(by: bag)
-        viewModel.showDueAmountAndDate.not().drive(dueAmountAndDateContainer.rx.isHidden).disposed(by: bag)
-        dueAmountAndDateTooltip.isHidden = !viewModel.showDueAmountAndDateTooltip
-        viewModel.showBankCreditButton.not().drive(bankCreditNumberContainer.rx.isHidden).disposed(by: bag)
-        viewModel.bankCreditButtonBorderColor.drive(bankCreditNumberButton.rx.borderColor).disposed(by: bag)
-        viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredView.rx.isHidden).disposed(by: bag)
-        viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountContainer.rx.isHidden).disposed(by: bag)
+        dueDateTooltip.isHidden = !viewModel.showDueDateTooltip
+        viewModel.showReinstatementFeeText.not().drive(reinstatementFeeContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showWalletItemInfo.not().drive(walletItemInfoContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showBankCreditNumberButton.not().drive(bankCreditNumberButton.rx.isHidden).disposed(by: bag)
+        viewModel.bankCreditButtonBorderWidth.drive(bankCreditNumberButton.rx.borderWidth).disposed(by: bag)
+        viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.asObservable().subscribe(onNext: { [weak self] show in
-            let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
+            let a11yEnabled = UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
             self?.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
         }).disposed(by: bag)
-        viewModel.showConvenienceFee.not().drive(convenienceFeeContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showConvenienceFee.not().drive(convenienceFeeLabel.rx.isHidden).disposed(by: bag)
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
         viewModel.showCommercialBgeOtpVisaLabel.not().drive(commercialBgeOtpVisaLabelContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showScheduledImageView.not().drive(scheduledImageContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showAutoPayIcon.not().drive(autoPayImageContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showAutomaticPaymentInfoButton.not().drive(automaticPaymentInfoButton.rx.isHidden).disposed(by: bag)
-        viewModel.showScheduledPaymentInfoButton.not().drive(thankYouForSchedulingButton.rx.isHidden).disposed(by: bag)
+        viewModel.showScheduledPayment.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showAutoPay.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPayTCButton.not().drive(oneTouchPayTCButton.rx.isHidden).disposed(by: bag)
         
         // Subview States
-        viewModel.titleText.drive(titleLabel.rx.text).disposed(by: bag)
-        viewModel.titleFont.drive(titleLabel.rx.font).disposed(by: bag)
+        viewModel.paymentDescriptionText.drive(paymentDescriptionLabel.rx.attributedText).disposed(by: bag)
+        viewModel.titleFont.drive(paymentDescriptionLabel.rx.font).disposed(by: bag)
+        viewModel.resetAlertAnimation.drive(onNext: { [weak self] in self?.resetAnimation() }).disposed(by: bag)
+        viewModel.headerText.drive(headerLabel.rx.attributedText).disposed(by: bag)
+        viewModel.headerA11yText.drive(headerLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.amountFont.drive(amountLabel.rx.font).disposed(by: bag)
         viewModel.amountText.drive(amountLabel.rx.text).disposed(by: bag)
-        viewModel.dueDateText.drive(dueDateLabel.rx.attributedText).disposed(by: bag)
-        viewModel.dueAmountAndDateText.drive(dueAmountAndDateLabel.rx.text).disposed(by: bag)
+        
+        // `.delay(.leastNonzeroMagnitude)` fixes a weird bug where the label's font
+        // is set to regular instead of semibold while the view is still hidden.
+        // This is not an ideal fix, hoping to find a better one later.
+        viewModel.dueDateText.delay(.leastNonzeroMagnitude).drive(dueDateLabel.rx.attributedText).disposed(by: bag)
+        viewModel.reinstatementFeeText.drive(reinstatementFeeLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardNumberText.drive(bankCreditCardNumberLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardImage.drive(bankCreditCardImageView.rx.image).disposed(by: bag)
         viewModel.bankCreditCardButtonAccessibilityLabel.drive(bankCreditNumberButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.minMaxPaymentAllowedText.drive(minimumPaymentLabel.rx.text).disposed(by: bag)
         viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).disposed(by: bag)
         viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).disposed(by: bag)
-        viewModel.automaticPaymentInfoButtonText.drive(automaticPaymentInfoButtonLabel.rx.text).disposed(by: bag)
-        viewModel.automaticPaymentInfoButtonText.drive(automaticPaymentInfoButton.rx.accessibilityLabel).disposed(by: bag)
-        viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButtonLabel.rx.text).disposed(by: bag)
+        viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.title(for: .normal)).disposed(by: bag)
+        viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButtonLabel.rx.text).disposed(by: bag)
         viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButton.rx.accessibilityLabel).disposed(by: bag)
@@ -292,35 +336,35 @@ class HomeBillCardView: UIView {
         oneTouchSliderContainer.addGestureRecognizer(tutorialTap)
         oneTouchSliderContainer.addGestureRecognizer(tutorialSwipe)
         
-        Observable.merge(NotificationCenter.default.rx.notification(.UIAccessibilitySwitchControlStatusDidChange, object: nil),
+        Observable.merge(NotificationCenter.default.rx.notification(UIAccessibility.switchControlStatusDidChangeNotification, object: nil),
                          NotificationCenter.default.rx.notification(Notification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 self.viewModel.showSaveAPaymentAccountButton.asObservable().single().subscribe(onNext: { show in
-                    let a11yEnabled = UIAccessibilityIsVoiceOverRunning() || UIAccessibilityIsSwitchControlRunning()
+                    let a11yEnabled = UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
                     self.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
-                    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self)
+                    UIAccessibility.post(notification: .screenChanged, argument: self)
                 }).disposed(by: self.bag)
             })
             .disposed(by: bag)
     }
     
     // Actions
-    private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.tap.asDriver()
-        .do(onNext: {
-            Analytics.log(event: .ViewBillBillCard)
-        })
+    private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
+        .do(onNext: { Analytics.log(event: .viewBillBillCard) })
+    
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
             self?.oneTouchSlider.reset(animated: true)
-        }).map(to: ())
+        })
+        .mapTo(())
     
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
         .do(onNext: {
-            Analytics.log(event: .OneTouchTermsView)
+            Analytics.log(event: .oneTouchTermsView)
         })
         .map { [weak self] in self?.viewModel.paymentTACUrl }
         .unwrap()
@@ -436,8 +480,7 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var tooltipModal: Driver<UIViewController> = Driver.merge(self.dueDateTooltip.rx.tap.asDriver(),
-                                                                           self.dueAmountAndDateTooltip.rx.tap.asDriver())
+    private lazy var tooltipModal: Driver<UIViewController> = self.dueDateTooltip.rx.tap.asDriver()
         .map {
             let alertController = UIAlertController(title: NSLocalizedString("Your Due Date", comment: ""),
                                                     message: NSLocalizedString("If you recently changed your energy supplier, a portion of your balance may have an earlier due date. Please view your previous bills and corresponding due dates.", comment: ""), preferredStyle: .alert)
@@ -445,28 +488,32 @@ class HomeBillCardView: UIView {
             return alertController
     }
     
-    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver.merge(self.tutorialTap.rx.event.asDriver().map(to: ()), self.tutorialSwipe.rx.event.asDriver().map(to: ()), self.a11yTutorialButton.rx.tap.asDriver())
+    private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver
+        .merge(tutorialTap.rx.event.asDriver().map(to: ()),
+               tutorialSwipe.rx.event.asDriver().map(to: ()),
+               a11yTutorialButton.rx.tap.asDriver())
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
         .map(to: ())
         .map(OneTouchTutorialViewController.init)
     
-    private lazy var bgeasyViewController: Driver<UIViewController> = self.automaticPaymentInfoButton.rx.touchUpInside.asObservable()
+    private lazy var bgeasyViewController: Driver<UIViewController> = self.autoPayButton.rx.tap.asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { $0.isBGEasy }
         .map { _ in UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEasy") }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(self.tooltipModal,
-                                                                                        self.oneTouchSliderWeekendAlert,
-                                                                                        self.paymentTACModal,
-                                                                                        self.oneTouchPayErrorAlert,
-                                                                                        self.oneTouchSliderCVV2Alert,
-                                                                                        self.tutorialViewController,
-                                                                                        self.bgeasyViewController)
+    private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver.merge(tooltipModal,
+                                                                                        oneTouchSliderWeekendAlert,
+                                                                                        paymentTACModal,
+                                                                                        oneTouchPayErrorAlert,
+                                                                                        oneTouchSliderCVV2Alert,
+                                                                                        tutorialViewController,
+                                                                                        bgeasyViewController)
     
     // Pushed View Controllers
-    private lazy var walletViewController: Driver<UIViewController> = self.bankCreditNumberButton.rx.touchUpInside.asObservable()
+    private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside
+        .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
@@ -476,19 +523,21 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var addOTPViewController: Driver<UIViewController> = self.saveAPaymentAccountButton.rx.touchUpInside.asObservable()
+    private lazy var addOTPViewController: Driver<UIViewController> = saveAPaymentAccountButton.rx.touchUpInside
+        .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
             vc.viewModel.accountDetail = accountDetail
             vc.shouldPopToRootOnSave = true
             vc.shouldSetOneTouchPayByDefault = true
-            Analytics.log(event: .OneTouchEnabledBillCard)
+            Analytics.log(event: .oneTouchEnabledBillCard)
             return vc
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var billingHistoryViewController: Driver<UIViewController> = self.thankYouForSchedulingButton.rx.touchUpInside.asObservable()
+    private lazy var billingHistoryViewController: Driver<UIViewController> = thankYouForSchedulingButton.rx.touchUpInside
+        .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
@@ -497,7 +546,8 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var autoPayViewController: Driver<UIViewController> = self.automaticPaymentInfoButton.rx.touchUpInside.asObservable()
+    private lazy var autoPayViewController: Driver<UIViewController> = autoPayButton.rx.tap
+        .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { !$0.isBGEasy }
         .map { accountDetail in
@@ -514,10 +564,10 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.walletViewController,
-                                                                                         self.addOTPViewController,
-                                                                                         self.billingHistoryViewController,
-                                                                                         self.autoPayViewController)
+    private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(walletViewController,
+                                                                                         addOTPViewController,
+                                                                                         billingHistoryViewController,
+                                                                                         autoPayViewController)
 
     deinit {
         cvvValidationDisposable?.dispose()

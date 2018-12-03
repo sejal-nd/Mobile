@@ -125,7 +125,7 @@ class SegmentedControl: UIControl {
                 label.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
                 
                 let button = buttons[index]
-                button.accessibilityTraits = UIAccessibilityTraitNone
+                button.accessibilityTraits = .none
                 button.frame = view.frame
             }
             
@@ -152,7 +152,7 @@ class SegmentedControl: UIControl {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             let label = self.items![index]
             let a11yString = String(format: NSLocalizedString("Selected %@, option %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, a11yString)
+            UIAccessibility.post(notification: .announcement, argument: a11yString)
         })
         
         setNeedsLayout()

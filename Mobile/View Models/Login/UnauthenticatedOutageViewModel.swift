@@ -18,7 +18,9 @@ class UnauthenticatedOutageViewModel {
     
     var outageStatusArray: [OutageStatus]?
     var selectedOutageStatus: OutageStatus?
-    var reportedOutage: ReportedOutageResult?
+    var reportedOutage: ReportedOutageResult? {
+        return outageService.getReportedOutageResult(accountNumber: accountNumber.value)
+    }
     
     let outageService: OutageService!
     private var authService: AuthenticationService

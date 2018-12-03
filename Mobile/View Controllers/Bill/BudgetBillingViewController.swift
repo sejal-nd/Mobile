@@ -248,9 +248,7 @@ class BudgetBillingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
-        }
+        navigationController?.setColoredNavBar()
     }
     
     override func viewDidLayoutSubviews() {
@@ -260,7 +258,7 @@ class BudgetBillingViewController: UIViewController {
         
         // Dynamic sizing for the table header view
         if let headerView = reasonForStoppingTableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var headerFrame = headerView.frame
             
             // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -293,7 +291,7 @@ class BudgetBillingViewController: UIViewController {
     @objc func onSubmitPress() {
         if viewModel.enrolling.value {
             LoadingView.show()
-            Analytics.log(event: .BudgetBillEnrollOffer)
+            Analytics.log(event: .budgetBillEnrollOffer)
             viewModel.enroll(onSuccess: { [weak self] in
                 LoadingView.hide()
                 
@@ -308,7 +306,7 @@ class BudgetBillingViewController: UIViewController {
             })
 
         } else if viewModel.unenrolling.value {
-            Analytics.log(event: .BudgetBillUnEnrollOffer)
+            Analytics.log(event: .budgetBillUnEnrollOffer)
             var message = ""
             if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
                 message = NSLocalizedString("You will see your regular bill amount on your next billing cycle. Any credit balance remaining in your account will be applied to your bill until used, and any negative account balance will become due with your next bill.", comment: "")
@@ -317,10 +315,10 @@ class BudgetBillingViewController: UIViewController {
             }
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
-                Analytics.log(event: .BudgetBillUnEnrollCancel);}))
+                Analytics.log(event: .budgetBillUnEnrollCancel);}))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
                 LoadingView.show()
-                Analytics.log(event: .BudgetBillUnEnrollOK)
+                Analytics.log(event: .budgetBillUnEnrollOK)
                 
                 guard let `self` = self else { return }
                 self.viewModel.unenroll(onSuccess: { [weak self] in
@@ -361,7 +359,7 @@ extension BudgetBillingViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }
 

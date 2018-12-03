@@ -65,14 +65,14 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         
         maintenanceModeView.isHidden = true
         
-        NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: { [weak self] in
                 self?.keyboardWillShow(notification: $0)
             })
             .disposed(by: disposeBag)
         
-        NotificationCenter.default.rx.notification(.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: { [weak self] in
                 self?.keyboardWillHide(notification: $0)
@@ -120,28 +120,8 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = true
-        
-        setNeedsStatusBarAppearanceUpdate()
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        
         navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.navigationBar.barTintColor = .primaryColor
-        navigationController?.navigationBar.isTranslucent = false
-        
-        let titleDict: [NSAttributedStringKey: Any] = [
-            .foregroundColor: UIColor.white,
-            .font: OpenSans.bold.of(size: 18)
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleDict
-        
-        viewModel.reportedOutage = nil // Clear reported outage when user leaves UnauthenticatedOutageStatusViewController
+        navigationController?.setColoredNavBar(hidesBottomBorder: true)
     }
     
     func bindViewModel() {
@@ -266,10 +246,10 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         })
         
         switch analyticsSource {
-        case .Report:
-            Analytics.log(event: .ReportAnOutageUnAuthSubmitAcctVal)
-        case .Status:
-            Analytics.log(event: .OutageStatusUnAuthAcctValidate)
+        case .report?:
+            Analytics.log(event: .reportAnOutageUnAuthSubmitAcctVal)
+        case .status?:
+            Analytics.log(event: .outageStatusUnAuthAcctValidate)
         default:
             break
         }
@@ -293,9 +273,9 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     
     func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - footerView.frame.size.height, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - footerView.frame.size.height, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
@@ -366,6 +346,6 @@ extension UnauthenticatedOutageValidateAccountViewController: UITextFieldDelegat
 extension UnauthenticatedOutageValidateAccountViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        Analytics.log(event: .OutageStatusUnAuthAcctValEmergencyPhone)
+        Analytics.log(event: .outageStatusUnAuthAcctValEmergencyPhone)
     }
 }

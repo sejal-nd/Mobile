@@ -72,14 +72,14 @@ class AutoPayViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         
-        NotificationCenter.default.rx.notification(.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: { [weak self] in
                 self?.keyboardWillShow(notification: $0)
             })
             .disposed(by: bag)
         
-        NotificationCenter.default.rx.notification(.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive(onNext: { [weak self] in
                 self?.keyboardWillHide(notification: $0)
@@ -139,7 +139,7 @@ class AutoPayViewController: UIViewController {
         
         // Dynamic sizing for the table header view
         if let headerView = reasonForStoppingTableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var headerFrame = headerView.frame
             
             // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
@@ -210,7 +210,7 @@ class AutoPayViewController: UIViewController {
         tacLabel.setLineHeight(lineHeight: 25)
         tacSwitch.accessibilityLabel = "I agree to ComEd’s AutoPay Terms and Conditions"
         tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
-        Analytics.log(event: .AutoPayEnrollOffer)
+        Analytics.log(event: .autoPayEnrollOffer)
     }
     
     private func styleEnrolled() {
@@ -449,13 +449,13 @@ class AutoPayViewController: UIViewController {
     
     func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         var safeAreaBottomInset: CGFloat = 0
         if #available(iOS 11.0, *) {
             safeAreaBottomInset = self.view.safeAreaInsets.bottom
         }
-        let insets = UIEdgeInsetsMake(0, 0, endFrameRect.size.height - safeAreaBottomInset, 0)
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
@@ -509,7 +509,7 @@ extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
 	func changedBank() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
 			self.view.showToast(NSLocalizedString("AutoPay bank account updated", comment: ""))
-            Analytics.log(event: .AutoPayModifyBankComplete)
+            Analytics.log(event: .autoPayModifyBankComplete)
 		})
 	}
 }
@@ -526,7 +526,7 @@ extension AutoPayViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }
 

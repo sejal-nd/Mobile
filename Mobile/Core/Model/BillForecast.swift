@@ -8,25 +8,23 @@
 
 import Mapper
 
-private func extractDate(object: Any?) throws -> Date {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
+struct BillForecastResult {
+    let electric: BillForecast?
+    let gas: BillForecast?
+
+    init(dictionaries: [[String: Any]]) throws {
+        let billForecasts = dictionaries.compactMap { BillForecast.from($0 as NSDictionary) }
+        
+        electric = billForecasts.first(where: {
+            $0.errorMessage == nil && $0.meterType == "ELEC"
+        })
+        
+        gas = billForecasts.first(where: {
+            $0.errorMessage == nil && $0.meterType != "ELEC"
+        })
     }
-    let dateFormatter = DateFormatter()
-    dateFormatter.timeZone = .opCo
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    return dateFormatter.date(from: dateString)!
 }
 
-private func extractCalculationDate(object: Any?) throws -> Date {
-    guard let dateString = object as? String else {
-        throw MapperError.convertibleError(value: object, type: Date.self)
-    }
-    let dateFormatter = DateFormatter()
-    dateFormatter.timeZone = .opCo
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
-    return dateFormatter.date(from: dateString)!
-}
 
 struct BillForecast: Mappable {
     let errorMessage: String?
@@ -45,13 +43,14 @@ struct BillForecast: Mappable {
     
     private let utilityAccount: NSDictionary
     let meterType: String // "ELEC" or "GAS"
+    var meterUnit: String
     
     init(map: Mapper) throws {
         errorMessage = map.optionalFrom("errorMessage")
         
-        billingStartDate = map.optionalFrom("billingStartDate", transformation: extractDate)
-        billingEndDate = map.optionalFrom("billingEndDate", transformation: extractDate)
-        calculationDate = map.optionalFrom("calculationDate", transformation: extractCalculationDate)
+        billingStartDate = map.optionalFrom("billingStartDate", transformation: DateParser().extractDate)
+        billingEndDate = map.optionalFrom("billingEndDate", transformation: DateParser().extractDate)
+        calculationDate = map.optionalFrom("calculationDate", transformation: DateParser().extractDate)
         toDateUsage = map.optionalFrom("toDateUsage")
         toDateCost = map.optionalFrom("toDateCost")
         projectedUsage = map.optionalFrom("projectedUsage")
@@ -62,6 +61,16 @@ struct BillForecast: Mappable {
         
         try utilityAccount = map.from("utilityAccountDTO")
         meterType = utilityAccount.object(forKey: "meterType") as! String
+        
+        meterUnit = ""
+        if let unit = utilityAccount.object(forKey: "meterUnit") as? String {
+            meterUnit = unit
+        }
+        if meterUnit == "KWH" {
+            meterUnit = "kWh"
+        } else if meterUnit == "THERM" {
+            meterUnit = "therms"
+        }
     }
 }
 

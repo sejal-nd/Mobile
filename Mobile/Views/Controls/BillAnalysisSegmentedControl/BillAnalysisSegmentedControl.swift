@@ -73,8 +73,8 @@ class BillAnalysisSegmentedControl: UIControl {
             $0 ? String(format: "%@, option 2 of 2", self?.rightLabel.text ?? "") : String(format: "%@, option 2 of 2, selected", self?.rightLabel.text ?? "")
         }.drive(rightButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
-        leftButton.accessibilityTraits = UIAccessibilityTraitNone
-        rightButton.accessibilityTraits = UIAccessibilityTraitNone
+        leftButton.accessibilityTraits = .none
+        rightButton.accessibilityTraits = .none
     }
     
     func setItems(leftLabel: String, rightLabel: String, initialSelectedIndex: Int) {
@@ -98,7 +98,7 @@ class BillAnalysisSegmentedControl: UIControl {
             } else {
                 a11yString = String(format: NSLocalizedString("Selected %@, option 2 of 2", comment: ""), self?.rightLabel.text ?? "")
             }
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, a11yString)
+            UIAccessibility.post(notification: .announcement, argument: a11yString)
         })
     }
     
