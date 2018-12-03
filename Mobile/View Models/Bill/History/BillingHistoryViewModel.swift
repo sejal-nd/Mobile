@@ -11,7 +11,7 @@ import RxSwift
 class BillingHistoryViewModel {
     
     let monthsBackward = StormModeStatus.shared.isOn ? -2 : -24
-    let monthsforward = StormModeStatus.shared.isOn ? 1 : 12
+    let monthsforward = 12
 
     let disposeBag = DisposeBag()
     
