@@ -82,6 +82,7 @@ struct Environment {
     let mcsInstanceName: String
     let mcsConfig: MCSConfig
     let outageMapUrl: String
+    let paymentusUrl: String
     let gaTrackingId: String
     let firebaseConfigFile: String
     let opcoUpdatesHost: String
@@ -98,6 +99,7 @@ struct Environment {
         mcsInstanceName = dict?["mcsInstanceName"] as! String
         mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName)
         outageMapUrl = dict?["outageMapUrl"] as! String
+        paymentusUrl = dict?["paymentusUrl"] as! String
         gaTrackingId = dict?["gaTrackingId"] as! String
         firebaseConfigFile = dict?["firebaseConfigFile"] as! String
         opcoUpdatesHost = dict?["opcoUpdatesHost"] as! String
