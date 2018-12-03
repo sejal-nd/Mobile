@@ -24,17 +24,6 @@ class PaymentusFormViewController: UIViewController {
     let loadingIndicator = LoadingIndicator().usingAutoLayout()
     let errorLabel = UILabel(frame: .zero).usingAutoLayout()
     
-    private var urlString: String {
-        switch Environment.shared.opco {
-        case .bge:
-            return "https://bge-sit-620.paymentus.io/xotp/pm/bge"
-        case .comEd:
-            return "https://comd-sit-623.paymentus.io/xotp/pm/comd"
-        case .peco:
-            return "https://peco-sit-622.paymentus.io/xotp/pm/peco"
-        }
-    }
-    
     private let postbackUrl = "https://mindgrub.com/"
     
     weak var delegate: PaymentusFormViewControllerDelegate?
@@ -52,9 +41,9 @@ class PaymentusFormViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         if self.bankOrCard == .bank {
-            title = NSLocalizedString("Add Bank Account", comment: "")
+            title = walletItemId != nil ? NSLocalizedString("Edit Bank Account", comment: "") : NSLocalizedString("Add Bank Account", comment: "")
         } else {
-            title = NSLocalizedString("Add Card", comment: "")
+            title = walletItemId != nil ? NSLocalizedString("Edit Card", comment: "") : NSLocalizedString("Add Card", comment: "")
         }
 
         fetchEncryptionKey()
@@ -149,7 +138,7 @@ class PaymentusFormViewController: UIViewController {
             .subscribe(onNext: { [weak self] key in
                 guard let self = self else { return }
 
-                var urlComponents = URLComponents(string: self.urlString)
+                var urlComponents = URLComponents(string: Environment.shared.paymentusUrl)
                 urlComponents?.queryItems = [
                     URLQueryItem(name: "authToken", value: key)
                 ]
@@ -206,7 +195,7 @@ extension PaymentusFormViewController: WKNavigationDelegate {
             } else {
                 navigationController?.popViewController(animated: true)
             }
-        } else if !url.absoluteString.starts(with: urlString) {
+        } else if !url.absoluteString.starts(with: Environment.shared.paymentusUrl) {
             showLoadingState()
             decisionHandler(.allow)
         } else {

@@ -218,8 +218,12 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         } else if section == numberOfSections(in: tableView) - 1 && viewModel.showLanguageSection {
             return 1
         } else {
-            let offset = viewModel.showTopSection ? 1 : 0
-            return viewModel.sections[section - offset].1.count
+            if viewModel.shownSections.contains(section) {
+                let offset = viewModel.showTopSection ? 1 : 0
+                return viewModel.sections[section - offset].1.count
+            } else {
+                return 0
+            }
         }
     }
     
@@ -267,7 +271,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
     
     private func configureToggleCell(_ cell: AlertPreferencesTableViewCell, forIndexPath indexPath: IndexPath) {
         let offset = viewModel.showTopSection ? 1 : 0
-        let option = viewModel.sections[indexPath.section - offset].1[indexPath.row]
+        let options = viewModel.sections[indexPath.section - offset].1
+        let option = options[indexPath.row]
         
         var toggleVariable: Variable<Bool>?
         var pickerButtonText: Driver<String>?
@@ -324,7 +329,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         }
         
         cell.configure(withPreferenceOption: option,
-                       pickerButtonText: pickerButtonText)
+                       pickerButtonText: pickerButtonText,
+                       isLastItem: options.count - 1 == indexPath.row)
     }
     
 }
@@ -337,7 +343,7 @@ extension AlertPreferencesViewController: UITableViewDelegate {
         } else if section == numberOfSections(in: tableView) - 1 && viewModel.showLanguageSection {
             return 0.01
         } else {
-            return 73
+            return 59
         }
     }
     
@@ -360,8 +366,18 @@ extension AlertPreferencesViewController: UITableViewDelegate {
         
         let view = AlertPreferencesSectionHeaderView()
         let offset = viewModel.showTopSection ? 1 : 0
-        view.configure(withTitle: viewModel.sections[section - offset].0)
+        view.configure(withTitle: viewModel.sections[section - offset].0,
+                       isExpanded: viewModel.shownSections.contains(section))
+        view.tapped = { [weak self] in
+            self?.sectionTapped(section)
+        }
+        
         return view
+    }
+    
+    @objc func sectionTapped(_ section: Int) {
+        viewModel.toggleSectionVisibility(section)
+        tableView.reloadSections(IndexSet(arrayLiteral: section), with: .fade)
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

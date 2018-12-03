@@ -280,14 +280,7 @@ class MakePaymentViewController: UIViewController {
             }, onError: { [weak self] in
                 guard let self = self else { return }
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
-            }, onFiservCutoff: { [weak self] in
-                guard let self = self else { return }
-                let alert = UIAlertController.fiservCutoffAlert { [weak self] _ in
-                    self?.navigationController?.popViewController(animated: true)
-                }
-                
-                self.present(alert, animated: true, completion: nil)
-        })
+            })
     }
     
     deinit {
@@ -780,17 +773,11 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                var cutoffDate: Date
-                if let cutoff = viewModel.fiservCutoffDate.value {
-                    cutoffDate = min(startOfDueDate, cutoff)
-                } else {
-                    cutoffDate = dueDate
-                }
                 if Environment.shared.opco == .peco {
                     let isInWorkdaysArray = viewModel.workdayArray.contains(opCoTimeDate)
-                    return opCoTimeDate >= today && opCoTimeDate <= cutoffDate && isInWorkdaysArray
+                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate && isInWorkdaysArray
                 } else {
-                    return opCoTimeDate >= today && opCoTimeDate <= cutoffDate
+                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate
                 }
             }
         }
