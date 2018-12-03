@@ -358,8 +358,8 @@ class HomeBillCardView: UIView {
         
         // Actions
         oneTouchSlider.didFinishSwipe
-            .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV))
-            .filter { !$0 && !$1 }
+            .withLatestFrom(viewModel.promptForCVV)
+            .filter(!)
             .map(to: ())
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
@@ -404,23 +404,6 @@ class HomeBillCardView: UIView {
         .map { (NSLocalizedString("Terms and Conditions", comment: ""), $0) }
         .map(WebViewController.init)
         .asDriver(onErrorDriveWith: .empty())
-    
-    private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = oneTouchSlider.didFinishSwipe
-        .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
-        .filter { $0 }
-        .map { [weak self] _ in
-            let alertController = UIAlertController(title: NSLocalizedString("Weekend/Holiday Payment", comment: ""),
-                                                    message: NSLocalizedString("You are making a payment on a weekend or holiday. Your payment will be scheduled for the next business day.", comment: ""), preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel){ [weak self] _ in
-                self?.oneTouchSlider.reset(animated: true)
-            })
-
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
-                LoadingView.show(animated: true)
-                self?.viewModel.submitOneTouchPay.onNext(())
-            })
-            return alertController
-    }
     
     private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
         .map { [weak self] error in
@@ -548,7 +531,6 @@ class HomeBillCardView: UIView {
     
     private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver
         .merge(tooltipModal,
-               oneTouchSliderWeekendAlert,
                paymentTACModal,
                oneTouchPayErrorAlert,
                oneTouchSliderCVV2Alert,
