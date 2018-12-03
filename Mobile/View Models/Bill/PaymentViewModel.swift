@@ -35,8 +35,6 @@ class PaymentViewModel {
     let overpayingSwitchValue = Variable(false)
     let activeSeveranceSwitchValue = Variable(false)
     
-    var workdayArray = [Date]()
-    
     let addBankFormViewModel: AddBankFormViewModel!
     let addCardFormViewModel: AddCardFormViewModel!
     let inlineCard = Variable(false)
@@ -87,13 +85,6 @@ class PaymentViewModel {
             }
     }
     
-    func fetchPECOWorkdays() -> Observable<Void> {
-        return paymentService.fetchWorkdays()
-            .map { dateArray in
-                self.workdayArray = dateArray
-            }
-    }
-    
     func fetchPaymentDetails(paymentId: String) -> Observable<Void> {
         return paymentService.fetchPaymentDetails(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId).map { paymentDetail in
             self.paymentDetail.value = paymentDetail
@@ -102,20 +93,14 @@ class PaymentViewModel {
     
     func computeDefaultPaymentDate() {
         let now = Date()
-        let startOfTodayDate = Calendar.opCo.startOfDay(for: now)
-        let tomorrow =  Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!
         
         switch Environment.shared.opco {
-        case .peco:
-            if let nextWorkday = workdayArray.first(where: { $0 >= startOfTodayDate }),
-                !Calendar.opCo.isDateInToday(nextWorkday) {
-                paymentDate.value = nextWorkday
-            } else {
-                paymentDate.value = now
-            }
-        case .comEd:
+        case .comEd, .peco:
             paymentDate.value = now
         case .bge:
+            let startOfTodayDate = Calendar.opCo.startOfDay(for: now)
+            let tomorrow =  Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!
+            
             if Calendar.opCo.component(.hour, from: Date()) >= 20 &&
                 !accountDetail.value.isActiveSeverance {
                 self.paymentDate.value = tomorrow
@@ -134,10 +119,6 @@ class PaymentViewModel {
     
     func fetchData(onSuccess: (() -> ())?, onError: (() -> ())?) {
         var observables = [fetchWalletItems()]
-        
-        if Environment.shared.opco == .peco {
-            observables.append(fetchPECOWorkdays())
-        }
         
         if let paymentId = paymentId.value, paymentDetail.value == nil {
             observables.append(fetchPaymentDetails(paymentId: paymentId))

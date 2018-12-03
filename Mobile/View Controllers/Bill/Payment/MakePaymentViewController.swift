@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import AVFoundation
+import UIKit
 
 class MakePaymentViewController: UIViewController {
     
@@ -773,12 +774,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                if Environment.shared.opco == .peco {
-                    let isInWorkdaysArray = viewModel.workdayArray.contains(opCoTimeDate)
-                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate && isInWorkdaysArray
-                } else {
-                    return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate
-                }
+                return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate
             }
         }
         

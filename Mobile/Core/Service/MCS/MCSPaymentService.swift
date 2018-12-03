@@ -115,19 +115,6 @@ class MCSPaymentService: PaymentService {
                 RxNotifications.shared.accountDetailUpdated.onNext(())
             })
     }
-    
-    func fetchWorkdays() -> Observable<[Date]> {
-        return MCSApi.shared.get(anon: true, path: "workdays")
-            .map { json in
-                guard let dateStringArray = json as? NSArray else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                return dateStringArray
-                    .compactMap { $0 as? String }
-                    .compactMap(DateFormatter.yyyyMMddFormatter.date)
-        }
-    }
 
     func schedulePayment(payment: Payment) -> Observable<String> {
         

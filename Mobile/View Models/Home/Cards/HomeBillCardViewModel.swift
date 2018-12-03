@@ -93,24 +93,7 @@ class HomeBillCardViewModel {
                             return this.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
         })
     
-    private lazy var workDayEvents: Observable<Event<[Date]>> = maintenanceModeEvents
-        .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
-        .withLatestFrom(fetchTrigger)
-        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
-                        requestSelector: { [weak self] _ in
-                            guard let this = self else { return .empty() }
-                            if Environment.shared.opco == .peco {
-                                return this.paymentService.fetchWorkdays()
-                            } else {
-                                return Observable<[Date]>.just([])
-                            }
-        })
-        .share(replay: 1)
-    
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
-    
-    private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = workDayEvents.errors()
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
     private lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
@@ -120,10 +103,8 @@ class HomeBillCardViewModel {
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = submitOneTouchPay.asObservable()
         .withLatestFrom(Observable.combineLatest(accountDetailEvents.elements(),
                                                  walletItem.unwrap(),
-                                                 cvv2.asObservable(),
-                                                 shouldShowWeekendWarning.asObservable(),
-                                                 workDayEvents.elements()))
-        .do(onNext: { _, walletItem, _, _, _ in
+                                                 cvv2.asObservable()))
+        .do(onNext: { _, walletItem, _ in
             switch walletItem.bankOrCard {
             case .bank:
                 Analytics.log(event: .oneTouchBankOffer)
@@ -131,12 +112,10 @@ class HomeBillCardViewModel {
                 Analytics.log(event: .oneTouchCardOffer)
             }
         })
-        .map { accountDetail, walletItem, cvv2, isWeekendOrHoliday, workDays in
+        .map { accountDetail, walletItem, cvv2 in
             let startOfToday = Calendar.opCo.startOfDay(for: Date())
             let paymentDate: Date
-            if isWeekendOrHoliday, let nextWorkDay = workDays.sorted().first(where: { $0 > Date() }) {
-                paymentDate = nextWorkDay
-            } else if Environment.shared.opco == .bge &&
+            if Environment.shared.opco == .bge &&
                 Calendar.opCo.component(.hour, from: Date()) >= 20,
                 let tomorrow = Calendar.opCo.date(byAdding: .day, value: 1, to: startOfToday) {
                 paymentDate = tomorrow
@@ -164,16 +143,6 @@ class HomeBillCardViewModel {
                                 })
                                 .mapTo(())
         })
-    
-    private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
-        if Environment.shared.opco == .peco {
-            return workDayEvents.elements()
-                .map { $0.filter(Calendar.opCo.isDateInToday).isEmpty }
-                .asDriver(onErrorDriveWith: .empty())
-        } else {
-            return Driver.just(false)
-        }
-    }()
     
     private(set) lazy var promptForCVV: Driver<Bool> = {
         if Environment.shared.opco != .bge {
@@ -210,9 +179,8 @@ class HomeBillCardViewModel {
         if Environment.shared.opco == .peco {
             return Observable.combineLatest(accountDetailEvents,
                                             walletItemEvents,
-                                            workDayEvents,
                                             showMaintenanceModeState.asObservable())
-            { ($0.error != nil || $1.error != nil || $2.error != nil) && !$3 }
+            { ($0.error != nil || $1.error != nil) && !$2 }
                 .startWith(false)
                 .distinctUntilChanged()
                 .asDriver(onErrorDriveWith: .empty())
