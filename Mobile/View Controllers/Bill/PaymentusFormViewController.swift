@@ -39,9 +39,9 @@ class PaymentusFormViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         if self.bankOrCard == .bank {
-            title = NSLocalizedString("Add Bank Account", comment: "")
+            title = walletItemId != nil ? NSLocalizedString("Edit Bank Account", comment: "") : NSLocalizedString("Add Bank Account", comment: "")
         } else {
-            title = NSLocalizedString("Add Card", comment: "")
+            title = walletItemId != nil ? NSLocalizedString("Edit Card", comment: "") : NSLocalizedString("Add Card", comment: "")
         }
 
         fetchEncryptionKey()
