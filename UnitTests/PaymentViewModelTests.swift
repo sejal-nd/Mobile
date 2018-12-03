@@ -1139,7 +1139,7 @@ class PaymentViewModelTests: XCTestCase {
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is below minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "100000"
+            viewModel.paymentAmount.value = "200000"
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
@@ -1149,7 +1149,7 @@ class PaymentViewModelTests: XCTestCase {
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "90000"
+            viewModel.paymentAmount.value = "100000"
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
