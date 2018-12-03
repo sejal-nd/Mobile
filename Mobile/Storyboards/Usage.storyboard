@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -787,8 +787,8 @@
                                 <rect key="frame" x="157.5" y="327.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTV-DQ-cGf">
-                                <rect key="frame" x="45" y="313" width="285" height="41"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTV-DQ-cGf">
+                                <rect key="frame" x="51.5" y="313" width="272.5" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Syd-J8-9ZE"/>
                                 </constraints>
@@ -840,14 +840,14 @@
                             <constraint firstItem="rTV-DQ-cGf" firstAttribute="centerX" secondItem="D3W-uP-Yk7" secondAttribute="centerX" id="Bcv-1o-eP5"/>
                             <constraint firstItem="Epc-81-2Md" firstAttribute="top" secondItem="Ozz-tg-E4j" secondAttribute="bottom" id="C3h-Jf-0Ih"/>
                             <constraint firstItem="Ogk-k0-9Vu" firstAttribute="leading" secondItem="D3W-uP-Yk7" secondAttribute="leading" id="CIh-u3-rLL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rTV-DQ-cGf" secondAttribute="trailing" priority="750" constant="29" id="CJ4-0Q-V5j"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="rTV-DQ-cGf" secondAttribute="trailing" constant="29" id="CJ4-0Q-V5j"/>
                             <constraint firstItem="6fn-lX-XNi" firstAttribute="centerX" secondItem="D3W-uP-Yk7" secondAttribute="centerX" id="Qao-7s-yUS"/>
                             <constraint firstItem="6fn-lX-XNi" firstAttribute="centerY" secondItem="D3W-uP-Yk7" secondAttribute="centerY" id="X3G-ln-tXm"/>
                             <constraint firstAttribute="trailing" secondItem="Epc-81-2Md" secondAttribute="trailing" id="amu-hl-Obo"/>
                             <constraint firstAttribute="trailing" secondItem="Ogk-k0-9Vu" secondAttribute="trailing" id="bVB-SD-PdC"/>
                             <constraint firstAttribute="bottom" secondItem="Ogk-k0-9Vu" secondAttribute="bottom" id="kOj-Jb-jx3"/>
                             <constraint firstItem="rTV-DQ-cGf" firstAttribute="centerY" secondItem="D3W-uP-Yk7" secondAttribute="centerY" id="xeg-zK-enn"/>
-                            <constraint firstItem="rTV-DQ-cGf" firstAttribute="leading" secondItem="D3W-uP-Yk7" secondAttribute="leadingMargin" priority="750" constant="29" id="ye9-Wb-6i7"/>
+                            <constraint firstItem="rTV-DQ-cGf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="D3W-uP-Yk7" secondAttribute="leadingMargin" constant="29" id="ye9-Wb-6i7"/>
                             <constraint firstItem="Epc-81-2Md" firstAttribute="leading" secondItem="D3W-uP-Yk7" secondAttribute="leading" id="yrF-kP-mDg"/>
                         </constraints>
                     </view>
