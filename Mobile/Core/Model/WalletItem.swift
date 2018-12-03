@@ -53,10 +53,25 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let walletExternalID: String?
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
-    let walletItemStatusType: String?
+    let walletItemStatusType: String? // Not sent for paymentus wallet items. TODO: Remove for BGE when they switch to paymentus
     var isExpired: Bool {
-        return walletItemStatusType?.lowercased() == "expired"
+        if Environment.shared.opco == .bge {
+            return walletItemStatusType?.lowercased() == "expired"
+        } else if let exp = expirationDate {
+            let monthYearSet = Set<Calendar.Component>(arrayLiteral: .month, .year)
+            let expComponents = Calendar.gmt.dateComponents(monthYearSet, from: exp)
+            let todayComponents = Calendar.gmt.dateComponents(monthYearSet, from: Date())
+            guard let expMonth = expComponents.month, let expYear = expComponents.year,
+                let todayMonth = todayComponents.month, let todayYear = todayComponents.year else {
+                return false
+            }
+            if todayYear >= expYear && todayMonth > expMonth {
+                return true
+            }
+        }
+        return false
     }
+    let expirationDate: Date? // Paymentus only field
     
     let paymentCategoryType: PaymentCategoryType? // Do not use this for determining bank vs card - use bankOrCard
     let bankAccountType: BankAccountType? // Do not use this for determining bank vs card - use bankOrCard
@@ -68,7 +83,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     
     let cardIssuer: String?
     
-    let dateCreated: Date?
+    let dateCreated: Date? // Not sent for paymentus wallet items. TODO: Remove for BGE when they switch to paymentus
     
     init(map: Mapper) throws {
         walletItemID = map.optionalFrom("walletItemID")
@@ -92,6 +107,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         dateCreated = map.optionalFrom("dateCreated", transformation: DateParser().extractDate)
         
         walletItemStatusType = map.optionalFrom("walletItemStatusType")
+        expirationDate = map.optionalFrom("expirationDate", transformation: DateParser().extractDate)
         
         if let type = bankAccountType, Environment.shared.opco == .bge {
             bankOrCard = type == .card ? .card : .bank
