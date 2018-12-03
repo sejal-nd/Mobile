@@ -102,7 +102,7 @@ struct Environment {
         mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName)
         outageMapUrl = dict?["outageMapUrl"] as! String
         gaTrackingId = dict?["gaTrackingId"] as! String
-        watchGaTrackingId = (dict?["watchGaTrackingId"] as? String) ?? ""
+        watchGaTrackingId = dict?["watchGaTrackingId"] as! String
         firebaseConfigFile = dict?["firebaseConfigFile"] as! String
         opcoUpdatesHost = dict?["opcoUpdatesHost"] as! String
         associatedDomain = dict?["associatedDomain"] as! String
