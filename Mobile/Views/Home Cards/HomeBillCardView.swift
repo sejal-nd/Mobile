@@ -357,7 +357,7 @@ class HomeBillCardView: UIView {
         viewModel.enableOneTouchPayTCButton.not().drive(oneTouchPayTCButtonLabel.rx.isAccessibilityElement).disposed(by: bag)
         
         // Actions
-        otpIsBeforeFiservCutoffDate.filter { $0 }
+        oneTouchSlider.didFinishSwipe
             .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV))
             .filter { !$0 && !$1 }
             .map(to: ())
@@ -384,32 +384,6 @@ class HomeBillCardView: UIView {
             .disposed(by: bag)
     }
     
-    // Actions
-    private lazy var otpIsBeforeFiservCutoffDate = oneTouchSlider.didFinishSwipe
-        // Fiserv Cutoff Date Check START
-        // Remove this block after ePay transition
-        .do(onNext: { _ in
-            switch Environment.shared.opco {
-            case .bge: break
-            case .comEd, .peco:
-                LoadingView.show(animated: true)
-            }
-        })
-        .asObservable()
-        .toAsyncRequest { [weak self] _ -> Observable<Bool> in
-            self?.viewModel.isBeforeFiservCutoffDate() ?? .empty()
-        }
-        .dematerialize()
-        .asDriver(onErrorDriveWith: .empty())
-        .do(onNext: { _ in
-            switch Environment.shared.opco {
-            case .bge: break
-            case .comEd, .peco:
-                LoadingView.hide(animated: true)
-            }
-        })
-        // Fiserv Cutoff Date Check END
-    
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
         .do(onNext: { Analytics.log(event: .viewBillBillCard) })
     
@@ -431,16 +405,7 @@ class HomeBillCardView: UIView {
         .map(WebViewController.init)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var cutoffAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
-        .filter(!)
-        .map { _ in
-            UIAlertController.fiservCutoffAlert { [weak self] _ in
-                self?.oneTouchSlider.reset(animated: true)
-            }
-    }
-    
-    private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
-        .filter { $0 }
+    private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = oneTouchSlider.didFinishSwipe
         .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
         .filter { $0 }
         .map { [weak self] _ in
@@ -493,8 +458,7 @@ class HomeBillCardView: UIView {
         return alertController2
     }
     
-    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
-        .filter { $0 }
+    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = oneTouchSlider.didFinishSwipe
         .withLatestFrom(self.viewModel.promptForCVV)
         .asObservable()
         .filter { $0 }
@@ -504,6 +468,7 @@ class HomeBillCardView: UIView {
                     observer.onCompleted()
                     return Disposables.create()
                 }
+                
                 let alertController = UIAlertController(title: NSLocalizedString("Enter CVV2", comment: ""),
                                                         message: NSLocalizedString("Enter your 3 or 4 digit security code to complete your payment.", comment: ""),
                                                         preferredStyle: .alert)
@@ -589,8 +554,7 @@ class HomeBillCardView: UIView {
                oneTouchSliderCVV2Alert,
                tutorialViewController,
                bgeasyViewController,
-               autoPayAlert,
-               cutoffAlert)
+               autoPayAlert)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside
