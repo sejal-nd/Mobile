@@ -102,7 +102,8 @@ class ReviewPaymentViewController: UIViewController {
         overpaymentLabel.setLineHeight(lineHeight: 24)
         
         paymentAccountTextLabel.textColor = .deepGray
-        paymentAccountTextLabel.text = NSLocalizedString("Payment Account", comment: "")
+        paymentAccountTextLabel.text = Environment.shared.opco == .bge ?
+            NSLocalizedString("Payment Account", comment: "") : NSLocalizedString("Payment Method", comment: "")
         paymentAccountMaskedAccountNumberLabel.textColor = .blackText
         paymentAccountNicknameLabel.textColor = .middleGray
         
@@ -111,7 +112,8 @@ class ReviewPaymentViewController: UIViewController {
         
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        amountDueTextLabel.text = NSLocalizedString("Amount Due", comment: "")
+        amountDueTextLabel.text = Environment.shared.opco == .bge ?
+            NSLocalizedString("Amount Due", comment: "") : NSLocalizedString("Total Amount Due", comment: "")
         amountDueValueLabel.textColor = .deepGray
         amountDueValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         dueDateTextLabel.textColor = .deepGray
