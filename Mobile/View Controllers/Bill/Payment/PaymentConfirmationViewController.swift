@@ -127,14 +127,17 @@ class PaymentConfirmationViewController: UIViewController {
             }
         } else {
             for vc in presentingNavController.viewControllers {
-                guard let dest = vc as? BillViewController else {
-                    continue
+                if let dest = vc as? BillViewController {
+                    dest.viewModel.fetchAccountDetail(isRefresh: false)
+                    presentingNavController.popToViewController(dest, animated: false)
+                    presentingNavController.setNavigationBarHidden(true, animated: true) // Fixes bad dismiss animation
+                    break
+                } else if let dest = vc as? StormModeBillViewController {
+                    dest.viewModel.fetchData.onNext(.switchAccount)
+                    presentingNavController.popToViewController(dest, animated: false)
+                    break
                 }
-                dest.viewModel.fetchAccountDetail(isRefresh: false)
-                presentingNavController.popToViewController(dest, animated: false)
-                break
             }
-            presentingNavController.setNavigationBarHidden(true, animated: true) // Fixes bad dismiss animation
         }
         presentingNavController.dismiss(animated: true, completion: nil)
     }
