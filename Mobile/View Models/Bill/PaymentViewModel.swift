@@ -59,16 +59,16 @@ class PaymentViewModel {
             self.allowEdits.value = billingHistoryItem.flagAllowEdits
             self.allowDeletes.value = billingHistoryItem.flagAllowDeletes
         }
-
-        if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
-            amountDue = Variable(netDueAmount)
-            paymentAmount = Variable(String.init(format: "%.02f", netDueAmount))
-        } else {
-            amountDue = Variable(0)
-            paymentAmount = Variable("")
-        }
         
         self.paymentDate = Variable(Date()) // May be updated later...see computeDefaultPaymentDate()
+
+        amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
+        
+        paymentAmount = Variable("")
+        if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 && !showSelectPaymentAmount {
+            paymentAmount.value = String(format: "%.02f", netDueAmount)
+        }
+        formatPaymentAmount()
     }
     
     // MARK: - Service Calls
@@ -766,6 +766,73 @@ class PaymentViewModel {
                 }
             }
             return nil
+        }
+    }()
+    
+    var showSelectPaymentAmount: Bool {
+        //TODO: Remove when BGE gets paymentus
+        guard Environment.shared.opco != .bge else { return false }
+        
+        let billingInfo = accountDetail.value.billingInfo
+        
+        if billingInfo.pastDueAmount ?? 0 > 0 && billingInfo.pastDueAmount != billingInfo.netDueAmount {
+            return true
+        }
+        
+        return false
+    }
+    
+    lazy var paymentAmounts: [(String, String)] = {
+        let opco = Environment.shared.opco
+        
+        //TODO: Remove when BGE gets paymentus
+        guard opco != .bge else { return [] }
+        
+        let billingInfo = accountDetail.value.billingInfo
+        
+        guard let netDueAmount = billingInfo.netDueAmount?.currencyString,
+            let pastDueAmount = billingInfo.pastDueAmount, pastDueAmount > 0 else {
+            return []
+        }
+        
+        let totalAmount = (netDueAmount, NSLocalizedString("Total Amount Due", comment: ""))
+        
+        let pastDue = (pastDueAmount.currencyString!, NSLocalizedString("Total Amount Past Due", comment: ""))
+        
+        let other = (NSLocalizedString("Other", comment: ""),
+                     NSLocalizedString("Enter Custom Amount", comment: ""))
+        
+        var amounts = [totalAmount, other]
+        
+        var precariousAmounts = [(String, String)]()
+        if let restorationAmount = billingInfo.restorationAmount,
+            restorationAmount > 0 &&
+                opco != .bge &&
+                accountDetail.value.isCutOutNonPay {
+            if pastDueAmount != restorationAmount {
+                precariousAmounts.append(pastDue)
+            }
+            
+            precariousAmounts.append((restorationAmount.currencyString!, NSLocalizedString("Amount Due to Restore Service", comment: "")))
+        } else if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 && billingInfo.isDisconnectNotice {
+            if pastDueAmount != arrears {
+                precariousAmounts.append(pastDue)
+            }
+            
+            precariousAmounts.append((arrears.currencyString!, NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")))
+        } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && opco != .bge {
+            if pastDueAmount != amtDpaReinst {
+                precariousAmounts.append(pastDue)
+            }
+            
+            precariousAmounts.append((amtDpaReinst.currencyString!, NSLocalizedString("Amount Due to ", comment: "")))
+        }
+        
+        if precariousAmounts.isEmpty {
+            return []
+        } else {
+            amounts.insert(contentsOf: precariousAmounts, at: 1)
+            return amounts
         }
     }()
     

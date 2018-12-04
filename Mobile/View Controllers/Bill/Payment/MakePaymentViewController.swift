@@ -48,6 +48,9 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var amountDueValueLabel: UILabel!
     
     @IBOutlet weak var paymentAmountView: UIView! // Contains paymentAmountFeeLabel and paymentAmountTextField
+    @IBOutlet private weak var selectPaymentAmountStack: UIStackView!
+    @IBOutlet private weak var selectPaymentAmountLabel: UILabel!
+    @IBOutlet private weak var paymentAmountsStack: UIStackView!
     @IBOutlet weak var paymentAmountFeeLabel: UILabel!
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
     
@@ -193,6 +196,9 @@ class MakePaymentViewController: UIViewController {
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         amountDueValueLabel.textColor = .blackText
         amountDueValueLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        
+        selectPaymentAmountLabel.textColor = .blackText
+        selectPaymentAmountLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         
         paymentAmountFeeLabel.textColor = .blackText
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -413,9 +419,37 @@ class MakePaymentViewController: UIViewController {
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)
         
+        // Select Payment Amount
+        selectPaymentAmountStack.isHidden = !viewModel.showSelectPaymentAmount
+        
+        paymentAmountsStack.arrangedSubviews.forEach {
+            paymentAmountsStack.removeArrangedSubview($0)
+            $0.removeFromSuperview()
+        }
+        
+        viewModel.paymentAmounts.forEach { (title, subtitle) in
+            let radioSelectControl = RadioSelectControl.create(withTitle: title, subtitle: subtitle, showSeparator: true)
+            radioSelectControl.rx.touchUpInside.asDriver()
+                .drive(onNext: { [weak self] in
+                    guard let self = self else { return }
+                    self.paymentAmountsStack.arrangedSubviews
+                        .compactMap { $0 as? RadioSelectControl }
+                        .forEach { $0.isSelected = $0 == radioSelectControl }
+                })
+                .disposed(by: radioSelectControl.bag)
+            paymentAmountsStack.addArrangedSubview(radioSelectControl)
+        }
+        
         // Payment Amount Text Field
         viewModel.paymentAmountFeeLabelText.asDriver().drive(paymentAmountFeeLabel.rx.text).disposed(by: disposeBag)
-        viewModel.paymentAmount.asDriver().drive(paymentAmountTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
+       
+        if viewModel.showSelectPaymentAmount {
+            paymentAmountTextField.textField.text = viewModel.paymentAmount.value
+        } else {
+            viewModel.paymentAmount.asDriver()
+                .drive(paymentAmountTextField.textField.rx.text.orEmpty)
+                .disposed(by: disposeBag)
+        }
         paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).disposed(by: disposeBag)
         paymentAmountTextField.textField.rx.controlEvent(.editingChanged).asDriver()
             .drive(onNext: { [weak self] in
