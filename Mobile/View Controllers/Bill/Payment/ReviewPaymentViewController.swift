@@ -70,9 +70,6 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var activeSeveranceSwitch: Switch!
     @IBOutlet weak var activeSeveranceSwitchLabel: UILabel!
     
-    @IBOutlet weak var billMatrixView: UIView!
-    @IBOutlet weak var privacyPolicyButton: UIButton!
-    
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
@@ -172,9 +169,6 @@ class ReviewPaymentViewController: UIViewController {
         termsConditionsSwitchLabel.isAccessibilityElement = false
         termsConditionsSwitch.accessibilityLabel = termsConditionsSwitchLabel.text!
         
-        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
-        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
-        
         overpayingSwitchLabel.textColor = .deepGray
         overpayingSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
         overpayingSwitchLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
@@ -261,10 +255,6 @@ class ReviewPaymentViewController: UIViewController {
     func bindButtonTaps() {
         termsConditionsButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onTermsConditionsPress()
-        }).disposed(by: disposeBag)
-        
-        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.onPrivacyPolicyPress()
         }).disposed(by: disposeBag)
     }
     
