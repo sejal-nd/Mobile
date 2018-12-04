@@ -217,7 +217,6 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceSwitchView.rx.isHidden).disposed(by: disposeBag)
-        billMatrixView.isHidden = !viewModel.shouldShowBillMatrixView
     }
     
     func bindViewContent() {

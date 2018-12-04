@@ -77,9 +77,6 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var deletePaymentButton: ButtonControl!
     @IBOutlet weak var deletePaymentLabel: UILabel!
     
-    @IBOutlet weak var billMatrixView: UIView!
-    @IBOutlet weak var privacyPolicyButton: UIButton!
-    
     @IBOutlet weak var walletFooterSpacerView: UIView! // Only used for spacing when footerView is hidden
     @IBOutlet weak var walletFooterView: UIView!
     @IBOutlet weak var walletFooterLabel: UILabel!
@@ -251,9 +248,6 @@ class MakePaymentViewController: UIViewController {
         deletePaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
         deletePaymentLabel.textColor = .actionBlue
         
-        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
-        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
-        
         walletFooterView.backgroundColor = .softGray
         walletFooterLabel.textColor = .deepGray
         walletFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -369,9 +363,6 @@ class MakePaymentViewController: UIViewController {
         
         // Delete Payment
         viewModel.shouldShowDeletePaymentButton.map(!).drive(deletePaymentButton.rx.isHidden).disposed(by: disposeBag)
-        
-        // Bill Matrix
-        billMatrixView.isHidden = !viewModel.shouldShowBillMatrixView
         
         // Wallet empty state info footer
         viewModel.shouldShowWalletFooterView.map(!).drive(walletFooterView.rx.isHidden).disposed(by: disposeBag)
@@ -498,10 +489,6 @@ class MakePaymentViewController: UIViewController {
         deletePaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onDeletePaymentPress()
         }).disposed(by: disposeBag)
-        
-        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.onPrivacyPolicyPress()
-        }).disposed(by: disposeBag)
     }
     
     func bindInlineBankAccessibility() {
@@ -616,12 +603,6 @@ class MakePaymentViewController: UIViewController {
         } else {
             performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
         }
-    }
-    
-    func onPrivacyPolicyPress() {
-        let tacModal = WebViewController(title: NSLocalizedString("Privacy Policy", comment: ""),
-                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/privacy_notice_en-us.html")!)
-        navigationController?.present(tacModal, animated: true, completion: nil)
     }
     
     func onDeletePaymentPress() {

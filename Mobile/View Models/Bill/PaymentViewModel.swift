@@ -1031,8 +1031,6 @@ class PaymentViewModel {
         return false
     }
     
-    var shouldShowBillMatrixView: Bool = Environment.shared.opco != .bge
-    
     // MARK: - Review Payment Drivers
     
     private(set) lazy var reviewPaymentSubmitButtonEnabled: Driver<Bool> = Driver.combineLatest(self.shouldShowTermsConditionsSwitchView,
