@@ -18,7 +18,7 @@ protocol PaymentusFormViewControllerDelegate: class {
 
 class PaymentusFormViewController: UIViewController {
     
-    let TIMEOUT: TimeInterval = 180 // 3 minutes
+    let TIMEOUT: TimeInterval = 1800 // 30 minutes
     
     var webView: WKWebView!
     let loadingIndicator = LoadingIndicator().usingAutoLayout()
