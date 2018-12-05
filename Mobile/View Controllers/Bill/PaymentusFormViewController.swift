@@ -16,6 +16,11 @@ protocol PaymentusFormViewControllerDelegate: class {
     func didAddBank(_ walletItem: WalletItem?)
 }
 
+// Default implementation to make these protocol functions optional
+extension PaymentusFormViewControllerDelegate {
+    func didEditWalletItem() { }
+}
+
 class PaymentusFormViewController: UIViewController {
     
     let TIMEOUT: TimeInterval = 1800 // 30 minutes
@@ -32,6 +37,7 @@ class PaymentusFormViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
+    var shouldPopToMakePaymentOnSave = false
     var shouldPopToRootOnSave = false
     
     init(bankOrCard: BankOrCard, walletItemId: String? = nil) {
@@ -192,6 +198,13 @@ extension PaymentusFormViewController: WKNavigationDelegate {
             
             if shouldPopToRootOnSave {
                 navigationController?.popToRootViewController(animated: true)
+            } else if shouldPopToMakePaymentOnSave {
+                for vc in navigationController!.viewControllers {
+                    guard let dest = vc as? MakePaymentViewController else {
+                        continue
+                    }
+                    navigationController?.popToViewController(dest, animated: true)
+                }
             } else {
                 navigationController?.popViewController(animated: true)
             }
