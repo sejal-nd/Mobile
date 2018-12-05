@@ -420,17 +420,29 @@ class MakePaymentViewController: UIViewController {
             $0.removeFromSuperview()
         }
         
-        viewModel.paymentAmounts.forEach { (title, subtitle) in
-            let radioSelectControl = RadioSelectControl.create(withTitle: title, subtitle: subtitle, showSeparator: true)
-            radioSelectControl.rx.touchUpInside.asDriver()
+        let radioControls = viewModel.paymentAmounts.map { (title, subtitle) -> RadioSelectControl in
+            return RadioSelectControl.create(withTitle: title, subtitle: subtitle, showSeparator: true)
+        }
+        
+        radioControls.forEach { control in
+            control.rx.touchUpInside.asDriver()
                 .drive(onNext: { [weak self] in
                     guard let self = self else { return }
-                    self.paymentAmountsStack.arrangedSubviews
-                        .compactMap { $0 as? RadioSelectControl }
-                        .forEach { $0.isSelected = $0 == radioSelectControl }
+                    
+                    // Only set and animate `isHidden` if the value should change.
+                    // Otherwise we get weird animation queue issues 🤷‍♂️
+                    let shouldHide = control != radioControls.last
+                    if shouldHide != self.paymentAmountTextField.isHidden {
+                        UIView.animate(withDuration: 0.2) {
+                            self.paymentAmountTextField.isHidden = shouldHide
+                        }
+                    }
+                    
+                    radioControls.forEach { $0.isSelected = $0 == control }
                 })
-                .disposed(by: radioSelectControl.bag)
-            paymentAmountsStack.addArrangedSubview(radioSelectControl)
+                .disposed(by: control.bag)
+            
+            paymentAmountsStack.addArrangedSubview(control)
         }
         
         // Payment Amount Text Field
@@ -439,18 +451,19 @@ class MakePaymentViewController: UIViewController {
 //        if viewModel.showSelectPaymentAmount {
 //            paymentAmountTextField.textField.text = viewModel.paymentAmount.value
 //        } else {
-            viewModel.paymentAmount.asDriver()
+            viewModel.paymentAmountString.asDriver()
                 .drive(paymentAmountTextField.textField.rx.text.orEmpty)
                 .disposed(by: disposeBag)
 //        }
-        paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).disposed(by: disposeBag)
+        paymentAmountTextField.textField.rx.text.orEmpty
+            .bind(to: viewModel.paymentAmountString).disposed(by: disposeBag)
         paymentAmountTextField.textField.rx.controlEvent(.editingChanged).asDriver()
             .drive(onNext: { [weak self] in
                 self?.viewModel.formatPaymentAmount()
             }).disposed(by: disposeBag)
         
         // Fixed Payment Amount - if allowEdits is false
-        viewModel.paymentAmount.asDriver().drive(fixedPaymentAmountValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.paymentAmountString.asDriver().drive(fixedPaymentAmountValueLabel.rx.text).disposed(by: disposeBag)
         
         // Due Date
         viewModel.dueDate.asDriver().drive(dueDateDateLabel.rx.text).disposed(by: disposeBag)

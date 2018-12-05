@@ -28,7 +28,8 @@ class PaymentViewModel {
     let cvv = Variable("")
     
     let amountDue: Variable<Double>
-    let paymentAmount: Variable<String>
+    let paymentAmount: Variable<Double>
+    let paymentAmountString: Variable<String>
     let paymentDate: Variable<Date>
     
     let termsConditionsSwitchValue = Variable(false)
@@ -64,11 +65,16 @@ class PaymentViewModel {
 
         amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
         
-        paymentAmount = Variable("")
+        paymentAmount = Variable(0)
+        paymentAmountString = Variable("")
         if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 && !showSelectPaymentAmount {
-            paymentAmount.value = String(format: "%.02f", netDueAmount)
+            paymentAmount.value = netDueAmount
         }
-        formatPaymentAmount()
+        
+        paymentAmountString.asDriver()
+            .map { Double(String($0.filter { "0123456789.".contains($0) })) ?? 0 }
+            .drive(paymentAmount)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Service Calls
@@ -135,8 +141,7 @@ class PaymentViewModel {
                 
                 if let walletItems = self.walletItems.value, self.selectedWalletItem.value == nil {
                     if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment
-                        self.paymentAmount.value = String(format: "%.02f", paymentDetail.paymentAmount)
-                        self.formatPaymentAmount()
+                        self.paymentAmount.value = paymentDetail.paymentAmount
                         self.paymentDate.value = paymentDetail.paymentDate!
                         for item in walletItems {
                             if item.walletItemID == paymentDetail.walletItemId {
@@ -217,7 +222,7 @@ class PaymentViewModel {
                                       existingAccount: true,
                                       saveAccount: false,
                                       maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                                      paymentAmount: self.paymentAmountDouble,
+                                      paymentAmount: self.paymentAmount.value,
                                       paymentType: paymentType,
                                       paymentDate: paymentDate,
                                       walletId: AccountsStore.shared.customerIdentifier,
@@ -233,10 +238,6 @@ class PaymentViewModel {
                     }).disposed(by: self.disposeBag)
             }).disposed(by: disposeBag)
         }
-    }
-    
-    private var paymentAmountDouble: Double {
-        return Double(String(paymentAmount.value.filter { "0123456789.".contains($0) })) ?? 0
     }
     
     private func scheduleInlineBankPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
@@ -280,7 +281,7 @@ class PaymentViewModel {
                                           existingAccount: false,
                                           saveAccount: self.addBankFormViewModel.saveToWallet.value,
                                           maskedWalletAccountNumber: maskedAccountNumber,
-                                          paymentAmount: self.paymentAmountDouble,
+                                          paymentAmount: self.paymentAmount.value,
                                           paymentType: .check,
                                           paymentDate: paymentDate,
                                           walletId: AccountsStore.shared.customerIdentifier,
@@ -329,7 +330,7 @@ class PaymentViewModel {
                 let paymentDate = isFixed ? Date() : self.paymentDate.value
                 
                 self.paymentService.scheduleBGEOneTimeCardPayment(accountNumber: self.accountDetail.value.accountNumber,
-                                                                  paymentAmount: self.paymentAmountDouble,
+                                                                  paymentAmount: self.paymentAmount.value,
                                                                   paymentDate: paymentDate,
                                                                   creditCard: card)
                     .observeOn(MainScheduler.instance)
@@ -364,7 +365,7 @@ class PaymentViewModel {
                                               existingAccount: false,
                                               saveAccount: self.addCardFormViewModel.saveToWallet.value,
                                               maskedWalletAccountNumber: maskedAccountNumber,
-                                              paymentAmount: self.paymentAmountDouble,
+                                              paymentAmount: self.paymentAmount.value,
                                               paymentType: .credit,
                                               paymentDate: paymentDate,
                                               walletId: AccountsStore.shared.customerIdentifier,
@@ -438,7 +439,7 @@ class PaymentViewModel {
                                   existingAccount: true,
                                   saveAccount: false,
                                   maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                                  paymentAmount: self.paymentAmountDouble,
+                                  paymentAmount: self.paymentAmount.value,
                                   paymentType: paymentType,
                                   paymentDate: paymentDate,
                                   walletId: AccountsStore.shared.customerIdentifier,
@@ -613,7 +614,7 @@ class PaymentViewModel {
     
     private(set) lazy var paymentFieldsValid: Driver<Bool> = Driver
         .combineLatest(shouldShowContent,
-                       paymentAmount.asDriver(),
+                       paymentAmountString.asDriver(),
                        paymentAmountErrorMessage)
         { $0 && !$1.isEmpty && $2 == nil }
     
@@ -740,7 +741,7 @@ class PaymentViewModel {
     { ($0 || $1 || $2) && $3 }
     
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
-        return Driver.combineLatest(bankWorkflow, cardWorkflow, accountDetail.asDriver(), paymentAmountNumber, amountDue.asDriver())
+        return Driver.combineLatest(bankWorkflow, cardWorkflow, accountDetail.asDriver(), paymentAmount.asDriver(), amountDue.asDriver())
         { (bankWorkflow, cardWorkflow, accountDetail, paymentAmount, amountDue) -> String? in
             if bankWorkflow {
                 let minPayment = accountDetail.minPaymentAmount(bankOrCard: .bank)
@@ -1138,7 +1139,7 @@ class PaymentViewModel {
     private(set) lazy var isOverpaying: Driver<Bool> = {
         switch Environment.shared.opco {
         case .bge:
-            return Driver.combineLatest(amountDue.asDriver(), paymentAmountNumber, resultSelector: <)
+            return Driver.combineLatest(amountDue.asDriver(), paymentAmount.asDriver(), resultSelector: <)
         case .comEd, .peco:
             return Driver.just(false)
         }
@@ -1150,7 +1151,7 @@ class PaymentViewModel {
     private(set) lazy var isOverpayingBank: Driver<Bool> = Driver.combineLatest(isOverpaying, bankWorkflow) { $0 && $1 }
     
     private(set) lazy var overpayingValueDisplayString: Driver<String?> = Driver
-        .combineLatest(amountDue.asDriver(), paymentAmountNumber)
+        .combineLatest(amountDue.asDriver(), paymentAmount.asDriver())
         { ($1 - $0).currencyString }
     
     private(set) lazy var shouldShowTermsConditionsSwitchView: Driver<Bool> = cardWorkflow.map {
@@ -1163,9 +1164,7 @@ class PaymentViewModel {
     
     private(set) lazy var shouldShowOverpaymentSwitchView: Driver<Bool> = isOverpaying
 
-    private(set) lazy var paymentAmountDisplayString: Driver<String?> = paymentAmount.asDriver().map { "\($0)" }
-    
-    private(set) lazy var convenienceFeeDisplayString: Driver<String?> = paymentAmountNumber.map { [weak self] in
+    private(set) lazy var convenienceFeeDisplayString: Driver<String?> = paymentAmount.asDriver().map { [weak self] in
             guard let self = self else { return nil }
             if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
                 return (($0 / 100) * self.convenienceFee).currencyString
@@ -1182,11 +1181,8 @@ class PaymentViewModel {
         $0 ? NSLocalizedString("Payment Amount", comment: ""): NSLocalizedString("Total Payment", comment: "")
     }
     
-    private(set) lazy var paymentAmountNumber: Driver<Double> = paymentAmount.asDriver()
-        .map { Double(String($0.filter { "0123456789.".contains($0) })) ?? 0 }
-    
     private(set) lazy var totalPaymentDisplayString: Driver<String?> = Driver
-        .combineLatest(paymentAmountNumber, reviewPaymentShouldShowConvenienceFeeBox)
+        .combineLatest(paymentAmount.asDriver(), reviewPaymentShouldShowConvenienceFeeBox)
         .map { [weak self] paymentAmount, showConvenienceFeeBox in
             guard let self = self else { return nil }
             if showConvenienceFeeBox {
@@ -1224,15 +1220,15 @@ class PaymentViewModel {
     // MARK: - Random functions
     
     func formatPaymentAmount() {
-        if paymentAmount.value.isEmpty {
-            paymentAmount.value = "$0.00"
+        if paymentAmountString.value.isEmpty {
+            paymentAmountString.value = "$0.00"
         } else {
-            let textStr = String(paymentAmount.value.filter { "0123456789".contains($0) })
+            let textStr = String(paymentAmountString.value.filter { "0123456789".contains($0) })
             if let intVal = Double(textStr) {
                 if intVal == 0 {
-                    paymentAmount.value = "$0.00"
+                    paymentAmountString.value = "$0.00"
                 } else {
-                    paymentAmount.value = (intVal / 100).currencyString!
+                    paymentAmountString.value = (intVal / 100).currencyString!
                 }
             }
         }
