@@ -70,9 +70,6 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var activeSeveranceSwitch: Switch!
     @IBOutlet weak var activeSeveranceSwitchLabel: UILabel!
     
-    @IBOutlet weak var billMatrixView: UIView!
-    @IBOutlet weak var privacyPolicyButton: UIButton!
-    
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
@@ -105,7 +102,8 @@ class ReviewPaymentViewController: UIViewController {
         overpaymentLabel.setLineHeight(lineHeight: 24)
         
         paymentAccountTextLabel.textColor = .deepGray
-        paymentAccountTextLabel.text = NSLocalizedString("Payment Account", comment: "")
+        paymentAccountTextLabel.text = Environment.shared.opco == .bge ?
+            NSLocalizedString("Payment Account", comment: "") : NSLocalizedString("Payment Method", comment: "")
         paymentAccountMaskedAccountNumberLabel.textColor = .blackText
         paymentAccountNicknameLabel.textColor = .middleGray
         
@@ -114,7 +112,8 @@ class ReviewPaymentViewController: UIViewController {
         
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        amountDueTextLabel.text = NSLocalizedString("Amount Due", comment: "")
+        amountDueTextLabel.text = Environment.shared.opco == .bge ?
+            NSLocalizedString("Amount Due", comment: "") : NSLocalizedString("Total Amount Due", comment: "")
         amountDueValueLabel.textColor = .deepGray
         amountDueValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         dueDateTextLabel.textColor = .deepGray
@@ -172,9 +171,6 @@ class ReviewPaymentViewController: UIViewController {
         termsConditionsSwitchLabel.isAccessibilityElement = false
         termsConditionsSwitch.accessibilityLabel = termsConditionsSwitchLabel.text!
         
-        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
-        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
-        
         overpayingSwitchLabel.textColor = .deepGray
         overpayingSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
         overpayingSwitchLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
@@ -217,7 +213,6 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceSwitchView.rx.isHidden).disposed(by: disposeBag)
-        billMatrixView.isHidden = !viewModel.shouldShowBillMatrixView
     }
     
     func bindViewContent() {
@@ -262,10 +257,6 @@ class ReviewPaymentViewController: UIViewController {
     func bindButtonTaps() {
         termsConditionsButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onTermsConditionsPress()
-        }).disposed(by: disposeBag)
-        
-        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.onPrivacyPolicyPress()
         }).disposed(by: disposeBag)
     }
     

@@ -27,9 +27,6 @@ class PaymentConfirmationViewController: UIViewController {
     @IBOutlet weak var autoPayLabel: UILabel!
     @IBOutlet weak var enrollAutoPayButton: SecondaryButton!
     
-    @IBOutlet weak var billMatrixView: UIView!
-    @IBOutlet weak var privacyPolicyButton: UIButton!
-    
     @IBOutlet weak var bgeFooterView: UIView!
     @IBOutlet weak var bgeFooterLabel: UILabel!
     
@@ -80,9 +77,6 @@ class PaymentConfirmationViewController: UIViewController {
         autoPayLabel.text = NSLocalizedString("Would you like to set up Automatic Payments?", comment: "")
         enrollAutoPayButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
-        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
-        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
-        
         if Environment.shared.opco == .bge {
             bgeFooterView.backgroundColor = .softGray
             bgeFooterLabel.textColor = .blackText
@@ -99,7 +93,6 @@ class PaymentConfirmationViewController: UIViewController {
     }
     
     func bindViewHiding() {
-        billMatrixView.isHidden = !viewModel.shouldShowBillMatrixView
         viewModel.shouldShowAutoPayEnrollButton.map(!).drive(autoPayView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowConvenienceFeeLabel.map(!).drive(convenienceFeeLabel.rx.isHidden).disposed(by: disposeBag)
     }
@@ -161,12 +154,6 @@ class PaymentConfirmationViewController: UIViewController {
                 break
             }
         }
-    }
-    
-    @IBAction func onPrivacyPolicyPress(_ sender: Any) {
-        let tacModal = WebViewController(title: NSLocalizedString("Privacy Policy", comment: ""),
-                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/privacy_notice_en-us.html")!)
-        present(tacModal, animated: true, completion: nil)
     }
     
 }
