@@ -1671,9 +1671,6 @@
 		E841F3B41F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */; };
 		E841F3B51F030EE5007BFA82 /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
 		E841F3B61F030EE7007BFA82 /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
-		E84407821F16CFD100CB9707 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = E844077D1F16CFCC00CB9707 /* fiserv_errors.xml */; };
-		E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = E844077F1F16CFCC00CB9707 /* fiserv_errors.xml */; };
-		E84407841F16CFD800CB9707 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = E84407811F16CFCC00CB9707 /* fiserv_errors.xml */; };
 		E84705ED202514CB00A749A3 /* MockUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84705EC202514CB00A749A3 /* MockUsageService.swift */; };
 		E84705EE202514CB00A749A3 /* MockUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84705EC202514CB00A749A3 /* MockUsageService.swift */; };
 		E84705EF202514CB00A749A3 /* MockUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84705EC202514CB00A749A3 /* MockUsageService.swift */; };
@@ -3162,9 +3159,6 @@
 		E841F3A61F02F316007BFA82 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateDisclosureButton.xib; sourceTree = "<group>"; };
 		E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisclosureButton.swift; sourceTree = "<group>"; };
-		E844077D1F16CFCC00CB9707 /* fiserv_errors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
-		E844077F1F16CFCC00CB9707 /* fiserv_errors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
-		E84407811F16CFCC00CB9707 /* fiserv_errors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
 		E84705EC202514CB00A749A3 /* MockUsageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUsageService.swift; sourceTree = "<group>"; };
 		E84705F62025160F00A749A3 /* MockRegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegistrationService.swift; sourceTree = "<group>"; };
 		E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = full_screen_loading.json; sourceTree = "<group>"; };
@@ -5270,7 +5264,6 @@
 		E844077C1F16CFCC00CB9707 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
-				E844077D1F16CFCC00CB9707 /* fiserv_errors.xml */,
 				E8EDC5391F32405D006DD927 /* speedpay_errors.xml */,
 			);
 			path = PECO;
@@ -5279,7 +5272,6 @@
 		E844077E1F16CFCC00CB9707 /* ComEd */ = {
 			isa = PBXGroup;
 			children = (
-				E844077F1F16CFCC00CB9707 /* fiserv_errors.xml */,
 				E8EDC5371F324054006DD927 /* speedpay_errors.xml */,
 			);
 			path = ComEd;
@@ -5288,7 +5280,6 @@
 		E84407801F16CFCC00CB9707 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
-				E84407811F16CFCC00CB9707 /* fiserv_errors.xml */,
 				E8EDC5351F32403A006DD927 /* speedpay_errors.xml */,
 			);
 			path = BGE;
@@ -6088,7 +6079,6 @@
 				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
 				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
-				E84407841F16CFD800CB9707 /* fiserv_errors.xml in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				B0882CA6210B926B00EB756B /* UsageToolCardView.xib in Resources */,
@@ -6226,7 +6216,6 @@
 				B0B0840621710D1500B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1E216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
-				E84407821F16CFD100CB9707 /* fiserv_errors.xml in Resources */,
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
 				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -6360,7 +6349,6 @@
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				35277B00210794B000411297 /* UnavailableView.xib in Resources */,
-				E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */,
 				E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */,
 				35A6C6E3211CC17100C2A58F /* Updates.storyboard in Resources */,
 				B0882CB5210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
