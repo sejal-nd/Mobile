@@ -443,13 +443,13 @@ class MakePaymentViewController: UIViewController {
         // Payment Amount Text Field
         viewModel.paymentAmountFeeLabelText.asDriver().drive(paymentAmountFeeLabel.rx.text).disposed(by: disposeBag)
        
-        if viewModel.showSelectPaymentAmount {
-            paymentAmountTextField.textField.text = viewModel.paymentAmount.value
-        } else {
+//        if viewModel.showSelectPaymentAmount {
+//            paymentAmountTextField.textField.text = viewModel.paymentAmount.value
+//        } else {
             viewModel.paymentAmount.asDriver()
                 .drive(paymentAmountTextField.textField.rx.text.orEmpty)
                 .disposed(by: disposeBag)
-        }
+//        }
         paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).disposed(by: disposeBag)
         paymentAmountTextField.textField.rx.controlEvent(.editingChanged).asDriver()
             .drive(onNext: { [weak self] in
