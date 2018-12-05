@@ -1029,19 +1029,6 @@ class PaymentViewModel {
                        allowEdits.asDriver())
         { !$0 && !$1 && !$2 && $3 }
     
-    private(set) lazy var shouldShowWalletFooterView: Driver<Bool> = Driver
-        .combineLatest(hasWalletItems, inlineBank.asDriver(), inlineCard.asDriver())
-        {
-            if Environment.shared.opco == .bge {
-                return true
-            } else {
-                if $1 || $2 {
-                    return true
-                }
-                return !$0
-            }
-    }
-    
     private(set) lazy var walletFooterLabelText: Driver<String> = Driver
         .combineLatest(hasWalletItems, inlineCard.asDriver(), inlineBank.asDriver())
     {
@@ -1052,7 +1039,7 @@ class PaymentViewModel {
                 return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
             }
         } else {
-            return NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
+            return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
         }
     }
     
@@ -1123,8 +1110,6 @@ class PaymentViewModel {
             }
             return false
     }
-    
-    var shouldShowBillMatrixView: Bool = Environment.shared.opco != .bge
     
     // MARK: - Review Payment Drivers
     
@@ -1227,7 +1212,7 @@ class PaymentViewModel {
             }
             return nil
         } else {
-            return NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
+            return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
         }
     }
     

@@ -1808,13 +1808,11 @@ class PaymentViewModelTests: XCTestCase {
             
             viewModel.inlineCard.value = true
             viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
-                XCTAssert(text == NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: ""),
-                          "Got unexpected string")
+                XCTAssertEqual(text, NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: ""))
             }).disposed(by: disposeBag)
         } else {
             viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
-                XCTAssert(text == NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: ""),
-                          "Got unexpected string")
+                XCTAssertEqual(text, NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: ""))
             }).disposed(by: disposeBag)
         }
     }

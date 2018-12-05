@@ -1307,10 +1307,6 @@
 		B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
-		B56DD4981ED84E6000F0198B /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
-		B56DD4991ED84E6000F0198B /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
-		B56DD49A1ED84E6000F0198B /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
-		B56DD49B1ED84E6000F0198B /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
 		B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
 		B56DD49E1ED87AD800F0198B /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
 		B56DD49F1ED87AD800F0198B /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
@@ -1675,9 +1671,6 @@
 		E841F3B41F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */; };
 		E841F3B51F030EE5007BFA82 /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
 		E841F3B61F030EE7007BFA82 /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
-		E84407821F16CFD100CB9707 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = E844077D1F16CFCC00CB9707 /* fiserv_errors.xml */; };
-		E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = E844077F1F16CFCC00CB9707 /* fiserv_errors.xml */; };
-		E84407841F16CFD800CB9707 /* fiserv_errors.xml in Resources */ = {isa = PBXBuildFile; fileRef = E84407811F16CFCC00CB9707 /* fiserv_errors.xml */; };
 		E84705ED202514CB00A749A3 /* MockUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84705EC202514CB00A749A3 /* MockUsageService.swift */; };
 		E84705EE202514CB00A749A3 /* MockUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84705EC202514CB00A749A3 /* MockUsageService.swift */; };
 		E84705EF202514CB00A749A3 /* MockUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84705EC202514CB00A749A3 /* MockUsageService.swift */; };
@@ -2018,11 +2011,7 @@
 		E8EDC5401F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */; };
 		E8EDC5411F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */; };
 		E8EDC5421F324226006DD927 /* SpeedpayErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */; };
-		E8EDC5441F324242006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
-		E8EDC5451F324242006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
-		E8EDC5461F324242006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
 		E8EDC5471F324DEE006DD927 /* SpeedpayErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */; };
-		E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
 		E8EDC54A1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		E8EDC54C1F3506F2006DD927 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
@@ -2178,10 +2167,8 @@
 		E8F62BA4200924410077B3DA /* AddBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887C9D31ED4CDDE002433A3 /* AddBankAccountViewModel.swift */; };
 		E8F62BA6200924410077B3DA /* Top5EnergyTipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */; };
 		E8F62BA7200924410077B3DA /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
-		E8F62BA8200924410077B3DA /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
 		E8F62BA9200924410077B3DA /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */; };
 		E8F62BAA200924410077B3DA /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAD31E736596001E8A44 /* Macros.swift */; };
-		E8F62BAB200924410077B3DA /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
 		E8F62BAC200924410077B3DA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
 		E8F62BAD200924410077B3DA /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
 		E8F62BAE200924410077B3DA /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
@@ -2320,10 +2307,8 @@
 		E8F62C59200924570077B3DA /* AddBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887C9D31ED4CDDE002433A3 /* AddBankAccountViewModel.swift */; };
 		E8F62C5B200924570077B3DA /* Top5EnergyTipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */; };
 		E8F62C5C200924570077B3DA /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */; };
-		E8F62C5D200924570077B3DA /* FiservErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */; };
 		E8F62C5E200924570077B3DA /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */; };
 		E8F62C5F200924570077B3DA /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAD31E736596001E8A44 /* Macros.swift */; };
-		E8F62C60200924570077B3DA /* FiservApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4971ED84E6000F0198B /* FiservApi.swift */; };
 		E8F62C61200924570077B3DA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
 		E8F62C62200924570077B3DA /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
 		E8F62C63200924570077B3DA /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
@@ -3028,7 +3013,6 @@
 		B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B55A8B111F1564A400F63AC3 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
-		B56DD4971ED84E6000F0198B /* FiservApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservApi.swift; sourceTree = "<group>"; };
 		B56DD49C1ED87AD800F0198B /* BankAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
 		B56DD4A11ED87AE200F0198B /* CreditCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
 		B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileStatus.swift; sourceTree = "<group>"; };
@@ -3175,9 +3159,6 @@
 		E841F3A61F02F316007BFA82 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateDisclosureButton.xib; sourceTree = "<group>"; };
 		E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisclosureButton.swift; sourceTree = "<group>"; };
-		E844077D1F16CFCC00CB9707 /* fiserv_errors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
-		E844077F1F16CFCC00CB9707 /* fiserv_errors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
-		E84407811F16CFCC00CB9707 /* fiserv_errors.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = fiserv_errors.xml; sourceTree = "<group>"; };
 		E84705EC202514CB00A749A3 /* MockUsageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUsageService.swift; sourceTree = "<group>"; };
 		E84705F62025160F00A749A3 /* MockRegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegistrationService.swift; sourceTree = "<group>"; };
 		E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = full_screen_loading.json; sourceTree = "<group>"; };
@@ -3298,7 +3279,6 @@
 		E8EDC5371F324054006DD927 /* speedpay_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speedpay_errors.xml; sourceTree = "<group>"; };
 		E8EDC5391F32405D006DD927 /* speedpay_errors.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speedpay_errors.xml; sourceTree = "<group>"; };
 		E8EDC53F1F324226006DD927 /* SpeedpayErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedpayErrorMapper.swift; sourceTree = "<group>"; };
-		E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiservErrorMapper.swift; sourceTree = "<group>"; };
 		E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimumVersion.swift; sourceTree = "<group>"; };
 		E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
@@ -4904,15 +4884,6 @@
 			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
-		B56DD4961ED84E2400F0198B /* Fiserv */ = {
-			isa = PBXGroup;
-			children = (
-				B56DD4971ED84E6000F0198B /* FiservApi.swift */,
-				E8EDC5431F324242006DD927 /* FiservErrorMapper.swift */,
-			);
-			path = Fiserv;
-			sourceTree = "<group>";
-		};
 		B58B5AB81E4E28740051FD5F = {
 			isa = PBXGroup;
 			children = (
@@ -5089,7 +5060,6 @@
 		B5AC06E41E5269D700BBA4ED /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				B56DD4961ED84E2400F0198B /* Fiserv */,
 				B54846921E6F4FD7008CE1B1 /* Mock */,
 				E801BAD31E8C436C00550F99 /* MCS */,
 				B5389EA11E53D8640028AF89 /* Parsing */,
@@ -5294,7 +5264,6 @@
 		E844077C1F16CFCC00CB9707 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
-				E844077D1F16CFCC00CB9707 /* fiserv_errors.xml */,
 				E8EDC5391F32405D006DD927 /* speedpay_errors.xml */,
 			);
 			path = PECO;
@@ -5303,7 +5272,6 @@
 		E844077E1F16CFCC00CB9707 /* ComEd */ = {
 			isa = PBXGroup;
 			children = (
-				E844077F1F16CFCC00CB9707 /* fiserv_errors.xml */,
 				E8EDC5371F324054006DD927 /* speedpay_errors.xml */,
 			);
 			path = ComEd;
@@ -5312,7 +5280,6 @@
 		E84407801F16CFCC00CB9707 /* BGE */ = {
 			isa = PBXGroup;
 			children = (
-				E84407811F16CFCC00CB9707 /* fiserv_errors.xml */,
 				E8EDC5351F32403A006DD927 /* speedpay_errors.xml */,
 			);
 			path = BGE;
@@ -6112,7 +6079,6 @@
 				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
 				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
-				E84407841F16CFD800CB9707 /* fiserv_errors.xml in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				B0882CA6210B926B00EB756B /* UsageToolCardView.xib in Resources */,
@@ -6250,7 +6216,6 @@
 				B0B0840621710D1500B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1E216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
-				E84407821F16CFD100CB9707 /* fiserv_errors.xml in Resources */,
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
 				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -6384,7 +6349,6 @@
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				35277B00210794B000411297 /* UnavailableView.xib in Resources */,
-				E84407831F16CFD500CB9707 /* fiserv_errors.xml in Resources */,
 				E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */,
 				35A6C6E3211CC17100C2A58F /* Updates.storyboard in Resources */,
 				B0882CB5210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
@@ -7222,7 +7186,6 @@
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
 				9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
-				E8EDC5441F324242006DD927 /* FiservErrorMapper.swift in Sources */,
 				B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02701FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
@@ -7264,7 +7227,6 @@
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				B0B083AF216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
-				B56DD4981ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				823694311FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
@@ -7447,7 +7409,6 @@
 				E827D2331ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAC1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
-				B56DD49A1ED84E6000F0198B /* FiservApi.swift in Sources */,
 				824A96671FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				01F6122B1F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
@@ -7599,7 +7560,6 @@
 				B0030D0A2097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02721FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
-				E8EDC5461F324242006DD927 /* FiservErrorMapper.swift in Sources */,
 				9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
@@ -7820,7 +7780,6 @@
 				E827D2321ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */,
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
 				82A18EAB1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
-				B56DD4991ED84E6000F0198B /* FiservApi.swift in Sources */,
 				824A96661FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				01F6122A1F1E406100A4F9DA /* AddBankFormView.swift in Sources */,
@@ -7971,7 +7930,6 @@
 				B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02711FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
-				E8EDC5451F324242006DD927 /* FiservErrorMapper.swift in Sources */,
 				9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
@@ -8309,11 +8267,9 @@
 				E887C9D71ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
 				82E22B6A1F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8EDC5521F35071F006DD927 /* SplashViewModel.swift in Sources */,
-				E8EDC5481F324DFB006DD927 /* FiservErrorMapper.swift in Sources */,
 				828FDAF32040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */,
 				E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */,
 				B574BAD71E736596001E8A44 /* Macros.swift in Sources */,
-				B56DD49B1ED84E6000F0198B /* FiservApi.swift in Sources */,
 				82D5994E1EC36B5500DDB380 /* Currency.swift in Sources */,
 				82AEF2E21F6054910057E7ED /* RxNotifications.swift in Sources */,
 				B0B083AB216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
@@ -8548,11 +8504,9 @@
 				E8F62BA4200924410077B3DA /* AddBankAccountViewModel.swift in Sources */,
 				E8F62BA6200924410077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8F62BA7200924410077B3DA /* SplashViewModel.swift in Sources */,
-				E8F62BA8200924410077B3DA /* FiservErrorMapper.swift in Sources */,
 				828FDAF42040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */,
 				E8F62BA9200924410077B3DA /* WeatherService.swift in Sources */,
 				E8F62BAA200924410077B3DA /* Macros.swift in Sources */,
-				E8F62BAB200924410077B3DA /* FiservApi.swift in Sources */,
 				E8F62BAC200924410077B3DA /* Currency.swift in Sources */,
 				B0B083AC216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				E8F62BAD200924410077B3DA /* RxNotifications.swift in Sources */,
@@ -8742,11 +8696,9 @@
 				E8F62C59200924570077B3DA /* AddBankAccountViewModel.swift in Sources */,
 				E8F62C5B200924570077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8F62C5C200924570077B3DA /* SplashViewModel.swift in Sources */,
-				E8F62C5D200924570077B3DA /* FiservErrorMapper.swift in Sources */,
 				828FDAF52040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */,
 				E8F62C5E200924570077B3DA /* WeatherService.swift in Sources */,
 				E8F62C5F200924570077B3DA /* Macros.swift in Sources */,
-				E8F62C60200924570077B3DA /* FiservApi.swift in Sources */,
 				E8F62C61200924570077B3DA /* Currency.swift in Sources */,
 				B0B083AD216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				E8F62C62200924570077B3DA /* RxNotifications.swift in Sources */,

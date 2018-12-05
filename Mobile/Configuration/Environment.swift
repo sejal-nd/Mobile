@@ -54,7 +54,6 @@ struct MCSConfig {
     let mobileBackendId: String
     let anonymousKey: String
     let oAuthEndpoint: String // The Layer 7 token endpoint
-    let fiservUrl: String
     let speedpayUrl: String
     
     init(mcsInstanceName: String) {
@@ -67,7 +66,6 @@ struct MCSConfig {
         mobileBackendId = mobileBackend["mobileBackendID"] as! String
         anonymousKey = mobileBackend["anonymousKey"] as! String
         oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
-        fiservUrl = mobileBackend["fiservUrl"] as! String
         speedpayUrl = mobileBackend["speedpayUrl"] as! String
     }
 }
