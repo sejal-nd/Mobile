@@ -283,13 +283,7 @@ class MakePaymentViewController: UIViewController {
             0.0.currencyString :
             viewModel.paymentAmount.value.currencyString
         
-        viewModel.fetchData(onSuccess: { [weak self] in
-            guard let self = self else { return }
-            UIAccessibility.post(notification: .screenChanged, argument: self.view)
-            }, onError: { [weak self] in
-                guard let self = self else { return }
-                UIAccessibility.post(notification: .screenChanged, argument: self.view)
-            })
+        fetchData()
     }
     
     deinit {
@@ -300,6 +294,16 @@ class MakePaymentViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setColoredNavBar()
+    }
+    
+    func fetchData() {
+        viewModel.fetchData(onSuccess: { [weak self] in
+            guard let self = self else { return }
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
+        }, onError: { [weak self] in
+            guard let self = self else { return }
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
+        })
     }
     
     func configureCardIO() {
@@ -546,16 +550,43 @@ class MakePaymentViewController: UIViewController {
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).disposed(by: disposeBag)
         
+
+        
         addBankAccountButton.rx.touchUpInside
             .do(onNext: { Analytics.log(event: .addBankNewWallet) })
-            .map { _ in true }
-            .bind(to: viewModel.inlineBank).disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                if Environment.shared.opco == .bge {
+                    self.viewModel.inlineBank.value = true
+                } else {
+                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { _ in
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank)
+                        paymentusVC.delegate = self
+                        self.navigationController?.pushViewController(paymentusVC, animated: true)
+                    }, dontSaveHandler: { _ in
+                        // TODO
+                    })
+                    self.present(actionSheet, animated: true, completion: nil)
+                }
+            }).disposed(by: disposeBag)
         
         addCreditCardButton.rx.touchUpInside
             .do(onNext: { Analytics.log(event: .addCardNewWallet) })
-            .map { _ in true }
-            .bind(to: viewModel.inlineCard)
-            .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                if Environment.shared.opco == .bge {
+                    self.viewModel.inlineCard.value = true
+                } else {
+                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { _ in
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card)
+                        paymentusVC.delegate = self
+                        self.navigationController?.pushViewController(paymentusVC, animated: true)
+                    }, dontSaveHandler: { _ in
+                        // TODO
+                    })
+                    self.present(actionSheet, animated: true, completion: nil)
+                }
+            }).disposed(by: disposeBag)
         
         deletePaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onDeletePaymentPress()
@@ -717,22 +748,6 @@ class MakePaymentViewController: UIViewController {
         present(confirmAlert, animated: true, completion: nil)
     }
     
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ReviewPaymentViewController {
             vc.viewModel = viewModel
@@ -757,8 +772,26 @@ class MakePaymentViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
+    // MARK: - ScrollView
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        let userInfo = notification.userInfo!
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, right: 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
+    }
+    
 }
+
+// MARK: - UITextFieldDelegate
 
 extension MakePaymentViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -788,6 +821,8 @@ extension MakePaymentViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - MiniWalletViewControllerDelegate
+
 extension MakePaymentViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
@@ -802,6 +837,26 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
         viewModel.inlineCard.value = true
     }
 }
+
+// MARK: - PaymentusFormViewControllerDelegate
+
+extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
+    func didAddBank(_ walletItem: WalletItem?) {
+        fetchData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
+        })
+    }
+    
+    func didAddCard(_ walletItem: WalletItem?) {
+        fetchData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Card added", comment: ""))
+        })
+    }
+}
+
+// MARK: - PDTSimpleCalendarViewDelegate
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
@@ -853,6 +908,8 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     }
 }
 
+// MARK: - AddBankFormViewDelegate
+
 extension MakePaymentViewController: AddBankFormViewDelegate {
     func addBankFormViewDidTapRoutingNumberTooltip(_ addBankFormView: AddBankFormView) {
         let infoModal = InfoModalViewController(title: NSLocalizedString("Routing Number", comment: ""), image: #imageLiteral(resourceName: "routing_number_info"), description: NSLocalizedString("This number is used to identify your banking institution. You can find your bank’s nine-digit routing number on the bottom of your paper check.", comment: ""))
@@ -864,6 +921,8 @@ extension MakePaymentViewController: AddBankFormViewDelegate {
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }
+
+// MARK: - AddCardFormViewDelegate
 
 extension MakePaymentViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
@@ -897,6 +956,8 @@ extension MakePaymentViewController: AddCardFormViewDelegate {
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }
+
+// MARK: - CardIOPaymentViewControllerDelegate
 
 extension MakePaymentViewController: CardIOPaymentViewControllerDelegate {
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
