@@ -332,12 +332,14 @@ class MCSWalletService: WalletService {
     func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, postbackUrl: String, walletItemId: String? = nil, temporary: Bool = false) -> Observable<String> {
         var params = [
             "pmCategory": bankOrCard == .bank ? "DD" : "CC", // "DC" = Debit Card
-            "postbackUrl": postbackUrl
+            "postbackUrl": "",
         ]
         
-        var strParam = "pageView=mobile;"
+        var strParam = "pageView=mobile;postMessagePmDetailsOrigin=exeloncorp.com"
         if temporary {
             strParam += "nickname=false;primaryPM=false;"
+        } else {
+            params["ownerId"] = customerId
         }
         params["strParam"] = strParam
         
