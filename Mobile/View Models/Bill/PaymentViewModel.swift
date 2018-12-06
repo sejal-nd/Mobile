@@ -35,8 +35,6 @@ class PaymentViewModel {
     let overpayingSwitchValue = Variable(false)
     let activeSeveranceSwitchValue = Variable(false)
     
-    var workdayArray = [Date]()
-    
     let addBankFormViewModel: AddBankFormViewModel!
     let addCardFormViewModel: AddCardFormViewModel!
     let inlineCard = Variable(false)
@@ -48,8 +46,6 @@ class PaymentViewModel {
     let paymentId = Variable<String?>(nil)
     let allowEdits = Variable(true)
     let allowDeletes = Variable(false)
-    
-    let fiservCutoffDate = Variable<Date?>(nil)
     
     init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
@@ -89,103 +85,40 @@ class PaymentViewModel {
             }
     }
     
-    func fetchPECOWorkdays() -> Observable<Void> {
-        return paymentService.fetchWorkdays()
-            .map { dateArray in
-                self.workdayArray = dateArray
-            }
-    }
-    
     func fetchPaymentDetails(paymentId: String) -> Observable<Void> {
         return paymentService.fetchPaymentDetails(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId).map { paymentDetail in
             self.paymentDetail.value = paymentDetail
         }
     }
     
-    func fetchFiservCutoff() -> Observable<Date> {
-        return paymentService.fetchPaymentFreezeDate().map { date in
-            self.fiservCutoffDate.value = date
-            return date
-        }
-    }
-    
-    func checkForCutoff(onShouldReject: @escaping (() -> Void), onShouldContinue: @escaping (() -> Void)) {
-        if Environment.shared.opco == .bge {
-            onShouldContinue()
-        } else {
-            isFetching.value = true
-            fetchFiservCutoff().subscribe(onNext: { [weak self] cutoffDate in
-                guard let self = self else { return }
-                self.isFetching.value = false
-                if Date() >= cutoffDate || self.paymentDate.value >= cutoffDate {
-                    onShouldReject()
-                } else {
-                    onShouldContinue()
-                }
-            }, onError: { [weak self] _ in
-                self?.isFetching.value = false
-                onShouldContinue()
-            }).disposed(by: disposeBag)
-        }
-    }
-    
     func computeDefaultPaymentDate() {
         let now = Date()
-        let startOfTodayDate = Calendar.current.startOfDay(for: now)
-        let tomorrow =  Calendar.current.date(byAdding: .day, value: 1, to: startOfTodayDate)!
         
-        if Environment.shared.opco == .bge &&
-            Calendar.opCo.component(.hour, from: Date()) >= 20 &&
-            !accountDetail.value.isActiveSeverance {
-            self.paymentDate.value = tomorrow
-        }
-        if Environment.shared.opco == .bge &&
-            !accountDetail.value.isActiveSeverance &&
-            !self.fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
-            self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
-        } else if let dueDate = accountDetail.value.billingInfo.dueByDate {
-            if dueDate >= now && !self.fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value) {
-                switch Environment.shared.opco {
-                case .bge:
+        switch Environment.shared.opco {
+        case .comEd, .peco:
+            paymentDate.value = now
+        case .bge:
+            let startOfTodayDate = Calendar.opCo.startOfDay(for: now)
+            let tomorrow =  Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!
+            
+            if Calendar.opCo.component(.hour, from: Date()) >= 20 &&
+                !accountDetail.value.isActiveSeverance {
+                self.paymentDate.value = tomorrow
+            }
+            
+            let isFixedPaymentDate = fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value)
+            if !accountDetail.value.isActiveSeverance && !isFixedPaymentDate {
+                self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
+            } else if let dueDate = accountDetail.value.billingInfo.dueByDate {
+                if dueDate >= now && !isFixedPaymentDate {
                     self.paymentDate.value = dueDate
-                case .comEd:
-                    if let cutoffDate = self.fiservCutoffDate.value {
-                        self.paymentDate.value = min(dueDate, cutoffDate)
-                    } else {
-                        self.paymentDate.value = dueDate
-                    }
-                case .peco:
-                    if let cutoffDate = self.fiservCutoffDate.value {
-                        guard let cutoffWorkday = self.workdayArray.last(where: { $0 <= cutoffDate }) else {
-                            self.paymentDate.value = min(dueDate, cutoffDate)
-                            return
-                        }
-                        
-                        self.paymentDate.value = min(dueDate, cutoffWorkday)
-                    } else {
-                        self.paymentDate.value = dueDate
-                    }
                 }
             }
         }
     }
     
-    func fetchData(onSuccess: (() -> ())?, onError: (() -> ())?, onFiservCutoff: (() -> ())?) {
+    func fetchData(onSuccess: (() -> ())?, onError: (() -> ())?) {
         var observables = [fetchWalletItems()]
-        if Environment.shared.opco == .peco || Environment.shared.opco == .comEd {
-            let cutoffObservable = fetchFiservCutoff()
-                .do(onNext: { [weak self] date in
-                    self?.fiservCutoffDate.value = date
-                })
-                .mapTo(())
-                .catchErrorJustReturn(())
-            
-            observables.append(cutoffObservable)
-        }
-        
-        if Environment.shared.opco == .peco {
-            observables.append(fetchPECOWorkdays())
-        }
         
         if let paymentId = paymentId.value, paymentDetail.value == nil {
             observables.append(fetchPaymentDetails(paymentId: paymentId))
@@ -197,23 +130,6 @@ class PaymentViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.isFetching.value = false
-                
-                if let cutoffDate = self.fiservCutoffDate.value {
-                    if Environment.shared.opco == .peco {
-                        guard let nextWorkday = self.workdayArray.first(where: { $0 >= Calendar.opCo.startOfDay(for: Date()) }) else {
-                            onError?()
-                            return
-                        }
-                       
-                        guard nextWorkday < cutoffDate else {
-                            onFiservCutoff?()
-                            return
-                        }
-                    } else if Date() >= cutoffDate {
-                        onFiservCutoff?()
-                        return
-                    }
-                }
                 
                 self.computeDefaultPaymentDate()
                 
@@ -1022,20 +938,6 @@ class PaymentViewModel {
                                                                                        self.allowEdits.asDriver())
     { !$0 && !$1 && !$2 && $3 }
     
-    private(set) lazy var shouldShowWalletFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems,
-                                                                                          self.inlineBank.asDriver(),
-                                                                                          self.inlineCard.asDriver())
-    {
-        if Environment.shared.opco == .bge {
-            return true
-        } else {
-            if $1 || $2 {
-                return true
-            }
-            return !$0
-        }
-    }
-    
     private(set) lazy var walletFooterLabelText: Driver<String> = Driver.combineLatest(self.hasWalletItems,
                                                                                        self.inlineCard.asDriver(),
                                                                                        self.inlineBank.asDriver())
@@ -1047,7 +949,7 @@ class PaymentViewModel {
                 return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
             }
         } else {
-            return NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
+            return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
         }
     }
     
@@ -1114,8 +1016,6 @@ class PaymentViewModel {
         }
         return false
     }
-    
-    var shouldShowBillMatrixView: Bool = Environment.shared.opco != .bge
     
     // MARK: - Review Payment Drivers
     
@@ -1225,7 +1125,7 @@ class PaymentViewModel {
             }
             return nil
         } else {
-            return NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
+            return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
         }
     }
     

@@ -43,8 +43,6 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        }, onFiservCutoff: {
-            XCTFail("unexpected fiserv cutoff")
         })
         
         XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
@@ -75,8 +73,6 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        }, onFiservCutoff: {
-            XCTFail("unexpected fiserv cutoff")
         })
         
         XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
@@ -101,8 +97,6 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        }, onFiservCutoff: {
-            XCTFail("unexpected fiserv cutoff")
         })
 
         waitForExpectations(timeout: 3) { err in
@@ -124,8 +118,6 @@ class PaymentViewModelTests: XCTestCase {
                 expect1.fulfill()
             }, onError: {
                 XCTFail("unexpected error response")
-            }, onFiservCutoff: {
-                XCTFail("unexpected fiserv cutoff")
             })
 
             waitForExpectations(timeout: 3) { err in
@@ -141,8 +133,6 @@ class PaymentViewModelTests: XCTestCase {
                 expect2.fulfill()
             }, onError: {
                 XCTFail("unexpected error response")
-            }, onFiservCutoff: {
-                XCTFail("unexpected fiserv cutoff")
             })
             
             waitForExpectations(timeout: 3) { err in
@@ -165,8 +155,6 @@ class PaymentViewModelTests: XCTestCase {
             expect1.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        }, onFiservCutoff: {
-            XCTFail("unexpected fiserv cutoff")
         })
         
         waitForExpectations(timeout: 3) { err in
@@ -182,8 +170,6 @@ class PaymentViewModelTests: XCTestCase {
             expect2.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        }, onFiservCutoff: {
-            XCTFail("unexpected fiserv cutoff")
         })
         
         waitForExpectations(timeout: 3) { err in
@@ -1153,7 +1139,7 @@ class PaymentViewModelTests: XCTestCase {
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is below minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "100000"
+            viewModel.paymentAmount.value = "200000"
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
@@ -1163,7 +1149,7 @@ class PaymentViewModelTests: XCTestCase {
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "90000"
+            viewModel.paymentAmount.value = "100000"
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
@@ -1822,13 +1808,11 @@ class PaymentViewModelTests: XCTestCase {
             
             viewModel.inlineCard.value = true
             viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
-                XCTAssert(text == NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: ""),
-                          "Got unexpected string")
+                XCTAssertEqual(text, NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: ""))
             }).disposed(by: disposeBag)
         } else {
             viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
-                XCTAssert(text == NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: ""),
-                          "Got unexpected string")
+                XCTAssertEqual(text, NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: ""))
             }).disposed(by: disposeBag)
         }
     }

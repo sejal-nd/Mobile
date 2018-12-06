@@ -310,8 +310,7 @@ class PaymentUITests: ExelonUITestCase {
             (.staticText, "A $0.00 convenience fee will be applied by Bill Matrix, our payment partner."),
             (.staticText, "Due Date"),
             (.staticText, "Payment Date"),
-            (.staticText, dateText),
-            (.image, "ic_billmatrix")
+            (.staticText, dateText)
         ])
 
         let saveToWalletSwitch = element(ofType: .switch, withText: "Save to my wallet")

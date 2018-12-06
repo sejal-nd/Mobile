@@ -115,19 +115,6 @@ class MCSPaymentService: PaymentService {
                 RxNotifications.shared.accountDetailUpdated.onNext(())
             })
     }
-    
-    func fetchWorkdays() -> Observable<[Date]> {
-        return MCSApi.shared.get(anon: true, path: "workdays")
-            .map { json in
-                guard let dateStringArray = json as? NSArray else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                return dateStringArray
-                    .compactMap { $0 as? String }
-                    .compactMap(DateFormatter.yyyyMMddFormatter.date)
-        }
-    }
 
     func schedulePayment(payment: Payment) -> Observable<String> {
         
@@ -142,18 +129,15 @@ class MCSPaymentService: PaymentService {
                                     "is_existing_account": payment.existingAccount,
                                     "is_save_account": payment.saveAccount]
         
-        if opCo == .comEd || opCo == .peco {
+        switch opCo {
+        case .comEd, .peco:
             params["biller_id"] = "\(opCo.rawValue)Registered"
-
-            return MCSWalletService().fetchAuthSessionToken()
-                .flatMap { [weak self] token -> Observable<String> in
-                    params["auth_sess_token"] = token
-                    return self?.schedulePaymentInternal(accountNumber: payment.accountNumber, params: params) ?? .empty()
-                }
-        } else {
+            params["auth_sess_token"] = ""
+        case .bge:
             params["cvv"] = payment.cvv
-            return schedulePaymentInternal(accountNumber: payment.accountNumber, params: params)
         }
+        
+        return schedulePaymentInternal(accountNumber: payment.accountNumber, params: params)
     }
     
     func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String> {
@@ -201,9 +185,10 @@ class MCSPaymentService: PaymentService {
             }
             .catchError { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                if let fiservError = FiservErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
-                    throw ServiceError(serviceCode: fiservError.id, serviceMessage: fiservError.text)
-                } else if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
+                
+                //TODO: Paymentus error handling
+                
+                if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
                     throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
                 } else {
                     if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
@@ -244,16 +229,12 @@ class MCSPaymentService: PaymentService {
         switch Environment.shared.opco {
         case .comEd, .peco:
             params["biller_id"] = "\(Environment.shared.opco.rawValue)Registered"
-            
-            return MCSWalletService().fetchAuthSessionToken()
-                .flatMap { [weak self] token -> Observable<Void> in
-                    params["auth_sess_token"] = token
-                    return self?.updatePaymentInternal(accountNumber: payment.accountNumber, paymentId: paymentId, params: params) ?? .empty()
-            }
+            params["auth_sess_token"] = ""
         case .bge:
             params["cvv"] = payment.cvv
-            return updatePaymentInternal(accountNumber: payment.accountNumber, paymentId: paymentId, params: params)
         }
+        
+        return updatePaymentInternal(accountNumber: payment.accountNumber, paymentId: paymentId, params: params)
     }
     
     private func updatePaymentInternal(accountNumber: String, paymentId: String, params: [String: Any]) -> Observable<Void> {
@@ -261,9 +242,10 @@ class MCSPaymentService: PaymentService {
             .mapTo(())
             .catchError { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                if let fiservError = FiservErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
-                    throw ServiceError(serviceCode: fiservError.id, serviceMessage: fiservError.text)
-                } else if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
+                
+                //TODO: Paymentus error handling
+                
+                if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
                     throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
                 } else {
                     if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
@@ -289,15 +271,12 @@ class MCSPaymentService: PaymentService {
         case .comEd, .peco:
             params["biller_id"] = "\(opCo.rawValue)Registered"
             params["cancel_payment_method"] = bankOrCard == .bank ? "ECHECKS" : "CREDITCARD"
-            
-            return MCSWalletService().fetchAuthSessionToken()
-                .flatMap { [weak self] token -> Observable<Void> in
-                    params["auth_sess_token"] = token
-                    return self?.cancelPaymentInternal(accountNumber: accountNumber, paymentId: paymentId, params: params) ?? .empty()
-            }
+            params["auth_sess_token"] = ""
         case .bge:
-            return cancelPaymentInternal(accountNumber: accountNumber, paymentId: paymentId, params: params)
+            break
         }
+        
+        return cancelPaymentInternal(accountNumber: accountNumber, paymentId: paymentId, params: params)
     }
     
     private func cancelPaymentInternal(accountNumber: String, paymentId: String, params: [String: Any]) -> Observable<Void> {
@@ -305,9 +284,10 @@ class MCSPaymentService: PaymentService {
             .mapTo(())
             .catchError { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                if let fiservError = FiservErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
-                    throw ServiceError(serviceCode: fiservError.id, serviceMessage: fiservError.text)
-                } else if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
+                
+                //TODO: Paymentus error handling
+                
+                if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
                     throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
                 } else {
                     if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
@@ -321,17 +301,5 @@ class MCSPaymentService: PaymentService {
                 RxNotifications.shared.accountDetailUpdated.onNext(())
                 AppRating.logRatingEvent()
             })
-    }
-    
-    func fetchPaymentFreezeDate() -> Observable<Date> {
-        return MCSApi.shared.get(anon: true, path: "config/epay_freeze")
-            .map { response in
-                guard let json = response as? [String: Any],
-                   let dateString = json["cutover_date"] as? String else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                return try DateParser().extractDate(object: dateString)
-        }
     }
 }

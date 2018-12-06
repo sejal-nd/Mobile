@@ -16,7 +16,14 @@ protocol PaymentusFormViewControllerDelegate: class {
     func didAddBank(_ walletItem: WalletItem?)
 }
 
+// Default implementation to make these protocol functions optional
+extension PaymentusFormViewControllerDelegate {
+    func didEditWalletItem() { }
+}
+
 class PaymentusFormViewController: UIViewController {
+    
+    let TIMEOUT: TimeInterval = 1800 // 30 minutes
     
     var webView: WKWebView!
     let loadingIndicator = LoadingIndicator().usingAutoLayout()
@@ -30,6 +37,7 @@ class PaymentusFormViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
+    var shouldPopToMakePaymentOnSave = false
     var shouldPopToRootOnSave = false
     
     init(bankOrCard: BankOrCard, walletItemId: String? = nil) {
@@ -39,9 +47,9 @@ class PaymentusFormViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         if self.bankOrCard == .bank {
-            title = NSLocalizedString("Add Bank Account", comment: "")
+            title = walletItemId != nil ? NSLocalizedString("Edit Bank Account", comment: "") : NSLocalizedString("Add Bank Account", comment: "")
         } else {
-            title = NSLocalizedString("Add Card", comment: "")
+            title = walletItemId != nil ? NSLocalizedString("Edit Card", comment: "") : NSLocalizedString("Add Card", comment: "")
         }
 
         fetchEncryptionKey()
@@ -111,6 +119,20 @@ class PaymentusFormViewController: UIViewController {
         loadingIndicator.isHidden = true
         webView.isHidden = false
         errorLabel.isHidden = true
+        
+        // Start the timer. The Paymentus session is only valid for [TIMEOUT] seconds - so if that elapses,
+        // alert the user and reload the page
+        Timer.scheduledTimer(withTimeInterval: TIMEOUT, repeats: false) { [weak self] timer in
+            let alert = UIAlertController(title: NSLocalizedString("Your session has timed out due to inactivity.", comment: ""),
+                                          message: NSLocalizedString("Your payment method has not been saved. Sorry for the inconvenience. Please re-enter your payment information.", comment: ""),
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in
+                self?.showLoadingState()
+                self?.webView.resignFirstResponder() // Dismissing the keyboard resolves some jankiness
+                self?.fetchEncryptionKey()
+            }))
+            self?.present(alert, animated: true, completion: nil)
+        }
     }
     
     func fetchEncryptionKey() {
@@ -176,6 +198,13 @@ extension PaymentusFormViewController: WKNavigationDelegate {
             
             if shouldPopToRootOnSave {
                 navigationController?.popToRootViewController(animated: true)
+            } else if shouldPopToMakePaymentOnSave {
+                for vc in navigationController!.viewControllers {
+                    guard let dest = vc as? MakePaymentViewController else {
+                        continue
+                    }
+                    navigationController?.popToViewController(dest, animated: true)
+                }
             } else {
                 navigationController?.popViewController(animated: true)
             }

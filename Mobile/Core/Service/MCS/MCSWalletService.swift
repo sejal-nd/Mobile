@@ -61,27 +61,6 @@ class MCSWalletService: WalletService {
         }
     }
     
-    func fetchAuthSessionToken() -> Observable<String> {
-        let opCo = Environment.shared.opco
-        
-        var params: Dictionary<String, String> = [:]
-        
-        if opCo == .comEd || opCo == .peco {
-            params["biller_id"] = "\(opCo.rawValue)Registered"
-        }
-        
-        return MCSApi.shared.post(path: "wallet/query", params: params)
-            .map { json in
-                guard let dict = json as? [String: Any],
-                    let token = dict["authSessionToken"] as? String else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.localError.rawValue,
-                                           serviceMessage: "An authentication error has occurred.")
-                }
-                
-                return token
-        }
-    }
-    
     func fetchBankName(routingNumber: String) -> Observable<String> {
         return MCSApi.shared.get(anon: true, path: "bank/" + routingNumber)
             .map { json in
@@ -94,55 +73,17 @@ class MCSWalletService: WalletService {
         }
     }
     
+    //TODO: Remove this once BGE moves to paymentus
     func addBankAccount(_ bankAccount: BankAccount, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
-        let opCo = Environment.shared.opco
-        
-        if(opCo == .comEd || opCo == .peco) {
-            return addFiservBankAccount(bankAccount, forCustomerNumber: customerNumber)
-        } else {
+        switch Environment.shared.opco {
+        case .comEd, .peco:
+            return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
+        case .bge:
             return addMCSBankAccount(bankAccount)
         }
     }
     
-    private func addFiservBankAccount(_ bankAccount: BankAccount, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
-        //1. get the wallet to grab a new auth token for fiserv
-        //2. call the fiserv add api
-        
-        let opCo = Environment.shared.opco
-        
-        var params: Dictionary<String, String> = [:]
-        
-        if opCo == .comEd || opCo == .peco {
-            params["biller_id"] = "\(opCo.rawValue)Registered"
-        }
-        
-        return MCSApi.shared.post(path: "wallet/query", params: params)
-            .flatMap { json -> Observable<WalletItemResult> in
-                guard let dict = json as? [String: Any],
-                    let token = dict["authSessionToken"] as? String else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.localError.rawValue,
-                                           serviceMessage: "An authentication error has occurred.")
-                }
-                
-                return FiservApi().addBankAccount(bankAccountNumber: bankAccount.bankAccountNumber,
-                                                  routingNumber: bankAccount.routingNumber,
-                                                  firstName: nil,
-                                                  lastName: nil,
-                                                  nickname: bankAccount.accountNickname,
-                                                  token: token,
-                                                  customerNumber: customerNumber,
-                                                  oneTimeUse: bankAccount.oneTimeUse)
-            }
-            .do(onNext: { [weak self] _ in
-                let accountNumber = bankAccount.bankAccountNumber
-                let last4 = accountNumber[accountNumber.index((accountNumber.endIndex), offsetBy: -4)...]
-                
-                self?.addWalletItemMCS(accountNumber: AccountsStore.shared.accounts[0].accountNumber,
-                                       maskedAccountNumber: String(last4),
-                                       categoryType: "Checking")
-            })
-    }
-    
+    //TODO: Remove this once BGE moves to paymentus
     private func addMCSBankAccount(_ bankAccount: BankAccount) -> Observable<WalletItemResult> {
         let params = ["account_number" : AccountsStore.shared.accounts[0].accountNumber,
                       "routing_number" : bankAccount.routingNumber,
@@ -179,50 +120,17 @@ class MCSWalletService: WalletService {
         }
     }
     
+    //TODO: Remove this once BGE moves to paymentus
     func addCreditCard(_ creditCard: CreditCard, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
         switch Environment.shared.opco {
         case .comEd, .peco:
-            return addCreditCardFiserv(creditCard, forCustomerNumber: customerNumber)
+            return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
         case .bge:
             return addCreditCardSpeedpay(creditCard)
         }
     }
     
-    private func addCreditCardFiserv(_ creditCard: CreditCard, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
-        var params: Dictionary<String, String> = [:]
-        params["biller_id"] = "\(Environment.shared.opco.rawValue)Registered"
-        
-        return MCSApi.shared.post(path: "wallet/query", params: params)
-            .map { json in
-                guard let dict = json as? [String: Any],
-                    let token = dict["authSessionToken"] as? String else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.localError.rawValue,
-                                           serviceMessage: "An authentication error has occurred.")
-                }
-                
-                return token
-            }
-            .flatMap { token in
-                FiservApi().addCreditCard(cardNumber: creditCard.cardNumber,
-                                          expirationMonth: creditCard.expirationMonth,
-                                          expirationYear: creditCard.expirationYear,
-                                          securityCode: creditCard.securityCode,
-                                          postalCode: creditCard.postalCode,
-                                          nickname: creditCard.nickname,
-                                          token: token,
-                                          customerNumber: customerNumber,
-                                          oneTimeUse: creditCard.oneTimeUse)
-                    .do(onNext: { [weak self] walletItemResult in
-                        let string = creditCard.cardNumber
-                        let last4 = string[string.index(string.endIndex, offsetBy: -4)...]
-                        
-                        self?.addWalletItemMCS(accountNumber: AccountsStore.shared.accounts[0].accountNumber,
-                                              maskedAccountNumber: String(last4),
-                                              categoryType: "Credit")
-                    })
-        }
-    }
-    
+    //TODO: Remove this once BGE moves to paymentus
     private func addCreditCardSpeedpay(_ creditCard: CreditCard) -> Observable<WalletItemResult> {
         return SpeedpayApi().fetchTokenizedCardNumber(cardNumber: creditCard.cardNumber)
             .flatMap { [weak self] token in
@@ -230,6 +138,7 @@ class MCSWalletService: WalletService {
         }
     }
     
+    //TODO: Remove this once BGE moves to paymentus
     private func addCreditCardMCS(_ creditCard: CreditCard, token: String) -> Observable<WalletItemResult> {
         let parsed = DateFormatter.MMyyyyFormatter.date(from: creditCard.expirationMonth + creditCard.expirationYear)
 
@@ -270,8 +179,9 @@ class MCSWalletService: WalletService {
         }
     }
     
+    //TODO: Remove this once BGE moves to paymentus
     /// "Add" a wallet item to MCS - This should be called after
-    /// adding a wallet item through a third party (Fiserv/Speedpay)
+    /// adding a wallet item through a third party (Speedpay)
     ///
     /// - Parameters:
     ///   - accountNumber: the user account number
@@ -287,6 +197,7 @@ class MCSWalletService: WalletService {
             .disposed(by: disposeBag)
     }
     
+    //TODO: Remove this once BGE moves to paymentus
     func updateCreditCard(walletItemID: String,
                           customerNumber: String,
                           expirationMonth: String,
@@ -295,12 +206,7 @@ class MCSWalletService: WalletService {
                           postalCode: String) -> Observable<Void> {
         switch Environment.shared.opco {
         case .comEd, .peco:
-            return updateFiservCreditCard(walletItemID: walletItemID,
-                                          customerNumber: customerNumber,
-                                          expirationMonth: expirationMonth,
-                                          expirationYear: expirationYear,
-                                          securityCode: securityCode,
-                                          postalCode: postalCode)
+            return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
         case .bge:
             return updateMCSCreditCard(walletItemID: walletItemID,
                                        expirationMonth: expirationMonth,
@@ -346,51 +252,6 @@ class MCSWalletService: WalletService {
         }
     }
     
-    private func updateFiservCreditCard(walletItemID: String,
-                                        customerNumber: String,
-                                        expirationMonth: String,
-                                        expirationYear: String,
-                                        securityCode: String,
-                                        postalCode: String) -> Observable<Void> {
-        
-        var params: [String: Any] = [:]
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            params["biller_id"] = "\(Environment.shared.opco.rawValue)Registered"
-        case .bge:
-            break
-        }
-        
-        return MCSApi.shared.post(path: "wallet/query", params: params)
-            .flatMap { json -> Observable<WalletItemResult> in
-                guard let dict = json as? [String: Any],
-                    let token = dict["authSessionToken"] as? String else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.localError.rawValue,
-                                           serviceMessage: "An authentication error has occurred.")
-                }
-                
-                return FiservApi().updateCreditCard(walletItemID: walletItemID,
-                                                    expirationMonth: expirationMonth,
-                                                    expirationYear: expirationYear,
-                                                    securityCode: securityCode,
-                                                    postalCode: postalCode,
-                                                    token: token,
-                                                    customerNumber: customerNumber)
-            }
-            .mapTo(())
-            .do(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                // Send the PUT request to auth_\(MCSApi.API_VERSION)/wallet so that emails get sent out - ignoring whether it succeeds to fails
-                self.updateMCSCreditCard(walletItemID: walletItemID,
-                                         expirationMonth: expirationMonth,
-                                         expirationYear: expirationYear,
-                                         securityCode: securityCode,
-                                         postalCode: postalCode)
-                    .subscribe()
-                    .disposed(by: self.disposeBag)
-            })
-    }
-        
     func updateMCSBankAccount(walletItemID: String,
                               bankAccountNumber: String,
                               routingNumber: String,
@@ -434,9 +295,9 @@ class MCSWalletService: WalletService {
                     throw ServiceError(cause: err)
                 }
                 
-                if let fiservError = FiservErrorMapper.shared.getError(message: error.errorDescription ?? "", context: nil) {
-                    throw ServiceError(serviceMessage: fiservError.text)
-                } else if let speedpayError = SpeedpayErrorMapper.shared.getError(message: error.errorDescription ?? "", context: nil) {
+                //TODO: Add paymentus error handling
+                
+                if let speedpayError = SpeedpayErrorMapper.shared.getError(message: error.errorDescription ?? "", context: nil) {
                     throw ServiceError(serviceMessage: speedpayError.text)
                 } else {
                     if error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
