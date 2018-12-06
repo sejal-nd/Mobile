@@ -15,7 +15,8 @@ extension UIAlertController {
         let title = bankOrCard == .bank ?
             NSLocalizedString("Add Bank Account", comment: "") :
             NSLocalizedString("Add Credit/Debit Card", comment: "")
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        let style: UIAlertController.Style = UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: style)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Save to My Wallet", comment: ""), style: .default, handler: saveHandler))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Don't Save to My Wallet", comment: ""), style: .default, handler: dontSaveHandler))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
