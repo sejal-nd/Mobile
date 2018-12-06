@@ -166,8 +166,20 @@ class MiniWalletViewController: UIViewController {
     
     @objc func onAddBankAccountPress() {
         if sentFromPayment {
-            delegate?.miniWalletViewControllerDidTapAddBank(self)
-            navigationController?.popViewController(animated: true)
+            if Environment.shared.opco == .bge {
+                delegate?.miniWalletViewControllerDidTapAddBank(self)
+                navigationController?.popViewController(animated: true)
+            } else {
+                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { _ in
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank)
+                    paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+                    paymentusVC.shouldPopToMakePaymentOnSave = true
+                    self.navigationController?.pushViewController(paymentusVC, animated: true)
+                }, dontSaveHandler: { _ in
+                    // TODO
+                })
+                present(actionSheet, animated: true, completion: nil)
+            }
         } else {
             performSegue(withIdentifier: "miniWalletAddBankAccountSegue", sender: self)
         }
@@ -181,8 +193,20 @@ class MiniWalletViewController: UIViewController {
     
     @objc func onAddCreditCardPress() {
         if sentFromPayment {
-            delegate?.miniWalletViewControllerDidTapAddCard(self)
-            navigationController?.popViewController(animated: true)
+            if Environment.shared.opco == .bge {
+                delegate?.miniWalletViewControllerDidTapAddCard(self)
+                navigationController?.popViewController(animated: true)
+            } else {
+                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { _ in
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card)
+                    paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+                    paymentusVC.shouldPopToMakePaymentOnSave = true
+                    self.navigationController?.pushViewController(paymentusVC, animated: true)
+                }, dontSaveHandler: { _ in
+                    // TODO
+                })
+                present(actionSheet, animated: true, completion: nil)
+            }
         } else {
             performSegue(withIdentifier: "miniWalletAddCreditCardSegue", sender: self)
         }

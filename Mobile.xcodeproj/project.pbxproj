@@ -964,6 +964,12 @@
 		9CB16EF7219DD4A4008C4871 /* ePayWalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* ePayWalletTableViewCell.swift */; };
 		9CB16EF8219DD4A4008C4871 /* ePayWalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* ePayWalletTableViewCell.swift */; };
 		9CB16EF9219DD4A4008C4871 /* ePayWalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* ePayWalletTableViewCell.swift */; };
+		9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
+		9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
+		9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
+		9CCE3E4221B865FB0008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
+		9CCE3E4321B865FB0008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
+		9CCE3E4421B865FC0008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		A7F5DB117C3C61732DB54BC5 /* Pods_BGE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70FC1A9A5F84C0729AF8083B /* Pods_BGE.framework */; };
 		B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
 		B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
@@ -2902,6 +2908,7 @@
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
 		9CB16EF6219DD4A4008C4871 /* ePayWalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ePayWalletTableViewCell.swift; sourceTree = "<group>"; };
+		9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+SaveToWallet.swift"; sourceTree = "<group>"; };
 		9F9446C42DD179469D3921A7 /* Pods_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3B048AEC34151BE6C987D9E /* Pods-PECOUnitTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOUnitTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PECOUnitTests/Pods-PECOUnitTests.staging.xcconfig"; sourceTree = "<group>"; };
 		A7A4DC2A541BBE4107EBD109 /* Pods-ComEdUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdUITests/Pods-ComEdUITests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -4609,6 +4616,7 @@
 				352CB2062140448C00DAF045 /* UINavigationController+Style.swift */,
 				2249C036216C44C800EAA44D /* URLSession+Rx.swift */,
 				B05E9D12217F688A0003FAB8 /* Application.swift */,
+				9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -7020,6 +7028,7 @@
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A1E1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
+				9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */,
 				358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */,
 				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
@@ -7565,6 +7574,7 @@
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				B0649A61214834380041B299 /* StormModeStatus.swift in Sources */,
+				9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
@@ -7761,6 +7771,7 @@
 				B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
+				9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */,
 				82AC2A1F1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
 				54C1DEF71F01EBF900290FE5 /* BGEasyViewController.swift in Sources */,
@@ -8179,6 +8190,7 @@
 				E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */,
 				B0AD7FF1205841C80090B40D /* SequenceForEach.swift in Sources */,
 				E87C41411FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
+				9CCE3E4221B865FB0008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				E80CBD121F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8790BEA1F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				35A6C6EC211DEB3300C2A58F /* UpdatesViewModelTests.swift in Sources */,
@@ -8415,6 +8427,7 @@
 				E8F62B5E200924410077B3DA /* UserDefaultKeys.swift in Sources */,
 				8286F1A12044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift in Sources */,
 				E8F62B5F200924410077B3DA /* AppRating.swift in Sources */,
+				9CCE3E4321B865FB0008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				B0AD7FF2205841C80090B40D /* SequenceForEach.swift in Sources */,
 				E8F62B61200924410077B3DA /* AlertsViewModel.swift in Sources */,
 				E8F62B62200924410077B3DA /* SSOData.swift in Sources */,
@@ -8607,6 +8620,7 @@
 				E8F62C13200924570077B3DA /* UserDefaultKeys.swift in Sources */,
 				8286F1A22044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift in Sources */,
 				E8F62C14200924570077B3DA /* AppRating.swift in Sources */,
+				9CCE3E4421B865FC0008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				B0AD7FF3205841C80090B40D /* SequenceForEach.swift in Sources */,
 				E8F62C16200924570077B3DA /* AlertsViewModel.swift in Sources */,
 				E8F62C17200924570077B3DA /* SSOData.swift in Sources */,
