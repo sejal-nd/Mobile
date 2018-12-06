@@ -294,9 +294,6 @@ class MCSWalletService: WalletService {
                 guard let error = err as? ServiceError else {
                     throw ServiceError(cause: err)
                 }
-                
-                //TODO: Add paymentus error handling
-                
                 if let speedpayError = SpeedpayErrorMapper.shared.getError(message: error.errorDescription ?? "", context: nil) {
                     throw ServiceError(serviceMessage: speedpayError.text)
                 } else {
