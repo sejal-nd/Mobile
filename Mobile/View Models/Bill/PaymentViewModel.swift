@@ -29,7 +29,6 @@ class PaymentViewModel {
     
     let amountDue: Variable<Double>
     let paymentAmount: Variable<Double>
-    let paymentAmountString: Variable<String>
     let paymentDate: Variable<Date>
     
     let termsConditionsSwitchValue = Variable(false)
@@ -64,17 +63,7 @@ class PaymentViewModel {
         self.paymentDate = Variable(Date()) // May be updated later...see computeDefaultPaymentDate()
 
         amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
-        
-        paymentAmount = Variable(0)
-        paymentAmountString = Variable("")
-        if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount > 0 && !showSelectPaymentAmount {
-            paymentAmount.value = netDueAmount
-        }
-        
-        paymentAmountString.asDriver()
-            .map { Double(String($0.filter { "0123456789.".contains($0) })) ?? 0 }
-            .drive(paymentAmount)
-            .disposed(by: disposeBag)
+        paymentAmount = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
     }
     
     // MARK: - Service Calls
@@ -458,6 +447,9 @@ class PaymentViewModel {
     
     // MARK: - Shared Drivers
     
+    private(set) lazy var paymentAmountString = paymentAmount.asDriver()
+        .map { $0.currencyString }
+    
     private(set) lazy var bankWorkflow: Driver<Bool> = Driver.combineLatest(self.selectedWalletItem.asDriver(), self.inlineBank.asDriver(), self.inlineCard.asDriver())
     {
         if $2 {
@@ -614,9 +606,8 @@ class PaymentViewModel {
     
     private(set) lazy var paymentFieldsValid: Driver<Bool> = Driver
         .combineLatest(shouldShowContent,
-                       paymentAmountString.asDriver(),
                        paymentAmountErrorMessage)
-        { $0 && !$1.isEmpty && $2 == nil }
+        { $0 && $1 == nil }
     
     // MARK: - Make Payment Drivers
     
@@ -801,7 +792,7 @@ class PaymentViewModel {
         return false
     }
     
-    lazy var paymentAmounts: [(String, String)] = {
+    lazy var paymentAmounts: [(Double?, String)] = {
         let opco = Environment.shared.opco
         
         //TODO: Remove when BGE gets paymentus
@@ -809,21 +800,18 @@ class PaymentViewModel {
         
         let billingInfo = accountDetail.value.billingInfo
         
-        guard let netDueAmount = billingInfo.netDueAmount?.currencyString,
-            let pastDueAmount = billingInfo.pastDueAmount, pastDueAmount > 0 else {
+        guard let netDueAmount = billingInfo.netDueAmount,
+            let pastDueAmount = billingInfo.pastDueAmount,
+            pastDueAmount > 0 && pastDueAmount != netDueAmount else {
             return []
         }
         
-        let totalAmount = (netDueAmount, NSLocalizedString("Total Amount Due", comment: ""))
+        let totalAmount: (Double?, String) = (netDueAmount, NSLocalizedString("Total Amount Due", comment: ""))
+        let pastDue: (Double?, String) = (pastDueAmount, NSLocalizedString("Past Due Amount", comment: ""))
+        let other: (Double?, String) = (nil, NSLocalizedString("Enter Custom Amount", comment: ""))
         
-        let pastDue = (pastDueAmount.currencyString!, NSLocalizedString("Total Amount Past Due", comment: ""))
-        
-        let other = (NSLocalizedString("Other", comment: ""),
-                     NSLocalizedString("Enter Custom Amount", comment: ""))
-        
-        var amounts = [totalAmount, other]
-        
-        var precariousAmounts = [(String, String)]()
+        var amounts: [(Double?, String)] = [totalAmount, other]
+        var precariousAmounts = [(Double?, String)]()
         if let restorationAmount = billingInfo.restorationAmount,
             restorationAmount > 0 &&
                 opco != .bge &&
@@ -832,27 +820,25 @@ class PaymentViewModel {
                 precariousAmounts.append(pastDue)
             }
             
-            precariousAmounts.append((restorationAmount.currencyString!, NSLocalizedString("Amount Due to Restore Service", comment: "")))
+            precariousAmounts.append((restorationAmount, NSLocalizedString("Restoration Amount", comment: "")))
         } else if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 && billingInfo.isDisconnectNotice {
             if pastDueAmount != arrears {
                 precariousAmounts.append(pastDue)
             }
             
-            precariousAmounts.append((arrears.currencyString!, NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")))
+            precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount ", comment: "")))
         } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && opco != .bge {
             if pastDueAmount != amtDpaReinst {
                 precariousAmounts.append(pastDue)
             }
             
-            precariousAmounts.append((amtDpaReinst.currencyString!, NSLocalizedString("Amount Due to ", comment: "")))
+            precariousAmounts.append((amtDpaReinst, NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")))
+        } else {
+            precariousAmounts.append(pastDue)
         }
         
-        if precariousAmounts.isEmpty {
-            return []
-        } else {
-            amounts.insert(contentsOf: precariousAmounts, at: 1)
-            return amounts
-        }
+        amounts.insert(contentsOf: precariousAmounts, at: 1)
+        return amounts
     }()
     
     private(set) lazy var paymentAmountFeeLabelText: Driver<String?> = Driver
@@ -1067,15 +1053,10 @@ class PaymentViewModel {
                 return true
             }
         } else {
-            if cardWorkflow || inlineCard || !saveBank || !allowEdits {
+            if !allowEdits {
                 return true
             }
-            if accountDetail.billingInfo.pastDueAmount ?? 0 > 0 { // Past due, avoid shutoff
-                return true
-            }
-            if (accountDetail.billingInfo.restorationAmount ?? 0 > 0 || accountDetail.billingInfo.amtDpaReinst ?? 0 > 0) || accountDetail.isCutOutNonPay { // Cut for non-pay
-                return true
-            }
+            
             let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
             if let dueDate = accountDetail.billingInfo.dueByDate {
                 if dueDate < startOfTodayDate {
@@ -1083,6 +1064,7 @@ class PaymentViewModel {
                 }
             }
         }
+        
         return false
     }
     
@@ -1215,23 +1197,5 @@ class PaymentViewModel {
     // MARK: - Payment Confirmation
     
     private(set) lazy var shouldShowConvenienceFeeLabel: Driver<Bool> = cardWorkflow
-    
-    
-    // MARK: - Random functions
-    
-    func formatPaymentAmount() {
-        if paymentAmountString.value.isEmpty {
-            paymentAmountString.value = "$0.00"
-        } else {
-            let textStr = String(paymentAmountString.value.filter { "0123456789".contains($0) })
-            if let intVal = Double(textStr) {
-                if intVal == 0 {
-                    paymentAmountString.value = "$0.00"
-                } else {
-                    paymentAmountString.value = (intVal / 100).currencyString!
-                }
-            }
-        }
-    }
     
 }

@@ -278,8 +278,10 @@ class MakePaymentViewController: UIViewController {
         bindViewHiding()
         bindViewContent()
         bindButtonTaps()
-
-        viewModel.formatPaymentAmount() // Initial formatting
+        
+        paymentAmountTextField.textField.text = viewModel.showSelectPaymentAmount ?
+            0.0.currencyString :
+            viewModel.paymentAmount.value.currencyString
         
         viewModel.fetchData(onSuccess: { [weak self] in
             guard let self = self else { return }
@@ -420,47 +422,67 @@ class MakePaymentViewController: UIViewController {
             $0.removeFromSuperview()
         }
         
-        let radioControls = viewModel.paymentAmounts.map { (title, subtitle) -> RadioSelectControl in
+        let radioControls = viewModel.paymentAmounts.map { (amount, subtitle) -> RadioSelectControl in
+            let title = amount?.currencyString ?? NSLocalizedString("Other", comment: "")
             return RadioSelectControl.create(withTitle: title, subtitle: subtitle, showSeparator: true)
         }
         
-        radioControls.forEach { control in
+        let radioPress = { [weak self] (control: RadioSelectControl, amount: Double?) -> () in
+            guard let self = self else { return }
+            
+            // Only set and animate `isHidden` if the value should change.
+            // Otherwise we get weird animation queue issues 🤷‍♂️
+            let shouldHide = control != radioControls.last
+            if shouldHide != self.paymentAmountTextField.isHidden {
+                UIView.animate(withDuration: 0.2) {
+                    self.paymentAmountTextField.isHidden = shouldHide
+                }
+            }
+            
+            radioControls.forEach { $0.isSelected = $0 == control }
+            
+            if let amount = amount {
+                self.paymentAmountTextField.textField.resignFirstResponder()
+                self.viewModel.paymentAmount.value = amount
+            } else {
+                self.paymentAmountTextField.textField.becomeFirstResponder()
+            }
+        }
+        
+        zip(radioControls, viewModel.paymentAmounts.map { $0.0 }).forEach { control, amount in
             control.rx.touchUpInside.asDriver()
-                .drive(onNext: { [weak self] in
-                    guard let self = self else { return }
-                    
-                    // Only set and animate `isHidden` if the value should change.
-                    // Otherwise we get weird animation queue issues 🤷‍♂️
-                    let shouldHide = control != radioControls.last
-                    if shouldHide != self.paymentAmountTextField.isHidden {
-                        UIView.animate(withDuration: 0.2) {
-                            self.paymentAmountTextField.isHidden = shouldHide
-                        }
-                    }
-                    
-                    radioControls.forEach { $0.isSelected = $0 == control }
-                })
+                .drive(onNext: { radioPress(control, amount) })
                 .disposed(by: control.bag)
             
             paymentAmountsStack.addArrangedSubview(control)
         }
         
+        if let firstControl = radioControls.first, let firstAmount = viewModel.paymentAmounts.first?.0 {
+            radioPress(firstControl, firstAmount)
+        }
+        
         // Payment Amount Text Field
-        viewModel.paymentAmountFeeLabelText.asDriver().drive(paymentAmountFeeLabel.rx.text).disposed(by: disposeBag)
-       
-//        if viewModel.showSelectPaymentAmount {
-//            paymentAmountTextField.textField.text = viewModel.paymentAmount.value
-//        } else {
-            viewModel.paymentAmountString.asDriver()
-                .drive(paymentAmountTextField.textField.rx.text.orEmpty)
-                .disposed(by: disposeBag)
-//        }
-        paymentAmountTextField.textField.rx.text.orEmpty
-            .bind(to: viewModel.paymentAmountString).disposed(by: disposeBag)
-        paymentAmountTextField.textField.rx.controlEvent(.editingChanged).asDriver()
-            .drive(onNext: { [weak self] in
-                self?.viewModel.formatPaymentAmount()
-            }).disposed(by: disposeBag)
+        viewModel.paymentAmountFeeLabelText.asDriver()
+            .drive(paymentAmountFeeLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        paymentAmountTextField.textField.rx.text.orEmpty.asObservable()
+            .skip(1)
+            .subscribe(onNext: { [weak self] entry in
+                guard let self = self else { return }
+                
+                let amount: Double
+                let textStr = String(entry.filter { "0123456789".contains($0) })
+                if let intVal = Double(textStr) {
+                    amount = intVal / 100
+                } else {
+                    amount = 0
+                }
+                
+                self.paymentAmountTextField.textField.text = amount.currencyString
+                self.viewModel.paymentAmount.value = amount
+            })
+            .disposed(by: disposeBag)
         
         // Fixed Payment Amount - if allowEdits is false
         viewModel.paymentAmountString.asDriver().drive(fixedPaymentAmountValueLabel.rx.text).disposed(by: disposeBag)
