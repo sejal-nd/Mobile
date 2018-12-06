@@ -1151,7 +1151,7 @@ class PaymentViewModel {
             if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
                 return (($0 / 100) * self.convenienceFee).currencyString
             } else {
-                return $0.currencyString
+                return self.convenienceFee.currencyString
             }
     }
     
