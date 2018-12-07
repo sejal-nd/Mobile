@@ -31,7 +31,7 @@ class MCSWalletService: WalletService {
                 let itemArray = walletItems.compactMap { WalletItem.from($0 as NSDictionary) }
                     .sorted { (a: WalletItem, b: WalletItem) in
                         // Sort order:
-                        // 1. Default Payment Account (Paymentus Only)
+                        // 1. Default Payment Method (Paymentus Only)
                         // 2. Most recent to least recently added bank accounts
                         // 3. Most recent to least recently added credit cards
                         if Environment.shared.opco != .bge {

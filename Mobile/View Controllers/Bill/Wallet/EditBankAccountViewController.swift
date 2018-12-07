@@ -65,7 +65,7 @@ class EditBankAccountViewController: UIViewController {
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         oneTouchPayDescriptionLabel.text = viewModel.getOneTouchDisplayString()
         oneTouchPayLabel.textColor = .blackText
-        oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
+        oneTouchPayLabel.text = NSLocalizedString("Default Payment Method", comment: "")
         oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         nicknameLabel.textColor = .blackText
         nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
@@ -264,14 +264,14 @@ class EditBankAccountViewController: UIViewController {
         }
         
         if shouldShowOneTouchPayReplaceWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment method?", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
                 saveBankAccountChanges(true)
             }))
             present(alertVc, animated: true, completion: nil)
         } else if shouldShowOneTouchPayDisableWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment method? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
                 saveBankAccountChanges(false)
@@ -287,7 +287,7 @@ class EditBankAccountViewController: UIViewController {
         var messageString = NSLocalizedString("Are you sure you want to delete this Bank Account? Note: If you proceed, all payments scheduled for today's date will still be processed. Pending payments for future dates using this account will be cancelled and you will need to reschedule your payment with another bank account.", comment: "")
         
         if Environment.shared.opco == .bge {
-            messageString = NSLocalizedString("Deleting this payment account will also delete all the pending payments associated with this payment account. Please tap 'Delete' to delete this payment account.", comment: "")
+            messageString = NSLocalizedString("Deleting this payment method will also delete all the pending payments associated with this payment method. Please tap 'Delete' to delete this payment method.", comment: "")
         }
         
         let alertController = UIAlertController(title: NSLocalizedString("Delete Bank Account", comment: ""), message: messageString, preferredStyle: .alert)

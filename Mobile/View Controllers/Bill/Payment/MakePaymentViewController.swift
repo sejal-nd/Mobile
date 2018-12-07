@@ -28,7 +28,7 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var bankAccountsUnavailableLabel: UILabel!
     
     @IBOutlet weak var paymentAccountView: UIView! // Contains paymentAccountLabel and paymentAccountButton
-    @IBOutlet weak var paymentAccountLabel: UILabel! // Label that says "Payment Account" above the button
+    @IBOutlet weak var paymentAccountLabel: UILabel! // Label that says "Payment Method" above the button
     @IBOutlet weak var paymentAccountButton: ButtonControl!
     @IBOutlet weak var paymentAccountImageView: UIImageView!
     @IBOutlet weak var paymentAccountAccountNumberLabel: UILabel!
@@ -153,8 +153,7 @@ class MakePaymentViewController: UIViewController {
         bankAccountsUnavailableLabel.font = SystemFont.semibold.of(textStyle: .headline)
         bankAccountsUnavailableLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
 
-        paymentAccountLabel.text = Environment.shared.opco == .bge ?
-            NSLocalizedString("Payment Account", comment: "") : NSLocalizedString("Payment Method", comment: "")
+        paymentAccountLabel.text = NSLocalizedString("Payment Method", comment: "")
         paymentAccountLabel.textColor = .deepGray
         paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
@@ -247,8 +246,7 @@ class MakePaymentViewController: UIViewController {
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
         
         // TODO - when BGE is on Paymentus we can change these variable names to `cancel`
-        let deletePaymentText = Environment.shared.opco == .bge ?
-            NSLocalizedString("Delete Payment", comment: "") : NSLocalizedString("Cancel Payment", comment: "")
+        let deletePaymentText = NSLocalizedString("Cancel Payment", comment: "")
         deletePaymentButton.accessibilityLabel = deletePaymentText
         deletePaymentLabel.text = deletePaymentText
         deletePaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -346,7 +344,7 @@ class MakePaymentViewController: UIViewController {
         // Cash Only Bank Accounts Unavailable Label
         viewModel.isCashOnlyUser.map(!).drive(bankAccountsUnavailableLabel.rx.isHidden).disposed(by: disposeBag)
         
-        // Payment Account
+        // Payment Method
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
         viewModel.allowEdits.asDriver().not().drive(paymentAccountButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
@@ -626,7 +624,7 @@ class MakePaymentViewController: UIViewController {
         }
         
         if shouldShowOneTouchPayWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment method?", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { [weak self] _ in
                 guard let self = self else { return }
@@ -639,18 +637,11 @@ class MakePaymentViewController: UIViewController {
     }
     
     func onDeletePaymentPress() {
-        var alertTitle, alertMessage, alertConfirm, alertDeny: String
-        if Environment.shared.opco == .bge {
-            alertTitle = NSLocalizedString("Delete Scheduled Payment", comment: "")
-            alertMessage = NSLocalizedString("Are you sure you want to delete this scheduled payment?", comment: "")
-            alertConfirm = NSLocalizedString("Delete", comment: "")
-            alertDeny = NSLocalizedString("Cancel", comment: "")
-        } else {
-            alertTitle = NSLocalizedString("Cancel Payment", comment: "")
-            alertMessage = NSLocalizedString("Are you sure you want to cancel this payment?", comment: "")
-            alertConfirm = NSLocalizedString("Yes", comment: "")
-            alertDeny = NSLocalizedString("No", comment: "")
-        }
+        let alertTitle = NSLocalizedString("Cancel Payment", comment: "")
+        let alertMessage = NSLocalizedString("Are you sure you want to cancel this payment?", comment: "")
+        let alertConfirm = NSLocalizedString("Yes", comment: "")
+        let alertDeny = NSLocalizedString("No", comment: "")
+        
         let confirmAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         confirmAlert.addAction(UIAlertAction(title: alertDeny, style: .cancel, handler: nil))
         confirmAlert.addAction(UIAlertAction(title: alertConfirm, style: .destructive, handler: { [weak self] _ in

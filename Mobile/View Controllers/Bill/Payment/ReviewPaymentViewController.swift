@@ -102,8 +102,7 @@ class ReviewPaymentViewController: UIViewController {
         overpaymentLabel.setLineHeight(lineHeight: 24)
         
         paymentAccountTextLabel.textColor = .deepGray
-        paymentAccountTextLabel.text = Environment.shared.opco == .bge ?
-            NSLocalizedString("Payment Account", comment: "") : NSLocalizedString("Payment Method", comment: "")
+        paymentAccountTextLabel.text = NSLocalizedString("Payment Method", comment: "")
         paymentAccountMaskedAccountNumberLabel.textColor = .blackText
         paymentAccountNicknameLabel.textColor = .middleGray
         
@@ -216,7 +215,7 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func bindViewContent() {
-        // Payment Account
+        // Payment Method
         viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).disposed(by: disposeBag)
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountMaskedAccountNumberLabel.rx.text).disposed(by: disposeBag)
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)

@@ -284,7 +284,7 @@ class BillViewModel {
     
     private lazy var paymentFailedAlertText: Driver<String?> = self.currentAccountDetail.map { _ in
         //TODO: Implement this alert text
-        let localizedText = NSLocalizedString("Your payment of %@ made with $@ failed processing. Please select an alternative payment account", comment: "")
+        let localizedText = NSLocalizedString("Your payment of %@ made with $@ failed processing. Please select an alternative payment method", comment: "")
         return nil
     }
     
