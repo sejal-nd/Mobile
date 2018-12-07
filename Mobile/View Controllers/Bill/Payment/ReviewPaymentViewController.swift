@@ -229,7 +229,7 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.dueDate.asDriver().drive(dueDateValueLabel.rx.text).disposed(by: disposeBag)
         
         // Payment Amount
-        viewModel.paymentAmountDisplayString.asDriver().drive(paymentAmountValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.paymentAmountString.asDriver().drive(paymentAmountValueLabel.rx.text).disposed(by: disposeBag)
         
         // Overpaying
         viewModel.overpayingValueDisplayString.drive(cardOverpayingValueLabel.rx.text).disposed(by: disposeBag)
