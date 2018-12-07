@@ -96,7 +96,7 @@ class HomeBillCardViewModel {
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
-    lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
+    private(set) lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
     
     private lazy var account: Observable<Account> = fetchData.map { _ in AccountsStore.shared.currentAccount }
     
