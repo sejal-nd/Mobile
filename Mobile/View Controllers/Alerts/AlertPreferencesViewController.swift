@@ -315,6 +315,10 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                     UIAccessibility.post(notification: .layoutChanged, argument: NSLocalizedString("Please select number of days", comment: ""))
                 })
                 .disposed(by: cell.disposeBag)
+        case .paymentPosted:
+            toggleVariable = viewModel.paymentPosted
+        case .paymentPastDue:
+            toggleVariable = viewModel.paymentPastDue
         case .budgetBillingReview:
             toggleVariable = viewModel.budgetBilling
         case .appointmentTracking:
