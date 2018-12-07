@@ -24,7 +24,6 @@ class BillInterfaceController: WKInterfaceController {
     @IBOutlet var billAlertGroup: WKInterfaceGroup!
     @IBOutlet var billAlertLabel: WKInterfaceLabel!
 
-    
     @IBOutlet var billGroup: WKInterfaceGroup!
 
     @IBOutlet var autoPayScheduledPaymentGroup: WKInterfaceGroup!
@@ -59,7 +58,6 @@ class BillInterfaceController: WKInterfaceController {
     @IBOutlet var pendingPaymentGroup: WKInterfaceGroup!
     @IBOutlet var pendingPaymentAmountLabel: WKInterfaceLabel!
     @IBOutlet var pendingPaymentDescriptionLabel: WKInterfaceLabel!
-    
     
     @IBOutlet var restoreServiceGroup: WKInterfaceGroup!
     @IBOutlet var restoreServiceAmountLabel: WKInterfaceLabel!
@@ -230,7 +228,7 @@ extension BillInterfaceController: NetworkingDelegate {
         hideAllStates()
         
         // Resets label
-        billAmountTitleLabel.setAttributedText(("--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
+        billAmountTitleLabel.setAttributedText(("--").textWithColorAndFontInRange(color: .white, font: UIFont.preferredFont(forTextStyle: .title1), range: NSRange(location: 0, length: 1)))
         
         // Shows overarching bill group
         state = .loaded
@@ -300,10 +298,10 @@ extension BillInterfaceController: NetworkingDelegate {
                 // Add Colored Dollar Sign if there is a precarious bill state
                 if billStates.contains(where: { $0.isPrecariousBillSituation }) {
                     // White
-                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
+                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorAndFontInRange(color: .white, font: UIFont.preferredFont(forTextStyle: .title1), range: NSRange(location: 0, length: 1)))
                 } else {
                     // Blue
-                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6), range: NSRange(location: 0, length: 1)))
+                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorAndFontInRange(color: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6), font: UIFont.preferredFont(forTextStyle: .title1), range: NSRange(location: 0, length: 1)))
                 }
                 
                 let text = "Amount due \(date.dueBy().string)"
