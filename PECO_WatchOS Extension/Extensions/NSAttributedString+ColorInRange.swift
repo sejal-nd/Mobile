@@ -10,10 +10,10 @@ import UIKit
 
 extension String {
     
-    public func textWithColorInRange(color: UIColor, range: NSRange) -> NSMutableAttributedString {
+    public func textWithColorAndFontInRange(color: UIColor, font: UIFont, range: NSRange) -> NSMutableAttributedString {
         let attributedText = NSMutableAttributedString(string: self)
         attributedText.addAttribute(.foregroundColor, value: color, range: range)
-        attributedText.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .title1), range: range)
+        attributedText.addAttribute(.font, value: font, range: range)
         return attributedText
     }
     
