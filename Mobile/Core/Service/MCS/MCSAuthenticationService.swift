@@ -126,6 +126,7 @@ struct MCSAuthenticationService : AuthenticationService {
         AccountsStore.shared.accounts = nil
         AccountsStore.shared.currentAccount = nil
         AccountsStore.shared.customerIdentifier = nil
+        StormModeStatus.shared.isOn = false
     }
     
     func getMaintenanceMode() -> Observable<Maintenance> {
