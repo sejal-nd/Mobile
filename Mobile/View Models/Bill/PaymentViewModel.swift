@@ -418,7 +418,7 @@ class PaymentViewModel {
             .disposed(by: disposeBag)
     }
     
-    func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
         self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
             guard let self = self else { return }
             let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
@@ -440,7 +440,7 @@ class PaymentViewModel {
                 .subscribe(onNext: { _ in
                     onSuccess()
                 }, onError: { err in
-                    onError(err.localizedDescription)
+                    onError(err as! ServiceError)
                 }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
     }
@@ -1197,5 +1197,16 @@ class PaymentViewModel {
     // MARK: - Payment Confirmation
     
     private(set) lazy var shouldShowConvenienceFeeLabel: Driver<Bool> = cardWorkflow
+    
+    var errorPhoneNumber: String {
+        switch Environment.shared.opco {
+        case .bge:
+            return "1-800-685-0123"
+        case .comEd:
+            return "1-800-334-7661"
+        case .peco:
+            return "1-800-494-4000"
+        }
+    }
     
 }
