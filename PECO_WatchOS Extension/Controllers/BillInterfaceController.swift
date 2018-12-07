@@ -24,7 +24,6 @@ class BillInterfaceController: WKInterfaceController {
     @IBOutlet var billAlertGroup: WKInterfaceGroup!
     @IBOutlet var billAlertLabel: WKInterfaceLabel!
 
-    
     @IBOutlet var billGroup: WKInterfaceGroup!
 
     @IBOutlet var autoPayScheduledPaymentGroup: WKInterfaceGroup!
@@ -59,7 +58,6 @@ class BillInterfaceController: WKInterfaceController {
     @IBOutlet var pendingPaymentGroup: WKInterfaceGroup!
     @IBOutlet var pendingPaymentAmountLabel: WKInterfaceLabel!
     @IBOutlet var pendingPaymentDescriptionLabel: WKInterfaceLabel!
-    
     
     @IBOutlet var restoreServiceGroup: WKInterfaceGroup!
     @IBOutlet var restoreServiceAmountLabel: WKInterfaceLabel!
