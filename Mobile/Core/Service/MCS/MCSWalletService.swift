@@ -335,7 +335,7 @@ class MCSWalletService: WalletService {
             "postbackUrl": "",
         ]
         
-        var strParam = "pageView=mobile;postMessagePmDetailsOrigin=exeloncorp.com"
+        var strParam = "pageView=mobile;postMessagePmDetailsOrigin=https://exeloncorp.com"
         if temporary {
             strParam += "nickname=false;primaryPM=false;"
         } else {
