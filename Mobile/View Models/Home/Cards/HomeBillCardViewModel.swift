@@ -96,7 +96,7 @@ class HomeBillCardViewModel {
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
-    private lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
+    private(set) lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
     
     private lazy var account: Observable<Account> = fetchData.map { _ in AccountsStore.shared.currentAccount }
     
@@ -791,6 +791,17 @@ class HomeBillCardViewModel {
             return URL(string: "https://www.speedpay.com/terms/")!
         case .comEd, .peco:
             return URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
+        }
+    }
+    
+    var errorPhoneNumber: String {
+        switch Environment.shared.opco {
+        case .bge:
+            return "1-800-685-0123"
+        case .comEd:
+            return "1-800-334-7661"
+        case .peco:
+            return "1-800-494-4000"
         }
     }
     

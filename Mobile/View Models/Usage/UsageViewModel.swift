@@ -74,7 +74,7 @@ class UsageViewModel {
                 billForecast = self.usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber,
                                                                    premiseNumber: accountDetail.premiseNumber!)
                     .map { $0 }
-                    .catchError { _ in .just(nil) }
+                    .catchErrorJustReturn(nil)
             } else {
                 billForecast = .just(nil)
             }

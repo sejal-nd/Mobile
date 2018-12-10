@@ -290,23 +290,22 @@ class MCSWalletService: WalletService {
             .do(onNext: {
                 RxNotifications.shared.defaultWalletItemUpdated.onNext(())
             })
-            .catchError { err in
-                guard let error = err as? ServiceError else {
-                    throw ServiceError(cause: err)
-                }
-                
-                //TODO: Add paymentus error handling
-                
-                if let speedpayError = SpeedpayErrorMapper.shared.getError(message: error.errorDescription ?? "", context: nil) {
-                    throw ServiceError(serviceMessage: speedpayError.text)
-                } else {
-                    if error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                        throw err
+            .catchError { error in
+                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                if Environment.shared.opco == .bge {
+                    if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
+                        throw ServiceError(serviceMessage: speedpayError.text)
                     } else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                        if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                            throw serviceError
+                        } else {
+                            throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                        }
                     }
+                } else {
+                    throw serviceError
                 }
-        }
+            }
     }
     
     func setOneTouchPayItem(walletItemId: String, walletId: String?, customerId: String) -> Observable<Void> {

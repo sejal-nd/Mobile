@@ -65,7 +65,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
                 let todayMonth = todayComponents.month, let todayYear = todayComponents.year else {
                 return false
             }
-            if todayYear >= expYear && todayMonth > expMonth {
+            if todayYear > expYear || (todayYear == expYear && todayMonth > expMonth) {
                 return true
             }
         }

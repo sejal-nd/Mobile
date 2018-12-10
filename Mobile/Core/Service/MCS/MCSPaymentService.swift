@@ -185,17 +185,18 @@ class MCSPaymentService: PaymentService {
             }
             .catchError { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                
-                //TODO: Paymentus error handling
-                
-                if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
-                    throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
-                } else {
-                    if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                        throw serviceError
+                if Environment.shared.opco == .bge {
+                    if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
+                        throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
                     } else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                        if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                            throw serviceError
+                        } else {
+                            throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                        }
                     }
+                } else { // Paymentus Error Handling
+                    throw serviceError
                 }
             }
             .do(onNext: { _ in
@@ -242,17 +243,18 @@ class MCSPaymentService: PaymentService {
             .mapTo(())
             .catchError { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                
-                //TODO: Paymentus error handling
-                
-                if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
-                    throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
-                } else {
-                    if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                        throw serviceError
+                if Environment.shared.opco == .bge {
+                    if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
+                        throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
                     } else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                        if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                            throw serviceError
+                        } else {
+                            throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                        }
                     }
+                } else { // Paymentus error handling
+                    throw serviceError
                 }
             }
             .do(onNext: {
@@ -284,17 +286,18 @@ class MCSPaymentService: PaymentService {
             .mapTo(())
             .catchError { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                
-                //TODO: Paymentus error handling
-                
-                if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
-                    throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
-                } else {
-                    if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                        throw serviceError
+                if Environment.shared.opco == .bge {
+                    if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
+                        throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
                     } else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                        if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                            throw serviceError
+                        } else {
+                            throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                        }
                     }
+                } else { // Paymentus Error Handling
+                    throw serviceError
                 }
             }
             .do(onNext: {
