@@ -517,6 +517,7 @@ class MakePaymentViewController: UIViewController {
             let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
             miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
             miniWalletVC.viewModel.selectedItem.value = self.viewModel.selectedWalletItem.value
+            miniWalletVC.viewModel.temporaryItem.value = self.viewModel.newlyAddedWalletItem.value
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
             miniWalletVC.sentFromPayment = true
             miniWalletVC.delegate = self

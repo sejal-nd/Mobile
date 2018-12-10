@@ -17,6 +17,7 @@ class MiniWalletViewModel {
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedItem = Variable<WalletItem?>(nil)
+    let temporaryItem = Variable<WalletItem?>(nil)
     let isFetchingWalletItems = Variable(false)
     let isError = Variable(false)
     
@@ -62,6 +63,11 @@ class MiniWalletViewModel {
                 banks.append(item)
             }
         }
+        if let tempItem = temporaryItem.value {
+            if tempItem.bankOrCard == .bank && !banks.contains(tempItem) {
+                banks.insert(tempItem, at: 0)
+            }
+        }
         return banks
     }
     
@@ -71,6 +77,11 @@ class MiniWalletViewModel {
         for item in walletItems {
             if item.bankOrCard == .card {
                 cards.append(item)
+            }
+        }
+        if let tempItem = temporaryItem.value {
+            if tempItem.bankOrCard == .card && !cards.contains(tempItem) {
+                cards.insert(tempItem, at: 0)
             }
         }
         return cards
