@@ -29,19 +29,20 @@ class PaymentusFormViewController: UIViewController {
     let loadingIndicator = LoadingIndicator().usingAutoLayout()
     let errorLabel = UILabel(frame: .zero).usingAutoLayout()
     
-    private let postbackUrl = "https://mindgrub.com/"
-    
     weak var delegate: PaymentusFormViewControllerDelegate?
     let bankOrCard: BankOrCard
     let walletItemId: String? // Setting this will load the edit iFrame rather than add
+    let temporary: Bool // If true, load the iFrame that doesn't save to the wallet
     
     let disposeBag = DisposeBag()
     
+    var editingDefaultItem = false // We need to know if user is editing the default so we can properly fire the `defaultWalletItemUpdated` notification
     var shouldPopToMakePaymentOnSave = false
     var shouldPopToRootOnSave = false
     
-    init(bankOrCard: BankOrCard, walletItemId: String? = nil) {
+    init(bankOrCard: BankOrCard, temporary: Bool, walletItemId: String? = nil) {
         self.bankOrCard = bankOrCard
+        self.temporary = temporary
         self.walletItemId = walletItemId
         
         super.init(nibName: nil, bundle: nil)
@@ -139,7 +140,7 @@ class PaymentusFormViewController: UIViewController {
         let walletService = ServiceFactory.createWalletService()
         walletService.fetchWalletEncryptionKey(customerId: AccountsStore.shared.customerIdentifier,
                                                bankOrCard: bankOrCard,
-                                               postbackUrl: postbackUrl,
+                                               temporary: temporary,
                                                walletItemId: walletItemId)
             .subscribe(onNext: { [weak self] key in
                 guard let self = self else { return }
@@ -164,6 +165,58 @@ class PaymentusFormViewController: UIViewController {
 extension PaymentusFormViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("Received postMessage: \(message.body)")
+        if let bodyString = message.body as? String {
+            if bodyString.contains("frameHeight") { return } // Ignore the frameHeight message
+            
+            if let data = bodyString.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! String {
+                let pmDetailsString = json.replacingOccurrences(of: "pmDetails:", with: "")
+                if let pmDetailsData = pmDetailsString.data(using: .utf8), let pmDetailsJson = try? JSONSerialization.jsonObject(with: pmDetailsData, options: []) as! [String: Any] {
+                    // Payment method was successfully submitted
+                    
+                    var didSetDefault = false
+                    if let defaultStr = pmDetailsJson["Default"] as? String, defaultStr == "true" {
+                        didSetDefault = true
+                    }
+                    
+                    var nickname: String?
+                    if temporary {
+                        nickname = NSLocalizedString("Not saved to My Wallet", comment: "")
+                    } else {
+                        nickname = pmDetailsJson["ProfileDescription"] as? String
+                    }
+                    
+                    let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String, maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String, nickName: nickname, isDefault: didSetDefault, bankOrCard: bankOrCard)
+                    
+                    if walletItemId != nil {
+                        delegate?.didEditWalletItem()
+                    } else {
+                        switch bankOrCard {
+                        case .bank:
+                            delegate?.didAddBank(walletItem)
+                        case .card:
+                            delegate?.didAddCard(walletItem)
+                        }
+                    }
+                    
+                    if editingDefaultItem || didSetDefault {
+                        RxNotifications.shared.defaultWalletItemUpdated.onNext(())
+                    }
+                    
+                    if shouldPopToRootOnSave {
+                        navigationController?.popToRootViewController(animated: true)
+                    } else if shouldPopToMakePaymentOnSave {
+                        for vc in navigationController!.viewControllers {
+                            guard let dest = vc as? MakePaymentViewController else {
+                                continue
+                            }
+                            navigationController?.popToViewController(dest, animated: true)
+                        }
+                    } else {
+                        navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -172,48 +225,10 @@ extension PaymentusFormViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        guard let url = navigationAction.request.url else {
-            decisionHandler(.allow)
-            return
-        }
-        
-        if url.absoluteString.starts(with: postbackUrl) {
-            decisionHandler(.cancel)
-            
-            // parse wallet item from request
-            
-            if walletItemId != nil {
-                delegate?.didEditWalletItem()
-            } else {
-                switch bankOrCard {
-                case .bank:
-                    delegate?.didAddBank(nil)
-                case .card:
-                    delegate?.didAddCard(nil)
-                }
-            }
-            
-            // If we can know the `isDefault` status here, we can be smarter about firing this notification.
-            RxNotifications.shared.defaultWalletItemUpdated.onNext(())
-            
-            if shouldPopToRootOnSave {
-                navigationController?.popToRootViewController(animated: true)
-            } else if shouldPopToMakePaymentOnSave {
-                for vc in navigationController!.viewControllers {
-                    guard let dest = vc as? MakePaymentViewController else {
-                        continue
-                    }
-                    navigationController?.popToViewController(dest, animated: true)
-                }
-            } else {
-                navigationController?.popViewController(animated: true)
-            }
-        } else if !url.absoluteString.starts(with: Environment.shared.paymentusUrl) {
+        if let url = navigationAction.request.url, !url.absoluteString.starts(with: Environment.shared.paymentusUrl) {
             showLoadingState()
-            decisionHandler(.allow)
-        } else {
-            decisionHandler(.allow)
         }
+        decisionHandler(.allow)
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {

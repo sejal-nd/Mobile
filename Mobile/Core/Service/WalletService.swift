@@ -74,21 +74,18 @@ protocol WalletService {
     
     func fetchWalletEncryptionKey(customerId: String,
                                   bankOrCard: BankOrCard,
-                                  postbackUrl: String,
-                                  walletItemId: String?,
-                                  temporary: Bool) -> Observable<String>
+                                  temporary: Bool,
+                                  walletItemId: String?) -> Observable<String>
 }
 
 extension WalletService {
     func fetchWalletEncryptionKey(customerId: String,
                                   bankOrCard: BankOrCard,
-                                  postbackUrl: String,
-                                  walletItemId: String? = nil,
-                                  temporary: Bool = false) -> Observable<String> {
+                                  temporary: Bool,
+                                  walletItemId: String? = nil) -> Observable<String> {
         return fetchWalletEncryptionKey(customerId: customerId,
                                         bankOrCard: bankOrCard,
-                                        postbackUrl: postbackUrl,
-                                        walletItemId: walletItemId,
-                                        temporary: temporary)
+                                        temporary: temporary,
+                                        walletItemId: walletItemId)
     }
 }

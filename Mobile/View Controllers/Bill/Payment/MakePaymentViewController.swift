@@ -560,11 +560,13 @@ class MakePaymentViewController: UIViewController {
                     self.viewModel.inlineBank.value = true
                 } else {
                     let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { _ in
-                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank)
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false)
                         paymentusVC.delegate = self
                         self.navigationController?.pushViewController(paymentusVC, animated: true)
                     }, dontSaveHandler: { _ in
-                        // TODO
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: true)
+                        paymentusVC.delegate = self
+                        self.navigationController?.pushViewController(paymentusVC, animated: true)
                     })
                     self.present(actionSheet, animated: true, completion: nil)
                 }
@@ -578,11 +580,13 @@ class MakePaymentViewController: UIViewController {
                     self.viewModel.inlineCard.value = true
                 } else {
                     let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { _ in
-                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card)
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false)
                         paymentusVC.delegate = self
                         self.navigationController?.pushViewController(paymentusVC, animated: true)
                     }, dontSaveHandler: { _ in
-                        // TODO
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: true)
+                        paymentusVC.delegate = self
+                        self.navigationController?.pushViewController(paymentusVC, animated: true)
                     })
                     self.present(actionSheet, animated: true, completion: nil)
                 }
@@ -842,6 +846,7 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
     func didAddBank(_ walletItem: WalletItem?) {
+        viewModel.newlyAddedWalletItem.value = walletItem
         fetchData()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
@@ -849,6 +854,7 @@ extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
     }
     
     func didAddCard(_ walletItem: WalletItem?) {
+        viewModel.newlyAddedWalletItem.value = walletItem
         fetchData()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Card added", comment: ""))

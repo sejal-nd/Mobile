@@ -24,6 +24,7 @@ class PaymentViewModel {
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
+    let newlyAddedWalletItem = Variable<WalletItem?>(nil) // Set if the user adds a new item from the Paymentus iFrame in this workflow
     let wouldBeSelectedWalletItemIsExpired = Variable(false)
     let cvv = Variable("")
     
@@ -128,61 +129,65 @@ class PaymentViewModel {
                 
                 self.computeDefaultPaymentDate()
                 
-                if let walletItems = self.walletItems.value, self.selectedWalletItem.value == nil {
-                    if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment
-                        self.paymentAmount.value = paymentDetail.paymentAmount
-                        self.paymentDate.value = paymentDetail.paymentDate!
-                        for item in walletItems {
-                            if item.walletItemID == paymentDetail.walletItemId {
-                                self.selectedWalletItem.value = item
-                                break
-                            }
-                        }
-                    } else {
-                        if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
-                            // Default to One Touch Pay item IF it's not a VISA credit card
-                            if let otpItem = self.oneTouchPayItem {
-                                if otpItem.bankOrCard == .bank {
-                                    self.selectedWalletItem.value = otpItem
-                                } else if let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
-                                    self.selectedWalletItem.value = otpItem
-                                }
-                            } else if walletItems.count > 0 { // If no OTP item, default to first non-VISA wallet item
-                                for item in walletItems {
-                                    if item.bankOrCard == .bank {
-                                        self.selectedWalletItem.value = item
-                                    } else if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
-                                        self.selectedWalletItem.value = item
-                                        break
-                                    }
-                                }
-                            }
-                        } else if self.accountDetail.value.isCashOnly {
-                            // Default to One Touch Pay item IF it's a credit card
-                            if let otpItem = self.oneTouchPayItem {
-                                if otpItem.bankOrCard == .card {
-                                    self.selectedWalletItem.value = otpItem
-                                }
-                            } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
-                                for item in walletItems {
-                                    if item.bankOrCard == .card {
-                                        self.selectedWalletItem.value = item
-                                        break
-                                    }
+                if let walletItems = self.walletItems.value {
+                    if self.selectedWalletItem.value == nil { // Initial wallet item selection logic
+                        if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment
+                            self.paymentAmount.value = paymentDetail.paymentAmount
+                            self.paymentDate.value = paymentDetail.paymentDate!
+                            for item in walletItems {
+                                if item.walletItemID == paymentDetail.walletItemId {
+                                    self.selectedWalletItem.value = item
+                                    break
                                 }
                             }
                         } else {
-                            // Default to One Touch Pay item
-                            if let otpItem = self.oneTouchPayItem {
-                                self.selectedWalletItem.value = otpItem
-                            } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
-                                self.selectedWalletItem.value = walletItems[0]
+                            if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
+                                // Default to One Touch Pay item IF it's not a VISA credit card
+                                if let otpItem = self.oneTouchPayItem {
+                                    if otpItem.bankOrCard == .bank {
+                                        self.selectedWalletItem.value = otpItem
+                                    } else if let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
+                                        self.selectedWalletItem.value = otpItem
+                                    }
+                                } else if walletItems.count > 0 { // If no OTP item, default to first non-VISA wallet item
+                                    for item in walletItems {
+                                        if item.bankOrCard == .bank {
+                                            self.selectedWalletItem.value = item
+                                        } else if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
+                                            self.selectedWalletItem.value = item
+                                            break
+                                        }
+                                    }
+                                }
+                            } else if self.accountDetail.value.isCashOnly {
+                                // Default to One Touch Pay item IF it's a credit card
+                                if let otpItem = self.oneTouchPayItem {
+                                    if otpItem.bankOrCard == .card {
+                                        self.selectedWalletItem.value = otpItem
+                                    }
+                                } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
+                                    for item in walletItems {
+                                        if item.bankOrCard == .card {
+                                            self.selectedWalletItem.value = item
+                                            break
+                                        }
+                                    }
+                                }
+                            } else {
+                                // Default to One Touch Pay item
+                                if let otpItem = self.oneTouchPayItem {
+                                    self.selectedWalletItem.value = otpItem
+                                } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
+                                    self.selectedWalletItem.value = walletItems[0]
+                                }
                             }
                         }
-                    }
-                    if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
-                        self.selectedWalletItem.value = nil
-                        self.wouldBeSelectedWalletItemIsExpired.value = true
+                        if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
+                            self.selectedWalletItem.value = nil
+                            self.wouldBeSelectedWalletItemIsExpired.value = true
+                        }
+                    } else if self.newlyAddedWalletItem.value != nil {
+                        self.selectedWalletItem.value = self.newlyAddedWalletItem.value
                     }
                 }
                 onSuccess?()

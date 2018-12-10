@@ -223,7 +223,7 @@ class WalletViewController: UIViewController {
                 if Environment.shared.opco == .bge {
                     self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
                 } else {
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank)
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false)
                     paymentusVC.delegate = self
                     paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
                     self.navigationController?.pushViewController(paymentusVC, animated: true)
@@ -236,7 +236,7 @@ class WalletViewController: UIViewController {
                 if Environment.shared.opco == .bge {
                     self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
                 } else {
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card)
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false)
                     paymentusVC.delegate = self
                     paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
                     self.navigationController?.pushViewController(paymentusVC, animated: true)
@@ -258,9 +258,10 @@ class WalletViewController: UIViewController {
     @objc func onEditWalletItemPress(sender: UIButton) {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
             selectedWalletItem = walletItems[sender.tag]
-            let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, walletItemId: selectedWalletItem!.walletItemID)
+            let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, temporary: false, walletItemId: selectedWalletItem!.walletItemID)
             paymentusVC.delegate = self
             paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
+            paymentusVC.editingDefaultItem = selectedWalletItem!.isDefault
             self.navigationController?.pushViewController(paymentusVC, animated: true)
         }
     }

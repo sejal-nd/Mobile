@@ -1541,9 +1541,6 @@
 		E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
 		E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
 		E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
-		E807A9E2202246C500513921 /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
-		E807A9E3202246C500513921 /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
-		E807A9E4202246C600513921 /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
 		E807A9E52022475100513921 /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		E807A9E62022475100513921 /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		E807A9E72022475100513921 /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
@@ -1585,9 +1582,6 @@
 		E8264EF5200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */; };
 		E8264EF6200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */; };
 		E8264EF7200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */; };
-		E8264F0B2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
-		E8264F0C2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
-		E8264F0D2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
 		E827D2311ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
 		E827D2321ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
 		E827D2331ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
@@ -3143,7 +3137,6 @@
 		E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBillViewModel.swift; sourceTree = "<group>"; };
 		E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCreditCardViewModel.swift; sourceTree = "<group>"; };
 		E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModelTests.swift; sourceTree = "<group>"; };
-		E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletItemInitExtensions.swift; sourceTree = "<group>"; };
 		E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankAccountViewController.swift; sourceTree = "<group>"; };
 		E827D2371ED490A0004DA1D6 /* InfoModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoModal.xib; sourceTree = "<group>"; };
 		E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoModalViewController.swift; sourceTree = "<group>"; };
@@ -5217,7 +5210,6 @@
 			children = (
 				823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */,
 				9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */,
-				E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */,
 				829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */,
 				B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */,
 				B092184220A2400800695888 /* MaintenanceInitExtensions.swift */,
@@ -7234,7 +7226,6 @@
 				5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				9C7E5A53212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
-				E807A9E2202246C500513921 /* WalletItemInitExtensions.swift in Sources */,
 				35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */,
 				B0B083A1216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
@@ -7604,7 +7595,6 @@
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				9C7E5A55212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
-				E807A9E4202246C600513921 /* WalletItemInitExtensions.swift in Sources */,
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8400E681FE05F070064E242 /* MockAuthenticationService.swift in Sources */,
 				B0B083A3216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
@@ -7977,7 +7967,6 @@
 				82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				9C7E5A54212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
-				E807A9E3202246C500513921 /* WalletItemInitExtensions.swift in Sources */,
 				82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8400E671FE05F060064E242 /* MockAuthenticationService.swift in Sources */,
 				B0B083A2216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
@@ -8221,7 +8210,6 @@
 				B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
-				E8264F0B2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
 				823AA54B20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */,
@@ -8460,7 +8448,6 @@
 				9CCE3E4A21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B07D247F20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E8F62B6F200924410077B3DA /* MockAuthenticationService.swift in Sources */,
-				E8264F0C2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */,
 				E8F62B70200924410077B3DA /* MockBillService.swift in Sources */,
 				823AA54C20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62B71200924410077B3DA /* MockAlertsService.swift in Sources */,
@@ -8654,7 +8641,6 @@
 				9CCE3E4B21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B07D248020C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E8F62C24200924570077B3DA /* MockAuthenticationService.swift in Sources */,
-				E8264F0D2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */,
 				E8F62C25200924570077B3DA /* MockBillService.swift in Sources */,
 				823AA54D20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62C26200924570077B3DA /* MockAlertsService.swift in Sources */,

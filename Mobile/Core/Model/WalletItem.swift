@@ -121,6 +121,33 @@ struct WalletItem: Mappable, Equatable, Hashable {
         }
     }
     
+    // Used both for Unit/UI Tests AND for the creation of the temporary wallet items from Paymentus iFrame
+    init(walletItemID: String? = "1234",
+         walletExternalID: String? = "1234",
+         maskedWalletItemAccountNumber: String? = "1234",
+         nickName: String? = nil,
+         walletItemStatusType: String? = "active",
+         bankAccountNumber: String? = nil,
+         bankAccountName: String? = nil,
+         isDefault: Bool = false,
+         cardIssuer: String? = nil,
+         bankOrCard: BankOrCard = .bank) {
+        
+        var map = [String: Any]()
+        map["walletItemID"] = walletItemID
+        map["walletExternalID"] = walletExternalID
+        map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
+        map["nickName"] = nickName
+        map["walletItemStatusType"] = walletItemStatusType
+        map["bankAccountNumber"] = bankAccountNumber
+        map["bankAccountName"] = bankAccountName
+        map["isDefault"] = isDefault
+        map["cardIssuer"] = cardIssuer
+        
+        self = WalletItem.from(map as NSDictionary)!
+        self.bankOrCard = bankOrCard
+    }
+    
     // Equatable
     static func ==(lhs: WalletItem, rhs: WalletItem) -> Bool {
         return lhs.walletItemID == rhs.walletItemID

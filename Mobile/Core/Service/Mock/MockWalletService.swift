@@ -90,7 +90,7 @@ struct MockWalletService: WalletService {
         return .just(())
     }
     
-    func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, postbackUrl: String, walletItemId: String? = nil) -> Observable<String> {
+    func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, temporary: Bool, walletItemId: String? = nil) -> Observable<String> {
         return .just("")
     }
 }
