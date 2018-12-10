@@ -123,8 +123,14 @@ class PaymentusFormViewController: UIViewController {
         // Start the timer. The Paymentus session is only valid for [TIMEOUT] seconds - so if that elapses,
         // alert the user and reload the page
         Timer.scheduledTimer(withTimeInterval: TIMEOUT, repeats: false) { [weak self] timer in
+            let message: String
+            if self?.walletItemId != nil {
+                message = NSLocalizedString("Changes to your payment method have not been saved. Sorry for the inconvenience. Please re-enter your payment information. ", comment: "")
+            } else {
+                message = NSLocalizedString("Your payment method has not been saved. Sorry for the inconvenience. Please re-enter your payment information.", comment: "")
+            }
             let alert = UIAlertController(title: NSLocalizedString("Your session has timed out due to inactivity.", comment: ""),
-                                          message: NSLocalizedString("Your payment method has not been saved. Sorry for the inconvenience. Please re-enter your payment information.", comment: ""),
+                                          message: message,
                                           preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in
                 self?.showLoadingState()
