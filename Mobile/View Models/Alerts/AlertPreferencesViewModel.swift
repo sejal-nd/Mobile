@@ -407,7 +407,7 @@ class AlertPreferencesViewModel {
                 
             // Bill is Ready
             case (.billIsReady, .bge):
-                return NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert will contain the bill due date and amount due.", comment: "")
+                return NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert will contain the bill due date and total amount due.", comment: "")
             case (.billIsReady, .comEd): fallthrough
             case (.billIsReady, .peco):
                 return NSLocalizedString("Receive an alert when your monthly bill is ready to be viewed online. By choosing to receive this notification, you will no longer receive a paper bill through the mail.", comment: "")
