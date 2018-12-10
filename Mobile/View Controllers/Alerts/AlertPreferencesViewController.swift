@@ -279,9 +279,10 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         case .severeWeather:
             toggleVariable = viewModel.severeWeather
         case .billIsReady:
+            toggleVariable = viewModel.billReady
             switch Environment.shared.opco {
             case .bge:
-                toggleVariable = viewModel.billReady
+                break
             case .comEd, .peco:
                 cell.toggle.rx.isOn.asDriver()
                     .skip(1)
