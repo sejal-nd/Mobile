@@ -79,7 +79,7 @@ class OutageStatusButton: UIView {
         case .comEd:
             color = .primaryColor
         case .peco:
-            color = isStormMode ? UIColor(red:0/255.0, green:162/255.0, blue:255/255.0,  alpha:1) : .primaryColor
+            color = isStormMode ? .stormPrimaryColor : .primaryColor
         }
         return color
     }
