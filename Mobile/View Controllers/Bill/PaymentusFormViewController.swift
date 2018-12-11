@@ -192,7 +192,7 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                         nickname = pmDetailsJson["ProfileDescription"] as? String
                     }
                     
-                    let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String, maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String, nickName: nickname, isDefault: didSetDefault, bankOrCard: bankOrCard)
+                    let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String, maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String, nickName: nickname, isDefault: didSetDefault, bankOrCard: bankOrCard, isTemporary: temporary)
                     
                     if walletItemId != nil {
                         delegate?.didEditWalletItem()

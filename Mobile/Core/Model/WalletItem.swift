@@ -76,6 +76,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let paymentCategoryType: PaymentCategoryType? // Do not use this for determining bank vs card - use bankOrCard
     let bankAccountType: BankAccountType? // Do not use this for determining bank vs card - use bankOrCard
     var bankOrCard: BankOrCard = .card
+    var isTemporary: Bool // Indicates temporary Paymentus wallet item
     
     let bankAccountNumber: String?
     let bankAccountName: String?
@@ -119,6 +120,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
                 bankOrCard = .bank
             }
         }
+        
+        isTemporary = false
     }
     
     // Used both for Unit/UI Tests AND for the creation of the temporary wallet items from Paymentus iFrame
@@ -131,7 +134,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
          bankAccountName: String? = nil,
          isDefault: Bool = false,
          cardIssuer: String? = nil,
-         bankOrCard: BankOrCard = .bank) {
+         bankOrCard: BankOrCard = .bank,
+         isTemporary: Bool = false) {
         
         var map = [String: Any]()
         map["walletItemID"] = walletItemID
@@ -146,6 +150,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         
         self = WalletItem.from(map as NSDictionary)!
         self.bankOrCard = bankOrCard
+        self.isTemporary = isTemporary
     }
     
     // Equatable

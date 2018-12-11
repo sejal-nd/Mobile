@@ -186,9 +186,10 @@ class PaymentViewModel {
                             self.selectedWalletItem.value = nil
                             self.wouldBeSelectedWalletItemIsExpired.value = true
                         }
-                    } else if self.newlyAddedWalletItem.value != nil {
-                        self.selectedWalletItem.value = self.newlyAddedWalletItem.value
                     }
+                }
+                if self.newlyAddedWalletItem.value != nil {
+                    self.selectedWalletItem.value = self.newlyAddedWalletItem.value
                 }
                 onSuccess?()
             }, onError: { [weak self] _ in
@@ -213,7 +214,7 @@ class PaymentViewModel {
                 }
                 
                 let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                                      existingAccount: true,
+                                      existingAccount: !self.selectedWalletItem.value!.isTemporary,
                                       saveAccount: false,
                                       maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
                                       paymentAmount: self.paymentAmount.value,
