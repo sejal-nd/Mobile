@@ -100,8 +100,15 @@ class PaymentusFormViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         navigationController?.setColoredNavBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Memory leaks if you don't do this
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: "iosListener")
     }
     
     func showError() {
