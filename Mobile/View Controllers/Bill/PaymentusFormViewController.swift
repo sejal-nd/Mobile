@@ -210,7 +210,16 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                     }
                     
                     if shouldPopToRootOnSave {
-                        navigationController?.popToRootViewController(animated: true)
+                        if StormModeStatus.shared.isOn {
+                            if let dest = self.navigationController?.viewControllers
+                                .first(where: { $0 is StormModeBillViewController }) {
+                                navigationController?.popToViewController(dest, animated: true)
+                            } else {
+                                navigationController?.popToRootViewController(animated: true)
+                            }
+                        } else {
+                            navigationController?.popToRootViewController(animated: true)
+                        }
                     } else if shouldPopToMakePaymentOnSave {
                         for vc in navigationController!.viewControllers {
                             guard let dest = vc as? MakePaymentViewController else {
