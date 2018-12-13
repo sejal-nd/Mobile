@@ -48,7 +48,7 @@ class ButtonControl: UIControl {
             .startWith(false)
             .distinctUntilChanged()
             .drive(onNext: { [weak self] pressed in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.backgroundColor = pressed ? self.backgroundColorOnPress: self.normalBackgroundColor
                 if self.shouldFadeSubviewsOnPress {
                     self.fadeSubviews(fadeAmount: pressed ? 0.5: 1, animationDuration: 0.1)

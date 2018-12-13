@@ -14,21 +14,17 @@ struct MockAuthenticationService: AuthenticationService {
     let invalidUsername = "invalid@test.com"
     let validPassword = "Password1"
     
-    func login(_ username: String, password: String, stayLoggedIn: Bool, completion: @escaping (ServiceResult<(ProfileStatus, AccountDetail)>) -> Void) {
-        
+    func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
         if username != invalidUsername && password == validPassword {
             MockData.shared.username = username
-            // The account detail returned here does not influence anything in the rest of the app.
-            // Most account-related things will come from the call to fetchAccounts or fetchAccountDetail in MockAccountService
-            let accountDetail = AccountDetail.from(["accountNumber": "123456789", "isPasswordProtected": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!
-            completion(ServiceResult.success((ProfileStatus(), accountDetail)))
+            return .just(ProfileStatus())
         } else {
-            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnPwdInvalid.rawValue, serviceMessage: "Invalid credentials")))
+            return .error(ServiceError(serviceCode: ServiceErrorCode.fnPwdInvalid.rawValue, serviceMessage: "Invalid credentials"))
         }
     }
     
-    func validateLogin(_ username: String, password: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        
+    func validateLogin(username: String, password: String) -> Observable<Void> {
+        return .error(ServiceError())
     }
     
     func isAuthenticated() -> Bool {
@@ -39,49 +35,46 @@ struct MockAuthenticationService: AuthenticationService {
 
     }
     
-    func changePassword(_ currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
+    func changePassword(currentPassword: String, newPassword: String) -> Observable<Void> {
         if currentPassword == validPassword {
-            completion(ServiceResult.success(()))
+            return .just(())
         } else {
-            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
+            return .error(ServiceError(serviceCode: ServiceErrorCode.fNPwdNoMatch.rawValue, serviceMessage: "Invalid current password"))
         }
     }
     
-    func changePasswordAnon(_ username: String,currentPassword: String, newPassword: String, completion: @escaping (ServiceResult<Void>) -> Void) {
+    func changePasswordAnon(username: String,currentPassword: String, newPassword: String) -> Observable<Void> {
         if currentPassword == validPassword {
-            completion(ServiceResult.success(()))
+            return .just(())
         } else {
-            completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fNPwdNoMatch.rawValue, serviceMessage: "Invalid current password")))
+            return .error(ServiceError(serviceCode: ServiceErrorCode.fNPwdNoMatch.rawValue, serviceMessage: "Invalid current password"))
         }
     }
     
-    func getMaintenanceMode(completion: @escaping (ServiceResult<Maintenance>) -> Void) {
-        let result: ServiceResult<Maintenance>
+    func getMaintenanceMode() -> Observable<Maintenance> {
         switch MockData.shared.username {
         case "maintAll":
-            result = .success(Maintenance(all: true))
+            return .just(Maintenance(all: true))
         case "maintAllTabs":
-            result = .success(Maintenance(home: true, bill: true, outage: true, alert: true))
+            return .just(Maintenance(home: true, bill: true, outage: true, alert: true))
         case "maintNotHome":
-            result = .success(Maintenance(home: false, bill: true, outage: true, alert: true))
+            return .just(Maintenance(home: false, bill: true, outage: true, alert: true))
         case "maintError":
-            result = .failure(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
+            return .error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
         default:
-            result = .success(Maintenance())
+            return .just(Maintenance())
         }
-        
-        completion(result)
     }
     
-    func getMinimumVersion(completion: @escaping (ServiceResult<MinimumVersion>) -> Void) {
-        completion(ServiceResult.success(MinimumVersion()))
+    func getMinimumVersion() -> Observable<MinimumVersion> {
+        return .just(MinimumVersion())
     }
     
-    func refreshAuthorization(completion: @escaping (ServiceResult<Void>) -> Void) {
-        completion(ServiceResult.success(()))
+    func refreshAuthorization() -> Observable<Void> {
+        return .just(())
     }
     
-    func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?, completion: @escaping (_ result: ServiceResult<[ForgotUsernameMasked]>) -> Void) {
+    func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?) -> Observable<[ForgotUsernameMasked]> {
         var maskedUsernames = [ForgotUsernameMasked]()
         let usernames = [
             NSDictionary(dictionary: [
@@ -105,81 +98,77 @@ struct MockAuthenticationService: AuthenticationService {
                 maskedUsernames.append(mockModel)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            if identifier == "0000" {
-                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnAccountNotFound.rawValue)))
-            } else {
-                completion(ServiceResult.success(maskedUsernames))
-            }
+        
+        if identifier == "0000" {
+            return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnAccountNotFound.rawValue))
+                .delay(1, scheduler: MainScheduler.instance)
+        } else {
+            return Observable.just(maskedUsernames)
+                .delay(1, scheduler: MainScheduler.instance)
         }
     }
     
-    func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String, completion: @escaping (ServiceResult<String>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            if questionResponse.lowercased() == "exelon" {
-                completion(ServiceResult.success("username@email.com"))
-            } else {
-                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnProfBadSecurity.rawValue)))
-            }
+    func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String) -> Observable<String> {
+        if questionResponse.lowercased() == "exelon" {
+            return Observable.just("username@email.com")
+                .delay(1, scheduler: MainScheduler.instance)
+        } else {
+            return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnProfBadSecurity.rawValue))
+                .delay(1, scheduler: MainScheduler.instance)
         }
-
     }
     
-    func lookupAccount(phone: String, identifier: String, completion: @escaping (ServiceResult<[AccountLookupResult]>) -> Void) {
-
-        
-
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            if identifier == "0000" {
-                completion(ServiceResult.failure(ServiceError(serviceMessage: "No accounts found")))
-                return
-            } else if identifier == "1111" {
-                var accountResults = [AccountLookupResult]()
-                accountResults.append(AccountLookupResult.from(
-                    NSDictionary(dictionary: [
-                        "AccountNumber": "1234567890",
-                        "StreetNumber": "1268",
-                        "ApartmentUnitNumber": "12B"
+    func lookupAccount(phone: String, identifier: String) -> Observable<[AccountLookupResult]> {
+        if identifier == "0000" {
+            return Observable.error(ServiceError(serviceMessage: "No accounts found"))
+                .delay(1, scheduler: MainScheduler.instance)
+        } else if identifier == "1111" {
+            var accountResults = [AccountLookupResult]()
+            accountResults.append(AccountLookupResult.from(
+                NSDictionary(dictionary: [
+                    "AccountNumber": "1234567890",
+                    "StreetNumber": "1268",
+                    "ApartmentUnitNumber": "12B"
                     ])
                 )!)
-                completion(ServiceResult.success(accountResults))
-            } else {
-                var accountResults = [AccountLookupResult]()
-                let accounts = [
-                    NSDictionary(dictionary: [
-                        "AccountNumber": "1234567890",
-                        "StreetNumber": "1268",
-                        "ApartmentUnitNumber": "12B"
+            return Observable.just(accountResults)
+                .delay(1, scheduler: MainScheduler.instance)
+        } else {
+            var accountResults = [AccountLookupResult]()
+            let accounts = [
+                NSDictionary(dictionary: [
+                    "AccountNumber": "1234567890",
+                    "StreetNumber": "1268",
+                    "ApartmentUnitNumber": "12B"
                     ]),
-                    NSDictionary(dictionary: [
-                        "AccountNumber": "9876543219",
-                        "StreetNumber": "6789",
-                        "ApartmentUnitNumber": "99A"
+                NSDictionary(dictionary: [
+                    "AccountNumber": "9876543219",
+                    "StreetNumber": "6789",
+                    "ApartmentUnitNumber": "99A"
                     ]),
-                    NSDictionary(dictionary: [
-                        "AccountNumber": "1111111111",
-                        "StreetNumber": "999",
+                NSDictionary(dictionary: [
+                    "AccountNumber": "1111111111",
+                    "StreetNumber": "999",
                     ])
-                ]
-                for account in accounts {
-                    if let mockModel = AccountLookupResult.from(account) {
-                        accountResults.append(mockModel)
-                    }
+            ]
+            for account in accounts {
+                if let mockModel = AccountLookupResult.from(account) {
+                    accountResults.append(mockModel)
                 }
-                completion(ServiceResult.success(accountResults))
             }
+            return Observable.just(accountResults)
+                .delay(1, scheduler: MainScheduler.instance)
         }
     }
     
-    func recoverPassword(username: String, completion: @escaping (ServiceResult<Void>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            if username.lowercased() == "error" {
-                completion(ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.fnProfNotFound.rawValue)))
-            } else {
-                completion(ServiceResult.success(()))
-            }
+    func recoverPassword(username: String) -> Observable<Void> {
+        if username.lowercased() == "error" {
+            return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnProfNotFound.rawValue))
+                .delay(1, scheduler: MainScheduler.instance)
+        } else {
+            return Observable.just(())
+                .delay(1, scheduler: MainScheduler.instance)
         }
     }
-
+    
 }

@@ -97,7 +97,16 @@ class AddCreditCardViewController: UIViewController {
                     guard let `self` = self else { return }
                     self.delegate?.addCreditCardViewControllerDidAddAccount(self)
                     if self.shouldPopToRootOnSave {
-                        self.navigationController?.popToRootViewController(animated: true)
+                        if StormModeStatus.shared.isOn {
+                            if let dest = self.navigationController?.viewControllers
+                                .first(where: { $0 is StormModeBillViewController }) {
+                                self.navigationController?.popToViewController(dest, animated: true)
+                            } else {
+                                self.navigationController?.popToRootViewController(animated: true)
+                            }
+                        } else {
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
                     } else {
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -230,7 +239,7 @@ extension AddCreditCardViewController: AddCardFormViewDelegate {
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""), style: .default, handler: { _ in
                 if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.openURL(url)
+                    UIApplication.shared.open(url)
                 }
             }))
             present(alertVC, animated: true, completion: nil)

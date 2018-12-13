@@ -291,13 +291,7 @@ class ReviewPaymentViewController: UIViewController {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
                     action -> Void in
-                    if let url = URL(string: "tel://\(errMessage[phoneRange])"), UIApplication.shared.canOpenURL(url) {
-                        if #available(iOS 10, *) {
-                            UIApplication.shared.open(url)
-                        } else {
-                            UIApplication.shared.openURL(url)
-                        }
-                    }
+                    UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
                 }))
             } else {
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -313,41 +307,47 @@ class ReviewPaymentViewController: UIViewController {
                 handleError(errMessage)
             })
         } else { // Schedule
-            viewModel.schedulePayment(onDuplicate: { [weak self] (errTitle, errMessage) in
+            viewModel.checkForCutoff(onShouldReject: { [weak self] in
+                guard let self = self else { return }
                 LoadingView.hide()
-                let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self?.present(alertVc, animated: true, completion: nil)
-            }, onSuccess: { [weak self] in
-                LoadingView.hide()
-                
-                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                    let pageView: AnalyticsEvent
-                    switch bankOrCard {
-                    case .bank:
-                        pageView = .eCheckComplete
-                    case .card:
-                        pageView = .cardComplete
+                self.present(UIAlertController.fiservCutoffAlert(), animated: true, completion: nil)
+            }, onShouldContinue: { [weak self] in
+                self?.viewModel.schedulePayment(onDuplicate: { [weak self] (errTitle, errMessage) in
+                    LoadingView.hide()
+                    let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self?.present(alertVc, animated: true, completion: nil)
+                }, onSuccess: { [weak self] in
+                    LoadingView.hide()
+                    
+                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
+                        let pageView: AnalyticsEvent
+                        switch bankOrCard {
+                        case .bank:
+                            pageView = .eCheckComplete
+                        case .card:
+                            pageView = .cardComplete
+                        }
+                        
+                        Analytics.log(event: pageView)
                     }
                     
-                    Analytics.log(event: pageView)
-                }
-                
-                self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-            }, onError: { [weak self] error in
-                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                    let pageView: AnalyticsEvent
-                    switch bankOrCard {
-                    case .bank:
-                        pageView = .eCheckError
-                    case .card:
-                        pageView = .cardError
+                    self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+                }, onError: { [weak self] error in
+                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
+                        let pageView: AnalyticsEvent
+                        switch bankOrCard {
+                        case .bank:
+                            pageView = .eCheckError
+                        case .card:
+                            pageView = .cardError
+                        }
+                        
+                        Analytics.log(event: pageView,
+                                      dimensions: [.errorCode: error.serviceCode])
                     }
-                    
-                    Analytics.log(event: pageView,
-                                         dimensions: [.errorCode: error.serviceCode])
-                }
-                handleError(error.localizedDescription)
+                    handleError(error.localizedDescription)
+                })
             })
         }
 

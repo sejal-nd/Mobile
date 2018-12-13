@@ -144,15 +144,16 @@ class OutageViewModel {
     }
     
     var shouldShowPayBillButton: Bool {
-        return Environment.shared.opco != .bge && currentOutageStatus!.flagNoPay
+        return currentOutageStatus!.flagNoPay
     }
     
     var showReportStreetlightOutageButton: Bool {
-        switch Environment.shared.opco {
-        case .comEd:
-            return false // should change to true once the map is ready
-        case .bge, .peco:
-            return false
-        }
+        return false
+//        switch Environment.shared.opco {
+//        case .comEd:
+//            return true
+//        case .bge, .peco:
+//            return false
+//        }
     }
 }

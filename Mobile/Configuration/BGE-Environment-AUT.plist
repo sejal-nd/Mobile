@@ -2,22 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>associatedDomain</key>
-	<string>applinks:stgd15-secure.bge.com</string>
+	<key>watchGaTrackingId</key>
+	<string></string>
 	<key>environment</key>
 	<string>AUT</string>
 	<key>appName</key>
 	<string>BGE_AUT</string>
 	<key>opco</key>
 	<string>BGE</string>
-	<key>oauthEndpoint</key>
-	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppUAT</string>
-	<key>fiservUrl</key>
-	<string>https://billerwebui.clienttestmatrix.com/Mobile</string>
-	<key>speedpayUrl</key>
-	<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
+	<string>mobileAppUATStage</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
 	<key>firebaseConfigFile</key>
@@ -26,5 +20,7 @@
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.bge.com</string>
+	<key>associatedDomain</key>
+	<string>azstg-secure.bge.com</string>
 </dict>
 </plist>

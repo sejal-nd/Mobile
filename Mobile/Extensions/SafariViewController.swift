@@ -11,10 +11,8 @@ import SafariServices
 extension SFSafariViewController {
     static func createWithCustomStyle(url: URL) -> SFSafariViewController {
         let safariVC = SFSafariViewController(url: url)
-        if #available(iOS 10.0, *) {
-            safariVC.preferredBarTintColor = .white
-            safariVC.preferredControlTintColor = .primaryColor
-        }
+        safariVC.preferredBarTintColor = .white
+        safariVC.preferredControlTintColor = .primaryColor
         return safariVC
     }
 }

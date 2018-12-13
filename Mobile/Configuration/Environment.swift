@@ -30,50 +30,83 @@ enum OpCo: String {
         }
         return tagline
     }
+    
+    var appStoreLink: URL? {
+        switch self {
+        case .bge:
+            return URL(string: "https://itunes.apple.com/us/app/bge-an-exelon-company/id1274170174?ls=1&mt=8")
+        case .comEd:
+            return URL(string: "https://itunes.apple.com/us/app/comed-an-exelon-company/id519716176?mt=8")
+        case .peco:
+            return URL(string: "https://itunes.apple.com/us/app/peco-an-exelon-company/id1274171957?ls=1&mt=8")
+        }
+    }
 }
 
 enum EnvironmentName: String {
     case aut = "AUT"
     case dev = "DEV"
+    case test = "TEST"
     case stage = "STAGE"
     case prod = "PROD"
 }
 
-/// Convenience singleton that wraps environment variables.
-struct Environment  {
+struct MCSConfig {
+    let baseUrl: String
+    let mobileBackendId: String
+    let anonymousKey: String
+    let oAuthEndpoint: String // The Layer 7 token endpoint
+    let fiservUrl: String
+    let speedpayUrl: String
+    
+    init(mcsInstanceName: String) {
+        let configPath = Bundle.main.path(forResource: "MCSConfig", ofType: "plist")!
+        let dict = NSDictionary(contentsOfFile: configPath)
+        let mobileBackends = dict?["mobileBackends"] as! [String: Any]
+        let mobileBackend = mobileBackends[mcsInstanceName] as! [String: Any]
+        
+        baseUrl = mobileBackend["baseURL"] as! String
+        mobileBackendId = mobileBackend["mobileBackendID"] as! String
+        anonymousKey = mobileBackend["anonymousKey"] as! String
+        oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
+        fiservUrl = mobileBackend["fiservUrl"] as! String
+        speedpayUrl = mobileBackend["speedpayUrl"] as! String
+    }
+}
+
+struct Environment {
     
     static let shared = Environment()
     
     let environmentName: EnvironmentName
     let appName: String
     let opco: OpCo
-    let oAuthEndpoint: String
     let mcsInstanceName: String
-    let fiservUrl: String
-    let speedpayUrl: String
+    let mcsConfig: MCSConfig
     let outageMapUrl: String
     let gaTrackingId: String
+    let watchGaTrackingId: String
     let firebaseConfigFile: String
     let opcoUpdatesHost: String
-    let appCenterId: String?
     let associatedDomain: String
+    let appCenterId: String?
     
     private init() {
-        let path = Bundle.main.path(forResource: "environment", ofType: "plist")
-        let dict = NSDictionary(contentsOfFile: path!)
+        let path = Bundle.main.path(forResource: "environment", ofType: "plist")!
+        let dict = NSDictionary(contentsOfFile: path)
     
         environmentName = EnvironmentName(rawValue: dict?["environment"] as! String)!
         appName = dict?["appName"] as! String
         opco = OpCo(rawValue: dict?["opco"] as! String)!
-        oAuthEndpoint = dict?["oauthEndpoint"] as! String
         mcsInstanceName = dict?["mcsInstanceName"] as! String
-        fiservUrl = dict?["fiservUrl"] as! String
-        speedpayUrl = dict?["speedpayUrl"] as! String
+        mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName)
         outageMapUrl = dict?["outageMapUrl"] as! String
         gaTrackingId = dict?["gaTrackingId"] as! String
+        watchGaTrackingId = dict?["watchGaTrackingId"] as! String
         firebaseConfigFile = dict?["firebaseConfigFile"] as! String
         opcoUpdatesHost = dict?["opcoUpdatesHost"] as! String
-        appCenterId = dict?["appCenterId"] as? String
         associatedDomain = dict?["associatedDomain"] as! String
+        appCenterId = dict?["appCenterId"] as? String
     }
 }
+

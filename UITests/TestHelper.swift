@@ -10,8 +10,14 @@ import Foundation
 import AppCenterXCUITestExtensions
 import XCTest
 
+internal var appOpCo: OpCo {
+    let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
+    let options: [OpCo] = [.bge, .comEd, .peco]
 
-class ExelonUITestCase: XCTestCase{
+    return options.lazy.filter({ appName.contains($0.displayString) }).first ?? .bge
+}
+
+class ExelonUITestCase: XCTestCase {
     
     let app = XCUIApplication()
     
@@ -24,7 +30,6 @@ class ExelonUITestCase: XCTestCase{
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchArguments = ["UITest"]
         ACTLaunch.launch(app)
-        sleep(5)
     }
     
     override func tearDown() {
@@ -34,10 +39,10 @@ class ExelonUITestCase: XCTestCase{
     }
     
     func handleTermsFirstLaunch() {
-        let continueButton = app.buttons["Continue"]
-        XCTAssert(continueButton.waitForExistence(timeout: 30))
+        let continueButton = buttonElement(withText: "Continue", timeout: 5)
+        XCTAssertTrue(continueButton.exists)
         // Assert button is disabled when the switch is not enabled
-        XCTAssert(!continueButton.isEnabled)
+        XCTAssertFalse(continueButton.isEnabled)
         let continueSwitch = app.switches.element(boundBy: 0)
         continueSwitch.tap()
         
@@ -47,14 +52,14 @@ class ExelonUITestCase: XCTestCase{
             usleep(50000)
             continueSwitch.tap()
             i += 1
-            if i > 10{
+            if i > 10 {
                 break
             }
         }
         ACTLabel.labelStep("Continue switch tapped")
         continueButton.tap()
         ACTLabel.labelStep("Continue button tapped")
-        XCTAssert(app.buttons["Sign In"].waitForExistence(timeout: 5))
+        XCTAssertTrue(buttonElement(withText: "Sign In", timeout: 5).exists)
         ACTLabel.labelStep("Sign in ready")
     }
     
@@ -62,10 +67,10 @@ class ExelonUITestCase: XCTestCase{
     
         handleTermsFirstLaunch()
     
-        let signInButton = app.buttons["Sign In"]
-        XCTAssert(signInButton.waitForExistence(timeout: 5))
+        let signInButton = buttonElement(withText: "Sign In", timeout: 5)
+        XCTAssertTrue(signInButton.exists)
         signInButton.tap()
-        
+    
         let elementsQuery = app.scrollViews.otherElements
         let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
         XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
@@ -74,58 +79,129 @@ class ExelonUITestCase: XCTestCase{
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         passwordSecureTextField.clearAndEnterText("Password1")
         ACTLabel.labelStep("Signing in...")
-        elementsQuery.buttons["Sign In"].tap()
+        tapButton(buttonText: "Sign In")
     
-        XCTAssert(app.tabBars.buttons["Home"].waitForExistence(timeout: 20))
+        XCTAssertTrue(tabButtonElement(withText: "Home").exists)
         ACTLabel.labelStep("Signed in")
     }
+}
 
-    func selectTab(tabName: String){
+// MARK: - Helpers
+extension ExelonUITestCase {
+
+    func dateString(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .opCo
+        dateFormatter.calendar = .opCo
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+
+        return dateFormatter.string(from: date)
+    }
+
+    func selectTab(tabName: String) {
         ACTLabel.labelStep("Pre-select tab \(tabName)")
-        let tab = app.tabBars.buttons[tabName]
-        XCTAssert(tab.waitForExistence(timeout: 20))
+        let tab = tabButtonElement(withText: tabName, timeout: 20)
+        XCTAssertTrue(tab.exists)
         tab.tap()
-        sleep(1)
         ACTLabel.labelStep("Post-select tab \(tabName)")
     }
     
-    func tapButton(buttonText: String){
+    func tapButton(buttonText: String) {
         ACTLabel.labelStep("Pre-tap button \(buttonText)")
-        var button: XCUIElement?
-       
-        // Buttons could be anywhere in the view hierarchy...
-        let buttonInScrollView = app.scrollViews.otherElements.buttons[buttonText]
-        let buttonInApp = app.buttons[buttonText]
-        let buttonInTableView = app.tables.buttons[buttonText]
-        let buttonDescendants = app.buttons.descendants(matching: XCUIElement.ElementType.button).matching(NSPredicate(format: "label CONTAINS '\(buttonText)'")).firstMatch
-        let lastDitchEffort = app.staticTexts[buttonText]
-        
-        if buttonInScrollView.waitForExistence(timeout: 3){
-            button = buttonInScrollView
-        } else if buttonInApp.waitForExistence(timeout: 3){
-            button = buttonInApp
-        } else if buttonInTableView.waitForExistence(timeout: 3){
-            button = buttonInTableView
-        } else if buttonDescendants.waitForExistence(timeout: 3){
-            button = buttonDescendants
-        } else if lastDitchEffort.waitForExistence(timeout: 3){
-            button = lastDitchEffort
-        }
-        
-        guard let buttonToTap = button else {
-            XCTFail("Unable to locate button with text \(buttonText)")
-            return
-        }
-        buttonToTap.tap()
-        sleep(1)
+        let button = buttonElement(withText: buttonText)
+        XCTAssertTrue(button.exists)
+        button.tap()
         ACTLabel.labelStep("Post-tap button \(buttonText)")
-        
-       
+    }
+
+    func scrollToBottomOfTable() {
+        let table = app.tables.element(boundBy: 0)
+        let lastCell = table.cells.element(boundBy: table.cells.count - 1)
+        table.scrollToElement(lastCell)
+        table.swipeUp() // In case the last cell becomes visible but we're looking for another element inside or the footer view
+    }
+
+    func checkExistenceOfElements(_ typesAndTexts: [(XCUIElement.ElementType, String)], timeout: TimeInterval = 3) {
+        for (type, text) in typesAndTexts {
+            checkExistenceOfElement(type, text, timeout: timeout)
+        }
+    }
+
+    func checkExistenceOfElement(_ type: XCUIElement.ElementType, _ text: String, timeout: TimeInterval = 3) {
+        XCTAssertTrue(element(ofType: type, withText: text, timeout: timeout).exists, "Element with text \"\(text)\" could not be found.")
+    }
+
+    func tabButtonElement(withText text: String, timeout: TimeInterval = 5) -> XCUIElement {
+        let tab = app.tabBars.buttons[text]
+
+        let exists = NSPredicate(format: "exists == true")
+        expectation(for: exists, evaluatedWith: tab, handler: nil)
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        return tab
+    }
+
+    func buttonElement(withText text: String, timeout: TimeInterval = 3) -> XCUIElement {
+        return element(ofType: .button, withText: text, timeout: timeout)
+    }
+
+    func staticTextElement(withText text: String, timeout: TimeInterval = 3) -> XCUIElement {
+        return element(ofType: .staticText, withText: text, timeout: timeout)
+    }
+
+    /// Search for element in multiple locations within the view hierarchy
+    func element(ofType type: XCUIElement.ElementType, withText text: String, timeout: TimeInterval = 3) -> XCUIElement {
+        assert(type != .other, "It is not safe to use ElementType \"other\" in this helper method as it can create a recursive loop")
+
+        let shouldOnlyUsePredicates: Bool = text.count > 128
+
+        let inDescendants = app.descendants(matching: type).descendants(matching: type).matching(labelPredicate(forText: text)).firstMatch
+        let closeMatch = app.descendants(matching: type).element(matching: labelPredicate(forText: text)).firstMatch
+
+        var possibleElements: [XCUIElement] = [inDescendants, closeMatch]
+
+        if !shouldOnlyUsePredicates {
+            let inScrollView = app.scrollViews.otherElements.descendants(matching: type)[text]
+            let inApp = app.descendants(matching: type)[text]
+            let inTableView = app.tables.descendants(matching: type)[text]
+            let inTabBar = app.tabBars.descendants(matching: type)[text]
+            let inNavBar = app.navigationBars.descendants(matching: type)[text]
+            let lastDitchEffort = app.staticTexts[text]
+
+            possibleElements.append(contentsOf: [inScrollView, inApp, inTableView, inTabBar, inNavBar, lastDitchEffort])
+        }
+
+        let matchFilter: (XCUIElement) -> Bool = { $0.exists && $0.elementType == type }
+        var elapsedTime: TimeInterval = 0
+
+        while elapsedTime < timeout {
+
+            if let validElement = possibleElements.lazy.filter(matchFilter).first {
+                return validElement
+            }
+            usleep(200000) // sleep for .2 seconds
+            elapsedTime += 0.2
+        }
+
+        return app.descendants(matching: type)["Intentionally Returning an element that does not exist"]
+    }
+
+    /// Breaks down multi-line text for predicate use
+    private func labelPredicate(forText text: String) -> NSPredicate {
+        let linesOfText = text.components(separatedBy: "\n")
+        var format = "label CONTAINS '\(linesOfText.first!)'"
+
+        if linesOfText.count > 1 {
+            for i in 1..<linesOfText.count where !linesOfText[i].isEmpty {
+                format += " AND label CONTAINS '\(linesOfText[i])'"
+            }
+        }
+        return NSPredicate(format: format)
     }
 }
 
 extension XCUIElement {
-    func scrollToElement(element: XCUIElement) {
+    func scrollToElement(_ element: XCUIElement) {
         while !element.visible() {
             swipeUp()
         }

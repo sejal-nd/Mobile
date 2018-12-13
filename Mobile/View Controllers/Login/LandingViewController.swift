@@ -52,7 +52,7 @@ class LandingViewController: UIViewController {
             switch Environment.shared.environmentName {
             case .prod:
                 versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
-            case .aut, .dev, .stage:
+            default:
                 versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
             }
         } else {
@@ -122,11 +122,7 @@ class LandingViewController: UIViewController {
     // MARK: - Helper
     
     private func backgroundVideoSetup() {
-        // The old method that supports iOS 9 is not available in Swift 4.2 🤷‍♂️.
-        // Could make an objective-c function and call that, but we're dropping iOS 9 soon anyway.
-        if #available(iOS 10, *) {
-            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
-        }
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
         
         view.sendSubviewToBack(videoView)
         let movieUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "landing_video", ofType: "mp4")!)

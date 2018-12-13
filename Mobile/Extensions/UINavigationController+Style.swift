@@ -37,7 +37,7 @@ extension UINavigationController {
     
     func setColoredNavBar(hidesBottomBorder: Bool = false) {
         navigationBar.barStyle = .black
-        navigationBar.barTintColor = .primaryColor
+        navigationBar.barTintColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
         navigationBar.tintColor = .white
         navigationBar.isTranslucent = false
         

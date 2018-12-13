@@ -12,6 +12,7 @@ import RxSwiftExt
 import Lottie
 import StoreKit
 import UserNotifications
+import SafariServices
 
 fileprivate let editHomeSegueId = "editHomeSegue"
 
@@ -31,6 +32,7 @@ class HomeViewController: AccountPickerViewController {
     
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
+    var appointmentCardView: HomeAppointmentCardView?
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
@@ -50,7 +52,8 @@ class HomeViewController: AccountPickerViewController {
                                   usageService: ServiceFactory.createUsageService(),
                                   authService: ServiceFactory.createAuthenticationService(),
                                   outageService: ServiceFactory.createOutageService(),
-                                  alertsService: ServiceFactory.createAlertsService())
+                                  alertsService: ServiceFactory.createAlertsService(),
+                                  appointmentService: ServiceFactory.createAppointmentService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -86,6 +89,21 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
+        viewModel.accountDetailEvents.elements()
+            .take(1)
+            .subscribe(onNext: { accountDetail in
+                let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
+                
+                let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
+                    (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
+                
+                Analytics.log(event: .profileLoaded,
+                              dimensions: [.residentialAMI: residentialAMIString,
+                                           .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
+                                           .peakSmart: isPeakSmart ? "true" : "false"])
+            })
+            .disposed(by: bag)
+        
         viewSetup()
         styleViews()
         bindLoadingStates()
@@ -113,8 +131,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         // Create weather card
-        weatherView = HomeWeatherView.create(withViewModel: viewModel.weatherViewModel)
-        
+        weatherView = .create(withViewModel: viewModel.weatherViewModel)
         mainStackView.insertArrangedSubview(weatherView, at: 1)
         weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
         weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
@@ -132,6 +149,52 @@ class HomeViewController: AccountPickerViewController {
         if tappedVersion < viewModel.latestNewCardVersion {
             topPersonalizeButtonSetup()
         }
+        
+        // Appointment Card
+        viewModel.showAppointmentCard
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] showAppointmentCard in
+                guard let self = self else { return }
+                
+                guard showAppointmentCard else {
+                    self.appointmentCardView?.removeFromSuperview()
+                    self.appointmentCardView = nil
+                    return
+                }
+                
+                let appointmentCardView = HomeAppointmentCardView
+                    .create(withViewModel: self.viewModel.appointmentCardViewModel)
+                
+                appointmentCardView.bottomButton.rx.touchUpInside.asObservable()
+                    .withLatestFrom(Observable.combineLatest(self.viewModel.appointmentCardViewModel.appointments,
+                                                             self.viewModel.accountDetailEvents.elements()))
+                    .asDriver(onErrorDriveWith: .empty())
+                    .drive(onNext: { [weak self] appointments, accountDetail in
+                        guard let self = self else { return }
+                        let appointment = appointments[0]
+                        
+                        let status: Appointment.Status
+                        if appointments.count > 1 {
+                            status = .scheduled
+                        } else {
+                            status = appointment.status
+                        }
+                        
+                        switch status {
+                        case .scheduled, .inProgress, .enRoute:
+                            self.performSegue(withIdentifier: "appointmentDetailSegue",
+                                              sender: (appointments, accountDetail.premiseNumber!))
+                        case .canceled, .complete:
+                            UIApplication.shared.openPhoneNumberIfCan(self.viewModel.appointmentCardViewModel.contactNumber)
+                        }
+                    })
+                    .disposed(by: appointmentCardView.disposeBag)
+                
+                let index = self.topPersonalizeButton != nil ? 1 : 0
+                self.contentStackView.insertArrangedSubview(appointmentCardView, at: index)
+                self.appointmentCardView = appointmentCardView
+            })
+            .disposed(by: bag)
         
         // If no update, show weather and personalize button at the top.
         // Hide the update view.
@@ -232,21 +295,24 @@ class HomeViewController: AccountPickerViewController {
         }
         
         if Environment.shared.environmentName != .aut {
-            if #available(iOS 10.0, *) {
-                UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted: Bool, error: Error?) in
-                    if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
-                        UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
-                        if granted {
-                            Analytics.log(event: .alertsiOSPushOKInitial)
-                        } else {
-                            Analytics.log(event: .alertsiOSPushDontAllowInitial)
-                        }
-                    }
-                })
+            let authOptions: UNAuthorizationOptions
+            if #available(iOS 12, *) {
+                authOptions = [.badge, .alert, .sound, .providesAppNotificationSettings]
             } else {
-                let settings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
-                UIApplication.shared.registerUserNotificationSettings(settings)
+                authOptions = [.badge, .alert, .sound]
             }
+            
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { (granted: Bool, error: Error?) in
+                if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
+                    UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
+                    if granted {
+                        Analytics.log(event: .alertsiOSPushOKInitial)
+                    } else {
+                        Analytics.log(event: .alertsiOSPushDontAllowInitial)
+                    }
+                }
+            })
+            
             UIApplication.shared.registerForRemoteNotifications()
         }
         
@@ -305,7 +371,7 @@ class HomeViewController: AccountPickerViewController {
             if let billCard = self.billCardView {
                 billCardView = billCard
             } else {
-                billCardView = HomeBillCardView.create(withViewModel: viewModel.billCardViewModel)
+                billCardView = .create(withViewModel: viewModel.billCardViewModel)
                 self.billCardView = billCardView
                 bindBillCard()
             }
@@ -316,7 +382,7 @@ class HomeViewController: AccountPickerViewController {
             if let billCard = self.usageCardView {
                 usageCardView = billCard
             } else {
-                usageCardView = HomeUsageCardView.create(withViewModel: viewModel.usageCardViewModel)
+                usageCardView = .create(withViewModel: viewModel.usageCardViewModel)
                 self.usageCardView = usageCardView
                 bindUsageCard()
             }
@@ -327,7 +393,7 @@ class HomeViewController: AccountPickerViewController {
             if let templateCard = self.templateCardView {
                 templateCardView = templateCard
             } else {
-                templateCardView = TemplateCardView.create(withViewModel: viewModel.templateCardViewModel)
+                templateCardView = .create(withViewModel: viewModel.templateCardViewModel)
                 self.templateCardView = templateCardView
                 bindTemplateCard()
             }
@@ -338,7 +404,7 @@ class HomeViewController: AccountPickerViewController {
             if let projectedBillCard = self.projectedBillCardView {
                 projectedBillCardView = projectedBillCard
             } else {
-                projectedBillCardView = HomeProjectedBillCardView.create(withViewModel: viewModel.projectedBillCardViewModel)
+                projectedBillCardView = .create(withViewModel: viewModel.projectedBillCardViewModel)
                 self.projectedBillCardView = projectedBillCardView
                 bindProjectedBillCard()
             }
@@ -348,7 +414,7 @@ class HomeViewController: AccountPickerViewController {
             if let outageCard = self.outageCardView {
                 outageCardView = outageCard
             } else {
-                outageCardView = HomeOutageCardView.create(withViewModel: viewModel.outageCardViewModel)
+                outageCardView = .create(withViewModel: viewModel.outageCardViewModel)
                 self.outageCardView = outageCardView
                 bindOutageCard()
             }
@@ -450,10 +516,16 @@ class HomeViewController: AccountPickerViewController {
         guard let projectedBillCardView = projectedBillCardView else { return }
         
         projectedBillCardView.viewMoreButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.accountDetailEvents.elements()
-                .asDriver(onErrorDriveWith: .empty()))
-            .drive(onNext: { [weak self] _ in
-                self?.tabBarController?.selectedIndex = 3
+            .withLatestFrom(Driver.combineLatest(viewModel.projectedBillCardViewModel.isGas,
+                                                 viewModel.projectedBillCardViewModel.projectionNotAvailable))
+            .drive(onNext: { [weak self] isGas, projectionNotAvailable in
+                guard let tabBarCtl = self?.tabBarController as? MainTabBarController else {
+                    return
+                }
+                
+                tabBarCtl.navigateToUsage(selectedBar: projectionNotAvailable ? .projectionNotAvailable : .projected,
+                                          isGas: isGas,
+                                          isPreviousBill: true)
             }).disposed(by: projectedBillCardView.disposeBag)
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
@@ -533,11 +605,21 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? SmartEnergyRewardsViewController, let accountDetail = sender as? AccountDetail {
+        switch (segue.destination, sender) {
+        case let (vc as AppointmentsViewController, (appointments, premiseNumber) as ([Appointment], String)):
+            vc.appointments = appointments
+            vc.premiseNumber = premiseNumber
+            vc.viewModel.appointments
+                .skip(1) // First element just repeats the one passed in from this screen.
+                .bind(to: viewModel.appointmentsUpdates)
+                .disposed(by: vc.disposeBag)
+        case let (vc as SmartEnergyRewardsViewController, accountDetail as AccountDetail):
             vc.accountDetail = accountDetail
-        } else if let vc = segue.destination as? TotalSavingsViewController, let accountDetail = sender as? AccountDetail {
+        case let (vc as TotalSavingsViewController, accountDetail as AccountDetail):
             vc.eventResults = accountDetail.serInfo.eventResults
-        } else if let vc = segue.destination as? ReportOutageViewController, let currentOutageStatus = sender as? OutageStatus {
+        case let (vc as UpdatesDetailViewController, update as OpcoUpdate):
+            vc.opcoUpdate = update
+        case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):
             vc.viewModel.outageStatus = currentOutageStatus
             if let phone = currentOutageStatus.contactHomeNumber {
                 vc.viewModel.phoneNumber.value = phone
@@ -553,9 +635,8 @@ class HomeViewController: AccountPickerViewController {
                     })
                 })
                 .disposed(by: vc.disposeBag)
-        } else if let vc = segue.destination as? UpdatesDetailViewController,
-            let update = sender as? OpcoUpdate {
-            vc.opcoUpdate = update
+        default:
+            break
         }
     }
     

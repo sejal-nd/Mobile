@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
-        </array>
-        <array key="OpenSans-Semibold.ttf">
-            <string>OpenSans-Semibold</string>
         </array>
     </customFonts>
     <scenes>
@@ -490,39 +487,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SgL-GX-Dgb">
-                                                <rect key="frame" x="0.0" y="343.5" width="375" height="244.5"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_opco" translatesAutoresizingMaskIntoConstraints="NO" id="ih2-NM-40p">
-                                                        <rect key="frame" x="125" y="0.0" width="125" height="126"/>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnI-1I-gKb">
-                                                        <rect key="frame" x="0.0" y="160" width="375" height="25"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account is password protected and cannot be accessed through this app." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ig-jI-vMy">
-                                                        <rect key="frame" x="57" y="187" width="261" height="57.5"/>
-                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="hnI-1I-gKb" firstAttribute="top" secondItem="ih2-NM-40p" secondAttribute="bottom" constant="34" id="7DN-MO-QTu"/>
-                                                    <constraint firstItem="ih2-NM-40p" firstAttribute="centerX" secondItem="SgL-GX-Dgb" secondAttribute="centerX" id="7ei-9o-BXf"/>
-                                                    <constraint firstAttribute="bottom" secondItem="9Ig-jI-vMy" secondAttribute="bottom" id="Dsx-QY-34v"/>
-                                                    <constraint firstAttribute="trailing" secondItem="hnI-1I-gKb" secondAttribute="trailing" id="GmR-5r-XKS"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Mco-Ry-mtC"/>
-                                                    <constraint firstItem="ih2-NM-40p" firstAttribute="top" secondItem="SgL-GX-Dgb" secondAttribute="top" id="Q5g-w0-9tD"/>
-                                                    <constraint firstItem="hnI-1I-gKb" firstAttribute="leading" secondItem="SgL-GX-Dgb" secondAttribute="leading" id="a5h-N9-UN1"/>
-                                                    <constraint firstItem="9Ig-jI-vMy" firstAttribute="top" secondItem="hnI-1I-gKb" secondAttribute="bottom" constant="2" id="fSk-kU-zSt"/>
-                                                    <constraint firstAttribute="trailing" secondItem="9Ig-jI-vMy" secondAttribute="trailing" constant="57" id="goC-ks-sru"/>
-                                                    <constraint firstItem="9Ig-jI-vMy" firstAttribute="leading" secondItem="SgL-GX-Dgb" secondAttribute="leading" constant="57" id="oAj-Sw-Cev"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -537,7 +501,6 @@
                                             <constraint firstAttribute="trailing" secondItem="FN2-AG-tRU" secondAttribute="trailing" id="LrU-ih-gyC"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="LwI-um-wff"/>
                                             <constraint firstItem="NzH-9I-b9u" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="PNU-DF-o0j"/>
-                                            <constraint firstItem="SgL-GX-Dgb" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" id="Q3P-6y-jP7"/>
                                             <constraint firstAttribute="bottom" secondItem="H0L-QG-hAo" secondAttribute="bottom" id="R8U-mL-aiF"/>
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="top" secondItem="4LE-Ih-Txu" secondAttribute="top" id="TvX-gh-ysz"/>
                                             <constraint firstItem="H0L-QG-hAo" firstAttribute="top" secondItem="FN2-AG-tRU" secondAttribute="bottom" id="Ual-of-aCU"/>
@@ -548,7 +511,6 @@
                                             <constraint firstAttribute="trailing" secondItem="NzH-9I-b9u" secondAttribute="trailing" priority="999" id="iDt-mo-dyn"/>
                                             <constraint firstAttribute="trailing" secondItem="0lx-Wl-bvy" secondAttribute="trailing" id="u7f-ff-VHz"/>
                                             <constraint firstItem="NzH-9I-b9u" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="vi6-G2-Afs"/>
-                                            <constraint firstAttribute="trailing" secondItem="SgL-GX-Dgb" secondAttribute="trailing" priority="999" id="zY4-qe-7eA"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -556,11 +518,9 @@
                                     <constraint firstItem="lL0-H1-J9Q" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="EEz-Ld-jI2"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="leading" secondItem="qSc-mq-7Vd" secondAttribute="leading" id="GaG-cN-W3a"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="JTc-xg-NWS"/>
-                                    <constraint firstItem="SgL-GX-Dgb" firstAttribute="centerY" secondItem="qSc-mq-7Vd" secondAttribute="centerY" id="M2P-Cv-vP3"/>
                                     <constraint firstAttribute="bottom" secondItem="4LE-Ih-Txu" secondAttribute="bottom" id="Qxc-Q6-KYP"/>
                                     <constraint firstItem="lL0-H1-J9Q" firstAttribute="centerY" secondItem="qSc-mq-7Vd" secondAttribute="centerY" id="WlI-FY-Qjx"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="top" secondItem="qSc-mq-7Vd" secondAttribute="top" id="Zdg-5w-9y3"/>
-                                    <constraint firstItem="SgL-GX-Dgb" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="k07-li-7FM"/>
                                     <constraint firstAttribute="trailing" secondItem="4LE-Ih-Txu" secondAttribute="trailing" id="mIU-TM-htn"/>
                                 </constraints>
                             </scrollView>
@@ -607,9 +567,6 @@
                         <outlet property="accountContentView" destination="0lx-Wl-bvy" id="XUH-hT-UpN"/>
                         <outlet property="accountPicker" destination="FN2-AG-tRU" id="ZSm-UC-wdN"/>
                         <outlet property="backgroundScrollConstraint" destination="cBH-ug-cqL" id="urv-Cs-dDK"/>
-                        <outlet property="customErrorDetailLabel" destination="9Ig-jI-vMy" id="Cbv-uh-edG"/>
-                        <outlet property="customErrorTitleLabel" destination="hnI-1I-gKb" id="y74-We-7ed"/>
-                        <outlet property="customErrorView" destination="SgL-GX-Dgb" id="mVy-5w-x1B"/>
                         <outlet property="errorLabel" destination="lL0-H1-J9Q" id="uZU-GT-HuL"/>
                         <outlet property="finaledNoPayTextView" destination="qAF-UH-EXa" id="pv2-3O-xhP"/>
                         <outlet property="finaledNoPayTitleLabel" destination="bGi-tx-Zza" id="rfs-LD-fNM"/>
@@ -1126,7 +1083,6 @@
         <image name="gasonly_graphic" width="125" height="126"/>
         <image name="ic_check_meterping" width="18" height="14"/>
         <image name="ic_graycircle" width="30" height="30"/>
-        <image name="ic_lock_opco" width="125" height="126"/>
         <image name="ic_nooutage" width="125" height="126"/>
         <image name="icon_slash_check" width="20" height="20"/>
     </resources>

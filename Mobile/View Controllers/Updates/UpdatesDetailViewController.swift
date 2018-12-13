@@ -21,7 +21,7 @@ class UpdatesDetailViewController: UIViewController {
         titleLabel.textColor = .blackText
         titleLabel.font = OpenSans.bold.of(textStyle: .title1)
         titleLabel.attributedText = opcoUpdate.title
-            .attributedString(withLineHeight: 28)
+            .attributedString(lineHeight: 28)
         
         label.textColor = .blackText
         label.font = OpenSans.regular.of(textStyle: .body)

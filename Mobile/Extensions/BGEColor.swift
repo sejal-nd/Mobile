@@ -33,4 +33,8 @@ extension UIColor {
         return UIColor(red: 24/255, green: 51/255, blue: 18/255, alpha: 1)
     }
     
+    @nonobjc static var stormPrimaryColor: UIColor {
+        return .bgeGreen
+    }
+    
 }

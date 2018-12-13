@@ -16,6 +16,7 @@ struct AlertPreferences {
     var paymentDue = false
     var paymentDueDaysBefore = 1
     var budgetBilling = false // ComEd/PECO only
+//    var appointmentTracking = false
     var forYourInfo = false
     
     init(alertPreferences: [AlertPreference]) {
@@ -36,6 +37,8 @@ struct AlertPreferences {
                 }
             case "Budget Billing":
                 budgetBilling = true
+//            case "Customer Appointments":
+//                appointmentTracking = true
             case "News", "Marketing":
                 forYourInfo = true
             default:
@@ -45,7 +48,15 @@ struct AlertPreferences {
     }
     
     // To create programatically, not from JSON
-    init(outage: Bool, scheduledMaint: Bool, severeWeather: Bool, billReady: Bool, paymentDue: Bool, paymentDueDaysBefore: Int, budgetBilling: Bool, forYourInfo: Bool) {
+    init(outage: Bool,
+         scheduledMaint: Bool,
+         severeWeather: Bool,
+         billReady: Bool,
+         paymentDue: Bool,
+         paymentDueDaysBefore: Int,
+         budgetBilling: Bool,
+//         appointmentTracking: Bool,
+         forYourInfo: Bool) {
         self.outage = outage
         self.scheduledMaint = scheduledMaint
         self.severeWeather = severeWeather
@@ -53,6 +64,7 @@ struct AlertPreferences {
         self.paymentDue = paymentDue
         self.paymentDueDaysBefore = paymentDueDaysBefore
         self.budgetBilling = budgetBilling
+//        self.appointmentTracking = appointmentTracking
         self.forYourInfo = forYourInfo
     }
     
@@ -68,19 +80,22 @@ struct AlertPreferences {
             ["programName": billReadyProgramName, "type": "push", "isActive": billReady],
             ["programName": paymentDueProgramName, "type": "push", "isActive": paymentDue, "daysPrior": paymentDueDaysBefore],
             ["programName": "Budget Billing", "type": "push", "isActive": budgetBilling],
+//            ["programName": "Customer Appointments", "type": "push", "isActive": appointmentTracking],
             ["programName": forYourInfoProgramName, "type": "push", "isActive": forYourInfo]
         ]
         return array
     }
     
     func isDifferent(fromOriginal originalPrefs: AlertPreferences) -> Bool {
+        // Note: not checking paymentDueDaysBefore here because that is compared for changes independently
+        // in AlertPreferencesViewModel
         return outage != originalPrefs.outage ||
             scheduledMaint != originalPrefs.scheduledMaint ||
             severeWeather != originalPrefs.severeWeather ||
             billReady != originalPrefs.billReady ||
             paymentDue != originalPrefs.paymentDue ||
-            (paymentDue && paymentDueDaysBefore != originalPrefs.paymentDueDaysBefore) ||
             budgetBilling != originalPrefs.budgetBilling ||
+//            appointmentTracking != originalPrefs.appointmentTracking ||
             forYourInfo != originalPrefs.forYourInfo
     }
 }

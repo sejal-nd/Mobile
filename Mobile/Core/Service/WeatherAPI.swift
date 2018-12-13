@@ -11,7 +11,7 @@ import RxCocoa
 import CoreLocation
 import Mapper
 
-let baseUrl = "https://api.weather.gov/"
+private let baseUrl = "https://api.weather.gov/"
 
 //added greeting to this so everything loads at the same time
 struct WeatherItem {
@@ -36,8 +36,7 @@ struct WeatherItem {
     }
     
     private static func forecastData(iconString: String, isDaytime: Bool) -> (String, String) {
-        
-        if let iconName = WeatherIconNames.values.first(where: { iconString.contains($0.rawValue) }) {
+        if let iconName = WeatherIconNames.allCases.first(where: { iconString.contains($0.rawValue) }) {
             switch iconName {
             case .hot, .skc, .windSkc:
                 if isDaytime {
@@ -67,7 +66,7 @@ struct WeatherItem {
                 return ("ic_cloudy", NSLocalizedString("Overcast", comment: ""))
             case .snow, .blizzard, .cold:
                 return ("ic_snow", NSLocalizedString("Snow", comment: ""))
-            default:
+            case .unknown:
                 return (WeatherIconNames.unknown.rawValue, "")
             }
         }
@@ -77,7 +76,7 @@ struct WeatherItem {
 
 
 //TODO: when swift is refactorable make this more readable 
-enum WeatherIconNames: String { 
+enum WeatherIconNames: String, CaseIterable {
     case hot = "hot"
     case cold = "cold"
     case tsWarn = "ts_warn"
@@ -118,55 +117,53 @@ enum WeatherIconNames: String {
     case unknown = "unknown"
 }
 
-extension WeatherIconNames {
-    static let values = [hot, cold, tsWarn, tsWatch, tsHurrWarn, hurrWarn, hurrWatch, fog, haze, smoke, dust, skc, windSkc, bkn, windBkn, few, sct, tornado, rain, rainShowers, rainShowersHi, rainSleet, rainFzra, snowSleet, fzra, rainSnow, snowFzra, sleet, tsra, tsraSct, tsraHi, ovc, windOvc, snow, blizzard]
-}
-
-struct WeatherAPI: WeatherService { 
+struct WeatherAPI: WeatherService {
     
-    func getWeather(address: String, completion: @escaping (_ result: ServiceResult<WeatherItem>) -> Swift.Void) {
-        let geoCoder = CLGeocoder()
-        
-        geoCoder.geocodeAddressString(address, completionHandler: { (placemarks, error) in 
-            if let placemarks = placemarks,
-                placemarks.count > 0,
-                let coordinate = placemarks[0].location?.coordinate { 
-                let urlString = self.urlString(coordinate: coordinate)
+    let geoCoder = CLGeocoder()
+    
+    func fetchWeather(address: String) -> Observable<WeatherItem> {
+        return Observable<String>
+            .create { observer in
+                self.geoCoder.geocodeAddressString(address) { placemarks, error in
+                    guard let placemarks = placemarks,
+                        placemarks.count > 0,
+                        let coordinate = placemarks[0].location?.coordinate else {
+                            observer.on(.error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)))
+                            return
+                    }
+                    
+                    observer.on(.next(self.urlString(coordinate: coordinate)))
+                    observer.on(.completed)
+                }
+                
+                return Disposables.create()
+            }
+            .flatMap { urlString -> Observable<WeatherItem> in
+                let requestId = ShortUUIDGenerator.getUUID(length: 8)
+                let method = HttpMethod.get
+                APILog(requestId: requestId, method: method, message: "REQUEST")
                 
                 var urlRequest = URLRequest(url: URL(string: urlString)!)
-                urlRequest.httpMethod = "GET"
-                URLSession.shared.dataTask(with:urlRequest, completionHandler: { (data:Data?, resp: URLResponse?, err: Error?) in
-                    if let error = err {
-                        let serviceError = ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)
-                        completion(ServiceResult.failure(serviceError))
-                        
-                    } else {
-//                        let responseString = String.init(data: data!, encoding: String.Encoding.utf8) ?? ""
-//                        dLog(responseString)
-                        
-                        do {
-                            let results = try JSONSerialization.jsonObject(with: data!, options:JSONSerialization.ReadingOptions.allowFragments) as? [String: Any]
-                            guard let json = results,
-                                let weatherItem = WeatherItem(json: json) else {
-                                    let serviceError = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
-                                    completion(ServiceResult.failure(serviceError))
-                                    return
-                            }
-                            completion(ServiceResult.success(weatherItem))
-                            
-                        }
-                        catch let error as NSError {
-                            let serviceError = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error)
-                            completion(ServiceResult.failure(serviceError))
-                        }
-                    }
-                }).resume()
+                urlRequest.httpMethod = method.rawValue
                 
-            } else {
-                let serviceError = ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)
-                completion(ServiceResult.failure(serviceError))
-            }
-        })
+                return URLSession.shared.rx.dataResponse(request: urlRequest)
+                    .do(onNext: { data in
+                        let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
+                        APILog(requestId: requestId, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+                    }, onError: { error in
+                        let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                        APILog(requestId: requestId, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                    })
+                    .map { data -> WeatherItem in
+                        guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
+                            let dict = json as? [String: Any],
+                            let weatherItem = WeatherItem(json: dict) else {
+                                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                        }
+                        
+                        return weatherItem
+                }
+        }
     }
     
     private func urlString(coordinate: CLLocationCoordinate2D) -> String {
@@ -176,4 +173,10 @@ struct WeatherAPI: WeatherService {
         
     }
     
+}
+
+fileprivate func APILog(requestId: String, method: HttpMethod, message: String) {
+    #if DEBUG
+        NSLog("[WeatherApi][%@] %@ %@", requestId, method.rawValue, message)
+    #endif
 }

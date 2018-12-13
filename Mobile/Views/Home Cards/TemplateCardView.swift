@@ -70,24 +70,21 @@ class TemplateCardView: UIView {
         //grab all the content
         viewModel.templateImage.drive(imageView.rx.image).disposed(by: bag)
         viewModel.titleString
-            .map { $0?.attributedString(withLineHeight: 30, textAlignment: .center) }
+            .map { $0?.attributedString(textAlignment: .center, lineHeight: 30) }
             .drive(titleLabel.rx.attributedText)
             .disposed(by: bag)
         
         viewModel.bodyString
-            .map { $0?.attributedString(withLineHeight: 18) }
+            .map { $0?.attributedString(textAlignment: .left, lineHeight: 18) }
             .drive(bodyLabel.rx.attributedText).disposed(by: bag)
         viewModel.bodyStringA11yLabel.drive(bodyLabel.rx.accessibilityLabel).disposed(by: bag)
         viewModel.ctaString.drive(callToActionLabel.rx.text).disposed(by: bag)
         viewModel.ctaString.drive(callToActionButton.rx.accessibilityLabel).disposed(by: bag)
         
-        viewModel.errorLabelText
-            .map { $0?.attributedString(withLineHeight: 26, textAlignment: .center) }
-            .drive(onNext: { [weak self] errorText in
-                self?.errorLabel.attributedText = errorText
-                let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
-                self?.errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.shared.opco.displayString, errorText ?? "")
-            }).disposed(by: bag)
+        let attributedErrorText = viewModel.errorLabelText.attributedString(textAlignment: .center, lineHeight: 26)
+        errorLabel.attributedText = attributedErrorText
+        let localizedAccessibililtyText = NSLocalizedString("%@ OverView, %@", comment: "")
+        errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, Environment.shared.opco.displayString, attributedErrorText)
         
         callToActionButton.rx.touchUpInside.asObservable()
             .withLatestFrom(viewModel.ctaUrl.asObservable())
@@ -105,10 +102,10 @@ class TemplateCardView: UIView {
                 
                 if UIApplication.shared.canOpenURL(appLinkUrl) {
                     Analytics.log(event: .homePromoCard, dimensions: [.link: appLinkUrl.absoluteString])
-                    UIApplication.shared.openURL(appLinkUrl)
+                    UIApplication.shared.open(appLinkUrl)
                 } else if UIApplication.shared.canOpenURL(appStoreUrl) {
                     Analytics.log(event: .homePromoCard, dimensions: [.link: appStoreUrl.absoluteString])
-                    UIApplication.shared.openURL(appStoreUrl)
+                    UIApplication.shared.open(appStoreUrl)
                 }
             })
             .disposed(by: bag)

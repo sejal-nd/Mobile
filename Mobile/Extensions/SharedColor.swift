@@ -70,40 +70,25 @@ extension UIColor {
         return UIColor(red: 234/255, green: 230/255, blue: 188/255, alpha: 1)
     }
     
-//    convenience init(hex: String, alpha: CGFloat = 1) {
-//        assert(hex[hex.startIndex] == "#", "Expected hex string of format #RRGGBB")
-//        
-//        let scanner = Scanner(string: hex)
-//        scanner.scanLocation = 1 // skip #
-//        
-//        var rgb: UInt32 = 0
-//        scanner.scanHexInt32(&rgb)
-//        
-//        self.init(
-//            red: CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
-//            green: CGFloat((rgb & 0xFF00) >>  8) / 255.0,
-//            blue: CGFloat((rgb & 0xFF)) / 255.0,
-//            alpha: alpha
-//        )
-//    }
-//    
-//    func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
-//        return self.adjust(by: abs(percentage))
-//    }
-//
-//    func darker(by percentage: CGFloat = 30.0) -> UIColor? {
-//        return self.adjust(by: -1 * abs(percentage))
-//    }
-//
-//    func adjust(by percentage:CGFloat=30.0) -> UIColor? {
-//        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0;
-//        if self.getRed(&r, green: &g, blue: &b, alpha: &a) {
-//            return UIColor(red: min(r + percentage/100, 1.0),
-//                           green: min(g + percentage/100, 1.0),
-//                           blue: min(b + percentage/100, 1.0),
-//                           alpha: a)
-//        } else {
-//            return nil
-//        }
-//    }
+    @nonobjc static var bgeGreen: UIColor {
+        // Old BGE primary color
+        return UIColor(red: 102/255, green: 179/255, blue: 96/255, alpha: 1)
+    }
+    
+    @nonobjc static var stormModeBlack: UIColor {
+        return UIColor(red: 44/255, green: 38/255, blue: 51/255, alpha: 1)
+    }
+    
+    @nonobjc static var stormModeGray: UIColor {
+        return UIColor(red: 65/255, green: 60/255, blue: 71/255, alpha: 1)
+    }
+    
+    @nonobjc static var stormModeLightGray: UIColor {
+        return UIColor(red: 84/255, green: 79/255, blue: 89/255, alpha: 1)
+    }
+    
+    @nonobjc static var roseQuartz: UIColor {
+        return UIColor(red: 164/255, green: 155/255, blue: 174/255, alpha: 1)
+    }
+    
 }

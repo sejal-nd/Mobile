@@ -138,7 +138,7 @@ class SplashViewController: UIViewController{
             loadingTimer.invalidate()
             
             let navigate = { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if self.performDeepLink {
                     let storyboard = UIStoryboard(name: "Login", bundle: nil)
                     let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
@@ -161,6 +161,18 @@ class SplashViewController: UIViewController{
                     unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
                     
                     self.navigationController?.setViewControllers(vcArray, animated: true)
+                } else if self.shortcutItem == .alertPreferences {
+                    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+                    let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+                    let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+                    
+                    self.navigationController?.setViewControllers([landing, login], animated: false)
+                    
+                    let alert = UIAlertController(title: NSLocalizedString("You must be signed in to adjust alert preferences.", comment: ""),
+                                                  message: NSLocalizedString("You can turn the \"Keep me signed in\" toggle ON for your convenience.", comment: ""),
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    landing.present(alert, animated: true, completion: nil)
                 } else {
                     self.performSegue(withIdentifier: "landingSegue", sender: self)
                 }
@@ -203,15 +215,9 @@ class SplashViewController: UIViewController{
     
     func handleOutOfDate(){
         let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
-        requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] action in
-            if let url = self?.viewModel.appStoreLink, UIApplication.shared.canOpenURL(url) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(url)
-                }
-            }
-        }))
+        requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
+            UIApplication.shared.openUrlIfCan(Environment.shared.opco.appStoreLink)
+        })
         present(requireUpdateAlert,animated: true, completion: nil)
     }
     

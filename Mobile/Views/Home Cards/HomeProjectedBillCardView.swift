@@ -39,6 +39,8 @@ class HomeProjectedBillCardView: UIView {
     @IBOutlet private weak var emptyStateTitleLabel: UILabel!
     @IBOutlet private weak var emptyStateDescriptionLabel: UILabel!
     
+    @IBOutlet private weak var maintenanceModeView: UIView!
+    
     @IBOutlet private weak var errorView: UIView!
     @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var errorDescriptionLabel: UILabel!
@@ -72,14 +74,14 @@ class HomeProjectedBillCardView: UIView {
         emptyStateDescriptionLabel.textColor = .middleGray
         emptyStateDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
         emptyStateDescriptionLabel.attributedText = NSLocalizedString("Projected bill is not available for this account.", comment: "")
-            .attributedString(withLineHeight: 26, textAlignment: .center)
+            .attributedString(textAlignment: .center, lineHeight: 26)
         
         errorTitleLabel.textColor = .blackText
         errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         errorDescriptionLabel.textColor = .middleGray
         errorDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
         errorDescriptionLabel.attributedText = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-            .attributedString(withLineHeight: 26, textAlignment: .center)
+            .attributedString(textAlignment: .center, lineHeight: 26)
         
         segmentedControl.setItems(leftLabel: NSLocalizedString("Electric", comment: ""),
                                   rightLabel: NSLocalizedString("Gas", comment: ""),
@@ -109,18 +111,28 @@ class HomeProjectedBillCardView: UIView {
         infoStack.isHidden = false
         emptyStateView.isHidden = true
         errorView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showEmptyState() {
         infoStack.isHidden = true
         emptyStateView.isHidden = false
         errorView.isHidden = true
+        maintenanceModeView.isHidden = true
     }
     
     private func showErrorState() {
         infoStack.isHidden = true
         emptyStateView.isHidden = true
         errorView.isHidden = false
+        maintenanceModeView.isHidden = true
+    }
+    
+    private func showMaintenanceModeState() {
+        infoStack.isHidden = true
+        emptyStateView.isHidden = true
+        errorView.isHidden = true
+        maintenanceModeView.isHidden = false
     }
     
     private func bindViewModel() {
@@ -142,6 +154,12 @@ class HomeProjectedBillCardView: UIView {
         viewModel.showError
             .drive(onNext: { [weak self] in
                 self?.showErrorState()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.showMaintenanceModeState
+            .drive(onNext: { [weak self] in
+                self?.showMaintenanceModeState()
             })
             .disposed(by: disposeBag)
         

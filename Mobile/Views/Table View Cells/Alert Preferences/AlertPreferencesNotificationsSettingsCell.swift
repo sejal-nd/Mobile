@@ -26,7 +26,7 @@ class AlertPreferencesNotificationsSettingsCell: UITableViewCell {
     @IBAction func goToSettingsPressed(_ sender: Any) {
         if let url = URL(string: UIApplication.openSettingsURLString) {
             Analytics.log(event: .alertsDevSet)
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url)
         }
     }
 }

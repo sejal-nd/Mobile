@@ -65,16 +65,35 @@ class OneTouchSlider: UIControl {
     
     override var isEnabled: Bool {
         didSet {
-            if isEnabled {
-                backgroundColor = .primaryColor
-                sliderFinish.backgroundColor = Environment.shared.opco == .bge ? .primaryColorDark: .primaryColorADA
+            switch (isEnabled, StormModeStatus.shared.isOn) {
+            case (true, false):
+                alpha = 1
                 sliderFinish.alpha = 1
+                sliderFinish.backgroundColor = Environment.shared.opco == .bge ? .primaryColorDark: .primaryColorADA
+                backgroundColor = .primaryColor
                 imageView.image = #imageLiteral(resourceName: "ic_caret")
-            } else {
-                backgroundColor = .accentGray
-                sliderFinish.backgroundColor = .middleGray
+                sliderLabel.textColor = .white
+            case (false, false):
+                alpha = 1
                 sliderFinish.alpha = 0.5
+                sliderFinish.backgroundColor = .middleGray
+                backgroundColor = .accentGray
                 imageView.image = #imageLiteral(resourceName: "ic_caret_disabled")
+                sliderLabel.textColor = .white
+            case (true, true):
+                alpha = 1
+                sliderFinish.alpha = 1
+                sliderFinish.backgroundColor = .accentGray
+                backgroundColor = .white
+                imageView.image = #imageLiteral(resourceName: "ic_caret")
+                sliderLabel.textColor = .actionBlue
+            case (false, true):
+                alpha = 0.4
+                sliderFinish.alpha = 1
+                sliderFinish.backgroundColor = .accentGray
+                backgroundColor = .white
+                imageView.image = #imageLiteral(resourceName: "ic_caret_disabled")
+                sliderLabel.textColor = .middleGray
             }
             
             accessibilityButton.isEnabled = isEnabled
@@ -94,7 +113,7 @@ class OneTouchSlider: UIControl {
         sliderLabel.textAlignment = .center
         sliderLabel.font = OpenSans.semibold.of(size: 16)
         sliderLabel.setLineHeight(lineHeight: 16)
-        sliderLabel.textColor = .white
+        sliderLabel.textColor = StormModeStatus.shared.isOn ? .actionBlue : .white
         sliderLabel.text = sliderText
         sliderLabel.isAccessibilityElement = false
         addSubview(sliderLabel)

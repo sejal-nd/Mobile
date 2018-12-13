@@ -176,7 +176,7 @@ class ChangePasswordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if sentFromLogin {
+        if sentFromLogin || StormModeStatus.shared.isOn {
             navigationController?.setColoredNavBar()
         } else {
             navigationController?.setWhiteNavBar()

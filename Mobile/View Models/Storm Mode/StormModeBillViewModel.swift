@@ -45,16 +45,16 @@ class StormModeBillViewModel {
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = fetchData
         .toAsyncRequest(activityTrackers: { [weak self] state in
-            guard let this = self else { return nil }
+            guard let self = self else { return nil }
             switch state {
             case .refresh:
-                return [this.refreshTracker]
+                return [self.refreshTracker]
             case .switchAccount:
-                return [this.switchAccountTracker]
+                return [self.switchAccountTracker]
             }
             }, requestSelector: { [weak self] _ in
-                guard let this = self else { return .empty() }
-                return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                guard let self = self else { return .empty() }
+                return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
         })
     
     private(set) lazy var didFinishRefresh: Driver<Void> = refreshTracker
@@ -63,12 +63,22 @@ class StormModeBillViewModel {
         .map(to: ())
     
     private(set) lazy var showButtonStack: Driver<Bool> = Observable
-        .merge(switchAccountTracker.asObservable().filter { $0 }.not(),
-               accountDetailEvents.map { $0.error == nil })
+        .combineLatest(switchAccountTracker.asObservable(),
+                       accountDetailEvents)
+        { isLoading, accountDetailEvent in
+            accountDetailEvent.error == nil && !isLoading
+        }
+        .startWith(false)
+        .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showMakeAPaymentButton: Driver<Bool> = accountDetailEvents.elements()
         .map { $0.billingInfo.netDueAmount ?? 0 > 0 || Environment.shared.opco == .bge }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showNoNetworkConnectionView: Driver<Bool> = accountDetailEvents
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+        .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = accountDetailEvents

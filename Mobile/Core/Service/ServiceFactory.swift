@@ -11,15 +11,15 @@ import Foundation
 /// Utility class for intantiating Service Instances
 class ServiceFactory {
 
-    static let sharedOutageService = OMCOutageService()
+    static let sharedOutageService = MCSOutageService()
     static let sharedMockOutageService = MockOutageService()
 
     class func createAuthenticationService() -> AuthenticationService {
-        switch(Environment.shared.environmentName) {
-        case .dev, .stage, .prod:
-            return OMCAuthenticationService()
+        switch Environment.shared.environmentName {
         case .aut:
             return MockAuthenticationService()
+        default:
+            return MCSAuthenticationService()
         }
     }
 
@@ -28,56 +28,56 @@ class ServiceFactory {
     }
 
     class func createAccountService() -> AccountService {
-        switch(Environment.shared.environmentName) {
-        case .dev, .stage, .prod:
-            return OMCAccountService()
+        switch Environment.shared.environmentName {
         case .aut:
             return MockAccountService()
+        default:
+            return MCSAccountService()
         }
     }
 
     class func createOutageService() -> OutageService {
-        switch(Environment.shared.environmentName) {
-        case .dev, .stage, .prod:
-            return sharedOutageService
+        switch Environment.shared.environmentName {
         case .aut:
             return sharedMockOutageService
+        default:
+            return sharedOutageService
         }
     }
 
     class func createBillService() -> BillService {
-        switch(Environment.shared.environmentName) {
-        case .dev, .stage, .prod:
-            return OMCBillService()
+        switch Environment.shared.environmentName {
         case .aut:
             return MockBillService()
+        default:
+            return MCSBillService()
         }
     }
 
     class func createWalletService() -> WalletService {
-        switch(Environment.shared.environmentName) {
-        case .dev, .stage, .prod:
-            return OMCWalletService()
+        switch Environment.shared.environmentName {
         case .aut:
             return MockWalletService()
+        default:
+            return MCSWalletService()
         }
     }
 
     class func createRegistrationService() -> RegistrationService {
-        switch(Environment.shared.environmentName) {
-        case .dev, .stage, .prod:
-            return OMCRegistrationService()
+        switch Environment.shared.environmentName {
         case .aut:
             return MockRegistrationService()
+        default:
+            return MCSRegistrationService()
         }
     }
 
     class func createPaymentService() -> PaymentService {
-        switch(Environment.shared.environmentName) {
-        case .dev, .stage, .prod:
-            return OMCPaymentService()
+        switch Environment.shared.environmentName {
         case .aut:
             return MockPaymentService()
+        default:
+            return MCSPaymentService()
         }
     }
 
@@ -86,24 +86,33 @@ class ServiceFactory {
     }
 
     class func createUsageService() -> UsageService {
-        switch(Environment.shared.environmentName) {
-        case .dev, .stage, .prod:
-            return OMCUsageService()
+        switch Environment.shared.environmentName {
         case .aut:
             return MockUsageService()
+        default:
+            return MCSUsageService()
         }
     }
 
     class func createAlertsService() -> AlertsService {
-        switch(Environment.shared.environmentName) {
-        case .dev, .stage, .prod:
-            return OMCAlertsService()
+        switch Environment.shared.environmentName {
         case .aut:
             return MockAlertsService()
+        default:
+            return MCSAlertsService()
         }
     }
     
     class func createPeakRewardsService() -> PeakRewardsService {
-        return OMCPeakRewardsService()
+        return MCSPeakRewardsService()
+    }
+    
+    class func createAppointmentService() -> AppointmentService {
+        switch Environment.shared.environmentName {
+        case .aut:
+            return MockAppointmentService()
+        default:
+            return MCSAppointmentService()
+        }
     }
 }

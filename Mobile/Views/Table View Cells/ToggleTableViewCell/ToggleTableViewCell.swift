@@ -23,15 +23,24 @@ class ToggleTableViewCell: UITableViewCell {
         didSet {
             toggle.layer.cornerRadius = 16.0
             toggle.layer.masksToBounds = true
-            toggle.tintColor = .switchBackgroundColor
-            toggle.backgroundColor = .switchBackgroundColor
-            toggle.thumbTintColor = .primaryColor
-            toggle.onTintColor = .white
+            
+            if StormModeStatus.shared.isOn {
+                toggle.tintColor = .roseQuartz
+                toggle.backgroundColor = .roseQuartz
+                toggle.thumbTintColor = .stormModeBlack
+                toggle.onTintColor = .stormPrimaryColor
+            } else {
+                toggle.tintColor = .switchBackgroundColor
+                toggle.backgroundColor = .switchBackgroundColor
+                toggle.thumbTintColor = .primaryColor
+                toggle.onTintColor = .white
+            }
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = StormModeStatus.shared.isOn ? .clear : .primaryColor
         
         isAccessibilityElement = false
     }
@@ -39,7 +48,7 @@ class ToggleTableViewCell: UITableViewCell {
     // MARK: - Configure
     public func configure(viewModel: MoreViewModel, tag: Int) {
         // Style
-        backgroundColor = .primaryColor
+        backgroundColor = StormModeStatus.shared.isOn ? .clear : .primaryColor
         
         // Set Data
         if viewModel.biometricsString() == "Face ID" {

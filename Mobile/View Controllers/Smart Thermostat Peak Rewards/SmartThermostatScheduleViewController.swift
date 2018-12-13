@@ -82,14 +82,44 @@ class SmartThermostatScheduleViewController: UIViewController {
         sliderStack.topAnchor.constraint(equalTo: sliderStackContainer.topAnchor).isActive = true
         sliderStack.bottomAnchor.constraint(equalTo: sliderStackContainer.bottomAnchor).isActive = true
         
-        let mainStack = UIStackView(arrangedSubviews: [timeButtonContainer, sliderStackContainer]).usingAutoLayout()
+        let didYouKnowView = UIView().usingAutoLayout()
+        let didYouKnowLabel = UILabel().usingAutoLayout()
+        didYouKnowLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        didYouKnowLabel.textColor = .blackText
+        didYouKnowLabel.text = NSLocalizedString("Did you know?", comment: "")
+        
+        let didYouKnowDetailLabel = UILabel().usingAutoLayout()
+        didYouKnowDetailLabel.font = SystemFont.regular.of(textStyle: .headline)
+        didYouKnowDetailLabel.textColor = .blackText
+        didYouKnowDetailLabel.numberOfLines = 0
+        didYouKnowDetailLabel.text = viewModel.didYouKnowText
+        
+        didYouKnowView.addSubview(didYouKnowLabel)
+        didYouKnowView.addSubview(didYouKnowDetailLabel)
+        
+        didYouKnowLabel.addTabletWidthConstraints(horizontalPadding: 29)
+        didYouKnowLabel.topAnchor.constraint(equalTo: didYouKnowView.topAnchor, constant: 11).isActive = true
+        didYouKnowLabel.bottomAnchor.constraint(equalTo: didYouKnowDetailLabel.topAnchor, constant: -10).isActive = true
+        didYouKnowDetailLabel.addTabletWidthConstraints(horizontalPadding: 29)
+        didYouKnowDetailLabel.bottomAnchor.constraint(equalTo: didYouKnowView.bottomAnchor, constant: -15).isActive = true
+        
+        let scrollView = UIScrollView().usingAutoLayout()
+        view.addSubview(scrollView)
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        let mainStack = UIStackView(arrangedSubviews: [timeButtonContainer, sliderStackContainer, didYouKnowView]).usingAutoLayout()
         mainStack.axis = .vertical
         mainStack.spacing = 24
         
-        view.addSubview(mainStack)
-        mainStack.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollView.addSubview(mainStack)
+        mainStack.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
+        mainStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -29).isActive = true
+        mainStack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        mainStack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        mainStack.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
     }
     
     func bindViews() {

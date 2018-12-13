@@ -124,7 +124,7 @@ class HomeWeatherViewModel {
             guard let this = self else { return .empty() }
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             
-            let randomIndex = Int(arc4random_uniform(3))
+            let randomIndex = Int.random(in: 0...2)
             let tipName = weatherItem.isHighTemperature ? hotTips[randomIndex] : coldTips[randomIndex]
             
             return this.usageService.fetchEnergyTipByName(accountNumber: accountDetail.accountNumber,
