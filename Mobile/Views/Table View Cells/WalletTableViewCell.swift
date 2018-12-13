@@ -117,14 +117,7 @@ class WalletTableViewCell: UITableViewCell {
 
         // Nickname
         if let nickname = walletItem.nickName {
-            let displayNickname: String
-            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                displayNickname = nickname == maskedNumber ? "" : nickname
-            } else {
-                displayNickname = nickname
-            }
-            
-            nicknameLabel.text = displayNickname.uppercased()
+            nicknameLabel.text = nickname.uppercased()
             if Environment.shared.opco == .bge {
                 if walletItem.bankOrCard == .bank {
                     if let bankAccountType = walletItem.bankAccountType {

@@ -929,12 +929,7 @@ class PaymentViewModel {
                 return $4
             } else {
                 guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
-                
-                if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                    return nickname == maskedNumber ? nil : nickname
-                } else {
-                    return nickname
-                }
+                return nickname
             }
     }
     

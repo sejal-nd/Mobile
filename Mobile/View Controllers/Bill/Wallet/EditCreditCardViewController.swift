@@ -225,16 +225,9 @@ class EditCreditCardViewController: UIViewController {
         let walletItem = viewModel.walletItem!
         
         if let nickname = walletItem.nickName {
-            let displayNickname: String
-            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                displayNickname = nickname == maskedNumber ? "" : nickname
-            } else {
-                displayNickname = nickname
-            }
-            
-            nicknameLabel.text = displayNickname.uppercased()
+            nicknameLabel.text = nickname.uppercased()
         } else {
-            nicknameLabel.text = nil
+            nicknameLabel.text = ""
         }
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
