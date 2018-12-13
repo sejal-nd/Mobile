@@ -433,7 +433,7 @@ class HomeBillCardView: UIView {
     
     private(set) lazy var cutoffAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
         .filter(!)
-        .map { _ in
+        .map { [weak self] _ in
             UIAlertController.fiservCutoffAlert { [weak self] _ in
                 self?.oneTouchSlider.reset(animated: true)
             }
