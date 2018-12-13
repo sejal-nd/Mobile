@@ -282,9 +282,9 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
         plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS/Info.plist
         plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS/Info.plist
 
-        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/PECO_WatchOS\ Extension/Info.plist
-        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS\ Extension/Info.plist
-        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS\ Extension/Info.plist
+        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
+        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
+        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
     
     fi
 	
