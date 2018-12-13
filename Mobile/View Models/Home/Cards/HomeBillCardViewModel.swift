@@ -790,7 +790,7 @@ class HomeBillCardViewModel {
         case .bge:
             return URL(string: "https://www.speedpay.com/terms/")!
         case .comEd, .peco:
-            return URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
+            return URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
         }
     }
     

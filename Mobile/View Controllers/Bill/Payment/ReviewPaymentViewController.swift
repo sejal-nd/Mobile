@@ -352,14 +352,8 @@ class ReviewPaymentViewController: UIViewController {
     
     func onTermsConditionsPress() {
         let url = Environment.shared.opco == .bge ? URL(string: "https://www.speedpay.com/terms/")! :
-            URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
+            URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
-        navigationController?.present(tacModal, animated: true, completion: nil)
-    }
-    
-    func onPrivacyPolicyPress() {
-        let tacModal = WebViewController(title: NSLocalizedString("Privacy Policy", comment: ""),
-                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/privacy_notice_en-us.html")!)
         navigationController?.present(tacModal, animated: true, completion: nil)
     }
     
