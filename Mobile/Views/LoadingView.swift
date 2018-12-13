@@ -62,11 +62,10 @@ class LoadingView: UIView {
     }
     
     public class func hide(animated: Bool = false, _ completion: (() -> Void)? = nil) {
-        
-        let loadingView = LoadingView.shared
-        loadingView.accessibilityViewIsModal = false
-        loadingView.isAccessibilityElement = false
         DispatchQueue.main.async(execute: {
+            let loadingView = LoadingView.shared
+            loadingView.accessibilityViewIsModal = false
+            loadingView.isAccessibilityElement = false
             if loadingView.superview == nil {
                 return
             }
