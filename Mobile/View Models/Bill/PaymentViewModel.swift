@@ -714,6 +714,9 @@ class PaymentViewModel {
             }
             return false
         } else {
+            if let tempItem = self.newlyAddedWalletItem.value {
+                return true
+            }
             return walletItems.count > 0
         }
     }
