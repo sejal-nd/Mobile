@@ -742,16 +742,16 @@ class PaymentViewModel {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 } else {
                     // COMED/PECO BANK
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > amountDue {
-                        return NSLocalizedString("Payment must be less than or equal to amount due", comment: "")
+                        return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 }
             } else if cardWorkflow {
@@ -762,16 +762,16 @@ class PaymentViewModel {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 } else {
                     // COMED/PECO CREDIT CARD
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > amountDue {
-                        return NSLocalizedString("Payment must be less than or equal to amount due", comment: "")
+                        return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 }
             }

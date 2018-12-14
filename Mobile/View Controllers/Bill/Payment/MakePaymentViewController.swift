@@ -188,8 +188,7 @@ class MakePaymentViewController: UIViewController {
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        amountDueTextLabel.text = Environment.shared.opco == .bge ?
-            NSLocalizedString("Amount Due", comment: "") : NSLocalizedString("Total Amount Due", comment: "")
+        amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         amountDueValueLabel.textColor = .blackText
