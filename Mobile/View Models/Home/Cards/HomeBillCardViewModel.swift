@@ -326,9 +326,10 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showReinstatementFeeText: Driver<Bool> = reinstatementFeeText.isNil().not()
     
-    private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver.combineLatest(showOneTouchPaySlider,
-                                                                                  showMinMaxPaymentAllowed)
-    { $0 && !$1 }
+    private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver
+        .combineLatest(showOneTouchPaySlider,
+                       showMinMaxPaymentAllowed)
+        { $0 && !$1 }
         .distinctUntilChanged()
     
     private(set) lazy var showBankCreditNumberButton: Driver<Bool> = walletItemDriver.isNil().not()
@@ -337,17 +338,17 @@ class HomeBillCardViewModel {
         $0?.isExpired ?? false
     }
     
-    private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(billState,
-                                                                                   walletItemDriver,
-                                                                                   showOneTouchPaySlider)
+    private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver
+        .combineLatest(billState, walletItemDriver, showOneTouchPaySlider)
         { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .paymentScheduled && $1 == nil && $2 }
         .distinctUntilChanged()
     
-    private(set) lazy var showMinMaxPaymentAllowed: Driver<Bool> = Driver.combineLatest(billState,
-                                                                               walletItemDriver,
-                                                                               accountDetailDriver,
-                                                                               showOneTouchPaySlider,
-                                                                               minMaxPaymentAllowedText)
+    private(set) lazy var showMinMaxPaymentAllowed: Driver<Bool> = Driver
+        .combineLatest(billState,
+                       walletItemDriver,
+                       accountDetailDriver,
+                       showOneTouchPaySlider,
+                       minMaxPaymentAllowedText)
     { billState, walletItem, accountDetail, showOneTouchPaySlider, minMaxPaymentAllowedText in
         return billState == .billReady &&
             walletItem != nil &&
@@ -361,12 +362,13 @@ class HomeBillCardViewModel {
     { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly }
         .distinctUntilChanged()
     
-    private(set) lazy var showCommercialBgeOtpVisaLabel: Driver<Bool> = Driver.combineLatest(enableOneTouchSlider,
-                                                                                             showOneTouchPaySlider,
-                                                                                             accountDetailDriver,
-                                                                                             walletItemDriver)
-    { enableOneTouchSlider, showOneTouchPaySlider, accountDetail, walletItem in
-        guard let walletItem = walletItem else { return false }
+    private(set) lazy var showCommercialBgeOtpVisaLabel: Driver<Bool> = Driver
+        .combineLatest(enableOneTouchSlider,
+                       showOneTouchPaySlider,
+                       accountDetailDriver,
+                       walletItemDriver)
+        { enableOneTouchSlider, showOneTouchPaySlider, accountDetail, walletItem in
+            guard let walletItem = walletItem else { return false }
         guard showOneTouchPaySlider && !enableOneTouchSlider else { return false }
         guard Environment.shared.opco == .bge else { return false }
         
@@ -543,9 +545,8 @@ class HomeBillCardViewModel {
             .replacingOccurrences(of: "Shutoff", with: "shut-off")
     }
     
-    private(set) lazy var amountText: Driver<String?> = billState
-        .withLatestFrom(accountDetailDriver) { ($0, $1) }
-        .withLatestFrom(recentPaymentsDriver) { ($0.0, $0.1, $1)}
+    private(set) lazy var amountText: Driver<String?> = Driver
+        .combineLatest(billState, accountDetailDriver, recentPaymentsDriver)
         .map { billState, accountDetail, recentPayments in
             switch billState {
             case .billPaid:

@@ -43,6 +43,8 @@ class BillViewModel {
     
     private lazy var fetchTrigger = Observable.merge(self.fetchAccountDetail,
                                                      RxNotifications.shared.accountDetailUpdated
+                                                        .mapTo(FetchingAccountState.switchAccount),
+                                                     RxNotifications.shared.recentPaymentsUpdated
                                                         .mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
