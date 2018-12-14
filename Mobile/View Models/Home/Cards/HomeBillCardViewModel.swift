@@ -16,6 +16,7 @@ class HomeBillCardViewModel {
     
     let fetchDataMMEvents: Observable<Event<Maintenance>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
+    let recentPaymentsEvents: Observable<Event<RecentPayments>>
     private let walletService: WalletService
     private let paymentService: PaymentService
     private let authService: AuthenticationService
@@ -41,6 +42,7 @@ class HomeBillCardViewModel {
     required init(fetchData: Observable<FetchingAccountState>,
                   fetchDataMMEvents: Observable<Event<Maintenance>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
+                  recentPaymentsEvents: Observable<Event<RecentPayments>>,
                   walletService: WalletService,
                   paymentService: PaymentService,
                   authService: AuthenticationService,
@@ -49,6 +51,7 @@ class HomeBillCardViewModel {
         self.fetchData = fetchData
         self.fetchDataMMEvents = fetchDataMMEvents
         self.accountDetailEvents = accountDetailEvents
+        self.recentPaymentsEvents = recentPaymentsEvents
         self.walletService = walletService
         self.paymentService = paymentService
         self.authService = authService
@@ -166,6 +169,7 @@ class HomeBillCardViewModel {
     //MARK: - Loaded States
     
     private lazy var accountDetailDriver: Driver<AccountDetail> = accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
+    private lazy var recentPaymentsDriver: Driver<RecentPayments> = recentPaymentsEvents.elements().asDriver(onErrorDriveWith: .empty())
     private lazy var walletItemDriver: Driver<WalletItem?> = walletItem.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
@@ -226,8 +230,8 @@ class HomeBillCardViewModel {
     }
     
     private lazy var billState: Driver<BillState> = Observable
-        .combineLatest(accountDetailEvents.elements(), walletItem)
-        .map { accountDetail, walletItem -> BillState in
+        .combineLatest(accountDetailEvents.elements(), recentPaymentsEvents.elements(), walletItem)
+        .map { accountDetail, recentPayments, walletItem -> BillState in
             let billingInfo = accountDetail.billingInfo
             let opco = Environment.shared.opco
             
@@ -251,7 +255,7 @@ class HomeBillCardViewModel {
                 return .pastDue
             }
             
-            if billingInfo.pendingPayments.first?.amount ?? 0 > 0 {
+            if recentPayments.pendingPayments.first?.amount ?? 0 > 0 {
                 return .paymentPending
             }
             
@@ -259,7 +263,7 @@ class HomeBillCardViewModel {
                 return .billReadyAutoPay
             }
             
-            if billingInfo.scheduledPayment?.amount ?? 0 > 0 {
+            if recentPayments.scheduledPayment?.amount ?? 0 > 0 {
                 return .paymentScheduled
             }
             
@@ -539,16 +543,18 @@ class HomeBillCardViewModel {
             .replacingOccurrences(of: "Shutoff", with: "shut-off")
     }
     
-    private(set) lazy var amountText: Driver<String?> = Driver.combineLatest(accountDetailDriver, billState)
-    {
-        switch $1 {
-        case .billPaid:
-            return $0.billingInfo.lastPaymentAmount?.currencyString
-        case .paymentPending:
-            return $0.billingInfo.pendingPayments.last?.amount.currencyString
-        default:
-            return $0.billingInfo.netDueAmount?.currencyString
-        }
+    private(set) lazy var amountText: Driver<String?> = billState
+        .withLatestFrom(accountDetailDriver) { ($0, $1) }
+        .withLatestFrom(recentPaymentsDriver) { ($0.0, $0.1, $1)}
+        .map { billState, accountDetail, recentPayments in
+            switch billState {
+            case .billPaid:
+                return accountDetail.billingInfo.lastPaymentAmount?.currencyString
+            case .paymentPending:
+                return recentPayments.pendingPayments.last?.amount.currencyString
+            default:
+                return accountDetail.billingInfo.netDueAmount?.currencyString
+            }
     }
     
     private(set) lazy var dueDateText: Driver<NSAttributedString?> = Driver.combineLatest(accountDetailDriver, billState)
@@ -736,10 +742,10 @@ class HomeBillCardViewModel {
     private(set) lazy var amountFont: Driver<UIFont> = billState
         .map { $0 == .paymentPending ? OpenSans.semiboldItalic.of(size: 28): OpenSans.semibold.of(size: 36) }
     
-    private(set) lazy var automaticPaymentInfoButtonText: Driver<String> = accountDetailDriver
-        .map { accountDetail in
-            if let paymentAmountText = accountDetail.billingInfo.scheduledPayment?.amount.currencyString,
-                let paymentDateText = accountDetail.billingInfo.scheduledPayment?.date?.mmDdYyyyString {
+    private(set) lazy var automaticPaymentInfoButtonText: Driver<String> = Driver.combineLatest(accountDetailDriver, recentPaymentsDriver)
+        .map { accountDetail, recentPayments in
+            if let paymentAmountText = recentPayments.scheduledPayment?.amount.currencyString,
+                let paymentDateText = recentPayments.scheduledPayment?.date?.mmDdYyyyString {
                 return String.localizedStringWithFormat("You have an automatic payment of %@ for %@.",
                                                         paymentAmountText,
                                                         paymentDateText)
@@ -750,9 +756,9 @@ class HomeBillCardViewModel {
             }
     }
     
-    private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = accountDetailDriver.map {
-        guard let paymentAmountText = $0.billingInfo.scheduledPayment?.amount.currencyString else { return nil }
-        guard let paymentDateText = $0.billingInfo.scheduledPayment?.date?.mmDdYyyyString else { return nil }
+    private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = recentPaymentsDriver.map {
+        guard let paymentAmountText = $0.scheduledPayment?.amount.currencyString else { return nil }
+        guard let paymentDateText = $0.scheduledPayment?.date?.mmDdYyyyString else { return nil }
         let localizedText = NSLocalizedString("Thank you for scheduling your %@ payment for %@." , comment: "")
         return String(format: localizedText, paymentAmountText, paymentDateText)
     }

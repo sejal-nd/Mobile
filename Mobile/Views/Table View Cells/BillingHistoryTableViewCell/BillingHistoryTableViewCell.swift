@@ -13,7 +13,6 @@ import RxCocoa
 class BillingHistoryTableViewCell: UITableViewCell {
     
     let PAYMENT = NSLocalizedString("Payment", comment: "")
-    let LATE_PAYMENT = NSLocalizedString("Late Payment Charge", comment: "")
     let PAYMENT_PROCESSING = NSLocalizedString("Payment Processing", comment: "")
     let SCHEDULED_PAYMENT = NSLocalizedString("Scheduled Payment", comment: "")
     let BILL_ISSUED = NSLocalizedString("Bill Issued", comment: "")

@@ -37,6 +37,7 @@ class StormModeBillViewModel {
         HomeBillCardViewModel(fetchData: fetchDataObservable,
                               fetchDataMMEvents: fetchDataObservable.mapTo(Maintenance.from([:])!).materialize(),
                               accountDetailEvents: accountDetailEvents,
+                              recentPaymentsEvents: recentPaymentsEvents,
                               walletService: walletService,
                               paymentService: paymentService,
                               authService: authService,
@@ -57,6 +58,23 @@ class StormModeBillViewModel {
                 return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
         })
     
+    private(set) lazy var recentPaymentsEvents: Observable<Event<RecentPayments>> = fetchData
+        .toAsyncRequest(activityTrackers: { [weak self] state in
+            guard let this = self else { return nil }
+            switch state {
+            case .refresh:
+                return [this.refreshTracker]
+            case .switchAccount:
+                return [this.switchAccountTracker]
+            }
+            }, requestSelector: { [weak self] _ in
+                guard let this = self else { return .empty() }
+                return this.accountService.fetchRecentPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        })
+    
+    private lazy var accountDetail = accountDetailEvents.elements()
+    private lazy var recentPayments = recentPaymentsEvents.elements()
+    
     private(set) lazy var didFinishRefresh: Driver<Void> = refreshTracker
         .asDriver()
         .filter(!)
@@ -67,18 +85,25 @@ class StormModeBillViewModel {
                accountDetailEvents.map { $0.error == nil })
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showMakeAPaymentButton: Driver<Bool> = accountDetailEvents.elements()
+    private(set) lazy var showMakeAPaymentButton: Driver<Bool> = accountDetail
         .map { $0.billingInfo.netDueAmount ?? 0 > 0 || Environment.shared.opco == .bge }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showNoNetworkConnectionView: Driver<Bool> = accountDetailEvents
+    private lazy var accountDetailNoNetwork: Observable<Bool> = accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+    
+    private lazy var recentPaymentsNoNetwork: Observable<Bool> = recentPaymentsEvents
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
+    
+    private(set) lazy var showNoNetworkConnectionView: Driver<Bool> = Observable
+        .combineLatest(accountDetailNoNetwork, recentPaymentsNoNetwork) { $0 || $1 }
         .startWith(false)
+        .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = accountDetailEvents
-        .elements()
-        .map { accountDetail in
+    private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = Observable
+        .combineLatest(accountDetail, recentPayments)
+        .map { accountDetail, payments in
             if Environment.shared.opco == .bge && accountDetail.isBGEasy {
                 return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already " +
                     "enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date " +
@@ -91,8 +116,8 @@ class StormModeBillViewModel {
                     "activity before proceeding. Would you like to continue making an additional payment?\n\nNote: " +
                     "If you recently enrolled in AutoPay and you have not yet received a new bill, you will need " +
                     "to submit a payment for your current bill if you have not already done so.", comment: ""), accountDetail)
-            } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount,
-                let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
+            } else if let scheduledPaymentAmount = payments.scheduledPayment?.amount,
+                let scheduledPaymentDate = payments.scheduledPayment?.date,
                 let amountString = scheduledPaymentAmount.currencyString, scheduledPaymentAmount > 0 {
                 let localizedTitle = NSLocalizedString("Existing Scheduled Payment", comment: "")
                 return (localizedTitle, String(format: NSLocalizedString("You have a payment of %@ scheduled for %@. " +

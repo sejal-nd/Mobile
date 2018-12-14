@@ -71,6 +71,7 @@ class HomeViewModel {
         HomeBillCardViewModel(fetchData: fetchDataObservable,
                               fetchDataMMEvents: fetchDataMMEvents,
                               accountDetailEvents: accountDetailEvents,
+                              recentPaymentsEvents: recentPaymentsEvents,
                               walletService: walletService,
                               paymentService: paymentService,
                               authService: authService,
@@ -144,6 +145,23 @@ class HomeViewModel {
             }, requestSelector: { [weak self] _ in
                 guard let this = self else { return .empty() }
                 return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        })
+        .share(replay: 1, scope: .forever)
+    
+    private(set) lazy var recentPaymentsEvents: Observable<Event<RecentPayments>> = maintenanceModeEvents
+        .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
+        .withLatestFrom(fetchTrigger)
+        .toAsyncRequest(activityTrackers: { [weak self] state in
+            guard let this = self else { return nil }
+            switch state {
+            case .refresh:
+                return [this.refreshFetchTracker]
+            case .switchAccount:
+                return [this.billTracker]
+            }
+            }, requestSelector: { [weak self] _ in
+                guard let this = self else { return .empty() }
+                return this.accountService.fetchRecentPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         })
         .share(replay: 1, scope: .forever)
 

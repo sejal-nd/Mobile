@@ -138,7 +138,7 @@ class BillViewController: AccountPickerViewController {
         accountPicker.parentViewController = self
         
         Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
-                                 viewModel.accountDetailEvents.asObservable().map { $0 }.startWith(nil))
+                                 viewModel.dataEvents.asObservable().map { $0 }.startWith(nil))
             .sample(accountPickerViewControllerWillAppear)
             .subscribe(onNext: { [weak self] state, accountDetail in
                 guard let self = self else { return }

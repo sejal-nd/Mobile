@@ -51,24 +51,24 @@ class BillViewModel {
                         requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
     
-    private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = self.maintenanceModeEvents
+    private(set) lazy var dataEvents: Observable<Event<(AccountDetail, RecentPayments)>> = self.maintenanceModeEvents
         .filter { !($0.element?.billStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
-        .flatMapLatest { [weak self] state -> Observable<Event<AccountDetail>> in
-            guard let self = self, let account = AccountsStore.shared.currentAccount else { return .empty() }
-            return self.accountService.fetchAccountDetail(account: account)
-                .trackActivity(self.tracker(forState: state))
-                .materialize()
-                .filter { !$0.isCompleted }
-        }
-        .share(replay: 1)
+        .toAsyncRequest(activityTracker: { [weak self] in
+            self?.tracker(forState: $0)
+            }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, RecentPayments)> in
+                guard let self = self, let account = AccountsStore.shared.currentAccount else { return .empty() }
+                let accountDetail = self.accountService.fetchAccountDetail(account: account)
+                let recentPayments = self.accountService.fetchRecentPayments(accountNumber: account.accountNumber)
+                return Observable.zip(accountDetail, recentPayments)
+        })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
     
-    private(set) lazy var accountDetailError: Driver<ServiceError?> = self.accountDetailEvents.errors()
+    private(set) lazy var accountDetailError: Driver<ServiceError?> = self.dataEvents.errors()
         .map { $0 as? ServiceError }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showLoadedState: Driver<Void> = self.accountDetailEvents
+    private(set) lazy var showLoadedState: Driver<Void> = self.dataEvents
         .filter { $0.error == nil }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
@@ -77,8 +77,15 @@ class BillViewModel {
 		fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)
     }
     
-    private(set) lazy var currentAccountDetail: Driver<AccountDetail> = self.accountDetailEvents.elements()
-            .asDriver(onErrorDriveWith: Driver.empty())
+    private(set) lazy var data = dataEvents.elements()
+    
+    private(set) lazy var currentAccountDetail: Driver<AccountDetail> = data
+        .map { $0.0 }
+        .asDriver(onErrorDriveWith: Driver.empty())
+    
+    private(set) lazy var recentPayments: Driver<RecentPayments> = data
+        .map { $0.1 }
+        .asDriver(onErrorDriveWith: Driver.empty())
 	
     // MARK: - Show/Hide Views -
     
@@ -89,7 +96,7 @@ class BillViewModel {
     
     private(set) lazy var shouldShowAlertBanner: Driver<Bool> = {
         let showFromResponse = Driver
-            .merge(self.accountDetailEvents.errors().mapTo(false).asDriver(onErrorDriveWith: .empty()),
+            .merge(self.dataEvents.errors().mapTo(false).asDriver(onErrorDriveWith: .empty()),
                    Driver.zip(self.shouldShowRestoreService, self.shouldShowAvoidShutoff).map { $0 || $1 })
         return Driver.combineLatest(showFromResponse, self.switchAccountsTracker.asDriver()) { $0 && !$1 }
             .startWith(false)
@@ -140,24 +147,26 @@ class BillViewModel {
     
     private(set) lazy var shouldShowTopContent: Driver<Bool> = Driver
         .combineLatest(self.switchAccountsTracker.asDriver(),
-                       self.accountDetailEvents.asDriver(onErrorDriveWith: .empty()))
+                       self.dataEvents.asDriver(onErrorDriveWith: .empty()))
         { !$0 && $1.error == nil }
         .startWith(false)
     
-    private(set) lazy var pendingPaymentAmountDueBoxesAlpha: Driver<CGFloat> = self.currentAccountDetail.map {
-        guard let pendingPaymentAmount = $0.billingInfo.pendingPayments.first?.amount else { return 1.0 }
+    private(set) lazy var pendingPaymentAmountDueBoxesAlpha: Driver<CGFloat> = self.recentPayments.map {
+        guard let pendingPaymentAmount = $0.pendingPayments.first?.amount else { return 1.0 }
         return pendingPaymentAmount > 0 ? 0.5 : 1.0
     }
     
-    private(set) lazy var shouldShowPendingPayment: Driver<Bool> = self.currentAccountDetail.map {
-        $0.billingInfo.pendingPayments.first?.amount ?? 0 > 0
+    private(set) lazy var shouldShowPendingPayment: Driver<Bool> = self.recentPayments.map {
+        $0.pendingPayments.first?.amount ?? 0 > 0
     }
     
-    private(set) lazy var shouldShowRemainingBalanceDue: Driver<Bool> = self.currentAccountDetail.map {
-        return $0.billingInfo.pendingPayments.first?.amount ?? 0 > 0 &&
-            $0.billingInfo.remainingBalanceDue ?? 0 > 0  &&
-            Environment.shared.opco != .bge
-    }
+    private(set) lazy var shouldShowRemainingBalanceDue: Driver<Bool> = data
+        .map { accountDetail, payments in
+            return payments.pendingPayments.first?.amount ?? 0 > 0 &&
+                accountDetail.billingInfo.remainingBalanceDue ?? 0 > 0  &&
+                Environment.shared.opco != .bge
+        }
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var shouldShowRemainingBalancePastDue: Driver<Bool> = {
         let showRemainingPastDue = self.currentAccountDetail.map { accountDetail -> Bool in
@@ -378,9 +387,9 @@ class BillViewModel {
     }
     
     //MARK: - Pending Payments
-    private(set) lazy var pendingPaymentAmounts: Driver<[Double]> = self.currentAccountDetail.map {
+    private(set) lazy var pendingPaymentAmounts: Driver<[Double]> = self.recentPayments.map {
         // In a later release, we can use the whole pendingPayments array for BGE processing payments
-        [$0.billingInfo.pendingPayments.first].compactMap { $0?.amount }
+        [$0.pendingPayments.first].compactMap { $0?.amount }
     }
     
     //MARK: - Remaining Balance Due
@@ -393,13 +402,15 @@ class BillViewModel {
         }
     }
     
-    private(set) lazy var remainingBalanceDueAmountText: Driver<String> = self.currentAccountDetail.map {
-        if $0.billingInfo.pendingPayments.first?.amount == $0.billingInfo.netDueAmount {
-            return 0.currencyString ?? "--"
-        } else {
-            return $0.billingInfo.remainingBalanceDue?.currencyString ?? "--"
+    private(set) lazy var remainingBalanceDueAmountText: Driver<String> = data
+        .map { accountDetail, payments in
+            if payments.pendingPayments.first?.amount == accountDetail.billingInfo.netDueAmount {
+                return 0.currencyString ?? "--"
+            } else {
+                return accountDetail.billingInfo.remainingBalanceDue?.currencyString ?? "--"
+            }
         }
-    }
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var remainingBalanceDueDateText: Driver<String> = self.currentAccountDetail.map {
         guard let dateString = $0.billingInfo.dueByDate?.mmDdYyyyString else { return "--" }
@@ -448,38 +459,40 @@ class BillViewModel {
     }
     
     //MARK: - Payment Status
-    private(set) lazy var paymentStatusText: Driver<String?> = self.currentAccountDetail.map { accountDetail in
-        if Environment.shared.opco == .bge && accountDetail.isBGEasy {
-            return NSLocalizedString("You are enrolled in BGEasy", comment: "")
-        } else if accountDetail.isAutoPay {
-            return NSLocalizedString("You are enrolled in AutoPay", comment: "")
-        } else if let pendingPaymentAmount = accountDetail.billingInfo.pendingPayments.first?.amount, let amountString = pendingPaymentAmount.currencyString, pendingPaymentAmount > 0 {
-            let localizedText: String
-            switch Environment.shared.opco {
-            case .bge:
-                localizedText = NSLocalizedString("You have a payment of %@ processing", comment: "")
-            case .comEd, .peco:
-                localizedText = NSLocalizedString("You have a pending payment of %@", comment: "")
+    private(set) lazy var paymentStatusText: Driver<String?> = data
+        .map { accountDetail, payments -> String? in
+            if Environment.shared.opco == .bge && accountDetail.isBGEasy {
+                return NSLocalizedString("You are enrolled in BGEasy", comment: "")
+            } else if accountDetail.isAutoPay {
+                return NSLocalizedString("You are enrolled in AutoPay", comment: "")
+            } else if let pendingPaymentAmount = payments.pendingPayments.first?.amount, let amountString = pendingPaymentAmount.currencyString, pendingPaymentAmount > 0 {
+                let localizedText: String
+                switch Environment.shared.opco {
+                case .bge:
+                    localizedText = NSLocalizedString("You have a payment of %@ processing", comment: "")
+                case .comEd, .peco:
+                    localizedText = NSLocalizedString("You have a pending payment of %@", comment: "")
+                }
+                return String(format: localizedText, amountString)
+            } else if let scheduledPaymentAmount = payments.scheduledPayment?.amount,
+                let scheduledPaymentDate = payments.scheduledPayment?.date,
+                let amountString = scheduledPaymentAmount.currencyString,
+                scheduledPaymentAmount > 0 {
+                return String(format: NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: ""), amountString, scheduledPaymentDate.mmDdYyyyString)
+            } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount,
+                let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate,
+                let amountString = lastPaymentAmount.currencyString,
+                lastPaymentAmount > 0,
+                let billDate = accountDetail.billingInfo.billDate,
+                billDate < lastPaymentDate {
+                return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), amountString, lastPaymentDate.mmDdYyyyString)
             }
-            return String(format: localizedText, amountString)
-        } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount,
-            let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
-            let amountString = scheduledPaymentAmount.currencyString,
-            scheduledPaymentAmount > 0 {
-            return String(format: NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: ""), amountString, scheduledPaymentDate.mmDdYyyyString)
-        } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount,
-            let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate,
-            let amountString = lastPaymentAmount.currencyString,
-            lastPaymentAmount > 0,
-            let billDate = accountDetail.billingInfo.billDate,
-            billDate < lastPaymentDate {
-            return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), amountString, lastPaymentDate.mmDdYyyyString)
+            return nil
         }
-        return nil
-    }
+        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = self.currentAccountDetail.asObservable()
-        .map { accountDetail in
+    private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = data
+        .map { accountDetail, payments in
             if Environment.shared.opco == .bge && accountDetail.isBGEasy {
                 return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already " +
                     "enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date " +
@@ -492,8 +505,8 @@ class BillViewModel {
                     "activity before proceeding. Would you like to continue making an additional payment?\n\nNote: " +
                     "If you recently enrolled in AutoPay and you have not yet received a new bill, you will need " +
                     "to submit a payment for your current bill if you have not already done so.", comment: ""), accountDetail)
-            } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount,
-                let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
+            } else if let scheduledPaymentAmount = payments.scheduledPayment?.amount,
+                let scheduledPaymentDate = payments.scheduledPayment?.date,
                 let amountString = scheduledPaymentAmount.currencyString, scheduledPaymentAmount > 0 {
                 let localizedTitle = NSLocalizedString("Existing Scheduled Payment", comment: "")
                 return (localizedTitle, String(format: NSLocalizedString("You have a payment of %@ scheduled for %@. " +
@@ -504,17 +517,19 @@ class BillViewModel {
             return (nil, nil, accountDetail)
     }
     
-    private(set) lazy var makePaymentStatusTextTapRouting: Driver<MakePaymentStatusTextRouting> = self.currentAccountDetail.map {
-        guard !$0.isBGEasy else { return .nowhere }
-        
-        if $0.isAutoPay {
-            return .autoPay
-        } else if $0.billingInfo.scheduledPayment?.amount ?? 0 > 0 &&
-            $0.billingInfo.pendingPayments.first?.amount ?? 0 <= 0 {
-            return .activity
+    private(set) lazy var makePaymentStatusTextTapRouting: Driver<MakePaymentStatusTextRouting> = data
+        .map { accountDetail, payments in
+            guard !accountDetail.isBGEasy else { return .nowhere }
+            
+            if accountDetail.isAutoPay {
+                return .autoPay
+            } else if payments.scheduledPayment?.amount ?? 0 > 0 &&
+                payments.pendingPayments.first?.amount ?? 0 <= 0 {
+                return .activity
+            }
+            return .nowhere
         }
-        return .nowhere
-    }
+        .asDriver(onErrorDriveWith: .empty())
     
     //MARK: - Bill Breakdown
     

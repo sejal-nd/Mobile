@@ -74,4 +74,16 @@ struct MCSAccountService: AccountService {
         }
     }
     
+    func fetchRecentPayments(accountNumber: String) -> Observable<RecentPayments> {
+        return MCSApi.shared.get(path: "accounts/\(accountNumber)/payments")
+            .map { json in
+                guard let dict = json as? NSDictionary,
+                    let payments = RecentPayments.from(dict) else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                
+                return payments
+        }
+    }
+    
 }

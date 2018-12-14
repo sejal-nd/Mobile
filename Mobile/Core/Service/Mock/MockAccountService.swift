@@ -185,4 +185,8 @@ class MockAccountService: AccountService {
         let ssoData = SSOData.from(["utilityCustomerId": "1234", "ssoPostURL": "https://google.com", "relayState": "https://google.com", "samlResponse": "test"])!
         return .just(ssoData)
     }
+    
+    func fetchRecentPayments(accountNumber: String) -> Observable<RecentPayments> {
+        return .error(ServiceError())
+    }
 }
