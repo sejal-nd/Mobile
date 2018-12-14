@@ -246,6 +246,36 @@ extension BillingInfo: JSONEncodable {
     }
 }
 
+extension RecentPayments: JSONEncodable {
+    
+    init(scheduledPayment: PaymentItem? = nil,
+         pendingPayments: [PaymentItem] = []) {
+        
+        if Environment.shared.environmentName != .aut {
+            fatalError("init only available for tests")
+        }
+        
+        var payments = pendingPayments
+        if let scheduledPayment = scheduledPayment {
+            payments.append(scheduledPayment)
+        }
+        
+        let map: [String: Any?] = ["BillingInfo": ["payments": payments.map { $0.toJSON() as NSDictionary }]]
+        
+        self = RecentPayments.from(map as NSDictionary)!
+    }
+    
+    func toJSON() -> [String : Any?] {
+        var payments = pendingPayments
+        if let scheduledPayment = scheduledPayment {
+            payments.append(scheduledPayment)
+        }
+        
+        return ["BillingInfo": ["payments": payments.map { $0.toJSON() as NSDictionary }]]
+    }
+    
+}
+
 extension PaymentItem: JSONEncodable {
     
     init(amount: Double, date: Date? = Date(), status: PaymentStatus = .scheduled) {

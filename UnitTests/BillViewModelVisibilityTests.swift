@@ -202,13 +202,17 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     func testPendingPaymentAmountDueBoxesAlpha() {
         
         let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
+            AccountDetail(),
             AccountDetail()
         ]
         
         let switchAccountEventTimes = Array(0..<accountDetail.count)
         
         accountService.mockAccountDetails = accountDetail
+        accountService.mockRecentPayments = [
+            RecentPayments(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)]),
+            RecentPayments()
+        ]
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -219,8 +223,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `shouldShowPendingPayment` value after switching
@@ -228,13 +231,17 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     func testShouldShowPendingPayment() {
         
         let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
+            AccountDetail(),
             AccountDetail()
         ]
         
         let switchAccountEventTimes = Array(0..<accountDetail.count)
         
         accountService.mockAccountDetails = accountDetail
+        accountService.mockRecentPayments = [
+            RecentPayments(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)]),
+            RecentPayments()
+        ]
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -245,8 +252,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `shouldShowRemainingBalanceDue` value after switching
@@ -254,16 +260,21 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     func testShouldShowRemainingBalanceDue() {
         
         let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3,
-                                                   pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
             AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3)),
-            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
+            AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3)),
+            AccountDetail(billingInfo: BillingInfo()),
             AccountDetail()
         ]
         
         let switchAccountEventTimes = Array(0..<accountDetail.count)
         
         accountService.mockAccountDetails = accountDetail
+        accountService.mockRecentPayments = [
+            RecentPayments(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)]),
+            RecentPayments(),
+            RecentPayments(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)]),
+            RecentPayments()
+        ]
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -274,8 +285,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `shouldShowRemainingBalancePastDue` value after switching

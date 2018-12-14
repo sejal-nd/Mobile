@@ -47,9 +47,9 @@ class BillViewModelContentTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let observer = scheduler.createObserver(Event<AccountDetail>.self)
+        let observer = scheduler.createObserver(Event<(AccountDetail, RecentPayments)>.self)
         
-        viewModel.accountDetailEvents.subscribe(observer).disposed(by: disposeBag)
+        viewModel.dataEvents.subscribe(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
@@ -430,7 +430,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         let switchAccountEventTimes = [0]
         
-        accountService.mockAccountDetails = [AccountDetail(billingInfo: BillingInfo(pendingPayments: paymentItems))]
+        accountService.mockRecentPayments = [RecentPayments(pendingPayments: paymentItems)]
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -439,20 +439,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        for (index, expectedEvent) in expectedEvents.enumerated() {
-            guard let expectedElement = expectedEvent.value.element,
-                let observedElement = observer.events[index].value.element else {
-                    XCTFail("No valid element at the given index")
-                    break
-            }
-            XCTAssertTrue(expectedElement.elementsEqual(observedElement))
-        }
-        
-        // May be able to replace the above loop with this line when Swift 4.1 is released
-        // (conditional protocol conformance, equatable arrays)
-        //        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests the `remainingBalanceDueText` value, which is only dependent on OpCo.
@@ -478,16 +465,19 @@ class BillViewModelContentTests: BillViewModelTests {
         
         let switchAccountEventTimes = Array(0..<netDueAmounts.count)
         
-        accountService.mockAccountDetails = zip(netDueAmounts, zip(remainingBalanceDues, pendingPayments)).map {
+        accountService.mockAccountDetails = zip(netDueAmounts, remainingBalanceDues).map {
+            return AccountDetail(billingInfo: BillingInfo(netDueAmount: $0.0,
+                                                          remainingBalanceDue: $0.1))
+        }
+        
+        accountService.mockRecentPayments = pendingPayments.map {
             let paymentItems: [PaymentItem]
-            if let paymentAmount = $0.1.1 {
+            if let paymentAmount = $0 {
                 paymentItems = [PaymentItem(amount: paymentAmount, status: .pending)]
             } else {
                 paymentItems = []
             }
-            return AccountDetail(billingInfo: BillingInfo(netDueAmount: $0.0,
-                                                          remainingBalanceDue: $0.1.0,
-                                                          pendingPayments: paymentItems))
+            return RecentPayments(pendingPayments: paymentItems)
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -497,9 +487,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `remainingBalanceDueDateText` value after switching
@@ -794,6 +782,18 @@ class BillViewModelContentTests: BillViewModelTests {
                                  isBGEasy: isBGEasy[i])
         }
         
+        accountService.mockRecentPayments = range.map { i -> RecentPayments in
+            var scheduledPayment: PaymentItem? = nil
+            var pendingPayments = [PaymentItem]()
+            if paymentItems[i].status == .scheduled {
+                scheduledPayment = paymentItems[i]
+            } else {
+                pendingPayments.append(paymentItems[i])
+            }
+            
+            return RecentPayments(scheduledPayment: scheduledPayment, pendingPayments: pendingPayments)
+        }
+        
         simulateAccountSwitches(at: switchAccountEventTimes)
         
         let observer = scheduler.createObserver(String?.self)
@@ -858,6 +858,17 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
                                  isBGEasy: isBGEasy[i])
         }
         
+        accountService.mockRecentPayments = range.map { i -> RecentPayments in
+            var scheduledPayment: PaymentItem? = nil
+            if let scheduledPaymentAmount = scheduledPaymentAmounts[i] {
+                scheduledPayment = PaymentItem(amount: scheduledPaymentAmount,
+                                               date: scheduledPaymentDate,
+                                               status: .scheduled)
+            }
+            
+            return RecentPayments(scheduledPayment: scheduledPayment)
+        }
+        
         simulateAccountSwitches(at: switchAccountEventTimes)
         
         let observer = scheduler.createObserver((String?, String?, AccountDetail).self)
@@ -909,6 +920,10 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
             AccountDetail(billingInfo: BillingInfo(pendingPayments: paymentItems[i]),
                           isAutoPay: isAutoPay[i],
                           isBGEasy: isBGEasy[i])
+        }
+        
+        accountService.mockRecentPayments = range.map { i -> RecentPayments in
+            RecentPayments(pendingPayments: paymentItems[i])
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
