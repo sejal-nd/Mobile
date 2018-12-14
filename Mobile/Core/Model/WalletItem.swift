@@ -50,7 +50,7 @@ private func extractLast4(object: Any?) throws -> String? {
 
 struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemID: String?
-    let walletExternalID: String?
+    let walletExternalID: String? // TODO: Remove for BGE when they switch to paymentus
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
     let walletItemStatusType: String? // Not sent for paymentus wallet items. TODO: Remove for BGE when they switch to paymentus

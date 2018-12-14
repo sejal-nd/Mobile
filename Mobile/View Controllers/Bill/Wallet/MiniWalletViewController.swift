@@ -170,16 +170,17 @@ class MiniWalletViewController: UIViewController {
                 delegate?.miniWalletViewControllerDidTapAddBank(self)
                 navigationController?.popViewController(animated: true)
             } else {
-                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { _ in
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false)
+                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
+                    guard let self = self else { return }
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                     paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
                     paymentusVC.shouldPopToMakePaymentOnSave = true
                     self.navigationController?.pushViewController(paymentusVC, animated: true)
-                }, dontSaveHandler: { _ in
+                }, dontSaveHandler: { [weak self] _ in
                     let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: true)
-                    paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+                    paymentusVC.delegate = self?.delegate as? PaymentusFormViewControllerDelegate
                     paymentusVC.shouldPopToMakePaymentOnSave = true
-                    self.navigationController?.pushViewController(paymentusVC, animated: true)
+                    self?.navigationController?.pushViewController(paymentusVC, animated: true)
                 })
                 present(actionSheet, animated: true, completion: nil)
             }
@@ -200,16 +201,17 @@ class MiniWalletViewController: UIViewController {
                 delegate?.miniWalletViewControllerDidTapAddCard(self)
                 navigationController?.popViewController(animated: true)
             } else {
-                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { _ in
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false)
+                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
+                    guard let self = self else { return }
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                     paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
                     paymentusVC.shouldPopToMakePaymentOnSave = true
                     self.navigationController?.pushViewController(paymentusVC, animated: true)
-                }, dontSaveHandler: { _ in
+                }, dontSaveHandler: { [weak self] _ in
                     let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: true)
-                    paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+                    paymentusVC.delegate = self?.delegate as? PaymentusFormViewControllerDelegate
                     paymentusVC.shouldPopToMakePaymentOnSave = true
-                    self.navigationController?.pushViewController(paymentusVC, animated: true)
+                    self?.navigationController?.pushViewController(paymentusVC, animated: true)
                 })
                 present(actionSheet, animated: true, completion: nil)
             }

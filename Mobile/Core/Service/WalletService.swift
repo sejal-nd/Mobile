@@ -75,6 +75,7 @@ protocol WalletService {
     func fetchWalletEncryptionKey(customerId: String,
                                   bankOrCard: BankOrCard,
                                   temporary: Bool,
+                                  isWalletEmpty: Bool,
                                   walletItemId: String?) -> Observable<String>
 }
 
@@ -82,10 +83,12 @@ extension WalletService {
     func fetchWalletEncryptionKey(customerId: String,
                                   bankOrCard: BankOrCard,
                                   temporary: Bool,
+                                  isWalletEmpty: Bool,
                                   walletItemId: String? = nil) -> Observable<String> {
         return fetchWalletEncryptionKey(customerId: customerId,
                                         bankOrCard: bankOrCard,
                                         temporary: temporary,
+                                        isWalletEmpty: isWalletEmpty,
                                         walletItemId: walletItemId)
     }
 }

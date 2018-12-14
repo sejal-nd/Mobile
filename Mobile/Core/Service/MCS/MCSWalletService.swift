@@ -328,7 +328,11 @@ class MCSWalletService: WalletService {
             })
     }
     
-    func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, temporary: Bool, walletItemId: String? = nil) -> Observable<String> {
+    func fetchWalletEncryptionKey(customerId: String,
+                                  bankOrCard: BankOrCard,
+                                  temporary: Bool,
+                                  isWalletEmpty: Bool,
+                                  walletItemId: String? = nil) -> Observable<String> {
         var params = [
             "pmCategory": bankOrCard == .bank ? "DD" : "CC", // "DC" = Debit Card
             "postbackUrl": "",
@@ -338,6 +342,9 @@ class MCSWalletService: WalletService {
         if temporary {
             strParam += "nickname=false;primaryPM=false;"
         } else {
+            if isWalletEmpty { // If wallet is empty, hide the default checkbox because Paymentus automatically sets first wallet items as default
+                strParam += "primaryPM=false;"
+            }
             params["ownerId"] = customerId
         }
         params["strParam"] = strParam

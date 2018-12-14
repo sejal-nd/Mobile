@@ -223,7 +223,7 @@ class WalletViewController: UIViewController {
                 if Environment.shared.opco == .bge {
                     self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
                 } else {
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false)
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                     paymentusVC.delegate = self
                     paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
                     self.navigationController?.pushViewController(paymentusVC, animated: true)
@@ -236,7 +236,7 @@ class WalletViewController: UIViewController {
                 if Environment.shared.opco == .bge {
                     self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
                 } else {
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false)
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                     paymentusVC.delegate = self
                     paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
                     self.navigationController?.pushViewController(paymentusVC, animated: true)

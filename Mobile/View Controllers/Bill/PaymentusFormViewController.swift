@@ -33,6 +33,7 @@ class PaymentusFormViewController: UIViewController {
     let bankOrCard: BankOrCard
     let walletItemId: String? // Setting this will load the edit iFrame rather than add
     let temporary: Bool // If true, load the iFrame that doesn't save to the wallet
+    let isWalletEmpty: Bool // If true, hides the default checkbox in the iFrame (because Paymentus will auto-set as default)
     
     let disposeBag = DisposeBag()
     
@@ -40,9 +41,10 @@ class PaymentusFormViewController: UIViewController {
     var shouldPopToMakePaymentOnSave = false
     var shouldPopToRootOnSave = false
     
-    init(bankOrCard: BankOrCard, temporary: Bool, walletItemId: String? = nil) {
+    init(bankOrCard: BankOrCard, temporary: Bool, isWalletEmpty: Bool = false, walletItemId: String? = nil) {
         self.bankOrCard = bankOrCard
         self.temporary = temporary
+        self.isWalletEmpty = isWalletEmpty
         self.walletItemId = walletItemId
         
         super.init(nibName: nil, bundle: nil)
@@ -111,16 +113,29 @@ class PaymentusFormViewController: UIViewController {
         webView.configuration.userContentController.removeScriptMessageHandler(forName: "iosListener")
     }
     
-    func showError() {
-        loadingIndicator.isHidden = true
-        webView.isHidden = true
-        errorLabel.isHidden = false
-    }
-    
-    func showLoadingState() {
-        loadingIndicator.isHidden = false
-        webView.isHidden = true
-        errorLabel.isHidden = true
+    func fetchEncryptionKey() {
+        let walletService = ServiceFactory.createWalletService()
+        walletService.fetchWalletEncryptionKey(customerId: AccountsStore.shared.customerIdentifier,
+                                               bankOrCard: bankOrCard,
+                                               temporary: temporary,
+                                               isWalletEmpty: isWalletEmpty,
+                                               walletItemId: walletItemId)
+            .subscribe(onNext: { [weak self] key in
+                guard let self = self else { return }
+                
+                var urlComponents = URLComponents(string: Environment.shared.paymentusUrl)
+                urlComponents?.queryItems = [
+                    URLQueryItem(name: "authToken", value: key)
+                ]
+                if let components = urlComponents, let url = components.url {
+                    let request = URLRequest(url: url)
+                    self.webView.load(request)
+                } else {
+                    self.showError()
+                }
+                }, onError: { [weak self] err in
+                    self?.showError()
+            }).disposed(by: disposeBag)
     }
     
     func showWebView() {
@@ -143,30 +158,18 @@ class PaymentusFormViewController: UIViewController {
         }
     }
     
-    func fetchEncryptionKey() {
-        let walletService = ServiceFactory.createWalletService()
-        walletService.fetchWalletEncryptionKey(customerId: AccountsStore.shared.customerIdentifier,
-                                               bankOrCard: bankOrCard,
-                                               temporary: temporary,
-                                               walletItemId: walletItemId)
-            .subscribe(onNext: { [weak self] key in
-                guard let self = self else { return }
-
-                var urlComponents = URLComponents(string: Environment.shared.paymentusUrl)
-                urlComponents?.queryItems = [
-                    URLQueryItem(name: "authToken", value: key)
-                ]
-                if let components = urlComponents, let url = components.url {
-                    let request = URLRequest(url: url)
-                    self.webView.load(request)
-                } else {
-                    self.showError()
-                }
-            }, onError: { [weak self] err in
-                self?.showError()
-            }).disposed(by: disposeBag)
+    func showError() {
+        loadingIndicator.isHidden = true
+        webView.isHidden = true
+        errorLabel.isHidden = false
     }
-
+    
+    func showLoadingState() {
+        loadingIndicator.isHidden = false
+        webView.isHidden = true
+        errorLabel.isHidden = true
+    }
+    
 }
 
 extension PaymentusFormViewController: WKScriptMessageHandler {

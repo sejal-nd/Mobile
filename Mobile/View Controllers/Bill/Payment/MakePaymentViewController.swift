@@ -560,14 +560,15 @@ class MakePaymentViewController: UIViewController {
                 if Environment.shared.opco == .bge {
                     self.viewModel.inlineBank.value = true
                 } else {
-                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { _ in
-                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false)
+                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
+                        guard let self = self else { return }
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                         paymentusVC.delegate = self
                         self.navigationController?.pushViewController(paymentusVC, animated: true)
-                    }, dontSaveHandler: { _ in
+                    }, dontSaveHandler: { [weak self] _ in
                         let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: true)
                         paymentusVC.delegate = self
-                        self.navigationController?.pushViewController(paymentusVC, animated: true)
+                        self?.navigationController?.pushViewController(paymentusVC, animated: true)
                     })
                     self.present(actionSheet, animated: true, completion: nil)
                 }
@@ -580,14 +581,15 @@ class MakePaymentViewController: UIViewController {
                 if Environment.shared.opco == .bge {
                     self.viewModel.inlineCard.value = true
                 } else {
-                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { _ in
-                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false)
+                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
+                        guard let self = self else { return }
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                         paymentusVC.delegate = self
                         self.navigationController?.pushViewController(paymentusVC, animated: true)
-                    }, dontSaveHandler: { _ in
+                    }, dontSaveHandler: { [weak self] _ in
                         let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: true)
                         paymentusVC.delegate = self
-                        self.navigationController?.pushViewController(paymentusVC, animated: true)
+                        self?.navigationController?.pushViewController(paymentusVC, animated: true)
                     })
                     self.present(actionSheet, animated: true, completion: nil)
                 }
