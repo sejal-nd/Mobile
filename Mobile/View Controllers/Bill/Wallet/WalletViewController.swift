@@ -20,13 +20,11 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var emptyStateScrollView: UIScrollView!
     @IBOutlet weak var emptyStateCashOnlyLabel: UILabel!
     @IBOutlet weak var emptyStateCashOnlyTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var choosePaymentAccountLabel: UILabel!
+    @IBOutlet weak var choosePaymentMethodLabel: UILabel!
     @IBOutlet weak var bankButton: ButtonControl!
     @IBOutlet weak var bankButtonLabel: UILabel!
-    @IBOutlet weak var bankFeeLabel: UILabel!
     @IBOutlet weak var creditCardButton: ButtonControl!
     @IBOutlet weak var creditCardButtonLabel: UILabel!
-    @IBOutlet weak var creditCardFeeLabel: UILabel!
     @IBOutlet weak var emptyStateFooter: UILabel!
     
     // Non-empty state stuff
@@ -55,29 +53,26 @@ class WalletViewController: UIViewController {
         view.backgroundColor = .softGray
         
         // Empty state stuff
-        choosePaymentAccountLabel.textColor = .blackText
-        choosePaymentAccountLabel.font = OpenSans.regular.of(textStyle: .headline)
-        choosePaymentAccountLabel.text = NSLocalizedString("Choose a payment account:", comment: "")
+        choosePaymentMethodLabel.textColor = .blackText
+        choosePaymentMethodLabel.font = OpenSans.regular.of(textStyle: .headline)
+        choosePaymentMethodLabel.text = NSLocalizedString("Choose a payment method:", comment: "")
         
         bankButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         bankButton.layer.cornerRadius = 10
         bankButtonLabel.textColor = .blackText
         bankButtonLabel.font = OpenSans.semibold.of(textStyle: .headline)
         bankButtonLabel.text = NSLocalizedString("Bank Account", comment: "")
-        bankFeeLabel.textColor = .deepGray
-        bankFeeLabel.text = NSLocalizedString("No fees applied to your payments.", comment: "")
         
         creditCardButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         creditCardButton.layer.cornerRadius = 10
         creditCardButtonLabel.textColor = .blackText
         creditCardButtonLabel.font = OpenSans.semibold.of(textStyle: .headline)
         creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
-        creditCardFeeLabel.textColor = .deepGray
-        creditCardFeeLabel.text = viewModel.emptyStateCreditFeeLabelText
         
         emptyStateFooter.textColor = .blackText
         emptyStateFooter.text = viewModel.footerLabelText
         emptyStateFooter.font = SystemFont.regular.of(textStyle: .footnote)
+        emptyStateFooter.setLineHeight(lineHeight: 17)
         
         // Non-empty state stuff
         tableView.backgroundColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
@@ -86,9 +81,7 @@ class WalletViewController: UIViewController {
         
         addPaymentAccountBottomBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         addPaymentAccountLabel.textColor = .deepGray
-        addPaymentAccountLabel.text = Environment.shared.opco == .bge ?
-            NSLocalizedString("Add Payment Account", comment: "") :
-            NSLocalizedString("Add Payment Method", comment: "")
+        addPaymentAccountLabel.text = NSLocalizedString("Add Payment Method", comment: "")
         addPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
         miniCreditCardButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniCreditCardButton.layer.cornerRadius = 8
@@ -130,14 +123,14 @@ class WalletViewController: UIViewController {
     
     func addAccessibility() {
         bankButton.isAccessibilityElement = true
-        bankButton.accessibilityLabel = NSLocalizedString("Add Bank Account. " + bankFeeLabel.text!, comment: "")
+        bankButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         miniBankButton.isAccessibilityElement = true
-        miniBankButton.accessibilityLabel = NSLocalizedString("Add Bank account", comment: "")
+        miniBankButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
         creditCardButton.isAccessibilityElement = true
-        creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit Card. " + creditCardFeeLabel.text!, comment: "")
+        creditCardButton.accessibilityLabel = NSLocalizedString("Add credit card", comment: "")
         miniCreditCardButton.isAccessibilityElement = true
-        miniCreditCardButton.accessibilityLabel = NSLocalizedString("Add Credit card", comment: "")
+        miniCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit card", comment: "")
         
         addPaymentAccountBottomBar.accessibilityElements = [addPaymentAccountLabel, miniBankButton, miniCreditCardButton]
     }
@@ -243,25 +236,23 @@ class WalletViewController: UIViewController {
                 }
             }).disposed(by: disposeBag)
     }
-    
-    @objc func onWalletItemPress(sender: ButtonControl) {
-        if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
-            selectedWalletItem = walletItems[sender.tag]
-            if selectedWalletItem!.bankOrCard == .card {
-                performSegue(withIdentifier: "editCreditCardSegue", sender: self)
-            } else {
-                performSegue(withIdentifier: "editBankAccountSegue", sender: self)
-            }
-        }
-    }
-    
+
     @objc func onEditWalletItemPress(sender: UIButton) {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
-            selectedWalletItem = walletItems[sender.tag]
-            let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, walletItemId: selectedWalletItem!.walletItemID)
-            paymentusVC.delegate = self
-            paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
-            self.navigationController?.pushViewController(paymentusVC, animated: true)
+            if Environment.shared.opco == .bge {
+                selectedWalletItem = walletItems[sender.tag]
+                if selectedWalletItem!.bankOrCard == .card {
+                    performSegue(withIdentifier: "editCreditCardSegue", sender: self)
+                } else {
+                    performSegue(withIdentifier: "editBankAccountSegue", sender: self)
+                }
+            } else { // Paymentus iFrame
+                selectedWalletItem = walletItems[sender.tag]
+                let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, walletItemId: selectedWalletItem!.walletItemID)
+                paymentusVC.delegate = self
+                paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
+                self.navigationController?.pushViewController(paymentusVC, animated: true)
+            }
         }
     }
     
@@ -278,7 +269,13 @@ class WalletViewController: UIViewController {
                 title = NSLocalizedString("Delete Card?", comment: "")
                 toast = NSLocalizedString("Card deleted", comment: "")
             }
-            let messageString = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review and edit your scheduled payments in Payment Activity.", comment: "")
+            
+            let messageString: String!
+            if Environment.shared.opco == .bge {
+                messageString = NSLocalizedString("Deleting this payment method will also delete all the pending payments associated with this payment method. Please tap 'Delete' to delete this payment method.", comment: "")
+            } else {
+                messageString = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review and edit your scheduled payments in Payment Activity.", comment: "")
+            }
             
             let alertController = UIAlertController(title: title, message: messageString, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -388,38 +385,23 @@ extension WalletViewController: UITableViewDelegate {
 extension WalletViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if Environment.shared.opco == .bge {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WalletCell", for: indexPath) as! WalletTableViewCell
-            
-            let walletItem = viewModel.walletItems.value![indexPath.section]
-            cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
-            
-            cell.innerContentView.tag = indexPath.section
-            cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
-            cell.innerContentView.addTarget(self, action: #selector(onWalletItemPress(sender:)), for: .touchUpInside)
-            
-            cell.oneTouchPayView.isHidden = !walletItem.isDefault
-            
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ePayWalletCell", for: indexPath) as! ePayWalletTableViewCell
-            
-            let walletItem = viewModel.walletItems.value![indexPath.section]
-            cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
-            
-            cell.editButton.tag = indexPath.section
-            cell.editButton.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
-            cell.editButton.addTarget(self, action: #selector(onEditWalletItemPress(sender:)), for: .touchUpInside)
-            cell.editButton.isEnabled = !(walletItem.bankOrCard == .bank && viewModel.accountDetail.isCashOnly)
-            
-            cell.deleteButton.tag = indexPath.section
-            cell.deleteButton.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
-            cell.deleteButton.addTarget(self, action: #selector(onDeleteWalletItemPress(sender:)), for: .touchUpInside)
-            
-            cell.oneTouchPayView.isHidden = !walletItem.isDefault
-            
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WalletCell", for: indexPath) as! WalletTableViewCell
+        
+        let walletItem = viewModel.walletItems.value![indexPath.section]
+        cell.bindToWalletItem(walletItem, billingInfo: viewModel.accountDetail.billingInfo)
+        
+        cell.editButton.tag = indexPath.section
+        cell.editButton.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
+        cell.editButton.addTarget(self, action: #selector(onEditWalletItemPress(sender:)), for: .touchUpInside)
+        cell.editButton.isEnabled = !(walletItem.bankOrCard == .bank && viewModel.accountDetail.isCashOnly)
+        
+        cell.deleteButton.tag = indexPath.section
+        cell.deleteButton.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
+        cell.deleteButton.addTarget(self, action: #selector(onDeleteWalletItemPress(sender:)), for: .touchUpInside)
+        
+        cell.oneTouchPayView.isHidden = !walletItem.isDefault
+        
+        return cell
     }
     
 }
