@@ -59,17 +59,13 @@ class MiniWalletTableViewCell: UITableViewCell {
         }
         
         if let nickname = walletItem.nickName {
-            let displayNickname: String
-            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                displayNickname = nickname == maskedNumber ? "" : nickname
-            } else {
-                displayNickname = nickname
-            }
-            
-            nicknameLabel.text = displayNickname
+            nicknameLabel.isHidden = false
+            nicknameLabel.text = nickname
             if let nicknameText = nicknameLabel.text, !nicknameText.isEmpty {
                 a11yLabel += ", \(nicknameText)"
             }
+        } else {
+            nicknameLabel.isHidden = true
         }
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {

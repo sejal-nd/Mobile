@@ -67,16 +67,12 @@ class MCSBillService: BillService {
             "start_date": startDateString,
             "end_date": endDateString,
             "statement_type": "03"
-            ]
+        ]
         
-        if Environment.shared.opco == .peco {
-            params["biller_id"] = "PECORegistered"
+        let opCo = Environment.shared.opco
+        if opCo == .comEd || opCo == .peco {
+            params["biller_id"] = "\(opCo.rawValue)Registered"
         }
-        
-        if Environment.shared.opco == .comEd {
-            params["biller_id"] = "ComEdRegistered"
-        }
-        
         
         return MCSApi.shared.post(path: "accounts/\(accountNumber)/billing/history", params: params)
             .map { response in

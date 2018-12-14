@@ -17,6 +17,7 @@ class MiniWalletViewModel {
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedItem = Variable<WalletItem?>(nil)
+    let temporaryItem = Variable<WalletItem?>(nil)
     let isFetchingWalletItems = Variable(false)
     let isError = Variable(false)
     
@@ -62,21 +63,12 @@ class MiniWalletViewModel {
                 banks.append(item)
             }
         }
-        return banks
-    }
-
-    lazy var bankAccountLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
-        if Environment.shared.opco == .bge { return false } // No limit for BGE
-        
-        guard let walletItems = $0 else { return false }
-        var bankCount = 0
-        for item in walletItems {
-            if item.bankOrCard == .bank {
-                bankCount += 1
-                if bankCount == 3 { break }
+        if let tempItem = temporaryItem.value {
+            if tempItem.bankOrCard == .bank && !banks.contains(tempItem) {
+                banks.insert(tempItem, at: 0)
             }
         }
-        return bankCount >= 3
+        return banks
     }
     
     var creditCards: [WalletItem]! {
@@ -85,6 +77,11 @@ class MiniWalletViewModel {
         for item in walletItems {
             if item.bankOrCard == .card {
                 cards.append(item)
+            }
+        }
+        if let tempItem = temporaryItem.value {
+            if tempItem.bankOrCard == .card && !cards.contains(tempItem) {
+                cards.insert(tempItem, at: 0)
             }
         }
         return cards
@@ -98,20 +95,6 @@ class MiniWalletViewModel {
             return NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
         }
     }
-    
-    lazy var creditCardLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
-        if Environment.shared.opco == .bge { return false } // No limit for BGE
         
-        guard let walletItems = $0 else { return false }
-        var creditCount = 0
-        for item in walletItems {
-            if item.bankOrCard == .card {
-                creditCount += 1
-                if creditCount == 3 { break }
-            }
-        }
-        return creditCount >= 3
-    }
-    
 }
 

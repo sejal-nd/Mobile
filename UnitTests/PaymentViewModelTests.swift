@@ -1495,14 +1495,6 @@ class PaymentViewModelTests: XCTestCase {
         viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
             XCTAssert(nickname == "Test", "Expected \"Test\", got \"\(nickname ?? "nil")\"")
         }).disposed(by: disposeBag)
-        
-        // ComEd/PECO specific test because by default they set nickname to last 4 digits, so we ignore those nicknames
-        if Environment.shared.opco != .bge {
-            viewModel.selectedWalletItem.value = WalletItem(nickName: "1234")
-            viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
-                XCTAssertNil(nickname, "Expected nil, got \"\(nickname ?? "nil")\"")
-            }).disposed(by: disposeBag)
-        }
     }
     
     func testConvenienceFee() {
