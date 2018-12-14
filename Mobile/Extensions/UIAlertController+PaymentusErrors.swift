@@ -31,7 +31,7 @@ extension UIAlertController {
             includeCallCTA = true
         case ServiceErrorCode.blockedPaymentType.rawValue:
             title = NSLocalizedString("Blocked Payment Method", comment: "")
-            message = String.localizedStringWithFormat("The %@ payment type selected is not available for use. Please select another payment method.", walletItem.bankOrCard == .bank ? "Bank account" : "Card")
+            message = String.localizedStringWithFormat("The %@ payment type selected is not available for use. Please select another payment method.", walletItem.bankOrCard == .bank ? "bank account" : "card")
         case ServiceErrorCode.duplicatePayment.rawValue:
             title = NSLocalizedString("Duplicate Payment", comment: "")
             message = NSLocalizedString("The transaction was blocked due to a duplicate payment submitted with the same payment amount, payment date, and payment method within the last 24 hours.", comment: "")

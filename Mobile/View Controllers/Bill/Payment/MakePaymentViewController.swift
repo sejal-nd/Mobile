@@ -514,6 +514,7 @@ class MakePaymentViewController: UIViewController {
             let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
             miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
             miniWalletVC.viewModel.selectedItem.value = self.viewModel.selectedWalletItem.value
+            miniWalletVC.viewModel.temporaryItem.value = self.viewModel.newlyAddedWalletItem.value
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
             miniWalletVC.sentFromPayment = true
             miniWalletVC.delegate = self
@@ -556,12 +557,15 @@ class MakePaymentViewController: UIViewController {
                 if Environment.shared.opco == .bge {
                     self.viewModel.inlineBank.value = true
                 } else {
-                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { _ in
-                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank)
+                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
+                        guard let self = self else { return }
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                         paymentusVC.delegate = self
                         self.navigationController?.pushViewController(paymentusVC, animated: true)
-                    }, dontSaveHandler: { _ in
-                        // TODO
+                    }, dontSaveHandler: { [weak self] _ in
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: true)
+                        paymentusVC.delegate = self
+                        self?.navigationController?.pushViewController(paymentusVC, animated: true)
                     })
                     self.present(actionSheet, animated: true, completion: nil)
                 }
@@ -574,12 +578,15 @@ class MakePaymentViewController: UIViewController {
                 if Environment.shared.opco == .bge {
                     self.viewModel.inlineCard.value = true
                 } else {
-                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { _ in
-                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card)
+                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
+                        guard let self = self else { return }
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                         paymentusVC.delegate = self
                         self.navigationController?.pushViewController(paymentusVC, animated: true)
-                    }, dontSaveHandler: { _ in
-                        // TODO
+                    }, dontSaveHandler: { [weak self] _ in
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: true)
+                        paymentusVC.delegate = self
+                        self?.navigationController?.pushViewController(paymentusVC, animated: true)
                     })
                     self.present(actionSheet, animated: true, completion: nil)
                 }
@@ -832,6 +839,7 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
     func didAddBank(_ walletItem: WalletItem?) {
+        viewModel.newlyAddedWalletItem.value = walletItem
         fetchData()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
@@ -839,6 +847,7 @@ extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
     }
     
     func didAddCard(_ walletItem: WalletItem?) {
+        viewModel.newlyAddedWalletItem.value = walletItem
         fetchData()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Card added", comment: ""))
