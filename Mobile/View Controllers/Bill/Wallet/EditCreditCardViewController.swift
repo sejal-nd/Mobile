@@ -27,15 +27,12 @@ class EditCreditCardViewController: UIViewController {
     @IBOutlet weak var innerContentViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var innerContentViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var gradientView: UIView!
-    @IBOutlet weak var bottomBarView: UIView!
-    @IBOutlet weak var bottomBarShadowView: UIView!
     
     @IBOutlet weak var creditImageView: UIImageView!
     @IBOutlet weak var accountIDLabel: UILabel!
     @IBOutlet weak var oneTouchPayCardView: UIView!
     @IBOutlet weak var oneTouchPayCardLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
-    @IBOutlet weak var convenienceFeeLabel: UILabel!
     @IBOutlet weak var expiredView: UIView!
     @IBOutlet weak var expiredLabel: UILabel!
     
@@ -108,6 +105,7 @@ class EditCreditCardViewController: UIViewController {
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         innerContentView.layer.cornerRadius = 15
+        innerContentView.layer.masksToBounds = true
         
         gradientView.layer.cornerRadius = 15
         gradientLayer.frame = gradientView.bounds
@@ -126,11 +124,6 @@ class EditCreditCardViewController: UIViewController {
         nicknameLabel.textColor = .blackText
         nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
-        bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        
-        convenienceFeeLabel.textColor = .blackText
-        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         expiredView.layer.borderWidth = 2
         expiredView.layer.borderColor = UIColor.errorRed.cgColor
@@ -196,32 +189,10 @@ class EditCreditCardViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         innerContentView.layoutIfNeeded()
-        
-        // Round only the top corners
         gradientLayer.frame = gradientView.frame
-        
-        let gradientPath = UIBezierPath(roundedRect:gradientLayer.bounds,
-                                        byRoundingCorners:[.topLeft, .topRight],
-                                        cornerRadii: CGSize(width: 15, height:  15))
-        let gradientMaskLayer = CAShapeLayer()
-        gradientMaskLayer.path = gradientPath.cgPath
-        gradientLayer.mask = gradientMaskLayer
-        
-        // Round only the bottom corners
-        let bottomBarPath = UIBezierPath(roundedRect:bottomBarView.bounds,
-                                         byRoundingCorners:[.bottomLeft, .bottomRight],
-                                         cornerRadii: CGSize(width: 15, height:  15))
-        let bottomBarMaskLayer = CAShapeLayer()
-        bottomBarMaskLayer.path = bottomBarPath.cgPath
-        bottomBarView.layer.mask = bottomBarMaskLayer
     }
     
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////
     func bindWalletItemToViewElements() {
-        
-        let opco = Environment.shared.opco
-        
         let walletItem = viewModel.walletItem!
         
         if let nickname = walletItem.nickName {
@@ -255,18 +226,7 @@ class EditCreditCardViewController: UIViewController {
         
         creditImageView.image = #imageLiteral(resourceName: "opco_credit_card")
         creditImageView.isAccessibilityElement = true
-        
-        convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
-        convenienceFeeLabel.textColor = .blackText
-        switch opco {
-        case .comEd, .peco:
-            convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
-            creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
-        case .bge:            
-            convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFeeString(isComplete: false), comment: "")
-            creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
-            break
-        }
+        creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
     }
     
     func bindViewModel() {
