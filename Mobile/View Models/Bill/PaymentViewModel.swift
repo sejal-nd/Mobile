@@ -835,7 +835,7 @@ class PaymentViewModel {
                 precariousAmounts.append(pastDue)
             }
             
-            precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount ", comment: "")))
+            precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount", comment: "")))
         } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && opco != .bge {
             if pastDueAmount != amtDpaReinst {
                 precariousAmounts.append(pastDue)
