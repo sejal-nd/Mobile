@@ -155,7 +155,7 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.layer.cornerRadius = 3
         saveAPaymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
+        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
         
         a11yTutorialButton.setTitleColor(StormModeStatus.shared.isOn ? .white : .actionBlue, for: .normal)
         a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)

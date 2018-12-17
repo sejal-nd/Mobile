@@ -799,17 +799,17 @@ class PaymentViewModelTests: XCTestCase {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
         viewModel.shouldShowPaymentAccountView.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssertFalse(shouldShow, "Payment account view should not be shown by default")
+            XCTAssertFalse(shouldShow, "Payment method view should not be shown by default")
         }).disposed(by: disposeBag)
         
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
         viewModel.shouldShowPaymentAccountView.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssert(shouldShow, "Payment account view should be shown after a wallet item is selected")
+            XCTAssert(shouldShow, "Payment method view should be shown after a wallet item is selected")
         }).disposed(by: disposeBag)
         
         viewModel.inlineCard.value = true
         viewModel.shouldShowPaymentAccountView.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssertFalse(shouldShow, "Payment account view should not be shown if entering an inline card or bank")
+            XCTAssertFalse(shouldShow, "Payment method view should not be shown if entering an inline card or bank")
         }).disposed(by: disposeBag)
     }
     
@@ -1495,14 +1495,6 @@ class PaymentViewModelTests: XCTestCase {
         viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
             XCTAssert(nickname == "Test", "Expected \"Test\", got \"\(nickname ?? "nil")\"")
         }).disposed(by: disposeBag)
-        
-        // ComEd/PECO specific test because by default they set nickname to last 4 digits, so we ignore those nicknames
-        if Environment.shared.opco != .bge {
-            viewModel.selectedWalletItem.value = WalletItem(nickName: "1234")
-            viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
-                XCTAssertNil(nickname, "Expected nil, got \"\(nickname ?? "nil")\"")
-            }).disposed(by: disposeBag)
-        }
     }
     
     func testConvenienceFee() {

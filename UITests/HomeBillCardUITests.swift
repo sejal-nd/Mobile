@@ -16,19 +16,19 @@ class HomeBillCardUITests: ExelonUITestCase {
 
         checkExistenceOfElement(.staticText, "$200.00")
         
-        tapButton(buttonText: "Set a default payment account")
+        tapButton(buttonText: "Set a default payment method")
         
         XCTAssertTrue(app.navigationBars["My Wallet"].waitForExistence(timeout: 3))
         tapButton(buttonText: "Back")
         
         let slideToPayControl = app.scrollViews.otherElements["Slide to pay today"]
-        XCTAssertFalse(slideToPayControl.isEnabled, "Slide to pay should be disabled when no default payment account")
+        XCTAssertFalse(slideToPayControl.isEnabled, "Slide to pay should be disabled when no default payment method")
     }
     
     func testDefaultPaymentSetWithBill() {
         doLogin(username: "billCardWithDefaultPayment")
 
-        XCTAssertFalse(buttonElement(withText: "Set a default payment account").exists, "Set payment account button should be hidden when one is already set")
+        XCTAssertFalse(buttonElement(withText: "Set a default payment method").exists, "Set payment method button should be hidden when one is already set")
 
         checkExistenceOfElements([
             (.staticText, "$200.00"),

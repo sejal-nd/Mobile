@@ -50,7 +50,7 @@ private func extractLast4(object: Any?) throws -> String? {
 
 struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemID: String?
-    let walletExternalID: String?
+    let walletExternalID: String? // TODO: Remove for BGE when they switch to paymentus
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
     let walletItemStatusType: String? // Not sent for paymentus wallet items. TODO: Remove for BGE when they switch to paymentus
@@ -76,6 +76,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let paymentCategoryType: PaymentCategoryType? // Do not use this for determining bank vs card - use bankOrCard
     let bankAccountType: BankAccountType? // Do not use this for determining bank vs card - use bankOrCard
     var bankOrCard: BankOrCard = .card
+    var isTemporary: Bool // Indicates temporary Paymentus wallet item
     
     let bankAccountNumber: String?
     let bankAccountName: String?
@@ -119,6 +120,37 @@ struct WalletItem: Mappable, Equatable, Hashable {
                 bankOrCard = .bank
             }
         }
+        
+        isTemporary = false
+    }
+    
+    // Used both for Unit/UI Tests AND for the creation of the temporary wallet items from Paymentus iFrame
+    init(walletItemID: String? = "1234",
+         walletExternalID: String? = "1234",
+         maskedWalletItemAccountNumber: String? = "1234",
+         nickName: String? = nil,
+         walletItemStatusType: String? = "active",
+         bankAccountNumber: String? = nil,
+         bankAccountName: String? = nil,
+         isDefault: Bool = false,
+         cardIssuer: String? = nil,
+         bankOrCard: BankOrCard = .bank,
+         isTemporary: Bool = false) {
+        
+        var map = [String: Any]()
+        map["walletItemID"] = walletItemID
+        map["walletExternalID"] = walletExternalID
+        map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
+        map["nickName"] = nickName
+        map["walletItemStatusType"] = walletItemStatusType
+        map["bankAccountNumber"] = bankAccountNumber
+        map["bankAccountName"] = bankAccountName
+        map["isDefault"] = isDefault
+        map["cardIssuer"] = cardIssuer
+        
+        self = WalletItem.from(map as NSDictionary)!
+        self.bankOrCard = bankOrCard
+        self.isTemporary = isTemporary
     }
     
     // Equatable
