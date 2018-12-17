@@ -22,7 +22,7 @@ struct MockWalletService: WalletService {
             ]
         } else if loggedInUsername == "billCardWithExpiredDefaultPayment" {
             walletItems = [
-                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", isDefault: true, cardIssuer: "Visa", bankOrCard: .card)
+                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", expirationDate: "01/2018", isDefault: true, cardIssuer: "Visa", bankOrCard: .card)
             ]
         }else if loggedInUsername == "billCardWithDefaultCcPayment" {
             walletItems = [

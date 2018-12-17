@@ -130,6 +130,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
          maskedWalletItemAccountNumber: String? = "1234",
          nickName: String? = nil,
          walletItemStatusType: String? = "active",
+         expirationDate: String? = "01/2100",
          bankAccountNumber: String? = nil,
          bankAccountName: String? = nil,
          isDefault: Bool = false,
@@ -147,6 +148,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         map["bankAccountName"] = bankAccountName
         map["isDefault"] = isDefault
         map["cardIssuer"] = cardIssuer
+        map["expirationDate"] = expirationDate
         
         self = WalletItem.from(map as NSDictionary)!
         self.bankOrCard = bankOrCard

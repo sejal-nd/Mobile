@@ -110,8 +110,6 @@ class WalletTableViewCell: UITableViewCell {
             }
         }
         
-        a11yLabel += NSLocalizedString(" button", comment: "")
-        
         // Nickname
         if let nickname = walletItem.nickName {
             nicknameLabel.text = nickname.uppercased()
@@ -163,6 +161,8 @@ class WalletTableViewCell: UITableViewCell {
         }
 
         innerContentView.accessibilityLabel = a11yLabel
+        innerContentView.isAccessibilityElement = true
+        self.accessibilityElements = [innerContentView, editButton, deleteButton]
         
         expiredView.isHidden = !walletItem.isExpired
         expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""
