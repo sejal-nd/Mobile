@@ -57,7 +57,7 @@ class WalletViewController: UIViewController {
         // Empty state stuff
         choosePaymentAccountLabel.textColor = .blackText
         choosePaymentAccountLabel.font = OpenSans.regular.of(textStyle: .headline)
-        choosePaymentAccountLabel.text = NSLocalizedString("Choose a payment account:", comment: "")
+        choosePaymentAccountLabel.text = NSLocalizedString("Choose a payment method:", comment: "")
         
         bankButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)
         bankButton.layer.cornerRadius = 10
@@ -86,9 +86,7 @@ class WalletViewController: UIViewController {
         
         addPaymentAccountBottomBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         addPaymentAccountLabel.textColor = .deepGray
-        addPaymentAccountLabel.text = Environment.shared.opco == .bge ?
-            NSLocalizedString("Add Payment Account", comment: "") :
-            NSLocalizedString("Add Payment Method", comment: "")
+        addPaymentAccountLabel.text = NSLocalizedString("Add Payment Method", comment: "")
         addPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
         miniCreditCardButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniCreditCardButton.layer.cornerRadius = 8
@@ -208,7 +206,7 @@ class WalletViewController: UIViewController {
         viewModel.hasExpiredWalletItem
             .drive(onNext: { [weak self] in
                 let alert = UIAlertController(title: nil,
-                                              message: NSLocalizedString("Please update your Wallet as one or more of your saved payment accounts have expired.", comment: ""),
+                                              message: NSLocalizedString("Please update your Wallet as one or more of your saved payment methods have expired.", comment: ""),
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self?.present(alert, animated: true, completion: nil)

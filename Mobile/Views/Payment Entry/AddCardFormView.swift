@@ -110,14 +110,14 @@ class AddCardFormView: UIView {
         saveToWalletLabel.font = SystemFont.regular.of(textStyle: .headline)
         byNotSavingLabel.textColor = .blackText
         byNotSavingLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        byNotSavingLabel.text = NSLocalizedString("By not saving this payment account, you will only be eligible to make an instant payment.", comment: "")
+        byNotSavingLabel.text = NSLocalizedString("By not saving this payment method, you will only be eligible to make an instant payment.", comment: "")
         
         nicknameTextField.textField.placeholder = Environment.shared.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
         
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         oneTouchPayLabel.textColor = .blackText
-        oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
+        oneTouchPayLabel.text = NSLocalizedString("Default Payment Method", comment: "")
         oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         footnoteLabel.textColor = .blackText

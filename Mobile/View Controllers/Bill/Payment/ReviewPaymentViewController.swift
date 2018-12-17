@@ -98,12 +98,11 @@ class ReviewPaymentViewController: UIViewController {
         
         overpaymentLabel.textColor = .blackText
         overpaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        overpaymentLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your amount due.", comment: "")
+        overpaymentLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your total amount due.", comment: "")
         overpaymentLabel.setLineHeight(lineHeight: 24)
         
         paymentAccountTextLabel.textColor = .deepGray
-        paymentAccountTextLabel.text = Environment.shared.opco == .bge ?
-            NSLocalizedString("Payment Account", comment: "") : NSLocalizedString("Payment Method", comment: "")
+        paymentAccountTextLabel.text = NSLocalizedString("Payment Method", comment: "")
         paymentAccountMaskedAccountNumberLabel.textColor = .blackText
         paymentAccountNicknameLabel.textColor = .middleGray
         
@@ -112,8 +111,7 @@ class ReviewPaymentViewController: UIViewController {
         
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        amountDueTextLabel.text = Environment.shared.opco == .bge ?
-            NSLocalizedString("Amount Due", comment: "") : NSLocalizedString("Total Amount Due", comment: "")
+        amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
         amountDueValueLabel.textColor = .deepGray
         amountDueValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         dueDateTextLabel.textColor = .deepGray
@@ -216,7 +214,7 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func bindViewContent() {
-        // Payment Account
+        // Payment Method
         viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).disposed(by: disposeBag)
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountMaskedAccountNumberLabel.rx.text).disposed(by: disposeBag)
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)

@@ -163,7 +163,7 @@ class ePayWalletTableViewCell: UITableViewCell {
         
         oneTouchPayView.isHidden = true // Calculated in cellForRowAtIndexPath
         if walletItem.isDefault {
-            a11yLabel += NSLocalizedString(", Default payment account", comment: "")
+            a11yLabel += NSLocalizedString(", Default payment method", comment: "")
         }
         
         if walletItem.isExpired {

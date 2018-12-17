@@ -39,7 +39,7 @@ class PaymentUITests: ExelonUITestCase {
         } else {
             checkExistenceOfElements([
                 (.staticText, "A $0.00 convenience fee will be applied by Bill Matrix, our payment partner."),
-                (.staticText, "Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.")
+                (.staticText, "Up to three payment methods for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.")
             ])
         }
     }
@@ -52,10 +52,10 @@ class PaymentUITests: ExelonUITestCase {
         let nextButton = buttonElement(withText: "Next")
         sleep(1) // Button becomes enabled asynchronously
         XCTAssertTrue(nextButton.isEnabled, "Next button should be immediately enabled in this scenario")
-        checkExistenceOfElement(.staticText, "Payment Account")
+        checkExistenceOfElement(.staticText, "Payment Method")
         
         tapButton(buttonText: "Bank account, Test Nickname, Account number ending in, 1234")
-        checkExistenceOfElement(.navigationBar, "Select Payment Account")
+        checkExistenceOfElement(.navigationBar, "Select Payment Method")
         tapButton(buttonText: "Back")
 
         checkExistenceOfElements([
@@ -136,7 +136,7 @@ class PaymentUITests: ExelonUITestCase {
             (.textField, "Account Number, required"),
             (.textField, "Confirm Account Number, required"),
             (.textField, "Nickname, required"),
-            (.staticText, "Set this payment account as default to easily pay from the Home and Bill screens."),
+            (.staticText, "Set this payment method as default to easily pay from the Home and Bill screens."),
             (.staticText, "Amount Due"),
             (.staticText, "$200.00"),
             (.staticText, "No convenience fee will be applied."),
@@ -147,11 +147,11 @@ class PaymentUITests: ExelonUITestCase {
         let confirmAccountField = element(ofType: .textField, withText: "Confirm Account Number, required")
         XCTAssertFalse(confirmAccountField.isEnabled)
 
-        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment account")
-        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Account switch should be OFF by default")
+        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment method")
+        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Method switch should be OFF by default")
 
-        let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
-        XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
+        let paymentAmountTextField = element(ofType: .textField, withText: "Payment Method, required")
+        XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment method value entry should default to the amount due")
 
         tapButton(buttonText: dateString(from: Date()))
         XCTAssertTrue(app.navigationBars["Select Payment Date"].waitForExistence(timeout: 2))
@@ -200,7 +200,7 @@ class PaymentUITests: ExelonUITestCase {
             (.textField, "Confirm Account Number, required"),
             (.textField, "Nickname (Optional)"),
             (.staticText, "Save to My Wallet"),
-            (.staticText, "Set this payment account as default to easily pay from the Home and Bill screens."),
+            (.staticText, "Set this payment method as default to easily pay from the Home and Bill screens."),
             (.staticText, "Amount Due"),
             (.staticText, "$200.00"),
             (.staticText, "No convenience fee will be applied."),
@@ -214,8 +214,8 @@ class PaymentUITests: ExelonUITestCase {
         let saveToWalletSwitch = element(ofType: .switch, withText: "Save to my wallet")
         XCTAssertEqual(saveToWalletSwitch.value as? String, "1", "Save to My Wallet switch should be ON by default")
 
-        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment account")
-        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Account switch should be OFF by default")
+        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment method")
+        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Method switch should be OFF by default")
 
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
         XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
@@ -255,7 +255,7 @@ class PaymentUITests: ExelonUITestCase {
             (.textField, "Zip Code, required"),
             (.textField, "Nickname, required"),
             (.staticText, "Save to My Wallet"),
-            (.staticText, "Set this payment account as default to easily pay from the Home and Bill screens."),
+            (.staticText, "Set this payment method as default to easily pay from the Home and Bill screens."),
             (.staticText, "Amount Due"),
             (.staticText, "$200.00"),
             (.staticText, "A convenience fee will be applied to this payment. Residential accounts: $0.00. Business accounts: 0%."),
@@ -266,8 +266,8 @@ class PaymentUITests: ExelonUITestCase {
         let saveToWalletSwitch = element(ofType: .switch, withText: "Save to my wallet")
         XCTAssertEqual(saveToWalletSwitch.value as? String, "1", "Save to My Wallet switch should be ON by default")
 
-        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment account")
-        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Account switch should be OFF by default")
+        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment method")
+        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Method switch should be OFF by default")
 
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
         XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
@@ -304,7 +304,7 @@ class PaymentUITests: ExelonUITestCase {
             (.textField, "Zip Code, required"),
             (.textField, "Nickname (Optional)"),
             (.staticText, "Save to My Wallet"),
-            (.staticText, "Set this payment account as default to easily pay from the Home and Bill screens."),
+            (.staticText, "Set this payment method as default to easily pay from the Home and Bill screens."),
             (.staticText, "Amount Due"),
             (.staticText, "$200.00"),
             (.staticText, "A $0.00 convenience fee will be applied by Bill Matrix, our payment partner."),
@@ -316,8 +316,8 @@ class PaymentUITests: ExelonUITestCase {
         let saveToWalletSwitch = element(ofType: .switch, withText: "Save to my wallet")
         XCTAssertEqual(saveToWalletSwitch.value as? String, "1", "Save to My Wallet switch should be ON by default")
 
-        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment account")
-        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Account switch should be OFF by default")
+        let defaultAccountSwitch = element(ofType: .switch, withText: "Default payment method")
+        XCTAssertEqual(defaultAccountSwitch.value as? String, "0", "Default Payment Method switch should be OFF by default")
 
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
         XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
@@ -357,7 +357,7 @@ class PaymentUITests: ExelonUITestCase {
 
         checkExistenceOfElements([
             (.navigationBar, "Review Payment"),
-            (.staticText, "Payment Account"),
+            (.staticText, "Payment Method"),
             (.staticText, "Amount Due"),
             (.staticText, "$200.00"),
             (.staticText, "Due Date"),

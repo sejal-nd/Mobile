@@ -651,12 +651,12 @@ class PaymentViewModel {
         if let item = self?.oneTouchPayItem {
             switch item.bankOrCard {
             case .bank:
-                    return String(format: NSLocalizedString("You are currently using bank account %@ as your default payment account.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
+                    return String(format: NSLocalizedString("You are currently using bank account %@ as your default payment method.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
             case .card:
-                    return String(format: NSLocalizedString("You are currently using card %@ as your default payment account.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
+                    return String(format: NSLocalizedString("You are currently using card %@ as your default payment method.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
             }
         }
-        return NSLocalizedString("Set this payment account as default to easily pay from the Home and Bill screens.", comment: "")
+        return NSLocalizedString("Set this payment method as default to easily pay from the Home and Bill screens.", comment: "")
     }
 
     private(set) lazy var shouldShowInlinePaymentDivider: Driver<Bool> = Driver.combineLatest(self.inlineBank.asDriver(), self.inlineCard.asDriver())
@@ -751,16 +751,16 @@ class PaymentViewModel {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 } else {
                     // COMED/PECO BANK
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > amountDue {
-                        return NSLocalizedString("Payment must be less than or equal to amount due", comment: "")
+                        return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 }
             } else if cardWorkflow {
@@ -771,16 +771,16 @@ class PaymentViewModel {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 } else {
                     // COMED/PECO CREDIT CARD
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > amountDue {
-                        return NSLocalizedString("Payment must be less than or equal to amount due", comment: "")
+                        return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 }
             }
@@ -949,7 +949,7 @@ class PaymentViewModel {
                        wouldBeSelectedWalletItemIsExpired.asDriver())
         {
             if $7 {
-                return NSLocalizedString("Select Payment Account", comment: "")
+                return NSLocalizedString("Select Payment Method", comment: "")
             }
             
             var a11yLabel = ""

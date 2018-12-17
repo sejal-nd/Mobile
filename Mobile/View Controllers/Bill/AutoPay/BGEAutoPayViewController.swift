@@ -92,7 +92,7 @@ class BGEAutoPayViewController: UIViewController {
         
         enrolledPaymentAccountLabel.textColor = .deepGray
         enrolledPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        enrolledPaymentAccountLabel.text = NSLocalizedString("AutoPay Payment Account:", comment: "")
+        enrolledPaymentAccountLabel.text = NSLocalizedString("AutoPay Payment Method:", comment: "")
         
         bankAccountButton.backgroundColorOnPress = .softGray
         bankAccountButton.layer.cornerRadius = 10

@@ -566,12 +566,12 @@ class HomeBillCardViewModel {
             
             let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
             if days > 0 {
-                let localizedText = NSLocalizedString("Amount due in %d day%@", comment: "")
+                let localizedText = NSLocalizedString("Total amount due in %d day%@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
                                           attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.regular.of(textStyle: .subheadline)])
             } else {
-                let localizedText = NSLocalizedString("Amount due on %@", comment: "")
+                let localizedText = NSLocalizedString("Total amount due on %@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
                                           attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.regular.of(textStyle: .subheadline)])
@@ -582,7 +582,7 @@ class HomeBillCardViewModel {
         case .pastDue:
             let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed
             if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
-                return NSAttributedString(string: NSLocalizedString("Amount due immediately", comment: ""),
+                return NSAttributedString(string: NSLocalizedString("Total amount due immediately", comment: ""),
                                           attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.semibold.of(textStyle: .subheadline)])
             } else {

@@ -48,7 +48,7 @@ class MiniWalletViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Select Payment Account", comment: "")
+        title = NSLocalizedString("Select Payment Method", comment: "")
         
         tableView.rx.contentOffset.asDriver()
             .map { $0.y <= 0 ? .white: .softGray }
