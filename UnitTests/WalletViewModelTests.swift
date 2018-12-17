@@ -67,19 +67,7 @@ class WalletViewModelTests: XCTestCase {
         viewModel.accountDetail = AccountDetail(isCashOnly: true)
         XCTAssert(viewModel.addBankDisabled, "addBankDisabled should be true for cash only users")
     }
-    
-    func testEmptyStateCreditFeeLabelText() {
-        if Environment.shared.opco == .bge {
-            viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(residentialFee: 2, commercialFee: 5))
-            let expectedStr = "A convenience fee will be applied to your payments. Residential accounts: $2.00. Business accounts: 5%."
-            XCTAssert(viewModel.emptyStateCreditFeeLabelText == expectedStr, "Expected \"\(expectedStr)\", got \"\(viewModel.emptyStateCreditFeeLabelText)\"")
-        } else { // ComEd/PECO
-            viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(convenienceFee: 2))
-            let expectedStr = "A $2.00 convenience fee will be applied\nto your payments."
-            XCTAssert(viewModel.emptyStateCreditFeeLabelText == expectedStr, "Expected \"\(expectedStr)\", got \"\(viewModel.emptyStateCreditFeeLabelText)\"")
-        }
-    }
-    
+        
     func testFooterLabelText() {
         let expectedStr: String
         switch Environment.shared.opco {
