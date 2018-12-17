@@ -103,8 +103,8 @@ class MiniWalletSectionHeaderCell: UITableViewCell {
         
         backgroundColor = .white
         
-        label.font = SystemFont.regular.of(textStyle: .footnote)
-        label.textColor = .blackText
+        label.font = OpenSans.semibold.of(textStyle: .title2)
+        label.textColor = .deepGray
     }
 }
 

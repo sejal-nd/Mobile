@@ -69,16 +69,13 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
     
-    @IBOutlet weak var addBankAccountView: UIView!
-    @IBOutlet weak var addBankAccountFeeLabel: UILabel!
+    @IBOutlet weak var addPaymentMethodView: UIView!
+    @IBOutlet weak var addPaymentMethodLabel: UILabel!
     @IBOutlet weak var addBankAccountButton: ButtonControl!
-    
-    @IBOutlet weak var addCreditCardView: UIView!
-    @IBOutlet weak var addCreditCardFeeLabel: UILabel!
     @IBOutlet weak var addCreditCardButton: ButtonControl!
     
-    @IBOutlet weak var deletePaymentButton: ButtonControl!
-    @IBOutlet weak var deletePaymentLabel: UILabel!
+    @IBOutlet weak var cancelPaymentButton: ButtonControl!
+    @IBOutlet weak var cancelPaymentLabel: UILabel!
     
     @IBOutlet weak var walletFooterSpacerView: UIView! // Only used for spacing when footerView is hidden
     @IBOutlet weak var walletFooterView: UIView!
@@ -227,35 +224,25 @@ class MakePaymentViewController: UIViewController {
         paymentDateFixedDatePastDueLabel.textColor = .blackText
         paymentDateFixedDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        addBankAccountFeeLabel.textColor = .blackText
-        addBankAccountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        addBankAccountFeeLabel.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
+        addPaymentMethodLabel.textColor = .deepGray
+        addPaymentMethodLabel.font = OpenSans.semibold.of(textStyle: .title2)
+        addPaymentMethodLabel.text = NSLocalizedString("Choose a payment method:", comment: "")
+
         addBankAccountButton.layer.cornerRadius = 10
         addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addBankAccountButton.backgroundColorOnPress = .softGray
         addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
-        addCreditCardFeeLabel.textColor = .blackText
-        addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: ""), accountDetail.billingInfo.convenienceFee!.currencyString!)
-            break
-        case .bge:
-            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.", comment: ""), accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
-            break
-        }
         addCreditCardButton.layer.cornerRadius = 10
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addCreditCardButton.backgroundColorOnPress = .softGray
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
         
-        // TODO - when BGE is on Paymentus we can change these variable names to `cancel`
-        let deletePaymentText = NSLocalizedString("Cancel Payment", comment: "")
-        deletePaymentButton.accessibilityLabel = deletePaymentText
-        deletePaymentLabel.text = deletePaymentText
-        deletePaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
-        deletePaymentLabel.textColor = .actionBlue
+        let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
+        cancelPaymentButton.accessibilityLabel = cancelPaymentText
+        cancelPaymentLabel.text = cancelPaymentText
+        cancelPaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
+        cancelPaymentLabel.textColor = .actionBlue
         
         walletFooterView.backgroundColor = .softGray
         walletFooterLabel.textColor = .deepGray
@@ -373,11 +360,12 @@ class MakePaymentViewController: UIViewController {
         viewModel.isFixedPaymentDatePastDue.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Add bank/credit card empty wallet state
-        viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAddPaymentMethodView.map(!).drive(addPaymentMethodView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardButton.rx.isHidden).disposed(by: disposeBag)
         
-        // Delete Payment
-        viewModel.shouldShowDeletePaymentButton.map(!).drive(deletePaymentButton.rx.isHidden).disposed(by: disposeBag)
+        // Cancel Payment
+        viewModel.shouldShowCancelPaymentButton.map(!).drive(cancelPaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
             self?.stickyPaymentFooterView.isHidden = !shouldShow
@@ -592,7 +580,7 @@ class MakePaymentViewController: UIViewController {
                 }
             }).disposed(by: disposeBag)
         
-        deletePaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+        cancelPaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onDeletePaymentPress()
         }).disposed(by: disposeBag)
     }
@@ -823,6 +811,10 @@ extension MakePaymentViewController: UITextFieldDelegate {
 extension MakePaymentViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
+        if let newlyAddedItem = viewModel.newlyAddedWalletItem.value, newlyAddedItem.isTemporary, newlyAddedItem != walletItem {
+            // Clear temp item if user unselected it
+            viewModel.newlyAddedWalletItem.value = nil
+        }
         viewModel.selectedWalletItem.value = walletItem
     }
     

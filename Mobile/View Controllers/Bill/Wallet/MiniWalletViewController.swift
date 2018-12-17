@@ -257,7 +257,7 @@ extension MiniWalletViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SectionHeaderCell") as! MiniWalletSectionHeaderCell
         
         if section == 0 {
-            cell.label.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
+            cell.label.text = NSLocalizedString("Bank Accounts", comment: "")
             if bankAccountsDisabled {
                 cell.label.alpha = 0.33
                 cell.accessibilityElementsHidden = true
@@ -266,16 +266,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.accessibilityElementsHidden = false
             }
         } else {
-            var creditCardFeeString: String {
-                switch Environment.shared.opco {
-                case .bge:
-                    return NSLocalizedString(accountDetail.billingInfo.convenienceFeeString(isComplete: true), comment: "")
-                case .comEd, .peco:
-                    let feeString = "A " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee will be applied by Bill Matrix, our payment partner."
-                    return NSLocalizedString(feeString, comment: "")
-                }
-            }
-            cell.label.text = creditCardFeeString
+            cell.label.text = NSLocalizedString("Credit/Debit Cards", comment: "")
             if creditCardsDisabled {
                 cell.label.alpha = 0.33
                 cell.accessibilityElementsHidden = true
