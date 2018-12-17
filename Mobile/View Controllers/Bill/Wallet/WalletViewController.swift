@@ -261,8 +261,8 @@ class WalletViewController: UIViewController {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
             selectedWalletItem = walletItems[sender.tag]
 
-            var title: String
-            var toast: String
+            let title: String
+            let toast: String
             if selectedWalletItem!.bankOrCard == .bank {
                 title = NSLocalizedString("Delete Bank Account?", comment: "")
                 toast = NSLocalizedString("Bank Account deleted", comment: "")
@@ -271,7 +271,7 @@ class WalletViewController: UIViewController {
                 toast = NSLocalizedString("Card deleted", comment: "")
             }
 
-            let messageString: String!
+            let messageString: String
             if Environment.shared.opco == .bge {
                 messageString = NSLocalizedString("Deleting this payment method will also delete all the pending payments associated with this payment method. Please tap 'Delete' to delete this payment method.", comment: "")
             } else {
