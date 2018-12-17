@@ -304,15 +304,7 @@ class BillViewModelContentTests: BillViewModelTests {
     
     // Tests the `avoidShutoffText` value, which is only dependent on OpCo.
     func testAvoidShutoffText() {
-        let expectedText: String
-        switch Environment.shared.opco {
-        case .bge:
-            expectedText = NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
-        case .comEd, .peco:
-            expectedText = NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
-        }
-        
-        XCTAssertEqual(expectedText, viewModel.avoidShutoffText)
+        XCTAssertEqual(NSLocalizedString("Turn-Off Notice Amount", comment: ""), viewModel.avoidShutoffText)
     }
     
     // Tests changes in the `avoidShutoffAmountText` value after switching
