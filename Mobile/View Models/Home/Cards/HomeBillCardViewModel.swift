@@ -179,25 +179,16 @@ class HomeBillCardViewModel {
     
     private(set) lazy var billNotReady: Driver<Bool> = billState.map { $0 == .billNotReady }
     
-    private(set) lazy var showErrorState: Driver<Bool> = {
-        if Environment.shared.opco == .peco {
-            return Observable.combineLatest(accountDetailEvents,
-                                            walletItemEvents,
-                                            showMaintenanceModeState.asObservable())
-            { ($0.error != nil || $1.error != nil) && !$2 }
-                .startWith(false)
-                .distinctUntilChanged()
-                .asDriver(onErrorDriveWith: .empty())
-        } else {
-            return Observable.combineLatest(accountDetailEvents, walletItemEvents, showMaintenanceModeState.asObservable())
-                .map { ($0.0.error != nil || $0.1.error != nil) && !$0.2 }
-                .startWith(false)
-                .distinctUntilChanged()
-                .asDriver(onErrorDriveWith: .empty())
-        }
-        
-    }()
-    
+    private(set) lazy var showErrorState: Driver<Bool> = Observable
+        .combineLatest(accountDetailEvents,
+                       walletItemEvents,
+                       recentPaymentsEvents,
+                       showMaintenanceModeState.asObservable())
+        { ($0.error != nil || $1.error != nil || $2.error != nil) && !$3 }
+        .startWith(false)
+        .distinctUntilChanged()
+        .asDriver(onErrorDriveWith: .empty())
+
     private(set) lazy var showMaintenanceModeState: Driver<Bool> = maintenanceModeEvents
         .map { $0.element?.billStatus ?? false }
         .startWith(false)
