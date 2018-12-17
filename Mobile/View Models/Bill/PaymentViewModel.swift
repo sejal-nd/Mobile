@@ -46,7 +46,7 @@ class PaymentViewModel {
     let paymentDetail = Variable<PaymentDetail?>(nil)
     let paymentId = Variable<String?>(nil)
     let allowEdits = Variable(true)
-    let allowDeletes = Variable(false)
+    let allowCancel = Variable(false)
     
     init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
@@ -58,7 +58,7 @@ class PaymentViewModel {
         if let billingHistoryItem = billingHistoryItem {
             self.paymentId.value = billingHistoryItem.paymentId
             self.allowEdits.value = billingHistoryItem.flagAllowEdits
-            self.allowDeletes.value = billingHistoryItem.flagAllowDeletes
+            self.allowCancel.value = billingHistoryItem.flagAllowDeletes
         }
         
         self.paymentDate = Variable(Date()) // May be updated later...see computeDefaultPaymentDate()
@@ -1020,6 +1020,10 @@ class PaymentViewModel {
                        allowEdits.asDriver())
         { !$0 && !$1 && !$2 && $3 }
     
+    private(set) lazy var shouldShowAddPaymentMethodView: Driver<Bool> = Driver
+        .combineLatest(shouldShowAddBankAccount, shouldShowAddCreditCard)
+        { $0 || $1 }
+    
     private(set) lazy var walletFooterLabelText: Driver<String> = Driver
         .combineLatest(hasWalletItems, inlineCard.asDriver(), inlineBank.asDriver())
     {
@@ -1089,8 +1093,8 @@ class PaymentViewModel {
             return $0.mmDdYyyyString
     }
     
-    private(set) lazy var shouldShowDeletePaymentButton: Driver<Bool> = Driver
-        .combineLatest(paymentId.asDriver(), allowDeletes.asDriver())
+    private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = Driver
+        .combineLatest(paymentId.asDriver(), allowCancel.asDriver())
         {
             if $0 != nil {
                 return $1

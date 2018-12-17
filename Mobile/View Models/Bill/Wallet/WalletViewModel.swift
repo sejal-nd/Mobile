@@ -83,19 +83,7 @@ class WalletViewModel {
     var addBankDisabled: Bool {
         return self.accountDetail.isCashOnly
     }
-    
-    var emptyStateCreditFeeLabelText: String {
-        switch Environment.shared.opco {
-        case .bge:
-            let feeStr = String(format: "A convenience fee will be applied to your payments. Residential accounts: %@. Business accounts: %@.",
-                                accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
-            return NSLocalizedString(feeStr, comment: "")
-        case .comEd, .peco:
-            return NSLocalizedString("A " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee will be applied\nto your payments.", comment: "")
-
-        }
-    }
-    
+        
     var footerLabelText: String {
         switch Environment.shared.opco {
         case .bge:
