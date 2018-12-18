@@ -60,7 +60,7 @@ class HomeBillCardUITests: ExelonUITestCase {
         checkExistenceOfElements([
             (.staticText, "Your bill is past due."),
             (.staticText, "$200.00"),
-            (.staticText, "Amount due immediately")
+            (.staticText, "Total amount due immediately")
         ])
     }
     
@@ -74,7 +74,7 @@ class HomeBillCardUITests: ExelonUITestCase {
         checkExistenceOfElements([
             (.staticText, dueMessage),
             (.staticText, "$350.00"),
-            (.staticText, "Amount due in 10 days")
+            (.staticText, "Total amount due in 10 days")
         ])
     }
     

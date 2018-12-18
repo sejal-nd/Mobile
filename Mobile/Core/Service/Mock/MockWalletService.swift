@@ -18,7 +18,7 @@ struct MockWalletService: WalletService {
         } else if loggedInUsername == "billCardWithDefaultPayment" {
             walletItems = [
                 WalletItem(nickName: "Test Nickname", isDefault: true),
-                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", isDefault: false, cardIssuer: "Visa", bankOrCard: .card)
+                WalletItem(nickName: "Expired Card", isDefault: false, cardIssuer: "Visa", bankOrCard: .card)
             ]
         } else if loggedInUsername == "billCardWithExpiredDefaultPayment" {
             walletItems = [
