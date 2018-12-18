@@ -23,16 +23,24 @@ class AlertsViewController: AccountPickerViewController {
     @IBOutlet weak var alertsEmptyStateView: UIView!
     @IBOutlet weak var alertsEmptyStateLabel: UILabel!
     
+    var shortcutToPrefs = false
+    
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
     let viewModel = AlertsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if StormModeStatus.shared.isOn {
+            accountPicker.stormMode = true
+        }
+        
+        tableView.backgroundColor = .white
         tableView.separatorColor = .accentGray
         
         accountPicker.isHidden = Environment.shared.opco == .bge
-        
+    
         styleViews()
         bindViewModel()
         
@@ -53,6 +61,13 @@ class AlertsViewController: AccountPickerViewController {
                     }
                     
                     self.viewModel.fetchAlertsFromDisk()
+                    
+                    // Don't push straight to prefs for ComEd/PECO multi-account users
+                    if self.shortcutToPrefs && (Environment.shared.opco == .bge || AccountsStore.shared.accounts.count == 1) {
+                        self.performSegue(withIdentifier: "preferencesSegue", sender: nil)
+                    }
+                    
+                    self.shortcutToPrefs = false
                 }
             })
             .disposed(by: disposeBag)
@@ -78,6 +93,11 @@ class AlertsViewController: AccountPickerViewController {
                 tableView.tableHeaderView = headerView
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        shortcutToPrefs = false
     }
     
     private func styleViews() {

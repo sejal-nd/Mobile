@@ -118,9 +118,6 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var genericErrorView: UIView!
     @IBOutlet weak var genericErrorLabel: UILabel!
-    @IBOutlet weak var customErrorView: UIView!
-    @IBOutlet weak var customErrorTitleLabel: UILabel!
-    @IBOutlet weak var customErrorDetailLabel: UILabel!
     
     private let cornerRadius: CGFloat = 4.0
     
@@ -294,10 +291,6 @@ class BillViewController: AccountPickerViewController {
     
         genericErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
         genericErrorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        
-        customErrorTitleLabel.text = NSLocalizedString("Account Ineligible", comment: "")
-        customErrorDetailLabel.text = NSLocalizedString("This profile type does not have access to the mobile app. " +
-            "Access your account on our responsive website.", comment: "")
     }
     
     func bindViews() {
@@ -334,14 +327,6 @@ class BillViewController: AccountPickerViewController {
         bottomView.isHidden = true
         errorView.isHidden = false
         bottomStackContainerView.isHidden = true
-        
-        if let serviceError = error, serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
-            genericErrorView.isHidden = true
-            customErrorView.isHidden = false
-        } else {
-            genericErrorView.isHidden = false
-            customErrorView.isHidden = true
-        }
         maintenanceModeView.isHidden = true
         
         enableRefresh()
@@ -360,8 +345,6 @@ class BillViewController: AccountPickerViewController {
         errorView.isHidden = true
         bottomStackContainerView.isHidden = true
         
-        genericErrorView.isHidden = true
-        customErrorView.isHidden = true
         enableRefresh()
     }
     
@@ -685,7 +668,7 @@ class BillViewController: AccountPickerViewController {
     func configureAccessibility() {
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         viewBillButton.accessibilityLabel = NSLocalizedString("PDF, View bill", comment: "")
-        activityButton.accessibilityLabel = NSLocalizedString("Activity", comment: "")
+        activityButton.accessibilityLabel = NSLocalizedString("Payment Activity", comment: "")
         walletButton.accessibilityLabel = NSLocalizedString("My Wallet", comment: "")
         
         viewModel.autoPayButtonText.map { $0.string }.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)

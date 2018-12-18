@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import UserNotifications
 
 protocol AlertPreferencesViewControllerDelegate: class {
     func alertPreferencesViewControllerDidSavePreferences()
@@ -78,19 +79,23 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     private func checkForNotificationsPermissions() {
-        if let notificationSettings = UIApplication.shared.currentUserNotificationSettings {
-            let enabled = !notificationSettings.types.isEmpty
-            if enabled != viewModel.devicePushNotificationsEnabled {
-                viewModel.devicePushNotificationsEnabled = enabled
-                switch (viewModel.showAccountInfoBar, viewModel.showNotificationSettingsView) {
-                case (true, true):
-                    tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
-                case (true, false):
-                    tableView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
-                case (false, true):
-                    tableView.insertSections(IndexSet([0]), with: .bottom)
-                case (false, false):
-                    tableView.deleteSections(IndexSet([0]), with: .bottom)
+        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                let enabled = settings.authorizationStatus != .denied
+                if enabled != self.viewModel.devicePushNotificationsEnabled {
+                    self.viewModel.devicePushNotificationsEnabled = enabled
+                    switch (self.viewModel.showAccountInfoBar, self.viewModel.showNotificationSettingsView) {
+                    case (true, true):
+                        self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
+                    case (true, false):
+                        self.tableView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .bottom)
+                    case (false, true):
+                        self.tableView.insertSections(IndexSet([0]), with: .bottom)
+                    case (false, false):
+                        self.tableView.deleteSections(IndexSet([0]), with: .bottom)
+                    }
                 }
             }
         }
@@ -274,9 +279,10 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         case .severeWeather:
             toggleVariable = viewModel.severeWeather
         case .billIsReady:
+            toggleVariable = viewModel.billReady
             switch Environment.shared.opco {
             case .bge:
-                toggleVariable = viewModel.billReady
+                break
             case .comEd, .peco:
                 cell.toggle.rx.isOn.asDriver()
                     .skip(1)
@@ -307,6 +313,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                 .disposed(by: cell.disposeBag)
         case .budgetBillingReview:
             toggleVariable = viewModel.budgetBilling
+//        case .appointmentTracking:
+//            toggleVariable = viewModel.appointmentTracking
         case .forYourInformation:
             toggleVariable = viewModel.forYourInfo
         }

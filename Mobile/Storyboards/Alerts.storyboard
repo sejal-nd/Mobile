@@ -170,7 +170,7 @@ this time.</string>
         <!--Alert Preferences-->
         <scene sceneID="L1Z-Kj-8Nn">
             <objects>
-                <viewController title="Alert Preferences" id="leW-pj-b7g" customClass="AlertPreferencesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="alertPreferences" title="Alert Preferences" id="leW-pj-b7g" customClass="AlertPreferencesViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H57-5L-WeS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

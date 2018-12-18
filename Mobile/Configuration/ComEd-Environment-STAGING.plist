@@ -2,20 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>watchGaTrackingId</key>
+	<string></string>
 	<key>environment</key>
 	<string>STAGE</string>
 	<key>appName</key>
 	<string>ComEd_STAGE</string>
 	<key>opco</key>
 	<string>ComEd</string>
-	<key>oauthEndpoint</key>
-	<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppUAT</string>
-	<key>fiservUrl</key>
-	<string>https://billerwebui.clienttestmatrix.com/Mobile</string>
-	<key>speedpayUrl</key>
-	<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
+	<string>stageMain</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>firebaseConfigFile</key>
@@ -24,9 +20,9 @@
 	<string>UA-76742208-16</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.comed.com</string>
-	<key>appCenterId</key>
-	<string>bf4bfe55-3dfd-423b-acfa-32ef84b3776c</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.comed.com</string>
+	<key>appCenterId</key>
+	<string>bf4bfe55-3dfd-423b-acfa-32ef84b3776c</string>
 </dict>
 </plist>

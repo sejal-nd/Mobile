@@ -6,6 +6,7 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
+import Foundation
 import Mapper
 
 struct DateParser {

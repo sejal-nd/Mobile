@@ -20,8 +20,6 @@ class LoginViewModel {
     var biometricsEnabled = Variable(false)
     var isLoggingIn = false
 
-    var accountDetail: AccountDetail?
-
     private var authService: AuthenticationService
     private var biometricsService: BiometricsService
     private var registrationService: RegistrationService
@@ -60,13 +58,12 @@ class LoginViewModel {
         }
 
         isLoggingIn = true
-        authService.login(username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
+        authService.login(username: username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] (responseTuple: (ProfileStatus, AccountDetail)) in
+            .subscribe(onNext: { [weak self] profileStatus in
                 guard let `self` = self else { return }
                 self.isLoggingIn = false
-                self.accountDetail = responseTuple.1
-                let tempPassword = responseTuple.0.tempPassword
+                let tempPassword = profileStatus.tempPassword
                 if tempPassword {
                     onSuccess(tempPassword, false)
                     self.authService.logout()

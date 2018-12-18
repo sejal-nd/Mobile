@@ -23,12 +23,15 @@ class OutageMapViewController: UIViewController {
         super.viewDidLoad()
         
         let url: URL
+        let a11yLabel: String
         if hasPressedStreetlightOutageMapButton {
             title = NSLocalizedString("Streetlight Map", comment: "")
-            url = URL(string: "https://comed-quat.streetlightoutages.com/public/default.html")!
+            url = URL(string: "https://comed.streetlightoutages.com")!
+            a11yLabel = NSLocalizedString("This is an outage map showing the street lights that are currently experiencing an outage.", comment: "")
         } else {
             title = NSLocalizedString("Outage Map", comment: "")
             url = URL(string: Environment.shared.outageMapUrl)!
+            a11yLabel = NSLocalizedString("This is an outage map showing the areas that are currently experiencing an outage. You can check your outage status on the main Outage section of the app.", comment: "")
         }
             
         webView.navigationDelegate = self
@@ -42,7 +45,7 @@ class OutageMapViewController: UIViewController {
         
         webView.load(URLRequest(url: url))
         webView.isAccessibilityElement = false
-        webView.accessibilityLabel = NSLocalizedString("This is an outage map showing the areas that are currently experiencing an outage. You can check your outage status on the main Outage section of the app.", comment: "")
+        webView.accessibilityLabel = a11yLabel
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbd-17-Mv3">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbd-17-Mv3" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2O0-lO-zkL">
@@ -35,7 +35,7 @@
                                     <constraint firstAttribute="height" constant="14" id="qGm-mh-OXv"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vUf-9D-NaE">
+                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vUf-9D-NaE">
                                 <rect key="frame" x="51" y="13" width="40.5" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqd-2J-dVB">
@@ -89,7 +89,7 @@
             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <inset key="separatorInset" minX="52" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="contentContainerView" destination="vbd-17-Mv3" id="YPj-ol-aYX"/>
+                <outlet property="contentContainerView" destination="vbd-17-Mv3" id="Ml7-U5-oYt"/>
                 <outlet property="contentViewWidthConstraint" destination="hvG-ig-L5n" id="Huu-9x-0yE"/>
                 <outlet property="detailLabel" destination="ESi-w8-keP" id="EI4-UK-ECe"/>
                 <outlet property="disclosureImageView" destination="kg7-h3-qHb" id="YJa-6b-hOP"/>

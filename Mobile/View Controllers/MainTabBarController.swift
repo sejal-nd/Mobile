@@ -48,7 +48,7 @@ class MainTabBarController: UITabBarController {
         NotificationCenter.default.rx.notification(.didTapOnShortcutItem, object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self] notification in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 guard let shortcutItem = notification.object as? ShortcutItem else {
                     return
                 }
@@ -68,6 +68,8 @@ class MainTabBarController: UITabBarController {
                     }
                 case .viewUsageOptions:
                     self.selectedIndex = 3
+                case .alertPreferences:
+                    self.navigateToAlertPreferences()
                 case .none:
                     break
                 }
@@ -86,6 +88,23 @@ class MainTabBarController: UITabBarController {
         }
     }
     
+    func navigateToUsage(selectedBar: UsageViewModel.BarGraphSelection? = nil, isGas: Bool, isPreviousBill: Bool) {
+        selectedIndex = 3
+        
+        guard let bar = selectedBar,
+            let usageNavCtl = viewControllers?[3] as? MainBaseNavigationController,
+            let usageVC = usageNavCtl.viewControllers.first as? UsageViewController
+            else { return }
+        
+        // initialSelection is effective if the VC has just been initialized by this navigation.
+        // (first time visiting the tab since launch)
+        usageVC.initialSelection = (bar, isGas, isPreviousBill)
+        
+        // this is effective if the user has already visited the tab and the view has already been loaded.
+        usageVC.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
+        usageVC.selectBar(bar, gas: isGas)
+    }
+    
     func navigateToAlerts() {
         selectedIndex = 4
         
@@ -97,6 +116,21 @@ class MainTabBarController: UITabBarController {
             let alertsVC = alertsStoryboard.instantiateInitialViewController()
             else { return }
         
+        moreNavCtl.viewControllers = [moreVC, alertsVC]
+    }
+    
+    func navigateToAlertPreferences() {
+        selectedIndex = 4
+        
+        let moreStoryboard = UIStoryboard(name: "More", bundle: nil)
+        let alertsStoryboard = UIStoryboard(name: "Alerts", bundle: nil)
+        
+        guard let moreNavCtl = viewControllers?[4] as? MainBaseNavigationController,
+            let moreVC = moreStoryboard.instantiateInitialViewController(),
+            let alertsVC = alertsStoryboard.instantiateInitialViewController() as? AlertsViewController
+            else { return }
+        
+        alertsVC.shortcutToPrefs = true
         moreNavCtl.viewControllers = [moreVC, alertsVC]
     }
     

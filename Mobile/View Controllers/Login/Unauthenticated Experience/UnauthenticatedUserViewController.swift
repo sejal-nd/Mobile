@@ -39,6 +39,16 @@ class UnauthenticatedUserViewController: UIViewController {
         }
     }
     
+    let billingVideosUrl: URL = {
+        switch Environment.shared.opco {
+        case .bge:
+            return URL(string: "https://www.youtube.com/playlist?list=PLqZel3RCfgtuTtDFCBmFQ1xNLzI7H6J4m")!
+        case .peco:
+            return URL(string: "https://www.youtube.com/playlist?list=PLyIWX4qmx-oyOoGkxaU8A-ye-oQ0vrzi-")!
+        case .comEd:
+            return URL(string: "https://www.youtube.com/playlist?list=PL-PMuxD2q_DJFPh156UmI43FMbwQFIQ-N")!
+        }
+    }()
     
     // MARK: - View Life Cycle
     
@@ -110,7 +120,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return section == 0 ? 3 : 4
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -125,22 +135,24 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         case 0:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_checkoutage"), text: NSLocalizedString("Check My Outage Status", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_checkoutage"), text: NSLocalizedString("Check My Outage Status", comment: ""))
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""))
             default:
                 return UITableViewCell()
             }
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morevideo.pdf"), text: NSLocalizedString("Billing Videos", comment: ""))
+            case 3:
+                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -148,12 +160,14 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             return UITableViewCell()
         }
         
+        cell.contentContainerView.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
+            self?.tableViewDidSelectRow(at: indexPath)
+        }).disposed(by: cell.disposeBag)
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
+    func tableViewDidSelectRow(at indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             switch indexPath.row {
@@ -173,6 +187,8 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             case 1:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 2:
+                UIApplication.shared.openUrlIfCan(billingVideosUrl)
+            case 3:
                 performSegue(withIdentifier: "termPoliciesSegue", sender: nil)
             default:
                 break

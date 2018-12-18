@@ -128,7 +128,7 @@ class BGEAutoPayViewModel {
                                           walletItemId: selectedWalletItem.value!.walletItemID,
                                           amountType: amountToPay.value,
                                           amountThreshold: amountNotToExceedDouble(),
-                                          paymentDatesBeforeDue: daysBefore,
+                                          paymentDaysBeforeDue: daysBefore,
                                           effectivePeriod: howLongForAutoPay.value,
                                           effectiveEndDate: autoPayUntilDate.value,
                                           effectiveNumPayments: numberOfPayments.value,

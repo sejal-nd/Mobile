@@ -241,7 +241,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
                        isActive: indexPath.section == 0,
                        addRemoveTapped: addRemoveTapped)
         
-        cell.gripView.rx.panGesture(minimumNumberOfTouches: 1, maximumNumberOfTouches: 1) { _, delegate in
+        cell.gripView.rx.panGesture() { _, delegate in
             delegate.beginPolicy = .custom { [weak self] _ in !(self?.isReordering.value ?? false) }
             delegate.simultaneousRecognitionPolicy = .never
             }

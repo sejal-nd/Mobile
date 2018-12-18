@@ -80,7 +80,7 @@ class WalletViewController: UIViewController {
         emptyStateFooter.font = SystemFont.regular.of(textStyle: .footnote)
         
         // Non-empty state stuff
-        tableView.backgroundColor = .primaryColor
+        tableView.backgroundColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
         tableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
         tableView.indicatorStyle = .white
         
@@ -136,6 +136,8 @@ class WalletViewController: UIViewController {
         creditCardButton.accessibilityLabel = NSLocalizedString("Add Credit Card. " + creditCardFeeLabel.text!, comment: "")
         miniCreditCardButton.isAccessibilityElement = true
         miniCreditCardButton.accessibilityLabel = NSLocalizedString("Add Credit card", comment: "")
+        
+        addPaymentAccountBottomBar.accessibilityElements = [addPaymentAccountLabel, miniBankButton, miniCreditCardButton]
     }
     
     override func viewWillAppear(_ animated: Bool) {

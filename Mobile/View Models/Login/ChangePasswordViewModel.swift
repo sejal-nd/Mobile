@@ -127,7 +127,7 @@ class ChangePasswordViewModel {
     
     private func changePasswordNetworkRequest(sentFromLogin: Bool, shouldSaveToWebCredentials: Bool, onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
         if sentFromLogin {
-            authService.changePasswordAnon(biometricsService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
+            authService.changePasswordAnon(username: biometricsService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
                 .observeOn(MainScheduler.instance)
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in
@@ -157,7 +157,7 @@ class ChangePasswordViewModel {
                 })
                 .disposed(by: disposeBag)
         } else {
-            authService.changePassword(currentPassword.value, newPassword: newPassword.value)
+            authService.changePassword(currentPassword: currentPassword.value, newPassword: newPassword.value)
                 .observeOn(MainScheduler.instance)
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in

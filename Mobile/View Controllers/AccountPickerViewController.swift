@@ -23,7 +23,7 @@ class AccountPickerViewController: UIViewController {
     @IBOutlet weak var accountPicker: AccountPicker!
     
     var containerView: UIView!
-    var innerView: UIView!
+    var innerView: UIStackView!
     var iconView: UIImageView!
     var accountNumberLabel: UILabel!
     
@@ -38,93 +38,80 @@ class AccountPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let sv = scrollView, showMinimizedPicker {
-            containerView = UIView(frame: CGRect(x: 0, y: -minimizedPickerHeight, width: view.bounds.size.width, height: minimizedPickerHeight))
-            containerView.backgroundColor = .white
-            containerView.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: 2), radius: 2)
-            containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMinimizedPickerTap)))
-            
-            innerView = UIView(frame: .zero)
-            innerView.translatesAutoresizingMaskIntoConstraints = false
-            
-            iconView = UIImageView(frame: .zero)
-            iconView.translatesAutoresizingMaskIntoConstraints = false
-            iconView.isAccessibilityElement = true
-            
-            accountNumberLabel = UILabel(frame: .zero)
-            accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-            accountNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-            accountNumberLabel.textColor = .deepGray
-            accountNumberLabel.numberOfLines = 1
-            accountNumberLabel.lineBreakMode = .byTruncatingTail
-
-            innerView.addSubview(iconView)
-            innerView.addSubview(accountNumberLabel)
-            containerView.addSubview(innerView)
-            view.addSubview(containerView)
-            
-            var topSpaceConstant: CGFloat = 20
-            if #available(iOS 11.0, *) {
-                safeAreaTop = UIApplication.shared.keyWindow!.safeAreaInsets.top
-                if safeAreaTop > 0 { // iPhone X only
-                    minimizedPickerHeight = 40 + safeAreaTop
-                    topSpaceConstant = safeAreaTop
-                }
+        guard let sv = scrollView, showMinimizedPicker else { return }
+        
+        containerView = UIView(frame: CGRect(x: 0, y: -minimizedPickerHeight, width: view.bounds.size.width, height: minimizedPickerHeight))
+        containerView.backgroundColor = .white
+        containerView.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: 2), radius: 2)
+        containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMinimizedPickerTap)))
+        
+        iconView = UIImageView(frame: .zero)
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        iconView.isAccessibilityElement = true
+        
+        accountNumberLabel = UILabel(frame: .zero)
+        accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        accountNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        accountNumberLabel.textColor = .deepGray
+        accountNumberLabel.numberOfLines = 1
+        accountNumberLabel.lineBreakMode = .byTruncatingTail
+        
+        innerView = UIStackView(arrangedSubviews: [iconView, accountNumberLabel])
+        innerView.axis = .horizontal
+        innerView.spacing = 4
+        innerView.alignment = .center
+        innerView.distribution = .fill
+        innerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(innerView)
+        view.addSubview(containerView)
+        
+        var topSpaceConstant: CGFloat = 20
+        if #available(iOS 11.0, *) {
+            safeAreaTop = UIApplication.shared.keyWindow!.safeAreaInsets.top
+            if safeAreaTop > 0 { // iPhone X only
+                minimizedPickerHeight = 40 + safeAreaTop
+                topSpaceConstant = safeAreaTop
             }
-            
-            view.addConstraints([
-                // innerView
-                NSLayoutConstraint(item: innerView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: innerView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: topSpaceConstant),
-                NSLayoutConstraint(item: innerView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: innerView, attribute: .leading, relatedBy: .greaterThanOrEqual, toItem: containerView, attribute: .leading, multiplier: 1, constant: 16),
-                NSLayoutConstraint(item: innerView, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -16),
-                
-                // iconView
-                NSLayoutConstraint(item: iconView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
-                NSLayoutConstraint(item: iconView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
-                NSLayoutConstraint(item: iconView, attribute: .leading, relatedBy: .greaterThanOrEqual, toItem: innerView, attribute: .leading, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: iconView, attribute: .centerY, relatedBy: .equal, toItem: innerView, attribute: .centerY, multiplier: 1, constant: 0),
-                
-                // accountNumberLabel
-                NSLayoutConstraint(item: accountNumberLabel, attribute: .leading, relatedBy: .equal, toItem: iconView, attribute: .trailing, multiplier: 1, constant: 4),
-                NSLayoutConstraint(item: accountNumberLabel, attribute: .trailing, relatedBy: .equal, toItem: innerView, attribute: .trailing, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: accountNumberLabel, attribute: .top, relatedBy: .equal, toItem: innerView, attribute: .top, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: accountNumberLabel, attribute: .bottom, relatedBy: .equal, toItem: innerView, attribute: .bottom, multiplier: 1, constant: 0),
-            ])
-            
-            sv.rx.contentOffset.asDriver()
-                .map { [weak self] offset -> Bool in
-                    guard let `self` = self else { return false }
-                    return offset.y <= self.accountPicker.frame.size.height
-                }
-                .distinctUntilChanged()
-                .drive(onNext: { [weak self] pickerVisible in
-                    guard let `self` = self else { return }
-                    if let currentAccount = AccountsStore.shared.currentAccount { // Don't show if accounts not loaded
-                        self.iconView.image = currentAccount.isResidential ? #imageLiteral(resourceName: "ic_residential_mini") : #imageLiteral(resourceName: "ic_commercial_mini")
-                        self.iconView.accessibilityLabel = currentAccount.isResidential ? NSLocalizedString("Residential account", comment: "") : NSLocalizedString("Commercial account", comment: "")
-                        if currentAccount.address?.isEmpty ?? true {
-                            self.accountNumberLabel.text = currentAccount.accountNumber
-                            self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), currentAccount.accountNumber)
-                        } else {
-                            self.accountNumberLabel.text = currentAccount.address!
-                            self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), currentAccount.address!)
-                        }
-                        self.setNeedsStatusBarAppearanceUpdate()
-                        
-                        // 2 separate animations here so that the icon/text are completely transparent by the time they animate under the status bar
-                        UIView.animate(withDuration: 0.1, animations: {
-                            self.innerView.alpha = pickerVisible ? 0 : 1
-                        })
-                        UIView.animate(withDuration: 0.2, animations: {
-                            self.containerView.frame.origin = CGPoint(x: 0, y: pickerVisible ? -self.minimizedPickerHeight : 0)
-                        })
-                    }
-                })
-                .disposed(by: disposeBag)
         }
         
+        view.addConstraints([
+            innerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            innerView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: topSpaceConstant),
+            innerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            innerView.leadingAnchor.constraint(greaterThanOrEqualTo: containerView.leadingAnchor, constant: 16),
+            innerView.trailingAnchor.constraint(lessThanOrEqualTo: containerView.trailingAnchor, constant: -16)
+            ])
+        
+        sv.rx.contentOffset.asDriver()
+            .map { [weak self] offset -> Bool in
+                guard let self = self else { return false }
+                return offset.y <= self.accountPicker.frame.size.height
+            }
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] pickerVisible in
+                guard let `self` = self else { return }
+                if let currentAccount = AccountsStore.shared.currentAccount { // Don't show if accounts not loaded
+                    self.iconView.image = currentAccount.isResidential ? #imageLiteral(resourceName: "ic_residential_mini") : #imageLiteral(resourceName: "ic_commercial_mini")
+                    self.iconView.accessibilityLabel = currentAccount.isResidential ? NSLocalizedString("Residential account", comment: "") : NSLocalizedString("Commercial account", comment: "")
+                    if currentAccount.address?.isEmpty ?? true {
+                        self.accountNumberLabel.text = currentAccount.accountNumber
+                        self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), currentAccount.accountNumber)
+                    } else {
+                        self.accountNumberLabel.text = currentAccount.address!
+                        self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), currentAccount.address!)
+                    }
+                    self.setNeedsStatusBarAppearanceUpdate()
+                    
+                    // 2 separate animations here so that the icon/text are completely transparent by the time they animate under the status bar
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.innerView.alpha = pickerVisible ? 0 : 1
+                    })
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.containerView.frame.origin = CGPoint(x: 0, y: pickerVisible ? -self.minimizedPickerHeight : 0)
+                    })
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

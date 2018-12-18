@@ -27,7 +27,7 @@ class MoreViewController: UIViewController {
                 switch Environment.shared.environmentName {
                 case .prod:
                     versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
-                case .aut, .dev, .stage:
+                default:
                     versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
                 }
             } else {
@@ -53,11 +53,17 @@ class MoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = NSLocalizedString("More", comment: "")
+        
         tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
         tableView.register(UINib(nibName: ToggleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ToggleTableViewCell.className)
         
-        view.backgroundColor = .primaryColor
+        if StormModeStatus.shared.isOn {
+            view.backgroundColor = .stormModeBlack
+        } else {
+            view.backgroundColor = .primaryColor
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +71,8 @@ class MoreViewController: UIViewController {
         
         if shouldHideNavigationBar {
             navigationController?.setNavigationBarHidden(true, animated: true)
+        } else {
+            navigationController?.setColoredNavBar(hidesBottomBorder: true)
         }
         
         if AccountsStore.shared.accounts == nil {
@@ -150,13 +158,17 @@ class MoreViewController: UIViewController {
     }
     
     private func logout(action: UIAlertAction) {
+        if Environment.shared.opco == .peco {
+            // Sign out of Apple Watch App
+            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
+        }
+            
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        RxNotifications.shared.configureQuickActions.onNext(false)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-        appDelegate.configureQuickActions(isAuthenticated: false)
-        appDelegate.resetNavigation()
+        (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -229,7 +241,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 return 60
             case 1:
-                return 0
+                return 60
             case 2:
                 return 60
             default:
@@ -247,38 +259,37 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             default:
                 return UITableViewCell()
             }
         case 1:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morepassword"), text: NSLocalizedString("Change Password", comment: ""))
             case 1:
                 guard let toggleCell = tableView.dequeueReusableCell(withIdentifier: ToggleTableViewCell.className) as? ToggleTableViewCell else { return UITableViewCell() }
                 
                 toggleCell.configure(viewModel: viewModel, tag: indexPath.row)
                 toggleCell.toggle.addTarget(self, action: #selector(toggleBiometrics), for: .valueChanged)
-                toggleCell.accessibilityElementsHidden = self.tableView(tableView, heightForRowAt: indexPath) == 0
                 return toggleCell
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""))
             case 3:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""))
             default:
                 return UITableViewCell()
             }
         case 2:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morecontact"), text: NSLocalizedString("Contact Us", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Tutorial Videos", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_morevideo"), text: NSLocalizedString("Billing Videos", comment: ""))
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""), backgroundColor: .primaryColor)
+                cell.configure(image: #imageLiteral(resourceName: "ic_moretos"), text: NSLocalizedString("Policies and Terms", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -286,13 +297,15 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
+        cell.contentContainerView.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
+            self?.tableViewDidSelectRow(at: indexPath)
+        }).disposed(by: cell.disposeBag)
+        
         cell.accessibilityElementsHidden = self.tableView(tableView, heightForRowAt: indexPath) == 0
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
+    func tableViewDidSelectRow(at indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             switch indexPath.row {
@@ -319,7 +332,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 1:
-                break
+                UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
             case 2:
                 performSegue(withIdentifier: "termsPoliciesSegue", sender: nil)
             default:
@@ -348,6 +361,9 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             break
         }
         
+        if StormModeStatus.shared.isOn {
+            headerView.colorView.backgroundColor = .stormModeBlack
+        }
         return headerView
     }
     

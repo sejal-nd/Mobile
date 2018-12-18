@@ -52,7 +52,7 @@ class PaperlessEBillCommercialViewController: DismissableFormSheetViewController
     
     @IBAction func onLinkPress() {
         if let micrositeUrl = url {
-            UIApplication.shared.openURL(micrositeUrl)
+            UIApplication.shared.open(micrositeUrl)
         }
     }
 }

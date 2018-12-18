@@ -6,6 +6,8 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import Foundation
+
 final class AccountsStore {
     static let shared = AccountsStore()
     

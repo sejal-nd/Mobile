@@ -104,7 +104,7 @@ class EditCreditCardViewController: UIViewController {
             .drive(scrollView.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        walletItemBGView.backgroundColor = .primaryColor
+        walletItemBGView.backgroundColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         innerContentView.layer.cornerRadius = 15
@@ -436,7 +436,16 @@ class EditCreditCardViewController: UIViewController {
             guard let `self` = self else { return }
             self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
             if self.shouldPopToRootOnSave {
-                self.navigationController?.popToRootViewController(animated: true)
+                if StormModeStatus.shared.isOn {
+                    if let dest = self.navigationController?.viewControllers
+                        .first(where: { $0 is StormModeBillViewController }) {
+                        self.navigationController?.popToViewController(dest, animated: true)
+                    } else {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                } else {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
             } else {
                 self.navigationController?.popViewController(animated: true)
             }
@@ -549,7 +558,16 @@ class EditCreditCardViewController: UIViewController {
                 guard let `self` = self else { return }
                 self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Card deleted", comment: ""))
                 if self.shouldPopToRootOnSave {
-                    self.navigationController?.popToRootViewController(animated: true)
+                    if StormModeStatus.shared.isOn {
+                        if let dest = self.navigationController?.viewControllers
+                            .first(where: { $0 is StormModeBillViewController }) {
+                            self.navigationController?.popToViewController(dest, animated: true)
+                        } else {
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
+                    } else {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
                 } else {
                     self.navigationController?.popViewController(animated: true)
                 }
