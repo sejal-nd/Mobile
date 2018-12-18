@@ -603,8 +603,8 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="9jY-VN-6pr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l3W-ve-hSw" secondAttribute="leading" constant="31" id="AaZ-Zn-rG1"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9jY-VN-6pr" secondAttribute="trailing" constant="31" id="RBV-OL-1kj"/>
+                                                <constraint firstItem="9jY-VN-6pr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l3W-ve-hSw" secondAttribute="leading" constant="21" id="AaZ-Zn-rG1"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9jY-VN-6pr" secondAttribute="trailing" constant="21" id="RBV-OL-1kj"/>
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="2uB-Gf-NCG">

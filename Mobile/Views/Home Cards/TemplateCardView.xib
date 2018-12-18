@@ -145,7 +145,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rkb-6R-CGx">
-                                            <rect key="frame" x="21" y="60" width="397" height="122"/>
+                                            <rect key="frame" x="33.5" y="60" width="372.5" height="122"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -160,8 +160,8 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Rkb-6R-CGx" firstAttribute="leading" secondItem="5xi-8p-qxx" secondAttribute="leading" constant="21" id="4Da-bW-JbM"/>
-                                        <constraint firstAttribute="trailing" secondItem="Rkb-6R-CGx" secondAttribute="trailing" constant="21" id="deF-Gk-A7B"/>
+                                        <constraint firstItem="Rkb-6R-CGx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5xi-8p-qxx" secondAttribute="leading" constant="21" id="4Da-bW-JbM"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rkb-6R-CGx" secondAttribute="trailing" constant="21" id="deF-Gk-A7B"/>
                                     </constraints>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqL-ok-ke4">
