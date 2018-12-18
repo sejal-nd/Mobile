@@ -792,57 +792,78 @@ class PaymentViewModel {
         //TODO: Remove when BGE gets paymentus
         guard Environment.shared.opco != .bge else { return false }
         
-        let billingInfo = accountDetail.value.billingInfo
-        
-        if billingInfo.pastDueAmount ?? 0 > 0 && billingInfo.pastDueAmount != billingInfo.netDueAmount {
-            return true
-        }
-        
-        return false
+        return !paymentAmounts.isEmpty
     }
     
+    /**
+     Some funky logic going on here. Basically, there are three cases in which we just return []
+     
+     1. No pastDueAmount
+     2. netDueAmount == pastDueAmount, no other precarious amounts exist
+     3. netDueAmount == pastDueAmount == other precarious amount (restorationAmount, amtDpaReinst, disconnectNoticeArrears)
+     
+     In these cases we don't give the user multiple payment amount options, just the text field.
+    */
     lazy var paymentAmounts: [(Double?, String)] = {
-        let opco = Environment.shared.opco
-        
         //TODO: Remove when BGE gets paymentus
-        guard opco != .bge else { return [] }
+        guard Environment.shared.opco != .bge else { return [] }
         
         let billingInfo = accountDetail.value.billingInfo
         
         guard let netDueAmount = billingInfo.netDueAmount,
             let pastDueAmount = billingInfo.pastDueAmount,
-            pastDueAmount > 0 && pastDueAmount != netDueAmount else {
+            pastDueAmount > 0 else {
             return []
         }
         
-        let totalAmount: (Double?, String) = (netDueAmount, NSLocalizedString("Total Amount Due", comment: ""))
+        let totalAmount: (Double?, String)
+        if pastDueAmount == netDueAmount {
+            totalAmount = (netDueAmount, NSLocalizedString("Total Past Due Amount", comment: ""))
+        } else {
+            totalAmount = (netDueAmount, NSLocalizedString("Total Amount Due", comment: ""))
+        }
+        
         let pastDue: (Double?, String) = (pastDueAmount, NSLocalizedString("Past Due Amount", comment: ""))
         let other: (Double?, String) = (nil, NSLocalizedString("Enter Custom Amount", comment: ""))
         
         var amounts: [(Double?, String)] = [totalAmount, other]
         var precariousAmounts = [(Double?, String)]()
-        if let restorationAmount = billingInfo.restorationAmount,
-            restorationAmount > 0 &&
-                opco != .bge &&
-                accountDetail.value.isCutOutNonPay {
-            if pastDueAmount != restorationAmount {
+        if let restorationAmount = billingInfo.restorationAmount, restorationAmount > 0 &&
+            Environment.shared.opco != .bge && accountDetail.value.isCutOutNonPay {
+            guard pastDueAmount != netDueAmount || restorationAmount != netDueAmount else {
+                return []
+            }
+            
+            if pastDueAmount != netDueAmount && pastDueAmount != restorationAmount {
                 precariousAmounts.append(pastDue)
             }
             
             precariousAmounts.append((restorationAmount, NSLocalizedString("Restoration Amount", comment: "")))
         } else if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 && billingInfo.isDisconnectNotice {
-            if pastDueAmount != arrears {
+            guard pastDueAmount != netDueAmount || arrears != netDueAmount else {
+                return []
+            }
+            
+            if pastDueAmount != netDueAmount && pastDueAmount != arrears {
                 precariousAmounts.append(pastDue)
             }
             
-            precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount ", comment: "")))
-        } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && opco != .bge {
-            if pastDueAmount != amtDpaReinst {
+            precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount", comment: "")))
+        } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && Environment.shared.opco != .bge {
+            guard pastDueAmount != netDueAmount || amtDpaReinst != netDueAmount else {
+                return []
+            }
+            
+            if pastDueAmount != netDueAmount && pastDueAmount != amtDpaReinst {
                 precariousAmounts.append(pastDue)
             }
             
             precariousAmounts.append((amtDpaReinst, NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")))
         } else {
+            guard pastDueAmount != netDueAmount else {
+                return []
+            }
+            
             precariousAmounts.append(pastDue)
         }
         

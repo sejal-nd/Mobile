@@ -335,18 +335,7 @@ class BillViewModel {
     }
     
     //MARK: - Avoid Shutoff
-    var avoidShutoffText: String {
-        switch Environment.shared.opco {
-        case .bge:
-            return NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
-        case .comEd, .peco:
-            return NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
-        }
-    }
-    
-    var avoidShutoffA11yText: String {
-        return avoidShutoffText.replacingOccurrences(of: "Shutoff", with: "shut-off")
-    }
+    let avoidShutoffText = NSLocalizedString("Turn-Off Notice Amount", comment: "")
     
     private(set) lazy var avoidShutoffAmountText: Driver<String> = self.currentAccountDetail.map {
         $0.billingInfo.disconnectNoticeArrears?.currencyString ?? "--"
