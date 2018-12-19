@@ -9,10 +9,10 @@
 import WatchKit
 import RxSwift
 
-class AccountsManager {
+struct AccountsManager {
     
     private let disposeBag = DisposeBag()
-    
+
     public func fetchAccounts(success: @escaping ([Account]) -> Void, error: @escaping (ServiceError) -> Void) {
         aLog("Fetching Accounts...")
         
@@ -33,6 +33,8 @@ class AccountsManager {
             if AccountsStore.shared.currentAccount == nil {
                 AccountsStore.shared.currentAccount = firstAccount
             }
+            
+            NotificationCenter.default.post(name: Notification.Name.defaultAccountSet, object: firstAccount)
             
             aLog("Accounts Fetched.")
             

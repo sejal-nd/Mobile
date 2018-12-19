@@ -45,6 +45,10 @@ struct keychainKeys {
 }
 extension Notification.Name {
     static let outageReported: Notification.Name = Notification.Name(rawValue: "outageReportedNotificationName")
+    
+    static let defaultAccountSet: Notification.Name = Notification.Name(rawValue: "defaultAccountSet")
+    
+    static let currentAccountUpdated: Notification.Name = Notification.Name(rawValue: "currentAccountUpdated")
 }
 
 
@@ -72,6 +76,8 @@ enum AppImage {
     case usageProgress(Int)
     case onAnimation
     case offAnimation
+    case gasMenuItem
+    case electricMenuItem
     
     var image: UIImage {
         return UIImage(imageLiteralResourceName: self.name)
@@ -125,6 +131,10 @@ enum AppImage {
             return "On_"
         case .offAnimation:
             return "Out_"
+        case .gasMenuItem:
+            return "gasMenuItem"
+        case .electricMenuItem:
+            return "electricMenuItem"
         }
     }
 }

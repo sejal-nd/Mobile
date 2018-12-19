@@ -448,7 +448,7 @@ class HomeBillCardViewModel {
                 let format = "%@ is due immediately."
                 string = String.localizedStringWithFormat(format, amount)
             case (true, false):
-                guard let amount = accountDetail.billingInfo.netDueAmount?.currencyString else { return nil }
+                guard let amount = accountDetail.billingInfo.pastDueAmount?.currencyString else { return nil }
                 let format = "%@ is due immediately for your multi-premise account."
                 string = String.localizedStringWithFormat(format, amount)
             case (false, true):
@@ -777,8 +777,15 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = enableOneTouchPayTCButton.map {
-        $0 ? UIColor.actionBlue: UIColor.blackText
+    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = enableOneTouchPayTCButton
+        .map { enable in
+            if StormModeStatus.shared.isOn {
+                return .white
+            } else if enable {
+                return .actionBlue
+            } else {
+                return .blackText
+            }
     }
     
     private(set) lazy var bankCreditButtonBorderWidth: Driver<CGFloat> = walletItemDriver.map {

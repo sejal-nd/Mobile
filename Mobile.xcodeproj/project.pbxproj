@@ -976,6 +976,7 @@
 		9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		9CCE3E4A21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		9CCE3E4B21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
+		9CCE3E4C21BB17E40008E1AF /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		A7F5DB117C3C61732DB54BC5 /* Pods_BGE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70FC1A9A5F84C0729AF8083B /* Pods_BGE.framework */; };
 		B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
 		B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
@@ -3821,9 +3822,9 @@
 				35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */,
 				35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */,
 				35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */,
-				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
-				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
 				35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */,
+				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
+				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -6960,6 +6961,7 @@
 				356C7F8721909EFC003E8A90 /* UserDefaultKeys.swift in Sources */,
 				35E7C8072190805C00BA13C6 /* OutageInterfaceController.swift in Sources */,
 				356C7F9C2190A3CE003E8A90 /* AuthTokenResponse.swift in Sources */,
+				9CCE3E4C21BB17E40008E1AF /* StormModeStatus.swift in Sources */,
 				35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */,
 				356C7F922190A1B9003E8A90 /* MCSOutageService.swift in Sources */,
 				356C7F8421909E97003E8A90 /* DateParser.swift in Sources */,
@@ -8991,6 +8993,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
@@ -9022,6 +9025,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.prodbeta;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -9053,6 +9057,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.prodbeta;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -9738,7 +9743,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A0B2CF62B6B3538390205C4 /* Pods-PECO_WatchOS.develop.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9814,7 +9819,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 05DFA5B9B1BAB35F544A3BCE /* Pods-PECO_WatchOS.automation.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9844,7 +9849,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 277241359D21FBE81E2E1E5D /* Pods-PECO_WatchOS.staging.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9874,7 +9879,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9BEBD3C5006A1BBCE7CFD96B /* Pods-PECO_WatchOS.testing.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9904,7 +9909,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F7291B0AF47D72DF84B1C5DB /* Pods-PECO_WatchOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9934,7 +9939,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3D769EB6C31625603286F56F /* Pods-PECO_WatchOS.prodbeta.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -10300,7 +10305,7 @@
 				COMPRESS_PNG_FILES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
@@ -10334,7 +10339,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.testing;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -10367,7 +10372,7 @@
 				COMPRESS_PNG_FILES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.testing;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -10870,7 +10875,7 @@
 				COMPRESS_PNG_FILES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
@@ -10935,7 +10940,7 @@
 				COMPRESS_PNG_FILES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.staging;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -11026,7 +11031,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.staging;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

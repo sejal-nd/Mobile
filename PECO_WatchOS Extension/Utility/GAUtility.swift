@@ -10,7 +10,7 @@ import Foundation
 
 class GATracker {
 
-    private var propertyId = "UA-128885640-1" //Carey's token
+    private var propertyId = Environment.shared.watchGaTrackingId
     private var clientId: String
     private var appName: String
     private var appVersion: String

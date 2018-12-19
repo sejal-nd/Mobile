@@ -668,7 +668,7 @@ class BillViewController: AccountPickerViewController {
     func configureAccessibility() {
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         viewBillButton.accessibilityLabel = NSLocalizedString("PDF, View bill", comment: "")
-        activityButton.accessibilityLabel = NSLocalizedString("Activity", comment: "")
+        activityButton.accessibilityLabel = NSLocalizedString("Payment Activity", comment: "")
         walletButton.accessibilityLabel = NSLocalizedString("My Wallet", comment: "")
         
         viewModel.autoPayButtonText.map { $0.string }.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)

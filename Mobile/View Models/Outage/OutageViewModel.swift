@@ -148,11 +148,12 @@ class OutageViewModel {
     }
     
     var showReportStreetlightOutageButton: Bool {
-        switch Environment.shared.opco {
-        case .comEd:
-            return true
-        case .bge, .peco:
-            return false
-        }
+        return false
+//        switch Environment.shared.opco {
+//        case .comEd:
+//            return true
+//        case .bge, .peco:
+//            return false
+//        }
     }
 }

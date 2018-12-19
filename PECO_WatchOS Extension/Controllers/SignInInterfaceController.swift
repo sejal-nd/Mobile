@@ -12,36 +12,13 @@ class SignInInterfaceController: WKInterfaceController {
     
     
     // MARK: - Interface Life Cycle
-    
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-        
-        // Alerts if auth token changes
-        WatchSessionManager.shared.authTokenChangeDelegate = self
-    }
-    
+
     override func didAppear() {
         super.didAppear()
         
         // Log Analytics
         GATracker.shared.screenView(screenName: SignInInterfaceController.className, customParameters: nil)
         try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
-    }
-
-}
-
-
-// MARK: - Auth Token Change Delegate Method
-
-extension SignInInterfaceController: AuthTokenChangeDelegate {
-    
-    func authTokenSuccess() {
-        // Replace lock screen with main app
-        WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
-    }
-    
-    func authTokenFailure() {
-        aLog("Auth Token Was Not Recieved.")
     }
 
 }

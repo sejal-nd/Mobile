@@ -2143,7 +2143,7 @@
                                                                                                     <constraint firstAttribute="height" priority="999" constant="60" id="b6v-DR-FWi"/>
                                                                                                 </constraints>
                                                                                                 <userDefinedRuntimeAttributes>
-                                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Activity"/>
+                                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Payment Activity"/>
                                                                                                 </userDefinedRuntimeAttributes>
                                                                                             </button>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7s0-Ev-Iqt" userLabel="Wallet Button" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">

@@ -82,7 +82,10 @@ extension WatchSessionManager: WCSessionDelegate {
 
     func sessionDidBecomeInactive(_ session: WCSession) { }
     
-    func sessionDidDeactivate(_ session: WCSession) { }
+    func sessionDidDeactivate(_ session: WCSession) {
+        // Activate the new session after having switched to a new watch.
+        session.activate()
+    }
     
 }
 

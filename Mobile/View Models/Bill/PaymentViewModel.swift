@@ -1183,9 +1183,9 @@ class PaymentViewModel {
                 return self.convenienceFee.currencyString
             }
     }
-    
+        
     private(set) lazy var shouldShowAutoPayEnrollButton: Driver<Bool> = accountDetail.asDriver().map {
-        !$0.isAutoPay && $0.isAutoPayEligible
+        !$0.isAutoPay && $0.isAutoPayEligible && !StormModeStatus.shared.isOn
     }
     
     private(set) lazy var totalPaymentLabelText: Driver<String> = isOverpayingBank.map {

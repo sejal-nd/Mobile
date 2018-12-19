@@ -34,7 +34,7 @@ class BillingHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Activity", comment: "")
+        title = NSLocalizedString("Payment Activity", comment: "")
         
         tableView.delegate = self;
         tableView.dataSource = self;
