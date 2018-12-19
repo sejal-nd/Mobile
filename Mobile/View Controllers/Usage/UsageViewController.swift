@@ -791,8 +791,6 @@ class UsageViewController: AccountPickerViewController {
                 .disposed(by: vc.disposeBag)
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
-        case let vc as TotalSavingsViewController:
-            vc.eventResults = accountDetail.serInfo.eventResults
         case let vc as PeakRewardsViewController:
             vc.accountDetail = accountDetail
         default:

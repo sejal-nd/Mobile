@@ -86,4 +86,17 @@ struct MCSAccountService: AccountService {
         }
     }
     
+    func fetchSERResults(accountNumber: String) -> Observable<[SERResult]> {
+        return MCSApi.shared.get(path: "accounts/\(accountNumber)/programs")
+            .map { json in
+                guard let dict = json as? NSDictionary,
+                    let serInfo = dict["SERInfo"] as? NSDictionary,
+                    let array = serInfo["eventResults"] as? NSArray,
+                    let serResults = SERResult.from(array) else {
+                        throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                
+                return serResults
+        }
+    }
 }

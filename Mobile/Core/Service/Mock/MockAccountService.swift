@@ -210,4 +210,8 @@ class MockAccountService: AccountService {
             return .just(mockRecentPayments[accountIndex])
         }
     }
+    
+    func fetchSERResults(accountNumber: String) -> Observable<[SERResult]> {
+        return .just([])
+    }
 }

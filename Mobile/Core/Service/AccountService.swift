@@ -48,4 +48,7 @@ protocol AccountService {
     
     /// Gets recent scheduled, processing, and pending payments
     func fetchRecentPayments(accountNumber: String) -> Observable<RecentPayments>
+    
+    /// Gets SER event results
+    func fetchSERResults(accountNumber: String) -> Observable<[SERResult]>
 }

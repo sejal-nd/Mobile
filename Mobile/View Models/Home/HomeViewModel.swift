@@ -82,6 +82,7 @@ class HomeViewModel {
         HomeUsageCardViewModel(fetchData: fetchDataObservable,
                                maintenanceModeEvents: maintenanceModeEvents,
                                accountDetailEvents: accountDetailEvents,
+                               accountService: accountService,
                                usageService: usageService,
                                refreshFetchTracker: refreshFetchTracker,
                                switchAccountFetchTracker: usageTracker)

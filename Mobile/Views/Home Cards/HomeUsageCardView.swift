@@ -97,7 +97,7 @@ class HomeUsageCardView: UIView {
     static func create(withViewModel viewModel: HomeUsageCardViewModel) -> HomeUsageCardView {
         let view = Bundle.main.loadViewFromNib() as HomeUsageCardView
         view.viewModel = viewModel
-        view.smartEnergyRewardsGraphView.viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: viewModel.accountDetailDriver)
+        view.smartEnergyRewardsGraphView.viewModel = SmartEnergyRewardsViewModel(eventResults: viewModel.serResultEvents.elements())
         return view
     }
     

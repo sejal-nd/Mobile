@@ -15,6 +15,7 @@ class HomeUsageCardViewModel {
     
     private let maintenanceModeEvents: Observable<Event<Maintenance>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
+    private let accountService: AccountService
     private let usageService: UsageService
     
     private let fetchData: Observable<FetchingAccountState>
@@ -42,12 +43,14 @@ class HomeUsageCardViewModel {
     required init(fetchData: Observable<FetchingAccountState>,
                   maintenanceModeEvents: Observable<Event<Maintenance>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
+                  accountService: AccountService,
                   usageService: UsageService,
                   refreshFetchTracker: ActivityTracker,
                   switchAccountFetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.maintenanceModeEvents = maintenanceModeEvents
         self.accountDetailEvents = accountDetailEvents
+        self.accountService = accountService
         self.usageService = usageService
         self.refreshFetchTracker = refreshFetchTracker
         self.switchAccountFetchTracker = switchAccountFetchTracker
@@ -57,6 +60,16 @@ class HomeUsageCardViewModel {
         .skip(1)
         .startWith(true)
         .distinctUntilChanged()
+    
+    private(set) lazy var serResultEvents: Observable<Event<[SERResult]>> = maintenanceModeEvents
+        .filter { !($0.element?.homeStatus ?? false) && !($0.element?.usageStatus ?? false) }
+        .withLatestFrom(fetchData)
+        .toAsyncRequest(activityTracker: { [weak self] fetchingState in
+            self?.fetchTracker(forState: fetchingState)
+            }, requestSelector: { [weak self] _ in
+                self?.accountService
+                    .fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber) ?? .empty()
+        })
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
         .merge(accountDetailChanged, segmentedControlChanged).share(replay: 1)
@@ -113,16 +126,16 @@ class HomeUsageCardViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents.elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
-        .filter { accountDetail, isMaintenanceMode in
+    private(set) lazy var showUnavailableState: Driver<Void> = Observable
+        .combineLatest(accountDetailEvents.elements(), serResultEvents.elements())
+        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, eventResults, isMaintenanceMode in
             if isMaintenanceMode {
                 return false
             }
             
             if accountDetail.isBGEControlGroup {
-                return !accountDetail.isSERAccount ||
-                    accountDetail.serInfo.eventResults.isEmpty // BGE Control Group + SER enrollment get the SER graph on usage card
+                return !accountDetail.isSERAccount || eventResults.isEmpty // BGE Control Group + SER enrollment get the SER graph on usage card
             }
             
             return !accountDetail.isEligibleForUsageData
@@ -140,26 +153,28 @@ class HomeUsageCardViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showSmartEnergyRewards: Driver<Void> = accountDetailEvents.elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
-        .filter { accountDetail, isMaintenanceMode in
+    private(set) lazy var showSmartEnergyRewards: Driver<Void> = Observable
+        .combineLatest(accountDetailEvents.elements(), serResultEvents.elements())
+        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, eventResults, isMaintenanceMode in
             !isMaintenanceMode &&
                 accountDetail.isBGEControlGroup &&
                 accountDetail.isSERAccount &&
-                !accountDetail.serInfo.eventResults.isEmpty
+                !eventResults.isEmpty
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = self.accountDetailEvents.elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
-        .filter { accountDetail, isMaintenanceMode in
+    private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = Observable
+        .combineLatest(accountDetailEvents.elements(), serResultEvents.elements())
+        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, eventResults, isMaintenanceMode in
             if isMaintenanceMode {
                 return false
             }
             
             if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
-                return accountDetail.serInfo.eventResults.isEmpty
+                return eventResults.isEmpty
             }
             
             return false
@@ -339,14 +354,15 @@ class HomeUsageCardViewModel {
     
     // MARK: Smart Energy Rewards
     
-    private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = self.accountDetailDriver.map {
-        let events = $0.serInfo.eventResults
-        if let mostRecentEvent = events.last {
-            let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
-            return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
+    private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = self.serResultEvents.elements()
+        .map { eventResults in
+            if let mostRecentEvent = eventResults.last {
+                let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
+                return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
+            }
+            return nil
         }
-        return nil
-    }
+        .asDriver(onErrorDriveWith: .empty())
 
     // MARK: Bill Comparison Empty State
     
