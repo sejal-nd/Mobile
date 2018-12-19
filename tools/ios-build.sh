@@ -293,9 +293,9 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
         plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS/Info.plist
         plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS/Info.plist
 
-        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/PECO_WatchOS\ Extension/Info.plist
-        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS\ Extension/Info.plist
-        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS\ Extension/Info.plist
+        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
+        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
+        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
     
     fi
 	
@@ -408,7 +408,7 @@ if [[ $target_phases = *"build"* ]]; then
                  # disable error propagation. we do not want to force the whole build script to fail if the rm fails
                 set +e
                 pushd ./tools/release_notes_script/
-                ./eucoms-list-changes.sh --target-project 'EU-mobile' --target-repo 'Exelon_Mobile_iOS' --target-repo-path '../../' --output txt --pull-request-number $RELEASE_NOTES_PR_NUMBER --token $AZURE_DEVOPS_TOKEN
+                ./eucoms-list-changes.sh --target-project 'EU-mobile' --target-repo 'Exelon_Mobile_iOS' --target-repo-path '../../' --output txt --pull-request-number $RELEASE_NOTES_PR_NUMBER --token $AZURE_DEVOPS_TOKEN  --character-limit 4500
                 popd
 
                 set -e

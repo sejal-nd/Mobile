@@ -10,7 +10,8 @@ import RxSwift
 
 class BillingHistoryViewModel {
     
-    let months = -24
+    let monthsBackward = StormModeStatus.shared.isOn ? -2 : -24
+    let monthsforward = 12
 
     let disposeBag = DisposeBag()
     
@@ -22,8 +23,8 @@ class BillingHistoryViewModel {
     
     func getBillingHistory(success: @escaping (BillingHistory) -> Void, failure: @escaping (Error) -> Void) {
         let now = Date()
-        let lastYear = Calendar.opCo.date(byAdding: .month, value: months, to: now)!
-        let theFuture = Calendar.opCo.date(byAdding: .year, value: 5, to: now)!
+        let lastYear = Calendar.opCo.date(byAdding: .month, value: monthsBackward, to: now)!
+        let theFuture = Calendar.opCo.date(byAdding: .month, value: monthsforward, to: now)!
         billService.fetchBillingHistory(accountNumber: AccountsStore.shared.currentAccount.accountNumber, startDate: lastYear, endDate: theFuture)
             .subscribe(onNext: { billingHistory in
                 success(billingHistory)

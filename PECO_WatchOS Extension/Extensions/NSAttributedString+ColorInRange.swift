@@ -9,18 +9,10 @@
 import UIKit
 
 extension String {
-    
-    public func textWithColorInRange(color: UIColor, range: NSRange, shouldChangeFontSize: Bool = false) -> NSMutableAttributedString {
+    public func textWithColorAndFontInRange(color: UIColor, font: UIFont) -> NSMutableAttributedString {
         let attributedText = NSMutableAttributedString(string: self)
-        attributedText.addAttribute(.foregroundColor, value: color, range: range)
-        
-        if shouldChangeFontSize {
-            attributedText.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .title2), range: range)
-        } else {
-            attributedText.addAttribute(.font, value: UIFont.preferredFont(forTextStyle: .title1), range: range)
-        }
-        
+        attributedText.addAttribute(.foregroundColor, value: color, range: NSRange(location: 0, length: 1))
+        attributedText.addAttribute(.font, value: font, range: NSRange(location: 0, length: self.count))
         return attributedText
     }
-    
 }

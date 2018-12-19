@@ -93,60 +93,18 @@ class HomeBillCardViewModel {
                             return this.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
         })
     
-    private lazy var workDayEvents: Observable<Event<[Date]>> = maintenanceModeEvents
-        .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
-        .withLatestFrom(fetchTrigger)
-        .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
-                        requestSelector: { [weak self] _ in
-                            guard let this = self else { return .empty() }
-                            if Environment.shared.opco == .peco {
-                                return this.paymentService.fetchWorkdays()
-                            } else {
-                                return Observable<[Date]>.just([])
-                            }
-        })
-        .share(replay: 1)
-    
-    func isBeforeFiservCutoffDate() -> Observable<Bool> {
-        let now = Date()
-        switch Environment.shared.opco {
-        case .peco:
-            return paymentService.fetchPaymentFreezeDate()
-                .withLatestFrom(workDayEvents.elements()) { freezeDate, workDays in
-                    guard let paymentDate = workDays.sorted()
-                        .first(where: { $0 >= Calendar.opCo.startOfDay(for: now) }) else {
-                            return false
-                    }
-                    
-                    return paymentDate < freezeDate
-                }
-                .catchErrorJustReturn(true)
-        case .comEd:
-            return paymentService.fetchPaymentFreezeDate()
-                .map { now < $0 }
-                .catchErrorJustReturn(true)
-        case .bge:
-            return .just(true)
-        }
-    }
-    
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
-    private(set) lazy var workDaysNoNetworkConnection: Observable<Bool> = workDayEvents.errors()
-        .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
-    
-    private lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
+    private(set) lazy var walletItem: Observable<WalletItem?> = walletItemEvents.elements()
     
     private lazy var account: Observable<Account> = fetchData.map { _ in AccountsStore.shared.currentAccount }
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = submitOneTouchPay.asObservable()
         .withLatestFrom(Observable.combineLatest(accountDetailEvents.elements(),
                                                  walletItem.unwrap(),
-                                                 cvv2.asObservable(),
-                                                 shouldShowWeekendWarning.asObservable(),
-                                                 workDayEvents.elements()))
-        .do(onNext: { _, walletItem, _, _, _ in
+                                                 cvv2.asObservable()))
+        .do(onNext: { _, walletItem, _ in
             switch walletItem.bankOrCard {
             case .bank:
                 Analytics.log(event: .oneTouchBankOffer)
@@ -154,12 +112,10 @@ class HomeBillCardViewModel {
                 Analytics.log(event: .oneTouchCardOffer)
             }
         })
-        .map { accountDetail, walletItem, cvv2, isWeekendOrHoliday, workDays in
+        .map { accountDetail, walletItem, cvv2 in
             let startOfToday = Calendar.opCo.startOfDay(for: Date())
             let paymentDate: Date
-            if isWeekendOrHoliday, let nextWorkDay = workDays.sorted().first(where: { $0 > Date() }) {
-                paymentDate = nextWorkDay
-            } else if Environment.shared.opco == .bge &&
+            if Environment.shared.opco == .bge &&
                 Calendar.opCo.component(.hour, from: Date()) >= 20,
                 let tomorrow = Calendar.opCo.date(byAdding: .day, value: 1, to: startOfToday) {
                 paymentDate = tomorrow
@@ -187,16 +143,6 @@ class HomeBillCardViewModel {
                                 })
                                 .mapTo(())
         })
-    
-    private(set) lazy var shouldShowWeekendWarning: Driver<Bool> = {
-        if Environment.shared.opco == .peco {
-            return workDayEvents.elements()
-                .map { $0.filter(Calendar.opCo.isDateInToday).isEmpty }
-                .asDriver(onErrorDriveWith: .empty())
-        } else {
-            return Driver.just(false)
-        }
-    }()
     
     private(set) lazy var promptForCVV: Driver<Bool> = {
         if Environment.shared.opco != .bge {
@@ -233,9 +179,8 @@ class HomeBillCardViewModel {
         if Environment.shared.opco == .peco {
             return Observable.combineLatest(accountDetailEvents,
                                             walletItemEvents,
-                                            workDayEvents,
                                             showMaintenanceModeState.asObservable())
-            { ($0.error != nil || $1.error != nil || $2.error != nil) && !$3 }
+            { ($0.error != nil || $1.error != nil) && !$2 }
                 .startWith(false)
                 .distinctUntilChanged()
                 .asDriver(onErrorDriveWith: .empty())
@@ -503,7 +448,7 @@ class HomeBillCardViewModel {
                 let format = "%@ is due immediately."
                 string = String.localizedStringWithFormat(format, amount)
             case (true, false):
-                guard let amount = accountDetail.billingInfo.netDueAmount?.currencyString else { return nil }
+                guard let amount = accountDetail.billingInfo.pastDueAmount?.currencyString else { return nil }
                 let format = "%@ is due immediately for your multi-premise account."
                 string = String.localizedStringWithFormat(format, amount)
             case (false, true):
@@ -621,12 +566,12 @@ class HomeBillCardViewModel {
             
             let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
             if days > 0 {
-                let localizedText = NSLocalizedString("Amount due in %d day%@", comment: "")
+                let localizedText = NSLocalizedString("Total amount due in %d day%@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
                                           attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.regular.of(textStyle: .subheadline)])
             } else {
-                let localizedText = NSLocalizedString("Amount due on %@", comment: "")
+                let localizedText = NSLocalizedString("Total amount due on %@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
                                           attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.regular.of(textStyle: .subheadline)])
@@ -637,7 +582,7 @@ class HomeBillCardViewModel {
         case .pastDue:
             let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed
             if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
-                return NSAttributedString(string: NSLocalizedString("Amount due immediately", comment: ""),
+                return NSAttributedString(string: NSLocalizedString("Total amount due immediately", comment: ""),
                                           attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.semibold.of(textStyle: .subheadline)])
             } else {
@@ -832,8 +777,15 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = enableOneTouchPayTCButton.map {
-        $0 ? UIColor.actionBlue: UIColor.blackText
+    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = enableOneTouchPayTCButton
+        .map { enable in
+            if StormModeStatus.shared.isOn {
+                return .white
+            } else if enable {
+                return .actionBlue
+            } else {
+                return .blackText
+            }
     }
     
     private(set) lazy var bankCreditButtonBorderWidth: Driver<CGFloat> = walletItemDriver.map {
@@ -845,7 +797,18 @@ class HomeBillCardViewModel {
         case .bge:
             return URL(string: "https://www.speedpay.com/terms/")!
         case .comEd, .peco:
-            return URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
+            return URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
+        }
+    }
+    
+    var errorPhoneNumber: String {
+        switch Environment.shared.opco {
+        case .bge:
+            return "1-800-685-0123"
+        case .comEd:
+            return "1-800-334-7661"
+        case .peco:
+            return "1-800-494-4000"
         }
     }
     

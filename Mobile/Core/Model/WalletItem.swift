@@ -50,17 +50,33 @@ private func extractLast4(object: Any?) throws -> String? {
 
 struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemID: String?
-    let walletExternalID: String?
+    let walletExternalID: String? // TODO: Remove for BGE when they switch to paymentus
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
-    let walletItemStatusType: String?
+    let walletItemStatusType: String? // Not sent for paymentus wallet items. TODO: Remove for BGE when they switch to paymentus
     var isExpired: Bool {
-        return walletItemStatusType?.lowercased() == "expired"
+        if Environment.shared.opco == .bge {
+            return walletItemStatusType?.lowercased() == "expired"
+        } else if let exp = expirationDate {
+            let monthYearSet = Set<Calendar.Component>(arrayLiteral: .month, .year)
+            let expComponents = Calendar.gmt.dateComponents(monthYearSet, from: exp)
+            let todayComponents = Calendar.gmt.dateComponents(monthYearSet, from: Date())
+            guard let expMonth = expComponents.month, let expYear = expComponents.year,
+                let todayMonth = todayComponents.month, let todayYear = todayComponents.year else {
+                return false
+            }
+            if todayYear > expYear || (todayYear == expYear && todayMonth > expMonth) {
+                return true
+            }
+        }
+        return false
     }
+    let expirationDate: Date? // Paymentus only field
     
     let paymentCategoryType: PaymentCategoryType? // Do not use this for determining bank vs card - use bankOrCard
     let bankAccountType: BankAccountType? // Do not use this for determining bank vs card - use bankOrCard
     var bankOrCard: BankOrCard = .card
+    var isTemporary: Bool // Indicates temporary Paymentus wallet item
     
     let bankAccountNumber: String?
     let bankAccountName: String?
@@ -68,7 +84,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     
     let cardIssuer: String?
     
-    let dateCreated: Date?
+    let dateCreated: Date? // Not sent for paymentus wallet items. TODO: Remove for BGE when they switch to paymentus
     
     init(map: Mapper) throws {
         walletItemID = map.optionalFrom("walletItemID")
@@ -92,6 +108,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         dateCreated = map.optionalFrom("dateCreated", transformation: DateParser().extractDate)
         
         walletItemStatusType = map.optionalFrom("walletItemStatusType")
+        expirationDate = map.optionalFrom("expirationDate", transformation: DateParser().extractDate)
         
         if let type = bankAccountType, Environment.shared.opco == .bge {
             bankOrCard = type == .card ? .card : .bank
@@ -103,6 +120,39 @@ struct WalletItem: Mappable, Equatable, Hashable {
                 bankOrCard = .bank
             }
         }
+        
+        isTemporary = false
+    }
+    
+    // Used both for Unit/UI Tests AND for the creation of the temporary wallet items from Paymentus iFrame
+    init(walletItemID: String? = "1234",
+         walletExternalID: String? = "1234",
+         maskedWalletItemAccountNumber: String? = "1234",
+         nickName: String? = nil,
+         walletItemStatusType: String? = "active",
+         expirationDate: String? = "01/2100",
+         bankAccountNumber: String? = nil,
+         bankAccountName: String? = nil,
+         isDefault: Bool = false,
+         cardIssuer: String? = nil,
+         bankOrCard: BankOrCard = .bank,
+         isTemporary: Bool = false) {
+        
+        var map = [String: Any]()
+        map["walletItemID"] = walletItemID
+        map["walletExternalID"] = walletExternalID
+        map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
+        map["nickName"] = nickName
+        map["walletItemStatusType"] = walletItemStatusType
+        map["bankAccountNumber"] = bankAccountNumber
+        map["bankAccountName"] = bankAccountName
+        map["isDefault"] = isDefault
+        map["cardIssuer"] = cardIssuer
+        map["expirationDate"] = expirationDate
+        
+        self = WalletItem.from(map as NSDictionary)!
+        self.bankOrCard = bankOrCard
+        self.isTemporary = isTemporary
     }
     
     // Equatable

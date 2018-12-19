@@ -155,7 +155,7 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.layer.cornerRadius = 3
         saveAPaymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
+        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
         
         a11yTutorialButton.setTitleColor(StormModeStatus.shared.isOn ? .white : .actionBlue, for: .normal)
         a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
@@ -357,9 +357,9 @@ class HomeBillCardView: UIView {
         viewModel.enableOneTouchPayTCButton.not().drive(oneTouchPayTCButtonLabel.rx.isAccessibilityElement).disposed(by: bag)
         
         // Actions
-        otpIsBeforeFiservCutoffDate.filter { $0 }
-            .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV))
-            .filter { !$0 && !$1 }
+        oneTouchSlider.didFinishSwipe
+            .withLatestFrom(viewModel.promptForCVV)
+            .filter(!)
             .map(to: ())
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
@@ -384,32 +384,6 @@ class HomeBillCardView: UIView {
             .disposed(by: bag)
     }
     
-    // Actions
-    private lazy var otpIsBeforeFiservCutoffDate = oneTouchSlider.didFinishSwipe
-        // Fiserv Cutoff Date Check START
-        // Remove this block after ePay transition
-        .do(onNext: { _ in
-            switch Environment.shared.opco {
-            case .bge: break
-            case .comEd, .peco:
-                LoadingView.show(animated: true)
-            }
-        })
-        .asObservable()
-        .toAsyncRequest { [weak self] _ -> Observable<Bool> in
-            self?.viewModel.isBeforeFiservCutoffDate() ?? .empty()
-        }
-        .dematerialize()
-        .asDriver(onErrorDriveWith: .empty())
-        .do(onNext: { _ in
-            switch Environment.shared.opco {
-            case .bge: break
-            case .comEd, .peco:
-                LoadingView.hide(animated: true)
-            }
-        })
-        // Fiserv Cutoff Date Check END
-    
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
         .do(onNext: { Analytics.log(event: .viewBillBillCard) })
     
@@ -431,50 +405,39 @@ class HomeBillCardView: UIView {
         .map(WebViewController.init)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var cutoffAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
-        .filter(!)
-        .map { _ in
-            UIAlertController.fiservCutoffAlert { [weak self] _ in
-                self?.oneTouchSlider.reset(animated: true)
-            }
-    }
-    
-    private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
-        .filter { $0 }
-        .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
-        .filter { $0 }
-        .map { [weak self] _ in
-            let alertController = UIAlertController(title: NSLocalizedString("Weekend/Holiday Payment", comment: ""),
-                                                    message: NSLocalizedString("You are making a payment on a weekend or holiday. Your payment will be scheduled for the next business day.", comment: ""), preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel){ [weak self] _ in
-                self?.oneTouchSlider.reset(animated: true)
-            })
-
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
-                LoadingView.show(animated: true)
-                self?.viewModel.submitOneTouchPay.onNext(())
-            })
-            return alertController
-    }
-    
     private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
-        .map { [weak self] error in
-            let errMessage = error.localizedDescription
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(errMessage, comment: ""), preferredStyle: .alert)
-            
-            // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
-            // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
-            if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
-                    action -> Void in
-                    UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
-                }))
+        .withLatestFrom(self.viewModel.walletItem) {
+            return ($0, $1)
+        }
+        .map { [weak self] error, walletItem in
+            if Environment.shared.opco == .bge {
+                let errMessage = error.localizedDescription
+                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(errMessage, comment: ""), preferredStyle: .alert)
+                
+                // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
+                // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
+                if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
+                        action -> Void in
+                        UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
+                    }))
+                } else {
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                }
+                
+                return alert
             } else {
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                return UIAlertController.paymentusErrorAlertController(
+                    forError: error as! ServiceError,
+                    walletItem: walletItem!,
+                    callHandler: { _ in
+                        if let phone = self?.viewModel.errorPhoneNumber {
+                            UIApplication.shared.openPhoneNumberIfCan(phone)
+                        }
+                    }
+                )
             }
-            
-            return alert
         }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -493,8 +456,7 @@ class HomeBillCardView: UIView {
         return alertController2
     }
     
-    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
-        .filter { $0 }
+    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = oneTouchSlider.didFinishSwipe
         .withLatestFrom(self.viewModel.promptForCVV)
         .asObservable()
         .filter { $0 }
@@ -504,6 +466,7 @@ class HomeBillCardView: UIView {
                     observer.onCompleted()
                     return Disposables.create()
                 }
+                
                 let alertController = UIAlertController(title: NSLocalizedString("Enter CVV2", comment: ""),
                                                         message: NSLocalizedString("Enter your 3 or 4 digit security code to complete your payment.", comment: ""),
                                                         preferredStyle: .alert)
@@ -583,14 +546,12 @@ class HomeBillCardView: UIView {
     
     private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver
         .merge(tooltipModal,
-               oneTouchSliderWeekendAlert,
                paymentTACModal,
                oneTouchPayErrorAlert,
                oneTouchSliderCVV2Alert,
                tutorialViewController,
                bgeasyViewController,
-               autoPayAlert,
-               cutoffAlert)
+               autoPayAlert)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside

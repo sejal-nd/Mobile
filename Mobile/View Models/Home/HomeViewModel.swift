@@ -125,7 +125,10 @@ class HomeViewModel {
         .toAsyncRequest(activityTrackers: { [weak self] in
             guard let this = self else { return nil }
             return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
-            }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+            }, requestSelector: { [weak self] _ in
+                guard let self = self else { return .empty() }
+                return self.authService.getMaintenanceMode()
+            })
     
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable
         .merge(fetchDataMMEvents, accountDetailUpdatedMMEvents)

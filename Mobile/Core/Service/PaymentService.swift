@@ -63,9 +63,6 @@ protocol PaymentService {
     ///   - reason: Reason for unenrolling
     func unenrollFromAutoPay(accountNumber: String, reason: String) -> Observable<Void>
     
-    /// Fetch the next 90 days that PECO users are elibile to make payments
-    func fetchWorkdays() -> Observable<[Date]>
-    
     /// Schedule a payment
     ///
     /// - Parameters:
@@ -88,6 +85,4 @@ protocol PaymentService {
     func updatePayment(paymentId: String, payment: Payment) -> Observable<Void>
     
     func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail) -> Observable<Void>
-    
-    func fetchPaymentFreezeDate() -> Observable<Date>
 }

@@ -180,6 +180,7 @@ struct AccountDetail: Mappable {
             }
         }
         
+        //TODO: Just return 5 once BGE switches to Paymentus
         switch Environment.shared.opco {
         case .bge:
             return 0.01
@@ -201,17 +202,19 @@ struct AccountDetail: Mappable {
         }
         
         
+        //: TODO - Simplify this switch to just bankOrCard when BGE switches to Paymentus
         switch (bankOrCard, Environment.shared.opco, isResidential) {
         case (.bank, .bge, true):
             return 99_999.99
         case (.bank, .bge, false):
             return 999_999.99
-        case (.bank, _, _):
-            return 90000
         case (.card, .bge, true):
             return 600
         case (.card, .bge, false):
             return 25000
+            
+        case (.bank, _, _):
+            return 100_000
         case (.card, _, _):
             return 5000
         }

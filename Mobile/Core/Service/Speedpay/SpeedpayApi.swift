@@ -9,6 +9,12 @@
 import RxSwift
 import Foundation
 
+struct WalletItemResult {
+    let responseCode : Int
+    let statusMessage : String
+    let walletItemId : String
+}
+
 struct SpeedpayApi {
     func fetchTokenizedCardNumber(cardNumber: String) -> Observable<String> {
         do {

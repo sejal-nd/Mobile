@@ -24,7 +24,6 @@ class BillInterfaceController: WKInterfaceController {
     @IBOutlet var billAlertGroup: WKInterfaceGroup!
     @IBOutlet var billAlertLabel: WKInterfaceLabel!
 
-    
     @IBOutlet var billGroup: WKInterfaceGroup!
 
     @IBOutlet var autoPayScheduledPaymentGroup: WKInterfaceGroup!
@@ -55,12 +54,10 @@ class BillInterfaceController: WKInterfaceController {
     @IBOutlet var remainingBalanceGroup: WKInterfaceGroup!
     @IBOutlet var remainingBalanaceAmountLabel: WKInterfaceLabel!
     @IBOutlet var remainingBalanceDescriptionLabel: WKInterfaceLabel!
-    @IBOutlet var remainingBalanceDateLabel: WKInterfaceLabel!
     
     @IBOutlet var pendingPaymentGroup: WKInterfaceGroup!
     @IBOutlet var pendingPaymentAmountLabel: WKInterfaceLabel!
     @IBOutlet var pendingPaymentDescriptionLabel: WKInterfaceLabel!
-    
     
     @IBOutlet var restoreServiceGroup: WKInterfaceGroup!
     @IBOutlet var restoreServiceAmountLabel: WKInterfaceLabel!
@@ -169,7 +166,7 @@ class BillInterfaceController: WKInterfaceController {
     // MARK: - Helper
     
     @objc private func presentAccountList() {
-        presentController(withName: "AccountListInterfaceController", context: nil)
+        presentController(withName: AccountListInterfaceController.className, context: nil)
     }
     
     private func updateAccountInformation(_ account: Account) {
@@ -192,6 +189,7 @@ class BillInterfaceController: WKInterfaceController {
         
         footerGroup.setHidden(false)
         
+        accountGroup.setHidden(true)
         errorGroup.setHidden(true)
         billAlertGroup.setHidden(true)
         billGroup.setHidden(true)
@@ -230,15 +228,18 @@ extension BillInterfaceController: NetworkingDelegate {
         hideAllStates()
         
         // Resets label
-        billAmountTitleLabel.setAttributedText(("--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
+        billAmountTitleLabel.setAttributedText(("--").textWithColorAndFontInRange(color: .white, font: UIFont.preferredFont(forTextStyle: .title1)))
         
         // Shows overarching bill group
         state = .loaded
         
+        // Display Account Group
+        accountGroup.setHidden(false)
+        
         aLog("Account detail did update")
         
         // Retrieve a list of states
-        let billStates = BillUtility().generateBillState(accountDetail: accountDetail)
+        let billStates = BillUtility().generateBillStates(accountDetail: accountDetail)
         
         // Set States
         for state in billStates {
@@ -297,10 +298,10 @@ extension BillInterfaceController: NetworkingDelegate {
                 // Add Colored Dollar Sign if there is a precarious bill state
                 if billStates.contains(where: { $0.isPrecariousBillSituation }) {
                     // White
-                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: .white, range: NSRange(location: 0, length: 1)))
+                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorAndFontInRange(color: .white, font: UIFont.preferredFont(forTextStyle: .title1)))
                 } else {
                     // Blue
-                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorInRange(color: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6), range: NSRange(location: 0, length: 1), shouldChangeFontSize: true))
+                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorAndFontInRange(color: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6), font: UIFont.preferredFont(forTextStyle: .title1)))
                 }
                 
                 let text = "Amount due \(date.dueBy().string)"
@@ -313,25 +314,22 @@ extension BillInterfaceController: NetworkingDelegate {
                 }
                 
                 billPaidGroup.setHidden(true)
-            case .billReadyAutoPay:
+            case .autoPay:
                 autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentImage.setImageNamed(AppImage.autoPay.name)
                 autoPayScheduledPaymentDetailLabel.setText("You are enrolled in Autopay")
-                
-                billAmountGroup.setHidden(true)
             case .billPaid(let amount):
                 billPaidGroup.setHidden(false)
                 billPaidAmountLabel.setText(amount.currencyString ?? "--")
                 
                 billAmountGroup.setHidden(true)
-            case .remainingBalance(let remainingBalanceAmount, let date):
+            case .remainingBalance(let remainingBalanceAmount):
                 remainingBalanceGroup.setHidden(false)
                 remainingBalanaceAmountLabel.setText(remainingBalanceAmount.currencyString ?? "--")
-                remainingBalanceDateLabel.setAttributedText(date.dueBy(shouldColor: true, shouldIncludePrefix: true))
                 
                 // Alert Banner
                 billAlertGroup.setHidden(false)
-                billAlertLabel.setText("\(remainingBalanceAmount.currencyString ?? "--") is due \(date.dueBy().string).")
+                billAlertLabel.setText("\(remainingBalanceAmount.currencyString ?? "--") is due immediately.")
             case .paymentPending(let amount):
                 pendingPaymentGroup.setHidden(false)
                 
@@ -346,7 +344,6 @@ extension BillInterfaceController: NetworkingDelegate {
                 let attributedFootnoteString = NSAttributedString(string: "Pending Payment", attributes: fontFootnoteAttribute)
                 pendingPaymentDescriptionLabel.setAttributedText(attributedFootnoteString)
             case .billNotReady:
-                autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentImage.setImageNamed(AppImage.billNotReady.name)
                 autoPayScheduledPaymentDetailLabel.setText("Your bill will be available here once it is ready")
@@ -381,6 +378,7 @@ extension BillInterfaceController: NetworkingDelegate {
     
     func maintenanceMode(feature: MainFeature) {
         guard feature == .all || feature == .bill else { return }
+        accountGroup.setHidden(false)
         state = .maintenanceMode
     }
     
@@ -391,6 +389,9 @@ extension BillInterfaceController: NetworkingDelegate {
     
     func error(_ serviceError: ServiceError, feature: MainFeature) {
         guard feature == .all || feature == .bill else { return }
+        
+        accountGroup.setHidden(false)
+        
         guard serviceError.serviceCode == Errors.Code.passwordProtected else {
             state = .error(serviceError)
             return

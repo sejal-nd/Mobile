@@ -9,12 +9,6 @@
 import WatchConnectivity
 import WatchKit
 
-protocol AuthTokenChangeDelegate {
-    func authTokenSuccess()
-    
-    func authTokenFailure()
-}
-
 class WatchSessionManager: NSObject, WCSessionDelegate {
     
     static let shared = WatchSessionManager()
@@ -22,9 +16,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     private override init() {
         super.init()
     }
-    
-    public var authTokenChangeDelegate: AuthTokenChangeDelegate?
-    
+        
     private let session: WCSession = WCSession.default
     
     func startSession() {
@@ -46,7 +38,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
 extension WatchSessionManager {
 
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        DispatchQueue.main.async { [weak self] in
+        DispatchQueue.main.async {
             if let clearAuthToken = applicationContext[keychainKeys.clearAuthToken] as? Bool, clearAuthToken {
                 KeychainUtility.shared[keychainKeys.authToken] = nil
                 WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: SignInInterfaceController.className, context: [:] as AnyObject)])
@@ -55,12 +47,9 @@ extension WatchSessionManager {
                 // Save to KeyChain
                 KeychainUtility.shared[keychainKeys.authToken] = authToken
 
-                self?.authTokenChangeDelegate?.authTokenSuccess()
-                
-                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
-            } else {
-                self?.authTokenChangeDelegate?.authTokenFailure()
+                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)]) // we may want to remove this
             }
+            
             if let outageReported = applicationContext[keychainKeys.outageReported] as? Bool, outageReported {
                 NotificationCenter.default.post(name: Notification.Name.outageReported, object: nil)
             }
@@ -77,8 +66,6 @@ extension WatchSessionManager {
     // Yes, that's it!
     // Just updateApplicationContext on the session!
     func updateApplicationContext(applicationContext: [String : Any]) throws {
-        
-        
         do {
             try session.updateApplicationContext(applicationContext)
         } catch let error {

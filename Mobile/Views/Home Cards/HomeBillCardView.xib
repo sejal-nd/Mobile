@@ -320,10 +320,10 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </view>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTc-qG-fne" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="69" y="50" width="200" height="34"/>
+                                                                            <rect key="frame" x="70.5" y="50" width="197.5" height="34"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Set a default payment account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpe-ey-17o">
-                                                                                    <rect key="frame" x="10" y="6" width="180" height="22"/>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Set a default payment method" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpe-ey-17o">
+                                                                                    <rect key="frame" x="10" y="6" width="177.5" height="22"/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                                                     <color key="textColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>

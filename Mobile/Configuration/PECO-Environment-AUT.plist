@@ -2,16 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>watchGaTrackingId</key>
+	<string>UA-130168632-1</string>
 	<key>environment</key>
 	<string>AUT</string>
-	<key>appName</key>
-	<string>PECO_AUT</string>
 	<key>opco</key>
 	<string>PECO</string>
+	<key>appName</key>
+	<string>PECO_AUT</string>
 	<key>mcsInstanceName</key>
 	<string>mobileAppUATStage</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
+	<key>paymentusUrl</key>
+	<string>https://peco-uat.paymentus.io/xotp/pm/peco</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_peco_testing</string>
 	<key>gaTrackingId</key>

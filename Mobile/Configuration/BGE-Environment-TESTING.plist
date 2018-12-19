@@ -2,16 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>watchGaTrackingId</key>
+	<string></string>
 	<key>environment</key>
 	<string>TEST</string>
-	<key>appName</key>
-	<string>BGE_TEST</string>
 	<key>opco</key>
 	<string>BGE</string>
+	<key>appName</key>
+	<string>BGE_TEST</string>
 	<key>mcsInstanceName</key>
 	<string>mobileAppUATTest</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
+	<key>paymentusUrl</key>
+	<string>https://bge-sit-620.paymentus.io/xotp/pm/bge</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge_testing</string>
 	<key>gaTrackingId</key>

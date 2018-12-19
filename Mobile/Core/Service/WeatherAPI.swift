@@ -74,8 +74,6 @@ struct WeatherItem {
     }
 }
 
-
-//TODO: when swift is refactorable make this more readable 
 enum WeatherIconNames: String, CaseIterable {
     case hot = "hot"
     case cold = "cold"
