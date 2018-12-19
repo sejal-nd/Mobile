@@ -36,7 +36,8 @@ struct BillingHistoryItem: Mappable {
     let totalAmountDue: Double?
     let date: Date
     let description: String?
-    let status: String?
+    let statusString: String?
+    let status: BillingHistoryStatus
     var isFuture: Bool
     let confirmationNumber: String?
     let paymentType: String?
@@ -46,15 +47,35 @@ struct BillingHistoryItem: Mappable {
     let walletItemId: String?
     let flagAllowDeletes: Bool // BGE only - ComEd/PECO default to true
     let flagAllowEdits: Bool // BGE only - ComEd/PECO default to true
-    let encryptedPaymentId: String?
-    
+
     init(map: Mapper) throws {
         amountPaid = map.optionalFrom("amount_paid", transformation: dollarAmount)
         chargeAmount = map.optionalFrom("charge_amount", transformation: dollarAmount)
         totalAmountDue = map.optionalFrom("total_amount_due", transformation: dollarAmount)
         try date = map.from("date", transformation: DateParser().extractDate)
         description = map.optionalFrom("description")
-        status = map.optionalFrom("status")
+
+        statusString = map.optionalFrom("status")
+        if let statusStr = statusString?.lowercased() {
+            if statusStr == "scheduled" {
+                status = .scheduled
+            } else if statusStr == "pending" {
+                status = .pending
+            } else if statusStr == "processing" {
+                status = .processing
+            } else if statusStr == "processed" {
+                status = .processed
+            } else if statusStr == "canceled" || statusStr == "cancelled" || statusStr == "void" {
+                status = .canceled
+            } else if statusStr == "failed" || statusStr == "declined" || statusStr == "returned" {
+                status = .failed
+            } else {
+                status = .unknown
+            }
+        } else {
+            status = .unknown
+        }
+        
         confirmationNumber = map.optionalFrom("confirmation_number")
         paymentType = map.optionalFrom("payment_type")
         paymentMethod = map.optionalFrom("payment_method")
@@ -72,14 +93,11 @@ struct BillingHistoryItem: Mappable {
             flagAllowDeletes = true
             flagAllowEdits = false
         }
-        encryptedPaymentId = map.optionalFrom("encrypted_payment_id")
+
         isFuture = calculateIsFuture(dateToCompare: date)
-        if status == BillingHistoryProperties.statusPending.rawValue ||
-            status == BillingHistoryProperties.statusProcessing.rawValue ||
-            status == BillingHistoryProperties.statusProcessed.rawValue {
+        if status == .pending || status == .processing || status == .processed {
             isFuture = true
-        } else if status == BillingHistoryProperties.statusCanceled.rawValue || status == BillingHistoryProperties.statusCANCELLED.rawValue {
-            // EM-2638: Cancelled payments should always be in the past
+        } else if status == .canceled { // EM-2638: Cancelled payments should always be in the past
             isFuture = false
         } else if isBillPDF { // EM-2638: Bills should always be in the past
             isFuture = false
@@ -87,13 +105,12 @@ struct BillingHistoryItem: Mappable {
     }
 }
 
-enum BillingHistoryProperties: String {
-    case statusCanceled = "canceled"
-    case statusCANCELLED = "CANCELLED" //PECO
-    case statusFailed = "failed"
-    case statusPending = "Pending"
-    case statusProcessing = "processing"
-    case statusProcessed = "processed"
-    case statusScheduled = "scheduled"
-    case statusSCHEDULED = "SCHEDULED" //PECO
+enum BillingHistoryStatus {
+    case scheduled
+    case pending
+    case processing
+    case processed
+    case canceled
+    case failed
+    case unknown
 }

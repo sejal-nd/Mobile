@@ -144,11 +144,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
             let status = billingItem.status
             if billingItem.isBillPDF {
                 showBillPdf()
-            } else if status == BillingHistoryProperties.statusProcessing.rawValue ||
-                status == BillingHistoryProperties.statusProcessed.rawValue ||
-                status == BillingHistoryProperties.statusSCHEDULED.rawValue ||
-                status == BillingHistoryProperties.statusScheduled.rawValue ||
-                status == BillingHistoryProperties.statusPending.rawValue {
+            } else if status == .scheduled || status == .processing || status == .processed || status == .pending {
                 handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
             } else {
                 performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
@@ -176,18 +172,10 @@ extension BillingHistoryViewController: UITableViewDelegate {
                     handleBGEUpcomingClick(indexPath: selectedIndexPath) 
                 } else {
                     let billingItem = billingHistory.upcoming[selectedIndexPath.row]
-                    guard let status = billingItem.status else { return }
-                    
-                    //pending payments do not get a tap so we only handle scheduled/cancelled payments
-                    if status == BillingHistoryProperties.statusProcessing.rawValue ||
-                        status == BillingHistoryProperties.statusProcessed.rawValue ||
-                        status == BillingHistoryProperties.statusSCHEDULED.rawValue ||
-                        status == BillingHistoryProperties.statusScheduled.rawValue ||
-                        status == BillingHistoryProperties.statusPending.rawValue {
+                    let status = billingItem.status
+                    if status == .scheduled || status == .processing || status == .processed || status == .pending {
                         handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
-                    } else if status == BillingHistoryProperties.statusCanceled.rawValue ||
-                        status == BillingHistoryProperties.statusCANCELLED.rawValue ||
-                        status == BillingHistoryProperties.statusFailed.rawValue {
+                    } else if status == .canceled || status == .failed {
                         performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
                     }
                 }
@@ -197,17 +185,11 @@ extension BillingHistoryViewController: UITableViewDelegate {
     
     private func handleBGEUpcomingClick(indexPath: IndexPath) {
         let billingItem = billingHistory.upcoming[indexPath.row]
-        guard let status = billingItem.status else { return }
-        
-        if status == BillingHistoryProperties.statusProcessing.rawValue ||
-            status == BillingHistoryProperties.statusProcessed.rawValue ||
-            status == BillingHistoryProperties.statusCanceled.rawValue ||
-            status == BillingHistoryProperties.statusCANCELLED.rawValue ||
-            status == BillingHistoryProperties.statusFailed.rawValue {
-            
+
+        let status = billingItem.status
+        if status == .processing || status == .processed || status == .canceled || status == .failed {
             performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
-            
-        } else { //It's scheduled hopefully
+        } else { // It's scheduled hopefully
             handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
         }
     }
@@ -240,8 +222,6 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func showModifyScheduledItem(billingItem: BillingHistoryItem) {
-        print("--- showModifyScheduledItem ---")
-        print(billingItem)
         let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
         paymentVc.accountDetail = accountDetail
         paymentVc.billingHistoryItem = billingItem

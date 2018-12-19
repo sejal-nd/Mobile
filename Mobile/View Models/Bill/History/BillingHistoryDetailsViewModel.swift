@@ -57,7 +57,7 @@ class BillingHistoryDetailsViewModel {
     }
     
     var paymentStatus: String {
-        return billingHistory.status?.capitalized ?? ""
+        return billingHistory.statusString?.capitalized ?? ""
     }
     
     var confirmationNumber: String {
@@ -95,7 +95,7 @@ class BillingHistoryDetailsViewModel {
     }
     
     func fetchPaymentDetails(billingHistoryItem: BillingHistoryItem, onCompletion: @escaping () -> Void) {
-        if let paymentId = billingHistoryItem.paymentId, billingHistoryItem.encryptedPaymentId != nil {
+        if let paymentId = billingHistoryItem.paymentId {
             fetching.value = true
             paymentService.fetchPaymentDetails(accountNumber: AccountsStore.shared.currentAccount.accountNumber, paymentId: paymentId).subscribe(onNext: { [weak self] paymentDetail in
                 self?.fetching.value = false

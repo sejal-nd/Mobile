@@ -86,11 +86,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
             let status = billingItem.status
             if billingItem.isBillPDF {
                 showBillPdf()
-            } else if status == BillingHistoryProperties.statusProcessing.rawValue ||
-                status == BillingHistoryProperties.statusProcessed.rawValue ||
-                status == BillingHistoryProperties.statusSCHEDULED.rawValue ||
-                status == BillingHistoryProperties.statusScheduled.rawValue ||
-                status == BillingHistoryProperties.statusPending.rawValue {
+            } else if status == .processing || status == .processed || status == .scheduled || status == .pending {
                 handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
             } else {
                 performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
@@ -112,18 +108,11 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                     handleBGEUpcomingClick(indexPath: indexPath)
                 }
             } else {
-                guard let billingItem = billingHistory?.upcoming[indexPath.row],
-                    let status = billingItem.status else { return }
-                
-                //pending payments do not get a tap so we only handle scheduled/cancelled payments
-                if status == BillingHistoryProperties.statusProcessing.rawValue ||
-                    status == BillingHistoryProperties.statusProcessed.rawValue ||
-                    status == BillingHistoryProperties.statusSCHEDULED.rawValue ||
-                    status == BillingHistoryProperties.statusPending.rawValue {
+                guard let billingItem = billingHistory?.upcoming[indexPath.row] else { return }
+                let status = billingItem.status
+                if status == .processing || status == .processed || status == .scheduled || status == .pending {
                     handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
-                } else if status == BillingHistoryProperties.statusCanceled.rawValue ||
-                    status == BillingHistoryProperties.statusCANCELLED.rawValue ||
-                    status == BillingHistoryProperties.statusFailed.rawValue {
+                } else if status == .canceled || status == .failed {
                     performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
                 }
             }
@@ -131,18 +120,11 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
     }
     
     private func handleBGEUpcomingClick(indexPath: IndexPath) {
-        guard let billingItem = billingHistory?.upcoming[indexPath.row],
-            let status = billingItem.status else { return }
-        
-        if status == BillingHistoryProperties.statusProcessing.rawValue ||
-            status == BillingHistoryProperties.statusProcessed.rawValue ||
-            status == BillingHistoryProperties.statusCanceled.rawValue ||
-            status == BillingHistoryProperties.statusCANCELLED.rawValue ||
-            status == BillingHistoryProperties.statusFailed.rawValue {
-            
+        guard let billingItem = billingHistory?.upcoming[indexPath.row] else { return }
+        let status = billingItem.status
+        if status == .processing || status == .processed || status == .canceled || status == .failed {
             performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
-            
-        } else { //It's scheduled hopefully
+        } else { // It's scheduled hopefully
             handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
         }
     }
