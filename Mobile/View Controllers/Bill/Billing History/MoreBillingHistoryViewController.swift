@@ -161,10 +161,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                 }
             }
         } else { //PECO/COMED scheduled
-            guard let walletItemId = billingItem.walletItemId else { return }
-            if walletItemId != "" {
-                showModifyScheduledItem(billingItem: billingItem)
-            }
+            showModifyScheduledItem(billingItem: billingItem)
         }
     }
     

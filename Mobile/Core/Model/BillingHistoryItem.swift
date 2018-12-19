@@ -44,8 +44,8 @@ struct BillingHistoryItem: Mappable {
     let paymentMethod: String?
     let paymentId: String?
     let walletItemId: String?
-    let flagAllowDeletes: Bool
-    let flagAllowEdits: Bool
+    let flagAllowDeletes: Bool // BGE only - ComEd/PECO default to true
+    let flagAllowEdits: Bool // BGE only - ComEd/PECO default to true
     let encryptedPaymentId: String?
     
     init(map: Mapper) throws {
@@ -62,7 +62,7 @@ struct BillingHistoryItem: Mappable {
         paymentId = map.optionalFrom("payment_id")
         walletItemId = map.optionalFrom("wallet_item_id")
         flagAllowDeletes = map.optionalFrom("flag_allow_deletes") ?? true
-        flagAllowEdits = map.optionalFrom("flag_allow_edits") ?? true
+        flagAllowEdits = map.optionalFrom("flag_allow_edits") ?? false
         encryptedPaymentId = map.optionalFrom("encrypted_payment_id")
         isFuture = calculateIsFuture(dateToCompare: date)
         if status == BillingHistoryProperties.statusPending.rawValue ||

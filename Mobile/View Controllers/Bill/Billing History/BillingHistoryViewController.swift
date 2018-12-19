@@ -25,7 +25,7 @@ class BillingHistoryViewController: UIViewController {
     
     var billingSelection: BillingSelection!
     var billingHistory: BillingHistory!
-    var selectedIndexPath:IndexPath!
+    var selectedIndexPath: IndexPath!
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     
@@ -228,10 +228,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
                 }
             }
         } else { //PECO/COMED scheduled
-            guard let walletItemId = billingItem.walletItemId else { return }
-            if walletItemId != "" {
-                showModifyScheduledItem(billingItem: billingItem)
-            }
+            showModifyScheduledItem(billingItem: billingItem)
         }
     }
     
@@ -246,6 +243,8 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func showModifyScheduledItem(billingItem: BillingHistoryItem) {
+        print("--- showModifyScheduledItem ---")
+        print(billingItem)
         let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
         paymentVc.accountDetail = accountDetail
         paymentVc.billingHistoryItem = billingItem
