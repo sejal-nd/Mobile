@@ -98,6 +98,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var billNotReadyImageView: UIImageView!
     @IBOutlet private weak var billNotReadyLabel: UILabel!
     @IBOutlet private weak var errorStack: UIStackView!
+    @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
@@ -197,6 +198,9 @@ class HomeBillCardView: UIView {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
+        
+        errorTitleLabel.textColor = .blackText
+        errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         
         maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
         
