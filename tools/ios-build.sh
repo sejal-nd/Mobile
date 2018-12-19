@@ -408,7 +408,7 @@ if [[ $target_phases = *"build"* ]]; then
                  # disable error propagation. we do not want to force the whole build script to fail if the rm fails
                 set +e
                 pushd ./tools/release_notes_script/
-                ./eucoms-list-changes.sh --target-project 'EU-mobile' --target-repo 'Exelon_Mobile_iOS' --target-repo-path '../../' --output txt --pull-request-number $RELEASE_NOTES_PR_NUMBER --token $AZURE_DEVOPS_TOKEN
+                ./eucoms-list-changes.sh --target-project 'EU-mobile' --target-repo 'Exelon_Mobile_iOS' --target-repo-path '../../' --output txt --pull-request-number $RELEASE_NOTES_PR_NUMBER --token $AZURE_DEVOPS_TOKEN  --character-limit 4500
                 popd
 
                 set -e
