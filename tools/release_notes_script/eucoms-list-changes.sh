@@ -11,6 +11,7 @@ TARGET_REPO_PATH=EUCOMS
 TOKEN="$(cat $ROOT/token.txt)"
 OUTPUTFORMAT=csv
 PULL_REQUEST_NUMBER=
+CHARACTER_LIMIT=
 
 # Parse arguments.
 for i in "$@"; do
@@ -23,6 +24,7 @@ for i in "$@"; do
         --token) TOKEN="$2"; shift ;;
         --output) OUTPUTFORMAT="$2"; shift ;;
         --pull-request-number) PULL_REQUEST_NUMBER="$2"; shift ;;
+        --character-limit) CHARACTER_LIMIT="$2"; shift ;;
     esac
     shift
 done
@@ -148,6 +150,16 @@ while read line; do
         printf "%s\t%s\t%s\n" "$item" "$title" "$line" >> $ROOT/work-items.csv
     elif [ "$OUTPUTFORMAT" == "txt" ]; then
         echo "- [${item} - ${title}](${line})" >> $ROOT/release_notes.txt
+        
+        if [ -n "$CHARACTER_LIMIT" ]; then
+            wordcount=$(wc -c $ROOT/release_notes.txt | grep -oEi "(\d+)")
+            if [ "$wordcount" -gt "$CHARACTER_LIMIT" ]; then
+                echo "-- Character limit exceeded, output truncated --"
+                echo "-- Character limit exceeded, output truncated --" >> $ROOT/release_notes.txt
+                break
+            fi
+            
+        fi
     fi
 done < $ROOT/work-items.txt
 
