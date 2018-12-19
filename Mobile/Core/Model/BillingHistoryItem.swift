@@ -30,6 +30,16 @@ private func calculateIsFuture(dateToCompare: Date) -> Bool {
     return dateToCompare > yesterday!
 }
 
+enum BillingHistoryStatus {
+    case scheduled
+    case pending
+    case processing
+    case processed
+    case canceled
+    case failed
+    case unknown
+}
+
 struct BillingHistoryItem: Mappable {
     let amountPaid: Double?
     let chargeAmount: Double?
@@ -38,7 +48,6 @@ struct BillingHistoryItem: Mappable {
     let description: String?
     let statusString: String?
     let status: BillingHistoryStatus
-    var isFuture: Bool
     let confirmationNumber: String?
     let paymentType: String?
     let isBillPDF: Bool
@@ -47,6 +56,21 @@ struct BillingHistoryItem: Mappable {
     let walletItemId: String?
     let flagAllowDeletes: Bool // BGE only - ComEd/PECO default to true
     let flagAllowEdits: Bool // BGE only - ComEd/PECO default to true
+    
+    var isFuture: Bool {
+        if status == .pending || status == .processing || status == .processed {
+            return true
+        }
+        if status == .canceled { // EM-2638: Cancelled payments should always be in the past
+            return false
+        }
+        if isBillPDF { // EM-2638: Bills should always be in the past
+            return false
+        }
+        let calendar = Calendar.current
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: Date())
+        return date > yesterday!
+    }
 
     init(map: Mapper) throws {
         amountPaid = map.optionalFrom("amount_paid", transformation: dollarAmount)
@@ -93,24 +117,5 @@ struct BillingHistoryItem: Mappable {
             flagAllowDeletes = true
             flagAllowEdits = false
         }
-
-        isFuture = calculateIsFuture(dateToCompare: date)
-        if status == .pending || status == .processing || status == .processed {
-            isFuture = true
-        } else if status == .canceled { // EM-2638: Cancelled payments should always be in the past
-            isFuture = false
-        } else if isBillPDF { // EM-2638: Bills should always be in the past
-            isFuture = false
-        }
     }
-}
-
-enum BillingHistoryStatus {
-    case scheduled
-    case pending
-    case processing
-    case processed
-    case canceled
-    case failed
-    case unknown
 }

@@ -55,14 +55,12 @@ class BillingHistoryTableViewCell: UITableViewCell {
     }
     
     func configureWith(item: BillingHistoryItem) {
-        
+        dateLabel.text = item.date.mmDdYyyyString
         if item.isFuture {
             configureUpcomingCell(item: item)
         } else {
             configurePastCell(item: item)
         }
-        
-        dateLabel.text = item.date.mmDdYyyyString
     }
     
     private func configurePastCell(item: BillingHistoryItem) {
@@ -117,6 +115,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PENDING_PAYMENT
             amountLabel.text = amountPaid
+            dateLabel.isHidden = true
             caretImageView.isHidden = true
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PENDING_PAYMENT, dateString, amountPaid)
         } else if status == .processing || status == .processed {

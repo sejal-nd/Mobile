@@ -98,10 +98,8 @@ class BillingHistoryViewController: UIViewController {
         
         if let vc = segue.destination as? MoreBillingHistoryViewController {
             vc.accountDetail = accountDetail
-            
             vc.billingSelection = billingSelection
             vc.billingHistory = billingHistory
-            
         } else if let vc = segue.destination as? BillingHistoryDetailsViewController {
             let billingHistoryItem = selectedIndexPath.section == 0 ? billingHistory.upcoming[selectedIndexPath.row] : billingHistory.past[selectedIndexPath.row]
             vc.billingHistoryItem = billingHistoryItem
@@ -135,8 +133,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
     func selectedRow(at indexPath: IndexPath, tableView: UITableView) {
         selectedIndexPath = indexPath
         
-        //past billing history
-        if indexPath.section == 1 {
+        if indexPath.section == 1 { // past billing history
             let billingItem = billingHistory.mostRecentSixMonths[indexPath.row]
             
             guard indexPath.row < billingHistory.mostRecentSixMonths.count else { return }
@@ -149,17 +146,14 @@ extension BillingHistoryViewController: UITableViewDelegate {
             } else {
                 performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
             }
-        //upcoming billing history
-        } else {
-            let opco = Environment.shared.opco
-            
+        } else { // upcoming billing history
             if (accountDetail.isBGEasy || accountDetail.isAutoPay) {
                 selectedIndexPath.row = selectedIndexPath.row - 1 //everything is offset by BGEasy cell
             }
             
             if indexPath.row == 0 && (accountDetail.isBGEasy || accountDetail.isAutoPay) {
                 if accountDetail.isAutoPay {
-                    if opco == .bge {
+                    if Environment.shared.opco == .bge {
                         performSegue(withIdentifier: "bgeAutoPaySegue", sender: self)
                     } else {
                         performSegue(withIdentifier: "autoPaySegue", sender: self)
@@ -168,29 +162,22 @@ extension BillingHistoryViewController: UITableViewDelegate {
                     performSegue(withIdentifier: "viewBGEasySegue", sender: self)
                 }
             } else {
-                if opco == .bge {
-                    handleBGEUpcomingClick(indexPath: selectedIndexPath) 
+                let billingItem = billingHistory.upcoming[indexPath.row]
+                let status = billingItem.status
+                if Environment.shared.opco == .bge {
+                    if status == .processing || status == .processed || status == .canceled || status == .failed {
+                        performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
+                    } else { // It's scheduled hopefully
+                        handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
+                    }
                 } else {
-                    let billingItem = billingHistory.upcoming[selectedIndexPath.row]
-                    let status = billingItem.status
-                    if status == .scheduled || status == .processing || status == .processed || status == .pending {
+                    if status == .scheduled || status == .processing || status == .processed {
                         handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
                     } else if status == .canceled || status == .failed {
                         performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
                     }
                 }
             }
-        }
-    }
-    
-    private func handleBGEUpcomingClick(indexPath: IndexPath) {
-        let billingItem = billingHistory.upcoming[indexPath.row]
-
-        let status = billingItem.status
-        if status == .processing || status == .processed || status == .canceled || status == .failed {
-            performSegue(withIdentifier: "showBillingDetailsSegue", sender: self)
-        } else { // It's scheduled hopefully
-            handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
         }
     }
     

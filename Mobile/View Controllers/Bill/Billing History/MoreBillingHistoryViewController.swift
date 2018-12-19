@@ -82,7 +82,6 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
 
         if billingSelection == .history {
             guard let billingItem = billingHistory?.past[indexPath.row] else { return }
-            
             let status = billingItem.status
             if billingItem.isBillPDF {
                 showBillPdf()
@@ -91,26 +90,23 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
             } else {
                 performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
             }
-            //upcoming billing history
-        } else {
-            let opco = Environment.shared.opco
-            
-            if opco == .bge {
+        } else { //upcoming billing history
+            if Environment.shared.opco == .bge {
                 if accountDetail.isBGEasy {
                     if billingHistory?.upcoming == nil {
                         performSegue(withIdentifier: "viewBGEasySegue", sender: self)
                     } else if indexPath.row == billingHistory!.upcoming.count + 1 {
                         performSegue(withIdentifier: "viewBGEasySegue", sender: self)
-                    } else  {
+                    } else {
                         handleBGEUpcomingClick(indexPath: indexPath)
                     }
-                }  else {
+                } else {
                     handleBGEUpcomingClick(indexPath: indexPath)
                 }
             } else {
                 guard let billingItem = billingHistory?.upcoming[indexPath.row] else { return }
                 let status = billingItem.status
-                if status == .processing || status == .processed || status == .scheduled || status == .pending {
+                if status == .processing || status == .processed || status == .scheduled {
                     handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
                 } else if status == .canceled || status == .failed {
                     performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
