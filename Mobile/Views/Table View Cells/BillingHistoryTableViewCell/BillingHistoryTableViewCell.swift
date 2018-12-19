@@ -69,7 +69,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         let dateString = item.date.shortMonthDayAndYearString
         
         var a11y = ""
-        if item.type == BillingHistoryProperties.typeBilling.rawValue {
+        if item.isBillPDF {
             iconImageView.image = #imageLiteral(resourceName: "ic_bill")
             titleLabel.text = BILL_ISSUED
             amountLabel.text = item.totalAmountDue?.currencyString

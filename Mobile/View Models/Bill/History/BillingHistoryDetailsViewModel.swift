@@ -27,10 +27,8 @@ class BillingHistoryDetailsViewModel {
     }
     
     var paymentType: String {
-        guard let paymentType = billingHistory.description else { return "" } //is supposed to be payment_method but that displays S or R so this was decided
-        
+        guard let paymentType = billingHistory.description else { return "" }
         return isSpeedpay ? "" : paymentType
-        
     }
     
     var paymentDate: String {

@@ -139,13 +139,10 @@ extension BillingHistoryViewController: UITableViewDelegate {
         if indexPath.section == 1 {
             let billingItem = billingHistory.mostRecentSixMonths[indexPath.row]
             
-            guard indexPath.row < billingHistory.mostRecentSixMonths.count, let type = billingItem.type else {
-                return
-            }
+            guard indexPath.row < billingHistory.mostRecentSixMonths.count else { return }
             
             let status = billingItem.status
-            
-            if type == BillingHistoryProperties.typeBilling.rawValue {
+            if billingItem.isBillPDF {
                 showBillPdf()
             } else if status == BillingHistoryProperties.statusProcessing.rawValue ||
                 status == BillingHistoryProperties.statusProcessed.rawValue ||
@@ -218,7 +215,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
     private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
         if Environment.shared.opco == .bge {
             guard let paymentMethod = billingItem.paymentMethod else { return }
-            if paymentMethod == BillingHistoryProperties.paymentMethod_S.rawValue { //scheduled
+            if paymentMethod == "S" { //scheduled
                 showModifyScheduledItem(billingItem: billingItem)
             } else {  // recurring/automatic
                 let storyboard = UIStoryboard(name: "Bill", bundle: nil)
