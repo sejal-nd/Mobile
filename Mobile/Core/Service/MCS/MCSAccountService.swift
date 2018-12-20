@@ -63,7 +63,7 @@ struct MCSAccountService: AccountService {
         let queryString = queryItems
             .map { $0.0 + "=" + $0.1 }
             .reduce("?") { $0 + $1 + "&" }
-            .dropLast()
+            .dropLast() // drop the last "&"
         
         path.append(String(queryString))
         
