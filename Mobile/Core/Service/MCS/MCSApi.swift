@@ -265,7 +265,7 @@ class MCSApi {
                         case .success(let d):
                             return d
                         case .failure(let error):
-                            if error.serviceCode == "TC-SYS-MAINTENANCE" {
+                            if error.serviceCode == ServiceErrorCode.maintenanceMode.rawValue {
                                 NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: self)
                             }
                             throw error
