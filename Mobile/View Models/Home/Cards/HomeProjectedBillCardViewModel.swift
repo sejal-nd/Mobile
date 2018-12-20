@@ -55,9 +55,9 @@ class HomeProjectedBillCardViewModel {
         .startWith(true)
         .distinctUntilChanged()
     
-    private(set) lazy var showEmptyState: Driver<Void> = accountDetailEvents
+    private(set) lazy var showEmptyState: Driver<Void> = accountDetailEvents.elements()
         .withLatestFrom(maintenanceModeEvents)
-        { ($0.element?.isEligibleForUsageData ?? false, $1.element?.usageStatus ?? false)}
+        { ($0.isEligibleForUsageData, $1.element?.usageStatus ?? false)}
         .filter { !$0 && !$1 }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
