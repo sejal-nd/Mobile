@@ -24,12 +24,6 @@ private func dollarAmount(fromValue value: Any?) throws -> Double {
     }
 }
 
-private func calculateIsFuture(dateToCompare: Date) -> Bool {
-    let calendar = Calendar.current
-    let yesterday = calendar.date(byAdding: .day, value: -1, to: Date())
-    return dateToCompare > yesterday!
-}
-
 enum BillingHistoryStatus {
     case scheduled
     case pending
@@ -38,6 +32,30 @@ enum BillingHistoryStatus {
     case canceled
     case failed
     case unknown
+    
+    init(identifier: String?) {
+        guard let id = identifier?.lowercased() else {
+            self = .unknown
+            return
+        }
+        
+        switch id {
+        case "scheduled":
+            self = .scheduled
+        case "pending":
+            self = .pending
+        case "processing":
+            self = .processing
+        case "processed":
+            self = .processed
+        case "canceled", "cancelled", "void":
+            self = .canceled
+        case "failed", "declined", "returned":
+            self = .failed
+        default:
+            self = .unknown
+        }
+    }
 }
 
 struct BillingHistoryItem: Mappable {
@@ -58,18 +76,18 @@ struct BillingHistoryItem: Mappable {
     let flagAllowEdits: Bool // BGE only - ComEd/PECO default to true
     
     var isFuture: Bool {
-        if status == .pending || status == .processing || status == .processed {
+        switch status {
+        case .pending, .processing, .processed:
             return true
-        }
-        if status == .canceled { // EM-2638: Cancelled payments should always be in the past
+        case .canceled: // EM-2638: Canceled payments should always be in the past
             return false
+        case .scheduled, .failed, .unknown:
+            if isBillPDF { // EM-2638: Bills should always be in the past
+                return false
+            }
+            
+            return date >= Calendar.opCo.startOfDay(for: Date())
         }
-        if isBillPDF { // EM-2638: Bills should always be in the past
-            return false
-        }
-        let calendar = Calendar.current
-        let yesterday = calendar.date(byAdding: .day, value: -1, to: Date())
-        return date > yesterday!
     }
 
     init(map: Mapper) throws {
@@ -80,25 +98,7 @@ struct BillingHistoryItem: Mappable {
         description = map.optionalFrom("description")
 
         statusString = map.optionalFrom("status")
-        if let statusStr = statusString?.lowercased() {
-            if statusStr == "scheduled" {
-                status = .scheduled
-            } else if statusStr == "pending" {
-                status = .pending
-            } else if statusStr == "processing" {
-                status = .processing
-            } else if statusStr == "processed" {
-                status = .processed
-            } else if statusStr == "canceled" || statusStr == "cancelled" || statusStr == "void" {
-                status = .canceled
-            } else if statusStr == "failed" || statusStr == "declined" || statusStr == "returned" {
-                status = .failed
-            } else {
-                status = .unknown
-            }
-        } else {
-            status = .unknown
-        }
+        status = BillingHistoryStatus(identifier: statusString)
         
         confirmationNumber = map.optionalFrom("confirmation_number")
         paymentType = map.optionalFrom("payment_type")

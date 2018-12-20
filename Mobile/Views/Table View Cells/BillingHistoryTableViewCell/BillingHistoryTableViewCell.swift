@@ -42,18 +42,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
         amountLabel.font = SystemFont.semibold.of(textStyle: .headline)
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        dateLabel.text = ""
-        titleLabel.text = ""
-        amountLabel.text = ""
-        amountLabel.textColor = .blackText
-        iconImageView.image = nil
-        caretImageView.isHidden = false
-        dateLabel.isHidden = false
-        disposeBag = DisposeBag()
-    }
-    
     func configureWith(item: BillingHistoryItem) {
         dateLabel.text = item.date.mmDdYyyyString
         if item.isFuture {
@@ -77,23 +65,23 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 return
             }
             
-            let status = item.status
-            if status == .canceled || status == .failed {
-                titleLabel.text = PAYMENT
-                amountLabel.text = amountPaid
-                if status == .failed {
-                    iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
-                    a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
-                } else {
-                    iconImageView.image = #imageLiteral(resourceName: "ic_activity_canceled")
-                    a11y = String(format: NSLocalizedString("Cancelled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
-                }
-            } else if status == .scheduled {
+            switch item.status {
+            case .scheduled:
                 iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
                 titleLabel.text = SCHEDULED_PAYMENT
                 self.amountLabel.text = amountPaid
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
-            } else {
+            case .canceled:
+                titleLabel.text = PAYMENT
+                amountLabel.text = amountPaid
+                iconImageView.image = #imageLiteral(resourceName: "ic_activity_canceled")
+                a11y = String(format: NSLocalizedString("Canceled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
+            case .failed:
+                titleLabel.text = PAYMENT
+                amountLabel.text = amountPaid
+                iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
+                a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
+            default:
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
                 titleLabel.text = PAYMENT
                 amountLabel.text = "\(String(describing: amountPaid))"
@@ -110,55 +98,54 @@ class BillingHistoryTableViewCell: UITableViewCell {
         var a11y = ""
         let dateString = item.date.shortMonthDayAndYearString
         
-        let status = item.status
-        if status == .pending {
+        switch item.status {
+        case .pending:
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PENDING_PAYMENT
             amountLabel.text = amountPaid
             dateLabel.isHidden = true
             caretImageView.isHidden = true
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PENDING_PAYMENT, dateString, amountPaid)
-        } else if status == .processing || status == .processed {
+        case .processing, .processed:
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
             titleLabel.text = PAYMENT_PROCESSING
             amountLabel.text = amountPaid
             dateLabel.isHidden = true
             caretImageView.isHidden = false
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT_PROCESSING, dateString, amountPaid)
-        } else if status == .canceled || status == .failed {
+        case .canceled:
             titleLabel.text = PAYMENT
             amountLabel.text = amountPaid
             caretImageView.isHidden = false
-            if status == .failed {
-                iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
-                a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
-            } else {
-                iconImageView.image = #imageLiteral(resourceName: "ic_activity_canceled")
-                a11y = String(format: NSLocalizedString("Cancelled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
-            }
-        } else {
+            iconImageView.image = #imageLiteral(resourceName: "ic_activity_canceled")
+            a11y = String(format: NSLocalizedString("Canceled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
+        case .failed:
+            titleLabel.text = PAYMENT
+            amountLabel.text = amountPaid
+            caretImageView.isHidden = false
+            iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
+            a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
+        default:
             iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
             titleLabel.text = SCHEDULED_PAYMENT
             amountLabel.text = amountPaid
             caretImageView.isHidden = false
             a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
         }
+        
         innerContentView.accessibilityLabel = a11y
     }
     
-    class var identifier: String{
-        struct Static
-        {
-            static let identifier: String = "BillingHistoryTableViewCell"
-        }
-        
-        return Static.identifier
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        dateLabel.text = ""
+        titleLabel.text = ""
+        amountLabel.text = ""
+        amountLabel.textColor = .blackText
+        iconImageView.image = nil
+        caretImageView.isHidden = false
+        dateLabel.isHidden = false
+        disposeBag = DisposeBag()
     }
     
 }

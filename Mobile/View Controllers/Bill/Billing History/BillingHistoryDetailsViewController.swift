@@ -72,7 +72,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         title = NSLocalizedString("Payment Details", comment: "")
         
-        viewModel = BillingHistoryDetailsViewModel.init(paymentService: ServiceFactory.createPaymentService(), billingHistoryItem: billingHistoryItem)
+        viewModel = BillingHistoryDetailsViewModel(paymentService: ServiceFactory.createPaymentService(), billingHistoryItem: billingHistoryItem)
         
         formatViews()
         styleViews()

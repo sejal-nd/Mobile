@@ -8,7 +8,7 @@
 
 import Foundation
 import RxSwift
-
+import UIKit
 
 class MoreBillingHistoryViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
@@ -16,11 +16,9 @@ class MoreBillingHistoryViewController: UIViewController {
     
     var billingHistory: BillingHistory?
     
-    var billingSelection: BillingSelection?
+    var billingSelection: BillingSelection = .upcoming // Passed in from BillingHistoryViewController
     
-    var billingList: [BillingHistoryItem]?
-    
-    var selectedIndexPath:IndexPath!
+    var billingList = [BillingHistoryItem]()
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     
@@ -31,12 +29,11 @@ class MoreBillingHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        switch (billingSelection!) {
+        switch billingSelection {
         case .history:
-            billingList = billingHistory?.past
-            
+            billingList = billingHistory?.past ?? []
         case .upcoming:
-            billingList = billingHistory?.upcoming
+            billingList = billingHistory?.upcoming ?? []
         }
         
         title = NSLocalizedString("More Activity", comment: "")
@@ -46,7 +43,7 @@ class MoreBillingHistoryViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UINib(nibName: BillingHistoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: "BillingHistoryCell")
+        tableView.register(UINib(nibName: BillingHistoryTableViewCell.className, bundle: nil), forCellReuseIdentifier: BillingHistoryTableViewCell.className)
         
         loadingIndicator.isHidden = true
         tableView.isHidden = false
@@ -61,7 +58,9 @@ class MoreBillingHistoryViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         view.endEditing(true)
-        guard let billingHistoryItem = billingList?[selectedIndexPath.row] else { return }
+        guard let billingHistoryItem = sender as? BillingHistoryItem else {
+            return
+        }
         
         if let vc = segue.destination as? BillingHistoryDetailsViewController {
             vc.billingHistoryItem = billingHistoryItem
@@ -76,40 +75,32 @@ class MoreBillingHistoryViewController: UIViewController {
 
 extension MoreBillingHistoryViewController: UITableViewDelegate {
     
-    func selectedRow(at indexPath: IndexPath, tableView: UITableView) {
-        
-        selectedIndexPath = indexPath
-
-        if billingSelection == .history {
-            guard let billingItem = billingHistory?.past[indexPath.row] else { return }
-            let status = billingItem.status
+    func selectedRow(at indexPath: IndexPath) {
+        switch billingSelection {
+        case .history:
+            let billingItem = billingList[indexPath.row]
             if billingItem.isBillPDF {
-                showBillPdf()
-            } else if status == .processing || status == .processed || status == .scheduled || status == .pending {
-                handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
+                showBillPdf(billingItem: billingItem)
             } else {
-                performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
-            }
-        } else { //upcoming billing history
-            if Environment.shared.opco == .bge {
-                if accountDetail.isBGEasy {
-                    if billingHistory?.upcoming == nil {
-                        performSegue(withIdentifier: "viewBGEasySegue", sender: self)
-                    } else if indexPath.row == billingHistory!.upcoming.count + 1 {
-                        performSegue(withIdentifier: "viewBGEasySegue", sender: self)
-                    } else {
-                        handleBGEUpcomingClick(indexPath: indexPath)
-                    }
-                } else {
-                    handleBGEUpcomingClick(indexPath: indexPath)
+                switch billingItem.status {
+                case .processing, .processed, .scheduled, .pending:
+                    handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
+                case .canceled, .failed, .unknown:
+                    performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: billingItem)
                 }
+            }
+        case .upcoming:
+            if Environment.shared.opco == .bge {
+                handleBGEUpcomingClick(indexPath: indexPath)
             } else {
                 guard let billingItem = billingHistory?.upcoming[indexPath.row] else { return }
-                let status = billingItem.status
-                if status == .processing || status == .processed || status == .scheduled {
+                switch billingItem.status {
+                case .processing, .processed, .scheduled:
                     handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
-                } else if status == .canceled || status == .failed {
-                    performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
+                case .canceled, .failed:
+                    performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: billingItem)
+                case .pending, .unknown:
+                    break
                 }
             }
         }
@@ -117,11 +108,13 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
     
     private func handleBGEUpcomingClick(indexPath: IndexPath) {
         guard let billingItem = billingHistory?.upcoming[indexPath.row] else { return }
-        let status = billingItem.status
-        if status == .processing || status == .processed || status == .canceled || status == .failed {
-            performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: self)
-        } else { // It's scheduled hopefully
+        switch billingItem.status {
+        case .processing, .processed, .canceled, .failed:
+            performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: billingItem)
+        case .scheduled:
             handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
+        case .pending, .unknown:
+            break
         }
     }
     
@@ -142,13 +135,13 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         }
     }
     
-    private func showBillPdf() {
+    private func showBillPdf(billingItem: BillingHistoryItem) {
         if Environment.shared.opco == .comEd && accountDetail.hasElectricSupplier && accountDetail.isSingleBillOption {
             let alertVC = UIAlertController(title: NSLocalizedString("You are enrolled with a Supplier who provides you with your electricity bill, including your ComEd delivery charges. Please reach out to your Supplier for your bill image.", comment: ""), message: nil, preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             present(alertVC, animated: true, completion: nil)
         } else {
-            performSegue(withIdentifier: "viewBillSegue", sender: self)
+            performSegue(withIdentifier: "viewBillSegue", sender: billingItem)
         }
     }
     
@@ -167,26 +160,21 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
 extension MoreBillingHistoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (billingList) != nil {
-            return billingList!.count
-        } else {
-            return 0
-        }
+        return billingList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let billingHistoryItem: BillingHistoryItem
 
-        billingHistoryItem = (billingList![indexPath.row])
+        billingHistoryItem = billingList[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BillingHistoryCell", for: indexPath) as! BillingHistoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: BillingHistoryTableViewCell.className, for: indexPath) as! BillingHistoryTableViewCell
         
         cell.configureWith(item: billingHistoryItem)
         
         cell.didSelect
-            .drive(onNext: { [weak self, weak tableView] in
-                guard let tableView = tableView else { return }
-                self?.selectedRow(at: indexPath, tableView: tableView)
+            .drive(onNext: { [weak self] in
+                self?.selectedRow(at: indexPath)
             })
             .disposed(by: cell.disposeBag)
         
