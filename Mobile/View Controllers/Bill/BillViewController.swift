@@ -442,7 +442,7 @@ class BillViewController: AccountPickerViewController {
 		viewModel.catchUpDateText.drive(catchUpDateLabel.rx.text).disposed(by: bag)
         viewModel.catchUpDisclaimerText.drive(catchUpDisclaimerLabel.rx.text).disposed(by: bag)
         avoidShutoffLabel.text = viewModel.avoidShutoffText
-        avoidShutoffLabel.accessibilityLabel = viewModel.avoidShutoffA11yText
+        avoidShutoffLabel.accessibilityLabel = viewModel.avoidShutoffText
 		viewModel.avoidShutoffAmountText.drive(avoidShutoffAmountLabel.rx.text).disposed(by: bag)
 		viewModel.avoidShutoffDueDateText.drive(avoidShutoffDateLabel.rx.text).disposed(by: bag)
 		viewModel.pastDueAmountText.drive(pastDueAmountLabel.rx.text).disposed(by: bag)
@@ -668,7 +668,7 @@ class BillViewController: AccountPickerViewController {
     func configureAccessibility() {
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         viewBillButton.accessibilityLabel = NSLocalizedString("PDF, View bill", comment: "")
-        activityButton.accessibilityLabel = NSLocalizedString("Activity", comment: "")
+        activityButton.accessibilityLabel = NSLocalizedString("Payment Activity", comment: "")
         walletButton.accessibilityLabel = NSLocalizedString("My Wallet", comment: "")
         
         viewModel.autoPayButtonText.map { $0.string }.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)

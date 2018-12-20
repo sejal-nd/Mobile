@@ -60,7 +60,6 @@ class RadioSelectControl: ButtonControl {
 			detailButton.isHidden = !isSelected || detailButtonTitle == nil
             if isSelected && !detailButton.isHidden {
                 isAccessibilityElement = false
-                detailButton.isAccessibilityElement = true
                 accessibilityElements = [titleLabel, detailButton]
             } else {
                 accessibilitySetup()
@@ -105,13 +104,14 @@ class RadioSelectControl: ButtonControl {
         titleStack.axis = .horizontal
         titleStack.distribution = .fill
         titleStack.spacing = 4
-        titleStack.isUserInteractionEnabled = false
         
         let detailStack = UIStackView(arrangedSubviews: [titleStack, detailLabel]).usingAutoLayout()
         detailStack.axis = .vertical
         detailStack.distribution = .fill
         detailStack.spacing = 4
-        detailStack.isUserInteractionEnabled = false
+        
+        let tgr = UITapGestureRecognizer(target: self, action: #selector(onStackViewTap))
+        detailStack.addGestureRecognizer(tgr)
         
 		addSubview(selectedImageView)
 		addSubview(detailStack)
@@ -139,35 +139,24 @@ class RadioSelectControl: ButtonControl {
         accessibilitySetup()
 	}
     
+    @objc func onStackViewTap() {
+        sendActions(for: .touchUpInside)
+    }
+    
     private func accessibilitySetup() {
         isAccessibilityElement = true
-        accessibilityLabel = titleLabel.text ?? ""
+        
+        var a11yLabel = title
+        if !subtitle.isEmpty {
+            a11yLabel += ", \(subtitle)"
+        }
+        if isSelected {
+            a11yLabel += ", selected"
+        }
+        accessibilityLabel = a11yLabel
     }
-	
-	
-	static func create(withTitle title: String, selected: Bool = false, shouldFadeSubviewsOnPress: Bool? = nil, backgroundColorOnPress: UIColor? = nil) -> RadioSelectControl {
-		let view = RadioSelectControl().usingAutoLayout()
-		view.translatesAutoresizingMaskIntoConstraints = false
-		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		view.bind(withTitle: title, selected: selected, shouldFadeSubviewsOnPress: shouldFadeSubviewsOnPress, backgroundColorOnPress: backgroundColorOnPress)
-		return view
-	}
-	
-	
-	func bind(withTitle title: String, selected: Bool = false, shouldFadeSubviewsOnPress: Bool? = nil, backgroundColorOnPress: UIColor? = nil) {
-		titleLabel.text = title
-		isSelected = selected
-		
-		if let shouldFadeSubviewsOnPress = shouldFadeSubviewsOnPress {
-			self.shouldFadeSubviewsOnPress = shouldFadeSubviewsOnPress
-		}
-		
-		if let backgroundColorOnPress = backgroundColorOnPress {
-			self.backgroundColorOnPress = backgroundColorOnPress
-		}
-	}
     
-    static func create(withTitle title: String, subtitle: String = "", detailButtonTitle: String = "", showSeparator: Bool) -> RadioSelectControl {
+    static func create(withTitle title: String, subtitle: String = "", detailButtonTitle: String? = nil, showSeparator: Bool = false) -> RadioSelectControl {
         let view = RadioSelectControl().usingAutoLayout()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -175,7 +164,7 @@ class RadioSelectControl: ButtonControl {
         return view
     }
 	
-    func configure(title: String, subtitle: String = "", detailButtonTitle: String = "", showSeparator: Bool) {
+    func configure(title: String, subtitle: String = "", detailButtonTitle: String? = nil, showSeparator: Bool) {
         self.title = title
         self.subtitle = subtitle
         self.detailButtonTitle = detailButtonTitle

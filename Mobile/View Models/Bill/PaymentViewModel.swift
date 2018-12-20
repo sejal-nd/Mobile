@@ -24,6 +24,7 @@ class PaymentViewModel {
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
+    let newlyAddedWalletItem = Variable<WalletItem?>(nil) // Set if the user adds a new item from the Paymentus iFrame in this workflow
     let wouldBeSelectedWalletItemIsExpired = Variable(false)
     let cvv = Variable("")
     
@@ -45,7 +46,7 @@ class PaymentViewModel {
     let paymentDetail = Variable<PaymentDetail?>(nil)
     let paymentId = Variable<String?>(nil)
     let allowEdits = Variable(true)
-    let allowDeletes = Variable(false)
+    let allowCancel = Variable(false)
     
     init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
@@ -57,7 +58,7 @@ class PaymentViewModel {
         if let billingHistoryItem = billingHistoryItem {
             self.paymentId.value = billingHistoryItem.paymentId
             self.allowEdits.value = billingHistoryItem.flagAllowEdits
-            self.allowDeletes.value = billingHistoryItem.flagAllowDeletes
+            self.allowCancel.value = billingHistoryItem.flagAllowDeletes
         }
         
         self.paymentDate = Variable(Date()) // May be updated later...see computeDefaultPaymentDate()
@@ -128,62 +129,67 @@ class PaymentViewModel {
                 
                 self.computeDefaultPaymentDate()
                 
-                if let walletItems = self.walletItems.value, self.selectedWalletItem.value == nil {
-                    if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment
-                        self.paymentAmount.value = paymentDetail.paymentAmount
-                        self.paymentDate.value = paymentDetail.paymentDate!
-                        for item in walletItems {
-                            if item.walletItemID == paymentDetail.walletItemId {
-                                self.selectedWalletItem.value = item
-                                break
-                            }
-                        }
-                    } else {
-                        if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
-                            // Default to One Touch Pay item IF it's not a VISA credit card
-                            if let otpItem = self.oneTouchPayItem {
-                                if otpItem.bankOrCard == .bank {
-                                    self.selectedWalletItem.value = otpItem
-                                } else if let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
-                                    self.selectedWalletItem.value = otpItem
-                                }
-                            } else if walletItems.count > 0 { // If no OTP item, default to first non-VISA wallet item
-                                for item in walletItems {
-                                    if item.bankOrCard == .bank {
-                                        self.selectedWalletItem.value = item
-                                    } else if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
-                                        self.selectedWalletItem.value = item
-                                        break
-                                    }
-                                }
-                            }
-                        } else if self.accountDetail.value.isCashOnly {
-                            // Default to One Touch Pay item IF it's a credit card
-                            if let otpItem = self.oneTouchPayItem {
-                                if otpItem.bankOrCard == .card {
-                                    self.selectedWalletItem.value = otpItem
-                                }
-                            } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
-                                for item in walletItems {
-                                    if item.bankOrCard == .card {
-                                        self.selectedWalletItem.value = item
-                                        break
-                                    }
+                if let walletItems = self.walletItems.value {
+                    if self.selectedWalletItem.value == nil { // Initial wallet item selection logic
+                        if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment
+                            self.paymentAmount.value = paymentDetail.paymentAmount
+                            self.paymentDate.value = paymentDetail.paymentDate!
+                            for item in walletItems {
+                                if item.walletItemID == paymentDetail.walletItemId {
+                                    self.selectedWalletItem.value = item
+                                    break
                                 }
                             }
                         } else {
-                            // Default to One Touch Pay item
-                            if let otpItem = self.oneTouchPayItem {
-                                self.selectedWalletItem.value = otpItem
-                            } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
-                                self.selectedWalletItem.value = walletItems[0]
+                            if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
+                                // Default to One Touch Pay item IF it's not a VISA credit card
+                                if let otpItem = self.oneTouchPayItem {
+                                    if otpItem.bankOrCard == .bank {
+                                        self.selectedWalletItem.value = otpItem
+                                    } else if let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
+                                        self.selectedWalletItem.value = otpItem
+                                    }
+                                } else if walletItems.count > 0 { // If no OTP item, default to first non-VISA wallet item
+                                    for item in walletItems {
+                                        if item.bankOrCard == .bank {
+                                            self.selectedWalletItem.value = item
+                                        } else if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
+                                            self.selectedWalletItem.value = item
+                                            break
+                                        }
+                                    }
+                                }
+                            } else if self.accountDetail.value.isCashOnly {
+                                // Default to One Touch Pay item IF it's a credit card
+                                if let otpItem = self.oneTouchPayItem {
+                                    if otpItem.bankOrCard == .card {
+                                        self.selectedWalletItem.value = otpItem
+                                    }
+                                } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
+                                    for item in walletItems {
+                                        if item.bankOrCard == .card {
+                                            self.selectedWalletItem.value = item
+                                            break
+                                        }
+                                    }
+                                }
+                            } else {
+                                // Default to One Touch Pay item
+                                if let otpItem = self.oneTouchPayItem {
+                                    self.selectedWalletItem.value = otpItem
+                                } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
+                                    self.selectedWalletItem.value = walletItems[0]
+                                }
                             }
                         }
+                        if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
+                            self.selectedWalletItem.value = nil
+                            self.wouldBeSelectedWalletItemIsExpired.value = true
+                        }
                     }
-                    if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
-                        self.selectedWalletItem.value = nil
-                        self.wouldBeSelectedWalletItemIsExpired.value = true
-                    }
+                }
+                if self.newlyAddedWalletItem.value != nil {
+                    self.selectedWalletItem.value = self.newlyAddedWalletItem.value
                 }
                 onSuccess?()
             }, onError: { [weak self] _ in
@@ -208,7 +214,7 @@ class PaymentViewModel {
                 }
                 
                 let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                                      existingAccount: true,
+                                      existingAccount: !self.selectedWalletItem.value!.isTemporary,
                                       saveAccount: false,
                                       maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
                                       paymentAmount: self.paymentAmount.value,
@@ -645,12 +651,12 @@ class PaymentViewModel {
         if let item = self?.oneTouchPayItem {
             switch item.bankOrCard {
             case .bank:
-                    return String(format: NSLocalizedString("You are currently using bank account %@ as your default payment account.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
+                    return String(format: NSLocalizedString("You are currently using bank account %@ as your default payment method.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
             case .card:
-                    return String(format: NSLocalizedString("You are currently using card %@ as your default payment account.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
+                    return String(format: NSLocalizedString("You are currently using card %@ as your default payment method.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
             }
         }
-        return NSLocalizedString("Set this payment account as default to easily pay from the Home and Bill screens.", comment: "")
+        return NSLocalizedString("Set this payment method as default to easily pay from the Home and Bill screens.", comment: "")
     }
 
     private(set) lazy var shouldShowInlinePaymentDivider: Driver<Bool> = Driver.combineLatest(self.inlineBank.asDriver(), self.inlineCard.asDriver())
@@ -708,6 +714,9 @@ class PaymentViewModel {
             }
             return false
         } else {
+            if let tempItem = self.newlyAddedWalletItem.value {
+                return true
+            }
             return walletItems.count > 0
         }
     }
@@ -742,16 +751,16 @@ class PaymentViewModel {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 } else {
                     // COMED/PECO BANK
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > amountDue {
-                        return NSLocalizedString("Payment must be less than or equal to amount due", comment: "")
+                        return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 }
             } else if cardWorkflow {
@@ -762,16 +771,16 @@ class PaymentViewModel {
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 } else {
                     // COMED/PECO CREDIT CARD
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
                     } else if paymentAmount > amountDue {
-                        return NSLocalizedString("Payment must be less than or equal to amount due", comment: "")
+                        return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum Payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
                     }
                 }
             }
@@ -783,57 +792,78 @@ class PaymentViewModel {
         //TODO: Remove when BGE gets paymentus
         guard Environment.shared.opco != .bge else { return false }
         
-        let billingInfo = accountDetail.value.billingInfo
-        
-        if billingInfo.pastDueAmount ?? 0 > 0 && billingInfo.pastDueAmount != billingInfo.netDueAmount {
-            return true
-        }
-        
-        return false
+        return !paymentAmounts.isEmpty
     }
     
+    /**
+     Some funky logic going on here. Basically, there are three cases in which we just return []
+     
+     1. No pastDueAmount
+     2. netDueAmount == pastDueAmount, no other precarious amounts exist
+     3. netDueAmount == pastDueAmount == other precarious amount (restorationAmount, amtDpaReinst, disconnectNoticeArrears)
+     
+     In these cases we don't give the user multiple payment amount options, just the text field.
+    */
     lazy var paymentAmounts: [(Double?, String)] = {
-        let opco = Environment.shared.opco
-        
         //TODO: Remove when BGE gets paymentus
-        guard opco != .bge else { return [] }
+        guard Environment.shared.opco != .bge else { return [] }
         
         let billingInfo = accountDetail.value.billingInfo
         
         guard let netDueAmount = billingInfo.netDueAmount,
             let pastDueAmount = billingInfo.pastDueAmount,
-            pastDueAmount > 0 && pastDueAmount != netDueAmount else {
+            pastDueAmount > 0 else {
             return []
         }
         
-        let totalAmount: (Double?, String) = (netDueAmount, NSLocalizedString("Total Amount Due", comment: ""))
+        let totalAmount: (Double?, String)
+        if pastDueAmount == netDueAmount {
+            totalAmount = (netDueAmount, NSLocalizedString("Total Past Due Amount", comment: ""))
+        } else {
+            totalAmount = (netDueAmount, NSLocalizedString("Total Amount Due", comment: ""))
+        }
+        
         let pastDue: (Double?, String) = (pastDueAmount, NSLocalizedString("Past Due Amount", comment: ""))
         let other: (Double?, String) = (nil, NSLocalizedString("Enter Custom Amount", comment: ""))
         
         var amounts: [(Double?, String)] = [totalAmount, other]
         var precariousAmounts = [(Double?, String)]()
-        if let restorationAmount = billingInfo.restorationAmount,
-            restorationAmount > 0 &&
-                opco != .bge &&
-                accountDetail.value.isCutOutNonPay {
-            if pastDueAmount != restorationAmount {
+        if let restorationAmount = billingInfo.restorationAmount, restorationAmount > 0 &&
+            Environment.shared.opco != .bge && accountDetail.value.isCutOutNonPay {
+            guard pastDueAmount != netDueAmount || restorationAmount != netDueAmount else {
+                return []
+            }
+            
+            if pastDueAmount != netDueAmount && pastDueAmount != restorationAmount {
                 precariousAmounts.append(pastDue)
             }
             
             precariousAmounts.append((restorationAmount, NSLocalizedString("Restoration Amount", comment: "")))
         } else if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 && billingInfo.isDisconnectNotice {
-            if pastDueAmount != arrears {
+            guard pastDueAmount != netDueAmount || arrears != netDueAmount else {
+                return []
+            }
+            
+            if pastDueAmount != netDueAmount && pastDueAmount != arrears {
                 precariousAmounts.append(pastDue)
             }
             
-            precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount ", comment: "")))
-        } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && opco != .bge {
-            if pastDueAmount != amtDpaReinst {
+            precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount", comment: "")))
+        } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && Environment.shared.opco != .bge {
+            guard pastDueAmount != netDueAmount || amtDpaReinst != netDueAmount else {
+                return []
+            }
+            
+            if pastDueAmount != netDueAmount && pastDueAmount != amtDpaReinst {
                 precariousAmounts.append(pastDue)
             }
             
             precariousAmounts.append((amtDpaReinst, NSLocalizedString("Amount Due to Catch Up on Agreement", comment: "")))
         } else {
+            guard pastDueAmount != netDueAmount else {
+                return []
+            }
+            
             precariousAmounts.append(pastDue)
         }
         
@@ -923,12 +953,7 @@ class PaymentViewModel {
                 return $4
             } else {
                 guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
-                
-                if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                    return nickname == maskedNumber ? nil : nickname
-                } else {
-                    return nickname
-                }
+                return nickname
             }
     }
     
@@ -945,7 +970,7 @@ class PaymentViewModel {
                        wouldBeSelectedWalletItemIsExpired.asDriver())
         {
             if $7 {
-                return NSLocalizedString("Select Payment Account", comment: "")
+                return NSLocalizedString("Select Payment Method", comment: "")
             }
             
             var a11yLabel = ""
@@ -1016,6 +1041,10 @@ class PaymentViewModel {
                        allowEdits.asDriver())
         { !$0 && !$1 && !$2 && $3 }
     
+    private(set) lazy var shouldShowAddPaymentMethodView: Driver<Bool> = Driver
+        .combineLatest(shouldShowAddBankAccount, shouldShowAddCreditCard)
+        { $0 || $1 }
+    
     private(set) lazy var walletFooterLabelText: Driver<String> = Driver
         .combineLatest(hasWalletItems, inlineCard.asDriver(), inlineBank.asDriver())
     {
@@ -1085,8 +1114,8 @@ class PaymentViewModel {
             return $0.mmDdYyyyString
     }
     
-    private(set) lazy var shouldShowDeletePaymentButton: Driver<Bool> = Driver
-        .combineLatest(paymentId.asDriver(), allowDeletes.asDriver())
+    private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = Driver
+        .combineLatest(paymentId.asDriver(), allowCancel.asDriver())
         {
             if $0 != nil {
                 return $1
@@ -1154,9 +1183,9 @@ class PaymentViewModel {
                 return self.convenienceFee.currencyString
             }
     }
-    
+        
     private(set) lazy var shouldShowAutoPayEnrollButton: Driver<Bool> = accountDetail.asDriver().map {
-        !$0.isAutoPay && $0.isAutoPayEligible
+        !$0.isAutoPay && $0.isAutoPayEligible && !StormModeStatus.shared.isOn
     }
     
     private(set) lazy var totalPaymentLabelText: Driver<String> = isOverpayingBank.map {

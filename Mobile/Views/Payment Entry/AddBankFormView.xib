@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -67,8 +67,8 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="njk-Ao-oVI"/>
                                     </constraints>
                                 </view>
-                                <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRD-OB-Gz6">
-                                    <rect key="frame" x="266" y="5" width="51" height="51"/>
+                                <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRD-OB-Gz6">
+                                    <rect key="frame" x="266" y="4.5" width="51" height="51"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="51" id="a4D-dg-5zA"/>
                                         <constraint firstAttribute="height" constant="51" id="b5A-oa-MGB"/>
@@ -99,8 +99,8 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="5Th-JR-Zn0"/>
                                     </constraints>
                                 </view>
-                                <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lg-7q-Cle">
-                                    <rect key="frame" x="266" y="5" width="51" height="51"/>
+                                <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lg-7q-Cle">
+                                    <rect key="frame" x="266" y="4.5" width="51" height="51"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="51" id="E3E-CQ-0sA"/>
                                         <constraint firstAttribute="width" constant="51" id="QjO-vW-KDi"/>
@@ -131,15 +131,15 @@
                         <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="FJl-0C-lfL">
                             <rect key="frame" x="29" y="481.5" width="317" height="97"/>
                             <subviews>
-                                <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFb-4i-BcJ">
+                                <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFb-4i-BcJ">
                                     <rect key="frame" x="0.0" y="0.0" width="317" height="50"/>
                                     <subviews>
-                                        <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mij-Zl-hNE" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                        <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mij-Zl-hNE" customClass="Switch" customModule="BGE" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="9.5" width="51" height="31"/>
                                             <accessibility key="accessibilityConfiguration" label="Save to my wallet"/>
                                         </switch>
-                                        <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Save to My Wallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsI-ud-uTA">
-                                            <rect key="frame" x="61" y="5" width="256" height="21"/>
+                                        <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save to My Wallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsI-ud-uTA">
+                                            <rect key="frame" x="61" y="0.0" width="256" height="50"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <bool key="isElement" value="NO"/>
                                             </accessibility>
@@ -158,7 +158,7 @@
                                         <constraint firstItem="HsI-ud-uTA" firstAttribute="leading" secondItem="mij-Zl-hNE" secondAttribute="trailing" constant="12" id="uzG-va-JEL"/>
                                     </constraints>
                                 </view>
-                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="By not saving this payment account, you will only be eligible to make an instant payment." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3L-oh-LZF">
+                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By not saving this payment method, you will only be eligible to make an instant payment." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3L-oh-LZF">
                                     <rect key="frame" x="0.0" y="64" width="317" height="33"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <nil key="textColor"/>
@@ -176,17 +176,17 @@
                         <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Inh-L7-VRF" userLabel="One Touch Pay View">
                             <rect key="frame" x="29" y="711" width="317" height="89"/>
                             <subviews>
-                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set this payment account as default to easily pay from the Home and Bill screens." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBq-BY-01y">
-                                    <rect key="frame" x="0.0" y="0.0" width="317" height="33"/>
+                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set this payment method as default to easily pay from the Home and Bill screens." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBq-BY-01y">
+                                    <rect key="frame" x="0.0" y="0.0" width="317" height="33.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5k0-AO-yD9" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="58" width="51" height="31"/>
-                                    <accessibility key="accessibilityConfiguration" label="Default payment account"/>
+                                    <rect key="frame" x="0.0" y="58.5" width="51" height="31"/>
+                                    <accessibility key="accessibilityConfiguration" label="Default payment method"/>
                                 </switch>
-                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Payment Account" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oz-jt-RVY">
+                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Payment Method" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oz-jt-RVY">
                                     <rect key="frame" x="61" y="64" width="256" height="19.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>

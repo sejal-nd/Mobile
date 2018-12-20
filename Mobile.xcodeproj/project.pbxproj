@@ -961,9 +961,9 @@
 		9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
-		9CB16EF7219DD4A4008C4871 /* ePayWalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* ePayWalletTableViewCell.swift */; };
-		9CB16EF8219DD4A4008C4871 /* ePayWalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* ePayWalletTableViewCell.swift */; };
-		9CB16EF9219DD4A4008C4871 /* ePayWalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* ePayWalletTableViewCell.swift */; };
+		9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
+		9CB16EF8219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
+		9CB16EF9219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
 		9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
@@ -976,6 +976,7 @@
 		9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		9CCE3E4A21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		9CCE3E4B21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
+		9CCE3E4C21BB17E40008E1AF /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		A7F5DB117C3C61732DB54BC5 /* Pods_BGE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70FC1A9A5F84C0729AF8083B /* Pods_BGE.framework */; };
 		B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
 		B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
@@ -1555,9 +1556,6 @@
 		E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
 		E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
 		E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
-		E807A9E2202246C500513921 /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
-		E807A9E3202246C500513921 /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
-		E807A9E4202246C600513921 /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
 		E807A9E52022475100513921 /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		E807A9E62022475100513921 /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
 		E807A9E72022475100513921 /* AccountDetailInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */; };
@@ -1599,9 +1597,6 @@
 		E8264EF5200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */; };
 		E8264EF6200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */; };
 		E8264EF7200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */; };
-		E8264F0B2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
-		E8264F0C2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
-		E8264F0D2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */; };
 		E827D2311ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
 		E827D2321ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
 		E827D2331ED47AB3004DA1D6 /* AddBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */; };
@@ -1764,9 +1759,6 @@
 		E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		E876A85E1ECF377D00CA63BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
-		E876A8601ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */; };
-		E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */; };
-		E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */; };
 		E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790BE61F8C18C20067BE85 /* BillComparison.swift */; };
 		E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790BE61F8C18C20067BE85 /* BillComparison.swift */; };
 		E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790BE61F8C18C20067BE85 /* BillComparison.swift */; };
@@ -2927,7 +2919,7 @@
 		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
-		9CB16EF6219DD4A4008C4871 /* ePayWalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ePayWalletTableViewCell.swift; sourceTree = "<group>"; };
+		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+SaveToWallet.swift"; sourceTree = "<group>"; };
 		9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+PaymentusErrors.swift"; sourceTree = "<group>"; };
 		9F9446C42DD179469D3921A7 /* Pods_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3159,7 +3151,6 @@
 		E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBillViewModel.swift; sourceTree = "<group>"; };
 		E81F38121ED72E890031D30B /* AddCreditCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCreditCardViewModel.swift; sourceTree = "<group>"; };
 		E8264EF4200D4573004A7EDA /* PaymentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModelTests.swift; sourceTree = "<group>"; };
-		E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletItemInitExtensions.swift; sourceTree = "<group>"; };
 		E827D2301ED47AB3004DA1D6 /* AddBankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankAccountViewController.swift; sourceTree = "<group>"; };
 		E827D2371ED490A0004DA1D6 /* InfoModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoModal.xib; sourceTree = "<group>"; };
 		E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoModalViewController.swift; sourceTree = "<group>"; };
@@ -3209,7 +3200,6 @@
 		E873DA741EE8699600020D1B /* RadioSelectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadioSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		E876A8551ECDEF6800CA63BF /* WalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
-		E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		E8790BE61F8C18C20067BE85 /* BillComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillComparison.swift; sourceTree = "<group>"; };
 		E87926D51F85580300794CA9 /* BillBreakdownViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillBreakdownViewController.xib; sourceTree = "<group>"; };
 		E87926D91F8558AE00794CA9 /* BillBreakdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillBreakdownViewController.swift; sourceTree = "<group>"; };
@@ -3848,9 +3838,9 @@
 				35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */,
 				35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */,
 				35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */,
-				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
-				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
 				35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */,
+				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
+				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -4332,8 +4322,7 @@
 				82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */,
 				82A18ED31EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift */,
 				82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */,
-				E876A85F1ECF42FF00CA63BF /* WalletTableViewCell.swift */,
-				9CB16EF6219DD4A4008C4871 /* ePayWalletTableViewCell.swift */,
+				9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */,
 				E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */,
 				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
 				E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */,
@@ -5235,7 +5224,6 @@
 			children = (
 				823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */,
 				9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */,
-				E8264F0A2011055E004A7EDA /* WalletItemInitExtensions.swift */,
 				829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */,
 				B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */,
 				B092184220A2400800695888 /* MaintenanceInitExtensions.swift */,
@@ -6992,6 +6980,7 @@
 				B08BBFC921C8539000A899FC /* SERResult.swift in Sources */,
 				35E7C8072190805C00BA13C6 /* OutageInterfaceController.swift in Sources */,
 				356C7F9C2190A3CE003E8A90 /* AuthTokenResponse.swift in Sources */,
+				9CCE3E4C21BB17E40008E1AF /* StormModeStatus.swift in Sources */,
 				35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */,
 				356C7F922190A1B9003E8A90 /* MCSOutageService.swift in Sources */,
 				356C7F8421909E97003E8A90 /* DateParser.swift in Sources */,
@@ -7160,12 +7149,11 @@
 				82E22B5E1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				01F6121D1F1E400E00A4F9DA /* AddCardFormView.swift in Sources */,
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
-				9CB16EF7219DD4A4008C4871 /* ePayWalletTableViewCell.swift in Sources */,
+				9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				224EFF18216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
 				E80D2E271E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				E835D1CE1FB63288008CE250 /* PushNotification.swift in Sources */,
 				2FB9B45D1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift in Sources */,
-				E876A8601ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				54DF4BCC1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				E87C320F1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -7255,7 +7243,6 @@
 				5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				9C7E5A53212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
-				E807A9E2202246C500513921 /* WalletItemInitExtensions.swift in Sources */,
 				35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */,
 				B0B083A1216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
@@ -7480,7 +7467,6 @@
 				2FA5D8611F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				E84705EF202514CB00A749A3 /* MockUsageService.swift in Sources */,
 				B094A35620D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
-				E876A8621ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8FF08651F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				82A18EC01EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
@@ -7515,7 +7501,7 @@
 				B0728E42215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				E81F38151ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
 				826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
-				9CB16EF9219DD4A4008C4871 /* ePayWalletTableViewCell.swift in Sources */,
+				9CB16EF9219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				E8C29C751F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
@@ -7628,7 +7614,6 @@
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				9C7E5A55212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
-				E807A9E4202246C600513921 /* WalletItemInitExtensions.swift in Sources */,
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8400E681FE05F070064E242 /* MockAuthenticationService.swift in Sources */,
 				B0B083A3216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
@@ -7858,7 +7843,6 @@
 				E84705EE202514CB00A749A3 /* MockUsageService.swift in Sources */,
 				B094A35520D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				9CCE3E4721B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
-				E876A8611ECF42FF00CA63BF /* WalletTableViewCell.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8FF08641F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
@@ -7908,7 +7892,7 @@
 				82E22B5F1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				E80D2E181E721668002626C9 /* MaskedString.swift in Sources */,
 				224EFF19216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
-				9CB16EF8219DD4A4008C4871 /* ePayWalletTableViewCell.swift in Sources */,
+				9CB16EF8219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				01F6121E1F1E400E00A4F9DA /* AddCardFormView.swift in Sources */,
 				E835D1CF1FB63288008CE250 /* PushNotification.swift in Sources */,
@@ -8002,7 +7986,6 @@
 				82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				9C7E5A54212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
-				E807A9E3202246C500513921 /* WalletItemInitExtensions.swift in Sources */,
 				82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				E8400E671FE05F060064E242 /* MockAuthenticationService.swift in Sources */,
 				B0B083A2216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
@@ -8249,7 +8232,6 @@
 				B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
-				E8264F0B2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
 				823AA54B20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */,
@@ -8490,7 +8472,6 @@
 				9CCE3E4A21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B07D247F20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E8F62B6F200924410077B3DA /* MockAuthenticationService.swift in Sources */,
-				E8264F0C2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */,
 				E8F62B70200924410077B3DA /* MockBillService.swift in Sources */,
 				823AA54C20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62B71200924410077B3DA /* MockAlertsService.swift in Sources */,
@@ -8686,7 +8667,6 @@
 				9CCE3E4B21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B07D248020C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E8F62C24200924570077B3DA /* MockAuthenticationService.swift in Sources */,
-				E8264F0D2011055E004A7EDA /* WalletItemInitExtensions.swift in Sources */,
 				E8F62C25200924570077B3DA /* MockBillService.swift in Sources */,
 				823AA54D20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62C26200924570077B3DA /* MockAlertsService.swift in Sources */,
@@ -9015,7 +8995,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
@@ -9045,6 +9025,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
@@ -9076,6 +9057,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.prodbeta;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -9107,6 +9089,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.prodbeta;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -9367,7 +9350,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
@@ -9792,7 +9775,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A0B2CF62B6B3538390205C4 /* Pods-PECO_WatchOS.develop.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -9868,7 +9851,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 05DFA5B9B1BAB35F544A3BCE /* Pods-PECO_WatchOS.automation.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9898,7 +9881,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 277241359D21FBE81E2E1E5D /* Pods-PECO_WatchOS.staging.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9928,7 +9911,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9BEBD3C5006A1BBCE7CFD96B /* Pods-PECO_WatchOS.testing.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9958,7 +9941,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F7291B0AF47D72DF84B1C5DB /* Pods-PECO_WatchOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -9988,7 +9971,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3D769EB6C31625603286F56F /* Pods-PECO_WatchOS.prodbeta.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -10321,7 +10304,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
@@ -10354,7 +10337,7 @@
 				COMPRESS_PNG_FILES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
@@ -10388,7 +10371,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.testing;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -10421,7 +10404,7 @@
 				COMPRESS_PNG_FILES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.testing;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -10682,7 +10665,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
@@ -10753,7 +10736,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
@@ -10891,7 +10874,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Mobile/Vendor/CardIO",
@@ -10924,7 +10907,7 @@
 				COMPRESS_PNG_FILES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
@@ -10989,7 +10972,7 @@
 				COMPRESS_PNG_FILES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.staging;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -11080,7 +11063,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.staging;
 				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

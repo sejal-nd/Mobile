@@ -11,6 +11,7 @@ TARGET_REPO_PATH=EUCOMS
 TOKEN="$(cat $ROOT/token.txt)"
 OUTPUTFORMAT=csv
 PULL_REQUEST_NUMBER=
+CHARACTER_LIMIT=
 
 # Parse arguments.
 for i in "$@"; do
@@ -23,6 +24,7 @@ for i in "$@"; do
         --token) TOKEN="$2"; shift ;;
         --output) OUTPUTFORMAT="$2"; shift ;;
         --pull-request-number) PULL_REQUEST_NUMBER="$2"; shift ;;
+        --character-limit) CHARACTER_LIMIT="$2"; shift ;;
     esac
     shift
 done
@@ -131,25 +133,35 @@ while read line; do
 done < $ROOT/pull-reqs.txt
 
 
-if [ "$OUTPUTFORMAT" == "csv" ]; then
-    printf "Work Item\tTitle\tURL\n" > $ROOT/work-items.csv
-elif [ "$OUTPUTFORMAT" == "txt" ]; then
-    printf "\nLinked Work Items\n----------------------------\n" >> $ROOT/release_notes.txt
-fi
+# if [ "$OUTPUTFORMAT" == "csv" ]; then
+#     printf "Work Item\tTitle\tURL\n" > $ROOT/work-items.csv
+# elif [ "$OUTPUTFORMAT" == "txt" ]; then
+#     printf "\nLinked Work Items\n----------------------------\n" >> $ROOT/release_notes.txt
+# fi
 
-while read line; do
+# while read line; do
 
-    item="$(basename $line)"
-    echo "Requesting work item details for $line"
-    url="https://dev.azure.com/exelontfs/${TARGET_PROJECT}/_apis/wit/workitems/${item}?api-version=4.1"
-    title=$(curl -u "${TOKEN}" "${url}" | jq -r '.fields["System.Title"]')
+#     item="$(basename $line)"
+#     echo "Requesting work item details for $line"
+#     url="https://dev.azure.com/exelontfs/${TARGET_PROJECT}/_apis/wit/workitems/${item}?api-version=4.1"
+#     title=$(curl -u "${TOKEN}" "${url}" | jq -r '.fields["System.Title"]')
     
-    if [ "$OUTPUTFORMAT" == "csv" ]; then
-        printf "%s\t%s\t%s\n" "$item" "$title" "$line" >> $ROOT/work-items.csv
-    elif [ "$OUTPUTFORMAT" == "txt" ]; then
-        echo "- [${item} - ${title}](${line})" >> $ROOT/release_notes.txt
-    fi
-done < $ROOT/work-items.txt
+#     if [ "$OUTPUTFORMAT" == "csv" ]; then
+#         printf "%s\t%s\t%s\n" "$item" "$title" "$line" >> $ROOT/work-items.csv
+#     elif [ "$OUTPUTFORMAT" == "txt" ]; then
+#         echo "- [${item} - ${title}](${line})" >> $ROOT/release_notes.txt
+        
+#         if [ -n "$CHARACTER_LIMIT" ]; then
+#             wordcount=$(wc -c $ROOT/release_notes.txt | grep -oEi "(\d+)")
+#             if [ "$wordcount" -gt "$CHARACTER_LIMIT" ]; then
+#                 echo "-- Character limit exceeded, output truncated --"
+#                 echo "-- Character limit exceeded, output truncated --" >> $ROOT/release_notes.txt
+#                 break
+#             fi
+            
+#         fi
+#     fi
+# done < $ROOT/work-items.txt
 
 
 

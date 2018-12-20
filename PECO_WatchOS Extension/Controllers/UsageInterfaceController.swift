@@ -12,7 +12,11 @@ class UsageInterfaceController: WKInterfaceController {
     
     @IBOutlet var loadingImageGroup: WKInterfaceGroup!
     
-    @IBOutlet var accountGroup: WKInterfaceGroup!
+    @IBOutlet var accountGroup: WKInterfaceGroup! {
+        didSet {
+            accountGroup.setHidden(true)
+        }
+    }
     @IBOutlet var accountImage: WKInterfaceImage!
     @IBOutlet var accountTitleLabel: WKInterfaceLabel!
     
@@ -61,6 +65,7 @@ class UsageInterfaceController: WKInterfaceController {
     
     private var isElectricSelected = true
     private var isModeledForOpower = true
+    private var hasError = false
     
     private var state = State.loading {
         didSet {
@@ -78,14 +83,14 @@ class UsageInterfaceController: WKInterfaceController {
                 if isModeledForOpower, let toDateCost = billForecast.toDateCost {
                     mainSpentSoFarValueLabel.setText("\(toDateCost.currencyString ?? "")")
                 } else if let toDateUsage = billForecast.toDateUsage {
-                    mainSpentSoFarValueLabel.setText("\(toDateUsage) \(billForecast.meterUnit)")
+                    mainSpentSoFarValueLabel.setText("\(Int(toDateUsage)) \(billForecast.meterUnit)")
                 }
                 
                 // Projected Bill Cost
                 if isModeledForOpower, let projectedBillCost = billForecast.projectedCost {
                     mainprojectedBillValueLabel.setText("\(projectedBillCost.currencyString ?? "--")")
                 } else if let projectedUsage = billForecast.projectedUsage {
-                    mainprojectedBillValueLabel.setText("\(projectedUsage) \(billForecast.meterUnit)")
+                    mainprojectedBillValueLabel.setText("\(Int(projectedUsage)) \(billForecast.meterUnit)")
                 }
                 
                 // Set Date Labels
@@ -110,7 +115,7 @@ class UsageInterfaceController: WKInterfaceController {
                     let progress = toDateUsage / projectedUsage
                     setImageForProgress(progress.isNaN ? 0.0 : progress) // handle division by 0
                     
-                    mainTitleLabel.setText("\(toDateUsage) \(billForecast.meterUnit)")
+                    mainTitleLabel.setText("\(Int(toDateUsage)) \(billForecast.meterUnit)")
                 }
                 
             case .nextForecast(let numberOfDays):
@@ -121,6 +126,8 @@ class UsageInterfaceController: WKInterfaceController {
                 
                 // show nextForecast group
                 nextForecastGroup.setHidden(false)
+                nextForecastTitleLabel.setHidden(false)
+
                 
                 // set nextForecast data
                 nextForecastImage.setImageNamed(AppImage.usage.name)
@@ -172,15 +179,15 @@ class UsageInterfaceController: WKInterfaceController {
                 // Hide all other groups
                 loadingImageGroup.setHidden(true)
                 errorGroup.setHidden(true)
-                nextForecastGroup.setHidden(true)
                 mainGroup.setHidden(true)
                 
                 // show error group
-                errorGroup.setHidden(false)
-                
+                nextForecastGroup.setHidden(false)
+                nextForecastTitleLabel.setHidden(true)
+
                 // set error data
-                errorImage.setImageNamed(AppImage.usage.name)
-                errorTitleLabel.setText("Usage is not available for this account.")
+                nextForecastImage.setImageNamed(AppImage.usage.name)
+                nextForecastDetailLabel.setText("Usage is not available for this account.")
             case .error(let serviceError):
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
                 // Hide all other groups
@@ -214,7 +221,7 @@ class UsageInterfaceController: WKInterfaceController {
         if let selectedAccount = AccountsStore.shared.currentAccount {
             updateAccountInformation(selectedAccount)
         }
-
+        
         // Set Delegate
         NetworkingUtility.shared.addNetworkUtilityUpdateDelegate(self)
     }
@@ -230,7 +237,7 @@ class UsageInterfaceController: WKInterfaceController {
     // MARK: - Actions
     
     @objc private func presentAccountList() {
-        presentController(withName: "AccountListInterfaceController", context: nil)
+        presentController(withName: AccountListInterfaceController.className, context: nil)
     }
     
     @objc private func selectElectricMenuItem() {
@@ -323,12 +330,12 @@ extension UsageInterfaceController: NetworkingDelegate {
     
     func usageStatusDidUpdate(_ billForecast: BillForecastResult) {
         
-        // Determine if data is avilable - we need to double check this is the correct logic to determine unavailable
+        accountGroup.setHidden(false)
+        
+        // Determine if data is avilable
         if billForecast.electric == nil, billForecast.gas == nil {
             state = .unavailable
         }
-
-        // todo, figure out what data looks like if the user doesnt have 2 full months of usage
         
         // Gas
         if let gas = billForecast.gas, let startDate = gas.billingStartDate {
@@ -375,7 +382,7 @@ extension UsageInterfaceController: NetworkingDelegate {
     func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) {
         clearAllMenuItems()
         
-        guard !accounts.isEmpty, let accountDetail = accountDetail else { return }
+        guard !accounts.isEmpty, let accountDetail = accountDetail, !hasError else { return }
                 
         // Set Account list menu item
         if accounts.count > 1 {
@@ -391,8 +398,8 @@ extension UsageInterfaceController: NetworkingDelegate {
             } else if serviceType.uppercased() == "GAS/ELECTRIC" {
                 isElectricSelected = true
                 
-                addMenuItem(withImageNamed: AppImage.gas.name, title: "Gas", action: #selector(selectGasMenuItem))
-                addMenuItem(withImageNamed: AppImage.electric.name, title: "Electric", action: #selector(selectElectricMenuItem))
+                addMenuItem(withImageNamed: AppImage.gasMenuItem.name, title: "Gas", action: #selector(selectGasMenuItem))
+                addMenuItem(withImageNamed: AppImage.electricMenuItem.name, title: "Electric", action: #selector(selectElectricMenuItem))
             }
         }
         
@@ -400,6 +407,12 @@ extension UsageInterfaceController: NetworkingDelegate {
     
     func error(_ serviceError: ServiceError, feature: MainFeature) {
         guard feature == .all || feature == .usage else { return }
+        
+        accountGroup.setHidden(false)
+        
+        hasError = true
+        clearAllMenuItems()
+        
         guard serviceError.serviceCode == Errors.Code.passwordProtected else {
             state = .error(serviceError)
             return
@@ -414,6 +427,9 @@ extension UsageInterfaceController: NetworkingDelegate {
     
     func maintenanceMode(feature: MainFeature) {
         guard feature == .all || feature == .usage else { return }
+        
+        accountGroup.setHidden(false)
+        
         state = .maintenanceMode
     }
     

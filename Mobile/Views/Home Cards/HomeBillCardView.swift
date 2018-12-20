@@ -98,6 +98,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var billNotReadyImageView: UIImageView!
     @IBOutlet private weak var billNotReadyLabel: UILabel!
     @IBOutlet private weak var errorStack: UIStackView!
+    @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
@@ -155,7 +156,7 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.layer.cornerRadius = 3
         saveAPaymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
+        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
         
         a11yTutorialButton.setTitleColor(StormModeStatus.shared.isOn ? .white : .actionBlue, for: .normal)
         a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
@@ -197,6 +198,9 @@ class HomeBillCardView: UIView {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
+        
+        errorTitleLabel.textColor = .blackText
+        errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         
         maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
         

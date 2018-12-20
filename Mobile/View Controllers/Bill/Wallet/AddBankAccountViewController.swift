@@ -93,7 +93,16 @@ class AddBankAccountViewController: UIViewController {
                     guard let self = self else { return }
                     self.delegate?.addBankAccountViewControllerDidAddAccount(self)
                     if self.shouldPopToRootOnSave {
-                        self.navigationController?.popToRootViewController(animated: true)
+                        if StormModeStatus.shared.isOn {
+                            if let dest = self.navigationController?.viewControllers
+                                .first(where: { $0 is StormModeBillViewController }) {
+                                self.navigationController?.popToViewController(dest, animated: true)
+                            } else {
+                                self.navigationController?.popToRootViewController(animated: true)
+                            }
+                        } else {
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
                     } else {
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -116,7 +125,7 @@ class AddBankAccountViewController: UIViewController {
         }
         
         if shouldShowOneTouchPayWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment method?", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
                 addBankAccount(true)

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>watchGaTrackingId</key>
+	<string></string>
 	<key>environment</key>
 	<string>STAGE</string>
 	<key>opco</key>
@@ -9,7 +11,7 @@
 	<key>appName</key>
 	<string>ComEd_STAGE</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppUATStage</string>
+	<string>stageMain</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>paymentusUrl</key>

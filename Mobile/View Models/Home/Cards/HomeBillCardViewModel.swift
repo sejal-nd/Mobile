@@ -445,7 +445,7 @@ class HomeBillCardViewModel {
                 let format = "%@ is due immediately."
                 string = String.localizedStringWithFormat(format, amount)
             case (true, false):
-                guard let amount = accountDetail.billingInfo.netDueAmount?.currencyString else { return nil }
+                guard let amount = accountDetail.billingInfo.pastDueAmount?.currencyString else { return nil }
                 let format = "%@ is due immediately for your multi-premise account."
                 string = String.localizedStringWithFormat(format, amount)
             case (false, true):
@@ -564,12 +564,12 @@ class HomeBillCardViewModel {
             
             let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
             if days > 0 {
-                let localizedText = NSLocalizedString("Amount due in %d day%@", comment: "")
+                let localizedText = NSLocalizedString("Total amount due in %d day%@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, days, days == 1 ? "": "s"),
                                           attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.regular.of(textStyle: .subheadline)])
             } else {
-                let localizedText = NSLocalizedString("Amount due on %@", comment: "")
+                let localizedText = NSLocalizedString("Total amount due on %@", comment: "")
                 return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
                                           attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.regular.of(textStyle: .subheadline)])
@@ -580,7 +580,7 @@ class HomeBillCardViewModel {
         case .pastDue:
             let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed
             if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
-                return NSAttributedString(string: NSLocalizedString("Amount due immediately", comment: ""),
+                return NSAttributedString(string: NSLocalizedString("Total amount due immediately", comment: ""),
                                           attributes: [.foregroundColor: textColor,
                                                        .font: OpenSans.semibold.of(textStyle: .subheadline)])
             } else {
@@ -775,8 +775,15 @@ class HomeBillCardViewModel {
         }
     }
     
-    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = enableOneTouchPayTCButton.map {
-        $0 ? UIColor.actionBlue: UIColor.blackText
+    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = enableOneTouchPayTCButton
+        .map { enable in
+            if StormModeStatus.shared.isOn {
+                return .white
+            } else if enable {
+                return .actionBlue
+            } else {
+                return .blackText
+            }
     }
     
     private(set) lazy var bankCreditButtonBorderWidth: Driver<CGFloat> = walletItemDriver.map {
@@ -788,7 +795,7 @@ class HomeBillCardViewModel {
         case .bge:
             return URL(string: "https://www.speedpay.com/terms/")!
         case .comEd, .peco:
-            return URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
+            return URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
         }
     }
     
