@@ -296,7 +296,6 @@ class HomeUsageCardView: UIView {
     
     private func bindViewModel() {
         viewModel.showLoadingState.drive(contentStack.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showLoadingState.drive(errorView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showLoadingState.not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.showLoadingState
