@@ -192,6 +192,7 @@ class HomeProjectedBillCardViewModel {
                 if daysSinceBillingStart < 7 {
                     return NSLocalizedString("until next forecast", comment: "")
                 }
+                
                 return "\(startDate.shortMonthAndDayString) - \(endDate.shortMonthAndDayString)".uppercased()
             } else if isGas,
                 let startDate = billForecast.gas?.billingStartDate,
@@ -200,7 +201,8 @@ class HomeProjectedBillCardViewModel {
                 if daysSinceBillingStart < 7 {
                     return NSLocalizedString("until next forecast", comment: "")
                 }
-                return "\(startDate.shortMonthAndDayString) - \(endDate.shortMonthAndDayString)".uppercased();
+                
+                return "\(startDate.shortMonthAndDayString) - \(endDate.shortMonthAndDayString)".uppercased()
             }
             return nil
         }

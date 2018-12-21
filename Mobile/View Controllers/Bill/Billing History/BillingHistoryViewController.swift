@@ -63,8 +63,8 @@ class BillingHistoryViewController: UIViewController {
     }
     
     func getBillingHistory() {
-        loadingIndicator.isHidden = false;
-        tableView.isHidden = true;
+        loadingIndicator.isHidden = false
+        tableView.isHidden = true
         viewModel.getBillingHistory(success: { [weak self] (billingHistory) in
             guard let self = self else { return }
             self.loadingIndicator.isHidden = true
