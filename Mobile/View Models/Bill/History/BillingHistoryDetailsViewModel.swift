@@ -69,20 +69,19 @@ class BillingHistoryDetailsViewModel {
     }
     
     var isSpeedpay: Bool {
-        guard let paymentType = billingHistory.paymentType else { return false }
-        return paymentType == "SPEEDPAY"
-    }
-    
-    var isCSS: Bool {
-        return paymentType == "CSS"
+        return billingHistory.paymentType == "SPEEDPAY"
     }
     
     var paymentTypeLabel: String {
-        return isCSS ? NSLocalizedString("PaymentAccountNickname", comment: "") : NSLocalizedString("Payment Type", comment: "")
+        return paymentType == "CSS" ?
+            NSLocalizedString("PaymentAccountNickname", comment: "") :
+            NSLocalizedString("Payment Type", comment: "")
     }
     
     var paymentAmountLabel: String {
-        return isSpeedpay ? NSLocalizedString("Payment Amount", comment: "") : NSLocalizedString("Amount Paid", comment: "")
+        return isSpeedpay ?
+            NSLocalizedString("Payment Amount", comment: "") :
+            NSLocalizedString("Amount Paid", comment: "")
     }
     
     private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(fetching.asDriver(),

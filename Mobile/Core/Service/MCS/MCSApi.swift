@@ -164,7 +164,7 @@ class MCSApi {
         #elseif os(watchOS)
         tokenKeychain[TOKEN_KEYCHAIN_KEY] = nil
         #endif
-        accessToken = nil;
+        accessToken = nil
     }
 
     func isAuthenticated() -> Bool {

@@ -88,7 +88,7 @@ class MaintenanceModeViewController: UIViewController {
     }
     
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
-        return a + (b - a) * t;
+        return a + (b - a) * t
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

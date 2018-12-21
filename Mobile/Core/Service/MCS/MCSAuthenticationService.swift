@@ -74,7 +74,7 @@ struct MCSAuthenticationService : AuthenticationService {
     #endif
     
     func isAuthenticated() -> Bool {
-        return MCSApi.shared.isAuthenticated();
+        return MCSApi.shared.isAuthenticated()
     }
 
     /// Fetch the authorization token for the given credentials.

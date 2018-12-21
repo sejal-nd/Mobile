@@ -106,11 +106,11 @@ class AuthTokenParser : NSObject {
     /// - Returns: a ProfileStatus
     class private func parseProfileStatus(profileStatus: [String:Any]) -> ProfileStatus {
         
-        var lockedPassword = false;
-        var inactive = false;
-        var primary = false;
-        var tempPassword = false;
-        var expiredTempPassword = false;
+        var lockedPassword = false
+        var inactive = false
+        var primary = false
+        var tempPassword = false
+        var expiredTempPassword = false
         
         if let status = profileStatus[ProfileStatusKey.status.rawValue] as? Array<NSDictionary> {
             for item in status {

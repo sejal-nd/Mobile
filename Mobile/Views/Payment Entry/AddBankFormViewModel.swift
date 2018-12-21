@@ -36,7 +36,7 @@ class AddBankFormViewModel {
     let paymentWorkflow = Variable(false) // If form is being used on payment screen
     let saveToWallet = Variable(true) // Switch value
     
-    var bankName = "";
+    var bankName = ""
     var nicknamesInWallet = [String]()
 
     required init(walletService: WalletService) {
