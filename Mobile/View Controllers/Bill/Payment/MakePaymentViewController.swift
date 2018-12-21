@@ -830,20 +830,17 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 // MARK: - PaymentusFormViewControllerDelegate
 
 extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
-    func didAddBank(_ walletItem: WalletItem?) {
+    func didAddWalletItem(_ walletItem: WalletItem) {
         viewModel.newlyAddedWalletItem.value = walletItem
         fetchData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
-        })
-    }
-    
-    func didAddCard(_ walletItem: WalletItem?) {
-        viewModel.newlyAddedWalletItem.value = walletItem
-        fetchData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Card added", comment: ""))
-        })
+        if !walletItem.isTemporary {
+            let toastMessage = walletItem.bankOrCard == .bank ?
+                NSLocalizedString("Bank account added", comment: "") :
+                NSLocalizedString("Card added", comment: "")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                self.view.showToast(toastMessage)
+            })
+        }
     }
 }
 
