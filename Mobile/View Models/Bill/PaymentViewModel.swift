@@ -1105,7 +1105,7 @@ class PaymentViewModel {
         .combineLatest(paymentDate.asDriver(), isFixedPaymentDate, paymentDetail.asDriver())
         .map {
             if $1 {
-                if let paymentDetail = $2, let paymentDate = paymentDetail.paymentDate, Environment.shared.opco != .bge {
+                if let paymentDate = $2?.paymentDate, Environment.shared.opco != .bge {
                     return paymentDate.mmDdYyyyString
                 }
                 let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
