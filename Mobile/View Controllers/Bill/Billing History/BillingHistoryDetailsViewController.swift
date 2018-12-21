@@ -207,7 +207,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         viewModel.convenienceFee.drive(convenienceFeeDetailsLabel.rx.text).disposed(by: bag)
         viewModel.totalAmountPaid.drive(totalAmountPaidDetailsLabel.rx.text).disposed(by: bag)
         
-        paymentStatusDetailsLabel.text = viewModel.paymentStatus.capitalized
+        paymentStatusDetailsLabel.text = viewModel.paymentStatus
         confirmationNumberDetailsLabel.text = viewModel.confirmationNumber
 
     }

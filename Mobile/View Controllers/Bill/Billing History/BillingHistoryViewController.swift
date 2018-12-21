@@ -34,8 +34,8 @@ class BillingHistoryViewController: UIViewController {
         
         title = NSLocalizedString("Payment Activity", comment: "")
         
-        tableView.delegate = self;
-        tableView.dataSource = self;
+        tableView.delegate = self
+        tableView.dataSource = self
         
         emptyStateLabel.font = SystemFont.regular.of(textStyle: .headline)
         emptyStateLabel.textColor = .blackText
