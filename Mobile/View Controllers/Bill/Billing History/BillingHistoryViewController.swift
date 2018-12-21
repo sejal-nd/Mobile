@@ -494,7 +494,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     func onPaymentDelete() { // Called by MakePaymentViewController to display toast and refresh the data
         getBillingHistory()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Scheduled payment deleted", comment: ""))
+            self.view.showToast(NSLocalizedString("Scheduled payment canceled", comment: ""))
         })
     }
     

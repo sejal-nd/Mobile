@@ -1102,9 +1102,12 @@ class PaymentViewModel {
     }
     
     private(set) lazy var paymentDateString: Driver<String> = Driver
-        .combineLatest(paymentDate.asDriver(), isFixedPaymentDate)
+        .combineLatest(paymentDate.asDriver(), isFixedPaymentDate, paymentDetail.asDriver())
         .map {
             if $1 {
+                if let paymentDate = $2?.paymentDate, Environment.shared.opco != .bge {
+                    return paymentDate.mmDdYyyyString
+                }
                 let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
                 if Environment.shared.opco == .bge && Calendar.opCo.component(.hour, from: Date()) >= 20 {
                     return Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString

@@ -12,8 +12,7 @@ import RxSwift
 
 protocol PaymentusFormViewControllerDelegate: class {
     func didEditWalletItem()
-    func didAddCard(_ walletItem: WalletItem?)
-    func didAddBank(_ walletItem: WalletItem?)
+    func didAddWalletItem(_ walletItem: WalletItem)
 }
 
 // Default implementation to make these protocol functions optional
@@ -206,12 +205,7 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                     if walletItemId != nil {
                         delegate?.didEditWalletItem()
                     } else {
-                        switch bankOrCard {
-                        case .bank:
-                            delegate?.didAddBank(walletItem)
-                        case .card:
-                            delegate?.didAddCard(walletItem)
-                        }
+                        delegate?.didAddWalletItem(walletItem)
                     }
                     
                     if editingDefaultItem || didSetDefault {

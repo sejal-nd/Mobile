@@ -444,14 +444,13 @@ extension WalletViewController: PaymentusFormViewControllerDelegate {
     func didEditWalletItem() {
         didChangeAccount(toastMessage: NSLocalizedString("Changes saved", comment: ""))
     }
-
-    func didAddBank(_ walletItem: WalletItem?) {
-        didChangeAccount(toastMessage: NSLocalizedString("Bank account added", comment: ""))
+    
+    func didAddWalletItem(_ walletItem: WalletItem) {
         Analytics.log(event: .addWalletComplete)
-    }
 
-    func didAddCard(_ walletItem: WalletItem?) {
-        didChangeAccount(toastMessage: NSLocalizedString("Card added", comment: ""))
-        Analytics.log(event: .addWalletComplete)
+        let toastMessage = walletItem.bankOrCard == .bank ?
+            NSLocalizedString("Bank account added", comment: "") :
+            NSLocalizedString("Card added", comment: "")
+        didChangeAccount(toastMessage: toastMessage)
     }
 }
