@@ -368,12 +368,23 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowCancelPaymentButton.map(!).drive(cancelPaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
-            self?.stickyPaymentFooterView.isHidden = !shouldShow
+            if Environment.shared.opco != .bge && self?.billingHistoryItem != nil {
+                // ePay R1 ComEd/PECO modify tweaks
+                self?.stickyPaymentFooterView.isHidden = true
+            } else {
+                self?.stickyPaymentFooterView.isHidden = !shouldShow
+            }
             
             // Needed for correct sizing
             self?.stickyPaymentFooterStackView.setNeedsLayout()
             self?.stickyPaymentFooterStackView.layoutIfNeeded()
         }).disposed(by: disposeBag)
+        
+        if Environment.shared.opco != .bge && billingHistoryItem != nil {
+            // ePay R1 ComEd/PECO modify tweaks
+            amountDueView.isHidden = true
+            dueDateView.isHidden = true
+        }
     }
     
     func bindViewContent() {
