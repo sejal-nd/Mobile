@@ -126,16 +126,22 @@ class HomeUsageCardViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showErrorState: Driver<Void> = accountDetailEvents.errors()
+    private(set) lazy var showErrorState: Driver<Void> = Observable
+        .merge(accountDetailEvents.errors(), serResultEvents.errors())
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     let errorLabelText: String = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     
     private(set) lazy var showUnavailableState: Driver<Void> = Observable
-        .combineLatest(accountDetailEvents.elements(), serResultEvents.elements())
+        .combineLatest(accountDetailEvents, serResultEvents)
         .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
-        .filter { accountDetail, eventResults, isMaintenanceMode in
+        .filter { accountDetailEvent, eventResultsEvent, isMaintenanceMode in
+            guard let accountDetail = accountDetailEvent.element,
+                let eventResults = eventResultsEvent.element else {
+                    return false
+            }
+            
             if isMaintenanceMode {
                 return false
             }
