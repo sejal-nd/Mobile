@@ -48,6 +48,8 @@ class PaymentViewModel {
     let allowEdits = Variable(true)
     let allowCancel = Variable(false)
     
+    var confirmationNumber: String?
+    
     init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
@@ -226,7 +228,8 @@ class PaymentViewModel {
                 
                 self.paymentService.schedulePayment(payment: payment)
                     .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { _ in
+                    .subscribe(onNext: { [weak self] confirmationNumber in
+                        self?.confirmationNumber = confirmationNumber
                         onSuccess()
                     }, onError: { err in
                         onError(err as! ServiceError)
@@ -285,7 +288,8 @@ class PaymentViewModel {
                     
                     self.paymentService.schedulePayment(payment: payment)
                         .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { _ in
+                        .subscribe(onNext: { [weak self] confirmationNumber in
+                            self?.confirmationNumber = confirmationNumber
                             onSuccess()
                         }, onError: { [weak self] err in
                             guard let self = self else { return }
@@ -329,7 +333,8 @@ class PaymentViewModel {
                                                                   paymentDate: paymentDate,
                                                                   creditCard: card)
                     .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { _ in
+                    .subscribe(onNext: { [weak self] confirmationNumber in
+                        self?.confirmationNumber = confirmationNumber
                         onSuccess()
                     }, onError: { err in
                         onError(err as! ServiceError)
@@ -369,7 +374,8 @@ class PaymentViewModel {
                         
                         self.paymentService.schedulePayment(payment: payment)
                             .observeOn(MainScheduler.instance)
-                            .subscribe(onNext: { _ in
+                            .subscribe(onNext: { [weak self] confirmationNumber in
+                                self?.confirmationNumber = confirmationNumber
                                 onSuccess()
                             }, onError: { [weak self] err in
                                 guard let self = self else { return }
