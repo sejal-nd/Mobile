@@ -368,12 +368,23 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowCancelPaymentButton.map(!).drive(cancelPaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
-            self?.stickyPaymentFooterView.isHidden = !shouldShow
+            if Environment.shared.opco != .bge && self?.billingHistoryItem != nil {
+                // ePay R1 ComEd/PECO modify tweaks
+                self?.stickyPaymentFooterView.isHidden = true
+            } else {
+                self?.stickyPaymentFooterView.isHidden = !shouldShow
+            }
             
             // Needed for correct sizing
             self?.stickyPaymentFooterStackView.setNeedsLayout()
             self?.stickyPaymentFooterStackView.layoutIfNeeded()
         }).disposed(by: disposeBag)
+        
+        if Environment.shared.opco != .bge && billingHistoryItem != nil {
+            // ePay R1 ComEd/PECO modify tweaks
+            amountDueView.isHidden = true
+            dueDateView.isHidden = true
+        }
     }
     
     func bindViewContent() {
@@ -830,20 +841,17 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 // MARK: - PaymentusFormViewControllerDelegate
 
 extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
-    func didAddBank(_ walletItem: WalletItem?) {
+    func didAddWalletItem(_ walletItem: WalletItem) {
         viewModel.newlyAddedWalletItem.value = walletItem
         fetchData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
-        })
-    }
-    
-    func didAddCard(_ walletItem: WalletItem?) {
-        viewModel.newlyAddedWalletItem.value = walletItem
-        fetchData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Card added", comment: ""))
-        })
+        if !walletItem.isTemporary {
+            let toastMessage = walletItem.bankOrCard == .bank ?
+                NSLocalizedString("Bank account added", comment: "") :
+                NSLocalizedString("Card added", comment: "")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                self.view.showToast(toastMessage)
+            })
+        }
     }
 }
 

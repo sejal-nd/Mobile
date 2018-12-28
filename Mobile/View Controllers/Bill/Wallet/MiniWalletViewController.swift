@@ -303,6 +303,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddBankAccountPress), for: .touchUpInside)
                 cell.innerContentView.accessibilityLabel = NSLocalizedString("Add Bank Account", comment: "")
+                cell.innerContentView.isEnabled = !bankAccountsDisabled
                 return cell
             }
         } else {
@@ -329,6 +330,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddCreditCardPress), for: .touchUpInside)
                 cell.innerContentView.accessibilityLabel = NSLocalizedString("Add Credit/Debit Card", comment: "")
+                cell.innerContentView.isEnabled = !creditCardsDisabled
                 return cell
             }
         }

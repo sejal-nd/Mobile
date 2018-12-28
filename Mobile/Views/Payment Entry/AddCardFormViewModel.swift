@@ -137,12 +137,12 @@ class AddCardFormViewModel {
         for (idx, element) in reversedCharacters.enumerated() {
             guard let digit = Int(element) else { return false }
             if (idx % 2 == 0) {
-                evenSum += digit;
+                evenSum += digit
             } else {
-                oddSum += digit / 5 + (2 * digit) % 10;
+                oddSum += digit / 5 + (2 * digit) % 10
             }
         }
-        return (oddSum + evenSum) % 10 == 0;
+        return (oddSum + evenSum) % 10 == 0
     }
     
     private func firstNumberCheck(cardNumber: String) -> Bool {

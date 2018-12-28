@@ -16,7 +16,7 @@ struct ProfileStatus {
     let expiredTempPassword: Bool
     
     init(inactive: Bool = false, primary: Bool = false, passwordLocked: Bool = false, tempPassword: Bool = false,expiredTempPassword: Bool = false) {
-        self.inactive = inactive;
+        self.inactive = inactive
         self.primary = primary
         self.passwordLocked = passwordLocked
         self.tempPassword = tempPassword

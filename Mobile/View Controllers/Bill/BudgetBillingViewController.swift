@@ -315,7 +315,7 @@ class BudgetBillingViewController: UIViewController {
             }
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
-                Analytics.log(event: .budgetBillUnEnrollCancel);}))
+                Analytics.log(event: .budgetBillUnEnrollCancel) }))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
                 LoadingView.show()
                 Analytics.log(event: .budgetBillUnEnrollOK)

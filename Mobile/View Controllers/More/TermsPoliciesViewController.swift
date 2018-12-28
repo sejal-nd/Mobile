@@ -11,8 +11,6 @@ import WebKit
 
 class TermsPoliciesViewController: UIViewController {
     
-    @IBOutlet weak var webContainerView: UIView!
-    
     private let viewModel = TermsPoliciesViewModel()
     private var viewAppeared = false
     
@@ -44,11 +42,11 @@ class TermsPoliciesViewController: UIViewController {
         let webConfiguration = WKWebViewConfiguration()
         let webView = WKWebView(frame: .zero , configuration: webConfiguration)
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webContainerView.addSubview(webView)
-        webView.topAnchor.constraint(equalTo: webContainerView.topAnchor).isActive = true
-        webView.rightAnchor.constraint(equalTo: webContainerView.rightAnchor).isActive = true
-        webView.leftAnchor.constraint(equalTo: webContainerView.leftAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: webContainerView.bottomAnchor).isActive = true
+        view.addSubview(webView)
+        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         let request = URLRequest(url: url)
         webView.load(request)

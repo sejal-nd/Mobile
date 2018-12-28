@@ -34,8 +34,8 @@ class BillingHistoryViewController: UIViewController {
         
         title = NSLocalizedString("Payment Activity", comment: "")
         
-        tableView.delegate = self;
-        tableView.dataSource = self;
+        tableView.delegate = self
+        tableView.dataSource = self
         
         emptyStateLabel.font = SystemFont.regular.of(textStyle: .headline)
         emptyStateLabel.textColor = .blackText
@@ -63,8 +63,8 @@ class BillingHistoryViewController: UIViewController {
     }
     
     func getBillingHistory() {
-        loadingIndicator.isHidden = false;
-        tableView.isHidden = true;
+        loadingIndicator.isHidden = false
+        tableView.isHidden = true
         viewModel.getBillingHistory(success: { [weak self] (billingHistory) in
             guard let self = self else { return }
             self.loadingIndicator.isHidden = true
@@ -494,7 +494,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     func onPaymentDelete() { // Called by MakePaymentViewController to display toast and refresh the data
         getBillingHistory()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Scheduled payment deleted", comment: ""))
+            self.view.showToast(NSLocalizedString("Scheduled payment canceled", comment: ""))
         })
     }
     
