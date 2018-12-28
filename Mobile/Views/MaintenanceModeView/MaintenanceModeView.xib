@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,8 +79,8 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Scheduled Maintenance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgx-50-2me">
-                            <rect key="frame" x="68" y="218.5" width="208.5" height="25"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Maintenance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgx-50-2me">
+                            <rect key="frame" x="114.5" y="218.5" width="114" height="25"/>
                             <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -89,7 +88,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22Z-U5-hHf">
                             <rect key="frame" x="52" y="245.5" width="239.5" height="38.5"/>
                             <string key="text">Billing is currently unavailable due to
-scheduled maintenance.</string>
+maintenance.</string>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -98,8 +97,8 @@ scheduled maintenance.</string>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="22Z-U5-hHf" firstAttribute="centerX" secondItem="88x-aH-OQP" secondAttribute="centerX" id="85V-8N-ybb"/>
-                        <constraint firstItem="22Z-U5-hHf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="88x-aH-OQP" secondAttribute="leading" id="AfF-lO-F0Q"/>
-                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="22Z-U5-hHf" secondAttribute="trailing" id="HVu-j5-4wU"/>
+                        <constraint firstItem="22Z-U5-hHf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="88x-aH-OQP" secondAttribute="leading" constant="29" id="AfF-lO-F0Q"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="22Z-U5-hHf" secondAttribute="trailing" constant="29" id="HVu-j5-4wU"/>
                         <constraint firstItem="GGR-69-hpb" firstAttribute="top" secondItem="CBa-iG-eug" secondAttribute="bottom" constant="35" id="LEC-lR-r1e"/>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="NS7-TR-p5O"/>
                         <constraint firstItem="GGR-69-hpb" firstAttribute="centerX" secondItem="88x-aH-OQP" secondAttribute="centerX" id="PEg-7v-03T"/>
@@ -113,10 +112,10 @@ scheduled maintenance.</string>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjN-RG-fyz">
-                    <rect key="frame" x="29" y="483.5" width="317" height="158.5"/>
+                    <rect key="frame" x="30" y="483.5" width="315" height="158.5"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4A1-zL-FUI" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                            <rect key="frame" x="22" y="22" width="273" height="114.5"/>
+                            <rect key="frame" x="22" y="22" width="271" height="114.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <string key="text">If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123 
 
