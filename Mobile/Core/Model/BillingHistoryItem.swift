@@ -32,6 +32,7 @@ enum BillingHistoryStatus {
     case canceled
     case failed
     case unknown
+    case accepted
     
     init(identifier: String?) {
         guard let id = identifier?.lowercased() else {
@@ -52,6 +53,8 @@ enum BillingHistoryStatus {
             self = .canceled
         case "failed", "declined", "returned":
             self = .failed
+        case "accepted", "posted", "complete":
+            self = .accepted
         default:
             self = .unknown
         }
@@ -79,7 +82,7 @@ struct BillingHistoryItem: Mappable {
         switch status {
         case .pending, .processing, .processed:
             return true
-        case .canceled: // EM-2638: Canceled payments should always be in the past
+        case .canceled, .accepted: // EM-2638: Canceled payments should always be in the past
             return false
         case .scheduled, .failed, .unknown:
             if isBillPDF { // EM-2638: Bills should always be in the past

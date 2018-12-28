@@ -85,7 +85,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                 switch billingItem.status {
                 case .processing, .processed, .scheduled, .pending:
                     handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
-                case .canceled, .failed, .unknown:
+                case .canceled, .failed, .accepted, .unknown:
                     performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: billingItem)
                 }
             }
@@ -97,7 +97,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
                 switch billingItem.status {
                 case .processing, .processed, .scheduled:
                     handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
-                case .canceled, .failed:
+                case .canceled, .accepted, .failed:
                     performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: billingItem)
                 case .pending, .unknown:
                     break
@@ -109,7 +109,7 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
     private func handleBGEUpcomingClick(indexPath: IndexPath) {
         guard let billingItem = billingHistory?.upcoming[indexPath.row] else { return }
         switch billingItem.status {
-        case .processing, .processed, .canceled, .failed:
+        case .processing, .processed, .canceled, .failed, .accepted:
             performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: billingItem)
         case .scheduled:
             handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
