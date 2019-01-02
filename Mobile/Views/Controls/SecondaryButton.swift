@@ -54,18 +54,16 @@ class SecondaryButton: UIButton {
     }
     
     override var isEnabled: Bool {
-        get {
-            return super.isEnabled
-        }
-        set {
-            if newValue {
+        didSet {
+            if isEnabled {
                 layer.shadowOpacity = 0.2
                 backgroundColor = .white
+                accessibilityTraits = .button
             } else {
                 layer.shadowOpacity = 0
                 backgroundColor = .softGray
+                accessibilityTraits = [.button, .notEnabled]
             }
-            super.isEnabled = newValue
         }
     }
 
