@@ -72,7 +72,9 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var addPaymentMethodView: UIView!
     @IBOutlet weak var addPaymentMethodLabel: UILabel!
     @IBOutlet weak var addBankAccountButton: ButtonControl!
+    @IBOutlet weak var addBankAccountLabel: UILabel!
     @IBOutlet weak var addCreditCardButton: ButtonControl!
+    @IBOutlet weak var addCreditCardLabel: UILabel!
     
     @IBOutlet weak var cancelPaymentButton: ButtonControl!
     @IBOutlet weak var cancelPaymentLabel: UILabel!
@@ -233,10 +235,14 @@ class MakePaymentViewController: UIViewController {
         addBankAccountButton.backgroundColorOnPress = .softGray
         addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
+        addBankAccountLabel.font = SystemFont.medium.of(textStyle: .title1)
+        
         addCreditCardButton.layer.cornerRadius = 10
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addCreditCardButton.backgroundColorOnPress = .softGray
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
+        
+        addCreditCardLabel.font = SystemFont.medium.of(textStyle: .title1)
         
         let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
         cancelPaymentButton.accessibilityLabel = cancelPaymentText

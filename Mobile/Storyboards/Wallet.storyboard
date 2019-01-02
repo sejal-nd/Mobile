@@ -1009,11 +1009,13 @@
                     <connections>
                         <outlet property="activeSeveranceLabel" destination="Mo4-35-vd0" id="gAM-71-JOR"/>
                         <outlet property="addBankAccountButton" destination="KNK-HB-q47" id="RH0-Dt-QV2"/>
+                        <outlet property="addBankAccountLabel" destination="rVK-b4-ukJ" id="tmG-H5-zxb"/>
                         <outlet property="addBankContainerView" destination="vJF-bC-ypb" id="RsI-GT-9qZ"/>
                         <outlet property="addBankFormView" destination="zVb-NP-XFC" id="q1l-eR-ZIJ"/>
                         <outlet property="addCardContainerView" destination="XaS-YX-UYF" id="Zal-jO-PQM"/>
                         <outlet property="addCardFormView" destination="gL0-oU-tn7" id="oiw-uB-dxf"/>
                         <outlet property="addCreditCardButton" destination="woW-pi-kG2" id="NT3-1M-Tsb"/>
+                        <outlet property="addCreditCardLabel" destination="GtO-Md-edm" id="OAB-6K-JGx"/>
                         <outlet property="addPaymentMethodLabel" destination="0iD-4c-WoE" id="fAe-w3-qrG"/>
                         <outlet property="addPaymentMethodView" destination="IwM-cz-VXe" id="yGp-JT-PTP"/>
                         <outlet property="amountDueTextLabel" destination="mpq-3Z-BRl" id="J2k-gT-TlK"/>
@@ -1603,16 +1605,16 @@
                                                                 </constraints>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes, I have read, understand, and agree to the terms and conditions provided below:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pq3-k6-sNT">
-                                                                <rect key="frame" x="61" y="0.0" width="274" height="67"/>
+                                                                <rect key="frame" x="61" y="0.0" width="274" height="57.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="Hyo-W8-y4V" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="61" y="80" width="202.5" height="20.5"/>
+                                                                <rect key="frame" x="61" y="70.5" width="202.5" height="30"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View terms and conditions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffz-iA-WfL">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3181,7 +3183,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGm-7t-w5c" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="38.5" width="129" height="60"/>
+                                                        <rect key="frame" x="0.0" y="38.5" width="129" height="60.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="7Qg-x1-Rn2"/>
