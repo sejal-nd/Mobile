@@ -140,7 +140,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
                 switch billingItem.status {
                 case .processing, .processed, .scheduled, .pending:
                     handleAllOpcoScheduledClick(billingItem: billingItem)
-                case .canceled, .failed, .unknown:
+                case .canceled, .failed, .accepted, .unknown:
                     performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
                 }
             }
@@ -168,12 +168,12 @@ extension BillingHistoryViewController: UITableViewDelegate {
                         performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
                     case .scheduled:
                         handleAllOpcoScheduledClick(billingItem: billingItem)
-                    case .pending, .unknown:
+                    case .pending, .accepted, .unknown:
                         break
                     }
                 } else {
                     switch billingItem.status {
-                    case .canceled, .failed:
+                    case .canceled, .accepted, .failed:
                         performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
                     case .scheduled, .processing, .processed:
                         handleAllOpcoScheduledClick(billingItem: billingItem)
