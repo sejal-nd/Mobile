@@ -76,8 +76,8 @@ class BillUITests: ExelonUITestCase {
 
         checkExistenceOfElements([
             (.button, "Reload"),
-            (.staticText, "Scheduled Maintenance"),
-            (.staticText, "Billing is currently unavailable due to\nscheduled maintenance.")
+            (.staticText, "Maintenance"),
+            (.staticText, "Billing is currently unavailable due to maintenance.")
         ])
     }
     
