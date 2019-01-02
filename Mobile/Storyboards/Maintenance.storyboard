@@ -83,14 +83,14 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bV4-kB-3pq" userLabel="Title and Image Stack">
                                                                         <rect key="frame" x="0.0" y="0.0" width="218" height="81"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" restorationIdentifier="Heading" text="The BGE App is currently unavailable due to maintenance." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iY-Ll-WFa">
-                                                                                <rect key="frame" x="0.0" y="7" width="129" height="67"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="750" verticalCompressionResistancePriority="999" restorationIdentifier="Heading" text="The BGE App is currently unavailable due to maintenance." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iY-Ll-WFa">
+                                                                                <rect key="frame" x="0.0" y="7" width="130" height="67"/>
                                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maintenancemode_overall" translatesAutoresizingMaskIntoConstraints="NO" id="YD8-MU-XS4">
-                                                                                <rect key="frame" x="137" y="0.0" width="81" height="81"/>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_maintenancemode_overall" translatesAutoresizingMaskIntoConstraints="NO" id="YD8-MU-XS4">
+                                                                                <rect key="frame" x="138" y="0.0" width="80" height="81"/>
                                                                             </imageView>
                                                                         </subviews>
                                                                     </stackView>
@@ -164,6 +164,8 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                                         <constraints>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oar-PX-3sy" secondAttribute="trailing" constant="29" id="Cqo-o4-gSK"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="oar-PX-3sy" secondAttribute="bottom" id="L2v-p4-SGO"/>
+                                            <constraint firstItem="oar-PX-3sy" firstAttribute="leading" secondItem="NZe-n8-O6q" secondAttribute="leading" priority="999" constant="29" id="QwW-sA-uOx"/>
+                                            <constraint firstAttribute="trailing" secondItem="oar-PX-3sy" secondAttribute="trailing" priority="999" constant="29" id="VA4-KI-8SS"/>
                                             <constraint firstItem="oar-PX-3sy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NZe-n8-O6q" secondAttribute="leading" constant="29" id="cgE-lZ-6n7"/>
                                             <constraint firstItem="oar-PX-3sy" firstAttribute="top" secondItem="NZe-n8-O6q" secondAttribute="topMargin" constant="70" id="fXi-A3-K6f"/>
                                             <constraint firstItem="oar-PX-3sy" firstAttribute="centerX" secondItem="NZe-n8-O6q" secondAttribute="centerX" id="xca-qf-GCg"/>
