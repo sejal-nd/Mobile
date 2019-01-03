@@ -16,6 +16,7 @@ class HomeViewModel {
     private let walletService: WalletService
     private let paymentService: PaymentService
     private let usageService: UsageService
+    private let projectedBillUsageService: UsageService
     private let authService: AuthenticationService
     private let outageService: OutageService
     private let alertsService: AlertsService
@@ -42,6 +43,7 @@ class HomeViewModel {
                   walletService: WalletService,
                   paymentService: PaymentService,
                   usageService: UsageService,
+                  projectedBillUsageService: UsageService,
                   authService: AuthenticationService,
                   outageService: OutageService,
                   alertsService: AlertsService,
@@ -52,6 +54,7 @@ class HomeViewModel {
         self.walletService = walletService
         self.paymentService = paymentService
         self.usageService = usageService
+        self.projectedBillUsageService = projectedBillUsageService
         self.authService = authService
         self.outageService = outageService
         self.alertsService = alertsService
@@ -96,7 +99,7 @@ class HomeViewModel {
         HomeProjectedBillCardViewModel(fetchData: fetchDataObservable,
                                        maintenanceModeEvents: maintenanceModeEvents,
                                        accountDetailEvents: accountDetailEvents,
-                                       usageService: usageService,
+                                       usageService: projectedBillUsageService,
                                        refreshFetchTracker: refreshFetchTracker,
                                        switchAccountFetchTracker: projectedBillTracker)
     

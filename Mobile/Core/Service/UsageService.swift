@@ -10,6 +10,8 @@ import RxSwift
 
 protocol UsageService {
     
+    init(useCache: Bool)
+    
     /// Compares how usage impacted your bill between cycles
     ///
     /// - Parameters:

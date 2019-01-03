@@ -10,6 +10,11 @@ import Foundation
 import RxSwift
 
 class MCSUsageService: UsageService {
+    let useCache: Bool
+    
+    required init(useCache: Bool) {
+        self.useCache = useCache
+    }
     
     private var cache = BillAnalysisCache()
     
@@ -62,11 +67,12 @@ class MCSUsageService: UsageService {
         
         return dataObservable
             .do(onNext: { [weak self] in
-                self?.cache.setComparisonCache(newValue: $0,
-                                               accountNumber: accountNumber,
-                                               premiseNumber: premiseNumber,
-                                               yearAgo: yearAgo,
-                                               gas: gas)
+                guard let self = self, self.useCache else { return }
+                self.cache.setComparisonCache(newValue: $0,
+                                              accountNumber: accountNumber,
+                                              premiseNumber: premiseNumber,
+                                              yearAgo: yearAgo,
+                                              gas: gas)
             })
         
     }
@@ -96,9 +102,10 @@ class MCSUsageService: UsageService {
         
         return dataObservable
             .do(onNext: { [weak self] in
-                self?.cache.setForecastCache(newValue: $0,
-                                             accountNumber: accountNumber,
-                                             premiseNumber: premiseNumber)
+                guard let self = self, self.useCache else { return }
+                self.cache.setForecastCache(newValue: $0,
+                                            accountNumber: accountNumber,
+                                            premiseNumber: premiseNumber)
             })
     }
     
