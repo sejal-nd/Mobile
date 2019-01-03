@@ -88,7 +88,7 @@ class HomeViewModel {
                                refreshFetchTracker: refreshFetchTracker,
                                switchAccountFetchTracker: usageTracker)
     
-    private(set) lazy var templateCardViewModel: TemplateCardViewModel =
+    private(set) lazy var templateCardViewModel =
         TemplateCardViewModel(accountDetailEvents: accountDetailEvents,
                               showLoadingState: accountDetailTracker.asDriver()
                                 .filter { $0 }
