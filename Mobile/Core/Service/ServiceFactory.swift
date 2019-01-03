@@ -82,7 +82,7 @@ class ServiceFactory {
     }
 
     class func createWeatherService() -> WeatherService {
-        return WeatherAPI()
+        return WeatherApi()
     }
 
     class func createUsageService() -> UsageService {

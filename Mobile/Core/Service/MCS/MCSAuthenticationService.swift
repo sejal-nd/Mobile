@@ -98,15 +98,15 @@ struct MCSAuthenticationService : AuthenticationService {
         request.httpBody = postDataString.data(using: .utf8)
         
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
-        APILog(requestId: requestId, path: path, method: method, message: "REQUEST - BODY: \(postDataLoggingStr)")
+        APILog(filename: "MCSAuthenticationService", requestId: requestId, path: path, method: method, message: "REQUEST: \(postDataLoggingStr)")
         
         return URLSession.shared.rx.dataResponse(request: request)
             .do(onNext: { data in
                 let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                APILog(requestId: requestId, path: path, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+                APILog(filename: "MCSAuthenticationService", requestId: requestId, path: path, method: method, message: "RESPONSE: \(resBodyString)")
             }, onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                APILog(filename: "MCSAuthenticationService", requestId: requestId, path: path, method: method, message: "ERROR: \(serviceError.errorDescription ?? "")")
             })
             .map { data in
                 switch AuthTokenParser.parseAuthTokenResponse(data: data) {
@@ -235,10 +235,4 @@ struct MCSAuthenticationService : AuthenticationService {
     }
     #endif
 
-}
-
-fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
-    #if DEBUG
-        NSLog("[OAuthApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
-    #endif
 }

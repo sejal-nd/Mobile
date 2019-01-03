@@ -179,9 +179,9 @@
 		2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
 		2F5A3F8A1EFD979F00B9E49E /* BillingHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */; };
 		2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
-		2F5C81FA1F1D4B1B005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
-		2F5C81FB1F1D5C4A005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
-		2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		2F5C81FA1F1D4B1B005B35FA /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
+		2F5C81FB1F1D5C4A005B35FA /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
+		2F5C81FC1F1D5C4B005B35FA /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
 		2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 		2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
 		2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */; };
@@ -964,6 +964,10 @@
 		9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
 		9CB16EF8219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
 		9CB16EF9219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
+		9CB8A5ED21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
+		9CB8A5EE21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
+		9CB8A5EF21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
+		9CB8A5F121DEC22200880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
@@ -1960,7 +1964,7 @@
 		E8C453341EF454E400F5C781 /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */; };
 		E8C453351EF4550200F5C781 /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C453321EF454B200F5C781 /* PDTSimpleCalendar.framework */; };
 		E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */; };
-		E8C6F29F1F1F996A00C4644C /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		E8C6F29F1F1F996A00C4644C /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
 		E8C6F2A11F1FD37800C4644C /* AddCardFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */; };
 		E8C6F2A21F1FD37800C4644C /* AddCardFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */; };
 		E8C6F2A31F1FD37800C4644C /* AddCardFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F2A01F1FD37800C4644C /* AddCardFormViewModel.swift */; };
@@ -2176,7 +2180,7 @@
 		E8F62BAC200924410077B3DA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
 		E8F62BAD200924410077B3DA /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
 		E8F62BAE200924410077B3DA /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
-		E8F62BAF200924410077B3DA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		E8F62BAF200924410077B3DA /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
 		E8F62BB0200924410077B3DA /* OverrideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */; };
 		E8F62BB1200924410077B3DA /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
 		E8F62BB2200924410077B3DA /* OutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */; };
@@ -2316,7 +2320,7 @@
 		E8F62C61200924570077B3DA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* Currency.swift */; };
 		E8F62C62200924570077B3DA /* RxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AEF2DE1F5F50F40057E7ED /* RxNotifications.swift */; };
 		E8F62C63200924570077B3DA /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
-		E8F62C64200924570077B3DA /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */; };
+		E8F62C64200924570077B3DA /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
 		E8F62C65200924570077B3DA /* OverrideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */; };
 		E8F62C66200924570077B3DA /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
 		E8F62C67200924570077B3DA /* OutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5621E81C03B005569D8 /* OutageViewModelTests.swift */; };
@@ -2559,7 +2563,7 @@
 		2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPremiseAddressView.swift; sourceTree = "<group>"; };
 		2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiPremiseAddressView.xib; sourceTree = "<group>"; };
 		2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistory.swift; sourceTree = "<group>"; };
-		2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherApi.swift; sourceTree = "<group>"; };
 		2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewModel.swift; sourceTree = "<group>"; };
 		2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchSlider.swift; sourceTree = "<group>"; };
 		2FA5D8631F17D88500A8B16B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -2906,6 +2910,7 @@
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
 		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
+		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+SaveToWallet.swift"; sourceTree = "<group>"; };
 		9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+PaymentusErrors.swift"; sourceTree = "<group>"; };
 		9F9446C42DD179469D3921A7 /* Pods_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -5069,6 +5074,7 @@
 				E801BAD31E8C436C00550F99 /* MCS */,
 				B5389EA11E53D8640028AF89 /* Parsing */,
 				B5A16F331F0D43C80016952C /* Speedpay */,
+				9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */,
 				B574BAD81E78360D001E8A44 /* AccountService.swift */,
 				E83F026A1FB0B5850062A348 /* AlertsService.swift */,
 				B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */,
@@ -5083,7 +5089,7 @@
 				B5AC06E91E52755800BBA4ED /* ServiceResult.swift */,
 				E89C16291F87D6AE0023DC02 /* UsageService.swift */,
 				54EDD2D91ECE236000CAB8A6 /* WalletService.swift */,
-				2F5C81F91F1D4B1B005B35FA /* WeatherAPI.swift */,
+				2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */,
 				2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */,
 				82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */,
 				B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */,
@@ -6977,6 +6983,7 @@
 				35E7C8032190805C00BA13C6 /* SignInInterfaceController.swift in Sources */,
 				356C7F9F2190A455003E8A90 /* MCSResponseParser.swift in Sources */,
 				356C7F752190974A003E8A90 /* NibViews.swift in Sources */,
+				9CB8A5F121DEC22200880DE9 /* Logger.swift in Sources */,
 				356C7F8521909EB3003E8A90 /* Maintenance.swift in Sources */,
 				356C7F8821909F46003E8A90 /* AuthenticationService.swift in Sources */,
 				356C7F8921909F6F003E8A90 /* Premise.swift in Sources */,
@@ -7126,6 +7133,7 @@
 				228877011FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				82E22B5E1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
+				9CB8A5ED21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				01F6121D1F1E400E00A4F9DA /* AddCardFormView.swift in Sources */,
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
 				9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
@@ -7350,7 +7358,7 @@
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				829D396C203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
-				2F5C81FA1F1D4B1B005B35FA /* WeatherAPI.swift in Sources */,
+				2F5C81FA1F1D4B1B005B35FA /* WeatherApi.swift in Sources */,
 				8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				357757552114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
@@ -7533,6 +7541,7 @@
 				B0DB2759215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
 				35277AFF2102686100411297 /* UsageTool.swift in Sources */,
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
+				9CB8A5EF21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				54DF4BCE1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				B54F0FF81E9EC8BB00A9B72B /* MCSApi.swift in Sources */,
 				E8039FF71EFB041C004DB789 /* BGEAutoPayInfo.swift in Sources */,
@@ -7738,7 +7747,7 @@
 				825171A51F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				E8039FFD1EFB0426004DB789 /* MCSPaymentService.swift in Sources */,
 				B0A8308F2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
-				2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */,
+				2F5C81FC1F1D5C4B005B35FA /* WeatherApi.swift in Sources */,
 				B0882CAF210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				B0B083BF216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -7867,6 +7876,7 @@
 				82E22B5F1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				E80D2E181E721668002626C9 /* MaskedString.swift in Sources */,
 				224EFF19216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
+				9CB8A5EE21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				9CB16EF8219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				01F6121E1F1E400E00A4F9DA /* AddCardFormView.swift in Sources */,
@@ -8108,7 +8118,7 @@
 				825171A41F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				E8039FFC1EFB0426004DB789 /* MCSPaymentService.swift in Sources */,
 				B0A8308E2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
-				2F5C81FB1F1D5C4A005B35FA /* WeatherAPI.swift in Sources */,
+				2F5C81FB1F1D5C4A005B35FA /* WeatherApi.swift in Sources */,
 				B0882CAE210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				B0B083BE216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -8281,7 +8291,7 @@
 				B0B083AB216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				9C7E5A56212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				B574BAEE1E785A5F001E8A44 /* OutageService.swift in Sources */,
-				E8C6F29F1F1F996A00C4644C /* WeatherAPI.swift in Sources */,
+				E8C6F29F1F1F996A00C4644C /* WeatherApi.swift in Sources */,
 				82DE61081FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				82E9B6151FA257ED00556C94 /* HomeProfile.swift in Sources */,
 				B0882C9A2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
@@ -8519,7 +8529,7 @@
 				E8F62BAD200924410077B3DA /* RxNotifications.swift in Sources */,
 				9C7E5A57212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				E8F62BAE200924410077B3DA /* OutageService.swift in Sources */,
-				E8F62BAF200924410077B3DA /* WeatherAPI.swift in Sources */,
+				E8F62BAF200924410077B3DA /* WeatherApi.swift in Sources */,
 				E8F62BB0200924410077B3DA /* OverrideViewModel.swift in Sources */,
 				E8F62BB1200924410077B3DA /* HomeProfile.swift in Sources */,
 				B073EC96214C3B820030B466 /* HomeBillCardViewModel.swift in Sources */,
@@ -8712,7 +8722,7 @@
 				E8F62C62200924570077B3DA /* RxNotifications.swift in Sources */,
 				9C7E5A58212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				E8F62C63200924570077B3DA /* OutageService.swift in Sources */,
-				E8F62C64200924570077B3DA /* WeatherAPI.swift in Sources */,
+				E8F62C64200924570077B3DA /* WeatherApi.swift in Sources */,
 				E8F62C65200924570077B3DA /* OverrideViewModel.swift in Sources */,
 				E8F62C66200924570077B3DA /* HomeProfile.swift in Sources */,
 				B073EC97214C3B820030B466 /* HomeBillCardViewModel.swift in Sources */,

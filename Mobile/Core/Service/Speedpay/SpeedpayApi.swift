@@ -30,18 +30,16 @@ struct SpeedpayApi {
             // Logging
             let requestId = ShortUUIDGenerator.getUUID(length: 8)
             let bodyString = String(data: body, encoding: .utf8) ?? ""
-            let logMessage = "REQUEST - BODY: \(bodyString)"
-            let path = String(url.absoluteString.suffix(from: Environment.shared.mcsConfig.speedpayUrl.endIndex))
-            
-            APILog(requestId: requestId, path: path, method: .post, message: logMessage)
+            let logMessage = "REQUEST: \(bodyString)"            
+            APILog(filename: "SpeedpayApi", requestId: requestId, path: request.url?.absoluteString, method: .post, message: logMessage)
             
             return URLSession.shared.rx.dataResponse(request: request)
                 .do(onNext: { data in
                     let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                    APILog(requestId: requestId, path: path, method: .post, message: "RESPONSE - BODY: \(resBodyString)")
+                    APILog(filename: "SpeedpayApi", requestId: requestId, path: request.url?.absoluteString, method: .post, message: "RESPONSE: \(resBodyString)")
                 }, onError: { error in
                     let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                    APILog(requestId: requestId, path: path, method: .post, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                    APILog(filename: "SpeedpayApi", requestId: requestId, path: request.url?.absoluteString, method: .post, message: "ERROR: \(serviceError.errorDescription ?? "")")
                 })
                 .catchError { error in
                     let serviceError = error as? ServiceError ?? ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, cause: error)
@@ -66,12 +64,4 @@ struct SpeedpayApi {
             return .error(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue, cause: error))
         }
     }
-}
-
-// MARK: - Logging
-
-fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
-    #if DEBUG
-        NSLog("[SpeedpayApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
-    #endif
 }
