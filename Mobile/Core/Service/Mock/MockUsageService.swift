@@ -11,6 +11,8 @@ import RxSwift
 
 struct MockUsageService: UsageService {
     
+    func clearCache() { }
+    
     func fetchBillComparison(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> Observable<BillComparison> {
         switch accountNumber {
         case "referenceEndDate":
