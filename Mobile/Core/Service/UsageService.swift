@@ -10,6 +10,8 @@ import RxSwift
 
 protocol UsageService {
     
+    init(useCache: Bool)
+    
     /// Compares how usage impacted your bill between cycles
     ///
     /// - Parameters:
@@ -49,13 +51,16 @@ protocol UsageService {
     func fetchEnergyTips(accountNumber: String, premiseNumber: String) -> Observable<[EnergyTip]>
 
 
-/// Fetches specific tip
-///
-/// - Parameters:
-///   - accountNumber: the account to fetch data for
-///   - premiseNumber: the premise to fetch data for
-///   - tipName : the tip we are looking for
+    /// Fetches specific tip
+    ///
+    /// - Parameters:
+    ///   - accountNumber: the account to fetch data for
+    ///   - premiseNumber: the premise to fetch data for
+    ///   - tipName : the tip we are looking for
     func fetchEnergyTipByName(accountNumber: String, premiseNumber:String,tipName:String) -> Observable<EnergyTip>
     #endif
 
+    
+    /// Clears the local bill comparison/forecast cache
+    func clearCache()
 }
