@@ -26,10 +26,12 @@ class MCSUsageService: UsageService {
         let dataObservable: Observable<BillComparison>
         
         // Pull from cache if possible
-        if let cachedData = cache.getComparisonCache(accountNumber: accountNumber,
-                                                     premiseNumber: premiseNumber,
-                                                     yearAgo: yearAgo,
-                                                     gas: gas) {
+        let cacheParams = BillAnalysisCache.ComparisonParams(accountNumber: accountNumber,
+                                                             premiseNumber: premiseNumber,
+                                                             yearAgo: yearAgo,
+                                                             gas: gas)
+        
+        if let cachedData = cache[cacheParams] {
             dataObservable = Observable.just(cachedData)
         } else {
             let params = ["compare_with": yearAgo ? "YEAR_AGO" : "PREVIOUS",
@@ -68,11 +70,8 @@ class MCSUsageService: UsageService {
         return dataObservable
             .do(onNext: { [weak self] in
                 guard let self = self, self.useCache else { return }
-                self.cache.setComparisonCache(newValue: $0,
-                                              accountNumber: accountNumber,
-                                              premiseNumber: premiseNumber,
-                                              yearAgo: yearAgo,
-                                              gas: gas)
+                let params = BillAnalysisCache.ComparisonParams(accountNumber: accountNumber, premiseNumber: premiseNumber, yearAgo: yearAgo, gas: gas)
+                self.cache[params] = $0
             })
         
     }
@@ -81,8 +80,8 @@ class MCSUsageService: UsageService {
         let dataObservable: Observable<BillForecastResult>
         
         // Pull from cache if possible
-        if let cachedData = cache.getForecastCache(accountNumber: accountNumber,
-                                                   premiseNumber: premiseNumber) {
+        let cacheParams = BillAnalysisCache.ForecastParams(accountNumber: accountNumber, premiseNumber: premiseNumber)
+        if let cachedData = cache[cacheParams] {
             dataObservable = Observable.just(cachedData)
         } else {
             dataObservable = MCSApi.shared.get(path: "accounts/\(accountNumber)/premises/\(premiseNumber)/usage/forecast_bill")
@@ -103,9 +102,8 @@ class MCSUsageService: UsageService {
         return dataObservable
             .do(onNext: { [weak self] in
                 guard let self = self, self.useCache else { return }
-                self.cache.setForecastCache(newValue: $0,
-                                            accountNumber: accountNumber,
-                                            premiseNumber: premiseNumber)
+                let params = BillAnalysisCache.ForecastParams(accountNumber: accountNumber, premiseNumber: premiseNumber)
+                self.cache[params] = $0
             })
     }
     
@@ -162,44 +160,34 @@ class MCSUsageService: UsageService {
     #endif
 
     private struct BillAnalysisCache {
-        private var comparisonCache = [String: [String: [Bool: [Bool: BillComparison]]]]()
-        private var forecastCache = [String: [String: BillForecastResult]]()
+        private var comparisonCache = [ComparisonParams: BillComparison]()
+        private var forecastCache = [ForecastParams: BillForecastResult]()
         
         mutating func clear() {
             comparisonCache.removeAll()
             forecastCache.removeAll()
         }
         
-        func getComparisonCache(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> BillComparison? {
-            return comparisonCache[accountNumber]?[premiseNumber]?[yearAgo]?[gas]
+        subscript(comparisonParams: ComparisonParams) -> BillComparison? {
+            get { return comparisonCache[comparisonParams] }
+            set { comparisonCache[comparisonParams] = newValue }
         }
         
-        mutating func setComparisonCache(newValue: BillComparison, accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) {
-            if comparisonCache[accountNumber] == nil {
-                comparisonCache[accountNumber] = [String: [Bool: [Bool: BillComparison]]]()
-            }
-            
-            if comparisonCache[accountNumber]?[premiseNumber] == nil {
-                comparisonCache[accountNumber]?[premiseNumber] = [Bool: [Bool: BillComparison]]()
-            }
-            
-            if comparisonCache[accountNumber]?[premiseNumber]?[yearAgo] == nil {
-                comparisonCache[accountNumber]?[premiseNumber]?[yearAgo] = [Bool: BillComparison]()
-            }
-            
-            comparisonCache[accountNumber]?[premiseNumber]?[yearAgo]?[gas] = newValue
+        subscript(forecastParams: ForecastParams) -> BillForecastResult? {
+            get { return forecastCache[forecastParams] }
+            set { forecastCache[forecastParams] = newValue }
         }
         
-        func getForecastCache(accountNumber: String, premiseNumber: String) -> BillForecastResult? {
-            return forecastCache[accountNumber]?[premiseNumber]
+        struct ComparisonParams: Hashable {
+            let accountNumber: String
+            let premiseNumber: String
+            let yearAgo: Bool
+            let gas: Bool
         }
         
-        mutating func setForecastCache(newValue: BillForecastResult, accountNumber: String, premiseNumber: String) {
-            if forecastCache[accountNumber] == nil {
-                forecastCache[accountNumber] = [String: BillForecastResult]()
-            }
-            
-            forecastCache[accountNumber]?[premiseNumber] = newValue
+        struct ForecastParams: Hashable {
+            let accountNumber: String
+            let premiseNumber: String
         }
     }
 }
