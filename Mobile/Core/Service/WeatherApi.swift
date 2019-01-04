@@ -139,17 +139,17 @@ struct WeatherApi: WeatherService {
             .flatMap { urlString -> Observable<WeatherItem> in
                 let requestId = ShortUUIDGenerator.getUUID(length: 8)
                 let method = HttpMethod.get
-                APILog(filename: "WeatherApi", requestId: requestId, path: urlString, method: method, message: "REQUEST")
+                APILog(filename: "WeatherApi", requestId: requestId, path: urlString, method: method, logType: .request, message: nil)
                 
                 var urlRequest = URLRequest(url: URL(string: urlString)!)
                 urlRequest.httpMethod = method.rawValue
                 
                 return URLSession.shared.rx.dataResponse(request: urlRequest)
                     .do(onNext: { data in
-                        APILog(filename: "WeatherApi", requestId: requestId, path: urlString, method: method, message: "RESPONSE: SUCCESS")
+                        APILog(filename: "WeatherApi", requestId: requestId, path: urlString, method: method, logType: .response, message: "SUCCESS")
                     }, onError: { error in
                         let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                        APILog(filename: "WeatherApi", requestId: requestId, path: urlString, method: method, message: "ERROR: \(serviceError.errorDescription ?? "")")
+                        APILog(filename: "WeatherApi", requestId: requestId, path: urlString, method: method, logType: .error, message: serviceError.errorDescription)
                     })
                     .map { data -> WeatherItem in
                         guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),

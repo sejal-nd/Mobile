@@ -8,26 +8,38 @@
 
 import Foundation
 
-func APILog(filename: String, requestId: String, path: String?, method: HttpMethod, message: String) {
+enum LogType: String {
+    case request = "REQUEST"
+    case response = "RESPONSE"
+    case error = "ERROR"
+}
+
+func APILog(filename: String,
+            requestId: String,
+            path: String?,
+            method: HttpMethod,
+            logType: LogType,
+            message: String?) {
 #if DEBUG
-    let logString = String(format: "[%@][%@][%@] %@ %@", filename, requestId, path ?? "", method.rawValue, message)
-    let logStringLength = message.count
+    let messageLength = message?.count ?? 0
     let CHUNK_SIZE = 800
-    let countInt = logStringLength / CHUNK_SIZE
-    if logStringLength > CHUNK_SIZE {
-        NSLog("--- BEGIN \(countInt + 1) PART LOG MESSAGE ---")
+    let countInt = messageLength / CHUNK_SIZE
+    if messageLength > CHUNK_SIZE {
+        NSLog("[%@][%@][%@] %@ %@ [LOG SPLIT INTO %d PARTS]", filename, requestId, path ?? "", method.rawValue, logType.rawValue, countInt + 1)
         for i in 0..<countInt {
             let start = String.Index(encodedOffset: i * CHUNK_SIZE)
-            let end = logString.index(start, offsetBy: CHUNK_SIZE)
-            NSLog("[PART %d]\n%@", i + 1, String(logString[start..<end]))
+            let end = message!.index(start, offsetBy: CHUNK_SIZE)
+            NSLog("[%@ PART %d]\n%@", requestId, i + 1, String(message![start..<end]))
         }
-        let lastChunk = logString.suffix(from: String.Index(encodedOffset: (countInt * CHUNK_SIZE)))
-        NSLog("[PART %d]\n%@", countInt + 1, String(lastChunk))
-        NSLog("--- END \(countInt + 1) PART LOG MESSAGE ---")
+        let lastChunk = message!.suffix(from: String.Index(encodedOffset: (countInt * CHUNK_SIZE)))
+        NSLog("[%@ PART %d]\n%@", requestId, countInt + 1, String(lastChunk))
+        //NSLog("--- END \(countInt + 1) PART LOG MESSAGE ---")
     } else {
-        NSLog("%@", logString)
+        if let message = message, !message.isEmpty {
+            NSLog("[%@][%@][%@] %@ %@: %@", filename, requestId, path ?? "", method.rawValue, logType.rawValue, message)
+        } else {
+            NSLog("[%@][%@][%@] %@ %@", filename, requestId, path ?? "", method.rawValue, logType.rawValue)
+        }
     }
-    
-    //NSLog("[MCSApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
 #endif
 }
