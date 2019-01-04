@@ -45,7 +45,7 @@ class MaintenanceModeViewController: UIViewController {
             .disposed(by: disposeBag)
         
         maintenanceModeBody.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
-        maintenanceModeBody.layer.cornerRadius = 2
+        maintenanceModeBody.layer.cornerRadius = 10
         
         headerLabel.text = viewModel.headerLabelText
         headerLabel.textColor = .deepGray
@@ -68,11 +68,6 @@ class MaintenanceModeViewController: UIViewController {
         BGEStackView.isHidden = !viewModel.showBGEStackView // Color of the phone numbers
         
         view.backgroundColor = .primaryColor
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {

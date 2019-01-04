@@ -27,7 +27,6 @@ class MaintenanceModeViewModel{
     
     let labelBody: NSAttributedString = {
         let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-        let emergencyAttrString: NSMutableAttributedString
         var localizedString: String
         
         let phone1: String
@@ -36,7 +35,7 @@ class MaintenanceModeViewModel{
         case .bge:
             phone1 = "1-800-685-0123"
             phone2 = "1-877-778-2222"
-            localizedString = String.localizedStringWithFormat("If you smell natural gas or see downed power lines, %@ and then call BGE at %@\n\nIf your power is out, call %@", leaveAreaString, phone1, phone2)
+            localizedString = String.localizedStringWithFormat("If you smell natural gas or see downed power lines, %@ and then call BGE at %@\n\nIf your power is out, call %@\n\nRepresentatives are available 24 hours a day, 7 days a week.", leaveAreaString, phone1, phone2)
         case .comEd:
             phone1 = "1-800-334-7661"
             phone2 = "\n1-800-334-7661" // Included the line break in the second number so the range(of:) method could find it, and bold it. Not hacky at all 👀
@@ -47,7 +46,7 @@ class MaintenanceModeViewModel{
             localizedString = String.localizedStringWithFormat("If you smell natural gas or see downed power lines, %@ and then call PECO at %@ Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n%@ M-F 7AM to 7PM\n\n", leaveAreaString, phone1, phone2)
         }
         
-        emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
+        let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
         emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phone1))
         emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phone2))
@@ -58,7 +57,7 @@ class MaintenanceModeViewModel{
     let bgeInquiriesLabelText: NSAttributedString = {
         let phoneString = "1-800-685-0123"
         let localizedString = String(format: NSLocalizedString("For all other inquiries, please call\n%@ M-F 7AM to 7PM", comment: ""), phoneString)
-        let attrString = NSMutableAttributedString(string: localizedString)
+        let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
         attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phoneString))
         return attrString
     }()
