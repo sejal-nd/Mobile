@@ -179,12 +179,6 @@ class MCSWalletService: WalletService {
         }
     }
     
-    /// "Add" a wallet item to MCS - this should be called after
-    /// adding a wallet item through a third party (Paymentus) to trigger
-    /// the sending of a confirmation email
-    ///
-    /// - Parameters:
-    ///   - walletItem: the WalletItem that was added
     func addWalletItemMCS(_ walletItem: WalletItem) {
         let params: [String: Any] = ["account_number": AccountsStore.shared.currentAccount.accountNumber,
                                      "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
