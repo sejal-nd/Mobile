@@ -31,6 +31,7 @@ protocol WalletService {
     ///   - customerNumber: AccountsStore.shared.customerIdentifier
     func addCreditCard(_ creditCard: CreditCard, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult>
     
+    func addWalletItemMCS(_ walletItem: WalletItem)
     
     /// Update a credit card in the users wallet.
     ///
