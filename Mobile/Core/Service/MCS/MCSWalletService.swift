@@ -184,9 +184,9 @@ class MCSWalletService: WalletService {
                                      "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
                                      "payment_category_type": walletItem.bankOrCard == .bank ? "Checking" : "Credit"]
         
-        MCSApi.shared.post(path: "wallet", params: params)
-            .subscribe()
-            .disposed(by: disposeBag)
+        /* We don't dispose this observable because we want the request to live on
+         * even after we've popped the PaymentusFormViewController */
+        _ = MCSApi.shared.post(path: "wallet", params: params).subscribe()
     }
     
     func updateWalletItemMCS(_ walletItem: WalletItem) {
@@ -194,9 +194,9 @@ class MCSWalletService: WalletService {
                                      "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
                                      "payment_category_type": walletItem.bankOrCard == .bank ? "Checking" : "Credit"]
         
-        MCSApi.shared.put(path: "wallet", params: params)
-            .subscribe()
-            .disposed(by: disposeBag)
+        /* We don't dispose this observable because we want the request to live on
+         * even after we've popped the PaymentusFormViewController */
+        _ = MCSApi.shared.put(path: "wallet", params: params).subscribe()
     }
     
     //TODO: Remove this once BGE moves to paymentus
