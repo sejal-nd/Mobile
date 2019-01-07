@@ -105,12 +105,12 @@ class MCSApi {
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
         let path = "/mobile/platform/sso/exchange-token"
         let method = HttpMethod.get
-        APILog(filename: "MCSApi", requestId: requestId, path: path, method: method, logType: .request, message: nil)
+        APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .request, message: nil)
         
         switch Reachability()!.connection {
         case .none:
             let serviceError = ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue)
-            APILog(filename: "MCSApi", requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
+            APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
             return .error(ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue))
         case .wifi, .cellular:
             let url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)\(path)")!
@@ -123,10 +123,10 @@ class MCSApi {
             return session.rx.dataResponse(request: request)
                 .do(onNext: { data in
                     let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                    APILog(filename: "MCSApi", requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
+                    APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
                 }, onError: { error in
                     let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                    APILog(filename: "MCSApi", requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
+                    APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
                 })
                 .map { data -> String in
                     guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
@@ -204,7 +204,7 @@ class MCSApi {
         switch(networkStatus) {
         case .none:
             let serviceError = ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue)
-            APILog(filename: "MCSApi", requestId: requestId, path: authPath, method: method, logType: .error, message: serviceError.errorDescription)
+            APILog(MCSApi.self, requestId: requestId, path: authPath, method: method, logType: .error, message: serviceError.errorDescription)
             return .error(serviceError)
         case .wifi, .cellular:
             return performCall(anon: anon, requestId: requestId, path: authPath, params: params, method: method)
@@ -224,7 +224,7 @@ class MCSApi {
             bodyString = String(data: jsonData, encoding: .utf8) ?? ""
         }
         
-        APILog(filename: "MCSApi", requestId: requestId, path: path, method: method, logType: .request, message: bodyString)
+        APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .request, message: bodyString)
         
         // Build Request
         let url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)/mobile/custom/\(path)")!
@@ -243,10 +243,10 @@ class MCSApi {
         return session.rx.fullResponse(request: request)
             .do(onNext: { _, data in
                 let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                APILog(filename: "MCSApi", requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
+                APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
             }, onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(filename: "MCSApi", requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
+                APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
             })
             .map { [weak self] (response: HTTPURLResponse, data: Data) -> Any in
                 if response.statusCode == 401 {

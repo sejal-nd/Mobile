@@ -108,15 +108,15 @@ struct MCSAlertsService: AlertsService {
         request.setValue("application/json;odata=verbose", forHTTPHeaderField: "Accept")
         
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
-        APILog(filename: "MCSAlertsService", requestId: requestId, path: path, method: .get, logType: .request, message: nil)
+        APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .request, message: nil)
         
         return URLSession.shared.rx.dataResponse(request: request)
             .do(onNext: { data in
                 let responseString = String(data: data, encoding: .utf8) ?? ""
-                APILog(filename: "MCSAlertsService", requestId: requestId, path: path, method: .get, logType: .response, message: responseString)
+                APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .response, message: responseString)
             }, onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(filename: "MCSAlertsService", requestId: requestId, path: path, method: .get, logType: .error, message: serviceError.errorDescription)
+                APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .error, message: serviceError.errorDescription)
             })
             .map { data in
                 guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),

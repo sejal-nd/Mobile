@@ -9,17 +9,17 @@
 import Foundation
 
 enum LogType: String {
-    case request = "REQUEST"
-    case response = "RESPONSE"
-    case error = "ERROR"
+    case request = "📬"
+    case response = "✅"
+    case error = "❌"
 }
 
-func dLog(_ message: String? = nil,
+func dLog(_ message: @autoclosure () -> String? = nil,
           filename: String = #file,
           function: String = #function,
           line: Int = #line) {
 #if DEBUG
-    if let message = message {
+    if let message = message() {
         NSLog("[%@: %d] %@ - %@", (filename as NSString).lastPathComponent, line, function, message)
     } else {
         NSLog("[%@: %d] %@", (filename as NSString).lastPathComponent, line, function)
@@ -27,31 +27,49 @@ func dLog(_ message: String? = nil,
 #endif
 }
 
-func APILog(filename: String,
-            requestId: String,
-            path: String?,
-            method: HttpMethod,
-            logType: LogType,
-            message: String?) {
+fileprivate let chunkSize = 800
+
+func APILog<T>(_ callerType: @autoclosure () -> T.Type,
+               requestId: @autoclosure () -> String,
+               path: @autoclosure () -> String?,
+               method: @autoclosure () -> HttpMethod,
+               logType: @autoclosure () -> LogType,
+               message: @autoclosure () -> String?) {
 #if DEBUG
-    let messageLength = message?.count ?? 0
-    let CHUNK_SIZE = 800
-    let countInt = messageLength / CHUNK_SIZE
-    if messageLength > CHUNK_SIZE {
-        NSLog("[%@][%@][%@] %@ %@ [LOG SPLIT INTO %d PARTS]", filename, requestId, path ?? "", method.rawValue, logType.rawValue, countInt + 1)
-        for i in 0..<countInt {
-            let start = String.Index(encodedOffset: i * CHUNK_SIZE)
-            let end = message!.index(start, offsetBy: CHUNK_SIZE)
-            NSLog("[%@ PART %d]\n%@", requestId, i + 1, String(message![start..<end]))
+    let callerName = "\(callerType())"
+    let requestId = requestId()
+    let path = path() ?? ""
+    let method = method()
+    let logType = logType()
+    
+    guard let message = message(), !message.isEmpty else {
+        NSLog("%@ [%@][%@][%@] %@", logType.rawValue, callerName, requestId, path, method.rawValue)
+        return
+    }
+    
+    if message.count > chunkSize {
+        let messageChunks = message.split(byChunkSize: chunkSize)
+        NSLog("%@ [%@][%@][%@] %@ [LOG SPLIT INTO %d PARTS]", logType.rawValue, callerName, requestId, path, method.rawValue, messageChunks.count)
+        for (offset, messageChunk) in messageChunks.enumerated() {
+            NSLog("✂️ [%@ PART %d]\n%@", requestId, offset + 1, messageChunk)
         }
-        let lastChunk = message!.suffix(from: String.Index(encodedOffset: (countInt * CHUNK_SIZE)))
-        NSLog("[%@ PART %d]\n%@", requestId, countInt + 1, String(lastChunk))
     } else {
-        if let message = message, !message.isEmpty {
-            NSLog("[%@][%@][%@] %@ %@: %@", filename, requestId, path ?? "", method.rawValue, logType.rawValue, message)
-        } else {
-            NSLog("[%@][%@][%@] %@ %@", filename, requestId, path ?? "", method.rawValue, logType.rawValue)
-        }
+        NSLog("%@ [%@][%@][%@] %@: %@", logType.rawValue, callerName, requestId, path, method.rawValue, message)
     }
 #endif
+}
+
+extension String {
+    func split(byChunkSize length: Int) -> [String] {
+        var start = startIndex
+        var results = [Substring]()
+        
+        while start < endIndex {
+            let end = index(start, offsetBy: length, limitedBy: endIndex) ?? endIndex
+            results.append(self[start..<end])
+            start = end
+        }
+        
+        return results.map(String.init)
+    }
 }

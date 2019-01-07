@@ -98,15 +98,15 @@ struct MCSAuthenticationService : AuthenticationService {
         request.httpBody = postDataString.data(using: .utf8)
         
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
-        APILog(filename: "MCSAuthenticationService", requestId: requestId, path: path, method: method, logType: .request, message: postDataLoggingStr)
+        APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .request, message: postDataLoggingStr)
         
         return URLSession.shared.rx.dataResponse(request: request)
             .do(onNext: { data in
                 let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                APILog(filename: "MCSAuthenticationService", requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
+                APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
             }, onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(filename: "MCSAuthenticationService", requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
+                APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
             })
             .map { data in
                 switch AuthTokenParser.parseAuthTokenResponse(data: data) {
