@@ -82,10 +82,10 @@ struct MCSAlertsService: AlertsService {
         let path: String
         if bannerOnly {
             filterString = "(Enable eq 1) and (CustomerType eq 'Banner')"
-            path = "Updates fetch - Banner Only"
+            path = "Updates - Banner Only"
         } else if stormOnly {
             filterString = "(Enable eq 1) and (CustomerType eq 'Storm')"
-            path = "Updates fetch - Storm Only"
+            path = "Updates - Storm Only"
         } else {
             filterString = "(Enable eq 1) and ((CustomerType eq 'All')"
             ["Banner", "PeakRewards", "Peak Time Savings", "Smart Energy Rewards", "Storm"]
@@ -93,7 +93,7 @@ struct MCSAlertsService: AlertsService {
                     filterString += "or (CustomerType eq '\($0)')"
             }
             filterString += ")"
-            path = "Updates fetch - All Updates"
+            path = "Updates - All Updates"
         }
         
         let filter = URLQueryItem(name: "$filter", value: filterString)
@@ -103,21 +103,20 @@ struct MCSAlertsService: AlertsService {
             return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
         }
         
-        let method = HttpMethod.get
         var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
+        request.httpMethod = HttpMethod.get.rawValue
         request.setValue("application/json;odata=verbose", forHTTPHeaderField: "Accept")
         
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
-        APILog(filename: "MCSAlertsService", requestId: requestId, path: path, method: method, logType: .request, message: nil)
+        APILog(filename: "MCSAlertsService", requestId: requestId, path: path, method: .get, logType: .request, message: nil)
         
         return URLSession.shared.rx.dataResponse(request: request)
             .do(onNext: { data in
                 let responseString = String(data: data, encoding: .utf8) ?? ""
-                APILog(filename: "MCSAlertsService", requestId: requestId, path: path, method: .post, logType: .response, message: responseString)
+                APILog(filename: "MCSAlertsService", requestId: requestId, path: path, method: .get, logType: .response, message: responseString)
             }, onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(filename: "MCSAlertsService", requestId: requestId, path: path, method: .post, logType: .error, message: serviceError.errorDescription)
+                APILog(filename: "MCSAlertsService", requestId: requestId, path: path, method: .get, logType: .error, message: serviceError.errorDescription)
             })
             .map { data in
                 guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),

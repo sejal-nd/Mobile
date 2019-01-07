@@ -33,7 +33,6 @@ func APILog(filename: String,
         }
         let lastChunk = message!.suffix(from: String.Index(encodedOffset: (countInt * CHUNK_SIZE)))
         NSLog("[%@ PART %d]\n%@", requestId, countInt + 1, String(lastChunk))
-        //NSLog("--- END \(countInt + 1) PART LOG MESSAGE ---")
     } else {
         if let message = message, !message.isEmpty {
             NSLog("[%@][%@][%@] %@ %@: %@", filename, requestId, path ?? "", method.rawValue, logType.rawValue, message)
