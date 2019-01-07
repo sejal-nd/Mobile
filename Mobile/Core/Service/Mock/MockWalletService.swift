@@ -70,6 +70,10 @@ struct MockWalletService: WalletService {
     func addWalletItemMCS(_ walletItem: WalletItem) {
         // Do nothing - we never handle for the response of this
     }
+    
+    func updateWalletItemMCS(_ walletItem: WalletItem) {
+        // Do nothing - we never handle for the response of this
+    }
 
     func updateCreditCard(walletItemID: String,
                           customerNumber: String,

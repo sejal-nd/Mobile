@@ -189,6 +189,16 @@ class MCSWalletService: WalletService {
             .disposed(by: disposeBag)
     }
     
+    func updateWalletItemMCS(_ walletItem: WalletItem) {
+        let params: [String: Any] = ["account_number": AccountsStore.shared.currentAccount.accountNumber,
+                                     "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
+                                     "payment_category_type": walletItem.bankOrCard == .bank ? "Checking" : "Credit"]
+        
+        MCSApi.shared.put(path: "wallet", params: params)
+            .subscribe()
+            .disposed(by: disposeBag)
+    }
+    
     //TODO: Remove this once BGE moves to paymentus
     func updateCreditCard(walletItemID: String,
                           customerNumber: String,
@@ -209,6 +219,7 @@ class MCSWalletService: WalletService {
         
     }
     
+    //TODO: Remove this once BGE moves to paymentus
     private func updateMCSCreditCard(walletItemID: String,
                                      expirationMonth: String,
                                      expirationYear: String,

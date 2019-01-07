@@ -216,7 +216,11 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                     let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String, maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String, nickName: nickname, isDefault: didSetDefault, bankOrCard: bankOrCard, isTemporary: temporary)
                     
                     if !temporary {
-                        walletService.addWalletItemMCS(walletItem)
+                        if walletItemId != nil {
+                            walletService.updateWalletItemMCS(walletItem)
+                        } else {
+                            walletService.addWalletItemMCS(walletItem)
+                        }
                     }
                     
                     if walletItemId != nil {
