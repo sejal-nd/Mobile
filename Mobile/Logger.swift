@@ -14,6 +14,19 @@ enum LogType: String {
     case error = "ERROR"
 }
 
+func dLog(_ message: String? = nil,
+          filename: String = #file,
+          function: String = #function,
+          line: Int = #line) {
+#if DEBUG
+    if let message = message {
+        NSLog("[%@: %d] %@ - %@", (filename as NSString).lastPathComponent, line, function, message)
+    } else {
+        NSLog("[%@: %d] %@", (filename as NSString).lastPathComponent, line, function)
+    }
+#endif
+}
+
 func APILog(filename: String,
             requestId: String,
             path: String?,
