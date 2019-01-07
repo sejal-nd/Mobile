@@ -303,7 +303,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showPaymentDescription: Driver<Bool> = paymentDescriptionText.isNil().not()
     
-    private(set) lazy var showSlideToPay24DisclaimerLabel: Driver<Bool> = billState.map { $0 == .billPaidIntermediate && Environment.shared.opco == .bge }
+    private(set) lazy var showSlideToPayConfirmationDetailLabel: Driver<Bool> = billState.map { $0 == .billPaidIntermediate }
     
     private(set) lazy var showAmount: Driver<Bool> = billState.map { $0 != .billPaidIntermediate }
     
@@ -785,6 +785,20 @@ class HomeBillCardViewModel {
                 return .actionBlue
             } else {
                 return .blackText
+            }
+    }
+    
+    private(set) lazy var slideToPayConfirmationDetailText: Driver<String?> = accountDetailDriver
+        .map { _ in
+            switch Environment.shared.opco {
+            case .bge:
+                return NSLocalizedString("It may take 24 hours for your payment status to update.", comment: "")
+            case .comEd, .peco:
+                guard let payment = RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] else {
+                    return nil
+                }
+                
+                return String.localizedStringWithFormat("Your confirmation number is %@", payment.confirmationNumber)
             }
     }
     
