@@ -40,6 +40,8 @@ class PaymentusFormViewController: UIViewController {
     var shouldPopToMakePaymentOnSave = false
     var shouldPopToRootOnSave = false
     
+    let walletService: WalletService = ServiceFactory.createWalletService()
+    
     init(bankOrCard: BankOrCard, temporary: Bool, isWalletEmpty: Bool = false, walletItemId: String? = nil) {
         self.bankOrCard = bankOrCard
         self.temporary = temporary
@@ -186,6 +188,8 @@ class PaymentusFormViewController: UIViewController {
     
 }
 
+// MARK: - postMessage Handling
+
 extension PaymentusFormViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("Received postMessage: \(message.body)")
@@ -210,6 +214,10 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                     }
                     
                     let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String, maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String, nickName: nickname, isDefault: didSetDefault, bankOrCard: bankOrCard, isTemporary: temporary)
+                    
+                    if !temporary {
+                        walletService.addWalletItemMCS(walletItem)
+                    }
                     
                     if walletItemId != nil {
                         delegate?.didEditWalletItem()
@@ -247,6 +255,8 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
         }
     }
 }
+
+// MARK: - WKNavigationDelegate
 
 extension PaymentusFormViewController: WKNavigationDelegate {
     
