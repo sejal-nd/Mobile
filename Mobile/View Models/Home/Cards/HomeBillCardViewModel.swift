@@ -137,8 +137,8 @@ class HomeBillCardViewModel {
         .toAsyncRequest(activityTracker: paymentTracker,
                         requestSelector: { [unowned self] payment in
                             self.paymentService.schedulePayment(payment: payment)
-                                .do(onNext: { _ in
-                                    let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate)
+                                .do(onNext: { confirmationNumber in
+                                    let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate, confirmationNumber: confirmationNumber)
                                     RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = paymentDetails
                                 })
                                 .mapTo(())
@@ -310,7 +310,7 @@ class HomeBillCardViewModel {
     private(set) lazy var showConvenienceFee: Driver<Bool> = showSaveAPaymentAccountButton.not()
     
     private(set) lazy var showDueDate: Driver<Bool> = billState.map {
-        switch ($0) {
+        switch $0 {
         case .billPaid, .billPaidIntermediate, .paymentPending:
             return false
         default:
@@ -334,16 +334,16 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver.combineLatest(billState,
-                                                                                   walletItemDriver,
-                                                                                   showOneTouchPaySlider)
+                                                                                             walletItemDriver,
+                                                                                             showOneTouchPaySlider)
         { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .paymentScheduled && $1 == nil && $2 }
         .distinctUntilChanged()
     
     private(set) lazy var showMinMaxPaymentAllowed: Driver<Bool> = Driver.combineLatest(billState,
-                                                                               walletItemDriver,
-                                                                               accountDetailDriver,
-                                                                               showOneTouchPaySlider,
-                                                                               minMaxPaymentAllowedText)
+                                                                                        walletItemDriver,
+                                                                                        accountDetailDriver,
+                                                                                        showOneTouchPaySlider,
+                                                                                        minMaxPaymentAllowedText)
     { billState, walletItem, accountDetail, showOneTouchPaySlider, minMaxPaymentAllowedText in
         return billState == .billReady &&
             walletItem != nil &&
