@@ -81,7 +81,7 @@ struct ServiceFactory {
         }
     }
 
-    class func createWeatherService() -> WeatherService {
+    static func createWeatherService() -> WeatherService {
         return WeatherApi()
     }
 
