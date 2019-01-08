@@ -9,9 +9,20 @@
 import Foundation
 
 enum LogType: String {
-    case request = "📬"
-    case response = "✅"
-    case error = "❌"
+    case request = "REQUEST"
+    case response = "RESPONSE"
+    case error = "ERROR"
+    
+    var symbol: String {
+        switch self {
+        case .request:
+            return "📬"
+        case .response:
+            return "✅"
+        case .error:
+            return "❌"
+        }
+    }
 }
 
 func dLog(_ message: @autoclosure () -> String? = nil,
@@ -40,21 +51,21 @@ func APILog<T>(_ callerType: @autoclosure () -> T.Type,
     let requestId = requestId()
     let path = path() ?? ""
     let method = method().rawValue
-    let logType = logType().rawValue
+    let logType = logType()
     
     guard let message = message(), !message.isEmpty else {
-        NSLog("%@ [%@][%@][%@] %@", logType, callerName, requestId, path, method)
+        NSLog("%@ [%@][%@][%@] %@ %@", logType.symbol, callerName, requestId, path, method, logType.rawValue)
         return
     }
     
     if message.count > chunkSize {
         let messageChunks = message.split(byChunkSize: chunkSize)
-        NSLog("%@ [%@][%@][%@] %@ [LOG SPLIT INTO %d PARTS]", logType, callerName, requestId, path, method, messageChunks.count)
+        NSLog("%@ [%@][%@][%@] %@ %@ [LOG SPLIT INTO %d PARTS]", logType.symbol, callerName, requestId, path, method, logType.rawValue, messageChunks.count)
         for (offset, messageChunk) in messageChunks.enumerated() {
             NSLog("✂️ [%@ PART %d]\n%@", requestId, offset + 1, messageChunk)
         }
     } else {
-        NSLog("%@ [%@][%@][%@] %@: %@", logType, callerName, requestId, path, method, message)
+        NSLog("%@ [%@][%@][%@] %@ %@: %@", logType.symbol, callerName, requestId, path, method, logType.rawValue, message)
     }
 #endif
 }

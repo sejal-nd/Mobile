@@ -1,5 +1,5 @@
 //
-//  WeatherAPI.swift
+//  WeatherApi.swift
 //  Mobile
 //
 //  Created by Jeremy Kliphouse on 7/17/17.
