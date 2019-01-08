@@ -200,7 +200,7 @@ class TemplateCardViewModel {
             case .comEd:
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
-                        String(format: NSLocalizedString("http://rrtp.comed.com/rrtpmobile/servlet?type=home&account=%@", comment: ""),
+                        String(format: NSLocalizedString("http://hourlypricing.comed.com/rrtpmobile/servlet?type=home&account=%@", comment: ""),
                                accountDetail.accountNumber) :
                         NSLocalizedString("https://www.comedmarketplace.com/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app", comment: "")
                 } else {

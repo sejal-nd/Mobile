@@ -37,7 +37,7 @@ class HourlyPricingViewController: UIViewController {
         
         let urlString: String
         if accountDetail.isHourlyPricing {
-            urlString = "https://rrtp.comed.com/rrtpmobile/servlet?type=home&account=" + accountDetail.accountNumber
+            urlString = "https://hourlypricing.comed.com/rrtpmobile/servlet?type=home&account=" + accountDetail.accountNumber
         } else {
             urlString = "https://hourlypricing.comed.com"
         }
