@@ -27,8 +27,6 @@ class AccountPickerViewController: UIViewController {
     var iconView: UIImageView!
     var accountNumberLabel: UILabel!
     
-    let accountPickerViewControllerWillAppear = PublishSubject<AccountPickerViewControllerState>()
-    
     var defaultStatusBarStyle: UIStatusBarStyle { return .default }
     
     var showMinimizedPicker: Bool { return true } // Override in subclasses to turn off
@@ -119,11 +117,9 @@ class AccountPickerViewController: UIViewController {
         
         let currentAccount = AccountsStore.shared.currentAccount
         if currentAccount == nil {
-            accountPickerViewControllerWillAppear.onNext(.loadingAccounts)
             fetchAccounts()
         } else {
             accountPicker.loadAccounts()
-            accountPickerViewControllerWillAppear.onNext(.readyToFetchData)
             if currentAccount != accountPicker.currentAccount || currentAccount?.currentPremise != accountPicker.currentAccount.currentPremise {
                 accountPicker.updateCurrentAccount()
             }
@@ -138,7 +134,6 @@ class AccountPickerViewController: UIViewController {
                 guard let self = self else { return }
                 self.accountPicker.setLoading(false)
                 self.accountPicker.loadAccounts()
-                self.accountPickerViewControllerWillAppear.onNext(.readyToFetchData)
             }, onError: { [weak self] err in
                 guard let self = self else { return }
                 self.accountPicker.setLoading(false)
