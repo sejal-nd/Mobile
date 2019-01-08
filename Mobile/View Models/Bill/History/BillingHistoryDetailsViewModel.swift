@@ -64,10 +64,6 @@ class BillingHistoryDetailsViewModel {
         return billingHistory.confirmationNumber ?? ""
     }
     
-    var isBGE: Bool {
-        return Environment.shared.opco == .bge
-    }
-    
     var isSpeedpay: Bool {
         return billingHistory.paymentType == "SPEEDPAY"
     }

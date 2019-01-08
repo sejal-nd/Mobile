@@ -179,18 +179,10 @@ class MCSWalletService: WalletService {
         }
     }
     
-    //TODO: Remove this once BGE moves to paymentus
-    /// "Add" a wallet item to MCS - This should be called after
-    /// adding a wallet item through a third party (Speedpay)
-    ///
-    /// - Parameters:
-    ///   - accountNumber: the user account number
-    ///   - maskedAccountNumber: the masked (last 4 digits) of the wallet item account number
-    ///   - categoryType: the payment category type that was added.
-    private func addWalletItemMCS(accountNumber: String, maskedAccountNumber: String, categoryType: String) {
-        let params: [String: Any] = ["account_number" : accountNumber,
-                                     "masked_wallet_item_acc_num" : maskedAccountNumber,
-                                     "payment_category_type" : categoryType]
+    func addWalletItemMCS(_ walletItem: WalletItem) {
+        let params: [String: Any] = ["account_number": AccountsStore.shared.currentAccount.accountNumber,
+                                     "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
+                                     "payment_category_type": walletItem.bankOrCard == .bank ? "Checking" : "Credit"]
         
         MCSApi.shared.post(path: "wallet", params: params)
             .subscribe()
@@ -250,29 +242,6 @@ class MCSWalletService: WalletService {
                     }
                 }
         }
-    }
-    
-    func updateMCSBankAccount(walletItemID: String,
-                              bankAccountNumber: String,
-                              routingNumber: String,
-                              accountType: BankAccountType,
-                              nickname: String?,
-                              accountName: String?) -> Observable<Void> {
-        var params = ["wallet_item_id": walletItemID,
-                      "account_number": AccountsStore.shared.accounts[0].accountNumber,
-                      "routing_number": routingNumber,
-                      "bank_account_type": accountType.rawValue,
-                      "bank_account_number": bankAccountNumber] as [String : Any]
-        
-        if(!(nickname ?? "").isEmpty) {
-            params["account_nick_name"] = nickname
-        }
-        if(!(accountName ?? "").isEmpty) {
-            params["bank_account_name"] = accountName
-        }
-        
-        return MCSApi.shared.put(path: "wallet", params: params)
-            .mapTo(())
     }
     
     func deletePaymentMethod(walletItem : WalletItem) -> Observable<Void> {

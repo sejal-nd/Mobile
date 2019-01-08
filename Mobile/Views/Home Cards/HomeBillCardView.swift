@@ -51,8 +51,8 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var reinstatementFeeContainer: UIView!
     @IBOutlet private weak var reinstatementFeeLabel: UILabel!
     
-    @IBOutlet private weak var slideToPay24DisclaimerContainer: UIView!
-    @IBOutlet private weak var slideToPay24DisclaimerLabel: UILabel!
+    @IBOutlet private weak var slideToPayConfirmationDetailContainer: UIView!
+    @IBOutlet private weak var slideToPayConfirmationDetailLabel: UITextView!
     
     @IBOutlet private weak var walletItemInfoContainer: UIView!
     @IBOutlet private weak var walletItemInfoBox: UIView!
@@ -165,7 +165,14 @@ class HomeBillCardView: UIView {
         dueDateLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        slideToPay24DisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        //TODO: Remove this check when BGE switches to Paymentus
+        switch Environment.shared.opco {
+        case .bge:
+            slideToPayConfirmationDetailLabel.isSelectable = false
+            slideToPayConfirmationDetailLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        case .comEd, .peco:
+            slideToPayConfirmationDetailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        }
         
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -224,7 +231,7 @@ class HomeBillCardView: UIView {
         paymentDescriptionLabel.textColor = .white
         amountLabel.textColor = .white
         reinstatementFeeLabel.textColor = .white
-        slideToPay24DisclaimerLabel.textColor = .white
+        slideToPayConfirmationDetailLabel.textColor = .white
         bankCreditCardNumberLabel.textColor = .white
         minimumPaymentLabel.textColor = .white
         convenienceFeeLabel.textColor = .white
@@ -304,7 +311,7 @@ class HomeBillCardView: UIView {
         
         viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).disposed(by: bag)
         viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showSlideToPay24DisclaimerLabel.not().drive(slideToPay24DisclaimerContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showSlideToPayConfirmationDetailLabel.not().drive(slideToPayConfirmationDetailContainer.rx.isHidden).disposed(by: bag)
         
         viewModel.showPaymentDescription.not().drive(paymentDescriptionLabel.rx.isHidden).disposed(by: bag)
         viewModel.showAmount.not().drive(amountLabel.rx.isHidden).disposed(by: bag)
@@ -359,6 +366,7 @@ class HomeBillCardView: UIView {
         viewModel.oneTouchPayTCButtonTextColor.drive(oneTouchPayTCButtonLabel.rx.textColor).disposed(by: bag)
         viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isAccessibilityElement).disposed(by: bag)
         viewModel.enableOneTouchPayTCButton.not().drive(oneTouchPayTCButtonLabel.rx.isAccessibilityElement).disposed(by: bag)
+        viewModel.slideToPayConfirmationDetailText.drive(slideToPayConfirmationDetailLabel.rx.text).disposed(by: bag)
         
         // Actions
         oneTouchSlider.didFinishSwipe
