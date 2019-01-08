@@ -41,7 +41,7 @@ class MyHomeProfileViewController: UIViewController {
     
     var accountDetail: AccountDetail!
     
-    private lazy var viewModel = MyHomeProfileViewModel(usageService: ServiceFactory.createUsageService(),
+    private lazy var viewModel = MyHomeProfileViewModel(usageService: ServiceFactory.createUsageService(useCache: false),
                                                         accountDetail: self.accountDetail,
                                                         saveAction: self.saveButton.rx.tap.asObservable())
     

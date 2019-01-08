@@ -170,7 +170,7 @@ class UsageViewController: AccountPickerViewController {
     
     let viewModel = UsageViewModel(authService: ServiceFactory.createAuthenticationService(),
                                    accountService: ServiceFactory.createAccountService(),
-                                   usageService: ServiceFactory.createUsageService())
+                                   usageService: ServiceFactory.createUsageService(useCache: true))
     
     var initialSelection: (barSelection: UsageViewModel.BarGraphSelection, isGas: Bool, isPreviousBill: Bool)?
     
