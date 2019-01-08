@@ -74,7 +74,10 @@ class HomeUsageCardViewModel {
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
         .merge(accountDetailChanged, segmentedControlChanged).share(replay: 1)
     
-    private(set) lazy var accountDetailChanged = accountDetailEvents
+    private(set) lazy var accountDetailChanged = Observable
+        .combineLatest(accountDetailEvents, serResultEvents)
+        .filter { $0.element != nil && $1.element != nil }
+        .map { accountDetailEvent, _ in accountDetailEvent }
         .do(onNext: { [weak self] _ in self?.usageService.clearCache() })
         .elements()
         .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
@@ -129,7 +132,8 @@ class HomeUsageCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showErrorState: Driver<Void> = Observable
-        .merge(accountDetailEvents.errors(), serResultEvents.errors())
+        .combineLatest(accountDetailEvents, serResultEvents)
+        .filter { $0.error != nil || $1.error != nil }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
