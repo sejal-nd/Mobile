@@ -73,3 +73,10 @@ iOSInjectionProject/
 
 # AppCode files
 .idea
+
+# Git merge files
+*.orig
+*.BACKUP.*.pbxproj
+*.BASE.*.pbxproj
+*.LOCAL.*.pbxproj
+*.REMOTE.*.pbxproj

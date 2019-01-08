@@ -82,7 +82,7 @@ struct ServiceFactory {
     }
 
     static func createWeatherService() -> WeatherService {
-        return WeatherAPI()
+        return WeatherApi()
     }
 
     static func createUsageService(useCache: Bool) -> UsageService {
@@ -102,11 +102,11 @@ struct ServiceFactory {
             return MCSAlertsService()
         }
     }
-    
+
     static func createPeakRewardsService() -> PeakRewardsService {
         return MCSPeakRewardsService()
     }
-    
+
     static func createAppointmentService() -> AppointmentService {
         switch Environment.shared.environmentName {
         case .aut:
