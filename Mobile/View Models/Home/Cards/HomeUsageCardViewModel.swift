@@ -74,7 +74,9 @@ class HomeUsageCardViewModel {
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
         .merge(accountDetailChanged, segmentedControlChanged).share(replay: 1)
     
-    private(set) lazy var accountDetailChanged = accountDetailEvents.elements()
+    private(set) lazy var accountDetailChanged = accountDetailEvents
+        .do(onNext: { [weak self] _ in self?.usageService.clearCache() })
+        .elements()
         .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
         .filter { $0.isEligibleForUsageData && !$1 }
         .map { accountDetail, _ in accountDetail }

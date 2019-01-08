@@ -11,12 +11,6 @@ import RxSwift
 import RxCocoa
 
 class BillingHistoryTableViewCell: UITableViewCell {
-    
-    let PAYMENT = NSLocalizedString("Payment", comment: "")
-    let PAYMENT_PROCESSING = NSLocalizedString("Payment Processing", comment: "")
-    let SCHEDULED_PAYMENT = NSLocalizedString("Scheduled Payment", comment: "")
-    let BILL_ISSUED = NSLocalizedString("Bill Issued", comment: "")
-    let PENDING_PAYMENT = NSLocalizedString("Pending Payment", comment: "")
 
     @IBOutlet weak var innerContentView: ButtonControl!
     @IBOutlet weak var iconImageView: UIImageView!
@@ -56,9 +50,10 @@ class BillingHistoryTableViewCell: UITableViewCell {
         var a11y = ""
         if item.isBillPDF {
             iconImageView.image = #imageLiteral(resourceName: "ic_bill")
-            titleLabel.text = BILL_ISSUED
+            let titleText = NSLocalizedString("Bill Issued", comment: "")
+            titleLabel.text = titleText
             amountLabel.text = item.totalAmountDue?.currencyString
-            a11y = String(format: NSLocalizedString("%@. %@. %@. View PDF", comment: ""), BILL_ISSUED, dateString, amountLabel.text ?? "")
+            a11y = String(format: NSLocalizedString("%@. %@. %@. View PDF", comment: ""), titleText, dateString, amountLabel.text ?? "")
         } else {
             guard let amountPaid = item.amountPaid?.currencyString else {
                 return
@@ -66,26 +61,30 @@ class BillingHistoryTableViewCell: UITableViewCell {
             
             switch item.status {
             case .scheduled:
+                let titleText = NSLocalizedString("Scheduled Payment", comment: "")
                 iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
-                titleLabel.text = SCHEDULED_PAYMENT
-                self.amountLabel.text = amountPaid
-                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
+                titleLabel.text = titleText
+                amountLabel.text = amountPaid
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .canceled:
-                titleLabel.text = PAYMENT
+                let titleText = NSLocalizedString("Payment", comment: "")
+                titleLabel.text = titleText
                 amountLabel.text = amountPaid
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_canceled")
-                a11y = String(format: NSLocalizedString("Canceled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
+                a11y = String(format: NSLocalizedString("Canceled %@. %@. %@.", comment: ""), titleText, dateString, amountLabel.text ?? "")
             case .failed:
-                titleLabel.text = PAYMENT
+                let titleText = NSLocalizedString("Payment", comment: "")
+                titleLabel.text = titleText
                 amountLabel.text = amountPaid
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
-                a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
+                a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), titleText, dateString, amountLabel.text ?? "")
             default:
+                let titleText = NSLocalizedString("Payment", comment: "")
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
-                titleLabel.text = PAYMENT
-                amountLabel.text = "\(String(describing: amountPaid))"
+                titleLabel.text = titleText
+                amountLabel.text = amountPaid
                 amountLabel.textColor = .successGreenText
-                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT, dateString, amountLabel.text ?? "")
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountLabel.text ?? "")
             }
         }
         innerContentView.accessibilityLabel = a11y
@@ -100,36 +99,46 @@ class BillingHistoryTableViewCell: UITableViewCell {
         switch item.status {
         case .pending:
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
-            titleLabel.text = PENDING_PAYMENT
+            let titleText = NSLocalizedString("Pending Payment", comment: "")
+            titleLabel.text = titleText
             amountLabel.text = amountPaid
             dateLabel.isHidden = true
             caretImageView.isHidden = true
-            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PENDING_PAYMENT, dateString, amountPaid)
+            innerContentView.isUserInteractionEnabled = false
+            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
         case .processing, .processed:
             iconImageView.image = #imageLiteral(resourceName: "ic_pending")
-            titleLabel.text = PAYMENT_PROCESSING
+            let titleText = NSLocalizedString("Payment Processing", comment: "")
+            titleLabel.text = titleText
             amountLabel.text = amountPaid
             dateLabel.isHidden = true
             caretImageView.isHidden = false
-            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), PAYMENT_PROCESSING, dateString, amountPaid)
+            innerContentView.isUserInteractionEnabled = true
+            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
         case .canceled:
-            titleLabel.text = PAYMENT
+            let titleText = NSLocalizedString("Payment", comment: "")
+            titleLabel.text = titleText
             amountLabel.text = amountPaid
             caretImageView.isHidden = false
             iconImageView.image = #imageLiteral(resourceName: "ic_activity_canceled")
-            a11y = String(format: NSLocalizedString("Canceled %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
+            innerContentView.isUserInteractionEnabled = true
+            a11y = String(format: NSLocalizedString("Canceled %@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
         case .failed:
-            titleLabel.text = PAYMENT
+            let titleText = NSLocalizedString("Payment", comment: "")
+            titleLabel.text = titleText
             amountLabel.text = amountPaid
             caretImageView.isHidden = false
             iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
-            a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), PAYMENT, dateString, amountPaid)
+            innerContentView.isUserInteractionEnabled = true
+            a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
         default:
+            let titleText = NSLocalizedString("Scheduled Payment", comment: "")
             iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
-            titleLabel.text = SCHEDULED_PAYMENT
+            titleLabel.text = titleText
             amountLabel.text = amountPaid
             caretImageView.isHidden = false
-            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), SCHEDULED_PAYMENT, dateString, amountPaid)
+            innerContentView.isUserInteractionEnabled = true
+            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
         }
         
         innerContentView.accessibilityLabel = a11y

@@ -109,7 +109,8 @@ class MockAccountService: AccountService {
             
         case "thankYouForPaymentOTP":
             RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = PaymentDetails(amount: 234,
-                                                                                             date: Date().addingTimeInterval(-3600))
+                                                                                             date: Date().addingTimeInterval(-3600),
+                                                                                             confirmationNumber: "123456")
             let accountDetail = AccountDetail(accountNumber: "1234")
             return .just(accountDetail)
             

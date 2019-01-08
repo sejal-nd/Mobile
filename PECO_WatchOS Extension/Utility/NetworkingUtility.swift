@@ -332,7 +332,7 @@ class NetworkingUtility {
         }
         let accountNumber = accountDetail.accountNumber
         
-        MCSUsageService().fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
+        MCSUsageService(useCache: false).fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
             // handle success
             aLog("Usage Data Fetched.")
             success(billForecastResult)

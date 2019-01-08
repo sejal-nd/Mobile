@@ -94,7 +94,7 @@ class HomeBillCardUITests: ExelonUITestCase {
     func testMaintModeHomeBillCard() {
         doLogin(username: "maintNotHome")
         
-        checkExistenceOfElement(.staticText, "Billing is currently unavailable due to scheduled maintenance.")
+        checkExistenceOfElement(.staticText, "Billing is currently unavailable due to maintenance.")
     }
     
     func testMaintModeHome() {
@@ -102,8 +102,8 @@ class HomeBillCardUITests: ExelonUITestCase {
 
         checkExistenceOfElements([
             (.button, "Reload"),
-            (.staticText, "Scheduled Maintenance"),
-            (.staticText, "Home is currently unavailable due to\nscheduled maintenance.")
+            (.staticText, "Maintenance"),
+            (.staticText, "Home is currently unavailable due to maintenance.")
         ])
     }
     

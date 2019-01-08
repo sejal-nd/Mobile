@@ -78,9 +78,12 @@ class BillingHistoryDetailsViewController: UIViewController {
         styleViews()
         bindLoadingStates()
         
-        viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem, onCompletion: {
-            UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
-        })
+        // We may be able to restore this for ComEd/PECO with ePay R2
+        if Environment.shared.opco == .bge {
+            viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem, onCompletion: {
+                UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
+            })
+        }
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -90,7 +93,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     }
     
     func formatViews() {
-        if !viewModel.isBGE {
+        if Environment.shared.opco != .bge {
             paymentTypeView.isHidden = true
             paymentTypeLabel.isAccessibilityElement = false
             paymentTypeSeparatorLine.isHidden = true

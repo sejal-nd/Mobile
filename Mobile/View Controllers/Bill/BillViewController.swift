@@ -281,6 +281,8 @@ class BillViewController: AccountPickerViewController {
         creditLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         creditAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
 
+        billBreakdownLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        
         viewBillLabel.font = SystemFont.semibold.of(textStyle: .footnote)
 
         billPaidLabel.font = SystemFont.bold.of(textStyle: .title1)
