@@ -39,22 +39,22 @@ func APILog<T>(_ callerType: @autoclosure () -> T.Type,
     let callerName = "\(callerType())"
     let requestId = requestId()
     let path = path() ?? ""
-    let method = method()
-    let logType = logType()
+    let method = method().rawValue
+    let logType = logType().rawValue
     
     guard let message = message(), !message.isEmpty else {
-        NSLog("%@ [%@][%@][%@] %@", logType.rawValue, callerName, requestId, path, method.rawValue)
+        NSLog("%@ [%@][%@][%@] %@", logType, callerName, requestId, path, method)
         return
     }
     
     if message.count > chunkSize {
         let messageChunks = message.split(byChunkSize: chunkSize)
-        NSLog("%@ [%@][%@][%@] %@ [LOG SPLIT INTO %d PARTS]", logType.rawValue, callerName, requestId, path, method.rawValue, messageChunks.count)
+        NSLog("%@ [%@][%@][%@] %@ [LOG SPLIT INTO %d PARTS]", logType, callerName, requestId, path, method, messageChunks.count)
         for (offset, messageChunk) in messageChunks.enumerated() {
             NSLog("✂️ [%@ PART %d]\n%@", requestId, offset + 1, messageChunk)
         }
     } else {
-        NSLog("%@ [%@][%@][%@] %@: %@", logType.rawValue, callerName, requestId, path, method.rawValue, message)
+        NSLog("%@ [%@][%@][%@] %@: %@", logType, callerName, requestId, path, method, message)
     }
 #endif
 }

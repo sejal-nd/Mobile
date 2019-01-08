@@ -1012,6 +1012,9 @@
 		B0336FED21762FB400751430 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE921762FB400751430 /* EventStore.swift */; };
 		B0336FEE21762FB400751430 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE921762FB400751430 /* EventStore.swift */; };
 		B0336FEF21762FB400751430 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE921762FB400751430 /* EventStore.swift */; };
+		B039246B21E4F433006D83B0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
+		B039246C21E4F434006D83B0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
+		B039246D21E4F435006D83B0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
@@ -8159,6 +8162,7 @@
 				E8FF08661F7EDE330030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				826773441FB2303000A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				B0B0840B21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				B039246B21E4F433006D83B0 /* Logger.swift in Sources */,
 				82B20A39203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
 				E89F493E1F9685120060D084 /* BillBreakdownViewModelTests.swift in Sources */,
 				E81F38161ED72E890031D30B /* AddCreditCardViewModel.swift in Sources */,
@@ -8395,6 +8399,7 @@
 				E8F62B4B200924410077B3DA /* UIViewDashedBorders.swift in Sources */,
 				E8F62B4C200924410077B3DA /* Control.swift in Sources */,
 				B0B0840C21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				B039246C21E4F434006D83B0 /* Logger.swift in Sources */,
 				E8F62B4D200924410077B3DA /* BillingHistoryViewModel.swift in Sources */,
 				E8F62B4E200924410077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				82B20A3A203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
@@ -8587,6 +8592,7 @@
 				E8F62C00200924570077B3DA /* UIViewDashedBorders.swift in Sources */,
 				E8F62C01200924570077B3DA /* Control.swift in Sources */,
 				B0B0840D21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
+				B039246D21E4F435006D83B0 /* Logger.swift in Sources */,
 				E8F62C02200924570077B3DA /* BillingHistoryViewModel.swift in Sources */,
 				E8F62C03200924570077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				82B20A3B203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
