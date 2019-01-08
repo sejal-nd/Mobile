@@ -43,6 +43,17 @@ protocol WalletService {
     /// off and forget it
     func addWalletItemMCS(_ walletItem: WalletItem)
     
+    /// "Update" a wallet item to MCS - this should be called after
+    /// editing a wallet item through a third party (Paymentus) to trigger
+    /// the sending of a confirmation email
+    ///
+    /// - Parameters:
+    ///   - walletItem: the WalletItem that was added
+    ///
+    /// Void function because we do not rely on the response to this, we simply fire it
+    /// off and forget it
+    func updateWalletItemMCS(_ walletItem: WalletItem)
+    
     /// Update a credit card in the users wallet.
     ///
     /// - Parameters:
