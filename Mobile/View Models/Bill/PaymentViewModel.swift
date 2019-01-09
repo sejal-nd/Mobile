@@ -415,12 +415,7 @@ class PaymentViewModel {
     }
     
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        var bankOrCard: BankOrCard?
-        if let selectedWalletItem = selectedWalletItem.value {
-            bankOrCard = selectedWalletItem.bankOrCard
-        }
-        
-        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, bankOrCard: bankOrCard, paymentDetail: paymentDetail.value!)
+        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, paymentDetail: paymentDetail.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -906,8 +901,8 @@ class PaymentViewModel {
             return ""
     }
     
-    private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver())
-    { $0 || $1 || $2 }
+    private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver(), self.paymentId.asDriver())
+    { $0 || $1 || $2 || $3 != nil }
     
     private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver(), self.shouldShowContent)
     { ($0 || $1 || $2) && $3 }
