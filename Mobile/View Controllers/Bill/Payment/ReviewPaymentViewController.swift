@@ -261,12 +261,12 @@ class ReviewPaymentViewController: UIViewController {
     @objc func onSubmitPress() {
         LoadingView.show()
         
-        if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
+        if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard, let temp = viewModel.selectedWalletItem.value?.isTemporary {
             switch bankOrCard {
             case .bank:
-                Analytics.log(event: .eCheckSubmit)
+                Analytics.log(event: .eCheckSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
             case .card:
-                Analytics.log(event: .cardSubmit)
+                Analytics.log(event: .cardSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
             }
         }
         
@@ -316,33 +316,32 @@ class ReviewPaymentViewController: UIViewController {
                 self?.present(alertVc, animated: true, completion: nil)
             }, onSuccess: { [weak self] in
                 LoadingView.hide()
-                
-                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                    let pageView: AnalyticsEvent
+                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
                     switch bankOrCard {
                     case .bank:
-                        pageView = .eCheckComplete
+                        Analytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
                     case .card:
-                        pageView = .cardComplete
+                        Analytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
                     }
-                    
-                    Analytics.log(event: pageView)
                 }
                 
                 self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
             }, onError: { [weak self] error in
-                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                    let pageView: AnalyticsEvent
+                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
                     switch bankOrCard {
                     case .bank:
-                        pageView = .eCheckError
+                        Analytics.log(event: .eCheckError, dimensions: [
+                            .errorCode: error.serviceCode,
+                            .paymentTempWalletItem: temp ? "true" : "false"
+                        ])
                     case .card:
-                        pageView = .cardError
+                        Analytics.log(event: .cardError, dimensions: [
+                            .errorCode: error.serviceCode,
+                            .paymentTempWalletItem: temp ? "true" : "false"
+                        ])
                     }
-                    
-                    Analytics.log(event: pageView,
-                                  dimensions: [.errorCode: error.serviceCode])
                 }
+                
                 handleError(error)
             })
         }
