@@ -144,7 +144,9 @@ struct WeatherApi: WeatherService {
                 var urlRequest = URLRequest(url: URL(string: urlString)!)
                 urlRequest.httpMethod = method.rawValue
                 
-                return URLSession.shared.rx.dataResponse(request: urlRequest)
+                return URLSession.shared.rx.dataResponse(request: urlRequest, onCanceled: {
+                    APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .canceled, message: nil)
+                })
                     .do(onNext: { data in
                         APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .response, message: "SUCCESS")
                     }, onError: { error in

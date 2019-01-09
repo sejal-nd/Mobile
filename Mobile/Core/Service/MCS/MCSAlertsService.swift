@@ -110,7 +110,9 @@ struct MCSAlertsService: AlertsService {
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
         APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .request, message: nil)
         
-        return URLSession.shared.rx.dataResponse(request: request)
+        return URLSession.shared.rx.dataResponse(request: request, onCanceled: {
+            APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .canceled, message: nil)
+        })
             .do(onNext: { data in
                 let responseString = String(data: data, encoding: .utf8) ?? ""
                 APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .response, message: responseString)

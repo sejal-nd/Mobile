@@ -100,7 +100,9 @@ struct MCSAuthenticationService : AuthenticationService {
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
         APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .request, message: postDataLoggingStr)
         
-        return URLSession.shared.rx.dataResponse(request: request)
+        return URLSession.shared.rx.dataResponse(request: request, onCanceled: {
+            APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .canceled, message: nil)
+        })
             .do(onNext: { data in
                 let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
                 APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)

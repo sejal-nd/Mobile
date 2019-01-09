@@ -31,7 +31,9 @@ struct SpeedpayApi {
             let bodyString = String(data: body, encoding: .utf8)
             APILog(SpeedpayApi.self, requestId: requestId, path: request.url?.absoluteString, method: .post, logType: .request, message: bodyString)
             
-            return URLSession.shared.rx.dataResponse(request: request)
+            return URLSession.shared.rx.dataResponse(request: request, onCanceled: {
+                APILog(SpeedpayApi.self, requestId: requestId, path: request.url?.absoluteString, method: .post, logType: .canceled, message: nil)
+            })
                 .do(onNext: { data in
                     let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
                     APILog(SpeedpayApi.self, requestId: requestId, path: request.url?.absoluteString, method: .post, logType: .response, message: resBodyString)
