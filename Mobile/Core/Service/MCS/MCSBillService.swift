@@ -49,7 +49,7 @@ class MCSBillService: BillService {
     
     func fetchBillPdf(accountNumber: String, billDate: Date) -> Observable<String> {
         let dateString = DateFormatter.yyyyMMddFormatter.string(from: billDate)
-        return MCSApi.shared.get(path: "accounts/\(accountNumber)/billing/\(dateString)/pdf")
+        return MCSApi.shared.get(path: "accounts/\(accountNumber)/billing/\(dateString)/pdf", logResponseBody: false)
             .map { response in
                 guard let dict = response as? NSDictionary, let dataString = dict.object(forKey: "billImageData") as? String else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)

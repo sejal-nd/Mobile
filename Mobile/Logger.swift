@@ -12,6 +12,7 @@ enum LogType: String {
     case request = "REQUEST"
     case response = "RESPONSE"
     case error = "ERROR"
+    case canceled = "CANCELED"
     
     var symbol: String {
         switch self {
@@ -21,6 +22,8 @@ enum LogType: String {
             return "✅"
         case .error:
             return "❌"
+        case .canceled:
+            return "🛑"
         }
     }
 }
@@ -62,7 +65,7 @@ func APILog<T>(_ callerType: @autoclosure () -> T.Type,
         let messageChunks = message.split(byChunkSize: chunkSize)
         NSLog("%@ [%@][%@][%@] %@ %@ [LOG SPLIT INTO %d PARTS]", logType.symbol, callerName, requestId, path, method, logType.rawValue, messageChunks.count)
         for (offset, messageChunk) in messageChunks.enumerated() {
-            NSLog("✂️ [%@ PART %d]\n%@", requestId, offset + 1, messageChunk)
+            NSLog("✂️ [%@ PART %d] %@", requestId, offset + 1, messageChunk)
         }
     } else {
         NSLog("%@ [%@][%@][%@] %@ %@: %@", logType.symbol, callerName, requestId, path, method, logType.rawValue, message)
