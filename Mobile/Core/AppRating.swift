@@ -40,6 +40,6 @@ struct AppRating {
         let isDev = Environment.shared.environmentName != .prod && Environment.shared.environmentName != .stage
         let value = UserDefaults.standard.integer(forKey: UserDefaultKeys.appRatingEventCount)
         
-        return value >= EventThreshold && !isDev;
+        return value >= EventThreshold && !isDev
     }
 }

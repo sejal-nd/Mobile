@@ -105,12 +105,12 @@ class MCSApi {
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
         let path = "/mobile/platform/sso/exchange-token"
         let method = HttpMethod.get
-        APILog(requestId: requestId, path: path, method: method, message: "REQUEST")
+        APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .request, message: nil)
         
         switch Reachability()!.connection {
         case .none:
             let serviceError = ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue)
-            APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+            APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
             return .error(ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue))
         case .wifi, .cellular:
             let url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)\(path)")!
@@ -123,10 +123,10 @@ class MCSApi {
             return session.rx.dataResponse(request: request)
                 .do(onNext: { data in
                     let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                    APILog(requestId: requestId, path: path, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+                    APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
                 }, onError: { error in
                     let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                    APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                    APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
                 })
                 .map { data -> String in
                     guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
@@ -164,7 +164,7 @@ class MCSApi {
         #elseif os(watchOS)
         tokenKeychain[TOKEN_KEYCHAIN_KEY] = nil
         #endif
-        accessToken = nil;
+        accessToken = nil
     }
 
     func isAuthenticated() -> Bool {
@@ -204,7 +204,7 @@ class MCSApi {
         switch(networkStatus) {
         case .none:
             let serviceError = ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue)
-            APILog(requestId: requestId, path: authPath, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+            APILog(MCSApi.self, requestId: requestId, path: authPath, method: method, logType: .error, message: serviceError.errorDescription)
             return .error(serviceError)
         case .wifi, .cellular:
             return performCall(anon: anon, requestId: requestId, path: authPath, params: params, method: method)
@@ -217,18 +217,14 @@ class MCSApi {
     }
     
     private func performCall(anon: Bool, requestId: String, path: String, params: [String: Any]? = nil, method: HttpMethod) -> Observable<Any> {
-        // Logging
-        let logMessage: String
         var requestBody: Data?
+        var bodyString: String?
         if let params = params, let jsonData = try? JSONSerialization.data(withJSONObject: params) {
             requestBody = jsonData
-            let bodyString = String(data: jsonData, encoding: .utf8) ?? ""
-            logMessage = "REQUEST - BODY: \(bodyString)"
-        } else {
-            logMessage = "REQUEST"
+            bodyString = String(data: jsonData, encoding: .utf8) ?? ""
         }
         
-        APILog(requestId: requestId, path: path, method: method, message: logMessage)
+        APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .request, message: bodyString)
         
         // Build Request
         let url = URL(string: "\(Environment.shared.mcsConfig.baseUrl)/mobile/custom/\(path)")!
@@ -247,10 +243,10 @@ class MCSApi {
         return session.rx.fullResponse(request: request)
             .do(onNext: { _, data in
                 let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                APILog(requestId: requestId, path: path, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+                APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
             }, onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
             })
             .map { [weak self] (response: HTTPURLResponse, data: Data) -> Any in
                 if response.statusCode == 401 {
@@ -265,7 +261,7 @@ class MCSApi {
                         case .success(let d):
                             return d
                         case .failure(let error):
-                            if error.serviceCode == "TC-SYS-MAINTENANCE" {
+                            if error.serviceCode == ServiceErrorCode.maintenanceMode.rawValue {
                                 NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: self)
                             }
                             throw error
@@ -280,12 +276,6 @@ class MCSApi {
             .observeOn(MainScheduler.instance)
     }
 
-}
-
-fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
-    #if DEBUG
-        NSLog("[MCSApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
-    #endif
 }
 
 // Machine Identifier Reference: https://www.theiphonewiki.com/wiki/Models

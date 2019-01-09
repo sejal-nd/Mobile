@@ -90,16 +90,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        checkAndLoginOnWatch()
-    }
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        logoutOfWatch()
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        logoutOfWatch()
-    }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
@@ -489,6 +479,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        checkAndLoginOnWatch()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        logoutOfWatch()
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        logoutOfWatch()
+    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

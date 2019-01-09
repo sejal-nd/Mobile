@@ -48,6 +48,8 @@ class PaymentViewModel {
     let allowEdits = Variable(true)
     let allowCancel = Variable(false)
     
+    var confirmationNumber: String?
+    
     init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
@@ -226,7 +228,8 @@ class PaymentViewModel {
                 
                 self.paymentService.schedulePayment(payment: payment)
                     .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { _ in
+                    .subscribe(onNext: { [weak self] confirmationNumber in
+                        self?.confirmationNumber = confirmationNumber
                         onSuccess()
                     }, onError: { err in
                         onError(err as! ServiceError)
@@ -285,7 +288,8 @@ class PaymentViewModel {
                     
                     self.paymentService.schedulePayment(payment: payment)
                         .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { _ in
+                        .subscribe(onNext: { [weak self] confirmationNumber in
+                            self?.confirmationNumber = confirmationNumber
                             onSuccess()
                         }, onError: { [weak self] err in
                             guard let self = self else { return }
@@ -329,7 +333,8 @@ class PaymentViewModel {
                                                                   paymentDate: paymentDate,
                                                                   creditCard: card)
                     .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { _ in
+                    .subscribe(onNext: { [weak self] confirmationNumber in
+                        self?.confirmationNumber = confirmationNumber
                         onSuccess()
                     }, onError: { err in
                         onError(err as! ServiceError)
@@ -369,7 +374,8 @@ class PaymentViewModel {
                         
                         self.paymentService.schedulePayment(payment: payment)
                             .observeOn(MainScheduler.instance)
-                            .subscribe(onNext: { _ in
+                            .subscribe(onNext: { [weak self] confirmationNumber in
+                                self?.confirmationNumber = confirmationNumber
                                 onSuccess()
                             }, onError: { [weak self] err in
                                 guard let self = self else { return }
@@ -409,12 +415,7 @@ class PaymentViewModel {
     }
     
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        var bankOrCard: BankOrCard?
-        if let selectedWalletItem = selectedWalletItem.value {
-            bankOrCard = selectedWalletItem.bankOrCard
-        }
-        
-        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, bankOrCard: bankOrCard, paymentDetail: paymentDetail.value!)
+        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, paymentDetail: paymentDetail.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -900,8 +901,8 @@ class PaymentViewModel {
             return ""
     }
     
-    private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver())
-    { $0 || $1 || $2 }
+    private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver(), self.paymentId.asDriver())
+    { $0 || $1 || $2 || $3 != nil }
     
     private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver(), self.shouldShowContent)
     { ($0 || $1 || $2) && $3 }
@@ -1097,14 +1098,17 @@ class PaymentViewModel {
         return false
     }
     
-    private(set) lazy var isFixedPaymentDatePastDue: Driver<Bool> = accountDetail.asDriver().map {
-        Environment.shared.opco != .bge && $0.billingInfo.pastDueAmount ?? 0 > 0
+    private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
+        Environment.shared.opco != .bge && $0.billingInfo.pastDueAmount ?? 0 > 0 && self?.paymentId.value == nil
     }
     
     private(set) lazy var paymentDateString: Driver<String> = Driver
-        .combineLatest(paymentDate.asDriver(), isFixedPaymentDate)
+        .combineLatest(paymentDate.asDriver(), isFixedPaymentDate, paymentDetail.asDriver())
         .map {
             if $1 {
+                if let paymentDate = $2?.paymentDate, Environment.shared.opco != .bge {
+                    return paymentDate.mmDdYyyyString
+                }
                 let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
                 if Environment.shared.opco == .bge && Calendar.opCo.component(.hour, from: Date()) >= 20 {
                     return Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString

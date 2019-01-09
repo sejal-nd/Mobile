@@ -20,11 +20,7 @@ class MaintenanceModeViewModel{
     }
     
     func getHeaderLabelText() -> String {
-        switch opco {
-        case .bge: return NSLocalizedString("The BGE App is currently unavailable due to scheduled maintenance.", comment: "")
-        case .peco: return NSLocalizedString("The PECO App is currently unavailable due to scheduled maintenance.", comment: "")
-        case .comEd: return NSLocalizedString("The ComEd App is currently unavailable due to scheduled maintenance.", comment: "")
-        }
+        return String.localizedStringWithFormat("The %@ App is currently unavailable due to maintenance.", Environment.shared.opco.displayString)
     }
     
     func getLabelBody() -> NSAttributedString {

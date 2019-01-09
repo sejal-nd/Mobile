@@ -74,7 +74,7 @@ struct MCSAuthenticationService : AuthenticationService {
     #endif
     
     func isAuthenticated() -> Bool {
-        return MCSApi.shared.isAuthenticated();
+        return MCSApi.shared.isAuthenticated()
     }
 
     /// Fetch the authorization token for the given credentials.
@@ -98,15 +98,15 @@ struct MCSAuthenticationService : AuthenticationService {
         request.httpBody = postDataString.data(using: .utf8)
         
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
-        APILog(requestId: requestId, path: path, method: method, message: "REQUEST - BODY: \(postDataLoggingStr)")
+        APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .request, message: postDataLoggingStr)
         
         return URLSession.shared.rx.dataResponse(request: request)
             .do(onNext: { data in
                 let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                APILog(requestId: requestId, path: path, method: method, message: "RESPONSE - BODY: \(resBodyString)")
+                APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
             }, onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(requestId: requestId, path: path, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
             })
             .map { data in
                 switch AuthTokenParser.parseAuthTokenResponse(data: data) {
@@ -235,10 +235,4 @@ struct MCSAuthenticationService : AuthenticationService {
     }
     #endif
 
-}
-
-fileprivate func APILog(requestId: String, path: String, method: HttpMethod, message: String) {
-    #if DEBUG
-        NSLog("[OAuthApi][%@][%@] %@ %@", requestId, path, method.rawValue, message)
-    #endif
 }

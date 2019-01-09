@@ -50,6 +50,7 @@ class PrimaryButton: UIButton {
     override var isEnabled: Bool {
         didSet {
             backgroundColor = isEnabled ? .ctaBlue: .middleGray
+            accessibilityTraits = isEnabled ? .button : [.button, .notEnabled]
         }
     }
     

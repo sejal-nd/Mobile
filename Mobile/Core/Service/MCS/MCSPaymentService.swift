@@ -263,7 +263,7 @@ class MCSPaymentService: PaymentService {
             })
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail) -> Observable<Void> {
+    func cancelPayment(accountNumber: String, paymentId: String, paymentDetail: PaymentDetail) -> Observable<Void> {
         let opCo = Environment.shared.opco
         var params: [String: Any] = ["payment_id": paymentId,
                                      "payment_amount": String.init(format: "%.02f", paymentDetail.paymentAmount),
@@ -272,7 +272,8 @@ class MCSPaymentService: PaymentService {
         switch Environment.shared.opco {
         case .comEd, .peco:
             params["biller_id"] = "\(opCo.rawValue)Registered"
-            params["cancel_payment_method"] = bankOrCard == .bank ? "ECHECKS" : "CREDITCARD"
+            // Artifacts from Fiserv: seems like we need to keep sending the keys though
+            params["cancel_payment_method"] = ""
             params["auth_sess_token"] = ""
         case .bge:
             break

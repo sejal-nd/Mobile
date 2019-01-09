@@ -12,8 +12,7 @@ import RxSwift
 
 protocol PaymentusFormViewControllerDelegate: class {
     func didEditWalletItem()
-    func didAddCard(_ walletItem: WalletItem?)
-    func didAddBank(_ walletItem: WalletItem?)
+    func didAddWalletItem(_ walletItem: WalletItem)
 }
 
 // Default implementation to make these protocol functions optional
@@ -41,6 +40,8 @@ class PaymentusFormViewController: UIViewController {
     var shouldPopToMakePaymentOnSave = false
     var shouldPopToRootOnSave = false
     
+    let walletService: WalletService = ServiceFactory.createWalletService()
+    
     init(bankOrCard: BankOrCard, temporary: Bool, isWalletEmpty: Bool = false, walletItemId: String? = nil) {
         self.bankOrCard = bankOrCard
         self.temporary = temporary
@@ -49,10 +50,19 @@ class PaymentusFormViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        if self.bankOrCard == .bank {
-            title = walletItemId != nil ? NSLocalizedString("Edit Bank Account", comment: "") : NSLocalizedString("Add Bank Account", comment: "")
-        } else {
-            title = walletItemId != nil ? NSLocalizedString("Edit Card", comment: "") : NSLocalizedString("Add Card", comment: "")
+        switch (bankOrCard, temporary, walletItemId != nil) {
+        case (.bank, false, true):
+            title = NSLocalizedString("Edit Bank Account", comment: "")
+        case (.bank, false, false):
+            title = NSLocalizedString("Add Bank Account", comment: "")
+        case (.bank, true, _):
+            title = NSLocalizedString("Enter Bank Information", comment: "")
+        case (.card, false, true):
+            title = NSLocalizedString("Edit Card", comment: "")
+        case (.card, false, false):
+            title = NSLocalizedString("Add Card", comment: "")
+        case (.card, true, _):
+            title = NSLocalizedString("Enter Card Information", comment: "")
         }
 
         fetchEncryptionKey()
@@ -178,6 +188,8 @@ class PaymentusFormViewController: UIViewController {
     
 }
 
+// MARK: - postMessage Handling
+
 extension PaymentusFormViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("Received postMessage: \(message.body)")
@@ -203,15 +215,18 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                     
                     let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String, maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String, nickName: nickname, isDefault: didSetDefault, bankOrCard: bankOrCard, isTemporary: temporary)
                     
+                    if !temporary {
+                        if walletItemId != nil {
+                            walletService.updateWalletItemMCS(walletItem)
+                        } else {
+                            walletService.addWalletItemMCS(walletItem)
+                        }
+                    }
+                    
                     if walletItemId != nil {
                         delegate?.didEditWalletItem()
                     } else {
-                        switch bankOrCard {
-                        case .bank:
-                            delegate?.didAddBank(walletItem)
-                        case .card:
-                            delegate?.didAddCard(walletItem)
-                        }
+                        delegate?.didAddWalletItem(walletItem)
                     }
                     
                     if editingDefaultItem || didSetDefault {
@@ -244,6 +259,8 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
         }
     }
 }
+
+// MARK: - WKNavigationDelegate
 
 extension PaymentusFormViewController: WKNavigationDelegate {
     

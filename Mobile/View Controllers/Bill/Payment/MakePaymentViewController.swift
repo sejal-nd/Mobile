@@ -72,7 +72,9 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var addPaymentMethodView: UIView!
     @IBOutlet weak var addPaymentMethodLabel: UILabel!
     @IBOutlet weak var addBankAccountButton: ButtonControl!
+    @IBOutlet weak var addBankAccountLabel: UILabel!
     @IBOutlet weak var addCreditCardButton: ButtonControl!
+    @IBOutlet weak var addCreditCardLabel: UILabel!
     
     @IBOutlet weak var cancelPaymentButton: ButtonControl!
     @IBOutlet weak var cancelPaymentLabel: UILabel!
@@ -233,10 +235,14 @@ class MakePaymentViewController: UIViewController {
         addBankAccountButton.backgroundColorOnPress = .softGray
         addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
+        addBankAccountLabel.font = SystemFont.medium.of(textStyle: .title1)
+        
         addCreditCardButton.layer.cornerRadius = 10
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addCreditCardButton.backgroundColorOnPress = .softGray
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
+        
+        addCreditCardLabel.font = SystemFont.medium.of(textStyle: .title1)
         
         let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
         cancelPaymentButton.accessibilityLabel = cancelPaymentText
@@ -357,7 +363,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFixedPaymentDate.drive(paymentDateButtonView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFixedPaymentDate.map(!).drive(paymentDateFixedDateLabel.rx.isHidden).disposed(by: disposeBag)
-        viewModel.isFixedPaymentDatePastDue.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowPastDueLabel.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Add bank/credit card empty wallet state
         viewModel.shouldShowAddPaymentMethodView.map(!).drive(addPaymentMethodView.rx.isHidden).disposed(by: disposeBag)
@@ -368,12 +374,23 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowCancelPaymentButton.map(!).drive(cancelPaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
-            self?.stickyPaymentFooterView.isHidden = !shouldShow
+            if Environment.shared.opco != .bge && self?.billingHistoryItem != nil {
+                // ePay R1 ComEd/PECO modify tweaks
+                self?.stickyPaymentFooterView.isHidden = true
+            } else {
+                self?.stickyPaymentFooterView.isHidden = !shouldShow
+            }
             
             // Needed for correct sizing
             self?.stickyPaymentFooterStackView.setNeedsLayout()
             self?.stickyPaymentFooterStackView.layoutIfNeeded()
         }).disposed(by: disposeBag)
+        
+        if Environment.shared.opco != .bge && billingHistoryItem != nil {
+            // ePay R1 ComEd/PECO modify tweaks
+            amountDueView.isHidden = true
+            dueDateView.isHidden = true
+        }
     }
     
     func bindViewContent() {
@@ -830,20 +847,17 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 // MARK: - PaymentusFormViewControllerDelegate
 
 extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
-    func didAddBank(_ walletItem: WalletItem?) {
+    func didAddWalletItem(_ walletItem: WalletItem) {
         viewModel.newlyAddedWalletItem.value = walletItem
         fetchData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
-        })
-    }
-    
-    func didAddCard(_ walletItem: WalletItem?) {
-        viewModel.newlyAddedWalletItem.value = walletItem
-        fetchData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Card added", comment: ""))
-        })
+        if !walletItem.isTemporary {
+            let toastMessage = walletItem.bankOrCard == .bank ?
+                NSLocalizedString("Bank account added", comment: "") :
+                NSLocalizedString("Card added", comment: "")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                self.view.showToast(toastMessage)
+            })
+        }
     }
 }
 

@@ -21,6 +21,10 @@ class PaymentConfirmationViewController: UIViewController {
     @IBOutlet weak var paymentDateValueLabel: UILabel!
     @IBOutlet weak var amountPaidTextLabel: UILabel!
     @IBOutlet weak var amountPaidValueLabel: UILabel!
+    @IBOutlet weak var confirmationNumberDivider: UIView!
+    @IBOutlet weak var confirmationNumberView: UIView!
+    @IBOutlet weak var confirmationNumberTextLabel: UILabel!
+    @IBOutlet weak var confirmationNumberValueLabel: UITextView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
     @IBOutlet weak var autoPayView: UIView!
@@ -71,6 +75,11 @@ class PaymentConfirmationViewController: UIViewController {
         amountPaidTextLabel.text = NSLocalizedString("Amount Paid", comment: "")
         amountPaidValueLabel.textColor = .blackText
         amountPaidValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberTextLabel.textColor = .blackText
+        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
+        confirmationNumberValueLabel.textColor = .blackText
+        confirmationNumberValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         autoPayLabel.textColor = .deepGray
         autoPayLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -103,6 +112,17 @@ class PaymentConfirmationViewController: UIViewController {
         
         // Total Payment
         viewModel.totalPaymentDisplayString.asDriver().drive(amountPaidValueLabel.rx.text).disposed(by: disposeBag)
+        
+        // Confirmation Number
+        //TODO: remove the opco check when BGE moves to paymentus
+        if let confirmationNumber = viewModel.confirmationNumber, Environment.shared.opco != .bge {
+            confirmationNumberValueLabel.text = confirmationNumber
+            confirmationNumberDivider.isHidden = false
+            confirmationNumberView.isHidden = false
+        } else {
+            confirmationNumberDivider.isHidden = true
+            confirmationNumberView.isHidden = true
+        }
         
         // Conv. Fee Label
         viewModel.paymentAmountFeeFooterLabelText.asDriver().drive(convenienceFeeLabel.rx.text).disposed(by: disposeBag)

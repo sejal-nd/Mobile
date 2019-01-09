@@ -59,8 +59,7 @@ class MaintenanceModeView: UIView {
     
     @IBInspectable var sectionName: String = "" {
         didSet {
-            let localizedText = NSLocalizedString("%@ is currently unavailable due to\nscheduled maintenance.", comment: "")
-            detailLabel.text = String(format: localizedText, sectionName)
+            detailLabel.text = String.localizedStringWithFormat("%@ is currently unavailable due to maintenance.", sectionName)
         }
     }
     

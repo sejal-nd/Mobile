@@ -49,7 +49,7 @@ class UpdatesViewController: UIViewController {
     private func styleViews() {
         title = NSLocalizedString("News and Updates", comment: "")
         
-        view.backgroundColor = .primaryColor
+        view.backgroundColor = .softGray
         
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         

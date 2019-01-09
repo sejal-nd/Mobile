@@ -260,7 +260,9 @@ struct Analytics {
     }
     
     static func log(event: AnalyticsEvent, dimensions: [AnalyticsDimension: String] = [:]) {
-        dLog("Analytics: " + event.rawValue)
+        #if DEBUG
+        NSLog("📊 %@", event.rawValue)
+        #endif
         
         guard isAnalyticsEnabled else { return }
         

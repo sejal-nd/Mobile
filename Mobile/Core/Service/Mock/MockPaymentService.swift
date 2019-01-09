@@ -49,7 +49,7 @@ class MockPaymentService: PaymentService {
     }
     
     func schedulePayment(payment: Payment) -> Observable<String> {
-        return Observable.just("").delay(2, scheduler: MainScheduler.instance)
+        return Observable.just("123456").delay(2, scheduler: MainScheduler.instance)
     }
     
     func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String> {
@@ -64,7 +64,7 @@ class MockPaymentService: PaymentService {
         return .just(())
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail) -> Observable<Void> {
+    func cancelPayment(accountNumber: String, paymentId: String, paymentDetail: PaymentDetail) -> Observable<Void> {
         return .just(())
     }
     

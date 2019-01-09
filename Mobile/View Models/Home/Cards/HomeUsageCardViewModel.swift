@@ -61,7 +61,9 @@ class HomeUsageCardViewModel {
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
         .merge(accountDetailChanged, segmentedControlChanged).share(replay: 1)
     
-    private(set) lazy var accountDetailChanged = accountDetailEvents.elements()
+    private(set) lazy var accountDetailChanged = accountDetailEvents
+        .do(onNext: { [weak self] _ in self?.usageService.clearCache() })
+        .elements()
         .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
         .filter { $0.isEligibleForUsageData && !$1 }
         .map { accountDetail, _ in accountDetail }
@@ -112,6 +114,12 @@ class HomeUsageCardViewModel {
         .filter { $0.reference != nil }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showErrorState: Driver<Void> = accountDetailEvents.errors()
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    let errorLabelText: String = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     
     private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents.elements()
         .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
