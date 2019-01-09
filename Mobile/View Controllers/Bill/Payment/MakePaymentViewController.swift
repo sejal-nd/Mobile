@@ -851,6 +851,7 @@ extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
         viewModel.newlyAddedWalletItem.value = walletItem
         fetchData()
         if !walletItem.isTemporary {
+            Analytics.log(event: walletItem.bankOrCard == .bank ? .eCheckAddNewWallet : .cardAddNewWallet)
             let toastMessage = walletItem.bankOrCard == .bank ?
                 NSLocalizedString("Bank account added", comment: "") :
                 NSLocalizedString("Card added", comment: "")
