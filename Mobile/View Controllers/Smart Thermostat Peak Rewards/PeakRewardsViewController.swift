@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var gradientView: UIView!

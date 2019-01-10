@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ToastSwiftFramework
+import Toast_Swift
 import Firebase
 import AppCenter
 import AppCenterCrashes

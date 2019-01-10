@@ -9772,6 +9772,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -9819,6 +9820,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
@@ -9849,6 +9851,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.staging;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
@@ -9879,6 +9882,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.testing;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
@@ -9909,6 +9913,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
@@ -9939,6 +9944,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.prodbeta;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = PECO_WatchOS_Extension;
 				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
@@ -10048,9 +10054,9 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.develop.watchkitapp;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper\"",
-					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";

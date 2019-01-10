@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import ToastSwiftFramework
+import Toast_Swift
 
 class RegistrationCreateCredentialsViewController: UIViewController {
 
