@@ -34,10 +34,7 @@ struct SpeedpayApi {
             return URLSession.shared.rx.dataResponse(request: request, onCanceled: {
                 APILog(SpeedpayApi.self, requestId: requestId, path: request.url?.absoluteString, method: .post, logType: .canceled, message: nil)
             })
-                .do(onNext: { data in
-                    let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                    APILog(SpeedpayApi.self, requestId: requestId, path: request.url?.absoluteString, method: .post, logType: .response, message: resBodyString)
-                }, onError: { error in
+                .do(onError: { error in
                     let serviceError = error as? ServiceError ?? ServiceError(cause: error)
                     APILog(SpeedpayApi.self, requestId: requestId, path: request.url?.absoluteString, method: .post, logType: .error, message: serviceError.errorDescription)
                 })
@@ -55,9 +52,11 @@ struct SpeedpayApi {
                 }
                 .map { data -> String in
                     guard let responseString = String(data: data, encoding: .utf8) else {
+                        APILog(SpeedpayApi.self, requestId: requestId, path: request.url?.absoluteString, method: .post, logType: .error, message: String(data: data, encoding: .utf8))
                         throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
                     
+                    APILog(SpeedpayApi.self, requestId: requestId, path: request.url?.absoluteString, method: .post, logType: .response, message: String(data: data, encoding: .utf8))
                     return responseString.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
             }
         } catch {

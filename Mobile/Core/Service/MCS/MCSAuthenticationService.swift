@@ -103,18 +103,17 @@ struct MCSAuthenticationService : AuthenticationService {
         return URLSession.shared.rx.dataResponse(request: request, onCanceled: {
             APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .canceled, message: nil)
         })
-            .do(onNext: { data in
-                let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
-            }, onError: { error in
+            .do(onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
                 APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
             })
             .map { data in
                 switch AuthTokenParser.parseAuthTokenResponse(data: data) {
                 case .success(let response):
+                    APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
                     return response
                 case .failure(let error):
+                    APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: String(data: data, encoding: .utf8))
                     throw error
                 }
             }
