@@ -123,10 +123,7 @@ class MCSApi {
             return session.rx.dataResponse(request: request, onCanceled: {
                 APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .canceled, message: nil)
             })
-                .do(onNext: { data in
-                    let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                    APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: resBodyString)
-                }, onError: { error in
+                .do(onError: { error in
                     let serviceError = error as? ServiceError ?? ServiceError(cause: error)
                     APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
                 })
@@ -134,9 +131,11 @@ class MCSApi {
                     guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
                         let parsedJSON = parsedData as? [String: Any],
                         let token = parsedJSON["access_token"] as? String else {
+                            APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: String(data: data, encoding: .utf8))
                             throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
                     
+                    APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
                     return token
                 }
                 .do(onNext: { [weak self] token in
@@ -245,35 +244,34 @@ class MCSApi {
         return session.rx.fullResponse(request: request, onCanceled: {
             APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .canceled, message: nil)
         })
-            .do(onNext: { _, data in
-                APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: logResponseBody ? String(data: data, encoding: .utf8) ?? "No Response Data" : nil)
-            }, onError: { error in
+            .do(onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
                 APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
             })
             .map { [weak self] (response: HTTPURLResponse, data: Data) -> Any in
-                if response.statusCode == 401 {
+                guard response.statusCode != 401 else {
                     self?.logout()
                     NotificationCenter.default.post(name: .didReceiveInvalidAuthToken, object: self)
                     throw ServiceError()
-                } else {
-                    do {
-                        let parsedData = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                        let result = MCSResponseParser.parse(data: parsedData)
-                        switch result {
-                        case .success(let d):
-                            return d
-                        case .failure(let error):
-                            if error.serviceCode == ServiceErrorCode.maintenanceMode.rawValue {
-                                NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: self)
-                            }
-                            throw error
+                }
+                
+                do {
+                    let parsedData = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    let result = MCSResponseParser.parse(data: parsedData)
+                    switch result {
+                    case .success(let d):
+                        APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: logResponseBody ? String(data: data, encoding: .utf8) : nil)
+                        return d
+                    case .failure(let error):
+                        if error.serviceCode == ServiceErrorCode.maintenanceMode.rawValue {
+                            NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: self)
                         }
-                    } catch let error as ServiceError {
+                        
                         throw error
-                    } catch {
-                        throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
+                } catch let error {
+                    APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .error, message: String(data: data, encoding: .utf8))
+                    throw error as? ServiceError ?? ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
             }
             .observeOn(MainScheduler.instance)
