@@ -18,6 +18,9 @@ PODS:
     - RxSwiftExt/Core (= 3.3.0)
   - RxSwiftExt/Core (3.3.0):
     - RxSwift (~> 4.0)
+  - RxSwiftExt/RxCocoa (3.3.0):
+    - RxCocoa (~> 4.0)
+    - RxSwiftExt/Core
   - Toast-Swift (4.0.0)
   - XLPagerTabStrip (8.1.1)
   - zxcvbn-ios (1.0.4)
@@ -33,6 +36,7 @@ DEPENDENCIES:
   - RxGesture (= 2.0.1)
   - RxSwift (= 4.3.1)
   - RxSwiftExt (= 3.3.0)
+  - RxSwiftExt/RxCocoa (= 3.3.0)
   - Toast-Swift (= 4.0.0)
   - XLPagerTabStrip
   - zxcvbn-ios (= 1.0.4)
@@ -70,6 +74,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 27f4116cd7923656aba4c25c5711cb8bdf914540
+PODFILE CHECKSUM: 85e8eb3a11d05e81d5307fb8a7c831274ebf47cf
 
 COCOAPODS: 1.5.0

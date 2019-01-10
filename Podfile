@@ -13,6 +13,7 @@ def iOS_pods
   pod "zxcvbn-ios", '1.0.4'
   pod 'ReachabilitySwift', '4.2.1'
   pod 'RxSwiftExt', '3.3.0'
+  pod 'RxSwiftExt/RxCocoa', '3.3.0'
   pod 'PDTSimpleCalendar', '0.9.1'
   pod 'Charts', '3.2.0'
   pod "RxGesture", '2.0.1'
