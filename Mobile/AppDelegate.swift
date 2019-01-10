@@ -65,7 +65,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: .didMaintenanceModeTurnOn, object: nil)
+        
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
+            .subscribe(onNext: { [weak self] _ in
+                self?.showMaintenanceMode(nil)
+            })
+            .disposed(by: disposeBag)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(showIOSVersionWarning), name: .shouldShowIOSVersionWarning, object: nil)
         
         // If app was cold-launched from a push notification
@@ -281,7 +287,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureQuickActions(isAuthenticated: false)
     }
     
-    @objc func showMaintenanceMode(){
+    func showMaintenanceMode(_ maintenanceInfo: Maintenance?) {
         DispatchQueue.main.async { [weak self] in
             LoadingView.hide()
             
@@ -292,7 +298,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 
                 let maintenanceStoryboard = UIStoryboard(name: "Maintenance", bundle: nil)
-                let vc = maintenanceStoryboard.instantiateInitialViewController()!
+                let vc = maintenanceStoryboard.instantiateInitialViewController() as! MaintenanceModeViewController
+                vc.maintenance = maintenanceInfo
+                
                 topmostVC.present(vc, animated: true, completion: nil)
             }
         }

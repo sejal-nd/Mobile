@@ -53,11 +53,11 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
     
     func checkForMaintenanceMode(){
-        viewModel.checkForMaintenance(onSuccess: { [weak self] isMaintenance in
-            if isMaintenance {
+        viewModel.checkForMaintenance(onSuccess: { [weak self] maintenanceInfo in
+            if maintenanceInfo.allStatus {
                 self?.navigationController?.view.isUserInteractionEnabled = true
                 let ad = UIApplication.shared.delegate as! AppDelegate
-                ad.showMaintenanceMode()
+                ad.showMaintenanceMode(maintenanceInfo)
             }
         }, onError: { [weak self] errorMessage in
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
