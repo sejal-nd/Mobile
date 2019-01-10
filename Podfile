@@ -1,11 +1,30 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '10.0'
+
+# Shared in both iOS and WatchOS
+def shared_pods
+  pod 'RxSwift',    '4.3.1'
+  pod "ModelMapper",    '9.0.0'
+end
+
+def iOS_pods
+  pod "lottie-ios",     '2.0.3'
+  pod "JVFloatLabeledTextField",     '1.2.1'
+  pod "Toast-Swift", '4.0.0'
+  pod "zxcvbn-ios", '1.0.4'
+  pod 'ReachabilitySwift', '4.2.1'
+  pod 'RxSwiftExt', '3.3.0'
+  pod 'PDTSimpleCalendar', '0.9.1'
+  pod 'Charts', '3.2.0'
+  pod "RxGesture", '2.0.1'
+  pod 'XLPagerTabStrip'
+  pod 'AppCenterXCUITestExtensions', '1.0'
+end
 
 target 'BGE' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for BGE
+  iOS_pods
+  shared_pods
 
   target 'BGEUITests' do
     inherit! :search_paths
@@ -20,10 +39,10 @@ target 'BGE' do
 end
 
 target 'ComEd' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for ComEd
+  iOS_pods
+  shared_pods
 
   target 'ComEdUITests' do
     inherit! :search_paths
@@ -38,10 +57,10 @@ target 'ComEd' do
 end
 
 target 'PECO' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for PECO
+  iOS_pods
+  shared_pods
 
   target 'PECOUITests' do
     inherit! :search_paths
@@ -56,20 +75,14 @@ target 'PECO' do
 end
 
 target 'PECO_WatchOS' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for PECO_WatchOS
-
 end
 
 target 'PECO_WatchOS Extension' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'RxSwift',    '4.3.0'
-  pod "ModelMapper",    '9.0.0'
-
-  # Pods for PECO_WatchOS Extension
+  shared_pods
 
 end

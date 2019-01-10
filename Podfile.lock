@@ -1,20 +1,75 @@
 PODS:
+  - AppCenterXCUITestExtensions (1.0.0)
+  - Charts (3.2.0):
+    - Charts/Core (= 3.2.0)
+  - Charts/Core (3.2.0)
+  - JVFloatLabeledTextField (1.2.1)
+  - lottie-ios (2.0.3)
   - ModelMapper (9.0.0)
-  - RxSwift (4.3.0)
+  - PDTSimpleCalendar (0.9.1)
+  - ReachabilitySwift (4.2.1)
+  - RxCocoa (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxGesture (2.0.1):
+    - RxCocoa (~> 4.3.1)
+    - RxSwift (~> 4.3.1)
+  - RxSwift (4.3.1)
+  - RxSwiftExt (3.3.0):
+    - RxSwiftExt/Core (= 3.3.0)
+  - RxSwiftExt/Core (3.3.0):
+    - RxSwift (~> 4.0)
+  - Toast-Swift (4.0.0)
+  - XLPagerTabStrip (8.1.1)
+  - zxcvbn-ios (1.0.4)
 
 DEPENDENCIES:
+  - AppCenterXCUITestExtensions (= 1.0)
+  - Charts (= 3.2.0)
+  - JVFloatLabeledTextField (= 1.2.1)
+  - lottie-ios (= 2.0.3)
   - ModelMapper (= 9.0.0)
-  - RxSwift (= 4.3.0)
+  - PDTSimpleCalendar (= 0.9.1)
+  - ReachabilitySwift (= 4.2.1)
+  - RxGesture (= 2.0.1)
+  - RxSwift (= 4.3.1)
+  - RxSwiftExt (= 3.3.0)
+  - Toast-Swift (= 4.0.0)
+  - XLPagerTabStrip
+  - zxcvbn-ios (= 1.0.4)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - AppCenterXCUITestExtensions
+    - Charts
+    - JVFloatLabeledTextField
+    - lottie-ios
     - ModelMapper
+    - PDTSimpleCalendar
+    - ReachabilitySwift
+    - RxCocoa
+    - RxGesture
     - RxSwift
+    - RxSwiftExt
+    - Toast-Swift
+    - XLPagerTabStrip
+    - zxcvbn-ios
 
 SPEC CHECKSUMS:
+  AppCenterXCUITestExtensions: 8825ed941664fa21d6740a5ed6928a84c06623ac
+  Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
+  JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
+  lottie-ios: 445f77c7f661f95587e49095a1ac7de43f0da896
   ModelMapper: d73910ce35d8dca0042bcea4cddc24050014e09a
-  RxSwift: a9717a34df3179fe63563f76e046ad345078dd3a
+  PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
+  ReachabilitySwift: 35720ffea59c1c76d15f885be77fd33e33985427
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxGesture: 26ede4ed13ffc6336d29dbd9a8dff229bdb72de7
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
+  Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
+  XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
+  zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: d1e56dbc9186dd5b0911e94f2b02b2aaf9b6f969
+PODFILE CHECKSUM: 78ec601d2dabe86e7861c67e0fbc5dfab2122f1f
 
 COCOAPODS: 1.5.0
