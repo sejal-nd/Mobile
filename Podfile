@@ -1,5 +1,5 @@
-
-
+# ignore all warnings from all pods
+inhibit_all_warnings!
 
 # Shared in both iOS and WatchOS
 def shared_pods
