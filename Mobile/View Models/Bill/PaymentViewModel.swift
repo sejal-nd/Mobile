@@ -788,12 +788,25 @@ class PaymentViewModel {
             return nil
         }
     }()
-    
-    var showSelectPaymentAmount: Bool {
-        //TODO: Remove when BGE gets paymentus
-        guard Environment.shared.opco != .bge else { return false }
         
-        return !paymentAmounts.isEmpty
+    private(set) lazy var shouldShowSelectPaymentAmount: Driver<Bool> = self.selectedWalletItem.asDriver().map { [weak self] in
+        guard Environment.shared.opco != .bge else { return false }
+        guard let self = self else { return false }
+        guard let bankOrCard = $0?.bankOrCard else { return false }
+        
+        if self.paymentAmounts.isEmpty {
+            return false
+        }
+        
+        let min = self.accountDetail.value.minPaymentAmount(bankOrCard: bankOrCard)
+        let max = self.accountDetail.value.maxPaymentAmount(bankOrCard: bankOrCard)
+        for paymentAmount in self.paymentAmounts {
+            guard let amount = paymentAmount.0 else { continue }
+            if amount < min || amount > max {
+                return false
+            }
+        }
+        return true
     }
     
     /**
