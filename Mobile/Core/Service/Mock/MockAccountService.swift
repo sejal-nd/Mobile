@@ -112,6 +112,13 @@ class MockAccountService: AccountService {
             let accountDetail = AccountDetail(accountNumber: "1234")
             return .just(accountDetail)
             
+        case "finaled":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       pastDueAmount: 200),
+                                              flagFinaled: true)
+            return .just(accountDetail)
+            
         case "pastDue":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
