@@ -275,7 +275,8 @@ class WalletViewController: UIViewController {
             if Environment.shared.opco == .bge {
                 messageString = NSLocalizedString("Deleting this payment method will also delete all the pending payments associated with this payment method. Please tap 'Delete' to delete this payment method.", comment: "")
             } else {
-                messageString = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review and edit your scheduled payments in Payment Activity.", comment: "")
+                // TODO: Change back to "review and edit" during ePay R2
+                messageString = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review your scheduled payments in Payment Activity.", comment: "")
             }
 
             let alertController = UIAlertController(title: title, message: messageString, preferredStyle: .alert)
