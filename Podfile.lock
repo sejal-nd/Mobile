@@ -7,7 +7,6 @@ PODS:
   - AppCenter/Core (1.12.0)
   - AppCenter/Crashes (1.12.0):
     - AppCenter/Core
-  - AppCenterXCUITestExtensions (1.0.0)
   - CardIO (5.4.1)
   - Charts (3.2.0):
     - Charts/Core (= 3.2.0)
@@ -145,7 +144,6 @@ PODS:
 
 DEPENDENCIES:
   - AppCenter (= 1.12)
-  - AppCenterXCUITestExtensions (= 1.0)
   - CardIO (= 5.4.1)
   - Charts (= 3.2.0)
   - Firebase/Core (= 5.15.0)
@@ -168,7 +166,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AppCenter
-    - AppCenterXCUITestExtensions
     - CardIO
     - Charts
     - Firebase
@@ -196,7 +193,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppCenter: 4d27bdafd74b1b3e90946b9989fd6011a7e39c5e
-  AppCenterXCUITestExtensions: 8825ed941664fa21d6740a5ed6928a84c06623ac
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
@@ -222,6 +218,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 86b5fecf837e3c67ab57e63abe44e314fe19c3e2
+PODFILE CHECKSUM: 74a3d15c54bb180a988d656bd7b5bdeb5b8cd2ac
 
 COCOAPODS: 1.5.0
