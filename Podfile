@@ -18,6 +18,12 @@ def iOS_pods
   pod 'Charts', '3.2.0'
   pod "RxGesture", '2.0.1'
   pod 'XLPagerTabStrip'
+  pod 'CardIO', '5.4.1'
+  pod 'SimpleKeychain', '0.8.1'
+  pod 'GoogleToolboxForMac', '2.2'
+  pod 'GoogleAnalytics'
+  pod 'Firebase/Core', '5.15.0'
+  pod 'AppCenter', '1.12'
   pod 'AppCenterXCUITestExtensions', '1.0'
 end
 
