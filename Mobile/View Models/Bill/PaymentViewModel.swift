@@ -788,9 +788,9 @@ class PaymentViewModel {
             return nil
         }
     }()
-        
+    
     private(set) lazy var shouldShowSelectPaymentAmount: Driver<Bool> = self.selectedWalletItem.asDriver().map { [weak self] in
-        guard Environment.shared.opco != .bge else { return false }
+        guard Environment.shared.opco != .bge else { return false } //TODO: Remove when BGE gets paymentus
         guard let self = self else { return false }
         guard let bankOrCard = $0?.bankOrCard else { return false }
         
