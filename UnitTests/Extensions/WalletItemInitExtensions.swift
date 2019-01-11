@@ -6,6 +6,8 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
+import Foundation
+
 extension WalletItem {
     
     init(walletItemID: String? = "1234",

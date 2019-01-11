@@ -6,6 +6,8 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import UIKit
+
 extension UIView {
     func addShadow(color: UIColor, opacity: Float, offset: CGSize, radius: Float) {
         layer.shadowColor = color.cgColor

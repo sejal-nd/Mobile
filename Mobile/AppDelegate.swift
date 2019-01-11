@@ -13,6 +13,7 @@ import AppCenter
 import AppCenterCrashes
 import RxSwift
 import UserNotifications
+import PDTSimpleCalendar
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

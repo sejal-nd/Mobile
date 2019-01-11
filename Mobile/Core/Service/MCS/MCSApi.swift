@@ -12,6 +12,7 @@ import Reachability
 #endif
 import RxSwift
 import WatchKit
+import SimpleKeychain
 
 /// MCSApi is a wrapper around the URLSession networking APIs. It provides convenience methods
 /// for executing POST/PUT/GET/DELETE custom endpoints, as well as authentication related APIs.
