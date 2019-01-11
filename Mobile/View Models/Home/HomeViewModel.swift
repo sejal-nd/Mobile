@@ -200,7 +200,8 @@ class HomeViewModel {
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = fetchDataObservable
+    private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = maintenanceModeEvents
+        .filter { !($0.element?.homeStatus ?? false) }
         .toAsyncRequest { [weak self] _ in
             guard let this = self else { return .empty() }
             return this.alertsService.fetchOpcoUpdates(bannerOnly: true)

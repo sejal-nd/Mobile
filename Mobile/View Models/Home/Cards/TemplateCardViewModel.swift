@@ -183,7 +183,7 @@ class TemplateCardViewModel {
         .map { accountDetail -> String? in
             switch Environment.shared.opco {
             case .peco:
-                return NSLocalizedString("http://www.peco.com/smartideas", comment: "")
+                return "https://www.peco.com/smartideas"
             case .bge:
                 if accountDetail.isResidential, let peakRewards = accountDetail.peakRewards {
                     switch peakRewards {
@@ -192,19 +192,18 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI":
                         return nil
                     default:
-                        return NSLocalizedString("https://bgesavings.com/enroll", comment: "")
+                        return "https://bgesavings.com/enroll"
                     }
                 } else {
-                    return NSLocalizedString("http://bgesmartenergy.com/business", comment: "")
+                    return "https://bgesmartenergy.com/business"
                 }
             case .comEd:
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
-                        String(format: NSLocalizedString("http://rrtp.comed.com/rrtpmobile/servlet?type=home&account=%@", comment: ""),
-                               accountDetail.accountNumber) :
-                        NSLocalizedString("https://www.comedmarketplace.com/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app", comment: "")
+                        String(format: "https://hourlypricing.comed.com/rrtpmobile/servlet?type=home&account=%@", accountDetail.accountNumber) :
+                        "https://www.comedmarketplace.com/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app"
                 } else {
-                    return NSLocalizedString("http://comed.com/BusinessSavings", comment: "")
+                    return "http://comed.com/BusinessSavings"
                 }
             }
         }

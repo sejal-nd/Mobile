@@ -144,10 +144,10 @@ struct WeatherApi: WeatherService {
                 var urlRequest = URLRequest(url: URL(string: urlString)!)
                 urlRequest.httpMethod = method.rawValue
                 
-                return URLSession.shared.rx.dataResponse(request: urlRequest)
-                    .do(onNext: { data in
-                        APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .response, message: "SUCCESS")
-                    }, onError: { error in
+                return URLSession.shared.rx.dataResponse(request: urlRequest, onCanceled: {
+                    APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .canceled, message: nil)
+                })
+                    .do(onError: { error in
                         let serviceError = error as? ServiceError ?? ServiceError(cause: error)
                         APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .error, message: serviceError.errorDescription)
                     })
@@ -155,9 +155,12 @@ struct WeatherApi: WeatherService {
                         guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
                             let dict = json as? [String: Any],
                             let weatherItem = WeatherItem(json: dict) else {
-                                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                                let error = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                                APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .error, message: error.errorDescription)
+                                throw error
                         }
                         
+                        APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .response, message: "SUCCESS")
                         return weatherItem
                 }
         }

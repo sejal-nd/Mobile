@@ -182,6 +182,7 @@ class UsageViewController: AccountPickerViewController {
         // Setup Account Picker
         accountPicker.delegate = self
         accountPicker.parentViewController = self
+        setRefreshControlEnabled(enabled: false)
         
         scrollView?.rx.contentOffset.asDriver()
             .map { min(0, $0.y) }
@@ -201,20 +202,6 @@ class UsageViewController: AccountPickerViewController {
         styleBarGraph()
         bindViewModel()
         dropdownView.configure(withViewModel: viewModel)
-        
-        accountPickerViewControllerWillAppear
-            .subscribe(onNext: { [weak self] state in
-                guard let this = self else { return }
-                switch(state) {
-                case .loadingAccounts:
-                    this.setRefreshControlEnabled(enabled: false)
-                case .readyToFetchData:
-                    if AccountsStore.shared.currentAccount != this.accountPicker.currentAccount {
-                        this.viewModel.fetchAllData()
-                    }
-                }
-            })
-            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

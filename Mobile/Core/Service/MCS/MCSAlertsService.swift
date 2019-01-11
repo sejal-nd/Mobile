@@ -110,25 +110,23 @@ struct MCSAlertsService: AlertsService {
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
         APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .request, message: nil)
         
-        return URLSession.shared.rx.dataResponse(request: request)
-            .do(onNext: { data in
-                let responseString = String(data: data, encoding: .utf8) ?? ""
-                APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .response, message: responseString)
-            }, onError: { error in
+        return URLSession.shared.rx.dataResponse(request: request, onCanceled: {
+            APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .canceled, message: nil)
+        })
+            .do(onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
                 APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .error, message: serviceError.errorDescription)
             })
             .map { data in
                 guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-                    let dictData = parsedData as? [String: Any] else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                guard let d = dictData["d"] as? [String: Any],
+                    let dictData = parsedData as? [String: Any],
+                    let d = dictData["d"] as? [String: Any],
                     let results = d["results"] as? [NSDictionary] else {
+                        APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .error, message: String(data: data, encoding: .utf8))
                         throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
                 
+                APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .response, message: String(data: data, encoding: .utf8))
                 return results.compactMap(OpcoUpdate.from)
         }
         

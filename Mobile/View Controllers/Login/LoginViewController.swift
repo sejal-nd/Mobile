@@ -433,7 +433,7 @@ class LoginViewController: UIViewController {
         }, onMaintenanceMode: { [weak self] in
             self?.navigationController?.view.isUserInteractionEnabled = true
             let ad = UIApplication.shared.delegate as! AppDelegate
-            ad.showMaintenanceMode()
+            ad.showMaintenanceMode($0)
         }, onError: { errorMessage in
             onCompletion()
         })

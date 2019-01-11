@@ -223,14 +223,11 @@ class RegistrationViewModel {
 		}
     }()
 	
-    func checkForMaintenance(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-        var isMaintenanceMode = false
-        
+    func checkForMaintenance(onSuccess: @escaping (Maintenance) -> Void, onError: @escaping (String) -> Void) {
         authenticationService.getMaintenanceMode()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { maintenanceInfo in
-                isMaintenanceMode = maintenanceInfo.allStatus
-                onSuccess(isMaintenanceMode)
+                onSuccess(maintenanceInfo)
             }, onError: { error in
                 _ = error as! ServiceError
             }).disposed(by: disposeBag)

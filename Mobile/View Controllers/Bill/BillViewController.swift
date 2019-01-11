@@ -137,24 +137,6 @@ class BillViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        Observable.combineLatest(accountPickerViewControllerWillAppear.asObservable(),
-                                 viewModel.dataEvents.asObservable().map { $0 }.startWith(nil))
-            .sample(accountPickerViewControllerWillAppear)
-            .subscribe(onNext: { [weak self] state, accountDetail in
-                guard let self = self else { return }
-                switch(state) {
-                case .loadingAccounts:
-                    break
-                case .readyToFetchData:
-                    if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
-                        self.viewModel.fetchAccountDetail(isRefresh: false)
-                    } else if accountDetail?.element == nil {
-                        self.viewModel.fetchAccountDetail(isRefresh: false)
-                    }
-                }
-            })
-            .disposed(by: bag)
-
         styleViews()
         bindViews()
         bindButtonTaps()
@@ -187,8 +169,11 @@ class BillViewController: AccountPickerViewController {
         refreshControl?.removeFromSuperview()
         refreshControl = nil
         scrollView!.alwaysBounceVertical = false
-        enableRefresh()
-        // -------------------------------------------------------------------------------------------------------
+        
+        // only enable refresh if the accounts list has loaded
+        if !(accountPicker.accounts ?? []).isEmpty {
+            enableRefresh()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

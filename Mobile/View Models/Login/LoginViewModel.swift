@@ -136,13 +136,13 @@ class LoginViewModel {
     }
 
     func checkForMaintenance(onSuccess: @escaping () -> Void,
-                             onMaintenanceMode: @escaping () -> Void,
+                             onMaintenanceMode: @escaping (Maintenance) -> Void,
                              onError: @escaping (String) -> Void) {
         authService.getMaintenanceMode()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { maintenanceInfo in
                 if maintenanceInfo.allStatus {
-                    onMaintenanceMode()
+                    onMaintenanceMode(maintenanceInfo)
                 } else {
                     onSuccess()
                 }

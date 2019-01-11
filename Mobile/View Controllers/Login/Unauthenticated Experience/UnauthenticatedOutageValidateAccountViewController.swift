@@ -102,8 +102,8 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
             onAll: { [weak self] in
                 self?.navigationController?.view.isUserInteractionEnabled = true
                 let ad = UIApplication.shared.delegate as! AppDelegate
-                ad.showMaintenanceMode()
-            }, onOutage: { [weak self] in
+                ad.showMaintenanceMode($0)
+            }, onOutage: { [weak self] _ in
                 self?.loadingIndicator.isHidden = true
                 self?.maintenanceModeView.isHidden = false
                 self?.scrollView.isHidden = true
