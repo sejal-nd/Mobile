@@ -122,6 +122,12 @@ class MockAccountService: AccountService {
         case "pastDue":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       pastDueAmount: 100))
+            return .just(accountDetail)
+            
+        case "pastDueEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 200,
                                                                        pastDueAmount: 200))
             return .just(accountDetail)
             
@@ -133,9 +139,36 @@ class MockAccountService: AccountService {
                                               isCutOutNonPay: true)
             return .just(accountDetail)
             
+        case "restoreServiceEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       restorationAmount: 350,
+                                                                       dueByDate: tenDaysFromToday),
+                                              isCutOutNonPay: true)
+            return .just(accountDetail)
+            
+        case "eligibleForCutoff":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       pastDueAmount: 100,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       disconnectNoticeArrears: 100,
+                                                                       isDisconnectNotice: true),
+                                              isCutOutDispatched: true)
+            return .just(accountDetail)
+            
         case "avoidShutoff":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       disconnectNoticeArrears: 200,
+                                                                       isDisconnectNotice: true))
+            return .just(accountDetail)
+            
+        case "avoidShutoffEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 350,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 200,
                                                                        isDisconnectNotice: true))
@@ -145,6 +178,15 @@ class MockAccountService: AccountService {
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
                                                                        amtDpaReinst: 200,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       atReinstateFee: 5),
+                                              isLowIncome: false)
+            return .just(accountDetail)
+            
+        case "catchUpEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       amtDpaReinst: 350,
                                                                        dueByDate: tenDaysFromToday,
                                                                        atReinstateFee: 5),
                                               isLowIncome: false)

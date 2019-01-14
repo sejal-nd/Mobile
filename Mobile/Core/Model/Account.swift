@@ -77,7 +77,6 @@ struct AccountDetail: Mappable {
     let isSupplier: Bool
     let isActiveSeverance: Bool
     let isHourlyPricing: Bool
-    let isBGEControlGroup: Bool
     let isPTSAccount: Bool // ComEd only - Peak Time Savings enrollment status
     let isSERAccount: Bool // BGE only - Smart Energy Rewards enrollment status
 
@@ -94,6 +93,7 @@ struct AccountDetail: Mappable {
 	let isBGEasy: Bool
 	let isAutoPayEligible: Bool
     let isCutOutNonPay: Bool
+    let isCutOutDispatched: Bool
     let isLowIncome: Bool
     let isFinaled: Bool
 	
@@ -116,11 +116,6 @@ struct AccountDetail: Mappable {
         try billingInfo = map.from("BillingInfo")
         
         try serInfo = map.from("SERInfo")
-        if let controlGroupFlag = serInfo.controlGroupFlag, controlGroupFlag.uppercased() == "CONTROL" {
-            isBGEControlGroup = true
-        } else {
-            isBGEControlGroup = false
-        }
         isPTSAccount = map.optionalFrom("isPTSAccount") ?? false
         
         premiseInfo = map.optionalFrom("PremiseInfo") ?? []
@@ -155,7 +150,8 @@ struct AccountDetail: Mappable {
 		isAutoPay = map.optionalFrom("isAutoPay") ?? false
         isBGEasy = map.optionalFrom("isBGEasy") ?? false
 		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
-		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+        isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+        isCutOutDispatched = map.optionalFrom("isCutOutDispatched") ?? false
         isLowIncome = map.optionalFrom("isLowIncome") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
 		
@@ -166,6 +162,10 @@ struct AccountDetail: Mappable {
         
         peakRewards = map.optionalFrom("peakRewards")
         zipCode = map.optionalFrom("zipCode")
+    }
+    
+    var isBGEControlGroup: Bool {
+        return serInfo.controlGroupFlag?.uppercased() == "CONTROL"
     }
     
     func minPaymentAmount(bankOrCard: BankOrCard) -> Double {
