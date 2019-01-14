@@ -9169,20 +9169,28 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppCenterXCUITestExtensions\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Charts\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/JVFloatLabeledTextField\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper-iOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/PDTSimpleCalendar\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxGesture\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-iOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwiftExt\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SimpleKeychain\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Toast-Swift\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/XLPagerTabStrip\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/zxcvbn-ios\"",
+					"\"${PODS_ROOT}/AppCenter/AppCenter-SDK-Apple/iOS\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleAppMeasurement/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				HEADER_SEARCH_PATHS = (
@@ -10633,20 +10641,28 @@
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/AppCenterXCUITestExtensions\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Charts\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/JVFloatLabeledTextField\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper-iOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/PDTSimpleCalendar\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxGesture\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-iOS\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwiftExt\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SimpleKeychain\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Toast-Swift\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/XLPagerTabStrip\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/zxcvbn-ios\"",
+					"\"${PODS_ROOT}/AppCenter/AppCenter-SDK-Apple/iOS\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleAppMeasurement/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				HEADER_SEARCH_PATHS = (
