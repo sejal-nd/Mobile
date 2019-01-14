@@ -25,7 +25,14 @@ def iOS_pods
   pod 'GoogleAnalytics'
   pod 'Firebase/Core', '5.15.0'
   pod 'AppCenter', '1.12'
-  # pod 'AppCenterXCUITestExtensions', '1.0'
+end
+
+def iOS_testingPods
+  pod 'RxTest',     '4.3.1'
+end
+
+def iOS_UITestingPods
+  pod 'AppCenterXCUITestExtensions', '1.0'
 end
 
 target 'BGE' do
@@ -37,12 +44,12 @@ target 'BGE' do
 
   target 'BGEUITests' do
     inherit! :search_paths
-    # Pods for testing
+    iOS_UITestingPods
   end
 
   target 'BGEUnitTests' do
     inherit! :search_paths
-    # Pods for testing
+    iOS_testingPods
   end
 
 end
@@ -56,12 +63,12 @@ target 'ComEd' do
 
   target 'ComEdUITests' do
     inherit! :search_paths
-    # Pods for testing
+    iOS_UITestingPods
   end
 
   target 'ComEdUnitTests' do
     inherit! :search_paths
-    # Pods for testing
+    iOS_testingPods
   end
 
 end
@@ -74,13 +81,15 @@ target 'PECO' do
   shared_pods
 
   target 'PECOUITests' do
-    inherit! :search_paths
-    # Pods for testing
+    # inherit! :search_paths
+    iOS_pods
+    shared_pods
+    iOS_UITestingPods
   end
 
   target 'PECOUnitTests' do
     inherit! :search_paths
-    # Pods for testing
+    iOS_testingPods
   end
 
 end

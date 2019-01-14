@@ -7,6 +7,7 @@ PODS:
   - AppCenter/Core (1.12.0)
   - AppCenter/Crashes (1.12.0):
     - AppCenter/Core
+  - AppCenterXCUITestExtensions (1.0.0)
   - CardIO (5.4.1)
   - Charts (3.2.0):
     - Charts/Core (= 3.2.0)
@@ -137,6 +138,8 @@ PODS:
   - RxSwiftExt/RxCocoa (3.3.0):
     - RxCocoa (~> 4.0)
     - RxSwiftExt/Core
+  - RxTest (4.3.1):
+    - RxSwift (~> 4.0)
   - SimpleKeychain (0.8.1)
   - Toast-Swift (4.0.0)
   - XLPagerTabStrip (8.1.1)
@@ -144,6 +147,7 @@ PODS:
 
 DEPENDENCIES:
   - AppCenter (= 1.12)
+  - AppCenterXCUITestExtensions (= 1.0)
   - CardIO (= 5.4.1)
   - Charts (= 3.2.0)
   - Firebase/Core (= 5.15.0)
@@ -158,6 +162,7 @@ DEPENDENCIES:
   - RxSwift (= 4.3.1)
   - RxSwiftExt (= 3.3.0)
   - RxSwiftExt/RxCocoa (= 3.3.0)
+  - RxTest (= 4.3.1)
   - SimpleKeychain (= 0.8.1)
   - Toast-Swift (= 4.0.0)
   - XLPagerTabStrip
@@ -166,6 +171,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AppCenter
+    - AppCenterXCUITestExtensions
     - CardIO
     - Charts
     - Firebase
@@ -186,6 +192,7 @@ SPEC REPOS:
     - RxGesture
     - RxSwift
     - RxSwiftExt
+    - RxTest
     - SimpleKeychain
     - Toast-Swift
     - XLPagerTabStrip
@@ -193,6 +200,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppCenter: 4d27bdafd74b1b3e90946b9989fd6011a7e39c5e
+  AppCenterXCUITestExtensions: 8825ed941664fa21d6740a5ed6928a84c06623ac
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
@@ -213,11 +221,12 @@ SPEC CHECKSUMS:
   RxGesture: 26ede4ed13ffc6336d29dbd9a8dff229bdb72de7
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
+  RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
   SimpleKeychain: e2485c28d82fcece35e9e41faeac42ebfe614815
   Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 0b4910e37a137a8e1f83663b91583a43e3691be3
+PODFILE CHECKSUM: 371994ded73ca9cca7c50f2727555e62f1016343
 
 COCOAPODS: 1.5.0
