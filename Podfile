@@ -108,3 +108,12 @@ target 'PECO_WatchOS Extension' do
   shared_pods
 
 end
+
+# Removes the project warning after a `pod install`
+post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+        if config.name == 'Release'
+            config.build_settings['SWIFT_COMPILATION_MODE'] = 'wholemodule'
+        end
+    end
+end
