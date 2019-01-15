@@ -4549,6 +4549,7 @@
 		B58B5B571E516A9B0051FD5F /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				B55A8B001F15640A00F63AC3 /* GoogleAnalytics */,
 				356C7F3121908E2A003E8A90 /* environment_preprocess.h */,
 				356C7FA92190D93F003E8A90 /* environment.plist */,
 				0EB93B6B202CA4DF0049E7A2 /* BGE-Environment-AUT.plist */,
@@ -5129,7 +5130,6 @@
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				B55A8B001F15640A00F63AC3 /* GoogleAnalytics */,
 				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
 				356C7F8021909997003E8A90 /* KeychainUtility.swift */,
 			);
